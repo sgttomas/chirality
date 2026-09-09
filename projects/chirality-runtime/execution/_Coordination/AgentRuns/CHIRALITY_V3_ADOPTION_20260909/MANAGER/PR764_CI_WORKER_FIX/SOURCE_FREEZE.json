@@ -1,0 +1,18 @@
+{
+  "schema": "chirality-pr764-ci-worker-source-freeze/v1",
+  "generatedAt": "2026-09-09T21:42:22Z",
+  "baseCommit": "9b005c23a76fc2619780d27f5fabb70e3221cf02",
+  "members": [
+    {
+      "path": ".github/workflows/harness-premerge.yml",
+      "bytes": 11756,
+      "sha256": "a19d0fd1dd4b64cdf30b821fcd5eaa30b7be5b316b8649cb651366fd83d6961c"
+    }
+  ],
+  "change": {
+    "step": "Test shared runtime",
+    "before": "npm test",
+    "after": "npm test -- --maxWorkers=1",
+    "scope": "scheduling capacity only"
+  }
+}

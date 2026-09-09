@@ -17,4 +17,3 @@ must exclude project-only `chirality-change` without advertising it as missing.
 This notice does not adopt, repin, package, qualify, publish, or release App
 bytes. Preserve existing sessions and historical identifiers. The App owning
 loop records any adoption through its own instruments and evidence.
-

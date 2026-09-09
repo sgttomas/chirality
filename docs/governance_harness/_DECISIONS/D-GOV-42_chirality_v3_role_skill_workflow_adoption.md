@@ -91,4 +91,3 @@ The candidate's exact hashes are evidence, not semantic acceptance. App,
 Runtime, distribution, supplier, and project-loop states remain separately
 owned. The final milestones remain an independently reviewed integrated App for
 owner trial, final system-prompt discussion, and explicit publishing approval.
-

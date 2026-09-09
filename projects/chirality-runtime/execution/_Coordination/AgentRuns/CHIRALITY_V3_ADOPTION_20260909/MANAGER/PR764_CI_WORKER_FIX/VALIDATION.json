@@ -1,0 +1,39 @@
+{
+  "schema": "chirality-pr764-ci-worker-validation/v1",
+  "generatedAt": "2026-09-09T21:42:22Z",
+  "sourceFreeze": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/PR764_CI_WORKER_FIX/SOURCE_FREEZE.json",
+    "bytes": 518,
+    "sha256": "c38d51c9d27de26fc59cfcc4b1e1b62a4e96f6e46ddeafe1599c32224d1e3b26"
+  },
+  "validation": {
+    "yamlParse": "PASS (Ruby Psych)",
+    "diffCheck": "PASS",
+    "exactSerialRuntime": "53 passed files / 1 expected skip; 772 passed / 14 expected skip; 121.34s; exit 0",
+    "orderedUnion": "PASS 307ms",
+    "timeoutsChanged": false,
+    "testsSkippedOrFiltered": false,
+    "jobDeadlineChanged": false
+  },
+  "evidence": {
+    "selectedSerialLog": {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/PR764_CI_WORKER_FIX/SERIAL_TEST.log",
+      "bytes": 8947,
+      "sha256": "b2f27f9420db94eaa8b57098de2ec09971c1a5456c2350d148168e41eb4f6d08"
+    },
+    "independentReview": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/PR764_CI_WORKER_REVIEW_V1.md",
+      "bytes": 5480,
+      "sha256": "fde809c7a99f30a33bb7841ac57259b36cf95b1a3c13c38f9e65d304a0e485e9"
+    },
+    "independentManifest": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/PR764_CI_WORKER_REVIEW_MANIFEST_V1.json",
+      "bytes": 1883,
+      "sha256": "a26c45f54e0157de6296b6060f9be20aa5b6c30c4a2771619d8b27979a2ad3c9"
+    }
+  },
+  "limits": [
+    "The amended GitHub Actions head must still pass normal CI.",
+    "Local timing does not qualify the GitHub runner or prove the historical cause."
+  ]
+}

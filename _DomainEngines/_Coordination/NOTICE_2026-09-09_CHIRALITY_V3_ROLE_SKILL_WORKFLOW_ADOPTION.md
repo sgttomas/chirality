@@ -10,4 +10,3 @@ Accepted material-basis changes reopen only affected decisions.
 This notice does not alter any domain engine, admitted source, accepted
 snapshot, index, pin, or publication state. Each receiving domain loop adopts,
 amends, or declines the candidate under its own instruments.
-

@@ -23,4 +23,3 @@ Use `PROPOSED` by default, `APPLIED` only when an authorized edit was made, and 
 After the proposals, always provide `MISSING:`, `NEEDS_HUMAN_RULING:`, and `DEPENDENCY_NOTES:`; each may be `none`. Keep unknowns as `TBD`, make each change specific enough to apply without interpretation, and state when no meaningful issue exists rather than padding the result.
 
 Do not invent supporting evidence, widen scope, or silently reconcile conflicts. Apply changes or update deliverable memory only when the request explicitly authorizes those writes.
-

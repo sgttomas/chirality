@@ -18,4 +18,3 @@ Return:
 - remaining unknowns or environmental limits.
 
 Diagnosis does not imply repair authority. Do not edit code unless the request separately authorizes implementation.
-

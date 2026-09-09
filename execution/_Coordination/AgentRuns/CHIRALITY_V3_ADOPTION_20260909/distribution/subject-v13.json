@@ -1,0 +1,332 @@
+{
+  "schema": "chirality-v3-distribution-review-subject/v13",
+  "baseCommit": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "predecessor": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v12.json",
+    "sha256": "3d494992fbb033f68b623a2124ea681dd12673e83fc3b5eedf83ae264f1e9c8d"
+  },
+  "metadataBasis": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/catalog-metadata-freeze-v2.json",
+    "sha256": "2b22d616b21f37993b633af2826cb2aa9a266c4a565972b89d2b19ca08920b95"
+  },
+  "status": "whitespace-normalization-and-ci-worker-successor-review-subject",
+  "qualification": "source-and-controlled-checks-only",
+  "resolvedReviewFindings": [
+    {
+      "finding": "Harness Premerge path filter omitted packaged canonical docs",
+      "repair": "docs/** trigger with contract pin"
+    },
+    {
+      "finding": "Per-skill tool membership overstated execution policy and omitted external toolchains",
+      "repair": "exact skill-specific dependency members, zsh/git/project-check prerequisites, and explicit bytes-versus-authority semantics"
+    },
+    {
+      "finding": "Public skill export followed source symlinks",
+      "repair": "shared tree copier rejects symlinked/escaping roots and entries before copy, with isolated directory/file negatives"
+    },
+    {
+      "finding": "V3 completeness temporarily treated selected bundle parity as release completeness",
+      "repair": "retained KG-001 registry/examples rows; production V3 requires both source and bundle presence while legacy fixtures retain source-only compatibility"
+    },
+    {
+      "finding": "Preparation output could delete or contaminate a nested canonical source subtree",
+      "repair": "realpath-aware disjointness rejects output within or containing canonical docs, agents, workflows, skills, and tools roots before deletion; nested agents/workflows sentinel tests prove preservation while intended node_modules cache remains allowed"
+    },
+    {
+      "finding": "Contract-pin semantic update drifted the D121 frozen source check",
+      "repair": "security proof source identity and focused expectation bind the exact new contract-pin hash and size"
+    },
+    {
+      "finding": "Derived canonical source directories could be symlinked outside sourceRoot",
+      "repair": "all root-files, agents, docs, workflows, skills, and tools roots must be source-contained directories with no symlink root or intermediate component; member leaf checks remain fail closed"
+    },
+    {
+      "finding": "Direct-file export copies and arbitrary stage deletion bypassed directory-source guards",
+      "repair": "one guarded regular-file primitive now covers canonical direct reads/copies; lexical and canonical stage admission protects repo inputs while allowing exact default staging and external temp roots; fixed metadata outputs reject symlink components"
+    },
+    {
+      "finding": "Non-regular direct sources, tree entries, stages, and fixed metadata outputs were not uniformly rejected",
+      "repair": "stat-confirmed regular file/directory admission and fail-closed unsupported tree entries; FIFO negatives exercise each path without opening or reading the FIFO"
+    }
+  ],
+  "exporterBoundaryInventory": [
+    {
+      "callsite": "allowlist existence preflight",
+      "guard": "no bytes consumed; each accepted path is subsequently admitted by require_source_path before read/copy"
+    },
+    {
+      "callsite": "CLAUDE.md read",
+      "guard": "require_source_path regular file, repo containment, every lexical component non-symlink"
+    },
+    {
+      "callsite": "ROOT_FILES/PUBLIC_ROOT_FILES/RUNTIME_FILES copy2",
+      "guard": "copy_source_file requires a stat-confirmed regular file after repo containment and no-symlink-component checks"
+    },
+    {
+      "callsite": "ROOT_DIRS/skill/runtime directory rglob+copy2",
+      "guard": "copy_tree admits the directory, rejects symlinked/escaping entries, and fails closed on every non-directory/non-regular entry before copy"
+    },
+    {
+      "callsite": "skill-root iterdir",
+      "guard": "require_source_path directory admission precedes enumeration"
+    },
+    {
+      "callsite": "rmtree(stage) and all stage writes",
+      "guard": "admit_stage_path checks lexical+resolved overlap, symlink, and existing-directory type; only exact default repo-local staging or repository-disjoint external root allowed"
+    },
+    {
+      "callsite": "manifest/report fixed output writes",
+      "guard": "admit_fixed_profile_output requires exact path, profile-contained parent, no symlink component, and absent-or-regular-file type before open/write"
+    },
+    {
+      "callsite": "stage sanitize/manifest/boundary reads",
+      "guard": "operate only on the just-created admitted stage populated by guarded sources"
+    },
+    {
+      "callsite": "apply_target deletion/copy",
+      "guard": "unreachable while generated ADOPTION_HOLD is HELD; retained as separate future publication boundary"
+    }
+  ],
+  "sourceBindingRationale": "The D121 pin update binds only the new source candidate required by the reviewed Harness workflow contract. It does not carry forward any earlier package admission, supplier, retry, credential, or native qualification.",
+  "notes": [
+    "V13 preserves V12 and binds the corrected whitespace-normalization freeze plus the separately owned one-line CI worker command change",
+    "the public projection was regenerated because canonical bundled skill/resource bytes changed; 1104 manifest rows exactly match stage hashes and sizes with zero boundary findings",
+    "export-report.md remains byte-identical because counts and boundary results did not change; the generated manifest and Harness Premerge source are the only changed distribution members",
+    "bundle preparation remains 366 files and seven skills; source index remains 79 methods and byte-identical; KG-001 remains needs_remediation and adoption/release holds remain",
+    "candidate does not establish native package, supplier, account, credential, distribution, publication, or release qualification"
+  ],
+  "members": [
+    {
+      "path": ".github/workflows/harness-premerge.yml",
+      "sha256": "a19d0fd1dd4b64cdf30b821fcd5eaa30b7be5b316b8649cb651366fd83d6961c",
+      "sizeBytes": 11756
+    },
+    {
+      "path": "exports/chirality-app/README.md",
+      "sha256": "82f3737a9dd143b3d89d87d606499bad09857b8bb186dfc6e7ccbeba0581df33",
+      "sizeBytes": 2402
+    },
+    {
+      "path": "exports/chirality-app/export-manifest.csv",
+      "sha256": "fba551ef6aebff7f2950ddaac8e2a4e09697f23901f82bbd21645763f4ded8a2",
+      "sizeBytes": 133383
+    },
+    {
+      "path": "exports/chirality-app/export-report.md",
+      "sha256": "6d34dc6f770560ab11388e50e1d92a23062620f8906e6b3d46c4608691c759bb",
+      "sizeBytes": 645
+    },
+    {
+      "path": "exports/chirality-app/export_public.py",
+      "sha256": "2ed72fa156195cabf9c881ba94e4385502bff4de023f2f29fe4dbba241e93401",
+      "sizeBytes": 20011
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/daemon-instruction-root.ts",
+      "sha256": "5c5bc08218a6f978f92564bdf33caf69eef3b94406fd42bd28113c21619c7e43",
+      "sizeBytes": 1869
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "sha256": "3d14e1fec007603a7f3a81c9869c3e151088623bec123a4106a7aa03fc323cce",
+      "sizeBytes": 6645
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/build-electron.mjs",
+      "sha256": "98f2d356ce720012f2cbab94b83f04c1ef72c3f0f457dd263a22fc1d183a7685",
+      "sizeBytes": 3761
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/prepare-packaged-instruction-root.mjs",
+      "sha256": "15ff45fee98bd246001b3e04b28e861951ff8ee82c25f8b6715d75c49403a190",
+      "sizeBytes": 19468
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs",
+      "sha256": "556fb678067cecc71bd06ab7e18819bc282b4be2c2008641fb71be9dcfc41d03",
+      "sizeBytes": 25412
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts",
+      "sha256": "f8aa8b27564bb516e938e3d4a81d17ca58d640743c0e8ba105c3e90b041eb753",
+      "sizeBytes": 25929
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/daemon-instruction-root.test.ts",
+      "sha256": "49c47ea632cb6e4dde487ab4098695051e832a6ea23ee7f69443317958f6511b",
+      "sizeBytes": 3090
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/build-electron.test.ts",
+      "sha256": "aadbcd6d8dde0ae1294fc5220fe9735393af5f9136767401e49b4f0b3a67b36d",
+      "sizeBytes": 730
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/dmg-packaging-policy.test.ts",
+      "sha256": "610c594f90e859d6fc97fed408a206b20c2f31b16128e3e6b4bc05dff6d97a5d",
+      "sizeBytes": 4240
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/prepare-packaged-instruction-root.test.ts",
+      "sha256": "37679314e70c61eafaca895cb0da4cc8a337c350d0a4112df1eda16fb2333eb7",
+      "sizeBytes": 11276
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-instruction-root-integrity.test.ts",
+      "sha256": "557ce43f11e9fb1a64fe2d18b9dc1e1377f15f453bbfc0c395699f374dc9fe67",
+      "sizeBytes": 18159
+    },
+    {
+      "path": "tools/validation/test_public_export_profile.py",
+      "sha256": "994049786552ea3bac662b3e381372ce6f15c8248f965efc446824a4dfc988b2",
+      "sizeBytes": 8556
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs",
+      "sha256": "5585d6a471661bf1984448b9f5b75c47509f2388707ad9d546cdab93783ee5de",
+      "sizeBytes": 79122
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "sha256": "80bbee4f039dc51c38a81f72b55184b3485156eaccc142415e12dcde58a6815c",
+      "sizeBytes": 56169
+    }
+  ],
+  "priorIndependentReview": {
+    "verdict": "PASS",
+    "subject": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v12.json",
+      "sha256": "3d494992fbb033f68b623a2124ea681dd12673e83fc3b5eedf83ae264f1e9c8d",
+      "sizeBytes": 14791
+    },
+    "return": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v12/RETURN.md",
+      "sha256": "d3e853c8c188490a27c6305029358018018aec95c981468cc7b8af84d0fc1719",
+      "sizeBytes": 2392
+    },
+    "checks": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v12/CHECKS.json",
+      "sha256": "2a87a4332d2d0e7203ed5d3a5a47de4708f50c478936fae89e496b8e55452bb0",
+      "sizeBytes": 4369
+    },
+    "manifest": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v12/MANIFEST.json",
+      "sha256": "9e6bdec73d5d932845c9fa3f1111fa58d10df77c18dd4e307f98e9c79a31f5a1",
+      "sizeBytes": 903
+    }
+  },
+  "finalSourceBases": {
+    "rootSemanticSuccessor": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "sha256": "8669df0d1b2ab639e0e3d1352843130aabf8d88ab8050ed9f5169b022d9afad5",
+      "sizeBytes": 7469
+    },
+    "appV7": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md",
+      "sha256": "240a974e9e6a0c9317ea77b9588997adf2d03b613bfd78595ee1a8c3c5405a80",
+      "sizeBytes": 8682
+    },
+    "runtimeV6": {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V6.json",
+      "sha256": "559b0166c5488e8309481ac1f2f46c7270ae7b4415aede9748859ae66a68cc8e",
+      "sizeBytes": 11581
+    }
+  },
+  "finalGeneration": {
+    "regenerated": true,
+    "command": "python3 exports/chirality-app/export_public.py",
+    "manifestRows": 1104,
+    "stageFiles": 1104,
+    "boundaryFindings": 0,
+    "stageManifestExact": true,
+    "symlinksAndSpecials": 0,
+    "excludedChiralityChange": 0,
+    "publicExportTests": "6 passed",
+    "instructionPreparation": "366 files / 7 skills",
+    "instructionIntegrityFocusedTests": "10 passed",
+    "contractAndPackagingFocusedTests": "57 passed",
+    "diffCheck": "PASS",
+    "changedDistributionMembersFromV12": [
+      ".github/workflows/harness-premerge.yml",
+      "exports/chirality-app/export-manifest.csv"
+    ],
+    "unchangedDistributionMembers": 17,
+    "contractPinImplication": "contract-pin and D121 identity members remain unchanged; focused semantic checks pass"
+  },
+  "sourceReviewState": {
+    "root": "terminal independent PASS",
+    "app": "terminal independent PASS; governance two-document supplement introduced no source edits",
+    "runtime": "terminal independent PASS; R2-8 adapter supplement closed canonical targetReference coverage"
+  },
+  "terminalRuntimeEvidence": {
+    "review": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/APP_ADAPTER_TESTS_SUPPLEMENT_V2.md",
+      "sha256": "fa067c79d2bd9f4066ddcd32d2e7fdaca88abc4cefe2c51d9faac272d2208a11",
+      "sizeBytes": 7388
+    },
+    "manifest": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/APP_ADAPTER_TESTS_SUPPLEMENT_MANIFEST_V2.json",
+      "sha256": "0260ae74e83c95d3f555af6d6318c3aa605fc3f0d22f9e29d9369aa30c2b004c",
+      "sizeBytes": 2617
+    },
+    "validation": {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/VALIDATION_V6.json",
+      "sha256": "98875fedd87ab1edede800e9a81fae63864d7c964b643ce1bd0626e28c32e944",
+      "sizeBytes": 4329
+    },
+    "priorFullSuite": "Runtime core remained 772 PASS / 14 registered skips",
+    "managerFocused": "typecheck and 118 focused tests PASS",
+    "managerHandoff": {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/HANDOFF_V4.md",
+      "sha256": "c6895aca133748d8930fc590cce45abbb15f73c2d513d11f93eefeadc49bfec0",
+      "sizeBytes": 2972
+    }
+  },
+  "anchorDeltaFromV10": {
+    "supersededRuntimeAnchor": "SOURCE_FREEZE_V4.json",
+    "effectiveRuntimeAnchor": "SOURCE_FREEZE_V6.json",
+    "v6Delta": "four App frontend adapter/test members plus the already-current Runtime contracts/src/engine.ts source member omitted from earlier custody",
+    "projectionEffect": "none: App frontend source is excluded, and runtime/packages/contracts/src/engine.ts was already present in V10 staging/manifest at exact current hash and size",
+    "generatedArtifactsChanged": [],
+    "implementationAndTestMembersChanged": []
+  },
+  "normalizationBasis": {
+    "freeze": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/NORMALIZATION_FREEZE_V1.json",
+      "sha256": "2ade5f523b75d812132c64772ba4edaa1803f6dac90e5c396aed10dcdfaf286b",
+      "sizeBytes": 9353
+    },
+    "overlay": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/NORMALIZATION_OVERLAY.json",
+      "sha256": "443093a6f58d23f461975481674fd1316213a22d7ff535c29cce10efe57b1fd4",
+      "sizeBytes": 14019
+    },
+    "authorReturn": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/AUTHOR_RETURN.md",
+      "sha256": "a837f4de7ebd6b89fff2f9b4b846b0744fed55b8353d34b8fa90ca28ff5b48d2",
+      "sizeBytes": 1154
+    },
+    "operation": "whitespace-only normalization of 27 paths / 30 findings; canonical text unchanged",
+    "workflowIndex": "79 methods; generated index byte-identical"
+  },
+  "ciWorkerSuccessor": {
+    "path": ".github/workflows/harness-premerge.yml",
+    "change": "Runtime shared test command adds --maxWorkers=1 for deterministic CI worker use",
+    "evidence": {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/PR764_CI_WORKER_FIX/SERIAL_TEST.log",
+      "sha256": "b2f27f9420db94eaa8b57098de2ec09971c1a5456c2350d148168e41eb4f6d08",
+      "sizeBytes": 8947
+    },
+    "semanticContractChecks": "57/57 PASS across contract pins, packaged security proof, and DMG packaging policy"
+  },
+  "anchorDeltaFromV12": {
+    "changedDistributionMembers": [
+      ".github/workflows/harness-premerge.yml",
+      "exports/chirality-app/export-manifest.csv"
+    ],
+    "unchangedDistributionMembers": 17,
+    "unchangedGeneratedReport": true,
+    "normalizedPublicInputs": "canonical skill/resource bytes represented by regenerated manifest hashes",
+    "sourceAnchors": "Root semantic/App V7/Runtime V6 retained; normalization freeze overlays exact whitespace-only postimages"
+  }
+}

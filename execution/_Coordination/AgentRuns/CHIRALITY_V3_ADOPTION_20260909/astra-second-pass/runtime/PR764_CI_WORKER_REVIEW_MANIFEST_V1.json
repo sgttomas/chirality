@@ -1,0 +1,53 @@
+{
+  "schema": "chirality-pr764-ci-worker-review/v1",
+  "verdict": "PASS",
+  "reviewer": {
+    "agent": "/root/astra_runtime_second_pass",
+    "model": "gpt-6-astra",
+    "reasoningEffort": "high"
+  },
+  "baseCommit": "9b005c23a76fc2619780d27f5fabb70e3221cf02",
+  "sourcePath": ".github/workflows/harness-premerge.yml",
+  "baseSha256": "b2434b1d4afad7c1722794b96cf3dca5802f30395b7317df5f0304da507e03e5",
+  "currentSha256": "a19d0fd1dd4b64cdf30b821fcd5eaa30b7be5b316b8649cb651366fd83d6961c",
+  "diffSha256": "ad9cd68c8a04147577167bfc932816f0080abf5f0998aaa02ee7a7e56c822a74",
+  "retested": false,
+  "findings": [],
+  "members": [
+    {
+      "path": "PR764_CI_WORKER_REVIEW_V1.md",
+      "sha256": "fde809c7a99f30a33bb7841ac57259b36cf95b1a3c13c38f9e65d304a0e485e9",
+      "bytes": 5480
+    },
+    {
+      "path": "pr764-ci-worker-review-v1/SERIAL_TEST_CLEAN.log",
+      "sha256": "b2f27f9420db94eaa8b57098de2ec09971c1a5456c2350d148168e41eb4f6d08",
+      "bytes": 8947
+    },
+    {
+      "path": "pr764-ci-worker-review-v1/SERIAL_TEST_RAW.log",
+      "sha256": "6456b4acc6d078ddb2126c82aa8fde58d7f6f52cf1a237f258dcf4d22fdf2b23",
+      "bytes": 8949
+    },
+    {
+      "path": "pr764-ci-worker-review-v1/SUPPORTING_SOURCE_HASHES.json",
+      "sha256": "db9fd01678b41e48d228d78a1c0cf25463d3f36de46c16b02ec1899b7de12ede",
+      "bytes": 1275
+    },
+    {
+      "path": "pr764-ci-worker-review-v1/WORKFLOW.patch",
+      "sha256": "ad9cd68c8a04147577167bfc932816f0080abf5f0998aaa02ee7a7e56c822a74",
+      "bytes": 561
+    },
+    {
+      "path": "pr764-ci-worker-review-v1/WORKFLOW_BASE.yml",
+      "sha256": "b2434b1d4afad7c1722794b96cf3dca5802f30395b7317df5f0304da507e03e5",
+      "bytes": 11738
+    },
+    {
+      "path": "pr764-ci-worker-review-v1/WORKFLOW_CURRENT.yml",
+      "sha256": "a19d0fd1dd4b64cdf30b821fcd5eaa30b7be5b316b8649cb651366fd83d6961c",
+      "bytes": 11756
+    }
+  ]
+}

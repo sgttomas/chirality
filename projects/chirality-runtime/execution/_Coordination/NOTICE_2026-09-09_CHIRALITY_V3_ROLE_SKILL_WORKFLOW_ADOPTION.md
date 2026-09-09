@@ -17,4 +17,3 @@ This notice does not adopt, repin, qualify, publish, or release Runtime bytes.
 Preserve historical sessions/events and introduce compatible readers before
 switching new execution. The Runtime owning loop records adoption through its
 own instruments and evidence.
-

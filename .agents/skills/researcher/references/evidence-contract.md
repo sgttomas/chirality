@@ -41,4 +41,3 @@ Valid amendment candidate kinds are `NEW_ATOM`, `SCOPE_GAP`, `KTY_REMAP`, `CATEG
 `RESEARCH_NOTE.md` begins with `Status: DERIVATIVE_RESEARCH_PACKET` and contains Question, Accepted Basis, Short Answer, Evidence, Interpretation, Caveats, Open Questions, and Handoff / Next Action sections.
 
 The handoff records packet status, accepted basis, retrieval snapshot and freshness, load-bearing claims, conflicts, amendment candidates, caveats, and explicit coverage gaps for a partial run.
-

@@ -1,8 +1,8 @@
 # Chirality v3 integration custody inventory
 
-Date: 2026-09-09  
-Integration checkout: `/private/tmp/chirality-v3-adoption-20260909`  
-Branch: `codex/chirality-v3-adoption-20260909`  
+Date: 2026-09-09
+Integration checkout: `/private/tmp/chirality-v3-adoption-20260909`
+Branch: `codex/chirality-v3-adoption-20260909`
 Base: `c16812685831a1cae3d44bf478d08b033c605c3a`
 
 ## Custody posture

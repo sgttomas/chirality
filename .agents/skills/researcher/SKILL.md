@@ -31,4 +31,3 @@ Use the repository's canonical packet headers. A full packet contains `RESEARCH_
 Return the packet path, short answer, load-bearing claims with evidence ratings, accepted basis, retrieval snapshot and freshness, conflict reference, amendment-candidate reference, caveats, and coverage gaps.
 
 Write only inside the allocated packet. Do not modify sources, accepted snapshots, ledgers, registers, catalogs, indexes, or repository metadata. Keep external evidence and inference visibly separate from accepted domain truth.
-

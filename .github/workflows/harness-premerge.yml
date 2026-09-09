@@ -94,7 +94,7 @@ jobs:
         working-directory: projects/chirality-runtime
 
       - name: Test shared runtime
-        run: npm test
+        run: npm test -- --maxWorkers=1
         working-directory: projects/chirality-runtime
 
       - name: Install frontend dependencies

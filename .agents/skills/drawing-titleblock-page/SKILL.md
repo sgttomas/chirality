@@ -20,4 +20,3 @@ Use `TBD` for unreadable values. Never derive drawing or sheet numbers from page
 Write exactly one stub with YAML frontmatter containing `drawing_type: DRAWING_SET`, `extraction_target: titleblock_index`, source PDF and page, crop geometry, `status`, and `finding_count`. Valid statuses are `SUCCESS`, `NO_TITLEBLOCK`, `FAILED`, and `FAILED_INPUTS`. Use `finding_count: 1` only with a detected-titleblock row; a readable page with no titleblock is `NO_TITLEBLOCK` with `finding_count: 0`.
 
 Read only the declared images and write only the declared output path. Return the run status, page number, drawing number, family proposal, and confidence. Do not inventory the full PDF, choose downstream scope, or accept a drawing-family classification.
-

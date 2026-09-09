@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-distribution-independent-review-manifest/v1",
+  "subjectVersion": "v13",
+  "verdict": "PASS",
+  "reviewMeaning": "normalization-and-controlled-ci-consistency",
+  "members": [
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v13.json",
+      "sha256": "d2f6c7e4d276643ce3628c510a4e5fb1e96cbb1c214cada30f0b26111bc089cb",
+      "sizeBytes": 16968
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v13/CHECKS.json",
+      "sha256": "2381311d02bb61fdb30c3e42e1406bf41f9b7196a13de39dfdeaf04646a939d4",
+      "sizeBytes": 4564
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v13/RETURN.md",
+      "sha256": "a6649edec0307ba0a7db25f2411fe7547e1abb5c858d3454997220948ad690f1",
+      "sizeBytes": 2335
+    }
+  ]
+}

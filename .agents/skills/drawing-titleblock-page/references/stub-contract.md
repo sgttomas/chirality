@@ -29,4 +29,3 @@ dwg_no | sheet_no | sheet_title | revision | area_or_module | drawing_family_pro
 ```
 
 Emit one row only for `SUCCESS`. For `NO_TITLEBLOCK`, `FAILED`, and `FAILED_INPUTS`, use `finding_count: 0` and explain the outcome below the empty table. Use the supplied provenance values exactly. Unreadable extracted fields remain `TBD`.
-

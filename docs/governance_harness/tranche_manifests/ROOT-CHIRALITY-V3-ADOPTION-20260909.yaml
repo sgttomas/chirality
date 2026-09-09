@@ -27,4 +27,3 @@ m6_notice:
   - projects/pec/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md
   - _DomainEngines/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md
   rationale: 'Five affected coordination surfaces receive the candidate contract, catalog identity, grouped-checkpoint change, and explicit receiving-loop adoption boundary. Notices communicate changes and do not accept or repin another loop.'
-

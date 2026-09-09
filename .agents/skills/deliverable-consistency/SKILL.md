@@ -12,4 +12,3 @@ Run `tools/validation/scan_deliverable_consistency.py` first when available, the
 Return evidence-backed findings as `PROPOSAL:` blocks, missing inputs under `MISSING:`, and genuine contradictions under `NEEDS_HUMAN_RULING:`. Cite each finding to a file and best-effort heading or section. Preserve unknowns as `TBD` and say explicitly when the sweep finds no meaningful issue.
 
 Apply only minimal, reversible corrections when edits are explicitly authorized. Do not widen the review beyond the deliverable or silently resolve a conflict.
-

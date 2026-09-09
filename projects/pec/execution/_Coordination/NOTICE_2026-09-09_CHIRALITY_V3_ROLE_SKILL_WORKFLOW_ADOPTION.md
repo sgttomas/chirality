@@ -8,4 +8,3 @@ Retired role and method identifiers remain explicit compatibility records.
 This notice does not alter PEC authority, accepted decompositions, sessions,
 pins, or product state. PEC may adopt, amend, or decline the candidate through
 its own instruments. Frozen historical evidence remains unchanged.
-

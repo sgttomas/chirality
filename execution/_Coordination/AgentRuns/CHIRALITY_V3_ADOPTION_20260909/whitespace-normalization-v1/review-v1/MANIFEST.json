@@ -1,0 +1,92 @@
+{
+  "schema": "chirality-whitespace-independent-review-manifest/v1",
+  "verdict": "PASS",
+  "subjectSha256": "ac1debe05f98a093758d431c0376544d1f59c4dad1de9a406fcd3f4c8930f08b",
+  "members": [
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/BYTE_AUDIT_INTERIM.json",
+      "sha256": "42ea7a6ed9f9a7c7684a661bbd6df7f0ea71492c7a7231cada73f3a6b3fd8029",
+      "sizeBytes": 15357
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/CANDIDATE_WHITESPACE_FINAL.log",
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09",
+      "sizeBytes": 88
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/CANDIDATE_WHITESPACE_INTERIM.log",
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09",
+      "sizeBytes": 88
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/CHECKS_FINAL.json",
+      "sha256": "963da32ca0418919e0508c263e97ef5c8e39f1ea827d22231a5aa3bf8f01f4c0",
+      "sizeBytes": 1967
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/DISTRIBUTION_V13_BINDING_CHECK.json",
+      "sha256": "9d7d1b0ce35391da7938416848dfab5c7dc2f5f426dcc70e159eaafa1f1ca600",
+      "sizeBytes": 3921
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/FROZEN_CANDIDATE_WHITESPACE.log",
+      "sha256": "a00b9a30eee336ab8c6a2d855b0b5a833e1b79252149de5fde8d43d3be032a09",
+      "sizeBytes": 88
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/PROSPECTIVE_DIFF_CHECK_FINAL.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sizeBytes": 0
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/PROSPECTIVE_DIFF_CHECK_INTERIM.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sizeBytes": 0
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/RETURN.md",
+      "sha256": "b3ee3386ade630a235529619b8fe779f875494c847a0e9281233fe3a067f8eb2",
+      "sizeBytes": 2256
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/ROOT_FREEZE_CHECK.json",
+      "sha256": "17f078003ef5420686ec6ba39ae7c7f36f2d4d550344c4d1f3d228e6c05f077f",
+      "sizeBytes": 1490
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/ROOT_SUCCESSOR_FREEZE_CHECK.json",
+      "sha256": "2b52baed602416915d8fe9cecfcf794781db29d3b80fd03879674ad1f0367d27",
+      "sizeBytes": 4236
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/SUBJECT_FINAL.json",
+      "sha256": "ac1debe05f98a093758d431c0376544d1f59c4dad1de9a406fcd3f4c8930f08b",
+      "sizeBytes": 8299
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/SUBJECT_INTERIM.json",
+      "sha256": "b61e07b3ccddbe97182c4df536eb9647efa98c66f0a7b48d953b22f29f3a22d1",
+      "sizeBytes": 7601
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/WORKFLOW_INDEX_FINAL.log",
+      "sha256": "fa29d0fab408573f0fa5dfb0239969341b09bf01161aab5dccfbc7a426d0d662",
+      "sizeBytes": 111
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/WORKFLOW_INDEX_INTERIM.log",
+      "sha256": "fa29d0fab408573f0fa5dfb0239969341b09bf01161aab5dccfbc7a426d0d662",
+      "sizeBytes": 111
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/WORKFLOW_INDEX_SYSTEM_PYTHON_MISSING_YAML.log",
+      "sha256": "15eea3274fd0bc93ec909141f2f3b97c08bf1b6a4ed65eecf89e9c342afb4b2a",
+      "sizeBytes": 211
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/review-v1/audit_normalization.py",
+      "sha256": "cd2f45d6bd66a40dd530aab1c7def33e24adb12fc2eb42ada79808d39a2a7e21",
+      "sizeBytes": 5035
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "chirality-distribution-independent-normalization-review-checks/v1",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v13.json",
+    "sha256": "d2f6c7e4d276643ce3628c510a4e5fb1e96cbb1c214cada30f0b26111bc089cb",
+    "sizeBytes": 16968,
+    "memberCount": 19
+  },
+  "verdict": "PASS",
+  "reviewMeaning": "Normalization and controlled-CI successor consistency pass; not adoption, package, publication, or release qualification.",
+  "checks": [
+    {
+      "name": "subject and member binding",
+      "status": "pass",
+      "evidence": "subject-v13 matched its assigned identity; all 19 member hashes and sizes matched current files."
+    },
+    {
+      "name": "V12 distribution delta",
+      "status": "pass",
+      "evidence": "V12 and V13 contain the same 19 paths. Only .github/workflows/harness-premerge.yml and export-manifest.csv changed; export-report.md and the other 16 members remain byte-identical. Exact-member git diff --check passed."
+    },
+    {
+      "name": "corrected normalization freeze",
+      "status": "pass",
+      "evidence": "V13 binds corrected NORMALIZATION_FREEZE_V1.json at 2ade5f523b75d812132c64772ba4edaa1803f6dac90e5c396aed10dcdfaf286b, not superseded de7325d5; overlay matched 443093a6f58d23f461975481674fd1316213a22d7ff535c29cce10efe57b1fd4."
+    },
+    {
+      "name": "normalization overlay integrity",
+      "status": "pass",
+      "evidence": "All 27 current postimages matched overlay newSizeBytes/newSha256 values; corrected freeze and overlay postimage maps matched exactly; every entry records canonicalTextUnchanged=true."
+    },
+    {
+      "name": "normalized public closure",
+      "status": "pass",
+      "evidence": "All 11 normalized paths included in public export matched canonical source, stage, CSV size/hash, and overlay postimage identities exactly. These comprise nine bundled skill/reference files and two governed docs."
+    },
+    {
+      "name": "workflow index",
+      "status": "pass",
+      "evidence": "Canonical workflows/index.json remains byte-identical at SHA-256 1f34a12e0db95467c7c7a3500ff7301a1fd8aa30e01ab4dc4c789656ab12d9b7 with 79 methods. Public stage has 78 after the intended chirality-change exclusion."
+    },
+    {
+      "name": "bundle closure",
+      "status": "pass",
+      "evidence": "Independent temp-only preparation produced 366 manifest files and exactly seven intended skills; chirality-change remained excluded."
+    },
+    {
+      "name": "stage and manifest",
+      "status": "pass",
+      "evidence": "All 1104 unique CSV rows exactly matched current stage paths, sizes, and SHA-256 values; stage has zero symlinks and special entries, zero boundary findings, and no private/excluded/App frontend source."
+    },
+    {
+      "name": "report truthfulness",
+      "status": "pass",
+      "evidence": "Unchanged report row, sanitization, boundary, and top-level counts exactly match current stage and manifest."
+    },
+    {
+      "name": "CI worker successor",
+      "status": "pass",
+      "evidence": "Harness Premerge Runtime test command adds --maxWorkers=1; SERIAL_TEST.log matched b2f27f9420db94eaa8b57098de2ec09971c1a5456c2350d148168e41eb4f6d08 and reports 53 test files passed, 1 skipped, 772 tests passed, and 14 skipped."
+    },
+    {
+      "name": "semantic contract preservation",
+      "status": "pass",
+      "evidence": "Independent focused runs passed 57/57 contract-pin, packaged-security, and DMG-policy checks plus 10/10 preparation and integrity checks. Contract pins and D121 identity members remain byte-identical."
+    },
+    {
+      "name": "source and prior review anchors",
+      "status": "pass",
+      "evidence": "Root/App/Runtime V6 anchors and terminal Runtime evidence remain exact. V13 predecessor and priorIndependentReview identities match subject-v12, RETURN.md, CHECKS.json, and MANIFEST.json; V12 manifest internal bindings reverified."
+    },
+    {
+      "name": "holds and qualification",
+      "status": "pass",
+      "evidence": "KG-001 remains needs_remediation; stage ADOPTION_HOLD remains HELD; adoption/release holds and source-and-controlled-checks-only qualification are explicit; native/package/distribution/publication/release qualification is disclaimed."
+    }
+  ],
+  "limitations": [
+    "This review validates the frozen normalization, distribution, and controlled-CI evidence. It does not establish adoption acceptance, native packaging, supplier/account/credential readiness, publication, distribution, or release qualification."
+  ]
+}

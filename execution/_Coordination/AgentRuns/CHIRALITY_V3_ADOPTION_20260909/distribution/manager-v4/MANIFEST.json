@@ -1,0 +1,36 @@
+{
+  "schema": "chirality-v3-distribution-normalization-manager-evidence/v4",
+  "verdict": "ready-for-integration-normalization-fan-in",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v13.json",
+    "sha256": "d2f6c7e4d276643ce3628c510a4e5fb1e96cbb1c214cada30f0b26111bc089cb",
+    "sizeBytes": 16968
+  },
+  "members": [
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/manager-v4/RETURN.md",
+      "sha256": "24ad915038cff3d0f545ed5977cefa6bbe20ee6ef1a981d5bb387e6ece59e4d3",
+      "sizeBytes": 1407
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/manager-v4/CHECKS.json",
+      "sha256": "9220f8deaab6b9ddfd0ad6ce9f30bc69f4bb8239b0af79688c0df61924c0fb5d",
+      "sizeBytes": 2545
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v13/MANIFEST.json",
+      "sha256": "dc65d01bf7f580daa29ef61cb9ac82f3467ec9994c6704ec3678195f88730ab3",
+      "sizeBytes": 915
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/PR764_CI_WORKER_REVIEW_MANIFEST_V1.json",
+      "sha256": "a26c45f54e0157de6296b6060f9be20aa5b6c30c4a2771619d8b27979a2ad3c9",
+      "sizeBytes": 1883
+    }
+  ],
+  "predecessor": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/manager-v3/MANIFEST.json",
+    "sha256": "40d717da843ec76f55ffb7935a2eba16685dee5b0475e3fc91cb8e8487fd2d48",
+    "sizeBytes": 1342
+  }
+}

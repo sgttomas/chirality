@@ -1,7 +1,7 @@
 # Chirality v3 staging custody summary
 
-Date: 2026-09-09  
-Base: `c16812685831a1cae3d44bf478d08b033c605c3a`  
+Date: 2026-09-09
+Base: `c16812685831a1cae3d44bf478d08b033c605c3a`
 Branch: `codex/chirality-v3-adoption-20260909`
 
 The exact source union contains **268 files / 3,367,997 bytes**. Every changed source path is attributed to at least one reviewed subject; unknown-source count is **0**. All current source postimages are bound by the present lane subjects; current-postimage binding gap count is **0**. Runtime V6 independent review and manager validation passed; Distribution V12 independently passed. Only external review of this exact machine manifest remains before parent staging inspection. The compact selected evidence set contains **90 files / 512,477 bytes**, with **0** missing paths.
