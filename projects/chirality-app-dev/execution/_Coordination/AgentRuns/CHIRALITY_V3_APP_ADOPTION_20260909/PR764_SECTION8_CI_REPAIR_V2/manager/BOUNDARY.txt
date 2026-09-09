@@ -1,0 +1,1 @@
+Controlled integration only: isolated Node RuntimeDaemon with production RuntimeService and App LegacyAgentEngineAdapter/StubAgentSdkManager; authenticated Unix socket; real Next harness routes on owned localhost port 3017. No Electron, supplier, native provider, user credentials, or qualification claim. Both owned processes were stopped after the run.

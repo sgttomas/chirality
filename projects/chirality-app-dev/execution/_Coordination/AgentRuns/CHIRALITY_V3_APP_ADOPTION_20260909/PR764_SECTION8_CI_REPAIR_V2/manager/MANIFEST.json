@@ -1,0 +1,24 @@
+{
+  "schema": "chirality-manager-return/v1",
+  "task": "/root/app_adoption",
+  "status": "validated-candidate",
+  "return": {
+    "path": "RETURN.md",
+    "sha256": "c8c759978b07c33188fbf3c1405de2e6e73b2a51cc441304a20474862da2daab"
+  },
+  "subjectSha256": "ae8753e478c984c85ec8167c5bd7ddee8ee224d81d540030836b2763ef36c476",
+  "patchSha256": "af9f661029aef7de2a681de5dca28c32d8d220e432d4bdb5f29e41f35a5692fd",
+  "controlledSection8SummarySha256": "45fea49773d2884f8d760071f2cbe0862fb5a7a1ec6606a34e0fb62f6be389ab",
+  "focusedTestLogSha256": "d397aa5c6a3abede872a22a4111cbdae9c544166fc8320f6375ef780c27beba9",
+  "typecheckLogSha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+  "publishedEvidence": {
+    "section8Summary": {
+      "path": "SECTION8_SUMMARY.json",
+      "sha256": "45fea49773d2884f8d760071f2cbe0862fb5a7a1ec6606a34e0fb62f6be389ab"
+    },
+    "boundary": {
+      "path": "BOUNDARY.txt",
+      "sha256": "eba5847636fd7fa1fdf39ec9348131fdf45f1e8580e45694aaef1968c03b6602"
+    }
+  }
+}

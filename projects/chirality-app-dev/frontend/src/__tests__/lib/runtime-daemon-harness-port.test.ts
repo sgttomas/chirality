@@ -205,6 +205,34 @@ describe('RuntimeDaemonHarnessPort', () => {
     expect(finalRequest).not.toHaveProperty('allowedWriteTargets');
   });
 
+  it('maps legacy dontAsk creation to canonical readOnly unless permissionMode is explicit', async () => {
+    const runtimeClient = client();
+    const port = new RuntimeDaemonHarnessPort(runtimeClient);
+
+    await port.createSession({
+      projectRoot: project.canonicalRoot,
+      persona: 'HELP_HUMAN',
+      mode: 'dontAsk'
+    });
+    expect(runtimeClient.createSession).toHaveBeenLastCalledWith(
+      project.projectId,
+      expect.objectContaining({ mode: 'dontAsk', permissionMode: 'readOnly' }),
+      undefined
+    );
+
+    await port.createSession({
+      projectRoot: project.canonicalRoot,
+      persona: 'HELP_HUMAN',
+      mode: 'dontAsk',
+      permissionMode: 'bypass'
+    });
+    expect(runtimeClient.createSession).toHaveBeenLastCalledWith(
+      project.projectId,
+      expect.objectContaining({ mode: 'dontAsk', permissionMode: 'bypass' }),
+      undefined
+    );
+  });
+
   it('preserves canonical UI events and interrupts the owned session on cancel', async () => {
     const event: UIEvent = {
       type: 'chat:delta',

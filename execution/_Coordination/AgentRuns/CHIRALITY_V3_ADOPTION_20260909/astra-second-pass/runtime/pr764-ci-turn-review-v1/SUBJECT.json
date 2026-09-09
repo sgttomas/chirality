@@ -1,0 +1,101 @@
+{
+  "base": "041011d8a081f85080dfac808db9657a3fd6455f",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/agent-sdk-manager.ts",
+      "sha256": "b2786cfe6fb73b532f1e1de6d78e5bbf85084ff061ff8013debd500a77b54f74",
+      "baseSha256": "cc9be049c6cf98650f5e0a5d34eeee07ec0597dc299de0133644dbb412489510",
+      "diffSha256": "dc3ccc24f6d33c683857bf1f0d5bef54cc7a5318743f322aa9a3224331007611"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts",
+      "sha256": "2bce67e0b9b1b8f25f26f2702ad6e59b9a7ee878f26eea1f8e269fc08a409ce0",
+      "baseSha256": "317f19e0d82b9daa0af98933ad2167ebf60d5ce33ef2742f54442938755b51e4",
+      "diffSha256": "19f434afdee18280fb5b3fe59efe92e688f72d781fc0c989d1bcf187c513f8b4"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/integration/runtime-successor-adapters.integration.test.ts",
+      "sha256": "a9b83a264d8126d09d39a50cb8cbd4b9a35a312f87a3134d0764217b5172c4da",
+      "baseSha256": "3f3807f043948a3e6799e61b9ba323ced2b3af02623bc3cf751418b330870e45",
+      "diffSha256": "ffa5024c397290f4b929edc82afdfb71dcc56a40068823ccb4e31bab6b6e55f2"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/runtime-daemon-harness-port.test.ts",
+      "sha256": "30c08766703c79ec226397c8cde98025f54766908d502fb42bc013b46ce5b39c",
+      "baseSha256": "6cc8eb209cb3c99c92eae25c7c697f093df1c5af547042722b2b487bac4f82b5",
+      "diffSha256": "2c6d647bb2ea38b05823743e95fecd3328bb1922c86ed1dababf4b2be11f1a2e"
+    }
+  ],
+  "support": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/engine-registry.ts",
+      "sha256": "c1532b80212e6baeccaddfca89e09f53b2e8dd669cace8c36f0bc366ad1d9d5a",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/runtime.ts",
+      "sha256": "daaf05a30bfed5a5a21089d4cb4cebf4121c5ba29ed8fbcc6deb7f780df9c6ce",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts",
+      "sha256": "ad6b0f6ea0d8f88f8036aca1c78701228d04a53e6698b4f1e245f0a5b32c7a90",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts",
+      "sha256": "2a63308454ef4387baac92219bc6fadd941cdfb77c378b3ad3a3c03969959a5a",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/claude-agent-sdk-manager.ts",
+      "sha256": "b8cbf8cc066e090d6f6b16c14ba5e33c18a54e06a0329d1f23e6873d9ef38af4",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/anthropic-agent-sdk-manager.ts",
+      "sha256": "972d1c667ecafc17232e3979df507c81e398ead9305205bfb3efb9a4ceabd893",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts",
+      "sha256": "e44cf3c3e55a0fed01ce9c9ad7faad67b903def2d4d4d10b87c333c87d7ad90b",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-service.ts",
+      "sha256": "d0b0debf6e47b844483e6f29cef27e323a2bb662c9d1c0ef2d77b77a4ec0bbbb",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/turn-coordinator.ts",
+      "sha256": "de7189450e22492dce54d51459779e024592dcfcfffcb91bac96f4ff3ffb12c9",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/validate-harness-section8.mjs",
+      "sha256": "9ce64529359fe3134fbead391a22162561ffa248111349fc2182664bb24c00b4",
+      "unchangedFromBase": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/turn-engine.test.ts",
+      "sha256": "32c558fcb605e23dee30c61e9144b0735c261c7fd002fdbba68c1e060b0538c7",
+      "unchangedFromBase": true
+    }
+  ],
+  "managerSubjectSha256": "ae8753e478c984c85ec8167c5bd7ddee8ee224d81d540030836b2763ef36c476",
+  "managerPatchSha256": "af9f661029aef7de2a681de5dca28c32d8d220e432d4bdb5f29e41f35a5692fd",
+  "controlledEvidenceFiles": 23,
+  "verdict": "PASS",
+  "reviewer": "/root/astra_runtime_second_pass",
+  "role": "TASK independent reviewer",
+  "model": "gpt-6-astra",
+  "reasoningEffort": "high",
+  "postTestAllHashesStable": true,
+  "independentTests": {
+    "files": 3,
+    "passed": 21,
+    "exitCode": 0,
+    "logSha256": "20ed1d39b7170f24f52bf64d8b6f78d7c7a6a742b5ddeee0dcafdd58cdbb8f0f"
+  }
+}

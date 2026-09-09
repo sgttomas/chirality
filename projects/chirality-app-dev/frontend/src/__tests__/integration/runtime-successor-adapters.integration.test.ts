@@ -182,5 +182,48 @@ describe('RuntimeService to production App successor preparation', () => {
     expect(replay).toContainEqual(expect.objectContaining({
       type: 'turn.accepted', data: expect.objectContaining({ message: 'bootstrap', boot: true })
     }));
+
+    const events: UIEvent[] = [];
+    for await (const event of service.runSessionTurn(projectId, session.sessionId, {
+      message: 'controlled ordinary turn'
+    })) events.push(event);
+    expect(events).toContainEqual(expect.objectContaining({
+      type: 'session:init',
+      data: expect.objectContaining({ adapterId: 'stub', providerId: 'stub', model: 'controlled' })
+    }));
+    expect(events).toContainEqual({
+      type: 'chat:complete', data: { text: 'controlled ordinary turn' }
+    });
+  });
+
+  it('keeps unsupported legacy adapters and context-free controlled v3 turns fail-closed', async () => {
+    const v3Session = {
+      schemaVersion: 'chirality.session/v3' as const,
+      sessionId: 'controlled-negative', projectId: 'fixture', projectRoot: '/fixture',
+      createdAt: '2026-09-09T00:00:00.000Z', updatedAt: '2026-09-09T00:00:00.000Z',
+      status: 'idle' as const, role: 'agent0' as const, agentType: 0 as const,
+      persona: 'HELP_HUMAN', roleId: 'HELP_HUMAN' as const, mode: 'direct',
+      interactionMode: 'chat' as const, permissionMode: 'readOnly' as const,
+      selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis-fixture',
+      engineSelection: { adapterId: 'stub', providerId: 'stub', model: 'controlled' }
+    };
+    const input = {
+      session: v3Session,
+      message: 'ordinary turn',
+      opts: { model: 'controlled', tools: [], maxTurns: 1, persona: 'HELP_HUMAN', mode: 'readOnly' },
+      turnId: 'negative-turn'
+    };
+    const plainStub = new StubAgentSdkManager();
+    const plain = new LegacyAgentEngineAdapter({
+      adapterId: 'plain', providerId: 'plain',
+      capabilities: { credentials: false, tools: false, attachments: false, interruption: false, durableResume: false, compaction: false }
+    }, {
+      startTurn: (session, message, opts) => plainStub.startTurn(session, message, opts),
+      interrupt: (sessionId) => plainStub.interrupt(sessionId)
+    });
+    expect(() => plain.startTurn(input)).toThrow(/cannot consume a frozen Runtime instruction basis/);
+
+    const controlled = new StubAgentSdkManager();
+    expect(() => controlled.startRuntimeTurn(input)).toThrow(/requires Runtime to supply the frozen instruction basis/);
   });
 });

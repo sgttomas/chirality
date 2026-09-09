@@ -1,0 +1,28 @@
+{
+  "schema": "chirality-g4-manifest-correction/v1",
+  "status": "ready-for-review",
+  "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "headAtValidation": "041011d8a081f85080dfac808db9657a3fd6455f",
+  "subject": {
+    "path": "docs/governance_harness/tranche_manifests/ROOT-CHIRALITY-V3-ADOPTION-20260909.yaml",
+    "sizeBytes": 1672,
+    "sha256": "7183995fafbaad150edfa6906d4e85dea02c309dce56ebd3718bccee1a52ad59"
+  },
+  "change": "add exactly .github/workflows/harness-premerge.yml to instruction_surface_paths",
+  "validation": {
+    "fullPrG4": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/g4-manifest-correction-v1/G4_FULL_PR.log",
+      "sizeBytes": 6216,
+      "sha256": "b4f1930b614b2a9cf15ed035b0d73ea058ccab4250c0daaf25dff27955d1cb1a"
+    },
+    "validatorTests": "48 PASS",
+    "candidateWhitespace": "PASS",
+    "diffCheck": "PASS"
+  },
+  "return": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/g4-manifest-correction-v1/RETURN.md",
+    "sizeBytes": 640,
+    "sha256": "37b1ec2e94c73df1bef0ae0c21113c983bb736ee54333b3b39130b292e67e80e"
+  },
+  "exportRebind": "PENDING OWNER"
+}

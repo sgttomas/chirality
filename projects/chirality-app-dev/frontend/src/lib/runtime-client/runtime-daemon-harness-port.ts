@@ -172,6 +172,9 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
         request.projectRoot,
         options?.signal
       );
+      const permissionMode = request.permissionMode ?? (
+        request.mode === 'dontAsk' ? 'readOnly' : undefined
+      );
       const session = await this.client.createSession(
         this.projectId,
         {
@@ -180,9 +183,9 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
           ...(request.interactionMode === undefined
             ? {}
             : { interactionMode: request.interactionMode }),
-          ...(request.permissionMode === undefined
+          ...(permissionMode === undefined
             ? {}
-            : { permissionMode: request.permissionMode }),
+            : { permissionMode }),
           ...(request.selectedMethods === undefined
             ? {}
             : { selectedMethods: request.selectedMethods }),

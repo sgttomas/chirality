@@ -4,6 +4,7 @@ title: Chirality v3 role, skill, and workflow adoption
 date: 2026-09-09
 basis: c16812685831a1cae3d44bf478d08b033c605c3a
 instruction_surface_paths:
+- .github/workflows/harness-premerge.yml
 - AGENTS.md
 - agents/**
 - .agents/skills/**
