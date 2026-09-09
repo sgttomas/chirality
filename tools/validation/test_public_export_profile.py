@@ -34,6 +34,11 @@ def test_public_export_excludes_private_runtime_surfaces(tmp_path: Path) -> None
     bundled_skills = sorted(path.parent.name for path in (stage / '.agents/skills').glob('*/SKILL.md'))
     assert bundled_skills == sorted(exporter.BUNDLED_SKILL_NAMES)
     assert 'chirality-change' not in bundled_skills
+    provenance_path = (
+        "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/"
+        "skill-execution-provenance.json"
+    )
+    assert (stage / provenance_path).read_bytes() == (REPO_ROOT / provenance_path).read_bytes()
     index = __import__('json').loads((stage / 'workflows/index.json').read_text(encoding='utf-8'))
     assert index['schema'] == 'chirality-method-index/v1'
     assert not any(item.get('kind') == 'skill' and item.get('name') == 'chirality-change' for item in index['methods'])

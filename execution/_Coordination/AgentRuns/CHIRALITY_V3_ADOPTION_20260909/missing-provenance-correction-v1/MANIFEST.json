@@ -1,0 +1,33 @@
+{
+  "schema": "chirality-missing-provenance-correction/v1",
+  "status": "ready-for-change",
+  "head": "73c9f4d77d9a78de6f929c47508ea5fa47154c2d",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json",
+    "sizeBytes": 3392,
+    "sha256": "331c2a4ad4859440eb4dec611af8f62cc2c424f7c84bb5dc076b5c76fcd85f04"
+  },
+  "priorBinding": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+    "sha256": "8669df0d1b2ab639e0e3d1352843130aabf8d88ab8050ed9f5169b022d9afad5",
+    "subjectSha256": "331c2a4ad4859440eb4dec611af8f62cc2c424f7c84bb5dc076b5c76fcd85f04"
+  },
+  "validation": [
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/missing-provenance-correction-v1/CURRENT_TREE_TEST.log",
+      "sizeBytes": 99,
+      "sha256": "ac188113d7aa29b09977570c3113c7911fdac14c7be067a828e6dd3b2138d6c9"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/missing-provenance-correction-v1/CLEAN_CANDIDATE_TEST.log",
+      "sizeBytes": 99,
+      "sha256": "21326f9afa0de598f626c77f483f8c4cc4132aaf3a74ec11b1d929e98e85bbc3"
+    }
+  ],
+  "return": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/missing-provenance-correction-v1/RETURN.md",
+    "sizeBytes": 772,
+    "sha256": "fb4dffa9e915dd2346272dc712561ee50149dd35d99fadb8374a5695447e0636"
+  },
+  "independentDependencyCensus": "only this provenance dependency is missing; parent-owned review evidence remains separate"
+}

@@ -1,4 +1,4 @@
-import { copyFile, mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
@@ -90,5 +90,60 @@ describe('validate-harness-premerge wrapper failures', () => {
     expect(result.output).toContain(
       "Summary includes legacy test id 'regression.api_chat_reachability'"
     );
+  });
+
+  it('publishes the exact Section 8 summary and count when validation fails', async () => {
+    const cwd = await makeFixture();
+    const summaryPath = path.join(cwd, 'section8-failure-summary.json');
+    const summary = {
+      status: 'fail',
+      results: [
+        { id: 'setup.server_reachable', status: 'pass' },
+        {
+          id: 'section8.boot_error_taxonomy',
+          status: 'fail',
+          error: 'Shared-runtime boot should complete: HTTP 503; payload={"error":{"type":"ENGINE_UNAVAILABLE"}}'
+        }
+      ]
+    };
+    await writeFile(summaryPath, `${JSON.stringify(summary)}\n`);
+    await writeFile(
+      path.join(cwd, 'scripts', 'validate-harness-section8.mjs'),
+      [
+        `console.log('HARNESS_VALIDATION_SUMMARY_PATH=${summaryPath}');`,
+        "console.log('HARNESS_VALIDATION_STATUS=fail');",
+        'process.exitCode = 1;'
+      ].join('\n')
+    );
+
+    const result = await runWrapperInProcess(cwd);
+    const stablePath = path.join(cwd, 'artifacts', 'harness', 'section8', 'latest', 'summary.json');
+    expect(result.code).toBe(1);
+    expect(result.output).toContain(`HARNESS_PREMERGE_ARTIFACT_PATH=${stablePath}`);
+    expect(result.output).toContain('HARNESS_PREMERGE_STATUS=fail');
+    expect(result.output).toContain('HARNESS_PREMERGE_TEST_COUNT=2');
+    expect(JSON.parse(await readFile(stablePath, 'utf8'))).toEqual(summary);
+  });
+
+  it('preserves a malformed failure summary while failing with a zero count', async () => {
+    const cwd = await makeFixture();
+    const summaryPath = path.join(cwd, 'section8-malformed-summary.json');
+    const malformed = '{"status":"fail","results":[';
+    await writeFile(summaryPath, malformed);
+    await writeFile(
+      path.join(cwd, 'scripts', 'validate-harness-section8.mjs'),
+      [
+        `console.log('HARNESS_VALIDATION_SUMMARY_PATH=${summaryPath}');`,
+        'process.exitCode = 1;'
+      ].join('\n')
+    );
+
+    const result = await runWrapperInProcess(cwd);
+    const stablePath = path.join(cwd, 'artifacts', 'harness', 'section8', 'latest', 'summary.json');
+    expect(result.code).toBe(1);
+    expect(result.output).toContain('Section8 failure summary could not be interpreted:');
+    expect(result.output).toContain('HARNESS_PREMERGE_STATUS=fail');
+    expect(result.output).toContain('HARNESS_PREMERGE_TEST_COUNT=0');
+    expect(await readFile(stablePath, 'utf8')).toBe(malformed);
   });
 });

@@ -16,6 +16,7 @@ import { ClaudeAgentSdkManager } from '../../lib/harness/claude-agent-sdk-manage
 import { AnthropicAgentSdkManager } from '../../lib/harness/anthropic-agent-sdk-manager';
 import { PiAgentEngineAdapter } from '../../lib/harness/pi-agent-engine-adapter';
 import { LegacyAgentEngineAdapter } from '../../lib/harness/engine-registry';
+import { StubAgentSdkManager } from '../../lib/harness/agent-sdk-manager';
 
 const roots: string[] = [];
 
@@ -135,4 +136,51 @@ describe('RuntimeService to production App successor preparation', () => {
       await exerciseRuntimeSuccessor(adapter);
     });
   }
+
+  it('boots through the production compatibility adapter with frozen v3 context and attribution', async () => {
+    const directory = await mkdtemp(path.join(os.tmpdir(), 'chirality-app-boot-'));
+    roots.push(directory);
+    const projectRoot = path.join(directory, 'project');
+    const runtimeRoot = path.join(directory, 'runtime');
+    await mkdir(projectRoot, { recursive: true });
+    await writeFile(path.join(projectRoot, 'AGENTS.md'), '# Controlled App boot project\n');
+    const projectId = 'app-production-boot';
+    const manifestPath = path.join(projectRoot, 'chirality.project.json');
+    await writeFile(manifestPath, `${JSON.stringify({
+      schemaVersion: 'chirality.project/v2', projectId, displayName: 'App boot fixture',
+      workingRoot: '.', instructionRoot: { mode: 'runtime' }, defaultExecutionRoot: '.',
+      profiles: { domain: [], capability: [], dataBoundary: [] }, enabledAdapterIds: ['stub'],
+      embeddedUi: { declared: false }
+    })}\n`);
+    const projects = new ProjectRegistry(runtimeRoot, {
+      CHIRALITY_INSTRUCTION_ROOT: path.resolve(process.cwd(), '../../..')
+    });
+    const sessions = new SessionStore(runtimeRoot, projects);
+    const engines = new EngineRegistry();
+    engines.register(new LegacyAgentEngineAdapter({
+      adapterId: 'stub', providerId: 'stub',
+      capabilities: { credentials: false, tools: false, attachments: true, interruption: true, durableResume: false, compaction: false }
+    }, new StubAgentSdkManager()));
+    const control: OmlxControlPort = { async listStatus() { return []; }, async load() {}, async unload() {} };
+    const residency = new ResidencyCoordinator(control, runtimeRoot);
+    const service = new RuntimeService(
+      projects, sessions, engines, residency,
+      new TurnCoordinator(projects, sessions, engines, residency),
+      new AuthRegistry(runtimeRoot),
+      { async get() { return undefined; }, async status() { return { configured: false }; }, async set() {}, async remove() {} },
+      undefined, undefined, undefined,
+      { async resolve() { return { role: 'agent0' as const, engineSelection: { adapterId: 'stub', providerId: 'stub', model: 'controlled' } }; } }
+    );
+    await service.registerProject(manifestPath, 'test', 'app-production-boot-contract');
+    const session = await service.createSession({ projectId, selectedMethods: [] });
+
+    const result = await service.bootSession(projectId, session.sessionId);
+
+    expect(result.boot).toMatchObject({ adapterId: 'stub', providerId: 'stub', model: 'controlled' });
+    expect(result.boot.engineSessionId).toMatch(/^stub_/);
+    const replay = await sessions.replay(projectId, session.sessionId);
+    expect(replay).toContainEqual(expect.objectContaining({
+      type: 'turn.accepted', data: expect.objectContaining({ message: 'bootstrap', boot: true })
+    }));
+  });
 });

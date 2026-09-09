@@ -256,7 +256,10 @@ export class RuntimeService {
     const admittedTools = resolvedContext === undefined ? requestedTools : await this.methods.restrictRequestedTools(projectId, resolvedContext.response.roleId, session.permissionMode, resolvedContext.response.methods, requestedTools);
     const input: AgentEngineRunInput = {
       session,
-      message: "",
+      // Boot is a real adapter turn with a reserved compatibility message.
+      // Production adapters use this value to distinguish an attributed boot
+      // from an ordinary turn while still carrying Runtime's frozen context.
+      message: "bootstrap",
       opts: {
         model: opts.model ?? session.engineSelection.model,
         tools: admittedTools,
@@ -274,7 +277,7 @@ export class RuntimeService {
       }),
       ...(session.adapterSession?.contextSuccessor === undefined ? {} : { contextSuccessor: session.adapterSession.contextSuccessor })
     };
-    if (resolvedContext !== undefined) await this.sessions.commitWithAcceptedTurn(session, { sessionId, turnId, type: "turn.accepted", data: { message: "", boot: true } }, resolvedContext.snapshot);
+    if (resolvedContext !== undefined) await this.sessions.commitWithAcceptedTurn(session, { sessionId, turnId, type: "turn.accepted", data: { message: input.message, boot: true } }, resolvedContext.snapshot);
     const failBoot = async (error: unknown): Promise<void> => {
       if (resolvedContext === undefined) return;
       const failure = error instanceof Error ? error : new Error("Boot failed");

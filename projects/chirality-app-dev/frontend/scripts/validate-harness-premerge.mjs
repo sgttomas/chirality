@@ -148,10 +148,26 @@ async function runPremerge({ cwd, log, logError, echoChildOutput }) {
         return '';
       }
     })();
+    let testCount = 0;
+    if (sourceSummaryPath) {
+      try {
+        await ensureReadableFile(sourceSummaryPath);
+        await mkdir(path.dirname(stableArtifactPath), { recursive: true });
+        // Preserve the validator's exact failure record before interpreting it.
+        // CI can therefore publish the evidence even if its schema is malformed.
+        await copyFile(sourceSummaryPath, stableArtifactPath);
+        await ensureReadableFile(stableArtifactPath);
+        const summary = JSON.parse(await readFile(sourceSummaryPath, 'utf8'));
+        testCount = Array.isArray(summary.results) ? summary.results.length : 0;
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        logError(`Section8 failure summary could not be interpreted: ${message}`);
+      }
+    }
     log(`HARNESS_PREMERGE_ARTIFACT_PATH=${stableArtifactPath}`);
     log(`HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=${sourceSummaryPath}`);
     log('HARNESS_PREMERGE_STATUS=fail');
-    log('HARNESS_PREMERGE_TEST_COUNT=0');
+    log(`HARNESS_PREMERGE_TEST_COUNT=${testCount}`);
     return 1;
   }
 

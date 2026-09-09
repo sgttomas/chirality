@@ -1,0 +1,56 @@
+{
+  "schema": "chirality-distribution-independent-provenance-review-checks/v1",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v14.json",
+    "sha256": "96bc38f15d9a4c35f8369ed5fb9ccbb8b8a6ebe2294358df4d798cabd53553be",
+    "sizeBytes": 18835,
+    "memberCount": 19
+  },
+  "verdict": "PASS",
+  "checks": [
+    {
+      "name": "V14 bindings and delta",
+      "status": "pass",
+      "evidence": "Subject identity and all 19 member hashes/sizes match. Compared with V13, exactly export_public.py, test_public_export_profile.py, export-manifest.csv, and export-report.md changed; 15 members remain identical."
+    },
+    {
+      "name": "minimal provenance admission",
+      "status": "pass",
+      "evidence": "PUBLIC_ROOT_FILES adds exactly execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json and routes it through the existing guarded copy_source_file path; no execution directory tree is added."
+    },
+    {
+      "name": "provenance identity",
+      "status": "pass",
+      "evidence": "Canonical source, stage, and manifest row match at 3392 bytes / 331c2a4ad4859440eb4dec611af8f62cc2c424f7c84bb5dc076b5c76fcd85f04. It is the only staged execution/ row."
+    },
+    {
+      "name": "projection parity",
+      "status": "pass",
+      "evidence": "All 1105 unique manifest rows exactly match current stage paths/sizes/hashes; zero symlinks/specials, zero boundary findings, and no private/excluded/chirality-change/App frontend source."
+    },
+    {
+      "name": "report",
+      "status": "pass",
+      "evidence": "Report truthfully records 1105 rows and zero findings; all top-level counts match."
+    },
+    {
+      "name": "focused checks",
+      "status": "pass",
+      "evidence": "Bound V14 validation records 6/6 public-export tests. Independently rerun preparation/integrity checks passed 10/10; exact four-file diff-check passed."
+    },
+    {
+      "name": "prior review",
+      "status": "pass",
+      "evidence": "V13 subject and independent RETURN/CHECKS/MANIFEST identities match V14 prior-review bindings."
+    },
+    {
+      "name": "catalog limitation and holds",
+      "status": "pass",
+      "evidence": "V14 truthfully records 13 catalog passes and 3 expected root-context failures caused by mandatory exclusion of project-scoped chirality-change; no waiver or public-bundle qualification is claimed. KG/adoption/release holds remain."
+    }
+  ],
+  "limitations": [
+    "The full Root catalog module is not a public-bundle qualification suite: three root-only cases require intentionally excluded chirality-change. This review does not expand or repair that declared context limitation.",
+    "This review does not establish adoption, native package, supplier/account/credential, distribution, publication, or release qualification."
+  ]
+}

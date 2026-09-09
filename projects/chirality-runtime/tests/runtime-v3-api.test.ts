@@ -205,11 +205,11 @@ describe("v3 Runtime API integration", () => {
     const fixture = await setup(async function* (input) { captured = input; yield { type: "session:init", data: { engineSessionId: "boot-engine", adapterId: "stub", providerId: "stub", model: "fixture" } }; yield { type: "process:exit", data: { exitCode: 0 } }; });
     const session = await fixture.client.createSession("v3-api", { projectId: "v3-api", selectedMethods: [{ kind: "workflow", name: "fixture-method" }] });
     await fixture.service.bootSession("v3-api", session.sessionId);
-    expect(captured?.message).toBe("");
+    expect(captured?.message).toBe("bootstrap");
     expect(captured?.instructionContext?.supplied).toContainEqual(expect.objectContaining({ kind: "method-body", content: expect.stringContaining("Exact fixture instructions") }));
     expect(captured?.runtimeTools?.map(tool => tool.name)).toContain("chirality_load_method");
     const replay = await fixture.client.replaySession("v3-api", session.sessionId);
-    expect(replay.events).toContainEqual(expect.objectContaining({ type: "turn.accepted", data: expect.objectContaining({ boot: true }) }));
+    expect(replay.events).toContainEqual(expect.objectContaining({ type: "turn.accepted", data: expect.objectContaining({ message: "bootstrap", boot: true }) }));
     expect(replay.instructionBases).toContainEqual(expect.objectContaining({ basisId: captured?.instructionContext?.basisPreview.id }));
   });
 
