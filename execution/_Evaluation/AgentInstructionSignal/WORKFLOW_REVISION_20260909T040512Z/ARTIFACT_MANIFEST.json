@@ -1,0 +1,47 @@
+{
+  "status": "FINALIZED_PROPOSAL_REVISION",
+  "upstream_packet_manifest_sha256": "571ab0833b321ec09c1ef85505054718487805291387123cc26f4faf28f212cd",
+  "files": [
+    {
+      "path": "AGENT_DISPOSITIONS.json",
+      "sha256": "069b602f08317559dca0556ae3422de0fb9b001a6f8f33dd506cbb42596edf78",
+      "bytes": 16336
+    },
+    {
+      "path": "AGENT_DISPOSITIONS.md",
+      "sha256": "e7a399d101540676af28e9ea915da502ac79e9ae9afdc6bae19984b4c4fbaaf5",
+      "bytes": 12034
+    },
+    {
+      "path": "HANDOFF_STATE.md",
+      "sha256": "48d756b20567604195aa577c0d2d1aaec50457a7f788ff64ce3a5d57591fc9fb",
+      "bytes": 4252
+    },
+    {
+      "path": "PROPOSAL.md",
+      "sha256": "a971ddb2b0649bf8507f030536c6d59e9ec64a395aa78269e52a81f6703bc45b",
+      "bytes": 11319
+    },
+    {
+      "path": "REFERENCE_INVENTORY.json",
+      "sha256": "082b9f802be4677db468806abf31c392de54a4910d6d3b328ef77b8fd9536942",
+      "bytes": 8883
+    },
+    {
+      "path": "VALIDATION.json",
+      "sha256": "8f4781f29fc1725943e0a6e96106a6a5d25a425c7d0863dcbadd4a514aab6d36",
+      "bytes": 638
+    },
+    {
+      "path": "WORKFLOW_INVENTORY.json",
+      "sha256": "58c9c4fd9f25a296e509ef9a060c20eaa856307148c9e4f2fdd8e7a04fccab5c",
+      "bytes": 52805
+    },
+    {
+      "path": "WORKFLOW_MIGRATION.md",
+      "sha256": "bb3b057bc9f4f2f784e2c0ec60186b5bad973e5945052fd21c40e574297f2110",
+      "bytes": 12560
+    }
+  ],
+  "excludes": "ARTIFACT_MANIFEST.json (self)"
+}

@@ -1,0 +1,108 @@
+{
+  "gate": "staged git diff --check and candidate whitespace validator caught new-file formatting",
+  "source_changes": [
+    "workflows/aggregation/resources/contract.md",
+    "workflows/drawing-extract/CONTRACT.md",
+    "workflows/drawing-extract/EXTENDING.md",
+    "workflows/drawing-extract/PROCEDURE.md",
+    "workflows/equation-audit/CONTRACT.md",
+    "workflows/equation-audit/PROCEDURE.md",
+    "workflows/pdf2md-orchestration/CONTRACT.md",
+    "workflows/pdf2md-orchestration/PROCEDURE.md"
+  ],
+  "records": [
+    {
+      "path": "workflows/aggregation/resources/contract.md",
+      "change": "trailing whitespace and extra terminal blank-line normalization only",
+      "before_sha256": "3f99a2f8c0b7a98b42e689617ff33edd130d50fa6b09048bb9590fb2e68ad0c9",
+      "after_sha256": "00562d0d44473ce98e87fe6c7b27cd4ed0b9e20fc4ee42d34b61518a469f2f81",
+      "non_whitespace_equal": true,
+      "raw_before_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/whitespace_source_basis/workflows/aggregation/resources/contract.md.gz"
+    },
+    {
+      "path": "workflows/drawing-extract/CONTRACT.md",
+      "change": "trailing whitespace and extra terminal blank-line normalization only",
+      "before_sha256": "f607973c2b85d06f4d84f8b195648d46595a2af5884ee2022a81a327cd61dc3a",
+      "after_sha256": "7c6ea583d0b293aa82b00858464f6fff93fb7ba531b200bef0e504f0441cd460",
+      "non_whitespace_equal": true,
+      "raw_before_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/whitespace_source_basis/workflows/drawing-extract/CONTRACT.md.gz"
+    },
+    {
+      "path": "workflows/drawing-extract/EXTENDING.md",
+      "change": "trailing whitespace and extra terminal blank-line normalization only",
+      "before_sha256": "3db59aec392c9bb817e30b3bb839060c9ba54e7906ea764594e34fd980dc11be",
+      "after_sha256": "4b725c882b62b0e59ec402f73ae4f0a3f097b092456725b6ccbca49b5b150d18",
+      "non_whitespace_equal": true,
+      "raw_before_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/whitespace_source_basis/workflows/drawing-extract/EXTENDING.md.gz"
+    },
+    {
+      "path": "workflows/drawing-extract/PROCEDURE.md",
+      "change": "trailing whitespace and extra terminal blank-line normalization only",
+      "before_sha256": "66273bc0a9d7d27176969cf14d46e0c8bff033a1af15ffa233cd63f622433280",
+      "after_sha256": "9bfc5752e140e7f25040c6d67d162bf6c89b5ab2bccb5159e43998766706b599",
+      "non_whitespace_equal": true,
+      "raw_before_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/whitespace_source_basis/workflows/drawing-extract/PROCEDURE.md.gz"
+    },
+    {
+      "path": "workflows/equation-audit/CONTRACT.md",
+      "change": "trailing whitespace and extra terminal blank-line normalization only",
+      "before_sha256": "7c4056d75928e4dcc73e608ccd722ffe5d5512d5f9a2f039c47aa575eebf6983",
+      "after_sha256": "505ca78c98c0f503d203eee850783ac99c9748024c0031db648c5a6df5f18296",
+      "non_whitespace_equal": true,
+      "raw_before_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/whitespace_source_basis/workflows/equation-audit/CONTRACT.md.gz"
+    },
+    {
+      "path": "workflows/equation-audit/PROCEDURE.md",
+      "change": "trailing whitespace and extra terminal blank-line normalization only",
+      "before_sha256": "735e2548c2ac385e11da1a65923f1630a7787dcbf78948d5caaeafc105986b67",
+      "after_sha256": "ac69b72242d6898bb5622c17d9db36de03782576dadf9a9ea26ff2d4c85647da",
+      "non_whitespace_equal": true,
+      "raw_before_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/whitespace_source_basis/workflows/equation-audit/PROCEDURE.md.gz"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/CONTRACT.md",
+      "change": "trailing whitespace and extra terminal blank-line normalization only",
+      "before_sha256": "4e33d6e2e65f90731e31501e59f487b32057ec67e195bb025322cf08889e7b3c",
+      "after_sha256": "7b75054abe93adf08748b8dbfa327b8dbc4b48feea932bd9d29e418ea08ed013",
+      "non_whitespace_equal": true,
+      "raw_before_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/whitespace_source_basis/workflows/pdf2md-orchestration/CONTRACT.md.gz"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/PROCEDURE.md",
+      "change": "trailing whitespace and extra terminal blank-line normalization only",
+      "before_sha256": "c8b01dc7f58460101ad07d71c303864fd744eef42f585d2ecb1b43807a728678",
+      "after_sha256": "2607867b4ed880a5b0aa9fefce7170ec686bd5fd23b25555cb9e69b65fb90825",
+      "non_whitespace_equal": true,
+      "raw_before_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/whitespace_source_basis/workflows/pdf2md-orchestration/PROCEDURE.md.gz"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/affected-tests.log",
+      "change": "readable log whitespace normalization; exact raw bytes preserved in gzip",
+      "raw_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/affected-tests.log.raw.gz",
+      "raw_sha256": "d1c633427739f4b1985603829eb2fc1caa144c7090d83e6f99f4950f1561c975",
+      "normalized_sha256": "17805bf63f12b7dfee590d84967c86843d25981c58639f76c9416933f55e9424"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log",
+      "change": "readable log whitespace normalization; exact raw bytes preserved in gzip",
+      "raw_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log.raw.gz",
+      "raw_sha256": "128a80e575ee22bb63d1bc59bbbf9fb5691fa56eb2109b4af1bee9b2e2a8df45",
+      "normalized_sha256": "c9c380c14e7fe732a5ac9dbca24cda2fec1b13aec525881ce413abcdeabfd00a"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/candidate-whitespace.log",
+      "change": "readable log whitespace normalization; exact raw bytes preserved in gzip",
+      "raw_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/candidate-whitespace.log.raw.gz",
+      "raw_sha256": "88476730396ea839e09546cab28839c91eec2c51fa5ba91be4f4f24b77c2d618",
+      "normalized_sha256": "dd7e85bc790ad504234ffdb91925acbe8f8f0670bf5ff36137d8611470e46279"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/runtime_tools/BROAD_TESTS.log",
+      "change": "readable log whitespace normalization; exact raw bytes preserved in gzip",
+      "raw_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/runtime_tools/BROAD_TESTS.log.raw.gz",
+      "raw_sha256": "149e84626c9867d3971878f1a13030318ca4f633a19d1f2d609f382624e153c8",
+      "normalized_sha256": "c763c4e1d06af880d5da900442ef61eff6324dd03b8ae0849e5f8e6e0af4149b"
+    }
+  ],
+  "scope": "formatting only; no source code/method edits; immutable historical source snapshots untouched"
+}

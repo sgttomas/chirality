@@ -1,0 +1,1020 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "exact assigned coverage",
+      "passed": true
+    },
+    {
+      "check": "25 unique workflow destinations",
+      "passed": true
+    },
+    {
+      "check": "content-digest: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "content-digest: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "content-digest: old package retired",
+      "passed": true
+    },
+    {
+      "check": "content-digest: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "content-digest: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "content-digest: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "content-digest: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "content-digest: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "content-digest: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "content-digest: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-seed: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-seed: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-seed: old package retired",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-seed: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-seed: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-seed: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-seed: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-seed: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-seed: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-seed: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-verify: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-verify: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-verify: old package retired",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-verify: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-verify: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-verify: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-verify: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-verify: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-verify: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "dbm-concordance-verify: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "dbm-draft-review: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "dbm-draft-review: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "dbm-draft-review: old package retired",
+      "passed": true
+    },
+    {
+      "check": "dbm-draft-review: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "dbm-draft-review: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "dbm-draft-review: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "dbm-draft-review: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "dbm-draft-review: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "dbm-draft-review: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "dbm-draft-review: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "dbm-postauthor-concordance: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "dbm-postauthor-concordance: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "dbm-postauthor-concordance: old package retired",
+      "passed": true
+    },
+    {
+      "check": "dbm-postauthor-concordance: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "dbm-postauthor-concordance: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "dbm-postauthor-concordance: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "dbm-postauthor-concordance: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "dbm-postauthor-concordance: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "dbm-postauthor-concordance: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "dbm-postauthor-concordance: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "dbm-publish: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "dbm-publish: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "dbm-publish: old package retired",
+      "passed": true
+    },
+    {
+      "check": "dbm-publish: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "dbm-publish: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "dbm-publish: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "dbm-publish: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "dbm-publish: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "dbm-publish: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "dbm-publish: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "dbm-section-publish: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "dbm-section-publish: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "dbm-section-publish: old package retired",
+      "passed": true
+    },
+    {
+      "check": "dbm-section-publish: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "dbm-section-publish: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "dbm-section-publish: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "dbm-section-publish: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "dbm-section-publish: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "dbm-section-publish: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "dbm-section-publish: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract-page: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract-page: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract-page: old package retired",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract-page: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract-page: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract-page: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract-page: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract-page: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract-page: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract-page: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "drawing-titleblock-page: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "drawing-titleblock-page: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "drawing-titleblock-page: old package retired",
+      "passed": true
+    },
+    {
+      "check": "drawing-titleblock-page: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "drawing-titleblock-page: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "drawing-titleblock-page: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "drawing-titleblock-page: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "drawing-titleblock-page: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "drawing-titleblock-page: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "drawing-titleblock-page: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "equation-bbox-detect: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "equation-bbox-detect: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "equation-bbox-detect: old package retired",
+      "passed": true
+    },
+    {
+      "check": "equation-bbox-detect: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "equation-bbox-detect: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "equation-bbox-detect: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "equation-bbox-detect: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "equation-bbox-detect: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "equation-bbox-detect: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "equation-bbox-detect: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "equation-flag-interpret: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "equation-flag-interpret: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "equation-flag-interpret: old package retired",
+      "passed": true
+    },
+    {
+      "check": "equation-flag-interpret: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "equation-flag-interpret: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "equation-flag-interpret: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "equation-flag-interpret: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "equation-flag-interpret: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "equation-flag-interpret: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "equation-flag-interpret: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "equipment-costing-extract: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "equipment-costing-extract: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "equipment-costing-extract: old package retired",
+      "passed": true
+    },
+    {
+      "check": "equipment-costing-extract: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "equipment-costing-extract: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "equipment-costing-extract: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "equipment-costing-extract: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "equipment-costing-extract: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "equipment-costing-extract: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "equipment-costing-extract: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "equipment-extract: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "equipment-extract: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "equipment-extract: old package retired",
+      "passed": true
+    },
+    {
+      "check": "equipment-extract: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "equipment-extract: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "equipment-extract: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "equipment-extract: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "equipment-extract: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "equipment-extract: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "equipment-extract: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-symbol-instance: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-symbol-instance: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-symbol-instance: old package retired",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-symbol-instance: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-symbol-instance: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-symbol-instance: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-symbol-instance: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-symbol-instance: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-symbol-instance: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-symbol-instance: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-tile: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-tile: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-tile: old package retired",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-tile: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-tile: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-tile: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-tile: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-tile: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-tile: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "pandid-valve-tile: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "pdf2md: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "pdf2md: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "pdf2md: old package retired",
+      "passed": true
+    },
+    {
+      "check": "pdf2md: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "pdf2md: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "pdf2md: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "pdf2md: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "pdf2md: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "pdf2md: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "pdf2md: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-folio-extract: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-folio-extract: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-folio-extract: old package retired",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-folio-extract: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-folio-extract: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-folio-extract: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-folio-extract: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-folio-extract: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-folio-extract: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-folio-extract: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page: old package retired",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-assets: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-assets: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-assets: old package retired",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-assets: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-assets: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-assets: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-assets: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-assets: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-assets: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-assets: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-full: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-full: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-full: old package retired",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-full: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-full: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-full: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-full: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-full: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-full: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-page-full: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "proposal-format: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "proposal-format: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "proposal-format: old package retired",
+      "passed": true
+    },
+    {
+      "check": "proposal-format: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "proposal-format: matching legacy selector loads once",
+      "passed": true
+    },
+    {
+      "check": "proposal-format: command restrictions retained",
+      "passed": true
+    },
+    {
+      "check": "proposal-format: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "proposal-format: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "proposal-format: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "proposal-format: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "dbm-publisher: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "dbm-publisher: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "dbm-publisher: old package retired",
+      "passed": true
+    },
+    {
+      "check": "dbm-publisher: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "dbm-publisher: manager workflow rejects TASK",
+      "passed": true
+    },
+    {
+      "check": "dbm-publisher: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "dbm-publisher: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "dbm-publisher: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "dbm-publisher: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract: old package retired",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract: manager workflow rejects TASK",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "drawing-extract: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "equation-audit: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "equation-audit: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "equation-audit: old package retired",
+      "passed": true
+    },
+    {
+      "check": "equation-audit: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "equation-audit: manager workflow rejects TASK",
+      "passed": true
+    },
+    {
+      "check": "equation-audit: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "equation-audit: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "equation-audit: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "equation-audit: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-orchestration: minimal frontmatter",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-orchestration: source fingerprint",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-orchestration: old package retired",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-orchestration: selected resource loading",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-orchestration: manager workflow rejects TASK",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-orchestration: no next-instance contracts",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-orchestration: no retired package links",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-orchestration: no durable model allocation",
+      "passed": true
+    },
+    {
+      "check": "pdf2md-orchestration: selected links and tools exist",
+      "passed": true
+    },
+    {
+      "check": "equation audit has single root convention",
+      "passed": true
+    },
+    {
+      "check": "PDF canonical inline rewrite and paired output",
+      "passed": true
+    },
+    {
+      "check": "drawing target registry preserves five supported combinations",
+      "passed": true
+    },
+    {
+      "check": "publication preserves seven gates",
+      "passed": true
+    },
+    {
+      "check": "selected tool paths resolve from different cwd",
+      "passed": true
+    }
+  ],
+  "passed": 253,
+  "total": 253
+}

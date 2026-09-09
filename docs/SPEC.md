@@ -45,7 +45,7 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 `REPO_ROOT` is the active writable Git checkout. Root governance instruction changes act on the repository only under separate explicit scope/M2 authority. Product WORKING_ROOT remains the selected project directory; external projects use their own checkout with disjoint runtime-declared instructions.
 
-`INSTRUCTION_ROOT` is the runtime-declared, read-only home of the **shared instruction surface** (`AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/`) — the release-managed agent operating system (see `DIRECTIVE.md` §2.6). The runtime resolves it from `CHIRALITY_INSTRUCTION_ROOT`; a V2 project registration fails if it is missing, unreadable, or overlaps the working root. `CLAUDE.md` imports `AGENTS.md` without adding another instruction layer. The instruction surface is read-mostly: changing it is a repo-wide governance action, not ordinary working-root execution.
+`INSTRUCTION_ROOT` is the runtime-declared, read-only home of the **shared instruction surface** (`AGENTS.md`, `CLAUDE.md`, `agents/`, `workflows/`, `tools/`, root `docs/`, `init/`, `.github/workflows/`) — the release-managed agent operating system (see `DIRECTIVE.md` §2.6). The runtime resolves it from `CHIRALITY_INSTRUCTION_ROOT`; a V2 project registration fails if it is missing, unreadable, or overlaps the working root. `CLAUDE.md` imports `AGENTS.md` without adding another instruction layer. The instruction surface is read-mostly: changing it is a repo-wide governance action, not ordinary working-root execution.
 
 ### 0.2.2 `WORKING_ROOT` — the active workspace
 
@@ -57,7 +57,7 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 ### 0.2.3 ScopePath containment (binding)
 
-Every `ScopePath` and every `AllowedWriteTarget` (see `AGENT_TASK.md`) MUST:
+Every `ScopePath` and every `AllowedWriteTarget` (see `AGENT_WORKFLOW_RUNTIME.md`) MUST:
 
 1. normalize to an absolute path, and
 2. resolve **under `WORKING_ROOT`**, which is itself contained by the active checkout returned by `git rev-parse --show-toplevel`.
@@ -66,7 +66,7 @@ A `ScopePath` or write target that resolves outside the selected working root �
 
 ### 0.2.4 Path reference discipline
 
-- **Instruction-surface references** (to `agents/`, `skills/`, `tools/`, root `docs/`, `AGENTS.md`) resolve **`INSTRUCTION_ROOT`-relative**.
+- **Instruction-surface references** (to `agents/`, `workflows/`, `tools/`, root `docs/`, `AGENTS.md`) resolve **`INSTRUCTION_ROOT`-relative**.
 - **Working-root references** (to `{EXECUTION_ROOT}`, tool roots, deliverables, `_Coordination/`, decomposition state) resolve **`WORKING_ROOT`-relative**.
 - Instruction, coordination, and plan files MUST NOT embed machine-absolute paths (e.g. `/Users/<name>/...`). Absolute paths are permitted only in run records and evidence artifacts, where they record what actually happened and are never re-executed.
 
@@ -74,7 +74,7 @@ A `ScopePath` or write target that resolves outside the selected working root �
 
 ## 0.3 Path Token Registry
 
-Agent instructions and skills reference roots through `{*_ROOT}` tokens. Each token resolves against exactly one anchor. Projects and domains MAY bind additional workspace-local tokens, but every such token MUST resolve under `WORKING_ROOT`.
+Agent instructions and workflows reference roots through `{*_ROOT}` tokens. Each token resolves against exactly one anchor. Projects and domains MAY bind additional workspace-local tokens, but every such token MUST resolve under `WORKING_ROOT`.
 
 | Token | Anchor | Resolves to |
 |---|---|---|
@@ -88,11 +88,12 @@ Agent instructions and skills reference roots through `{*_ROOT}` tokens. Each to
 | `{EVALUATION_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Evaluation/` |
 | `{RECONCILIATION_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Reconciliation/` |
 | `{ESTIMATES_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Estimates/` |
-| `{SOURCE_AUDIT_ROOT}`, `{ASSETS_ROOT}`, `{PUBLICATION_ROOT}`, `{RESEARCH_ROOT}`, `{PLANNING_ROOT}`, `{RUN_ROOT}`, `{CONTEXT_ROOT}` | `WORKING_ROOT`-relative | domain/workspace-local roots bound by the owning agent/skill; MUST resolve under `WORKING_ROOT` |
-| `{SKILL_ROOT}` | `INSTRUCTION_ROOT`-relative | `{INSTRUCTION_ROOT}/skills/<name>/` |
+| `{SOURCE_AUDIT_ROOT}`, `{ASSETS_ROOT}`, `{PUBLICATION_ROOT}`, `{RESEARCH_ROOT}`, `{PLANNING_ROOT}`, `{RUN_ROOT}`, `{CONTEXT_ROOT}` | `WORKING_ROOT`-relative | domain/workspace-local roots bound by the owning role/workflow; MUST resolve under `WORKING_ROOT` |
+| `{WORKFLOW_ROOT}` | `INSTRUCTION_ROOT`-relative | `{INSTRUCTION_ROOT}/workflows/<name>/` |
+| `{SKILL_ROOT}` | historical adapter token | Historical briefs retain their recorded binding; the migration adapter maps a selected legacy package to `{WORKFLOW_ROOT}` without granting writes. |
 | `{TOOL_ROOT}` | context-dependent | `{INSTRUCTION_ROOT}/tools/` when referring to the deterministic tool layer; a project tool root (`{EXECUTION_ROOT}/_<Name>/`) when referring to a derived-output root (see §1.2) |
 
-The token vocabulary above is the registry; an agent that introduces a new `{*_ROOT}` token MUST declare its anchor in the agent's own instruction file and keep it consistent with this table.
+The token vocabulary above is the registry; an agent that introduces a new `{*_ROOT}` token MUST declare its anchor in the applicable runtime or workflow contract and keep it consistent with this table.
 
 ---
 
@@ -160,7 +161,7 @@ Tool roots are workspace-level directories for derived outputs, resolved `{EXECU
 | `_Change/` | Change management records | CHANGE |
 | `_Coordination/` | Coordination representation | PROJECT_SETUP |
 | `_Decomposition/` | Project/domain decomposition document(s) and companions | PROJECT_DECOMP / SOFTWARE_DECOMP / DOMAIN_DECOMP |
-| `_Estimates/` | Cost estimate snapshots | TASK + estimate skills |
+| `_Estimates/` | Cost estimate snapshots | TASK + estimate workflows |
 | `_Evaluation/` | Current evaluation reports plus structural, dependency, epistemic, governance, agent, coherence, and review snapshots | EVALUATION / EVALUATION_* / REVIEW / AUDIT_* |
 | `_Reconciliation/` | Calibrated deliverable-corpus concordance runs and historical immutable generic-audit artifacts | RECONCILIATION |
 | `_Schedule/` | Schedule snapshots generated from the dependency graph | PROJECT_SETUP scheduling workflow |
@@ -676,114 +677,90 @@ Rows are never deleted. Rows no longer observed in source text are marked `RETIR
 
 ---
 
-## 9. Agent Instruction File Structure
+## 9. Agent Instruction and Workflow Structure
 
-All live agent instruction files currently implement the candidate structure in
-`WORKFLOW_COMPONENT_STANDARD.md` and are checked by the instruction validator.
-That implementation evidence does not ratify the candidate. HELPS_HUMANS is
-the applying/maintenance persona, not the constitutional source. `AGENTS.md`
-is a distinct authoritative runtime surface (K-AGENTS-1).
+Prospective replacement under D-GOV-41; incompatible consumers remain behind
+the adoption hold in `AGENT_WORKFLOW_RUNTIME.md`.
 
-### 9.1 Required Header
+### 9.1 Role files
 
-```markdown
-[[DOC:AGENT_INSTRUCTIONS]]
-# AGENT INSTRUCTIONS — {AGENT_NAME} ({Brief Descriptor})
-AGENT_TYPE: {0|1|2}
-```
+The four durable instruction files are `AGENT_HELP_HUMAN.md`,
+`AGENT_HELPS_HUMANS.md`, `AGENT_WORKING_ITEMS.md`, and `AGENT_TASK.md`, under
+`agents/`. Each contains a role title and exactly these level-two sections:
+PROTOCOL, SPEC, STRUCTURE, RATIONALE. Their content is characteristic conduct,
+standards of judgment, relationships/forms of contribution, and purpose of the
+role, respectively. Interpretation follows that order. Rationale grants no
+permission.
 
-### 9.2 Required Agent Type Table
+### 9.2 Runtime configuration
 
-```markdown
-## Agent Type
+`agents/registry.json` carries role type, entry and delegation eligibility,
+instruction path, capability ceilings, and scope ceiling. The schema and
+selection contract are defined in `AGENT_WORKFLOW_RUNTIME.md`. These fields are
+not duplicated in role prose. A run's brief supplies concrete context, tools,
+write targets, outputs, and acceptance checks.
 
-| Property | Value |
-|---|---|
-| **AGENT_TYPE** | TYPE {0|1|2} |
-| **AGENT_CLASS** | {PERSONA|TASK} |
-| **INTERACTION_SURFACE** | {chat|INIT-TASK|spawned|both} |
-| **WRITE_SCOPE** | {scope description} |
-| **BLOCKING** | {never|allowed} |
-| **PRIMARY_OUTPUTS** | {description} |
-```
+### 9.3 Workflow files
 
-### 9.3 Required Sections
+A discoverable workflow is an immediate `workflows/<name>/` directory containing
+`WORKFLOW.md`. Its name matches the directory; its description supports explicit
+lookup. Method structure and supporting resources follow the undertaking.
+Optional `execution.json` provides compatible roles and tool restrictions.
+`Workflow` is the canonical selection field; the adapter handles historical
+`TaskSkill` inputs. Routine context loads only selected workflow resources.
 
-Every agent instruction file MUST include these section markers:
+### 9.4 Permissions and path binding
 
-| Section | Marker | Purpose |
-|---|---|---|
-| PROTOCOL | `[[BEGIN:PROTOCOL]]` ... `[[END:PROTOCOL]]` | Execution procedure (sequencing, interactions) |
-| SPEC | `[[BEGIN:SPEC]]` ... `[[END:SPEC]]` | Validity requirements (pass/fail criteria) |
-| STRUCTURE | `[[BEGIN:STRUCTURE]]` ... `[[END:STRUCTURE]]` | Schemas, templates, artifact definitions |
-| RATIONALE | `[[BEGIN:RATIONALE]]` ... `[[END:RATIONALE]]` | Interpretation and values (non-normative) |
+The host, role, workflow, and brief jointly bound effective permissions.
+Capability-name restrictions and command/scope expressions intersect at their
+own layers. Paths resolve against declared working, instruction, and tool roots;
+real-path containment rejects escape. `ScopePath` or `DeliverablePath` alone
+never grants writes. The authorized brief names writable targets explicitly.
 
-### 9.4 Precedence Order
+### 9.5 Scope and construction compatibility
 
-When sections conflict, resolution follows:
+Scope ceilings retain `repo-wide`, `project-level`, `package-level`,
+`deliverable-local`, `tool-root-only`, `workspace-scaffold-only`,
+`repo-metadata-only`, `bounded-task-brief`, and `none` where applicable to runtime
+configuration or historical contracts. A tool-root-only ceiling may name a
+registered subtree. Every actual write remains bounded by the run brief and
+§0.2.3. WORKING_ITEMS may coordinate any explicitly authorized bounded
+undertaking, including package/deliverable assignments governed by their own
+contracts. Type 2 construction is TASK or an ephemeral bounded executor.
 
-```
-PROTOCOL > SPEC > STRUCTURE > RATIONALE
-```
+### 9.6 Naming
 
-### 9.5 Classification Properties
+Use `AGENT_<ROLE>.md` for a role's instruction file, the role name for the actor,
+and `Workflow: <name>` for its selected method. Historical actor names remain
+unchanged in recorded evidence. Their replacements are in the disposition ledger.
 
-| Property | Valid Values | Meaning |
-|---|---|---|
-| `AGENT_TYPE` | `TYPE 0`, `TYPE 1`, `TYPE 2` | Architect / Manager / Specialist |
-| `AGENT_CLASS` | `PERSONA`, `TASK` | Interactive session vs. straight-through pipeline |
-| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | How the agent is invoked |
-| `WRITE_SCOPE` | base values: `repo-wide`, `project-level`, `package-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `bounded-task-brief`, `none` | What the agent is allowed to write |
-| `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
+### 9.7 Delegation and adoption
 
-**`WRITE_SCOPE` parameterization.** A `tool-root-only` scope MAY be parameterized to a specific tool root or registered subtree — for example `tool-root-only ({EXECUTION_ROOT}/_Evaluation/<subtree>/)`. The parameterized form satisfies the `AUDIT_GOVERNANCE` registry check via its parent tool root (see §1.2). `bounded-task-brief` is the canonical scope of the `TASK` shell: writes are authorized only by the effective bounded task brief (`AllowedWriteTargets` or an explicitly named boundary), never by `ScopePath`/`DeliverablePath` alone, and always subject to ScopePath containment (§0.2.3).
+The two executable delegation classes in D-GOV-35 remain available. Managed
+children use actual child sessions, sealed context, approved pipeline authority,
+explicit scopes, and durable evidence. A recorded approval reference does not
+create or authenticate a human act. Native descendants retain their actual
+host boundary; role non-delegation may be instruction-asserted. Loading a
+workflow changes neither role nor authority.
 
-### 9.6 Naming Convention
+Consumers of old prose metadata remain on their accepted source basis until
+their owning loops adopt the replacement registry and workflow interfaces.
+Runtime service API details remain with the owning project.
 
-Use `AGENT_*` when referring to instruction files (e.g., `AGENT_CHANGE.md`). Use the role name (e.g., `CHANGE`) when referring to the agent itself.
+### 9.8 Multi-agent run record
 
-### 9.7 Runtime Metadata Contract (Harness)
+Record versioned plans, work graphs, launch briefs, actual instance parentage,
+source hashes, scopes, notices, amendments, returns, and handoff state under
+`{EXECUTION_ROOT}/_Coordination/AgentRuns/<RunID>/` when the owning workflow uses
+that record root. Distinguish runtime-persisted records from an authorized
+agent's factual transcription of native execution. Read-only callers return
+records to an authorized writer.
 
-Harness runtime metadata parsing uses a split contract:
-
-- **YAML frontmatter** (machine fields consumed by runtime where present): `description`, `subagents`, `tools`, `model`, `max_turns`, `disallowed_tools`, `auto_approve_tools`, `allow_generalist_agent2`, and `dedicated_agent2_approval`.
-- **Canonical body header/table**: the `AGENT_TYPE: {0|1|2}` line in the instruction body and the `AGENT_CLASS` value in the Agent Type table.
-
-Subagent registry safety rules:
-- The former SDK Agent compatibility bridge is disabled after managed-runtime
-  acceptance. The canonical managed runtime permits Agent 0 to launch named
-  Agent 1 sessions and Agent 1 to launch valid Agent 2 forms; historical Agent
-  tool requests fail closed.
-- Agent 1 delegates only Agent 2 forms. `AGENT_CLASS: TASK` remains preferred
-  for persistent Agent 2 packages.
-
-Delegation governance rule (fail closed): when subagents are enabled and a Type 1 persona is allowlisted for subagents, runtime injects subagents only if valid governance metadata is present (`contextSealed === true`, `pipelineRunApproved === true`, a non-empty `approvalRef`). The reference MUST cite the applicable human approval record; runtime presence checks are necessary but do not authenticate or create that human act. Missing or invalid governance metadata MUST block subagent injection while allowing the parent turn to continue normally. Deployment-specific harness/runtime API and UI contracts (turn input, attachment handling, selector schemas) are defined in the owning project's runtime docs, not at the framework root.
-
-### 9.8 Managed Multi-Agent Runtime Record
-
-The managed runtime persists one durable record tree per orchestration
-run under `{EXECUTION_ROOT}/_Coordination/AgentRuns/<RunID>/`. It contains the
-versioned orchestration plan, work graph, instance launch briefs/status/returns,
-coordination notices and dispositions, parent updates and acknowledgments,
-brief amendments, and final handoff state.
-
-Plans, briefs, returns, notices, dispositions, updates, amendments, and
-acknowledgments are immutable/versioned entries. `STATUS.json` and
-`HANDOFF_STATE.md` are runtime-owned materialized summaries reconstructed from
-those records and may advance as a child or run changes state.
-
-Every work graph records `RunID`, `PlanVersion`, selection authority,
-descriptive posture, accepted basis, agent-instance nodes, dependency edges,
-concurrency eligibility, read scopes, write ownership, expected returns,
-fan-in gates, and human decision points. Every managed instance records its
-logical parent, agent role/type, instruction or brief hash, declared context,
-tools, writes, output artifacts, and status.
-
-The runtime rejects direct sibling messaging, invalid parent/child type pairs,
-undeclared writes, concurrent path overlap (including ancestor containment),
-missing seals/approval references, capability inheritance, and fan-in over
-missing or invalid returns. Overlapping writes require an accepted predecessor
-or one declared integration owner.
+Graphs name dependencies, concurrent write ownership, expected returns, and
+human decisions. Coordinate through the parent. Overlapping writes require
+serialization or one integration owner. An executed child is required for an
+execution claim; a brief alone is insufficient. State actual enforcement limits
+and validate combined results before accepting fan-in.
 
 ---
 
@@ -875,7 +852,7 @@ Records the project's chosen coordination representation:
 
 The coordination representation is chosen per project instance and recorded once. It does not change the dependency tracking mechanics (which always maintain the full DAG), only how teams use the graph for scheduling.
 
-The coordination root also holds the session control-plane handoff files (`NEXT_INSTANCE_PROMPT.md` and, where used, `NEXT_INSTANCE_STATE.md`); see `AGENT_PROJECT_SETUP.md`.
+The coordination root also holds the session control-plane handoff files (`NEXT_INSTANCE_PROMPT.md` and, where used, `NEXT_INSTANCE_STATE.md`); see `workflows/project-setup/WORKFLOW.md`.
 
 ---
 

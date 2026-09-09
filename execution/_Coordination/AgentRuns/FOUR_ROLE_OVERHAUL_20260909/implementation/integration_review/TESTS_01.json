@@ -1,0 +1,7 @@
+{
+  "command": "python3 -m pytest -q tools/workflow_runtime tools/evaluation tools/coordination/test_analyze_dep_closure.py",
+  "exit_code": 0,
+  "passed": 24,
+  "timing": "before latest resolver regression additions",
+  "review_scope": "independent executable contract checks; no model-performance trials"
+}

@@ -1,6 +1,6 @@
 # Task Management session init prompt — root register
 
-Launches one `TASK_MANAGEMENT` session bound to the root Action Item
+Launches one `WORKING_ITEMS` session using the `task-management` workflow bound to the root Action Item
 register. Paste-ready as written; replace `<none>` with a per-run steer to
 narrow the run (e.g. `deferral review only`, `triage of the open rows`, or
 `staleness pass only, no harvest`). In a full generational Task Management phase, run the child-loop
@@ -12,13 +12,14 @@ sees every sibling closeout.
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
 
 Read `{REPO_ROOT}/AGENTS.md`.
-Read `{REPO_ROOT}/agents/AGENT_TASK_MANAGEMENT.md` and follow it in full.
+Read `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`.
+Select `Workflow: task-management` and load its current-stage resources.
 
-Act as `TASK_MANAGEMENT` for the root loop. Register home:
+Act as `WORKING_ITEMS` for the root task-management undertaking. Register home:
 `{REPO_ROOT}/execution/_Coordination/_TaskManagement/`. Write scope is that
 register home, routed drafts shipped solely through closeout, and the single
 closeout receipt appended to the owning loop's receipts surface per
-`AGENT_TASK_MANAGEMENT.md` §Closeout.
+the selected task-management workflow’s closeout contract.
 
 Run the generational pass, each step gated on my rulings before the next:
 
@@ -38,7 +39,7 @@ Run the generational pass, each step gated on my rulings before the next:
    register and archive, reports, and any ruled routed notices with
    reciprocal citations (inbound SHA, row ID, evidence refs); append one
    closeout receipt to `execution/_Coordination/LOOP_RECEIPTS.md` per
-   `AGENT_TASK_MANAGEMENT.md` §Closeout. The PR body
+   the selected task-management workflow’s closeout contract. The PR body
    carries the closeout record: every row changed and the ruling it cites,
    archive counts, status totals, federation evidence. Open the PR; do not
    merge — my merge is the gate. Report the PR number and final head SHA,

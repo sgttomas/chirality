@@ -1,0 +1,163 @@
+Tracked whitespace findings (staged changes):
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/affected-tests.log:1631: trailing whitespace.
++E
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/affected-tests.log:1647: trailing whitespace.
++tools/source_catalog/test_research_packet.py:13:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/affected-tests.log:1648: trailing whitespace.
++_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/affected-tests.log:1655: trailing whitespace.
++_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:1: trailing whitespace.
++PASS aggregation:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:2: trailing whitespace.
++PASS audit-agents:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:3: trailing whitespace.
++PASS audit-decomp:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:4: trailing whitespace.
++PASS audit-dep-closure:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:5: trailing whitespace.
++PASS audit-epistemic:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:6: trailing whitespace.
++PASS audit-governance:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:7: trailing whitespace.
++PASS audit-hypergraph-closure:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:8: trailing whitespace.
++PASS audit-scope-closure:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:9: trailing whitespace.
++PASS change:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:10: trailing whitespace.
++PASS content-digest:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:11: trailing whitespace.
++PASS dbm-concordance-seed:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:12: trailing whitespace.
++PASS dbm-concordance-verify:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:13: trailing whitespace.
++PASS dbm-draft-review:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:14: trailing whitespace.
++PASS dbm-postauthor-concordance:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:15: trailing whitespace.
++PASS dbm-publish:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:16: trailing whitespace.
++PASS dbm-publisher:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:17: trailing whitespace.
++PASS dbm-section-publish:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:18: trailing whitespace.
++PASS decomposition-package-review:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:19: trailing whitespace.
++PASS deliverable-consistency:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:20: trailing whitespace.
++PASS dependency-extract:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:21: trailing whitespace.
++PASS domain-decomp:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:22: trailing whitespace.
++PASS domain-documents:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:23: trailing whitespace.
++PASS domain-engine:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:24: trailing whitespace.
++PASS domain-hypergraph:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:25: trailing whitespace.
++PASS domain-prose-validate:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:26: trailing whitespace.
++PASS domain-source-atomize:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:27: trailing whitespace.
++PASS drawing-extract:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:28: trailing whitespace.
++PASS drawing-extract-page:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:29: trailing whitespace.
++PASS drawing-titleblock-page:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:30: trailing whitespace.
++PASS equation-audit:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:31: trailing whitespace.
++PASS equation-bbox-detect:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:32: trailing whitespace.
++PASS equation-flag-interpret:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:33: trailing whitespace.
++PASS equipment-costing-extract:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:34: trailing whitespace.
++PASS equipment-extract:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:35: trailing whitespace.
++PASS estimate-prep:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:36: trailing whitespace.
++PASS estimate-snapshot:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:37: trailing whitespace.
++PASS evaluation-protocol:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:38: trailing whitespace.
++PASS evaluation-report:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:39: trailing whitespace.
++PASS four-documents:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:40: trailing whitespace.
++PASS kty-content-remediate:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:41: trailing whitespace.
++PASS kty-metadata-align:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:42: trailing whitespace.
++PASS lens-register:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:43: trailing whitespace.
++PASS pandid-valve-symbol-instance:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:44: trailing whitespace.
++PASS pandid-valve-tile:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:45: trailing whitespace.
++PASS pdf2md:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:46: trailing whitespace.
++PASS pdf2md-folio-extract:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:47: trailing whitespace.
++PASS pdf2md-orchestration:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:48: trailing whitespace.
++PASS pdf2md-page:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:49: trailing whitespace.
++PASS pdf2md-page-assets:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:50: trailing whitespace.
++PASS pdf2md-page-full:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:51: trailing whitespace.
++PASS preparation:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:52: trailing whitespace.
++PASS project-decomp:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:53: trailing whitespace.
++PASS project-setup:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:54: trailing whitespace.
++PASS proposal-format:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:55: trailing whitespace.
++PASS reconciliation:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:56: trailing whitespace.
++PASS research-orchestration:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:57: trailing whitespace.
++PASS researcher:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:58: trailing whitespace.
++PASS review:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:59: trailing whitespace.
++PASS scc-resolution-case:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:60: trailing whitespace.
++PASS scope-change:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:61: trailing whitespace.
++PASS scope-change-packet:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:62: trailing whitespace.
++PASS scope-of-work:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:63: trailing whitespace.
++PASS semantic-lensing:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:64: trailing whitespace.
++PASS semantic-matrix-build:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:65: trailing whitespace.
++PASS software-bounded-implementation:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:66: trailing whitespace.
++PASS software-code-review:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:67: trailing whitespace.
++PASS software-decomp:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:68: trailing whitespace.
++PASS software-defect-diagnosis:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:69: trailing whitespace.
++PASS software-repository-reconnaissance:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:70: trailing whitespace.
++PASS software-test-planning:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log:71: trailing whitespace.
++PASS task-management:
+execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/runtime_tools/BROAD_TESTS.log:39: trailing whitespace.
++E
+workflows/aggregation/resources/contract.md:37: trailing whitespace.
++2) **Basis of estimate (basis selection + evidence)**
+workflows/drawing-extract/CONTRACT.md:206: new blank line at EOF.
+workflows/drawing-extract/EXTENDING.md:23: new blank line at EOF.
+workflows/drawing-extract/PROCEDURE.md:314: new blank line at EOF.
+workflows/equation-audit/CONTRACT.md:93: new blank line at EOF.
+workflows/equation-audit/PROCEDURE.md:170: new blank line at EOF.
+workflows/pdf2md-orchestration/CONTRACT.md:91: new blank line at EOF.
+workflows/pdf2md-orchestration/PROCEDURE.md:209: new blank line at EOF.
+FAIL: candidate whitespace findings (untracked binary/symlink paths safely skipped: 12).

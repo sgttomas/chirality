@@ -1,0 +1,3118 @@
+{
+  "schema_version": 1,
+  "basis": "533332349a4607eee561d4ef90fb05a62d86519e",
+  "frozen_at": "2026-09-09T06:02:54.679830+00:00",
+  "status": "FROZEN_FOR_REVIEW",
+  "scope": "All changed or newly created source/live integration documents and coordination notices; deleted sources remain explicit.",
+  "excluded_mutable_evidence": [
+    "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/",
+    "execution/_Evaluation/AgentInstructionSignal/"
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/governance-harness.yml",
+      "state": "present",
+      "sha256": "6bb965c4f1fda2b7de55195c6199759b505e34307522cddf75fa87e4ca2e2fd6"
+    },
+    {
+      "path": "AGENTS.md",
+      "state": "present",
+      "sha256": "68205e0098c1269bcd157e31d15e831329d3019a6d57688425fc0c335e556fef"
+    },
+    {
+      "path": "README.md",
+      "state": "present",
+      "sha256": "e327d8d6bf7d75d4c8c76e381c0a11af4a9a88c172c21a5b2be8b35e3a4b7ff7"
+    },
+    {
+      "path": "_DomainEngines/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md",
+      "state": "present",
+      "sha256": "931e0eaa5619e2ed57beb85479d42bfbe48d60b95fa28f41ad67dcbbc06bb9bb"
+    },
+    {
+      "path": "agents/AGENT_AGGREGATION.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_AUDIT_AGENTS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_AUDIT_DECOMP.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_AUDIT_DEP_CLOSURE.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_AUDIT_EPISTEMIC.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_AUDIT_GOVERNANCE.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_CHANGE.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_DBM_PUBLISHER.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_DECOMP.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_ENGINE.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_HYPERGRAPH.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_DRAWING_EXTRACT.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_EQUATION_AUDIT.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_EVALUATION.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_EVALUATION_DEPENDENCY_AUDIT.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_EVALUATION_REPORT.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_EVALUATION_STRUCTURE_AUDIT.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "state": "present",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e"
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "state": "present",
+      "sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183"
+    },
+    {
+      "path": "agents/AGENT_PDF2MD.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_PREPARATION.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_PROJECT_DECOMP.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_PROJECT_SETUP.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_RECONCILIATION.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_RESEARCH.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_RESEARCHER.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_REVIEW.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_SCOPE_CHANGE.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_SOFTWARE_DECOMP.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "state": "present",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "agents/AGENT_TASK_MANAGEMENT.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "state": "present",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665"
+    },
+    {
+      "path": "agents/registry.json",
+      "state": "present",
+      "sha256": "61b92f120b5093c4bf1691dce33b62f52999cdcc701764fbf6b87bc9018d1e89"
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "state": "present",
+      "sha256": "b32d357c4ca4a5eb67534c58e6e049af18cc5aacad0fab4db6bd5029fbc8d0f8"
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "state": "present",
+      "sha256": "a3217904f6176e256f2dbc910b44c10da9592fc219aefa94bf1f591fc5128502"
+    },
+    {
+      "path": "docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "state": "present",
+      "sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f"
+    },
+    {
+      "path": "docs/DBM_Agent_Instruction_Architecture.md",
+      "state": "present",
+      "sha256": "11a02f4be83c104fe6be6a7a470fe05039c276aa6e65fc8e2168dc7ec3d92356"
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "state": "present",
+      "sha256": "9b2e946a329cbd2f504b6306629b9bb80dd850d91cdce84bc967d167bce17761"
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "state": "present",
+      "sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168"
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "state": "present",
+      "sha256": "2f9ea971e69c5069f78c2348b1d75395aa7651d8d65151a664e2a89e865af93a"
+    },
+    {
+      "path": "docs/PLAN.md",
+      "state": "present",
+      "sha256": "ff511b4d42163b30eb652b1d8b8bb302808208cc263aeaf6ea76176b69904c05"
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "state": "present",
+      "sha256": "cca3ec1acf24b8cfd502acea2d81a9bc5bf2effa8fe6211cadeb5457e6392d18"
+    },
+    {
+      "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "state": "present",
+      "sha256": "9cc54bfb649168801c2ea060acb242145f48a0e08ac893e6ca38824439f7c5b3"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "state": "present",
+      "sha256": "0fa7e462c387e86c2e5815792d53660ff7ecca5ea267aacc7a3f669b05543dbe"
+    },
+    {
+      "path": "docs/TYPES.md",
+      "state": "present",
+      "sha256": "9aed78ab64d1d77d5b6e8755e16ebb2a4cf3716a97bee66c19349676c1e3c0ab"
+    },
+    {
+      "path": "docs/WORKFLOW_COMPONENT_STANDARD.md",
+      "state": "present",
+      "sha256": "b8e141ebbb7b04a803d9e4804b52034c56d57659068b5ba985617c1793071cbb"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-41_four_role_workflow_overhaul.md",
+      "state": "present",
+      "sha256": "591a9edd04061a64bf29e10c09759fbcdbf2f72c24d367e9c2dee1ff21682d7b"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "state": "present",
+      "sha256": "08d9765dba5f470476e8ba30b9654e386776cc3a2d59f8934d26c52221ed5359"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-FOUR-ROLE-WORKFLOW-20260909.yaml",
+      "state": "present",
+      "sha256": "e7e7ebb77b30fdb8f722e9f1a2b0a0399e9993e8a11d643d65da275b098eb8ae"
+    },
+    {
+      "path": "docs/rubrics/AUDIT_AGENT.md",
+      "state": "present",
+      "sha256": "2e2cff6bdcf2c172976087f02648f470adcd3f4a60d08eb91849fa1362801749"
+    },
+    {
+      "path": "execution/_Coordination/LOOP_INIT.md",
+      "state": "present",
+      "sha256": "f5bce0d5553bb739e622f09d3d7cb7c123223ba518b6b59471d189690440503e"
+    },
+    {
+      "path": "exports/chirality-app/export_public.py",
+      "state": "present",
+      "sha256": "7f621a3e23702fbfc5174248aa4561582e7f6050df3ddca9aeb6b354301376de"
+    },
+    {
+      "path": "init/taskmgmt-init-prompt.md",
+      "state": "present",
+      "sha256": "eb6dfc1c688301601606db4162f7a741726effdeb1bc428c214a09def65d949a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md",
+      "state": "present",
+      "sha256": "3c7f4853f840e5108f2152efddc20962280fe1e2dd06261acd8b9a217ed63ed8"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md",
+      "state": "present",
+      "sha256": "af2ebf3514cf90e984b95acb7562cec5e1121358207fe2f0d71d65c3cea834bf"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md",
+      "state": "present",
+      "sha256": "0ab504374dc63b165397f304bcf5f716b4e628900ffc93a4fdea43c57f363d1e"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md",
+      "state": "present",
+      "sha256": "6ce80a94fa9b5c817b850cdf3ed9e10b7c70a3eec05cbab568faa39c4f293c2e"
+    },
+    {
+      "path": "skills/README.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/SKILL_TEMPLATE.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/content-digest/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/content-digest/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/content-digest/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/content-digest/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-concordance-seed/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-concordance-seed/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-concordance-seed/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-concordance-seed/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-concordance-verify/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-concordance-verify/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-concordance-verify/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-concordance-verify/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-draft-review/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-draft-review/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-draft-review/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-draft-review/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-postauthor-concordance/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-postauthor-concordance/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-postauthor-concordance/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-postauthor-concordance/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-publish/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-publish/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-publish/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-publish/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-section-publish/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-section-publish/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-section-publish/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dbm-section-publish/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/decomposition-package-review/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/decomposition-package-review/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/decomposition-package-review/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/decomposition-package-review/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/deliverable-consistency/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/deliverable-consistency/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/deliverable-consistency/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/deliverable-consistency/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dependency-extract/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dependency-extract/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dependency-extract/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/dependency-extract/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-documents/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-documents/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-documents/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-documents/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-prose-validate/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-prose-validate/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-prose-validate/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-prose-validate/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-source-atomize/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-source-atomize/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-source-atomize/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/domain-source-atomize/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/drawing-extract-page/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/drawing-extract-page/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/drawing-extract-page/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/drawing-extract-page/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/drawing-titleblock-page/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/drawing-titleblock-page/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/drawing-titleblock-page/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/drawing-titleblock-page/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equation-bbox-detect/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equation-bbox-detect/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equation-bbox-detect/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equation-bbox-detect/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equation-flag-interpret/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equation-flag-interpret/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equation-flag-interpret/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equation-flag-interpret/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equipment-costing-extract/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equipment-costing-extract/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equipment-costing-extract/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equipment-costing-extract/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equipment-extract/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equipment-extract/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equipment-extract/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/equipment-extract/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-prep/BOE_STRUCTURE.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-prep/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-prep/INDEX_MD_CONTRACT.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-prep/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-prep/SCHEMA_ANNEX.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-prep/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-prep/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-snapshot/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-snapshot/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-snapshot/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/estimate-snapshot/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/evaluation-protocol/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/evaluation-protocol/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/evaluation-protocol/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/evaluation-protocol/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/four-documents/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/four-documents/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/four-documents/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/four-documents/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/kty-content-remediate/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/kty-content-remediate/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/kty-content-remediate/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/kty-content-remediate/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/kty-metadata-align/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/kty-metadata-align/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/kty-metadata-align/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/kty-metadata-align/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/lens-register/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/lens-register/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/lens-register/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/lens-register/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pandid-valve-symbol-instance/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pandid-valve-symbol-instance/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pandid-valve-symbol-instance/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pandid-valve-symbol-instance/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pandid-valve-tile/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pandid-valve-tile/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pandid-valve-tile/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pandid-valve-tile/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-folio-extract/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-folio-extract/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-folio-extract/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-folio-extract/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page-assets/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page-assets/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page-assets/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page-assets/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page-full/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page-full/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page-full/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page-full/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md-page/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/pdf2md/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/proposal-format/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/proposal-format/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/proposal-format/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/proposal-format/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/research-orchestration/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/research-orchestration/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/research-orchestration/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/research-orchestration/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scc-resolution-case/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scc-resolution-case/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scc-resolution-case/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scc-resolution-case/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scope-change-packet/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scope-change-packet/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scope-change-packet/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scope-change-packet/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scope-of-work/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scope-of-work/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scope-of-work/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/scope-of-work/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/semantic-lensing/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/semantic-lensing/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/semantic-lensing/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/semantic-lensing/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/semantic-matrix-build/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/semantic-matrix-build/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/semantic-matrix-build/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/semantic-matrix-build/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-bounded-implementation/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-bounded-implementation/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-bounded-implementation/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-bounded-implementation/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-code-review/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-code-review/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-code-review/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-code-review/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-defect-diagnosis/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-defect-diagnosis/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-defect-diagnosis/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-defect-diagnosis/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-repository-reconnaissance/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-repository-reconnaissance/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-repository-reconnaissance/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-repository-reconnaissance/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-test-planning/BRIEF_SCHEMA.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-test-planning/QA_CHECKS.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-test-planning/SKILL.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "skills/software-test-planning/TOOL_POLICY.md",
+      "state": "deleted",
+      "sha256": null
+    },
+    {
+      "path": "tools/EXTERNAL_TOOLS.md",
+      "state": "present",
+      "sha256": "379b4cbf3599a2872d442629885c0f2ffc6571e41ad8dfcb073b0f8522596b80"
+    },
+    {
+      "path": "tools/REGISTRY.md",
+      "state": "present",
+      "sha256": "71b6aab5569c099f07086773edfb4084abad909b294115b5ebf93953a6a9a78e"
+    },
+    {
+      "path": "tools/coordination/analyze_dep_closure.py",
+      "state": "present",
+      "sha256": "fe546d0f18aac3ab44866d55d6e6ca39c2b6d323ee0355e923b01106a1698ccd"
+    },
+    {
+      "path": "tools/coordination/test_analyze_dep_closure.py",
+      "state": "present",
+      "sha256": "989309199491e871d4e67de4417359ab74d41211279ebb0c85e0712dc5f68765"
+    },
+    {
+      "path": "tools/decomp/build_atomization_brief.py",
+      "state": "present",
+      "sha256": "6c2b55994759dd7ba76a857f30498b3543a834e0b1e0d54bfe365ed638ba335c"
+    },
+    {
+      "path": "tools/decomp/build_manifest_domain_adapter.py",
+      "state": "present",
+      "sha256": "fcef17bb51f24d79cd667ca281d2c4fce524bf66d50264636164224853accfa4"
+    },
+    {
+      "path": "tools/decomp/build_prose_validate_brief.py",
+      "state": "present",
+      "sha256": "84202b5035446c6c85b870c7843bc3fa98a82ddd8928ca8f791b8bca988602a4"
+    },
+    {
+      "path": "tools/diagnostics/ka_coverage_audit.py",
+      "state": "present",
+      "sha256": "3fc2327621a7d8a61257d92df4f0890baabaafcfcc12b3e1f8b4c272cd2ff250"
+    },
+    {
+      "path": "tools/drawing_extract/build_page_worker_brief.py",
+      "state": "present",
+      "sha256": "b52ebd3c04921b251efeb6a045f000198186b9bea8902d2a03ac7107eea5f234"
+    },
+    {
+      "path": "tools/drawing_extract/build_pandid_valve_tile_brief.py",
+      "state": "present",
+      "sha256": "87727bdf117fdfc22354589add01e50c4aece609b25272bd87328c5adbb923f6"
+    },
+    {
+      "path": "tools/drawing_extract/build_titleblock_page_brief.py",
+      "state": "present",
+      "sha256": "6bdbf566461dd9bb9d69e3668c5bc32591e2ab4f4f149fa8069bfc9561566ef9"
+    },
+    {
+      "path": "tools/drawing_extract/normalize_equipment_stub_layout.py",
+      "state": "present",
+      "sha256": "82f28b3a1476734bbac74262ed524e9c952171687f46ae9f502e65b91a49ea20"
+    },
+    {
+      "path": "tools/drawing_extract/report_stub_counts.py",
+      "state": "present",
+      "sha256": "b3f616e2fd8cdbdba56204f3ee920ddbeeb0a5f93b137dcd54d20ab4a9337756"
+    },
+    {
+      "path": "tools/equation_audit/build_equation_bbox_brief.py",
+      "state": "present",
+      "sha256": "b1e624bf612da8bcc7663390811e91c943f80958d5180cdb54589bb322fad69c"
+    },
+    {
+      "path": "tools/equation_audit/build_equation_interpret_brief.py",
+      "state": "present",
+      "sha256": "c308be7ccbf28e7968e686223aa513c0f1b78d76a701380afab3a034859bbcf8"
+    },
+    {
+      "path": "tools/evaluation/README.md",
+      "state": "present",
+      "sha256": "343cb6c5bd91347f2798063670baea8080eef67189e5ecc3b07a026c25b080f6"
+    },
+    {
+      "path": "tools/evaluation/audit_common.py",
+      "state": "present",
+      "sha256": "2d5eb4f62cc3fb13cce39b2e80ee92f55ff737fed181f98745a63966f1fef026"
+    },
+    {
+      "path": "tools/evaluation/audit_dependencies.py",
+      "state": "present",
+      "sha256": "d98d95bf34783d8d5f7b73eb80910f45b3fa21176b1178b159c732f6d0ce22bc"
+    },
+    {
+      "path": "tools/evaluation/audit_structure.py",
+      "state": "present",
+      "sha256": "d37ffbd040ace47ea990fd6fbb0911ea073358303a40ac32b3b7d7b111ecdb3f"
+    },
+    {
+      "path": "tools/evaluation/check_dependency_schema.sh",
+      "state": "present",
+      "sha256": "475bbfd8cf7fb971135fe71d606742acff696deda3b3d9b155f5edda0a8282d0"
+    },
+    {
+      "path": "tools/evaluation/check_evidence_coverage.sh",
+      "state": "present",
+      "sha256": "475bbfd8cf7fb971135fe71d606742acff696deda3b3d9b155f5edda0a8282d0"
+    },
+    {
+      "path": "tools/evaluation/check_implements_node.sh",
+      "state": "present",
+      "sha256": "475bbfd8cf7fb971135fe71d606742acff696deda3b3d9b155f5edda0a8282d0"
+    },
+    {
+      "path": "tools/evaluation/count_deliverable_files.sh",
+      "state": "present",
+      "sha256": "bc57c8dbbfd29766d6b2e47b96d29d3c822b54f56ac518bbb019030dba318347"
+    },
+    {
+      "path": "tools/evaluation/extract_lifecycle_states.sh",
+      "state": "present",
+      "sha256": "7656ff4ab836cde38bcf5251abc485b7ee85b93f94b8e7b190e8d8d3575b019e"
+    },
+    {
+      "path": "tools/evaluation/test_audits.py",
+      "state": "present",
+      "sha256": "4eab3fa4f854ff1dec43f9c9b71303ca2266784b7639a1f0ecd5f2cd30f8ae23"
+    },
+    {
+      "path": "tools/pdf2md/build_folio_extract_brief.py",
+      "state": "present",
+      "sha256": "65a1501314ced6f7c8c5a65cf3a0cb5ba448ecfb4aef3318894cbe1a8bc475ef"
+    },
+    {
+      "path": "tools/pdf2md/build_page_assets_brief.py",
+      "state": "present",
+      "sha256": "99989ec7a7f6ef210c1255828a1f76c2b7515e914daaff8498a508d3f40855f7"
+    },
+    {
+      "path": "tools/pdf2md/build_page_brief.py",
+      "state": "present",
+      "sha256": "325c1e77beb8433af4d74ef2d535bb84eb7d573d02ea91ee53a18b18e440a7d2"
+    },
+    {
+      "path": "tools/pdf2md/build_page_full_brief.py",
+      "state": "present",
+      "sha256": "728e66eacbffc25bde1ad330b3175ddfabe8673f3d2a7ed5a0140070468103d4"
+    },
+    {
+      "path": "tools/pdf2md/materialize_page_assets.py",
+      "state": "present",
+      "sha256": "7a9f5311535e7d219716005faebe77d91cbd4342899341b5b993ac8b9e286454"
+    },
+    {
+      "path": "tools/pdf2md/render_table_xlsx.py",
+      "state": "present",
+      "sha256": "c6d915c04bfa8aaeb7a69106b94a9bf94453611626fb6d5c9fdf88e41543ef09"
+    },
+    {
+      "path": "tools/pdf2md/rewrite_inline_asset_refs.py",
+      "state": "present",
+      "sha256": "4fcd7d07d1d580ca2e7f14163c9d318122a6e730c3613d812e6c293401951da2"
+    },
+    {
+      "path": "tools/pdf2md/test_materialize_page_assets.py",
+      "state": "present",
+      "sha256": "f281f21c41a6ccde50df81b1393e363ec68c83da563cb4b37a94b638e861179c"
+    },
+    {
+      "path": "tools/pdf2md/test_rewrite_inline_asset_refs.py",
+      "state": "present",
+      "sha256": "2f32de96b867ca74d9a8272ac36608106a73ae5e558d01222aa37fffe5bfeb83"
+    },
+    {
+      "path": "tools/practitioner_harness/README.md",
+      "state": "present",
+      "sha256": "b30448ef70ace0f7933c14cc27841d47cc1043c51761f81957e02a0617894088"
+    },
+    {
+      "path": "tools/practitioner_harness/cmd_brief.py",
+      "state": "present",
+      "sha256": "fc6929ee862dc6fd695e967a0409dd8dafd641c25cd5ba1ebcf51b59297342d0"
+    },
+    {
+      "path": "tools/practitioner_harness/cmd_self_check.py",
+      "state": "present",
+      "sha256": "ba1e6f4a14ebddb8bd0c88c069a913b8729997d656d55988b330df56546b8a96"
+    },
+    {
+      "path": "tools/publication/render_dispatch_briefs.py",
+      "state": "present",
+      "sha256": "8a2790b0befe800ff883de90fd8ebfccbee2f9b3c072281cf036963b814b6d44"
+    },
+    {
+      "path": "tools/publication/test_render_dispatch_briefs.py",
+      "state": "present",
+      "sha256": "f0d55a0459478b8b59383ee9d252c1b9f6955b14ce6ff5de9829ea41141f7fb6"
+    },
+    {
+      "path": "tools/retrieval/scaffold_research_packet.py",
+      "state": "present",
+      "sha256": "1f364bf9664869e12a7e783f18f3b09e0ce85f75e43c8f022b190150bde95d7f"
+    },
+    {
+      "path": "tools/retrieval/test_scaffold_research_packet.py",
+      "state": "present",
+      "sha256": "b95e1bca0a09fe00f36d3974aeb2f45799355812b234766745d6c4803187f15e"
+    },
+    {
+      "path": "tools/scaffolding/scaffold_deliverable.sh",
+      "state": "present",
+      "sha256": "55085fdff842e85e87787fe69e56d05ee2d8d2744c1ad193110d99f8bec29f41"
+    },
+    {
+      "path": "tools/scaffolding/scaffold_package.sh",
+      "state": "present",
+      "sha256": "482a3d4a5b9f964da7f3dd4368f816a311d0953f47e7bdeb8a6d57fca410cb25"
+    },
+    {
+      "path": "tools/scaffolding/test_scaffold.py",
+      "state": "present",
+      "sha256": "28640d84d1462bf143ae352ca786c119c8faf8f6958629112b7f9192d7c71530"
+    },
+    {
+      "path": "tools/source_audit/compare_extracts.py",
+      "state": "present",
+      "sha256": "a12d31a4b083714d67dcebe213ea31c874cb196565fb540ae46c79a24c88ac41"
+    },
+    {
+      "path": "tools/source_catalog/research_packet.py",
+      "state": "present",
+      "sha256": "9032618954d136269014e4df09bb118308c88dffb45827a9207d1c3d201dbac6"
+    },
+    {
+      "path": "tools/source_catalog/test_research_packet.py",
+      "state": "present",
+      "sha256": "53f8c5012025e90a7998b0f81e70cb00342a6493b62b1353e1a7c20b85da7bbc"
+    },
+    {
+      "path": "tools/tools-test-routing.json",
+      "state": "present",
+      "sha256": "4849da12fdd3c05d9c72552f1f3c581497a5459c1b78ab72f4ac0f689feb8c26"
+    },
+    {
+      "path": "tools/validation/README.md",
+      "state": "present",
+      "sha256": "f5195368ebb0045817c32bf657905d98f5603e2a6de4fc3fb1e74856de5e31f4"
+    },
+    {
+      "path": "tools/validation/test_four_role_contract.py",
+      "state": "present",
+      "sha256": "3624d1f161042d60775e968c60a82ccd1bfc96b51e23e44bb5439ec882059083"
+    },
+    {
+      "path": "tools/validation/test_public_export_profile.py",
+      "state": "present",
+      "sha256": "87a59c055215bcef784a9ba14fe87a2f6a20f8661e66dc7d21c550492dd81d8f"
+    },
+    {
+      "path": "tools/validation/test_validate_agent_instructions.py",
+      "state": "present",
+      "sha256": "09ed1a455c9a70ee1fe64216e966cde9f6dcab98734c5186bde42e1b08fd951b"
+    },
+    {
+      "path": "tools/validation/test_validate_kty_remediation_manifest.py",
+      "state": "present",
+      "sha256": "9ac019186b49e3a8e60976f8802ed31ab47820dc3ed6b72d41487569fcc9ba43"
+    },
+    {
+      "path": "tools/validation/validate_agent_instructions.py",
+      "state": "present",
+      "sha256": "0bc7156b3b7824adad524ff46d2c7cddae1ff3c29304d7d265414497bfa68540"
+    },
+    {
+      "path": "tools/validation/validate_enum.py",
+      "state": "present",
+      "sha256": "add20ed27e0bb85dad5377b207ffddfb23287f7a79540d0deb6283c6aac6fa2d"
+    },
+    {
+      "path": "tools/validation/validate_instruction_tranche_manifest.py",
+      "state": "present",
+      "sha256": "ff2c39290cb1de17a338cfb1e60583329489bcf0a0eae5131f966989947baaff"
+    },
+    {
+      "path": "tools/validation/validate_kty_remediation_manifest.py",
+      "state": "present",
+      "sha256": "97c958a0ba16c62f45900ebe75b29ff47febaf7a30c34f56b3ae019243e9973b"
+    },
+    {
+      "path": "tools/validation/validate_root_surface_ownership.py",
+      "state": "present",
+      "sha256": "725b65dd15bdfe115ec9a5cd28c729251232249a331e4661359282f26a2b606a"
+    },
+    {
+      "path": "tools/validation/validate_root_work_graph_dispatch.py",
+      "state": "present",
+      "sha256": "af7186283c8b66035f1fdef777cd7c04edc5e69e2905290e04a530a60386cf91"
+    },
+    {
+      "path": "tools/validation/validate_skill_metadata.py",
+      "state": "present",
+      "sha256": "9ff6cc74feb0648aa9c51cf5df97c6c0d0dc83caf0fd99f7f7ef151e0009fdf9"
+    },
+    {
+      "path": "tools/validation/validate_workflow_metadata.py",
+      "state": "present",
+      "sha256": "8ae7043e81737618dcb875b31295bbc2b4d5418599135c0ca1bc8323075691eb"
+    },
+    {
+      "path": "tools/workflow_runtime/README.md",
+      "state": "present",
+      "sha256": "b787a4c7c3a160bd2e4a84f03690d017b7937b2098dd0da8df47cd4014966e5b"
+    },
+    {
+      "path": "tools/workflow_runtime/normalize_brief.py",
+      "state": "present",
+      "sha256": "583351ec9fd7376ec304fef48c8610944299402b3bc89d6328214daceea397da"
+    },
+    {
+      "path": "tools/workflow_runtime/resolve_workflow.py",
+      "state": "present",
+      "sha256": "dd55c92f711238e19c2e1d208c4fdff8b7140153c4c8560c4413c58ee38e94c0"
+    },
+    {
+      "path": "tools/workflow_runtime/test_normalize_brief.py",
+      "state": "present",
+      "sha256": "356e40114bc65358171e8949c53926799b3a5d1f27ac1970c32054445abf60b6"
+    },
+    {
+      "path": "tools/workflow_runtime/test_resolve_workflow.py",
+      "state": "present",
+      "sha256": "50384194442bd980ee76d6818acb0385e190a742e3a5dae49d45fe23423396c3"
+    },
+    {
+      "path": "workflows/README.md",
+      "state": "present",
+      "sha256": "b3007456afe09218a2c921ce6c7308865d492fca86fc79d43a5b39cf14aecb64"
+    },
+    {
+      "path": "workflows/WORKFLOW_TEMPLATE.md",
+      "state": "present",
+      "sha256": "e98e1d1db2551cd6102e82c0f63c70f8f8961628ba465d3ed9cb34adc6ffb080"
+    },
+    {
+      "path": "workflows/aggregation/WORKFLOW.md",
+      "state": "present",
+      "sha256": "287fb1d57ce00bd0609fda1bb416eda72e1285307f3553ce0f07e0f348a320b6"
+    },
+    {
+      "path": "workflows/aggregation/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/aggregation/resources/contract.md",
+      "state": "present",
+      "sha256": "3f99a2f8c0b7a98b42e689617ff33edd130d50fa6b09048bb9590fb2e68ad0c9"
+    },
+    {
+      "path": "workflows/aggregation/resources/method.md",
+      "state": "present",
+      "sha256": "3d5acb59ea7c95fd8e6c5b83c5a4f37552cdcde5f498231d5eb4676535725324"
+    },
+    {
+      "path": "workflows/audit-agents/WORKFLOW.md",
+      "state": "present",
+      "sha256": "16f71941c164aef0ab4e423bf65c9503310022417266ca4a7c4dbdb8ddaa2ba8"
+    },
+    {
+      "path": "workflows/audit-agents/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-agents/resources/contract.md",
+      "state": "present",
+      "sha256": "52bc8f1fcd65f1701ebf114d0010a358d460795c8619838593ac901fe8b915cd"
+    },
+    {
+      "path": "workflows/audit-agents/resources/method.md",
+      "state": "present",
+      "sha256": "37c29f39b4952050dba10046efea7b6fff72ac4a002941268d1ad6631755b09f"
+    },
+    {
+      "path": "workflows/audit-decomp/WORKFLOW.md",
+      "state": "present",
+      "sha256": "4aaa7e10990ddd1b769ba09da78a03f9f491a6b6f3be6df08a1a8de93c26e3e6"
+    },
+    {
+      "path": "workflows/audit-decomp/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-decomp/resources/contract.md",
+      "state": "present",
+      "sha256": "70a5abebc8ff34826415e1566715373a322baded2939325b5b73828d78401a0c"
+    },
+    {
+      "path": "workflows/audit-decomp/resources/method.md",
+      "state": "present",
+      "sha256": "97df84022ccbec434aea9745296b93b6e549ef840acc0ca9df0a215e634d79c2"
+    },
+    {
+      "path": "workflows/audit-dep-closure/WORKFLOW.md",
+      "state": "present",
+      "sha256": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1"
+    },
+    {
+      "path": "workflows/audit-dep-closure/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-dep-closure/resources/contract.md",
+      "state": "present",
+      "sha256": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43"
+    },
+    {
+      "path": "workflows/audit-dep-closure/resources/method.md",
+      "state": "present",
+      "sha256": "8fb002e8179cf28231404ffdf938a8b3a0280f7d5d55082905f4949405ea637d"
+    },
+    {
+      "path": "workflows/audit-epistemic/WORKFLOW.md",
+      "state": "present",
+      "sha256": "a8eaa36bc4c6dc1aaff5801d8b4e21a0acfe4073b06aad06aeadf49f42266780"
+    },
+    {
+      "path": "workflows/audit-epistemic/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-epistemic/resources/contract.md",
+      "state": "present",
+      "sha256": "9c5e41cc4484ca721e9d34bc78572472f9c732b58f2caa878e351608618b2ea3"
+    },
+    {
+      "path": "workflows/audit-epistemic/resources/method.md",
+      "state": "present",
+      "sha256": "c005e4be5a9c61e3b2526688691d26e4338c1b1d1b0fe23e435a92dcf374dad7"
+    },
+    {
+      "path": "workflows/audit-governance/WORKFLOW.md",
+      "state": "present",
+      "sha256": "f2af588d018fac9aab014f1ae72e5bd59a19f1c30cb92dd6a9cf53a6982797e1"
+    },
+    {
+      "path": "workflows/audit-governance/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-governance/resources/contract.md",
+      "state": "present",
+      "sha256": "fce579b8c2f3bbafc99c3e2c40f74d972856da4acde4883dbec5428080ab291d"
+    },
+    {
+      "path": "workflows/audit-governance/resources/method.md",
+      "state": "present",
+      "sha256": "4af0a8bf87d28816e508efe464d49275b2f6ab23306dd21bded286ea4f3b54a8"
+    },
+    {
+      "path": "workflows/audit-hypergraph-closure/WORKFLOW.md",
+      "state": "present",
+      "sha256": "b7b6cdf059e233a809db449447dcabb0071339a7b9932cf9151a916321a37c7b"
+    },
+    {
+      "path": "workflows/audit-hypergraph-closure/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-hypergraph-closure/resources/contract.md",
+      "state": "present",
+      "sha256": "a1b373c4ba34fd5e46c831bdbae1a3ab8af9e06729c5d2a436586d4404a2431b"
+    },
+    {
+      "path": "workflows/audit-hypergraph-closure/resources/method.md",
+      "state": "present",
+      "sha256": "09b008239c07994dd0fc8197d5dbdab9ef50240395cac37bfa71562fa2646c14"
+    },
+    {
+      "path": "workflows/audit-scope-closure/WORKFLOW.md",
+      "state": "present",
+      "sha256": "7dd0a117b78dc01e016f9cc526f46d241a6785f0ed8bcb5c5f6b552fbaef579d"
+    },
+    {
+      "path": "workflows/audit-scope-closure/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-scope-closure/resources/contract.md",
+      "state": "present",
+      "sha256": "42bb65d4fc8fc78d219e3db09c2cddf91fcc5fabfcc579e9a5f94106af6508ab"
+    },
+    {
+      "path": "workflows/audit-scope-closure/resources/method.md",
+      "state": "present",
+      "sha256": "97f0391bd0704f516765adb52e22f2ca428b5c572a8e9374276fce152c90f154"
+    },
+    {
+      "path": "workflows/change/WORKFLOW.md",
+      "state": "present",
+      "sha256": "7db475bf107f789d18af121b2d4ecd56bec1376624b250a8e0738ad0799808ea"
+    },
+    {
+      "path": "workflows/change/execution.json",
+      "state": "present",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/change/resources/contract.md",
+      "state": "present",
+      "sha256": "39f56fd05a2789aa882a5372cef60b7c688f70409b0448c25f28d20f9a7cd6c6"
+    },
+    {
+      "path": "workflows/change/resources/method.md",
+      "state": "present",
+      "sha256": "d0ef506bd337dc9e82ec54a64b335cfa7efffba86f8efc2cf103a2056f7f52dd"
+    },
+    {
+      "path": "workflows/content-digest/CONTRACT.md",
+      "state": "present",
+      "sha256": "e7ed69c4ff801db2ffd1cd6312d6727276bfefdc866cef9bcb06ea65678b7e41"
+    },
+    {
+      "path": "workflows/content-digest/WORKFLOW.md",
+      "state": "present",
+      "sha256": "a4e0acd2bdef1622029d9a0baaad4a9b68a687c35acfb9d726d34e02e597eb83"
+    },
+    {
+      "path": "workflows/content-digest/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/dbm-concordance-seed/CONTRACT.md",
+      "state": "present",
+      "sha256": "314406869fce27897fa17f2846597a846380a68c8a20d0cf2bae0817deb3389c"
+    },
+    {
+      "path": "workflows/dbm-concordance-seed/WORKFLOW.md",
+      "state": "present",
+      "sha256": "306a3b69f400777eb0b49c282e94af212a82f3d9cdc4b62ca7951293ba1ae358"
+    },
+    {
+      "path": "workflows/dbm-concordance-seed/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/dbm-concordance-verify/CONTRACT.md",
+      "state": "present",
+      "sha256": "cfb927b406205fb91f9cb19d999875d5f13a0547da78e877ac744392f94ae2eb"
+    },
+    {
+      "path": "workflows/dbm-concordance-verify/WORKFLOW.md",
+      "state": "present",
+      "sha256": "102c35449fba01f91d1a3a82ee162d15ff3d972ea45512b1d626fa8acd7bbb79"
+    },
+    {
+      "path": "workflows/dbm-concordance-verify/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/dbm-draft-review/CONTRACT.md",
+      "state": "present",
+      "sha256": "f0b7299c9035b3772c1d5121d1bc8a2bf8196cc515fd6691c875603cf043640e"
+    },
+    {
+      "path": "workflows/dbm-draft-review/WORKFLOW.md",
+      "state": "present",
+      "sha256": "ba40d7045fd349d2a3dfc5ac4c30b3060497cd7fa4c8b1426e35665d29a754be"
+    },
+    {
+      "path": "workflows/dbm-draft-review/execution.json",
+      "state": "present",
+      "sha256": "bb58a5e1e7c70a55d75dba80a824b4cf162313f9b19b72949025f7637fb509b1"
+    },
+    {
+      "path": "workflows/dbm-postauthor-concordance/CONTRACT.md",
+      "state": "present",
+      "sha256": "70333723c0923195eafb07fc03d0f90acdd622f5a07be80ce0bcec38cef58f7e"
+    },
+    {
+      "path": "workflows/dbm-postauthor-concordance/WORKFLOW.md",
+      "state": "present",
+      "sha256": "37719f0bea7bea51fe75a054efcbd530c850e72bb305f3038c38149852e22f87"
+    },
+    {
+      "path": "workflows/dbm-postauthor-concordance/execution.json",
+      "state": "present",
+      "sha256": "bb58a5e1e7c70a55d75dba80a824b4cf162313f9b19b72949025f7637fb509b1"
+    },
+    {
+      "path": "workflows/dbm-publish/CONTRACT.md",
+      "state": "present",
+      "sha256": "3592985cca75c1d162136eb783c131075a9bcab899f9b29ac2c80a82867d069f"
+    },
+    {
+      "path": "workflows/dbm-publish/WORKFLOW.md",
+      "state": "present",
+      "sha256": "de71df5853c3b1b66d8b70d58247150def9b4bdc3da364d3f9de3fffeabcf493"
+    },
+    {
+      "path": "workflows/dbm-publish/execution.json",
+      "state": "present",
+      "sha256": "3dcbf3c0284b0605487546e0ad2c708e8dd12c54f6638f6b5a1f9f8f3f793ada"
+    },
+    {
+      "path": "workflows/dbm-publisher/ACCEPTANCE.md",
+      "state": "present",
+      "sha256": "1d4b97e6085372f7d9f728fd3351e3a58b35d4e84991563e63316eaaff6b306e"
+    },
+    {
+      "path": "workflows/dbm-publisher/CONTRACT.md",
+      "state": "present",
+      "sha256": "99f27b3506be9ad01b6353ee1e701a3abcaddb7f43679983f36c6d9273c7e406"
+    },
+    {
+      "path": "workflows/dbm-publisher/PROCEDURE.md",
+      "state": "present",
+      "sha256": "e1e5d1b41e770d3bde2163babbcc0a2c91b4b0f1609ce150e16522cbb2c47da2"
+    },
+    {
+      "path": "workflows/dbm-publisher/WORKFLOW.md",
+      "state": "present",
+      "sha256": "ce8e895c30e03c22be157562cbbb0a4ff8f7459808fea57a918ae365ce8a3b4e"
+    },
+    {
+      "path": "workflows/dbm-publisher/execution.json",
+      "state": "present",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/dbm-section-publish/CONTRACT.md",
+      "state": "present",
+      "sha256": "bb3c7750ee9ee69354956f2b225a05d9a4b97383d3a693eaf61e6f0e56ed11ed"
+    },
+    {
+      "path": "workflows/dbm-section-publish/WORKFLOW.md",
+      "state": "present",
+      "sha256": "534a76dbaa354a9609cf6d4acd9cf5901496934484af5af9445e8a42fcfe0d20"
+    },
+    {
+      "path": "workflows/dbm-section-publish/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/decomposition-package-review/WORKFLOW.md",
+      "state": "present",
+      "sha256": "61d2cc31227b83b5b2dbc4fcc8d365d9f8f27a5df633dcec91c7c9ce05b594fe"
+    },
+    {
+      "path": "workflows/decomposition-package-review/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/decomposition-package-review/resources/brief.md",
+      "state": "present",
+      "sha256": "55213b26ff84772e811e47e9ad650278193942941232ea4f6174582098a57087"
+    },
+    {
+      "path": "workflows/decomposition-package-review/resources/checks.md",
+      "state": "present",
+      "sha256": "db7e1e8ca49e82234e4a65f589fb0e1a5b1553f1f77e98eb7e389d7217816acb"
+    },
+    {
+      "path": "workflows/decomposition-package-review/resources/tools.md",
+      "state": "present",
+      "sha256": "3ee9b9c5c149ecb4b27ceedafc3a9fe91ad96d5c9c0e8d1ac82be0df0a51e043"
+    },
+    {
+      "path": "workflows/deliverable-consistency/WORKFLOW.md",
+      "state": "present",
+      "sha256": "f25faa569707c0da91e713a7da51c94ffa5ab1bb21c75363f0efeab1771a7aa1"
+    },
+    {
+      "path": "workflows/deliverable-consistency/execution.json",
+      "state": "present",
+      "sha256": "02c313a989c7dc7254b3f3fbc0d699d883107e04a080d142206009c13d67d01b"
+    },
+    {
+      "path": "workflows/deliverable-consistency/resources/brief.md",
+      "state": "present",
+      "sha256": "f88688cf8fc4bfdefba7e722d5ab5099e4b01e63458e7f40680160c44dc52c7e"
+    },
+    {
+      "path": "workflows/deliverable-consistency/resources/checks.md",
+      "state": "present",
+      "sha256": "664857578209916e77f552f279e7d5cb4b7fcdad929aeb3cd1401a29850f6f22"
+    },
+    {
+      "path": "workflows/deliverable-consistency/resources/tools.md",
+      "state": "present",
+      "sha256": "1be1079125a03fc1453f8399a2f3a2128b39068c0419b8ad34d5d5aa09dbaa9f"
+    },
+    {
+      "path": "workflows/dependency-extract/WORKFLOW.md",
+      "state": "present",
+      "sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f"
+    },
+    {
+      "path": "workflows/dependency-extract/execution.json",
+      "state": "present",
+      "sha256": "ddbd595eeae1ccefff345da02973d876ff1db00d0244d8b40921495315a70a41"
+    },
+    {
+      "path": "workflows/dependency-extract/resources/brief.md",
+      "state": "present",
+      "sha256": "6dce9b22b36693aaab015212e1f0cecaddb9eada9dc58ae62b37d8c59d71b824"
+    },
+    {
+      "path": "workflows/dependency-extract/resources/checks.md",
+      "state": "present",
+      "sha256": "6801fe2d037b624e7017690eced948c35e334022012e877d2eb456cfdc817256"
+    },
+    {
+      "path": "workflows/dependency-extract/resources/tools.md",
+      "state": "present",
+      "sha256": "38fa6cecd19bcb0a594f7532c6b8dafe53af1a35c827751369f7539a0e180f88"
+    },
+    {
+      "path": "workflows/domain-decomp/WORKFLOW.md",
+      "state": "present",
+      "sha256": "a72431c081ea86f6ab337d39cf6680e66e384ed25607258900f7b45a59abbfe3"
+    },
+    {
+      "path": "workflows/domain-decomp/execution.json",
+      "state": "present",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/domain-decomp/resources/contract.md",
+      "state": "present",
+      "sha256": "c1ce22824639ad70305c8fcff0b7502db006e0f70f3d75af62c6c9ec812d95ed"
+    },
+    {
+      "path": "workflows/domain-decomp/resources/method.md",
+      "state": "present",
+      "sha256": "c927fc77829159872ea5869e34ab6edfaf0b6950a2fbf1b5bf62ef2e302644a4"
+    },
+    {
+      "path": "workflows/domain-documents/WORKFLOW.md",
+      "state": "present",
+      "sha256": "8044b4beb1a69432017a8f5003599e276ba80fce0b48bd5bf9d0e4c8cccbc90b"
+    },
+    {
+      "path": "workflows/domain-documents/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/domain-documents/resources/brief.md",
+      "state": "present",
+      "sha256": "989282b9bfefc2394894173b764c69343ecc870ceb5d3e27cd89cbba9e71411e"
+    },
+    {
+      "path": "workflows/domain-documents/resources/checks.md",
+      "state": "present",
+      "sha256": "df982bdcebabb906d3b09514ca7432e5f97c935f059480f0bf1037d91d44e34a"
+    },
+    {
+      "path": "workflows/domain-documents/resources/tools.md",
+      "state": "present",
+      "sha256": "8f7d4a342cf96b5ec709ddfbf9c748ecb3680cc66959ee1d94b5e68688b27111"
+    },
+    {
+      "path": "workflows/domain-engine/WORKFLOW.md",
+      "state": "present",
+      "sha256": "922b6dadbc8a8f71899954a6f7e47b45df753fb81a6ca644218a9cf642b0e94e"
+    },
+    {
+      "path": "workflows/domain-engine/execution.json",
+      "state": "present",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/domain-engine/resources/contract.md",
+      "state": "present",
+      "sha256": "d2aaa336ffe78f7cc0b56c3f6a5deede17d73ef06ab8e58570260a9181cab66f"
+    },
+    {
+      "path": "workflows/domain-engine/resources/method.md",
+      "state": "present",
+      "sha256": "e3bbb3e344c7c5eb69d5288b190287595b739333b09825541f58305e20926caf"
+    },
+    {
+      "path": "workflows/domain-hypergraph/WORKFLOW.md",
+      "state": "present",
+      "sha256": "d8ac1935379c4fc40c88534f826045f5439dd4ed369230d1756e93f38c7f7652"
+    },
+    {
+      "path": "workflows/domain-hypergraph/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/domain-hypergraph/resources/contract.md",
+      "state": "present",
+      "sha256": "4b1d0410e734ab746753e0a72aae530a7b19b4ac3eac34fc96d428af37398ebf"
+    },
+    {
+      "path": "workflows/domain-hypergraph/resources/method.md",
+      "state": "present",
+      "sha256": "def4e20a0009b9b4b4702fb61785373e03a085e218010c6de59f950d7f80b27e"
+    },
+    {
+      "path": "workflows/domain-prose-validate/WORKFLOW.md",
+      "state": "present",
+      "sha256": "ac2be4b79a2833ccfdcd1cad740b962ed439f274f4162bca4a4bd24d6f86de0f"
+    },
+    {
+      "path": "workflows/domain-prose-validate/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/domain-prose-validate/resources/brief.md",
+      "state": "present",
+      "sha256": "161a00857488158b7057c9c8209477e782cd3de648184b369fb8d961673f3a53"
+    },
+    {
+      "path": "workflows/domain-prose-validate/resources/checks.md",
+      "state": "present",
+      "sha256": "e4e22fd8a53148ff71a32e7df80c1e228180ad2f3fd53082809db2a22a849211"
+    },
+    {
+      "path": "workflows/domain-prose-validate/resources/tools.md",
+      "state": "present",
+      "sha256": "0ac12b6d3211221ee79562ee7347c600fc0a203b8e51ac5e57b507ad5cc744b6"
+    },
+    {
+      "path": "workflows/domain-source-atomize/WORKFLOW.md",
+      "state": "present",
+      "sha256": "f8c259a81c0bc5ddbd470a1ab44e4bc1e409c6d745f3a80e05d3f6cb291a2337"
+    },
+    {
+      "path": "workflows/domain-source-atomize/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/domain-source-atomize/resources/brief.md",
+      "state": "present",
+      "sha256": "523fd8f672a9caf12cd32025d8ea99e5dc51affb4fa40cf1ee9751ed31937964"
+    },
+    {
+      "path": "workflows/domain-source-atomize/resources/checks.md",
+      "state": "present",
+      "sha256": "e9fcc595f9fb28e6d205513fa350281d2f14a8ffe6fe217d719a240c5d014d5b"
+    },
+    {
+      "path": "workflows/domain-source-atomize/resources/tools.md",
+      "state": "present",
+      "sha256": "00e5f09e32af94fcabdb4c6462200620271201a15ddc0fda8d51024a46f61056"
+    },
+    {
+      "path": "workflows/drawing-extract-page/CONTRACT.md",
+      "state": "present",
+      "sha256": "2a41be114e12a9523ffc561317e9181bced84e5409e289b48fe4ee22837e799a"
+    },
+    {
+      "path": "workflows/drawing-extract-page/WORKFLOW.md",
+      "state": "present",
+      "sha256": "3ba7d7e79f470eb64fa7a75b378c65e9e928171617bedc470841653948d6bce3"
+    },
+    {
+      "path": "workflows/drawing-extract-page/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/drawing-extract/ACCEPTANCE.md",
+      "state": "present",
+      "sha256": "57ccb11e3d42b896f7054b66b264d9b8443abebc2b9f57f94b1048e5f7622d75"
+    },
+    {
+      "path": "workflows/drawing-extract/CONTRACT.md",
+      "state": "present",
+      "sha256": "f607973c2b85d06f4d84f8b195648d46595a2af5884ee2022a81a327cd61dc3a"
+    },
+    {
+      "path": "workflows/drawing-extract/EXTENDING.md",
+      "state": "present",
+      "sha256": "3db59aec392c9bb817e30b3bb839060c9ba54e7906ea764594e34fd980dc11be"
+    },
+    {
+      "path": "workflows/drawing-extract/PROCEDURE.md",
+      "state": "present",
+      "sha256": "66273bc0a9d7d27176969cf14d46e0c8bff033a1af15ffa233cd63f622433280"
+    },
+    {
+      "path": "workflows/drawing-extract/WORKFLOW.md",
+      "state": "present",
+      "sha256": "c5a504e4fd4e488ae769923fb9394781e3b70dc7114da45ec4e8bc052dec87e9"
+    },
+    {
+      "path": "workflows/drawing-extract/execution.json",
+      "state": "present",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/drawing-titleblock-page/CONTRACT.md",
+      "state": "present",
+      "sha256": "9a0eb4227d4adc5d5dbc7d0621842bf189a7643c92ea4ecd999d8136de08e52a"
+    },
+    {
+      "path": "workflows/drawing-titleblock-page/WORKFLOW.md",
+      "state": "present",
+      "sha256": "9ef6e48de49893766443a405182b634cc5497e37431262768bbd8455707b2cf6"
+    },
+    {
+      "path": "workflows/drawing-titleblock-page/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/equation-audit/ACCEPTANCE.md",
+      "state": "present",
+      "sha256": "b72b62b58b51cbf29c34fb2dac76aa19eb8ccedac36fe272935430f61935f978"
+    },
+    {
+      "path": "workflows/equation-audit/CONTRACT.md",
+      "state": "present",
+      "sha256": "7c4056d75928e4dcc73e608ccd722ffe5d5512d5f9a2f039c47aa575eebf6983"
+    },
+    {
+      "path": "workflows/equation-audit/PROCEDURE.md",
+      "state": "present",
+      "sha256": "735e2548c2ac385e11da1a65923f1630a7787dcbf78948d5caaeafc105986b67"
+    },
+    {
+      "path": "workflows/equation-audit/WORKFLOW.md",
+      "state": "present",
+      "sha256": "bf10e9abc54ddc4ef7e2b4ffb672bc80772b12a51d43d44bc5883d6c9356a173"
+    },
+    {
+      "path": "workflows/equation-audit/execution.json",
+      "state": "present",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/equation-bbox-detect/CONTRACT.md",
+      "state": "present",
+      "sha256": "995b4656e9ed8d245e06593abacbd0ee8ab638ff002a153cf8bdd31fff34ab58"
+    },
+    {
+      "path": "workflows/equation-bbox-detect/WORKFLOW.md",
+      "state": "present",
+      "sha256": "ecb36df0950229961e8c630f701b7864926d5650f5bef35f7d7f74373e34a6fb"
+    },
+    {
+      "path": "workflows/equation-bbox-detect/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/equation-flag-interpret/CONTRACT.md",
+      "state": "present",
+      "sha256": "80d8384b3eaf05527833c9ac1d234b277fad5507df8949207fb0faf5bd6e41a0"
+    },
+    {
+      "path": "workflows/equation-flag-interpret/WORKFLOW.md",
+      "state": "present",
+      "sha256": "50b732bd1b15e2377e4f9916a60bb37e5f769842abb2e1f3491d51e8e6fac373"
+    },
+    {
+      "path": "workflows/equation-flag-interpret/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/equipment-costing-extract/CONTRACT.md",
+      "state": "present",
+      "sha256": "ffcd54f92c3e68594972257c88a5f597e9cf6a59b2f0e0034c17681584cc5b05"
+    },
+    {
+      "path": "workflows/equipment-costing-extract/WORKFLOW.md",
+      "state": "present",
+      "sha256": "06387db979673d0a68ecb2930913556d4ee126f9b1930778a2a4cf34d7479e66"
+    },
+    {
+      "path": "workflows/equipment-costing-extract/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/equipment-extract/CONTRACT.md",
+      "state": "present",
+      "sha256": "1daceefa1b36084cebfc5c414299e7bbbe13157e0fb7ebfb3a42137d77a7fe07"
+    },
+    {
+      "path": "workflows/equipment-extract/WORKFLOW.md",
+      "state": "present",
+      "sha256": "d3234b27c576ab8e6264a36b908b9e7ccde75ac328a80b4291d63af08064779d"
+    },
+    {
+      "path": "workflows/equipment-extract/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/estimate-prep/BOE_STRUCTURE.md",
+      "state": "present",
+      "sha256": "79196549df56a6680f758f6ab32d1f06f75da2b8fc24ac5fcd591f3f572c4e32"
+    },
+    {
+      "path": "workflows/estimate-prep/INDEX_MD_CONTRACT.md",
+      "state": "present",
+      "sha256": "7ff683ff568bf87e4c0f79f1b36d17883e2055a873c9da6eb6568e807f8fe0b1"
+    },
+    {
+      "path": "workflows/estimate-prep/SCHEMA_ANNEX.md",
+      "state": "present",
+      "sha256": "63c4f72e1c2bdd0d2ee0c6d5ef35458264ce24c00e5452769c76edccc8997c8e"
+    },
+    {
+      "path": "workflows/estimate-prep/WORKFLOW.md",
+      "state": "present",
+      "sha256": "0fd781c5fc27ac5fea074bc51a968b359182c4da693ebd2b34127a6a8fb61e48"
+    },
+    {
+      "path": "workflows/estimate-prep/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/estimate-prep/resources/brief.md",
+      "state": "present",
+      "sha256": "991a008b4de87c88b861d545da1f605db7f71e83e2b599d77aaee979c2b0ddac"
+    },
+    {
+      "path": "workflows/estimate-prep/resources/checks.md",
+      "state": "present",
+      "sha256": "bb6daafd0c967f1f1213fa3196d770643b9387614e522b3aa5455f0d8b05efd2"
+    },
+    {
+      "path": "workflows/estimate-prep/resources/tools.md",
+      "state": "present",
+      "sha256": "a0d3995996d6884938a664d933b8d1b7575c1163935d481706c6e5870a8de241"
+    },
+    {
+      "path": "workflows/estimate-snapshot/WORKFLOW.md",
+      "state": "present",
+      "sha256": "67998cd1814e7fcfaac16620ed79592103fa1cb54411b1dfdcf90217494fedc0"
+    },
+    {
+      "path": "workflows/estimate-snapshot/execution.json",
+      "state": "present",
+      "sha256": "023fb77fedb94dee55a2c14a77d07e5f4ebc3df0817529a7cd026beb85c45912"
+    },
+    {
+      "path": "workflows/estimate-snapshot/resources/brief.md",
+      "state": "present",
+      "sha256": "2b90795fc3ad7ba8379b834125fc65c4bdbb56e65bb76b0bebdaf2f4bb1173ff"
+    },
+    {
+      "path": "workflows/estimate-snapshot/resources/checks.md",
+      "state": "present",
+      "sha256": "c1e0918756bdaeab41a0ba55a9f58ff18892ab6b18a424da22817e41c5e8ed2b"
+    },
+    {
+      "path": "workflows/estimate-snapshot/resources/tools.md",
+      "state": "present",
+      "sha256": "5ae8738e8750bcb3d37f845bd1b87e7529da3e6591184c660555da291ddd9a2e"
+    },
+    {
+      "path": "workflows/evaluation-protocol/WORKFLOW.md",
+      "state": "present",
+      "sha256": "17d372a8dc1a9702b15b8b0c95d8c0ce1aec331018a205a4c0335e2917b88261"
+    },
+    {
+      "path": "workflows/evaluation-protocol/execution.json",
+      "state": "present",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/evaluation-protocol/resources/brief.md",
+      "state": "present",
+      "sha256": "ce5c9f52aa25933286417dc525571dc69435288d79d035ec60f27ec4417fe21d"
+    },
+    {
+      "path": "workflows/evaluation-protocol/resources/checks.md",
+      "state": "present",
+      "sha256": "86828d0750fb0da07abc1182790f7a441df4b526e4f04c90856f66c8f51359cc"
+    },
+    {
+      "path": "workflows/evaluation-protocol/resources/contract.md",
+      "state": "present",
+      "sha256": "2a92fda93d4995944a31947769ad25deedf3b769741203ef9c26179eef312b08"
+    },
+    {
+      "path": "workflows/evaluation-protocol/resources/method.md",
+      "state": "present",
+      "sha256": "11a43b8725ba733e72aaeec4312e8416b64c07ce1db7d6978ed94b1f712340e8"
+    },
+    {
+      "path": "workflows/evaluation-protocol/resources/tools.md",
+      "state": "present",
+      "sha256": "be089ca92a94b128a739853a3cc7c241e32d04599c8c1818564838ba27c0ed5d"
+    },
+    {
+      "path": "workflows/evaluation-report/WORKFLOW.md",
+      "state": "present",
+      "sha256": "47b9fb13430420bad667e25e2501b11792ed63b5c1ebfaad014db0c3c04b80ec"
+    },
+    {
+      "path": "workflows/evaluation-report/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/evaluation-report/resources/contract.md",
+      "state": "present",
+      "sha256": "e213fc51a68670cc815f400dfc11c98b1d54e2a2e2c9282d424dd74c88b5a967"
+    },
+    {
+      "path": "workflows/evaluation-report/resources/method.md",
+      "state": "present",
+      "sha256": "a38b16f1a77b2517ad4eaaa857e5704b31b990bdfbcfaf1d1d9ebcd861f510e4"
+    },
+    {
+      "path": "workflows/four-documents/WORKFLOW.md",
+      "state": "present",
+      "sha256": "8cf748ed55a5df275b46cb15fbdaa015347630fe45da34aa0a7e18b4138b7524"
+    },
+    {
+      "path": "workflows/four-documents/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/four-documents/resources/brief.md",
+      "state": "present",
+      "sha256": "e630bcb4ef6d78b65adcc342e914310201606464bedff7927d0bc7b27e9f4bbc"
+    },
+    {
+      "path": "workflows/four-documents/resources/checks.md",
+      "state": "present",
+      "sha256": "2d95e7c29399ae0b2f5365263222ca37254fb1c6480326cfb3d34036da864213"
+    },
+    {
+      "path": "workflows/four-documents/resources/tools.md",
+      "state": "present",
+      "sha256": "81e26547613cc84dfbe48bc8858336edb31632954da7700ab98316cb4793d229"
+    },
+    {
+      "path": "workflows/kty-content-remediate/WORKFLOW.md",
+      "state": "present",
+      "sha256": "152910c105b8b1dd924fc351f4561f95589923a687d786347f3d85d647a8730f"
+    },
+    {
+      "path": "workflows/kty-content-remediate/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/kty-content-remediate/resources/brief.md",
+      "state": "present",
+      "sha256": "c21e9413006b97ead0ee914b00367c4ff099c11ae89d8ca4293af69948fd25cd"
+    },
+    {
+      "path": "workflows/kty-content-remediate/resources/checks.md",
+      "state": "present",
+      "sha256": "a27dfe2f146d6745939ddedc381328e55cc53480131b16badfc6c95de62f5d88"
+    },
+    {
+      "path": "workflows/kty-content-remediate/resources/tools.md",
+      "state": "present",
+      "sha256": "72e88e2362e09716ca25a1b1e83d089db1d00b0f6b8ef89bb5f971a8fd4e8679"
+    },
+    {
+      "path": "workflows/kty-metadata-align/WORKFLOW.md",
+      "state": "present",
+      "sha256": "8b0785f26fdabd9ddb41d0fc01b826bb35dd99457e55a16132ebde8e4fff54d4"
+    },
+    {
+      "path": "workflows/kty-metadata-align/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/kty-metadata-align/resources/brief.md",
+      "state": "present",
+      "sha256": "dfb4a409801cd6c9add821e5dd60d4f9776087440624abd2cc49be9db9f0f45d"
+    },
+    {
+      "path": "workflows/kty-metadata-align/resources/checks.md",
+      "state": "present",
+      "sha256": "f9e79c5e9155da5681aefadedc658f7b71796aadb9b87c13778d770128c20f89"
+    },
+    {
+      "path": "workflows/kty-metadata-align/resources/tools.md",
+      "state": "present",
+      "sha256": "54360ed4a224e6b7d56b7c86522ab6fb8eb36bf774bf3f6d24c5474b933c207b"
+    },
+    {
+      "path": "workflows/legacy-agents.json",
+      "state": "present",
+      "sha256": "befb4022ddbc8a3e27622aa962280465a68b4282d5c9ef012a5184e41dfb4c11"
+    },
+    {
+      "path": "workflows/lens-register/WORKFLOW.md",
+      "state": "present",
+      "sha256": "a0ba0cc9ee1a7061fa094125d238fcbfbb8369f8a960384644b37d9245d308c1"
+    },
+    {
+      "path": "workflows/lens-register/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/lens-register/resources/brief.md",
+      "state": "present",
+      "sha256": "2803d8db0d7b6e8b024120bc910ba4b476e8f59a38409c76f50ca2d27a16c685"
+    },
+    {
+      "path": "workflows/lens-register/resources/checks.md",
+      "state": "present",
+      "sha256": "c4ff4b92abb084d6352db4f7dff116f1f142f22c39cfa5f3ada33cf775d0881b"
+    },
+    {
+      "path": "workflows/lens-register/resources/tools.md",
+      "state": "present",
+      "sha256": "83b89e7c79fe07c91fd3a0f8de9424d34301f05f14e07871286ac0a91d1f2a4c"
+    },
+    {
+      "path": "workflows/pandid-valve-symbol-instance/CONTRACT.md",
+      "state": "present",
+      "sha256": "a52cb9f3ccdf96d7a3da2a2cc8c8a96a60a35be7de70b04ac85a942b369a08f0"
+    },
+    {
+      "path": "workflows/pandid-valve-symbol-instance/WORKFLOW.md",
+      "state": "present",
+      "sha256": "bcfe232a4928a02d925d79db36caa9407bed1ff0802510fe8cdcbebc6093da85"
+    },
+    {
+      "path": "workflows/pandid-valve-symbol-instance/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/pandid-valve-tile/CONTRACT.md",
+      "state": "present",
+      "sha256": "b9cc98b9bb176250643575c2109c4c4ca50c95eaa43634852c130fc1cba41225"
+    },
+    {
+      "path": "workflows/pandid-valve-tile/WORKFLOW.md",
+      "state": "present",
+      "sha256": "5a45cb69b798b3e6634a41ebc993589c9ce8c2b304ac6965892e222c6e466070"
+    },
+    {
+      "path": "workflows/pandid-valve-tile/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/pdf2md-folio-extract/CONTRACT.md",
+      "state": "present",
+      "sha256": "4e4510ebfb02857f7f9c6610fbb7e2ec1cf498738c3e590da6e3da48b9f04a57"
+    },
+    {
+      "path": "workflows/pdf2md-folio-extract/WORKFLOW.md",
+      "state": "present",
+      "sha256": "58cf6c56a41ccdf8ac4625fedadcca679d573e891c8d65643b119252c2686495"
+    },
+    {
+      "path": "workflows/pdf2md-folio-extract/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/ACCEPTANCE.md",
+      "state": "present",
+      "sha256": "fa10d9ee87fccc5893dc34247397ab186149acaaa0299a064423cf6067ed84a6"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/CONTRACT.md",
+      "state": "present",
+      "sha256": "4e33d6e2e65f90731e31501e59f487b32057ec67e195bb025322cf08889e7b3c"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/PROCEDURE.md",
+      "state": "present",
+      "sha256": "c8b01dc7f58460101ad07d71c303864fd744eef42f585d2ecb1b43807a728678"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/WORKFLOW.md",
+      "state": "present",
+      "sha256": "8a494ce7ba4a1145e13030cd20d6b7f463c4082785ca5a0ca3eda95a48b39fb0"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/execution.json",
+      "state": "present",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/pdf2md-page-assets/CONTRACT.md",
+      "state": "present",
+      "sha256": "6f5bc2cecb567cc7e5b3aad531345d4f3ba17f41458d879ca7dec8802a9efc84"
+    },
+    {
+      "path": "workflows/pdf2md-page-assets/WORKFLOW.md",
+      "state": "present",
+      "sha256": "7e7adc0327d3e4222565182d93c5095f6693cb56d1e247c8d1541f5f51b265e4"
+    },
+    {
+      "path": "workflows/pdf2md-page-assets/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/pdf2md-page-full/CONTRACT.md",
+      "state": "present",
+      "sha256": "7a0ea9260a57e11e14704fbe555fbb0ce4c009e6fea38b7f3d079d12f50f27ad"
+    },
+    {
+      "path": "workflows/pdf2md-page-full/WORKFLOW.md",
+      "state": "present",
+      "sha256": "3fb73d5da9b87070e0a96271852e4f74ccfeb50954af76780295d18f4688a4af"
+    },
+    {
+      "path": "workflows/pdf2md-page-full/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/pdf2md-page/CONTRACT.md",
+      "state": "present",
+      "sha256": "5fbdfac85573811c8cba001dae4c680b6d63de7c652d655b92c2baaba47cc30e"
+    },
+    {
+      "path": "workflows/pdf2md-page/WORKFLOW.md",
+      "state": "present",
+      "sha256": "ca24169d5b9ed056f9ea5fa10870cdaad829f6940028757864fd4dd7ff9e4bcb"
+    },
+    {
+      "path": "workflows/pdf2md-page/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/pdf2md/CONTRACT.md",
+      "state": "present",
+      "sha256": "4c0f90da011909ea2ceeaa1c40712ddd56d6c473bda1edc4c8b7d35c9253d19c"
+    },
+    {
+      "path": "workflows/pdf2md/WORKFLOW.md",
+      "state": "present",
+      "sha256": "5684e4ac32fd613981d88f1e0388563fabffce681be35bf5d97e3fead7f2dc48"
+    },
+    {
+      "path": "workflows/pdf2md/execution.json",
+      "state": "present",
+      "sha256": "f2ac2885282a30946b86eeb2bfc4a88cb3a678bbfb236f2d7717bc14bc7c118f"
+    },
+    {
+      "path": "workflows/preparation/WORKFLOW.md",
+      "state": "present",
+      "sha256": "cf0c79f4c656cd39b073100db53f67b5355b4e09324a9519672f20fc1e778d78"
+    },
+    {
+      "path": "workflows/preparation/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/preparation/resources/contract.md",
+      "state": "present",
+      "sha256": "60f8496c86549c3de6316e458f5ff33cd7a93fe0ba260f6f028be8383d5c193f"
+    },
+    {
+      "path": "workflows/preparation/resources/method.md",
+      "state": "present",
+      "sha256": "905f01da64ebbb16b9b818f8e05870ee1c6ef6eed85806fa9fcf9b5e092ed016"
+    },
+    {
+      "path": "workflows/project-decomp/WORKFLOW.md",
+      "state": "present",
+      "sha256": "ae79d81cb442e5c7eca8cc0277bac78ea18732c22d9966a8f9cb651f9dea1a2c"
+    },
+    {
+      "path": "workflows/project-decomp/execution.json",
+      "state": "present",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/project-decomp/resources/contract.md",
+      "state": "present",
+      "sha256": "0ecba3159ceaf1eb998ae9ab120cca4cb7adc25a59dcb02e7835660811319521"
+    },
+    {
+      "path": "workflows/project-decomp/resources/method.md",
+      "state": "present",
+      "sha256": "86e6bbcceb33f36e14115ade276f0098c4aa5ea9ba7d5ba2e7b1051c39d33080"
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "state": "present",
+      "sha256": "79395ba0100dea30a4727afc91755dfb66285e8818ae412a830dc97ddae73851"
+    },
+    {
+      "path": "workflows/project-setup/execution.json",
+      "state": "present",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "state": "present",
+      "sha256": "cba5d59b11fb9db7eea13e6d875ee13c7838a84c821616605f5cb8684f06a3b0"
+    },
+    {
+      "path": "workflows/project-setup/resources/method.md",
+      "state": "present",
+      "sha256": "713d7dae2850c68c7c96b2f438d5d667c3c6bfcd2ded4fd51c3378ff869b103f"
+    },
+    {
+      "path": "workflows/project-setup/resources/package-activation.md",
+      "state": "present",
+      "sha256": "57218da4dffcf673170c345003bc30d3ea0d2cb4eed2f754bcb9f5508e80db43"
+    },
+    {
+      "path": "workflows/proposal-format/CONTRACT.md",
+      "state": "present",
+      "sha256": "94d89e86339de29b917f79810e2f34bada21cd4645c9152bb0bdd190fa467810"
+    },
+    {
+      "path": "workflows/proposal-format/WORKFLOW.md",
+      "state": "present",
+      "sha256": "2d9d6681ff73f16fe1d0a872ea7e842731c6f42e7cd2483f7c8a41a95758d5f4"
+    },
+    {
+      "path": "workflows/proposal-format/execution.json",
+      "state": "present",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/reconciliation/WORKFLOW.md",
+      "state": "present",
+      "sha256": "94a85257f738df9520a5e88999cb12399f40ec3b27da2250468741de808bee32"
+    },
+    {
+      "path": "workflows/reconciliation/execution.json",
+      "state": "present",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/reconciliation/resources/contract.md",
+      "state": "present",
+      "sha256": "da47475cdf12422416d9d0ce16d2aa6bfb744dfed9731a08cf7ca66a05a6e4d5"
+    },
+    {
+      "path": "workflows/reconciliation/resources/method.md",
+      "state": "present",
+      "sha256": "d7b5e22a71a7de72445f8d2718d28b43764f9a7e4f069c674aecae1f33ccb86d"
+    },
+    {
+      "path": "workflows/research-orchestration/WORKFLOW.md",
+      "state": "present",
+      "sha256": "9227da74df9a83c2def6c6266670c4377a0190404aa26339ad3bc4dd4a84aa2b"
+    },
+    {
+      "path": "workflows/research-orchestration/execution.json",
+      "state": "present",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/brief.md",
+      "state": "present",
+      "sha256": "5675482100231091e7869d3ea8bb4ea9173942e14991a35df71e714a07cec042"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/checks.md",
+      "state": "present",
+      "sha256": "1b12911a27ab1efd1729392f0c8c748277b24b4e6f76d00dd78853c9c18631cd"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/contract.md",
+      "state": "present",
+      "sha256": "9426d0a1be45df6f26503cd7bd2235f3583543c833340e35ee41e8e5429883f8"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/method.md",
+      "state": "present",
+      "sha256": "a46970c6c2cae1f6e12ef4878176b609443f63839b5650d64c664119236e8e2e"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/tools.md",
+      "state": "present",
+      "sha256": "190722f483332ab0c1dc1298880e928b5503669a4ae844faedec85aee94d9454"
+    },
+    {
+      "path": "workflows/researcher/WORKFLOW.md",
+      "state": "present",
+      "sha256": "c9539b1aa020bb757d06a09a96a67015b1cf8f34750ac184067e025460bf7744"
+    },
+    {
+      "path": "workflows/researcher/execution.json",
+      "state": "present",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/researcher/resources/contract.md",
+      "state": "present",
+      "sha256": "407f081897aed7ac45ee80eed525c9c46ab6ff896dc170750d1f06c2c88797fe"
+    },
+    {
+      "path": "workflows/researcher/resources/evidence.md",
+      "state": "present",
+      "sha256": "968a0cad028b1fa69c07a5275b40d0396df5b12013e29056ea198bbf89336b1e"
+    },
+    {
+      "path": "workflows/researcher/resources/inquiry.md",
+      "state": "present",
+      "sha256": "b52266b972ca2c336eff17148cf0abf74cdea04a1158af1f48982d16e8ba0f3f"
+    },
+    {
+      "path": "workflows/researcher/resources/method.md",
+      "state": "present",
+      "sha256": "8fab6a961bbf316561b454677e55e9ea6a1d96e13b9b8dc3eda47b28e94f247f"
+    },
+    {
+      "path": "workflows/review/WORKFLOW.md",
+      "state": "present",
+      "sha256": "6908ed13e6bed9ef904809a04af4118b2c14cf1646ce191eb4f64ffb4db46ea9"
+    },
+    {
+      "path": "workflows/review/execution.json",
+      "state": "present",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/review/resources/contract.md",
+      "state": "present",
+      "sha256": "79ce2671bac1adee37fd9935de1725c980678ebd32134180f48d2d8f300f17d3"
+    },
+    {
+      "path": "workflows/review/resources/method.md",
+      "state": "present",
+      "sha256": "63c8a3959cd6286f95acf30ae87e42a5dd99d951b2ae2ab3ec6212a81f930daa"
+    },
+    {
+      "path": "workflows/scc-resolution-case/WORKFLOW.md",
+      "state": "present",
+      "sha256": "d57415cd2d421eb14b2099681f9e5def9f367ce6ab70e5aa5c5dec352449a1a9"
+    },
+    {
+      "path": "workflows/scc-resolution-case/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/scc-resolution-case/resources/brief.md",
+      "state": "present",
+      "sha256": "78b15d4e67dbab697bacd4cabd97006f15edca04d42b2753dc7f4e00fddfaa36"
+    },
+    {
+      "path": "workflows/scc-resolution-case/resources/checks.md",
+      "state": "present",
+      "sha256": "3fa57d32ec03ee51d5cd38227176c03eaa25c1d36adbfe67c9ae397a7c83c228"
+    },
+    {
+      "path": "workflows/scc-resolution-case/resources/tools.md",
+      "state": "present",
+      "sha256": "4a4ecb79efec84eda38178f096325a83ef02d3eff94b93f45fe4cfea4d016bd3"
+    },
+    {
+      "path": "workflows/scope-change-packet/WORKFLOW.md",
+      "state": "present",
+      "sha256": "b4f6589952a5f668a4d50661cc08d0111ca16850ef2ec8bd2c198925ee824ed4"
+    },
+    {
+      "path": "workflows/scope-change-packet/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/scope-change-packet/resources/brief.md",
+      "state": "present",
+      "sha256": "4b8bcd455827ae7d780255735cc6a9586c7fea6384b18b53d9849e831594c3e1"
+    },
+    {
+      "path": "workflows/scope-change-packet/resources/checks.md",
+      "state": "present",
+      "sha256": "838d5d58d48c791e9ced6633d3ea0560747180b81840464f71b3c79a531de4d9"
+    },
+    {
+      "path": "workflows/scope-change-packet/resources/tools.md",
+      "state": "present",
+      "sha256": "4ae2e137a640f25ee34d1a32a21b931bcd985f42372dd308439ff07e2c5b9de0"
+    },
+    {
+      "path": "workflows/scope-change/WORKFLOW.md",
+      "state": "present",
+      "sha256": "ff7b98311a907eeed3587fef4c7924108cea766acb9e5c2585378882638ef228"
+    },
+    {
+      "path": "workflows/scope-change/execution.json",
+      "state": "present",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/scope-change/resources/contract.md",
+      "state": "present",
+      "sha256": "f023e5e298367f159a09f5c4f05644bc6f661aaa3ce868a467ea93fc033542b1"
+    },
+    {
+      "path": "workflows/scope-change/resources/method.md",
+      "state": "present",
+      "sha256": "b1b245e92bcfee69775b6d408784af247bb80cdd1cc4ea8d535a93f4446ae11d"
+    },
+    {
+      "path": "workflows/scope-of-work/WORKFLOW.md",
+      "state": "present",
+      "sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b"
+    },
+    {
+      "path": "workflows/scope-of-work/execution.json",
+      "state": "present",
+      "sha256": "4ad8b7eb42dba41f1609e6b3c61f14baa15ad82a1342f4ad12a095c4a570a26d"
+    },
+    {
+      "path": "workflows/scope-of-work/resources/brief.md",
+      "state": "present",
+      "sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145"
+    },
+    {
+      "path": "workflows/scope-of-work/resources/checks.md",
+      "state": "present",
+      "sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8"
+    },
+    {
+      "path": "workflows/scope-of-work/resources/representation-migration.md",
+      "state": "present",
+      "sha256": "0684d04994049834145441c74037c55716029076a0dc3c3259bbaa90b3e4d9ee"
+    },
+    {
+      "path": "workflows/scope-of-work/resources/tools.md",
+      "state": "present",
+      "sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f"
+    },
+    {
+      "path": "workflows/semantic-lensing/WORKFLOW.md",
+      "state": "present",
+      "sha256": "b3c56b03b7db97d6a8b07e0e712d217d11f846cec9b5f2b383003572cbbfd0a4"
+    },
+    {
+      "path": "workflows/semantic-lensing/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/semantic-lensing/resources/brief.md",
+      "state": "present",
+      "sha256": "e6d3167ba82d3da9a9c5879160d0e449cde9ac15308c22621190ded85f806517"
+    },
+    {
+      "path": "workflows/semantic-lensing/resources/checks.md",
+      "state": "present",
+      "sha256": "ed09bb8a2d9bad368174f5f13db6551fee5adbd4f8e8c08be0861ba02c368714"
+    },
+    {
+      "path": "workflows/semantic-lensing/resources/tools.md",
+      "state": "present",
+      "sha256": "275e38e674c2d2f544cfa10a90d990402bce6332a99265927f54482eff102d85"
+    },
+    {
+      "path": "workflows/semantic-matrix-build/WORKFLOW.md",
+      "state": "present",
+      "sha256": "9a69c20c7d0211e2e18a3dc826b1c220e2b945e7c10ba3cb1b92c50b1520eb39"
+    },
+    {
+      "path": "workflows/semantic-matrix-build/execution.json",
+      "state": "present",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/semantic-matrix-build/resources/brief.md",
+      "state": "present",
+      "sha256": "0062c0562143a67c33cb055c83b4fa991a67398060817844d7eda2931d1f5f39"
+    },
+    {
+      "path": "workflows/semantic-matrix-build/resources/checks.md",
+      "state": "present",
+      "sha256": "e38c1271c264efc23488fb440c15c4147828e0344f3b699b43922f03e38fc2f3"
+    },
+    {
+      "path": "workflows/semantic-matrix-build/resources/tools.md",
+      "state": "present",
+      "sha256": "eb9fb59d3cb1f0bc8e6424819c6fb0aaf2a29fc6ef4ccee3d7fcbc52240c10c3"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/WORKFLOW.md",
+      "state": "present",
+      "sha256": "2ea0ddf4f53241fa94274e709b8042ad9de4d8beb9c82cd1ed1dcd0c6f8f0f7b"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/execution.json",
+      "state": "present",
+      "sha256": "5e2c712156901c68d2dc914741d9ce36f445fad4bc27d0f21035689cf3cc6d5e"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/activation.md",
+      "state": "present",
+      "sha256": "fc8bfb20c37f246a01bd97913f2b671f39d029a4353cacc7603b8f60db54a2bd"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/brief.md",
+      "state": "present",
+      "sha256": "1118c65a739ddde1864ca0a6a638af2a56421fe5ab67d9da64fc9b5eca947028"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/checks.md",
+      "state": "present",
+      "sha256": "5ab08afe57fe102478cb98aa72cd72879c7a82b84f2790622b9bf0323f3c7bdc"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/tools.md",
+      "state": "present",
+      "sha256": "42b62bdb502f65255d94080370906a6295c3960bc97befda1a8228d60b4c9f2c"
+    },
+    {
+      "path": "workflows/software-code-review/WORKFLOW.md",
+      "state": "present",
+      "sha256": "9054dfd47318a680e54fe390b00c67e2baf9595156487d4d1897a83458414810"
+    },
+    {
+      "path": "workflows/software-code-review/execution.json",
+      "state": "present",
+      "sha256": "569c85b4b9f2323d76bfa6c007a98af261122d6c75be275ae85a4333cff846de"
+    },
+    {
+      "path": "workflows/software-code-review/resources/brief.md",
+      "state": "present",
+      "sha256": "b24a865643d5dd54d1094a7dfde4def829a319d0b7d5334873c6d3fa099cffe2"
+    },
+    {
+      "path": "workflows/software-code-review/resources/checks.md",
+      "state": "present",
+      "sha256": "b6fd4756bbf2775baedc83488bc88219362715f0aec79e9f9330ebf19a5e2dc8"
+    },
+    {
+      "path": "workflows/software-code-review/resources/tools.md",
+      "state": "present",
+      "sha256": "c06c32c9b08fe0e98329c1c670660135f84c1795a07a237a84f74e80306a5b26"
+    },
+    {
+      "path": "workflows/software-decomp/WORKFLOW.md",
+      "state": "present",
+      "sha256": "9383c8c51a498f0b67ae054c4474aadaa52a9e254657a38b5b9a33e90d2afeb1"
+    },
+    {
+      "path": "workflows/software-decomp/execution.json",
+      "state": "present",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/software-decomp/resources/contract.md",
+      "state": "present",
+      "sha256": "375904b3f10f47f55c9d8a4bf3ec93d8a49959b6a95a63c2ea2422e61ac737eb"
+    },
+    {
+      "path": "workflows/software-decomp/resources/method.md",
+      "state": "present",
+      "sha256": "80fb93000bfff66b6896329ecbc3818a919c72b4a87aa64ac2e580582df398c4"
+    },
+    {
+      "path": "workflows/software-defect-diagnosis/WORKFLOW.md",
+      "state": "present",
+      "sha256": "aa65890bece58b6ad4669e1611b669c28c3150d01f4c2219acd779b5209a784b"
+    },
+    {
+      "path": "workflows/software-defect-diagnosis/execution.json",
+      "state": "present",
+      "sha256": "5c219842a60f1bce31ca58f6f1c888828fef4883fcceadfa91bd51f4ff906c8c"
+    },
+    {
+      "path": "workflows/software-defect-diagnosis/resources/brief.md",
+      "state": "present",
+      "sha256": "686d549d641f258088fee57203b26552648f609145d6922546e91f2120a310da"
+    },
+    {
+      "path": "workflows/software-defect-diagnosis/resources/checks.md",
+      "state": "present",
+      "sha256": "563a954f28e8b3be742618c302abe94408c22e8a45de67e8bbcc1abd8ac5aedf"
+    },
+    {
+      "path": "workflows/software-defect-diagnosis/resources/tools.md",
+      "state": "present",
+      "sha256": "0e8bfaa95f962a1b73c111c01af4e5fa67a89a1e0e4c338b057994243cd94d06"
+    },
+    {
+      "path": "workflows/software-repository-reconnaissance/WORKFLOW.md",
+      "state": "present",
+      "sha256": "5d431768c6e43645495a03c191c16844e060cff7bacc79ef2858a57b883b9896"
+    },
+    {
+      "path": "workflows/software-repository-reconnaissance/execution.json",
+      "state": "present",
+      "sha256": "8abb9109acaf216bfdd3412fc4ae11dd7bb824fcdffc75661a036026e9156557"
+    },
+    {
+      "path": "workflows/software-repository-reconnaissance/resources/brief.md",
+      "state": "present",
+      "sha256": "72d69cc40b2a5d8f2577802aa4f7a8c8210eadc01095fb57893d20c09c8463ff"
+    },
+    {
+      "path": "workflows/software-repository-reconnaissance/resources/checks.md",
+      "state": "present",
+      "sha256": "ef77199047b212ec72002bda2fa268bcb54e46055a80426c4e9f9e7b1566bb27"
+    },
+    {
+      "path": "workflows/software-repository-reconnaissance/resources/tools.md",
+      "state": "present",
+      "sha256": "5287fdcfa5c1c67ce6c62f51303d9bc18bc4681e95ba52ca71e3102862140587"
+    },
+    {
+      "path": "workflows/software-test-planning/WORKFLOW.md",
+      "state": "present",
+      "sha256": "8f36adc77c18b58ee331867542f068f8bb714a014d52036caea610adba4fdfcd"
+    },
+    {
+      "path": "workflows/software-test-planning/execution.json",
+      "state": "present",
+      "sha256": "8abb9109acaf216bfdd3412fc4ae11dd7bb824fcdffc75661a036026e9156557"
+    },
+    {
+      "path": "workflows/software-test-planning/resources/brief.md",
+      "state": "present",
+      "sha256": "a33484dcbe9ce6c0c43da586921e32efb54ce2034ab44026f91f7e8b78c63913"
+    },
+    {
+      "path": "workflows/software-test-planning/resources/checks.md",
+      "state": "present",
+      "sha256": "67435e2091246dfb59638e65fde779c582f5a75f1adf820a19aa6ad8dda1e858"
+    },
+    {
+      "path": "workflows/software-test-planning/resources/tools.md",
+      "state": "present",
+      "sha256": "09e0fe1f8d573f745ccbc835d2c3b102994ee245a9489678b616d881355d72b1"
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "state": "present",
+      "sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20"
+    },
+    {
+      "path": "workflows/task-management/execution.json",
+      "state": "present",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "state": "present",
+      "sha256": "0615469840d282e796a41f82ec46b126c120185f0098d7be99572ec1740c3c95"
+    },
+    {
+      "path": "workflows/task-management/resources/method.md",
+      "state": "present",
+      "sha256": "daa6e7c207ab4d8509fbc4a45904b08c2f3ecc296f28928f3c24a58c028da76d"
+    }
+  ]
+}

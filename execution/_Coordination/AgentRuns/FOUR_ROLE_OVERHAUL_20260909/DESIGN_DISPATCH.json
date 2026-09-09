@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "run_id": "FOUR_ROLE_OVERHAUL_20260909",
+  "parent": "/root",
+  "child": "/root/helps_humans_design",
+  "mechanism": "delegated-harness-native",
+  "actual_execution": true,
+  "role": "HELPS_HUMANS",
+  "type": 1,
+  "brief": "DESIGN_BRIEF.md",
+  "accepted_plan": "ACCEPTED_PLAN.md",
+  "source_manifest": "SOURCE_MANIFEST.json",
+  "evidence_calibration": "instruction-asserted",
+  "state": "RUNNING",
+  "note": "Factual transcription by authorized child; not runtime-generated managed session evidence."
+}

@@ -125,7 +125,8 @@ M2_MARKER_PREFIX = "M2:"
 INSTRUCTION_SURFACE_FILES = ("AGENTS.md", "CLAUDE.md")
 INSTRUCTION_SURFACE_DIRS = (
     "agents/",
-    "skills/",
+    "skills/",  # Historical packages remain instruction surfaces.
+    "workflows/",
     "tools/",
     "docs/",
     "init/",

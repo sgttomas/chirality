@@ -1,0 +1,33 @@
+{
+  "status": "DESIGN_READY",
+  "files": {
+    "AGENTS.md": "68205e0098c1269bcd157e31d15e831329d3019a6d57688425fc0c335e556fef",
+    "agents/AGENT_HELP_HUMAN.md": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183",
+    "agents/AGENT_HELPS_HUMANS.md": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+    "agents/AGENT_WORKING_ITEMS.md": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "docs/AGENT_WORKFLOW_RUNTIME.md": "b32d357c4ca4a5eb67534c58e6e049af18cc5aacad0fab4db6bd5029fbc8d0f8",
+    "docs/WORKFLOW_COMPONENT_STANDARD.md": "b8e141ebbb7b04a803d9e4804b52034c56d57659068b5ba985617c1793071cbb",
+    "docs/DBM_Agent_Instruction_Architecture.md": "11a02f4be83c104fe6be6a7a470fe05039c276aa6e65fc8e2168dc7ec3d92356",
+    "docs/DIRECTIVE.md": "2f9ea971e69c5069f78c2348b1d75395aa7651d8d65151a664e2a89e865af93a",
+    "docs/CONTRACT.md": "a3217904f6176e256f2dbc910b44c10da9592fc219aefa94bf1f591fc5128502",
+    "docs/SPEC.md": "0fa7e462c387e86c2e5815792d53660ff7ecca5ea267aacc7a3f669b05543dbe",
+    "docs/TYPES.md": "9aed78ab64d1d77d5b6e8755e16ebb2a4cf3716a97bee66c19349676c1e3c0ab",
+    "docs/PRD_ROOT.md": "cca3ec1acf24b8cfd502acea2d81a9bc5bf2effa8fe6211cadeb5457e6392d18",
+    "docs/PLAN.md": "ff511b4d42163b30eb652b1d8b8bb302808208cc263aeaf6ea76176b69904c05",
+    "docs/governance_harness/_DECISIONS/D-GOV-41_four_role_workflow_overhaul.md": "591a9edd04061a64bf29e10c09759fbcdbf2f72c24d367e9c2dee1ff21682d7b",
+    "docs/governance_harness/_DECISIONS/_REGISTER.md": "08d9765dba5f470476e8ba30b9654e386776cc3a2d59f8934d26c52221ed5359",
+    "docs/governance_harness/tranche_manifests/ROOT-FOUR-ROLE-WORKFLOW-20260909.yaml": "e7e7ebb77b30fdb8f722e9f1a2b0a0399e9993e8a11d643d65da275b098eb8ae"
+  },
+  "checks": [
+    "role four-section structural check PASS",
+    "G4 full manifest schema corpus PASS",
+    "git diff --check PASS"
+  ],
+  "pending": [
+    "integrated runtime validator/tests",
+    "independent review and exact final candidate hashes",
+    "human-gated merge and receiving-loop adoption"
+  ],
+  "supersedes": "DESIGN_ARTIFACTS_V4.json; runtime contract aligned to structured adapter and README"
+}

@@ -439,7 +439,7 @@ The manifest-backed SourceRef form is accepted for Phase 2 atomization:
 @repo/<RepoRelPath>:L####|domains/chirality/_Decomposition/source_review_html/<SourceDocID>.html#<SectionID>
 ```
 
-This preserves live repo provenance and keeps the HTML half pointed at the Batch 0 review surface. `tools/decomp/build_atomization_brief.py` emits `SOURCE_REF_BASE` for the worker, and `skills/domain-source-atomize` explicitly accepts the repo-backed form for manifest-backed sources.
+This preserves live repo provenance and keeps the HTML half pointed at the Batch 0 review surface. `tools/decomp/build_atomization_brief.py` emits `SOURCE_REF_BASE` for the worker, and `workflows/domain-source-atomize` explicitly accepts the repo-backed form for manifest-backed sources.
 
 ## LICENSE.md Disposition
 

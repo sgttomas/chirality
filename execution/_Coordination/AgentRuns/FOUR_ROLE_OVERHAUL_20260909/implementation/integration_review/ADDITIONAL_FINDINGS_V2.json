@@ -1,0 +1,32 @@
+{
+  "status": "V1 verdict superseded pending V2 freeze",
+  "findings": [
+    {
+      "id": "IR-11",
+      "severity": "HIGH",
+      "file": "workflows/change/resources/contract.md",
+      "discovered_by": "WORKING_ITEMS integration owner",
+      "finding": "Former CHANGE prohibition on owning Root workflows/tools and assumed distinct manager roles conflicts with generic WORKING_ITEMS implementation responsibility.",
+      "recommendation": "Scope Git method boundaries and route conception to HELPS_HUMANS while permitting authorized WI implementation; remove obsolete future-method framing.",
+      "status": "AWAITING_V2_RECHECK"
+    },
+    {
+      "id": "IR-12",
+      "severity": "HIGH",
+      "file": "workflows/evaluation-protocol/WORKFLOW.md; workflows/project-setup/resources/method.md",
+      "discovered_by": "fresh reviewer",
+      "finding": "One evaluation clause assigns rubric approval and waivers to WI, and setup says WI owns human decisions; other clauses correctly reserve these acts to human.",
+      "recommendation": "WI coordinates/presents/records human decisions and owns fan-in. Human retains rubric approval and waivers.",
+      "status": "AWAITING_V2_RECHECK"
+    },
+    {
+      "id": "IR-13",
+      "severity": "MEDIUM",
+      "file": "workflows/domain-engine/resources/contract.md; workflows/project-setup/resources/contract.md; workflows/review/resources/contract.md",
+      "discovered_by": "fresh reviewer",
+      "finding": "Unqualified old-persona prohibitions/one-package definition appear as restrictions on WI itself, followed by handoff to another named workflow under same role.",
+      "recommendation": "State current-stage boundaries, bounded TASK duties, and transitions within an authorized undertaking or routing to separately owned undertaking. Preserve subject read-only and human decision gates.",
+      "status": "AWAITING_V2_RECHECK"
+    }
+  ]
+}

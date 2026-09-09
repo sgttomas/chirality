@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "artifacts": [
+    {
+      "path": "workflows/content-digest/WORKFLOW.md",
+      "sha256": "a4e0acd2bdef1622029d9a0baaad4a9b68a687c35acfb9d726d34e02e597eb83"
+    },
+    {
+      "path": "workflows/content-digest/CONTRACT.md",
+      "sha256": "e7ed69c4ff801db2ffd1cd6312d6727276bfefdc866cef9bcb06ea65678b7e41"
+    },
+    {
+      "path": "workflows/content-digest/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/dbm-concordance-seed/WORKFLOW.md",
+      "sha256": "306a3b69f400777eb0b49c282e94af212a82f3d9cdc4b62ca7951293ba1ae358"
+    },
+    {
+      "path": "workflows/dbm-concordance-seed/CONTRACT.md",
+      "sha256": "314406869fce27897fa17f2846597a846380a68c8a20d0cf2bae0817deb3389c"
+    },
+    {
+      "path": "workflows/dbm-concordance-seed/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/dbm-concordance-verify/WORKFLOW.md",
+      "sha256": "102c35449fba01f91d1a3a82ee162d15ff3d972ea45512b1d626fa8acd7bbb79"
+    },
+    {
+      "path": "workflows/dbm-concordance-verify/CONTRACT.md",
+      "sha256": "cfb927b406205fb91f9cb19d999875d5f13a0547da78e877ac744392f94ae2eb"
+    },
+    {
+      "path": "workflows/dbm-concordance-verify/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/dbm-draft-review/WORKFLOW.md",
+      "sha256": "ba40d7045fd349d2a3dfc5ac4c30b3060497cd7fa4c8b1426e35665d29a754be"
+    },
+    {
+      "path": "workflows/dbm-draft-review/CONTRACT.md",
+      "sha256": "f0b7299c9035b3772c1d5121d1bc8a2bf8196cc515fd6691c875603cf043640e"
+    },
+    {
+      "path": "workflows/dbm-draft-review/execution.json",
+      "sha256": "bb58a5e1e7c70a55d75dba80a824b4cf162313f9b19b72949025f7637fb509b1"
+    },
+    {
+      "path": "workflows/dbm-postauthor-concordance/WORKFLOW.md",
+      "sha256": "37719f0bea7bea51fe75a054efcbd530c850e72bb305f3038c38149852e22f87"
+    },
+    {
+      "path": "workflows/dbm-postauthor-concordance/CONTRACT.md",
+      "sha256": "70333723c0923195eafb07fc03d0f90acdd622f5a07be80ce0bcec38cef58f7e"
+    },
+    {
+      "path": "workflows/dbm-postauthor-concordance/execution.json",
+      "sha256": "bb58a5e1e7c70a55d75dba80a824b4cf162313f9b19b72949025f7637fb509b1"
+    },
+    {
+      "path": "workflows/dbm-publish/WORKFLOW.md",
+      "sha256": "de71df5853c3b1b66d8b70d58247150def9b4bdc3da364d3f9de3fffeabcf493"
+    },
+    {
+      "path": "workflows/dbm-publish/CONTRACT.md",
+      "sha256": "3592985cca75c1d162136eb783c131075a9bcab899f9b29ac2c80a82867d069f"
+    },
+    {
+      "path": "workflows/dbm-publish/execution.json",
+      "sha256": "3dcbf3c0284b0605487546e0ad2c708e8dd12c54f6638f6b5a1f9f8f3f793ada"
+    },
+    {
+      "path": "workflows/dbm-section-publish/WORKFLOW.md",
+      "sha256": "534a76dbaa354a9609cf6d4acd9cf5901496934484af5af9445e8a42fcfe0d20"
+    },
+    {
+      "path": "workflows/dbm-section-publish/CONTRACT.md",
+      "sha256": "bb3c7750ee9ee69354956f2b225a05d9a4b97383d3a693eaf61e6f0e56ed11ed"
+    },
+    {
+      "path": "workflows/dbm-section-publish/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/drawing-extract-page/WORKFLOW.md",
+      "sha256": "3ba7d7e79f470eb64fa7a75b378c65e9e928171617bedc470841653948d6bce3"
+    },
+    {
+      "path": "workflows/drawing-extract-page/CONTRACT.md",
+      "sha256": "2a41be114e12a9523ffc561317e9181bced84e5409e289b48fe4ee22837e799a"
+    },
+    {
+      "path": "workflows/drawing-extract-page/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/drawing-titleblock-page/WORKFLOW.md",
+      "sha256": "9ef6e48de49893766443a405182b634cc5497e37431262768bbd8455707b2cf6"
+    },
+    {
+      "path": "workflows/drawing-titleblock-page/CONTRACT.md",
+      "sha256": "9a0eb4227d4adc5d5dbc7d0621842bf189a7643c92ea4ecd999d8136de08e52a"
+    },
+    {
+      "path": "workflows/drawing-titleblock-page/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/equation-bbox-detect/WORKFLOW.md",
+      "sha256": "ecb36df0950229961e8c630f701b7864926d5650f5bef35f7d7f74373e34a6fb"
+    },
+    {
+      "path": "workflows/equation-bbox-detect/CONTRACT.md",
+      "sha256": "995b4656e9ed8d245e06593abacbd0ee8ab638ff002a153cf8bdd31fff34ab58"
+    },
+    {
+      "path": "workflows/equation-bbox-detect/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/equation-flag-interpret/WORKFLOW.md",
+      "sha256": "50b732bd1b15e2377e4f9916a60bb37e5f769842abb2e1f3491d51e8e6fac373"
+    },
+    {
+      "path": "workflows/equation-flag-interpret/CONTRACT.md",
+      "sha256": "80d8384b3eaf05527833c9ac1d234b277fad5507df8949207fb0faf5bd6e41a0"
+    },
+    {
+      "path": "workflows/equation-flag-interpret/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/equipment-costing-extract/WORKFLOW.md",
+      "sha256": "06387db979673d0a68ecb2930913556d4ee126f9b1930778a2a4cf34d7479e66"
+    },
+    {
+      "path": "workflows/equipment-costing-extract/CONTRACT.md",
+      "sha256": "ffcd54f92c3e68594972257c88a5f597e9cf6a59b2f0e0034c17681584cc5b05"
+    },
+    {
+      "path": "workflows/equipment-costing-extract/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/equipment-extract/WORKFLOW.md",
+      "sha256": "d3234b27c576ab8e6264a36b908b9e7ccde75ac328a80b4291d63af08064779d"
+    },
+    {
+      "path": "workflows/equipment-extract/CONTRACT.md",
+      "sha256": "1daceefa1b36084cebfc5c414299e7bbbe13157e0fb7ebfb3a42137d77a7fe07"
+    },
+    {
+      "path": "workflows/equipment-extract/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/pandid-valve-symbol-instance/WORKFLOW.md",
+      "sha256": "bcfe232a4928a02d925d79db36caa9407bed1ff0802510fe8cdcbebc6093da85"
+    },
+    {
+      "path": "workflows/pandid-valve-symbol-instance/CONTRACT.md",
+      "sha256": "a52cb9f3ccdf96d7a3da2a2cc8c8a96a60a35be7de70b04ac85a942b369a08f0"
+    },
+    {
+      "path": "workflows/pandid-valve-symbol-instance/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/pandid-valve-tile/WORKFLOW.md",
+      "sha256": "5a45cb69b798b3e6634a41ebc993589c9ce8c2b304ac6965892e222c6e466070"
+    },
+    {
+      "path": "workflows/pandid-valve-tile/CONTRACT.md",
+      "sha256": "b9cc98b9bb176250643575c2109c4c4ca50c95eaa43634852c130fc1cba41225"
+    },
+    {
+      "path": "workflows/pandid-valve-tile/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/pdf2md/WORKFLOW.md",
+      "sha256": "5684e4ac32fd613981d88f1e0388563fabffce681be35bf5d97e3fead7f2dc48"
+    },
+    {
+      "path": "workflows/pdf2md/CONTRACT.md",
+      "sha256": "4c0f90da011909ea2ceeaa1c40712ddd56d6c473bda1edc4c8b7d35c9253d19c"
+    },
+    {
+      "path": "workflows/pdf2md/execution.json",
+      "sha256": "f2ac2885282a30946b86eeb2bfc4a88cb3a678bbfb236f2d7717bc14bc7c118f"
+    },
+    {
+      "path": "workflows/pdf2md-folio-extract/WORKFLOW.md",
+      "sha256": "58cf6c56a41ccdf8ac4625fedadcca679d573e891c8d65643b119252c2686495"
+    },
+    {
+      "path": "workflows/pdf2md-folio-extract/CONTRACT.md",
+      "sha256": "4e4510ebfb02857f7f9c6610fbb7e2ec1cf498738c3e590da6e3da48b9f04a57"
+    },
+    {
+      "path": "workflows/pdf2md-folio-extract/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/pdf2md-page/WORKFLOW.md",
+      "sha256": "ca24169d5b9ed056f9ea5fa10870cdaad829f6940028757864fd4dd7ff9e4bcb"
+    },
+    {
+      "path": "workflows/pdf2md-page/CONTRACT.md",
+      "sha256": "5fbdfac85573811c8cba001dae4c680b6d63de7c652d655b92c2baaba47cc30e"
+    },
+    {
+      "path": "workflows/pdf2md-page/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/pdf2md-page-assets/WORKFLOW.md",
+      "sha256": "7e7adc0327d3e4222565182d93c5095f6693cb56d1e247c8d1541f5f51b265e4"
+    },
+    {
+      "path": "workflows/pdf2md-page-assets/CONTRACT.md",
+      "sha256": "6f5bc2cecb567cc7e5b3aad531345d4f3ba17f41458d879ca7dec8802a9efc84"
+    },
+    {
+      "path": "workflows/pdf2md-page-assets/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/pdf2md-page-full/WORKFLOW.md",
+      "sha256": "3fb73d5da9b87070e0a96271852e4f74ccfeb50954af76780295d18f4688a4af"
+    },
+    {
+      "path": "workflows/pdf2md-page-full/CONTRACT.md",
+      "sha256": "7a0ea9260a57e11e14704fbe555fbb0ce4c009e6fea38b7f3d079d12f50f27ad"
+    },
+    {
+      "path": "workflows/pdf2md-page-full/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/proposal-format/WORKFLOW.md",
+      "sha256": "2d9d6681ff73f16fe1d0a872ea7e842731c6f42e7cd2483f7c8a41a95758d5f4"
+    },
+    {
+      "path": "workflows/proposal-format/CONTRACT.md",
+      "sha256": "94d89e86339de29b917f79810e2f34bada21cd4645c9152bb0bdd190fa467810"
+    },
+    {
+      "path": "workflows/proposal-format/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": "workflows/dbm-publisher/WORKFLOW.md",
+      "sha256": "ce8e895c30e03c22be157562cbbb0a4ff8f7459808fea57a918ae365ce8a3b4e"
+    },
+    {
+      "path": "workflows/dbm-publisher/CONTRACT.md",
+      "sha256": "99f27b3506be9ad01b6353ee1e701a3abcaddb7f43679983f36c6d9273c7e406"
+    },
+    {
+      "path": "workflows/dbm-publisher/PROCEDURE.md",
+      "sha256": "e1e5d1b41e770d3bde2163babbcc0a2c91b4b0f1609ce150e16522cbb2c47da2"
+    },
+    {
+      "path": "workflows/dbm-publisher/execution.json",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/dbm-publisher/ACCEPTANCE.md",
+      "sha256": "1d4b97e6085372f7d9f728fd3351e3a58b35d4e84991563e63316eaaff6b306e"
+    },
+    {
+      "path": "workflows/drawing-extract/EXTENDING.md",
+      "sha256": "3db59aec392c9bb817e30b3bb839060c9ba54e7906ea764594e34fd980dc11be"
+    },
+    {
+      "path": "workflows/drawing-extract/WORKFLOW.md",
+      "sha256": "c5a504e4fd4e488ae769923fb9394781e3b70dc7114da45ec4e8bc052dec87e9"
+    },
+    {
+      "path": "workflows/drawing-extract/CONTRACT.md",
+      "sha256": "f607973c2b85d06f4d84f8b195648d46595a2af5884ee2022a81a327cd61dc3a"
+    },
+    {
+      "path": "workflows/drawing-extract/PROCEDURE.md",
+      "sha256": "66273bc0a9d7d27176969cf14d46e0c8bff033a1af15ffa233cd63f622433280"
+    },
+    {
+      "path": "workflows/drawing-extract/execution.json",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/drawing-extract/ACCEPTANCE.md",
+      "sha256": "57ccb11e3d42b896f7054b66b264d9b8443abebc2b9f57f94b1048e5f7622d75"
+    },
+    {
+      "path": "workflows/equation-audit/WORKFLOW.md",
+      "sha256": "bf10e9abc54ddc4ef7e2b4ffb672bc80772b12a51d43d44bc5883d6c9356a173"
+    },
+    {
+      "path": "workflows/equation-audit/CONTRACT.md",
+      "sha256": "7c4056d75928e4dcc73e608ccd722ffe5d5512d5f9a2f039c47aa575eebf6983"
+    },
+    {
+      "path": "workflows/equation-audit/PROCEDURE.md",
+      "sha256": "735e2548c2ac385e11da1a65923f1630a7787dcbf78948d5caaeafc105986b67"
+    },
+    {
+      "path": "workflows/equation-audit/execution.json",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/equation-audit/ACCEPTANCE.md",
+      "sha256": "b72b62b58b51cbf29c34fb2dac76aa19eb8ccedac36fe272935430f61935f978"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/WORKFLOW.md",
+      "sha256": "8a494ce7ba4a1145e13030cd20d6b7f463c4082785ca5a0ca3eda95a48b39fb0"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/CONTRACT.md",
+      "sha256": "4e33d6e2e65f90731e31501e59f487b32057ec67e195bb025322cf08889e7b3c"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/PROCEDURE.md",
+      "sha256": "c8b01dc7f58460101ad07d71c303864fd744eef42f585d2ecb1b43807a728678"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/execution.json",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/ACCEPTANCE.md",
+      "sha256": "fa10d9ee87fccc5893dc34247397ab186149acaaa0299a064423cf6067ed84a6"
+    }
+  ]
+}

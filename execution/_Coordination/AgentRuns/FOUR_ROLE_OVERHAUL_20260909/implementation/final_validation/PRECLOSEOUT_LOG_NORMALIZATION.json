@@ -1,0 +1,14 @@
+[
+  {
+    "path": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/candidate-whitespace-final.log",
+    "raw_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/candidate-whitespace-final.log.raw.gz",
+    "raw_sha256": "909cc564b6fd6ebcee2515d172475117fbc73459b38de986bc38afe91aa5bab1",
+    "normalized_sha256": "21ce176c563f1abc7e16b666f682df20e92af73b44caf7ee19d109ff019aa6c8"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/staged-whitespace-final.log",
+    "raw_archive": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/staged-whitespace-final.log.raw.gz",
+    "raw_sha256": "19a7ababfeea524684bd992fa7a95c235fb89945464a9120591e2d7162285561",
+    "normalized_sha256": "05680fb28283e35e1d53b39f7514ce7c5f795f637b3d85f5ecb5bab906ac54f1"
+  }
+]

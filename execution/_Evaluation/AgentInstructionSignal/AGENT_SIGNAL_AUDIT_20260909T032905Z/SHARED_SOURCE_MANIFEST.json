@@ -1,0 +1,85 @@
+{
+  "observation": "Supporting files read or inventoried for parent shared findings; selected passages inspected, not a full audit of each implementation.",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+    },
+    {
+      "path": "docs/WORKFLOW_COMPONENT_STANDARD.md",
+      "sha256": "6b747e073c2a7b24ffbc763241fb8d901c539fb27d1c1c05899ca9e48b6ce313"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "9cde116e0d8bc6e44258a8e1d6f169c2f667e1f1afe481cbb464961367c79645"
+    },
+    {
+      "path": "docs/TYPES.md",
+      "sha256": "7d803726a3876c9a034828333176d76761c55f8bb4e746e8f1e0ed3f09700f18"
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "sha256": "ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83"
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "sha256": "11c0418715fe0c419aaf54d6d4d83608ecb8fdb12028c59aa60b796e1bc9abd5"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-10_workflow_component_architecture_normalization.md",
+      "sha256": "e5c49014ebc088b2c0480441a29a87d72b3fdf0b0cfd128d4664221d8b84b569"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md",
+      "sha256": "f90495eac9edba5d1b60957db0d7d9bad4bc90e3376d5ea4275c9bfd9a1a086a"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-13_dedicated_agent2_requalification.md",
+      "sha256": "7bac7320945ab46b2ea3994330cf4eac887c07c74d1429b21b0eaf687ec34457"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-17_model_capability_doctrine.md",
+      "sha256": "fccde2a9e26b1454922a6ce3d183854b06ef0b4e9314b8fec6c66f16868cd003"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-18_agent_index_redisposition.md",
+      "sha256": "9dcfbe037b18671973e73ab3c217c0e1b5119c95b9fb26b7ba82e4a33b75d2df"
+    },
+    {
+      "path": "tools/validation/validate_agent_instructions.py",
+      "sha256": "c99e913ab67ebcbc53cb3487baf0d79fe4d05466ff32bc834124e952157dded1"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/agent-instruction.ts",
+      "sha256": "a83047c9d5e3103a29231357ccd2dcdc592f10f0864d1950967f872a066f7f76"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/options.ts",
+      "sha256": "8827aded77515c9f17c712bec1fc2fab2eec52b850108e73382ff72fb379417e"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/persona-manager.ts",
+      "sha256": "30820444a515269269af9c1c718a658be5d7a9918f77767807359c2b2ca8be9f"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/managed-delegation.ts",
+      "sha256": "0a3dec1309bde70548daee39a48b280ece6886f837d8c4d4b40b85f4f6a6d180"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-service.ts",
+      "sha256": "43b2dd4dbf8b1a91a057350558229616e34bfec258b2b9ad8f5e36c058c7c74d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "sha256": "35ac74f2da6f7022303b52c62cce702f08b4bc3cfa2d4ea3c868d2703d2ccdd0"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/References/AUTHORITY_CORPUS.json",
+      "sha256": "8b5b5d21287144a03fdd5c204f0c473219d3f183f58974c6679c368c2e21b3b4"
+    },
+    {
+      "path": "exports/chirality-app/export_public.py",
+      "sha256": "db0cfd1d8f68c9bd2a608b13581acf7424e6ef7cd40d9394b619e4c10a8e230a"
+    }
+  ]
+}

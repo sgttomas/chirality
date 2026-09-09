@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "affected_profile": {
+    "command": "python3 tools/run_affected_tests.py --base origin/main",
+    "suites": 19,
+    "skipped": 0,
+    "passed": 1416,
+    "subtests_passed": 48,
+    "warnings": 1,
+    "warning": "existing pytest test_bearing_dirs returns a set",
+    "exit_code": 0,
+    "log": "affected-tests-final.log"
+  },
+  "root_guards": {
+    "G0": 0,
+    "G1": 0,
+    "G2": 0,
+    "G3": 0,
+    "G4": 0
+  },
+  "entrypoints": 0,
+  "role_validator": {
+    "exit_code": 0,
+    "roles": 4
+  },
+  "workflow_validator": {
+    "exit_code": 0,
+    "workflows": 71,
+    "after_v2_prose_changes": true
+  },
+  "migration_checks": {
+    "status": "PASS",
+    "checks": 412
+  },
+  "self_check": {
+    "exit_code": 0,
+    "WARN": 96,
+    "REVIEW": 4,
+    "INFO": 14,
+    "NOT_APPLICABLE": 1,
+    "BLOCK": 0,
+    "disposition": "../SELFCHECK_DISPOSITION.json"
+  },
+  "whitespace": "PASS: staged git diff --cached --check and validate_candidate_whitespace.py --base-ref origin/main after formatting correction. Earlier tracked-only checks did not cover newly added files. Raw failed-check logs and source preimages remain compressed with hashes.",
+  "basis": "FINAL_CANDIDATE_MANIFEST_V3.json",
+  "limits": "Seven prose resources changed after the full code suite; workflow/migration/whitespace checks and fresh semantic review cover those changes. No code changed after the clean full suite. Eight later whitespace-only resource changes are checked against compressed V2 preimages; readable log normalization retains exact raw compressed bytes.",
+  "fresh_review": "integration_review/FINAL_REVIEW_V3.md: PASS,13resolved,0open"
+}

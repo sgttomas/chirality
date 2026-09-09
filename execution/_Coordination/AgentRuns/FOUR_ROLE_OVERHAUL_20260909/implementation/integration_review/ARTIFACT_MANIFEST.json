@@ -1,0 +1,52 @@
+{
+  "files": [
+    {
+      "path": "FINAL_BASIS_CHECKS.json",
+      "sha256": "cf8d9d024723e7dac04ad75a638233b805de29fd787f46c77a595d0af627536c"
+    },
+    {
+      "path": "FINAL_REVIEW.md",
+      "sha256": "3721651df8868f03530cfecf5ce6be4ca6c7fb236fa0e5aab3ee72d69737fc8e"
+    },
+    {
+      "path": "FINAL_TESTS.log",
+      "sha256": "58f70d69804dc1503551624ad7e53ce3fe9b4164f59ccf7416a4201adb05daac"
+    },
+    {
+      "path": "FINDINGS_01.json",
+      "sha256": "40ccd8b5fe84b6f90befa791b2dec0f7dc00b174b3308f7c4c61a8a2d2f3a281"
+    },
+    {
+      "path": "FINDINGS_FINAL.json",
+      "sha256": "545025d1c51b537fdc458763e3c564d82d27e82de157bef2d65dbfa83b6618e9"
+    },
+    {
+      "path": "LIBRARY_CHECKS_01.json",
+      "sha256": "6f25976e4c6a7a0b47feab1a9a4f4a77cdd6e546d728c3bc60d1d36c239e3930"
+    },
+    {
+      "path": "MIGRATION_CHECKS_01.json",
+      "sha256": "f2a9691e989d50eb133a3637271364c59aee0212685820e1554a79558b7991db"
+    },
+    {
+      "path": "OBSERVED_BASIS_01.json",
+      "sha256": "674ec8705dfa618cc18c4a05a155ee9f931477cc6c966e53594be0ecb7b5068b"
+    },
+    {
+      "path": "PRESERVATION_CHECKS_01.json",
+      "sha256": "a21d311a61a9597a353f9e70dfa2f7edabe30e3f1a6a009861f3d732edf933cb"
+    },
+    {
+      "path": "ROLE_VALIDATION_01.json",
+      "sha256": "74e955ec260140f91d03643f678c994fcd26c7d5bb29008e0b04fbcda71456a6"
+    },
+    {
+      "path": "TESTS_01.json",
+      "sha256": "4028b5b2da9919865d4585be3345389c35a72afdf2bff3370e4191914cac43fb"
+    },
+    {
+      "path": "WORKFLOW_VALIDATION_01.json",
+      "sha256": "c9d76548a4f7f67b06bf74aa05dcd42cf718d18e10f867ccacb7b14d47f2b2e0"
+    }
+  ]
+}

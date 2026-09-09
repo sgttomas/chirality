@@ -1,0 +1,885 @@
+{
+  "status": "COMPLETE",
+  "files": [
+    {
+      "path": "workflows/aggregation/WORKFLOW.md",
+      "sha256": "287fb1d57ce00bd0609fda1bb416eda72e1285307f3553ce0f07e0f348a320b6"
+    },
+    {
+      "path": "workflows/aggregation/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/aggregation/resources/contract.md",
+      "sha256": "3f99a2f8c0b7a98b42e689617ff33edd130d50fa6b09048bb9590fb2e68ad0c9"
+    },
+    {
+      "path": "workflows/aggregation/resources/method.md",
+      "sha256": "3d5acb59ea7c95fd8e6c5b83c5a4f37552cdcde5f498231d5eb4676535725324"
+    },
+    {
+      "path": "workflows/audit-agents/WORKFLOW.md",
+      "sha256": "16f71941c164aef0ab4e423bf65c9503310022417266ca4a7c4dbdb8ddaa2ba8"
+    },
+    {
+      "path": "workflows/audit-agents/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-agents/resources/contract.md",
+      "sha256": "52bc8f1fcd65f1701ebf114d0010a358d460795c8619838593ac901fe8b915cd"
+    },
+    {
+      "path": "workflows/audit-agents/resources/method.md",
+      "sha256": "37c29f39b4952050dba10046efea7b6fff72ac4a002941268d1ad6631755b09f"
+    },
+    {
+      "path": "workflows/audit-decomp/WORKFLOW.md",
+      "sha256": "4aaa7e10990ddd1b769ba09da78a03f9f491a6b6f3be6df08a1a8de93c26e3e6"
+    },
+    {
+      "path": "workflows/audit-decomp/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-decomp/resources/contract.md",
+      "sha256": "70a5abebc8ff34826415e1566715373a322baded2939325b5b73828d78401a0c"
+    },
+    {
+      "path": "workflows/audit-decomp/resources/method.md",
+      "sha256": "97df84022ccbec434aea9745296b93b6e549ef840acc0ca9df0a215e634d79c2"
+    },
+    {
+      "path": "workflows/audit-dep-closure/WORKFLOW.md",
+      "sha256": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1"
+    },
+    {
+      "path": "workflows/audit-dep-closure/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-dep-closure/resources/contract.md",
+      "sha256": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43"
+    },
+    {
+      "path": "workflows/audit-dep-closure/resources/method.md",
+      "sha256": "8fb002e8179cf28231404ffdf938a8b3a0280f7d5d55082905f4949405ea637d"
+    },
+    {
+      "path": "workflows/audit-epistemic/WORKFLOW.md",
+      "sha256": "a8eaa36bc4c6dc1aaff5801d8b4e21a0acfe4073b06aad06aeadf49f42266780"
+    },
+    {
+      "path": "workflows/audit-epistemic/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-epistemic/resources/contract.md",
+      "sha256": "9c5e41cc4484ca721e9d34bc78572472f9c732b58f2caa878e351608618b2ea3"
+    },
+    {
+      "path": "workflows/audit-epistemic/resources/method.md",
+      "sha256": "c005e4be5a9c61e3b2526688691d26e4338c1b1d1b0fe23e435a92dcf374dad7"
+    },
+    {
+      "path": "workflows/audit-governance/WORKFLOW.md",
+      "sha256": "f2af588d018fac9aab014f1ae72e5bd59a19f1c30cb92dd6a9cf53a6982797e1"
+    },
+    {
+      "path": "workflows/audit-governance/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-governance/resources/contract.md",
+      "sha256": "fce579b8c2f3bbafc99c3e2c40f74d972856da4acde4883dbec5428080ab291d"
+    },
+    {
+      "path": "workflows/audit-governance/resources/method.md",
+      "sha256": "4af0a8bf87d28816e508efe464d49275b2f6ab23306dd21bded286ea4f3b54a8"
+    },
+    {
+      "path": "workflows/audit-hypergraph-closure/WORKFLOW.md",
+      "sha256": "b7b6cdf059e233a809db449447dcabb0071339a7b9932cf9151a916321a37c7b"
+    },
+    {
+      "path": "workflows/audit-hypergraph-closure/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-hypergraph-closure/resources/contract.md",
+      "sha256": "a1b373c4ba34fd5e46c831bdbae1a3ab8af9e06729c5d2a436586d4404a2431b"
+    },
+    {
+      "path": "workflows/audit-hypergraph-closure/resources/method.md",
+      "sha256": "09b008239c07994dd0fc8197d5dbdab9ef50240395cac37bfa71562fa2646c14"
+    },
+    {
+      "path": "workflows/audit-scope-closure/WORKFLOW.md",
+      "sha256": "7dd0a117b78dc01e016f9cc526f46d241a6785f0ed8bcb5c5f6b552fbaef579d"
+    },
+    {
+      "path": "workflows/audit-scope-closure/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/audit-scope-closure/resources/contract.md",
+      "sha256": "42bb65d4fc8fc78d219e3db09c2cddf91fcc5fabfcc579e9a5f94106af6508ab"
+    },
+    {
+      "path": "workflows/audit-scope-closure/resources/method.md",
+      "sha256": "97f0391bd0704f516765adb52e22f2ca428b5c572a8e9374276fce152c90f154"
+    },
+    {
+      "path": "workflows/change/WORKFLOW.md",
+      "sha256": "7db475bf107f789d18af121b2d4ecd56bec1376624b250a8e0738ad0799808ea"
+    },
+    {
+      "path": "workflows/change/execution.json",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/change/resources/contract.md",
+      "sha256": "4b6931e1bb54be7667e8f2afc7188efbbcacdc003830cff92747942abe2b5be6"
+    },
+    {
+      "path": "workflows/change/resources/method.md",
+      "sha256": "52eff4357231aa3fedefe30d300d8e43dcefa4e14c57d1578c3f26632b636434"
+    },
+    {
+      "path": "workflows/decomposition-package-review/WORKFLOW.md",
+      "sha256": "61d2cc31227b83b5b2dbc4fcc8d365d9f8f27a5df633dcec91c7c9ce05b594fe"
+    },
+    {
+      "path": "workflows/decomposition-package-review/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/decomposition-package-review/resources/brief.md",
+      "sha256": "55213b26ff84772e811e47e9ad650278193942941232ea4f6174582098a57087"
+    },
+    {
+      "path": "workflows/decomposition-package-review/resources/checks.md",
+      "sha256": "db7e1e8ca49e82234e4a65f589fb0e1a5b1553f1f77e98eb7e389d7217816acb"
+    },
+    {
+      "path": "workflows/decomposition-package-review/resources/tools.md",
+      "sha256": "3ee9b9c5c149ecb4b27ceedafc3a9fe91ad96d5c9c0e8d1ac82be0df0a51e043"
+    },
+    {
+      "path": "workflows/deliverable-consistency/WORKFLOW.md",
+      "sha256": "f25faa569707c0da91e713a7da51c94ffa5ab1bb21c75363f0efeab1771a7aa1"
+    },
+    {
+      "path": "workflows/deliverable-consistency/execution.json",
+      "sha256": "02c313a989c7dc7254b3f3fbc0d699d883107e04a080d142206009c13d67d01b"
+    },
+    {
+      "path": "workflows/deliverable-consistency/resources/brief.md",
+      "sha256": "f88688cf8fc4bfdefba7e722d5ab5099e4b01e63458e7f40680160c44dc52c7e"
+    },
+    {
+      "path": "workflows/deliverable-consistency/resources/checks.md",
+      "sha256": "664857578209916e77f552f279e7d5cb4b7fcdad929aeb3cd1401a29850f6f22"
+    },
+    {
+      "path": "workflows/deliverable-consistency/resources/tools.md",
+      "sha256": "1be1079125a03fc1453f8399a2f3a2128b39068c0419b8ad34d5d5aa09dbaa9f"
+    },
+    {
+      "path": "workflows/dependency-extract/WORKFLOW.md",
+      "sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f"
+    },
+    {
+      "path": "workflows/dependency-extract/execution.json",
+      "sha256": "ddbd595eeae1ccefff345da02973d876ff1db00d0244d8b40921495315a70a41"
+    },
+    {
+      "path": "workflows/dependency-extract/resources/brief.md",
+      "sha256": "6dce9b22b36693aaab015212e1f0cecaddb9eada9dc58ae62b37d8c59d71b824"
+    },
+    {
+      "path": "workflows/dependency-extract/resources/checks.md",
+      "sha256": "6801fe2d037b624e7017690eced948c35e334022012e877d2eb456cfdc817256"
+    },
+    {
+      "path": "workflows/dependency-extract/resources/tools.md",
+      "sha256": "38fa6cecd19bcb0a594f7532c6b8dafe53af1a35c827751369f7539a0e180f88"
+    },
+    {
+      "path": "workflows/domain-decomp/WORKFLOW.md",
+      "sha256": "a72431c081ea86f6ab337d39cf6680e66e384ed25607258900f7b45a59abbfe3"
+    },
+    {
+      "path": "workflows/domain-decomp/execution.json",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/domain-decomp/resources/contract.md",
+      "sha256": "c1ce22824639ad70305c8fcff0b7502db006e0f70f3d75af62c6c9ec812d95ed"
+    },
+    {
+      "path": "workflows/domain-decomp/resources/method.md",
+      "sha256": "c927fc77829159872ea5869e34ab6edfaf0b6950a2fbf1b5bf62ef2e302644a4"
+    },
+    {
+      "path": "workflows/domain-documents/WORKFLOW.md",
+      "sha256": "8044b4beb1a69432017a8f5003599e276ba80fce0b48bd5bf9d0e4c8cccbc90b"
+    },
+    {
+      "path": "workflows/domain-documents/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/domain-documents/resources/brief.md",
+      "sha256": "989282b9bfefc2394894173b764c69343ecc870ceb5d3e27cd89cbba9e71411e"
+    },
+    {
+      "path": "workflows/domain-documents/resources/checks.md",
+      "sha256": "df982bdcebabb906d3b09514ca7432e5f97c935f059480f0bf1037d91d44e34a"
+    },
+    {
+      "path": "workflows/domain-documents/resources/tools.md",
+      "sha256": "8f7d4a342cf96b5ec709ddfbf9c748ecb3680cc66959ee1d94b5e68688b27111"
+    },
+    {
+      "path": "workflows/domain-engine/WORKFLOW.md",
+      "sha256": "922b6dadbc8a8f71899954a6f7e47b45df753fb81a6ca644218a9cf642b0e94e"
+    },
+    {
+      "path": "workflows/domain-engine/execution.json",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/domain-engine/resources/contract.md",
+      "sha256": "414cccf9805318c6a450d17077cc1091a47e82ac7be5e2ac48596a6789ac6998"
+    },
+    {
+      "path": "workflows/domain-engine/resources/method.md",
+      "sha256": "e3bbb3e344c7c5eb69d5288b190287595b739333b09825541f58305e20926caf"
+    },
+    {
+      "path": "workflows/domain-hypergraph/WORKFLOW.md",
+      "sha256": "d8ac1935379c4fc40c88534f826045f5439dd4ed369230d1756e93f38c7f7652"
+    },
+    {
+      "path": "workflows/domain-hypergraph/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/domain-hypergraph/resources/contract.md",
+      "sha256": "4b1d0410e734ab746753e0a72aae530a7b19b4ac3eac34fc96d428af37398ebf"
+    },
+    {
+      "path": "workflows/domain-hypergraph/resources/method.md",
+      "sha256": "def4e20a0009b9b4b4702fb61785373e03a085e218010c6de59f950d7f80b27e"
+    },
+    {
+      "path": "workflows/domain-prose-validate/WORKFLOW.md",
+      "sha256": "ac2be4b79a2833ccfdcd1cad740b962ed439f274f4162bca4a4bd24d6f86de0f"
+    },
+    {
+      "path": "workflows/domain-prose-validate/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/domain-prose-validate/resources/brief.md",
+      "sha256": "161a00857488158b7057c9c8209477e782cd3de648184b369fb8d961673f3a53"
+    },
+    {
+      "path": "workflows/domain-prose-validate/resources/checks.md",
+      "sha256": "e4e22fd8a53148ff71a32e7df80c1e228180ad2f3fd53082809db2a22a849211"
+    },
+    {
+      "path": "workflows/domain-prose-validate/resources/tools.md",
+      "sha256": "0ac12b6d3211221ee79562ee7347c600fc0a203b8e51ac5e57b507ad5cc744b6"
+    },
+    {
+      "path": "workflows/domain-source-atomize/WORKFLOW.md",
+      "sha256": "f8c259a81c0bc5ddbd470a1ab44e4bc1e409c6d745f3a80e05d3f6cb291a2337"
+    },
+    {
+      "path": "workflows/domain-source-atomize/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/domain-source-atomize/resources/brief.md",
+      "sha256": "523fd8f672a9caf12cd32025d8ea99e5dc51affb4fa40cf1ee9751ed31937964"
+    },
+    {
+      "path": "workflows/domain-source-atomize/resources/checks.md",
+      "sha256": "e9fcc595f9fb28e6d205513fa350281d2f14a8ffe6fe217d719a240c5d014d5b"
+    },
+    {
+      "path": "workflows/domain-source-atomize/resources/tools.md",
+      "sha256": "00e5f09e32af94fcabdb4c6462200620271201a15ddc0fda8d51024a46f61056"
+    },
+    {
+      "path": "workflows/estimate-prep/BOE_STRUCTURE.md",
+      "sha256": "79196549df56a6680f758f6ab32d1f06f75da2b8fc24ac5fcd591f3f572c4e32"
+    },
+    {
+      "path": "workflows/estimate-prep/INDEX_MD_CONTRACT.md",
+      "sha256": "7ff683ff568bf87e4c0f79f1b36d17883e2055a873c9da6eb6568e807f8fe0b1"
+    },
+    {
+      "path": "workflows/estimate-prep/SCHEMA_ANNEX.md",
+      "sha256": "63c4f72e1c2bdd0d2ee0c6d5ef35458264ce24c00e5452769c76edccc8997c8e"
+    },
+    {
+      "path": "workflows/estimate-prep/WORKFLOW.md",
+      "sha256": "0fd781c5fc27ac5fea074bc51a968b359182c4da693ebd2b34127a6a8fb61e48"
+    },
+    {
+      "path": "workflows/estimate-prep/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/estimate-prep/resources/brief.md",
+      "sha256": "991a008b4de87c88b861d545da1f605db7f71e83e2b599d77aaee979c2b0ddac"
+    },
+    {
+      "path": "workflows/estimate-prep/resources/checks.md",
+      "sha256": "bb6daafd0c967f1f1213fa3196d770643b9387614e522b3aa5455f0d8b05efd2"
+    },
+    {
+      "path": "workflows/estimate-prep/resources/tools.md",
+      "sha256": "a0d3995996d6884938a664d933b8d1b7575c1163935d481706c6e5870a8de241"
+    },
+    {
+      "path": "workflows/estimate-snapshot/WORKFLOW.md",
+      "sha256": "67998cd1814e7fcfaac16620ed79592103fa1cb54411b1dfdcf90217494fedc0"
+    },
+    {
+      "path": "workflows/estimate-snapshot/execution.json",
+      "sha256": "023fb77fedb94dee55a2c14a77d07e5f4ebc3df0817529a7cd026beb85c45912"
+    },
+    {
+      "path": "workflows/estimate-snapshot/resources/brief.md",
+      "sha256": "2b90795fc3ad7ba8379b834125fc65c4bdbb56e65bb76b0bebdaf2f4bb1173ff"
+    },
+    {
+      "path": "workflows/estimate-snapshot/resources/checks.md",
+      "sha256": "c1e0918756bdaeab41a0ba55a9f58ff18892ab6b18a424da22817e41c5e8ed2b"
+    },
+    {
+      "path": "workflows/estimate-snapshot/resources/tools.md",
+      "sha256": "5ae8738e8750bcb3d37f845bd1b87e7529da3e6591184c660555da291ddd9a2e"
+    },
+    {
+      "path": "workflows/evaluation-protocol/WORKFLOW.md",
+      "sha256": "1c86806d13b1c89fba15acb3035ae7759c3aff2955ba7242802b7e49ff6e5c92"
+    },
+    {
+      "path": "workflows/evaluation-protocol/execution.json",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/evaluation-protocol/resources/brief.md",
+      "sha256": "ce5c9f52aa25933286417dc525571dc69435288d79d035ec60f27ec4417fe21d"
+    },
+    {
+      "path": "workflows/evaluation-protocol/resources/checks.md",
+      "sha256": "86828d0750fb0da07abc1182790f7a441df4b526e4f04c90856f66c8f51359cc"
+    },
+    {
+      "path": "workflows/evaluation-protocol/resources/contract.md",
+      "sha256": "2a92fda93d4995944a31947769ad25deedf3b769741203ef9c26179eef312b08"
+    },
+    {
+      "path": "workflows/evaluation-protocol/resources/method.md",
+      "sha256": "11a43b8725ba733e72aaeec4312e8416b64c07ce1db7d6978ed94b1f712340e8"
+    },
+    {
+      "path": "workflows/evaluation-protocol/resources/tools.md",
+      "sha256": "be089ca92a94b128a739853a3cc7c241e32d04599c8c1818564838ba27c0ed5d"
+    },
+    {
+      "path": "workflows/evaluation-report/WORKFLOW.md",
+      "sha256": "47b9fb13430420bad667e25e2501b11792ed63b5c1ebfaad014db0c3c04b80ec"
+    },
+    {
+      "path": "workflows/evaluation-report/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/evaluation-report/resources/contract.md",
+      "sha256": "e213fc51a68670cc815f400dfc11c98b1d54e2a2e2c9282d424dd74c88b5a967"
+    },
+    {
+      "path": "workflows/evaluation-report/resources/method.md",
+      "sha256": "a38b16f1a77b2517ad4eaaa857e5704b31b990bdfbcfaf1d1d9ebcd861f510e4"
+    },
+    {
+      "path": "workflows/four-documents/WORKFLOW.md",
+      "sha256": "8cf748ed55a5df275b46cb15fbdaa015347630fe45da34aa0a7e18b4138b7524"
+    },
+    {
+      "path": "workflows/four-documents/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/four-documents/resources/brief.md",
+      "sha256": "e630bcb4ef6d78b65adcc342e914310201606464bedff7927d0bc7b27e9f4bbc"
+    },
+    {
+      "path": "workflows/four-documents/resources/checks.md",
+      "sha256": "2d95e7c29399ae0b2f5365263222ca37254fb1c6480326cfb3d34036da864213"
+    },
+    {
+      "path": "workflows/four-documents/resources/tools.md",
+      "sha256": "81e26547613cc84dfbe48bc8858336edb31632954da7700ab98316cb4793d229"
+    },
+    {
+      "path": "workflows/kty-content-remediate/WORKFLOW.md",
+      "sha256": "152910c105b8b1dd924fc351f4561f95589923a687d786347f3d85d647a8730f"
+    },
+    {
+      "path": "workflows/kty-content-remediate/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/kty-content-remediate/resources/brief.md",
+      "sha256": "c21e9413006b97ead0ee914b00367c4ff099c11ae89d8ca4293af69948fd25cd"
+    },
+    {
+      "path": "workflows/kty-content-remediate/resources/checks.md",
+      "sha256": "a27dfe2f146d6745939ddedc381328e55cc53480131b16badfc6c95de62f5d88"
+    },
+    {
+      "path": "workflows/kty-content-remediate/resources/tools.md",
+      "sha256": "72e88e2362e09716ca25a1b1e83d089db1d00b0f6b8ef89bb5f971a8fd4e8679"
+    },
+    {
+      "path": "workflows/kty-metadata-align/WORKFLOW.md",
+      "sha256": "8b0785f26fdabd9ddb41d0fc01b826bb35dd99457e55a16132ebde8e4fff54d4"
+    },
+    {
+      "path": "workflows/kty-metadata-align/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/kty-metadata-align/resources/brief.md",
+      "sha256": "dfb4a409801cd6c9add821e5dd60d4f9776087440624abd2cc49be9db9f0f45d"
+    },
+    {
+      "path": "workflows/kty-metadata-align/resources/checks.md",
+      "sha256": "f9e79c5e9155da5681aefadedc658f7b71796aadb9b87c13778d770128c20f89"
+    },
+    {
+      "path": "workflows/kty-metadata-align/resources/tools.md",
+      "sha256": "54360ed4a224e6b7d56b7c86522ab6fb8eb36bf774bf3f6d24c5474b933c207b"
+    },
+    {
+      "path": "workflows/lens-register/WORKFLOW.md",
+      "sha256": "a0ba0cc9ee1a7061fa094125d238fcbfbb8369f8a960384644b37d9245d308c1"
+    },
+    {
+      "path": "workflows/lens-register/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/lens-register/resources/brief.md",
+      "sha256": "2803d8db0d7b6e8b024120bc910ba4b476e8f59a38409c76f50ca2d27a16c685"
+    },
+    {
+      "path": "workflows/lens-register/resources/checks.md",
+      "sha256": "c4ff4b92abb084d6352db4f7dff116f1f142f22c39cfa5f3ada33cf775d0881b"
+    },
+    {
+      "path": "workflows/lens-register/resources/tools.md",
+      "sha256": "83b89e7c79fe07c91fd3a0f8de9424d34301f05f14e07871286ac0a91d1f2a4c"
+    },
+    {
+      "path": "workflows/preparation/WORKFLOW.md",
+      "sha256": "cf0c79f4c656cd39b073100db53f67b5355b4e09324a9519672f20fc1e778d78"
+    },
+    {
+      "path": "workflows/preparation/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/preparation/resources/contract.md",
+      "sha256": "60f8496c86549c3de6316e458f5ff33cd7a93fe0ba260f6f028be8383d5c193f"
+    },
+    {
+      "path": "workflows/preparation/resources/method.md",
+      "sha256": "905f01da64ebbb16b9b818f8e05870ee1c6ef6eed85806fa9fcf9b5e092ed016"
+    },
+    {
+      "path": "workflows/project-decomp/WORKFLOW.md",
+      "sha256": "ae79d81cb442e5c7eca8cc0277bac78ea18732c22d9966a8f9cb651f9dea1a2c"
+    },
+    {
+      "path": "workflows/project-decomp/execution.json",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/project-decomp/resources/contract.md",
+      "sha256": "0ecba3159ceaf1eb998ae9ab120cca4cb7adc25a59dcb02e7835660811319521"
+    },
+    {
+      "path": "workflows/project-decomp/resources/method.md",
+      "sha256": "86e6bbcceb33f36e14115ade276f0098c4aa5ea9ba7d5ba2e7b1051c39d33080"
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "sha256": "79395ba0100dea30a4727afc91755dfb66285e8818ae412a830dc97ddae73851"
+    },
+    {
+      "path": "workflows/project-setup/execution.json",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "sha256": "9f1f3b7fb3cd8511d58b01fff2dc19b643f2937550548e3179c7c93b50e52c4b"
+    },
+    {
+      "path": "workflows/project-setup/resources/method.md",
+      "sha256": "a800658646fd2a95cf299102c347c40974a3f02124aa37649a9f1d23a5c653d9"
+    },
+    {
+      "path": "workflows/project-setup/resources/package-activation.md",
+      "sha256": "57218da4dffcf673170c345003bc30d3ea0d2cb4eed2f754bcb9f5508e80db43"
+    },
+    {
+      "path": "workflows/reconciliation/WORKFLOW.md",
+      "sha256": "94a85257f738df9520a5e88999cb12399f40ec3b27da2250468741de808bee32"
+    },
+    {
+      "path": "workflows/reconciliation/execution.json",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/reconciliation/resources/contract.md",
+      "sha256": "da47475cdf12422416d9d0ce16d2aa6bfb744dfed9731a08cf7ca66a05a6e4d5"
+    },
+    {
+      "path": "workflows/reconciliation/resources/method.md",
+      "sha256": "d7b5e22a71a7de72445f8d2718d28b43764f9a7e4f069c674aecae1f33ccb86d"
+    },
+    {
+      "path": "workflows/research-orchestration/WORKFLOW.md",
+      "sha256": "9227da74df9a83c2def6c6266670c4377a0190404aa26339ad3bc4dd4a84aa2b"
+    },
+    {
+      "path": "workflows/research-orchestration/execution.json",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/brief.md",
+      "sha256": "5675482100231091e7869d3ea8bb4ea9173942e14991a35df71e714a07cec042"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/checks.md",
+      "sha256": "1b12911a27ab1efd1729392f0c8c748277b24b4e6f76d00dd78853c9c18631cd"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/contract.md",
+      "sha256": "9426d0a1be45df6f26503cd7bd2235f3583543c833340e35ee41e8e5429883f8"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/method.md",
+      "sha256": "a46970c6c2cae1f6e12ef4878176b609443f63839b5650d64c664119236e8e2e"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/tools.md",
+      "sha256": "190722f483332ab0c1dc1298880e928b5503669a4ae844faedec85aee94d9454"
+    },
+    {
+      "path": "workflows/researcher/WORKFLOW.md",
+      "sha256": "c9539b1aa020bb757d06a09a96a67015b1cf8f34750ac184067e025460bf7744"
+    },
+    {
+      "path": "workflows/researcher/execution.json",
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": "workflows/researcher/resources/contract.md",
+      "sha256": "407f081897aed7ac45ee80eed525c9c46ab6ff896dc170750d1f06c2c88797fe"
+    },
+    {
+      "path": "workflows/researcher/resources/evidence.md",
+      "sha256": "968a0cad028b1fa69c07a5275b40d0396df5b12013e29056ea198bbf89336b1e"
+    },
+    {
+      "path": "workflows/researcher/resources/inquiry.md",
+      "sha256": "b52266b972ca2c336eff17148cf0abf74cdea04a1158af1f48982d16e8ba0f3f"
+    },
+    {
+      "path": "workflows/researcher/resources/method.md",
+      "sha256": "8fab6a961bbf316561b454677e55e9ea6a1d96e13b9b8dc3eda47b28e94f247f"
+    },
+    {
+      "path": "workflows/review/WORKFLOW.md",
+      "sha256": "6908ed13e6bed9ef904809a04af4118b2c14cf1646ce191eb4f64ffb4db46ea9"
+    },
+    {
+      "path": "workflows/review/execution.json",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/review/resources/contract.md",
+      "sha256": "d3d7eb27993068fbdf4ea3b06c78a19106ff4d145f149d5cf50040756144b328"
+    },
+    {
+      "path": "workflows/review/resources/method.md",
+      "sha256": "63c8a3959cd6286f95acf30ae87e42a5dd99d951b2ae2ab3ec6212a81f930daa"
+    },
+    {
+      "path": "workflows/scc-resolution-case/WORKFLOW.md",
+      "sha256": "d57415cd2d421eb14b2099681f9e5def9f367ce6ab70e5aa5c5dec352449a1a9"
+    },
+    {
+      "path": "workflows/scc-resolution-case/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/scc-resolution-case/resources/brief.md",
+      "sha256": "78b15d4e67dbab697bacd4cabd97006f15edca04d42b2753dc7f4e00fddfaa36"
+    },
+    {
+      "path": "workflows/scc-resolution-case/resources/checks.md",
+      "sha256": "3fa57d32ec03ee51d5cd38227176c03eaa25c1d36adbfe67c9ae397a7c83c228"
+    },
+    {
+      "path": "workflows/scc-resolution-case/resources/tools.md",
+      "sha256": "4a4ecb79efec84eda38178f096325a83ef02d3eff94b93f45fe4cfea4d016bd3"
+    },
+    {
+      "path": "workflows/scope-change/WORKFLOW.md",
+      "sha256": "ff7b98311a907eeed3587fef4c7924108cea766acb9e5c2585378882638ef228"
+    },
+    {
+      "path": "workflows/scope-change/execution.json",
+      "sha256": "35e108bccac694cac738db03c61709e3db1886f84a3ee5545a1bbc5bdd4f3ab2"
+    },
+    {
+      "path": "workflows/scope-change/resources/contract.md",
+      "sha256": "f023e5e298367f159a09f5c4f05644bc6f661aaa3ce868a467ea93fc033542b1"
+    },
+    {
+      "path": "workflows/scope-change/resources/method.md",
+      "sha256": "b1b245e92bcfee69775b6d408784af247bb80cdd1cc4ea8d535a93f4446ae11d"
+    },
+    {
+      "path": "workflows/scope-change-packet/WORKFLOW.md",
+      "sha256": "b4f6589952a5f668a4d50661cc08d0111ca16850ef2ec8bd2c198925ee824ed4"
+    },
+    {
+      "path": "workflows/scope-change-packet/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/scope-change-packet/resources/brief.md",
+      "sha256": "4b8bcd455827ae7d780255735cc6a9586c7fea6384b18b53d9849e831594c3e1"
+    },
+    {
+      "path": "workflows/scope-change-packet/resources/checks.md",
+      "sha256": "838d5d58d48c791e9ced6633d3ea0560747180b81840464f71b3c79a531de4d9"
+    },
+    {
+      "path": "workflows/scope-change-packet/resources/tools.md",
+      "sha256": "4ae2e137a640f25ee34d1a32a21b931bcd985f42372dd308439ff07e2c5b9de0"
+    },
+    {
+      "path": "workflows/scope-of-work/WORKFLOW.md",
+      "sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b"
+    },
+    {
+      "path": "workflows/scope-of-work/execution.json",
+      "sha256": "4ad8b7eb42dba41f1609e6b3c61f14baa15ad82a1342f4ad12a095c4a570a26d"
+    },
+    {
+      "path": "workflows/scope-of-work/resources/brief.md",
+      "sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145"
+    },
+    {
+      "path": "workflows/scope-of-work/resources/checks.md",
+      "sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8"
+    },
+    {
+      "path": "workflows/scope-of-work/resources/representation-migration.md",
+      "sha256": "0684d04994049834145441c74037c55716029076a0dc3c3259bbaa90b3e4d9ee"
+    },
+    {
+      "path": "workflows/scope-of-work/resources/tools.md",
+      "sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f"
+    },
+    {
+      "path": "workflows/semantic-lensing/WORKFLOW.md",
+      "sha256": "b3c56b03b7db97d6a8b07e0e712d217d11f846cec9b5f2b383003572cbbfd0a4"
+    },
+    {
+      "path": "workflows/semantic-lensing/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/semantic-lensing/resources/brief.md",
+      "sha256": "e6d3167ba82d3da9a9c5879160d0e449cde9ac15308c22621190ded85f806517"
+    },
+    {
+      "path": "workflows/semantic-lensing/resources/checks.md",
+      "sha256": "ed09bb8a2d9bad368174f5f13db6551fee5adbd4f8e8c08be0861ba02c368714"
+    },
+    {
+      "path": "workflows/semantic-lensing/resources/tools.md",
+      "sha256": "275e38e674c2d2f544cfa10a90d990402bce6332a99265927f54482eff102d85"
+    },
+    {
+      "path": "workflows/semantic-matrix-build/WORKFLOW.md",
+      "sha256": "9a69c20c7d0211e2e18a3dc826b1c220e2b945e7c10ba3cb1b92c50b1520eb39"
+    },
+    {
+      "path": "workflows/semantic-matrix-build/execution.json",
+      "sha256": "565548ba64c99b5c126cbc7c0b05f38a2a094943c0a2c50aa218b7394c02a733"
+    },
+    {
+      "path": "workflows/semantic-matrix-build/resources/brief.md",
+      "sha256": "0062c0562143a67c33cb055c83b4fa991a67398060817844d7eda2931d1f5f39"
+    },
+    {
+      "path": "workflows/semantic-matrix-build/resources/checks.md",
+      "sha256": "e38c1271c264efc23488fb440c15c4147828e0344f3b699b43922f03e38fc2f3"
+    },
+    {
+      "path": "workflows/semantic-matrix-build/resources/tools.md",
+      "sha256": "eb9fb59d3cb1f0bc8e6424819c6fb0aaf2a29fc6ef4ccee3d7fcbc52240c10c3"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/WORKFLOW.md",
+      "sha256": "2ea0ddf4f53241fa94274e709b8042ad9de4d8beb9c82cd1ed1dcd0c6f8f0f7b"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/execution.json",
+      "sha256": "5e2c712156901c68d2dc914741d9ce36f445fad4bc27d0f21035689cf3cc6d5e"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/activation.md",
+      "sha256": "fc8bfb20c37f246a01bd97913f2b671f39d029a4353cacc7603b8f60db54a2bd"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/brief.md",
+      "sha256": "1118c65a739ddde1864ca0a6a638af2a56421fe5ab67d9da64fc9b5eca947028"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/checks.md",
+      "sha256": "5ab08afe57fe102478cb98aa72cd72879c7a82b84f2790622b9bf0323f3c7bdc"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/tools.md",
+      "sha256": "42b62bdb502f65255d94080370906a6295c3960bc97befda1a8228d60b4c9f2c"
+    },
+    {
+      "path": "workflows/software-code-review/WORKFLOW.md",
+      "sha256": "9054dfd47318a680e54fe390b00c67e2baf9595156487d4d1897a83458414810"
+    },
+    {
+      "path": "workflows/software-code-review/execution.json",
+      "sha256": "569c85b4b9f2323d76bfa6c007a98af261122d6c75be275ae85a4333cff846de"
+    },
+    {
+      "path": "workflows/software-code-review/resources/brief.md",
+      "sha256": "b24a865643d5dd54d1094a7dfde4def829a319d0b7d5334873c6d3fa099cffe2"
+    },
+    {
+      "path": "workflows/software-code-review/resources/checks.md",
+      "sha256": "b6fd4756bbf2775baedc83488bc88219362715f0aec79e9f9330ebf19a5e2dc8"
+    },
+    {
+      "path": "workflows/software-code-review/resources/tools.md",
+      "sha256": "c06c32c9b08fe0e98329c1c670660135f84c1795a07a237a84f74e80306a5b26"
+    },
+    {
+      "path": "workflows/software-decomp/WORKFLOW.md",
+      "sha256": "9383c8c51a498f0b67ae054c4474aadaa52a9e254657a38b5b9a33e90d2afeb1"
+    },
+    {
+      "path": "workflows/software-decomp/execution.json",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/software-decomp/resources/contract.md",
+      "sha256": "375904b3f10f47f55c9d8a4bf3ec93d8a49959b6a95a63c2ea2422e61ac737eb"
+    },
+    {
+      "path": "workflows/software-decomp/resources/method.md",
+      "sha256": "80fb93000bfff66b6896329ecbc3818a919c72b4a87aa64ac2e580582df398c4"
+    },
+    {
+      "path": "workflows/software-defect-diagnosis/WORKFLOW.md",
+      "sha256": "aa65890bece58b6ad4669e1611b669c28c3150d01f4c2219acd779b5209a784b"
+    },
+    {
+      "path": "workflows/software-defect-diagnosis/execution.json",
+      "sha256": "5c219842a60f1bce31ca58f6f1c888828fef4883fcceadfa91bd51f4ff906c8c"
+    },
+    {
+      "path": "workflows/software-defect-diagnosis/resources/brief.md",
+      "sha256": "686d549d641f258088fee57203b26552648f609145d6922546e91f2120a310da"
+    },
+    {
+      "path": "workflows/software-defect-diagnosis/resources/checks.md",
+      "sha256": "563a954f28e8b3be742618c302abe94408c22e8a45de67e8bbcc1abd8ac5aedf"
+    },
+    {
+      "path": "workflows/software-defect-diagnosis/resources/tools.md",
+      "sha256": "0e8bfaa95f962a1b73c111c01af4e5fa67a89a1e0e4c338b057994243cd94d06"
+    },
+    {
+      "path": "workflows/software-repository-reconnaissance/WORKFLOW.md",
+      "sha256": "5d431768c6e43645495a03c191c16844e060cff7bacc79ef2858a57b883b9896"
+    },
+    {
+      "path": "workflows/software-repository-reconnaissance/execution.json",
+      "sha256": "8abb9109acaf216bfdd3412fc4ae11dd7bb824fcdffc75661a036026e9156557"
+    },
+    {
+      "path": "workflows/software-repository-reconnaissance/resources/brief.md",
+      "sha256": "72d69cc40b2a5d8f2577802aa4f7a8c8210eadc01095fb57893d20c09c8463ff"
+    },
+    {
+      "path": "workflows/software-repository-reconnaissance/resources/checks.md",
+      "sha256": "ef77199047b212ec72002bda2fa268bcb54e46055a80426c4e9f9e7b1566bb27"
+    },
+    {
+      "path": "workflows/software-repository-reconnaissance/resources/tools.md",
+      "sha256": "5287fdcfa5c1c67ce6c62f51303d9bc18bc4681e95ba52ca71e3102862140587"
+    },
+    {
+      "path": "workflows/software-test-planning/WORKFLOW.md",
+      "sha256": "8f36adc77c18b58ee331867542f068f8bb714a014d52036caea610adba4fdfcd"
+    },
+    {
+      "path": "workflows/software-test-planning/execution.json",
+      "sha256": "8abb9109acaf216bfdd3412fc4ae11dd7bb824fcdffc75661a036026e9156557"
+    },
+    {
+      "path": "workflows/software-test-planning/resources/brief.md",
+      "sha256": "a33484dcbe9ce6c0c43da586921e32efb54ce2034ab44026f91f7e8b78c63913"
+    },
+    {
+      "path": "workflows/software-test-planning/resources/checks.md",
+      "sha256": "67435e2091246dfb59638e65fde779c582f5a75f1adf820a19aa6ad8dda1e858"
+    },
+    {
+      "path": "workflows/software-test-planning/resources/tools.md",
+      "sha256": "09e0fe1f8d573f745ccbc835d2c3b102994ee245a9489678b616d881355d72b1"
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20"
+    },
+    {
+      "path": "workflows/task-management/execution.json",
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "sha256": "0615469840d282e796a41f82ec46b126c120185f0098d7be99572ec1740c3c95"
+    },
+    {
+      "path": "workflows/task-management/resources/method.md",
+      "sha256": "daa6e7c207ab4d8509fbc4a45904b08c2f3ecc296f28928f3c24a58c028da76d"
+    }
+  ]
+}

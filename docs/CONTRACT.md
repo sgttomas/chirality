@@ -89,7 +89,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are **authoritative** for dependencies. There is no central dependency graph; generic read-only aggregation is on-demand via `_Evaluation/`; a calibrated corpus-concordance run may also inventory dependencies under `_Reconciliation/DeliverableConcordance/`. | TASK+dependency-extract (local writes only); EVALUATION (generic audit); RECONCILIATION (activated corpus concordance) |
+| **K-DEP-1** | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are **authoritative** for dependencies. There is no central dependency graph; generic read-only aggregation is on-demand via `_Evaluation/`; a calibrated corpus-concordance run may also inventory dependencies under `_Reconciliation/DeliverableConcordance/`. | TASK+dependency-extract (local writes only); WORKING_ITEMS with evaluation-protocol (generic audit) or reconciliation (activated corpus concordance) |
 | **K-DEP-2** | Dependency references to deliverables must **resolve to existing deliverable IDs**. Unresolvable targets use `TargetType=UNKNOWN`. | TASK+dependency-extract (Function 2); validation checks |
 
 ### 1.5 Status and Lifecycle
@@ -110,7 +110,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-GATE-1** | Gates are **dynamic per project instance**. Minimum required gates: seal transition + pipeline run approval. Additional gates are project-configurable. | PROJECT_SETUP (gate map); human configuration |
+| **K-GATE-1** | Gates are **dynamic per project instance**. Minimum required gates: seal transition + pipeline run approval. Additional gates are project-configurable. | WORKING_ITEMS with project-setup (gate map); human configuration |
 
 *Note:* D-GOV-02 (docs/governance_harness/_DECISIONS/), ruled 2026-07-01, derives from K-GATE-1 that no machine BLOCK on the CHECKING→ISSUED judgment may be non-overridable — BLOCKs apply to objective preconditions and hygiene only, and BLOCK override is human-only and recorded. Per D-GOV-17 (ruled 2026-07-18), a validator finding may never mechanically reject content the owner has adopted or ruled — where ruled text trips a validator, the validator is defective and is corrected under review, never the ruled text; other instruction-surface validator boundary cases are handled by D-GOV-17's recorded-exception correction protocol rather than anticipatory enumeration.
 
@@ -141,7 +141,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-AGENTS-1** | A Chirality **`AGENTS.md` is an authoritative governance surface, not merely an index**, and agents treat it as authoritative. Under D-GOV-11, the framework-root `AGENTS.md` MUST carry the Agent 0/1/2 runtime hierarchy and live index, governance integration rules (derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution), multi-agent orchestration rules, and canonical `TASK`-skill dispatch relationships. A working-root (`projects/*`, `domains/*`) `AGENTS.md` MAY overlay or specialize the suite for that workspace but MUST NOT weaken framework governance. UI matrices are deployment routing views, not runtime authority classes. Where live registries (`agents/`, `skills/`, `tools/`) and narrative disagree, the live registry governs and the discrepancy is surfaced. | `AGENTS.md`; D-GOV-11; AUDIT_GOVERNANCE; AUDIT_AGENTS; human review |
+| **K-AGENTS-1** | A Chirality **`AGENTS.md` is an authoritative governance surface**, carrying runtime entry doctrine and the four-role index. Under the D-GOV-41 prospective amendment, `agents/registry.json` supplies machine-readable role configuration, `workflows/` supplies explicitly selected methods, and canonical documents retain shared governance and integration rules. Working-root overlays may specialize the suite within accepted authority and cannot weaken framework governance. Live registries govern discovery over narrative lists; discrepancies are surfaced. Incompatible consumers retain their accepted basis until owning-loop adoption. | `AGENTS.md`; `docs/AGENT_WORKFLOW_RUNTIME.md`; D-GOV-41; workflow conformance and human review |
 
 ### 1.12 Domain Engine Integration
 
@@ -197,14 +197,14 @@ the "candidate" label in the PRD's §10 heading ends here.
 
 | Enforcement Point | Invariants Checked |
 |---|---|
-| **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4, K-ROLE-2, K-TM-3 |
+| **Shared governance, role instructions, and workflow contracts** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4, K-ROLE-2, K-TM-3 |
 | **TASK shell / tool path policy** (runtime) | K-WRITE-2 (ScopePath containment, `SPEC.md` §0.2.3) |
-| **DOMAIN_ENGINE** (profile and operation governance) | K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
-| **PROJECT_SETUP** (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
+| **WORKING_ITEMS with domain-engine** (profile and operation governance) | K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
+| **WORKING_ITEMS with project-setup** (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
 | **Human review** (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4, K-TM-3, K-TM-4, K-TM-5 |
-| **Governance audit** (AUDIT_GOVERNANCE / AUDIT_AGENTS) | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4, K-TM-1, K-TM-2, K-TM-6 |
+| **TASK with audit-governance / audit-agents** | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4, K-TM-1, K-TM-2, K-TM-6 |
 | **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2, K-TM-1, K-TM-2, K-TM-5, K-TM-6 |
-| **PROJECT_DECOMP** (decomposition) | K-HIER-1, K-ID-1 |
+| **WORKING_ITEMS with project-decomp** (decomposition) | K-HIER-1, K-ID-1 |
 | **Shared runtime daemon and clients** (runtime) | K-RUNTIME-1, K-CONTROL-1, K-PROJECT-1, K-STORE-2, K-RESIDENCY-1, K-ROLE-2 |
 | **Public export builder** (publication boundary) | K-EXPORT-1 |
 

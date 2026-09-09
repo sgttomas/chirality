@@ -41,7 +41,7 @@ def _write_json(payload, tmpdir: Path) -> Path:
 
 
 class LoadAssetsStrict(unittest.TestCase):
-    """The contracted shape per skills/pdf2md-page-assets/SKILL.md is strict."""
+    """The contracted shape per workflows/pdf2md-page-assets/WORKFLOW.md is strict."""
 
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="test_mat_"))

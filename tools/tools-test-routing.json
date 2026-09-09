@@ -7,39 +7,215 @@
     "validation"
   ],
   "checks": {
-    "analysis": { "pytest_paths": ["tools/analysis"] },
-    "coordination": { "pytest_paths": ["tools/coordination"] },
-    "decomp": { "pytest_paths": ["tools/decomp"] },
-    "drawing_extract": { "pytest_paths": ["tools/drawing_extract"] },
-    "equation_audit": { "pytest_paths": ["tools/equation_audit"] },
-    "pdf2md": { "pytest_paths": ["tools/pdf2md"] },
-    "practitioner_harness": { "pytest_paths": ["tools/practitioner_harness"] },
-    "publication": { "pytest_paths": ["tools/publication"] },
-    "reporting": { "pytest_paths": ["tools/reporting"] },
-    "retrieval": { "pytest_paths": ["tools/retrieval"] },
-    "scope_of_work": { "pytest_paths": ["tools/scope_of_work"] },
-    "software_workflow": { "pytest_paths": ["tools/software_workflow"] },
-    "source_audit": { "pytest_paths": ["tools/source_audit"] },
-    "source_catalog": { "pytest_paths": ["tools/source_catalog"] },
-    "taskmgmt": { "pytest_paths": ["tools/taskmgmt"] },
-    "validation": { "pytest_paths": ["tools/validation"] },
-    "workflow_runtime": { "pytest_paths": ["tools/workflow_runtime"] }
+    "analysis": {
+      "pytest_paths": [
+        "tools/analysis"
+      ]
+    },
+    "coordination": {
+      "pytest_paths": [
+        "tools/coordination"
+      ]
+    },
+    "decomp": {
+      "pytest_paths": [
+        "tools/decomp"
+      ]
+    },
+    "drawing_extract": {
+      "pytest_paths": [
+        "tools/drawing_extract"
+      ]
+    },
+    "equation_audit": {
+      "pytest_paths": [
+        "tools/equation_audit"
+      ]
+    },
+    "pdf2md": {
+      "pytest_paths": [
+        "tools/pdf2md"
+      ]
+    },
+    "practitioner_harness": {
+      "pytest_paths": [
+        "tools/practitioner_harness"
+      ]
+    },
+    "publication": {
+      "pytest_paths": [
+        "tools/publication"
+      ]
+    },
+    "reporting": {
+      "pytest_paths": [
+        "tools/reporting"
+      ]
+    },
+    "retrieval": {
+      "pytest_paths": [
+        "tools/retrieval"
+      ]
+    },
+    "scope_of_work": {
+      "pytest_paths": [
+        "tools/scope_of_work"
+      ]
+    },
+    "software_workflow": {
+      "pytest_paths": [
+        "tools/software_workflow"
+      ]
+    },
+    "source_audit": {
+      "pytest_paths": [
+        "tools/source_audit"
+      ]
+    },
+    "source_catalog": {
+      "pytest_paths": [
+        "tools/source_catalog"
+      ]
+    },
+    "taskmgmt": {
+      "pytest_paths": [
+        "tools/taskmgmt"
+      ]
+    },
+    "validation": {
+      "pytest_paths": [
+        "tools/validation"
+      ]
+    },
+    "workflow_runtime": {
+      "pytest_paths": [
+        "tools/workflow_runtime"
+      ]
+    },
+    "evaluation": {
+      "pytest_paths": [
+        "tools/evaluation"
+      ]
+    },
+    "scaffolding": {
+      "pytest_paths": [
+        "tools/scaffolding"
+      ]
+    }
   },
   "path_rules": [
-    { "paths": ["tools/analysis/*"], "checks": ["analysis"] },
-    { "paths": ["tools/coordination/*"], "checks": ["coordination"] },
-    { "paths": ["tools/decomp/*"], "checks": ["decomp"] },
-    { "paths": ["tools/drawing_extract/*"], "checks": ["drawing_extract"] },
-    { "paths": ["tools/equation_audit/*"], "checks": ["equation_audit"] },
-    { "paths": ["tools/pdf2md/*"], "checks": ["pdf2md"] },
-    { "paths": ["tools/publication/*"], "checks": ["publication"] },
-    { "paths": ["tools/reporting/*"], "checks": ["reporting"] },
-    { "paths": ["tools/retrieval/*"], "checks": ["retrieval"] },
-    { "paths": ["tools/scope_of_work/*"], "checks": ["scope_of_work"] },
-    { "paths": ["tools/source_audit/*"], "checks": ["source_audit"] },
-    { "paths": ["tools/source_catalog/*"], "checks": ["source_catalog"] },
-    { "paths": ["tools/taskmgmt/*"], "checks": ["taskmgmt"] },
-    { "paths": ["tools/workflow_runtime/*"], "checks": ["workflow_runtime"] },
+    {
+      "paths": [
+        "tools/analysis/*"
+      ],
+      "checks": [
+        "analysis"
+      ]
+    },
+    {
+      "paths": [
+        "tools/coordination/*"
+      ],
+      "checks": [
+        "coordination"
+      ]
+    },
+    {
+      "paths": [
+        "tools/decomp/*"
+      ],
+      "checks": [
+        "decomp"
+      ]
+    },
+    {
+      "paths": [
+        "tools/drawing_extract/*"
+      ],
+      "checks": [
+        "drawing_extract"
+      ]
+    },
+    {
+      "paths": [
+        "tools/equation_audit/*"
+      ],
+      "checks": [
+        "equation_audit"
+      ]
+    },
+    {
+      "paths": [
+        "tools/pdf2md/*"
+      ],
+      "checks": [
+        "pdf2md"
+      ]
+    },
+    {
+      "paths": [
+        "tools/publication/*"
+      ],
+      "checks": [
+        "publication"
+      ]
+    },
+    {
+      "paths": [
+        "tools/reporting/*"
+      ],
+      "checks": [
+        "reporting"
+      ]
+    },
+    {
+      "paths": [
+        "tools/retrieval/*"
+      ],
+      "checks": [
+        "retrieval"
+      ]
+    },
+    {
+      "paths": [
+        "tools/scope_of_work/*"
+      ],
+      "checks": [
+        "scope_of_work"
+      ]
+    },
+    {
+      "paths": [
+        "tools/source_audit/*"
+      ],
+      "checks": [
+        "source_audit"
+      ]
+    },
+    {
+      "paths": [
+        "tools/source_catalog/*"
+      ],
+      "checks": [
+        "source_catalog"
+      ]
+    },
+    {
+      "paths": [
+        "tools/taskmgmt/*"
+      ],
+      "checks": [
+        "taskmgmt"
+      ]
+    },
+    {
+      "paths": [
+        "tools/workflow_runtime/*"
+      ],
+      "checks": [
+        "workflow_runtime"
+      ]
+    },
     {
       "paths": [
         ".github/workflows/governance-harness.yml",
@@ -65,7 +241,35 @@
         "source_catalog",
         "taskmgmt",
         "validation",
-        "workflow_runtime"
+        "workflow_runtime",
+        "evaluation",
+        "scaffolding"
+      ]
+    },
+    {
+      "paths": [
+        "workflows/*",
+        "agents/*"
+      ],
+      "checks": [
+        "workflow_runtime",
+        "validation"
+      ]
+    },
+    {
+      "paths": [
+        "tools/evaluation/*"
+      ],
+      "checks": [
+        "evaluation"
+      ]
+    },
+    {
+      "paths": [
+        "tools/scaffolding/*"
+      ],
+      "checks": [
+        "scaffolding"
       ]
     }
   ]

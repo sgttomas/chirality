@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "run_id": "FOUR_ROLE_OVERHAUL_20260909",
+  "selection_authority": "HUMAN accepted plan; HELP_HUMAN bounded assignment partition",
+  "basis": "533332349a4607eee561d4ef90fb05a62d86519e",
+  "mechanism": "delegated-harness-native",
+  "evidence_calibration": "instruction-asserted",
+  "integration_owner": "/root/working_items",
+  "nodes": [
+    {
+      "id": "/root",
+      "role": "HELP_HUMAN",
+      "type": 0,
+      "state": "RUNNING",
+      "writes": []
+    },
+    {
+      "id": "/root/helps_humans_design",
+      "parent": "/root",
+      "role": "HELPS_HUMANS",
+      "type": 1,
+      "state": "RUNNING",
+      "writes": [
+        "four retained role instructions",
+        "AGENTS.md",
+        "shared governing docs",
+        "new runtime contract",
+        "D-GOV-41 and register/tranche records",
+        "run root design/control records"
+      ]
+    },
+    {
+      "id": "/root/working_items",
+      "parent": "/root",
+      "role": "WORKING_ITEMS",
+      "type": 1,
+      "state": "RUNNING",
+      "writes": [
+        "implementation integration surfaces as assigned",
+        "implementation run records"
+      ]
+    },
+    {
+      "id": "/root/working_items/project_workflows",
+      "parent": "/root/working_items",
+      "role": "TASK",
+      "type": 2,
+      "state": "RUNNING",
+      "writes": [
+        "project/knowledge/governance workflow family"
+      ]
+    },
+    {
+      "id": "/root/working_items/document_workflows",
+      "parent": "/root/working_items",
+      "role": "TASK",
+      "type": 2,
+      "state": "RUNNING",
+      "writes": [
+        "document/extraction/publication workflow family"
+      ]
+    },
+    {
+      "id": "/root/working_items/runtime_tools",
+      "parent": "/root/working_items",
+      "role": "TASK",
+      "type": 2,
+      "state": "RUNNING",
+      "writes": [
+        "registry/resolver/tool/validator/export integration"
+      ]
+    },
+    {
+      "id": "/root/working_items/audit_tools",
+      "parent": "/root/working_items",
+      "role": "TASK",
+      "type": 2,
+      "state": "RUNNING",
+      "writes": [
+        "deterministic audit repair tools and regression tests"
+      ]
+    },
+    {
+      "id": "independent_review",
+      "role": "TASK",
+      "type": 2,
+      "state": "PLANNED",
+      "writes": [
+        "review evidence only"
+      ],
+      "note": "No child execution claimed before actual dispatch"
+    }
+  ],
+  "dependencies": [
+    {
+      "from": "/root/helps_humans_design",
+      "to": "/root/working_items",
+      "gate": "BOOTSTRAP_READY candidate role source freeze; satisfied by BOOTSTRAP_VALIDATION.json"
+    },
+    {
+      "from": "all implementation writers",
+      "to": "independent_review",
+      "gate": "combined candidate and validation evidence"
+    },
+    {
+      "from": "independent_review",
+      "to": "final handoff",
+      "gate": "findings dispositioned and required checks pass"
+    }
+  ],
+  "concurrency": "disjoint writes; shared-file changes serialized by WORKING_ITEMS; design-owned files via HELPS_HUMANS",
+  "human_decisions": [
+    "merge/integration acceptance",
+    "receiving-loop adoption and pin changes",
+    "public release"
+  ],
+  "returns": "each child returns changed paths, checks, artifacts, partial work, blockers; actual implementation dispatch responses held by WORKING_ITEMS under implementation/"
+}

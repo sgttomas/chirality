@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "staged_whitespace": 0,
+  "candidate_whitespace": 0,
+  "G4_precommit_schema": 0,
+  "V3_independent_review": "PASS",
+  "source_paths": 621,
+  "source_manifest_sha256": "addfb1e02b3cb8d6db085fb4a48a15cae11d6cf4dfda8136276a93bd8c2d1308",
+  "fetch_basis": "533332349a4607eee561d4ef90fb05a62d86519e",
+  "main_delta": 0,
+  "final_candidate_whitespace_stdout": "PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).\n",
+  "limits": "Committed-range G4 and remote CI follow the scoped commit."
+}

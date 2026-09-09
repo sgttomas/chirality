@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "roles": {
+    "HELP_HUMAN": {
+      "instruction": "agents/AGENT_HELP_HUMAN.md",
+      "type": 0,
+      "direct_entry": true,
+      "delegates_to": [
+        "HELPS_HUMANS",
+        "WORKING_ITEMS",
+        "TASK"
+      ],
+      "allow_generalist_agent2": true,
+      "tools": [
+        "read",
+        "delegate_agent",
+        "send_agent_update"
+      ],
+      "write_scope": "none"
+    },
+    "HELPS_HUMANS": {
+      "instruction": "agents/AGENT_HELPS_HUMANS.md",
+      "type": 1,
+      "direct_entry": true,
+      "delegates_to": [
+        "TASK"
+      ],
+      "allow_generalist_agent2": true,
+      "tools": [
+        "read",
+        "write",
+        "bash",
+        "delegate_agent",
+        "report_coordination_notice",
+        "send_agent_update",
+        "ack_agent_update"
+      ],
+      "write_scope": "explicit brief targets within authorized working root"
+    },
+    "WORKING_ITEMS": {
+      "instruction": "agents/AGENT_WORKING_ITEMS.md",
+      "type": 1,
+      "direct_entry": true,
+      "delegates_to": [
+        "TASK"
+      ],
+      "allow_generalist_agent2": true,
+      "tools": [
+        "read",
+        "write",
+        "bash",
+        "delegate_agent",
+        "report_coordination_notice",
+        "send_agent_update",
+        "ack_agent_update"
+      ],
+      "write_scope": "explicit brief targets within authorized working root"
+    },
+    "TASK": {
+      "instruction": "agents/AGENT_TASK.md",
+      "type": 2,
+      "direct_entry": false,
+      "delegates_to": [],
+      "allow_generalist_agent2": false,
+      "tools": [
+        "read",
+        "write",
+        "bash",
+        "report_coordination_notice",
+        "ack_agent_update"
+      ],
+      "write_scope": "explicit brief targets within authorized working root"
+    }
+  }
+}

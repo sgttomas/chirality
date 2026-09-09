@@ -1,0 +1,781 @@
+{
+  "schema_version": 1,
+  "assignments": [
+    {
+      "source": "skills/content-digest/SKILL.md",
+      "source_sha256": "82cb00e14071928f0d447e1b3c7d950a6003d92723fd0814deb7d738f4f71af2",
+      "destination": "workflows/content-digest/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/content-digest/BRIEF_SCHEMA.md",
+          "source_sha256": "f406b345ff7a47dd3b4fe079afbbbb0498b22965af3dc36737d96b686afe199c",
+          "destination": "workflows/content-digest/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/content-digest/QA_CHECKS.md",
+          "source_sha256": "ef86cf89be23eb56d44a64dee21c448e163ccb2f88750e523c4199c8f061ced9",
+          "destination": "workflows/content-digest/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/content-digest/SKILL.md",
+          "source_sha256": "82cb00e14071928f0d447e1b3c7d950a6003d92723fd0814deb7d738f4f71af2",
+          "destination": "workflows/content-digest/WORKFLOW.md"
+        },
+        {
+          "source": "skills/content-digest/TOOL_POLICY.md",
+          "source_sha256": "1720e988442d22b0d5ec0d993cf2a7ec7ff8dd7f678af85e423029898fb77e7a",
+          "destination": "workflows/content-digest/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/dbm-concordance-seed/SKILL.md",
+      "source_sha256": "641f320fb1e62e08c2036e195f75a9a8629b4a47d0bdb0a3e6301419de9816ee",
+      "destination": "workflows/dbm-concordance-seed/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "LEGACY",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/dbm-concordance-seed/BRIEF_SCHEMA.md",
+          "source_sha256": "9b5463d85973ef8a41f3cce5a1bdcf7a348f3c305e21fbd74b2492fee7cf3b99",
+          "destination": "workflows/dbm-concordance-seed/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/dbm-concordance-seed/QA_CHECKS.md",
+          "source_sha256": "fc112ed19f5c088229e07677d4cf96f4047abd1392caa85b85aafc2a9a14e2bb",
+          "destination": "workflows/dbm-concordance-seed/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/dbm-concordance-seed/SKILL.md",
+          "source_sha256": "641f320fb1e62e08c2036e195f75a9a8629b4a47d0bdb0a3e6301419de9816ee",
+          "destination": "workflows/dbm-concordance-seed/WORKFLOW.md"
+        },
+        {
+          "source": "skills/dbm-concordance-seed/TOOL_POLICY.md",
+          "source_sha256": "476cf4769ad86add2c4ee29b1858ce4e3e56c833bee636265cce152eadc2127b",
+          "destination": "workflows/dbm-concordance-seed/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/dbm-concordance-verify/SKILL.md",
+      "source_sha256": "21a1cbfd97546485bea6ef9632b52ce6deb7d5b838dc070d43f26cfdc93f42ec",
+      "destination": "workflows/dbm-concordance-verify/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/dbm-concordance-verify/BRIEF_SCHEMA.md",
+          "source_sha256": "8efefed9b977fb8e0181d80215d929e4eaaacc595b2f801bb9f039483a616a98",
+          "destination": "workflows/dbm-concordance-verify/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/dbm-concordance-verify/QA_CHECKS.md",
+          "source_sha256": "7e76c9fe7fb126b3b25e29818ee1da88af4a7772ffbe350b4d7715aacbde33d8",
+          "destination": "workflows/dbm-concordance-verify/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/dbm-concordance-verify/SKILL.md",
+          "source_sha256": "21a1cbfd97546485bea6ef9632b52ce6deb7d5b838dc070d43f26cfdc93f42ec",
+          "destination": "workflows/dbm-concordance-verify/WORKFLOW.md"
+        },
+        {
+          "source": "skills/dbm-concordance-verify/TOOL_POLICY.md",
+          "source_sha256": "875f2664a66590f72edeb3b207946ab23e4cf9ab42fb9cb347c5fb126e378160",
+          "destination": "workflows/dbm-concordance-verify/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/dbm-draft-review/SKILL.md",
+      "source_sha256": "6266b14f71a81ae578029100e3849e67f8ae192aa0740b62c5735e67df209c1b",
+      "destination": "workflows/dbm-draft-review/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/dbm-draft-review/BRIEF_SCHEMA.md",
+          "source_sha256": "4a324b96c87f27cbce9ac63b82df26b91a7033cf4452c970ad5fc9ddcfff345e",
+          "destination": "workflows/dbm-draft-review/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/dbm-draft-review/QA_CHECKS.md",
+          "source_sha256": "848e36732b9fc206267bb8493cf59d87c68fa7902bfe649687104c69e42dab6e",
+          "destination": "workflows/dbm-draft-review/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/dbm-draft-review/SKILL.md",
+          "source_sha256": "6266b14f71a81ae578029100e3849e67f8ae192aa0740b62c5735e67df209c1b",
+          "destination": "workflows/dbm-draft-review/WORKFLOW.md"
+        },
+        {
+          "source": "skills/dbm-draft-review/TOOL_POLICY.md",
+          "source_sha256": "0c92b7039935cb9ae099e941b8869815bc4efef246892b9864168c653d51b407",
+          "destination": "workflows/dbm-draft-review/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/dbm-postauthor-concordance/SKILL.md",
+      "source_sha256": "bdd3bcd29376000e6bbc252a4eb39380bfaa709bca8a84820aa18e9fb152c7bb",
+      "destination": "workflows/dbm-postauthor-concordance/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/dbm-postauthor-concordance/BRIEF_SCHEMA.md",
+          "source_sha256": "ccc29005292edc15201e24aea7e8c0c8bea0d9fea43e9cbe62ea53bbfa972f2f",
+          "destination": "workflows/dbm-postauthor-concordance/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/dbm-postauthor-concordance/QA_CHECKS.md",
+          "source_sha256": "18cc4594accb045b9fdd5d188bf0c3b1d60dddaec5c62e0e7a7e0e928c58537a",
+          "destination": "workflows/dbm-postauthor-concordance/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/dbm-postauthor-concordance/SKILL.md",
+          "source_sha256": "bdd3bcd29376000e6bbc252a4eb39380bfaa709bca8a84820aa18e9fb152c7bb",
+          "destination": "workflows/dbm-postauthor-concordance/WORKFLOW.md"
+        },
+        {
+          "source": "skills/dbm-postauthor-concordance/TOOL_POLICY.md",
+          "source_sha256": "5e922a5ab1fec37e0ac2dcfd56285c09df4e9adb31590a52375b4f165572e311",
+          "destination": "workflows/dbm-postauthor-concordance/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/dbm-publish/SKILL.md",
+      "source_sha256": "7dd3e2b3099378db5d7fd31c919d53c7facbb617d39b170ea4ced277995e2006",
+      "destination": "workflows/dbm-publish/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/dbm-publish/BRIEF_SCHEMA.md",
+          "source_sha256": "a0d677301bb494101abae5431b0a6c305e8720d0046e00b0915c6caf93f0c1cc",
+          "destination": "workflows/dbm-publish/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/dbm-publish/QA_CHECKS.md",
+          "source_sha256": "93dc6ecc6b0df31f9a0b3a53a1c385815a968d2e65a576c27cf9749f1a9b873f",
+          "destination": "workflows/dbm-publish/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/dbm-publish/SKILL.md",
+          "source_sha256": "7dd3e2b3099378db5d7fd31c919d53c7facbb617d39b170ea4ced277995e2006",
+          "destination": "workflows/dbm-publish/WORKFLOW.md"
+        },
+        {
+          "source": "skills/dbm-publish/TOOL_POLICY.md",
+          "source_sha256": "735b0e11cf6bae7c3d70a0f8105a075cee584d7fa93bf8d06b58de1447e0ab91",
+          "destination": "workflows/dbm-publish/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/dbm-section-publish/SKILL.md",
+      "source_sha256": "59e8bff33d113d873f6265b654a6ed2cef2370d5f10a7ba48f8d091659512303",
+      "destination": "workflows/dbm-section-publish/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/dbm-section-publish/BRIEF_SCHEMA.md",
+          "source_sha256": "89764179626c9b8cabf1c7e0f1888f91814bd3f1a6558a899312aaa2ef6f705c",
+          "destination": "workflows/dbm-section-publish/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/dbm-section-publish/QA_CHECKS.md",
+          "source_sha256": "9ce40daf52fd8d7f020d2735f6fc9c7e9fdae8fb3778cf6601b2126c62fa4f6f",
+          "destination": "workflows/dbm-section-publish/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/dbm-section-publish/SKILL.md",
+          "source_sha256": "59e8bff33d113d873f6265b654a6ed2cef2370d5f10a7ba48f8d091659512303",
+          "destination": "workflows/dbm-section-publish/WORKFLOW.md"
+        },
+        {
+          "source": "skills/dbm-section-publish/TOOL_POLICY.md",
+          "source_sha256": "9a3410aad06d5882949c9b7ade6f65fa696edc8a6d24063d89ac06e6e2132e3f",
+          "destination": "workflows/dbm-section-publish/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/drawing-extract-page/SKILL.md",
+      "source_sha256": "e8f232f31de306ca45490e3c992d366821185ef489107c7265c0d04dbb67e2a0",
+      "destination": "workflows/drawing-extract-page/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/drawing-extract-page/BRIEF_SCHEMA.md",
+          "source_sha256": "919ffff98c09a39881e0d3d899a1649660118ca42f2dd0caf9c9ca55ac833a91",
+          "destination": "workflows/drawing-extract-page/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/drawing-extract-page/QA_CHECKS.md",
+          "source_sha256": "46e1e193c71b8c1ac940b1d854c8c7a19539d6b74ae8ba69d43a984a97caf916",
+          "destination": "workflows/drawing-extract-page/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/drawing-extract-page/SKILL.md",
+          "source_sha256": "e8f232f31de306ca45490e3c992d366821185ef489107c7265c0d04dbb67e2a0",
+          "destination": "workflows/drawing-extract-page/WORKFLOW.md"
+        },
+        {
+          "source": "skills/drawing-extract-page/TOOL_POLICY.md",
+          "source_sha256": "ee2eaf11cd6e961d8fea6bd524ce88774cb7de805978a2388cea01f1216c80db",
+          "destination": "workflows/drawing-extract-page/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/drawing-titleblock-page/SKILL.md",
+      "source_sha256": "dffa76d7b5ce86994be72e2270025c768cf3b0c3b8da827c1442eb910033e134",
+      "destination": "workflows/drawing-titleblock-page/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/drawing-titleblock-page/BRIEF_SCHEMA.md",
+          "source_sha256": "92a8e9247d4f46cd8bb16c3f77ea11f460421a6557a70db09e94950be3d833bf",
+          "destination": "workflows/drawing-titleblock-page/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/drawing-titleblock-page/QA_CHECKS.md",
+          "source_sha256": "fc553ee5ed9b5c27f9977bae6bb333d2763e694bc70c7a8b9e3aae737887ac55",
+          "destination": "workflows/drawing-titleblock-page/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/drawing-titleblock-page/SKILL.md",
+          "source_sha256": "dffa76d7b5ce86994be72e2270025c768cf3b0c3b8da827c1442eb910033e134",
+          "destination": "workflows/drawing-titleblock-page/WORKFLOW.md"
+        },
+        {
+          "source": "skills/drawing-titleblock-page/TOOL_POLICY.md",
+          "source_sha256": "1534a4c8c4498088676a2e7209c9b5600d2c32090e47d3c49819c6b93bf13c07",
+          "destination": "workflows/drawing-titleblock-page/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/equation-bbox-detect/SKILL.md",
+      "source_sha256": "c7410c6c7e489fb04858c3741ddc3dc6e6c5d225f6e2609e4ffc9c6fcebc572d",
+      "destination": "workflows/equation-bbox-detect/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/equation-bbox-detect/BRIEF_SCHEMA.md",
+          "source_sha256": "ea96308996ed27eb1efc1bfb2833309e10c285e6b6782810d230f063cfccf96a",
+          "destination": "workflows/equation-bbox-detect/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/equation-bbox-detect/QA_CHECKS.md",
+          "source_sha256": "a98df78c64d2d5604dbde1b27b09ffd3ab43602db925582c5ad979ff7d03ff5c",
+          "destination": "workflows/equation-bbox-detect/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/equation-bbox-detect/SKILL.md",
+          "source_sha256": "c7410c6c7e489fb04858c3741ddc3dc6e6c5d225f6e2609e4ffc9c6fcebc572d",
+          "destination": "workflows/equation-bbox-detect/WORKFLOW.md"
+        },
+        {
+          "source": "skills/equation-bbox-detect/TOOL_POLICY.md",
+          "source_sha256": "4919e28a063dce5cc59fc8bf72222152b62475ccf7240f4a8aa12ac0545b16f5",
+          "destination": "workflows/equation-bbox-detect/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/equation-flag-interpret/SKILL.md",
+      "source_sha256": "13e60a0a1bd2b33d74e0e6f6502e3438cc56ffb827d3f6189346d06e72c11559",
+      "destination": "workflows/equation-flag-interpret/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/equation-flag-interpret/BRIEF_SCHEMA.md",
+          "source_sha256": "251eff93afc7389e730a94d7ab192dd274509528dfb3b7e0a8a4dc98337aa8ef",
+          "destination": "workflows/equation-flag-interpret/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/equation-flag-interpret/QA_CHECKS.md",
+          "source_sha256": "0913d71e0dcb49962d675e3d0b9183d31270d8b86d7bde082c3be9fadb164cba",
+          "destination": "workflows/equation-flag-interpret/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/equation-flag-interpret/SKILL.md",
+          "source_sha256": "13e60a0a1bd2b33d74e0e6f6502e3438cc56ffb827d3f6189346d06e72c11559",
+          "destination": "workflows/equation-flag-interpret/WORKFLOW.md"
+        },
+        {
+          "source": "skills/equation-flag-interpret/TOOL_POLICY.md",
+          "source_sha256": "28f81f7499402d48cc0aabe940d9a41c4ca3dc237bbf5235b4a6cd43a3b97081",
+          "destination": "workflows/equation-flag-interpret/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/equipment-costing-extract/SKILL.md",
+      "source_sha256": "b846418fc3af069ede3bcce417165b151b1135b7b75abf94c0af77e60a46efde",
+      "destination": "workflows/equipment-costing-extract/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/equipment-costing-extract/BRIEF_SCHEMA.md",
+          "source_sha256": "a628b0b519a5738c539adcfcd4085dadadc7bfb28908c86d668f8e993f034f7d",
+          "destination": "workflows/equipment-costing-extract/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/equipment-costing-extract/QA_CHECKS.md",
+          "source_sha256": "e0d99b71308190ba28bb2c56e1b07d0575753dc43797628738f68ae95d048167",
+          "destination": "workflows/equipment-costing-extract/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/equipment-costing-extract/SKILL.md",
+          "source_sha256": "b846418fc3af069ede3bcce417165b151b1135b7b75abf94c0af77e60a46efde",
+          "destination": "workflows/equipment-costing-extract/WORKFLOW.md"
+        },
+        {
+          "source": "skills/equipment-costing-extract/TOOL_POLICY.md",
+          "source_sha256": "fb9e5cd678b7fcb196e37318d118d6ad36c0c3a527fe84c5c25aac8148fc6e1c",
+          "destination": "workflows/equipment-costing-extract/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/equipment-extract/SKILL.md",
+      "source_sha256": "572575b6f7ab58fae294d1ad1772782c5611a040455c25b7ecc9b308ebe673bb",
+      "destination": "workflows/equipment-extract/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/equipment-extract/BRIEF_SCHEMA.md",
+          "source_sha256": "93670b128a3b854ab865e0a0a5286c3d9884df83949798df8c7be827287d060b",
+          "destination": "workflows/equipment-extract/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/equipment-extract/QA_CHECKS.md",
+          "source_sha256": "6547af0d7fb137e497e983f63970f795a9ad012b7b5313d23958fd442d86475c",
+          "destination": "workflows/equipment-extract/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/equipment-extract/SKILL.md",
+          "source_sha256": "572575b6f7ab58fae294d1ad1772782c5611a040455c25b7ecc9b308ebe673bb",
+          "destination": "workflows/equipment-extract/WORKFLOW.md"
+        },
+        {
+          "source": "skills/equipment-extract/TOOL_POLICY.md",
+          "source_sha256": "b923b0508b45626171d93206f255ad42e253768245d2fcd5c942734e8d4a846b",
+          "destination": "workflows/equipment-extract/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/pandid-valve-symbol-instance/SKILL.md",
+      "source_sha256": "8cd4a224c8ff8d3a721936cc04e7e9cab86df88e12c9054681cbaf14a4eed001",
+      "destination": "workflows/pandid-valve-symbol-instance/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/pandid-valve-symbol-instance/BRIEF_SCHEMA.md",
+          "source_sha256": "a20f1704b3525c9117209e78c1d9a1e0cd4de180a5f8d2daa50027158c7deaae",
+          "destination": "workflows/pandid-valve-symbol-instance/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/pandid-valve-symbol-instance/QA_CHECKS.md",
+          "source_sha256": "b42da8c30a59193e47a5286860b071645e6d3b5ce5404fc77e6a828c2dd67961",
+          "destination": "workflows/pandid-valve-symbol-instance/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/pandid-valve-symbol-instance/SKILL.md",
+          "source_sha256": "8cd4a224c8ff8d3a721936cc04e7e9cab86df88e12c9054681cbaf14a4eed001",
+          "destination": "workflows/pandid-valve-symbol-instance/WORKFLOW.md"
+        },
+        {
+          "source": "skills/pandid-valve-symbol-instance/TOOL_POLICY.md",
+          "source_sha256": "d9dda80f115a5e290a47d4348ebb61fc9b0a5677a8abc7be58f7fa64262486d3",
+          "destination": "workflows/pandid-valve-symbol-instance/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/pandid-valve-tile/SKILL.md",
+      "source_sha256": "a278eee8564d8a1735a275200c133c2d4fd48bd875a909f954876d6096f0b73f",
+      "destination": "workflows/pandid-valve-tile/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "LEGACY",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/pandid-valve-tile/BRIEF_SCHEMA.md",
+          "source_sha256": "74010f3e106100bf30dbfef3820ddd4039bc8f9fc6b6c4d12368b9486138d691",
+          "destination": "workflows/pandid-valve-tile/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/pandid-valve-tile/QA_CHECKS.md",
+          "source_sha256": "b2351035e0ad24a8c105195e035ce47a5b21ad15a05476d1f279a8c8cd7d3f6c",
+          "destination": "workflows/pandid-valve-tile/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/pandid-valve-tile/SKILL.md",
+          "source_sha256": "a278eee8564d8a1735a275200c133c2d4fd48bd875a909f954876d6096f0b73f",
+          "destination": "workflows/pandid-valve-tile/WORKFLOW.md"
+        },
+        {
+          "source": "skills/pandid-valve-tile/TOOL_POLICY.md",
+          "source_sha256": "bf2d4fff3394c98ea7b0c962bf93061387e4f1af2a7975e1aebdf583655b17eb",
+          "destination": "workflows/pandid-valve-tile/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/pdf2md/SKILL.md",
+      "source_sha256": "1ceac09f8e1ac81ecec608af01f0c36e4211166d51dc96530f957fd75564cef1",
+      "destination": "workflows/pdf2md/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/pdf2md/BRIEF_SCHEMA.md",
+          "source_sha256": "e99e3b958172ff87bd58ba9a6cc8d8a93e7fe1af6e169d88dbaff3c7efdd6196",
+          "destination": "workflows/pdf2md/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/pdf2md/QA_CHECKS.md",
+          "source_sha256": "4d6490bc85a18fcfc1b76562cda8d4f442846ecf0902c1a25392c7a6c4b17cce",
+          "destination": "workflows/pdf2md/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/pdf2md/SKILL.md",
+          "source_sha256": "1ceac09f8e1ac81ecec608af01f0c36e4211166d51dc96530f957fd75564cef1",
+          "destination": "workflows/pdf2md/WORKFLOW.md"
+        },
+        {
+          "source": "skills/pdf2md/TOOL_POLICY.md",
+          "source_sha256": "6efb64991022313eb54fad3b78509d1398c72ffea04db82b602695de1764ff55",
+          "destination": "workflows/pdf2md/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/pdf2md-folio-extract/SKILL.md",
+      "source_sha256": "c172bc1e5c4b47863b844600682c22f6e36a42199103883093017076edaf55d7",
+      "destination": "workflows/pdf2md-folio-extract/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/pdf2md-folio-extract/BRIEF_SCHEMA.md",
+          "source_sha256": "ddfe6d141d9e35a74d02190a8cd9c1d4181878553769f9b0a6df7fbfe2414803",
+          "destination": "workflows/pdf2md-folio-extract/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/pdf2md-folio-extract/QA_CHECKS.md",
+          "source_sha256": "13147e9893398975b06c3a8377389a039b2411677bce6ef6ba3071d95510f355",
+          "destination": "workflows/pdf2md-folio-extract/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/pdf2md-folio-extract/SKILL.md",
+          "source_sha256": "c172bc1e5c4b47863b844600682c22f6e36a42199103883093017076edaf55d7",
+          "destination": "workflows/pdf2md-folio-extract/WORKFLOW.md"
+        },
+        {
+          "source": "skills/pdf2md-folio-extract/TOOL_POLICY.md",
+          "source_sha256": "c14dd7d94c0bac8441b7d8178c2ccb278356c089775f99f1595de10a87caae7b",
+          "destination": "workflows/pdf2md-folio-extract/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/pdf2md-page/SKILL.md",
+      "source_sha256": "34e1af2d5bd327318f2ee881c4c9e99979cf21a1a5887a7f778130dc081ac4ae",
+      "destination": "workflows/pdf2md-page/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "LEGACY",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/pdf2md-page/BRIEF_SCHEMA.md",
+          "source_sha256": "cdf2c0cef947516280d041d3bab625ff1775ff629ae59cc5e958a3c2f1801a49",
+          "destination": "workflows/pdf2md-page/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/pdf2md-page/QA_CHECKS.md",
+          "source_sha256": "725048ace2b54c085d8a3ee6358377d4547251f8f0fdc986f35f896cfe7a6000",
+          "destination": "workflows/pdf2md-page/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/pdf2md-page/SKILL.md",
+          "source_sha256": "34e1af2d5bd327318f2ee881c4c9e99979cf21a1a5887a7f778130dc081ac4ae",
+          "destination": "workflows/pdf2md-page/WORKFLOW.md"
+        },
+        {
+          "source": "skills/pdf2md-page/TOOL_POLICY.md",
+          "source_sha256": "8995a9f2f6f327f42780607f10042f8bed412c494bcd355e6c9652661e20c271",
+          "destination": "workflows/pdf2md-page/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/pdf2md-page-assets/SKILL.md",
+      "source_sha256": "e722ac31e3381d8c974f196efc8f45f0dc78f6d2770b4442e09753a3d8550c2f",
+      "destination": "workflows/pdf2md-page-assets/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "LEGACY",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/pdf2md-page-assets/BRIEF_SCHEMA.md",
+          "source_sha256": "a2c361750a0d65b6aef6483c2798028f4f291877accbb5b5695e03f804a02531",
+          "destination": "workflows/pdf2md-page-assets/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/pdf2md-page-assets/QA_CHECKS.md",
+          "source_sha256": "84962f9c5dab40d8798fc8a6529975c6093b13c2586e0ee54db0e350260d5c5c",
+          "destination": "workflows/pdf2md-page-assets/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/pdf2md-page-assets/SKILL.md",
+          "source_sha256": "e722ac31e3381d8c974f196efc8f45f0dc78f6d2770b4442e09753a3d8550c2f",
+          "destination": "workflows/pdf2md-page-assets/WORKFLOW.md"
+        },
+        {
+          "source": "skills/pdf2md-page-assets/TOOL_POLICY.md",
+          "source_sha256": "29fa0d2a4a0e54ed8ff40e3ade913c572203fc899e63047827e4a1a611436914",
+          "destination": "workflows/pdf2md-page-assets/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/pdf2md-page-full/SKILL.md",
+      "source_sha256": "8c0bd2c9f53e688a778ee7d7444704d532c3896139aebd160c186aca3d834cf1",
+      "destination": "workflows/pdf2md-page-full/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/pdf2md-page-full/BRIEF_SCHEMA.md",
+          "source_sha256": "72918fd4d339d43ffd93ee05b77995dfa4841af45f1c87586a55f614c5c21a9f",
+          "destination": "workflows/pdf2md-page-full/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/pdf2md-page-full/QA_CHECKS.md",
+          "source_sha256": "70a1262de96ae065d5fed56c010a6160905594b66808ab2ce2e53818bb618438",
+          "destination": "workflows/pdf2md-page-full/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/pdf2md-page-full/SKILL.md",
+          "source_sha256": "8c0bd2c9f53e688a778ee7d7444704d532c3896139aebd160c186aca3d834cf1",
+          "destination": "workflows/pdf2md-page-full/WORKFLOW.md"
+        },
+        {
+          "source": "skills/pdf2md-page-full/TOOL_POLICY.md",
+          "source_sha256": "f9ea2fd2d7d7b4a99a76bde18e746ac85591a38bf3fe13660d5c69724db2e84f",
+          "destination": "workflows/pdf2md-page-full/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "skills/proposal-format/SKILL.md",
+      "source_sha256": "27e1cbc79487cb413607ac59211d6b2ba16c94a08ebbc18bdad1745eec59c72a",
+      "destination": "workflows/proposal-format/WORKFLOW.md",
+      "disposition": "migrate-workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "CONTRACT.md",
+        "execution.json"
+      ],
+      "file_dispositions": [
+        {
+          "source": "skills/proposal-format/BRIEF_SCHEMA.md",
+          "source_sha256": "d5d2768677cf8664fe40dda5d3e0304b5918d3e76fe031c28e1a965419e0515f",
+          "destination": "workflows/proposal-format/CONTRACT.md#brief"
+        },
+        {
+          "source": "skills/proposal-format/QA_CHECKS.md",
+          "source_sha256": "88bbb4fb57b7f2f5b7cdc436f80b56235df3cfba7b1761590ffccb3edf9a6f39",
+          "destination": "workflows/proposal-format/CONTRACT.md#acceptance"
+        },
+        {
+          "source": "skills/proposal-format/SKILL.md",
+          "source_sha256": "27e1cbc79487cb413607ac59211d6b2ba16c94a08ebbc18bdad1745eec59c72a",
+          "destination": "workflows/proposal-format/WORKFLOW.md"
+        },
+        {
+          "source": "skills/proposal-format/TOOL_POLICY.md",
+          "source_sha256": "48557e12fdd936e26461a519fff0e041da11d8b76735c4cb8ec663a251d7c801",
+          "destination": "workflows/proposal-format/CONTRACT.md#tool-use"
+        }
+      ],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "agents/AGENT_DBM_PUBLISHER.md",
+      "source_sha256": "3abbe6e34f27a3f28d91cc6b48482a009d1ccc14fc596b31d35de4da506bb293",
+      "destination": "workflows/dbm-publisher/WORKFLOW.md",
+      "disposition": "workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "ACCEPTANCE.md",
+        "CONTRACT.md",
+        "PROCEDURE.md",
+        "execution.json"
+      ],
+      "file_dispositions": [],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "agents/AGENT_DRAWING_EXTRACT.md",
+      "source_sha256": "cf2d59ccf60dfe63cd49e5da66ba064f43dd26d6920db78fab6f96e7802f394d",
+      "destination": "workflows/drawing-extract/WORKFLOW.md",
+      "disposition": "workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "ACCEPTANCE.md",
+        "CONTRACT.md",
+        "EXTENDING.md",
+        "PROCEDURE.md",
+        "execution.json"
+      ],
+      "file_dispositions": [],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "agents/AGENT_EQUATION_AUDIT.md",
+      "source_sha256": "f12fa8a303cc90bf24398bb69de51c1736ea977fbd01e4211818ffd1db8f77ec",
+      "destination": "workflows/equation-audit/WORKFLOW.md",
+      "disposition": "workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "ACCEPTANCE.md",
+        "CONTRACT.md",
+        "PROCEDURE.md",
+        "execution.json"
+      ],
+      "file_dispositions": [],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    },
+    {
+      "source": "agents/AGENT_PDF2MD.md",
+      "source_sha256": "2b4fe53d91bcc54ca61ce4a141d1f40a3117d8cfc91bb49a80ca3bea87a64edf",
+      "destination": "workflows/pdf2md-orchestration/WORKFLOW.md",
+      "disposition": "workflow",
+      "status": "ACTIVE",
+      "resources": [
+        "ACCEPTANCE.md",
+        "CONTRACT.md",
+        "PROCEDURE.md",
+        "execution.json"
+      ],
+      "file_dispositions": [],
+      "metadata_disposition": "Role/compatibility metadata replaced by execution.json; name and description remain in WORKFLOW.md; former skill command expressions preserved in execution.json when supplied."
+    }
+  ],
+  "status": "COMPLETE"
+}

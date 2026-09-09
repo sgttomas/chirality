@@ -1,0 +1,14 @@
+[
+  {
+    "source": "skills/README.md",
+    "sha256": "57fd296276902a04e70e4ae948aca84fdd1eaa3d0b8f00cc9d21daecf763bfcd",
+    "destination": "workflows/README.md",
+    "disposition": "rewritten workflow authoring and explicit discovery contract"
+  },
+  {
+    "source": "skills/SKILL_TEMPLATE.md",
+    "sha256": "84f13d4de07124d904e1a55a20e76725adc8048dbcf018076502d25b28a2e6be",
+    "destination": "workflows/WORKFLOW_TEMPLATE.md",
+    "disposition": "rewritten workflow authoring and explicit discovery contract"
+  }
+]

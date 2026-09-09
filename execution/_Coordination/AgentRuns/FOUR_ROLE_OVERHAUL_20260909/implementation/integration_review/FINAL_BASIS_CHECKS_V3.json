@@ -1,0 +1,134 @@
+{
+  "status": "PASS",
+  "manifest": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/FINAL_CANDIDATE_MANIFEST_V3.json",
+  "manifest_sha256": "addfb1e02b3cb8d6db085fb4a48a15cae11d6cf4dfda8136276a93bd8c2d1308",
+  "present": 406,
+  "deleted": 215,
+  "total": 621,
+  "source_changes": [
+    "workflows/aggregation/resources/contract.md",
+    "workflows/drawing-extract/CONTRACT.md",
+    "workflows/drawing-extract/EXTENDING.md",
+    "workflows/drawing-extract/PROCEDURE.md",
+    "workflows/equation-audit/CONTRACT.md",
+    "workflows/equation-audit/PROCEDURE.md",
+    "workflows/pdf2md-orchestration/CONTRACT.md",
+    "workflows/pdf2md-orchestration/PROCEDURE.md"
+  ],
+  "checks": [
+    {
+      "path": "workflows/aggregation/resources/contract.md",
+      "checks": {
+        "raw_matches_record": true,
+        "raw_matches_v2": true,
+        "after_matches_record": true,
+        "after_matches_v3": true,
+        "trailing_whitespace_only": true
+      }
+    },
+    {
+      "path": "workflows/drawing-extract/CONTRACT.md",
+      "checks": {
+        "raw_matches_record": true,
+        "raw_matches_v2": true,
+        "after_matches_record": true,
+        "after_matches_v3": true,
+        "trailing_whitespace_only": true
+      }
+    },
+    {
+      "path": "workflows/drawing-extract/EXTENDING.md",
+      "checks": {
+        "raw_matches_record": true,
+        "raw_matches_v2": true,
+        "after_matches_record": true,
+        "after_matches_v3": true,
+        "trailing_whitespace_only": true
+      }
+    },
+    {
+      "path": "workflows/drawing-extract/PROCEDURE.md",
+      "checks": {
+        "raw_matches_record": true,
+        "raw_matches_v2": true,
+        "after_matches_record": true,
+        "after_matches_v3": true,
+        "trailing_whitespace_only": true
+      }
+    },
+    {
+      "path": "workflows/equation-audit/CONTRACT.md",
+      "checks": {
+        "raw_matches_record": true,
+        "raw_matches_v2": true,
+        "after_matches_record": true,
+        "after_matches_v3": true,
+        "trailing_whitespace_only": true
+      }
+    },
+    {
+      "path": "workflows/equation-audit/PROCEDURE.md",
+      "checks": {
+        "raw_matches_record": true,
+        "raw_matches_v2": true,
+        "after_matches_record": true,
+        "after_matches_v3": true,
+        "trailing_whitespace_only": true
+      }
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/CONTRACT.md",
+      "checks": {
+        "raw_matches_record": true,
+        "raw_matches_v2": true,
+        "after_matches_record": true,
+        "after_matches_v3": true,
+        "trailing_whitespace_only": true
+      }
+    },
+    {
+      "path": "workflows/pdf2md-orchestration/PROCEDURE.md",
+      "checks": {
+        "raw_matches_record": true,
+        "raw_matches_v2": true,
+        "after_matches_record": true,
+        "after_matches_v3": true,
+        "trailing_whitespace_only": true
+      }
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/affected-tests.log",
+      "checks": {
+        "raw_matches_record": true,
+        "normalized_matches_record": true,
+        "normalized_equal": true
+      }
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/validate_workflow_metadata.log",
+      "checks": {
+        "raw_matches_record": true,
+        "normalized_matches_record": true,
+        "normalized_equal": true
+      }
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/final_validation/candidate-whitespace.log",
+      "checks": {
+        "raw_matches_record": true,
+        "normalized_matches_record": true,
+        "normalized_equal": true
+      }
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/runtime_tools/BROAD_TESTS.log",
+      "checks": {
+        "raw_matches_record": true,
+        "normalized_matches_record": true,
+        "normalized_equal": true
+      }
+    }
+  ],
+  "errors": [],
+  "test_disposition": "No rerun: only eight workflow-resource formatting changes; all executable code unchanged from V2 test basis."
+}

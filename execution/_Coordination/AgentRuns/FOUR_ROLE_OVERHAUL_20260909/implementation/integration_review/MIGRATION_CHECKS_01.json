@@ -1,0 +1,9 @@
+{
+  "agents": 34,
+  "legacy_packages": 45,
+  "legacy_files": 183,
+  "original_agent_hash_mismatch": [],
+  "original_package_file_hash_mismatch": [],
+  "uncovered_legacy_files": [],
+  "missing_destinations": []
+}

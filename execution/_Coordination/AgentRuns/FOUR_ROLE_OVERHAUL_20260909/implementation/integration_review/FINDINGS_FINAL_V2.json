@@ -1,0 +1,128 @@
+{
+  "status": "PASS",
+  "supersedes": "FINDINGS_FINAL.json",
+  "basis_manifest_sha256": "eafd9e0c9f1e7370a3edf8489428818b6c833c8fc85e06127b409712f7009448",
+  "open_findings": 0,
+  "findings": [
+    {
+      "id": "IR-01",
+      "severity": "HIGH",
+      "file": "workflows/evaluation-protocol/execution.json",
+      "finding": "Manager capabilities omit write/bash while method directly writes protocol and synthesis; research counterpart same restriction.",
+      "recommendation": "Align output-recorder routing or capabilities with subject-read-only contract.",
+      "status": "RESOLVED",
+      "resolution": "Research/evaluation companions now permit required WORKING_ITEMS evidence writes and CLI operations; source subjects remain read-only and targets remain brief-bound."
+    },
+    {
+      "id": "IR-02",
+      "severity": "MEDIUM",
+      "file": "workflows/audit-governance/resources/method.md",
+      "finding": "Old WRITE_SCOPE and numbered \u00a714 catalog assumptions conflict with registry and new standard.",
+      "recommendation": "Audit registry/workflow/brief ceilings and bind Requirement identifier continuity heading.",
+      "status": "RESOLVED",
+      "resolution": "Governance method and contract now audit registry/workflow/brief ceilings and bind Requirement identifier continuity by heading."
+    },
+    {
+      "id": "IR-03",
+      "severity": "MEDIUM",
+      "file": "workflows/task-management/resources/contract.md",
+      "finding": "Named Agent2 specialist and sibling-manager framing retain retired topology.",
+      "recommendation": "Use TASK/ephemeral executors and explicit undertaking-owner routing.",
+      "status": "RESOLVED",
+      "resolution": "Task-management uses TASK or ephemeral Type2 and distinguishes workflow selection from another undertaking owner."
+    },
+    {
+      "id": "IR-04",
+      "severity": "HIGH",
+      "file": "tools/workflow_runtime/resolve_workflow.py",
+      "finding": "resolve_tool accepts tools/../AGENTS.md outside actual tools directory.",
+      "recommendation": "Contain resolved tools beneath tools directory; test traversal and symlink escapes.",
+      "status": "RESOLVED",
+      "resolution": "Resolved tools must remain under actual tools directory; traversal and symlink escape regressions pass."
+    },
+    {
+      "id": "IR-05",
+      "severity": "HIGH",
+      "file": "workflows/review/resources/method.md",
+      "finding": "write_status.sh WORKING_ITEMS actor always rejected for CHECKING/ISSUED.",
+      "recommendation": "Represent accepted human decision as HUMAN with required ruling/SHA inputs; distinguish recorder.",
+      "status": "RESOLVED",
+      "resolution": "Review records HUMAN decision actor separately from WORKING_ITEMS recorder and requires owning-root ruling/approval evidence before guarded status writes."
+    },
+    {
+      "id": "IR-06",
+      "severity": "HIGH",
+      "file": "workflows/audit-dep-closure/resources/method.md",
+      "finding": "Unknown Direction instructed to become undirected topology but tool excludes invalid rows.",
+      "recommendation": "Align invalid-row exclusion, incomplete topology evidence and SCC implementation contract.",
+      "status": "RESOLVED",
+      "resolution": "Closure workflow excludes invalid direction rows, states incomplete coverage, and uses the registered analyzer rather than inventing topology."
+    },
+    {
+      "id": "IR-07",
+      "severity": "HIGH",
+      "file": "workflows/researcher/resources/method.md",
+      "finding": "Several recipes construct TOOL_ROOT/tools although TOOL_ROOT already ends tools.",
+      "recommendation": "Use INSTRUCTION_ROOT/tools consistently across five observed recipes.",
+      "status": "RESOLVED",
+      "resolution": "All five observed recipes use INSTRUCTION_ROOT/tools; no doubled TOOL_ROOT/tools paths remain."
+    },
+    {
+      "id": "IR-08",
+      "severity": "HIGH",
+      "file": "tools/retrieval/scaffold_research_packet.py",
+      "finding": "Explicit output-dir outside research-root accepted with no-update-latest despite packet quarantine contract.",
+      "recommendation": "Check output containment independently from pointer update eligibility.",
+      "status": "RESOLVED",
+      "resolution": "Research packet output containment is independent of pointer updates; outside-root and escaping symlink targets fail before writes."
+    },
+    {
+      "id": "IR-09",
+      "severity": "MEDIUM",
+      "file": "workflows/audit-agents/resources/method.md",
+      "finding": "Audit assumes Type1-only caller, old metadata fields and removed rubric sections/severity.",
+      "recommendation": "Align directType0 dispatch, registry inputs, current rubric and output schema.",
+      "status": "RESOLVED",
+      "resolution": "Audit-agents now accepts authorized Type0/Type1 callers, reads registry, applies current rubric sections and uses aligned severity schema."
+    },
+    {
+      "id": "IR-10",
+      "severity": "LOW",
+      "file": "workflows/domain-prose-validate/WORKFLOW.md",
+      "finding": "Two live package titles still say SKILL; report_stub_counts documentation points missing QA_CHECKS.",
+      "recommendation": "Replace current names and consolidated companion path.",
+      "status": "RESOLVED",
+      "resolution": "Current workflow titles and the drawing count-report companion reference use migrated names/resources."
+    },
+    {
+      "id": "IR-11",
+      "severity": "HIGH",
+      "file": "workflows/change/resources/contract.md",
+      "discovered_by": "WORKING_ITEMS integration owner",
+      "finding": "Former CHANGE prohibition on owning Root workflows/tools and assumed distinct manager roles conflicts with generic WORKING_ITEMS implementation responsibility.",
+      "recommendation": "Scope Git method boundaries and route conception to HELPS_HUMANS while permitting authorized WI implementation; remove obsolete future-method framing.",
+      "status": "RESOLVED",
+      "resolution": "Change workflow now scopes its Git methods to the undertaking, permits authorized WORKING_ITEMS implementation of accepted designs, and removes former-persona reuse/ownership exclusions while preserving Git approval gates."
+    },
+    {
+      "id": "IR-12",
+      "severity": "HIGH",
+      "file": "workflows/evaluation-protocol/WORKFLOW.md; workflows/project-setup/resources/method.md",
+      "discovered_by": "fresh reviewer",
+      "finding": "One evaluation clause assigns rubric approval and waivers to WI, and setup says WI owns human decisions; other clauses correctly reserve these acts to human.",
+      "recommendation": "WI coordinates/presents/records human decisions and owns fan-in. Human retains rubric approval and waivers.",
+      "status": "RESOLVED",
+      "resolution": "WORKING_ITEMS develops proposals, coordinates, records human decisions, and validates fan-in; humans retain plan/toolbelt acceptance, waivers and scoring-rubric approval."
+    },
+    {
+      "id": "IR-13",
+      "severity": "MEDIUM",
+      "file": "workflows/domain-engine/resources/contract.md; workflows/project-setup/resources/contract.md; workflows/review/resources/contract.md",
+      "discovered_by": "fresh reviewer",
+      "finding": "Unqualified old-persona prohibitions/one-package definition appear as restrictions on WI itself, followed by handoff to another named workflow under same role.",
+      "recommendation": "State current-stage boundaries, bounded TASK duties, and transitions within an authorized undertaking or routing to separately owned undertaking. Preserve subject read-only and human decision gates.",
+      "status": "RESOLVED",
+      "resolution": "Setup, review and domain-integration resources express current-stage boundaries and authorized same-undertaking transitions. Separate ownership, read-only review subjects, domain protected state and human lifecycle decisions remain explicit."
+    }
+  ]
+}

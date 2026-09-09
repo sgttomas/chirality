@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "open_findings": 0,
+  "basis_manifest_sha256": "3676e19a5512da82d7d6417227e015a9ca6d23bf3de55a8186ab2be21b128b56",
+  "findings": [
+    {
+      "id": "IR-01",
+      "severity": "HIGH",
+      "file": "workflows/evaluation-protocol/execution.json",
+      "finding": "Manager capabilities omit write/bash while method directly writes protocol and synthesis; research counterpart same restriction.",
+      "recommendation": "Align output-recorder routing or capabilities with subject-read-only contract.",
+      "status": "RESOLVED",
+      "resolution": "Research/evaluation companions now permit required WORKING_ITEMS evidence writes and CLI operations; source subjects remain read-only and targets remain brief-bound."
+    },
+    {
+      "id": "IR-02",
+      "severity": "MEDIUM",
+      "file": "workflows/audit-governance/resources/method.md",
+      "finding": "Old WRITE_SCOPE and numbered \u00a714 catalog assumptions conflict with registry and new standard.",
+      "recommendation": "Audit registry/workflow/brief ceilings and bind Requirement identifier continuity heading.",
+      "status": "RESOLVED",
+      "resolution": "Governance method and contract now audit registry/workflow/brief ceilings and bind Requirement identifier continuity by heading."
+    },
+    {
+      "id": "IR-03",
+      "severity": "MEDIUM",
+      "file": "workflows/task-management/resources/contract.md",
+      "finding": "Named Agent2 specialist and sibling-manager framing retain retired topology.",
+      "recommendation": "Use TASK/ephemeral executors and explicit undertaking-owner routing.",
+      "status": "RESOLVED",
+      "resolution": "Task-management uses TASK or ephemeral Type2 and distinguishes workflow selection from another undertaking owner."
+    },
+    {
+      "id": "IR-04",
+      "severity": "HIGH",
+      "file": "tools/workflow_runtime/resolve_workflow.py",
+      "finding": "resolve_tool accepts tools/../AGENTS.md outside actual tools directory.",
+      "recommendation": "Contain resolved tools beneath tools directory; test traversal and symlink escapes.",
+      "status": "RESOLVED",
+      "resolution": "Resolved tools must remain under actual tools directory; traversal and symlink escape regressions pass."
+    },
+    {
+      "id": "IR-05",
+      "severity": "HIGH",
+      "file": "workflows/review/resources/method.md",
+      "finding": "write_status.sh WORKING_ITEMS actor always rejected for CHECKING/ISSUED.",
+      "recommendation": "Represent accepted human decision as HUMAN with required ruling/SHA inputs; distinguish recorder.",
+      "status": "RESOLVED",
+      "resolution": "Review records HUMAN decision actor separately from WORKING_ITEMS recorder and requires owning-root ruling/approval evidence before guarded status writes."
+    },
+    {
+      "id": "IR-06",
+      "severity": "HIGH",
+      "file": "workflows/audit-dep-closure/resources/method.md",
+      "finding": "Unknown Direction instructed to become undirected topology but tool excludes invalid rows.",
+      "recommendation": "Align invalid-row exclusion, incomplete topology evidence and SCC implementation contract.",
+      "status": "RESOLVED",
+      "resolution": "Closure workflow excludes invalid direction rows, states incomplete coverage, and uses the registered analyzer rather than inventing topology."
+    },
+    {
+      "id": "IR-07",
+      "severity": "HIGH",
+      "file": "workflows/researcher/resources/method.md",
+      "finding": "Several recipes construct TOOL_ROOT/tools although TOOL_ROOT already ends tools.",
+      "recommendation": "Use INSTRUCTION_ROOT/tools consistently across five observed recipes.",
+      "status": "RESOLVED",
+      "resolution": "All five observed recipes use INSTRUCTION_ROOT/tools; no doubled TOOL_ROOT/tools paths remain."
+    },
+    {
+      "id": "IR-08",
+      "severity": "HIGH",
+      "file": "tools/retrieval/scaffold_research_packet.py",
+      "finding": "Explicit output-dir outside research-root accepted with no-update-latest despite packet quarantine contract.",
+      "recommendation": "Check output containment independently from pointer update eligibility.",
+      "status": "RESOLVED",
+      "resolution": "Research packet output containment is independent of pointer updates; outside-root and escaping symlink targets fail before writes."
+    },
+    {
+      "id": "IR-09",
+      "severity": "MEDIUM",
+      "file": "workflows/audit-agents/resources/method.md",
+      "finding": "Audit assumes Type1-only caller, old metadata fields and removed rubric sections/severity.",
+      "recommendation": "Align directType0 dispatch, registry inputs, current rubric and output schema.",
+      "status": "RESOLVED",
+      "resolution": "Audit-agents now accepts authorized Type0/Type1 callers, reads registry, applies current rubric sections and uses aligned severity schema."
+    },
+    {
+      "id": "IR-10",
+      "severity": "LOW",
+      "file": "workflows/domain-prose-validate/WORKFLOW.md",
+      "finding": "Two live package titles still say SKILL; report_stub_counts documentation points missing QA_CHECKS.",
+      "recommendation": "Replace current names and consolidated companion path.",
+      "status": "RESOLVED",
+      "resolution": "Current workflow titles and the drawing count-report companion reference use migrated names/resources."
+    }
+  ]
+}

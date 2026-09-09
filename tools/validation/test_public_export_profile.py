@@ -25,6 +25,11 @@ def test_public_export_excludes_private_runtime_surfaces(tmp_path: Path) -> None
     stage = tmp_path / "stage"
     exporter.build_stage(stage)
 
+    assert (stage / 'agents/registry.json').is_file()
+    assert len(list((stage / 'agents').glob('AGENT_*.md'))) == 4
+    assert len(list((stage / 'workflows').glob('*/WORKFLOW.md'))) == 71
+    assert (stage / 'ADOPTION_HOLD.json').is_file()
+    assert not (stage / 'skills').exists()
     assert not (stage / ".github/workflows/harness-premerge.yml").exists()
     assert not any((stage / "docs/governance_harness/briefs").glob("*"))
     assert not (stage / "tools/practitioner_harness/BACKLOG.md").exists()
@@ -73,3 +78,12 @@ def test_public_export_rejects_private_canonical_readme_framing(tmp_path: Path) 
         "private canonical README marker in public README: ## Private Canonical Repository"
         in exporter.boundary_findings(stage)
     )
+
+
+def test_adoption_hold_blocks_apply(tmp_path):
+    import json
+    import pytest
+    exporter=load_exporter()
+    stage=tmp_path/'stage';stage.mkdir()
+    (stage/'ADOPTION_HOLD.json').write_text(json.dumps({'status':'HELD'}))
+    with pytest.raises(SystemExit,match='adoption held'):exporter.apply_target(stage,tmp_path/'target')

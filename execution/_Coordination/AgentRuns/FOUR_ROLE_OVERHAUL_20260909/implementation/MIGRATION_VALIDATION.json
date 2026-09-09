@@ -1,0 +1,2067 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "source component coverage",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original agent coverage",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original workflow coverage",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original package file coverage",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_AGGREGATION.md",
+      "pass": true,
+      "detail": "workflows/aggregation/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_AGGREGATION.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_AUDIT_AGENTS.md",
+      "pass": true,
+      "detail": "workflows/audit-agents/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_AUDIT_AGENTS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_AUDIT_DECOMP.md",
+      "pass": true,
+      "detail": "workflows/audit-decomp/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_AUDIT_DECOMP.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_AUDIT_DEP_CLOSURE.md",
+      "pass": true,
+      "detail": "workflows/audit-dep-closure/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_AUDIT_DEP_CLOSURE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_AUDIT_EPISTEMIC.md",
+      "pass": true,
+      "detail": "workflows/audit-epistemic/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_AUDIT_EPISTEMIC.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_AUDIT_GOVERNANCE.md",
+      "pass": true,
+      "detail": "workflows/audit-governance/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_AUDIT_GOVERNANCE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md",
+      "pass": true,
+      "detail": "workflows/audit-hypergraph-closure/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+      "pass": true,
+      "detail": "workflows/audit-scope-closure/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_CHANGE.md",
+      "pass": true,
+      "detail": "workflows/change/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_CHANGE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_DBM_PUBLISHER.md",
+      "pass": true,
+      "detail": "workflows/dbm-publisher/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_DBM_PUBLISHER.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_DOMAIN_DECOMP.md",
+      "pass": true,
+      "detail": "workflows/domain-decomp/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_DOMAIN_DECOMP.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_DOMAIN_ENGINE.md",
+      "pass": true,
+      "detail": "workflows/domain-engine/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_DOMAIN_ENGINE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_DOMAIN_HYPERGRAPH.md",
+      "pass": true,
+      "detail": "workflows/domain-hypergraph/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_DOMAIN_HYPERGRAPH.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_DRAWING_EXTRACT.md",
+      "pass": true,
+      "detail": "workflows/drawing-extract/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_DRAWING_EXTRACT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_EQUATION_AUDIT.md",
+      "pass": true,
+      "detail": "workflows/equation-audit/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_EQUATION_AUDIT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_EVALUATION.md",
+      "pass": true,
+      "detail": "workflows/evaluation-protocol/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_EVALUATION.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_EVALUATION_DEPENDENCY_AUDIT.md",
+      "pass": true,
+      "detail": "tools/evaluation/audit_dependencies.py"
+    },
+    {
+      "check": "retired source agents/AGENT_EVALUATION_DEPENDENCY_AUDIT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_EVALUATION_REPORT.md",
+      "pass": true,
+      "detail": "workflows/evaluation-report/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_EVALUATION_REPORT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_EVALUATION_STRUCTURE_AUDIT.md",
+      "pass": true,
+      "detail": "tools/evaluation/audit_structure.py"
+    },
+    {
+      "check": "retired source agents/AGENT_EVALUATION_STRUCTURE_AUDIT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_HELPS_HUMANS.md",
+      "pass": true,
+      "detail": "agents/AGENT_HELPS_HUMANS.md"
+    },
+    {
+      "check": "destination agents/AGENT_HELP_HUMAN.md",
+      "pass": true,
+      "detail": "agents/AGENT_HELP_HUMAN.md"
+    },
+    {
+      "check": "destination agents/AGENT_PDF2MD.md",
+      "pass": true,
+      "detail": "workflows/pdf2md-orchestration/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_PDF2MD.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_PREPARATION.md",
+      "pass": true,
+      "detail": "workflows/preparation/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_PREPARATION.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_PROJECT_DECOMP.md",
+      "pass": true,
+      "detail": "workflows/project-decomp/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_PROJECT_DECOMP.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_PROJECT_SETUP.md",
+      "pass": true,
+      "detail": "workflows/project-setup/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_PROJECT_SETUP.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_RECONCILIATION.md",
+      "pass": true,
+      "detail": "workflows/reconciliation/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_RECONCILIATION.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_RESEARCH.md",
+      "pass": true,
+      "detail": "workflows/research-orchestration/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_RESEARCH.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_RESEARCHER.md",
+      "pass": true,
+      "detail": "workflows/researcher/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_RESEARCHER.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_REVIEW.md",
+      "pass": true,
+      "detail": "workflows/review/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_REVIEW.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_SCOPE_CHANGE.md",
+      "pass": true,
+      "detail": "workflows/scope-change/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_SCOPE_CHANGE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_SOFTWARE_DECOMP.md",
+      "pass": true,
+      "detail": "workflows/software-decomp/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_SOFTWARE_DECOMP.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_TASK.md",
+      "pass": true,
+      "detail": "agents/AGENT_TASK.md"
+    },
+    {
+      "check": "destination agents/AGENT_TASK_MANAGEMENT.md",
+      "pass": true,
+      "detail": "workflows/task-management/WORKFLOW.md"
+    },
+    {
+      "check": "retired source agents/AGENT_TASK_MANAGEMENT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination agents/AGENT_WORKING_ITEMS.md",
+      "pass": true,
+      "detail": "agents/AGENT_WORKING_ITEMS.md"
+    },
+    {
+      "check": "destination skills/content-digest/SKILL.md",
+      "pass": true,
+      "detail": "workflows/content-digest/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/content-digest/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/dbm-concordance-seed/SKILL.md",
+      "pass": true,
+      "detail": "workflows/dbm-concordance-seed/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/dbm-concordance-seed/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/dbm-concordance-verify/SKILL.md",
+      "pass": true,
+      "detail": "workflows/dbm-concordance-verify/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/dbm-concordance-verify/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/dbm-draft-review/SKILL.md",
+      "pass": true,
+      "detail": "workflows/dbm-draft-review/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/dbm-draft-review/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/dbm-postauthor-concordance/SKILL.md",
+      "pass": true,
+      "detail": "workflows/dbm-postauthor-concordance/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/dbm-postauthor-concordance/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/dbm-publish/SKILL.md",
+      "pass": true,
+      "detail": "workflows/dbm-publish/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/dbm-publish/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/dbm-section-publish/SKILL.md",
+      "pass": true,
+      "detail": "workflows/dbm-section-publish/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/dbm-section-publish/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/decomposition-package-review/SKILL.md",
+      "pass": true,
+      "detail": "workflows/decomposition-package-review/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/decomposition-package-review/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/deliverable-consistency/SKILL.md",
+      "pass": true,
+      "detail": "workflows/deliverable-consistency/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/deliverable-consistency/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/dependency-extract/SKILL.md",
+      "pass": true,
+      "detail": "workflows/dependency-extract/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/dependency-extract/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/domain-documents/SKILL.md",
+      "pass": true,
+      "detail": "workflows/domain-documents/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/domain-documents/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/domain-prose-validate/SKILL.md",
+      "pass": true,
+      "detail": "workflows/domain-prose-validate/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/domain-prose-validate/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/domain-source-atomize/SKILL.md",
+      "pass": true,
+      "detail": "workflows/domain-source-atomize/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/domain-source-atomize/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/drawing-extract-page/SKILL.md",
+      "pass": true,
+      "detail": "workflows/drawing-extract-page/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/drawing-extract-page/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/drawing-titleblock-page/SKILL.md",
+      "pass": true,
+      "detail": "workflows/drawing-titleblock-page/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/drawing-titleblock-page/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/equation-bbox-detect/SKILL.md",
+      "pass": true,
+      "detail": "workflows/equation-bbox-detect/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/equation-bbox-detect/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/equation-flag-interpret/SKILL.md",
+      "pass": true,
+      "detail": "workflows/equation-flag-interpret/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/equation-flag-interpret/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/equipment-costing-extract/SKILL.md",
+      "pass": true,
+      "detail": "workflows/equipment-costing-extract/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/equipment-costing-extract/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/equipment-extract/SKILL.md",
+      "pass": true,
+      "detail": "workflows/equipment-extract/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/equipment-extract/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/estimate-prep/SKILL.md",
+      "pass": true,
+      "detail": "workflows/estimate-prep/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/estimate-prep/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/estimate-snapshot/SKILL.md",
+      "pass": true,
+      "detail": "workflows/estimate-snapshot/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/estimate-snapshot/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/evaluation-protocol/SKILL.md",
+      "pass": true,
+      "detail": "workflows/evaluation-protocol/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/evaluation-protocol/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/four-documents/SKILL.md",
+      "pass": true,
+      "detail": "workflows/four-documents/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/four-documents/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/kty-content-remediate/SKILL.md",
+      "pass": true,
+      "detail": "workflows/kty-content-remediate/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/kty-content-remediate/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/kty-metadata-align/SKILL.md",
+      "pass": true,
+      "detail": "workflows/kty-metadata-align/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/kty-metadata-align/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/lens-register/SKILL.md",
+      "pass": true,
+      "detail": "workflows/lens-register/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/lens-register/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/pandid-valve-symbol-instance/SKILL.md",
+      "pass": true,
+      "detail": "workflows/pandid-valve-symbol-instance/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/pandid-valve-symbol-instance/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/pandid-valve-tile/SKILL.md",
+      "pass": true,
+      "detail": "workflows/pandid-valve-tile/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/pandid-valve-tile/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/pdf2md/SKILL.md",
+      "pass": true,
+      "detail": "workflows/pdf2md/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/pdf2md/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/pdf2md-folio-extract/SKILL.md",
+      "pass": true,
+      "detail": "workflows/pdf2md-folio-extract/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/pdf2md-folio-extract/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/pdf2md-page/SKILL.md",
+      "pass": true,
+      "detail": "workflows/pdf2md-page/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/pdf2md-page/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/pdf2md-page-assets/SKILL.md",
+      "pass": true,
+      "detail": "workflows/pdf2md-page-assets/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/pdf2md-page-assets/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/pdf2md-page-full/SKILL.md",
+      "pass": true,
+      "detail": "workflows/pdf2md-page-full/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/pdf2md-page-full/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/proposal-format/SKILL.md",
+      "pass": true,
+      "detail": "workflows/proposal-format/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/proposal-format/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/research-orchestration/SKILL.md",
+      "pass": true,
+      "detail": "workflows/research-orchestration/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/research-orchestration/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/scc-resolution-case/SKILL.md",
+      "pass": true,
+      "detail": "workflows/scc-resolution-case/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/scc-resolution-case/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/scope-change-packet/SKILL.md",
+      "pass": true,
+      "detail": "workflows/scope-change-packet/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/scope-change-packet/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/scope-of-work/SKILL.md",
+      "pass": true,
+      "detail": "workflows/scope-of-work/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/scope-of-work/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/semantic-lensing/SKILL.md",
+      "pass": true,
+      "detail": "workflows/semantic-lensing/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/semantic-lensing/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/semantic-matrix-build/SKILL.md",
+      "pass": true,
+      "detail": "workflows/semantic-matrix-build/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/semantic-matrix-build/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/software-bounded-implementation/SKILL.md",
+      "pass": true,
+      "detail": "workflows/software-bounded-implementation/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/software-bounded-implementation/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/software-code-review/SKILL.md",
+      "pass": true,
+      "detail": "workflows/software-code-review/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/software-code-review/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/software-defect-diagnosis/SKILL.md",
+      "pass": true,
+      "detail": "workflows/software-defect-diagnosis/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/software-defect-diagnosis/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/software-repository-reconnaissance/SKILL.md",
+      "pass": true,
+      "detail": "workflows/software-repository-reconnaissance/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/software-repository-reconnaissance/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "destination skills/software-test-planning/SKILL.md",
+      "pass": true,
+      "detail": "workflows/software-test-planning/WORKFLOW.md"
+    },
+    {
+      "check": "retired source skills/software-test-planning/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_AGGREGATION.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_AUDIT_AGENTS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_AUDIT_DECOMP.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_AUDIT_DEP_CLOSURE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_AUDIT_EPISTEMIC.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_AUDIT_GOVERNANCE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_CHANGE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_DBM_PUBLISHER.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_DOMAIN_DECOMP.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_DOMAIN_ENGINE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_DOMAIN_HYPERGRAPH.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_DRAWING_EXTRACT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_EQUATION_AUDIT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_EVALUATION.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_EVALUATION_DEPENDENCY_AUDIT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_EVALUATION_REPORT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_EVALUATION_STRUCTURE_AUDIT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_HELPS_HUMANS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_HELP_HUMAN.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_PDF2MD.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_PREPARATION.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_PROJECT_DECOMP.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_PROJECT_SETUP.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_RECONCILIATION.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_RESEARCH.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_RESEARCHER.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_REVIEW.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_SCOPE_CHANGE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_SOFTWARE_DECOMP.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_TASK.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_TASK_MANAGEMENT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis agents/AGENT_WORKING_ITEMS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/content-digest/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-concordance-seed/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-concordance-verify/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-draft-review/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-postauthor-concordance/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-publish/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-section-publish/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/decomposition-package-review/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/deliverable-consistency/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dependency-extract/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-documents/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-prose-validate/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-source-atomize/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/drawing-extract-page/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/drawing-titleblock-page/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equation-bbox-detect/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equation-flag-interpret/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equipment-costing-extract/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equipment-extract/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-prep/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-snapshot/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/evaluation-protocol/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/four-documents/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/kty-content-remediate/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/kty-metadata-align/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/lens-register/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pandid-valve-symbol-instance/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pandid-valve-tile/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-folio-extract/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page-assets/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page-full/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/proposal-format/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/research-orchestration/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scc-resolution-case/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scope-change-packet/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scope-of-work/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/semantic-lensing/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/semantic-matrix-build/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-bounded-implementation/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-code-review/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-defect-diagnosis/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-repository-reconnaissance/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-test-planning/SKILL.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/content-digest/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/content-digest/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/content-digest/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-concordance-seed/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-concordance-seed/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-concordance-seed/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-concordance-verify/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-concordance-verify/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-concordance-verify/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-draft-review/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-draft-review/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-draft-review/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-postauthor-concordance/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-postauthor-concordance/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-postauthor-concordance/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-publish/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-publish/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-publish/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-section-publish/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-section-publish/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dbm-section-publish/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/decomposition-package-review/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/decomposition-package-review/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/decomposition-package-review/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/deliverable-consistency/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/deliverable-consistency/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/deliverable-consistency/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dependency-extract/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dependency-extract/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/dependency-extract/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-documents/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-documents/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-documents/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-prose-validate/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-prose-validate/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-prose-validate/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-source-atomize/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-source-atomize/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/domain-source-atomize/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/drawing-extract-page/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/drawing-extract-page/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/drawing-extract-page/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/drawing-titleblock-page/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/drawing-titleblock-page/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/drawing-titleblock-page/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equation-bbox-detect/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equation-bbox-detect/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equation-bbox-detect/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equation-flag-interpret/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equation-flag-interpret/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equation-flag-interpret/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equipment-costing-extract/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equipment-costing-extract/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equipment-costing-extract/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equipment-extract/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equipment-extract/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/equipment-extract/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-prep/BOE_STRUCTURE.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-prep/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-prep/INDEX_MD_CONTRACT.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-prep/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-prep/SCHEMA_ANNEX.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-prep/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-snapshot/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-snapshot/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/estimate-snapshot/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/evaluation-protocol/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/evaluation-protocol/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/evaluation-protocol/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/four-documents/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/four-documents/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/four-documents/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/kty-content-remediate/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/kty-content-remediate/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/kty-content-remediate/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/kty-metadata-align/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/kty-metadata-align/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/kty-metadata-align/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/lens-register/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/lens-register/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/lens-register/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pandid-valve-symbol-instance/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pandid-valve-symbol-instance/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pandid-valve-symbol-instance/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pandid-valve-tile/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pandid-valve-tile/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pandid-valve-tile/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-folio-extract/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-folio-extract/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-folio-extract/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page-assets/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page-assets/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page-assets/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page-full/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page-full/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/pdf2md-page-full/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/proposal-format/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/proposal-format/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/proposal-format/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/research-orchestration/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/research-orchestration/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/research-orchestration/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scc-resolution-case/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scc-resolution-case/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scc-resolution-case/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scope-change-packet/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scope-change-packet/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scope-change-packet/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scope-of-work/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scope-of-work/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/scope-of-work/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/semantic-lensing/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/semantic-lensing/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/semantic-lensing/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/semantic-matrix-build/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/semantic-matrix-build/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/semantic-matrix-build/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-bounded-implementation/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-bounded-implementation/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-bounded-implementation/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-code-review/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-code-review/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-code-review/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-defect-diagnosis/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-defect-diagnosis/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-defect-diagnosis/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-repository-reconnaissance/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-repository-reconnaissance/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-repository-reconnaissance/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-test-planning/BRIEF_SCHEMA.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-test-planning/QA_CHECKS.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "original basis skills/software-test-planning/TOOL_POLICY.md",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "four role files",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "71 workflow entrypoints",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "all retired role aliases",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination AGGREGATION",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination AUDIT_AGENTS",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination AUDIT_DECOMP",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination AUDIT_DEP_CLOSURE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination AUDIT_EPISTEMIC",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination AUDIT_GOVERNANCE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination AUDIT_HYPERGRAPH_CLOSURE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination AUDIT_SCOPE_CLOSURE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination CHANGE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination DBM_PUBLISHER",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination DOMAIN_DECOMP",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination DOMAIN_ENGINE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination DOMAIN_HYPERGRAPH",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination DRAWING_EXTRACT",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination EQUATION_AUDIT",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination EVALUATION",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination EVALUATION_DEPENDENCY_AUDIT",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination EVALUATION_REPORT",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination EVALUATION_STRUCTURE_AUDIT",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination PDF2MD",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination PREPARATION",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination PROJECT_DECOMP",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination PROJECT_SETUP",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination RECONCILIATION",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination RESEARCH",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination RESEARCHER",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination REVIEW",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination SCOPE_CHANGE",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination SOFTWARE_DECOMP",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "alias destination TASK_MANAGEMENT",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "human continuation-contract exclusion",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "five coordination routes",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "downstream referenced bytes preserved",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "explicit relative workflow links",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "count": 412,
+  "limits": "Inventory/custody/link verification; semantic migration judgment and downstream adoption are separate."
+}

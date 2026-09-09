@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import json
 import re
 import shutil
 import sys
@@ -32,7 +33,7 @@ PUBLIC_ROOT_FILES = {
 ROOT_DIRS = [
     ".github",
     "agents",
-    "skills",
+    "workflows",
     "tools",
     "docs",
     "init",
@@ -262,6 +263,12 @@ def build_stage(stage: Path) -> int:
     for name in RUNTIME_DIRS:
         copy_tree(RUNTIME_ROOT / name, runtime_stage / name, f"runtime/{name}")
 
+    (stage / 'ADOPTION_HOLD.json').write_text(json.dumps({
+        'schema_version': 1, 'status': 'HELD',
+        'basis': 'D-GOV-41 four-role replacement',
+        'reason': 'App and Runtime must adopt registry, workflow loading, role routing and compatibility together.',
+        'required_consumers': ['chirality-app', 'chirality-runtime']
+    }, indent=2) + '\n')
     write_public_init_prompt(stage)
 
     return sanitize_text_files(stage)
@@ -378,6 +385,9 @@ def write_report(stage: Path, manifest_count: int, sanitized_count: int, finding
 
 
 def apply_target(stage: Path, target: Path) -> None:
+    hold = stage / 'ADOPTION_HOLD.json'
+    if hold.is_file() and json.loads(hold.read_text()).get('status') == 'HELD':
+        raise SystemExit('public export adoption held: owning App and Runtime loops must adopt the four-role interface')
     if not (target / ".git").exists():
         raise SystemExit(f"refusing to apply: target has no .git directory: {target}")
     for item in target.iterdir():

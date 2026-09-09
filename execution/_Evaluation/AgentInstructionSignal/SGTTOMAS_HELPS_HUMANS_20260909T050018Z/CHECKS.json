@@ -1,0 +1,10 @@
+{
+  "reading": "Classical Boolean connectives; box-M treated as an atom for the propositional checks. No interpretation of existential affirmation or full modal system is asserted.",
+  "p5_entails_s_implies_g": true,
+  "p4_true_when_g_true_and_m_n_false": true,
+  "p3_disjuncts_overlap_at_m_true_box_m_false_n_true": {
+    "left": true,
+    "right": true
+  },
+  "runtime_or_behavioral_trials_executed": false
+}

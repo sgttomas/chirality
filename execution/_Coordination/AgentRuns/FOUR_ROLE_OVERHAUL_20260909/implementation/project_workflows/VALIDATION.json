@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "48 assigned source dispositions / 46 workflow entrypoints",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "frontmatter and execution contracts",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "assigned former sources removed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "frozen agent sources preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "NEXT_INSTANCE contracts absent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "role envelopes absent from resources",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "concrete markdown links resolve",
+      "passed": true,
+      "detail": {
+        "checked": 57,
+        "missing": []
+      }
+    },
+    {
+      "check": "resolver from foreign cwd: project selected contract",
+      "passed": true,
+      "detail": {
+        "exit": 0,
+        "expected": 0,
+        "loaded_paths": [
+          "agents/AGENT_WORKING_ITEMS.md",
+          "workflows/project-decomp/WORKFLOW.md",
+          "workflows/project-decomp/resources/contract.md"
+        ],
+        "enforcement": "instruction-asserted; host must enforce effective restrictions"
+      }
+    },
+    {
+      "check": "resolver from foreign cwd: bounded researcher selected evidence",
+      "passed": true,
+      "detail": {
+        "exit": 0,
+        "expected": 0,
+        "loaded_paths": [
+          "agents/AGENT_TASK.md",
+          "workflows/researcher/WORKFLOW.md",
+          "workflows/researcher/resources/evidence.md",
+          "workflows/researcher/resources/inquiry.md"
+        ],
+        "enforcement": "instruction-asserted; host must enforce effective restrictions"
+      }
+    },
+    {
+      "check": "resolver from foreign cwd: TASK cannot orchestrate research",
+      "passed": true,
+      "detail": {
+        "exit": 2,
+        "expected": 2,
+        "error": "ERROR: workflow/stage incompatible with role"
+      }
+    },
+    {
+      "check": "resolver from foreign cwd: matching legacy selector",
+      "passed": true,
+      "detail": {
+        "exit": 0,
+        "expected": 0,
+        "loaded_paths": [
+          "agents/AGENT_TASK.md",
+          "workflows/researcher/WORKFLOW.md"
+        ],
+        "enforcement": "instruction-asserted; host must enforce effective restrictions"
+      }
+    },
+    {
+      "check": "resolver from foreign cwd: unbound scope placeholder rejected",
+      "passed": true,
+      "detail": {
+        "exit": 2,
+        "expected": 2,
+        "error": "ERROR: unbound command expression: python3 tools/scope_of_work/check_boundary_owner_resolution.py:{scope_path}/**"
+      }
+    },
+    {
+      "check": "resolver from foreign cwd: conflicting selectors",
+      "passed": true,
+      "detail": {
+        "exit": 2,
+        "expected": 2,
+        "error": "ERROR: conflicting Workflow/TaskSkill/legacy-agent selections"
+      }
+    },
+    {
+      "check": "resolver from foreign cwd: missing selected resource",
+      "passed": true,
+      "detail": {
+        "exit": 2,
+        "expected": 2,
+        "error": "ERROR: missing or escaping resource: resources/absent.md"
+      }
+    },
+    {
+      "check": "library workflow validator",
+      "passed": true,
+      "detail": {
+        "count": 71,
+        "invalid": 0
+      }
+    }
+  ]
+}

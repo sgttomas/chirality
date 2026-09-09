@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "manifest": "execution/_Coordination/AgentRuns/FOUR_ROLE_OVERHAUL_20260909/implementation/FINAL_CANDIDATE_MANIFEST_V2.json",
+  "manifest_sha256": "eafd9e0c9f1e7370a3edf8489428818b6c833c8fc85e06127b409712f7009448",
+  "file_count": 621,
+  "mismatches": [],
+  "v1_changed_files_revisited": [
+    "workflows/change/resources/contract.md",
+    "workflows/change/resources/method.md",
+    "workflows/domain-engine/resources/contract.md",
+    "workflows/evaluation-protocol/WORKFLOW.md",
+    "workflows/project-setup/resources/contract.md",
+    "workflows/project-setup/resources/method.md",
+    "workflows/review/resources/contract.md"
+  ],
+  "code_changes_since_final_test_run": false
+}

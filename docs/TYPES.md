@@ -49,14 +49,14 @@ The path model is specified in `SPEC.md` §0.2. The entities it defines:
 | Entity | Definition |
 |---|---|
 | **Repo Root** (`REPO_ROOT`) | The root of the active writable Git checkout, resolved as `git rev-parse --show-toplevel`. In a git worktree it is the worktree's own root; for an external project/domain it is not the Chirality instruction repository. |
-| **Instruction Root** (`INSTRUCTION_ROOT`) | The shared, release-managed agent operating system — `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/` (enumeration per `SPEC.md` §0.2.1, D-GOV-26/D-GOV-27). Runtime-declared through `CHIRALITY_INSTRUCTION_ROOT` for V2 external projects; the app bundle in desktop builds; the separately governed repository instruction root for Root instruction maintenance (see `DIRECTIVE.md` §2.6). |
+| **Instruction Root** (`INSTRUCTION_ROOT`) | The shared, release-managed agent operating system — `AGENTS.md`, `CLAUDE.md`, `agents/`, `workflows/`, `tools/`, root `docs/`, `init/`, `.github/workflows/` (enumeration per `SPEC.md` §0.2.1, D-GOV-26/D-GOV-27). Runtime-declared through `CHIRALITY_INSTRUCTION_ROOT` for V2 external projects; the app bundle in desktop builds; the separately governed repository instruction root for Root instruction maintenance (see `DIRECTIVE.md` §2.6). |
 | **Working Root** (`WORKING_ROOT`) | The selected writable project or domain pack within `REPO_ROOT`, an explicitly governed in-tree project, or a user-selected folder under the desktop harness. Where governed project truth lives. One instruction root serves many working roots. Root governance maintenance is separately scoped and is not a continuing product working root after accepted retirement. |
 | **Execution Root** (`EXECUTION_ROOT`) | The execution-instance root within a working root; contains packages and tool roots. Root execution/ retains governance coordination and historical product evidence; project execution roots own active product state. |
 | **Tool Root** | A workspace-level directory for derived outputs under `{EXECUTION_ROOT}` (e.g. `_Decomposition/`, `_Evaluation/`, `_Reconciliation/`), isolated from source truth. The registry is `SPEC.md` §1.2. |
 
 ### 1.5 Path Tokens
 
-Agent instructions and skills reference roots through `{*_ROOT}` tokens, each resolving against exactly one anchor. The authoritative registry — token → anchor → resolution — is `SPEC.md` §0.3. Key tokens: `{REPO_ROOT}`, `{INSTRUCTION_ROOT}`, `{WORKING_ROOT}`, `{EXECUTION_ROOT}`, `{COORDINATION_ROOT}`, `{DECOMP_ROOT}`, and the tool-root tokens (`{AGGREGATION_ROOT}`, `{EVALUATION_ROOT}`, `{RECONCILIATION_ROOT}`, `{ESTIMATES_ROOT}`, …). Instruction-surface tokens resolve `INSTRUCTION_ROOT`-relative; workspace tokens resolve `WORKING_ROOT`-relative. Machine-absolute paths MUST NOT appear in instruction, coordination, or plan files (`SPEC.md` §0.2.4).
+Agent instructions and workflows reference roots through `{*_ROOT}` tokens, each resolving against exactly one anchor. The authoritative registry — token → anchor → resolution — is `SPEC.md` §0.3. Key tokens: `{REPO_ROOT}`, `{INSTRUCTION_ROOT}`, `{WORKING_ROOT}`, `{EXECUTION_ROOT}`, `{COORDINATION_ROOT}`, `{DECOMP_ROOT}`, and the tool-root tokens (`{AGGREGATION_ROOT}`, `{EVALUATION_ROOT}`, `{RECONCILIATION_ROOT}`, `{ESTIMATES_ROOT}`, …). Instruction-surface tokens resolve `INSTRUCTION_ROOT`-relative; workspace tokens resolve `WORKING_ROOT`-relative. Machine-absolute paths MUST NOT appear in instruction, coordination, or plan files (`SPEC.md` §0.2.4).
 
 ---
 
@@ -172,37 +172,37 @@ Candidate/non-gating graph dispositions are governance worklist states, not depe
 
 ## 4. Agent Roles
 
-Agents are classified into three runtime positions following the 0-1-2 model.
-See `AGENTS.md` for the live hierarchy and index.
+D-GOV-41 prospectively replaces the named-role and method taxonomy. The current
+candidate inventory is `agents/registry.json`; incompatible consumers remain on
+their accepted basis pending owning-loop adoption.
 
 ### 4.1 Agent Types
 
-| Type | Name | Role | Scope |
-|---|---|---|---|
-| **Type 0** | Supervising Architect | Aligns with the human, frames authority and decision points, supervises Agent 1 managers, and performs validated cross-manager fan-in | Human matter / workflow portfolio |
-| **Type 1** | Manager | Converts human-approved intent into a governed workflow, makes manager-level decisions at human gates, delegates bounded work, and validates fan-in | Package, project, or specialist workflow scope |
-| **Type 2** | Specialist | Executes a sealed bounded brief with declared context, tools, outputs, and write scope; returns outputs plus evidence and does not delegate | Single deliverable or narrow task |
-
-The type number is a runtime delegation position, not a document-authority class. Normative standards live outside the hierarchy and constrain every layer. HELP_HUMAN is the sole canonical Agent 0. Agent 1 roles are directly invokable by a human and may also run under Agent 0.
-
-Agent 2 has three valid construction forms: `TASK + skill + brief`; an ephemeral bounded generalist with no persistent `AGENT_*.md`; or an approved dedicated specialist instruction package. TASK is the default for recurring method work. A dedicated specialist requires evidence that TASK and ephemeral-generalist forms are inadequate, a HELPS_HUMANS proposal, and explicit human approval.
-
-### 4.2 Classification Properties
-
-| Property | Values | Meaning |
+| Type | Role | Contribution |
 |---|---|---|
-| `AGENT_CLASS` | `PERSONA`, `TASK` | Agent 0 and Agent 1 are interactive personas; persistent Agent 2 packages are straight-through specialists |
-| `INTERACTION_SURFACE` | `chat`, `INIT-TASK`, `spawned`, `both` | Type 0/1 may use chat; Type 2 is delegated or pipeline-invoked and is not a top-level chat persona |
-| `WRITE_SCOPE` | base values: `repo-wide`, `project-level`, `package-level`, `deliverable-local`, `tool-root-only`, `workspace-scaffold-only`, `repo-metadata-only`, `bounded-task-brief`, `none` | What the agent is allowed to write |
-| `BLOCKING` | `never`, `allowed` | Whether the agent may pause for human input |
+| 0 | HELP_HUMAN | Human alignment, continuity, and manager coordination |
+| 1 | HELPS_HUMANS | Conception and design with the human |
+| 1 | WORKING_ITEMS | Implementation coordination and integration |
+| 2 | TASK | One bounded contribution |
 
-A `tool-root-only` scope MAY be parameterized to a registered tool root or subtree — for example `tool-root-only ({EXECUTION_ROOT}/_Evaluation/<subtree>/)`. `bounded-task-brief` is the `TASK` shell's scope: writes are authorized only by the effective bounded task brief and are always subject to ScopePath containment (`SPEC.md` §0.2.3, §9.5). The full enumeration and parameterization rules live in `SPEC.md` §9.5.
+The human may enter through Type 0 or either Type 1. Type 2 is delegated and
+has two construction forms: TASK with an optional workflow, or an ephemeral
+bounded executor with no persistent instruction file. A workflow defines a
+method and its relationships; it may serve more than one compatible role.
+
+### 4.2 Configuration and assignment
+
+`instruction`, `type`, `direct_entry`, `delegates_to`,
+`allow_generalist_agent2`, `tools`, and `write_scope` are registry properties.
+`AGENT_WORKFLOW_RUNTIME.md` defines their interpretation. The brief carries
+concrete context, permissions, targets, outputs, and acceptance checks.
+`SPEC.md` §9.5 retains the scope vocabulary for runtime and historical contracts.
 
 ### 4.3 Authority Model
 
 - Normative governance documents and domain standards constrain Agent 0, Agent 1, and Agent 2; they are not runtime agents.
 - Agent 0 dispatches named Agent 1 managers and may directly dispatch bounded Agent 2 instances under the same sealed-brief, declared-scope, and durable-evidence requirements.
-- Agent 1 may delegate to named Agent 2 specialists, TASK, or an explicitly permitted ephemeral generalist.
+- Agent 1 may delegate to TASK or an explicitly permitted ephemeral bounded executor.
 - Agent 2 executes within its sealed brief and may not delegate.
 - Human authority remains the halting condition at consequential gates.
   Consequential means at least: scope expansion, consequential-risk change,
@@ -222,9 +222,9 @@ Authority and capability do not increase through delegation. Escalation flows up
 | `UpdateAcknowledgment` | `INCORPORATED | NO_EFFECT | BLOCKED | CONFLICT | HUMAN_DECISION_REQUIRED` — child response to a parent update |
 
 The work graph records actual sequencing and concurrency; the posture is not a
-complete execution language. Agent 0 owns cross-package graphs. A
-WORKING_ITEMS Agent 1 instance owns exactly one activated package and its
-intra-package graph.
+complete execution language. HELP_HUMAN owns coordination across managers. A WORKING_ITEMS instance owns
+the graph of its explicitly bounded undertaking; package and deliverable
+contracts apply when the assignment uses those forms.
 
 Coordination claim-status authority is explicit:
 
@@ -465,7 +465,7 @@ The two lifecycles are correlated but not identical. A deliverable in `IN_PROGRE
 | Invariant | Epistemic Primitive Governed |
 |---|---|
 | K-PROV-1 (mandatory provenance) | Warrant — every claim must have an extrinsic warrant or explicit `location TBD` |
-| Audit-time assessment (`AGENT_AUDIT_EPISTEMIC`; future harness `evidence-check`), bounded by K-CLAIM-1 | Status — the labeling act is assessed at audit time, not producer-emitted; per D-GOV-08 (ruled 2026-07-01) |
+| Audit-time assessment (TASK with `Workflow: audit-epistemic`; future harness `evidence-check`), bounded by K-CLAIM-1 | Status — the labeling act is assessed at audit time, not producer-emitted; per D-GOV-08 (ruled 2026-07-01) |
 | K-INVENT-1 (no invention) | Gap — missing data must be represented as a gap (TBD), not filled with a fabrication |
 | K-CONFLICT-1 (conflict surfacing) | Conflict — disagreements must be exposed as conflicts, not silently resolved |
 | K-AUTH-1 (human authority) | Ruling — only humans may author binding rulings and approval records |

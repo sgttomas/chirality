@@ -1,0 +1,2699 @@
+{
+  "basis": "781b478176db46ca66ebd38991607612e0ce9338",
+  "group": "type01",
+  "read_complete": true,
+  "subjects": [
+    {
+      "role": "CHANGE",
+      "type": 1,
+      "source_path": "agents/AGENT_CHANGE.md",
+      "sha256": "bb2922c5761395687caf120097276806769ec38f4fee8935d9e6c7bbb8506a06",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 5,
+          "heading": "# AGENT INSTRUCTIONS \u2014 CHANGE (Project File-State Management \u2022 Worktrees \u2022 Integration \u2022 Diff \u2022 Commit/Push Closeout)"
+        },
+        {
+          "line": 16,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 29,
+          "heading": "## Precedence"
+        },
+        {
+          "line": 38,
+          "heading": "## Non-negotiable invariants"
+        },
+        {
+          "line": 53,
+          "heading": "## Inputs (optional)"
+        },
+        {
+          "line": 59,
+          "heading": "## Approval and closeout gates"
+        },
+        {
+          "line": 61,
+          "heading": "### Routine closeout (commit and push by default)"
+        },
+        {
+          "line": 82,
+          "heading": "### Approval token (required for non-routine execution)"
+        },
+        {
+          "line": 85,
+          "heading": "### Heightened approval (destructive / irreversible actions)"
+        },
+        {
+          "line": 90,
+          "heading": "## Coordination rules (handoffs)"
+        },
+        {
+          "line": 102,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 118,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 133,
+          "heading": "## STRUCTURE \u2014 State Report (chat output)"
+        },
+        {
+          "line": 155,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "DBM_PUBLISHER",
+      "type": 1,
+      "source_path": "agents/AGENT_DBM_PUBLISHER.md",
+      "sha256": "3abbe6e34f27a3f28d91cc6b48482a009d1ccc14fc596b31d35de4da506bb293",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 7,
+          "heading": "# AGENT INSTRUCTIONS \u2014 DBM_PUBLISHER (Type 1 Persona \u2022 DBM Publication From Approved DOMAIN State)"
+        },
+        {
+          "line": 26,
+          "heading": "## Revision"
+        },
+        {
+          "line": 34,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 47,
+          "heading": "## Runtime variables and defaults"
+        },
+        {
+          "line": 98,
+          "heading": "## Precedence (conflict resolution)"
+        },
+        {
+          "line": 109,
+          "heading": "## Dispatch Model Guidance"
+        },
+        {
+          "line": 120,
+          "heading": "## Non-negotiable invariants"
+        },
+        {
+          "line": 153,
+          "heading": "## Publication Input Classes and Output Policy"
+        },
+        {
+          "line": 185,
+          "heading": "### Open-Item Surfacing Standard"
+        },
+        {
+          "line": 207,
+          "heading": "## Explicit non-ownership"
+        },
+        {
+          "line": 221,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 223,
+          "heading": "### Gate 1 \u2014 Intake, Authority Confirmation, and Frozen Input Manifest"
+        },
+        {
+          "line": 275,
+          "heading": "### Gate 2 \u2014 Knowledge-Landscape Review Before Schema Design"
+        },
+        {
+          "line": 301,
+          "heading": "### Gate 3 \u2014 Publication Schema and Publication Rules Freeze"
+        },
+        {
+          "line": 351,
+          "heading": "### Gate 4 \u2014 Section Map Freeze"
+        },
+        {
+          "line": 375,
+          "heading": "### Gate 5 \u2014 Dispatch Brief Freeze and Section Synthesis"
+        },
+        {
+          "line": 404,
+          "heading": "### Gate 6 \u2014 Package Assembly and Post-Authoring Evidence Bundle Review"
+        },
+        {
+          "line": 430,
+          "heading": "### Gate 7 \u2014 Acceptance, Pointer Update, and CHANGE Handoff"
+        },
+        {
+          "line": 461,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 500,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 502,
+          "heading": "### Publication tool root"
+        },
+        {
+          "line": 548,
+          "heading": "### Package-role classification of publication outputs"
+        },
+        {
+          "line": 577,
+          "heading": "### `Publication_Input_Manifest.md`"
+        },
+        {
+          "line": 610,
+          "heading": "### `Publication_Handoff_State.md`"
+        },
+        {
+          "line": 626,
+          "heading": "### `Publication_Schema.md`"
+        },
+        {
+          "line": 675,
+          "heading": "### `Section_Map.csv`"
+        },
+        {
+          "line": 708,
+          "heading": "### `Publication_Rules.md`"
+        },
+        {
+          "line": 760,
+          "heading": "### `Publication_Content_Adequacy.md`"
+        },
+        {
+          "line": 797,
+          "heading": "### Post-Authoring Evidence Bundle"
+        },
+        {
+          "line": 811,
+          "heading": "### Section Context Packets"
+        },
+        {
+          "line": 835,
+          "heading": "## RATIONALE"
+        },
+        {
+          "line": 848,
+          "heading": "### Why hypergraph evidence matters"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "DOMAIN_DECOMP",
+      "type": 1,
+      "source_path": "agents/AGENT_DOMAIN_DECOMP.md",
+      "sha256": "bd2eb97cf246d0c1f4bdaa5dd26580f5fc78470af6116072f8e3a65fac6dec29",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 7,
+          "heading": "# AGENT INSTRUCTIONS \u2014 DOMAIN_DECOMP (Handbook / Domain Decomposition)"
+        },
+        {
+          "line": 26,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 39,
+          "heading": "## Precedence (conflict resolution)"
+        },
+        {
+          "line": 50,
+          "heading": "## Non-negotiable invariants"
+        },
+        {
+          "line": 66,
+          "heading": "## Glossary (minimal)"
+        },
+        {
+          "line": 92,
+          "heading": "## Package Architecture (DOMAIN variant)"
+        },
+        {
+          "line": 101,
+          "heading": "### Main decomposition document role"
+        },
+        {
+          "line": 118,
+          "heading": "### Expected companion register types"
+        },
+        {
+          "line": 147,
+          "heading": "### Companion inventory requirement"
+        },
+        {
+          "line": 151,
+          "heading": "### Derived publication artifacts"
+        },
+        {
+          "line": 160,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 162,
+          "heading": "### Operational \u2014 \"How to do?\""
+        },
+        {
+          "line": 166,
+          "heading": "### Output Target"
+        },
+        {
+          "line": 170,
+          "heading": "### Phases"
+        },
+        {
+          "line": 172,
+          "heading": "#### Phase 1 \u2014 Intake (capture the handbook reality)"
+        },
+        {
+          "line": 214,
+          "heading": "#### Phase 1.5 \u2014 Source review (six sub-gates plus conditional 1.5-Fo)"
+        },
+        {
+          "line": 310,
+          "heading": "#### Phase 2 \u2014 Normalize (per-dispatch-unit atomization via TASK fan-out)"
+        },
+        {
+          "line": 366,
+          "heading": "#### Phase 2.5 \u2014 Retrieval prep (deterministic sub-step, not a gate)"
+        },
+        {
+          "line": 388,
+          "heading": "#### Phase 3 \u2014 Define Categories (cross-source TOC reconciliation)"
+        },
+        {
+          "line": 452,
+          "heading": "#### Phase 4 \u2014 Define Knowledge Types (within each Category)"
+        },
+        {
+          "line": 519,
+          "heading": "#### Phase 5 \u2014 Verify Coverage (anti-fragile checks + browser-mediated section coverage)"
+        },
+        {
+          "line": 552,
+          "heading": "#### Phase 6 \u2014 Publish the Domain Decomposition (finalize)"
+        },
+        {
+          "line": 576,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 578,
+          "heading": "### Normative \u2014 \"What must it be?\""
+        },
+        {
+          "line": 582,
+          "heading": "### Completeness requirements"
+        },
+        {
+          "line": 607,
+          "heading": "### Consistency requirements"
+        },
+        {
+          "line": 623,
+          "heading": "### Per-source skill output validity (Phase 2)"
+        },
+        {
+          "line": 639,
+          "heading": "### Anti-patterns (invalid outputs)"
+        },
+        {
+          "line": 655,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 657,
+          "heading": "### Descriptive \u2014 \"What is it?\""
+        },
+        {
+          "line": 661,
+          "heading": "### Required entities"
+        },
+        {
+          "line": 663,
+          "heading": "#### Handbook Unit (Atom)"
+        },
+        {
+          "line": 677,
+          "heading": "#### Section Node"
+        },
+        {
+          "line": 693,
+          "heading": "#### Dispatch Unit"
+        },
+        {
+          "line": 700,
+          "heading": "#### Category"
+        },
+        {
+          "line": 708,
+          "heading": "#### Knowledge Type"
+        },
+        {
+          "line": 717,
+          "heading": "#### Knowledge Subject"
+        },
+        {
+          "line": 727,
+          "heading": "### Required tables/sections in the Domain Decomposition Document"
+        },
+        {
+          "line": 729,
+          "heading": "#### 1) Vocabulary Map (table)"
+        },
+        {
+          "line": 740,
+          "heading": "#### 2) Domain Ledger (table)"
+        },
+        {
+          "line": 762,
+          "heading": "#### 3) Coverage & Telemetry (summary block)"
+        },
+        {
+          "line": 781,
+          "heading": "#### 4) Open Issues list"
+        },
+        {
+          "line": 785,
+          "heading": "#### 5) Decision Log / Change Log"
+        },
+        {
+          "line": 790,
+          "heading": "#### 6) Companion Inventory"
+        },
+        {
+          "line": 803,
+          "heading": "## RATIONALE"
+        },
+        {
+          "line": 805,
+          "heading": "### Why the workflow scales by per-dispatch-unit fan-out"
+        },
+        {
+          "line": 809,
+          "heading": "### Why each source is an admitted expert decomposition"
+        },
+        {
+          "line": 813,
+          "heading": "### Why the consolidated SDO is uniquely valuable because the sources disagree"
+        },
+        {
+          "line": 817,
+          "heading": "### Why the per-source HTML is the human-review surface"
+        },
+        {
+          "line": 821,
+          "heading": "### Why ContentHash is on the Domain Ledger"
+        },
+        {
+          "line": 825,
+          "heading": "### Why stable IDs survive the per-dispatch-unit pattern"
+        },
+        {
+          "line": 829,
+          "heading": "### Why retrieval-driven Gate-3 and Gate-4 ratification remain binding"
+        },
+        {
+          "line": 833,
+          "heading": "### Why the existing equation-audit sidecars are preserved"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "Canonical destination and ownership for source-review sidecars require adoption; the current HTML authority language needs an explicit interpretation."
+      ],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "DOMAIN_ENGINE",
+      "type": 1,
+      "source_path": "agents/AGENT_DOMAIN_ENGINE.md",
+      "sha256": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 7,
+          "heading": "# AGENT INSTRUCTIONS \u2014 DOMAIN_ENGINE (Type 1 Manager \u2014 Domain Engine Integration)"
+        },
+        {
+          "line": 34,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 47,
+          "heading": "## Runtime Variables and Defaults"
+        },
+        {
+          "line": 74,
+          "heading": "## Precedence (Conflict Resolution)"
+        },
+        {
+          "line": 85,
+          "heading": "## Non-Negotiable Invariants"
+        },
+        {
+          "line": 103,
+          "heading": "## Explicit Non-Ownership"
+        },
+        {
+          "line": 122,
+          "heading": "## Definitions"
+        },
+        {
+          "line": 140,
+          "heading": "## Inputs"
+        },
+        {
+          "line": 142,
+          "heading": "### Required for Any Run"
+        },
+        {
+          "line": 148,
+          "heading": "### Required Beyond Manual Bridge"
+        },
+        {
+          "line": 157,
+          "heading": "### Optional"
+        },
+        {
+          "line": 169,
+          "heading": "## Integration Levels"
+        },
+        {
+          "line": 186,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 188,
+          "heading": "### Function 1 - Intake and Classification"
+        },
+        {
+          "line": 213,
+          "heading": "### Function 2 - Profile and Boundary Design"
+        },
+        {
+          "line": 244,
+          "heading": "### Function 3 - Artifact Discovery and Readiness"
+        },
+        {
+          "line": 267,
+          "heading": "### Function 4 - Domain Tool Adapter Planning"
+        },
+        {
+          "line": 290,
+          "heading": "### Function 5 - Runtime Orchestration"
+        },
+        {
+          "line": 306,
+          "heading": "### Function 6 - Operation Proposal Workflow"
+        },
+        {
+          "line": 325,
+          "heading": "### Function 7 - Handoff and External Prover Workflow"
+        },
+        {
+          "line": 336,
+          "heading": "### Function 8 - Closure and Handoff State"
+        },
+        {
+          "line": 365,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 367,
+          "heading": "### Valid Domain Engine Profile"
+        },
+        {
+          "line": 390,
+          "heading": "### Valid Domain Tool Invocation"
+        },
+        {
+          "line": 403,
+          "heading": "### Valid Operation Proposal"
+        },
+        {
+          "line": 437,
+          "heading": "### Human Agency Map"
+        },
+        {
+          "line": 449,
+          "heading": "### Skill and Tool Dispatch Rules"
+        },
+        {
+          "line": 474,
+          "heading": "### Invalid States"
+        },
+        {
+          "line": 493,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 495,
+          "heading": "### System Map"
+        },
+        {
+          "line": 517,
+          "heading": "### Workflow Coverage Map"
+        },
+        {
+          "line": 534,
+          "heading": "### Permission Map"
+        },
+        {
+          "line": 549,
+          "heading": "### Recommended Control Package"
+        },
+        {
+          "line": 585,
+          "heading": "### Snapshot Contract"
+        },
+        {
+          "line": 605,
+          "heading": "### QA Contract"
+        },
+        {
+          "line": 624,
+          "heading": "### Runbooks"
+        },
+        {
+          "line": 626,
+          "heading": "#### Runbook A - Adopt or Review a Domain Engine Profile"
+        },
+        {
+          "line": 635,
+          "heading": "#### Runbook B - Read-Only Domain Review"
+        },
+        {
+          "line": 644,
+          "heading": "#### Runbook C - Domain Tool Invocation"
+        },
+        {
+          "line": 653,
+          "heading": "#### Runbook D - Operation Proposal"
+        },
+        {
+          "line": 662,
+          "heading": "#### Runbook E - Handoff / External Prover Support"
+        },
+        {
+          "line": 670,
+          "heading": "### Publication Workflow"
+        },
+        {
+          "line": 680,
+          "heading": "### Domain Integration Record"
+        },
+        {
+          "line": 700,
+          "heading": "### Minimal Domain Engine Profile Shape"
+        },
+        {
+          "line": 757,
+          "heading": "### OpenPipeStress Example Binding"
+        },
+        {
+          "line": 774,
+          "heading": "### INIT-TASK Brief Example - Read-Only Domain Artifact Review"
+        },
+        {
+          "line": 806,
+          "heading": "### INIT-TASK Brief Example - Operation Proposal Draft"
+        },
+        {
+          "line": 836,
+          "heading": "### HELPS_HUMANS Requirement Brief Shape"
+        },
+        {
+          "line": 854,
+          "heading": "### HELPS_HUMANS Candidate Brief Shape"
+        },
+        {
+          "line": 876,
+          "heading": "### Handoff State"
+        },
+        {
+          "line": 902,
+          "heading": "## RATIONALE"
+        },
+        {
+          "line": 904,
+          "heading": "### Why DOMAIN_ENGINE Is a Type 1 Persona"
+        },
+        {
+          "line": 908,
+          "heading": "### Why DOMAIN_ENGINE Is Not a Decomposition Agent"
+        },
+        {
+          "line": 918,
+          "heading": "### Why Profiles Come Before Tools"
+        },
+        {
+          "line": 922,
+          "heading": "### Why Operation Proposals Exist"
+        },
+        {
+          "line": 926,
+          "heading": "### Why Skill and Tool Components Remain Separate"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "DRAWING_EXTRACT",
+      "type": 1,
+      "source_path": "agents/AGENT_DRAWING_EXTRACT.md",
+      "sha256": "cf2d59ccf60dfe63cd49e5da66ba064f43dd26d6920db78fab6f96e7802f394d",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 8,
+          "heading": "# AGENT INSTRUCTIONS \u2014 DRAWING_EXTRACT (Drawing Extraction Pipeline)"
+        },
+        {
+          "line": 21,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 35,
+          "heading": "## Drawing-type + extraction-target registry"
+        },
+        {
+          "line": 49,
+          "heading": "### Valid combinations"
+        },
+        {
+          "line": 58,
+          "heading": "### Stubbed-type behavior"
+        },
+        {
+          "line": 63,
+          "heading": "### Target dispatch table"
+        },
+        {
+          "line": 77,
+          "heading": "## Runtime Parameters"
+        },
+        {
+          "line": 79,
+          "heading": "### Core parameters (type-agnostic)"
+        },
+        {
+          "line": 93,
+          "heading": "### P&ID and drawing-set parameters"
+        },
+        {
+          "line": 106,
+          "heading": "### Detailed-target parameters (required only when `EXTRACTION_TARGET=top_equipment_header_detailed`)"
+        },
+        {
+          "line": 116,
+          "heading": "### Optional merge parameters"
+        },
+        {
+          "line": 124,
+          "heading": "### Legacy compatibility alias (deprecated)"
+        },
+        {
+          "line": 134,
+          "heading": "## Compatibility shim (one slice, transitional)"
+        },
+        {
+          "line": 149,
+          "heading": "## Non-negotiable Invariants"
+        },
+        {
+          "line": 173,
+          "heading": "## Precedence"
+        },
+        {
+          "line": 183,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 187,
+          "heading": "### Phase 0 \u2014 Pre-flight `(core)`"
+        },
+        {
+          "line": 212,
+          "heading": "### Phase 1 \u2014 Rasterize pages `(core)`"
+        },
+        {
+          "line": 222,
+          "heading": "### Phase 1.5 \u2014 Prepare deterministic crops/tiles `(target hook: crop-prep)`"
+        },
+        {
+          "line": 246,
+          "heading": "#### Per-page crop override workflow"
+        },
+        {
+          "line": 254,
+          "heading": "### Phase 2 \u2014 Dispatch extractors `(core \u2014 target-aware resume validation)`"
+        },
+        {
+          "line": 294,
+          "heading": "#### Dispatch contract"
+        },
+        {
+          "line": 340,
+          "heading": "### Phase 2.5 \u2014 Title-block verification `(PFD-repertoire hook, optional)`"
+        },
+        {
+          "line": 349,
+          "heading": "### Phase 2.6 \u2014 Raw stub-count coverage report `(PFD-repertoire hook)`"
+        },
+        {
+          "line": 361,
+          "heading": "### Phase 2.7 \u2014 Deterministic stub sanitization `(PFD-repertoire hook)`"
+        },
+        {
+          "line": 381,
+          "heading": "### Phase 2.7b \u2014 Schema-consistency validation `(core, detailed target only)`"
+        },
+        {
+          "line": 390,
+          "heading": "### Phase 2.8 \u2014 Targeted deterministic page-family recovery `(PFD-repertoire hook, opt-in only)`"
+        },
+        {
+          "line": 401,
+          "heading": "### Phase 2.8b \u2014 Optional system-name backfill `(PFD-repertoire hook, opt-in only)`"
+        },
+        {
+          "line": 411,
+          "heading": "### Phase 2.9 \u2014 Final stub-count coverage report `(PFD-repertoire hook)`"
+        },
+        {
+          "line": 419,
+          "heading": "### Phase 3 \u2014 Assemble combined outputs `(core \u2014 dispatches target assembly/QC hooks)`"
+        },
+        {
+          "line": 458,
+          "heading": "### Phase 3.1 \u2014 Basic-vs-detailed reconciliation `(P_AND_ID valve detailed only)`"
+        },
+        {
+          "line": 467,
+          "heading": "### Phase 3.5 \u2014 Optional merge against existing dataset `(PFD-equipment repertoire hook, gated on MERGE_EXISTING_DATA=true)`"
+        },
+        {
+          "line": 480,
+          "heading": "### Phase 4 \u2014 Final report `(core)`"
+        },
+        {
+          "line": 499,
+          "heading": "## Implemented Repertoire Hook Registry"
+        },
+        {
+          "line": 535,
+          "heading": "## Extension point: Adding a new drawing type"
+        },
+        {
+          "line": 557,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 561,
+          "heading": "### S1 \u2014 Drawing-type + extraction-target validated at Phase 0"
+        },
+        {
+          "line": 564,
+          "heading": "### S2 \u2014 Requested page range processed"
+        },
+        {
+          "line": 567,
+          "heading": "### S3 \u2014 Page extraction delegated"
+        },
+        {
+          "line": 570,
+          "heading": "### S4 \u2014 Target-aware per-page artifact paths"
+        },
+        {
+          "line": 573,
+          "heading": "### S5 \u2014 Resume-safety contract enforced"
+        },
+        {
+          "line": 576,
+          "heading": "### S6 \u2014 Combined outputs written"
+        },
+        {
+          "line": 579,
+          "heading": "### S7 \u2014 No-findings pages preserved"
+        },
+        {
+          "line": 582,
+          "heading": "### S8 \u2014 Provenance preserved"
+        },
+        {
+          "line": 585,
+          "heading": "### S9 \u2014 Schema-consistency validated (detailed target)"
+        },
+        {
+          "line": 588,
+          "heading": "### S10 \u2014 Crop-first path applied (PFD targets)"
+        },
+        {
+          "line": 591,
+          "heading": "### S11 \u2014 Compatibility shim warning emitted"
+        },
+        {
+          "line": 594,
+          "heading": "### S12 \u2014 Merge outputs match EXISTING_DATA_PATH schema (when merged)"
+        },
+        {
+          "line": 597,
+          "heading": "### Spec-satisfaction matrix"
+        },
+        {
+          "line": 621,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 623,
+          "heading": "### Filesystem layout"
+        },
+        {
+          "line": 670,
+          "heading": "### Tool dependencies"
+        },
+        {
+          "line": 707,
+          "heading": "### Skill dispatched"
+        },
+        {
+          "line": 720,
+          "heading": "## RATIONALE"
+        },
+        {
+          "line": 730,
+          "heading": "### Why core-vs-repertoire split?"
+        },
+        {
+          "line": 736,
+          "heading": "### Why markdown_stub is the only canonical per-page artifact format?"
+        },
+        {
+          "line": 740,
+          "heading": "### Why target-aware per-page artifact paths?"
+        },
+        {
+          "line": 744,
+          "heading": "### Why stubbed drawing types fail fast?"
+        },
+        {
+          "line": 748,
+          "heading": "### Why PFD-equipment merge is repertoire-scoped, not core-general?"
+        },
+        {
+          "line": 754,
+          "heading": "### Why VLM for page extraction and deterministic tools for everything else?"
+        },
+        {
+          "line": 773,
+          "heading": "### Why crop-first with full-page context as fallback?"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "Residual manager ownership and target-registry schema are design choices; extraction parity has not been run."
+      ],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "EQUATION_AUDIT",
+      "type": 1,
+      "source_path": "agents/AGENT_EQUATION_AUDIT.md",
+      "sha256": "f12fa8a303cc90bf24398bb69de51c1736ea977fbd01e4211818ffd1db8f77ec",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 7,
+          "heading": "# AGENT INSTRUCTIONS \u2014 EQUATION_AUDIT (Equation-Audit Loop)"
+        },
+        {
+          "line": 20,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 34,
+          "heading": "## Runtime Parameters"
+        },
+        {
+          "line": 49,
+          "heading": "## Non-negotiable Invariants"
+        },
+        {
+          "line": 61,
+          "heading": "## Precedence"
+        },
+        {
+          "line": 71,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 73,
+          "heading": "### Phase 0 \u2014 Pre-flight (Gate 0)"
+        },
+        {
+          "line": 95,
+          "heading": "### Phase 1 \u2014 Extract"
+        },
+        {
+          "line": 130,
+          "heading": "### Phase 2 \u2014 Review (Gate 2)"
+        },
+        {
+          "line": 146,
+          "heading": "### Phase 3 \u2014 Apply fixes"
+        },
+        {
+          "line": 148,
+          "heading": "#### Phase 3a \u2014 Interpret prose notes"
+        },
+        {
+          "line": 164,
+          "heading": "#### Phase 3b \u2014 Validate schema (Gate 3b \u2014 automated, not human)"
+        },
+        {
+          "line": 175,
+          "heading": "#### Phase 3c \u2014 Apply fixes"
+        },
+        {
+          "line": 190,
+          "heading": "### Phase 4 \u2014 Re-extract"
+        },
+        {
+          "line": 196,
+          "heading": "### Phase 5 \u2014 Verify backcheck (Gate 5)"
+        },
+        {
+          "line": 213,
+          "heading": "### Phase 6 \u2014 Close (Gate 6)"
+        },
+        {
+          "line": 244,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 248,
+          "heading": "### S1 \u2014 All flagged entries have been resolved"
+        },
+        {
+          "line": 251,
+          "heading": "### S2 \u2014 All backcheck entries have been re-reviewed"
+        },
+        {
+          "line": 254,
+          "heading": "### S3 \u2014 Unreviewed coverage meets the allowance"
+        },
+        {
+          "line": 257,
+          "heading": "### S4 \u2014 Tools are invoked correctly"
+        },
+        {
+          "line": 260,
+          "heading": "### S5 \u2014 Prose-note interpretation is delegated via compliant TASK dispatch"
+        },
+        {
+          "line": 263,
+          "heading": "### S6 \u2014 Bbox detection (when enabled) is delegated via compliant TASK dispatch"
+        },
+        {
+          "line": 266,
+          "heading": "### S7 \u2014 Schema gate is enforced before fix-apply"
+        },
+        {
+          "line": 269,
+          "heading": "### S8 \u2014 Snapshot is immutable"
+        },
+        {
+          "line": 272,
+          "heading": "### S9 \u2014 _LATEST pointer matches the most recent closure"
+        },
+        {
+          "line": 275,
+          "heading": "### S10 \u2014 Provenance is preserved"
+        },
+        {
+          "line": 278,
+          "heading": "### Spec-satisfaction matrix"
+        },
+        {
+          "line": 300,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 302,
+          "heading": "### Filesystem layout"
+        },
+        {
+          "line": 341,
+          "heading": "### Tool dependencies"
+        },
+        {
+          "line": 357,
+          "heading": "### Skills dispatched"
+        },
+        {
+          "line": 369,
+          "heading": "## RATIONALE"
+        },
+        {
+          "line": 371,
+          "heading": "### Why a persona, not a Type-2 task agent?"
+        },
+        {
+          "line": 383,
+          "heading": "### Why the LLM boundary moved into a skill"
+        },
+        {
+          "line": 389,
+          "heading": "### Why hash-keyed identity"
+        },
+        {
+          "line": 399,
+          "heading": "### Why a versioned-snapshot layout"
+        },
+        {
+          "line": 411,
+          "heading": "### Why migrate, rather than tolerate both layouts forever"
+        },
+        {
+          "line": 415,
+          "heading": "### Why per-flag interpretation, not batch"
+        },
+        {
+          "line": 419,
+          "heading": "### Why per-page bbox detection, not whole-document"
+        },
+        {
+          "line": 423,
+          "heading": "### Why the schema validator gates fix-apply"
+        },
+        {
+          "line": 427,
+          "heading": "### Pipeline position"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "The correct root convention must be selected against all live caller briefs before implementation."
+      ],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "EVALUATION",
+      "type": 1,
+      "source_path": "agents/AGENT_EVALUATION.md",
+      "sha256": "49f11c18efe3b2b88bdb2f6fb377d3f5013e84753e8fd1f074715a322b906cc7",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 7,
+          "heading": "# AGENT INSTRUCTIONS \u2014 EVALUATION (Agent 1 Manager)"
+        },
+        {
+          "line": 14,
+          "heading": "## Method hydration"
+        },
+        {
+          "line": 18,
+          "heading": "## Agent Contract"
+        },
+        {
+          "line": 29,
+          "heading": "## Precedence"
+        },
+        {
+          "line": 38,
+          "heading": "## Invariants"
+        },
+        {
+          "line": 49,
+          "heading": "## Specialist roster"
+        },
+        {
+          "line": 53,
+          "heading": "## Agent 2 Brief Contract"
+        },
+        {
+          "line": 58,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 71,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 88,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 106,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "HELPS_HUMANS",
+      "type": 1,
+      "source_path": "agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "47a30075b4286a7352d78aae9d033d8eead8ef125e4063d0cc7c1235b3e9101a",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 7,
+          "heading": "# AGENT INSTRUCTIONS \u2014 HELPS_HUMANS (Workflow-Component Architecture Manager)"
+        },
+        {
+          "line": 10,
+          "heading": "## Purpose"
+        },
+        {
+          "line": 26,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 37,
+          "heading": "## Governing basis and precedence"
+        },
+        {
+          "line": 50,
+          "heading": "## Non-negotiable invariants"
+        },
+        {
+          "line": 78,
+          "heading": "## Component territories"
+        },
+        {
+          "line": 88,
+          "heading": "## Inputs"
+        },
+        {
+          "line": 100,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 102,
+          "heading": "### Phase 1 \u2014 Ground authority and the problem"
+        },
+        {
+          "line": 114,
+          "heading": "### Phase 2 \u2014 Classify runtime and component form"
+        },
+        {
+          "line": 129,
+          "heading": "### Phase 3 \u2014 Design the applicable contracts"
+        },
+        {
+          "line": 142,
+          "heading": "### Phase 4 \u2014 Dedicated Agent 2 proposal gate"
+        },
+        {
+          "line": 159,
+          "heading": "### Phase 5 \u2014 Implement within scope"
+        },
+        {
+          "line": 170,
+          "heading": "### Phase 6 \u2014 Verify and hand off"
+        },
+        {
+          "line": 184,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 216,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 218,
+          "heading": "### Minimum component design record"
+        },
+        {
+          "line": 233,
+          "heading": "### Decision request returned to HELP_HUMAN"
+        },
+        {
+          "line": 245,
+          "heading": "### Control-loop artifacts (component-design responsibility)"
+        },
+        {
+          "line": 297,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "HELP_HUMAN",
+      "type": 0,
+      "source_path": "agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 8,
+          "heading": "# AGENT INSTRUCTIONS \u2014 HELP_HUMAN (Agent 0 Supervising Architect)"
+        },
+        {
+          "line": 27,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 38,
+          "heading": "## Precedence"
+        },
+        {
+          "line": 47,
+          "heading": "## Invariants"
+        },
+        {
+          "line": 85,
+          "heading": "## Pattern-selection precedence"
+        },
+        {
+          "line": 96,
+          "heading": "## Agent 1 routing"
+        },
+        {
+          "line": 114,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 116,
+          "heading": "### Phase 1 \u2014 Align and inspect"
+        },
+        {
+          "line": 125,
+          "heading": "### Phase 2 \u2014 Build the cross-package work graph"
+        },
+        {
+          "line": 135,
+          "heading": "### Phase 3 \u2014 Launch Agent 1 instances"
+        },
+        {
+          "line": 145,
+          "heading": "### Phase 4 \u2014 Supervise execution"
+        },
+        {
+          "line": 159,
+          "heading": "### Phase 5 \u2014 Human decisions"
+        },
+        {
+          "line": 165,
+          "heading": "### Phase 6 \u2014 Validate fan-in and close"
+        },
+        {
+          "line": 177,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 199,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 223,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "PDF2MD",
+      "type": 1,
+      "source_path": "agents/AGENT_PDF2MD.md",
+      "sha256": "2b4fe53d91bcc54ca61ce4a141d1f40a3117d8cfc91bb49a80ca3bea87a64edf",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 8,
+          "heading": "# AGENT INSTRUCTIONS \u2014 PDF2MD (PDF-to-Markdown Conversion Pipeline)"
+        },
+        {
+          "line": 21,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 35,
+          "heading": "## Runtime Parameters"
+        },
+        {
+          "line": 51,
+          "heading": "## Non-negotiable Invariants"
+        },
+        {
+          "line": 67,
+          "heading": "## Precedence"
+        },
+        {
+          "line": 77,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 79,
+          "heading": "### Phase 0 \u2014 Pre-flight"
+        },
+        {
+          "line": 105,
+          "heading": "### Phase 1 \u2014 Rasterize"
+        },
+        {
+          "line": 114,
+          "heading": "### Phase 1.5 \u2014 Folio extraction (optional, idempotent)"
+        },
+        {
+          "line": 126,
+          "heading": "### Phase 2 \u2014 Batch dispatch (merged VLM: Markdown + asset JSON)"
+        },
+        {
+          "line": 149,
+          "heading": "#### Dispatch contract"
+        },
+        {
+          "line": 190,
+          "heading": "#### Legacy two-skill split (deprecated)"
+        },
+        {
+          "line": 194,
+          "heading": "### Phase 3 \u2014 Post-process"
+        },
+        {
+          "line": 207,
+          "heading": "### Phase 3.5 \u2014 Prose asset anchoring and materialization (optional)"
+        },
+        {
+          "line": 243,
+          "heading": "### Phase 4 \u2014 Assemble"
+        },
+        {
+          "line": 272,
+          "heading": "### Phase 5 \u2014 Equation-audit handoff (optional, recommended for math-heavy sources)"
+        },
+        {
+          "line": 288,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 292,
+          "heading": "### S1 \u2014 Output exists and is non-empty"
+        },
+        {
+          "line": 295,
+          "heading": "### S2 \u2014 Manifest is preserved"
+        },
+        {
+          "line": 298,
+          "heading": "### S3 \u2014 Partial conversion is reported"
+        },
+        {
+          "line": 301,
+          "heading": "### S4 \u2014 Tools are invoked correctly"
+        },
+        {
+          "line": 304,
+          "heading": "### S5 \u2014 VLM work is delegated via compliant TASK dispatch"
+        },
+        {
+          "line": 307,
+          "heading": "### S6 \u2014 Resumability holds with content-hash validation"
+        },
+        {
+          "line": 310,
+          "heading": "### S7 \u2014 Degraded output is gated"
+        },
+        {
+          "line": 313,
+          "heading": "### S8 \u2014 Asset materialization is validated when enabled"
+        },
+        {
+          "line": 316,
+          "heading": "### S9 \u2014 Asset discovery stays page-bounded"
+        },
+        {
+          "line": 319,
+          "heading": "### Spec-satisfaction matrix"
+        },
+        {
+          "line": 340,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 342,
+          "heading": "### Filesystem layout"
+        },
+        {
+          "line": 369,
+          "heading": "### Tool dependencies"
+        },
+        {
+          "line": 388,
+          "heading": "### Skill dispatched"
+        },
+        {
+          "line": 401,
+          "heading": "## RATIONALE"
+        },
+        {
+          "line": 403,
+          "heading": "### Why replace edgequake-pdf2md?"
+        },
+        {
+          "line": 412,
+          "heading": "### Why batch parallelism?"
+        },
+        {
+          "line": 416,
+          "heading": "### Why DPI 300?"
+        },
+        {
+          "line": 420,
+          "heading": "### Which model for `pdf2md-page-full` dispatches?"
+        },
+        {
+          "line": 424,
+          "heading": "### Why merge Markdown and asset discovery into one skill?"
+        },
+        {
+          "line": 436,
+          "heading": "### Why two-stage post-processing?"
+        },
+        {
+          "line": 445,
+          "heading": "### Why partial success with explicit degradation?"
+        },
+        {
+          "line": 451,
+          "heading": "### Why asset mode is optional"
+        },
+        {
+          "line": 462,
+          "heading": "### Why v1 appends an asset block instead of rewriting prose"
+        },
+        {
+          "line": 468,
+          "heading": "### Pipeline position"
+        }
+      ],
+      "disposition": "CONVERT_TO_SKILL",
+      "uncertainties": [
+        "Residual owner and full source-conversion parity are unresolved; existing bounded pdf2md skill is not a drop-in manager replacement."
+      ],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "PROJECT_DECOMP",
+      "type": 1,
+      "source_path": "agents/AGENT_PROJECT_DECOMP.md",
+      "sha256": "8348766462c99eb81423a4a474e53ababc4a92ecffa330695ded07bf2fbb09d9",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 5,
+          "heading": "# AGENT INSTRUCTIONS \u2014 PROJECT_DECOMP (Project Decomposition)"
+        },
+        {
+          "line": 14,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 27,
+          "heading": "## Precedence (conflict resolution)"
+        },
+        {
+          "line": 38,
+          "heading": "## Non-negotiable invariants"
+        },
+        {
+          "line": 64,
+          "heading": "## Glossary (minimal)"
+        },
+        {
+          "line": 78,
+          "heading": "## Package Architecture (PROJECT variant)"
+        },
+        {
+          "line": 86,
+          "heading": "### Decomposition truth vs derivative review/publication bundle"
+        },
+        {
+          "line": 90,
+          "heading": "### When to use companion registers"
+        },
+        {
+          "line": 103,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 105,
+          "heading": "### Operational \u2014 \"How to do?\""
+        },
+        {
+          "line": 109,
+          "heading": "### Output Target"
+        },
+        {
+          "line": 112,
+          "heading": "### Phases"
+        },
+        {
+          "line": 114,
+          "heading": "#### Phase 1 \u2014 Intake (capture the messy reality)"
+        },
+        {
+          "line": 133,
+          "heading": "#### Phase 2 \u2014 Define Scope (SSOW + vocabulary)"
+        },
+        {
+          "line": 158,
+          "heading": "#### Phase 3 \u2014 Define Objectives (derived from SSOW)"
+        },
+        {
+          "line": 178,
+          "heading": "#### Phase 4 \u2014 Define Packages (flat partition)"
+        },
+        {
+          "line": 202,
+          "heading": "#### Phase 5 \u2014 Define Deliverables (within each package)"
+        },
+        {
+          "line": 227,
+          "heading": "#### Phase 6 \u2014 Verify Coverage (anti-fragile checks)"
+        },
+        {
+          "line": 249,
+          "heading": "#### Phase 7 \u2014 Publish the Decomposition (finalize)"
+        },
+        {
+          "line": 270,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 272,
+          "heading": "### Normative \u2014 \"What must it be?\""
+        },
+        {
+          "line": 276,
+          "heading": "### Completeness requirements"
+        },
+        {
+          "line": 295,
+          "heading": "### Consistency requirements"
+        },
+        {
+          "line": 309,
+          "heading": "### Anti-patterns (invalid outputs)"
+        },
+        {
+          "line": 325,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 327,
+          "heading": "### Descriptive \u2014 \"What is it?\""
+        },
+        {
+          "line": 331,
+          "heading": "### Required entities"
+        },
+        {
+          "line": 333,
+          "heading": "#### Scope Item"
+        },
+        {
+          "line": 340,
+          "heading": "#### Objective"
+        },
+        {
+          "line": 346,
+          "heading": "#### Package"
+        },
+        {
+          "line": 354,
+          "heading": "#### Deliverable"
+        },
+        {
+          "line": 374,
+          "heading": "#### Artifact"
+        },
+        {
+          "line": 383,
+          "heading": "### Required tables/sections in the Decomposition Document"
+        },
+        {
+          "line": 385,
+          "heading": "#### 1) Vocabulary Map (table)"
+        },
+        {
+          "line": 391,
+          "heading": "#### 2) Scope Ledger (table)"
+        },
+        {
+          "line": 406,
+          "heading": "#### 3) Coverage & Telemetry (summary block)"
+        },
+        {
+          "line": 418,
+          "heading": "#### 4) Open Issues list"
+        },
+        {
+          "line": 422,
+          "heading": "#### 5) Decision Log / Change Log"
+        },
+        {
+          "line": 430,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "PROJECT_SETUP",
+      "type": 1,
+      "source_path": "agents/AGENT_PROJECT_SETUP.md",
+      "sha256": "8cd3af620af3b81ed3c9b1d967679ab0557bdcb6806f7a3302fc5f08dfd164d8",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 8,
+          "heading": "# AGENT INSTRUCTIONS \u2014 PROJECT_SETUP (Workspace Initialization + Setup Pipelines + Estimation)"
+        },
+        {
+          "line": 29,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 42,
+          "heading": "## Runtime variables and defaults"
+        },
+        {
+          "line": 58,
+          "heading": "## Session entry: state inspection"
+        },
+        {
+          "line": 90,
+          "heading": "## Precedence (conflict resolution)"
+        },
+        {
+          "line": 101,
+          "heading": "## Foundations: Ontology, Epistemology, Praxeology, Axiology"
+        },
+        {
+          "line": 114,
+          "heading": "## Non-negotiable invariants"
+        },
+        {
+          "line": 146,
+          "heading": "## Glossary (minimal)"
+        },
+        {
+          "line": 164,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 166,
+          "heading": "### Schedule workflow (when selected)"
+        },
+        {
+          "line": 176,
+          "heading": "### Function 1: Initialize (one-time per workspace)"
+        },
+        {
+          "line": 180,
+          "heading": "#### Phase 1.1: Ingest decomposition"
+        },
+        {
+          "line": 195,
+          "heading": "#### Phase 1.2: Confirm coordination representation"
+        },
+        {
+          "line": 216,
+          "heading": "#### Phase 1.3 (Optional): Confirm dependency declaration rules"
+        },
+        {
+          "line": 232,
+          "heading": "### Function 2: Scaffold + run setup-time pipelines (one-time, human-gated)"
+        },
+        {
+          "line": 236,
+          "heading": "#### Phase 2.0: Initialize project tool roots"
+        },
+        {
+          "line": 248,
+          "heading": "#### Phase 2.1: Spawn PREPARATION sub-agents (scaffolding)"
+        },
+        {
+          "line": 271,
+          "heading": "#### Phase 2.1b: Retrieval-driven preflight (DOMAIN_DECOMP only; when a retrieval index is present)"
+        },
+        {
+          "line": 298,
+          "heading": "#### Phase 2.2: Dispatch document drafting (Pass 1 + Pass 2)"
+        },
+        {
+          "line": 331,
+          "heading": "#### Phase 2.2a: Optional DOMAIN source-fidelity enrichment rerun"
+        },
+        {
+          "line": 353,
+          "heading": "#### Phase 2.3: Dispatch semantic matrix generation"
+        },
+        {
+          "line": 420,
+          "heading": "#### Phase 2.4: Dispatch semantic lensing register generation"
+        },
+        {
+          "line": 441,
+          "heading": "#### Phase 2.5: Dispatch document enrichment (Pass 3 only \u2014 apply semantic lensing)"
+        },
+        {
+          "line": 469,
+          "heading": "#### Phase 2.6: Spawn DOMAIN_HYPERGRAPH sub-agent (DOMAIN variant only)"
+        },
+        {
+          "line": 487,
+          "heading": "### Function 3: Scan & report (on demand)"
+        },
+        {
+          "line": 491,
+          "heading": "#### Phase 3.1: Scan"
+        },
+        {
+          "line": 507,
+          "heading": "#### Phase 3.2: Report"
+        },
+        {
+          "line": 525,
+          "heading": "### Function 4: Estimating Pipeline (human-gated, multi-tier)"
+        },
+        {
+          "line": 531,
+          "heading": "#### Phase 4.0: Load estimation strategy"
+        },
+        {
+          "line": 556,
+          "heading": "#### Phase 4.1: Execute tier (repeats per tier, in tier order)"
+        },
+        {
+          "line": 573,
+          "heading": "#### Phase 4.2: Post-estimation summary"
+        },
+        {
+          "line": 586,
+          "heading": "#### Phase 4.3 (Optional): Spawn AGGREGATION"
+        },
+        {
+          "line": 597,
+          "heading": "### Control loop artifacts (owned by HELPS_HUMANS)"
+        },
+        {
+          "line": 606,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 608,
+          "heading": "### Workspace validity"
+        },
+        {
+          "line": 616,
+          "heading": "### Coordination representation validity"
+        },
+        {
+          "line": 622,
+          "heading": "### S-EST \u2014 Estimating pipeline validity"
+        },
+        {
+          "line": 632,
+          "heading": "### Invalid states (examples)"
+        },
+        {
+          "line": 647,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 649,
+          "heading": "### Folder hierarchy (conceptual)"
+        },
+        {
+          "line": 690,
+          "heading": "### Minimum viable fileset (deliverable-local)"
+        },
+        {
+          "line": 706,
+          "heading": "### `_COORDINATION.md` (project-level; human-owned)"
+        },
+        {
+          "line": 723,
+          "heading": "### Deliverable IDs (important)"
+        },
+        {
+          "line": 734,
+          "heading": "## Output Persistence"
+        },
+        {
+          "line": 747,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "RECONCILIATION",
+      "type": 1,
+      "source_path": "agents/AGENT_RECONCILIATION.md",
+      "sha256": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 8,
+          "heading": "# AGENT INSTRUCTIONS \u2014 RECONCILIATION (Agent 1 Deliverable-Corpus Concordance Manager)"
+        },
+        {
+          "line": 24,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 35,
+          "heading": "## Precedence"
+        },
+        {
+          "line": 47,
+          "heading": "## Invariants"
+        },
+        {
+          "line": 118,
+          "heading": "## Inputs"
+        },
+        {
+          "line": 130,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 132,
+          "heading": "### R0 \u2014 Activate and calibrate"
+        },
+        {
+          "line": 145,
+          "heading": "### R1 \u2014 Read-only corpus inventory"
+        },
+        {
+          "line": 153,
+          "heading": "### R2 \u2014 Package concordance waves"
+        },
+        {
+          "line": 203,
+          "heading": "### R3 \u2014 Cross-package synthesis"
+        },
+        {
+          "line": 211,
+          "heading": "### R4 \u2014 Human and engineering decision gate"
+        },
+        {
+          "line": 219,
+          "heading": "### R5 \u2014 Authorized repair tranches"
+        },
+        {
+          "line": 231,
+          "heading": "### R6 \u2014 Backcheck and close"
+        },
+        {
+          "line": 257,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 298,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 358,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "Exact adopting instrument for migration qualification needs to accompany the new shared profile."
+      ],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "RESEARCH",
+      "type": 1,
+      "source_path": "agents/AGENT_RESEARCH.md",
+      "sha256": "a828037551c1c923fc3a1c122c6d6ed2bca46e6d6cea989d4bf66f4a57810870",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 7,
+          "heading": "# AGENT INSTRUCTIONS \u2014 RESEARCH (Domain Research Persona)"
+        },
+        {
+          "line": 27,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 40,
+          "heading": "## Runtime Variables and Defaults"
+        },
+        {
+          "line": 57,
+          "heading": "## Write Scope Contract"
+        },
+        {
+          "line": 73,
+          "heading": "## Precedence (Conflict Resolution)"
+        },
+        {
+          "line": 84,
+          "heading": "## Non-Negotiable Invariants"
+        },
+        {
+          "line": 98,
+          "heading": "## Accepted DOMAIN_DECOMP Surfaces"
+        },
+        {
+          "line": 121,
+          "heading": "## Retrieval Stack Awareness"
+        },
+        {
+          "line": 155,
+          "heading": "## Delegating to RESEARCHER (Fan-Out)"
+        },
+        {
+          "line": 176,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 178,
+          "heading": "### Step 0 \u2014 Ground the Research Context"
+        },
+        {
+          "line": 189,
+          "heading": "### Step 1 \u2014 Classify the Question"
+        },
+        {
+          "line": 205,
+          "heading": "### Step 2 \u2014 Choose Retrieval and Register Reads"
+        },
+        {
+          "line": 217,
+          "heading": "### Step 3 \u2014 Synthesize With Evidence"
+        },
+        {
+          "line": 227,
+          "heading": "### Step 4 \u2014 Optional Research Packet"
+        },
+        {
+          "line": 254,
+          "heading": "### Step 5 \u2014 Handoff If Action Is Needed"
+        },
+        {
+          "line": 269,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 271,
+          "heading": "### Valid Research Answer"
+        },
+        {
+          "line": 284,
+          "heading": "### Evidence Quality Levels"
+        },
+        {
+          "line": 297,
+          "heading": "### Assertion Mode (`:READ` vs `:RUN`)"
+        },
+        {
+          "line": 306,
+          "heading": "### Verification Source"
+        },
+        {
+          "line": 316,
+          "heading": "### Load-Bearing Claims"
+        },
+        {
+          "line": 320,
+          "heading": "### Research Output Minimum"
+        },
+        {
+          "line": 339,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 341,
+          "heading": "### Evidence Map Columns"
+        },
+        {
+          "line": 354,
+          "heading": "### Query Log Columns"
+        },
+        {
+          "line": 365,
+          "heading": "### Conflict Columns"
+        },
+        {
+          "line": 373,
+          "heading": "### Amendment Candidate Columns"
+        },
+        {
+          "line": 387,
+          "heading": "### Open Questions Columns"
+        },
+        {
+          "line": 395,
+          "heading": "### Research Note Sections"
+        },
+        {
+          "line": 417,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "Manager versus TASK loading of research-orchestration needs a clear adopted execution contract."
+      ],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "REVIEW",
+      "type": 1,
+      "source_path": "agents/AGENT_REVIEW.md",
+      "sha256": "40b7caec558c5019b942219a19451d19243d7dc31d626e3f18a72214c59c5bab",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 5,
+          "heading": "# AGENT INSTRUCTIONS \u2014 REVIEW (Type 1 Persona \u2022 Deliverable Checking Gate)"
+        },
+        {
+          "line": 25,
+          "heading": "## Revision"
+        },
+        {
+          "line": 33,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 46,
+          "heading": "## Runtime variables and defaults"
+        },
+        {
+          "line": 57,
+          "heading": "## Precedence (conflict resolution)"
+        },
+        {
+          "line": 68,
+          "heading": "## Non-negotiable invariants"
+        },
+        {
+          "line": 98,
+          "heading": "## Explicit non-ownership"
+        },
+        {
+          "line": 109,
+          "heading": "## Review Types"
+        },
+        {
+          "line": 122,
+          "heading": "## Inputs"
+        },
+        {
+          "line": 124,
+          "heading": "### Required (at Gate 1)"
+        },
+        {
+          "line": 128,
+          "heading": "### Optional"
+        },
+        {
+          "line": 137,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 139,
+          "heading": "### Gate 1 \u2014 Scope and Precondition Check"
+        },
+        {
+          "line": 173,
+          "heading": "### Gate 2 \u2014 Checklist Generation"
+        },
+        {
+          "line": 257,
+          "heading": "### Gate 3 \u2014 Findings Capture (Iterative)"
+        },
+        {
+          "line": 304,
+          "heading": "### Gate 4 \u2014 Disposition Review and Summary"
+        },
+        {
+          "line": 345,
+          "heading": "### Gate 5 \u2014 Lifecycle Transition"
+        },
+        {
+          "line": 394,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 426,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 428,
+          "heading": "### Deliverable-local artifacts"
+        },
+        {
+          "line": 436,
+          "heading": "### Tool-root layout"
+        },
+        {
+          "line": 449,
+          "heading": "### _REVIEW.md Template"
+        },
+        {
+          "line": 515,
+          "heading": "### Review_Findings.csv Schema"
+        },
+        {
+          "line": 534,
+          "heading": "### Recommended Commit Message Format"
+        },
+        {
+          "line": 545,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "Readiness inconsistency and snapshot timing require a selected authoritative interpretation."
+      ],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "SCOPE_CHANGE",
+      "type": 1,
+      "source_path": "agents/AGENT_SCOPE_CHANGE.md",
+      "sha256": "fc46378b11c8d56e2c0caf170a76c8a459647848c7f39e50d4af48156b3d0167",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 7,
+          "heading": "# AGENT INSTRUCTIONS \u2014 SCOPE_CHANGE (Type 1 Persona \u2022 Controlled Decomposition Amendment)"
+        },
+        {
+          "line": 29,
+          "heading": "## Revision"
+        },
+        {
+          "line": 37,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 50,
+          "heading": "## Runtime variables and defaults"
+        },
+        {
+          "line": 73,
+          "heading": "## Precedence (conflict resolution)"
+        },
+        {
+          "line": 84,
+          "heading": "## Non-negotiable invariants"
+        },
+        {
+          "line": 114,
+          "heading": "## Explicit non-ownership"
+        },
+        {
+          "line": 126,
+          "heading": "## Action Types"
+        },
+        {
+          "line": 145,
+          "heading": "## Inputs"
+        },
+        {
+          "line": 147,
+          "heading": "### Required (before any gate)"
+        },
+        {
+          "line": 150,
+          "heading": "### Resolved at Gate 1"
+        },
+        {
+          "line": 164,
+          "heading": "### Required"
+        },
+        {
+          "line": 167,
+          "heading": "### Optional"
+        },
+        {
+          "line": 172,
+          "heading": "### Deterministic Tool Contracts"
+        },
+        {
+          "line": 183,
+          "heading": "### Variant Section Binding"
+        },
+        {
+          "line": 198,
+          "heading": "### Variant-specific ID formats"
+        },
+        {
+          "line": 216,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 218,
+          "heading": "### Gate 1 \u2014 Change Intake and Validation"
+        },
+        {
+          "line": 268,
+          "heading": "### Gate 2 \u2014 Impact Assessment"
+        },
+        {
+          "line": 347,
+          "heading": "### Gate 3 \u2014 Amendment Approval"
+        },
+        {
+          "line": 407,
+          "heading": "### Gate 4 \u2014 Propagation Plan Approval"
+        },
+        {
+          "line": 489,
+          "heading": "### Gate 5 \u2014 Execute and Validate"
+        },
+        {
+          "line": 604,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 653,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 655,
+          "heading": "### Snapshot layout"
+        },
+        {
+          "line": 678,
+          "heading": "### `RUN_SUMMARY.md` / `Handoff_State.md` state fields"
+        },
+        {
+          "line": 692,
+          "heading": "### KTY Remediation Closure Rules"
+        },
+        {
+          "line": 720,
+          "heading": "### Amendment Actions Schema"
+        },
+        {
+          "line": 734,
+          "heading": "### KTY Remediation Manifest Schema"
+        },
+        {
+          "line": 740,
+          "heading": "#### ContentAction Assignment Rules"
+        },
+        {
+          "line": 797,
+          "heading": "### Supersession Map Schema"
+        },
+        {
+          "line": 821,
+          "heading": "### Recommended Commit Message Format"
+        },
+        {
+          "line": 836,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "Variant identifier compatibility and the audit caller route require concrete migration choices."
+      ],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "SOFTWARE_DECOMP",
+      "type": 1,
+      "source_path": "agents/AGENT_SOFTWARE_DECOMP.md",
+      "sha256": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 5,
+          "heading": "# AGENT INSTRUCTIONS \u2014 SOFTWARE_DECOMP (Software Development Decomposition)"
+        },
+        {
+          "line": 14,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 27,
+          "heading": "## Precedence (conflict resolution)"
+        },
+        {
+          "line": 38,
+          "heading": "## Non-negotiable invariants"
+        },
+        {
+          "line": 59,
+          "heading": "## Glossary (software-focused, minimal)"
+        },
+        {
+          "line": 72,
+          "heading": "## Package Architecture (SOFTWARE variant)"
+        },
+        {
+          "line": 80,
+          "heading": "### Preventing monolithic drift"
+        },
+        {
+          "line": 86,
+          "heading": "### Package-role labeling"
+        },
+        {
+          "line": 97,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 99,
+          "heading": "### Operational \u2014 \\\"How to do?\\\""
+        },
+        {
+          "line": 103,
+          "heading": "### Output Target"
+        },
+        {
+          "line": 107,
+          "heading": "### Phases"
+        },
+        {
+          "line": 109,
+          "heading": "#### Phase 1 \u2014 Intake (capture the messy reality)"
+        },
+        {
+          "line": 128,
+          "heading": "#### Phase 2 \u2014 Define Scope (SSOW + vocabulary + domain signals)"
+        },
+        {
+          "line": 153,
+          "heading": "#### Phase 3 \u2014 Define Objectives (derived from SSOW)"
+        },
+        {
+          "line": 171,
+          "heading": "#### Phase 4 \u2014 Define Packages (flat partition by work domain)"
+        },
+        {
+          "line": 192,
+          "heading": "#### Phase 5 \u2014 Define Deliverables (agent-executable units within each package)"
+        },
+        {
+          "line": 220,
+          "heading": "#### Phase 6 \u2014 Verify Coverage + Context Budget (anti-fragile checks)"
+        },
+        {
+          "line": 245,
+          "heading": "#### Phase 7 \u2014 Publish the Decomposition (finalize)"
+        },
+        {
+          "line": 265,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 267,
+          "heading": "### Normative \u2014 \\\"What must it be?\\\""
+        },
+        {
+          "line": 271,
+          "heading": "### Completeness requirements"
+        },
+        {
+          "line": 289,
+          "heading": "### Consistency requirements"
+        },
+        {
+          "line": 302,
+          "heading": "### Anti-patterns (invalid outputs)"
+        },
+        {
+          "line": 317,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 319,
+          "heading": "### Descriptive \u2014 \\\"What is it?\\\""
+        },
+        {
+          "line": 323,
+          "heading": "### Required entities"
+        },
+        {
+          "line": 325,
+          "heading": "#### Scope Item"
+        },
+        {
+          "line": 332,
+          "heading": "#### Objective"
+        },
+        {
+          "line": 338,
+          "heading": "#### Package (Work Domain)"
+        },
+        {
+          "line": 345,
+          "heading": "#### Deliverable (Agent-executable unit)"
+        },
+        {
+          "line": 365,
+          "heading": "#### Artifact (software-aware)"
+        },
+        {
+          "line": 380,
+          "heading": "### Required sections / tables in the Decomposition Document"
+        },
+        {
+          "line": 382,
+          "heading": "#### 1) Vocabulary Map (table)"
+        },
+        {
+          "line": 388,
+          "heading": "#### 2) SSOW (list or table)"
+        },
+        {
+          "line": 391,
+          "heading": "#### 3) Packages (table or grouped sections)"
+        },
+        {
+          "line": 394,
+          "heading": "#### 4) Deliverables (tables grouped by Package)"
+        },
+        {
+          "line": 397,
+          "heading": "#### 5) Scope Ledger (table)"
+        },
+        {
+          "line": 412,
+          "heading": "#### 6) Coverage & Telemetry (summary block)"
+        },
+        {
+          "line": 425,
+          "heading": "#### 7) Open Issues list"
+        },
+        {
+          "line": 428,
+          "heading": "#### 8) Decision Log / Change Log"
+        },
+        {
+          "line": 433,
+          "heading": "### Deliverable type taxonomy (software-oriented; suggestive, not mandatory)"
+        },
+        {
+          "line": 454,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "TASK_MANAGEMENT",
+      "type": 1,
+      "source_path": "agents/AGENT_TASK_MANAGEMENT.md",
+      "sha256": "e84d1dbdd2540e7667ecd6efc9022d8158fc2a0357be717660911bc5a9d7a2e0",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 5,
+          "heading": "# AGENT INSTRUCTIONS \u2014 TASK_MANAGEMENT (Action Item Registers \u2022 Candidate Harvest \u2022 Staleness and Closure Echo \u2022 Deferral Review \u2022 Owner Triage Support)"
+        },
+        {
+          "line": 36,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 49,
+          "heading": "## Precedence"
+        },
+        {
+          "line": 58,
+          "heading": "## Non-negotiable invariants"
+        },
+        {
+          "line": 107,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 109,
+          "heading": "### Inputs (optional)"
+        },
+        {
+          "line": 118,
+          "heading": "### Invocation cadence (owner practice, non-binding)"
+        },
+        {
+          "line": 132,
+          "heading": "## Mandatory federation preflight"
+        },
+        {
+          "line": 159,
+          "heading": "### Coverage and presentation"
+        },
+        {
+          "line": 186,
+          "heading": "## Modes"
+        },
+        {
+          "line": 259,
+          "heading": "## Resolution paths"
+        },
+        {
+          "line": 289,
+          "heading": "## Delegation"
+        },
+        {
+          "line": 298,
+          "heading": "## Closeout"
+        },
+        {
+          "line": 322,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 338,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 351,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "Managed dispatch metadata must be made consistent with the adopted execution route."
+      ],
+      "behavioral_probe_executed": false
+    },
+    {
+      "role": "WORKING_ITEMS",
+      "type": 1,
+      "source_path": "agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1",
+      "read_complete": true,
+      "major_sections_examined": [
+        {
+          "line": 8,
+          "heading": "# AGENT INSTRUCTIONS \u2014 WORKING_ITEMS (Agent 1 Package Production Manager)"
+        },
+        {
+          "line": 22,
+          "heading": "## Agent Type"
+        },
+        {
+          "line": 33,
+          "heading": "## Precedence"
+        },
+        {
+          "line": 40,
+          "heading": "## Invariants"
+        },
+        {
+          "line": 111,
+          "heading": "## Pattern-selection precedence"
+        },
+        {
+          "line": 118,
+          "heading": "## Activation inputs"
+        },
+        {
+          "line": 129,
+          "heading": "## PROTOCOL"
+        },
+        {
+          "line": 131,
+          "heading": "### Phase 1 \u2014 Activate and inspect"
+        },
+        {
+          "line": 152,
+          "heading": "### Phase 2 \u2014 Build the intra-package work graph"
+        },
+        {
+          "line": 165,
+          "heading": "### Phase 3 \u2014 Dispatch bounded Agent 2 work"
+        },
+        {
+          "line": 191,
+          "heading": "### Phase 4 \u2014 Coordinate active work"
+        },
+        {
+          "line": 205,
+          "heading": "### Phase 5 \u2014 Validate fan-in"
+        },
+        {
+          "line": 216,
+          "heading": "### Phase 6 \u2014 Package close and return"
+        },
+        {
+          "line": 231,
+          "heading": "## SPEC"
+        },
+        {
+          "line": 251,
+          "heading": "## STRUCTURE"
+        },
+        {
+          "line": 280,
+          "heading": "## RATIONALE"
+        }
+      ],
+      "disposition": "SLIM",
+      "uncertainties": [
+        "The exact adopting instrument for migration limits should be attached to the profile during implementation."
+      ],
+      "behavioral_probe_executed": false
+    }
+  ]
+}

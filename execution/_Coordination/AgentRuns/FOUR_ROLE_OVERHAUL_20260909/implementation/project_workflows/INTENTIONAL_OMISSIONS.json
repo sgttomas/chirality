@@ -1,0 +1,26 @@
+{
+  "authority": "Latest human steering relayed by WORKING_ITEMS: do not import NEXT_INSTANCE_PROMPT/STATE contracts into workflows or resources",
+  "omitted": [
+    {
+      "path": "workflows/project-setup/resources/method.md",
+      "text": "Control-loop artifact design and creation \u2014 `{COORDINATION_ROOT}/NEXT_INSTANCE_PROMPT.md` (stable session control-loop instructions) and the initial `{COORDINATION_ROOT}/NEXT_INSTANCE_STATE.md` (mutable handoff state) \u2014 is owned by HELPS_HUMANS per D-GOV-18 Item 3 (see `AGENT_HELPS_HUMANS.md`). WORKING_ITEMS does not author these files; when a new workspace needs a session control loop, WORKING_ITEMS requests their creation via HELP_HUMAN routing. WORKING_ITEMS continues to update `NEXT_INSTANCE_STATE.md` at each session handoff."
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "text": "| Coordination | `{COORDINATION_ROOT}/_COORDINATION.md`, `NEXT_INSTANCE_PROMPT.md`, `_LATEST.md`. Present? What do they record? |"
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "text": "      NEXT_INSTANCE_PROMPT.md      # stable session startup instructions"
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "text": "      NEXT_INSTANCE_STATE.md       # mutable session handoff state"
+    },
+    {
+      "path": "workflows/change/resources/contract.md",
+      "text": "- **Control loop (step 6 \u2014 coherent commits after a tier wave).** Include `{COORDINATION_ROOT}/` artifacts in the change inventory. Before committing, verify `{COORDINATION_ROOT}/NEXT_INSTANCE_STATE.md` reflects the session's work; if not, flag it to the human before proceeding. If `{COORDINATION_ROOT}/NEXT_INSTANCE_PROMPT.md` appears in the diff, call attention to it \u2014 it signals a protocol change, not routine session state."
+    }
+  ],
+  "frozen_source_basis_preserved": true
+}
