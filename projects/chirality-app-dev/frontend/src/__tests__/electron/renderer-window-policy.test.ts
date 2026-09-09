@@ -1,15 +1,20 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   CONTENT_SECURITY_POLICY_HEADER,
+  ELIGIBLE_PDF_RESPONSE_CLASS,
+  PDF_CONTENT_SECURITY_POLICY,
+  RESPONSE_CLASS_HEADER,
   EGRESS_LAYER_PROBE_URL,
   applyContentSecurityPolicyHeader,
   applyPackagedRendererRequestPolicy,
   assertRendererWebPreferences,
   buildRendererContentSecurityPolicy,
   createRendererCspNonce,
+  createEligiblePdfResponseHeaders,
   evaluateRendererNavigation,
   evaluateWindowOpen,
   installRendererWindowPolicy,
+  isEligiblePdfResponse,
   rendererWebPreferences,
   runEgressLayerProbe,
   runRendererSecurityProbe,
@@ -130,8 +135,110 @@ describe('navigation policy', () => {
 });
 
 describe('content security policy', () => {
+  const eligibleHeaders = () => Object.fromEntries(Object.entries(createEligiblePdfResponseHeaders(42)).map(([name, value]) => [name, [value]]));
+  const packagedBaselinePolicy = buildRendererContentSecurityPolicy({
+    mode: 'packaged', nonce: PACKAGED_NONCE, rendererOrigin: RENDERER_ORIGIN
+  });
+  const packagedRequest = {
+    headers: { host: '127.0.0.1:41234' },
+    method: 'GET',
+    url: '/api/working-root/file?projectRoot=x&target=a.pdf&content=pdf'
+  };
+
+  function fakePackagedResponse(options: { getHeadersError?: Error; writeHeadError?: Error } = {}) {
+    const stored: Record<string, string | string[]> = {};
+    const receiverCalls = { getHeaders: 0, removeHeader: 0, writeHead: 0 };
+    let committed = false;
+    let response: any;
+    const originalWriteHead = vi.fn(function (this: any) {
+      if (this !== response) throw new TypeError('writeHead receiver lost');
+      receiverCalls.writeHead += 1;
+      committed = true;
+      if (options.writeHeadError) throw options.writeHeadError;
+      return response;
+    });
+    response = {
+      statusCode: 200,
+      get headersSent() { return committed; },
+      setHeader(name: string, value: string | string[]) {
+        if (committed) throw Object.assign(new Error('Cannot set headers after they are sent'), { code: 'ERR_HTTP_HEADERS_SENT' });
+        for (const key of Object.keys(stored)) {
+          if (key.toLowerCase() === name.toLowerCase()) delete stored[key];
+        }
+        stored[name] = value;
+      },
+      getHeaders() {
+        if (this !== response) throw new TypeError('getHeaders receiver lost');
+        receiverCalls.getHeaders += 1;
+        if (options.getHeadersError) throw options.getHeadersError;
+        return { ...stored };
+      },
+      removeHeader(name: string) {
+        if (this !== response) throw new TypeError('removeHeader receiver lost');
+        receiverCalls.removeHeader += 1;
+        for (const key of Object.keys(stored)) {
+          if (key.toLowerCase() === name.toLowerCase()) delete stored[key];
+        }
+      },
+      writeHead: originalWriteHead,
+      flushHeaders() {
+        if (this !== response) throw new TypeError('flushHeaders receiver lost');
+        if (!this.headersSent) this.writeHead(this.statusCode);
+      },
+      write(_chunk: string) {
+        if (this !== response) throw new TypeError('write receiver lost');
+        if (!this.headersSent) this.writeHead(this.statusCode);
+        return true;
+      },
+      end(_chunk?: string) {
+        if (this !== response) throw new TypeError('end receiver lost');
+        if (!this.headersSent) this.writeHead(this.statusCode);
+        return this;
+      }
+    };
+    return { stored, response, originalWriteHead, receiverCalls };
+  }
+
+  function primeEligiblePackagedResponse(response: any) {
+    const result = applyPackagedRendererRequestPolicy(
+      { ...packagedRequest, headers: { ...packagedRequest.headers } },
+      response,
+      PACKAGED_NONCE
+    );
+    for (const [name, value] of Object.entries(createEligiblePdfResponseHeaders(42))) {
+      if (name !== CONTENT_SECURITY_POLICY_HEADER) response.setHeader(name, value);
+    }
+    return result;
+  }
+
+  it('classifies only the exact trusted PDF tuple and exact raw endpoint', () => {
+    expect(isEligiblePdfResponse({ url: `${RENDERER_ORIGIN}/api/working-root/file?projectRoot=x&target=a.pdf&content=pdf`, rendererOrigin: RENDERER_ORIGIN, method: 'GET', statusCode: 200, responseHeaders: eligibleHeaders(), mode: 'development' })).toBe(true);
+    for (const change of [
+      { url: `${RENDERER_ORIGIN}/api/working-root/%66ile?content=pdf` },
+      { url: `${RENDERER_ORIGIN}/api/working-root/x/../file?content=pdf` },
+      { url: `${RENDERER_ORIGIN}//api/working-root/file?content=pdf` },
+      { url: 'https://evil.example/api/working-root/file?content=pdf' },
+      { method: 'POST' }, { statusCode: 206 }, { statusCode: 302 }
+    ]) expect(isEligiblePdfResponse({ url: `${RENDERER_ORIGIN}/api/working-root/file?projectRoot=x&target=a.pdf&content=pdf`, rendererOrigin: RENDERER_ORIGIN, method: 'GET', statusCode: 200, responseHeaders: eligibleHeaders(), mode: 'development', ...change })).toBe(false);
+  });
+
+  it('rejects spoofed, duplicate, incomplete, ranged, redirected, and arbitrary-policy tuples', () => {
+    for (const mutate of [
+      (h: Record<string, string[]>) => { h[RESPONSE_CLASS_HEADER] = ['wrong']; },
+      (h: Record<string, string[]>) => { h[RESPONSE_CLASS_HEADER] = [ELIGIBLE_PDF_RESPONSE_CLASS, ELIGIBLE_PDF_RESPONSE_CLASS]; },
+      (h: Record<string, string[]>) => { h['Content-Type'] = ['text/html']; },
+      (h: Record<string, string[]>) => { h['Content-Length'] = ['0']; },
+      (h: Record<string, string[]>) => { h.Location = ['/login']; },
+      (h: Record<string, string[]>) => { h['Content-Range'] = ['bytes 0-9/42']; },
+      (h: Record<string, string[]>) => { h[CONTENT_SECURITY_POLICY_HEADER] = ["default-src *"]; }
+    ]) {
+      const headers = eligibleHeaders(); mutate(headers);
+      expect(isEligiblePdfResponse({ url: `${RENDERER_ORIGIN}/api/working-root/file?projectRoot=x&target=a.pdf&content=pdf`, rendererOrigin: RENDERER_ORIGIN, method: 'GET', statusCode: 200, responseHeaders: headers, mode: 'development' })).toBe(false);
+    }
+  });
+
   it('builds the packaged policy with one nonce, no inline/eval allowance, and closed directives', () => {
-    const csp = buildRendererContentSecurityPolicy({ mode: 'packaged', nonce: PACKAGED_NONCE });
+    const csp = buildRendererContentSecurityPolicy({ mode: 'packaged', nonce: PACKAGED_NONCE, rendererOrigin: RENDERER_ORIGIN });
     const scriptDirective = csp
       .split('; ')
       .find((directive) => directive.startsWith('script-src '));
@@ -143,7 +250,7 @@ describe('content security policy', () => {
     expect(csp).toContain("connect-src 'self';");
     expect(csp).not.toContain('api.anthropic.com');
     expect(csp).not.toContain('ws://');
-    expect(csp).toContain("frame-src 'none'");
+    expect(csp).toContain(`frame-src ${RENDERER_ORIGIN}/api/working-root/file`);
     expect(csp).toContain("object-src 'none'");
     expect(csp).toContain("base-uri 'self'");
     expect(csp).toContain("form-action 'self'");
@@ -170,7 +277,7 @@ describe('content security policy', () => {
   });
 
   it('attaches one byte-identical per-request policy to Next and the response', () => {
-    const request = { headers: {} as Record<string, string | string[] | undefined> };
+    const request = { headers: { host: '127.0.0.1:41234' } as Record<string, string | string[] | undefined> };
     const response = { setHeader: vi.fn() };
     const result = applyPackagedRendererRequestPolicy(request, response, PACKAGED_NONCE);
 
@@ -185,6 +292,168 @@ describe('content security policy', () => {
         .split('; ')
         .find((directive) => directive.startsWith('script-src '))
     ).not.toContain("'unsafe-inline'");
+  });
+
+  it('finalizes the packaged response once, replaces only an exact PDF tuple, and strips the marker', () => {
+    const { stored, response, originalWriteHead, receiverCalls } = fakePackagedResponse();
+    const { contentSecurityPolicy } = primeEligiblePackagedResponse(response);
+    response.writeHead(200, { 'Content-Type': 'application/pdf' });
+    expect(stored[CONTENT_SECURITY_POLICY_HEADER]).toBe(PDF_CONTENT_SECURITY_POLICY);
+    expect(Object.keys(stored).every(name => name.toLowerCase() !== RESPONSE_CLASS_HEADER.toLowerCase())).toBe(true);
+    expect(response.writeHead).not.toBe(originalWriteHead);
+    response.writeHead(200);
+    expect(originalWriteHead).toHaveBeenCalledTimes(2);
+    expect(receiverCalls.getHeaders).toBe(2);
+    expect(receiverCalls.removeHeader).toBeGreaterThan(0);
+    expect(receiverCalls.writeHead).toBe(2);
+    expect(contentSecurityPolicy).toContain(`'nonce-${PACKAGED_NONCE}'`);
+  });
+
+  it('preserves explicit raw-array precedence over pending headers and the status-message overload', () => {
+    const { stored, response, originalWriteHead, receiverCalls } = fakePackagedResponse();
+    primeEligiblePackagedResponse(response);
+    response.setHeader('Content-Type', 'text/html');
+
+    response.writeHead(200, 'OK', ['content-type', ['application/pdf']]);
+
+    expect(stored[CONTENT_SECURITY_POLICY_HEADER]).toBe(PDF_CONTENT_SECURITY_POLICY);
+    expect(stored['content-type']).toBe('application/pdf');
+    expect(Object.keys(stored).every(name => name.toLowerCase() !== RESPONSE_CLASS_HEADER.toLowerCase())).toBe(true);
+    expect(originalWriteHead).toHaveBeenCalledWith(200, 'OK');
+    expect(receiverCalls.getHeaders).toBe(2);
+    expect(receiverCalls.removeHeader).toBeGreaterThan(0);
+    expect(receiverCalls.writeHead).toBe(1);
+  });
+
+  it.each([
+    ['flushHeaders', (response: any) => response.flushHeaders()],
+    ['write', (response: any) => response.write('body')],
+    ['end', (response: any) => response.end('body')]
+  ])('finalizes through the receiver-sensitive implicit %s commit path exactly once', (_name, commit) => {
+    const { stored, response, originalWriteHead, receiverCalls } = fakePackagedResponse();
+    primeEligiblePackagedResponse(response);
+    const installedFinalizer = response.writeHead;
+
+    commit(response);
+
+    expect(response.headersSent).toBe(true);
+    expect(stored[CONTENT_SECURITY_POLICY_HEADER]).toBe(PDF_CONTENT_SECURITY_POLICY);
+    expect(Object.keys(stored).every(name => name.toLowerCase() !== RESPONSE_CLASS_HEADER.toLowerCase())).toBe(true);
+    expect(response.writeHead).not.toBe(installedFinalizer);
+    expect(originalWriteHead).toHaveBeenCalledTimes(1);
+    expect(receiverCalls).toEqual({ getHeaders: 2, removeHeader: expect.any(Number), writeHead: 1 });
+    expect(receiverCalls.removeHeader).toBeGreaterThan(0);
+
+    commit(response);
+    expect(originalWriteHead).toHaveBeenCalledTimes(1);
+    expect(receiverCalls.getHeaders).toBe(2);
+    expect(() => response.setHeader('X-Late', 'forbidden')).toThrowError(
+      expect.objectContaining({ code: 'ERR_HTTP_HEADERS_SENT' })
+    );
+    expect(stored['X-Late']).toBeUndefined();
+  });
+
+  it('restores the original writer when finalization fails before commit', () => {
+    const failure = new Error('pending headers unavailable');
+    const { response, originalWriteHead, receiverCalls } = fakePackagedResponse({ getHeadersError: failure });
+    applyPackagedRendererRequestPolicy(packagedRequest, response, PACKAGED_NONCE);
+    const installedFinalizer = response.writeHead;
+
+    expect(() => response.write('body')).toThrow(failure);
+    expect(response.headersSent).toBe(false);
+    expect(response.writeHead).not.toBe(installedFinalizer);
+    expect(originalWriteHead).not.toHaveBeenCalled();
+    expect(receiverCalls.getHeaders).toBe(1);
+    expect(() => response.setHeader('X-Retry', 'allowed-before-commit')).not.toThrow();
+  });
+
+  it('keeps committed headers final when the original writer fails after commit', () => {
+    const failure = new Error('socket failed after commit');
+    const { stored, response, originalWriteHead, receiverCalls } = fakePackagedResponse({ writeHeadError: failure });
+    primeEligiblePackagedResponse(response);
+    const installedFinalizer = response.writeHead;
+
+    expect(() => response.end('body')).toThrow(failure);
+    expect(response.headersSent).toBe(true);
+    expect(response.writeHead).not.toBe(installedFinalizer);
+    expect(originalWriteHead).toHaveBeenCalledTimes(1);
+    expect(receiverCalls.getHeaders).toBe(2);
+    expect(stored[CONTENT_SECURITY_POLICY_HEADER]).toBe(PDF_CONTENT_SECURITY_POLICY);
+    expect(Object.keys(stored).every(name => name.toLowerCase() !== RESPONSE_CLASS_HEADER.toLowerCase())).toBe(true);
+    expect(() => response.setHeader(CONTENT_SECURITY_POLICY_HEADER, packagedBaselinePolicy)).toThrowError(
+      expect.objectContaining({ code: 'ERR_HTTP_HEADERS_SENT' })
+    );
+    expect(stored[CONTENT_SECURITY_POLICY_HEADER]).toBe(PDF_CONTENT_SECURITY_POLICY);
+  });
+
+  const guardedHeaders = [
+    [RESPONSE_CLASS_HEADER, ELIGIBLE_PDF_RESPONSE_CLASS, 'wrong-class'],
+    [CONTENT_SECURITY_POLICY_HEADER, packagedBaselinePolicy, "default-src *"],
+    ['Content-Type', 'application/pdf', 'text/html'],
+    ['Content-Disposition', 'inline', 'attachment'],
+    ['Content-Length', '42', '41'],
+    ['X-Content-Type-Options', 'nosniff', 'off'],
+    ['Cache-Control', 'no-store', 'public'],
+    ['Location', '/login', '/other'],
+    ['Content-Range', 'bytes 0-9/42', 'bytes 10-19/42']
+  ] as const;
+
+  it.each(guardedHeaders)('fails closed on repeated raw-array %s values', (name, value) => {
+    const { stored, response } = fakePackagedResponse();
+    const { contentSecurityPolicy } = primeEligiblePackagedResponse(response);
+
+    response.writeHead(200, [name.toLowerCase(), value, name.toUpperCase(), value]);
+
+    expect(stored[CONTENT_SECURITY_POLICY_HEADER]).toBe(contentSecurityPolicy);
+    expect(Object.keys(stored).every(key => key.toLowerCase() !== RESPONSE_CLASS_HEADER.toLowerCase())).toBe(true);
+  });
+
+  it.each(guardedHeaders)('fails closed on conflicting raw-array %s values', (name, value, conflict) => {
+    const { stored, response } = fakePackagedResponse();
+    const { contentSecurityPolicy } = primeEligiblePackagedResponse(response);
+
+    response.writeHead(200, [name.toLowerCase(), value, name.toUpperCase(), conflict]);
+
+    expect(stored[CONTENT_SECURITY_POLICY_HEADER]).toBe(contentSecurityPolicy);
+    expect(Object.keys(stored).every(key => key.toLowerCase() !== RESPONSE_CLASS_HEADER.toLowerCase())).toBe(true);
+  });
+
+  it.each(guardedHeaders)('fails closed on object case variants for %s', (name, value, conflict) => {
+    const { stored, response } = fakePackagedResponse();
+    const { contentSecurityPolicy } = primeEligiblePackagedResponse(response);
+
+    response.writeHead(200, { [name.toLowerCase()]: value, [name.toUpperCase()]: conflict });
+
+    expect(stored[CONTENT_SECURITY_POLICY_HEADER]).toBe(contentSecurityPolicy);
+    expect(Object.keys(stored).every(key => key.toLowerCase() !== RESPONSE_CLASS_HEADER.toLowerCase())).toBe(true);
+  });
+
+  it.each(guardedHeaders)('fails closed on array-valued %s entries', (name, value, conflict) => {
+    const { stored, response } = fakePackagedResponse();
+    const { contentSecurityPolicy } = primeEligiblePackagedResponse(response);
+
+    response.writeHead(200, { [name]: [value, conflict] });
+
+    expect(stored[CONTENT_SECURITY_POLICY_HEADER]).toBe(contentSecurityPolicy);
+    expect(Object.keys(stored).every(key => key.toLowerCase() !== RESPONSE_CLASS_HEADER.toLowerCase())).toBe(true);
+  });
+
+  it('keeps the exact nonce policy for malformed, redirected, ranged, and non-PDF packaged responses', () => {
+    for (const variant of [
+      { status: 302, headers: { Location: '/login' } },
+      { status: 206, headers: { 'Content-Range': 'bytes 0-9/42' } },
+      { status: 200, headers: { 'Content-Type': 'text/html' } }
+    ]) {
+      const stored: Record<string, string | string[]> = {};
+      const response: any = { statusCode: variant.status, setHeader(name: string, value: string | string[]) { stored[name] = value; }, getHeaders: () => ({ ...stored }), removeHeader(name: string) { for (const key of Object.keys(stored)) if (key.toLowerCase() === name.toLowerCase()) delete stored[key]; }, writeHead: vi.fn() };
+      const request = { headers: { host: '127.0.0.1:41234' }, method: 'GET', url: '/api/working-root/file?content=pdf' };
+      const { contentSecurityPolicy } = applyPackagedRendererRequestPolicy(request, response, PACKAGED_NONCE);
+      response.setHeader(RESPONSE_CLASS_HEADER, ELIGIBLE_PDF_RESPONSE_CLASS);
+      for (const [name, value] of Object.entries(variant.headers)) response.setHeader(name, value);
+      response.writeHead(variant.status);
+      expect(stored[CONTENT_SECURITY_POLICY_HEADER]).toBe(contentSecurityPolicy);
+      expect(Object.keys(stored).every(name => name.toLowerCase() !== RESPONSE_CLASS_HEADER.toLowerCase())).toBe(true);
+    }
   });
 
   it('adds eval and the HMR websocket only in development', () => {
@@ -203,7 +472,7 @@ describe('content security policy', () => {
         "worker-src 'self'",
         "manifest-src 'self'",
         "media-src 'self'",
-        "frame-src 'none'",
+        "frame-src http://localhost:3000/api/working-root/file",
         "object-src 'none'",
         "base-uri 'self'",
         "form-action 'self'",
@@ -215,7 +484,7 @@ describe('content security policy', () => {
 
   it('never widens connect-src beyond self and the dev websocket', () => {
     for (const csp of [
-      buildRendererContentSecurityPolicy({ mode: 'packaged', nonce: PACKAGED_NONCE }),
+      buildRendererContentSecurityPolicy({ mode: 'packaged', nonce: PACKAGED_NONCE, rendererOrigin: RENDERER_ORIGIN }),
       buildRendererContentSecurityPolicy({ mode: 'development', rendererOrigin: 'http://localhost:3000' }),
       buildRendererContentSecurityPolicy({ mode: 'development', rendererOrigin: 'garbage' })
     ]) {
@@ -271,9 +540,9 @@ describe('diagnostics', () => {
 type FakeWindow = RendererWindowLike & {
   handlers: {
     windowOpen?: (details: { url: string }) => { action: 'deny' };
-    navigation: Map<string, (event: { preventDefault(): void }, url: string) => void>;
+    navigation: Map<string, (...args: any[]) => void>;
     headers?: (
-      details: { url: string; responseHeaders?: Record<string, string[]> },
+      details: { url: string; method?: string; statusCode?: number; responseHeaders?: Record<string, string[]> },
       callback: (response: { responseHeaders?: Record<string, string[]> }) => void
     ) => void;
     headerFilter?: { urls: string[] };
@@ -304,7 +573,7 @@ function fakeWindow(): FakeWindow {
 }
 
 describe('installRendererWindowPolicy', () => {
-  const csp = buildRendererContentSecurityPolicy({ mode: 'packaged', nonce: PACKAGED_NONCE });
+  const csp = buildRendererContentSecurityPolicy({ mode: 'development', rendererOrigin: RENDERER_ORIGIN });
   // The external open is deferred to a microtask so a synchronous throw is caught
   // structurally; assertions on it wait for the task queue to drain.
   const flush = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
@@ -459,10 +728,23 @@ describe('installRendererWindowPolicy', () => {
     }
   );
 
-  it('registers both navigation events', () => {
+  it('registers main navigation/redirect and subframe navigation containment', () => {
     const window = fakeWindow();
     install(window);
-    expect([...window.handlers.navigation.keys()].sort()).toEqual(['will-navigate', 'will-redirect']);
+    expect([...window.handlers.navigation.keys()].sort()).toEqual(['will-frame-navigate', 'will-navigate', 'will-redirect']);
+  });
+
+  it('allows only the exact PDF endpoint in a subframe and fails closed on redirects', () => {
+    const window = fakeWindow(); install(window);
+    const frame = window.handlers.navigation.get('will-frame-navigate')!;
+    const allowed = { url: `${RENDERER_ORIGIN}/api/working-root/file?projectRoot=x&target=a.pdf&content=pdf`, isMainFrame: false, preventDefault: vi.fn() };
+    frame(allowed); expect(allowed.preventDefault).not.toHaveBeenCalled();
+    for (const url of [`${RENDERER_ORIGIN}/`, `${RENDERER_ORIGIN}/api/working-root/%66ile?content=pdf`, 'blob:http://127.0.0.1:41234/id', 'https://evil.example/a.pdf']) {
+      const denied = { url, isMainFrame: false, preventDefault: vi.fn() }; frame(denied); expect(denied.preventDefault).toHaveBeenCalledOnce();
+    }
+    const redirect = window.handlers.navigation.get('will-redirect')!;
+    const deniedRedirect = { url: 'https://evil.example/a.pdf', isMainFrame: false, preventDefault: vi.fn() };
+    redirect(deniedRedirect); expect(deniedRedirect.preventDefault).toHaveBeenCalledOnce();
   });
 
   it('attaches the CSP through onHeadersReceived and leaves every other response untouched', () => {
@@ -476,16 +758,24 @@ describe('installRendererWindowPolicy', () => {
       responseHeaders: { a: ['1'], [CONTENT_SECURITY_POLICY_HEADER]: [csp] }
     });
 
-    // Untouched responses get no override at all — `{}` — never an echoed set.
+    // Renderer-origin non-PDF responses always receive the known static dev policy.
     const preset = { 'Content-Security-Policy': ["default-src 'none'"] };
     window.handlers.headers!({ url: `${RENDERER_ORIGIN}/`, responseHeaders: preset }, callback);
-    expect(callback).toHaveBeenLastCalledWith({});
+    expect(callback).toHaveBeenLastCalledWith({ responseHeaders: { [CONTENT_SECURITY_POLICY_HEADER]: [csp] } });
 
     window.handlers.headers!({ url: 'https://api.anthropic.com/v1/messages', responseHeaders: { b: ['2'] } }, callback);
     expect(callback).toHaveBeenLastCalledWith({});
 
     window.handlers.headers!({ url: 'https://evil.example/' }, callback);
     expect(callback).toHaveBeenLastCalledWith({});
+  });
+
+  it('uses the exact PDF policy in development and strips the internal class marker', () => {
+    const window = fakeWindow(); install(window); const callback = vi.fn();
+    window.handlers.headers!({ url: `${RENDERER_ORIGIN}/api/working-root/file?projectRoot=x&target=a.pdf&content=pdf`, method: 'GET', statusCode: 200, responseHeaders: Object.fromEntries(Object.entries(createEligiblePdfResponseHeaders(42)).map(([k, v]) => [k, [v]])) }, callback);
+    const headers = callback.mock.calls[0][0].responseHeaders;
+    expect(headers[CONTENT_SECURITY_POLICY_HEADER]).toEqual([PDF_CONTENT_SECURITY_POLICY]);
+    expect(Object.keys(headers).every(name => name.toLowerCase() !== RESPONSE_CLASS_HEADER.toLowerCase())).toBe(true);
   });
 
   it('does not synthesize a packaged fallback without the request nonce', () => {

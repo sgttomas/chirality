@@ -1,0 +1,47 @@
+{
+  "schema": "chirality.runtime.identity-extension.safe-pause-fanin.v1",
+  "status": "FROZEN_VALIDATED_SAFE_PAUSE",
+  "members": [
+    {
+      "path": "RETURN.md",
+      "bytes": 3494,
+      "sha256": "cafa986e795f7f3f9928f171f057b67345e121364cbf28ef419a4cba6e89a4f0"
+    },
+    {
+      "path": "PUBLICATION_SELECTION.json",
+      "bytes": 12062,
+      "sha256": "18f956b866fdeae40f3e3247467776614d4f50f201b080bbd55a05baeff12f24"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "../supplier-staged-source-implementation-proposal-v2/MANIFEST.json",
+      "sha256": "0ac3446bc892a116425811339142fba79dfb20bc97fbb4b1324b64db521a5ad6"
+    },
+    {
+      "path": "../supplier-staged-source-implementation-proposal-v2-review/MANIFEST.json",
+      "sha256": "e05f861fedb53e85124cef322469d6c159027ee213db378e10a1cebd295d7538"
+    },
+    {
+      "path": "../runtime-r-v3-source-acceptance/MANIFEST.json",
+      "sha256": "58e202bd9bfba6115b84aff4ac949ec481cf8a6599e94c222f4b82664314c7ee"
+    },
+    {
+      "path": "../runtime-r-v3-interface-concordance-v1/MANIFEST.json",
+      "sha256": "c47c29516890d5ebcd92fb6fed92c75a3b42a5e0b75bf7d9b15549bf6d7be919"
+    }
+  ],
+  "verdict": "PASS_UNDER_PRIOR_INSTRUCTION_BASIS",
+  "executionAuthority": false,
+  "newDoctrineConformanceAssessed": false,
+  "resumeRequires": [
+    "READ_NEW_INSTRUCTIONS",
+    "RECONCILE_AUTHORITY_AND_ROLE_WORKFLOW",
+    "REHASH_V2_AND_REVIEW",
+    "REVALIDATE_SUPPLIER_CUSTODY_TOOLING_CACHE",
+    "DISPOSITION_PRIOR_BASIS_PROPOSAL"
+  ],
+  "activeChildren": 0,
+  "activeProductProcesses": 0,
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT"
+}

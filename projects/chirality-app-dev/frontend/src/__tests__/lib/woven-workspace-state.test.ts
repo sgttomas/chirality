@@ -43,7 +43,7 @@ describe('Woven Dialogue workspace state', () => {
     expect(createDefaultWovenWorkspaceState()).toEqual({
       rightPanelView: 'files', rightPanelWidths: {}, rightPanelExpanded: false,
       preExpandState: null, openDocumentPath: null, chatTitles: {}, chatPins: [],
-      chatArchived: [], chatGroups: [], groupsCollapsed: [], knownRoots: [], chatRung: {},
+      chatArchived: [], chatDeleted: [], chatGroups: [], groupsCollapsed: [], knownRoots: [], chatRung: {},
       schema: WOVEN_WORKSPACE_SCHEMA,
       theme: 'light',
       navigatorWidth: 240,
@@ -475,14 +475,14 @@ describe('additive shell convenience fields', () => {
 
   it('bounds collections, evicts old map entries, and drops malformed entries', () => {
     const ids = Array.from({ length: 505 }, (_, i) => `s-${i}`);
-    const state = read({ chatPins: ids, chatArchived: ids, groupsCollapsed: ids,
+    const state = read({ chatPins: ids, chatArchived: ids, chatDeleted: ids, groupsCollapsed: ids,
       chatTitles: Object.fromEntries(ids.map(id => [id, id])),
       chatRung: { ...Object.fromEntries(ids.map(id => [id, { kind: 'spec', declined: ids }])), bad: { kind: 'invalid' } },
       chatGroups: [null, { id: '', name: 'bad' }, ...ids.map(id => ({ id, name: id, sessionIds: ids }))] });
     expect(Object.keys(state.chatTitles)).toHaveLength(500);
     expect(Object.hasOwn(state.chatTitles, 's-4')).toBe(false);
     expect(Object.keys(state.chatRung)).toHaveLength(500);
-    for (const collection of [state.chatPins, state.chatArchived, state.groupsCollapsed, state.chatGroups, state.chatRung['s-5'].declined, state.chatGroups[0].sessionIds]) expect(collection).toHaveLength(200);
+    for (const collection of [state.chatPins, state.chatArchived, state.chatDeleted, state.groupsCollapsed, state.chatGroups, state.chatRung['s-5'].declined, state.chatGroups[0].sessionIds]) expect(collection).toHaveLength(200);
     expect(read({ chatRung: { x: { kind: 'workflow', ref: 'x'.repeat(2049), declined: [null] } }, chatTitles: [], chatGroups: [{ id: 'a', name: ' A ' }, { id: 'a', name: 'B' }] }))
       .toMatchObject({ chatRung: { x: { kind: 'workflow', declined: [] } }, chatTitles: {}, chatGroups: [{ id: 'a', name: 'A', sessionIds: [] }] });
   });
@@ -526,11 +526,11 @@ describe('additive shell convenience fields', () => {
   });
 
   it('clears project hints while retaining app state and excludes activeChatRoot', () => {
-    const storage = storageFor({ openDocumentPath: '/doc', chatTitles: { s: 'Title' }, chatPins: ['s'], chatArchived: ['s'], chatRung: { s: { kind: 'plain' } }, chatGroups: [{ id: 'g', name: 'G', sessionIds: ['s'] }], groupsCollapsed: ['g'],
+    const storage = storageFor({ openDocumentPath: '/doc', chatTitles: { s: 'Title' }, chatPins: ['s'], chatArchived: ['s'], chatDeleted: ['s'], chatRung: { s: { kind: 'plain' } }, chatGroups: [{ id: 'g', name: 'G', sessionIds: ['s'] }], groupsCollapsed: ['g'],
       knownRoots: [{ path: '/root', lastUsedAt: '2026-09-05T00:00:00Z' }], rightPanelView: 'workflows', rightPanelWidths: { workflows: 460 }, rightPanelExpanded: true, preExpandState: { rightWidth: 400, leftCollapsed: true }, theme: 'dark', sessionSurfaces: { s: 'dialogue' }, activeChatRoot: '/authority' });
     const state = readWovenWorkspaceStateFromStorage(storage);
     const cleared = clearProjectScopedWovenWorkspaceState(state);
-    expect(cleared).toMatchObject({ openDocumentPath: null, chatTitles: state.chatTitles, chatPins: [], chatArchived: [], chatRung: state.chatRung, chatGroups: [], groupsCollapsed: [], knownRoots: state.knownRoots, rightPanelView: 'workflows', rightPanelWidths: { workflows: 460 }, rightPanelExpanded: true, preExpandState: state.preExpandState, theme: 'dark', sessionSurfaces: { s: 'dialogue' } });
+    expect(cleared).toMatchObject({ openDocumentPath: null, chatTitles: state.chatTitles, chatPins: [], chatArchived: [], chatDeleted: [], chatRung: state.chatRung, chatGroups: [], groupsCollapsed: [], knownRoots: state.knownRoots, rightPanelView: 'workflows', rightPanelWidths: { workflows: 460 }, rightPanelExpanded: true, preExpandState: state.preExpandState, theme: 'dark', sessionSurfaces: { s: 'dialogue' } });
     writeWovenWorkspaceStateToStorage(storage, { ...state, activeChatRoot: '/forbidden' } as typeof state);
     expect(JSON.parse(storage.values.get(WOVEN_WORKSPACE_STORAGE_KEY)!)).not.toHaveProperty('activeChatRoot');
     writeWovenWorkspaceThemeToStorage(storage, 'light');
@@ -605,12 +605,12 @@ it('retains titles and rung/declined hints for sessions in two roots across root
       'session-in-b': { kind: 'spec' as const, declined: ['proposal-b'] }
     },
     openDocumentPath: '/root-a/doc.md', chatPins: ['session-in-a'],
-    chatArchived: ['session-in-a'], chatGroups: [{ id: 'group-a', name: 'A', sessionIds: ['session-in-a'] }],
+    chatArchived: ['session-in-a'], chatDeleted: ['session-in-b'], chatGroups: [{ id: 'group-a', name: 'A', sessionIds: ['session-in-a'] }],
     groupsCollapsed: ['group-a'], dialogueAnchorId: 'turn-a', contextReferences: ['/root-a/context.md']
   };
   const inRootB = clearProjectScopedWovenWorkspaceState(state);
   expect(inRootB).toMatchObject({ chatTitles: state.chatTitles, chatRung: state.chatRung,
-    knownRoots: state.knownRoots, openDocumentPath: null, chatPins: [], chatArchived: [],
+    knownRoots: state.knownRoots, openDocumentPath: null, chatPins: [], chatArchived: [], chatDeleted: [],
     chatGroups: [], groupsCollapsed: [], dialogueAnchorId: null, contextReferences: [] });
   writeWovenWorkspaceStateToStorage(storage, inRootB);
   const backInRootA = clearProjectScopedWovenWorkspaceState(readWovenWorkspaceStateFromStorage(storage));

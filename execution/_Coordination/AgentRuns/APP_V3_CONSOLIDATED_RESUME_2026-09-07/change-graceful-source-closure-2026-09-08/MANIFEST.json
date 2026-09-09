@@ -1,0 +1,46 @@
+{
+  "schema": "chirality.change.graceful-source-closure-manifest.v4",
+  "members": [
+    {
+      "path": "PREFLIGHT.json",
+      "sha256": "029620e8149d42cdad4ae78b2dc2388f830cae6b4314aee09bb2d33973e689ab",
+      "bytes": 3221
+    },
+    {
+      "path": "CANDIDATE_CHECKS.json",
+      "sha256": "8fb8126882d8ee78954e27711038f3f34eb1293360863f481fc4be1a9f18e4df",
+      "bytes": 913
+    },
+    {
+      "path": "RETAINED_EVIDENCE_BOUNDARY.md",
+      "sha256": "3128ccb0700acfe8800ca264d2d3c6c8defc26c1b4b585c9d109d8b858df7666",
+      "bytes": 1418
+    },
+    {
+      "path": "review-v1/MANIFEST.json",
+      "sha256": "d6f925992d93e138519c7434cf6ff17ee58841c13674d9e2d6c535b8650fa647",
+      "bytes": 705
+    },
+    {
+      "path": "review-v1/reviewed-inputs/PREFLIGHT.json",
+      "sha256": "029620e8149d42cdad4ae78b2dc2388f830cae6b4314aee09bb2d33973e689ab",
+      "bytes": 3221
+    },
+    {
+      "path": "review-v1/reviewed-inputs/PUBLICATION_SELECTION.json",
+      "sha256": "dc307f7ff0315f5975a656c583d402c57063cdc46dcf49501f2838b0a6c59e4c",
+      "bytes": 24849
+    },
+    {
+      "path": "review-v1/reviewed-inputs/MANIFEST.json",
+      "sha256": "71a12e14f0e2c657dcedf0c051e2731514c7fa51edefec6ce7e496c9ce2151a9",
+      "bytes": 447
+    },
+    {
+      "path": "PUBLICATION_SELECTION.json",
+      "sha256": "47678dd96a7559df98e211bfb9ad6668bc66306c2b59ff2d86cbb08353ba047a",
+      "bytes": 31752
+    }
+  ],
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT"
+}

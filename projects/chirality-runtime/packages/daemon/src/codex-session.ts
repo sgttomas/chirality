@@ -1,9 +1,27 @@
-import { randomUUID } from "node:crypto";
+import type { RuntimeAdmissionLease } from "@chirality/runtime-core";
+import { randomUUID, createHash } from "node:crypto";
 import { isIP } from "node:net";
 import type { NetworkApprovalPrompt, NetworkApprovalChoice } from "@chirality/runtime-contracts";
 import type { Readable, Writable } from "node:stream";
 import { isAbsolute, resolve } from "node:path";
 import { RuntimeError } from "@chirality/runtime-contracts";
+import { AUTHORITY_CONTRACT, SupplierAuthorityController, initializationProof, verifyProof, strictKeys, parseAuthorityJson, type AuthorityTransport, type AuthorityEnvelope, type AuthorityNotification, type AuthorityRequest } from "./supplier-authority-controller.js";
+
+export interface CodexAuthorityInitialize {
+  runtimeProcessIncarnationId:string;supplierGeneration:string;runtimeChallenge:string;exactSupplyDigest:string;authoritySecret:Buffer;
+  descriptor:{capability:string;contract:string;major:number;minor:number};v4Descriptor:{capability:string;contract:string;major:number;minor:number;method:string};
+}
+export function verifyAuthorityInitialization(input:CodexAuthorityInitialize,result:unknown):void {
+  strictKeys(result,["contract","runtimeProcessIncarnationId","supplierGeneration","supplierChallenge","descriptor","v4Descriptor","proof"]);
+  strictKeys(result.descriptor,["capability","contract","major","minor"]);strictKeys(result.v4Descriptor,["capability","contract","major","minor","method"]);
+  const descriptor={capability:"chirality.local-admission-authority",contract:AUTHORITY_CONTRACT,major:1,minor:0};
+  const v4Descriptor={capability:"account.identity-snapshot",contract:"chirality-supplier-account-identity/1",major:1,minor:0,method:"account/identitySnapshot"};
+  for(const [key,value] of Object.entries(descriptor))if(result.descriptor[key]!==value||(input.descriptor as unknown as Record<string,unknown>)[key]!==value)throw new Error("authority-unavailable");
+  for(const [key,value] of Object.entries(v4Descriptor))if(result.v4Descriptor[key]!==value||(input.v4Descriptor as unknown as Record<string,unknown>)[key]!==value)throw new Error("authority-unavailable");
+  if(result.contract!==AUTHORITY_CONTRACT||result.runtimeProcessIncarnationId!==input.runtimeProcessIncarnationId||result.supplierGeneration!==input.supplierGeneration||typeof result.supplierChallenge!=="string"||!/^[A-Za-z0-9_-]{43}$/.test(result.supplierChallenge)||Buffer.from(result.supplierChallenge,"base64url").length!==32||Buffer.from(result.supplierChallenge,"base64url").toString("base64url")!==result.supplierChallenge||!/^[A-Za-z0-9_-]{43}$/.test(input.runtimeChallenge)||!/^[a-f0-9]{64}$/.test(input.exactSupplyDigest))throw new Error("authority-unavailable");
+  verifyProof(initializationProof(input.authoritySecret,{contract:AUTHORITY_CONTRACT,runtimeProcessIncarnationId:input.runtimeProcessIncarnationId,supplierGeneration:input.supplierGeneration,runtimeChallenge:input.runtimeChallenge,supplierChallenge:result.supplierChallenge,exactSupplyDigest:input.exactSupplyDigest,descriptor,v4Descriptor}),result.proof);
+}
+export type CodexPrivateAuthorityFrame = AuthorityEnvelope<AuthorityRequest|AuthorityNotification>;
 
 export interface CodexDynamicToolResult { success: boolean; contentItems: readonly { type: "inputText"; text: string }[] }
 export interface CodexDynamicTool {
@@ -60,6 +78,17 @@ function ignoredNetworkPolicyChoice(value: unknown, host: string): void {
  * evidence that the pinned 0.149 payload has completed an authenticated turn.
  */
 export class CodexTurnSession {
+  static privateAuthorityTransport(transport:CodexSessionTransport):AuthorityTransport {
+    let subscribed=false,closed=false;let buffer=Buffer.alloc(0);let fail:(()=>void)|undefined;let detach:(()=>void)|undefined;
+    return {subscribe(onFrame,onFailure){if(subscribed||closed)throw new Error("authority-unavailable");subscribed=true;fail=onFailure;
+      const data=(chunk:Buffer)=>{try{buffer=Buffer.concat([buffer,chunk]);if(buffer.length>1048576)throw new Error("request-malformed");let end:number;while((end=buffer.indexOf(10))>=0){const line=buffer.subarray(0,end);buffer=buffer.subarray(end+1);parseAuthorityJson(line);onFrame(line);}}catch{onFailure();}};
+      const failed=()=>onFailure();transport.stdout.on("data",data);transport.stdout.on("end",failed);transport.stdout.on("error",failed);transport.stdin.on("error",failed);
+      detach=()=>{transport.stdout.off("data",data);transport.stdout.off("end",failed);transport.stdout.off("error",failed);transport.stdin.off("error",failed);};return detach;},
+      async send(frame){if(closed||!subscribed)throw new Error("authority-unavailable");const wire=JSON.stringify(frame)+"\n";await new Promise<void>((resolve,reject)=>{transport.stdin.write(wire,error=>error?reject(new Error("authority-unavailable")):resolve());});},
+      async close(){if(closed)return;closed=true;detach?.();await transport.close();}
+    };
+  }
+
   private readonly commandNetworkPosture: "off" | "ask-per-destination" | "on";
   private readonly networkApprovals = new Map<string, { prompt: NetworkApprovalPrompt; requestId: string | number; signature: string; state: "pending" | "sending" | "sent" | "resolved" }>();
   private readonly requests = new Map<number, Pending>();
@@ -67,6 +96,9 @@ export class CodexTurnSession {
   private buffer: Buffer = Buffer.alloc(0);
   private received = 0;
   private ready = false;
+  private authorityInitialized=false;
+  private authorityFrame?: (raw:Uint8Array)=>void;
+  private authorityFailed?:()=>void;
   private initializing = false;
   private selecting = false;
   private threadId: string | undefined;
@@ -114,6 +146,7 @@ export class CodexTurnSession {
   private fail(error: RuntimeError): void {
     if (this.failure) return;
     this.failure = error;
+    this.authorityFailed?.();
     this.resolveNetworkApprovals();
     for (const call of this.toolCalls.values()) if (!call.completed) call.controller.abort();
     if (this.login?.state === "pending") this.login.state = "failed";
@@ -148,7 +181,8 @@ export class CodexTurnSession {
     for (let newline = this.buffer.indexOf(10); newline >= 0; newline = this.buffer.indexOf(10)) {
       const line = this.buffer.subarray(0, newline); this.buffer = this.buffer.subarray(newline + 1);
       try {
-        const message = object(JSON.parse(line.toString()));
+        const message = object(parseAuthorityJson(line));
+        if(message.contract===AUTHORITY_CONTRACT){if(!this.authorityFrame)throw protocol("Unsolicited private authority frame");this.authorityFrame(line);continue;}
         if ("id" in message) {
           if ("method" in message) { this.serverRequest(message); continue; }
           const pending = this.requests.get(message.id as number);
@@ -359,6 +393,30 @@ export class CodexTurnSession {
       if (remainder) this.emit({ type: "text", threadId, turnId, text: remainder }); return;
     }
     throw protocol("Unsupported Codex notification");
+  }
+  async initializeAuthority(input:CodexAuthorityInitialize):Promise<void> {
+    if(this.ready||this.initializing)throw invalid("Codex connection initializes once");this.initializing=true;
+    try {const result=await this.request("initialize",{clientInfo:{name:"chirality_runtime_private_authority",version:"0.0.0"},capabilities:{experimentalApi:true},chiralityAdmissionAuthority:{contract:AUTHORITY_CONTRACT,runtimeProcessIncarnationId:input.runtimeProcessIncarnationId,supplierGeneration:input.supplierGeneration,runtimeChallenge:input.runtimeChallenge}});
+      verifyAuthorityInitialization(input,result.chiralityAdmissionAuthority);this.authorityInitialized=true;this.write({method:"initialized"});this.ready=true;
+    }catch{this.fail(protocol("Private authority initialization unavailable"));throw this.failure;}finally{this.initializing=false;}
+  }
+  async authoritySnapshot(supplierGeneration:string):Promise<{supplierGeneration:string;identityGeneration:string;snapshotDigest:string}> {
+    this.assertReady();if(!this.authorityInitialized)throw invalid("Private authority initialization required");
+    try{const response=await this.request("account/identitySnapshot",{schema:"chirality-supplier-account-identity-request/1",expectedSupplierGeneration:supplierGeneration});
+      strictKeys(response,["schema","state","supplierGeneration","identityGeneration","accountUserId","providerWorkspaceId"]);
+      if(response.schema!=="chirality-supplier-account-identity-response/1"||response.state!=="available"||response.supplierGeneration!==supplierGeneration)throw new Error("authority-unavailable");
+      for(const key of ["supplierGeneration","identityGeneration","accountUserId","providerWorkspaceId"])if(typeof response[key]!=="string"||!/^[\x21-\x7e]{1,128}$/.test(response[key]))throw new Error("authority-unavailable");
+      const canonical={schema:response.schema,state:response.state,supplierGeneration:response.supplierGeneration,identityGeneration:response.identityGeneration,accountUserId:response.accountUserId,providerWorkspaceId:response.providerWorkspaceId};
+      return {supplierGeneration,identityGeneration:response.identityGeneration as string,snapshotDigest:createHash("sha256").update(JSON.stringify(canonical)).digest("hex")};
+    }catch{this.fail(protocol("Private identity snapshot unavailable"));throw this.failure;}
+  }
+  private connectedAuthorityTransport():AuthorityTransport {
+    if(!this.authorityInitialized)throw invalid("Private authority initialization required");
+    return {subscribe:(frame,failed)=>{if(this.authorityFrame)throw invalid("Private authority already attached");this.authorityFrame=frame;this.authorityFailed=failed;return()=>{this.authorityFrame=undefined;this.authorityFailed=undefined;};},send:async frame=>{this.assertReady();this.write(frame as unknown as Record<string,unknown>);},close:()=>this.close()};
+  }
+  async establishAuthority(input:CodexAuthorityInitialize,lease:RuntimeAdmissionLease,durableRevoke:()=>Promise<void>):Promise<SupplierAuthorityController> {
+    await this.initializeAuthority(input);const snapshot=await this.authoritySnapshot(input.supplierGeneration);
+    return new SupplierAuthorityController({enabled:true,kernelLease:lease,transport:this.connectedAuthorityTransport(),authoritySecret:input.authoritySecret,runtimeProcessIncarnationId:input.runtimeProcessIncarnationId,...snapshot,durableRevoke,refreshSnapshot:()=>this.authoritySnapshot(input.supplierGeneration)});
   }
   async initialize(): Promise<void> {
     if (this.ready || this.initializing) throw invalid("Codex connection initializes once");

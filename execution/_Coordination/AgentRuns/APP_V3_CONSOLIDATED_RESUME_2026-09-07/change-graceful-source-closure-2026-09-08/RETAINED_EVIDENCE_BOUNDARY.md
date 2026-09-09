@@ -1,0 +1,7 @@
+# Retained evidence boundary
+
+This publication carries the accepted App and Runtime source postimages and the compact decision, acceptance, review, proposal, and pause records selected for graceful closeout. Some selected manifests reference larger historical packages that remain readable in the preserved source and evidence worktrees but are intentionally not copied into this PR. Their omission does not alter their hashes or acceptance history.
+
+Excluded retained material includes raw logs, baseline inventories, generated dependency trees, caches, binaries, acquired supplier source, superseded failure packages, and the redundant App full diff whose SHA-256 `e1b45e9eeddc32ce61dadce50244317fef76e6af1c56460473ace15a4854bc1c` remains bound by the selected source manifest. App readiness records remain preserved at hashes `45a818e0b1b361075edbabb6f9b188031951d374f49396eec07ee14e55f82d93` and `18266eaaacbf957da79f06ddfeeaf4e583c06be50edcd529395a18318c8bb7c2` and are cited by the selected transition handoff.
+
+Runtime R V3 remains default-off. Native and production supplier interoperability remain unqualified. Supplier V2 is a pending, unexecuted proposal reviewed under the prior instruction basis. Packaging subject `474b1fd1c8929aaab452b47d10b85fbc96a8457e59772c676028ba66af8ec953` remains deferred. No release, activation, acquisition, account operation, or new-doctrine conformance is represented here.

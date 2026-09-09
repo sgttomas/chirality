@@ -2,8 +2,14 @@ import { beforeEach, expect, it, vi } from 'vitest';
 const mocks = vi.hoisted(() => ({ exposed: undefined as unknown, invoke: vi.fn(async () => ({ ok: true })), on: vi.fn(), removeListener: vi.fn(), getPathForFile: vi.fn() }));
 vi.mock('electron', () => ({ contextBridge: { exposeInMainWorld: (_name: string, value: unknown) => { mocks.exposed = value; } }, ipcRenderer: { invoke: mocks.invoke, on: mocks.on, removeListener: mocks.removeListener }, webUtils: { getPathForFile: mocks.getPathForFile } }));
 import '../../../electron/preload';
-type Bridge = { folders: { registerRecent: (path: string) => Promise<unknown>; pathForFile: (file: File) => string; subscribeOpen: (listener: (intent: unknown) => void) => () => void } };
+type Bridge = {
+  folders: { registerRecent: (path: string) => Promise<unknown>; pathForFile: (file: File) => string; subscribeOpen: (listener: (intent: unknown) => void) => () => void };
+  document: { inlinePdfPreview: boolean };
+};
 beforeEach(() => vi.clearAllMocks());
+it('exposes inline PDF preview as unavailable for the desktop MVP fallback', () => {
+  expect((mocks.exposed as Bridge).document.inlinePdfPreview).toBe(false);
+});
 it('forwards only the folder path for registration and uses Electron file extraction without inventing paths', async () => {
   const bridge = (mocks.exposed as Bridge).folders;
   await bridge.registerRecent('/chosen'); expect(mocks.invoke).toHaveBeenCalledWith('chirality:folder-register-recent', '/chosen');

@@ -384,12 +384,13 @@ function FileDocumentView({ target, onOpenDocument, expanded, presentation }: { 
   const [busy, setBusy] = useState(false);
   const [headings, setHeadings] = useState<DocumentHeading[]>([]);
   const [naturalImage, setNaturalImage] = useState(false);
+  const [pdfUnavailable, setPdfUnavailable] = useState(false);
   const documentBodyRef = useRef<HTMLDivElement | null>(null);
   const key = JSON.stringify([projectRoot, target, reload]);
   const url = `/api/working-root/file?projectRoot=${encodeURIComponent(projectRoot ?? '')}&target=${encodeURIComponent(target)}`;
   useEffect(() => {
     let cancelled = false;
-    setActionError(null); setHeadings([]); setNaturalImage(false);
+    setActionError(null); setHeadings([]); setNaturalImage(false); setPdfUnavailable(false);
     if (projectRoot) void fetch(url).then(async response => {
       const preview = await response.json();
       if (!response.ok) throw new Error(preview.error?.message ?? 'Unable to load file.');
@@ -422,7 +423,7 @@ function FileDocumentView({ target, onOpenDocument, expanded, presentation }: { 
     <div ref={documentBodyRef} className="panel-body document-view-body" style={{ overflow: 'auto', overflowWrap: 'anywhere', minWidth: 0, ...(expanded ? { maxWidth: 640, margin: '0 auto', width: '100%', fontSize: 13.5, lineHeight: 1.6 } : {}) }}>
       {!projectRoot ? <p>Choose a folder to see its files.</p> : error ? <p role="alert">{error}</p> : !preview ? <p>Loading document…</p> : <>
         <p>{preview.name} · {preview.size.toLocaleString()} bytes · Modified {preview.modifiedAt}</p>
-        {preview.kind === 'pdf' ? inlinePdfPreview ? <iframe title={preview.name} src={`${url}&content=pdf`} style={{ width: '100%', height: '65vh', border: 0 }} /> : <p>PDF preview is unavailable here. Open this file in its default app.</p> :
+        {preview.kind === 'pdf' ? inlinePdfPreview && !pdfUnavailable ? <iframe title={preview.name} src={`${url}&content=pdf`} onError={() => setPdfUnavailable(true)} style={{ width: '100%', height: '65vh', border: 0 }} /> : <><p>PDF preview is unavailable here. Open this file in its default app.</p>{inlinePdfPreview ? <button type="button" onClick={() => { setPdfUnavailable(false); setReload(value => value + 1); }}>Retry PDF preview</button> : null}</> :
           preview.kind === 'image' && !preview.tooLarge ? <button type="button" aria-label={naturalImage ? 'Fit image to panel' : 'Show image at natural size'} onClick={() => setNaturalImage(value => !value)} style={{ display: 'block', padding: 0, maxWidth: naturalImage ? 'none' : '100%' }}>
             <img src={`${url}&content=image`} alt={preview.name} onError={() => setActionError('Unable to decode this image. Open it in its default app.')} style={{ display: 'block', maxWidth: naturalImage ? 'none' : '100%', height: 'auto' }} />
           </button> :

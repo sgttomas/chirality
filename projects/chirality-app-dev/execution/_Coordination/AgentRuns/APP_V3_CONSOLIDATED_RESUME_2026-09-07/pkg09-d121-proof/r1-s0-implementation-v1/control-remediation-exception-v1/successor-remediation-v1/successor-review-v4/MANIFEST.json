@@ -1,0 +1,24 @@
+{
+  "schema": "chirality-candidate-v4-review-manifest/v1",
+  "verdict": "PASS",
+  "findings": [],
+  "reviewer": "Agent2:/root/app_pkg09/retention_binding_proposal_review",
+  "candidateManifestSha256": "b085f38c7dfd7e4530b4e692ca0d5f58c6d6bb8c2731a49e7cb49774203f22fd",
+  "members": [
+    {
+      "path": "REVIEW_BRIEF.md",
+      "sha256": "8ae81be84095c39d1aad5be6ee16a19a2dab368462556ded86df1c6ec4997df2",
+      "bytes": 1542
+    },
+    {
+      "path": "BRIEF_IDENTITY.json",
+      "sha256": "3bbeb2cd046c51a824009874353dbf1861399ee4afc06f59802da8576ececaa2",
+      "bytes": 261
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "73fdd047d82fab0aec5da4586cd8bb2989ac4b58be9f816fe18e1478e6cd075e",
+      "bytes": 955
+    }
+  ]
+}

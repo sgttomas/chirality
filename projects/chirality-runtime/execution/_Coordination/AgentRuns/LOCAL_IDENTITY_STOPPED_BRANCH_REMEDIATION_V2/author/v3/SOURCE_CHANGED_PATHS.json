@@ -1,0 +1,347 @@
+{
+  "status": "CONTAINED_FROZEN_V3_CANDIDATE",
+  "root": "/private/tmp/chirality-runtime-local-identity-r-v2-remediation-20260908/repo",
+  "sourceAndTestCount": 29,
+  "sourceAndTestRows": [
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-admission-lock.ts",
+      "sha256": "11c2b9040e09bf99adf81d1aef66e8c2566a652bd796a092cc9fdd9dfecda53b",
+      "bytes": 1632,
+      "headSha256": null,
+      "stoppedPreimageSha256": "86b5f347a213d5e2c6a9c756dd482008410d9a29dab758414db1d0a7d79850b5",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "11c2b9040e09bf99adf81d1aef66e8c2566a652bd796a092cc9fdd9dfecda53b",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/index.ts",
+      "sha256": "05465c998d507681031b497809a1e1f56db7450aa43fdbf1fcafc4599e8e3522",
+      "bytes": 785,
+      "headSha256": "e0cff467a9dfb9ee63fedfa4f8800010a464b37c40cca7f05d219307a25a62cc",
+      "stoppedPreimageSha256": "05465c998d507681031b497809a1e1f56db7450aa43fdbf1fcafc4599e8e3522",
+      "changedFromHead": true,
+      "changedFromStopped": false,
+      "v2PreimageSha256": "05465c998d507681031b497809a1e1f56db7450aa43fdbf1fcafc4599e8e3522",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/package.json",
+      "sha256": "24bd6ee1274c0cc453a01138e7d76d706424d01c38360daeff4e6632819bb819",
+      "bytes": 386,
+      "headSha256": "2d6f3a71730758459a8f6ba85f77dc71298916a39594d72198d392d2ee48cc80",
+      "stoppedPreimageSha256": "ca9f3d296019d55f6edd04c437cd951ef6b261f68f8c96c1e68e52bb7f138530",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "24bd6ee1274c0cc453a01138e7d76d706424d01c38360daeff4e6632819bb819",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supplier-authority-controller.ts",
+      "sha256": "0d4afc18134b36c298bea652d2935f8db6741296360f0b6302cf96796fbb0e72",
+      "bytes": 22522,
+      "headSha256": null,
+      "stoppedPreimageSha256": "645f72910229b8f154eb529184fbeef4b516df16124966a8022157fc41517f54",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "0d4afc18134b36c298bea652d2935f8db6741296360f0b6302cf96796fbb0e72",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supplier-authority-journal.ts",
+      "sha256": "a986bf1b66714e971b8d8ae76a787636aea522fae36b63fb80c3f527c4d1b02d",
+      "bytes": 10437,
+      "headSha256": null,
+      "stoppedPreimageSha256": "c467eba2001445a41e0c108290663fed68af5250d9de2acb9702d8f620988dd3",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "a986bf1b66714e971b8d8ae76a787636aea522fae36b63fb80c3f527c4d1b02d",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "sha256": "a754f04215371caa795ebf1e387b15b414e6bb5f3bb672200d8cdd2d293dd71c",
+      "bytes": 23079,
+      "headSha256": "6b3a0e7fb393ea0bea43989b65ffcb84fd644729a8ac9117e9d5c981ce550f89",
+      "stoppedPreimageSha256": "b7f736ea4b706e3c5f2c5566d8d8242f03e6b76f22018015e55883a07a557836",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "a754f04215371caa795ebf1e387b15b414e6bb5f3bb672200d8cdd2d293dd71c",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "5d0ac9f797efd1533128dc8f2814020e4c51fce9d446ee35f7f0f692754a469a",
+      "bytes": 46654,
+      "headSha256": "34e684d4f9ebdf422217448c8926bee91e275ac12ec4b93248a5c64193481acf",
+      "stoppedPreimageSha256": "0b6b90b7d5f73ef4ad058eca8f55fef27914af226dbb964dcdf2214251b2deee",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "cfb62024d7c59b3b208ab07ffbad1b59fcf5ab56a4203fe993ba8270f05444da",
+      "changedFromV2": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "sha256": "24cc3b789797b853c6e70dbb84ce2cccd869a9a756bea55a20f1cc377425beaf",
+      "bytes": 57376,
+      "headSha256": "393a22ca6f10c56f82d43f193120da200bde5de6126364b6dfff77a285c88064",
+      "stoppedPreimageSha256": "d84449c18acdc68bb074c1563fe145cb46f76f928b9059ec0b02442e88f34add",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "24cc3b789797b853c6e70dbb84ce2cccd869a9a756bea55a20f1cc377425beaf",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-worker.ts",
+      "sha256": "3ddd854a2290709615df74b21e3c7bdd2bd9e78358696da1dbaf6fa4d90eaecd",
+      "bytes": 10078,
+      "headSha256": "0954da134c0074ead083b2ea5ca34970d9536ff4eafdb921c4c5dcf7789c7030",
+      "stoppedPreimageSha256": "025c2064a69a670f8c03e5e9936a30c10b56f256ef662d2bef83f0bddd22c10c",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "3ddd854a2290709615df74b21e3c7bdd2bd9e78358696da1dbaf6fa4d90eaecd",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-transport-lifecycle.ts",
+      "sha256": "01817d8f7ab050c155a10ec5899589c7a82ede8abdfaf45f3bc152132d9d0163",
+      "bytes": 7375,
+      "headSha256": "361eef00340fff883791a3b858504436f1979a11bd9e9ceb7a8acb4998e9a0f1",
+      "stoppedPreimageSha256": "96186515622db77b3aed6d35fda55c2e73a6187c4c0e947b89d2c13e6efa7af8",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "01817d8f7ab050c155a10ec5899589c7a82ede8abdfaf45f3bc152132d9d0163",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/supervisor-server.ts",
+      "sha256": "4cd9ed29f37fcd522ee2440e8e57d207563a5a473d7262726fe6ae47f2cacf86",
+      "bytes": 20604,
+      "headSha256": "071ad5f7953c928c9553ad9978dff607a395b9d7e78cb43e18960873cc199d90",
+      "stoppedPreimageSha256": "d967fb3640d7a9490a56c52a0766b6e7eab8fe926b9b16eb6fd7990e657c3d74",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "4cd9ed29f37fcd522ee2440e8e57d207563a5a473d7262726fe6ae47f2cacf86",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/standalone.ts",
+      "sha256": "fc1d8357a0c98925c72c956bfa1ce4a30056febbb2dff4c63fe6cabc578fc2e8",
+      "bytes": 35501,
+      "headSha256": "93ed41aa11109bdd091eab21e1bed374860ce063313e0be487b1ab13e1338ebc",
+      "stoppedPreimageSha256": "cdc69052ba8ec8deeb687e7c2fb68080001da6502b3ab41026f0b022d743af8d",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "fc1d8357a0c98925c72c956bfa1ce4a30056febbb2dff4c63fe6cabc578fc2e8",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/index.ts",
+      "sha256": "ca974df16f8eda2ad1d49d30f627f3f60bfe560d3b99fb66f798dc0075694f24",
+      "bytes": 433,
+      "headSha256": "02d0d7353746cf770b3d198b7906b305dc22c273fa470e2ec0a9f7ffc8f63dee",
+      "stoppedPreimageSha256": "ca974df16f8eda2ad1d49d30f627f3f60bfe560d3b99fb66f798dc0075694f24",
+      "changedFromHead": true,
+      "changedFromStopped": false,
+      "v2PreimageSha256": "ca974df16f8eda2ad1d49d30f627f3f60bfe560d3b99fb66f798dc0075694f24",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/package.json",
+      "sha256": "366731b6f52a904d7bc4adf8dc3d661699c346c60981b84625fc08415caed667",
+      "bytes": 534,
+      "headSha256": "5d4893d6a40cfafeecf1e882e7c9b14917bba53f9a656a5627bda39eaa06b838",
+      "stoppedPreimageSha256": "366731b6f52a904d7bc4adf8dc3d661699c346c60981b84625fc08415caed667",
+      "changedFromHead": true,
+      "changedFromStopped": false,
+      "v2PreimageSha256": "366731b6f52a904d7bc4adf8dc3d661699c346c60981b84625fc08415caed667",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/package.json",
+      "sha256": "527cd7cdb42ffa7022c6ada5f059a590a39e696c9340fcde7d5df9e3ba851d47",
+      "bytes": 530,
+      "headSha256": null,
+      "stoppedPreimageSha256": "9bf53c74938ad00aa928485ff822ec044cb9cd75fed18311f15ac7ca2a9c46e3",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "527cd7cdb42ffa7022c6ada5f059a590a39e696c9340fcde7d5df9e3ba851d47",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/binding.gyp",
+      "sha256": "df14d8d305bbf82f75b3cf14ad6a1877e729dae2b53f613cc1dcc08e322f7ea7",
+      "bytes": 218,
+      "headSha256": null,
+      "stoppedPreimageSha256": "df14d8d305bbf82f75b3cf14ad6a1877e729dae2b53f613cc1dcc08e322f7ea7",
+      "changedFromHead": true,
+      "changedFromStopped": false,
+      "v2PreimageSha256": "df14d8d305bbf82f75b3cf14ad6a1877e729dae2b53f613cc1dcc08e322f7ea7",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/src/addon.cc",
+      "sha256": "6a62583456a66a8806b9408006ed5126b2096de8934c1ebc6975d57810c4b847",
+      "bytes": 13419,
+      "headSha256": null,
+      "stoppedPreimageSha256": "e26187eddebfbc6d931fad65c91d102b134a2df27e233b318c15ebb608d0347d",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "6a62583456a66a8806b9408006ed5126b2096de8934c1ebc6975d57810c4b847",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/src/index.ts",
+      "sha256": "30e93c50b2818fb0ced0ac25f456251c8246710da86a0c7e5c0543742a050d16",
+      "bytes": 5488,
+      "headSha256": null,
+      "stoppedPreimageSha256": "00b5b701d6b5883273628286a7a4bc2c7fa34aa8fc24065e81049be64b6af2fa",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "30e93c50b2818fb0ced0ac25f456251c8246710da86a0c7e5c0543742a050d16",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/tsconfig.json",
+      "sha256": "f7b6007cdeaa37eac7ba1787b5dbb32c788ab90aa656cd2c258eb0c983e0b9f4",
+      "bytes": 257,
+      "headSha256": null,
+      "stoppedPreimageSha256": "2263f28e6b3547cd85fefc8e67475006d5988cfef7b8aab340a68c15d9a2573a",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "f7b6007cdeaa37eac7ba1787b5dbb32c788ab90aa656cd2c258eb0c983e0b9f4",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "sha256": "a8052992a83f9390d68f015776cd81e27ed8b13a77847fcd468177758d3b7ede",
+      "bytes": 489,
+      "headSha256": "57c41cea4d4eab75c85af37ff55a31a1f3a2edbaf8fef6da97424e14d24a46ae",
+      "stoppedPreimageSha256": "a8052992a83f9390d68f015776cd81e27ed8b13a77847fcd468177758d3b7ede",
+      "changedFromHead": true,
+      "changedFromStopped": false,
+      "v2PreimageSha256": "a8052992a83f9390d68f015776cd81e27ed8b13a77847fcd468177758d3b7ede",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/package-lock.json",
+      "sha256": "4195789d5bb47a1ddc83abd8c6fde5544a167dfd1c148e875004f3de37680059",
+      "bytes": 214151,
+      "headSha256": "b856eb9357becc7abb10cd0030a920e61afb7f5aaf24830c69261726a43c3acf",
+      "stoppedPreimageSha256": "b856eb9357becc7abb10cd0030a920e61afb7f5aaf24830c69261726a43c3acf",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "4195789d5bb47a1ddc83abd8c6fde5544a167dfd1c148e875004f3de37680059",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/tsconfig.json",
+      "sha256": "3fac13e26991dec49b2410142c48140c6665a210814f52867219854cc7ead4dd",
+      "bytes": 343,
+      "headSha256": "8a0d13f1f7fe753b63c7a11262446c29b11b365fbd126971cf4f4ffb719b2469",
+      "stoppedPreimageSha256": "8a0d13f1f7fe753b63c7a11262446c29b11b365fbd126971cf4f4ffb719b2469",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "3fac13e26991dec49b2410142c48140c6665a210814f52867219854cc7ead4dd",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/tests/supplier-authority-controller.test.ts",
+      "sha256": "670ad68ea4660d91b6689913589f294817e1069860ac2b47d0094330b630bb08",
+      "bytes": 8392,
+      "headSha256": null,
+      "stoppedPreimageSha256": "62589dd92d0cb5cd5b5144b63994dcfa533509d0a4507f6d7db6dfc8342ab996",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "670ad68ea4660d91b6689913589f294817e1069860ac2b47d0094330b630bb08",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/tests/supplier-authority-journal.test.ts",
+      "sha256": "ebaafa3547e9a71943320d50f5e1debaa66471d5b5d4f5cf4185a5990c7567c4",
+      "bytes": 11456,
+      "headSha256": null,
+      "stoppedPreimageSha256": "93aa84c7c024650ca71923bc4ae676affdcec795d5e17da68dbf5c7deacae036",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "bf7b1b4b0bafaa34522e488ef3292f53114fd979612d0694ec2fc4f2f5940e76",
+      "changedFromV2": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-admission-native.test.ts",
+      "sha256": "70da83180bed460bd9666f7b32cab22b27ec2105dbe2097f263a474fe0fcf21b",
+      "bytes": 4407,
+      "headSha256": null,
+      "stoppedPreimageSha256": "462f1f699821b417cb20dedcc445e48c06df502fca1a094a1a37cb181fe11e91",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "70da83180bed460bd9666f7b32cab22b27ec2105dbe2097f263a474fe0fcf21b",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-session.test.ts",
+      "sha256": "ed87f2f886cead01bd3ec4ac9a607556d278dfeab3ae72362d64c1ebf91ec258",
+      "bytes": 58394,
+      "headSha256": "284e6492d66cb500760fffa381ee2ca82bcebe0b49245c59e962612808e3a016",
+      "stoppedPreimageSha256": "ae26b796241bb997d488a1099266cde8162c182ee32a1693f4c31416931d624b",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "ed87f2f886cead01bd3ec4ac9a607556d278dfeab3ae72362d64c1ebf91ec258",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/tests/supervisor-server.test.ts",
+      "sha256": "90a625645379f829e3fc9940b44976a39c77f5b9421d59068513d8c1c11094b3",
+      "bytes": 3384,
+      "headSha256": null,
+      "stoppedPreimageSha256": "84c561dc71f3fd2403cb4ed8369fb7f9c6668135c3eee4d8fad1a3a98e872a66",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "90a625645379f829e3fc9940b44976a39c77f5b9421d59068513d8c1c11094b3",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+      "sha256": "4cb993437f86636fc2cc8ee89a8d3543cc75aa814aa68a97faa15c8e6cc70179",
+      "bytes": 23570,
+      "headSha256": "b4e05d10d6c8e946b0d4c8ace147509192e58bab1d173e27fe84b5dc50c3168c",
+      "stoppedPreimageSha256": "1ce71f2905602bf90e6a8a1058cbd585dcebf050d0e0f14fb743649fa572ea62",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "4cb993437f86636fc2cc8ee89a8d3543cc75aa814aa68a97faa15c8e6cc70179",
+      "changedFromV2": false
+    },
+    {
+      "path": "projects/chirality-runtime/tests/local-supplier-authority.e2e.test.ts",
+      "sha256": "0980e796ab7db7193d8020ae52bf4dc4dc037c71f944dbd1cfd04b4e42e3e8f7",
+      "bytes": 23690,
+      "headSha256": null,
+      "stoppedPreimageSha256": "e4abb77219cf3ca0bd0c6e8ef788e88283af6aae0f3bc6a8e6eb9aad463b8813",
+      "changedFromHead": true,
+      "changedFromStopped": true,
+      "v2PreimageSha256": "f9a003c5017947b657819330c7b3c903163503b068f94af43f879c1b3a69340e",
+      "changedFromV2": true
+    }
+  ],
+  "gitStatusClassification": {
+    "sourceTest": 29,
+    "taskCache": 744,
+    "evidence": 26,
+    "priorEvidence": 3
+  },
+  "unexpectedPaths": [],
+  "gitDiffCheckExit": 0,
+  "stoppedEvidencePreserved": true,
+  "preexistingTestPreservation": {
+    "codexSupervisor": "Restored exact HEAD bytes before appending executable tests; removed only stopped unregistered source-text test inside child fixture.",
+    "codexSession": "Existing file and prior Sequence20 test retained; new tests appended."
+  },
+  "v3ChangedPaths": [
+    "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+    "projects/chirality-runtime/tests/supplier-authority-journal.test.ts",
+    "projects/chirality-runtime/tests/local-supplier-authority.e2e.test.ts"
+  ],
+  "v3ChangedCount": 3,
+  "v2EvidencePreserved": true,
+  "preexistingTestsPreserved": "All v2 tests retained; v3 appends fourteen executable cases and adds imports only."
+}

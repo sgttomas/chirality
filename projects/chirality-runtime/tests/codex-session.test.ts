@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { PassThrough } from "node:stream";
 import { CodexTurnSession, type CodexDynamicTool } from "../packages/daemon/src/codex-session.js";
+import { canonicalBytes, nextSequence20, parseSequence20, sequenceField } from "../packages/daemon/src/supplier-authority-controller.js";
 
 function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "turn", tools?: readonly CodexDynamicTool[], posture: "off" | "ask-per-destination" | "on" = "off") {
   const code = `
@@ -320,6 +321,15 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
   });
 });
 
+describe("private Sequence20 framing", () => {
+  it("validates the original string and frames exact unsigned big-endian bytes", () => {
+    expect(canonicalBytes("x", [sequenceField("00000000000000000001")]).toString("hex")).toMatch(/000000080000000000000001$/);
+    expect(parseSequence20("18446744073709551615")).toBe(18446744073709551615n);
+    expect(() => nextSequence20("18446744073709551615")).toThrow("sequence-invalid");
+    for (const value of [0, "1", "00000000000000000000", "+0000000000000000001", "０００００００００００００００００００１"]) expect(() => parseSequence20(value)).toThrow("sequence-invalid");
+  });
+});
+
 async function networkActor(posture: "off" | "ask-per-destination" | "on" = "ask-per-destination", dynamicTools?: readonly CodexDynamicTool[], requestTimeoutMs = 500) {
   const stdin = new PassThrough(), stdout = new PassThrough(); const replies: any[] = [];
   const send = (value: unknown) => stdout.write(JSON.stringify(value) + "\n");
@@ -614,4 +624,13 @@ describe("custody account-only projection", () => {
     } finally { await f.close(); }
     expect(() => new CodexTurnSession({ purpose: "login", transport: { stdin: new PassThrough(), stdout: new PassThrough(), async close() {} }, dynamicTools: [{ name: "review", description: "synthetic", inputSchema: { type: "object", properties: {}, additionalProperties: false }, async handler() { throw new Error("must never run"); } }] })).toThrow("Unsupported dynamic tool registry");
   });
+});
+
+describe("private authority session transport",()=>{
+ it("delivers ordered raw frames and rejects duplicate keys before handing them to the controller",async()=>{const stdin=new PassThrough(),stdout=new PassThrough();let failures=0,closed=0;const received:string[]=[];const transport=CodexTurnSession.privateAuthorityTransport({stdin,stdout,close:async()=>{closed++;}});transport.subscribe(raw=>received.push(Buffer.from(raw).toString()),()=>{failures++;});stdout.write('{"a":1}\n{"a":2}\n');expect(received).toEqual(['{"a":1}','{"a":2}']);stdout.write('{"a":1,"a":2}\n');expect(failures).toBe(1);await transport.close();await transport.close();expect(closed).toBe(1);});
+ it("verifies the exact initialization proof and rejects version rollback or altered descriptors",async()=>{const {verifyAuthorityInitialization}=await import("../packages/daemon/src/codex-session.js");const {initializationProof,AUTHORITY_CONTRACT}=await import("../packages/daemon/src/supplier-authority-controller.js");const input={runtimeProcessIncarnationId:"11111111-1111-1111-1111-111111111111",supplierGeneration:"s",runtimeChallenge:Buffer.alloc(32,1).toString("base64url"),exactSupplyDigest:"a".repeat(64),authoritySecret:Buffer.alloc(32,2),descriptor:{capability:"chirality.local-admission-authority",contract:AUTHORITY_CONTRACT,major:1,minor:0},v4Descriptor:{capability:"account.identity-snapshot",contract:"chirality-supplier-account-identity/1",major:1,minor:0,method:"account/identitySnapshot"}};const result={contract:AUTHORITY_CONTRACT,runtimeProcessIncarnationId:input.runtimeProcessIncarnationId,supplierGeneration:"s",supplierChallenge:Buffer.alloc(32,3).toString("base64url"),descriptor:input.descriptor,v4Descriptor:input.v4Descriptor,proof:""};result.proof=initializationProof(input.authoritySecret,{...input,...result});expect(()=>verifyAuthorityInitialization(input,result)).not.toThrow();for(const change of [{...result,proof:"A".repeat(43)},{...result,descriptor:{...result.descriptor,major:0}},{...result,v4Descriptor:{...result.v4Descriptor,minor:1}},{...result,extra:1}])expect(()=>verifyAuthorityInitialization(input,change)).toThrow();});
+});
+
+describe("connected private initialize/snapshot/admission",()=>{
+ it("authenticates initialization, refreshes V4 and exchanges envelopes through CodexTurnSession",async()=>{const {initializationProof,AuthorityTranscript,AUTHORITY_CONTRACT}=await import("../packages/daemon/src/supplier-authority-controller.js");const {createFakeRuntimeAdmissionNativeAdapter}=await import("../packages/core/src/runtime-admission-lock.js");const secret=Buffer.alloc(32,6),stdin=new PassThrough(),stdout=new PassThrough();const identity={runtimeProcessIncarnationId:"11111111-1111-1111-1111-111111111111",supplierGeneration:"s"};const descriptor={capability:"chirality.local-admission-authority",contract:AUTHORITY_CONTRACT,major:1,minor:0},v4Descriptor={capability:"account.identity-snapshot",contract:"chirality-supplier-account-identity/1",major:1,minor:0,method:"account/identitySnapshot"};const input={...identity,authoritySecret:secret,runtimeChallenge:Buffer.alloc(32,3).toString("base64url"),exactSupplyDigest:"a".repeat(64),descriptor,v4Descriptor};const inbound=new AuthorityTranscript(secret,identity,"runtime-to-supplier"),outbound=new AuthorityTranscript(secret,identity,"supplier-to-runtime");const calls:string[]=[];let buffered="";const send=(value:unknown)=>stdout.write(JSON.stringify(value)+"\n");stdin.on("data",chunk=>{buffered+=String(chunk);let newline:number;while((newline=buffered.indexOf("\n"))>=0){const raw=buffered.slice(0,newline);buffered=buffered.slice(newline+1);const message=JSON.parse(raw);if(message.method==="initialize"){calls.push("initialize");const result={contract:AUTHORITY_CONTRACT,...identity,supplierChallenge:Buffer.alloc(32,4).toString("base64url"),descriptor,v4Descriptor,proof:""};result.proof=initializationProof(secret,{...input,...result});send({id:message.id,result:{chiralityAdmissionAuthority:result}});}else if(message.method==="initialized")continue;else if(message.method==="account/identitySnapshot"){calls.push("snapshot");send({id:message.id,result:{schema:"chirality-supplier-account-identity-response/1",state:"available",supplierGeneration:"s",identityGeneration:"i",accountUserId:"u",providerWorkspaceId:"w"}});}else {const b=inbound.accept(raw);if(b.kind!=="request")throw Error();calls.push(b.op);const acquire=b.op==="chirality/admissionAcquire";const base=acquire?{requestId:b.requestId,operationId:b.operationId,leaseId:"l",supplierGeneration:"s",identityGeneration:"i",snapshotDigest:b.v4.snapshotDigest}:{requestId:b.requestId,leaseId:b.leaseId,disposition:b.disposition};send(outbound.encode({kind:"result",op:b.op,state:acquire?"acquired":"aborted",...base} as any));send(outbound.encode({kind:"notification",op:acquire?"chirality/admissionAcquired":"chirality/admissionAborted",...base} as any));}}});const session=new CodexTurnSession({transport:{stdin,stdout,close:async()=>{stdin.destroy();stdout.destroy();}}});const controller=await session.establishAuthority(input,createFakeRuntimeAdmissionNativeAdapter().acquire("","runtime-admission-authority.lock"),async()=>{});await controller.acquire("w");await controller.abort("w");expect(calls).toEqual(["initialize","snapshot","snapshot","chirality/admissionAcquire","chirality/admissionAbort"]);await controller.close();});
 });

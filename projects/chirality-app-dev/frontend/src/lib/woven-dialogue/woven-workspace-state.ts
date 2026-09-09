@@ -71,6 +71,7 @@ export type WovenWorkspaceAdditions = {
   chatTitles: Record<string, string>;
   chatPins: string[];
   chatArchived: string[];
+  chatDeleted: string[];
   chatGroups: { id: string; name: string; sessionIds: string[] }[];
   groupsCollapsed: string[];
   knownRoots: { path: string; lastUsedAt: string }[];
@@ -260,6 +261,7 @@ function readAdditions(value: Record<string, unknown>): WovenWorkspaceAdditions 
     chatTitles: readHintMap(value.chatTitles, readLabel),
     chatPins: readIdentities(value.chatPins),
     chatArchived: readIdentities(value.chatArchived),
+    chatDeleted: readIdentities(value.chatDeleted),
     chatGroups: [...groups.values()],
     groupsCollapsed: readIdentities(value.groupsCollapsed),
     knownRoots: readKnownRoots(value.knownRoots),
@@ -462,6 +464,7 @@ export function clearProjectScopedWovenWorkspaceState(
     openDocumentPath: null,
     chatPins: [],
     chatArchived: [],
+    chatDeleted: [],
     chatGroups: [],
     groupsCollapsed: []
   };

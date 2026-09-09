@@ -1,0 +1,8 @@
+{
+  "schema": "chirality.runtime.identity-remediation.accepted-source-pointer.v1",
+  "status": "ACCEPTED_DEFAULT_OFF_SOURCE_RESULT",
+  "acceptance": "ACCEPTANCE.json",
+  "decisionSubjectSha256": "87b9ab3d47a9845ad3f046e831a9b7535d27055c8d8c245a1d6cf6b874cf04c6",
+  "sourceSelectionSha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+  "reviewManifestSha256": "3ffec439bce1531f243972c7cb67e65350ac283c47178f50667a75ea2900ea60"
+}

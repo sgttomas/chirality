@@ -14,6 +14,15 @@ import { CodexSupervisor } from "./codex-supervisor.js";
 import { RuntimeDaemon } from "./runtime-daemon.js";
 import { startSupervisorServer, SupervisorClient, type SupervisorCredential } from "./supervisor-server.js";
 
+export type StandaloneSupplierAuthorityConfig={enabled:false}|{schema:"chirality-standalone-supplier-authority/v1";enabled:true;authorityDirectory:string;supplierExecutable:string;supplierArgs:string[];nativeBindingSha256:string;exactSupplyDigest:string};
+export function validateStandaloneSupplierAuthority(value:unknown,runtimeDirectory:string):StandaloneSupplierAuthorityConfig|undefined {
+  if(value===undefined)return undefined;keys(value,["schema","enabled","authorityDirectory","supplierExecutable","supplierArgs","nativeBindingSha256","exactSupplyDigest"]);
+  if(value.enabled===false){if(Object.keys(value).join(",")!=="enabled")throw invalid("Disabled authority permits no additional fields");return{enabled:false};}
+  if(value.enabled!==true||value.schema!=="chirality-standalone-supplier-authority/v1"||Object.keys(value).length!==7)throw invalid("Invalid supplier authority configuration");
+  child(runtimeDirectory,value.authorityDirectory as string);absolute(value.supplierExecutable as string);
+  if(!Array.isArray(value.supplierArgs)||value.supplierArgs.length>128||value.supplierArgs.some(a=>typeof a!=="string"||Buffer.byteLength(a)>4096||/[\x00-\x1f]/.test(a))||typeof value.nativeBindingSha256!=="string"||!/^[a-f0-9]{64}$/.test(value.nativeBindingSha256)||typeof value.exactSupplyDigest!=="string"||!/^[a-f0-9]{64}$/.test(value.exactSupplyDigest))throw invalid("Invalid supplier authority binding");
+  return structuredClone(value) as StandaloneSupplierAuthorityConfig;
+}
 interface StandaloneBase {
   runtimeDirectory: string;
   daemonSocket: string;
@@ -29,7 +38,7 @@ interface StandaloneBase {
 }
 export type DelegatedStandaloneConfig = StandaloneBase & (
   { schema: "chirality-standalone/v1"; mode: "controlled-worker"; worker: { executablePath: string; args: string[]; maxRunMs?: number } } |
-  { schema: "chirality-standalone-hosted/v2"; mode: "hosted-validation"; worker: { conformance?: RuntimeConformanceConfiguration; executablePath: string; privateDirectory: string; model: string; commandNetworkPosture?: "off" | "ask-per-destination" | "on"; managedAuth: HostedManagedAuth; providerNetworkConsent: { approvedBy: string; approvalReference: string }; maxRunMs?: number } }
+  { schema: "chirality-standalone-hosted/v2"; mode: "hosted-validation"; supplierAuthority?:StandaloneSupplierAuthorityConfig; worker: { conformance?: RuntimeConformanceConfiguration; executablePath: string; privateDirectory: string; model: string; commandNetworkPosture?: "off" | "ask-per-destination" | "on"; managedAuth: HostedManagedAuth; providerNetworkConsent: { approvedBy: string; approvalReference: string }; maxRunMs?: number } }
 );
 export interface LocalStandaloneConfig {
   schema: "chirality-standalone/v1";
@@ -87,10 +96,11 @@ export async function readStandaloneConfig(path: string): Promise<StandaloneConf
   await privateFile(path);
   const config = await privateRead<StandaloneConfig>(path);
   if (config?.mode === "local-engine-only") return validateLocalConfig(config, path);
-  keys(config, ["schema", "mode", "runtimeDirectory", "daemonSocket", "supervisorSocket", "supervisorCredential", "project", "worker"]);
+  keys(config, ["schema", "mode", "runtimeDirectory", "daemonSocket", "supervisorSocket", "supervisorCredential", "project", "worker", ...(config?.mode==="hosted-validation"?["supplierAuthority"]:[])]);
   if (!["controlled-worker", "hosted-validation"].includes(config.mode)) throw unavailable("Only controlled-worker or explicitly configured hosted-validation modes are supported");
   if (config.schema !== (config.mode === "hosted-validation" ? "chirality-standalone-hosted/v2" : "chirality-standalone/v1")) throw invalid("Unsupported standalone schema for mode");
   absolute(config.runtimeDirectory);
+  if(config.mode==="hosted-validation")validateStandaloneSupplierAuthority(config.supplierAuthority,config.runtimeDirectory);
   if (!within(config.runtimeDirectory, path)) throw invalid("Configuration must reside in its private runtime directory");
   await privateTree(config.runtimeDirectory);
   keys(config.project, ["projectId", "identity", "compatibility", "codexHome", "retirementDirectory"]);
@@ -151,6 +161,7 @@ async function loadCredential(config: DelegatedStandaloneConfig, expectedDigest 
 export async function startStandaloneJob(role: "daemon" | "supervisor", configPath: string): Promise<StandaloneJob> {
   if (role !== "daemon" && role !== "supervisor") throw invalid("Expected daemon or supervisor job");
   const config = await readStandaloneConfig(configPath);
+  if(config.mode==="hosted-validation"&&config.supplierAuthority?.enabled)throw unavailable("Supplier authority native package remains unqualified");
   if (config.mode === "local-engine-only") {
     if (role !== "daemon") throw invalid("Local engine mode has no supervisor job");
     return startLocalDaemon(config);
@@ -162,6 +173,7 @@ export async function startStandaloneJob(role: "daemon" | "supervisor", configPa
     const workers = config.mode === "controlled-worker"
       ? new ProcessSupervisor({ command: config.worker.executablePath, args: config.worker.args, cwd: config.project.identity.canonicalRoot,
         env: { CODEX_HOME: codexHome }, maxRunMs: config.worker.maxRunMs ?? 30_000 })
+      // Supplier authority is deliberately absent here: packaging remains default-off until a later qualified composition.
       : new CodexSupervisor({ executablePath: config.worker.executablePath, model: config.worker.model, identity: config.project.identity,
         codexHome, privateDirectory: child(config.runtimeDirectory, config.worker.privateDirectory), protectedPaths: [config.runtimeDirectory], commandNetworkPosture: config.worker.commandNetworkPosture ?? "off", managedAuth: config.worker.managedAuth,
         providerNetworkConsent: config.worker.providerNetworkConsent, turnTimeoutMs: config.worker.maxRunMs ?? 120_000,

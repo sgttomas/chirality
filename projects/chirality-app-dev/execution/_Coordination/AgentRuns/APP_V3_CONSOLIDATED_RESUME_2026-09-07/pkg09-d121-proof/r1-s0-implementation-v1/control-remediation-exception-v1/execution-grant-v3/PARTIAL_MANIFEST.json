@@ -1,0 +1,53 @@
+{
+  "schema": "chirality-s0-manager-projection-stop/v1",
+  "status": "STOP_MANAGER_SERIALIZER_AFTER_ADMIT_PASS",
+  "members": [
+    {
+      "path": "EXECUTION_GRANT.json",
+      "sha256": "4c0457a0a0692dacbd8d0414258af90b9165060379667be8f328f5cf947f1fe0",
+      "bytes": 3795
+    },
+    {
+      "path": "HARD_EXECUTION_ENVELOPE.json",
+      "sha256": "a0ff9b0a3f579b7836e397e3b055808f1b140d170342e5ae4aeba8ba8ac12098",
+      "bytes": 1121
+    },
+    {
+      "path": "PLAN.json",
+      "sha256": "9218c3da14b3fc36cc1bb933bf4bef78ed1079f63d6c041602b80a153cb28132",
+      "bytes": 71544
+    },
+    {
+      "path": "PREBUILD_SUBJECT.json",
+      "sha256": "9f0a424dcdfb9fdfa4a08d766d09991847bb1763e180ef799956d2ff8c84ac84",
+      "bytes": 3352
+    },
+    {
+      "path": "PROCESS_BOUNDARY.json",
+      "sha256": "b4741f133a575f6d2d7a342ff365c091abcafbe8c7194ed5cf27fac0b05d4676",
+      "bytes": 1018
+    },
+    {
+      "path": "PROJECTION_STOP.md",
+      "sha256": "cca5c0d7016d3ba1fb4207a523d11e428f90b25730145d5aa7ff9e485583a701",
+      "bytes": 420
+    },
+    {
+      "path": "SOURCE_CONTROL_ACCEPTANCE.json",
+      "sha256": "5225c8933f41464831f9a414a66c27076f22757bdddd93afcfb686a337981e07",
+      "bytes": 1714
+    },
+    {
+      "path": "STAGE_AUTHORITY.json",
+      "sha256": "a1123d14f8bae232070fb67d326b668af9a099eaebdd746f8fc0cffd65c4d421",
+      "bytes": 1346
+    },
+    {
+      "path": "TOOL_CLOSURE.json",
+      "sha256": "bed1dfdb9c80fcc95363c07cb94ed6b5414460afdcfd76391b3b23afc19f45ab",
+      "bytes": 7179
+    }
+  ],
+  "workloadExecuted": false,
+  "runReservationCreated": false
+}

@@ -455,5 +455,36 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       'Live pec profile keeps the D-APP-51 registry identity marker (byte-sync guard from domain-profile-registry.test.ts)',
     allowMissing: true,
     pins: [{ kind: 'contains', value: 'id: "pec"' }]
+  },
+  {
+    file: 'electron/renderer-window-policy.ts',
+    description: 'D121 central PDF response classification and restrictive renderer policies',
+    pins: [
+      { kind: 'contains', value: "export const ELIGIBLE_PDF_RESPONSE_CLASS = 'eligible-pdf-v1';" },
+      { kind: 'contains', value: "export const ELIGIBLE_PDF_PATH = '/api/working-root/file';" },
+      { kind: 'contains', value: "\"default-src 'none'\", \"script-src 'none'\", \"frame-src 'none'\", \"object-src 'none'\"" },
+      { kind: 'contains', value: "\"base-uri 'none'\", \"form-action 'none'\", \"frame-ancestors 'self'\"" },
+      { kind: 'contains', value: 'export function isEligiblePdfResponse' },
+      { kind: 'contains', value: 'export function createEligiblePdfResponseHeaders' },
+      { kind: 'contains', value: "valuesForHeader(input.responseHeaders, 'content-range').length === 0" },
+      { kind: 'contains', value: "webContents.on('will-frame-navigate'" }
+    ]
+  },
+  {
+    file: 'src/app/api/working-root/file/route.ts',
+    description: 'D121 exact PDF selectors, signature screening, full-response streaming and central tuple emission',
+    pins: [
+      { kind: 'contains', value: "const allowedSelectors = new Set(['projectRoot', 'path', 'target', 'content']);" },
+      { kind: 'contains', value: "signature.toString('ascii') !== '%PDF-'" },
+      { kind: 'contains', value: 'createEligiblePdfResponseHeaders(info.size)' },
+      { kind: 'contains', value: 'Buffer.alloc(Math.min(64 * 1024, info.size - offset))' },
+      { kind: 'notContains', value: "'Accept-Ranges'" },
+      { kind: 'notContains', value: "'Content-Range'" }
+    ]
+  },
+  {
+    file: 'electron/preload.ts',
+    description: 'D121 MVP fallback truthfully exposes inline PDF preview as unavailable in desktop',
+    pins: [{ kind: 'contains', value: 'inlinePdfPreview: false' }]
   }
 ];

@@ -21,6 +21,22 @@ export interface SupervisorLoginPort { startLogin(): Promise<{ loginId: string; 
 export interface SupervisorCredential { owner: string; epoch: string; token: string }
 interface Options { socketPath: string; credential: SupervisorCredential; timeoutMs?: number }
 const MAX_FRAME = 256 * 1024;
+import type { SupplierAuthorityProjection } from "./supplier-authority-controller.js";
+export type { SupplierAuthorityProjection } from "./supplier-authority-controller.js";
+const PRIVATE_NAMES=new Set(["authoritySecret","accountUserId","providerWorkspaceId","runtimeProcessIncarnationId","runtimeChallenge","supplierChallenge","supplierGeneration","identityGeneration","snapshotDigest","leaseId","leaseHandle","lockIdentity","transcriptMac","previousTranscriptMac","chiralityAdmissionAuthority","exactSupplyDigest","revokedThroughRuntimeSequence"]);
+const PRIVATE_VALUES=new Set(["chirality.local-admission-authority","chirality-local-supplier-admission-authority/1","chirality-supplier-account-identity/1","chirality-supplier-account-identity-response/1","account/identitySnapshot",... ["Acquire","Release","Abort","Acquired","Released","Aborted","Revoked"].map(name=>`chirality/admission${name}`)]);
+export function assertNoPrivateAuthoritySurface(value:unknown,depth=0):void {
+  if(depth>32)throw new Error("private supplier authority surface rejected");
+  if(typeof value==="string") {if(PRIVATE_NAMES.has(value)||PRIVATE_VALUES.has(value))throw new Error("private supplier authority surface rejected");
+    if(/^[\s]*[\[{]/.test(value)){let decoded:unknown;try{decoded=JSON.parse(value);}catch{return;}assertNoPrivateAuthoritySurface(decoded,depth+1);}return;}
+  if(value&&typeof value==="object"){for(const [key,item]of Object.entries(value)){if(PRIVATE_NAMES.has(key))throw new Error("private supplier authority surface rejected");assertNoPrivateAuthoritySurface(item,depth+1);}}
+}
+export function validateSupplierAuthorityProjection(value:unknown):SupplierAuthorityProjection {
+  if(!value||typeof value!=="object"||Array.isArray(value))throw new Error("invalid authority projection");const r=value as Record<string,unknown>;
+  if((r.state==="ready"||r.state==="disabled")&&Object.keys(r).join(",")==="state")return{state:r.state};
+  if(r.state==="unavailable"&&Object.keys(r).sort().join(",")==="reason,state"&&["not-configured","starting","revoking","retiring","blocked"].includes(String(r.reason)))return{state:"unavailable",reason:r.reason as Extract<SupplierAuthorityProjection,{state:"unavailable"}>["reason"]};
+  throw new Error("invalid authority projection");
+}
 function requestToken(secret: string, r: Record<string, unknown>): string {
   return createHmac("sha256", secret).update(JSON.stringify([r.owner, r.epoch, r.op, r.workerId ?? null, r.generation, r.input ?? null])).digest("hex");
 }
@@ -78,6 +94,8 @@ export async function startSupervisorServer(options: { socketPath: string; super
         try {
           if (closing || newline !== data.length - 1) throw new Error("invalid frame");
           const r = JSON.parse(data.subarray(0, newline).toString()) as Record<string, unknown>;
+          assertNoPrivateAuthoritySurface(r);
+          if(Object.keys(r).some(key=>!["owner","epoch","op","generation","workerId","input","token"].includes(key)))throw new Error("invalid request fields");
           if (!r || typeof r !== "object" || !validString(r.token, 64) || !/^[a-f0-9]{64}$/.test(r.token) || !timingSafeEqual(Buffer.from(r.token), Buffer.from(requestToken(credential.token, r))) || r.owner !== credential.owner || r.epoch !== credential.epoch) throw new Error("unauthorized supervisor request");
           const op = r.op;
           if (!["acquire", "inventory", "reconnect", "wait", "retire", "verify-hosted", "login-start", "login-status", "login-cancel", "manager-start", "manager-next", "manager-reply", "approval-pending", "approval-reply", "approval-describe"].includes(String(op))) throw new Error("unknown operation");
@@ -137,7 +155,7 @@ export async function startSupervisorServer(options: { socketPath: string; super
               else result = await options.supervisor.retire(r.workerId, r.generation);
             }
           }
-          respond({ ok: true, result });
+          assertNoPrivateAuthoritySurface(result); respond({ ok: true, result });
         } catch (error) {
           const details = error instanceof RuntimeError ? reconciliationDetails(error.details) : undefined;
           respond({ ok: false, error: "supervisor request rejected", ...(details ? { reconciliation: details } : {}) });
@@ -172,6 +190,7 @@ export class SupervisorClient implements DelegatedHarnessProcessSupervisorPort {
     await this.request("verify-hosted", { input: JSON.stringify(identity) });
   }
   private async request(op: string, fields: Record<string, unknown> = {}): Promise<unknown> {
+    assertNoPrivateAuthoritySurface(fields);
     const request = { owner: this.options.credential.owner, epoch: this.options.credential.epoch, op, generation: null, ...fields };
     const frame = JSON.stringify({ ...request, token: requestToken(this.options.credential.token, request) }) + "\n";
     if (Buffer.byteLength(frame) > MAX_FRAME) throw new Error("request too large");
@@ -185,7 +204,7 @@ export class SupervisorClient implements DelegatedHarnessProcessSupervisorPort {
         data = Buffer.concat([data, chunk]);
         if (data.length > MAX_FRAME) { fail(new Error("oversize supervisor response")); return; }
         if (!data.includes(10)) return;
-        try { const response = JSON.parse(data.toString()); if (!response.ok) { const details = reconciliationDetails(response.reconciliation); if (details) throw new RuntimeError("ENGINE_UNAVAILABLE", "Observed descendants require reconciliation", 503, details); throw new Error("supervisor request rejected"); } done = true; socket.destroy(); resolve(response.result); }
+        try { const response = JSON.parse(data.toString()); assertNoPrivateAuthoritySurface(response); if (!response.ok) { const details = reconciliationDetails(response.reconciliation); if (details) throw new RuntimeError("ENGINE_UNAVAILABLE", "Observed descendants require reconciliation", 503, details); throw new Error("supervisor request rejected"); } done = true; socket.destroy(); resolve(response.result); }
         catch (error) { fail(error as Error); }
       });
       socket.once("close", () => { if (!done) fail(new Error("supervisor disconnected")); });
