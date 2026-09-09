@@ -1,0 +1,22 @@
+{
+  "schema": "chirality-coordination-manifest/v1",
+  "status": "accepted_read_only_diagnosis",
+  "subjectHead": "e980f2ee773d32d1137646f437dc973126286e9b",
+  "members": [
+    {
+      "path": "EXPERT_REVIEW_BRIEF.md",
+      "sha256": "31134369f973b04da540526917a640c4520f1cf736f1f2b4d2ea5fd1542942f6",
+      "bytes": 3723
+    },
+    {
+      "path": "EXPERT_RETURN.md",
+      "sha256": "316e99880902c98d500965c44c0dadc3607ce3d1f329bae3f4a83d4d84088979",
+      "bytes": 5222
+    },
+    {
+      "path": "MANAGER_RETURN.md",
+      "sha256": "7735261db60d0d88e2a9bad6493c18650366b409472efd3f81e80a94c3a76a50",
+      "bytes": 1868
+    }
+  ]
+}

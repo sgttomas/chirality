@@ -61,7 +61,7 @@ export const D121_FROZEN_SOURCE_IDENTITIES = [
   ['src/__tests__/electron/renderer-window-policy.test.ts', 'd3ef6b47e07cbff491f3fd490f219e5b887f37fa156ecd922991eb5697469248', 46990],
   ['src/__tests__/api/working-root/file-route.test.ts', '8fb4cf4c12b9e6c97065d2194a9122f4cc6257384ec9822289892adbd5111f63', 16443],
   ['src/__tests__/components/document-view.test.tsx', 'e00f193e66afbf4fc1e30a84a17467871b259fd22462d786b6c546265eded861', 13638],
-  ['src/__tests__/contract-pins.manifest.ts', 'be0c299afcf6357389599688459bcd70680d2ec82ea728c4f0d8050fda238d97', 25891],
+  ['src/__tests__/contract-pins.manifest.ts', '388cafa5c9015d31e0a83ad5728e74879aab5bd6d577d8deea015c69bebc0a92', 25613],
   ['src/__tests__/electron/folder-preload.test.ts', 'ab65a700be92ec4c5dc3ae6737a066cf90ac5c11605624b682f0512a4ec49da6', 2658]
 ];
 export const D121_REQUIRED_NEGATIVE_CONTROLS = [

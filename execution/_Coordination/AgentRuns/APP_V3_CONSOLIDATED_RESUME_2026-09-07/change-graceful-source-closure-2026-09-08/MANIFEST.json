@@ -1,5 +1,5 @@
 {
-  "schema": "chirality.change.graceful-source-closure-manifest.v5",
+  "schema": "chirality.change.graceful-source-closure-manifest.v7",
   "members": [
     {
       "path": "PREFLIGHT.json",
@@ -8,13 +8,13 @@
     },
     {
       "path": "CANDIDATE_CHECKS.json",
-      "sha256": "8fb8126882d8ee78954e27711038f3f34eb1293360863f481fc4be1a9f18e4df",
-      "bytes": 913
+      "sha256": "24bc322abfa019d5a389ad4ef702604a2f6411af9910994e5d26024311c80f07",
+      "bytes": 1740
     },
     {
       "path": "RETAINED_EVIDENCE_BOUNDARY.md",
-      "sha256": "3128ccb0700acfe8800ca264d2d3c6c8defc26c1b4b585c9d109d8b858df7666",
-      "bytes": 1418
+      "sha256": "5a3a6e4b90c90727e97bf320a5a2123a75c426b77f7cea11ccaee389f4592b41",
+      "bytes": 1708
     },
     {
       "path": "review-v1/MANIFEST.json",
@@ -38,8 +38,8 @@
     },
     {
       "path": "CI_FAILURE_AND_REPAIR.json",
-      "sha256": "159466f44c1dcad2f684bd76566ed3459e07d614b676bb1c83e91272801286b3",
-      "bytes": 1337
+      "sha256": "96376285b2cce4743dba44c904b8761b4be53b51b43798c36413897685d20c4b",
+      "bytes": 2556
     },
     {
       "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/MANIFEST.json",
@@ -57,9 +57,34 @@
       "bytes": 1159
     },
     {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/manager-v1/MANIFEST.json",
+      "sha256": "10e126ad3f376c47bdb1eec448bec06cc2654440faa61daaa5bb74d4a15e8a12",
+      "bytes": 1985
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/review-v3/MANIFEST.json",
+      "sha256": "f55c5f9f32955a4b522ff217a6dab7d03a75c1429757afe5eabfdd38e137310b",
+      "bytes": 755
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-diagnosis-v1/MANIFEST.json",
+      "sha256": "b7d0e408c7ed50f674e655d02e77646c344f7a632520cb82c4b9d0ebcd135feb",
+      "bytes": 637
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-review-exception-v1/MANIFEST.json",
+      "sha256": "f98128d7a78ba242a3b6eaf6872402dd3f893ced49dcac8a54d51a3ca5269016",
+      "bytes": 171
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-repair-disposition-v1/MANIFEST.json",
+      "sha256": "03649b3d37ab9ff19fd00de28c7360b3042661b0d0336226c8329ed993e20010",
+      "bytes": 173
+    },
+    {
       "path": "PUBLICATION_SELECTION.json",
-      "sha256": "c927edbe47c88655520968801f32e09b2869e261cf524cc45a1cc6a74f67b1d4",
-      "bytes": 35834
+      "sha256": "553e54216f0d11c68fcdc4ffd5d35146590500d4644dd9d8b3d49149fee22602",
+      "bytes": 41713
     }
   ],
   "manifestSelfHash": "EXCLUDED_BY_CONTRACT"

@@ -109,7 +109,7 @@ describe('run-packaged-security-proof script', () => {
       (entry) => entry.relativePath === 'src/__tests__/electron/folder-preload.test.ts'
     );
     expect(preload?.expectedSha256).toBe('bf7c0351875e906e8a2646baf292452b5ac537a0f52887def9ef1d95f45c7560');
-    expect(contractPins?.expectedSha256).toBe('be0c299afcf6357389599688459bcd70680d2ec82ea728c4f0d8050fda238d97');
+    expect(contractPins?.expectedSha256).toBe('388cafa5c9015d31e0a83ad5728e74879aab5bd6d577d8deea015c69bebc0a92');
     expect(preloadRegression?.expectedSha256).toBe('ab65a700be92ec4c5dc3ae6737a066cf90ac5c11605624b682f0512a4ec49da6');
 
     for (const relativePath of [

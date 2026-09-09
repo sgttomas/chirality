@@ -354,25 +354,21 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
   {
     file: 'scripts/run-packaged-security-proof.mjs',
     description:
-      'Packaged artifact proof identity-binds real bundle bytes, exercises isolated safeStorage, and captures fail-closed renderer egress',
+      'Consume-only packaged artifact verifier identity-binds accepted bundle and S0 evidence, then checks credential, renderer-security, and fail-closed egress proof claims',
     pins: [
-      { kind: 'contains', value: "schema: 'chirality-packaged-security-proof/v1'" },
-      { kind: 'contains', value: "CHIRALITY_USER_DATA: userDataRoot" },
-      { kind: 'contains', value: "CHIRALITY_SKIP_CLI_LAUNCHER: '1'" },
+      { kind: 'contains', value: "schema: 'chirality-packaged-security-proof/v2'" },
       { kind: 'contains', value: "client.storeCredential('anthropic', fixtureCredential)" },
       { kind: 'contains', value: 'nonAllowlistedOutboundTcp' },
       { kind: 'contains', value: 'retainedMetadataLeakFindings' },
-      { kind: 'contains', value: "CHIRALITY_RENDERER_SECURITY_PROBE: '1'" },
       { kind: 'contains', value: 'rendererSecurityProofPass === true' },
       { kind: 'contains', value: "export const PACKAGED_RENDERER_ROUTES = ['/', '/chat', '/pipeline', '/workbench']" },
       { kind: 'contains', value: '!scriptSources.includes("\'unsafe-inline\'")' },
       { kind: 'contains', value: 'allObservedNoncesUnique' },
       { kind: 'contains', value: "export const EGRESS_PROBE_URL = 'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'" },
       { kind: 'contains', value: "'[egress-layer-probe]'" },
-      // DEL-09-06-V3-05: the proof no longer supplies the probe URL; it sets the retired
-      // variable to a loopback decoy the app must ignore and fails on any other destination.
+      // DEL-09-06-V3-05: the exported decoy names the producer's negative control; this
+      // consume-only verifier requires captured evidence to report no unexpected destinations.
       { kind: 'contains', value: "export const EGRESS_PROBE_DECOY_URL = 'http://127.0.0.1:9/chirality-packaged-security-egress-probe-decoy'" },
-      { kind: 'contains', value: 'CHIRALITY_EGRESS_LAYER_PROBE_URL: EGRESS_PROBE_DECOY_URL' },
       { kind: 'contains', value: 'egressProbeUnexpectedDestinations.length === 0' },
       { kind: 'notContains', value: 'CSC_LINK' },
       { kind: 'notContains', value: 'APPLE_ID' }

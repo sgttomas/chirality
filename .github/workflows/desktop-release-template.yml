@@ -36,6 +36,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Block release workload pending deferred S0 qualification
+        shell: bash
+        run: |
+          echo "::error::Deferred S0 qualification must supply accepted consume-only packaged-security inputs before release packaging can proceed."
+          exit 1
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -91,7 +97,6 @@ jobs:
           --source-revision ${GITHUB_SHA}
 
       - name: Upload packaged LaunchAgent RunAtLoad proof evidence
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: chirality-packaged-launchagent-runatload-proof
@@ -109,7 +114,6 @@ jobs:
           executable_path="${app_path}/Contents/MacOS/Chirality"
           instruction_summary="artifacts/harness/instruction-root-integrity/latest/summary.json"
           verification_root="artifacts/release-verification"
-          packaged_security_root="${verification_root}/packaged-security"
           staged_sdk_proof_root="${verification_root}/packaged-agent-sdk/staged"
           mounted_sdk_proof_root="${verification_root}/packaged-agent-sdk/mounted"
 
@@ -150,21 +154,6 @@ jobs:
               throw new Error(`instruction-root integrity status is ${summary.status}`);
             }
           ' "${instruction_summary}"
-
-          npm run proof:packaged-security -- \
-            --app-path "${app_path}" \
-            --output-root "${packaged_security_root}" \
-            --source-revision "${GITHUB_SHA}"
-          node -e '
-            const fs = require("node:fs");
-            const summary = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
-            if (summary.status !== "pass") {
-              throw new Error(`packaged security proof status is ${summary.status}`);
-            }
-            if (summary.exclusions.realCredentialsUsed !== false) {
-              throw new Error("packaged security proof used a real credential");
-            }
-          ' "${packaged_security_root}/summary.json"
 
           run_packaged_sdk_proof() {
             local bundle_root="${1}"
@@ -303,8 +292,6 @@ jobs:
                   'artifacts/release-verification/packaged-dependency-boundary.json',
                 instructionRootSummary:
                   'artifacts/harness/instruction-root-integrity/latest/summary.json',
-                packagedSecurityProof:
-                  'artifacts/release-verification/packaged-security/summary.json',
                 packagedAgentSdkProofs: {
                   staged:
                     'artifacts/release-verification/packaged-agent-sdk/staged/summary.json',

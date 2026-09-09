@@ -1,26 +1,35 @@
 {
-  "schema": "chirality.change.graceful-source-closure-selection.v5",
-  "status": "REVIEWED_CONFIG_REPAIR__FRESH_CI_AND_TERMINAL_REVIEW_PENDING",
+  "schema": "chirality.change.graceful-source-closure-selection.v7",
+  "status": "FROZEN_REVIEWED_APP_AND_RUNTIME_PUBLICATION_REPAIRS__FRESH_CI_AND_TERMINAL_REVIEW_PENDING",
   "baseCommit": "533332349a4607eee561d4ef90fb05a62d86519e",
-  "payloadCount": 116,
+  "payloadCount": 132,
   "publicationRule": "publish exactly payloadMembers plus this selection and its manifest; terminal independent review receipt remains external to avoid self-reference",
   "sourceCounts": {
-    "appAccepted": 29,
-    "runtimeAccepted": 29,
+    "historicallyAcceptedAppPostimages": 29,
+    "acceptedRuntimePostimages": 29,
     "runtimePublicationConfigRepair": 1,
-    "totalSourceAndConfig": 59
+    "appSecurityContractSuccessorPaths": 5,
+    "historicalAppPostimagesSupersededBySuccessor": 3,
+    "newWorkflowAndTestPaths": 2
   },
+  "qualificationBoundary": "Published main source includes a reviewed five-path App contract successor. It is not the prior accepted App artifact identity and requires a fresh future App qualification binding. Release workflow fails closed before workload until deferred S0 qualification is supplied.",
   "payloadMembers": [
     {
+      "path": ".github/workflows/desktop-release-template.yml",
+      "sha256": "913d7510858386f6f8c32cad1abcb883bdac9239d6e2dcf4d81a3b8797d6c7c6",
+      "bytes": 13658,
+      "group": "app-security-contract-repair-source"
+    },
+    {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/CANDIDATE_CHECKS.json",
-      "sha256": "8fb8126882d8ee78954e27711038f3f34eb1293360863f481fc4be1a9f18e4df",
-      "bytes": 913,
+      "sha256": "24bc322abfa019d5a389ad4ef702604a2f6411af9910994e5d26024311c80f07",
+      "bytes": 1740,
       "group": "closure-documentation"
     },
     {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/CI_FAILURE_AND_REPAIR.json",
-      "sha256": "159466f44c1dcad2f684bd76566ed3459e07d614b676bb1c83e91272801286b3",
-      "bytes": 1337,
+      "sha256": "96376285b2cce4743dba44c904b8761b4be53b51b43798c36413897685d20c4b",
+      "bytes": 2556,
       "group": "change-repair-disposition"
     },
     {
@@ -31,8 +40,8 @@
     },
     {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/RETAINED_EVIDENCE_BOUNDARY.md",
-      "sha256": "3128ccb0700acfe8800ca264d2d3c6c8defc26c1b4b585c9d109d8b858df7666",
-      "bytes": 1418,
+      "sha256": "5a3a6e4b90c90727e97bf320a5a2123a75c426b77f7cea11ccaee389f4592b41",
+      "bytes": 1708,
       "group": "closure-documentation"
     },
     {
@@ -94,6 +103,90 @@
       "sha256": "c10e90d2e9c73e8f3af4bf9e6aa03ff12a6de78acb5a85ac8a8f1c10d58435ae",
       "bytes": 1638,
       "group": "owner-transition"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-diagnosis-v1/EXPERT_RETURN.md",
+      "sha256": "316e99880902c98d500965c44c0dadc3607ce3d1f329bae3f4a83d4d84088979",
+      "bytes": 5222,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-diagnosis-v1/MANAGER_RETURN.md",
+      "sha256": "7735261db60d0d88e2a9bad6493c18650366b409472efd3f81e80a94c3a76a50",
+      "bytes": 1868,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-diagnosis-v1/MANIFEST.json",
+      "sha256": "b7d0e408c7ed50f674e655d02e77646c344f7a632520cb82c4b9d0ebcd135feb",
+      "bytes": 637,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/author-v2/EVIDENCE_MANIFEST_v3.json",
+      "sha256": "050c294030334fba863156617310e29da87162f2732241785cfbc53d5419730e",
+      "bytes": 2018,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/manager-v1/MANAGER_RETURN.md",
+      "sha256": "897387df72688b479fb3313fe9d23f1373ab7de186aef1c5a27caa9144094de7",
+      "bytes": 2081,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/manager-v1/MANIFEST.json",
+      "sha256": "10e126ad3f376c47bdb1eec448bec06cc2654440faa61daaa5bb74d4a15e8a12",
+      "bytes": 1985,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/manager-v1/SELECTION.json",
+      "sha256": "481c40926d545447c7bbe99792219bc183fe0e55c7df1cf7338db21ecc5bc2d4",
+      "bytes": 2267,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/review-v3/CHECKS.json",
+      "sha256": "b76d899cbf7af65af0638c5561308aac56cdec75c33b1225461a7127c408e31b",
+      "bytes": 1977,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/review-v3/MANIFEST.json",
+      "sha256": "f55c5f9f32955a4b522ff217a6dab7d03a75c1429757afe5eabfdd38e137310b",
+      "bytes": 755,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-pr761-contract-pin-repair-v1/review-v3/RETURN.md",
+      "sha256": "c5bb8be47618de31a77bf287bce34292416b1f19a6541a55857cae0125c2deba",
+      "bytes": 1949,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-repair-disposition-v1/DISPOSITION.json",
+      "sha256": "429dc78609225751550d1e781b86739b2a92763d1092ed648e7be36aa0ab1503",
+      "bytes": 3003,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-repair-disposition-v1/MANIFEST.json",
+      "sha256": "03649b3d37ab9ff19fd00de28c7360b3042661b0d0336226c8329ed993e20010",
+      "bytes": 173,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-review-exception-v1/EXCEPTION.json",
+      "sha256": "bba8b7c63f0061b3de625f05248349cea0537e4a51f00d5c918d1ebd49dc7880",
+      "bytes": 1664,
+      "group": "app-security-contract-repair-evidence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pr761-security-contract-review-exception-v1/MANIFEST.json",
+      "sha256": "f98128d7a78ba242a3b6eaf6872402dd3f893ced49dcac8a54d51a3ca5269016",
+      "bytes": 171,
+      "group": "app-security-contract-repair-evidence"
     },
     {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/standing-initiative-model-authority-2026-09-08/AUTHORITY.json",
@@ -199,9 +292,9 @@
     },
     {
       "path": "projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs",
-      "sha256": "4fc0de92baaa01eb51fc897d7774c8f88aa75ac4a84dfe54cbf3912078faf466",
+      "sha256": "b5aed40de46d3482999961fab616ab8007febb96300df447d8bc4fd6de5fdf2d",
       "bytes": 79122,
-      "group": "app-source"
+      "group": "app-security-contract-repair-source"
     },
     {
       "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/file-route.test.ts",
@@ -247,9 +340,9 @@
     },
     {
       "path": "projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts",
-      "sha256": "be0c299afcf6357389599688459bcd70680d2ec82ea728c4f0d8050fda238d97",
-      "bytes": 25891,
-      "group": "app-source"
+      "sha256": "388cafa5c9015d31e0a83ad5728e74879aab5bd6d577d8deea015c69bebc0a92",
+      "bytes": 25613,
+      "group": "app-security-contract-repair-source"
     },
     {
       "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/folder-preload.test.ts",
@@ -276,10 +369,16 @@
       "group": "app-source"
     },
     {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/desktop-release-workflow.test.ts",
+      "sha256": "50732e509d6255065cfb42a731ec3df1222b5e99d12c29734b891c018e84147f",
+      "bytes": 10930,
+      "group": "app-security-contract-repair-source"
+    },
+    {
       "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts",
-      "sha256": "068c0c263f494a62525c07c9a7261136bc6af7cd2e973af8d13ac93b2b8536d6",
+      "sha256": "5e9267882d2515408492ee72dcfa9a4c03a44669fa466f5a324fe7dc8b392e62",
       "bytes": 56169,
-      "group": "app-source"
+      "group": "app-security-contract-repair-source"
     },
     {
       "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
@@ -717,5 +816,6 @@
     "excluded redundant App COMPLETE_BASE_TO_CURRENT.patch; its SHA-256 remains bound by SOURCE_MANIFEST.json and original remains preserved",
     "excluded optional App readiness Markdown records; their hashes remain cited by the selected Root transition handoff and originals remain preserved",
     "historical manifest members beyond the compact selected bodies remain in preserved custody; see RETAINED_EVIDENCE_BOUNDARY.md"
-  ]
+  ],
+  "representationBoundary": "The reviewed five-path repair patch remains byte-preserved in the aed8 custody worktree at SHA-256 9de48cd6c3ee8ab93be3745c014e27d57cc34285b18eec784517e1d5644ab496; publication carries exact live postimages and readable manager/review records, excluding the redundant unified-diff representation."
 }

@@ -1,1 +1,48 @@
-{"schema": "chirality.change.pr761-clean-build-repair.v1", "recordedAt": "2026-09-09T06:06:28.257789+00:00", "failedHead": "5bd5a63ef673d5fb5691a302020d16135534f516", "failedTree": "25d0f3ec3cdbb24b509ead8ef22b21e2e28d9ac1", "failedRuns": [{"name": "pec", "id": 34316177123, "url": "https://github.com/sgttomas/chirality/actions/runs/34316177123"}, {"name": "Harness pre-merge", "id": 34316177042, "url": "https://github.com/sgttomas/chirality/actions/runs/34316177042"}], "diagnostic": "packages/daemon/src/codex-worker.ts(143,51): error TS2307: Cannot find module '@chirality/native-admission' or its corresponding type declarations.", "externalTerminalFailReviewManifest": {"path": "/private/tmp/chirality-graceful-source-closure-20260908-terminal-review/MANIFEST.json", "sha256": "0792873a70d6c68e8fa8602eb413ad6daabe057ab03229229e144fc757e67ec7"}, "repair": {"path": "projects/chirality-runtime/packages/daemon/tsconfig.json", "postimageSha256": "0bc20ec8bdb3348def4739751609e173745e12d8b4e6e346e78d692c173c2c9b", "scope": "one TypeScript project reference to ../native-admission; no feature or activation change", "managerManifestSha256": "cfafa40326c92621a4572bb68b9ee2fdae8c2d85b1b511545f4a3dec622dd5d2", "reviewManifestSha256": "15f50f48b827cf479d4ac0ea32fbe43c17681b85e00a523df0687a685a6d4f13"}, "freshSuccessorCi": "PENDING"}
+{
+  "schema": "chirality.change.pr761-clean-build-repair.v1",
+  "recordedAt": "2026-09-09T06:06:28.257789+00:00",
+  "failedHead": "5bd5a63ef673d5fb5691a302020d16135534f516",
+  "failedTree": "25d0f3ec3cdbb24b509ead8ef22b21e2e28d9ac1",
+  "failedRuns": [
+    {
+      "name": "pec",
+      "id": 34316177123,
+      "url": "https://github.com/sgttomas/chirality/actions/runs/34316177123"
+    },
+    {
+      "name": "Harness pre-merge",
+      "id": 34316177042,
+      "url": "https://github.com/sgttomas/chirality/actions/runs/34316177042"
+    }
+  ],
+  "diagnostic": "packages/daemon/src/codex-worker.ts(143,51): error TS2307: Cannot find module '@chirality/native-admission' or its corresponding type declarations.",
+  "externalTerminalFailReviewManifest": {
+    "path": "/private/tmp/chirality-graceful-source-closure-20260908-terminal-review/MANIFEST.json",
+    "sha256": "0792873a70d6c68e8fa8602eb413ad6daabe057ab03229229e144fc757e67ec7"
+  },
+  "repair": {
+    "path": "projects/chirality-runtime/packages/daemon/tsconfig.json",
+    "postimageSha256": "0bc20ec8bdb3348def4739751609e173745e12d8b4e6e346e78d692c173c2c9b",
+    "scope": "one TypeScript project reference to ../native-admission; no feature or activation change",
+    "managerManifestSha256": "cfafa40326c92621a4572bb68b9ee2fdae8c2d85b1b511545f4a3dec622dd5d2",
+    "reviewManifestSha256": "15f50f48b827cf479d4ac0ea32fbe43c17681b85e00a523df0687a685a6d4f13"
+  },
+  "freshSuccessorCi": "PENDING",
+  "secondFailedHead": "e980f2ee773d32d1137646f437dc973126286e9b",
+  "secondFailure": {
+    "run": 34317657667,
+    "url": "https://github.com/sgttomas/chirality/actions/runs/34317657667",
+    "check": "Harness pre-merge",
+    "diagnostic": "contract-pins rejected five obsolete packaged-security verifier pins; owning diagnosis found mixed contract drift and incomplete release caller",
+    "pecRun34317657696": "PASS",
+    "governanceRun34317657687": "PASS"
+  },
+  "appSecurityContractRepair": {
+    "pathCount": 5,
+    "selectionSha256": "481c40926d545447c7bbe99792219bc183fe0e55c7df1cf7338db21ecc5bc2d4",
+    "patchSha256": "9de48cd6c3ee8ab93be3745c014e27d57cc34285b18eec784517e1d5644ab496",
+    "managerManifestSha256": "10e126ad3f376c47bdb1eec448bec06cc2654440faa61daaa5bb74d4a15e8a12",
+    "reviewManifestSha256": "f55c5f9f32955a4b522ff217a6dab7d03a75c1429757afe5eabfdd38e137310b",
+    "disposition": "reviewed successor; release workflow fails closed before install/build/native work; three historical accepted App postimages superseded and require a future fresh App qualification binding"
+  }
+}
