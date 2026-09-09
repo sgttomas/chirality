@@ -1,0 +1,16 @@
+{
+  "schema": "chirality.change.graceful-source-closure-manifest.v2",
+  "members": [
+    {
+      "path": "PREFLIGHT.json",
+      "sha256": "029620e8149d42cdad4ae78b2dc2388f830cae6b4314aee09bb2d33973e689ab",
+      "bytes": 3221
+    },
+    {
+      "path": "PUBLICATION_SELECTION.json",
+      "sha256": "dc307f7ff0315f5975a656c583d402c57063cdc46dcf49501f2838b0a6c59e4c",
+      "bytes": 24849
+    }
+  ],
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT"
+}

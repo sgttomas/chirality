@@ -38,7 +38,8 @@ contextBridge.exposeInMainWorld('chirality', {
     }
   },
   document: {
-    // Both Electron modes retain the current frame-denying renderer policy.
+    // Desktop retains the frame-denying renderer policy, so inline PDF preview
+    // remains unavailable for the MVP fallback.
     inlinePdfPreview: false,
     handoff: (request: { projectRoot: string; target: string; action: 'quick-look' | 'open' | 'reveal' } | { projectRoot: string; action: 'reveal-root' }) =>
       ipcRenderer.invoke('chirality:document-handoff', request)

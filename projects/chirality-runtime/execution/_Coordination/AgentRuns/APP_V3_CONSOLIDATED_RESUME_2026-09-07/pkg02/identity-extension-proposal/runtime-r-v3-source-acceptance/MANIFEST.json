@@ -1,0 +1,18 @@
+{
+  "memberCount": 2,
+  "members": [
+    {
+      "bytes": 1746,
+      "path": "ACCEPTANCE.json",
+      "sha256": "82ecafe5fd5746127fd16fbf2b804adff52604e8d7676dfbdb6f33451ace541f"
+    },
+    {
+      "bytes": 453,
+      "path": "POINTER.json",
+      "sha256": "3b5e5029759e92ec03c84c3fb485bc01f84e93a10e0973e4d3f9083d8017a281"
+    }
+  ],
+  "rehashed": true,
+  "schema": "chirality.runtime.identity-remediation.source-acceptance-manifest.v1",
+  "status": "ACCEPTED_DEFAULT_OFF_SOURCE_RESULT"
+}

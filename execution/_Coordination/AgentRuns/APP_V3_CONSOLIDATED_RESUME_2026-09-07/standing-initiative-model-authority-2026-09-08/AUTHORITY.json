@@ -1,0 +1,26 @@
+{
+  "recordType": "owner-standing-authority-and-agent0-disposition",
+  "recordedAt": "2026-09-09T03:35:54.781862+00:00",
+  "userModelAuthorization": "you can now perform such actions of model escalation without getting my explicit approval, based on this authorization I\u2019m giving now.",
+  "userInitiativeDirection": "regarding the supplier reads: fair enough! Yes, I think you have a good handle on it now, in terms of what I want you to take the initiative for. It\u2019s quite broad. Good work, keep going.",
+  "interpretation": "Agent0 may make justified rare bounded model/reasoning exceptions and proceed with routine purpose-bound read-only supplier source investigation for the accepted integration objective, without serial file-by-file approval. This supersedes the prior pending model-exception and two-file read permission holds; it does not retroactively alter exhausted runs or evidence.",
+  "activatedNow": [
+    {
+      "scope": "Packaging reproducible-input plan author, coordination-only; distinct sol-medium reviewer",
+      "subjectSha256": "731efee64faffb2f513e5da3c23a1682d80a8e50eb5670b0cd29b813110bfb65",
+      "briefSha256": "6a8c177f647b1434da7255de2cca01ed9663e010d9b621f07cfd104916b4f111",
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "reason": "Repeated complete-procedure failures; reconstruct reproducible inputs/full sequence from accepted source and locks."
+    },
+    {
+      "scope": "Supplier dispatch/constructor/private-notification evidence; start with reviewed exact two-file inquiry, extend only relevant read-only source investigation with recorded custody and evidence when necessary, not a new permission loop",
+      "priorReviewedSubjectSha256": "bce740907c0c7225da785d9d39a6f6851b47cec205b579cc8fb21436ac8a5848",
+      "supplierRoot": "/private/tmp/chirality-supplier-identity-inquiry-20260907/source/codex",
+      "commit": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
+      "tree": "0f7a27df60e01dccf918f3203235266a0d6e3258"
+    }
+  ],
+  "retainedBoundaries": "Preserve originals and immutable evidence. Agent1 validates separate author/reviewer instances. No credentials/account/keyring/supplier binary access, source activation, supplier operation, publishing or release inferred. No setup/build/campaign execution authorized by this planning disposition. Consequential changes return to human. Ordinary models remain sol medium unless a reasoned bounded exception is recorded.",
+  "claimStatus": "Control-plane authority interpretation; no source or qualification acceptance."
+}

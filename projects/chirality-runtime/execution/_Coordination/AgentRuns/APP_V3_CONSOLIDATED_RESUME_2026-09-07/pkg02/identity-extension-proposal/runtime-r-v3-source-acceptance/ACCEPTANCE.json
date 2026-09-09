@@ -1,0 +1,34 @@
+{
+  "schema": "chirality.runtime.identity-remediation.source-acceptance.v1",
+  "status": "ACCEPTED_DEFAULT_OFF_SOURCE_RESULT",
+  "ownerApproval": {
+    "path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/owner-three-decisions-packaging-runtime-supplier-2026-09-08/OWNER_APPROVAL.json",
+    "sha256": "4a4fad66abac2e5d7a4c71baef5f29592117bb5efb07fe103ba1ddec31e8b2fd"
+  },
+  "decisionSubject": {
+    "path": "../local-two-branch-execution-v4/manager-v2/runtime-r-v3-fanin/NEXT_DECISION_SUBJECT.md",
+    "sha256": "87b9ab3d47a9845ad3f046e831a9b7535d27055c8d8c245a1d6cf6b874cf04c6",
+    "decision": "ACCEPT_RUNTIME_R_V3_DEFAULT_OFF_SOURCE_CANDIDATE"
+  },
+  "source": {
+    "root": "/private/tmp/chirality-runtime-local-identity-r-v2-remediation-20260908/repo",
+    "selectionSha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+    "memberCount": 29,
+    "lockfileSha256": "4195789d5bb47a1ddc83abd8c6fde5544a167dfd1c148e875004f3de37680059"
+  },
+  "evidence": {
+    "authorManifestSha256": "21029a7019124ffb67b7a21aba3fd707b2eb248558eb5078128ed825aac68de3",
+    "reviewManifestSha256": "3ffec439bce1531f243972c7cb67e65350ac283c47178f50667a75ea2900ea60",
+    "cleanupSha256": "8515effaf6c00608b4339474523ca45d5c4669f4bc6f68f3d9e1b0d37fb7fad1",
+    "verification": "two typechecks PASS; seven suites 192/192 PASS; all 178 predecessor test identities preserved"
+  },
+  "calibration": {
+    "defaultOff": true,
+    "nativeImplementation": "UNCOMPILED_UNQUALIFIED",
+    "productionSupplierInteroperability": "UNQUALIFIED",
+    "buildAuthorized": false,
+    "adoptionAuthorized": false,
+    "activationAuthorized": false,
+    "releaseAuthorized": false
+  }
+}

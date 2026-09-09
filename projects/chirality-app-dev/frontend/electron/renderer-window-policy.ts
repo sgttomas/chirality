@@ -214,7 +214,7 @@ export function buildRendererContentSecurityPolicy(options: {
     "worker-src 'self'",
     "manifest-src 'self'",
     "media-src 'self'",
-    "frame-src 'none'",
+    options.rendererOrigin ? `frame-src ${options.rendererOrigin}${ELIGIBLE_PDF_PATH}` : "frame-src 'none'",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
@@ -224,9 +224,142 @@ export function buildRendererContentSecurityPolicy(options: {
 }
 
 export const CONTENT_SECURITY_POLICY_HEADER = 'Content-Security-Policy';
+export const RESPONSE_CLASS_HEADER = 'X-Chirality-Response-Class';
+export const ELIGIBLE_PDF_RESPONSE_CLASS = 'eligible-pdf-v1';
+export const ELIGIBLE_PDF_PATH = '/api/working-root/file';
+export const PDF_CONTENT_SECURITY_POLICY = [
+  "default-src 'none'", "script-src 'none'", "frame-src 'none'", "object-src 'none'",
+  "base-uri 'none'", "form-action 'none'", "frame-ancestors 'self'"
+].join('; ');
 
 type RendererRequestHeaders = Record<string, string | string[] | undefined>;
-type RendererResponseHeaderSink = { setHeader(name: string, value: string): unknown };
+type HeaderValue = string | string[] | number | undefined;
+type HeaderBag = Record<string, HeaderValue>;
+type RendererResponseHeaderSink = { setHeader(name: string, value: string | string[]): unknown };
+
+export type ResponseHeaders = Record<string, string[]>;
+
+function valuesForHeader(headers: HeaderBag | ResponseHeaders | undefined, wanted: string): string[] {
+  const values: string[] = [];
+  for (const [name, value] of Object.entries(headers ?? {})) {
+    if (name.toLowerCase() !== wanted.toLowerCase() || value === undefined) continue;
+    for (const item of Array.isArray(value) ? value : [value]) values.push(String(item));
+  }
+  return values;
+}
+
+function rawPathname(rawUrl: string): string | null {
+  const match = rawUrl.match(/^https?:\/\/[^/?#]+([^?#]*)/i);
+  return match ? match[1] || '/' : null;
+}
+
+function isAllowedPdfSubframe(rawUrl: string, rendererOrigin: string): boolean {
+  try {
+    const parsed = new URL(rawUrl);
+    return parsed.origin === rendererOrigin && rawPathname(rawUrl) === ELIGIBLE_PDF_PATH &&
+      parsed.pathname === ELIGIBLE_PDF_PATH && hasExactPdfSelectors(parsed);
+  } catch { return false; }
+}
+
+function hasExactPdfSelectors(url: URL): boolean {
+  const allowed = new Set(['projectRoot', 'path', 'target', 'content']);
+  const keys = [...url.searchParams.keys()];
+  return keys.every(key => allowed.has(key)) &&
+    url.searchParams.getAll('projectRoot').length === 1 && url.searchParams.get('projectRoot') !== '' &&
+    url.searchParams.getAll('content').length === 1 && url.searchParams.get('content') === 'pdf' &&
+    url.searchParams.getAll('path').length <= 1 && url.searchParams.getAll('target').length <= 1 &&
+    (url.searchParams.has('path') !== url.searchParams.has('target')) &&
+    (url.searchParams.get('path') ?? url.searchParams.get('target') ?? '') !== '';
+}
+
+export type PdfResponseClassificationInput = {
+  url: string; rendererOrigin: string; method: string; statusCode: number;
+  responseHeaders?: HeaderBag | ResponseHeaders;
+  mode: RendererCspMode; packagedBaselineCsp?: string;
+};
+
+/** The sole trusted classifier used at both renderer response boundaries. */
+export function isEligiblePdfResponse(input: PdfResponseClassificationInput): boolean {
+  let parsed: URL;
+  try { parsed = new URL(input.url); } catch { return false; }
+  if (parsed.origin !== input.rendererOrigin || rawPathname(input.url) !== ELIGIBLE_PDF_PATH ||
+      parsed.pathname !== ELIGIBLE_PDF_PATH || !hasExactPdfSelectors(parsed) ||
+      input.method !== 'GET' || input.statusCode !== 200) return false;
+  const one = (name: string, expected: string) => {
+    const values = valuesForHeader(input.responseHeaders, name);
+    return values.length === 1 && values[0] === expected;
+  };
+  const lengths = valuesForHeader(input.responseHeaders, 'content-length');
+  const policies = valuesForHeader(input.responseHeaders, CONTENT_SECURITY_POLICY_HEADER);
+  const expectedPolicy = input.mode === 'packaged' ? input.packagedBaselineCsp : PDF_CONTENT_SECURITY_POLICY;
+  return one(RESPONSE_CLASS_HEADER, ELIGIBLE_PDF_RESPONSE_CLASS) &&
+    one('content-type', 'application/pdf') && one('content-disposition', 'inline') &&
+    one('x-content-type-options', 'nosniff') && one('cache-control', 'no-store') &&
+    lengths.length === 1 && /^[1-9][0-9]*$/.test(lengths[0]) &&
+    valuesForHeader(input.responseHeaders, 'location').length === 0 &&
+    valuesForHeader(input.responseHeaders, 'content-range').length === 0 &&
+    policies.length === 1 && policies[0] === expectedPolicy;
+}
+
+function without(headers: ResponseHeaders, wanted: string): ResponseHeaders {
+  return Object.fromEntries(Object.entries(headers).filter(([name]) => name.toLowerCase() !== wanted.toLowerCase()));
+}
+
+export function finalizeRendererResponseHeaders(input: PdfResponseClassificationInput, fallbackPolicy: string): ResponseHeaders {
+  const eligible = isEligiblePdfResponse(input);
+  let headers: ResponseHeaders = Object.fromEntries(Object.entries(input.responseHeaders ?? {}).map(([name, value]) => [
+    name, (Array.isArray(value) ? value : value === undefined ? [] : [value]).map(String)
+  ]));
+  headers = without(without(headers, RESPONSE_CLASS_HEADER), CONTENT_SECURITY_POLICY_HEADER);
+  return { ...headers, [CONTENT_SECURITY_POLICY_HEADER]: [eligible ? PDF_CONTENT_SECURITY_POLICY : fallbackPolicy] };
+}
+
+/** The only production emitter of the reserved eligible-PDF tuple. */
+export function createEligiblePdfResponseHeaders(contentLength: number): Record<string, string> {
+  if (!Number.isSafeInteger(contentLength) || contentLength <= 0) throw new Error('Eligible PDF requires a positive Content-Length');
+  return {
+    [RESPONSE_CLASS_HEADER]: ELIGIBLE_PDF_RESPONSE_CLASS,
+    [CONTENT_SECURITY_POLICY_HEADER]: PDF_CONTENT_SECURITY_POLICY,
+    'Content-Type': 'application/pdf', 'Content-Disposition': 'inline',
+    'Content-Length': String(contentLength), 'X-Content-Type-Options': 'nosniff',
+    'Cache-Control': 'no-store'
+  };
+}
+
+function explicitWriteHeadEntries(headers: HeaderBag | unknown[] | undefined): Array<[string, HeaderValue]> {
+  if (!headers) return [];
+  if (!Array.isArray(headers)) return Object.entries(headers);
+  return Array.from({ length: Math.floor(headers.length / 2) }, (_, index) => [
+    String(headers[index * 2]), headers[index * 2 + 1] as HeaderValue
+  ]);
+}
+
+/**
+ * Build the headers that writeHead will deliver without first passing them
+ * through Node's case-insensitive, replacement-based header store. Explicit
+ * writeHead names replace pending names case-insensitively, as Node specifies,
+ * while duplicate spellings and array items stay visible to the classifier.
+ */
+function effectiveWriteHeadHeaders(
+  pending: HeaderBag,
+  explicit: HeaderBag | unknown[] | undefined
+): ResponseHeaders {
+  const explicitEntries = explicitWriteHeadEntries(explicit);
+  const explicitNames = new Set(explicitEntries.map(([name]) => name.toLowerCase()));
+  const merged = new Map<string, { name: string; values: string[] }>();
+  const append = (name: string, value: HeaderValue) => {
+    if (value === undefined) return;
+    const key = name.toLowerCase();
+    const entry = merged.get(key) ?? { name, values: [] };
+    for (const item of Array.isArray(value) ? value : [value]) entry.values.push(String(item));
+    merged.set(key, entry);
+  };
+  for (const [name, value] of Object.entries(pending)) {
+    if (!explicitNames.has(name.toLowerCase())) append(name, value);
+  }
+  for (const [name, value] of explicitEntries) append(name, value);
+  return Object.fromEntries([...merged.values()].map(({ name, values }) => [name, values]));
+}
 
 /**
  * Establish the packaged renderer's one-policy invariant before Next handles a
@@ -237,18 +370,39 @@ type RendererResponseHeaderSink = { setHeader(name: string, value: string): unkn
  * could disagree with the enforced policy.
  */
 export function applyPackagedRendererRequestPolicy(
-  request: { headers: RendererRequestHeaders },
-  response: RendererResponseHeaderSink,
+  request: { headers: RendererRequestHeaders; url?: string; method?: string },
+  response: RendererResponseHeaderSink & {
+    statusCode?: number; headersSent?: boolean; getHeaders?: () => HeaderBag;
+    removeHeader?: (name: string) => void; writeHead?: (...args: any[]) => unknown;
+  },
   nonce: string = createRendererCspNonce()
 ): { nonce: string; contentSecurityPolicy: string } {
   assertRendererCspNonce(nonce);
-  const contentSecurityPolicy = buildRendererContentSecurityPolicy({ mode: 'packaged', nonce });
+  const host = String(request.headers.host ?? '');
+  const rendererOrigin = host ? `http://${host}` : undefined;
+  const contentSecurityPolicy = buildRendererContentSecurityPolicy({ mode: 'packaged', nonce, rendererOrigin });
   request.headers[CONTENT_SECURITY_POLICY_HEADER.toLowerCase()] = contentSecurityPolicy;
   response.setHeader(CONTENT_SECURITY_POLICY_HEADER, contentSecurityPolicy);
+  if (response.writeHead && response.getHeaders && response.removeHeader) {
+    const getHeaders = response.getHeaders.bind(response);
+    const removeHeader = response.removeHeader.bind(response);
+    const originalWriteHead = response.writeHead.bind(response);
+    response.writeHead = (...args: any[]) => {
+      response.writeHead = originalWriteHead;
+      const explicit = (args[1] !== null && typeof args[1] === 'object' ? args[1] : args[2]) as HeaderBag | unknown[] | undefined;
+      const effectiveHeaders = effectiveWriteHeadHeaders(getHeaders(), explicit);
+      const final = finalizeRendererResponseHeaders({
+        url: `${rendererOrigin ?? 'http://invalid'}${request.url ?? '/'}`, rendererOrigin: rendererOrigin ?? '',
+        method: request.method ?? 'GET', statusCode: Number(args[0] ?? response.statusCode ?? 200),
+        responseHeaders: effectiveHeaders, mode: 'packaged', packagedBaselineCsp: contentSecurityPolicy
+      }, contentSecurityPolicy);
+      for (const name of Object.keys(getHeaders())) removeHeader(name);
+      for (const [name, values] of Object.entries(final)) response.setHeader(name, values.length === 1 ? values[0] : values);
+      return typeof args[1] === 'string' ? originalWriteHead(args[0], args[1]) : originalWriteHead(args[0]);
+    };
+  }
   return { nonce, contentSecurityPolicy };
 }
-
-type ResponseHeaders = Record<string, string[]>;
 
 function hasContentSecurityPolicy(headers: ResponseHeaders): boolean {
   return Object.keys(headers).some(
@@ -292,16 +446,13 @@ export function summarizeDestination(rawUrl: string): { protocol: string; hostna
 export type RendererWindowLike = {
   webContents: {
     setWindowOpenHandler(handler: (details: { url: string }) => { action: 'deny' }): void;
-    on(
-      event: 'will-navigate' | 'will-redirect',
-      listener: (event: { preventDefault(): void }, url: string) => void
-    ): unknown;
+    on(event: string, listener: (...args: any[]) => void): unknown;
     session: {
       webRequest: {
         onHeadersReceived(
           filter: { urls: string[] },
           listener: (
-            details: { url: string; responseHeaders?: ResponseHeaders },
+            details: { url: string; method?: string; statusCode?: number; responseHeaders?: ResponseHeaders },
             callback: (response: { responseHeaders?: ResponseHeaders }) => void
           ) => void
         ): void;
@@ -351,26 +502,40 @@ export function installRendererWindowPolicy(
   });
 
   for (const eventName of ['will-navigate', 'will-redirect'] as const) {
-    webContents.on(eventName, (event, url) => {
+    webContents.on(eventName, (event: { preventDefault(): void; url?: string; isMainFrame?: boolean }, legacyUrl?: string, _inPlace?: boolean, legacyMainFrame?: boolean) => {
+      const url = event.url ?? legacyUrl ?? '';
+      const isMainFrame = event.isMainFrame ?? legacyMainFrame ?? true;
+      if (!isMainFrame && eventName !== 'will-redirect' && isAllowedPdfSubframe(url, rendererOrigin)) return;
       const decision = evaluateRendererNavigation(url, rendererOrigin);
-      if (decision.allowed) {
-        return;
-      }
+      if (decision.allowed && isMainFrame) return;
       event.preventDefault();
       log?.('warn', 'renderer.navigation.denied', {
         event: eventName,
-        reason: decision.reason,
+        reason: decision.allowed ? 'SUBFRAME_NOT_ELIGIBLE_PDF' : decision.reason,
         destination: summarizeDestination(url)
       });
     });
   }
 
+  webContents.on('will-frame-navigate', (details: { preventDefault(): void; url: string; isMainFrame: boolean }) => {
+    if (details.isMainFrame || isAllowedPdfSubframe(details.url, rendererOrigin)) return;
+    details.preventDefault();
+    log?.('warn', 'renderer.subframe_navigation.denied', { destination: summarizeDestination(details.url) });
+  });
+
   webContents.session.webRequest.onHeadersReceived(
     { urls: HEADER_FILTER_URLS },
     (details, callback) => {
-      const responseHeaders = contentSecurityPolicy
-        ? applyContentSecurityPolicyHeader(details, rendererOrigin, contentSecurityPolicy)
-        : null;
+      let responseHeaders: ResponseHeaders | null = null;
+      try {
+        if (new URL(details.url).origin === rendererOrigin && contentSecurityPolicy) {
+          responseHeaders = finalizeRendererResponseHeaders({
+            url: details.url, rendererOrigin, method: details.method ?? 'GET',
+            statusCode: details.statusCode ?? 0, responseHeaders: details.responseHeaders,
+            mode: 'development'
+          }, contentSecurityPolicy);
+        }
+      } catch { /* foreign or malformed responses remain untouched */ }
       // No override at all when untouched: echoing an empty header set would
       // tell Chromium the server answered with no headers.
       callback(responseHeaders === null ? {} : { responseHeaders });

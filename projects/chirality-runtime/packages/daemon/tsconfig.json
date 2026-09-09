@@ -16,6 +16,9 @@
       "path": "../core"
     },
     {
+      "path": "../native-admission"
+    },
+    {
       "path": "../engine-pi-omlx"
     }
   ]

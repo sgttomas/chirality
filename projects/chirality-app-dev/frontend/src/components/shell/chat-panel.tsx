@@ -33,6 +33,7 @@ type ChatMessage = {
   id: string;
   role: 'operator' | 'assistant';
   persona?: string;
+  projectRoot?: string;
   text: string;
   attachments?: UiAttachment[];
 };
@@ -133,9 +134,12 @@ type ChatPanelProps = {
   onBindingChange?: (binding: { root: string | null; locked: boolean }) => void;
   onDraftCaptured?: () => void;
   onActiveSessionChange?: (sessionId: string | undefined) => void;
+  onSessionBootedPrompt?: (input: { sessionId: string; prompt: string; persona: string }) => void;
+  fileCatalog?: readonly string[];
+  onOpenFile?: (path: string) => void;
 };
 
-export function ChatPanel({ onDraftCaptured, onActiveSessionChange, presentation, knownRoots = [], newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange }: ChatPanelProps = {}): JSX.Element {
+export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBootedPrompt, presentation, knownRoots = [], newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange, fileCatalog = [], onOpenFile }: ChatPanelProps = {}): JSX.Element {
   const { projectRoot, applyProjectRoot } = useWorkspace();
   const { optsPayload } = useToolkit();
   const { appendEvent, clearEvents, setStreaming } = useHarnessEventActions();
@@ -158,6 +162,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, presentation
   const canonicalTransition = useRef<{ from: string; to: string; persona: string; mode: string } | null>(null);
   const previousContext = useRef<{ root: string | null; persona: string; mode: string } | null>(null);
   const newChatSeen = useRef(newChatRequest);
+  const capturedTitleSessions = useRef(new Set<string>());
   const [runtimeStatus, setRuntimeStatus] = useState<string | null>(null);
   const [runtimeError, setRuntimeError] = useState<HarnessUiError | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -429,6 +434,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, presentation
 
     try {
       const session = await ensureSessionBooted();
+      setMessages((existing) => existing.map((item) => item.id === assistantId ? { ...item, projectRoot: session.projectRoot } : item));
+      if (text && !capturedTitleSessions.current.has(session.sessionId)) {
+        capturedTitleSessions.current.add(session.sessionId);
+        onSessionBootedPrompt?.({ sessionId: session.sessionId, prompt: text, persona: activePersona });
+      }
 
       let assistantText = '';
       let processExitError: HarnessApiClientError | Error | null = null;
@@ -630,7 +640,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, presentation
             {presentation === 'woven' ? <p className="chat-speaker" title={message.role === 'assistant' ? message.persona : undefined}>{message.role === 'operator' ? 'You' : (message.persona ?? 'Assistant').toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}</p> : null}
             {message.text ? (
               message.role === 'assistant' ? (
-                <ChatMarkdown source={message.text} />
+                <ChatMarkdown source={message.text} projectRoot={message.projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} />
               ) : (
                 <p>{message.text}</p>
               )

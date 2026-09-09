@@ -1,0 +1,43 @@
+{
+  "schema": "chirality.runtime.pr761-daemon-reference-repair.author-manifest.v1",
+  "status": "AUTHOR_STATIC_CHECKS_PASS__FROZEN_FOR_REVIEW",
+  "derivativePackage": true,
+  "briefSha256": "6c7af65cd4cd82e8d8c3a2482565ae8cbe332795f7d034c0a1a736b66934d05f",
+  "workspace": "/private/tmp/chirality-graceful-source-closure-20260908",
+  "sourceEdit": {
+    "path": "projects/chirality-runtime/packages/daemon/tsconfig.json",
+    "preimageSha256": "3b14197e0ee6cc749515c27953f5f20138404f98323be386655a7c3a58122833",
+    "preimageBytes": 345,
+    "postimageSha256": "0bc20ec8bdb3348def4739751609e173745e12d8b4e6e346e78d692c173c2c9b",
+    "postimageBytes": 394
+  },
+  "acceptedRuntimeRVersion3SourceSelection": {
+    "sha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+    "memberCount": 29,
+    "matchedSha256AndBytesCount": 29
+  },
+  "members": [
+    {
+      "path": "PATCH.diff",
+      "bytes": 448,
+      "sha256": "ac6f229bb6950ee4409c305b440ef6dd53a771ba473422260389594cfc2a6bfc"
+    },
+    {
+      "path": "CHECKS.json",
+      "bytes": 4144,
+      "sha256": "52ce3587b9242b80da122e768c1c98c418e33db23919b5e4bd3182cb119ef4ca"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 1788,
+      "sha256": "9fe020f74b697f3ddf5050fc2d42492b5e88874b812e73cc9fef33ed38d70302"
+    }
+  ],
+  "sourceChangedPathCount": 1,
+  "evidenceFileCount": 4,
+  "secondSourceEditRequired": false,
+  "buildPassClaimed": false,
+  "ciValidationRemaining": true,
+  "closureVerdict": "AUTHOR_WORK_COMPLETE__FROZEN_FOR_INDEPENDENT_REVIEW__PR_CI_REMAINS",
+  "manifestSelfHash": "EXCLUDED"
+}

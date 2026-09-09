@@ -1,0 +1,29 @@
+{
+  "schema": "chirality-agent2-author-evidence/v1",
+  "status": "COMPLETE_CI_REQUIRED",
+  "source_root": "/private/tmp/chirality-graceful-source-closure-20260908",
+  "source_head": "f8c9b22cfbc9192c14ee2b6b142371d5bb69f7a5",
+  "diagnosis_sha256": "a2e6a14d18e9add8c52146eeb7aa796fdbeb3068071d6ed04f80276178739dad",
+  "source_transition": {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+    "preimage_sha256": "b21c16a91694a4524d97ffc5a75737a415385372cc8a10de8b1ff955c8d4e879",
+    "preimage_bytes": 11860,
+    "postimage_sha256": "26046c6a127e7496341c05181e0131840cf713ec1324ccbae1d6691c28283fd4",
+    "postimage_bytes": 12383
+  },
+  "patch": {
+    "path": "one-path.patch",
+    "sha256": "aa3689fcc53a0692e536031b45434af26074c8f228300a641cfa9775d6b0a9c1",
+    "bytes": 1265
+  },
+  "return": "AUTHOR_RETURN.md",
+  "local_checks": {
+    "diff_check": "PASS",
+    "scope_and_content": "PASS",
+    "required_mock_contract": "PASS",
+    "replay_count_assertions_preserved": "PASS"
+  },
+  "focused_test": "CI_REQUIRED_NOT_RUN_LOCAL",
+  "git_staged": false,
+  "git_committed": false
+}

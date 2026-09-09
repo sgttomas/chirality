@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-09-09T06:15:56.142090+00:00",
+  "recordType": "Agent0-bounded-model-exception-under-standing-owner-authority",
+  "authoritySha256": "662c9d15e59de0dbf90c762f7bb9cea594ace42fa85148791ceab2b33a35ee40",
+  "reason": "After the clean Runtime build repair passed, App Section9 CI exposed five security-proof contract mismatches. Consequential uncertainty concerns actual producer/verifier semantics and preservation of proof obligations; textual pin changes alone could hide an operational gap.",
+  "agent": "/root/app_pkg09/pr761_contract_expert",
+  "manager": "/root/app_pkg09",
+  "model": "gpt-6-astra",
+  "reasoningEffort": "high",
+  "scope": "One bounded read-only diagnosis of exact PR761 security-proof script, contract tests and manifest, package/CI callers, actual evidence producer and accepted source context. Identify minimal lawful repair and required validation.",
+  "briefSha256": "31134369f973b04da540526917a640c4520f1cf736f1f2b4d2ea5fd1542942f6",
+  "head": "e980f2ee773d32d1137646f437dc973126286e9b",
+  "ciRun": "https://github.com/sgttomas/chirality/actions/runs/34317657667",
+  "prohibitions": [
+    "no source or test edits",
+    "no weakening security assertions or inserting inert tokens",
+    "no acquisition/build/fixture/native/supplier/account execution",
+    "no instruction migration or product wave"
+  ],
+  "publicationState": "PR761 open; merge held; Runtime source repair CI passed; App security-contract CI unresolved",
+  "followup": "Manager validates expert return and Root dispositions bounded publication repair or explicit source hold. No per-use owner model approval is required under the standing grant."
+}

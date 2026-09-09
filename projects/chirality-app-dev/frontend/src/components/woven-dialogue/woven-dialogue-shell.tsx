@@ -16,6 +16,7 @@ import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import { listHarnessSessions, harnessApiErrorMessage } from '../../lib/harness/client';
 import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contracts';
 import { buildRecordedAgentHierarchy } from '../../lib/woven-dialogue/recorded-agent-hierarchy';
+import { createChatReplayReader, deriveChatTitle, visibleActiveChatSessions, type ChatReplayReader } from '../../lib/woven-dialogue/chat-organization';
 import { guardRecordedSessionSelection } from '../../lib/woven-dialogue/guarded-session-selection';
 import {
   createSelectedSessionReplayLoader,
@@ -37,6 +38,7 @@ import { ShellFrame } from '../shell/shell-frame';
 import { ActivityStrip } from './activity-shelf';
 import { CoordinationPanel } from './coordination-panel';
 import { RightPanel } from './right-panel';
+import type { FileCatalog } from '../shell/file-tree-panel';
 import { DialogueViewport } from './dialogue-viewport';
 import { Navigator, type WovenSurface } from './navigator';
 import { SelectedSessionReplayLens } from './selected-session-replay-lens';
@@ -69,7 +71,10 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const { events } = useHarnessEvents();
   const [binding, setBinding] = useState<{ root: string | null; locked: boolean }>({ root: null, locked: false });
   const [folderSelectionPending, setFolderSelectionPending] = useState(false);
+  const [fileCatalog, setFileCatalog] = useState<FileCatalog | null>(null);
   const [newChatRequest, setNewChatRequest] = useState(0);
+  const [focusNavigatorSearchRequest, setFocusNavigatorSearchRequest] = useState(0);
+  const [navigatorModalOpen, setNavigatorModalOpen] = useState(false);
   const runtimeEpoch = useRuntimeEpoch();
   const [primarySessionId, setPrimarySessionId] = useState<string>();
   const [workspaceState, setWorkspaceState] = useState<WovenWorkspaceState>(
@@ -91,10 +96,12 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     ].slice(0, 50) }));
   }, [projectRoot, stateHydrated]);
   const [sessions, setSessions] = useState<SessionRecord[]>([]);
+  const [referenceDay, setReferenceDay] = useState('1970-01-01');
   const [sessionsLoading, setSessionsLoading] = useState(false);
   const [sessionsError, setSessionsError] = useState<string | null>(null);
   const [sessionRefreshToken, setSessionRefreshToken] = useState(0);
   const replayLoaderRef = useRef<SelectedSessionReplayLoader>();
+  const titleReaderRef = useRef<ChatReplayReader>();
   const previousProjectRootRef = useRef(projectRoot);
   const [replayState, setReplayState] = useState<SelectedSessionReplayState>({
     status: 'IDLE'
@@ -119,6 +126,22 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       loader.dispose();
     };
   }, []);
+  useEffect(() => {
+    const reader = createChatReplayReader(); titleReaderRef.current = reader;
+    return () => { if (titleReaderRef.current === reader) titleReaderRef.current = undefined; reader.dispose(); };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.addEventListener !== 'function') return;
+    const keydown = (event: KeyboardEvent): void => {
+      if (!(event.metaKey || event.ctrlKey) || event.key.toLocaleLowerCase() !== 'k') return;
+      event.preventDefault();
+      if (navigatorModalOpen) return;
+      setWorkspaceState(current => ({ ...current, navigatorCollapsed: false }));
+      setFocusNavigatorSearchRequest(value => value + 1);
+    };
+    window.addEventListener('keydown', keydown); return () => window.removeEventListener('keydown', keydown);
+  }, [navigatorModalOpen]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -126,6 +149,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     }
     const stored = readWovenWorkspaceStateFromStorage(window.localStorage);
     setWorkspaceState(stored);
+    setReferenceDay(new Date().toISOString().slice(0, 10));
     // Retired Work preferences fall back to the recorded Agents projection.
     setCoordinationView('agents');
     setStateHydrated(true);
@@ -215,6 +239,30 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     // the Coordination panel's hierarchy are both projections of `sessions`, so
     // one re-list repairs all three surfaces at once.
   }, [projectRoot, sessionRefreshToken, runtimeEpoch]);
+
+  useEffect(() => {
+    const reader = titleReaderRef.current as ChatReplayReader;
+    const requestedRoot = projectRoot;
+    const visibleSessions = visibleActiveChatSessions(sessions, workspaceState.chatArchived ?? [], workspaceState.chatDeleted ?? []);
+    const sessionById = new Map(visibleSessions.map(session => [session.sessionId, session]));
+    if (visibleSessions.length === 0) { reader.cancel(); return; }
+    let current = true;
+    void reader.loadFirstOperatorMessages(visibleSessions, new Date().toISOString()).then(messages => {
+      if (!current || requestedRoot !== previousProjectRootRef.current) return;
+      setWorkspaceState(state => {
+        const titles = { ...(state.chatTitles ?? {}) };
+        let changed = false;
+        for (const [sessionId, prompt] of Object.entries(messages)) {
+          const session = sessionById.get(sessionId);
+          if (!session || Object.hasOwn(titles, sessionId)) continue;
+          titles[sessionId] = deriveChatTitle({ firstOperatorMessage: prompt, persona: session.persona, sessionId });
+          changed = true;
+        }
+        return changed ? { ...state, chatTitles: titles } : state;
+      });
+    }).catch(() => {});
+    return () => { current = false; reader.cancel(); };
+  }, [sessions, projectRoot, runtimeEpoch, workspaceState.chatArchived, workspaceState.chatDeleted]);
 
   // Read at reconnect time only, so the recovery effect below can depend on the
   // epoch alone: depending on the replay state itself would re-arm the effect
@@ -447,6 +495,17 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     '--woven-activity-height': '32px'
   } as CSSProperties;
   const replayVisible = replayState.status !== 'IDLE';
+  const currentFileCatalog = fileCatalog?.root === projectRoot ? fileCatalog.paths : [];
+  const openContainedFile = useCallback((filePath: string): void => {
+    if (!projectRoot) return;
+    const prefix = `${projectRoot.replace(/\/$/, '')}/`;
+    if (!filePath.startsWith(prefix)) return;
+    restoreExpanded();
+    updateWorkspaceState({ openDocumentPath: filePath.slice(prefix.length), rightPanelView: 'files' });
+  }, [projectRoot, restoreExpanded, updateWorkspaceState]);
+  const handleFileCatalog = useCallback((catalog: FileCatalog | null): void => {
+    setFileCatalog(catalog?.root === projectRoot ? catalog : null);
+  }, [projectRoot]);
 
   return (
     <ShellFrame
@@ -490,7 +549,10 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
             primaryDialogue={
               <>
                 <Suspense fallback={<p className="panel-empty">Loading primary dialogue…</p>}>
-                  <ChatPanel presentation="woven" onDraftCaptured={restoreExpanded} onActiveSessionChange={setPrimarySessionId} knownRoots={workspaceState.knownRoots ?? []} onBindingChange={setBinding} newChatRequest={newChatRequest} folderSelectionPending={folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} />
+                  <ChatPanel presentation="woven" onDraftCaptured={restoreExpanded} onActiveSessionChange={setPrimarySessionId}
+                    fileCatalog={currentFileCatalog} onOpenFile={openContainedFile}
+                    onSessionBootedPrompt={({ sessionId, prompt, persona }) => setWorkspaceState(current => Object.hasOwn(current.chatTitles ?? {}, sessionId) ? current : { ...current, chatTitles: { ...(current.chatTitles ?? {}), [sessionId]: deriveChatTitle({ firstOperatorMessage: prompt, persona, sessionId }) } })}
+                    knownRoots={workspaceState.knownRoots ?? []} onBindingChange={setBinding} newChatRequest={newChatRequest} folderSelectionPending={folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} />
                 </Suspense>
               </>
             }
@@ -529,11 +591,26 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               selectionDisabled={streaming}
               sessionsLoading={sessionsLoading}
               sessionsError={sessionsError}
+              chatTitles={workspaceState.chatTitles ?? {}}
+              chatPins={workspaceState.chatPins ?? []}
+              chatArchived={workspaceState.chatArchived ?? []}
+              chatDeleted={workspaceState.chatDeleted ?? []}
+              chatGroups={workspaceState.chatGroups ?? []}
+              groupsCollapsed={workspaceState.groupsCollapsed ?? []}
+              referenceDay={referenceDay}
+              searchEpoch={`${projectRoot ?? ''}:${runtimeEpoch}`}
+              focusSearchRequest={focusNavigatorSearchRequest}
+              onModalStateChange={setNavigatorModalOpen}
+              onOrganizationChange={updateWorkspaceState}
               onOpenSurface={returnToPrimaryDialogue}
               onSelectSession={loadReplay}
             />
           ) : (
-            <div className="woven-collapsed-settings">{settingsControl}</div>
+            <div className="woven-collapsed-strip" aria-label="Collapsed chat navigation">
+              <button type="button" aria-label="Search chats" onClick={() => { updateWorkspaceState({ navigatorCollapsed: false }); setFocusNavigatorSearchRequest(value => value + 1); }}>⌕</button>
+              <button type="button" aria-label="New chat" disabled={streaming || folderSelectionPending} onClick={() => { if (!streaming && !folderSelectionPending) setNewChatRequest(value => value + 1); }}>＋</button>
+              <div className="woven-collapsed-settings">{settingsControl}</div>
+            </div>
           )}
         </div>
 
@@ -598,13 +675,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
                 updateWorkspaceState({ rightPanelView: view, ...(view === 'files' ? { openDocumentPath: null } : {}) });
                 if (view === 'agents') setCoordinationView('agents');
               }}
-              onOpenFile={(filePath) => {
-                if (!projectRoot) return;
-                const prefix = `${projectRoot.replace(/\/$/, '')}/`;
-                if (!filePath.startsWith(prefix)) return;
-                restoreExpanded();
-                updateWorkspaceState({ openDocumentPath: filePath.slice(prefix.length), rightPanelView: 'files' });
-              }}
+              onOpenFile={openContainedFile}
+              onFileCatalog={handleFileCatalog}
               onExpand={toggleExpanded}
               onRefreshSessions={() => setSessionRefreshToken(token => token + 1)}
               onClose={() => {

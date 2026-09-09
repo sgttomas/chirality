@@ -1,0 +1,29 @@
+{
+  "recordedAt": "2026-09-09T06:42:51.194573+00:00",
+  "recordType": "derivative-control-plane-record-of-prior-Agent0-disposition",
+  "decisionActor": "HELP_HUMAN / Agent0",
+  "authority": "Owner requested graceful completion followed by a scoped PR and merge; standing delegated authority permits bounded ordinary adjustments. This records Root directions already relayed to the manager; it is not a new human exact-byte approval.",
+  "subjectHead": "e980f2ee773d32d1137646f437dc973126286e9b",
+  "diagnosisManifest": "b7d0e408c7ed50f674e655d02e77646c344f7a632520cb82c4b9d0ebcd135feb",
+  "decision": "Authorize five-locus truthful consume-only verifier contract synchronization and explicit fail-closed deferred-S0 release hold, with independent review and fresh required PR CI.",
+  "writeRoot": "/private/tmp/chirality-graceful-source-closure-20260908",
+  "sourcePaths": [
+    "projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts",
+    "projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs",
+    "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts",
+    ".github/workflows/desktop-release-template.yml",
+    "projects/chirality-app-dev/frontend/src/__tests__/scripts/desktop-release-workflow.test.ts"
+  ],
+  "scopeDetails": [
+    "Update obsolete launcher pins to truthful consume-only v2 contract, preserving proof obligations.",
+    "Runner and runner test changes only update the manifest source identity.",
+    "Release hold immediately after Checkout, before Setup Node, dependency installation, build, tests, package/native/mount/verification workloads.",
+    "No later always-run upload or workload may execute past the failed qualification hold.",
+    "Regression tests must establish ordering and lack of permissive bypass."
+  ],
+  "executionBoundary": "No local dependency setup, packaging/native qualification, fixture/supplier/account operation, new producer, instruction migration or release. Missing local dependencies mean CI_REQUIRED_NOT_RUN_LOCAL, not tests PASS.",
+  "reviewBoundary": "Ordinary sol-medium author and separate reviewer; manager validates. Corrections within the same five-file envelope are permitted; sixth path or proof-obligation change requires Root disposition.",
+  "sourceIdentityBoundary": "Preserve original accepted App29 source/binding and prior PR commits; publication successor intentionally changes three prior App postimages plus workflow/test. Do not claim original58 source bytes all unchanged after this repair. Future App qualification requires a new accepted source binding.",
+  "currentState": "Five-file author freeze exists; independent review identified a downstream always-run upload and ordering-test gaps. Bounded correction/backcheck in the same two workflow loci is in progress. Merge remains held.",
+  "pauseAfter": "After reviewed merge and publication verification, all managers pause for user directions and new instruction/workflow re-entry."
+}

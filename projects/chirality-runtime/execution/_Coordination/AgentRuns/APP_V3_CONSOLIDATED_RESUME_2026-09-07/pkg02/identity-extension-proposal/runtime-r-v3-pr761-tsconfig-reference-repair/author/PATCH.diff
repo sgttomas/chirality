@@ -1,0 +1,14 @@
+diff --git a/projects/chirality-runtime/packages/daemon/tsconfig.json b/projects/chirality-runtime/packages/daemon/tsconfig.json
+index d1733fd11..5ba26a4ba 100644
+--- a/projects/chirality-runtime/packages/daemon/tsconfig.json
++++ b/projects/chirality-runtime/packages/daemon/tsconfig.json
+@@ -15,6 +15,9 @@
+     {
+       "path": "../core"
+     },
++    {
++      "path": "../native-admission"
++    },
+     {
+       "path": "../engine-pi-omlx"
+     }

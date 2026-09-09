@@ -1,0 +1,25 @@
+{
+  "controlManifest": {
+    "bytes": 12000,
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-remediation-v1/candidate-v4/MANIFEST.json",
+    "sha256": "b085f38c7dfd7e4530b4e692ca0d5f58c6d6bb8c2731a49e7cb49774203f22fd"
+  },
+  "findings": [],
+  "reviewer": {
+    "bytes": 735,
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-remediation-v1/successor-review-v4/MANIFEST.json",
+    "sha256": "b29e50f58e054bbe03bc392bda46ac610360dc339dce9ae89b8b0d6d29365570"
+  },
+  "schema": "chirality-independent-s0-acceptance/v3",
+  "sourceBinding": {
+    "bytes": 6778,
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-v2/SOURCE_BINDING_CANDIDATE.json",
+    "sha256": "49394ada25ecedab8b4946e289d4a002a4032a949363e526c202652a7994dc28"
+  },
+  "sourceManifest": {
+    "bytes": 6678,
+    "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/successor-v2/SOURCE_MANIFEST.json",
+    "sha256": "9db143277b9c6852c3e045d9ba5607d0642cfdfd2002f228c334d2f3340d17aa"
+  },
+  "verdict": "PASS"
+}

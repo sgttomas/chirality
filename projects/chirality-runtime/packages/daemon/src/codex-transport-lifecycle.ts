@@ -3,6 +3,8 @@ import { RuntimeError } from "@chirality/runtime-contracts";
 import type { CodexSessionTransport } from "./codex-session.js";
 
 export const CODEX_TRANSPORT_CLOSE_BOUNDS_MS = Object.freeze({ eof: 1000, term: 500, finalClose: 2000 });
+/** Transport closure is cleanup evidence only; it never proves authority fencing. */
+export const CODEX_TRANSPORT_AUTHORITY_EVIDENCE = "NONE" as const;
 export interface CodexTransportLifecycleEvent {
   phase: "close-requested" | "stdin-eof" | "stdin-eof-finished" | "stdin-error" | "eof-grace-expired" | "term-grace-expired" | "signal" | "signal-error" | "exit" | "close" | "spawn-error" | "process-error" | "stderr-overflow" | "close-deadline" | "pipes-disposed";
   at: number;
@@ -114,4 +116,13 @@ export function createCodexTransportLifecycle(child: ChildProcess, options: {
     return closing;
   };
   return { stdin, stdout, close };
+}
+
+/** A deadline bounds cleanup only. Completion requires the exact child's wait result. */
+export async function retireNativeSupplier(child:{closeInput():void;terminate():void;kill():void;wait():Promise<unknown>},deadline:(phase:"eof"|"term"|"kill")=>Promise<void>=()=>new Promise(resolve=>setTimeout(resolve,1000))):Promise<void>{
+  const waited=child.wait().then(()=>true);void waited.catch(()=>{});child.closeInput();
+  if(await Promise.race([waited,deadline("eof").then(()=>false)]))return;
+  child.terminate();if(await Promise.race([waited,deadline("term").then(()=>false)]))return;
+  child.kill();if(await Promise.race([waited,deadline("kill").then(()=>false)]))return;
+  throw new Error("Supplier retirement remains unverified");
 }

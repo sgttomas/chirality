@@ -19,3 +19,4 @@ export * from "./role-policy.js";
 export * from "./descendant-tracker.js";
 
 export * from "./runtime-conformance.js";
+export * from "./runtime-admission-lock.js";

@@ -1,0 +1,13 @@
+{
+  "memberCount": 1,
+  "members": [
+    {
+      "bytes": 1586,
+      "path": "CHECK.json",
+      "sha256": "8e9d88af2748f7630fc8980ced5baf270856c7ca4570387ca8144cc6b83fab9e"
+    }
+  ],
+  "rehashed": true,
+  "schema": "chirality.runtime.identity-admission.interface-concordance-manifest.v1",
+  "status": "PASS_NO_MISMATCH"
+}

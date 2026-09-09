@@ -1,0 +1,21 @@
+{
+  "schema": "chirality.change.graceful-source-closure-independent-review-manifest.v1",
+  "status": "FROZEN_PASS",
+  "verdict": "PASS",
+  "reviewedStagedTree": "dd6a4ac0f3b3c7443848ba8b222f8acbf67e7b32",
+  "reviewedFullIndexBinaryDiffSha256": "d49290517b7bf4e4718dce1f940588ce7f7721289b1a83804e778448c25dbfd7",
+  "memberCountExcludingManifest": 2,
+  "members": [
+    {
+      "path": "CHECKS.json",
+      "sha256": "c92758dae3dd58c708fe3e72e3a9d05703b9c77ce942a5afd3488d5488179e0b",
+      "bytes": 6666
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "92e2f80032c58c5e70d50930ca7ab6bd4593ec20877d6b40e6c0584f3b25240b",
+      "bytes": 3160
+    }
+  ],
+  "manifestSelfHash": "EXCLUDED_BY_CONTRACT"
+}

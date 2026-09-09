@@ -1,3 +1,5 @@
+import { assertNoPrivateAuthoritySurface } from "./supervisor-server.js";
+import type { SupplierAuthorityLifecycle } from "./supplier-authority-journal.js";
 import type { RuntimeApprovalControlPort } from "@chirality/runtime-core";
 import { randomUUID } from "node:crypto";
 import { chmod, lstat, readFile, unlink } from "node:fs/promises";
@@ -80,6 +82,7 @@ interface DaemonGeneration {
 }
 
 export interface RuntimeDaemonOptions {
+  supplierAuthority?:SupplierAuthorityLifecycle;
   socketPath: string;
   runtimeDirectory: string;
   service: RuntimeService;
@@ -98,6 +101,10 @@ export class RuntimeDaemon {
   private generation?: DaemonGeneration;
   private stopPromise?: Promise<void>;
   private terminalStopError?: Error;
+  private authorityStartAttempted = false;
+  private terminalStartupError?: Error;
+  /** Nonsecret OS-process incarnation; distinct from daemon and listener generations. */
+  readonly runtimeProcessIncarnationId = randomUUID();
   private readonly ownerFile: string;
   private readonly loginOperations = new Set<Promise<unknown>>();
 
@@ -106,6 +113,9 @@ export class RuntimeDaemon {
   }
 
   async start(): Promise<{ socketPath: string; operatorTokenFile: string }> {
+    if (this.authorityStartAttempted) {
+      throw new Error("Supplier authority requires a fresh daemon and lifecycle instance; same-instance startup retry is unavailable", { cause: this.terminalStartupError });
+    }
     if (this.stopPromise !== undefined) throw new Error("Runtime daemon cannot start before shutdown has drained");
     if (this.lifecycle !== "INITIAL" && this.lifecycle !== "STOPPED") {
       throw new Error(`Runtime daemon cannot start while ${this.lifecycle.toLowerCase()}`);
@@ -116,9 +126,16 @@ export class RuntimeDaemon {
     const ownerGenerationId = randomUUID();
     let context: DaemonGeneration | undefined;
     let controlSocketBound = false;
+    let authorityStarted = false;
     try {
       await ensurePrivateDirectory(this.options.runtimeDirectory);
       await ensurePrivateDirectory(dirname(this.options.socketPath));
+      if (this.options.supplierAuthority) {
+        // The owner is single-incarnation even when its own start fails partway.
+        this.authorityStartAttempted = true;
+        await this.options.supplierAuthority.start(this.runtimeProcessIncarnationId);
+        authorityStarted = true;
+      }
       await this.recoverStaleSocket();
       await atomicWriteJson(this.ownerFile, {
         schemaVersion: "chirality.daemon-owner/v1",
@@ -187,22 +204,43 @@ export class RuntimeDaemon {
       this.lifecycle = "RUNNING";
       return { socketPath: this.options.socketPath, operatorTokenFile: operator.tokenFile };
     } catch (error) {
+      const cleanupFailures: unknown[] = [];
+      // Close public admission first, then fence a successfully started authority.
+      // Every later startup failure passes here, including owner/credential/listen/chmod.
       if (context !== undefined) {
         for (const socket of context.sockets) socket.destroy();
         try {
-          context.server.close();
-        } catch {
-          // The listener may not have reached the listening state.
-        }
+          await new Promise<void>((resolve, reject) => context!.server.close(closeError => {
+            if (closeError && (closeError as NodeJS.ErrnoException).code !== "ERR_SERVER_NOT_RUNNING") reject(closeError);
+            else resolve();
+          }));
+        } catch (cleanupError) { cleanupFailures.push(cleanupError); }
+      }
+      if (authorityStarted) {
+        try { await this.options.supplierAuthority!.close(); }
+        catch (cleanupError) { cleanupFailures.push(cleanupError); }
       }
       if (controlSocketBound) {
-        await this.unlinkControlSocket().catch(() => undefined);
+        try { await this.unlinkControlSocket(); }
+        catch (cleanupError) { cleanupFailures.push(cleanupError); }
       }
-      await this.removeOwnedRecord(ownerGenerationId).catch(() => undefined);
+      try { await this.removeOwnedRecord(ownerGenerationId); }
+      catch (cleanupError) { cleanupFailures.push(cleanupError); }
       if (this.generation === context) this.generation = undefined;
       if (this.server === context?.server) this.server = undefined;
-      this.lifecycle = generationNumber === 1 ? "INITIAL" : "STOPPED";
-      throw error;
+      const failure = cleanupFailures.length
+        ? new AggregateError([error, ...cleanupFailures], "Runtime daemon startup and cleanup failed")
+        : error instanceof Error ? error : new Error("Runtime daemon startup failed", { cause: error });
+      this.terminalStartupError = failure;
+      if (cleanupFailures.length || (this.authorityStartAttempted && !authorityStarted)) {
+        // An incomplete authority startup or failed cleanup cannot become an idle,
+        // retryable daemon. Its held lock/custody evidence requires owner disposition.
+        this.lifecycle = "STOPPED_DEGRADED";
+        this.terminalStopError = failure;
+      } else {
+        this.lifecycle = this.authorityStartAttempted ? "STOPPED" : generationNumber === 1 ? "INITIAL" : "STOPPED";
+      }
+      throw failure;
     }
   }
 
@@ -616,7 +654,7 @@ export class RuntimeDaemon {
       chunks.push(buffer);
     }
     try {
-      return JSON.parse(Buffer.concat(chunks).toString("utf8")) as T;
+      const value=JSON.parse(Buffer.concat(chunks).toString("utf8")) as T;assertNoPrivateAuthoritySurface(value);return value;
     } catch {
       throw new RuntimeError("INVALID_REQUEST", "Request body must be valid JSON");
     }
@@ -630,6 +668,7 @@ export class RuntimeDaemon {
 
   private json(response: ServerResponse, status: number, value: unknown): void {
     if (response.headersSent) return;
+    assertNoPrivateAuthoritySurface(value);
     const body = JSON.stringify(value);
     response.writeHead(status, {
       "content-type": "application/json; charset=utf-8",
@@ -687,6 +726,7 @@ export class RuntimeDaemon {
         });
       }
       if (!first.done && !disconnected) {
+        assertNoPrivateAuthoritySurface(first.value);
         response.write(
           `event: ${first.value.type}\ndata: ${JSON.stringify(first.value.data)}\n\n`
         );
@@ -698,6 +738,7 @@ export class RuntimeDaemon {
         this.trySseInterrupt(control);
         if (next.done) break;
         if (!disconnected) {
+          assertNoPrivateAuthoritySurface(next.value);
           response.write(
             `event: ${next.value.type}\ndata: ${JSON.stringify(next.value.data)}\n\n`
           );
@@ -781,6 +822,7 @@ export class RuntimeDaemon {
     if (!retry) {
       generation.stopStreams = [...generation.streams];
       this.beginServerClose(generation);
+      await this.options.supplierAuthority?.close();
       // Admission is closed before any semantic interruption is requested.
       for (const stream of generation.stopStreams) this.cancelSse(stream);
       await this.waitUntilGeneration(
@@ -818,6 +860,7 @@ export class RuntimeDaemon {
       }
     } else if (!generation.closeComplete || generation.sockets.size > 0) {
       this.beginServerClose(generation);
+      await this.options.supplierAuthority?.close();
       this.forceGenerationTransport(generation, cleanupFailures);
     }
 

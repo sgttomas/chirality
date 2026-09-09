@@ -1,0 +1,15 @@
+{
+  "schema": "chirality-agent2-final-review-evidence/v3",
+  "verdict": "PASS",
+  "author_v3_manifest_sha256": "050c294030334fba863156617310e29da87162f2732241785cfbc53d5419730e",
+  "corrected_patch_sha256": "a8387c0242a52224c7cd5e4c9eae35ae4962006f4e6dd4d644bb243ccfeda393",
+  "files": [
+    {"path": "RETURN.md", "sha256": "c5bb8be47618de31a77bf287bce34292416b1f19a6541a55857cae0125c2deba", "bytes": 1949},
+    {"path": "CHECKS.json", "sha256": "b76d899cbf7af65af0638c5561308aac56cdec75c33b1225461a7127c408e31b", "bytes": 1977}
+  ],
+  "source_root": "/private/tmp/chirality-graceful-source-closure-20260908",
+  "source_path_count": 5,
+  "product_source_modified_by_reviewer": false,
+  "prior_evidence_modified_by_reviewer": false,
+  "delegated": false
+}

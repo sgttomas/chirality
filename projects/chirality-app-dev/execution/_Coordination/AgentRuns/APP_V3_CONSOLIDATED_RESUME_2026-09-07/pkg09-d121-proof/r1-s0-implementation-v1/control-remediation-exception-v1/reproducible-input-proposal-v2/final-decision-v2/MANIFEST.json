@@ -1,0 +1,46 @@
+{
+  "appendOnlySuccessorOf": "d49a2bd67a0d9cfcd42bc56481f1297d6749723a42d66df7bf1fd0edd4b715b4",
+  "decision": {
+    "noSecondOwnerVoteAfterNamedConditionalPasses": true,
+    "ownerApprovalRequired": true,
+    "releaseAuthorized": false,
+    "runId": "d1210908a005"
+  },
+  "executionAuthorized": false,
+  "members": {
+    "COMPLETE_CONTROL.patch": {
+      "bytes": 34297,
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/reproducible-input-proposal-v2/final-decision-v2/COMPLETE_CONTROL.patch",
+      "sha256": "414672fe5434fb0dbd3219cf5cd2aed83f998c9ee54a6ecb8f0e811678b9dbc4"
+    },
+    "CONTROL_POSTIMAGES.json": {
+      "bytes": 2215,
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/reproducible-input-proposal-v2/final-decision-v2/CONTROL_POSTIMAGES.json",
+      "sha256": "43e4ae0d1b4ff31fb4e6a16bd6b9917030513c510c236528243f33437eb7589c"
+    },
+    "HANDOFF_STATE.json": {
+      "bytes": 1440,
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/reproducible-input-proposal-v2/final-decision-v2/HANDOFF_STATE.json",
+      "sha256": "9f29e13d424fc04b4691577db72f40d9b66f108fd3d309116b68c92fbc5ca725"
+    },
+    "OWNER_DECISION_SUBJECT.md": {
+      "bytes": 6600,
+      "path": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg09-d121-proof/r1-s0-implementation-v1/control-remediation-exception-v1/reproducible-input-proposal-v2/final-decision-v2/OWNER_DECISION_SUBJECT.md",
+      "sha256": "474b1fd1c8929aaab452b47d10b85fbc96a8457e59772c676028ba66af8ec953"
+    }
+  },
+  "runReserved": false,
+  "schema": "chirality-reproducible-s0-final-decision/v2",
+  "status": "PROPOSED_PENDING_INDEPENDENT_BACKCHECK_AND_OWNER_DECISION",
+  "upstream": {
+    "dispositionV5ManifestSha256": "9c9029453e3d981a48cf8151c47de1efd677c2e50e5b2cee141cdfe21557d187",
+    "expertPlanManifestSha256": "f601b9a6748a7bdbfa54bb22a75b50ebeed18841f50f0005aa7fe6412106e488",
+    "expertPlanReviewManifestSha256": "f37e01ba0a0c235883a04aeb9ea372013f1575426fb232476d57718a44172d9c",
+    "g1G2OuterManifestSha256": "151a4056173a1106ad40b67ed04e1ba3e973197dfbef88ecd5ea294a28c48273",
+    "g1G2ReviewManifestSha256": "3488ac9d6c962d0b64fa9658796de74e4570c4e33b18a1f97c98bd8e657e5e75",
+    "g1G2ReviewReturnSha256": "c51e1b5b6e00856dc5fffa6f3e1fdeb4684215a622f8f4f1e5d988634b55e5ed",
+    "g1G2ReviewVerdict": "PASS_ZERO_FINDINGS",
+    "sourceBindingSha256": "49394ada25ecedab8b4946e289d4a002a4032a949363e526c202652a7994dc28",
+    "sourceManifestSha256": "9db143277b9c6852c3e045d9ba5607d0642cfdfd2002f228c334d2f3340d17aa"
+  }
+}

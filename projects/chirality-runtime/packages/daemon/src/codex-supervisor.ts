@@ -3,6 +3,7 @@ import { RuntimeError, validateHostedManagedAuth, type HostedManagedAuth, type D
 import { assertContinuity, recordKey, type RuntimeConformanceConfiguration, DescendantTracker, HostedConsentStore } from "@chirality/runtime-core";
 import { prepareCodexNativePolicy } from "./codex-containment.js";
 import { CodexTurnSession, type CodexSessionTransport, type CodexDynamicTool } from "./codex-session.js";
+import { SupplierAuthorityController } from "./supplier-authority-controller.js";
 
 import { ManagerMailbox, type ManagerMessage } from "./codex-manager.js";
 
@@ -20,6 +21,8 @@ export interface CodexSupervisorOptions {
   maxWorkers?: number;
   protectedPaths?: readonly string[];
   commandNetworkPosture?: "off" | "ask-per-destination" | "on";
+  /** Private daemon-owned authority. Absence is the default-off state. */
+  supplierAuthority?: SupplierAuthorityController;
 }
 type NativePermissions = Awaited<ReturnType<typeof prepareCodexNativePolicy>>["expectedPermissions"];
 /** Same semantic digest used at admission; acceptance locations are intentionally excluded. */
@@ -41,6 +44,8 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   private readonly options: CodexSupervisorOptions;
   private fixtureLauncher?: ControlledCodexLauncher;
   private fixtureAllowUnauthenticatedModel = false;
+  private barrier?: (name:string)=>Promise<void>;
+  private readonly cancellations = new Map<string,{cancelled:boolean;acquiring:boolean}>();
   private readonly entries = new Map<string, Entry>();
   private readonly acquiring = new Set<string>();
   private readonly pendingAcquisitions = new Map<string, Promise<void>>();
@@ -51,17 +56,20 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     for (const value of [options.requestTimeoutMs ?? 10_000, options.turnTimeoutMs ?? 120_000, options.maxWorkers ?? 16]) if (!Number.isSafeInteger(value) || value < 1 || value > 600_000) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex supervisor bound");
     if (options.commandNetworkPosture !== undefined && !["off", "ask-per-destination", "on"].includes(options.commandNetworkPosture)) throw new RuntimeError("INVALID_REQUEST", "Unsupported executable command-network posture");
     validateHostedManagedAuth(options.managedAuth);
-    this.options = structuredClone(options);
+    this.options = { ...structuredClone({ ...options, supplierAuthority: undefined }), supplierAuthority: options.supplierAuthority };
   }
   /** Controlled adapter tests are structurally excluded from verifyHostedBoundary. */
-  static controlledForTests(options: { commandNetworkPosture?: "off" | "ask-per-destination" | "on"; allowUnauthenticatedModel?: boolean; identity: WorkerContinuity; model: string; launch: ControlledCodexLauncher; requestTimeoutMs?: number; turnTimeoutMs?: number }): CodexSupervisor {
+  static controlledForTests(options: { supplierAuthority?:SupplierAuthorityController; barrier?:(name:string)=>Promise<void>; commandNetworkPosture?: "off" | "ask-per-destination" | "on"; allowUnauthenticatedModel?: boolean; identity: WorkerContinuity; model: string; launch: ControlledCodexLauncher; requestTimeoutMs?: number; turnTimeoutMs?: number }): CodexSupervisor {
     const result = new CodexSupervisor({ identity: options.identity, model: options.model, privateDirectory: options.identity.canonicalRoot, codexHome: options.identity.canonicalRoot,
       commandNetworkPosture: options.commandNetworkPosture, executablePath: "controlled-fixture-only", managedAuth: { backend: "keyring", binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" } }, providerNetworkConsent: { approvedBy: "", approvalReference: "" }, requestTimeoutMs: options.requestTimeoutMs, turnTimeoutMs: options.turnTimeoutMs });
     result.fixtureLauncher = options.launch;
+    result.options.supplierAuthority=options.supplierAuthority;
+    result.barrier=options.barrier;
     result.fixtureAllowUnauthenticatedModel = options.allowUnauthenticatedModel === true;
     return result;
   }
   private requireHostedIdentity(): void {
+    if (this.options.supplierAuthority?.projection().state === "ready") return;
     // Neither caller continuity, ceremony presence nor fixture data supplies a principal.
     throw unavailable("Canonical hosted identity producer is unavailable");
   }
@@ -127,7 +135,9 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     const mailbox = this.managers.get(workerId); if (!mailbox) throw unavailable("Unknown manager worker"); mailbox.reply(input);
   }
   async acquire(workerId: string, input: string): Promise<WorkerHandle> { return this.acquireInternal(workerId, input); }
-  private async acquireInternal(workerId: string, input: string, dynamicTools?: readonly CodexDynamicTool[]): Promise<WorkerHandle> {
+  cancelAdmission(workerId:string):void {const pending=this.cancellations.get(workerId);if(!pending)return;pending.cancelled=true;if(pending.acquiring)void this.options.supplierAuthority?.revoke();}
+  private async acquireInternal(workerId:string,input:string,dynamicTools?:readonly CodexDynamicTool[]):Promise<WorkerHandle>{const run=()=>this.acquireGuarded(workerId,input,dynamicTools);return this.options.supplierAuthority?this.options.supplierAuthority.runGuarded(run):run();}
+  private async acquireGuarded(workerId: string, input: string, dynamicTools?: readonly CodexDynamicTool[]): Promise<WorkerHandle> {
     if (!this.fixtureLauncher) this.requireHostedIdentity();
     id(workerId);
     if (this.closed || this.entries.has(workerId) || this.acquiring.has(workerId) || this.entries.size + this.acquiring.size >= (this.options.maxWorkers ?? 16)) throw unavailable("Codex worker is unavailable or already acquired");
@@ -141,10 +151,19 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     const evidence = request.roleEvidence;
     if ((selectedRole !== "untyped" && !evidence) || (evidence !== undefined && (!evidence || typeof evidence !== "object" || Array.isArray(evidence) || evidence.selectedRole !== selectedRole || evidence.enforcementLabel !== "role not mechanically enforced" || evidence.evidencePosture !== "instruction-asserted"))) throw new RuntimeError("INVALID_REQUEST", "Role evidence must preserve the selected role and calibrated labels");
     const prompt = selectedRole === "untyped" ? request.prompt : `Runtime role instruction (explicit user selection): ${selectedRole}.\nrole not mechanically enforced; evidence posture: instruction-asserted.\n\n${request.prompt}`;
+    const authority = this.options.supplierAuthority;
+    const operationId = dynamicTools ? `manager:${workerId}` : `regular:${workerId}`;
+    let authorityAcquired = false, publicationCommitted = false, releaseAttempted=false;
+    const cancellation={cancelled:false,acquiring:false};this.cancellations.set(workerId,cancellation);
+    const cancelled=()=>{if(cancellation.cancelled||this.closed)throw unavailable("Admission cancelled");};
+    const kind=dynamicTools?"manager":"regular";
+    let localEntry:Entry|undefined;let begin:(()=>void)|undefined;
     this.acquiring.add(workerId);
     let finishAcquisition!: () => void;
     this.pendingAcquisitions.set(workerId, new Promise<void>(resolve => { finishAcquisition = resolve; }));
     try {
+      await this.barrier?.(`${kind}/pre-acquire`);cancelled();
+      if (authority) {cancellation.acquiring=true;try{await authority.acquire(operationId);authorityAcquired=true;}finally{cancellation.acquiring=false;}}cancelled();
       if (this.fixtureLauncher) await assertContinuity(this.options.identity);
       else this.requireHostedIdentity();
       if (this.closed) throw unavailable("Supervisor is closing");
@@ -157,13 +176,18 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
         session = new CodexTurnSession({ transport: launched.transport, requestTimeoutMs: this.options.requestTimeoutMs, turnTimeoutMs: this.options.turnTimeoutMs,
           commandNetworkPosture: this.options.commandNetworkPosture, permissionProfile: launched.permissionProfile, policyDigest: launched.policyDigest, dynamicTools, toolTimeoutMs: this.options.turnTimeoutMs });
       } catch (error) { await launched.transport.close(); throw error; }
+      if(!this.fixtureLauncher){
+        try{await session.initialize();if(!launched.expectedPermissions)throw unavailable("Native effective-policy verification basis is missing");await session.verifyNativePolicy(launched.expectedPermissions);}
+        catch(error){await session.close();await launched.transport.close();throw error;}
+      }
       // Drain bounded actor events; the authoritative result still comes only from waitTurn.
       void (async () => { for await (const _event of session.events()) { /* actor output accumulated in terminal */ } })().catch(() => {});
+      const admitted=new Promise<void>(resolve=>{begin=resolve;});
       const result = (async (): Promise<WorkerResult> => {
+        await admitted;
         try {
-          await session.initialize();
-          if (!this.fixtureLauncher && !launched.expectedPermissions) throw unavailable("Native effective-policy verification basis is missing");
-          if (launched.expectedPermissions) await session.verifyNativePolicy(launched.expectedPermissions);
+          if(!publicationCommitted)throw unavailable("Admission cancelled before publication");
+          if(this.fixtureLauncher){await session.initialize();if(launched.expectedPermissions)await session.verifyNativePolicy(launched.expectedPermissions);}
           const account = await session.accountRead();
           if (!account.hasAccount && !(this.fixtureLauncher && this.fixtureAllowUnauthenticatedModel && account.authRequired === false)) throw unavailable("Codex has no root-private authenticated account");
           if (!this.fixtureLauncher) this.requireHostedIdentity();
@@ -177,10 +201,26 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
         } finally { handle.state = "exited"; await session.close(); await launched.transport.close(); }
       })();
       void result.catch(() => {});
-      this.entries.set(workerId, { handle, session, result, cleanup: launched.transport.close });
-      return { ...handle };
-    } finally { this.acquiring.delete(workerId); this.pendingAcquisitions.delete(workerId); finishAcquisition(); }
+      localEntry={handle,session,result,cleanup:launched.transport.close};
+      await this.barrier?.(`${kind}/post-acquire-pre-worker-publication`);cancelled();authority?.assertCommit(operationId);
+      this.entries.set(workerId,localEntry);
+      publicationCommitted = true;begin?.();
+      await this.barrier?.(`${kind}/post-publication-pre-release`);
+      if (authority) {releaseAttempted=true;await authority.release(operationId);}
+      cancelled();return { ...handle };
+    } catch (error) {
+      // Removal is synchronous and precedes all cleanup awaits and caller return.
+      if(localEntry&&this.entries.get(workerId)===localEntry)this.entries.delete(workerId);
+      begin?.();
+      if (authorityAcquired && authority) {
+        if (publicationCommitted) {if(!releaseAttempted){releaseAttempted=true;await authority.release(operationId).catch(()=>authority.revoke());}}
+        else await authority.abort(operationId).catch(()=>authority.revoke());
+      }
+      if(localEntry){await localEntry.session.close();await localEntry.result.catch(()=>{});await localEntry.cleanup();}
+      throw error;
+    } finally { this.cancellations.delete(workerId);this.acquiring.delete(workerId); this.pendingAcquisitions.delete(workerId); finishAcquisition(); }
   }
+
   async inventory(): Promise<readonly WorkerHandle[]> { return [...this.entries.values()].map(entry => ({ ...entry.handle })); }
   private entry(workerId: string, generation: string): Entry { const entry = this.entries.get(workerId); if (!entry || entry.handle.generation !== generation) throw unavailable("Unknown or stale Codex generation"); return entry; }
   async describeApprovalScope(workerId?: string, generation?: string): Promise<{ identity: WorkerContinuity; model: string; commandNetworkPosture: "off" | "ask-per-destination" | "on"; consent?: HostedConsent }> {
@@ -206,6 +246,6 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   async reconnect(workerId: string, generation: string): Promise<WorkerHandle> { return { ...this.entry(workerId, generation).handle }; }
   async wait(workerId: string, generation: string): Promise<WorkerResult> { return this.entry(workerId, generation).result; }
   async retire(workerId: string, generation: string): Promise<void> { const entry = this.entry(workerId, generation); this.managers.get(workerId)?.finish(undefined, unavailable("Manager retired")); this.managers.delete(workerId); await entry.session.close(); await entry.result.catch(() => {}); await entry.cleanup(); if (this.entries.get(workerId) === entry) this.entries.delete(workerId); }
-  async close(): Promise<void> { this.closed = true; await Promise.all([...this.pendingAcquisitions.values()]); await Promise.all([...this.entries.values()].map(entry => this.retire(entry.handle.workerId, entry.handle.generation))); }
+  async close(): Promise<void> { this.closed = true; for(const id of this.cancellations.keys())this.cancelAdmission(id); await Promise.all([...this.pendingAcquisitions.values()]); await Promise.all([...this.entries.values()].map(entry => this.retire(entry.handle.workerId, entry.handle.generation))); await this.options.supplierAuthority?.close(); }
 }
 export function createControlledCodexSupervisorForTests(options: Parameters<typeof CodexSupervisor.controlledForTests>[0]): CodexSupervisor { return CodexSupervisor.controlledForTests(options); }

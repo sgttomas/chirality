@@ -1,0 +1,119 @@
+{
+  "schema": "chirality-runtime-local-remediation-author/v3",
+  "status": "AUTHOR_CHECKS_PASS__FROZEN_FOR_INDEPENDENT_REVIEW",
+  "createdAt": "2026-09-09T01:40:24.562373+00:00",
+  "workspace": "/private/tmp/chirality-runtime-local-identity-r-v2-remediation-20260908/repo",
+  "derivativePackage": true,
+  "acceptedAuthorityInputs": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/owner-packaging-runtime-continuations-2026-09-08/OWNER_APPROVAL.json",
+      "sha256": "33a5e02bcd9b3cb9b4e29b7d190ebfaae4840465da70a85f88659812db16f26a"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-two-branch-execution-v4/manager-v2/NEXT_DECISION_SUBJECT.md",
+      "sha256": "7cb60d5832c78db33992f1282d10d3ce0250de8e3d58aa4374881ef728e4829e"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-two-branch-execution-v4/branch-r-review/MANIFEST.json",
+      "sha256": "570c5441c47bbc9b5854f140386cb5ce52f3cc8545111fc3de192ab35c68f521"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-stopped-branch-remediation-v2/branch-r-author/BRIEF.md",
+      "sha256": "ae5bbae3f4675daaf003736bc5baef1b5d994185dea33d3d0fa1e31e7896dc13"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-stopped-branch-remediation-v2/branch-r-author/AMENDMENT_V1.md",
+      "sha256": "8ed8a87727f959418e7f28d559fa142e30e0f598bb1168df09b540c2f28fc154"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/aed8/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/local-stopped-branch-remediation-v2/branch-r-author/AMENDMENT_V2.md",
+      "sha256": "15e9ab8c1176ed5bbf09b59ccb5e3d05f7c2dacf636c54034e064f305c0629e0"
+    }
+  ],
+  "predecessorManifestSha256": "62fa2cdcc18f99eefa993b3790f20299aeb5a06b9d2cb8c88e5c36222b808705",
+  "independentReviewManifestSha256": "af4b60d19066352f129dbec7473a7407b7de66daf1bb0c6b1f01c2dd615c5f3e",
+  "authorityDisposition": {
+    "F-R06": "Later supplier V1 proposal rejected/unaccepted by owner; accepted local-implementation-readiness-v4 controls. Preserve raw exact 32-byte fd3 bootstrap and authenticated direct chirality/admissionAcquire|Release|Abort and notifications. No supplier account/* adapter fixture.",
+    "grant": "Manager-routed owner-approved repair continuation, same bounded author, exact prior write set, no dependency/network/native build or supplier/account action."
+  },
+  "members": [
+    {
+      "path": "COMMANDS_AND_ENVIRONMENT.json",
+      "bytes": 105835,
+      "sha256": "e10307c4f57de8e4c8550b0b7c09b0f77b3699cb4dd313e4f4708375625f25ed"
+    },
+    {
+      "path": "DEPENDENCY_TREE.json",
+      "bytes": 150871,
+      "sha256": "50c4a926c1b32cf158855c3720b90eb0cdec3f0487676f5164b1599cb3c1e808"
+    },
+    {
+      "path": "EMITTED_FILES.json",
+      "bytes": 58905,
+      "sha256": "f7f5c01a7e62aa6b36b3a20cf5d210f3d67a3a430b7302eff98177bf0ea3fa70"
+    },
+    {
+      "path": "HEADER_READS.json",
+      "bytes": 72940,
+      "sha256": "4ad742141169e19bfd103d177ab473b6005770b9c572e9f28adc58db69b82726"
+    },
+    {
+      "path": "LOCKFILE.patch",
+      "bytes": 49806,
+      "sha256": "5dfc74f3adc30b145b7cdf7534083873d9b8fe2731a6730aff35a7f5d81ecd58"
+    },
+    {
+      "path": "MODULE_RESOLUTION.json",
+      "bytes": 108280,
+      "sha256": "c987a76432d290b9f8d694a8f2d7fa091bb1da939cae5c3faf181223c32b1acc"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 6716,
+      "sha256": "4fe056fe95095321ffb57969e3ebe7a85790575499974cf59ade4f95f0c7b540"
+    },
+    {
+      "path": "SOURCE_CHANGED_PATHS.json",
+      "bytes": 16924,
+      "sha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6"
+    },
+    {
+      "path": "TEST_RESULTS.json",
+      "bytes": 179068,
+      "sha256": "8a06bf6af3408ad2859f63164bb5d39b26624b5cc49841dbab2763ea1b2ccd9d"
+    },
+    {
+      "path": "TYPECHECK_RESULTS.json",
+      "bytes": 6123,
+      "sha256": "10ad89aff10d03363d1f2683129bbac656c381d9e7a66082865b9245855ba012"
+    }
+  ],
+  "sourceSelectionSha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+  "v3ChangedPaths": [
+    "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+    "projects/chirality-runtime/tests/supplier-authority-journal.test.ts",
+    "projects/chirality-runtime/tests/local-supplier-authority.e2e.test.ts"
+  ],
+  "tests": {
+    "files": 7,
+    "passed": 192,
+    "failed": 0,
+    "added": 14
+  },
+  "typecheck": "BOTH_REQUIRED_COMMANDS_PASS",
+  "nativeQualification": "UNCOMPILED_UNQUALIFIED",
+  "productionSupplierInteroperability": "UNQUALIFIED",
+  "prohibitedActionCounters": {
+    "delegation": 0,
+    "dependencyMaterialization": 0,
+    "network": 0,
+    "nativeBuild": 0,
+    "supplierActions": 0,
+    "accountCredentialActions": 0,
+    "gitMutations": 0,
+    "qualificationAdoptionActivationPublicationRelease": 0
+  },
+  "retention": "DEPENDENCIES_CACHE_AND_PERMITTED_EMITS_RETAINED_FOR_REVIEW",
+  "closureVerdict": "AUTHOR_WORK_COMPLETE__GOVERNED_PHASE_NOT_CLOSED",
+  "manifestSelfHash": "EXCLUDED"
+}

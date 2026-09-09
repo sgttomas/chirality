@@ -1,0 +1,47 @@
+{
+  "schema": "chirality-runtime-local-remediation-independent-review-manifest/v3",
+  "status": "PASS_FROZEN_FOR_MANAGER_FAN_IN",
+  "derivativePackage": true,
+  "candidateRoot": "/private/tmp/chirality-runtime-local-identity-r-v2-remediation-20260908/repo",
+  "reviewBriefSha256": "7e522668bd6eabf28114a1cc4ed202cc1b7d889d6f2af2259a6b8362ff3adb09",
+  "acceptedAuthorityInputs": [
+    {
+      "path": "../local-implementation-readiness-v4/IMPLEMENTATION_READINESS.md",
+      "sha256": "416c9332628bc1631db5e53826be567c1a371570f09884c2fc18b80c19cc3a4d"
+    },
+    {
+      "path": "../local-implementation-readiness-v4/SEQUENCE_AND_GATES.md",
+      "sha256": "b4ac833c8a185a1ddb57e8938eecae92118539483a765e77dca234dd9d5acb4e"
+    }
+  ],
+  "authorManifestSha256": "21029a7019124ffb67b7a21aba3fd707b2eb248558eb5078128ed825aac68de3",
+  "predecessorAuthorManifestSha256": "62fa2cdcc18f99eefa993b3790f20299aeb5a06b9d2cb8c88e5c36222b808705",
+  "predecessorReviewManifestSha256": "af4b60d19066352f129dbec7473a7407b7de66daf1bb0c6b1f01c2dd615c5f3e",
+  "sourceSelectionSha256": "4d5f5c942bdd18992434e6f77ba46645e0a23ff1d99550f7ea59f5ad4c3dc7b6",
+  "candidateLockSha256": "4195789d5bb47a1ddc83abd8c6fde5544a167dfd1c148e875004f3de37680059",
+  "members": [
+    {
+      "path": "CHECKS.json",
+      "bytes": 4348,
+      "sha256": "2ca51ef6c7385c1bfcad6ac4c3cc84b1f8ee5c25da089518c41f39c5e08dd16d"
+    },
+    {
+      "path": "FINDINGS.md",
+      "bytes": 3948,
+      "sha256": "160d5d866cd759526cd1037ed9e6e6a8554f684c8179f9fca480caacc4da3ae0"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 2251,
+      "sha256": "94fca08c135735cb53291a39297d3a9536930d939e453a9644675fe6bf0eee54"
+    }
+  ],
+  "verdict": "PASS",
+  "sourceDisposition": "PASS_FOR_MANAGER_FAN_IN_AND_OWNER_ACCEPTANCE",
+  "testDisposition": "PASS_ACCEPTED_MATRIX_EXECUTED",
+  "cleanupEligibility": "ELIGIBLE_AFTER_MANAGER_FAN_IN_AND_OWNER_ACCEPTANCE",
+  "nativeImplementationQualification": "UNCOMPILED_UNQUALIFIED",
+  "productionSupplierInteroperability": "UNQUALIFIED",
+  "closureVerdict": "REVIEW_COMPLETE__GOVERNED_PHASE_AWAITS_MANAGER_FAN_IN_AND_OWNER_ACCEPTANCE",
+  "manifestSelfHash": "EXCLUDED"
+}

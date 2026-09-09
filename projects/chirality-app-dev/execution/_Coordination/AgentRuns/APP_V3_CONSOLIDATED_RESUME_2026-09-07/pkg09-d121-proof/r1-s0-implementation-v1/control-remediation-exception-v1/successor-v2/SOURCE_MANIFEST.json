@@ -1,0 +1,152 @@
+{
+  "schema": "chirality-d121-qualified-source-manifest/v1",
+  "baseCommit": "24edf3ecabdc32433462e0ea51b1272c139e13e3",
+  "patchSha256": "e1b45e9eeddc32ce61dadce50244317fef76e6af1c56460473ace15a4854bc1c",
+  "members": [
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/electron/main.ts",
+      "sha256": "ea82a7dcbf9cbb60ac46cf0ab9b649c287a71b59341d0a27f13999787d79d6e3",
+      "bytes": 39110
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/electron/preload.ts",
+      "sha256": "bf7c0351875e906e8a2646baf292452b5ac537a0f52887def9ef1d95f45c7560",
+      "bytes": 4654
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts",
+      "sha256": "e2d63d32423d1ef6b0a03259235676ac9cefadde00e4f067be4f13e5ed2cc3ed",
+      "bytes": 33544
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs",
+      "sha256": "4fc0de92baaa01eb51fc897d7774c8f88aa75ac4a84dfe54cbf3912078faf466",
+      "bytes": 79122
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/file-route.test.ts",
+      "sha256": "8fb4cf4c12b9e6c97065d2194a9122f4cc6257384ec9822289892adbd5111f63",
+      "bytes": 16443
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/components/chat-markdown.test.ts",
+      "sha256": "c30dd6a28b81ec24b676a3f070be5e847cb792af8ca1fdac6104c6cdd6594180",
+      "bytes": 4369
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx",
+      "sha256": "891bf8d35315ab859b5997009869a051b06efd92d262749c203487f72b39e1f0",
+      "bytes": 19141
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/components/document-view.test.tsx",
+      "sha256": "e00f193e66afbf4fc1e30a84a17467871b259fd22462d786b6c546265eded861",
+      "bytes": 13638
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/components/file-tree-panel.test.tsx",
+      "sha256": "905523e704d957e1d7061c244bf9ac32df7c3170dbe48ce6c236cc2648ace849",
+      "bytes": 11049
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+      "sha256": "d6044e3cb76ce17d6ffbd5b921c4fdb32e96717a5e375a495917600701d1fada",
+      "bytes": 19908
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "f64cbf88011fec9710823688093b3f0ba1f5b6e0b00849237c37a68bf13fb589",
+      "bytes": 34795
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts",
+      "sha256": "be0c299afcf6357389599688459bcd70680d2ec82ea728c4f0d8050fda238d97",
+      "bytes": 25891
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/electron/folder-preload.test.ts",
+      "sha256": "ab65a700be92ec4c5dc3ae6737a066cf90ac5c11605624b682f0512a4ec49da6",
+      "bytes": 2658
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/electron/renderer-window-policy.test.ts",
+      "sha256": "d3ef6b47e07cbff491f3fd490f219e5b887f37fa156ecd922991eb5697469248",
+      "bytes": 46990
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/lib/chat-organization.test.ts",
+      "sha256": "cc2bcfdd67f67b5010ecc795433e87d16549d4c3602c2e7dd42156df013ed938",
+      "bytes": 12102
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/lib/woven-workspace-state.test.ts",
+      "sha256": "781526afac15798ad2f24666e2f997e523e564818682c32f3390de80ff3c500e",
+      "bytes": 28208
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "sha256": "068c0c263f494a62525c07c9a7261136bc6af7cd2e973af8d13ac93b2b8536d6",
+      "bytes": 56169
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/file-policy.ts",
+      "sha256": "f40f5a14583ff1f43f072273d2c476ecfd899f81571d7531cdc2a95fc43a6f9c",
+      "bytes": 9480
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/app/api/working-root/file/route.ts",
+      "sha256": "75c098a0af0fe1348a036f9ca0ed71526177cec579d6cb66bb1427b6dd743919",
+      "bytes": 7476
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/app/globals.css",
+      "sha256": "cb6898e8f127c64ad04dde7a466c8dbf27a425151c8a8010774a5edb467392aa",
+      "bytes": 98623
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/components/shell/chat-markdown.tsx",
+      "sha256": "71faa5f6fbf4a3994c1d85f872dc4b37af990a519b2d8acac25805a515b04ccf",
+      "bytes": 3984
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx",
+      "sha256": "fd76952cfc2144283db551a5291f5d0bcfd0821ef8eaa294b99c8f04c6d7a754",
+      "bytes": 33463
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/components/shell/document-view.tsx",
+      "sha256": "384ef2d622223ef5b4f13a95ce38449f943b65bc81485d187c4a03a87da44982",
+      "bytes": 23110
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/components/shell/file-tree-panel.tsx",
+      "sha256": "f88d1fe41098e780439f357622569b85313f98d9c4cfb6fccab7aaeee4b85411",
+      "bytes": 10739
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "c9da9addade47123aec1ab0b28dad72b09b4e3985619cd745d8be7ba9d32ed1b",
+      "bytes": 24459
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "2d4c2ed6d037a9336d1a27b9ad3a694d44a7d96a4702a37e8be66e911f25d104",
+      "bytes": 13468
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "425b3b29417a56fc8fa2c8042913c8a239d1b45fc9cdfe332babf996dd345fa7",
+      "bytes": 33468
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/chat-organization.ts",
+      "sha256": "cf9fb81b2b321be74d5543bf90b81d62940ea87a6ff67f8b8e8268c9d76ec661",
+      "bytes": 13348
+    },
+    {
+      "relativePath": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/woven-workspace-state.ts",
+      "sha256": "dc5a3903d9a8df752ba0c1daed47182715439e6c82acc79d5c555f455898f3e3",
+      "bytes": 23807
+    }
+  ]
+}
