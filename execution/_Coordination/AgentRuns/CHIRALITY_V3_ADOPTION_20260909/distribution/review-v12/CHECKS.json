@@ -1,0 +1,77 @@
+{
+  "schema": "chirality-distribution-independent-final-anchor-review-checks/v1",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v12.json",
+    "sha256": "3d494992fbb033f68b623a2124ea681dd12673e83fc3b5eedf83ae264f1e9c8d",
+    "sizeBytes": 14791,
+    "memberCount": 19
+  },
+  "verdict": "PASS",
+  "reviewMeaning": "Final source-anchor and distribution-byte consistency pass; not adoption, package, publication, or release qualification.",
+  "checks": [
+    {
+      "name": "subject identity",
+      "status": "pass",
+      "evidence": "subject-v12.json matched the assigned SHA-256 and 14791-byte size."
+    },
+    {
+      "name": "distribution member binding",
+      "status": "pass",
+      "evidence": "All 19 current paths matched V12 SHA-256 and sizeBytes bindings."
+    },
+    {
+      "name": "unchanged distribution bytes",
+      "status": "pass",
+      "evidence": "V10, V11, and V12 contain identical path/hash/size maps for all 19 members; contract pins and D121 identity files are unchanged. Exact-member git diff --check passed."
+    },
+    {
+      "name": "source anchors",
+      "status": "pass",
+      "evidence": "Root semantic successor matched 8669df0d1b2ab639e0e3d1352843130aabf8d88ab8050ed9f5169b022d9afad5; App V7 matched 240a974e9e6a0c9317ea77b9588997adf2d03b613bfd78595ee1a8c3c5405a80; Runtime V6 matched 559b0166c5488e8309481ac1f2f46c7270ae7b4415aede9748859ae66a68cc8e."
+    },
+    {
+      "name": "Runtime successor chain",
+      "status": "pass",
+      "evidence": "Runtime V5 binds V4 at 1fee69de0e1ade83cd414aed63380d1cabf0989fe070734a73c40867dd10e28c; Runtime V6 binds V5 at bf38a29e2b1999b3ce6f219c39308e24fcfb554d89733a5e33c05d868de1dd40. V6 therefore supersedes V4 and V5."
+    },
+    {
+      "name": "terminal Runtime evidence",
+      "status": "pass",
+      "evidence": "R2-8 review matched fa067c79d2bd9f4066ddcd32d2e7fdaca88abc4cefe2c51d9faac272d2208a11; its manifest matched 0260ae74e83c95d3f555af6d6318c3aa605fc3f0d22f9e29d9369aa30c2b004c; Runtime validation matched 98875fedd87ab1edede800e9a81fae63864d7c964b643ce1bd0626e28c32e944; final manager HANDOFF_V4 matched c6895aca133748d8930fc590cce45abbb15f73c2d513d11f93eefeadc49bfec0."
+    },
+    {
+      "name": "V6 projection delta",
+      "status": "pass",
+      "evidence": "The V4-to-V6 member-set delta is four projects/chirality-app-dev/frontend paths excluded from public export plus projects/chirality-runtime/packages/contracts/src/engine.ts. No V4 member was removed."
+    },
+    {
+      "name": "already-projected Runtime member",
+      "status": "pass",
+      "evidence": "runtime/packages/contracts/src/engine.ts already appears in manifest and staging, byte-identical to canonical Runtime source at 1739 bytes / 1f64f99fedb1932f615a2ee960b424ef8e5f95f073b4fd1a5a1446ef52e5b0d5. Regeneration was unnecessary."
+    },
+    {
+      "name": "manifest-to-stage parity",
+      "status": "pass",
+      "evidence": "All 1104 unique CSV rows exactly matched current staging paths, sizes, and SHA-256 values; staging contains no symlinks or special entries."
+    },
+    {
+      "name": "projection exclusions and report",
+      "status": "pass",
+      "evidence": "No private/excluded root, chirality-change skill, or App frontend/UI source appears. Boundary scan returned zero findings; report row, sanitization, findings, and top-level counts are exact."
+    },
+    {
+      "name": "prior independent review",
+      "status": "pass",
+      "evidence": "V12 priorIndependentReview identities matched subject-v10, RETURN.md, CHECKS.json, and MANIFEST.json; the V10 manifest internal bindings reverified."
+    },
+    {
+      "name": "holds and qualification",
+      "status": "pass",
+      "evidence": "KG-001 remains needs_remediation; adoption and release holds remain; qualification is source-and-controlled-checks-only; notes explicitly disclaim native package, supplier, account, credential, distribution, publication, and release qualification."
+    }
+  ],
+  "limitations": [
+    "This compact final-anchor review relies on unchanged distribution implementation and the prior independent V8-V10 reviews rather than repeating their full suites.",
+    "This review does not establish adoption acceptance, native package, supplier, account, credential, distribution, publication, or release qualification."
+  ]
+}

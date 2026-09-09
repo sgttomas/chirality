@@ -136,4 +136,21 @@ describe('operator session projection', () => {
       'CONFLICTING_SESSION_RECORDS'
     );
   });
+
+  it('offers continuation only for a complete, non-running canonical v3 session record', () => {
+    const selectedMethod = { kind: 'workflow', name: 'project-setup', source: 'bundled', sourceRootId: 'chirality-root' };
+    const v3 = session('v3', {
+      schemaVersion: 'chirality.session/v3', role: 'agent1', agentType: 1, roleId: 'WORKING_ITEMS', status: 'completed',
+      interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [selectedMethod], methodSelectionRevision: 3,
+      instructionBasisId: 'basis-3'
+    });
+    expect(projectOperatorSession(v3, new Set(['v3']), { observedAt: '2026-09-09' }).continuation).toEqual({
+      schemaVersion: 'chirality.session/v3', projectRoot: '/repo/project', roleId: 'WORKING_ITEMS', mode: 'governed',
+      interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [selectedMethod], methodSelectionRevision: 3,
+      instructionBasisId: 'basis-3'
+    });
+    expect(projectOperatorSession(session('running', { ...v3, sessionId: 'running', status: 'running' }), new Set(['running']), { observedAt: '2026-09-09' }).continuation).toBeUndefined();
+    expect(projectOperatorSession(session('legacy'), new Set(['legacy']), { observedAt: '2026-09-09' }).continuation).toBeUndefined();
+    expect(projectOperatorSession(session('task', { ...v3, sessionId: 'task', role: 'agent2', agentType: 2, roleId: 'TASK' }), new Set(['task']), { observedAt: '2026-09-09' }).continuation).toBeUndefined();
+  });
 });

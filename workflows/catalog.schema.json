@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chirality-workflow-catalog/v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "library", "centralWorkflowNames"],
+  "properties": {
+    "schema": {"const": "chirality-workflow-catalog/v1"},
+    "library": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "sourceRootId"],
+      "properties": {
+        "source": {"enum": ["project", "user", "bundled"]},
+        "sourceRootId": {"type": "string", "minLength": 1}
+      }
+    },
+    "centralWorkflowNames": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true
+    }
+  }
+}

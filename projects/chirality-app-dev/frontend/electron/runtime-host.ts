@@ -99,20 +99,35 @@ function asPiTurnRuntime(engine: AgentEnginePort): PiTurnRuntimePort {
   return {
     preflight: (input) => engine.preflight(input),
     startTurn: (input) => engine.startTurn(input),
-    interrupt: (sessionId) => engine.interrupt(sessionId)
+    interrupt: (sessionId) => engine.interrupt(sessionId),
+    prepareContextSuccessor: (request) => {
+      if (engine.prepareContextSuccessor === undefined) throw new Error('Pi context successor is unavailable');
+      return engine.prepareContextSuccessor(request);
+    },
+    cancelContextSuccessor: (preparationId) => {
+      if (engine.cancelContextSuccessor === undefined) throw new Error('Pi context successor cancellation is unavailable');
+      return engine.cancelContextSuccessor(preparationId);
+    }
   };
 }
 
 function withPreservedCapabilities(
   promoted: AgentEnginePort,
-  capabilities: EngineCapabilities
+  capabilities: EngineCapabilities,
+  successorSource?: AgentEnginePort
 ): AgentEnginePort {
   return {
     ...promoted,
     descriptor: {
       ...promoted.descriptor,
       capabilities
-    }
+    },
+    ...(successorSource?.prepareContextSuccessor === undefined ? {} : {
+      prepareContextSuccessor: (request) => successorSource.prepareContextSuccessor!(request)
+    }),
+    ...(successorSource?.cancelContextSuccessor === undefined ? {} : {
+      cancelContextSuccessor: (preparationId) => successorSource.cancelContextSuccessor!(preparationId)
+    })
   };
 }
 
@@ -140,6 +155,17 @@ function rejectLegacyDelegation(input: AgentEngineRunInput): void {
       { requested }
     );
   }
+}
+
+/** Preserve Runtime's ordered, hash-addressed context without re-reading source Markdown. */
+function renderRuntimeInstructionContext(input: AgentEngineRunInput): string | undefined {
+  const context = input.instructionContext;
+  if (context === undefined) return undefined;
+  return context.supplied.map((entry) => [
+    `## ${entry.kind}: ${entry.id}`,
+    `contentSha256: ${entry.sha256}`,
+    entry.content
+  ].join('\n')).join('\n\n---\n\n');
 }
 
 export function createEngines(
@@ -186,8 +212,17 @@ export function createEngines(
   );
   const concreteClaude = new ClaudeAgentSdkManager(
     undefined,
-    (projectRoot, persona, runtimeMode, tools) =>
-      personaManager.buildSystemPrompt(projectRoot, persona, runtimeMode, tools)
+    async (projectRoot, persona, runtimeMode, tools, instructionContext, session) => {
+      if (instructionContext !== undefined) return instructionContext;
+      if (session !== undefined && 'instructionBasisId' in session) {
+        throw new HarnessError(
+          'ENGINE_UNAVAILABLE',
+          503,
+          'Runtime did not supply the frozen instruction basis for this session.'
+        );
+      }
+      return personaManager.buildSystemPrompt(projectRoot, persona, runtimeMode, tools);
+    }
   );
   const claudeRuntime: AgentEnginePort = {
     descriptor: concreteClaude.descriptor,
@@ -207,6 +242,12 @@ export function createEngines(
     },
     interrupt(sessionId) {
       return concreteClaude.interrupt(sessionId);
+    },
+    prepareContextSuccessor(request) {
+      return concreteClaude.prepareContextSuccessor(request);
+    },
+    cancelContextSuccessor(preparationId) {
+      return concreteClaude.cancelContextSuccessor(preparationId);
     }
   };
   const piRuntime = new PiAgentEngineAdapter({
@@ -229,13 +270,22 @@ export function createEngines(
         throw normalizeOmlxFailure(error);
       }
     },
-    buildSystemPrompt: (input) =>
-      personaManager.buildSystemPrompt(
+    buildSystemPrompt: (input) => {
+      const runtimeContext = renderRuntimeInstructionContext(input);
+      if (runtimeContext === undefined && 'instructionBasisId' in input.session) {
+        throw new HarnessError(
+          'ENGINE_UNAVAILABLE',
+          503,
+          'Runtime did not supply the frozen instruction basis for this session.'
+        );
+      }
+      return runtimeContext === undefined ? personaManager.buildSystemPrompt(
         input.session.projectRoot,
         input.opts.persona,
         input.opts.mode,
         input.opts.tools
-      ),
+      ) : Promise.resolve(runtimeContext);
+    },
     resolveCustomTools: async (input) => {
       if (input.session.agentType !== 2) {
         throw new HarnessError(
@@ -244,45 +294,69 @@ export function createEngines(
           'Pi/oMLX is available only to governed Agent 2 children.'
         );
       }
-      const tools = runtimeTools.get(input.session.sessionId) ?? [];
+      const boundTools = runtimeTools.get(input.session.sessionId) ?? [];
+      const suppliedTools = input.runtimeTools ?? [];
+      const tools = input.runtimeTools === undefined
+        ? boundTools
+        : [...boundTools, ...suppliedTools];
+      if (new Set(tools.map((tool) => tool.name)).size !== tools.length) {
+        throw new HarnessError(
+          'INVALID_REQUEST',
+          403,
+          'Pi/oMLX received colliding Runtime-admitted tool definitions.'
+        );
+      }
+      const invalidBoundChildTools = input.runtimeTools === undefined && (
+        tools.length !== 1 || tools[0]?.name !== 'read_file'
+      );
+      const invalidRuntimeTool = tools.find((tool) => {
+        if (tool.permission.effect !== 'allow') return true;
+        if (tool.permission.operation === 'read') return false;
+        return !(
+          tool.name === 'chirality_request_method_change' &&
+          tool.permission.operation === 'control'
+        );
+      });
       if (
-        tools.length !== 1 ||
-        tools[0]?.name !== 'read_file' ||
-        tools[0].permission.operation !== 'read' ||
-        tools[0].permission.effect !== 'allow'
+        tools.length === 0 ||
+        invalidBoundChildTools ||
+        invalidRuntimeTool !== undefined
       ) {
         throw new HarnessError(
           'INVALID_REQUEST',
           403,
-          'Pi/oMLX requires exactly one runtime-owned read_file tool.'
+          'Pi/oMLX accepts only Runtime-admitted tools.'
         );
       }
-      return tools.map((tool): PiCustomToolDefinition => ({
-        name: tool.name,
-        label: 'Read File',
-        description: tool.description,
-        parameters: tool.inputSchema,
-        chirality: {
-          descriptorName: tool.name,
-          permissions: ['read'],
-          pathScope: tool.permission.roots ?? [],
-          readOnly: true,
-          evidenceSource: 'chirality-tool-bridge'
-        },
-        execute: async (_toolUseId, params, signal) => {
-          const result = await tool.execute(
-            params,
-            signal ?? new AbortController().signal
-          );
-          return {
-            content: [{ type: 'text', text: JSON.stringify(result) }],
-            details: {
-              source: 'chirality-tool-bridge',
-              chiralityToolName: tool.name
-            }
-          };
-        }
-      }));
+      return tools.map((tool): PiCustomToolDefinition => {
+        const sessionControl = tool.permission.operation === 'control';
+        return {
+          name: tool.name,
+          label: tool.name,
+          description: tool.description,
+          parameters: tool.inputSchema,
+          chirality: {
+            descriptorName: tool.name,
+            permissions: sessionControl ? ['control'] : ['read'],
+            pathScope: sessionControl ? [] : (tool.permission.roots ?? []),
+            readOnly: !sessionControl,
+            evidenceSource: 'chirality-tool-bridge'
+          },
+          execute: async (_toolUseId, params, signal) => {
+            const result = await tool.execute(
+              params,
+              signal ?? new AbortController().signal
+            );
+            return {
+              content: [{ type: 'text', text: JSON.stringify(result) }],
+              details: {
+                source: 'chirality-tool-bridge',
+                chiralityToolName: tool.name
+              }
+            };
+          }
+        };
+      });
     }
   });
 
@@ -294,7 +368,8 @@ export function createEngines(
       credentials,
       runtime: asClaudeTurnRuntime(anthropicDirectRuntime)
     }),
-    anthropicDirectRuntime.descriptor.capabilities
+    anthropicDirectRuntime.descriptor.capabilities,
+    anthropicDirectRuntime
   );
   const claude = withPreservedCapabilities(
     createClaudeEngineAdapter({
@@ -304,14 +379,16 @@ export function createEngines(
       credentials,
       runtime: asClaudeTurnRuntime(claudeRuntime)
     }),
-    concreteClaude.descriptor.capabilities
+    concreteClaude.descriptor.capabilities,
+    claudeRuntime
   );
-  const pi = createPiOmlxEngineAdapter({
+  const promotedPi = createPiOmlxEngineAdapter({
     credentials,
     runtime: asPiTurnRuntime(piRuntime),
     transcriptRootFor: promotedRuntime.transcriptRootFor,
     isExactlyResident: promotedRuntime.isExactlyResident
   });
+  const pi = withPreservedCapabilities(promotedPi, promotedPi.descriptor.capabilities, piRuntime);
 
   for (const engine of [stub, anthropicDirect, claude, pi]) {
     engines.register(engine);

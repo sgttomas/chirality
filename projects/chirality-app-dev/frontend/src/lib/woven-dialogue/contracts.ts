@@ -1,4 +1,10 @@
 import type { TranscriptView } from '@chirality/runtime-contracts/transcript-replay';
+import type {
+  ChiralityRoleName,
+  FrozenInstructionBasisV3,
+  InstructionHistoryRecordV3,
+  QualifiedMethodReference
+} from '@chirality/runtime-contracts/v3';
 
 export type ProjectionCurrency = 'CURRENT' | 'STALE' | 'CONFLICTING' | 'UNKNOWN';
 
@@ -54,6 +60,17 @@ export type OperatorSessionProjection = {
   parentage: ParentageProjection;
   outputArtifactReference?: string;
   approvalEvidenceReference?: string;
+  continuation?: {
+    schemaVersion: 'chirality.session/v3';
+    projectRoot: string;
+    roleId: ChiralityRoleName;
+    mode: string;
+    interactionMode: 'chat' | 'native-plan';
+    permissionMode: 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass';
+    selectedMethods: readonly QualifiedMethodReference[];
+    methodSelectionRevision: number;
+    instructionBasisId: string;
+  };
   diagnostics: ProjectionDiagnostic[];
 };
 
@@ -84,6 +101,8 @@ export type SelectedSessionReplayProjection = {
   currency: ProjectionCurrency;
   session?: OperatorSessionProjection;
   transcript: TranscriptView;
+  instructionHistory: readonly InstructionHistoryRecordV3[];
+  instructionBases: readonly FrozenInstructionBasisV3[];
   malformedLineCount: number;
   sourceEventCount: number;
   renderedItemCount: number;

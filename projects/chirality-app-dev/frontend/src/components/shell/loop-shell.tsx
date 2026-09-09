@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense } from 'react';
+import { useHarnessStreaming } from '../workspace/harness-events-provider';
 import { CHAT_SECTION } from '../../lib/shell/loop-first';
 import { ChatPanel } from './chat-panel';
 import { PersonaPicker } from './persona-picker';
@@ -16,17 +17,19 @@ import { createTertiarySidebarTabs } from './tertiary-sidebar-tabs';
  * (Type-0/Type-1, D-APP-24) drives the loop via `?agent=`.
  */
 export function LoopShell(): JSX.Element {
+  const streaming = useHarnessStreaming();
   const tertiaryTabs = createTertiarySidebarTabs();
 
   return (
     <ShellFrame
       section={CHAT_SECTION}
       title="Direct Chat"
-      subtitle="Run a live session with a Type-0/Type-1 persona; the multi-view sidebar is on the right."
+      subtitle="Run a live session with a direct-entry role; the multi-view sidebar is on the right."
     >
       <SidebarRightLoopLayout defaultSidebarTab="tools" {...tertiaryTabs}>
         <div className="loop-persona-bar">
-          <PersonaPicker />
+          <PersonaPicker disabled={streaming} />
+          {streaming ? <p className="portal-launch-notice" role="status">Role changes pause while the current turn is running.</p> : null}
         </div>
         <div className="loop-chat-host">
           <Suspense

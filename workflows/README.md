@@ -14,7 +14,7 @@ context loads no workflow catalog or bodies.
 Resolve a selected workflow from any working directory:
 
 ```bash
-python3 "$INSTRUCTION_ROOT/tools/workflow_runtime/resolve_workflow.py"   --root "$INSTRUCTION_ROOT" --role TASK --workflow deliverable-consistency
+python3 "$INSTRUCTION_ROOT/tools/workflow_runtime/resolve_workflow.py"   --root "$INSTRUCTION_ROOT" --role TASK --workflow audit-decomp
 ```
 
 Supply `--resource CONTRACT.md` or another package-relative resource only when the
@@ -26,12 +26,21 @@ a separately specified stage of a larger workflow. HELPS_HUMANS can use a
 compatible workflow while developing the design. Loading a method grants no
 additional capabilities or decision rights.
 
-## Package form
+## Package form and catalog
 
-Each `workflows/<name>/WORKFLOW.md` begins with YAML `name` and `description`.
-The body explains the undertaking in the structure it needs. Optional resources
-hold detailed contracts, templates, examples, or helpers. There is no compulsory
-set of companion documents.
+Each bundled package has canonical YAML metadata in the frontmatter of
+`workflows/<name>/WORKFLOW.md`. Its `name` and `description` combine with the
+compatible roles and restrictions in `execution.json`; the index generator
+enumerates the package's contained resources. Optional resources hold detailed
+contracts, templates, examples, or helpers. Package resources must remain
+inside the package after real-path resolution.
+
+`workflows/catalog.yaml` contains the bundled library identity and the ordered
+set of six central workflows shown by selectors. `workflows/index.json` is
+generated from package metadata with
+`python3 tools/validation/build_workflow_index.py`. Consumers use the index or
+parse the canonical frontmatter and execution metadata themselves; Root's Python command is an
+authoring and validation tool, not a production parser.
 
 Optional `execution.json` provides compatible roles and capability/command
 restrictions. Stage-specific resources are selected explicitly without changing
@@ -42,10 +51,20 @@ operation does not imply that the host exposes or enforces it.
 
 ## Compatibility and maintenance
 
-`TaskSkill: <name>` remains a legacy input spelling. Supplying both fields with
-different selections fails. [The legacy agent map](legacy-agents.json) resolves
-retired names to the executing role and workflow or deterministic audit tool;
-those names are not additional roles.
+`TaskSkill: <name>` remains a legacy input spelling only for names explicitly
+mapped in [the converted-method ledger](legacy-methods.json). Supplying both
+fields with different selections fails. [The legacy agent map](legacy-agents.json)
+resolves retired names to the executing role and workflow or deterministic
+audit tool; those names are not additional roles. Unconverted legacy methods
+remain historical and are never inferred from files or prose.
+
+Method libraries may exist at project, user, and bundled scope. Resolution uses
+that precedence order. Identity is the complete tuple `source`, `sourceRootId`,
+`kind`, and `name`; `sourceRootId` identifies the actual library root. Catalogs
+expose every qualified collision and the selected candidate. A malformed
+higher-precedence package blocks that unqualified identity instead of falling
+through. Project files such as a flat `WORKFLOW.md` outside a package with
+canonical metadata are documents only and never become discoverable methods.
 
 Existing package names and legacy status survive this migration. In particular,
 `dbm-concordance-seed` remains legacy; `four-documents` serves legacy production

@@ -436,6 +436,11 @@ export function createChiralityToolHooks(input: ChiralityToolHookInput): Partial
 
     const preInput = hookInput as PreToolUseHookInput;
     const descriptor = resolveDescriptor(preInput.tool_name);
+    if (descriptor === undefined) {
+      return blockPreToolUse(
+        `Tool '${preInput.tool_name}' is not admitted by the current Runtime turn context.`
+      );
+    }
     if (!isGovernedHookDescriptor(descriptor)) {
       return { continue: true };
     }

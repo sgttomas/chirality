@@ -18,6 +18,7 @@ export type AccountPopoverProps = {
 };
 
 export function AccountPopover({ account, runtime, folder, legacyHref, onOpenSettings }: AccountPopoverProps): JSX.Element {
+  void legacyHref;
   return <>
     <section className={styles.group} aria-label="OpenAI account">
       <strong>{accountTitle(account)}</strong>
@@ -32,7 +33,6 @@ export function AccountPopover({ account, runtime, folder, legacyHref, onOpenSet
     <section className={styles.group} aria-label="App controls">
       <button type="button" className={styles.menuAction} onClick={() => onOpenSettings()}>Settings…</button>
       <details><summary>Appearance</summary><ThemeControl /></details>
-      <a href={legacyHref} target="_blank" rel="noreferrer">Legacy window</a>
       <details><summary>About Chirality</summary><p>Chirality {version} · Opt-in Preview</p></details>
     </section>
   </>;

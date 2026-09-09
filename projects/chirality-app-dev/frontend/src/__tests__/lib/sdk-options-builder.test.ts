@@ -9,17 +9,6 @@ import {
 } from '../../lib/harness/permission-broker';
 import type { ResolvedOpts, SessionRecord } from '@chirality/runtime-contracts/types';
 
-/** Wait until the broker has registered a pending request for the session. */
-async function waitForPending(sessionId: string): Promise<void> {
-  for (let attempt = 0; attempt < 100; attempt += 1) {
-    if (getPermissionBroker().pendingCount(sessionId) >= 1) {
-      return;
-    }
-    await new Promise((resolve) => setTimeout(resolve, 5));
-  }
-  throw new Error('Timed out waiting for a pending permission request');
-}
-
 const session: SessionRecord = {
   sessionId: 'sess_1',
   projectRoot: '/tmp/project',
@@ -71,6 +60,105 @@ afterEach(async () => {
 });
 
 describe('buildSdkOptions', () => {
+  it('admits only the exact Runtime read tool through permission, hooks, and its MCP callback', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-runtime-tool-'));
+    const execute = vi.fn(async (args: unknown) => ({ echoed: args }));
+    const options = buildSdkOptions({
+      session: { ...session, projectRoot: tmpDir },
+      opts: { ...opts, mode: 'readOnly' },
+      abortController: new AbortController(),
+      systemPrompt: 'runtime prompt',
+      runtimeTools: [{
+        name: 'chirality_list_methods', description: 'List admitted methods',
+        inputSchema: { type: 'object', properties: { query: { type: 'string' } }, additionalProperties: false },
+        permission: { effect: 'allow', operation: 'read' }, execute
+      }]
+    });
+    const toolName = 'mcp__chirality_runtime__chirality_list_methods';
+
+    await expect(options.canUseTool?.(
+      toolName,
+      { query: 'central' },
+      { signal: new AbortController().signal, toolUseID: 'runtime-read' }
+    )).resolves.toMatchObject({ behavior: 'allow', toolUseID: 'runtime-read' });
+    await expect(options.canUseTool?.(
+      'mcp__chirality_runtime__not_admitted',
+      {},
+      { signal: new AbortController().signal, toolUseID: 'runtime-unknown' }
+    )).resolves.toMatchObject({ behavior: 'deny', message: expect.stringContaining('Unknown harness tool') });
+
+    const preToolUse = options.hooks?.PreToolUse?.[0]?.hooks[0];
+    await expect(preToolUse?.({
+      hook_event_name: 'PreToolUse', tool_name: toolName,
+      tool_input: { query: 'central' }, tool_use_id: 'runtime-read'
+    } as never, 'runtime-read', { signal: new AbortController().signal })).resolves.toMatchObject({ continue: true });
+
+    const server = options.mcpServers?.chirality_runtime as unknown as {
+      instance: { _registeredTools: Record<string, { handler: (args: unknown) => Promise<unknown> }> };
+    };
+    await expect(server.instance._registeredTools.chirality_list_methods.handler({ query: 'central' }))
+      .resolves.toEqual({ content: [{ type: 'text', text: JSON.stringify({ echoed: { query: 'central' } }) }] });
+    expect(execute).toHaveBeenCalledWith({ query: 'central' }, expect.any(AbortSignal));
+  });
+
+  it('fails closed before a Runtime write tool can enter the Claude MCP bridge', () => {
+    expect(() => buildSdkOptions({
+      session,
+      opts: { ...opts, mode: 'readOnly' },
+      abortController: new AbortController(),
+      systemPrompt: 'runtime prompt',
+      runtimeTools: [{
+        name: 'unexpected_write', description: 'write', inputSchema: { type: 'object' },
+        permission: { effect: 'allow', operation: 'write' },
+        execute: async () => ({ ok: true })
+      }]
+    })).toThrowError(expect.objectContaining({ type: 'ENGINE_UNAVAILABLE', status: 422 }));
+  });
+
+  it('admits only the exact Runtime method-change control tool without filesystem capability', async () => {
+    const execute = vi.fn(async () => ({ requested: true }));
+    const options = buildSdkOptions({
+      session: { ...session, declaredContext: [], allowedWriteTargets: [] },
+      opts: { ...opts, mode: 'readOnly', tools: [] },
+      abortController: new AbortController(),
+      systemPrompt: 'runtime prompt',
+      runtimeTools: [{
+        name: 'chirality_request_method_change',
+        description: 'Request a method change at the turn boundary',
+        inputSchema: { type: 'object', properties: {}, additionalProperties: false },
+        permission: { effect: 'allow', operation: 'control' },
+        execute
+      }]
+    });
+    const toolName = 'mcp__chirality_runtime__chirality_request_method_change';
+
+    expect(options.tools).toEqual([toolName]);
+    expect(options.allowedTools).toEqual([toolName]);
+    expect(options.disallowedTools).toContain('Write');
+    expect(options.disallowedTools).toContain('Bash');
+    await expect(options.canUseTool?.(
+      toolName,
+      {},
+      { signal: new AbortController().signal, toolUseID: 'runtime-control' }
+    )).resolves.toMatchObject({ behavior: 'allow', toolUseID: 'runtime-control' });
+    await expect(options.hooks?.PreToolUse?.[0]?.hooks[0]?.({
+      hook_event_name: 'PreToolUse', tool_name: toolName,
+      tool_input: {}, tool_use_id: 'runtime-control'
+    } as never, 'runtime-control', { signal: new AbortController().signal }))
+      .resolves.toMatchObject({ continue: true });
+
+    expect(() => buildSdkOptions({
+      session,
+      opts: { ...opts, mode: 'readOnly' },
+      abortController: new AbortController(),
+      systemPrompt: 'runtime prompt',
+      runtimeTools: [{
+        name: 'unrecognized_control', description: 'control', inputSchema: { type: 'object' },
+        permission: { effect: 'allow', operation: 'control' }, execute
+      }]
+    })).toThrowError(expect.objectContaining({ type: 'ENGINE_UNAVAILABLE', status: 422 }));
+  });
+
   it('defaults to SDK settings isolation and exposes only requested read-class tools', () => {
     const options = buildSdkOptions({
       session,
@@ -102,6 +190,60 @@ describe('buildSdkOptions', () => {
     expect(options.permissionMode).toBe('default');
     expect(options.canUseTool).toBeTypeOf('function');
     expect(options.spawnClaudeCodeProcess).toBeUndefined();
+  });
+
+  it('fails closed when a provider callback or hook names a tool omitted from the admitted turn set', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-admitted-tools-'));
+    const projectRoot = path.join(tmpDir, 'project');
+    await mkdir(projectRoot, { recursive: true });
+    const options = buildSdkOptions({
+      session: { ...session, projectRoot },
+      opts: { ...opts, mode: 'workspaceWrite', tools: ['read'] },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    const sdkOptions = (toolUseID: string) => ({
+      signal: new AbortController().signal,
+      toolUseID
+    });
+    const preToolUse = options.hooks?.PreToolUse?.[0]?.hooks[0];
+
+    await expect(
+      options.canUseTool?.('Read', { file_path: 'README.md' }, sdkOptions('admitted-read'))
+    ).resolves.toMatchObject({ behavior: 'allow' });
+    await expect(
+      options.canUseTool?.('Bash', { command: 'npm test' }, sdkOptions('omitted-bash'))
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining("Unknown harness tool 'Bash'")
+    });
+    await expect(
+      preToolUse?.({
+        hook_event_name: 'PreToolUse',
+        tool_name: 'Bash',
+        tool_input: { command: 'npm test' },
+        tool_use_id: 'omitted-bash-hook'
+      } as never, 'omitted-bash-hook', { signal: new AbortController().signal })
+    ).resolves.toMatchObject({
+      continue: false,
+      decision: 'block',
+      hookSpecificOutput: { permissionDecision: 'deny' }
+    });
+    await expect(
+      options.canUseTool?.(
+        'mcp__chirality__status_read',
+        {},
+        sdkOptions('omitted-known-mcp')
+      )
+    ).resolves.toMatchObject({ behavior: 'deny' });
+    await expect(
+      preToolUse?.({
+        hook_event_name: 'PreToolUse',
+        tool_name: 'mcp__unknown__tool',
+        tool_input: {},
+        tool_use_id: 'unknown-mcp-hook'
+      } as never, 'unknown-mcp-hook', { signal: new AbortController().signal })
+    ).resolves.toMatchObject({ continue: false, decision: 'block' });
   });
 
   it('exposes the full requested read set and keeps unrequested or denied tools disallowed', () => {
@@ -493,46 +635,18 @@ describe('buildSdkOptions', () => {
       toolUseID: 'tool_read'
     });
 
-    // In ask mode a gated tool now suspends for an operator verdict (Phase 3).
-    const pendingDenied = askOptions.canUseTool?.(
+    // Ask-class tools are omitted from this provider turn, so a direct
+    // callback cannot bypass the exact admitted descriptor set.
+    await expect(askOptions.canUseTool?.(
       'Write',
       { file_path: 'README.md', content: 'changed' },
       {
         signal: new AbortController().signal,
         toolUseID: 'tool_write'
       }
-    );
-    await waitForPending(callbackSession.sessionId);
-    expect(
-      getPermissionBroker().decide({
-        sessionId: callbackSession.sessionId,
-        toolUseId: 'tool_write',
-        verdict: 'deny'
-      })
-    ).toBe(true);
-    await expect(pendingDenied).resolves.toMatchObject({
+    )).resolves.toMatchObject({
       behavior: 'deny',
-      toolUseID: 'tool_write'
-    });
-
-    // The same pause resolves to allow when the operator approves.
-    const pendingAllowed = askOptions.canUseTool?.(
-      'Write',
-      { file_path: 'README.md', content: 'changed' },
-      {
-        signal: new AbortController().signal,
-        toolUseID: 'tool_write_ask_allow'
-      }
-    );
-    await waitForPending(callbackSession.sessionId);
-    getPermissionBroker().decide({
-      sessionId: callbackSession.sessionId,
-      toolUseId: 'tool_write_ask_allow',
-      verdict: 'allow'
-    });
-    await expect(pendingAllowed).resolves.toMatchObject({
-      behavior: 'allow',
-      toolUseID: 'tool_write_ask_allow'
+      message: expect.stringContaining("Unknown harness tool 'Write'")
     });
 
     const workspaceWriteOptions = buildSdkOptions({
@@ -570,24 +684,16 @@ describe('buildSdkOptions', () => {
       toolUseID: 'tool_bash_allowed'
     });
 
-    // Shell tools in ask mode also suspend for an operator verdict (Phase 3).
-    const pendingBash = askOptions.canUseTool?.(
+    await expect(askOptions.canUseTool?.(
       'Bash',
       { command: 'npm test' },
       {
         signal: new AbortController().signal,
         toolUseID: 'tool_bash_ask'
       }
-    );
-    await waitForPending(callbackSession.sessionId);
-    getPermissionBroker().decide({
-      sessionId: callbackSession.sessionId,
-      toolUseId: 'tool_bash_ask',
-      verdict: 'deny'
-    });
-    await expect(pendingBash).resolves.toMatchObject({
+    )).resolves.toMatchObject({
       behavior: 'deny',
-      toolUseID: 'tool_bash_ask'
+      message: expect.stringContaining("Unknown harness tool 'Bash'")
     });
 
     await expect(
@@ -620,6 +726,117 @@ describe('buildSdkOptions', () => {
     expect(getPermissionBroker().pendingCount(callbackSession.sessionId)).toBe(0);
   });
 
+  it('keeps inherited, deny-all, and bounded session brief scopes distinct in callbacks and hooks', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-brief-scope-'));
+    const projectRoot = path.join(tmpDir, 'project');
+    const packageRoot = path.join(projectRoot, 'execution', 'PKG-01');
+    await mkdir(packageRoot, { recursive: true });
+    const makeOptions = (scope: Pick<SessionRecord, 'declaredContext' | 'allowedWriteTargets'>) =>
+      buildSdkOptions({
+        session: { ...session, projectRoot, ...scope },
+        opts: { ...opts, mode: 'workspaceWrite', tools: ['read', 'write', 'bash'] },
+        abortController: new AbortController(),
+        systemPrompt: 'persona prompt'
+      });
+    const sdkCallOptions = (toolUseID: string) => ({
+      signal: new AbortController().signal,
+      toolUseID
+    });
+    const hookInput = (toolUseId: string, filePath: string) => ({
+      hook_event_name: 'PreToolUse',
+      tool_name: 'Write',
+      tool_input: { file_path: filePath, content: 'changed' },
+      tool_use_id: toolUseId
+    } as never);
+
+    const inherited = makeOptions({});
+    await expect(
+      inherited.canUseTool?.(
+        'Write',
+        { file_path: 'outside-package.md', content: 'changed' },
+        sdkCallOptions('inherited-callback')
+      )
+    ).resolves.toMatchObject({ behavior: 'allow' });
+    await expect(
+      inherited.hooks?.PreToolUse?.[0]?.hooks[0]?.(
+        hookInput('inherited-hook', 'outside-package.md'),
+        'inherited-hook',
+        { signal: new AbortController().signal }
+      )
+    ).resolves.toMatchObject({ continue: true });
+
+    const denyAll = makeOptions({ declaredContext: [], allowedWriteTargets: [] });
+    await expect(
+      denyAll.canUseTool?.(
+        'Write',
+        { file_path: 'execution/PKG-01/output.md', content: 'changed' },
+        sdkCallOptions('deny-all-callback')
+      )
+    ).resolves.toMatchObject({
+      behavior: 'deny',
+      message: expect.stringContaining('declared write targets')
+    });
+    await expect(
+      denyAll.hooks?.PreToolUse?.[0]?.hooks[0]?.(
+        hookInput('deny-all-hook', 'execution/PKG-01/output.md'),
+        'deny-all-hook',
+        { signal: new AbortController().signal }
+      )
+    ).resolves.toMatchObject({
+      continue: false,
+      decision: 'block',
+      hookSpecificOutput: { permissionDecision: 'deny' }
+    });
+
+    const bounded = makeOptions({
+      declaredContext: [packageRoot],
+      allowedWriteTargets: [packageRoot]
+    });
+    await expect(
+      bounded.canUseTool?.(
+        'Write',
+        { file_path: 'execution/PKG-01/output.md', content: 'changed' },
+        sdkCallOptions('bounded-inside-callback')
+      )
+    ).resolves.toMatchObject({ behavior: 'allow' });
+    await expect(
+      bounded.canUseTool?.(
+        'Write',
+        { file_path: 'outside-package.md', content: 'changed' },
+        sdkCallOptions('bounded-outside-callback')
+      )
+    ).resolves.toMatchObject({ behavior: 'deny' });
+    await expect(
+      bounded.hooks?.PreToolUse?.[0]?.hooks[0]?.(
+        hookInput('bounded-outside-hook', 'outside-package.md'),
+        'bounded-outside-hook',
+        { signal: new AbortController().signal }
+      )
+    ).resolves.toMatchObject({ continue: false, decision: 'block' });
+    await expect(
+      bounded.canUseTool?.(
+        'Bash',
+        { command: 'npm test' },
+        sdkCallOptions('bounded-shell-callback')
+      )
+    ).resolves.toMatchObject({ behavior: 'deny' });
+
+    const readOnlyToolSet = buildSdkOptions({
+      session: {
+        ...session,
+        projectRoot,
+        declaredContext: [packageRoot],
+        allowedWriteTargets: [packageRoot]
+      },
+      opts: { ...opts, mode: 'workspaceWrite', tools: ['read'] },
+      abortController: new AbortController(),
+      systemPrompt: 'persona prompt'
+    });
+    expect(readOnlyToolSet.tools).toEqual(['Read']);
+    expect(readOnlyToolSet.disallowedTools).toContain('Write');
+    expect(readOnlyToolSet.disallowedTools).toContain('Bash');
+  });
+
   it('denies legacy Agent permission callbacks even for formerly eligible children', async () => {
     tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-agent-options-'));
     const writableProjectRoot = path.join(tmpDir, 'project');
@@ -648,7 +865,7 @@ describe('buildSdkOptions', () => {
       )
     ).resolves.toMatchObject({
       behavior: 'deny',
-      message: expect.stringContaining('legacy SDK Agent bridge is disabled')
+      message: expect.stringContaining("Unknown harness tool 'Agent'")
     });
 
     await expect(
@@ -662,7 +879,7 @@ describe('buildSdkOptions', () => {
       )
     ).resolves.toMatchObject({
       behavior: 'deny',
-      message: expect.stringContaining('legacy SDK Agent bridge is disabled')
+      message: expect.stringContaining("Unknown harness tool 'Agent'")
     });
   });
 });

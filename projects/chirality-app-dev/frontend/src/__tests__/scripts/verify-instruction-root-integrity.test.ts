@@ -1,14 +1,11 @@
-import { execFile } from 'node:child_process';
 import { mkdtemp, mkdir, readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { promisify } from 'node:util';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { run } from '../../../scripts/verify-instruction-root-integrity.mjs';
+import { preparePackagedInstructionRoot } from '../../../scripts/prepare-packaged-instruction-root.mjs';
 
-const execFileAsync = promisify(execFile);
-const SCRIPT_PATH = path.resolve(process.cwd(), 'scripts', 'verify-instruction-root-integrity.mjs');
 
 const BASE_FIXTURE_FILES: Record<string, string> = {
   'AGENTS.md': '# agents index\n',
@@ -80,31 +77,19 @@ async function writeFixtureFiles(root: string, files: Record<string, string>): P
   }
 }
 
-async function runIntegrityScriptSpawned(args: string[], cwd = process.cwd()): Promise<ScriptResult> {
-  try {
-    const result = await execFileAsync('node', [SCRIPT_PATH, ...args], {
-      cwd
-    });
-    return {
-      code: 0,
-      stdout: result.stdout,
-      stderr: result.stderr
-    };
-  } catch (error) {
-    const failure = error as {
-      code?: number;
-      stdout?: string;
-      stderr?: string;
-    };
-    return {
-      code: typeof failure.code === 'number' ? failure.code : 1,
-      stdout: failure.stdout ?? '',
-      stderr: failure.stderr ?? ''
-    };
-  }
+async function runIntegrityScript(args: string[], cwd = process.cwd()): Promise<ScriptResult> {
+  const stdout: string[] = [];
+  const stderr: string[] = [];
+  const code = await run(args, {
+    cwd,
+    legacyFixture: true,
+    log: (line: string) => stdout.push(line),
+    logError: (line: string) => stderr.push(line)
+  });
+  return { code, stdout: stdout.join('\n'), stderr: stderr.join('\n') };
 }
 
-async function runIntegrityScript(args: string[], cwd = process.cwd()): Promise<ScriptResult> {
+async function runV3IntegrityScript(args: string[], cwd = process.cwd()): Promise<ScriptResult> {
   const stdout: string[] = [];
   const stderr: string[] = [];
   const code = await run(args, {
@@ -139,6 +124,45 @@ afterEach(async () => {
 });
 
 describe('verify-instruction-root-integrity script', () => {
+  it('validates the complete v3 bundle and rejects omissions and unexpected files', async () => {
+    const repoRoot = path.resolve(process.cwd(), '..', '..', '..');
+    const resourcesRoot = path.join(tmpRoot, 'resources');
+    const bundleRoot = path.join(resourcesRoot, 'instruction-root');
+    await preparePackagedInstructionRoot({
+      sourceRoot: repoRoot,
+      docsRoot: path.join(repoRoot, 'docs'),
+      outputRoot: bundleRoot
+    });
+    await writeSdkBundleFixture(resourcesRoot);
+    const args = [
+      '--source-root', repoRoot,
+      '--bundle-root', bundleRoot,
+      '--sdk-bundle-root', resourcesRoot,
+      '--output-root', path.join(tmpRoot, 'v3-output')
+    ];
+    const initial = await runV3IntegrityScript(args);
+    expect(initial, initial.stderr).toMatchObject({ code: 0 });
+    const v3Summary = JSON.parse(await readFile(path.join(tmpRoot, 'v3-output', 'summary.json'), 'utf8'));
+    expect(v3Summary.sourceCompleteness.status).toBe('needs_remediation');
+    expect(v3Summary.sourceCompleteness.rows).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ id: 'KG-001-tools-registry', status: 'remediation_required' }),
+        expect.objectContaining({ id: 'KG-001-examples', status: 'remediation_required' })
+      ])
+    );
+
+    await writeFixtureFiles(bundleRoot, { 'workflows/unexpected.txt': 'unexpected\n' });
+    const unexpected = await runV3IntegrityScript(args);
+    expect(unexpected.code).toBe(1);
+    expect(unexpected.stderr).toContain('Unexpected bundled instruction files');
+    await rm(path.join(bundleRoot, 'workflows/unexpected.txt'));
+
+    await rm(path.join(bundleRoot, 'agents/AGENT_TASK.md'));
+    const omitted = await runV3IntegrityScript(args);
+    expect(omitted.code).toBe(1);
+    expect(omitted.stderr).toContain('Missing in bundle');
+  });
+
   it('passes when bundled files match source hashes', async () => {
     const sourceRoot = path.join(tmpRoot, 'source-root');
     const bundleRoot = path.join(tmpRoot, 'bundle-root');
@@ -214,9 +238,6 @@ describe('verify-instruction-root-integrity script', () => {
     }
   });
 
-  // Spawn-based CLI smoke test: proves the executable entrypoint itself
-  // (main-guard, argv handling, non-zero process exit code); the remaining
-  // tests call run() in-process.
   it('fails when bundled content diverges from source', async () => {
     const sourceRoot = path.join(tmpRoot, 'source-root');
     const bundleRoot = path.join(tmpRoot, 'bundle-root');
@@ -228,7 +249,7 @@ describe('verify-instruction-root-integrity script', () => {
     });
     await writeSdkBundleFixture(bundleRoot);
 
-    const result = await runIntegrityScriptSpawned([
+    const result = await runIntegrityScript([
       '--source-root',
       sourceRoot,
       '--bundle-root',
@@ -423,7 +444,7 @@ describe('verify-instruction-root-integrity script', () => {
     const agentsRoot = path.join(monorepoRoot, 'agents');
     const appDevRoot = path.join(monorepoRoot, 'projects', 'chirality-app-dev');
     const frontendCwd = path.join(appDevRoot, 'frontend');
-    const docsRoot = path.join(appDevRoot, 'docs');
+    const docsRoot = path.join(monorepoRoot, 'docs');
     const bundleRoot = path.join(tmpRoot, 'bundle-root');
     const outputRoot = path.join(tmpRoot, 'output');
 

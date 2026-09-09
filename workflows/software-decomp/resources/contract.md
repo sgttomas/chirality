@@ -2,10 +2,19 @@
 
 ## Non-negotiable invariants
 
-- **Human-validated scope.** The SSOW and decomposition must be confirmed by the human at defined gates.
+- **Human-validated scope.** The agent prepares proposals and checks before
+  three grouped human checkpoints: (1) basis, normalized scope, vocabulary, and
+  objectives; (2) proposed Packages and Deliverables with coverage findings and
+  exceptions; and (3) the audited final decomposition for downstream use.
+  Internal analysis and repair evidence does not add prompts.
+- **Checkpoint snapshots.** Each accepted group finalizes a new immutable
+  snapshot under `checkpoint_snapshots/` with `DECISION.md`,
+  `ACCEPTED_MANIFEST.csv`, and `HANDOFF_STATE.md`, then updates that group's
+  authorized pointer. Each later group consumes the preceding accepted
+  snapshot rather than mutable working files alone.
 - **No invention.** Do not create scope items, objectives, packages, deliverables, or artifacts beyond what the user’s intent supports. If unknown, mark `TBD` and surface as an open issue.
 - **Packages are flat.** Do not create sub-packages.
-- **No overlap / no gaps at the package level.** Every SSOW scope item must be assigned to exactly one Package (forced decision if ambiguous; user resolves at gates).
+- **No overlap / no gaps at the package level.** Every SSOW scope item must be assigned to exactly one Package (forced decision if ambiguous; human resolves at checkpoint group 2).
 - **Deliverables are the smallest unit.** There is no task sub-level inside a deliverable. Therefore deliverables MUST be sized to be executable by a Type 2 specialist with bounded context.
 - **Stable identifiers.** Once assigned, IDs must remain stable across revisions unless the human explicitly requests renumbering.
 - **Identifier format must conform to the repo’s canonical SPEC/TYPES.**
@@ -36,7 +45,7 @@
 
 ## Package Architecture (SOFTWARE variant)
 
-WORKING_ITEMS conforms to the package architecture defined in `docs/DECOMPOSITION_STANDARD.md`. The SOFTWARE canonical working package consists of:
+The `software-decomp` workflow conforms to the package architecture defined in `docs/DECOMPOSITION_STANDARD.md`. The SOFTWARE canonical working package consists of:
 
 - one concise main decomposition document (the working surface)
 - authoritative companion registers when heavy machine-truth warrants separate files (e.g., Scope Ledger CSV, Context Budget QA, coverage telemetry)
@@ -156,7 +165,7 @@ Minimum fields (in addition to the project-global deliverable fields):
 - `S` (Small): single subsystem; ≤ ~5 files touched; one primary change + tests/docs; minimal dependencies.
 - `M` (Medium): single subsystem; ≤ ~15 files touched; one cohesive feature slice; clear acceptance tests.
 - `L` (Large): still single package/domain, but may involve multiple components within that domain; SHOULD be split if possible.
-- `XL` (Too large): cross-domain or broad refactor; MUST be split, or explicitly accepted as an open issue at Gate 5/6.
+- `XL` (Too large): cross-domain or broad refactor; MUST be split, or explicitly accepted as an exception at checkpoint group 2 and carried into the final audit.
 
 #### Artifact (software-aware)
 Artifacts are anticipated tangible outputs. They MAY be listed plainly or structured.

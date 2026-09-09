@@ -11,10 +11,10 @@ WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to 
 
 ## Method
 
-1. Identify the requested change and bind sections by semantic heading using the shared decomposition-audit contract.
-2. Assess affected scope, stable identity, source lineage, downstream dependencies, and pre-change coverage.
-3. Record the human ruling, apply the authorized amendment, and dispatch bounded propagation and remediation.
-4. Regenerate derivatives from the accepted amended basis and verify closure with matching coverage and rerun evidence.
+1. Identify the requested change, bind semantic sections, and prepare the impact assessment before the first grouped checkpoint.
+2. Draft the exact amendment and propagation plan, preserving stable identity, source lineage, and downstream ownership, before the second grouped checkpoint.
+3. Apply only the accepted amendment and propagation plan, dispatch bounded remediation, and regenerate affected derivatives from the accepted basis.
+4. Dispatch a separate review instance and present the audited poststate, closure evidence, and remaining obligations at the third grouped checkpoint.
 
 ## Resources
 

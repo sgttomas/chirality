@@ -51,6 +51,8 @@ function replay(
       lastTimestamp: events.at(-1)?.timestamp
     },
     session: session(sessionId),
+    instructionHistory: [],
+    instructionBases: [],
     ...overrides
   };
 }

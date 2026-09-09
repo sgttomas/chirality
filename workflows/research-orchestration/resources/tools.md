@@ -25,11 +25,14 @@
 
 ## Expected use of reasoning
 
-Agent/LLM work — not tool work: triage routing (DIRECT vs AGENT), anchor-vs-assumption
-judgment, dispatching and supervising `TASK (workflow: researcher)` streams, the adversarial critique of
-load-bearing claims, conflict adjudication, coverage-gap synthesis, and the decision to stop
-retrying a failed stream. Orchestration itself is agent territory; the deterministic tools
-only scout freshness, scaffold the packet, and log queries.
+Agent/LLM work — not tool work: triage routing (DIRECT vs AGENT),
+anchor-vs-assumption judgment, using the effective source-qualified `researcher`
+skill directly when the brief assigns it or dispatching and supervising bounded
+TASK streams with that descriptor in their ordered `methods` field, adversarial
+critique of load-bearing claims, conflict adjudication, coverage-gap synthesis,
+and the decision to stop retrying a failed stream. Orchestration itself is agent
+territory; the deterministic tools only scout freshness, scaffold the packet,
+and log queries.
 
 ## Disallowed use
 

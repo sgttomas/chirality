@@ -1,0 +1,9 @@
+
+ RUN  v4.1.10 /private/tmp/chirality-v3-adoption-20260909/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  15:12:58
+   Duration  1.03s (transform 380ms, setup 0ms, import 542ms, tests 412ms, environment 0ms)
+

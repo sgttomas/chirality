@@ -80,6 +80,8 @@ export interface AdapterSessionMetadata {
   configDir?: string;
   packageName?: string;
   packageVersion?: string;
+  /** Reversible provider-span preparation committed with a v3 selection. */
+  contextSuccessor?: import('./agent-engine-port.js').PreparedContextSuccessor;
 }
 
 export interface SessionCreateRequest {
@@ -265,6 +267,7 @@ export type UIEvent =
       type: 'session:init';
       data: {
         engineSessionId: string;
+        providerSpanId?: string;
         adapterId: string;
         providerId: string;
         claudeSessionId?: string;

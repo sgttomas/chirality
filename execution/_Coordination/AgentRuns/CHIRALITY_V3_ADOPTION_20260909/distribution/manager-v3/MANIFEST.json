@@ -1,0 +1,31 @@
+{
+  "schema": "chirality-v3-distribution-final-anchor-manager-evidence/v3",
+  "verdict": "ready-for-final-staging-manifest",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v12.json",
+    "sha256": "3d494992fbb033f68b623a2124ea681dd12673e83fc3b5eedf83ae264f1e9c8d",
+    "sizeBytes": 14791
+  },
+  "members": [
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/manager-v3/RETURN.md",
+      "sha256": "3040c6fbd9b9733d8f8a822867ca29277f14d44f5f82160ae18f3a29697c8760",
+      "sizeBytes": 1226
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/manager-v3/CHECKS.json",
+      "sha256": "07f482fd15b171147de7aedd644133cfbe2556267b321aba145c57dab0272f2f",
+      "sizeBytes": 2078
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v12/MANIFEST.json",
+      "sha256": "9e6bdec73d5d932845c9fa3f1111fa58d10df77c18dd4e307f98e9c79a31f5a1",
+      "sizeBytes": 903
+    }
+  ],
+  "predecessor": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/manager-v2/MANIFEST.json",
+    "sha256": "99e0d759a7f7f70a0c48bb7d6ddd2d3e4bba70e46f381ac19d1f7fe3d4f098fa",
+    "sizeBytes": 1855
+  }
+}

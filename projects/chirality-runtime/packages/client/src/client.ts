@@ -39,6 +39,17 @@ import {
   type SessionResponse,
   type SessionsResponse,
   type SessionTurnRequest
+  , type RolesResponse
+  , type MethodsResponse
+  , type MethodInspectionResponse
+  , type ResolveSelectedContextRequest
+  , type ResolveSelectedContextResponse
+  , type ReplaceSelectedMethodsRequest
+  , type ReplaceSelectedMethodsResponse
+  , type NativePlanCapabilityResponse
+  , type NativePlanRevisionsResponse
+  , type ExportNativePlanRequest
+  , type ExportNativePlanResponse
 } from "@chirality/runtime-contracts";
 import { RuntimeTransportError, runtimeErrorFromResponse } from "./errors.js";
 import { parseSse, parseUiEvent, type SseFrame } from "./sse.js";
@@ -244,6 +255,18 @@ export class RuntimeClient {
     return this.requestJson(RUNTIME_ROUTES.projectStatus(projectId), { signal });
   }
 
+  listRoles(projectId: string, signal?: AbortSignal): Promise<RolesResponse> {
+    return this.requestJson(RUNTIME_ROUTES.roles(projectId), { signal });
+  }
+
+  listMethods(projectId: string, signal?: AbortSignal): Promise<MethodsResponse> {
+    return this.requestJson(RUNTIME_ROUTES.methods(projectId), { signal });
+  }
+
+  inspectMethod(projectId: string, qualifiedId: string, signal?: AbortSignal): Promise<MethodInspectionResponse> {
+    return this.requestJson(RUNTIME_ROUTES.method(projectId, qualifiedId), { signal });
+  }
+
   async resolveProjectByRoot(
     projectRoot: string,
     signal?: AbortSignal
@@ -370,6 +393,26 @@ export class RuntimeClient {
     return this.requestJson(RUNTIME_ROUTES.sessionReplay(projectId, sessionId), {
       signal
     });
+  }
+
+  resolveSelectedContext(projectId: string, sessionId: string, request: ResolveSelectedContextRequest, signal?: AbortSignal): Promise<ResolveSelectedContextResponse> {
+    return this.requestJson(RUNTIME_ROUTES.sessionContextResolve(projectId, sessionId), { method: "POST", body: request, signal });
+  }
+
+  replaceSelectedMethods(projectId: string, sessionId: string, request: ReplaceSelectedMethodsRequest, signal?: AbortSignal): Promise<ReplaceSelectedMethodsResponse> {
+    return this.requestJson(RUNTIME_ROUTES.sessionMethods(projectId, sessionId), { method: "PUT", body: request, signal });
+  }
+
+  getNativePlanCapability(projectId: string, sessionId: string, signal?: AbortSignal): Promise<NativePlanCapabilityResponse> {
+    return this.requestJson(RUNTIME_ROUTES.nativePlanCapability(projectId, sessionId), { signal });
+  }
+
+  listNativePlanRevisions(projectId: string, sessionId: string, signal?: AbortSignal): Promise<NativePlanRevisionsResponse> {
+    return this.requestJson(RUNTIME_ROUTES.nativePlanRevisions(projectId, sessionId), { signal });
+  }
+
+  exportNativePlan(projectId: string, sessionId: string, request: ExportNativePlanRequest, signal?: AbortSignal): Promise<ExportNativePlanResponse> {
+    return this.requestJson(RUNTIME_ROUTES.nativePlanExport(projectId, sessionId), { method: "POST", body: request, signal });
   }
 
   turnSession(

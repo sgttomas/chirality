@@ -26,7 +26,7 @@ The project hierarchy is flat: **packages contain deliverables**. There are no p
 A **package** is a flat partition of project scope. Packages do not nest.
 
 - Every scope item belongs to exactly one package (no overlaps, no gaps).
-- Packages are defined by PROJECT_DECOMP and confirmed by the human.
+- Packages are proposed through `project-decomp` and confirmed by the human.
 
 ### 1.2 Deliverable
 
@@ -66,11 +66,11 @@ Identifiers are assigned once and persist across renames, path changes, and rest
 
 | Entity | Format | Example | Assigned By |
 |---|---|---|---|
-| Package | `PKG-XX` | `PKG-01` | PROJECT_DECOMP |
-| Deliverable | `DEL-XX-YY` | `DEL-01-01` | PROJECT_DECOMP |
+| Package | `PKG-XX` | `PKG-01` | `project-decomp` |
+| Deliverable | `DEL-XX-YY` | `DEL-01-01` | `project-decomp` |
 | Dependency | `DEP-XX-YY-NNN` | `DEP-01-01-001` | TASK+dependency-extract |
-| Scope Item | `SOW-NNN` | `SOW-003` | PROJECT_DECOMP |
-| Objective | `OBJ-NNN` | `OBJ-001` | PROJECT_DECOMP |
+| Scope Item | `SOW-NNN` | `SOW-003` | `project-decomp` |
+| Objective | `OBJ-NNN` | `OBJ-001` | `project-decomp` |
 
 Conforming decomposition variants define additional stable-ID families in their own contracts (e.g. domain-knowledge identifiers; see §8.2 and `docs/DECOMPOSITION_STANDARD.md`). The ID rules below apply to all families.
 
@@ -345,7 +345,7 @@ content. ID-shaped strings inside it do not define or reference SOW local IDs.
 
 ### 8.1 Project Decomposition Entities
 
-The project decomposition document (produced by PROJECT_DECOMP) defines these entities:
+The project decomposition document (produced through `project-decomp`) defines these entities:
 
 | Entity | ID Format | Purpose |
 |---|---|---|
@@ -357,7 +357,7 @@ The project decomposition document (produced by PROJECT_DECOMP) defines these en
 
 ### 8.2 Domain Decomposition Entities
 
-The decomposition protocol is shared across variants by `docs/DECOMPOSITION_STANDARD.md`; `DOMAIN_DECOMP` binds its abstract entities to domain-knowledge names. The handbook/domain variant defines:
+The decomposition protocol is shared across variants by `docs/DECOMPOSITION_STANDARD.md`; `domain-decomp` binds its abstract entities to domain-knowledge names. The handbook/domain variant defines:
 
 | Entity | ID Format | Purpose |
 |---|---|---|
@@ -367,7 +367,11 @@ The decomposition protocol is shared across variants by `docs/DECOMPOSITION_STAN
 | **Handbook Unit (Atom)** | `HBA-<SOURCE_PREFIX>-NNNNN` | An atomic instruction/concept extracted from a source; the unit of coverage checking |
 | **Section Node** | `SEC-<SOURCE_PREFIX>-NNNN` | A source section in the reviewed skeleton; the section-level retrieval substrate |
 
-The standard's abstract entities (Atomic Unit, Partition, Production Unit, Decomposition Ledger, Coverage & Telemetry, Vocabulary Map) and seven-gate protocol are defined in `docs/DECOMPOSITION_STANDARD.md`; PROJECT_DECOMP, SOFTWARE_DECOMP, and DOMAIN_DECOMP bind them to domain-specific names and ID widths.
+The standard's abstract entities (Atomic Unit, Partition, Production Unit,
+Decomposition Ledger, Coverage & Telemetry, Vocabulary Map) and grouped
+checkpoint protocol are defined in `docs/DECOMPOSITION_STANDARD.md`;
+`project-decomp`, `software-decomp`, and `domain-decomp` bind them to
+domain-specific names and ID widths.
 
 ---
 

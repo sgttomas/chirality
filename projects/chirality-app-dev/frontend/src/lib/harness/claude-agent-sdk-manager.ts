@@ -1,6 +1,11 @@
 import { query, type Query } from '@anthropic-ai/claude-agent-sdk';
 import { createHash, randomUUID } from 'node:crypto';
-import { AgentEnginePort, AgentEngineRunInput } from '@chirality/runtime-contracts/agent-engine-port';
+import {
+  AgentEnginePort,
+  AgentEngineRunInput,
+  type ContextSuccessorRequest,
+  type PreparedContextSuccessor
+} from '@chirality/runtime-contracts/agent-engine-port';
 import { getUiApiKey } from './api-key-store';
 import { HarnessError } from '@chirality/runtime-contracts/errors';
 import { redactConfiguredApiKeys } from './run-logger';
@@ -41,8 +46,8 @@ function asNonEmptyString(value: string | undefined): string | undefined {
   return trimmed.length > 0 ? trimmed : undefined;
 }
 
-function hashPrompt(systemPrompt: string): string {
-  return createHash('sha256').update(systemPrompt).digest('hex');
+function hashPromptConfiguration(systemPrompt: unknown): string {
+  return createHash('sha256').update(JSON.stringify(systemPrompt)).digest('hex');
 }
 
 function readSdkApiKeyForTurn(): string | undefined {
@@ -85,7 +90,8 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       attachments: true,
       interruption: true,
       durableResume: true,
-      compaction: true
+      compaction: true,
+      runtimeControlTools: true
     }
   } as const;
   private readonly activeTurns = new Map<string, ActiveTurnState>();
@@ -96,7 +102,9 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       projectRoot: string,
       persona: string,
       mode: string,
-      tools?: readonly string[]
+      tools?: readonly string[],
+      instructionContext?: string,
+      session?: SessionRecord
     ) => Promise<string> = async () => ''
   ) {}
 
@@ -109,6 +117,31 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         { provider: 'anthropic', category: 'MISSING_API_KEY' }
       );
     }
+  }
+
+  async prepareContextSuccessor(request: ContextSuccessorRequest): Promise<PreparedContextSuccessor> {
+    const preparationId = `context_${randomUUID()}`;
+    const continuationText = JSON.stringify({
+      predecessorEngineSessionId: request.predecessorEngineSessionId,
+      fromBasisId: request.fromBasisId,
+      toBasisId: request.toBasisPreview.id,
+      priorBasisRefs: request.continuationContext.priorBasisRefs,
+      transcript: request.continuationContext.transcript
+    });
+    return {
+      preparationId,
+      adapterId: this.descriptor.adapterId,
+      providerId: this.descriptor.providerId,
+      predecessorEngineSessionId: request.predecessorEngineSessionId,
+      continuationText,
+      continuationSha256: createHash('sha256').update(continuationText).digest('hex'),
+      targetBasisId: request.toBasisPreview.id,
+      targetReference: `${request.toBasisPreview.id}:${request.toBasisPreview.sha256}`
+    };
+  }
+
+  async cancelContextSuccessor(_preparationId: string): Promise<void> {
+    // Preparation is pure and creates no provider state before the next turn.
   }
 
   async interrupt(sessionId: string): Promise<void> {
@@ -216,7 +249,10 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
       }
     };
 
-    const bootstrapSessionId = input.session.sdkSessionId ?? input.session.claudeSessionId ?? `sdk_${randomUUID()}`;
+    const successor = input.contextSuccessor;
+    const bootstrapSessionId = successor === undefined
+      ? input.session.engineSessionId ?? input.session.claudeSessionId ?? input.session.sdkSessionId ?? `sdk_${randomUUID()}`
+      : `sdk_${randomUUID()}`;
 
     try {
       if (input.message.trim() === 'bootstrap') {
@@ -243,16 +279,44 @@ export class ClaudeAgentSdkManager implements IAgentSdkManager, AgentEnginePort 
         input.session.projectRoot,
         input.opts.persona,
         input.opts.mode,
-        input.opts.tools
+        input.opts.tools,
+        input.instructionContext === undefined
+          ? undefined
+          : input.instructionContext.supplied.map((entry) => [
+              `## ${entry.kind}: ${entry.id}`,
+              `contentSha256: ${entry.sha256}`,
+              entry.content
+            ].join('\n')).join('\n\n---\n\n'),
+        input.session
       );
-      const personaPromptHash = hashPrompt(systemPrompt);
+      const sdkSession = successor === undefined ? {
+        ...input.session,
+        // Runtime's provider-neutral identity is updated on every session:init.
+        // Prefer it over a migrated legacy SDK field that may name a predecessor.
+        sdkSessionId: input.session.engineSessionId ?? input.session.claudeSessionId ?? input.session.sdkSessionId
+      } : {
+        ...input.session,
+        sdkSessionId: undefined,
+        claudeSessionId: undefined,
+        engineSessionId: undefined,
+        adapterSession: undefined
+      };
       const sdkOptions = buildSdkOptions({
-        session: input.session,
+        session: sdkSession,
         opts: input.opts,
         abortController,
-        systemPrompt
+        systemPrompt,
+        runtimeTools: input.runtimeTools
       });
-      const sdkPrompt = buildSdkPrompt(input.message, input.contentBlocks);
+      // Hash the exact provider-facing prompt configuration, including its
+      // preset overlay, while retaining the historical evidence field name.
+      const personaPromptHash = hashPromptConfiguration(sdkOptions.systemPrompt);
+      const sdkPrompt = buildSdkPrompt(
+        successor === undefined
+          ? input.message
+          : `${successor.continuationText}\n\nCurrent user message:\n${input.message}`,
+        input.contentBlocks
+      );
       restoreSdkApiKey = installAnthropicApiKeyForSdkTurn();
       const turnAcceptedEvent = createHarnessEvent({
         sessionId: input.session.sessionId,

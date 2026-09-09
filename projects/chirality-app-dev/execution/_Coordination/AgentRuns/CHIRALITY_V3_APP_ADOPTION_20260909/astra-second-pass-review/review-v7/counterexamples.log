@@ -1,0 +1,69 @@
+
+ RUN  v4.1.10 /private/tmp/chirality-v3-adoption-20260909/projects/chirality-app-dev/frontend
+
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > renders the stored Settings view and its breadcrumb without falling back to Files
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > shows document breadcrumb and current controls without deferred popout
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > keeps recorded session content under its breadcrumb
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > copies exact id and deterministic recorded metadata, exposes clipboard outcome, and opens recorded parent
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > explains and disables unknown parent without navigating
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > explains and disables unavailable parent without navigating
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > explains and disables conflicting parent without navigating
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > explains and disables missing-roster parent without navigating
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > explains and disables live-turn parent without navigating
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > reveals the root and the selected file through distinct bounded actions
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > keeps four-view keyboard navigation and reveals the selected tab after changes
+ ✓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/method-refresh-reproduction.test.tsx > second-pass: retries an unavailable method catalog through the panel Refresh action 11ms
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > uses the returned canonical root without migrating or overwriting either conversation draft
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > retains the actual binding and failed draft when provider synchronization refuses
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > rejects a stale boot result after an unrelated folder change without restoring its old draft
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > rejects a stale synchronization completion after a different folder transition
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > blocks native folder intent while bound or pending and blocks Send during pending selection
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > keeps Enter submission distinct from Shift+Enter and IME composition
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > captures only the first prompt after a session boots successfully
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > sends exact methods and modes for one message, then clears the next-message selection
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > rejects empty and multiple-file drops without invoking folder validation
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > retains conversation binding across an Agent change (provider sync true), until New chat
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > retains conversation binding across an Agent change (provider sync false), until New chat
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > changes roles at a confirmed boundary without booting another App session
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > keeps retained assistant speaker labels and titles tied to their originating Agent
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > captures first input and paste before parent restoration, and delays restoration during IME
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > keeps legacy session creation and draft storage aligned with a changed Working Root
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > threads file navigation only to assistant Markdown and preserves attachment payload and failure restoration
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > keeps retained assistant Markdown bound to the root that produced it
+ ✓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > second-pass: keeps a method selected for the next message while the current turn finishes 31ms
+ ✓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/reproductions.test.tsx > second-pass: retains an unsent draft and methods when switching roles in one conversation 4ms
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > uses the returned canonical root without migrating or overwriting either conversation draft
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > retains the actual binding and failed draft when provider synchronization refuses
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > rejects a stale boot result after an unrelated folder change without restoring its old draft
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > rejects a stale synchronization completion after a different folder transition
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > blocks native folder intent while bound or pending and blocks Send during pending selection
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > keeps Enter submission distinct from Shift+Enter and IME composition
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > captures only the first prompt after a session boots successfully
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > merges next-message methods into the active basis without sending turn-time overrides
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > preserves methods selected for the next message while the current turn finishes
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > rejects empty and multiple-file drops without invoking folder validation
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > retains conversation binding across an Agent change (provider sync true), until New chat
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > retains conversation binding across an Agent change (provider sync false), until New chat
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > changes roles at a confirmed boundary without booting another App session
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > keeps the unsent draft under the bound conversation when its role changes
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > continues a compatible recorded v3 conversation without creating or booting another session
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > keeps unsent drafts isolated between recorded conversations with the same root and role
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > does not resurrect a sent unbound draft when a new chat starts with the same root and role
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > keeps retained assistant speaker labels and titles tied to their originating Agent
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > captures first input and paste before parent restoration, and delays restoration during IME
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > keeps legacy session creation and draft storage aligned with a changed Working Root
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > threads file navigation only to assistant Markdown and preserves attachment payload and failure restoration
+ ↓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > keeps retained assistant Markdown bound to the root that produced it
+ ✓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > successor: retains method-bearing first-message draft after a post-boot rejection 16ms
+ ✓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > successor: adopts Runtime method revision after agent method changes during a turn 7ms
+ ✓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > continuationqa: restores a session draft after canonical root synchronization and reopening 6ms
+ ✓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > continuationqa: does not relabel an earlier assistant answer as the latest role 1ms
+ ✓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > terminalqa: retries after successful selection PUT followed by stream failure using updated revision 4ms
+ ✓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > terminaledge: a new chat does not resurrect a method already consumed by a successful first turn 3ms
+ ✓ ../execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.test.tsx > terminalremove: failure preserves a newer empty selection made in the method library 3ms
+
+ Test Files  3 passed (3)
+      Tests  10 passed | 50 skipped (60)
+   Start at  14:32:30
+   Duration  280ms (transform 375ms, setup 0ms, import 486ms, tests 89ms, environment 0ms)
+

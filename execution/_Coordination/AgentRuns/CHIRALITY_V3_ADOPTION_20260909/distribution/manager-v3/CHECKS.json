@@ -1,0 +1,60 @@
+{
+  "schema": "chirality-v3-distribution-final-anchor-manager-checks/v3",
+  "verdict": "ready-for-final-staging-manifest",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v12.json",
+    "sha256": "3d494992fbb033f68b623a2124ea681dd12673e83fc3b5eedf83ae264f1e9c8d",
+    "sizeBytes": 14791
+  },
+  "verifiedBindings": {
+    "distributionMembers": 19,
+    "sourceAnchors": 3,
+    "runtimeTerminalEvidence": 4,
+    "mismatches": []
+  },
+  "projection": {
+    "regenerated": false,
+    "reason": "V6 projection bytes equal V10",
+    "rows": 1104,
+    "boundaryFindings": 0,
+    "engineTs": {
+      "sha256": "1f64f99fedb1932f615a2ee960b424ef8e5f95f073b4fd1a5a1446ef52e5b0d5",
+      "sizeBytes": 1739
+    }
+  },
+  "independentReview": {
+    "verdict": "PASS",
+    "return": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v12/RETURN.md",
+      "sha256": "d3e853c8c188490a27c6305029358018018aec95c981468cc7b8af84d0fc1719",
+      "sizeBytes": 2392
+    },
+    "checks": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v12/CHECKS.json",
+      "sha256": "2a87a4332d2d0e7203ed5d3a5a47de4708f50c478936fae89e496b8e55452bb0",
+      "sizeBytes": 4369
+    },
+    "manifest": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v12/MANIFEST.json",
+      "sha256": "9e6bdec73d5d932845c9fa3f1111fa58d10df77c18dd4e307f98e9c79a31f5a1",
+      "sizeBytes": 903
+    }
+  },
+  "reliancePreflight": {
+    "verdict": "ALLOW",
+    "targets": [
+      "DEL-09-04",
+      "DEL-09-05"
+    ],
+    "registerSha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+    "scanFingerprintSha256": "1f5527e2205580c50de224bca24fa5724ce956f617f8d84e981200a24126f36b"
+  },
+  "holds": {
+    "kg001": "needs_remediation",
+    "adoption": "retained",
+    "release": "retained",
+    "nativePackageQualified": false,
+    "supplierQualified": false,
+    "releaseQualified": false
+  }
+}

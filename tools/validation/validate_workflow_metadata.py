@@ -5,20 +5,17 @@ import json
 import re
 from pathlib import Path
 import yaml
+from build_workflow_index import _frontmatter
 
 ROLES={'HELP_HUMAN','HELPS_HUMANS','WORKING_ITEMS','TASK'}
+NAME_RE=re.compile(r'^(?=.{1,64}$)[a-z0-9]+(?:-[a-z0-9]+)*$')
 
 
 def validate_workflow_dir(folder, repo_root):
     issues=[]
     try:
-        text=(folder/'WORKFLOW.md').read_text()
-        if not text.startswith('---\n'):
-            raise ValueError('WORKFLOW.md must start with YAML frontmatter')
-        data=yaml.safe_load(text.split('---',2)[1])
-        if not isinstance(data,dict):
-            raise ValueError('frontmatter must be a mapping')
-        if data.get('name')!=folder.name or not re.fullmatch(r'[a-z0-9][a-z0-9-]{0,63}',folder.name):
+        data=_frontmatter(folder/'WORKFLOW.md')
+        if data.get('name')!=folder.name or not NAME_RE.fullmatch(folder.name):
             issues.append('name must match the lowercase-hyphen folder name')
         if not isinstance(data.get('description'),str) or not data['description'].strip():
             issues.append('description must be a nonempty string')
@@ -31,7 +28,7 @@ def validate_workflow_dir(folder, repo_root):
             if not isinstance(stages,dict): raise ValueError('stages must be a mapping')
             for item in [config,*stages.values()]:
                 compatible=item.get('compatible_roles')
-                if compatible is not None and (not isinstance(compatible,list) or not compatible or not set(compatible)<=ROLES): issues.append('invalid compatible_roles')
+                if compatible is not None and (not isinstance(compatible,list) or not set(compatible)<=ROLES): issues.append('invalid compatible_roles')
                 tools=item.get('tools',{})
                 if not isinstance(tools,dict) or set(tools)-{'capabilities','commands'}: raise ValueError('invalid tools mapping')
                 for kind,values in tools.items():
@@ -54,6 +51,16 @@ def main():
     parser.add_argument('--json',action='store_true')
     args=parser.parse_args(); root=args.root.resolve()
     if not root.is_dir(): parser.exit(2,f'ERROR: missing workflows root {root}\n')
+    if (root/'catalog.yaml').is_file():
+        try:
+            from build_workflow_index import validate_and_build
+            index=validate_and_build(root.parent)
+            generated=root/'index.json'
+            expected=json.dumps(index,indent=2,sort_keys=False)+'\n'
+            if not generated.is_file() or generated.read_text()!=expected:
+                parser.exit(1,'FAIL workflow index: workflows/index.json is missing or stale\n')
+        except (OSError,ValueError,KeyError,TypeError,json.JSONDecodeError,yaml.YAMLError) as exc:
+            parser.exit(1,f'FAIL workflow catalog: {exc}\n')
     results=[validate_workflow_dir(p,root.parent) for p in sorted(root.iterdir()) if p.is_dir() and not p.name.startswith('.')]
     report={'checked_workflow_count':len(results),'invalid_workflow_count':sum(not r['valid'] for r in results),'results':results}
     print(json.dumps(report,indent=2) if args.json else '\n'.join(f"{'PASS' if r['valid'] else 'FAIL'} {r['workflow']}: {'; '.join(r['issues'])}" for r in results))

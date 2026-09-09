@@ -113,7 +113,7 @@ async function createSession(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         projectRoot,
-        persona: overrides?.persona,
+        persona: overrides?.persona ?? 'WORKING_ITEMS',
         mode: overrides?.mode
       })
     })
@@ -153,6 +153,7 @@ beforeEach(async () => {
   await writeFile(path.join(instructionRoot, 'AGENTS.md'), '# agents index\n', 'utf8');
   await writeFile(path.join(instructionRoot, 'README.md'), '# instruction root\n', 'utf8');
   await writeFile(path.join(agentsDir, 'AGENT_WORKING_ITEMS.md'), '# persona fixture\n', 'utf8');
+  await writeFile(path.join(agentsDir, 'AGENT_HELP_HUMAN.md'), '# helper persona fixture\n', 'utf8');
   await writeFile(path.join(docsDir, 'DIRECTIVE.md'), '# directive\n', 'utf8');
   await writeFile(path.join(docsDir, 'CONTRACT.md'), '# contract\n', 'utf8');
   await writeFile(path.join(docsDir, 'SPEC.md'), '# spec\n', 'utf8');

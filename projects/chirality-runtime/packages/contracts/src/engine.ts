@@ -7,7 +7,7 @@ import type {
 
 export interface ToolPermission {
   effect: "allow" | "deny";
-  operation: "read" | "write" | "shell" | "network";
+  operation: "read" | "write" | "shell" | "network" | "control";
   roots?: readonly string[];
 }
 

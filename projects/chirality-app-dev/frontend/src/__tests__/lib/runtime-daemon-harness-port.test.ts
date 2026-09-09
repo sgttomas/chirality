@@ -79,11 +79,15 @@ function client(overrides: Partial<RuntimeClient> = {}): RuntimeClient {
         adaptersEnabled: true
       }
     ]),
-    listAgents: vi.fn().mockResolvedValue([
-      { name: 'HELP_HUMAN', type: 0, class: 'supervisor' },
-      { name: 'WORKING_ITEMS', type: 1, class: 'manager' },
-      { name: 'TASK', type: 2, class: 'specialist' }
-    ]),
+    listRoles: vi.fn().mockResolvedValue({
+      schemaVersion: 'chirality.roles/v3',
+      defaultRole: 'HELP_HUMAN',
+      roles: [
+        { id: 'HELP_HUMAN', agentType: 0, directEntry: true, defaultForNewChat: true, description: 'help', instruction: 'agents/AGENT_HELP_HUMAN.md' },
+        { id: 'WORKING_ITEMS', agentType: 1, directEntry: true, defaultForNewChat: false, description: 'work', instruction: 'agents/AGENT_WORKING_ITEMS.md' },
+        { id: 'TASK', agentType: 2, directEntry: false, defaultForNewChat: false, description: 'task', instruction: 'agents/AGENT_TASK.md' }
+      ]
+    }),
     scaffold: vi.fn(),
     ...overrides
   } as unknown as RuntimeClient;
@@ -159,6 +163,48 @@ describe('RuntimeDaemonHarnessPort', () => {
     expect(runtimeClient.resolveProjectByRoot).not.toHaveBeenCalled();
   });
 
+  it('passes declared context and write-target tri-state through to Runtime session creation', async () => {
+    const runtimeClient = client();
+    const port = new RuntimeDaemonHarnessPort(runtimeClient);
+
+    await port.createSession({
+      projectRoot: project.canonicalRoot,
+      persona: 'WORKING_ITEMS',
+      declaredContext: [],
+      allowedWriteTargets: []
+    });
+    expect(runtimeClient.createSession).toHaveBeenLastCalledWith(
+      project.projectId,
+      expect.objectContaining({
+        declaredContext: [],
+        allowedWriteTargets: []
+      }),
+      undefined
+    );
+
+    const declaredContext = [`${project.canonicalRoot}/execution/PKG-01`];
+    const allowedWriteTargets = [`${project.canonicalRoot}/execution/PKG-01/output.md`];
+    await port.createSession({
+      projectRoot: project.canonicalRoot,
+      persona: 'WORKING_ITEMS',
+      declaredContext,
+      allowedWriteTargets
+    });
+    expect(runtimeClient.createSession).toHaveBeenLastCalledWith(
+      project.projectId,
+      expect.objectContaining({ declaredContext, allowedWriteTargets }),
+      undefined
+    );
+
+    await port.createSession({
+      projectRoot: project.canonicalRoot,
+      persona: 'WORKING_ITEMS'
+    });
+    const finalRequest = vi.mocked(runtimeClient.createSession).mock.calls.at(-1)?.[1];
+    expect(finalRequest).not.toHaveProperty('declaredContext');
+    expect(finalRequest).not.toHaveProperty('allowedWriteTargets');
+  });
+
   it('preserves canonical UI events and interrupts the owned session on cancel', async () => {
     const event: UIEvent = {
       type: 'chat:delta',
@@ -227,8 +273,8 @@ describe('RuntimeDaemonHarnessPort', () => {
 
     await expect(port.listAgents({ directChatOnly: true })).resolves.toEqual({
       agents: [
-        { name: 'HELP_HUMAN', type: 0, class: 'supervisor' },
-        { name: 'WORKING_ITEMS', type: 1, class: 'manager' }
+        { name: 'HELP_HUMAN', type: 0, class: 'PERSONA' },
+        { name: 'WORKING_ITEMS', type: 1, class: 'PERSONA' }
       ]
     });
   });

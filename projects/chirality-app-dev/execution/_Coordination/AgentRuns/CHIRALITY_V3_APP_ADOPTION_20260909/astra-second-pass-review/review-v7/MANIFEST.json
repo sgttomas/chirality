@@ -1,0 +1,424 @@
+{
+  "files": [
+    {
+      "path": "BROWSER_EVIDENCE_REFERENCES.json",
+      "sha256": "8bfa90d5fb7d79f0ed57a593f04a5ae043fe7129b918f51c1a1cc89bbccceba3"
+    },
+    {
+      "path": "COVERAGE.json",
+      "sha256": "fb8cedc9377176dd7a31b1175ff4765a8ce8d54754b5e6a7dfae486349c5fbb1"
+    },
+    {
+      "path": "PRIOR_SEAM_SUBJECT.json",
+      "sha256": "743d7f6d9e649e0be9f7aece98465bdbda503c3cb90809544bae7cb7404f0dd9"
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "0bbe887d2d6a9fe4c3324a1083a99f206daebf544b80ab367e71519dd8250c94"
+    },
+    {
+      "path": "SUBJECT.json",
+      "sha256": "910be776c56c9ceb0748e06ecc4d3856c99f1a246d04896f49682d3e010d272a"
+    },
+    {
+      "path": "counterexamples.log",
+      "sha256": "cc438f114a4c72c0d7999024f0e846ea0bc3684d1cf1de77dd23aac1065a0d75"
+    },
+    {
+      "path": "counterexamples.test.tsx",
+      "sha256": "08ab0a8db05703ce3b9f2ae3d3ec8ce093016199ff48fc857fda782b3b3c8aca"
+    },
+    {
+      "path": "focused-checks.log",
+      "sha256": "645d41c55337e7e8dec8486911482e1cbfd675ea0121268a09513a65c4fe1e28"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/agent-matrix-panel.test.ts",
+      "sha256": "76fe0ec866ee5ac885f9c59a57c0002a02ac36ac5d67b7d72e951836e0b8c0b2"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/agent-matrix-panel.test.ts.base.diff",
+      "sha256": "a024e3e88e57efc3c89baa2aee6d45218dfdc65e6d8707dda100a504e64b45f9"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/agents-projection.test.tsx",
+      "sha256": "efbd353ef77a73a32a00149a8452567f894f8d13998c58304994ac07e88acda1"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/agents-projection.test.tsx.base.diff",
+      "sha256": "d6d2e0207b7aea33bba442ccedcc774b0036cb2fcb3981220c0b3b25de5238e1"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/chat-panel-failed-send.test.ts",
+      "sha256": "5dfd9e4aee4840b66b4c37646b9b38952b424c80e66f868b2cdd392c140b9040"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/chat-panel-failed-send.test.ts.base.diff",
+      "sha256": "2991651ed517b5f5ef87a4002f64600168d779dccbb3fa22088ee0015195dc68"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx",
+      "sha256": "fd645ff910484e10318321e759908639a6b65e52407403c96f75ffdb47490e54"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx.base.diff",
+      "sha256": "d7e58470b701c279112f4c2e2c9aa5a260c5e89cde196884fb4378c06174072a"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/historical-chat-reveal.test.tsx",
+      "sha256": "a3c248a8c0bd785f73cfd756aa83c2512733828cb6fe6d27d8ea020d7e79463e"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/historical-chat-reveal.test.tsx.base.diff",
+      "sha256": "48e9eadb58c2d4ac21939a1643252d10d0243c218181d93399b4b32f9f4cd75c"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/loop-tertiary-routes.test.ts",
+      "sha256": "e6b9ceb5a7f49124ff84a1020ae33839e8548eb7acd7c546ec1b33aa4ea9a52e"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/loop-tertiary-routes.test.ts.base.diff",
+      "sha256": "f246fe87106de4e60fa24b0abd314dcf8d46ae212c691d5a0404ecbb5ce44023"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/method-library-view.test.tsx",
+      "sha256": "edb7024edf0944917c3d9d3e3a99553cc06425c5fa5b25381a8805422b38b56b"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/method-library-view.test.tsx.base.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/right-panel-method-refresh.test.tsx",
+      "sha256": "aad4bbde67085c185a586734f5805ac12707e5d68211453947f6052fa34ab96b"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/right-panel-method-refresh.test.tsx.base.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/runtime-reconnect-refresh.test.tsx",
+      "sha256": "a9e3e41c531acadd9ff8175d23e2f381ccde46c0c003c9b4da316d95379a629f"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/runtime-reconnect-refresh.test.tsx.base.diff",
+      "sha256": "dc306e40f503d0010ec1f987a42aa13fa881fe914eb5cd50d64d9e517c496cdc"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/selected-session-replay-lens.test.tsx",
+      "sha256": "02ea12536311b9dc8b779a98ea43317d18707af9774f2e0fcd3036a4ceb2c837"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/selected-session-replay-lens.test.tsx.base.diff",
+      "sha256": "de3ac6e5c066cf87db1b77d6c6ab4a1a8f5a0d36c7482bfa05feaa957681da62"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/woven-dialogue-route.test.tsx",
+      "sha256": "7ac9a9b8d0e0405ebb83e3037cbeab61add75bd1ac5af025ac47322b11b7544c"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/woven-dialogue-route.test.tsx.base.diff",
+      "sha256": "af82848a70c246ff0be873430889abf689ce0ab7112de72847821fd899632f8c"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+      "sha256": "7e8e1034d8b84a40c3f5f2b18ca199f96e1678dbd87d149656203d368e8067a7"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx.base.diff",
+      "sha256": "cb81430e87e8aaf540f1b5bf8d9f78c8aa46a1e2513cf315eef0d575ba1be436"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+      "sha256": "a0cd828761a13371ab4e9961da32daa20a7b02f3acdc265175e9956a6a0edb56"
+    },
+    {
+      "path": "source/frontend/src/__tests__/components/woven-right-panel.test.tsx.base.diff",
+      "sha256": "f872ebebbe07cd96dde2c3fa43a6ce2326811b18a2390ecb1d7e6059fbe8f216"
+    },
+    {
+      "path": "source/frontend/src/__tests__/fixtures/controlled-v3-runtime.mjs",
+      "sha256": "255e47a2a84b21db6bb9df3e41abfe7996207c5247eff3ba0e47aecf2995e747"
+    },
+    {
+      "path": "source/frontend/src/__tests__/fixtures/controlled-v3-runtime.mjs.base.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source/frontend/src/__tests__/integration/v3-runtime-proxy.integration.test.ts",
+      "sha256": "17111c3de7f1ffb0b38f6a1ab508fcb7bac39f8fb0e2d6b9a96e07a3648c2b30"
+    },
+    {
+      "path": "source/frontend/src/__tests__/integration/v3-runtime-proxy.integration.test.ts.base.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/agent-matrix-cells.test.ts",
+      "sha256": "0494a69a0e41445c198f427f65abe1944d0b2fcff19b359690d9d5037ffb316c"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/agent-matrix-cells.test.ts.base.diff",
+      "sha256": "d76e7f4ec93e80e815391434c9f7a8b10b06671bd32feabf31b646212cce5e75"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/chat-organization.test.ts",
+      "sha256": "7260e158c18955b314eb14163771c8239ac34781fe8bcf53d5750c9fc43c581a"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/chat-organization.test.ts.base.diff",
+      "sha256": "11e08617c34909c0d4deac62758062790c09efc3473b1a8acc942193b08f98a3"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/guarded-session-selection.test.ts",
+      "sha256": "4129f282ea06acd769eb616892885feb7bd3344fa0d8e82fb0cb26c9f29ed8a7"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/guarded-session-selection.test.ts.base.diff",
+      "sha256": "b9156308cd6ab07b373e999f5a1674ec7529e904e8fdae57d8b6b487f13e8d07"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/harness-chat-draft.test.ts",
+      "sha256": "3040247da9cde2c6e1052e73b8f3765e826744807bf089831bba9ef68edd9ef6"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/harness-chat-draft.test.ts.base.diff",
+      "sha256": "cfe0b24d76e0e08541c3fcd88f451f2d876e1904786be26b2ae22df5bc7fcad6"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/method-selection-client.test.ts",
+      "sha256": "2cf9e1564bda4bf893430b82316bd97825aba8c5d374ede5f04ff65bbb1fbb3a"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/method-selection-client.test.ts.base.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/operator-projection.test.ts",
+      "sha256": "2d135bf51d25ad910aa8286f74d935d76579b8a5ae2599803ed2151f41f44dc0"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/operator-projection.test.ts.base.diff",
+      "sha256": "25aa35a1eb8a7584940944a73b33314229c6921d1ca7e159908c62fbc8ae3f6f"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/persona-resolution.test.ts",
+      "sha256": "6c475dbaefc8348b48c36092276548af8cbd598e6da12ce7575b6cdd4b609387"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/persona-resolution.test.ts.base.diff",
+      "sha256": "414b55dbfaeaf5b97c410fad390853b5cc143299a8b87828b54db0e997352d40"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts",
+      "sha256": "3d5f6478492b4603372fd5f32e176942275841daab1380ed61d3e0c6899350b8"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts.base.diff",
+      "sha256": "738bd84bdae4a488af494a6c7e2caefa3f726140f6da9aca088755a749d82774"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/selected-session-replay.test.ts",
+      "sha256": "9411e8ff6a106f15ba1b7f87882cd0d2929b3ea8478808c8ef3f0f4f3ca1cc61"
+    },
+    {
+      "path": "source/frontend/src/__tests__/lib/selected-session-replay.test.ts.base.diff",
+      "sha256": "34d74567261863e9f3c67b20a38c4c8a307289c1e2a2cd9efc67fb68cfaf15c3"
+    },
+    {
+      "path": "source/frontend/src/app/globals.css",
+      "sha256": "0d4377a1e56953535b78bb7154f6cce28155768e76e38a031b87ae6281325af6"
+    },
+    {
+      "path": "source/frontend/src/app/globals.css.base.diff",
+      "sha256": "6295a0a8fa2c843087b8e9272ab71f6b1a43657425989a2c584a1799d39f0c99"
+    },
+    {
+      "path": "source/frontend/src/components/portal/agent-matrix.tsx",
+      "sha256": "06294bda98ae9691e73353f26e57f94f517cd9c9e0e63051e1ecabb0f0218b5e"
+    },
+    {
+      "path": "source/frontend/src/components/portal/agent-matrix.tsx.base.diff",
+      "sha256": "857ffe57af11e01bd9e7a93d27f799e977165c14925f8fd6f3c91791167df864"
+    },
+    {
+      "path": "source/frontend/src/components/shell/account-popover.tsx",
+      "sha256": "ad8aa9ab600ba6bbc4f965df6291bf8db1ce8a74b55921105a8e15129543c9a1"
+    },
+    {
+      "path": "source/frontend/src/components/shell/account-popover.tsx.base.diff",
+      "sha256": "7c80e3ab580894679a0f879e01919c5185b7ea2c81af50f9437d1760521301d9"
+    },
+    {
+      "path": "source/frontend/src/components/shell/chat-panel.tsx",
+      "sha256": "29938aa3cd877567d9620d8c2d56095f8dcf19c5851081243fce8dfddc6fce41"
+    },
+    {
+      "path": "source/frontend/src/components/shell/chat-panel.tsx.base.diff",
+      "sha256": "05a37113dc6cebe5cb8ee87c8ba40f2fed20b633be360ed7bd383f58e64f9bf2"
+    },
+    {
+      "path": "source/frontend/src/components/shell/loop-shell.tsx",
+      "sha256": "93610e2681e3bb6b631efa143a52b3a37461a91a473d17255ce7fa7643c2cbe2"
+    },
+    {
+      "path": "source/frontend/src/components/shell/loop-shell.tsx.base.diff",
+      "sha256": "88731321dc362387a91eb47e091950301211df999c432d0faace3e0566b81b81"
+    },
+    {
+      "path": "source/frontend/src/components/shell/persona-picker.tsx",
+      "sha256": "b3223a4c3f2cc1171d950f3e150615784e68b6633741353273b1ec9100eca7d8"
+    },
+    {
+      "path": "source/frontend/src/components/shell/persona-picker.tsx.base.diff",
+      "sha256": "64e9013ef7b35966f9730ed1798badd8668ecfbe2b00934e8b4ed64b33243429"
+    },
+    {
+      "path": "source/frontend/src/components/shell/portal-loop-shell.tsx",
+      "sha256": "a9be515bfe029bce30a5a81b44d7277acc23f9a38ba0b1b56cb1063c24e7fee2"
+    },
+    {
+      "path": "source/frontend/src/components/shell/portal-loop-shell.tsx.base.diff",
+      "sha256": "fba63e19ebc269ab0dadb795bf71c26706777b645f14cefd2b2a5683f7f9e90b"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/agents-projection.tsx",
+      "sha256": "83cd2fa9b1dade4ce2f250cda69902ea205928733b7dfe992e63b9337a9f0634"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/agents-projection.tsx.base.diff",
+      "sha256": "c64039856d78291b96fae60c6d6d1597a208f77d04e81cc81758a5741776f3d7"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/method-library-view.tsx",
+      "sha256": "e1d4ec4b5f910c2d5613570b440d44976bf2eec88af1878bf269551707fdbc31"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/method-library-view.tsx.base.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "e9cec68b067d7574ffcf06f7dbe3ec86a85f5f7efde5c8be52b3ba770b306017"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/navigator.tsx.base.diff",
+      "sha256": "bc959bdabd2c256b8fef964a8283172e4f952939dc23dcc1c3007f2b721ee04c"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "1f7ac32ac176c5ff78f00d4fb365294a3852789f3c8ac4987c878bbf78e55e1d"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/right-panel.tsx.base.diff",
+      "sha256": "b8f316a0303e1497e73bf9827be96020b9e50f20260f15cfa2415abf26fef2f2"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+      "sha256": "1cac29ce24865b3380d4c01b1f686948d9f5f30638ab71c710582c1569e15833"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx.base.diff",
+      "sha256": "8c220296af6f35728193fd19d0babcc28ef973a2a4072e73265d0928f9ef076a"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx",
+      "sha256": "7a8ec779dfb043c3e8bacf6369f1fbe1362f5b078a78dddff3750438727dd57e"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx.base.diff",
+      "sha256": "dbe82059e13cbc973cce63fc128ab249158430a78f8037bc8751f874ae59dc2a"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "fab483ab1266ff5533311cd5fd3dfe4c9eea631565a7332b0412a9674db28033"
+    },
+    {
+      "path": "source/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx.base.diff",
+      "sha256": "398043b7f12573ad698f8d77791a8d581775b99c33259c0123ffc25bb09a8f91"
+    },
+    {
+      "path": "source/frontend/src/lib/harness/chat-draft.ts",
+      "sha256": "f8ec5e7d44e93223c2ec4e3be21d5e4d79fb802ac49a15ec415bc7d2dbcc963c"
+    },
+    {
+      "path": "source/frontend/src/lib/harness/chat-draft.ts.base.diff",
+      "sha256": "1fdc1b7fe64a3212df28fc1f792b5e1957efac58c25c9fda0d05e0e99f697422"
+    },
+    {
+      "path": "source/frontend/src/lib/harness/client.ts",
+      "sha256": "b4f5d5f88e1c3771920c20e90f95dde47af12b1ec3376b1c953a8e4838504344"
+    },
+    {
+      "path": "source/frontend/src/lib/harness/client.ts.base.diff",
+      "sha256": "5a22e6d53b60366bcd52209702fd5c1d4103ced69d9add64eaa04c810120d744"
+    },
+    {
+      "path": "source/frontend/src/lib/harness/method-selection-client.ts",
+      "sha256": "3a3e4e34a60171f7261d26384aff4530df3c42550c1c288fd01895146b4f1db1"
+    },
+    {
+      "path": "source/frontend/src/lib/harness/method-selection-client.ts.base.diff",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source/frontend/src/lib/portal/agent-matrix-cells.ts",
+      "sha256": "30a796dca3bdd721744b74fa192f8fa8b6036a50ac7bbc839b1232601141a638"
+    },
+    {
+      "path": "source/frontend/src/lib/portal/agent-matrix-cells.ts.base.diff",
+      "sha256": "fcfd039430f7ac1efefb9891cd380615df6184105b8f720ea803fd7840aa3865"
+    },
+    {
+      "path": "source/frontend/src/lib/runtime-client/daemon-harness-port.ts",
+      "sha256": "ef9611819801c240a37c13d8878a119ee36fa7a90081ed33ce3070924da8af62"
+    },
+    {
+      "path": "source/frontend/src/lib/runtime-client/daemon-harness-port.ts.base.diff",
+      "sha256": "e8f43e0b5805548b547058b44f912d1f23d1129dd30d0000eec5644de4bf6267"
+    },
+    {
+      "path": "source/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts",
+      "sha256": "317f19e0d82b9daa0af98933ad2167ebf60d5ce33ef2742f54442938755b51e4"
+    },
+    {
+      "path": "source/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts.base.diff",
+      "sha256": "dd96a55d367fd663c55d2767f31fd06516a83fb16ac03a7af80f763943e3e323"
+    },
+    {
+      "path": "source/frontend/src/lib/shell/persona-resolution.ts",
+      "sha256": "48eae60bc10e13133a19c7107ef083d32f5dd5ae4d1e79773700b3c796bcdad7"
+    },
+    {
+      "path": "source/frontend/src/lib/shell/persona-resolution.ts.base.diff",
+      "sha256": "67ef3217aef8b76af5ee5e02a013a9b5e41614dc94cbed2f352a65abb1b0991d"
+    },
+    {
+      "path": "source/frontend/src/lib/woven-dialogue/contracts.ts",
+      "sha256": "fd9143541893817eff7c876a58ed825ef7848234801dc2be7d49a9edb14e247f"
+    },
+    {
+      "path": "source/frontend/src/lib/woven-dialogue/contracts.ts.base.diff",
+      "sha256": "aa9432c8ed8f6afc0897f0624a05acfa7737a6e9da4169258d6e53cc06b11b7d"
+    },
+    {
+      "path": "source/frontend/src/lib/woven-dialogue/operator-projection.ts",
+      "sha256": "4cd9c4fa46e88d90fa3ae8f2467262846bbb68fd2a2555ba2d8d929897b6c2e8"
+    },
+    {
+      "path": "source/frontend/src/lib/woven-dialogue/operator-projection.ts.base.diff",
+      "sha256": "105105b6c33ca159fbc00865a1c47736700c431c4371457b1b7ecfcfb39a7db9"
+    },
+    {
+      "path": "source/frontend/src/lib/woven-dialogue/selected-session-replay.ts",
+      "sha256": "23c73b6c9d3d8f972f835fb88f15d579b96400a8c475d74ce6322149cde5f697"
+    },
+    {
+      "path": "source/frontend/src/lib/woven-dialogue/selected-session-replay.ts.base.diff",
+      "sha256": "5e67a78d427ce3184fefa39ce6fc6dbc184c7d240b12aa445318803c01e0c8e5"
+    },
+    {
+      "path": "vitest.config.mjs",
+      "sha256": "e8fe65e249db2246512ab961f2259ad17e937972b7f2f52674bd16b02e1a9c06"
+    }
+  ]
+}

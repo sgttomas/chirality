@@ -2,9 +2,19 @@
 
 ## Method
 
-### Gate 1 — Change Intake and Validation
+### Checkpoint group 1 preparation, part A — change intake and validation
 
-**Human provides:** Description of the decomposition change.
+**Starting input:** A human-requested change or an agent-identified,
+evidence-backed amendment proposal. An agent proposal changes no canonical
+truth before the grouped human decisions.
+
+For each accepted checkpoint, write a new immutable decision snapshot with
+`DECISION.md`, `ACCEPTED_MANIFEST.csv`, and `Handoff_State.md`. Group-1 and
+group-2 snapshots live under `_ScopeChange/checkpoint_snapshots/` and update
+their amendment-qualified authorized pointers only after completion. The final
+audited poststate becomes the immutable `SCA-*` snapshot and `_LATEST.md` only
+after checkpoint group 3 acceptance. Each later stage resolves and consumes the
+preceding accepted snapshot; it does not rely on the mutable preview alone.
 
 **Agent does:**
 
@@ -42,17 +52,13 @@
    - `PROJECT/SOFTWARE`: dispatch `TASK (workflow: audit-decomp)` (scoped to affected packages/deliverables; pass `DECOMP_VARIANT`) and store the `coverage_summary.json` path.
    - `DOMAIN`: run the deterministic coverage serializer against the current frozen decomposition state:
      `python3 tools/reporting/synthesize_domain_coverage_json.py --decomposition-root {CONTEXT_ROOT}/_Decomposition --output-json {snapshot}/Pre_Change_Coverage.json --missing-manifest-state NOT_FORMALIZED`
-6) Present to the human:
-   - Parsed action list (structured table)
-   - Validation results (errors / warnings / unknowns)
-   - Pre-change coverage / telemetry summary
-   - Ask: “Is this what you intend?”
-
-**Human confirms** or corrects. If the human corrects, re-parse and re-validate.
+6) Carry the parsed action list, validation results, errors, warnings, unknowns,
+and pre-change coverage into the impact assessment. Do not ask for a separate
+intake decision.
 
 ---
 
-### Gate 2 — Impact Assessment
+### Checkpoint group 1 preparation, part B — impact assessment
 
 **Agent does:**
 
@@ -79,8 +85,8 @@ Action-specific tracing rules:
 **`ADD`**
 - Identify required new rows/sections and any parent-binding obligations.
 - If the addition creates a new parent partition / parent entity, identify the expected child-closure set and any companion rows that must be added in the same amendment.
-- `PROJECT/SOFTWARE`: inspect sibling deliverables for likely dependency patterns; note that TASK (workflow: preparation) + dependency extraction will be needed.
-- `DOMAIN`: identify whether the addition creates new Category / Knowledge Type / Knowledge Subject / Handbook Unit / Vocabulary obligations, including ledger mappings, subject-cardinality obligations, and telemetry deltas. New or modified Categories and Knowledge Types incur a retrieval-driven scope-ratification obligation at Gate 5 (see Gate 5 DOMAIN-specific checks).
+- `PROJECT/SOFTWARE`: inspect sibling deliverables for likely dependency patterns; note that TASK with the effective source-qualified `preparation` skill plus dependency extraction will be needed.
+- `DOMAIN`: identify whether the addition creates new Category / Knowledge Type / Knowledge Subject / Handbook Unit / Vocabulary obligations, including ledger mappings, subject-cardinality obligations, and telemetry deltas. New or modified Categories and Knowledge Types incur a retrieval-driven scope-ratification obligation during poststate validation.
 
 **`REMOVE`**
 - Trace every reference to the entity being retired.
@@ -125,13 +131,20 @@ Produce `Impact_Assessment.md` with:
 - Active snapshot / handoff-state impact notes
 - Recommended downstream reruns
 
-Present the impact assessment to the human. Ask: “Do you accept this impact assessment?”
+**Checkpoint group 1 — proposed change and impact:** Present the parsed change,
+validation results, pre-change baseline, Impact Assessment, affected identities,
+downstream consumers, and unresolved risks as one reviewable package. The human
+confirms or modifies the proposed change and its impact.
 
-**Human confirms** or modifies the scope of change.
+After acceptance, finalize the group-1 decision snapshot and pointer. Group-2
+preparation must consume that accepted snapshot.
 
 ---
 
-### Gate 3 — Amendment Approval
+### Checkpoint group 2 preparation, part A — exact amendment
+
+Resolve and consume the accepted group-1 decision snapshot before drafting the
+exact amendment.
 
 **Agent does:**
 
@@ -173,7 +186,7 @@ Draft the exact text changes to the decomposition document using **semantic sect
 
 8) **Coverage / Telemetry / Open Issues**
    - Update the relevant summary block and open issue list
-   - `DOMAIN`: preview the recomputed `UnitCount`, `CategoryCount`, `KnowledgeTypeCount`, `SubjectCount`, `UnassignedINUnits`, `UnitsWithoutKnowledgeTypeMapping`, `OpenIssuesByType`, and `Revision`; Gate 5 must verify the final amended annexes with `validate_domain_decomposition_integrity.py`
+   - `DOMAIN`: preview the recomputed `UnitCount`, `CategoryCount`, `KnowledgeTypeCount`, `SubjectCount`, `UnassignedINUnits`, `UnitsWithoutKnowledgeTypeMapping`, `OpenIssuesByType`, and `Revision`; poststate preparation must verify the final amended annexes with `validate_domain_decomposition_integrity.py`
    - `PROJECT/SOFTWARE`: incorporate any audit-facing notes required by the change
 
 9) **Derivative package / active snapshot state** (`DOMAIN`, if affected)
@@ -181,17 +194,15 @@ Draft the exact text changes to the decomposition document using **semantic sect
      - `DIRECT_EDIT`
      - `RECOMPUTE`
      - `NO_CHANGE`
-   - Show the expected active snapshot state after Gate 5, including the required handoff-state values
+   - Show the expected active snapshot state after execution, including the required handoff-state values
 
-Present the full amendment as a diff-style preview: sections with before/after or additions/retirements clearly marked.
-
-Ask: “Do you approve these amendments to the decomposition document?”
-
-**Human confirms.** This is the formal amendment approval.
+Prepare the full amendment as a diff-style preview: sections with before/after
+or additions/retirements clearly marked. Carry it into the propagation-plan
+package; do not ask for a separate amendment decision.
 
 ---
 
-### Gate 4 — Propagation Plan Approval
+### Checkpoint group 2 preparation, part B — propagation plan
 
 **Agent does:**
 
@@ -199,7 +210,12 @@ Based on the approved amendment, produce a propagation plan **limited to the app
 
 1) **For `ADD` actions**
    - `PROJECT/SOFTWARE`:
-     - Draft an INIT-TASK brief for TASK (workflow: preparation) (via WORKING_ITEMS (workflow: project-setup)) to create new folder structure + metadata files
+     - Discover the effective `preparation` skill descriptor and draft a
+       bounded preparation brief through WORKING_ITEMS with project-setup. Preserve the
+       descriptor in the ordered `methods` field as
+       `[{kind: "skill", name: "preparation", source: <descriptor.source>, sourceRootId: <descriptor.sourceRootId>}]`;
+       do not hardcode an origin. The bounded task creates the new folder
+       structure and metadata files.
      - Expected files: `_CONTEXT.md`, `_STATUS.md` (`OPEN`), `_REFERENCES.md`, `_DEPENDENCIES.md`
      - Any propagation step or dispatched workflow that reads `_STATUS.md` must also read sibling `_MEMORY.md` / `MEMORY.md` when present as non-authoritative operational context.
    - `DOMAIN`:
@@ -238,7 +254,7 @@ Based on the approved amendment, produce a propagation plan **limited to the app
    - `PROJECT/SOFTWARE`: dependency extraction, estimate snapshot, scheduling, any scoped audits
    - `DOMAIN`: downstream knowledge-generation workflows, terminology QA / grep, and any coverage audit or regeneration workflow that consumes the decomposition
    - For `DOMAIN` amendments that affect KTY-local content, produce `KTY_Remediation_Manifest.csv` rows in the SCA snapshot plan. These rows are per-SCA action/evidence ledger rows, not a cumulative content-disposition surface.
-   - Manifest actions drive Gate 5 dispatch:
+   - Manifest actions drive post-acceptance dispatch:
      - `ARCHIVE_AND_STUB` -> `TASK + kty-content-remediate` with `MODE: RETIRE_KTY`
      - `REGENERATE_CONTENT` -> `TASK + domain-documents` with `AUTHORITY_MODE: SCA_DRIVEN`
      - `VERIFY_ONLY` -> `TASK + kty-content-remediate` with `MODE: VERIFY_KTY`
@@ -254,10 +270,10 @@ Based on the approved amendment, produce a propagation plan **limited to the app
 
 8) **Closure validation lane**
    - Separate the plan into:
-     - direct authoritative package writes executed at Gate 5,
+     - direct authoritative package writes executed after checkpoint group 2,
      - downstream reruns not executed by WORKING_ITEMS,
      - closure validation steps required before the root can claim a later phase
-   - Do not describe downstream reruns as already satisfied by the Gate 5 write pass
+   - Do not describe downstream reruns as already satisfied by the authoritative write pass
 
 Produce:
 - `Propagation_Plan.md`
@@ -267,62 +283,99 @@ Produce:
 AmendmentID,ActionSeq,ActionType,EntityType,EntityID,Description,AffectedFiles,DownstreamReruns
 ```
 
-Present the propagation plan to the human. Ask: “Do you approve this propagation plan?”
+**Checkpoint group 2 — exact amendment and propagation plan:** Present the
+diff-style exact amendment, `Propagation_Plan.md`, `Amendment_Actions.csv`,
+write boundary, child-closure set, downstream ownership, and validation plan as
+one reviewable package. The human accepts or revises the amendment and its
+propagation together. This is the authority for the execution stage.
 
-**Human confirms.**
+After acceptance, finalize the group-2 decision snapshot and pointer. The
+execution stage must consume that accepted snapshot.
 
 ---
 
-### Gate 5 — Execute and Validate
+### Checkpoint group 3 preparation — execute, independently audit, and prepare the poststate
+
+Resolve and consume the accepted group-2 decision snapshot before applying the
+amendment and bind its path as `ACCEPTED_GROUP2_DECISION_SNAPSHOT`. Define one
+`CANDIDATE_SNAPSHOT` path under `_ScopeChange/` for this poststate attempt. All
+preparation, remediation, validation, review, and handoff-state evidence in
+this checkpoint group uses that same candidate path. Any previously accepted
+SCA remains current until checkpoint group 3 acceptance. Select exactly one
+candidate pointer posture:
+
+- `ACCEPTED_PREDECESSOR`: verify `_LATEST.md` names an accepted SCA snapshot and
+  bind that path as `ACCEPTED_PREDECESSOR_SNAPSHOT`; keep the pointer unchanged.
+- `FIRST_AMENDMENT`: verify `_LATEST.md` is absent and ground the candidate in
+  the accepted decomposition plus `ACCEPTED_GROUP2_DECISION_SNAPSHOT`. Do not
+  invent a predecessor or create `_LATEST.md` during preparation.
+
+Before applying or dispatching work, verify that
+`ACCEPTED_GROUP2_DECISION_SNAPSHOT` actually contains the accepted exact
+amendment, `Amendment_Actions.csv`, `Propagation_Plan.md`, and every required
+supersession input or a hash-bound reference to it. A pointer to an incomplete
+decision record is not sufficient child authority; repair the group-2 snapshot
+under its owning checkpoint rules before proceeding.
 
 **Agent does:**
 
 1) **Apply decomposition amendments**
-   - Apply decomposition document amendments per the Gate 3 approved text.
+   - Apply decomposition document amendments per the checkpoint-group-2 accepted text.
    - Record each edit action.
 
-2) **Apply approved propagation writes**
+2) **Apply accepted propagation writes**
    - `PROJECT/SOFTWARE`:
      - `REMOVE`: update `_STATUS.md`
      - `MODIFY/RECLASSIFY`: update `_CONTEXT.md`
-     - `ADD`: hand off to WORKING_ITEMS (workflow: project-setup) / TASK (workflow: preparation) and record the handoff
+     - `ADD`: hand off through WORKING_ITEMS with project-setup to the eligible
+       actor named in the accepted propagation plan, using the exact
+       source-qualified `preparation` skill descriptor, and record the handoff;
+       the actor may be WORKING_ITEMS directly or a bounded TASK
      - `MERGE/SPLIT`: combine the above
      - Before any `_STATUS.md` read or update, read sibling `_MEMORY.md` / `MEMORY.md` when present as non-authoritative operational context only.
    - `DOMAIN`:
      - Update the decomposition document and all affected decomposition annex / derivative surfaces under `_Decomposition/` (Domain Ledger, Knowledge Type Register, Knowledge Subject Register, Vocabulary Map, Coverage & Telemetry, Open Issues Register, mapping tables, validation tables, telemetry derivatives, etc.)
-     - Every derivative surface classified as `DIRECT_EDIT` or `RECOMPUTE` in Gate 4 must be handled explicitly; contradictory or missing active derivatives are blockers, not advisory notes
-     - Write the amendment snapshot to `_ScopeChange/` and update `_LATEST.md`
-     - Do not directly write to KTY-local folders, `_Aggregation`, hypergraph, or publication outputs. KTY-local content remediation and approved metadata alignment are handled only through the Gate 5 dispatch lanes below; other derivative packages are flagged as downstream reruns.
+     - Every derivative surface classified as `DIRECT_EDIT` or `RECOMPUTE` in checkpoint group 2 must be handled explicitly; contradictory or missing active derivatives are blockers, not advisory notes
+     - Write amendment artifacts to `CANDIDATE_SNAPSHOT`; do not update
+       `_LATEST.md` during preparation
+     - Do not directly write to KTY-local folders, `_Aggregation`, hypergraph, or publication outputs. KTY-local content remediation and accepted metadata alignment are handled only through the dispatch lanes below; other derivative packages are flagged as downstream reruns.
 
-3) **DOMAIN KTY remediation orchestration** (only when `DECOMP_VARIANT = DOMAIN` and Gate 4 produced manifest rows)
-   - Create or update `KTY_Remediation_Manifest.csv` in the active SCA snapshot as the per-SCA action/evidence ledger.
+3) **DOMAIN KTY remediation orchestration** (only when `DECOMP_VARIANT = DOMAIN` and checkpoint group 2 produced manifest rows)
+   - Create or update `KTY_Remediation_Manifest.csv` in `CANDIDATE_SNAPSHOT` as the per-SCA action/evidence ledger.
+   - Every child remediation brief names
+     `SCA_SNAPSHOT_PATH=ACCEPTED_GROUP2_DECISION_SNAPSHOT` as its accepted
+     amendment, action, and propagation authority. Send review, disposition,
+     regeneration, and validation evidence to the authorized locations under
+     `CANDIDATE_SNAPSHOT`. Do not supply the unaccepted candidate poststate as
+     factual or overwrite authority. Supply accepted supersession inputs
+     separately and record their paths and hashes in the candidate evidence.
    - For each manifest row:
-     - `ARCHIVE_AND_STUB`: dispatch `TASK + kty-content-remediate` with `MODE: RETIRE_KTY`.
-     - `REGENERATE_CONTENT`: dispatch `TASK + domain-documents` with `AUTHORITY_MODE: SCA_DRIVEN`, `SCA_SNAPSHOT_PATH`, `SUPERSESSION_MAP_PATH`, and `ALLOW_OVERWRITE_OVERRIDE: SCA_AUTHORIZED` when overwrite of active KTY files is required.
-     - `VERIFY_ONLY`: dispatch `TASK + kty-content-remediate` with `MODE: VERIFY_KTY`.
+     - `ARCHIVE_AND_STUB`: dispatch `TASK + kty-content-remediate` with `MODE: RETIRE_KTY` and `SCA_SNAPSHOT_PATH=ACCEPTED_GROUP2_DECISION_SNAPSHOT`.
+     - `REGENERATE_CONTENT`: dispatch `TASK + domain-documents` with `AUTHORITY_MODE: SCA_DRIVEN`, `SCA_SNAPSHOT_PATH=ACCEPTED_GROUP2_DECISION_SNAPSHOT`, the accepted and hash-recorded `SUPERSESSION_MAP_PATH`, and `ALLOW_OVERWRITE_OVERRIDE: SCA_AUTHORIZED` when overwrite of active KTY files is required.
+     - `VERIFY_ONLY`: dispatch `TASK + kty-content-remediate` with `MODE: VERIFY_KTY` and `SCA_SNAPSHOT_PATH=ACCEPTED_GROUP2_DECISION_SNAPSHOT`.
    - Every WORKING_ITEMS dispatch brief for a workflow that reads `_STATUS.md` must reinforce the paired-read rule: read sibling `_MEMORY.md` / `MEMORY.md` when present, treat it as non-authoritative operational context only, and record any material caveat in evidence rather than using it as authority.
    - `kty-content-remediate` emits evidence and never updates the manifest directly. `domain-documents` emits regeneration evidence and remains the only writer of active `Scoping.md` / `KA-*.md` factual content.
    - WORKING_ITEMS collects task evidence, updates manifest rows, and records `EntityType`, `EntityID`, `AffectedSubjects`, `AffectedHBK`, `CanonicalRootName`, `FacilityID`, `CONTENT_DISPOSITION_STATE`, `FACTUAL_USE_GATE`, `AUTHORITY_BASIS`, `SOURCE_ACTION_REF`, `ArchivePath`, `LAST_VERIFIED_AT`, evidence paths, and blocker notes.
    - Run the deterministic manifest validator when the tool is available:
-     `python3 tools/validation/validate_kty_remediation_manifest.py --manifest {snapshot}/KTY_Remediation_Manifest.csv --amendment-actions {snapshot}/Amendment_Actions.csv`
+     `python3 tools/validation/validate_kty_remediation_manifest.py --manifest {CANDIDATE_SNAPSHOT}/KTY_Remediation_Manifest.csv --amendment-actions {CANDIDATE_SNAPSHOT}/Amendment_Actions.csv`
    - Any blocking validator finding prevents `ContentRemediationState = COMPLETE` and must be reflected in `RUN_SUMMARY.md` and `Handoff_State.md`.
    - `.Archive/` scanner exclusion is mandatory: archived content must not appear in downstream allowlists, section maps, publication inputs, regeneration inputs, or factual current-content scans.
 
-4) **DOMAIN KTY metadata alignment orchestration** (only when `DECOMP_VARIANT = DOMAIN` and Gate 4 approved metadata alignment dispatch)
+4) **DOMAIN KTY metadata alignment orchestration** (only when `DECOMP_VARIANT = DOMAIN` and checkpoint group 2 accepted metadata alignment dispatch)
    - Dispatch `TASK + kty-metadata-align` for each approved KTY metadata target.
    - Use `REPORT_ONLY` when WORKING_ITEMS needs drift evidence but does not own the metadata transition.
-   - Use `ALIGN_METADATA` only when Gate 4 approved exact KTY metadata write targets in `AllowedWriteTargets`.
+   - Use `ALIGN_METADATA` only when checkpoint group 2 accepted exact KTY metadata write targets in `AllowedWriteTargets`.
    - WORKING_ITEMS collects metadata-alignment evidence and updates `MetadataAlignmentState`; it does not edit KTY-local `_CONTEXT.md`, `_STATUS.md`, or `_REFERENCES.md` directly.
    - Any `_STATUS.md` read in the metadata alignment task must be paired with sibling `_MEMORY.md` / `MEMORY.md` when present as non-authoritative operational context only.
 
-5) **Post-change validation**
-   - Generate the cumulative supersession map through the deterministic accumulator whenever any prior accepted `Supersession_Map.csv` or current `Supersession_Delta.csv` must contribute to the active snapshot:
-     `python3 tools/coordination/accumulate_supersession_map.py --prior-map {prior_snapshot}/Supersession_Map.csv --delta {snapshot}/Supersession_Delta.csv --output-map {snapshot}/Supersession_Map.csv`
+5) **Post-change validation and independent review**
+   - Generate the cumulative supersession map through the deterministic accumulator whenever any prior accepted `Supersession_Map.csv` or current `Supersession_Delta.csv` must contribute to the candidate snapshot:
+     `python3 tools/coordination/accumulate_supersession_map.py --prior-map {prior_snapshot}/Supersession_Map.csv --delta {CANDIDATE_SNAPSHOT}/Supersession_Delta.csv --output-map {CANDIDATE_SNAPSHOT}/Supersession_Map.csv`
    - If the current SCA introduces no new supersession delta, omit `--delta` and carry forward accepted prior map rows through the same tool. Do not hand-merge cumulative supersession CSV rows.
-   - If no prior map and no current delta exist, run the same tool with `--allow-empty` to create the header-only active map.
+   - If no prior map and no current delta exist, run the same tool with `--allow-empty` to create the header-only candidate map.
    - Capture the post-change baseline using the variant's authoritative coverage source:
      - `PROJECT/SOFTWARE`: dispatch `TASK (workflow: audit-decomp)` and compare pre/post coverage outputs
-     - `DOMAIN`: run `python3 tools/reporting/synthesize_domain_coverage_json.py --decomposition-root {CONTEXT_ROOT}/_Decomposition --scope-change-snapshot {snapshot} --output-json {snapshot}/Post_Change_Coverage.json`
+     - `DOMAIN`: run `python3 tools/reporting/synthesize_domain_coverage_json.py --decomposition-root {CONTEXT_ROOT}/_Decomposition --scope-change-snapshot {CANDIDATE_SNAPSHOT} --output-json {CANDIDATE_SNAPSHOT}/Post_Change_Coverage.json`
    - Compare pre-change vs post-change state:
      - Confirm intended amendments occurred
      - Confirm no unintended coverage regression (unless an intentional `REMOVE`)
@@ -332,15 +385,26 @@ Present the propagation plan to the human. Ask: “Do you approve this propagati
        - no package change left deliverables or Scope Ledger rows parentless
        - when the originating decomposition defines package-discipline isolation, artifact-kind deliverable granularity, or equivalent design-partition rules, the changed rows still satisfy those rules and the check is recorded explicitly in the run summary
      - `DOMAIN` specific:
-       - run `python3 tools/validation/validate_domain_decomposition_integrity.py --decomposition-root {CONTEXT_ROOT}/_Decomposition --scope-change-snapshot {snapshot} --output-report {snapshot}/Domain_Integrity_Report.md --output-findings {snapshot}/Domain_Integrity_Findings.csv`
-       - any `CRITICAL` or `MAJOR` finding blocks closure until resolved or explicitly accepted as a non-closure state
-       - the validator covers full active decomposition package checks, including `UnassignedINUnits`, KTY/category and subject/KTY cardinality, coverage telemetry reconciliation, `_LATEST.md` parity, active snapshot artifact completeness, and KTY remediation rollup consistency
-       - any `ADD` or `MODIFY` of a `CategoryID` or `KnowledgeTypeID` (including the successor entities of `MERGE`, `SPLIT`, or `RECLASSIFY` actions) MUST pass retrieval-driven scope ratification with a `CLUSTER_COHERENT` verdict against the current V2 source index (see `workflows/domain-decomp/WORKFLOW.md` Phase 3 / Phase 4 ratification subroutines). The ratification register rows are appended to the SCA snapshot. If the source database or retrieval sidecars are stale relative to post-amendment source/audit/decomposition state, rebuild them with `tools/source_catalog/build_source_database.py` and `tools/retrieval/build_source_index.py` before ratification opens. A blocking verdict (`SCOPE_TOO_BROAD`, `SCOPE_TOO_NARROW`, or `SCOPE_REFINEMENT_NEEDED`) blocks Gate 5 closure until resolved.
+       - in `ACCEPTED_PREDECESSOR` posture, run `python3 tools/validation/validate_domain_decomposition_integrity.py --decomposition-root {CONTEXT_ROOT}/_Decomposition --scope-change-snapshot {CANDIDATE_SNAPSHOT} --scope-change-snapshot-mode candidate --expected-active-snapshot {ACCEPTED_PREDECESSOR_SNAPSHOT} --output-report {CANDIDATE_SNAPSHOT}/Domain_Integrity_Report.md --output-findings {CANDIDATE_SNAPSHOT}/Domain_Integrity_Findings.csv`
+       - in `FIRST_AMENDMENT` posture, run the same candidate-mode command with
+         `--expected-no-active-snapshot` instead of
+         `--expected-active-snapshot`; `_LATEST.md` must remain absent
+       - the resulting pointer check is evidence that accepted current state was
+         preserved, not authority to change the pointer. Any other
+         `CRITICAL` or `MAJOR` finding blocks closure until resolved or
+         explicitly accepted as a non-closure state
+       - the validator covers full decomposition package checks, including `UnassignedINUnits`, KTY/category and subject/KTY cardinality, coverage telemetry reconciliation, candidate artifact completeness, KTY remediation rollup consistency, and the candidate/current pointer distinction
+       - any `ADD` or `MODIFY` of a `CategoryID` or `KnowledgeTypeID` (including the successor entities of `MERGE`, `SPLIT`, or `RECLASSIFY` actions) MUST pass retrieval-driven scope ratification with a `CLUSTER_COHERENT` verdict against the current V2 source index (see the Category and Knowledge Type checks in `workflows/domain-decomp/resources/method.md`). The ratification register rows are appended to `CANDIDATE_SNAPSHOT`. If the source database or retrieval sidecars are stale relative to post-amendment source/audit/decomposition state, rebuild them with `tools/source_catalog/build_source_database.py` and `tools/retrieval/build_source_index.py` before ratification opens. A blocking verdict (`SCOPE_TOO_BROAD`, `SCOPE_TOO_NARROW`, or `SCOPE_REFINEMENT_NEEDED`) blocks poststate acceptance until resolved.
        - terminology changes are reflected consistently in changed sections
        - manifest evidence exists for every `ARCHIVE_AND_STUB`, `REGENERATE_CONTENT`, and `VERIFY_ONLY` row
        - no row with `FACTUAL_USE_GATE = BLOCK_FACTUAL_USE` is presented as ready for factual downstream use
        - `.Archive/` paths are excluded from downstream scanner and publication input surfaces where present
        - open issues reflect every unresolved best-effort gap
+
+   - Dispatch a separate review instance that did not author or apply the
+     candidate. It audits the complete poststate against checkpoint groups 1
+     and 2, the originating decomposition invariants, write containment,
+     pre/post coverage, derivative disposition, and closure claims.
 
 6) **Produce `RUN_SUMMARY.md`**
    - Amendment ID and description
@@ -355,32 +419,58 @@ Present the propagation plan to the human. Ask: “Do you approve this propagati
      - `MetadataAlignmentState`
      - `AuditState`
      - `ReadyForNextPhase`
-   - Handoff to WORKING_ITEMS (workflow: change): modified files + recommended commit message
+   - Repository-change evidence for the responsible current role: modified files
+     plus a recommended commit message; the receiver uses applicable project
+     change conventions or skill when present
 
 7) **Produce `Handoff_State.md`**
-   - Accepted amendment snapshot path
+   - Candidate amendment snapshot path and pointer posture; accepted predecessor
+     snapshot path when posture is `ACCEPTED_PREDECESSOR`, otherwise the
+     accepted decomposition and group-2 bases for `FIRST_AMENDMENT`
    - Authoritative truth changed in this run
    - Derivative-package state table (`package`, `owner`, `status`, `evidence`, `next required action`)
    - Active derivative-surface state table (`surface`, `classification`, `status`, `evidence`)
    - KTY remediation manifest summary (`pending`, `deferred`, `blocked`, `complete`, evidence coverage)
    - KTY metadata-alignment summary when applicable (`not required`, `report-only`, `aligned`, `blocked`, evidence coverage)
-   - Active snapshot state (`snapshot`, `artifact completeness`, `_LATEST.md` parity)
+   - Candidate/current snapshot state (`candidate`, pointer posture, accepted
+     predecessor or first-amendment basis, artifact completeness, and expected
+     pre-acceptance pointer state)
    - Closure verdict: `CLOSED_FOR_SCOPE_CHANGE_ONLY` or `OPEN_PENDING_DERIVATIVE_CLOSURE`
    - Remaining blockers / human decisions
    - Next owning workflow(s)
 
-8) Write all artifacts to snapshot folder:
+8) Write all artifacts to a candidate snapshot folder that is not yet active:
    - `{SCOPE_CHANGE_ROOT}/SCA-{NNN}_{YYYY-MM-DD}_{HHMM}/`
 
-9) Update `_LATEST.md` pointer.
+9) Do not update `_LATEST.md` before checkpoint group 3 acceptance.
 
 Present to the human:
 - Summary of what changed
 - Post-change validation result
 - Recommended downstream reruns
 - Handoff-state / closure verdict
-- Handoff to WORKING_ITEMS (workflow: change) for git staging
+- Repository-change evidence and exact scope for the responsible current role,
+  which uses the applicable project change conventions or skill when present
 
-**Human confirms** the post-change state and decides which downstream reruns to trigger.
+**Checkpoint group 3 — audited poststate acceptance:** The human accepts or
+returns the audited poststate, its closure verdict, and its explicitly open
+downstream obligations. Output and snapshot writing around the accepted state
+does not create an additional checkpoint.
+
+After acceptance, finalize the candidate as the immutable group-3 amendment
+snapshot, record the accepted decision, update `_LATEST.md`, and rerun the
+validator against that now-active snapshot in its default active mode (or with
+`--scope-change-snapshot-mode active`). Write this validation to a new
+append-only postacceptance record under
+`{SCOPE_CHANGE_ROOT}/_PostAcceptanceValidation/{AMENDMENT_ID}_{UTC}/`; do not
+overwrite the candidate `Domain_Integrity_Report.md` or
+`Domain_Integrity_Findings.csv` bytes that were reviewed. Downstream
+handoff consumes that accepted snapshot. A returned candidate remains
+non-current evidence and cannot become the active pointer target.
+
+If accepted material basis changes after either earlier checkpoint, identify
+the affected decisions and reopen only those parts of checkpoint group 1 or 2.
+Refresh dependent pre/post evidence and the independent audit before presenting
+checkpoint group 3; preserve unaffected decisions and stable identity.
 
 ---

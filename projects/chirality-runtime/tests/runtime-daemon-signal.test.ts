@@ -154,6 +154,7 @@ describe("runtime daemon process signal shutdown", () => {
           "src",
           "index.ts"
         )}`,
+        `--alias:yaml=${join(nodeModules, "yaml", "browser", "index.js")}`,
         `--outfile=${bundle}`
       ],
       { cwd: runtimeRoot, encoding: "utf8" }

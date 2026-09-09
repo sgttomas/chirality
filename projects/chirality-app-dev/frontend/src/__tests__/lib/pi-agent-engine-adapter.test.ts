@@ -94,6 +94,7 @@ class FakePiSession implements PiSessionLike {
   private listener?: (event: { type: string; [key: string]: unknown }) => void;
   readonly abort = vi.fn(async () => undefined);
   readonly dispose = vi.fn();
+  readonly prompts: string[] = [];
 
   constructor(
     readonly sessionId: string,
@@ -109,7 +110,8 @@ class FakePiSession implements PiSessionLike {
     };
   }
 
-  async prompt(_text: string, options?: { expandPromptTemplates?: boolean }): Promise<void> {
+  async prompt(text: string, options?: { expandPromptTemplates?: boolean }): Promise<void> {
+    this.prompts.push(text);
     expect(options).toEqual({ expandPromptTemplates: false });
     for (const event of this.script) {
       this.listener?.(event);
@@ -152,6 +154,127 @@ async function collect(stream: AsyncIterable<UIEvent>): Promise<UIEvent[]> {
 }
 
 describe('PiAgentEngineAdapter', () => {
+  it('authorizes the exact union of the bound child tool and Runtime method tools', async () => {
+    await useTempSessionRoot();
+    const runtimeTool: PiCustomToolDefinition = {
+      ...defaultReadTool,
+      name: 'chirality_list_methods',
+      description: 'List admitted methods'
+    };
+    const createSession = vi.fn(async (input: PiSessionFactoryInput) =>
+      new FakePiSession(input.engineSessionId, input.customTools.map((tool) => tool.name), [
+        { type: 'agent_start' }, { type: 'turn_start' },
+        { type: 'message_end', message: { role: 'assistant', content: [{ type: 'text', text: 'ok' }] } },
+        { type: 'turn_end', message: { role: 'assistant', usage: { output: 1 } } },
+        { type: 'agent_end', willRetry: false }, { type: 'agent_settled' }
+      ])
+    );
+    const adapter = adapterWith(createSession, {
+      resolveCustomTools: vi.fn(async () => [defaultReadTool, runtimeTool])
+    });
+    await collect(adapter.startTurn(runInput({
+      runtimeTools: [{
+        name: 'chirality_list_methods', description: 'List admitted methods', inputSchema: { type: 'object' },
+        permission: { effect: 'allow', operation: 'read' }, execute: async () => ({ methods: [] })
+      }]
+    })));
+    expect(createSession.mock.calls[0]?.[0].customTools.map((tool) => tool.name)).toEqual([
+      'read_file', 'chirality_list_methods'
+    ]);
+  });
+
+  it('admits only the exact Runtime method-change control beside the required read tool', async () => {
+    await useTempSessionRoot();
+    const controlTool: PiCustomToolDefinition = {
+      name: 'chirality_request_method_change',
+      description: 'Request a method change at the terminal turn boundary',
+      parameters: {},
+      chirality: {
+        descriptorName: 'chirality_request_method_change',
+        permissions: ['control'],
+        pathScope: [],
+        readOnly: false,
+        evidenceSource: 'chirality-tool-bridge'
+      },
+      execute: vi.fn()
+    };
+    const createSession = vi.fn(async (input: PiSessionFactoryInput) =>
+      new FakePiSession(input.engineSessionId, input.customTools.map((tool) => tool.name), [
+        { type: 'agent_start' }, { type: 'turn_start' },
+        { type: 'message_end', message: { role: 'assistant', content: [{ type: 'text', text: 'ok' }] } },
+        { type: 'turn_end', message: { role: 'assistant', usage: { output: 1 } } },
+        { type: 'agent_end', willRetry: false }, { type: 'agent_settled' }
+      ])
+    );
+    const adapter = adapterWith(createSession, {
+      resolveCustomTools: vi.fn(async () => [defaultReadTool, controlTool])
+    });
+    const runtimeControl = {
+      name: 'chirality_request_method_change',
+      description: 'Request method change',
+      inputSchema: { type: 'object' },
+      permission: { effect: 'allow' as const, operation: 'control' as const },
+      execute: async () => ({ requested: true })
+    };
+
+    await collect(adapter.startTurn(runInput({ runtimeTools: [runtimeControl] })));
+    expect(createSession.mock.calls[0]?.[0].customTools.map((tool) => tool.name)).toEqual([
+      'read_file', 'chirality_request_method_change'
+    ]);
+
+    const unrecognizedControl = {
+      ...controlTool,
+      name: 'unrecognized_control',
+      chirality: { ...controlTool.chirality, descriptorName: 'unrecognized_control' }
+    };
+    const rejectingAdapter = adapterWith(createSession, {
+      resolveCustomTools: vi.fn(async () => [defaultReadTool, unrecognizedControl])
+    });
+    await expect(collect(rejectingAdapter.startTurn(runInput({
+      runtimeTools: [{ ...runtimeControl, name: 'unrecognized_control' }]
+    })))).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        type: 'turn:error',
+        data: expect.objectContaining({ errorType: 'INVALID_REQUEST', status: 400 })
+      }),
+      expect.objectContaining({ type: 'process:exit', data: expect.objectContaining({ exitCode: 1 }) })
+    ]));
+  });
+
+  it('prepares a reversible successor and uses a fresh Pi identity with prior dialogue only', async () => {
+    await useTempSessionRoot();
+    let created: FakePiSession | undefined;
+    const createSession = vi.fn(async (input: PiSessionFactoryInput) => {
+      created = new FakePiSession(input.engineSessionId, input.customTools.map((tool) => tool.name), [
+        { type: 'agent_start' }, { type: 'turn_start' },
+        { type: 'message_end', message: { role: 'assistant', content: [{ type: 'text', text: 'continued' }] } },
+        { type: 'turn_end', message: { role: 'assistant', usage: { output: 1 } } },
+        { type: 'agent_end', willRetry: false }, { type: 'agent_settled' }
+      ]);
+      return created;
+    });
+    const adapter = adapterWith(createSession);
+    const prepared = await adapter.prepareContextSuccessor({
+      sessionId: session.sessionId, predecessorEngineSessionId: 'pi-old', fromBasisId: 'basis-old',
+      toBasisPreview: { id: 'basis-new', sha256: 'a'.repeat(64) },
+      continuationContext: {
+        transcript: '[{"role":"user","text":"prior human"},{"role":"assistant","text":"prior assistant"}]',
+        sha256: 'b'.repeat(64), priorBasisRefs: [{ basisId: 'basis-old', sha256: 'c'.repeat(64) }]
+      }
+    });
+    await expect(adapter.cancelContextSuccessor(prepared.preparationId)).resolves.toBeUndefined();
+    await collect(adapter.startTurn(runInput({
+      session: { ...session, engineSessionId: 'pi-old' },
+      message: 'new request', contextSuccessor: prepared
+    })));
+    expect(createSession.mock.calls[0]?.[0].engineSessionId).not.toBe('pi-old');
+    expect(created?.prompts[0]).toContain('prior human');
+    expect(created?.prompts[0]).toContain('prior assistant');
+    expect(created?.prompts[0]).toContain('basis-new');
+    expect(created?.prompts[0]).toContain('new request');
+    expect(created?.prompts[0]).not.toContain('sealed Chirality prompt');
+  });
+
   it('publishes exact Pi/oMLX attribution and bootstraps without creating a Pi session', async () => {
     await useTempSessionRoot();
     const createSession = vi.fn(async () => {
@@ -277,7 +400,7 @@ describe('PiAgentEngineAdapter', () => {
 
     await expect(
       adapter.preflight(runInput({ opts: { ...opts, tools: ['write_file'] } }))
-    ).rejects.toThrow('not explicitly classified as read-only');
+    ).rejects.toThrow('not an explicitly classified read tool or exact Runtime session-control tool');
     await expect(
       adapterWith(vi.fn(), { customTools: [] }).preflight(
         runInput({ opts: { ...opts, tools: ['read_file'] } })

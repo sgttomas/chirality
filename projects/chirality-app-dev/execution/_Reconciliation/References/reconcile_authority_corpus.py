@@ -35,8 +35,10 @@ REPO_ROOT = os.path.abspath(os.path.join(WORKING_ROOT, "..", ".."))    # .../chi
 CORPUS_JSON = os.path.join(HERE, "AUTHORITY_CORPUS.json")
 EXECUTION = os.path.join(WORKING_ROOT, "execution")
 
-# Corpus member definitions. `path` is the string as it appears in deliverable tables; `fs` resolves
-# the file to hash. The external decomposition reference is matched by basename to stay portable.
+# Corpus member definitions. `path` is the canonical repo-relative string written to
+# deliverable tables; `fs` resolves the file to hash. `aliases` are retired paths
+# recognized only so `apply` can migrate current reference rows to their canonical
+# workflow successors.
 CORPUS_REFS = [
     {"path": "docs/DIRECTIVE.md", "fs": os.path.join(WORKING_ROOT, "docs", "DIRECTIVE.md")},
     {"path": "docs/CONTRACT.md", "fs": os.path.join(WORKING_ROOT, "docs", "CONTRACT.md")},
@@ -44,12 +46,44 @@ CORPUS_REFS = [
     {"path": "docs/TYPES.md", "fs": os.path.join(WORKING_ROOT, "docs", "TYPES.md")},
     {"path": "docs/PLAN.md", "fs": os.path.join(WORKING_ROOT, "docs", "PLAN.md")},
     {"path": "docs/PRD.md", "fs": os.path.join(WORKING_ROOT, "docs", "PRD.md")},
-    {"path": "AGENT_SOFTWARE_DECOMP.md",
-     "fs": os.path.join(REPO_ROOT, "agents", "AGENT_SOFTWARE_DECOMP.md")},
-    {"path": "AGENT_DOMAIN_ENGINE.md",
-     "fs": os.path.join(REPO_ROOT, "agents", "AGENT_DOMAIN_ENGINE.md")},
+    {"path": "workflows/software-decomp/WORKFLOW.md",
+     "fs": os.path.join(REPO_ROOT, "workflows", "software-decomp", "WORKFLOW.md"),
+     "ref_id": "REF-007",
+     "role": "Software decomposition method and grouped checkpoint protocol",
+     "aliases": ["AGENT_SOFTWARE_DECOMP.md", "agents/AGENT_SOFTWARE_DECOMP.md"]},
+    {"path": "workflows/software-decomp/resources/contract.md",
+     "fs": os.path.join(REPO_ROOT, "workflows", "software-decomp", "resources", "contract.md"),
+     "ref_id": "REF-009",
+     "role": "Software decomposition inputs, modes, and output contract"},
+    {"path": "workflows/software-decomp/resources/method.md",
+     "fs": os.path.join(REPO_ROOT, "workflows", "software-decomp", "resources", "method.md"),
+     "ref_id": "REF-010",
+     "role": "Software decomposition detailed method"},
+    {"path": "workflows/domain-engine/WORKFLOW.md",
+     "fs": os.path.join(REPO_ROOT, "workflows", "domain-engine", "WORKFLOW.md"),
+     "ref_id": "REF-008",
+     "role": "Domain-engine integration method and human-gate protocol",
+     "aliases": ["AGENT_DOMAIN_ENGINE.md", "agents/AGENT_DOMAIN_ENGINE.md"]},
+    {"path": "workflows/domain-engine/resources/contract.md",
+     "fs": os.path.join(REPO_ROOT, "workflows", "domain-engine", "resources", "contract.md"),
+     "ref_id": "REF-011",
+     "role": "Domain-engine inputs, modes, and output contract"},
+    {"path": "workflows/domain-engine/resources/method.md",
+     "fs": os.path.join(REPO_ROOT, "workflows", "domain-engine", "resources", "method.md"),
+     "ref_id": "REF-012",
+     "role": "Domain-engine detailed method"},
 ]
-BASENAMES = {os.path.basename(r["path"]): r["path"] for r in CORPUS_REFS}
+
+COMPANIONS = {
+    "workflows/software-decomp/WORKFLOW.md": [
+        "workflows/software-decomp/resources/contract.md",
+        "workflows/software-decomp/resources/method.md",
+    ],
+    "workflows/domain-engine/WORKFLOW.md": [
+        "workflows/domain-engine/resources/contract.md",
+        "workflows/domain-engine/resources/method.md",
+    ],
+}
 
 
 def sha256_file(path):
@@ -99,6 +133,22 @@ def current_version_hashes(data):
     sys.exit(f"current_version {cv} not found in versions[]")
 
 
+def validate_current_snapshot(data, snap):
+    expected = [r["path"] for r in CORPUS_REFS]
+    errors = []
+    if data.get("refs") != expected:
+        errors.append("top-level refs do not equal the configured corpus members")
+    missing = [path for path in expected if not snap.get(path)]
+    if missing:
+        errors.append(f"current snapshot has missing/null hashes: {missing}")
+    extra = sorted(set(snap) - set(expected))
+    if extra:
+        errors.append(f"current snapshot has unexpected hashes: {extra}")
+    for error in errors:
+        print(f"INVALID CURRENT CORPUS: {error}")
+    return not errors
+
+
 def cmd_init(args):
     if os.path.exists(CORPUS_JSON):
         sys.exit("AUTHORITY_CORPUS.json already exists; use `bump` to add a version.")
@@ -127,6 +177,8 @@ def cmd_init(args):
 def cmd_status(args):
     data = load_corpus()
     snap = current_version_hashes(data)
+    if not validate_current_snapshot(data, snap):
+        return 1
     live = live_hashes()
     drift = 0
     print(f"corpus current_version: {data['current_version']}")
@@ -147,12 +199,15 @@ def cmd_status(args):
 def cmd_bump(args):
     data = load_corpus()
     snap = current_version_hashes(data)
+    if not validate_current_snapshot(data, snap):
+        return 1
     live = live_hashes()
     if snap == live:
         print("no drift; nothing to bump.")
         return 0
     nums = [int(v["version"].lstrip("v")) for v in data["versions"]]
     new_version = f"v{max(nums) + 1}"
+    data["refs"] = [r["path"] for r in CORPUS_REFS]
     data["versions"].append({
         "version": new_version,
         "date": args.date,
@@ -167,6 +222,9 @@ def cmd_bump(args):
 
 
 _ROW = re.compile(r"^\|\s*(REF-\d+)\s*\|")
+_BULLET = re.compile(
+    r"^-\s*(REF-\d+)\s+—\s+Location:\s+`([^`]+)`\s+—\s+Relevance:\s+(.+?)\s+—\s+"
+    r"Accepted SHA-256:\s+`([0-9a-f]+)`\.\s*$")
 
 
 def _iter_reference_files():
@@ -177,20 +235,67 @@ def _iter_reference_files():
 
 def _match_ref(path_cell):
     p = path_cell.strip().strip("`").strip()
-    if p in {r["path"] for r in CORPUS_REFS}:
-        return p
-    base = os.path.basename(p)
-    return BASENAMES.get(base)
+    for ref in CORPUS_REFS:
+        candidates = [ref["path"], *ref.get("aliases", [])]
+        if any(p == candidate or p.endswith("/" + candidate) for candidate in candidates):
+            return ref
+    return None
 
 
 def _rewrite_file(fp, snap, audit_only):
     with open(fp) as fh:
         lines = fh.read().split("\n")
     changed = []
+    present = set()
+    for ln in lines:
+        table = _ROW.match(ln)
+        if table:
+            cells = [c.strip() for c in ln.strip().strip("|").split("|")]
+            if len(cells) >= 2:
+                ref = _match_ref(cells[1])
+                if ref:
+                    present.add(ref["path"])
+            continue
+        bullet = _BULLET.match(ln)
+        if bullet:
+            ref = _match_ref(f"`{bullet.group(2)}`")
+            if ref:
+                present.add(ref["path"])
     out = []
     for ln in lines:
         m = _ROW.match(ln)
         if not m:
+            bullet = _BULLET.match(ln)
+            if bullet:
+                ref = _match_ref(f"`{bullet.group(2)}`")
+                if ref and snap.get(ref["path"]) is not None:
+                    key = ref["path"]
+                    h = snap[key]
+                    role = ref.get("role", bullet.group(3))
+                    new_ln = (f"- {bullet.group(1)} — Location: `{key}` — Relevance: {role} "
+                              f"— Accepted SHA-256: `{h}`.")
+                    if new_ln != ln:
+                        changed.append(key)
+                        if audit_only:
+                            live_now = sha256_file(ref["fs"]) if os.path.exists(ref["fs"]) else None
+                            print(f"  {os.path.relpath(fp, WORKING_ROOT)}: {key} "
+                                  f"expected={bullet.group(4)[:12]} corpus={h[:12]} "
+                                  f"live={str(live_now)[:12]}")
+                    out.append(new_ln if not audit_only else ln)
+                    for companion_path in COMPANIONS.get(key, []):
+                        if companion_path in present:
+                            continue
+                        companion = next(r for r in CORPUS_REFS if r["path"] == companion_path)
+                        companion_hash = snap[companion_path]
+                        changed.append(companion_path)
+                        if audit_only:
+                            print(f"  {os.path.relpath(fp, WORKING_ROOT)}: missing {companion_path}")
+                        else:
+                            out.append(
+                                f"- {companion['ref_id']} — Location: `{companion_path}` — "
+                                f"Relevance: {companion['role']} — Accepted SHA-256: "
+                                f"`{companion_hash}`.")
+                    continue
             out.append(ln)
             continue
         cells = [c.strip() for c in ln.strip().strip("|").split("|")]
@@ -198,12 +303,15 @@ def _rewrite_file(fp, snap, audit_only):
         if len(cells) < 6:
             out.append(ln)
             continue
-        key = _match_ref(cells[1])
-        if not key or snap.get(key) is None:
+        ref = _match_ref(cells[1])
+        if not ref or snap.get(ref["path"]) is None:
             out.append(ln)
             continue
+        key = ref["path"]
         h = snap[key]
-        want = [cells[0], cells[1], cells[2], f"`{h}`", f"`{h}`", "MATCH"]
+        path_cell = f"`{key}`"
+        role_cell = ref.get("role", cells[2])
+        want = [cells[0], path_cell, role_cell, f"`{h}`", f"`{h}`", "MATCH"]
         new_ln = "| " + " | ".join(want) + " |"
         if new_ln != ln:
             changed.append(key)
@@ -213,6 +321,19 @@ def _rewrite_file(fp, snap, audit_only):
                     if os.path.exists(next(r["fs"] for r in CORPUS_REFS if r["path"] == key)) else None
                 print(f"  {os.path.relpath(fp, WORKING_ROOT)}: {key} expected={cells[3].strip('`')[:12]} corpus={h[:12]} live={str(live_now)[:12]}")
         out.append(new_ln if not audit_only else ln)
+        for companion_path in COMPANIONS.get(key, []):
+            if companion_path in present:
+                continue
+            companion = next(r for r in CORPUS_REFS if r["path"] == companion_path)
+            companion_hash = snap[companion_path]
+            changed.append(companion_path)
+            if audit_only:
+                print(f"  {os.path.relpath(fp, WORKING_ROOT)}: missing {companion_path}")
+            else:
+                out.append("| " + " | ".join([
+                    companion["ref_id"], f"`{companion_path}`", companion["role"],
+                    f"`{companion_hash}`", f"`{companion_hash}`", "MATCH",
+                ]) + " |")
     if changed and not audit_only:
         with open(fp, "w") as fh:
             fh.write("\n".join(out))
@@ -222,6 +343,8 @@ def _rewrite_file(fp, snap, audit_only):
 def cmd_apply(args):
     data = load_corpus()
     snap = current_version_hashes(data)
+    if not validate_current_snapshot(data, snap):
+        return 1
     n_files = 0
     n_rows = 0
     for fp in _iter_reference_files():
@@ -237,6 +360,8 @@ def cmd_apply(args):
 def cmd_audit(args):
     data = load_corpus()
     snap = current_version_hashes(data)
+    if not validate_current_snapshot(data, snap):
+        return 1
     total = 0
     for fp in _iter_reference_files():
         changed = _rewrite_file(fp, snap, audit_only=True)

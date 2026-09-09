@@ -7,6 +7,7 @@ import {
   bootHarnessSession,
   createHarnessSession,
   interruptHarnessSession,
+  replaySessionEvents,
   streamHarnessTurn
 } from '../../lib/harness/client';
 import { toHarnessUiError, type HarnessUiError } from '../../lib/harness/error-display';
@@ -28,6 +29,20 @@ import { ChatMarkdown } from './chat-markdown';
 import { FilePicker } from './file-picker';
 import { PermissionRequests } from './permission-requests';
 import { useRuntimeEpoch } from './runtime-connectivity-provider';
+import {
+  getNativePlanCapability,
+  exportNativePlanRevision,
+  listNativePlanRevisions,
+  replaceSelectedMethods,
+  resolveSelectedContext,
+  type InteractionMode,
+  type QualifiedMethodReference,
+  type ChiralityRoleName,
+  MethodSelectionClientError
+} from '../../lib/harness/method-selection-client';
+import type { FrozenInstructionBasisV3, InstructionHistoryRecordV3, NativePlanCapabilityResponse, NativePlanRevision } from '@chirality/runtime-contracts/v3';
+import type { SelectedSessionReplayProjection } from '../../lib/woven-dialogue/contracts';
+import type { RuntimeSessionRecordV3 } from '@chirality/runtime-contracts';
 
 type ChatMessage = {
   id: string;
@@ -36,6 +51,9 @@ type ChatMessage = {
   projectRoot?: string;
   text: string;
   attachments?: UiAttachment[];
+  methods?: QualifiedMethodReference[];
+  instructionBasis?: FrozenInstructionBasisV3;
+  instructionHistory?: readonly InstructionHistoryRecordV3[];
 };
 
 type ActiveSession = {
@@ -44,6 +62,14 @@ type ActiveSession = {
   selectedRootAtBinding: string;
   persona: string;
   mode: string;
+  selectedMethods: readonly QualifiedMethodReference[];
+  methodSelectionRevision: number;
+  instructionBasisId: string;
+};
+
+export type ResumeConversationRequest = {
+  requestId: number;
+  projection: SelectedSessionReplayProjection;
 };
 
 // Operator permission modes (DESIGN §3.4), mapped to the harness's canonical
@@ -56,7 +82,7 @@ type OperatorModeOption = {
 
 const OPERATOR_MODES: readonly OperatorModeOption[] = [
   { value: 'readOnly', label: 'Read-only' },
-  { value: 'ask', label: 'Plan (ask)' },
+  { value: 'ask', label: 'Ask before changes' },
   { value: 'workspaceWrite', label: 'Gated-write' },
   { value: 'bypass', label: 'Autonomous' }
 ];
@@ -100,6 +126,17 @@ function mergeAttachments(existing: UiAttachment[], incoming: UiAttachment[]): U
   return [...deduped.values()];
 }
 
+function sameMethodSelection(
+  left: readonly QualifiedMethodReference[],
+  right: readonly QualifiedMethodReference[]
+): boolean {
+  return left.length === right.length && left.every((item, index) => {
+    const other = right[index];
+    return other !== undefined && item.kind === other.kind && item.name === other.name &&
+      item.source === other.source && item.sourceRootId === other.sourceRootId;
+  });
+}
+
 function AttachmentChips({ items }: { items: UiAttachment[] }): JSX.Element | null {
   if (items.length === 0) {
     return null;
@@ -115,6 +152,33 @@ function AttachmentChips({ items }: { items: UiAttachment[] }): JSX.Element | nu
       ))}
     </ul>
   );
+}
+
+function nativePlanText(revision: NativePlanRevision): string {
+  const plan = revision.sourceEvent.plan;
+  return typeof plan === 'string' ? plan : JSON.stringify(plan, null, 2);
+}
+
+function instructionActivityLabel(record: InstructionHistoryRecordV3): string {
+  switch (record.type) {
+    case 'selection.changed': return 'Role or method selection updated';
+    case 'resource.loaded': return 'Method resource loaded';
+    case 'instruction-basis.resolved': return 'Instruction basis recorded';
+    case 'native-plan.revised': return 'Native plan revised';
+    case 'provider-span.continued': return 'Conversation continued with a new provider span';
+    default: return 'Instruction context updated';
+  }
+}
+
+function recordedRoleForTurn(
+  turnId: string | undefined,
+  history: readonly InstructionHistoryRecordV3[],
+  bases: readonly FrozenInstructionBasisV3[]
+): ChiralityRoleName | undefined {
+  if (!turnId) return undefined;
+  const basisRecord = history.find(record => record.type === 'instruction-basis.resolved' && record.turnId === turnId);
+  const basisId = basisRecord && typeof basisRecord.basisId === 'string' ? basisRecord.basisId : undefined;
+  return basisId ? bases.find(basis => basis.basisId === basisId)?.roleId : undefined;
 }
 
 function isHarnessEvent(value: unknown): value is HarnessEvent {
@@ -137,9 +201,14 @@ type ChatPanelProps = {
   onSessionBootedPrompt?: (input: { sessionId: string; prompt: string; persona: string }) => void;
   fileCatalog?: readonly string[];
   onOpenFile?: (path: string) => void;
+  selectedMethods?: QualifiedMethodReference[];
+  onSelectedMethodsChange?: (methods: QualifiedMethodReference[]) => void;
+  onOpenMethods?: () => void;
+  resumeConversation?: ResumeConversationRequest;
+  onConversationResumed?: (sessionId: string) => void;
 };
 
-export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBootedPrompt, presentation, knownRoots = [], newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange, fileCatalog = [], onOpenFile }: ChatPanelProps = {}): JSX.Element {
+export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBootedPrompt, presentation, knownRoots = [], newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange, fileCatalog = [], onOpenFile, selectedMethods = [], onSelectedMethodsChange = () => {}, onOpenMethods, resumeConversation, onConversationResumed }: ChatPanelProps = {}): JSX.Element {
   const { projectRoot, applyProjectRoot } = useWorkspace();
   const { optsPayload } = useToolkit();
   const { appendEvent, clearEvents, setStreaming } = useHarnessEventActions();
@@ -149,10 +218,17 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const [attachments, setAttachments] = useState<UiAttachment[]>([]);
   const [draftStorageWritable, setDraftStorageWritable] = useState(true);
   const [draftStorageWarning, setDraftStorageWarning] = useState<string | null>(null);
+  const [loadedDraftKey, setLoadedDraftKey] = useState<string | null>(null);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [operatorMode, setOperatorMode] = useState<string>(DEFAULT_OPERATOR_MODE);
+  const [interactionMode, setInteractionMode] = useState<InteractionMode>('chat');
+  const [planCapability, setPlanCapability] = useState<NativePlanCapabilityResponse>({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: 'Start a chat to check native Plan Mode support.' });
+  const [planRevisions, setPlanRevisions] = useState<readonly NativePlanRevision[]>([]);
+  const [planExportStatus, setPlanExportStatus] = useState<string | null>(null);
   const [conversationBinding, setConversationBinding] = useState<{ projectRoot: string; selectedRootAtBinding: string } | null>(null);
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
+  const activeSessionIdRef = useRef<string>();
+  const lastInstructionSequenceRef = useRef(0);
   const [isRunning, setIsRunning] = useState(false);
   const [nativeFolderError, setNativeFolderError] = useState<string | null>(null);
   const nativeSelectionActive = useRef(false);
@@ -162,7 +238,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const canonicalTransition = useRef<{ from: string; to: string; persona: string; mode: string } | null>(null);
   const previousContext = useRef<{ root: string | null; persona: string; mode: string } | null>(null);
   const newChatSeen = useRef(newChatRequest);
+  const resumeRequestSeen = useRef(0);
   const capturedTitleSessions = useRef(new Set<string>());
+  const selectedMethodsSnapshot = useRef<readonly QualifiedMethodReference[]>(selectedMethods);
+  const selectedMethodsRevision = useRef(0);
   const [runtimeStatus, setRuntimeStatus] = useState<string | null>(null);
   const [runtimeError, setRuntimeError] = useState<HarnessUiError | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -177,6 +256,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const runtimeEpoch = useRuntimeEpoch();
 
   useEffect(() => {
+    activeSessionIdRef.current = activeSession?.sessionId;
     onActiveSessionChange?.(activeSession?.sessionId);
   }, [activeSession?.sessionId, onActiveSessionChange]);
 
@@ -199,20 +279,29 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const personaLabel = activePersona.toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ');
   const activeMode = useMemo(() => resolveMode(pathname), [pathname]);
 
-  const draftRoot = conversationBinding?.selectedRootAtBinding ?? projectRoot;
+  if (!sameMethodSelection(selectedMethodsSnapshot.current, selectedMethods)) {
+    selectedMethodsSnapshot.current = selectedMethods;
+    selectedMethodsRevision.current += 1;
+  }
+
+  const draftRoot = activeSession?.projectRoot ?? conversationBinding?.selectedRootAtBinding ?? projectRoot;
+  // Unbound entry drafts remain role-specific. Once a Runtime session exists,
+  // its stable id owns the draft across role transitions and keeps two chats
+  // with the same root and role isolated from one another.
+  const draftPersona = activeSession ? `session:${activeSession.sessionId}` : activePersona;
   const draftStorageKey = useMemo(() => {
     if (!draftRoot) {
       return null;
     }
-    return buildChatDraftStorageKey(draftRoot, activePersona, activeMode);
-  }, [draftRoot, activePersona, activeMode]);
+    return buildChatDraftStorageKey(draftRoot, draftPersona, activeMode);
+  }, [draftRoot, draftPersona, activeMode]);
+  const draftIdentityReady = typeof window === 'undefined' || Boolean(draftStorageKey && loadedDraftKey === draftStorageKey);
 
   useEffect(() => {
     setActiveSession((existing) => {
       if (
         existing &&
         (existing.projectRoot === projectRoot || existing.selectedRootAtBinding === projectRoot) &&
-        existing.persona === activePersona &&
         existing.mode === activeMode
       ) {
         return existing;
@@ -223,8 +312,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
   useEffect(() => {
     if (!draftStorageKey || typeof window === 'undefined') {
+      setLoadedDraftKey(null);
       setDraft('');
       setAttachments([]);
+      onSelectedMethodsChange([]);
       setDraftStorageWritable(true);
       setDraftStorageWarning(null);
       return;
@@ -233,12 +324,17 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const result = readChatDraftSnapshotFromStorage(window.localStorage, draftStorageKey);
     setDraft(result.snapshot.draft);
     setAttachments(result.snapshot.attachments);
+    const hydratedMethods = isRunning && activeSession && result.snapshot.methods.length === 0
+      ? selectedMethodsSnapshot.current
+      : result.snapshot.methods;
+    onSelectedMethodsChange([...hydratedMethods]);
     setDraftStorageWritable(result.writable);
     setDraftStorageWarning(result.warning);
+    setLoadedDraftKey(draftStorageKey);
   }, [draftStorageKey]);
 
   useEffect(() => {
-    if (!draftStorageKey || typeof window === 'undefined' || !draftStorageWritable) {
+    if (!draftStorageKey || loadedDraftKey !== draftStorageKey || typeof window === 'undefined' || !draftStorageWritable) {
       return;
     }
 
@@ -247,7 +343,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       draftStorageKey,
       {
         draft,
-        attachments
+        attachments,
+        methods: selectedMethods
       }
     );
 
@@ -258,7 +355,33 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if (result.warning) {
       setDraftStorageWarning((existing) => existing ?? result.warning);
     }
-  }, [draftStorageKey, draft, attachments, draftStorageWritable]);
+  }, [draftStorageKey, loadedDraftKey, draft, attachments, selectedMethods, draftStorageWritable]);
+
+  useEffect(() => {
+    if (!activeSession) {
+      setPlanExportStatus(null);
+      setPlanCapability({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: 'Start a chat to check native Plan Mode support.' });
+      setPlanRevisions([]);
+      setInteractionMode('chat');
+      return;
+    }
+    const controller = new AbortController();
+    void getNativePlanCapability(activeSession.sessionId, controller.signal)
+      .then(capability => {
+        if (controller.signal.aborted) return;
+        setPlanCapability(capability);
+        if (capability.status !== 'qualified') setInteractionMode('chat');
+      })
+      .catch(error => {
+        if (controller.signal.aborted) return;
+        setPlanCapability({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: error instanceof Error ? error.message : 'Native Plan Mode is unavailable.' });
+        setInteractionMode('chat');
+      });
+    void listNativePlanRevisions(activeSession.sessionId, controller.signal)
+      .then(result => { if (!controller.signal.aborted) setPlanRevisions(result.revisions); })
+      .catch(() => { if (!controller.signal.aborted) setPlanRevisions([]); });
+    return () => controller.abort();
+  }, [activeSession?.sessionId]);
 
   useEffect(() => {
     const expected = canonicalTransition.current;
@@ -284,13 +407,62 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if (newChatSeen.current === newChatRequest) return;
     newChatSeen.current = newChatRequest;
     if (isRunning || folderSelectionPending) return;
-    if ((draft.trim() || attachments.length) && !window.confirm('Start a new chat and discard the unsent draft and attachments?')) return;
+    if ((draft.trim() || attachments.length || selectedMethods.length) && !window.confirm('Start a new chat and discard the unsent draft, attachments, and methods?')) return;
     bindingGeneration.current++;
-    setActiveSession(null); setConversationBinding(null); setDraft(''); setAttachments([]); setMessages([]);
+    activeSessionIdRef.current = undefined;
+    lastInstructionSequenceRef.current = 0;
+    setActiveSession(null); setConversationBinding(null); setDraft(''); setAttachments([]); onSelectedMethodsChange([]); setMessages([]);
     setRuntimeError(null); setRuntimeStatus(null); setFolderSyncError(null);
     // This clears only the current local view; no runtime record is deleted.
     clearEvents();
-  }, [newChatRequest, isRunning, folderSelectionPending, draft, attachments, clearEvents]);
+  }, [newChatRequest, isRunning, folderSelectionPending, draft, attachments, selectedMethods, clearEvents, onSelectedMethodsChange]);
+
+  useEffect(() => {
+    if (!resumeConversation || resumeConversation.requestId === resumeRequestSeen.current || isRunning) return;
+    const { projection } = resumeConversation;
+    const continuation = projection.session?.continuation;
+    if (!continuation || continuation.roleId !== activePersona || continuation.projectRoot !== projectRoot) return;
+    resumeRequestSeen.current = resumeConversation.requestId;
+    bindingGeneration.current += 1;
+    lastInstructionSequenceRef.current = projection.instructionHistory.reduce((maximum, record) => Math.max(maximum, record.sequence), 0);
+    const nextMessages: ChatMessage[] = projection.transcript.items.flatMap(item => {
+      if (item.kind !== 'message' || !item.role || !item.text) return [];
+      const recordedRole = item.role === 'assistant'
+        ? recordedRoleForTurn(item.turnId, projection.instructionHistory, projection.instructionBases)
+        : undefined;
+      return [{ id: `replay-${item.key}`, role: item.role === 'user' ? 'operator' as const : 'assistant' as const,
+        ...(item.role === 'assistant' ? { ...(recordedRole ? { persona: recordedRole } : {}), projectRoot: continuation.projectRoot } : {}), text: item.text }];
+    });
+    const latestBasis = projection.instructionBases.at(-1);
+    let lastOperatorIndex = -1;
+    for (let index = nextMessages.length - 1; index >= 0; index -= 1) {
+      if (nextMessages[index]?.role === 'operator') { lastOperatorIndex = index; break; }
+    }
+    if (lastOperatorIndex >= 0 && (latestBasis || projection.instructionHistory.length)) {
+      nextMessages[lastOperatorIndex] = { ...nextMessages[lastOperatorIndex],
+        ...(latestBasis ? { instructionBasis: latestBasis } : {}), instructionHistory: projection.instructionHistory };
+    }
+    const nextSession: ActiveSession = {
+      sessionId: projection.selectedSessionId,
+      projectRoot: continuation.projectRoot,
+      selectedRootAtBinding: continuation.projectRoot,
+      persona: continuation.roleId,
+      mode: activeMode,
+      selectedMethods: continuation.selectedMethods,
+      methodSelectionRevision: continuation.methodSelectionRevision,
+      instructionBasisId: continuation.instructionBasisId
+    };
+    activeSessionIdRef.current = nextSession.sessionId;
+    setConversationBinding({ projectRoot: continuation.projectRoot, selectedRootAtBinding: continuation.projectRoot });
+    setActiveSession(nextSession);
+    setOperatorMode(continuation.permissionMode);
+    setInteractionMode(continuation.interactionMode);
+    setMessages(nextMessages.length ? nextMessages : [{ id: `resumed-${projection.selectedSessionId}`, role: 'assistant', persona: continuation.roleId, projectRoot: continuation.projectRoot, text: 'Continue this conversation when you are ready.',
+      ...(latestBasis ? { instructionBasis: latestBasis } : {}), instructionHistory: projection.instructionHistory }]);
+    setRuntimeError(null); setRuntimeStatus(null); setFolderSyncError(null);
+    clearEvents();
+    onConversationResumed?.(nextSession.sessionId);
+  }, [resumeConversation, isRunning, activePersona, activeMode, projectRoot, clearEvents, onConversationResumed]);
 
   const selectNativeFolder = useCallback(async (intent: { path?: string; error?: string }) => {
     if (intent.error) { setNativeFolderError(intent.error); return; }
@@ -326,7 +498,6 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if (
       activeSession &&
       (activeSession.projectRoot === projectRoot || activeSession.selectedRootAtBinding === projectRoot) &&
-      activeSession.persona === activePersona &&
       activeSession.mode === activeMode
     ) {
       return activeSession;
@@ -338,7 +509,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const session = await createHarnessSession({
       projectRoot: conversationBinding?.projectRoot ?? projectRoot,
       persona: activePersona,
-      mode: activeMode
+      roleId: activePersona,
+      mode: activeMode,
+      interactionMode,
+      permissionMode: operatorMode as 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass',
+      selectedMethods
     });
 
     setRuntimeStatus('Booting session...');
@@ -354,13 +529,21 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     );
 
     if (generation !== bindingGeneration.current) throw new Error('The chat context changed while the session was starting.');
+    const runtimeSession = boot.session as typeof boot.session & Partial<RuntimeSessionRecordV3>;
     const nextSession: ActiveSession = {
       sessionId: boot.session.sessionId,
       projectRoot: boot.session.projectRoot,
       selectedRootAtBinding,
       persona: activePersona,
-      mode: activeMode
+      mode: activeMode,
+      selectedMethods: runtimeSession.schemaVersion === 'chirality.session/v3' && Array.isArray(runtimeSession.selectedMethods)
+        ? runtimeSession.selectedMethods : selectedMethods,
+      methodSelectionRevision: runtimeSession.schemaVersion === 'chirality.session/v3' && typeof runtimeSession.methodSelectionRevision === 'number'
+        ? runtimeSession.methodSelectionRevision : 0,
+      instructionBasisId: runtimeSession.schemaVersion === 'chirality.session/v3' && typeof runtimeSession.instructionBasisId === 'string'
+        ? runtimeSession.instructionBasisId : ''
     };
+    activeSessionIdRef.current = nextSession.sessionId;
     if (conversationBinding && nextSession.projectRoot !== conversationBinding.projectRoot) {
       throw new Error('The new agent session returned a different folder. Start a new chat to use that folder.');
     }
@@ -395,7 +578,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
   async function submitDraft(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
-    if (isRunning || folderSelectionPending || nativeSelectionActive.current) return;
+    if (isRunning || folderSelectionPending || nativeSelectionActive.current || !draftIdentityReady) return;
     const text = draft.trim();
 
     if (!text && attachments.length === 0) {
@@ -405,6 +588,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const requestGeneration = bindingGeneration.current;
     const preservedDraft = draft;
     const preservedAttachments = attachments;
+    const preservedMethods = [...selectedMethods];
+    const submittedMethodsRevision = selectedMethodsRevision.current;
+    const submittedDraftStorageKey = draftStorageKey;
+    const submittedWithoutSession = activeSession === null;
 
     setRuntimeError(null);
     setRuntimeStatus('Preparing turn...');
@@ -421,7 +608,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       id: operatorMessageId,
       role: 'operator',
       text,
-      attachments: preservedAttachments
+      attachments: preservedAttachments,
+      methods: preservedMethods
     };
     const assistantMessage: ChatMessage = {
       id: assistantId,
@@ -434,6 +622,39 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
     try {
       const session = await ensureSessionBooted();
+      const roleChanged = session.persona !== activePersona;
+      let activeMethods = session.selectedMethods;
+      let activeRevision = session.methodSelectionRevision;
+      let activeBasisId = session.instructionBasisId;
+      if (preservedMethods.length > 0 || roleChanged) {
+        const replacement = await replaceSelectedMethods(session.sessionId, preservedMethods.length ? preservedMethods : undefined, {
+          ...(roleChanged ? { roleId: activePersona as ChiralityRoleName } : {}),
+          boundaryConfirmed: true,
+          ...(preservedMethods.length ? { selectionMode: 'merge' as const } : {}),
+          ...(session.methodSelectionRevision > 0 ? { expectedRevision: session.methodSelectionRevision } : {}),
+          ...(session.instructionBasisId ? { expectedBasisId: session.instructionBasisId } : {})
+        });
+        activeMethods = replacement.methods;
+        activeRevision = replacement.revision;
+        activeBasisId = replacement.basisPreview.id;
+        // The transition is durable even if the subsequent provider turn
+        // fails. Advance the local CAS projection immediately so a retry does
+        // not submit the pre-transition revision.
+        setActiveSession(existing => existing?.sessionId === session.sessionId ? {
+          ...existing,
+          persona: activePersona,
+          selectedMethods: activeMethods,
+          methodSelectionRevision: activeRevision,
+          instructionBasisId: activeBasisId
+        } : existing);
+      }
+      await resolveSelectedContext({
+        sessionId: session.sessionId,
+        roleId: activePersona as ChiralityRoleName,
+        methods: activeMethods,
+        interactionMode,
+        permissionMode: operatorMode as 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass'
+      });
       setMessages((existing) => existing.map((item) => item.id === assistantId ? { ...item, projectRoot: session.projectRoot } : item));
       if (text && !capturedTitleSessions.current.has(session.sessionId)) {
         capturedTitleSessions.current.add(session.sessionId);
@@ -450,6 +671,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           sessionId: session.sessionId,
           message: text,
           attachments: preservedAttachments.map((item) => item.path),
+          interactionMode,
+          permissionMode: operatorMode as 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass',
           opts: { ...(optsPayload ?? {}), mode: operatorMode }
         },
         (streamEvent) => {
@@ -589,6 +812,50 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       }
 
       setRuntimeStatus(null);
+      const replay = await replaySessionEvents(session.sessionId).catch(() => undefined);
+      const recordedBasis = replay?.instructionBases.at(-1);
+      const replaySession = replay?.session;
+      const replayRuntimeSession: RuntimeSessionRecordV3 | undefined = replaySession && 'schemaVersion' in replaySession && replaySession.schemaVersion === 'chirality.session/v3'
+        ? replaySession as RuntimeSessionRecordV3
+        : undefined;
+      const newInstructionHistory = replay?.instructionHistory.filter(record => record.sequence > lastInstructionSequenceRef.current) ?? [];
+      if (replay?.instructionHistory.length) {
+        lastInstructionSequenceRef.current = Math.max(...replay.instructionHistory.map(record => record.sequence));
+      }
+      if (recordedBasis || newInstructionHistory.length) {
+        setMessages(existing => existing.map(item => item.id === operatorMessageId ? { ...item, ...(recordedBasis ? { instructionBasis: recordedBasis } : {}), instructionHistory: newInstructionHistory } : item));
+      }
+      setActiveSession(existing => existing?.sessionId === session.sessionId ? {
+        ...existing,
+        persona: activePersona,
+        selectedMethods: replayRuntimeSession?.selectedMethods ?? recordedBasis?.selectedMethods ?? activeMethods,
+        methodSelectionRevision: replayRuntimeSession?.methodSelectionRevision ?? activeRevision,
+        instructionBasisId: replayRuntimeSession?.instructionBasisId ?? recordedBasis?.basisId ?? activeBasisId
+      } : existing);
+      // Composer method references apply to the submitted message. A selection
+      // made while this turn was streaming belongs to the next message and must
+      // survive completion of the earlier turn.
+      if (selectedMethodsRevision.current === submittedMethodsRevision) {
+        onSelectedMethodsChange([]);
+      }
+      // The first successful turn moves draft ownership from the entry key to
+      // the canonical Runtime session key. Consume the exact prior entry key
+      // so its submitted method references cannot reappear in a later New
+      // chat. Edits made during the turn already belong to the session key.
+      if (submittedWithoutSession && submittedDraftStorageKey && typeof window !== 'undefined') {
+        persistChatDraftSnapshotToStorage(window.localStorage, submittedDraftStorageKey, {
+          draft: '', attachments: [], methods: []
+        });
+      }
+      if (interactionMode === 'native-plan') {
+        void listNativePlanRevisions(session.sessionId)
+          .then(result => {
+            if (activeSessionIdRef.current === session.sessionId) {
+              setPlanRevisions(result.revisions);
+            }
+          })
+          .catch(() => {});
+      }
     } catch (error) {
       const uiError = toHarnessUiError(error);
       setRuntimeError(uiError);
@@ -596,6 +863,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       if (requestGeneration === bindingGeneration.current) {
         setDraft(preservedDraft);
         setAttachments(preservedAttachments);
+        // The unbound-to-session draft-key transition may have hydrated an
+        // empty composer while the first turn was starting. Restore the
+        // submitted references unless the operator already chose a newer
+        // nonempty set for the next message during the turn.
+        if (preservedMethods.length > 0 && selectedMethodsRevision.current === submittedMethodsRevision) {
+          onSelectedMethodsChange(preservedMethods);
+        }
       }
       setMessages((existing) =>
         existing.filter((item) => item.id !== operatorMessageId && item.id !== assistantId)
@@ -611,7 +885,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       {presentation !== 'woven' ? <header className="panel-header">
         <h2>Chat Panel</h2>
         <p className="chat-meta">
-          Persona: {activePersona} | Section: {activeMode}
+          Role: {activePersona} | Section: {activeMode}
         </p>
         <label className="chat-mode-selector">
           <span>Operator mode</span>
@@ -648,8 +922,42 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             {message.attachments && message.attachments.length > 0 ? (
               <AttachmentChips items={message.attachments} />
             ) : null}
+            {message.methods?.length ? <ul className="method-chip-list" aria-label="Selected methods">{message.methods.map(method => <li key={`${method.sourceRootId}:${method.kind}:${method.name}`} className="method-chip"><span>{method.name}</span><small>{method.source}</small></li>)}</ul> : null}
+            {message.instructionBasis ? <details className="chat-instruction-basis">
+              <summary>Recorded instruction basis · {message.instructionBasis.suppliedEntries.length} supplied</summary>
+              <p><code>{message.instructionBasis.basisId}</code> · {message.instructionBasis.roleId}</p>
+              <ul>{message.instructionBasis.suppliedEntries.map((entry, index) => <li key={`${entry.sha256}:${index}`}><strong>{entry.kind}</strong> · {entry.id} · <code>{entry.sha256.slice(0, 12)}</code></li>)}</ul>
+            </details> : null}
+            {message.instructionHistory?.length ? <ul className="chat-instruction-events" aria-label="Recorded instruction activity">
+              {message.instructionHistory.map(record => <li key={record.historyId}>{instructionActivityLabel(record)}</li>)}
+            </ul> : null}
           </article>
         ))}
+        {planRevisions.map(revision => <article key={`native-plan-${revision.revision}`} className="chat-bubble chat-bubble--assistant native-plan-revision">
+          <p className="chat-speaker">Native plan · revision {revision.revision}</p>
+          <ChatMarkdown source={nativePlanText(revision)} projectRoot={activeSession?.projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} />
+          <button type="button" className="button-muted" onClick={() => {
+            if (!activeSession) return;
+            const targetRelativePath = window.prompt(`Save this plan in ${activeSession.projectRoot} as`, `plans/native-plan-${revision.revision}.md`)?.trim();
+            if (!targetRelativePath) return;
+            setPlanExportStatus('Saving plan…');
+            const sessionId = activeSession.sessionId;
+            const request = { sessionId, revision: revision.revision, targetRelativePath };
+            void exportNativePlanRevision(request)
+              .then(result => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${activeSession.projectRoot}/${result.targetRelativePath}`); })
+              .catch(error => {
+                if (activeSessionIdRef.current !== sessionId) return;
+                if (error instanceof MethodSelectionClientError && error.status === 409 && window.confirm(`${targetRelativePath} already exists. Replace it?`)) {
+                  void exportNativePlanRevision({ ...request, overwrite: true })
+                    .then(result => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${activeSession.projectRoot}/${result.targetRelativePath}`); })
+                    .catch(reason => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(reason instanceof Error ? reason.message : 'The plan could not be saved.'); });
+                  return;
+                }
+                setPlanExportStatus(error instanceof Error ? error.message : 'The plan could not be saved.');
+              });
+          }}>Export plan…</button>
+        </article>)}
+        {planExportStatus ? <p role="status">{planExportStatus}</p> : null}
         <PermissionRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} />
       </div>
 
@@ -758,6 +1066,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         {presentation === 'woven' && attachments.length ? <ul className="attachment-chip-list">{attachments.map(item => <li key={item.path} className="attachment-chip" title={item.path}>
           <span>{item.displayName}</span><button type="button" aria-label={`Remove ${item.displayName}`} disabled={isRunning} onClick={() => setAttachments(current => current.filter(entry => entry.path !== item.path))}>×</button>
         </li>)}</ul> : null}
+        {presentation === 'woven' && selectedMethods.length ? <ul className="method-chip-list" aria-label="Methods for next turn">{selectedMethods.map(method => <li key={`${method.sourceRootId}:${method.kind}:${method.name}`} className="method-chip" title={`${method.source} · ${method.kind}`}>
+          <span>{method.name}</span><small>{method.source}</small><button type="button" aria-label={`Remove ${method.name}`} disabled={isRunning} onClick={() => onSelectedMethodsChange(selectedMethods.filter(item => item !== method))}>×</button>
+        </li>)}</ul> : null}
         <div className={presentation === 'woven' ? 'chat-composer-line' : 'chat-composer-line--legacy'}>
         {presentation === 'woven' ? (        <textarea
           ref={composerRef}
@@ -765,7 +1076,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           aria-label="Chat input"
           data-chat-input="primary"
           value={draft}
-          disabled={!projectRoot || isRunning || folderSelectionPending}
+          disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady}
           onKeyDown={event => {
             if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
               event.preventDefault(); event.currentTarget.form?.requestSubmit();
@@ -800,11 +1111,12 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             projectRoot ? presentation === 'woven' ? `Message ${personaLabel}…` : `Send prompt as ${activePersona}...` : presentation === 'woven' ? 'Choose a folder first…' : 'Select a Working Root first...'
           }
         />)}
-        {presentation === 'woven' ? <button type="button" aria-label="Attach files" title="Attach files" disabled={!projectRoot || isRunning || folderSelectionPending} onClick={() => setPickerOpen(true)}>⊕</button> : null}
+        {presentation === 'woven' ? <button type="button" aria-label="Attach files" title="Attach files" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={() => setPickerOpen(true)}>⊕</button> : null}
+        {presentation === 'woven' ? <button type="button" aria-label="Choose methods" title="Choose methods" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={onOpenMethods}>Method</button> : null}
         <button
           type="submit"
           aria-label={isRunning ? 'Running' : 'Send'}
-          disabled={!projectRoot || isRunning || folderSelectionPending || (!draft.trim() && attachments.length === 0)}
+          disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady || (!draft.trim() && attachments.length === 0)}
         >
           {presentation === 'woven' ? '↑' : isRunning ? 'Running...' : 'Send'}
         </button>
@@ -825,8 +1137,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <FolderSelect knownRoots={knownRoots} root={conversationBinding?.projectRoot ?? projectRoot} locked={Boolean(conversationBinding)} disabled={isRunning || folderSelectionPending} onPendingChange={onFolderSelectionPending} />
         <span aria-hidden="true">·</span><PersonaPicker compact disabled={isRunning} />
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Operator mode</span><select value={operatorMode} disabled={isRunning} onChange={event => setOperatorMode(event.target.value)}>{OPERATOR_MODES.map(option => <option key={option.value} value={option.value}>{PLAIN_MODE_LABELS[option.value]}</option>)}</select></label>
-        <span aria-hidden="true">·</span><span title="Delegation policy controls are not available yet">No delegation</span>
-        <span aria-hidden="true">·</span><span>Plain chat</span>
+        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Interaction mode</span><select aria-label="Interaction mode" value={interactionMode} disabled={isRunning} onChange={event => setInteractionMode(event.target.value as InteractionMode)}>
+          <option value="chat">Chat</option><option value="native-plan" disabled={planCapability.status !== 'qualified'}>Plan Mode</option>
+        </select></label>
+        {planCapability.status === 'unavailable' ? <span title={planCapability.reason}>Plan Mode unavailable</span> : null}
         {folderSyncError ? <p role="alert">{folderSyncError}</p> : null}
         {nativeFolderError ? <p role="alert">{nativeFolderError}</p> : null}
       </div> : null}

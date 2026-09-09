@@ -160,14 +160,14 @@ Tool roots are workspace-level directories for derived outputs, resolved `{EXECU
 | `_Aggregation/` | Aggregation snapshots and templates | AGGREGATION |
 | `_Change/` | Change management records | CHANGE |
 | `_Coordination/` | Coordination representation | PROJECT_SETUP |
-| `_Decomposition/` | Project/domain decomposition document(s) and companions | PROJECT_DECOMP / SOFTWARE_DECOMP / DOMAIN_DECOMP |
+| `_Decomposition/` | Project/domain decomposition document(s) and companions | WORKING_ITEMS with `project-decomp`, `software-decomp`, or `domain-decomp` |
 | `_Estimates/` | Cost estimate snapshots | TASK + estimate workflows |
 | `_Evaluation/` | Current evaluation reports plus structural, dependency, epistemic, governance, agent, coherence, and review snapshots | EVALUATION / EVALUATION_* / REVIEW / AUDIT_* |
 | `_Reconciliation/` | Calibrated deliverable-corpus concordance runs and historical immutable generic-audit artifacts | RECONCILIATION |
 | `_Schedule/` | Schedule snapshots generated from the dependency graph | PROJECT_SETUP scheduling workflow |
-| `_ScopeChange/` | Change-impact assessments and decomposition amendment snapshots | SCOPE_CHANGE |
+| `_ScopeChange/` | Change-impact assessments and decomposition amendment snapshots | WORKING_ITEMS with `scope-change` |
 | `_Sources/` | Shared source/reference documents | Human / source-extraction pipelines |
-| `_LocalIndexes/` | Derived source-catalog and retrieval snapshots (domain packs) | DOMAIN_DECOMP / retrieval tools |
+| `_LocalIndexes/` | Derived source-catalog and retrieval snapshots (domain packs) | WORKING_ITEMS with `domain-decomp` / retrieval tools |
 | `_Archive/` | Baseline snapshots with checksums | Human / CHANGE |
 | `_Scripts/` | Deployment and analysis scripts | Human / tooling |
 

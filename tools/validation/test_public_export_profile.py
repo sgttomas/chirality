@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import os
 from pathlib import Path
 
 import pytest
@@ -30,6 +31,12 @@ def test_public_export_excludes_private_runtime_surfaces(tmp_path: Path) -> None
     assert len(list((stage / 'workflows').glob('*/WORKFLOW.md'))) == 71
     assert (stage / 'ADOPTION_HOLD.json').is_file()
     assert not (stage / 'skills').exists()
+    bundled_skills = sorted(path.parent.name for path in (stage / '.agents/skills').glob('*/SKILL.md'))
+    assert bundled_skills == sorted(exporter.BUNDLED_SKILL_NAMES)
+    assert 'chirality-change' not in bundled_skills
+    index = __import__('json').loads((stage / 'workflows/index.json').read_text(encoding='utf-8'))
+    assert index['schema'] == 'chirality-method-index/v1'
+    assert not any(item.get('kind') == 'skill' and item.get('name') == 'chirality-change' for item in index['methods'])
     assert not (stage / ".github/workflows/harness-premerge.yml").exists()
     assert not any((stage / "docs/governance_harness/briefs").glob("*"))
     assert not (stage / "tools/practitioner_harness/BACKLOG.md").exists()
@@ -87,3 +94,106 @@ def test_adoption_hold_blocks_apply(tmp_path):
     stage=tmp_path/'stage';stage.mkdir()
     (stage/'ADOPTION_HOLD.json').write_text(json.dumps({'status':'HELD'}))
     with pytest.raises(SystemExit,match='adoption held'):exporter.apply_target(stage,tmp_path/'target')
+
+
+def test_copy_tree_rejects_symlinked_source_directories_and_files(tmp_path, monkeypatch):
+    exporter = load_exporter()
+    repo = tmp_path / 'repo'
+    source = repo / '.agents/skills/example'
+    source.mkdir(parents=True)
+    outside = tmp_path / 'outside'
+    outside.mkdir()
+    (outside / 'secret.md').write_text('private\n', encoding='utf-8')
+    monkeypatch.setattr(exporter, 'REPO_ROOT', repo)
+
+    directory_link = repo / '.agents/skills/directory-link'
+    directory_link.symlink_to(outside, target_is_directory=True)
+    with pytest.raises(SystemExit, match='symlinked path component'):
+        exporter.copy_tree(directory_link, tmp_path / 'directory-stage', '.agents/skills/example')
+
+    real_parent = repo / 'real-parent'
+    (real_parent / 'nested-skill').mkdir(parents=True)
+    (real_parent / 'nested-skill/SKILL.md').write_text('safe fixture\n', encoding='utf-8')
+    linked_parent = repo / 'linked-parent'
+    linked_parent.symlink_to(real_parent, target_is_directory=True)
+    with pytest.raises(SystemExit, match='symlinked path component'):
+        exporter.copy_tree(
+            linked_parent / 'nested-skill',
+            tmp_path / 'intermediate-stage',
+            '.agents/skills/example',
+        )
+
+    (source / 'SKILL.md').symlink_to(outside / 'secret.md')
+    with pytest.raises(SystemExit, match='symlinked export source entry'):
+        exporter.copy_tree(source, tmp_path / 'file-stage', '.agents/skills/example')
+    assert not (tmp_path / 'file-stage/SKILL.md').exists()
+    (source / 'SKILL.md').unlink()
+    os.mkfifo(source / 'unsupported-entry')
+    with pytest.raises(SystemExit, match='unsupported export source entry'):
+        exporter.copy_tree(source, tmp_path / 'fifo-tree-stage', '.agents/skills/example')
+
+
+def test_direct_file_copy_and_metadata_outputs_reject_symlink_sources(tmp_path, monkeypatch):
+    exporter = load_exporter()
+    repo = tmp_path / 'repo'
+    repo.mkdir()
+    outside = tmp_path / 'outside.txt'
+    outside.write_text('private\n', encoding='utf-8')
+    monkeypatch.setattr(exporter, 'REPO_ROOT', repo)
+
+    for relative in [
+        'AGENTS.md',
+        'exports/chirality-app/PUBLIC_README.md',
+        'projects/chirality-runtime/package.json',
+    ]:
+        source = repo / relative
+        source.parent.mkdir(parents=True, exist_ok=True)
+        source.symlink_to(outside)
+        with pytest.raises(SystemExit, match='symlinked path component'):
+            exporter.copy_source_file(source, tmp_path / 'stage' / source.name)
+
+    profile = tmp_path / 'profile'
+    profile.mkdir()
+    manifest = profile / 'export-manifest.csv'
+    manifest.symlink_to(outside)
+    monkeypatch.setattr(exporter, 'PROFILE_DIR', profile)
+    monkeypatch.setattr(exporter, 'MANIFEST_PATH', manifest)
+    with pytest.raises(SystemExit, match='symlinked path component'):
+        exporter.admit_fixed_profile_output(manifest, manifest)
+
+    fifo_source = repo / 'FIFO.md'
+    os.mkfifo(fifo_source)
+    with pytest.raises(SystemExit, match='not a regular file'):
+        exporter.copy_source_file(fifo_source, tmp_path / 'fifo-stage/FIFO.md')
+
+    manifest.unlink()
+    os.mkfifo(manifest)
+    with pytest.raises(SystemExit, match='not a regular file'):
+        exporter.admit_fixed_profile_output(manifest, manifest)
+
+
+def test_stage_admission_rejects_source_overlap_before_deletion(tmp_path, monkeypatch):
+    exporter = load_exporter()
+    repo = tmp_path / 'repo'
+    protected = repo / 'agents'
+    protected.mkdir(parents=True)
+    sentinel = protected / 'preserve.md'
+    sentinel.write_text('preserve\n', encoding='utf-8')
+    default_stage = repo / 'exports/chirality-app/staging'
+    monkeypatch.setattr(exporter, 'REPO_ROOT', repo)
+    monkeypatch.setattr(exporter, 'DEFAULT_STAGE', default_stage)
+
+    with pytest.raises(SystemExit, match='overlaps the canonical repository'):
+        exporter.admit_stage_path(protected)
+    assert sentinel.read_text(encoding='utf-8') == 'preserve\n'
+
+    stage_alias = tmp_path / 'stage-alias'
+    stage_alias.symlink_to(protected, target_is_directory=True)
+    with pytest.raises(SystemExit, match='symlinked export stage'):
+        exporter.admit_stage_path(stage_alias)
+    assert sentinel.read_text(encoding='utf-8') == 'preserve\n'
+
+    fifo_stage = tmp_path / 'fifo-stage'
+    os.mkfifo(fifo_stage)
+    with pytest.raises(SystemExit, match='not a directory'):
+        exporter.admit_stage_path(fifo_stage)

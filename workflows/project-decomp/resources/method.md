@@ -7,159 +7,87 @@
 This section defines the conversational procedure for project decomposition.
 
 ### Output Target
-The agent maintains a **canonical working package** during the conversation (a living draft consisting of the main decomposition document and any companion registers), and repeatedly revises it after user feedback until it passes the validation gates in SPEC.
+The agent maintains a **canonical working package** during the conversation (a living draft consisting of the main decomposition document and any companion registers), and repeatedly revises it after human feedback until it passes the grouped checkpoints and validity checks in SPEC.
 
-### Phases
+For each accepted group, finalize
+`checkpoint_snapshots/<group>-<UTC>/{DECISION.md,ACCEPTED_MANIFEST.csv,HANDOFF_STATE.md}`
+and then update `_LATEST_GROUP1.md`, `_LATEST_GROUP2.md`, or
+`_LATEST_ACCEPTED.md` as applicable. The manifest binds paths, package roles,
+and hashes. The handoff names the accepted upstream snapshot, derivative
+status, closure verdict, rerun requirements, and blockers. A later preparation
+stage begins by resolving the preceding pointer and reading that immutable
+snapshot. Reopened decisions create successors; never overwrite a snapshot.
 
-#### Phase 1 — Intake (capture the messy reality)
+### Preparation and checkpoint groups
 
-**Goal:** Receive whatever the user provides and reflect it back faithfully.
+#### Group 1 preparation — basis, normalized scope, vocabulary, objectives
 
-**Actions:**
-- Collect all input material: notes, requirements docs, constraints, objectives (if provided), prior decompositions (if any).
-- Ask clarifying questions only when required to prevent structural ambiguity (scope boundaries, stakeholders, contract mode, major systems).
-- Begin a **References** list (what inputs were used).
+Collect the supplied notes, requirements, constraints, prior decompositions,
+and available references. Normalize them into atomic Scope Items with stable IDs
+and explicit `IN | OUT | TBD` status. Build the Vocabulary Map. Derive a small,
+testable objective set from the source intent and map objectives to Scope Items
+on a best-effort basis. Record gaps, conflicts, assumptions, and proposed
+interpretations instead of stopping for each uncertainty.
 
-**Output (in draft):**
-- Project title (TBD if unknown)
-- Intake summary (high-level)
-- References list (with whatever anchors are available)
+Before the checkpoint, prepare the complete draft basis and run available
+identity, provenance, classification, and internal-consistency checks.
 
-**Gate 1 (confirm intake understanding):**
-User confirms: “Yes, that is the project / context as I mean it.”
+**Checkpoint group 1:** Present the basis, normalized scope, vocabulary, and
+objectives together. The human confirms or corrects this group as the basis for
+structural proposals.
 
----
+After acceptance, finalize the group-1 snapshot and pointer before preparing
+group 2.
 
-#### Phase 2 — Define Scope (SSOW + vocabulary)
+#### Group 2 preparation — Packages, Deliverables, coverage, exceptions
 
-**Goal:** Convert messy SOW into a normalized SSOW that can be partitioned without losing meaning.
+Resolve and consume the accepted group-1 snapshot before developing this
+proposal.
 
-**Actions:**
-- Normalize scope into atomic **Scope Items** (short, testable statements).
-- Identify boundaries explicitly:
-  - what is in-scope
-  - what is out-of-scope
-  - what is uncertain (TBD)
-- Start a **Vocabulary Map**:
-  - canonical terms (preferred)
-  - synonyms / alternate labels observed in user inputs
-  - notes (why canonical)
+Propose a flat Package partition with stable `PKG-XX` IDs, scope descriptions,
+inclusion criteria, and exactly one discipline for every design Package. Assign
+each IN Scope Item to exactly one Package. Resolve apparent overlap by proposing
+an evidenced split or by presenting the boundary as a human decision.
 
-**Output (in draft):**
-- SSOW list (atomic scope items)
-- Initial objective candidates (derived, not invented)
-- Vocabulary Map (initial)
+Within each Package, propose Deliverables with stable coupled
+`DEL-XX-YY_{shortDescription}` IDs, descriptions, responsible parties, types,
+anticipated artifacts, objective links, and Scope Item links. In design
+Packages, define Deliverables by knowledge-artifact kind and keep repeated
+instances as Artifacts.
 
-**Gate 2 (confirm SSOW):**
-User confirms: “Yes, that SSOW reflects the scope (including in/out/TBD), and the vocabulary choices are acceptable.”
+Run coverage, ID-coupling, package-discipline, artifact-kind, responsibility,
+interface, and objective-mapping checks. Prepare Coverage & Telemetry and a
+specific exception/open-issue list before asking for a decision.
 
----
+**Checkpoint group 2:** Present the proposed Packages and Deliverables together
+with coverage findings and exceptions. The human confirms or revises the
+structure and the recorded treatment of exceptions.
 
-#### Phase 3 — Define Objectives (derived from SSOW)
+After acceptance, finalize the group-2 snapshot and pointer before preparing
+the final audit.
 
-**Goal:** Produce a set of high-level success criteria derived from the SSOW.
+#### Group 3 preparation — independent audit and final package
 
-**Actions:**
-- Derive objectives from scope intent and success conditions embedded in SSOW.
-- Ensure objectives are:
-  - few enough to be meaningful
-  - specific enough to be testable as success criteria
-- Map objectives to SSOW scope items (best-effort).
+Resolve and consume the accepted group-2 snapshot before assembling and
+auditing the final package.
 
-**Output (in draft):**
-- Objective list with stable `OBJ-###` IDs
-- Best-effort mapping notes (including unmapped objectives, if any)
+Incorporate the first two decisions into the canonical working package. Ensure
+it contains the Scope Ledger, Coverage & Telemetry, Vocabulary Map, Packages,
+Deliverables, Artifacts, Objectives, companion inventory, and decision/change
+log. Dispatch a separate review instance that did not author the candidate to
+audit it against the accepted basis and group-2 decisions. Resolve mechanical defects and present
+remaining substantive findings without silently ruling them.
 
-**Gate 3 (confirm objectives):**
-User confirms: “Yes, those objectives represent success as intended.”
+**Checkpoint group 3:** Present the audited final decomposition. The human
+accepts it as the basis for downstream use or returns affected parts for repair.
+Write or render the accepted output around that accepted state; output writing
+does not add another checkpoint.
 
----
+After acceptance, finalize the group-3 snapshot and update
+`_LATEST_ACCEPTED.md` before any downstream handoff.
 
-#### Phase 4 — Define Packages (flat partition)
-
-**Goal:** Partition SSOW scope items into flat Packages with no overlap and no gaps.
-
-**Actions:**
-- Propose packages (flat list) with:
-  - Package ID `PKG-XXX` (stable)
-  - name and scope description
-  - discipline assignment for design packages (exactly one discipline)
-  - inclusion criteria
-- Assign each Scope Item to exactly one Package.
-- If a proposed design package spans multiple disciplines, split it into separate discipline-specific packages before Gate 4.
-- If an item appears to belong to multiple packages, keep it atomic and force a user decision (or split into smaller scope items, user-confirmed).
-
-**Output (in draft):**
-- Package list
-- Package scopes
-- ScopeItem→Package assignment (in the Scope Ledger)
-
-**Gate 4 (confirm packages):**
-User confirms: “Yes, packages are correct, and each scope item belongs to exactly one package.”
-
----
-
-#### Phase 5 — Define Deliverables (within each package)
-
-**Goal:** Define deliverables that operationalize scope into units of production.
-
-**Actions:**
-- `DEL-XXX-YY_{shortDescription}` ID (stable, hyphenated package/deliverable pair (mechanically coupled to `ParentPackageID`) plus descriptive suffix)
-- name
-- description
-- responsible party (TBD allowed)
-- deliverable type (e.g., Datasheet/Spec/Guidance/Procedure bundle; or engineering artifact type)
-- For design packages, define deliverables by distinct knowledge-artifact kinds; do not create one deliverable per individual artifact instance.
-- anticipated artifacts (one or many; same type as deliverable)
-- best-effort objective linkage (`SupportsObjectives`)
-- best-effort scope-item linkage (`CoversScopeItems`)
-
-**Output (in draft):**
-- Deliverable list grouped by Package
-- Deliverable attribute tables
-- ScopeItem→Deliverable mapping in the Scope Ledger (best-effort; gaps surfaced)
-
-**Gate 5 (confirm deliverables):**
-User confirms: “Yes, deliverables and responsibilities/types are acceptable.”
-
----
-
-#### Phase 6 — Verify Coverage (anti-fragile checks)
-
-**Goal:** Prove that decomposition covers scope and make gaps visible and trackable.
-
-**Actions:**
-- Verify every Scope Item is:
-  - assigned to exactly one Package (required)
-  - mapped to at least one Deliverable (best-effort; missing mappings are open issues)
-- Verify each Deliverable belongs to exactly one Package (required).
-- Verify objective mapping is best-effort complete:
-  - each objective is supported by at least one deliverable, or is flagged as open issue.
-- Produce **Coverage & Telemetry** summary (required).
-
-**Output (in draft):**
-- Coverage & Telemetry section with counts and open issues
-- Open Issues list referencing stable IDs (ScopeItemID, OBJ-ID, etc.)
-
-**Gate 6 (confirm verification):**
-User confirms: “Coverage and mappings are acceptable; open issues list is correct.”
-
----
-
-#### Phase 7 — Publish the Decomposition (finalize)
-
-**Goal:** Produce the final decomposition document as a single coherent artifact suitable for downstream agents.
-
-**Actions:**
-- Ensure the document includes:
-  - Scope Ledger (required)
-  - Coverage & Telemetry (required)
-  - Vocabulary Map (required)
-  - Packages, Deliverables, Artifacts, Objectives
-  - Decision log / change log (required)
-- Summarize what changed since last revision.
-
-**Gate 7 (final acceptance):**
-User confirms: “This decomposition is the accepted basis for downstream work.”
+If accepted source material changes, identify which prior decisions depended on
+it, reopen only those decisions, and refresh their dependent checks before the
+next applicable checkpoint. Preserve unaffected IDs, mappings, and decisions.
 
 ---

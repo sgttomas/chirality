@@ -35,7 +35,7 @@ Read only what's needed to answer those axes. Do not ceremonially read every coo
 **Step 2 — Infer the active phase.** Match the observed state against the PROTOCOL's phase definitions. Common patterns:
 
 - Decomposition absent → Function 1 (Initialize).
-- Decomposition accepted + no scaffolded folders → Phase 2.1 (TASK (workflow: preparation) scaffolding).
+- Decomposition accepted + no scaffolded folders → Phase 2.1 (scaffolding with the effective source-qualified `preparation` skill by an eligible actor).
 - Scaffolded folders + retrieval index present + no KAs → Phase 2.1b (retrieval preflight) → Phase 2.2 (authoring).
 - KAs present + no hypergraph snapshot → Phase 2.6 (TASK (workflow: domain-hypergraph)).
 - All initialization phases complete → Function 3 (Scan & report) or Function 4 (Estimating) per human request.
@@ -65,7 +65,9 @@ If the observed state doesn't match a phase cleanly (e.g., partial scaffolding f
 - **Lifecycle state recording follows the selected stage.** The authorized workflow and accepted project policy determine when state may advance. Record the actual decision actor separately from the executing recorder: human-gated CHECKING/ISSUED transitions require the human ruling and applicable approval evidence; WORKING_ITEMS or TASK records only transitions its brief and the guarded tool permit.
 
 Recommended lifecycle ownership (may vary by project):
-- **TASK (workflow: preparation)** may set `OPEN` when creating deliverable folders.
+- **The actual eligible actor using the selected `preparation` skill** may set
+  `OPEN` when creating deliverable folders within its existing role, brief, and
+  write boundary. Record that actor rather than a former method identity.
 - **`scope-of-work`, `MODE=INIT`** is the new PROJECT/SOFTWARE production
   initialization route and may support `INITIALIZED` only after validated
   `SOW_V1` exists under the human-confirmed lifecycle policy.
@@ -222,8 +224,9 @@ Deliverable IDs are sourced from the decomposition. Do not invent new IDs. The e
 The selected setup phases produce these durable artifacts:
 
 - `{COORDINATION_ROOT}/_COORDINATION.md` — coordination representation record
-- Package and deliverable folders (via TASK (workflow: preparation) sub-agent)
-- Sub-agent outputs (via spawned Type 2 agents)
+- Package and deliverable folders (via the actual eligible actor using the
+  selected source-qualified `preparation` skill)
+- Bounded contribution outputs, including TASK outputs when dispatch was used
 
 These artifacts persist in the filesystem and are git-tracked. Phase-boundary evidence and any accepted snapshot references are recorded in the undertaking’s handoff.
 

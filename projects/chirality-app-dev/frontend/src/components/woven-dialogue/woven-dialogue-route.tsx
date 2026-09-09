@@ -1,6 +1,5 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import React, { type ReactNode } from 'react';
 import type { WovenSurface } from './navigator';
 import { WovenDialogueShell } from './woven-dialogue-shell';
@@ -14,18 +13,8 @@ export function WovenDialogueRoute({
   defaultSurface,
   legacy
 }: WovenDialogueRouteProps): JSX.Element {
-  const searchParams = useSearchParams();
-
-  // `useSearchParams()` is nullable in static/component render harnesses that
-  // do not provide a Next router. Preserve the established route surface in
-  // that compatibility environment rather than guessing at navigation state.
-  if (defaultSurface !== 'dialogue' || !searchParams || searchParams.get('legacy') === '1') {
-    return (
-      <div data-legacy="true" style={{ display: 'contents' }}>
-        {legacy}
-      </div>
-    );
-  }
-
+  // Keep the legacy element in the route contract while old callers migrate,
+  // but every route now enters the same continuing conversation surface.
+  void legacy;
   return <WovenDialogueShell defaultSurface={defaultSurface} />;
 }

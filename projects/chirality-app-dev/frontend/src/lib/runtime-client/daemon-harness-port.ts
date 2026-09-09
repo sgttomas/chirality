@@ -12,6 +12,23 @@ import type {
   UIEvent
 } from '@chirality/runtime-contracts/types';
 import type { TranscriptView } from '@chirality/runtime-contracts/transcript-replay';
+import type {
+  ChiralityRoleName,
+  ExportNativePlanRequest,
+  ExportNativePlanResponse,
+  FrozenInstructionBasisV3,
+  InstructionHistoryRecordV3,
+  MethodInspectionResponse,
+  MethodsResponse,
+  NativePlanCapabilityResponse,
+  NativePlanRevisionsResponse,
+  ReplaceSelectedMethodsRequest,
+  ReplaceSelectedMethodsResponse,
+  ResolveSelectedContextRequest,
+  ResolveSelectedContextResponse,
+  RolesResponse
+} from '@chirality/runtime-contracts/v3';
+import type { ReadableRuntimeSessionRecord } from '@chirality/runtime-contracts';
 import { createRuntimeDaemonHarnessPortFromEnvironment } from './runtime-daemon-harness-port';
 
 export type AgentRosterEntry = {
@@ -36,8 +53,10 @@ export type HarnessReplayResponse = {
     firstTimestamp?: string;
     lastTimestamp?: string;
   };
-  session: SessionRecord;
+  session: SessionRecord | ReadableRuntimeSessionRecord;
   transcript: TranscriptView;
+  instructionHistory: readonly InstructionHistoryRecordV3[];
+  instructionBases: readonly FrozenInstructionBasisV3[];
 };
 
 export type RunningDaemonHarnessTurn = {
@@ -47,6 +66,21 @@ export type RunningDaemonHarnessTurn = {
 
 export type DaemonRequestOptions = {
   signal?: AbortSignal;
+};
+
+export type V3SessionCreateRequest = SessionCreateRequest & {
+  roleId?: ChiralityRoleName;
+  interactionMode?: ResolveSelectedContextRequest['interactionMode'];
+  permissionMode?: ResolveSelectedContextRequest['permissionMode'];
+  selectedMethods?: ResolveSelectedContextRequest['methods'];
+  declaredContext?: string[];
+  allowedWriteTargets?: string[];
+};
+
+export type V3TurnRequest = TurnRequest & {
+  interactionMode?: ResolveSelectedContextRequest['interactionMode'];
+  permissionMode?: ResolveSelectedContextRequest['permissionMode'];
+  methods?: ResolveSelectedContextRequest['methods'];
 };
 
 /**
@@ -61,17 +95,17 @@ export type DaemonRequestOptions = {
  */
 export interface DaemonHarnessPort {
   createSession(
-    request: SessionCreateRequest,
+    request: V3SessionCreateRequest,
     options?: DaemonRequestOptions
-  ): Promise<{ session: SessionRecord }>;
+  ): Promise<{ session: SessionRecord | ReadableRuntimeSessionRecord }>;
   listSessions(
     projectRoot: string,
     options?: DaemonRequestOptions
-  ): Promise<{ sessions: SessionRecord[] }>;
+  ): Promise<{ sessions: Array<SessionRecord | ReadableRuntimeSessionRecord> }>;
   getSession(
     sessionId: string,
     options?: DaemonRequestOptions
-  ): Promise<{ session: SessionRecord }>;
+  ): Promise<{ session: SessionRecord | ReadableRuntimeSessionRecord }>;
   deleteSession(
     sessionId: string,
     options?: DaemonRequestOptions
@@ -85,7 +119,7 @@ export interface DaemonHarnessPort {
     options?: DaemonRequestOptions
   ): Promise<HarnessReplayResponse>;
   turn(
-    request: TurnRequest,
+    request: V3TurnRequest,
     options?: DaemonRequestOptions
   ): Promise<RunningDaemonHarnessTurn>;
   interrupt(
@@ -100,6 +134,41 @@ export interface DaemonHarnessPort {
     request: { directChatOnly: boolean },
     options?: DaemonRequestOptions
   ): Promise<{ agents: AgentRosterEntry[] }>;
+  listRoles(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<RolesResponse>;
+  listMethods(
+    request: { projectRoot: string; kind?: 'skill' | 'workflow'; query?: string },
+    options?: DaemonRequestOptions
+  ): Promise<MethodsResponse>;
+  inspectMethod(
+    request: { projectRoot: string; qualifiedId: string },
+    options?: DaemonRequestOptions
+  ): Promise<MethodInspectionResponse>;
+  resolveSelectedContext(
+    sessionId: string,
+    request: ResolveSelectedContextRequest,
+    options?: DaemonRequestOptions
+  ): Promise<ResolveSelectedContextResponse>;
+  replaceSelectedMethods(
+    sessionId: string,
+    request: ReplaceSelectedMethodsRequest,
+    options?: DaemonRequestOptions
+  ): Promise<ReplaceSelectedMethodsResponse>;
+  getNativePlanCapability(
+    sessionId: string,
+    options?: DaemonRequestOptions
+  ): Promise<NativePlanCapabilityResponse>;
+  listNativePlanRevisions(
+    sessionId: string,
+    options?: DaemonRequestOptions
+  ): Promise<NativePlanRevisionsResponse>;
+  exportNativePlan(
+    sessionId: string,
+    request: ExportNativePlanRequest,
+    options?: DaemonRequestOptions
+  ): Promise<ExportNativePlanResponse>;
   scaffold(
     request: ScaffoldExecutionRootRequest,
     options?: DaemonRequestOptions
@@ -125,6 +194,14 @@ const unboundDaemonHarnessPort: DaemonHarnessPort = {
   interrupt: daemonClientUnavailable,
   decidePermission: daemonClientUnavailable,
   listAgents: daemonClientUnavailable,
+  listRoles: daemonClientUnavailable,
+  listMethods: daemonClientUnavailable,
+  inspectMethod: daemonClientUnavailable,
+  resolveSelectedContext: daemonClientUnavailable,
+  replaceSelectedMethods: daemonClientUnavailable,
+  getNativePlanCapability: daemonClientUnavailable,
+  listNativePlanRevisions: daemonClientUnavailable,
+  exportNativePlan: daemonClientUnavailable,
   scaffold: daemonClientUnavailable
 };
 

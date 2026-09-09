@@ -4,6 +4,11 @@ import renderer, { act } from 'react-test-renderer';
 import { describe, expect, it, vi } from 'vitest';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type { SessionRecord } from '@chirality/runtime-contracts/types';
+const methodMocks = vi.hoisted(() => ({ revisions: vi.fn() }));
+vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
+  ...await importOriginal<typeof import('../../lib/harness/method-selection-client')>(),
+  listNativePlanRevisions: methodMocks.revisions
+}));
 import { SelectedSessionReplayLens } from '../../components/woven-dialogue/selected-session-replay-lens';
 import { buildSelectedSessionReplayProjection } from '../../lib/woven-dialogue/selected-session-replay';
 
@@ -58,7 +63,9 @@ function replayProjection() {
         },
         firstTimestamp: events[0].timestamp,
         lastTimestamp: events[1].timestamp
-      }
+      },
+      instructionHistory: [],
+      instructionBases: []
     },
     {
       observedAt: '2026-07-23T01:00:00.000Z',
@@ -110,6 +117,22 @@ describe('SelectedSessionReplayLens', () => {
     expect((html.match(/<button/g) ?? [])).toHaveLength(1);
   });
 
+  it('shows frozen instruction selection and supplied-entry hashes without progress claims', () => {
+    const method = { sourceRootId: 'chirality-root', source: 'bundled' as const, kind: 'workflow' as const, name: 'project-setup' };
+    const projection = {
+      ...replayProjection(),
+      instructionHistory: [{ schemaVersion: 'chirality.instruction-history/v1' as const, historyId: 'history-1', sessionId: 'recorded-session', sequence: 1, timestamp: '2026-09-09T00:00:00.000Z', type: 'instruction-basis.resolved' as const, basisId: 'basis-1' }],
+      instructionBases: [{ schemaVersion: 'chirality.instruction-basis/v1' as const, basisId: 'basis-1', sessionId: 'recorded-session', createdAt: '2026-09-09T00:00:00.000Z', roleId: 'HELP_HUMAN' as const, interactionMode: 'chat' as const, permissionMode: 'ask' as const, selectedMethods: [method], compatibilityInputs: [], compatibilityMappings: [], suppliedEntries: [{ kind: 'method-body' as const, id: 'workflow:project-setup', content: 'frozen body', sha256: 'a'.repeat(64), method, origin: 'bundled:chirality-root', path: 'workflows/project-setup/WORKFLOW.md' }], methodDispositions: [{ method, selected: true as const, activeRoleCompatible: false, eligibleRoleIds: ['WORKING_ITEMS' as const], route: 'managed-delegation' as const }] }]
+    };
+    const html = renderToStaticMarkup(<SelectedSessionReplayLens state={{ status: 'READY', projection }} onReturnToPrimary={() => {}} />);
+    expect(html).toContain('Instruction history');
+    expect(html).toContain('workflow:project-setup');
+    expect(html).toContain('bundled:chirality-root');
+    expect(html).toContain('a'.repeat(64));
+    expect(html).toContain('do not indicate workflow progress');
+    expect(html).not.toContain('Workflow complete');
+  });
+
   it('offers only Return and optional Retry when replay is unavailable', () => {
     const onReturn = vi.fn();
     const onRetry = vi.fn();
@@ -152,5 +175,22 @@ describe('SelectedSessionReplayLens', () => {
     expect(html).toContain('Loading canonical replay evidence');
     expect(html).toContain('Return to primary dialogue');
     expect((html.match(/<button/g) ?? [])).toHaveLength(1);
+  });
+
+  it('offers continuation for an admitted v3 record and renders recorded native plan revisions', async () => {
+    const qualification = { adapterId: 'native', providerId: 'provider', qualificationId: 'admitted', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const };
+    methodMocks.revisions.mockResolvedValue({ schemaVersion: 'chirality.native-plan-revisions/v3', status: 'qualified', qualification,
+      revisions: [{ revision: 1, sourceEvent: { qualificationState: 'qualified', eventId: 'plan-event', occurredAt: '2026-09-09T00:00:00Z', qualification, plan: 'Recorded plan body' } }] });
+    const projection = replayProjection();
+    projection.session!.continuation = { schemaVersion: 'chirality.session/v3', projectRoot: '/repo/project', roleId: 'WORKING_ITEMS', mode: 'governed', interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [], methodSelectionRevision: 1, instructionBasisId: 'basis-1' };
+    const onContinue = vi.fn();
+    let tree!: ReturnType<typeof renderer.create>;
+    await act(async () => { tree = renderer.create(<SelectedSessionReplayLens state={{ status: 'READY', projection }} onReturnToPrimary={() => {}} onContinue={onContinue} />); });
+    await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
+    const button = tree.root.findAllByType('button').find(item => item.children.includes('Continue this chat'))!;
+    act(() => button.props.onClick());
+    expect(onContinue).toHaveBeenCalledWith(projection);
+    expect(JSON.stringify(tree.toJSON())).toContain('Recorded plan body');
+    act(() => tree.unmount());
   });
 });

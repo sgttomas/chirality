@@ -1,0 +1,73 @@
+{
+  "schema": "chirality-app-adapter-tests-review-supplement/v2",
+  "verdict": "PASS",
+  "reviewer": {
+    "agent": "/root/astra_runtime_second_pass",
+    "model": "gpt-6-astra",
+    "reasoningEffort": "high",
+    "modelIdentityBasis": "dispatch specification"
+  },
+  "baseCommit": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "managerFreezeSha256": "559b0166c5488e8309481ac1f2f46c7270ae7b4415aede9748859ae66a68cc8e",
+  "sourceManifestSha256": "1b6fd5ad1cbea8797233a1ef6cd0746552f4ed2fb0a79d14f7581438249a2d56",
+  "sourceMembers": 61,
+  "sourceDrift": [],
+  "predecessorManifestSha256": "0f2b11182d646f6d2e88c7f8475cab9a3f6f3404344b94491b92cf7d6eb842ee",
+  "engineSupplementManifestSha256": "b83f46be9411ccfc6cca88a35775b0049adb1e6c84e149b71ba44afbba1af096",
+  "closedFindings": [
+    "R2-8"
+  ],
+  "unresolvedFindings": [],
+  "tests": {
+    "focusedFiles": 4,
+    "focusedPassed": 118,
+    "independentNegativePassed": 2
+  },
+  "members": [
+    {
+      "path": "APP_ADAPTER_TESTS_SUPPLEMENT_V2.md",
+      "sha256": "fa067c79d2bd9f4066ddcd32d2e7fdaca88abc4cefe2c51d9faac272d2208a11",
+      "bytes": 7388
+    },
+    {
+      "path": "app-adapter-tests-supplement-v2/AFTER_TEST_CHECK.json",
+      "sha256": "b3e365ceb097471a0f31d5b9bd9faec456a8690739cf86e5b5199ec556851f31",
+      "bytes": 16331
+    },
+    {
+      "path": "app-adapter-tests-supplement-v2/AUTHOR_HASHES.txt",
+      "sha256": "76c34bf6d6bd3f9322f1c3fa0ab6449ea61cb9cc4ff64af7093b79c6a8fbb123",
+      "bytes": 832
+    },
+    {
+      "path": "app-adapter-tests-supplement-v2/FOCUSED_TESTS.log",
+      "sha256": "37737bc29a230fa77680c2809f3819475deaa75bd844384924db25b96360d42c",
+      "bytes": 268
+    },
+    {
+      "path": "app-adapter-tests-supplement-v2/NEGATIVE_TESTS.log",
+      "sha256": "25bec6390a32717eba9808b7c6f162209060e7ea2b16472cc3f45a8c1e02a71c",
+      "bytes": 264
+    },
+    {
+      "path": "app-adapter-tests-supplement-v2/SOURCE_MANIFEST.json",
+      "sha256": "1b6fd5ad1cbea8797233a1ef6cd0746552f4ed2fb0a79d14f7581438249a2d56",
+      "bytes": 12513
+    },
+    {
+      "path": "app-adapter-tests-supplement-v2/target-binding-negative.test.ts",
+      "sha256": "66d1e9b7081ea113914acc97350833ac88031a0845e12eb14a3021ba188a847a",
+      "bytes": 6484
+    },
+    {
+      "path": "app-adapter-tests-supplement-v2/vitest-negative.config.mjs",
+      "sha256": "c720025aec13c48faa829a5a8c6675dec2e46969a22ed3794f5eb9c8c942bc3e",
+      "bytes": 454
+    },
+    {
+      "path": "app-adapter-tests-supplement-v2/vitest.config.mjs",
+      "sha256": "e568ffd518b2303f3d921a1c42a5e8d25217e69ac6262ef626f6b52c7f122802",
+      "bytes": 820
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 # Workflow-Component Design Standard
 
-Status: D-GOV-41 candidate replacement, authorized for Root implementation.
-This prospective edition replaces the component taxonomy and instruction
-contracts of the D-GOV-14 edition. Historical ratified text remains available at
-`ee35409f5cf3a81ecb29a271527156b991df97b9`. The decision record specifies the
-amendment scope and adoption hold; publication is not downstream acceptance.
+Status: prospective Chirality v3 amendment authorized for Root implementation
+by the owner on 2026-09-09. These candidate bytes do not themselves establish
+final acceptance, downstream qualification, release, or project-loop adoption.
+The D-GOV-14 edition remains the ratified basis until governed closeout;
+historical text remains available at
+`ee35409f5cf3a81ecb29a271527156b991df97b9`.
 
 ## Components
 
@@ -13,11 +14,15 @@ roles: HELP_HUMAN (Type 0), HELPS_HUMANS and WORKING_ITEMS (Type 1), and TASK
 (Type 2). An ephemeral Type 2 instance performs a bounded assignment without a
 persistent role file. Subject matter and repeated methods belong in workflows.
 
-A workflow describes an undertaking: reasoning, operations, coordination,
-branching, iteration, decisions, outputs, and recovery as applicable. It may
-compose managers and executors and may itself help construct or invoke other
-workflows. Its relationships are part of its method; loading it never creates
-another role or grants additional capabilities.
+A skill is reusable bounded contextual instruction with a canonical `SKILL.md`.
+A workflow is reusable coordination or method guidance with a canonical
+`WORKFLOW.md`. Either may be simple or complex and may have supporting
+resources. A workflow may describe reasoning, operations, coordination,
+branching, iteration, decisions, outputs, and recovery as applicable; selecting
+one is optional unless the brief or an accepted instrument requires it. A
+workflow may compose managers and executors and may help construct or invoke
+other workflows. Loading a skill or workflow never creates another role,
+launches execution, or grants additional capabilities.
 
 A tool performs a deterministic operation with explicit inputs, outputs,
 scope, errors, and repeat-execution behavior. A brief binds work to one run:
@@ -43,11 +48,19 @@ SPEC, STRUCTURE, RATIONALE; rationale does not create permissions.
 
 ## Workflow packages and loading
 
-Use `workflows/<name>/WORKFLOW.md` with a short name and description. Organize
-its body for the undertaking; supporting references, templates, and helpers
-are optional. Load only the selected workflow and resources needed for the
+Use the project, user, and bundled library paths and precedence defined in
+`AGENT_WORKFLOW_RUNTIME.md`. Project workflow discovery recognizes packages at
+`.chirality/workflows/<name>/WORKFLOW.md`; historical flat
+`.chirality/workflows/*.md` files remain ordinary documents and are not
+canonical packages. Keep a short name and description. Organize a workflow
+body for the undertaking; supporting references, templates, and helpers are
+optional. Ordinary selective context includes Root `AGENTS.md`,
+applicable project instructions, the active role, and available skill
+descriptions. Load selected method bodies and only the resources needed for the
 current stage. Specialized tool policy belongs in optional `execution.json`.
-The runtime contract defines configuration and selection interfaces.
+Selection retains source-qualified identity and collision origins. The runtime
+contract defines catalog, ordering, history, replay, replacement, and selection
+interfaces.
 
 Write enough to preserve the decisions, outputs, interfaces, and recovery that
 make the method work. Consolidate repetitions and use deterministic tools for
@@ -62,7 +75,9 @@ creation, validation, Git transport, and a coordination notice do not supply
 those acts. Existing authority and checkout-containment rules apply to every
 component.
 
-A manager may coordinate any explicitly bounded undertaking. Package and
+A manager may coordinate any explicitly bounded undertaking. Method selection,
+role compatibility, coordination, and execution remain separate; no selection
+silently changes role or launches work. Package and
 deliverable contracts continue to govern assignments expressed in those forms.
 Every run has declared context, capability limits, write targets, and expected
 returns. Shared reads are allowed; concurrent writes are disjoint or serialized

@@ -24,6 +24,8 @@ function replayProjection(sessionId: string): SelectedSessionReplayProjection {
       itemCount: 0,
       items: []
     },
+    instructionHistory: [],
+    instructionBases: [],
     malformedLineCount: 0,
     sourceEventCount: 0,
     renderedItemCount: 0,

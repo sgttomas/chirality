@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   default as React,
   Suspense,
@@ -32,7 +32,7 @@ import {
 } from '../../lib/woven-dialogue/woven-workspace-state';
 import { useHarnessStreaming, useHarnessEvents } from '../workspace/harness-events-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
-import { ChatPanel } from '../shell/chat-panel';
+import { ChatPanel, type ResumeConversationRequest } from '../shell/chat-panel';
 import { useRuntimeEpoch } from '../shell/runtime-connectivity-provider';
 import { ShellFrame } from '../shell/shell-frame';
 import { ActivityStrip } from './activity-shelf';
@@ -42,6 +42,7 @@ import type { FileCatalog } from '../shell/file-tree-panel';
 import { DialogueViewport } from './dialogue-viewport';
 import { Navigator, type WovenSurface } from './navigator';
 import { SelectedSessionReplayLens } from './selected-session-replay-lens';
+import type { QualifiedMethodReference } from '../../lib/harness/method-selection-client';
 
 type WovenDialogueShellProps = {
   defaultSurface: WovenSurface;
@@ -65,6 +66,7 @@ function clamp(value: number, minimum: number, maximum: number): number {
 
 export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element {
   const pathname = usePathname();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const { projectRoot } = useWorkspace();
   const streaming = useHarnessStreaming();
@@ -77,6 +79,9 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [navigatorModalOpen, setNavigatorModalOpen] = useState(false);
   const runtimeEpoch = useRuntimeEpoch();
   const [primarySessionId, setPrimarySessionId] = useState<string>();
+  const [selectedMethods, setSelectedMethods] = useState<QualifiedMethodReference[]>([]);
+  const [pendingResume, setPendingResume] = useState<ResumeConversationRequest>();
+  const resumeSequence = useRef(0);
   const [workspaceState, setWorkspaceState] = useState<WovenWorkspaceState>(
     createDefaultWovenWorkspaceState
   );
@@ -188,6 +193,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
 
   useEffect(() => {
     replayLoaderRef.current?.cancel();
+    setPendingResume(undefined);
     setSessions([]);
     setSessionsError(null);
     if (
@@ -343,6 +349,19 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       input?.focus();
     });
   }, [updateWorkspaceState]);
+
+  const continueRecordedConversation = useCallback((projection: Extract<SelectedSessionReplayState, { status: 'READY' }>['projection']): void => {
+    const continuation = projection.session?.continuation;
+    if (!continuation || continuation.projectRoot !== projectRoot || streaming) return;
+    const request = { requestId: ++resumeSequence.current, projection };
+    const currentRole = searchParams.get('agent');
+    setPendingResume(request);
+    if (currentRole !== continuation.roleId) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('agent', continuation.roleId);
+      router.replace(`${pathname}?${params.toString()}`);
+    }
+  }, [pathname, projectRoot, router, searchParams, streaming]);
 
   const loadReplay = useCallback(
     (sessionId: string): void => {
@@ -550,8 +569,13 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               <>
                 <Suspense fallback={<p className="panel-empty">Loading primary dialogue…</p>}>
                   <ChatPanel presentation="woven" onDraftCaptured={restoreExpanded} onActiveSessionChange={setPrimarySessionId}
+                    selectedMethods={selectedMethods} onSelectedMethodsChange={setSelectedMethods}
+                    onOpenMethods={() => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'workflows', coordinationCollapsed: false }); }}
                     fileCatalog={currentFileCatalog} onOpenFile={openContainedFile}
                     onSessionBootedPrompt={({ sessionId, prompt, persona }) => setWorkspaceState(current => Object.hasOwn(current.chatTitles ?? {}, sessionId) ? current : { ...current, chatTitles: { ...(current.chatTitles ?? {}), [sessionId]: deriveChatTitle({ firstOperatorMessage: prompt, persona, sessionId }) } })}
+                    resumeConversation={pendingResume?.projection.session?.continuation?.roleId === searchParams.get('agent') &&
+                      pendingResume.projection.session.continuation.projectRoot === projectRoot ? pendingResume : undefined}
+                    onConversationResumed={() => { setPendingResume(undefined); returnToPrimaryDialogue(); }}
                     knownRoots={workspaceState.knownRoots ?? []} onBindingChange={setBinding} newChatRequest={newChatRequest} folderSelectionPending={folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} />
                 </Suspense>
               </>
@@ -676,6 +700,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
                 if (view === 'agents') setCoordinationView('agents');
               }}
               onOpenFile={openContainedFile}
+              selectedMethods={selectedMethods}
+              onSelectedMethodsChange={setSelectedMethods}
               onFileCatalog={handleFileCatalog}
               onExpand={toggleExpanded}
               onRefreshSessions={() => setSessionRefreshToken(token => token + 1)}
@@ -693,6 +719,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
                     state={replayState}
                     primarySessionId={primarySessionId}
                     onReturnToPrimary={returnToPrimaryDialogue}
+                    onContinue={continueRecordedConversation}
                     onRetry={() => {
                       const sessionId = selectedReplayId(replayState);
                       if (sessionId) {

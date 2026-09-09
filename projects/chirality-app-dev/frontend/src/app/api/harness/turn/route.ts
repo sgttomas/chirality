@@ -5,10 +5,17 @@ import {
 } from '../../../../lib/harness/http';
 import { getDaemonHarnessPort } from '../../../../lib/runtime-client/daemon-harness-port';
 import { TurnRequest } from '@chirality/runtime-contracts/types';
+import type { MethodReference, ResolveSelectedContextRequest } from '@chirality/runtime-contracts/v3';
+
+type V3TurnRequest = TurnRequest & {
+  interactionMode?: ResolveSelectedContextRequest['interactionMode'];
+  permissionMode?: ResolveSelectedContextRequest['permissionMode'];
+  methods?: readonly MethodReference[];
+};
 
 export async function POST(request: Request): Promise<Response> {
   try {
-    const body = await readJsonBody<TurnRequest>(request);
+    const body = await readJsonBody<V3TurnRequest>(request);
     const runningTurn = await getDaemonHarnessPort().turn(body, {
       signal: request.signal
     });

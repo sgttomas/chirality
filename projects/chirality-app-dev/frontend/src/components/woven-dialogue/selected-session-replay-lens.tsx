@@ -1,7 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { TranscriptItem } from '@chirality/runtime-contracts/transcript-replay';
+import type {
+  FrozenInstructionBasisV3,
+  InstructionHistoryRecordV3,
+  QualifiedMethodReference
+} from '@chirality/runtime-contracts/v3';
+import type { NativePlanRevision } from '@chirality/runtime-contracts/v3';
+import { listNativePlanRevisions } from '../../lib/harness/method-selection-client';
 import type {
   ProjectionDiagnostic,
   SelectedSessionReplayProjection,
@@ -13,16 +20,19 @@ export type SelectedSessionReplayLensProps = {
   primarySessionId?: string;
   onReturnToPrimary: () => void;
   onRetry?: () => void;
+  onContinue?: (projection: SelectedSessionReplayProjection) => void;
 };
 
 function ReplayHeader({
   selectedSessionId,
   primarySessionId,
-  onReturnToPrimary
+  onReturnToPrimary,
+  onContinue
 }: {
   selectedSessionId: string;
   primarySessionId?: string;
   onReturnToPrimary: () => void;
+  onContinue?: () => void;
 }): JSX.Element {
   return (
     <header className="woven-replay-header">
@@ -43,6 +53,7 @@ function ReplayHeader({
       <button type="button" onClick={onReturnToPrimary}>
         Return to primary dialogue
       </button>
+      {onContinue ? <button type="button" onClick={onContinue}>Continue this chat</button> : null}
     </header>
   );
 }
@@ -94,6 +105,96 @@ function TranscriptItemView({ item }: { item: TranscriptItem }): JSX.Element {
   );
 }
 
+function methodLabel(method: QualifiedMethodReference): string {
+  return `${method.name} · ${method.source} ${method.kind}`;
+}
+
+function historyBasisId(record: InstructionHistoryRecordV3): string | undefined {
+  return typeof record.basisId === 'string' ? record.basisId : undefined;
+}
+
+function historyLabel(record: InstructionHistoryRecordV3): string {
+  switch (record.type) {
+    case 'selection.changed': return 'Role or method selection updated';
+    case 'resource.loaded': return 'Method resource loaded';
+    case 'instruction-basis.resolved': return 'Instruction basis recorded';
+    case 'method-change.requested': return 'Method change requested';
+    case 'method-change.applied': return 'Method change applied';
+    case 'method-change.failed': return 'Method change failed';
+    case 'native-plan.revised': return 'Native plan revised';
+    case 'provider-span.prepared': return 'Conversation continuation prepared';
+    case 'provider-span.committed': return 'Conversation continuation committed';
+    case 'provider-span.continued': return 'Conversation continued with a new provider span';
+    case 'provider-span.cancelled': return 'Conversation continuation cancelled';
+    case 'provider-span.failed': return 'Conversation continuation failed';
+    default: return 'Instruction context updated';
+  }
+}
+
+function InstructionHistoryView({
+  history,
+  bases
+}: {
+  history: readonly InstructionHistoryRecordV3[];
+  bases: readonly FrozenInstructionBasisV3[];
+}): JSX.Element | null {
+  if (history.length === 0 && bases.length === 0) return null;
+  return <section className="woven-instruction-history" aria-label="Recorded instruction history">
+    <h3>Instruction history</h3>
+    <p>Recorded selections, loaded resources, and instruction bases. These records do not indicate workflow progress.</p>
+    {history.length ? <ol>
+      {history.map(record => <li key={record.historyId}>
+        <strong>{historyLabel(record)}</strong>
+        <span> · sequence {record.sequence}</span>
+        {historyBasisId(record) ? <span> · basis <code>{historyBasisId(record)}</code></span> : null}
+        <time dateTime={record.timestamp}> · {record.timestamp}</time>
+      </li>)}
+    </ol> : null}
+    {bases.map(basis => <details key={basis.basisId}>
+      <summary>Basis {basis.basisId} · {basis.roleId}</summary>
+      <dl>
+        <dt>Recorded</dt><dd>{basis.createdAt}</dd>
+        <dt>Interaction</dt><dd>{basis.interactionMode}</dd>
+        <dt>Permission</dt><dd>{basis.permissionMode}</dd>
+      </dl>
+      {basis.selectedMethods.length ? <ul aria-label="Selected methods">
+        {basis.selectedMethods.map(method => <li key={`${method.sourceRootId}:${method.kind}:${method.name}`}>{methodLabel(method)}</li>)}
+      </ul> : <p>No methods selected.</p>}
+      {basis.suppliedEntries.length ? <ul aria-label="Supplied instruction entries">
+        {basis.suppliedEntries.map((entry, index) => <li key={`${entry.sha256}:${index}`}>
+          <strong>{entry.kind}</strong> · {entry.id}<br />
+          <small>{entry.origin} · <code>{entry.sha256}</code></small>
+        </li>)}
+      </ul> : <p>No supplied instruction entries were recorded.</p>}
+    </details>)}
+  </section>;
+}
+
+function nativePlanText(revision: NativePlanRevision): string {
+  const plan = revision.sourceEvent.plan;
+  return typeof plan === 'string' ? plan : JSON.stringify(plan, null, 2);
+}
+
+function RecordedNativePlans({ sessionId }: { sessionId: string }): JSX.Element | null {
+  const [revisions, setRevisions] = useState<readonly NativePlanRevision[]>([]);
+  useEffect(() => {
+    const controller = new AbortController();
+    setRevisions([]);
+    void listNativePlanRevisions(sessionId, controller.signal)
+      .then(result => { if (!controller.signal.aborted) setRevisions(result.revisions); })
+      .catch(() => { if (!controller.signal.aborted) setRevisions([]); });
+    return () => controller.abort();
+  }, [sessionId]);
+  if (!revisions.length) return null;
+  return <section className="woven-native-plan-history" aria-label="Recorded native plans">
+    <h3>Native plans</h3>
+    {revisions.map(revision => <details key={revision.revision}>
+      <summary>Revision {revision.revision}</summary>
+      <pre>{nativePlanText(revision)}</pre>
+    </details>)}
+  </section>;
+}
+
 function ReadyReplay({
   projection
 }: {
@@ -140,7 +241,7 @@ function ReadyReplay({
           >
             {attribution.persona ? (
               <>
-                <dt>Persona</dt>
+                <dt>Recorded legacy role</dt>
                 <dd>{attribution.persona}</dd>
               </>
             ) : null}
@@ -188,6 +289,13 @@ function ReadyReplay({
 
       <DiagnosticList diagnostics={projection.diagnostics} />
 
+      <InstructionHistoryView
+        history={projection.instructionHistory}
+        bases={projection.instructionBases}
+      />
+
+      <RecordedNativePlans sessionId={projection.selectedSessionId} />
+
       <section className="woven-replay-transcript" aria-label="Read-only transcript">
         {projection.transcript.items.length === 0 ? (
           <p>
@@ -216,7 +324,8 @@ export function SelectedSessionReplayLens({
   state,
   primarySessionId,
   onReturnToPrimary,
-  onRetry
+  onRetry,
+  onContinue
 }: SelectedSessionReplayLensProps): JSX.Element | null {
   if (state.status === 'IDLE') {
     return null;
@@ -241,6 +350,8 @@ export function SelectedSessionReplayLens({
         selectedSessionId={selectedSessionId}
         primarySessionId={primarySessionId}
         onReturnToPrimary={onReturnToPrimary}
+        onContinue={state.status === 'READY' && state.projection.session?.continuation && onContinue
+          ? () => onContinue(state.projection) : undefined}
       />
 
       {state.status === 'LOADING' ? (

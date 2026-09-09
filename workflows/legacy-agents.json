@@ -35,7 +35,13 @@
     },
     "CHANGE": {
       "role": "WORKING_ITEMS",
-      "workflow": "change"
+      "workflow": "change",
+      "canonical_successor": {
+        "kind": "skill",
+        "name": "chirality-change",
+        "scope": "project"
+      },
+      "compatibility_note": "Legacy CHANGE runs retain the historical change workflow; new Chirality repository change work may select the project-only chirality-change skill."
     },
     "DBM_PUBLISHER": {
       "role": "WORKING_ITEMS",
@@ -83,7 +89,11 @@
     },
     "PREPARATION": {
       "role": "TASK",
-      "workflow": "preparation"
+      "workflow": "preparation",
+      "canonical_successor": {
+        "kind": "skill",
+        "name": "preparation"
+      }
     },
     "PROJECT_DECOMP": {
       "role": "WORKING_ITEMS",
@@ -103,7 +113,11 @@
     },
     "RESEARCHER": {
       "role": "TASK",
-      "workflow": "researcher"
+      "workflow": "researcher",
+      "canonical_successor": {
+        "kind": "skill",
+        "name": "researcher"
+      }
     },
     "REVIEW": {
       "role": "WORKING_ITEMS",

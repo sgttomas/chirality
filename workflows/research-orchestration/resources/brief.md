@@ -1,7 +1,9 @@
 # BRIEF_SCHEMA — research-orchestration
 
-WORKING_ITEMS receives this orchestration brief. Each child receives a separate bounded
-`Workflow: researcher` brief with an exact, disjoint OUTPUT_DIR. Load resources for the current stage.
+WORKING_ITEMS receives this orchestration brief. Each child receives a separate
+bounded brief with an exact, disjoint `OUTPUT_DIR` and the effective
+source-qualified `researcher` skill descriptor in its ordered `methods` field.
+Load resources for the current stage.
 
 ## Required brief fields
 
@@ -26,8 +28,10 @@ One row per sub-question:
 | "Enumerate the current tool-descriptor surface" | AGENT | yes | yes |
 | "Exact name of the collision-check helper" | DIRECT | no | no |
 
-`DIRECT` rows are answered by a single `query_source_index.py`/`grep` call. `AGENT` rows are
-dispatched as `TASK (workflow: researcher)` streams.
+`DIRECT` rows are answered by a single `query_source_index.py`/`grep` call.
+`AGENT` rows are dispatched as TASK streams with
+`methods: [{kind: "skill", name: "researcher", source: <descriptor.source>, sourceRootId: <descriptor.sourceRootId>}]`,
+where the descriptor came from effective catalog discovery.
 
 ## Optional fields
 

@@ -28,19 +28,52 @@ Executable prompts and TASK briefs must derive paths from the active checkout:
 | Operative | Execute bounded app-integration tranches, implementation slices, tests, evidence updates, and docs updates. |
 | Evaluative | Review, reconcile, audit, and decide whether outputs are acceptable for the next stage. |
 
-## Primary Agents
+## Active Roles
 
-| Agent | Type | Role in this project |
+New App work uses exactly four roles. Role identity is distinct from the
+Agent 0/1/2 type and from the engine or model that supplies an instance.
+
+| Role | Type | App use |
 |---|---:|---|
-| `HELP_HUMAN` | 0 | Default supervising entry for the open-ended standing development loop; aligns the human and workflow, supervises discovery and the selected Agent 1 managers, and validates cross-manager fan-in. Direct Agent 1 entry remains lawful for a matter already bounded to one manager. |
-| `WORKING_ITEMS` | 1 | One package-scoped instance per activated package; derives the intra-package graph, dispatches Agent 2 work across deliverables, validates fan-in, and returns package closure evidence. |
-| `TASK` | 2 | Executes one sealed implementation, assessment, docs, or evidence sub-scope with explicit read/write bounds. |
-| `CHANGE` | 1 | Performs final Git/file-state closeout for validated tranches: scoped status review, staging, commit, and fast-forward-safe push. |
-| `RECONCILIATION` | 1 | Runs activated deliverable-corpus concordance through claim-level discovery, package waves, synthesis, decision routing, repair, and backcheck. |
-| `EVALUATION` | 1 | Orchestrates generic read-only audits and cross-surface assessment outside deliverable-corpus concordance. |
-| `REVIEW` | 1 | Reviews project outputs against scope, validation evidence, product boundaries, and acceptance criteria. |
-| `RESEARCH` | 1 | Evidence-grounded, read-only inquiry over accepted decompositions, governance/source docs, and retrieval indexes; returns cited findings without changing project state. |
-| `AUDIT_*` | 2 | Runs bounded checks for governance conformance, dependency closure, release-quality evidence, and epistemic integrity. |
+| `HELP_HUMAN` | 0 | Default new-chat role. Maintains human alignment and continuity and coordinates the managers needed for the undertaking. |
+| `HELPS_HUMANS` | 1 | Direct-entry design manager for roles, skills, workflows, tools, briefs, projects, and their governing contracts. |
+| `WORKING_ITEMS` | 1 | Direct-entry implementation manager. Organizes bounded work, dispatches TASK instances, validates fan-in, and returns the undertaking as a whole. |
+| `TASK` | 2 | Delegated bounded executor. Applies selected skills or workflows within its brief and returns work plus evidence; it is not a direct chat entry. |
+
+Historical session identifiers and references to retired agents remain
+readable through Runtime compatibility records. They do not add roles to the
+active registry. Reusable methods such as research, review, decomposition,
+change, and reconciliation are selected as skills or workflows when applicable.
+
+## Skills, Workflows, and Context
+
+Runtime owns the effective role and method catalog. The App consumes its typed
+list, inspection, selection, context-resolution, and replay results; App code
+does not maintain a second Markdown parser or infer method completion from a
+loaded instruction body.
+
+Project skills live under `.agents/skills`, and project workflows under
+`.chirality/workflows/<name>/WORKFLOW.md`. User libraries use the corresponding
+home-directory roots. Reviewed bundled methods are a third source. Unqualified
+lookup prefers project, then user, then bundled definitions, while an actual
+selection retains its source-qualified identity. Old flat project workflow
+Markdown files remain ordinary documents and historical navigation targets.
+
+The central workflows are project setup, project decomposition, software
+decomposition, domain decomposition, research orchestration, and scope change.
+They receive immediate placement in selection UI because they are broadly
+useful; their presence never makes them compulsory. Skills and workflows can
+be combined, stopped, and replaced within one conversation. Selection does not
+change a role, launch a manager, expand tools, or grant permissions.
+
+New conversation context contains Root `AGENTS.md`, applicable project
+instructions, the full active-role instructions, and skill descriptions.
+Selected or needed method bodies and contained resources load through Runtime.
+The recorded basis preserves each supplied item's origin and hash for replay.
+Interaction mode and permission mode are independent. Native Plan Mode is
+available only when Runtime reports admitted adapter evidence; plan revisions
+remain in conversation history and are exported to a project file only through
+an explicit user-selected save action.
 
 ## Execution attribution
 
@@ -204,13 +237,16 @@ through the active manager.
 
 When a tranche is complete, validated, and project closeout rules allow it,
 the package `WORKING_ITEMS` instance returns a closeout handoff to HELP_HUMAN
-or the human, which invokes `CHANGE` as a separate Agent 1 for final
-Git/file-state review. `CHANGE` should commit and push the validated
-tranche as the ordinary terminal action when git state allows closeout;
+or the human. Git/file-state closeout uses the project-scoped
+`chirality-change` skill through an eligible HELPS_HUMANS, WORKING_ITEMS, or
+bounded TASK role, or is performed inline under the same checklist. Selecting
+the skill does not expand the role's existing host, brief, write, review, or
+command authority. Closeout may commit and push the validated tranche as the
+ordinary terminal action when git state allows closeout;
 per-run `APPROVE:` tokens are not required for scoped closeout commit/push.
 
-If a `CHANGE` agent/subagent is unavailable, perform the `CHANGE` closeout
-checklist inline:
+If a TASK closeout assignment is unavailable, perform the closeout checklist
+inline:
 
 - inspect root git status;
 - confirm validation evidence and skipped-check notes;
@@ -227,10 +263,10 @@ Branch creation is routine. Creating the tranche's task branch (and, when
 isolation is warranted, its worktree lane) from a verified clean basis on the
 integration branch — clean status, no in-progress Git operation, base SHA
 recorded — is an ordinary Step 0/Step 4 act and requires no `APPROVE:` token,
-whether performed by the loop session or by a dispatched CHANGE instance.
-CHANGE reports the branch name and base SHA and proceeds. Basing a lane on a
+whether performed by the loop session or by a dispatched TASK instance.
+The closeout return records the branch name and base SHA. Basing a lane on a
 dirty worktree, or any switch that would discard or carry uncommitted work,
-remains non-routine under root `AGENT_CHANGE.md`. Owner direction 2026-07-19
+remains non-routine under the `chirality-change` skill. Owner direction 2026-07-19
 (recorded in App `loop/LOOP_RECEIPTS.md` Receipt-74), applied to this loop by
 owner direction 2026-08-15; scoped commit/push closeout follows the checklist
 above and likewise needs no per-run `APPROVE:` token.

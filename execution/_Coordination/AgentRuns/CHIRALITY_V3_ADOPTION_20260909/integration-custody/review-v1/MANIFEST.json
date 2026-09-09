@@ -1,0 +1,53 @@
+{
+  "schema": "chirality-independent-integration-custody-review/v1",
+  "verdict": "PASS",
+  "reviewer": "/root/integration_custody_review",
+  "reviewedManifestSha256": "b0bb71cb39d439cc61c39a1cf91cc306198cdcdbd09af715c9927f1ad07388bc",
+  "files": [
+    {
+      "path": "RETURN.md",
+      "sha256": "cea123e7107de9fcd03ebdce231a836b9ec9401469c0481965375a00dbd16e92",
+      "sizeBytes": 4351
+    },
+    {
+      "path": "FINAL_MANIFEST_CHECK.json",
+      "sha256": "067e6a9913d1e670f463debb191b584acffe4f9c47f0bc3164a3873eed8b54af",
+      "sizeBytes": 853
+    },
+    {
+      "path": "UNION_CHECK_FINAL.json",
+      "sha256": "197110c664f4beda154e3e0f679f4f4c3a8f36cc4d5b258e2b85166269fd6c5f",
+      "sizeBytes": 150403
+    },
+    {
+      "path": "audit_union_final.py",
+      "sha256": "2bbc7b2b5af78388a853cb26f8cd8ff898e29626a9ae9d281df9c5a8a2adc173",
+      "sizeBytes": 4300
+    },
+    {
+      "path": "check_final_manifest.py",
+      "sha256": "e07a1dfe75bed872cc66f8ffe6a2e119425107d8674adb7cd448882a1c72b38b",
+      "sizeBytes": 3069
+    },
+    {
+      "path": "REVIEW_V1.md",
+      "sha256": "dd5d942cf5ea2f5de3a49bda89d4fde486381a4be9b84cfb2de6452120054e9b",
+      "sizeBytes": 3925
+    },
+    {
+      "path": "MANIFEST_V1_CHECK.json",
+      "sha256": "92988dbf0c9fe3c7f6c1607b63f6aea1ba3b3b6ce5dbb5c724d8fdc6699156c7",
+      "sizeBytes": 1130
+    },
+    {
+      "path": "UNION_CHECK.json",
+      "sha256": "66deb1b09be00f2ae9ab3ea300054dcb366344129125ea78cf2f21829462a6d5",
+      "sizeBytes": 129303
+    },
+    {
+      "path": "UNION_CHECK_V2.json",
+      "sha256": "9b795d6f4af6526485ba27db6d2445ea1bbc35448b750f77028b07b8d0c13103",
+      "sizeBytes": 150403
+    }
+  ]
+}

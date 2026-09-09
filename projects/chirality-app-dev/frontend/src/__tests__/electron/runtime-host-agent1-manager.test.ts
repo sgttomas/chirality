@@ -10,7 +10,12 @@ vi.mock('electron', () => ({
   }
 }));
 
-import type { RuntimeSessionRecord, UIEvent } from '@chirality/runtime-contracts';
+import type {
+  AgentEngineRunInput,
+  RuntimeSessionRecord,
+  RuntimeToolDefinition,
+  UIEvent
+} from '@chirality/runtime-contracts';
 import type { Agent1ManagerHooks } from '@chirality/runtime-core';
 import { PersonaComposer } from '../../lib/harness/persona-manager';
 import { SafeStorageCredentialStore } from '../../../electron/api-key-storage';
@@ -119,7 +124,8 @@ describe('EngineBackedAgent1Manager terminal enforcement', () => {
             attachments: true,
             interruption: true,
             durableResume: true,
-            compaction: true
+            compaction: true,
+            runtimeControlTools: true
           }
         }),
         expect.objectContaining({
@@ -133,11 +139,80 @@ describe('EngineBackedAgent1Manager terminal enforcement', () => {
             attachments: false,
             interruption: true,
             durableResume: false,
-            compaction: true
+            compaction: true,
+            runtimeControlTools: true
           }
         })
       ])
     );
+  });
+
+  it('binds only the exact Runtime method-change control into the production Pi host', async () => {
+    const credentials = new SafeStorageCredentialStore();
+    vi.spyOn(credentials, 'get').mockResolvedValue('test-omlx-key');
+    const childSession: RuntimeSessionRecord = {
+      ...session,
+      sessionId: 'pi-control-child',
+      persona: 'TASK',
+      role: 'agent2',
+      agentType: 2,
+      parentSessionId: session.sessionId,
+      parentAgentType: 1,
+      approvalRef: 'D-TEST',
+      allowedWriteTargets: [],
+      engineSelection: { adapterId: 'pi', providerId: 'omlx', model: 'local-model' }
+    };
+    const readTool: RuntimeToolDefinition = {
+      name: 'read_file',
+      description: 'Read one bounded file',
+      inputSchema: { type: 'object' },
+      permission: { effect: 'allow', operation: 'read', roots: [childSession.projectRoot] },
+      execute: async () => ({ text: 'fixture' })
+    };
+    const controlTool: RuntimeToolDefinition = {
+      name: 'chirality_request_method_change',
+      description: 'Request a method change',
+      inputSchema: { type: 'object' },
+      permission: { effect: 'allow', operation: 'control' },
+      execute: async () => ({ requested: true })
+    };
+    const engines = createEngines(
+      credentials,
+      new PersonaComposer(),
+      new Map([[childSession.sessionId, [readTool]]]),
+      {
+        isExactlyResident: async () => true,
+        transcriptRootFor: (sessionId) => `/tmp/adapter-events/${sessionId}`
+      }
+    );
+    const pi = engines.resolve(childSession.engineSelection);
+    const input: AgentEngineRunInput = {
+      session: childSession,
+      message: 'bootstrap',
+      opts: {
+        model: 'local-model', tools: ['read_file'], maxTurns: 1,
+        persona: 'TASK', mode: 'readOnly'
+      },
+      turnId: 'pi-control-turn',
+      runtimeTools: [controlTool]
+    };
+
+    await expect(consume(pi.startTurn(input))).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({ type: 'session:init' }),
+      expect.objectContaining({ type: 'process:exit', data: { exitCode: 0 } })
+    ]));
+
+    await expect(consume(pi.startTurn({
+      ...input,
+      turnId: 'pi-unknown-control-turn',
+      runtimeTools: [{ ...controlTool, name: 'unrecognized_control' }]
+    }))).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        type: 'turn:error',
+        data: expect.objectContaining({ errorType: 'INVALID_REQUEST', status: 403 })
+      }),
+      expect.objectContaining({ type: 'process:exit', data: expect.objectContaining({ exitCode: 1 }) })
+    ]));
   });
 
   it('turns manager preparation into a direct, tool-mandatory child brief', async () => {

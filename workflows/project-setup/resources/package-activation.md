@@ -8,7 +8,14 @@ WORKING_ITEMS applies this method to a package-based undertaking; its general ro
 4. Assign dependency-ready disjoint work to TASK or an authorized ephemeral Type 2 instance. Each brief names its context, tools, writes, outputs, acceptance, dependencies, and return path. Serialize overlapping writes.
 5. Record, relay, amend, hold, replan, escalate, or route updates through the parent. Version amendments and preserve claim status and evidence. A direct-human manager presents cross-package decisions to the human.
 6. Validate each return’s artifacts, acceptance, tests, containment, conflicts, dependencies, and integration result. Accept, rerun, hold, or escalate; release dependants only from accepted predecessor state.
-7. Return package status, accepted outputs, derivative disposition, validation, decisions, waivers, notices, blockers, and rerun requirements. Route lifecycle decisions through review, scope amendments through scope-change, and Git closeout through change.
+7. Return package status, accepted outputs, derivative disposition, validation,
+decisions, waivers, notices, blockers, and rerun requirements. Route lifecycle
+decisions through review and scope amendments through scope-change. Hand any
+repository closeout evidence and exact change scope to the responsible current
+role, which follows the applicable project's change skill or repository
+conventions when present. This current method does not require Git or select the
+retained legacy `change` workflow; preserve that identity for explicitly
+selected historical runs.
 
 When runtime telemetry is required, use tools/workflow_runtime/runtime_telemetry.py with stable session/event IDs. Record attempts, checks, retries, remediations, detection layers, failure classes, reason codes, member IDs, and dispositions. Exposed token/context occupancy may be recorded; missing measurements remain explicit. Bind RUNTIME_SUMMARY.json in the package manifest and disclose interrupted sessions and required reruns.
 

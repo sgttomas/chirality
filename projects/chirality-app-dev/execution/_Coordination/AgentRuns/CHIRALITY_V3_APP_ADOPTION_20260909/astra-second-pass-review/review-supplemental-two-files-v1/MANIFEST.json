@@ -1,0 +1,79 @@
+{
+  "reviewer": "/root/astra_app_second_pass",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "verdict": "PASS",
+  "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "subjects": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/References/test_reconcile_authority_corpus.py",
+      "sha256": "d554422d5a221964e3279073aae6fef301516e1ebac360329415bcea3cda5ab1",
+      "bytes": 1964,
+      "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+      "baseStatus": "new file",
+      "fullPostimageReviewed": true,
+      "fullDiffReviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "ac8f3938a45995c6a647bc16af28ab799b08f20b36607acbe1a3cbd3937021d0",
+      "bytes": 37678,
+      "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+      "baseStatus": "tracked modified",
+      "fullPostimageReviewed": true,
+      "fullDiffReviewed": true
+    }
+  ],
+  "adjacentContractHashes": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "sha256": "d6706247388b3819a6730d9987ea522f3da0b4a2a54a445ddf6e8bfb228904ec"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "fab483ab1266ff5533311cd5fd3dfe4c9eea631565a7332b0412a9674db28033"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/operator-projection.ts",
+      "sha256": "4cd9c4fa46e88d90fa3ae8f2467262846bbb68fd2a2555ba2d8d929897b6c2e8"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx",
+      "sha256": "29938aa3cd877567d9620d8c2d56095f8dcf19c5851081243fce8dfddc6fce41"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+      "sha256": "1cac29ce24865b3380d4c01b1f686948d9f5f30638ab71c710582c1569e15833"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "RETURN.md",
+      "sha256": "e9126045f644d1c9a042bec82939540a0e7d75e2ffeeb95807d3d8cee4fac6cd"
+    },
+    {
+      "path": "python-test.log",
+      "sha256": "65d3a21d9a25d3449538a550bbf07742cec0a72ecf37d6271c24c8db70978275"
+    },
+    {
+      "path": "test_reconcile_authority_corpus.py",
+      "sha256": "d554422d5a221964e3279073aae6fef301516e1ebac360329415bcea3cda5ab1"
+    },
+    {
+      "path": "test_reconcile_authority_corpus.py.diff",
+      "sha256": "975a6d571e06c8bcbbfb02cd6b6772f5b9885e25009a008fa2c6e71862014037"
+    },
+    {
+      "path": "vitest.log",
+      "sha256": "e7c7437f965bc9ed365ae2f45fb918ab5e4faf2cea9b6ffee8d6f6dad064ca11"
+    },
+    {
+      "path": "woven-dialogue-shell.test.tsx",
+      "sha256": "ac8f3938a45995c6a647bc16af28ab799b08f20b36607acbe1a3cbd3937021d0"
+    },
+    {
+      "path": "woven-dialogue-shell.test.tsx.diff",
+      "sha256": "359429df8fd0a360449ab609524d205a9ccbd9d007c588d105c940829c8ed72b"
+    }
+  ]
+}

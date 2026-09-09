@@ -1,13 +1,8 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { WovenDialogueRoute } from '../../components/woven-dialogue/woven-dialogue-route';
 
-const routerState = vi.hoisted(() => ({ query: '' }));
-
-vi.mock('next/navigation', () => ({
-  useSearchParams: () => new URLSearchParams(routerState.query)
-}));
 vi.mock('../../components/woven-dialogue/woven-dialogue-shell', () => ({
   WovenDialogueShell: ({ defaultSurface }: { defaultSurface: string }) => (
     <main data-woven-surface={defaultSurface}>Woven Dialogue</main>
@@ -15,10 +10,6 @@ vi.mock('../../components/woven-dialogue/woven-dialogue-shell', () => ({
 }));
 
 describe('Woven Dialogue route selection', () => {
-  beforeEach(() => {
-    routerState.query = '';
-  });
-
   it('renders Woven Dialogue by default', () => {
     const html = renderToStaticMarkup(
       <WovenDialogueRoute
@@ -31,15 +22,13 @@ describe('Woven Dialogue route selection', () => {
     expect(html).not.toContain('data-legacy="true"');
   });
 
-  it.each(['workbench', 'pipeline'] as const)('keeps /%s functional through its retained legacy slot', (surface) => {
+  it.each(['workbench', 'pipeline'] as const)('opens /%s in the continuing conversation surface', (surface) => {
     const html = renderToStaticMarkup(<WovenDialogueRoute defaultSurface={surface} legacy={<main>{surface} retained route</main>} />);
-    expect(html).toContain('data-legacy="true"');
-    expect(html).toContain(`${surface} retained route`);
-    expect(html).not.toContain('data-woven-surface');
+    expect(html).toContain(`data-woven-surface="${surface}"`);
+    expect(html).not.toContain(`${surface} retained route`);
   });
 
-  it('keeps the direct legacy route available', () => {
-    routerState.query = 'legacy=1';
+  it('does not expose the retired execution surface through a legacy route prop', () => {
     const html = renderToStaticMarkup(
       <WovenDialogueRoute
         defaultSurface="dialogue"
@@ -47,8 +36,7 @@ describe('Woven Dialogue route selection', () => {
       />
     );
 
-    expect(html.match(/data-legacy="true"/g)).toHaveLength(1);
-    expect(html).toContain('style="display:contents"');
-    expect(html).toContain('<main>Legacy</main>');
+    expect(html).toContain('data-woven-surface="dialogue"');
+    expect(html).not.toContain('<main>Legacy</main>');
   });
 });

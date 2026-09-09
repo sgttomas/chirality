@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /private/tmp/chirality-v3-adoption-20260909/projects/chirality-runtime
+
+ ✓ ../../execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/independent-regressions.test.ts (7 tests) 1030ms
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  14:43:46
+   Duration  1.40s (transform 172ms, setup 0ms, collect 247ms, tests 1.03s, environment 0ms, prepare 31ms)
+

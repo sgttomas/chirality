@@ -347,6 +347,11 @@ def validate_registry(repo_root: Path) -> list[Finding]:
         add(findings, 'ERROR', code, path.relative_to(repo_root), message)
     if registry.get('schema_version') != 1 or set(roles) != set(expected):
         error('ROLE_REGISTRY', 'schema_version 1 and exactly four canonical roles required')
+    catalog = registry.get('workflow_catalog')
+    if not isinstance(catalog, dict) or set(catalog) != {'schema','catalog','index'}:
+        error('WORKFLOW_CATALOG_REF', 'workflow_catalog must contain stable schema, catalog, and index references')
+    elif catalog.get('schema') != 'chirality-method-index/v1' or catalog.get('catalog') != 'workflows/catalog.yaml' or catalog.get('index') != 'workflows/index.json':
+        error('WORKFLOW_CATALOG_REF', 'workflow_catalog references do not match the Root catalog contract')
     for name, config in roles.items():
         if not isinstance(config, dict):
             error('ROLE_SHAPE', f'{name}: role configuration must be a mapping')
@@ -354,6 +359,10 @@ def validate_registry(repo_root: Path) -> list[Finding]:
         typ = expected.get(name)
         if type(config.get('type')) is not int or config.get('type') != typ or config.get('direct_entry') is not (typ in (0, 1)):
             error('ROLE_ENTRY', f'{name}: invalid type or direct entry')
+        if not isinstance(config.get('description'), str) or not config['description'].strip():
+            error('ROLE_DESCRIPTOR', f'{name}: non-empty description required')
+        if config.get('default_for_new_chat') is not (name == 'HELP_HUMAN'):
+            error('ROLE_DESCRIPTOR', f'{name}: invalid default_for_new_chat')
         child_list = config.get('delegates_to', [])
         if not isinstance(child_list, list) or any(not isinstance(x, str) for x in child_list):
             error('ROLE_SHAPE', f'{name}: delegates_to must be a string list')

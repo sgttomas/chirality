@@ -6,17 +6,56 @@ import {
 } from '../../../../../lib/harness/http';
 import { getDaemonHarnessPort } from '../../../../../lib/runtime-client/daemon-harness-port';
 import { SessionCreateRequest } from '@chirality/runtime-contracts/types';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
+import {
+  CHIRALITY_ROLES,
+  type ChiralityRoleName,
+  type MethodReference,
+  type ResolveSelectedContextRequest
+} from '@chirality/runtime-contracts/v3';
+
+type CreateRequest = SessionCreateRequest & {
+  roleId?: ChiralityRoleName;
+  interactionMode?: ResolveSelectedContextRequest['interactionMode'];
+  permissionMode?: ResolveSelectedContextRequest['permissionMode'];
+  selectedMethods?: readonly MethodReference[];
+  declaredContext?: string[];
+  allowedWriteTargets?: string[];
+};
 
 export async function POST(request: Request): Promise<Response> {
   try {
-    const body = await readJsonBody<SessionCreateRequest>(request);
+    const body = await readJsonBody<CreateRequest>(request);
     const projectRoot = requireNonEmptyString(body.projectRoot, 'projectRoot');
+
+    const legacyPersona = body.persona?.trim();
+    if (body.roleId !== undefined && legacyPersona && legacyPersona !== body.roleId) {
+      throw new HarnessError(
+        'INVALID_REQUEST',
+        400,
+        `Role '${body.roleId}' conflicts with persona '${legacyPersona}'.`
+      );
+    }
+    const canonicalDirectRole = CHIRALITY_ROLES.find((role) =>
+      role.directEntry && role.id === legacyPersona
+    )?.id;
+    const roleId = body.roleId ?? canonicalDirectRole ?? (
+      legacyPersona === undefined || legacyPersona === '' ? 'HELP_HUMAN' : undefined
+    );
 
     const result = await getDaemonHarnessPort().createSession(
       {
         projectRoot,
-        persona: body.persona,
-        mode: body.mode
+        persona: legacyPersona || roleId,
+        mode: body.mode,
+        ...(roleId === undefined ? {} : { roleId }),
+        ...(body.interactionMode === undefined ? {} : { interactionMode: body.interactionMode }),
+        ...(body.permissionMode === undefined ? {} : { permissionMode: body.permissionMode }),
+        ...(body.selectedMethods === undefined ? {} : { selectedMethods: body.selectedMethods }),
+        ...(body.declaredContext === undefined ? {} : { declaredContext: body.declaredContext }),
+        ...(body.allowedWriteTargets === undefined
+          ? {}
+          : { allowedWriteTargets: body.allowedWriteTargets })
       },
       { signal: request.signal }
     );

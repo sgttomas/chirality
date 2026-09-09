@@ -52,7 +52,7 @@ export async function resolvePackagedDaemonInstructionRoot(
     };
   } catch (error) {
     return {
-      instructionRoot: path.resolve(options.packagedResourcesPath),
+      instructionRoot: path.resolve(options.packagedResourcesPath, 'instruction-root'),
       source: 'packaged-resources-fallback',
       reason: fallbackReason(error)
     };

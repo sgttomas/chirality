@@ -22,7 +22,7 @@ function session(sessionId: string, updatedAt: string, persona = 'TASK', project
 }
 
 function loaderFor(sessionId: string, disclosure: ReplayDisclosure = 'READY_SNAPSHOT', text = `message ${sessionId}`): SelectedSessionReplayLoader {
-  const projection: SelectedSessionReplayProjection = { selectedSessionId: sessionId, sourceReference: `session:${sessionId}/events`, observedAt: '2026-09-07T00:00:00Z', disclosure, currency: disclosure === 'CONFLICTING' ? 'CONFLICTING' : 'CURRENT', transcript: { sessionId, itemCount: 1, items: [{ key: 'one', kind: 'message', role: 'user', status: 'accepted', title: 'User', timestamp: '2026-09-07T00:00:00Z', eventId: 'event', eventType: 'message.accepted', text }] }, malformedLineCount: disclosure === 'MALFORMED' ? 1 : 0, sourceEventCount: 1, renderedItemCount: 1, diagnostics: [] };
+  const projection: SelectedSessionReplayProjection = { selectedSessionId: sessionId, sourceReference: `session:${sessionId}/events`, observedAt: '2026-09-07T00:00:00Z', disclosure, currency: disclosure === 'CONFLICTING' ? 'CONFLICTING' : 'CURRENT', transcript: { sessionId, itemCount: 1, items: [{ key: 'one', kind: 'message', role: 'user', status: 'accepted', title: 'User', timestamp: '2026-09-07T00:00:00Z', eventId: 'event', eventType: 'message.accepted', text }] }, instructionHistory: [], instructionBases: [], malformedLineCount: disclosure === 'MALFORMED' ? 1 : 0, sourceEventCount: 1, renderedItemCount: 1, diagnostics: [] };
   let state: ReturnType<SelectedSessionReplayLoader['getState']> = { status: 'IDLE' };
   return {
     getState: () => state,
@@ -119,7 +119,7 @@ describe('isolated replay reads', () => {
       let state: ReturnType<SelectedSessionReplayLoader['getState']> = { status: 'IDLE' };
       return { getState: () => state, subscribe: () => () => {}, cancel: vi.fn(), dispose: vi.fn(), load: vi.fn(async (sessionId: string, options) => {
         expect(options.maxItems).toBe(COMPLETE_REPLAY_ITEM_LIMIT);
-        state = { status: 'READY', projection: { selectedSessionId: sessionId, sourceReference: `session:${sessionId}/events`, observedAt: options.observedAt, disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', transcript: { sessionId, itemCount: items.length, items }, malformedLineCount: 0, sourceEventCount: items.length, renderedItemCount: items.length, diagnostics: [] } };
+        state = { status: 'READY', projection: { selectedSessionId: sessionId, sourceReference: `session:${sessionId}/events`, observedAt: options.observedAt, disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', transcript: { sessionId, itemCount: items.length, items }, instructionHistory: [], instructionBases: [], malformedLineCount: 0, sourceEventCount: items.length, renderedItemCount: items.length, diagnostics: [] } };
         return { applied: true, state };
       }) } satisfies SelectedSessionReplayLoader;
     };

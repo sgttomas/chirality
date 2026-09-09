@@ -263,9 +263,9 @@ Agent outputs carry no professional authority. They are decision support unless 
 
 ### 4.1 In Scope
 
-- Project decomposition (`PROJECT_DECOMP`) — from messy scope of work to structured packages and deliverables.
-- Software decomposition (`SOFTWARE_DECOMP`) — software work with context envelopes.
-- Domain / knowledge decomposition (`DOMAIN_DECOMP`) — handbooks and knowledge domains into categories, knowledge types, and atomic units.
+- Project decomposition (`project-decomp`) — from messy scope of work to structured packages and deliverables.
+- Software decomposition (`software-decomp`) — software work with context envelopes.
+- Domain / knowledge decomposition (`domain-decomp`) — handbooks and knowledge domains into categories, knowledge types, and atomic units.
 - Workspace scaffolding (folder creation, metadata file initialization).
 - Document kit drafting (Datasheet, Specification, Guidance, Procedure).
 - Dependency extraction and tracking; cross-deliverable reconciliation.

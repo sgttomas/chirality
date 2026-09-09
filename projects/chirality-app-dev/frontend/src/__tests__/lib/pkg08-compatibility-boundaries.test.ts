@@ -1,34 +1,16 @@
 import { describe, expect, it } from 'vitest';
-import {
-  MATRIX_ROWS,
-  matrixCellLaunchKind
-} from '../../lib/portal/agent-matrix-cells';
+import { DIRECT_ENTRY_ROLE_IDS } from '../../lib/portal/agent-matrix-cells';
 import { mergeMatrixTargetIntoCurrentUrl } from '../../lib/portal/agent-matrix-launch';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
 import {
-  PIPELINE_CATEGORY_ORDER,
   validatePipelineDispatchIntent
 } from '../../lib/pipeline/pipeline-dispatch-contract';
 
 describe('PKG-08 compatibility and authority boundaries', () => {
-  it('preserves the governed ORCHESTRATE compatibility alias', () => {
-    expect(resolvePersona('ORCHESTRATE')).toBe('PROJECT_SETUP');
-  });
-
-  it('keeps exact OPERATIVE matrix intent aligned with the Pipeline taxonomy', () => {
-    const operative = MATRIX_ROWS.find((row) => row.rowLabel === 'OPERATIVE');
-    expect(operative?.cells.map((cell) => cell.label)).toEqual([
-      'DECOMP*',
-      'PREP*',
-      'TASK*',
-      'AUDIT*'
-    ]);
-    expect(
-      operative?.cells.map((cell) => {
-        expect(matrixCellLaunchKind(cell)).toBe('route');
-        return new URL(cell.target, 'http://chirality.local').searchParams.get('category');
-      })
-    ).toEqual(PIPELINE_CATEGORY_ORDER);
+  it('keeps retired route labels inside the four-role entry boundary', () => {
+    expect(resolvePersona('ORCHESTRATE')).toBe('HELP_HUMAN');
+    expect(resolvePersona('CHANGE')).toBe('HELP_HUMAN');
+    expect(DIRECT_ENTRY_ROLE_IDS).toEqual(['HELP_HUMAN', 'HELPS_HUMANS', 'WORKING_ITEMS']);
   });
 
   it('round-trips unknown query parameters through the existing matrix compatibility helper', () => {

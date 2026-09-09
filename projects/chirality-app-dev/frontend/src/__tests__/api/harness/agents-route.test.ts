@@ -64,20 +64,20 @@ afterEach(async () => {
 });
 
 describe('GET /api/harness/agents', () => {
-  it('returns the full roster with parsed type/class', async () => {
+  it('returns the v3 role registry through the legacy shape', async () => {
     const response = await agentsRoute.GET(new Request('http://localhost/api/harness/agents'));
     expect(response.status).toBe(200);
 
     const body = (await response.json()) as { agents: RosterEntry[] };
     expect(body.agents.map((entry) => entry.name)).toEqual([
+      'HELP_HUMAN',
       'HELPS_HUMANS',
-      'TASK',
-      'WORKING_ITEMS'
+      'WORKING_ITEMS',
+      'TASK'
     ]);
     expect(body.agents.find((entry) => entry.name === 'TASK')).toEqual({
       name: 'TASK',
-      type: 2,
-      class: 'TASK'
+      type: 2
     });
   });
 
@@ -88,7 +88,7 @@ describe('GET /api/harness/agents', () => {
     expect(response.status).toBe(200);
 
     const body = (await response.json()) as { agents: RosterEntry[] };
-    expect(body.agents.map((entry) => entry.name)).toEqual(['HELPS_HUMANS', 'WORKING_ITEMS']);
+    expect(body.agents.map((entry) => entry.name)).toEqual(['HELP_HUMAN', 'HELPS_HUMANS', 'WORKING_ITEMS']);
     expect(body.agents.some((entry) => entry.type === 2)).toBe(false);
   });
 });

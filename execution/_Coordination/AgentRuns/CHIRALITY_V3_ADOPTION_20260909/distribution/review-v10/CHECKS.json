@@ -1,0 +1,83 @@
+{
+  "schema": "chirality-distribution-independent-semantic-rebind-review-checks/v1",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json",
+    "sha256": "485cc778ab131e477d792fad0e06b310023398d734609cdd9ec4421f1087ea18",
+    "sizeBytes": 13126,
+    "memberCount": 19
+  },
+  "verdict": "PASS",
+  "reviewMeaning": "Held derivative consistency pass; not source acceptance or package/release qualification.",
+  "checks": [
+    {
+      "name": "subject identity",
+      "status": "pass",
+      "evidence": "subject-v10.json matched the assigned SHA-256 and 13126-byte size."
+    },
+    {
+      "name": "member binding",
+      "status": "pass",
+      "evidence": "All 19 current paths matched their V10 SHA-256 and sizeBytes bindings."
+    },
+    {
+      "name": "V9 delta",
+      "status": "pass",
+      "evidence": "V9 and V10 contain the same 19 paths. Only export-manifest.csv and export-report.md changed; all 17 implementation/test members, including contract pins and D121 identity files, remain byte-identical."
+    },
+    {
+      "name": "implementation freeze",
+      "status": "pass",
+      "evidence": "No bound implementation or test source changed from V9; exact-member git diff --check passed."
+    },
+    {
+      "name": "semantic source anchors",
+      "status": "pass",
+      "evidence": "Root semantic successor matched 8669df0d1b2ab639e0e3d1352843130aabf8d88ab8050ed9f5169b022d9afad5; App V7 matched 240a974e9e6a0c9317ea77b9588997adf2d03b613bfd78595ee1a8c3c5405a80; Runtime V4 matched 1fee69de0e1ade83cd414aed63380d1cabf0989fe070734a73c40867dd10e28c."
+    },
+    {
+      "name": "manifest-to-stage parity",
+      "status": "pass",
+      "evidence": "All 1104 CSV rows exactly matched the sorted current staging file paths, sizes, and SHA-256 values; paths were unique."
+    },
+    {
+      "name": "staging entry types",
+      "status": "pass",
+      "evidence": "The current staging tree contained zero symlinks and zero non-directory/non-regular entries."
+    },
+    {
+      "name": "projection exclusions",
+      "status": "pass",
+      "evidence": "No projects, exports, domains, plans, migration, App frontend/UI source, chirality-change skill, governance briefs, harness-premerge workflow, practitioner backlog, or private loop init entrypoint appeared in the manifest."
+    },
+    {
+      "name": "Root tools delta",
+      "status": "pass",
+      "evidence": "The tools count increased from 391 to 392 because tools/workflow_runtime/fixtures/legacy_method_normalization_cases.json was added. Source, staged file, and manifest all match 3727 bytes / bb244510229acb22e559018a7851d41c9a4d7684bdfad4e18945d3ba4ffd82cc, exactly as listed in ROOT_SEMANTIC_SUCCESSOR_V1.json."
+    },
+    {
+      "name": "boundary scan",
+      "status": "pass",
+      "evidence": "The current exporter boundary scan returned zero findings."
+    },
+    {
+      "name": "report truthfulness",
+      "status": "pass",
+      "evidence": "The report states 1104 rows, zero sanitized files, and zero findings; every top-level count exactly matched the current manifest and staging tree, including tools=392."
+    },
+    {
+      "name": "V9 predecessor review bindings",
+      "status": "pass",
+      "evidence": "V10 predecessor and priorIndependentReview identities matched V9 subject, RETURN.md, CHECKS.json, and MANIFEST.json; the V9 review manifest internal bindings also reverified."
+    },
+    {
+      "name": "review state and qualification",
+      "status": "pass",
+      "evidence": "V10 status explicitly says Runtime terminal review pending, sourceReviewState names terminal Astra review as pending at subject creation, qualification is source-and-controlled-checks-only, and notes disclaim package reliance, acceptance, publication, and release qualification."
+    }
+  ],
+  "limitations": [
+    "Runtime V4 terminal Astra review was pending when V10 was created. This derivative review does not accept Runtime source and must remain held if that review reports drift or defects.",
+    "This was a narrow semantic-successor rebind review. It relies on unchanged implementation and the prior independent V8/V9 reviews rather than repeating their full test suites.",
+    "This review does not establish native package, supplier, account, credential, distribution, publication, or release qualification."
+  ]
+}

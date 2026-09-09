@@ -1,0 +1,166 @@
+{
+  "schema": "chirality-v3-runtime-source-freeze/v1",
+  "baseCommit": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "generatedAt": "2026-09-09T19:06:00Z",
+  "scope": "projects/chirality-runtime/**",
+  "members": [
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "bytes": 1101,
+      "sha256": "1632c920299dc64b8c0645da11624693670b17514342e318e64bd55da91831f2"
+    },
+    {
+      "path": "projects/chirality-runtime/package-lock.json",
+      "bytes": 214631,
+      "sha256": "a23fe9fd906dd88a67c697e12a75bd1fc18492cbb7c337e3fcc56bb0c40e60c6"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "bytes": 25562,
+      "sha256": "02e137b0d5024e231a780d1db6cb49412ac059a5e640a07ae85239fbcff7d2f0"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/package.json",
+      "bytes": 2020,
+      "sha256": "0a092759f3729bb8026c2c790b8ce126c800a355285fc83ccb38d8457f32ca32"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/agent-engine-port.ts",
+      "bytes": 2552,
+      "sha256": "73eaa140e32c1c460e01fbfe81535c467ebc3427f9a296658d80ec7a3eb76b7b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/types.ts",
+      "bytes": 8763,
+      "sha256": "76b0ad2a6fa1ae2fadebfa8a8875fb6d5090861bcb23cbb7cde5b0ebc10a2a0a"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/index.ts",
+      "bytes": 306,
+      "sha256": "d3d82540e2a5c6f4aadde92e641a2f6d8a192c83708ef8d4d8c156af5e62e681"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/protocol.ts",
+      "bytes": 6336,
+      "sha256": "d5b249888169647c335bdb45dc2b76d1189f95c8d8d37b697c273105f2de92b0"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/session.ts",
+      "bytes": 2496,
+      "sha256": "45dee2d6365e0a11a3872419612ac6a776479d088924da8e0008b92aaa702dd4"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/v3.ts",
+      "bytes": 10079,
+      "sha256": "cdff6a8276702a94f24a0e3e1faced249416de3961f1c11212c5433b5bece1de"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/package.json",
+      "bytes": 407,
+      "sha256": "0d87c535ae0ea8e1e936136d0c432fd06e80ec78c670069fd594fc709b7ec497"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/index.ts",
+      "bytes": 822,
+      "sha256": "1d6989093eb6c7b7bd958808cb0d3a4a2141538050c59ba3ddbbb62fcc0ef98e"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/instruction-basis-store.ts",
+      "bytes": 16976,
+      "sha256": "f4b0ec908791ef96b15604ae9f79cbae89576a8d0080ea2c1f8754f25c2bfa40"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/method-catalog.ts",
+      "bytes": 28377,
+      "sha256": "05b067ae122178db307e567af460bfb098a5ee5c04e2ef2a4b3af4597835bc49"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/method-transition.ts",
+      "bytes": 3540,
+      "sha256": "7fc67b02c979ce1eb64f4b77ea0b7192cf1ece2c0baf395c622526853046f5c1"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-method-service.ts",
+      "bytes": 35116,
+      "sha256": "bdde91149ecfd58cef90583386ee9e17d9588cb9ae61d7cc3597d5a13fef6e41"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-service.ts",
+      "bytes": 23293,
+      "sha256": "a8bf0b518c6a4ed06caf3199a8ffd4b697b803b16b7542fd76c964352eee7a8c"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/session-store.ts",
+      "bytes": 37887,
+      "sha256": "ed29113a017e9e4be23b3392752052d3f1d4033ad4a9b9495fadcb164bff9fc6"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/turn-coordinator.ts",
+      "bytes": 17501,
+      "sha256": "e238a5117fb7634f39c3b20449541c573e0dfada425bed5be91cd29865fa5ed2"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "bytes": 49697,
+      "sha256": "834f093bc16da5931c2d6f648a072f16f9a7d5baf039e1930771dbc2e41e8cbb"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-event-mapper.ts",
+      "bytes": 3084,
+      "sha256": "6230d0043dcf04532180f85ed26a1ef854114a347c90d511f419b4053ffb8a8f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts",
+      "bytes": 3357,
+      "sha256": "064359fedd1e37536330822c0eef2eb25007321efec5a0fd16aa438f72f3ca66"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+      "bytes": 31268,
+      "sha256": "1d60d3b22150136e024397b0148c9acc0414f6e651254bc5e727a752aa0ad46c"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/instruction-basis-and-method-transition.test.ts",
+      "bytes": 25621,
+      "sha256": "83b3702340730d899a4e879baa0c9b0c91f4690abdbd48db5af8f71367275441"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/method-catalog.test.ts",
+      "bytes": 10293,
+      "sha256": "84ced7f1192cc7e4481d410255ec138a6e877f20514bae2f78c409c247ed4c1a"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/pi-turn-runtime.test.ts",
+      "bytes": 28609,
+      "sha256": "741e1e50dc50f43e93457d2cc81be240a69ad9960f1b4670c2172078ab6be292"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-daemon-signal.test.ts",
+      "bytes": 6952,
+      "sha256": "99ebbfec8562e954d1e799a3695a005ff893bacc4b1fed7a1c666f38f2553b5a"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-v3-api.test.ts",
+      "bytes": 26435,
+      "sha256": "36e7e3be7086ea0943e0101533c31deaed83fc1cd2375bdf2c23c5ee9927ac87"
+    }
+  ],
+  "validation": {
+    "build": "PASS",
+    "fullRuntimeTests": {
+      "status": "PASS",
+      "testFilesPassed": 53,
+      "testFilesSkipped": 1,
+      "testsPassed": 748,
+      "testsSkipped": 14,
+      "durationSeconds": 59.29
+    },
+    "priorParallelContention": {
+      "status": "PRESERVED",
+      "combinedFocused": "63 passed, 1 timeout at 5s",
+      "isolatedRuntimeV3": "8/8 PASS, slowest 1.144s",
+      "timeoutRevision": "runtime-v3 first integration test 5s to 15s; final full run completed it in 4.431s under normal concurrent suite load"
+    },
+    "nativeQualification": "NOT CLAIMED"
+  }
+}

@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { getUiApiKey } from './api-key-store';
@@ -9,6 +9,11 @@ import type { HarnessEventType } from '@chirality/runtime-contracts/event-schema
 import { harnessEventToUiEvent } from './harness-ui-bridge';
 import { appendHarnessEvent } from './session-events';
 import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from '@chirality/runtime-contracts/types';
+import type {
+  AgentEngineRunInput,
+  ContextSuccessorRequest,
+  PreparedContextSuccessor
+} from '@chirality/runtime-contracts/agent-engine-port';
 
 type ActiveTurnState = {
   interrupted: boolean;
@@ -674,6 +679,78 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
 
   constructor(private readonly clientFactory: AnthropicClientFactory = buildAnthropicClient) {}
 
+  async prepareContextSuccessor(request: ContextSuccessorRequest): Promise<PreparedContextSuccessor> {
+    const preparationId = `context_${randomUUID()}`;
+    const continuationText = JSON.stringify({
+      predecessorEngineSessionId: request.predecessorEngineSessionId,
+      fromBasisId: request.fromBasisId,
+      toBasisId: request.toBasisPreview.id,
+      priorBasisRefs: request.continuationContext.priorBasisRefs,
+      transcript: request.continuationContext.transcript
+    });
+    return {
+      preparationId,
+      adapterId: 'anthropic-direct',
+      providerId: 'anthropic',
+      predecessorEngineSessionId: request.predecessorEngineSessionId,
+      continuationText,
+      continuationSha256: createHash('sha256').update(continuationText).digest('hex'),
+      targetBasisId: request.toBasisPreview.id,
+      targetReference: `${request.toBasisPreview.id}:${request.toBasisPreview.sha256}`
+    };
+  }
+
+  async cancelContextSuccessor(_preparationId: string): Promise<void> {
+    // Preparation is pure and creates no provider state before the next turn.
+  }
+
+  startRuntimeTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent> {
+    if (input.message.trim() === 'bootstrap') {
+      return this.startTurn(
+        input.session,
+        input.message,
+        input.opts,
+        input.contentBlocks,
+        input.turnId
+      );
+    }
+    if ((input.runtimeTools?.length ?? 0) > 0) {
+      throw new HarnessError(
+        'ENGINE_UNAVAILABLE',
+        422,
+        'anthropic-direct cannot expose Runtime method tools; select a tool-capable adapter.'
+      );
+    }
+    const systemPrompt = input.instructionContext?.supplied.map((entry) => [
+      `## ${entry.kind}: ${entry.id}`,
+      `contentSha256: ${entry.sha256}`,
+      entry.content
+    ].join('\n')).join('\n\n---\n\n');
+    if ('instructionBasisId' in input.session && systemPrompt === undefined) {
+      throw new HarnessError(
+        'ENGINE_UNAVAILABLE',
+        503,
+        'Runtime did not supply the frozen instruction basis for this session.'
+      );
+    }
+    const runtimeSession = input.contextSuccessor === undefined ? input.session : {
+      ...input.session,
+      engineSessionId: undefined,
+      claudeSessionId: undefined,
+      sdkSessionId: undefined,
+      adapterSession: undefined
+    };
+    return this.startTurn(
+      runtimeSession,
+      input.message,
+      input.opts,
+      input.contentBlocks,
+      input.turnId,
+      systemPrompt,
+      input.contextSuccessor?.continuationText
+    );
+  }
+
   // D-APP-25 Anthropic-manager parity: persist and bridge a manager-level
   // lifecycle event through the same provider-neutral path as the Claude SDK
   // manager. The bridge (harnessEventToUiEvent) redacts configured API keys, so
@@ -734,7 +811,9 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
     message: string,
     opts: ResolvedOpts,
     contentBlocks?: ContentBlock[],
-    suppliedTurnId?: string
+    suppliedTurnId?: string,
+    systemPrompt?: string,
+    continuationText?: string
   ): AsyncIterable<UIEvent> {
     const turnState: ActiveTurnState = { interrupted: false, cancelled: false };
     this.activeTurns.set(session.sessionId, turnState);
@@ -747,7 +826,7 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
     // lifecycle-free, mirroring the Claude SDK manager).
     let lifecycleOpened = false;
 
-    const claudeSessionId = session.claudeSessionId ?? `claude_${randomUUID()}`;
+    const claudeSessionId = session.engineSessionId ?? session.claudeSessionId ?? `claude_${randomUUID()}`;
     const trimmedMessage = message.trim();
 
     try {
@@ -846,7 +925,12 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
         return;
       }
 
-      const resolvedContent = await formatContentBlocks(message, contentBlocks);
+      const resolvedContent = await formatContentBlocks(
+        continuationText === undefined
+          ? message
+          : `${continuationText}\n\nCurrent user message:\n${message}`,
+        contentBlocks
+      );
       const abortController = new AbortController();
       turnState.abortController = abortController;
       timeoutHandle = setTimeout(() => {
@@ -865,6 +949,7 @@ export class AnthropicAgentSdkManager implements IAgentSdkManager {
           model: opts.model || FALLBACK_MODEL,
           stream: true,
           max_tokens: getMaxTokens(),
+          ...(systemPrompt === undefined ? {} : { system: systemPrompt }),
           messages: [
             {
               role: 'user',

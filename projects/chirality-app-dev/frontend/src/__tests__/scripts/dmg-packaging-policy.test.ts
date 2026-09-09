@@ -84,15 +84,17 @@ describe('dmg packaging policy', () => {
     expect(resources).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          from: '../../../agents',
-          to: 'agents'
-        }),
-        expect.objectContaining({
-          from: '../docs',
-          to: 'docs'
+          from: 'node_modules/.cache/chirality-instruction-root',
+          to: 'instruction-root',
+          filter: ['**/*']
         })
       ])
     );
+    expect(pkg.scripts?.['instruction-root:prepare']).toContain(
+      'prepare-packaged-instruction-root.mjs'
+    );
+    expect(pkg.scripts?.['desktop:pack']).toContain('npm run instruction-root:prepare');
+    expect(pkg.scripts?.['desktop:dist']).toContain('npm run instruction-root:prepare');
   });
 
   it('unpacks the Claude SDK and Pi native/WASM assets outside app.asar', async () => {

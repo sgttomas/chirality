@@ -13,8 +13,8 @@ WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to 
 
 1. Extract and reconcile the atomic scope ledger, objectives, assumptions, and unresolved decisions.
 2. Partition the work into flat Packages, then define Deliverables within each Package and their anticipated artifacts.
-3. Judge coverage, responsibility, interfaces, and boundary coherence through the seven decomposition gates.
-4. Preserve stable IDs and source mappings, obtain the required human decisions, and publish the accepted decomposition and handoff.
+3. Prepare coverage, responsibility, interface, boundary, and exception checks before each grouped human checkpoint.
+4. Preserve stable IDs and source mappings through three checkpoint groups: basis; proposed structure with findings; and audited final acceptance for downstream use.
 
 ## Resources
 

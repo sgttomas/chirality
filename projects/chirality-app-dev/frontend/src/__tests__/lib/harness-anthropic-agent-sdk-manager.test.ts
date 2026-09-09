@@ -40,6 +40,7 @@ const session = {
   createdAt: '2026-02-23T00:00:00.000Z',
   updatedAt: '2026-02-23T00:00:00.000Z'
 };
+const v3Session = { ...session, instructionBasisId: 'basis-v3' };
 
 const opts = {
   model: 'claude-sonnet-test',
@@ -100,6 +101,85 @@ afterEach(async () => {
 });
 
 describe('AnthropicAgentSdkManager', () => {
+  it('starts a successor with a fresh identity and prefers the committed engine identity on the next turn', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const createMock = vi.fn().mockResolvedValue(createStream([{ type: 'message_stop' }]));
+    const manager = new AnthropicAgentSdkManager(vi.fn(() => ({ messages: { create: createMock } })) as never);
+    const prepared = await manager.prepareContextSuccessor({
+      sessionId: v3Session.sessionId, predecessorEngineSessionId: 'claude-old', fromBasisId: 'basis-old',
+      toBasisPreview: { id: 'basis-new', sha256: 'a'.repeat(64) },
+      continuationContext: {
+        transcript: '[{"role":"user","text":"prior human"},{"role":"assistant","text":"prior assistant"}]',
+        sha256: 'b'.repeat(64), priorBasisRefs: [{ basisId: 'basis-old', sha256: 'c'.repeat(64) }]
+      }
+    });
+    const successorEvents = await collectEvents(manager.startRuntimeTurn({
+      session: { ...v3Session, engineSessionId: 'claude-old', claudeSessionId: 'claude-old' },
+      message: 'new request', opts, turnId: 'successor-turn', contextSuccessor: prepared,
+      instructionContext: {
+        schemaVersion: 'chirality.selected-context/v3', roleId: 'WORKING_ITEMS', methods: [], documents: [], dispositions: [],
+        supplied: [{ kind: 'role', id: 'WORKING_ITEMS', content: 'new current body', sha256: 'd'.repeat(64) }],
+        basisPreview: { id: 'basis-new', sha256: 'e'.repeat(64), instructionPolicySha256: '9'.repeat(64), sources: [], persisted: false }, compatibilityInputs: [], compatibilityMappings: []
+      }, runtimeTools: []
+    }));
+    expect(successorEvents[0]).toMatchObject({ type: 'session:init', data: { adapterId: 'anthropic-direct' } });
+    const successorId = (successorEvents[0] as { data: { engineSessionId: string } }).data.engineSessionId;
+    expect(successorId).not.toBe('claude-old');
+    expect(JSON.stringify(createMock.mock.calls[0]?.[0].messages)).toContain('prior human');
+    expect(JSON.stringify(createMock.mock.calls[0]?.[0].messages)).toContain('prior assistant');
+    expect(JSON.stringify(createMock.mock.calls[0]?.[0].messages)).not.toContain('new current body');
+
+    const nextEvents = await collectEvents(manager.startRuntimeTurn({
+      session: { ...v3Session, engineSessionId: successorId, claudeSessionId: 'claude-old' },
+      message: 'third turn', opts, turnId: 'third-turn', instructionContext: {
+        schemaVersion: 'chirality.selected-context/v3', roleId: 'WORKING_ITEMS', methods: [], documents: [], dispositions: [],
+        supplied: [{ kind: 'role', id: 'WORKING_ITEMS', content: 'new current body', sha256: 'd'.repeat(64) }],
+        basisPreview: { id: 'basis-new', sha256: 'e'.repeat(64), instructionPolicySha256: '9'.repeat(64), sources: [], persisted: false }, compatibilityInputs: [], compatibilityMappings: []
+      }, runtimeTools: []
+    }));
+    expect(nextEvents[0]).toMatchObject({ type: 'session:init', data: { engineSessionId: successorId } });
+  });
+
+  it('boots a v3 session without consuming provider prompt context', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const manager = new AnthropicAgentSdkManager(vi.fn() as never);
+    const events = await collectEvents(manager.startRuntimeTurn({
+      session: v3Session,
+      message: 'bootstrap', opts, turnId: 'boot-v3'
+    }));
+    expect(events.map((event) => event.type)).toEqual(['session:init', 'process:exit']);
+  });
+
+  it('sends exact Runtime context as system text and keeps attachments in user content', async () => {
+    process.env.ANTHROPIC_API_KEY = 'test-key';
+    const createMock = vi.fn().mockResolvedValue(createStream([{ type: 'message_stop' }]));
+    const manager = new AnthropicAgentSdkManager(vi.fn(() => ({ messages: { create: createMock } })) as never);
+    await collectEvents(manager.startRuntimeTurn({
+      session: v3Session,
+      message: 'normal directions', opts, turnId: 'turn-v3',
+      contentBlocks: [{ type: 'text', text: 'attachment text' }],
+      instructionContext: {
+        schemaVersion: 'chirality.selected-context/v3', roleId: 'HELP_HUMAN', methods: [], documents: [], dispositions: [],
+        supplied: [{ kind: 'role', id: 'HELP_HUMAN', content: 'frozen helper body', sha256: 'a'.repeat(64) }],
+        basisPreview: { id: 'basis-v3', sha256: 'b'.repeat(64), instructionPolicySha256: '9'.repeat(64), sources: [], persisted: false }, compatibilityInputs: [], compatibilityMappings: []
+      },
+      runtimeTools: []
+    }));
+    const request = createMock.mock.calls[0]?.[0];
+    expect(request.system).toContain('frozen helper body');
+    expect(request.system).not.toContain('attachment text');
+    expect(JSON.stringify(request.messages)).toContain('attachment text');
+  });
+
+  it('fails closed when anthropic-direct receives Runtime tools it cannot expose', () => {
+    const manager = new AnthropicAgentSdkManager(vi.fn() as never);
+    expect(() => manager.startRuntimeTurn({
+      session: v3Session,
+      message: 'work', opts, turnId: 'turn-tools',
+      runtimeTools: [{ name: 'chirality_list_methods', description: 'list', inputSchema: { type: 'object' }, permission: { effect: 'allow', operation: 'read' }, execute: async () => ({}) }]
+    })).toThrowError(expect.objectContaining({ type: 'ENGINE_UNAVAILABLE', status: 422 }));
+  });
+
   it('returns successful bootstrap exit without SDK calls when API key is present', async () => {
     process.env.ANTHROPIC_API_KEY = 'test-key';
     const createMock = vi.fn();

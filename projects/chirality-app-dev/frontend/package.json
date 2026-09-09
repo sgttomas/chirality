@@ -28,6 +28,7 @@
     "harness:generate-tool-catalog": "node ./scripts/generate-tool-catalog.mjs",
     "validate:release-quality": "npm run harness:validate:contract-deps && node ./scripts/validate-release-quality-evidence.mjs",
     "instruction-root:integrity": "node ./scripts/verify-instruction-root-integrity.mjs",
+    "instruction-root:prepare": "node ./scripts/prepare-packaged-instruction-root.mjs --source-root ../../.. --docs-root ../../../docs --output-root node_modules/.cache/chirality-instruction-root",
     "proof:secret-scan": "node ./scripts/scan-secret-evidence.mjs",
     "proof:network-policy": "node ./scripts/run-network-policy-proof.mjs",
     "proof:packaged-security": "node ./scripts/run-packaged-security-proof.mjs",
@@ -35,8 +36,8 @@
     "pi:supply-chain": "node ./scripts/verify-pi-supply-chain.mjs",
     "electron:supply-chain": "node ./scripts/verify-electron-dist.mjs",
     "desktop:verify-dependencies": "node ./scripts/verify-packaged-dependency-boundary.mjs",
-    "desktop:pack": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false node ./scripts/pack-electron-with-supply.mjs && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
-    "desktop:dist": "npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg --arm64 --publish never && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
+    "desktop:pack": "npm run instruction-root:prepare && npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false node ./scripts/pack-electron-with-supply.mjs && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
+    "desktop:dist": "npm run instruction-root:prepare && npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg --arm64 --publish never && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
     "sbom:generate": "node ./scripts/generate-sbom.mjs",
     "notices:generate": "node ./scripts/generate-third-party-notices.mjs",
     "verify:version-identity": "node ./scripts/verify-version-identity.mjs"
@@ -128,20 +129,10 @@
         ]
       },
       {
-        "from": "../../../agents",
-        "to": "agents"
-      },
-      {
-        "from": "../docs",
-        "to": "docs"
-      },
-      {
-        "from": "../../..",
-        "to": ".",
+        "from": "node_modules/.cache/chirality-instruction-root",
+        "to": "instruction-root",
         "filter": [
-          "AGENTS.md",
-          "CLAUDE.md",
-          "README.md"
+          "**/*"
         ]
       }
     ],

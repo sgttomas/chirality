@@ -13,13 +13,35 @@ import type {
   SessionRecord,
   TurnRequest
 } from '@chirality/runtime-contracts/types';
+import type {
+  ChiralityRoleName,
+  ExportNativePlanRequest,
+  ExportNativePlanResponse,
+  FrozenInstructionBasisV3,
+  InstructionHistoryRecordV3,
+  MethodInspectionResponse,
+  MethodReference,
+  MethodsResponse,
+  NativePlanCapabilityResponse,
+  NativePlanRevisionsResponse,
+  ReplaceSelectedMethodsRequest,
+  ReplaceSelectedMethodsResponse,
+  ResolveSelectedContextRequest,
+  ResolveSelectedContextResponse,
+  RolesResponse
+} from '@chirality/runtime-contracts/v3';
+import type { ReadableRuntimeSessionRecord } from '@chirality/runtime-contracts';
+
+export type HarnessReadableSessionRecord = SessionRecord | ReadableRuntimeSessionRecord;
 
 export type SessionEventsReplay = {
   events: HarnessEvent[];
   malformedLineCount: number;
   summary: HarnessReplaySummary;
-  session?: SessionRecord;
+  session?: HarnessReadableSessionRecord;
   transcript?: TranscriptView;
+  instructionHistory: readonly InstructionHistoryRecordV3[];
+  instructionBases: readonly FrozenInstructionBasisV3[];
 };
 
 type JsonLike = Record<string, unknown>;
@@ -119,7 +141,13 @@ function parseSseFrame(frame: string): HarnessTurnStreamEvent | null {
   }
 }
 
-async function openTurnStream(input: TurnRequest): Promise<Response> {
+export type V3TurnRequest = TurnRequest & {
+  interactionMode?: ResolveSelectedContextRequest['interactionMode'];
+  permissionMode?: ResolveSelectedContextRequest['permissionMode'];
+  methods?: readonly MethodReference[];
+};
+
+async function openTurnStream(input: V3TurnRequest): Promise<Response> {
   const response = await fetch('/api/harness/turn', {
     method: 'POST',
     headers: {
@@ -163,12 +191,111 @@ export async function listDirectChatPersonas(): Promise<AgentRosterEntry[]> {
   return payload.agents;
 }
 
+export async function listHarnessRoles(projectRoot: string): Promise<RolesResponse> {
+  return requestHarnessJson<RolesResponse>(
+    `/api/harness/roles?projectRoot=${encodeURIComponent(projectRoot)}`,
+    { method: 'GET' },
+    'Unable to load roles'
+  );
+}
+
+export async function listHarnessMethods(input: {
+  projectRoot: string;
+  kind?: 'skill' | 'workflow';
+  query?: string;
+}): Promise<MethodsResponse> {
+  const params = new URLSearchParams({ projectRoot: input.projectRoot });
+  if (input.kind) params.set('kind', input.kind);
+  if (input.query?.trim()) params.set('query', input.query.trim());
+  return requestHarnessJson<MethodsResponse>(
+    `/api/harness/methods?${params.toString()}`,
+    { method: 'GET' },
+    'Unable to load methods'
+  );
+}
+
+export async function inspectHarnessMethod(input: {
+  projectRoot: string;
+  qualifiedId: string;
+}): Promise<MethodInspectionResponse> {
+  const params = new URLSearchParams({
+    projectRoot: input.projectRoot,
+    qualifiedId: input.qualifiedId
+  });
+  return requestHarnessJson<MethodInspectionResponse>(
+    `/api/harness/methods/inspect?${params.toString()}`,
+    { method: 'GET' },
+    'Unable to inspect method'
+  );
+}
+
+export async function resolveHarnessSelectedContext(input: {
+  sessionId: string;
+  request: ResolveSelectedContextRequest;
+}): Promise<ResolveSelectedContextResponse> {
+  return requestHarnessJson<ResolveSelectedContextResponse>(
+    `/api/harness/session/${encodeURIComponent(input.sessionId)}/context/resolve`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(input.request)
+    },
+    'Unable to resolve selected context'
+  );
+}
+
+export async function replaceHarnessSelectedMethods(input: {
+  sessionId: string;
+  request: ReplaceSelectedMethodsRequest;
+}): Promise<ReplaceSelectedMethodsResponse> {
+  return requestHarnessJson<ReplaceSelectedMethodsResponse>(
+    `/api/harness/session/${encodeURIComponent(input.sessionId)}/methods`,
+    {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(input.request)
+    },
+    'Unable to replace selected methods'
+  );
+}
+
+export async function getHarnessNativePlanCapability(
+  sessionId: string
+): Promise<NativePlanCapabilityResponse> {
+  return requestHarnessJson<NativePlanCapabilityResponse>(
+    `/api/harness/session/${encodeURIComponent(sessionId)}/native-plan/capability`,
+    { method: 'GET' },
+    'Unable to read native Plan capability'
+  );
+}
+
+export async function listHarnessNativePlanRevisions(
+  sessionId: string
+): Promise<NativePlanRevisionsResponse> {
+  return requestHarnessJson<NativePlanRevisionsResponse>(
+    `/api/harness/session/${encodeURIComponent(sessionId)}/native-plan/revisions`,
+    { method: 'GET' },
+    'Unable to load native Plan revisions'
+  );
+}
+
+export async function exportHarnessNativePlan(
+  sessionId: string,
+  request: ExportNativePlanRequest
+): Promise<ExportNativePlanResponse> {
+  return requestHarnessJson<ExportNativePlanResponse>(
+    `/api/harness/session/${encodeURIComponent(sessionId)}/native-plan/export`,
+    { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(request) },
+    'Failed to export native Plan revision'
+  );
+}
+
 /**
  * List the harness sessions recorded for a Working Root (most-recent ordering
  * is whatever the server returns). Feeds the Phase 5 session-list UI (D-APP-22).
  */
-export async function listHarnessSessions(projectRoot: string): Promise<SessionRecord[]> {
-  const payload = await requestHarnessJson<{ sessions: SessionRecord[] }>(
+export async function listHarnessSessions(projectRoot: string): Promise<HarnessReadableSessionRecord[]> {
+  const payload = await requestHarnessJson<{ sessions: HarnessReadableSessionRecord[] }>(
     `/api/harness/session/list?projectRoot=${encodeURIComponent(projectRoot)}`,
     { method: 'GET' },
     'Unable to list harness sessions'
@@ -190,7 +317,12 @@ export async function replaySessionEvents(sessionId: string): Promise<SessionEve
   );
 }
 
-export async function createHarnessSession(input: SessionCreateRequest): Promise<SessionRecord> {
+export async function createHarnessSession(input: SessionCreateRequest & {
+  roleId?: ChiralityRoleName;
+  interactionMode?: ResolveSelectedContextRequest['interactionMode'];
+  permissionMode?: ResolveSelectedContextRequest['permissionMode'];
+  selectedMethods?: readonly MethodReference[];
+}): Promise<SessionRecord> {
   const payload = await requestHarnessJson<{ session: SessionRecord }>(
     '/api/harness/session/create',
     {
@@ -272,7 +404,7 @@ export async function scaffoldHarnessExecutionRoot(input: {
 }
 
 export async function streamHarnessTurn(
-  input: TurnRequest,
+  input: V3TurnRequest,
   onEvent: (event: HarnessTurnStreamEvent) => void
 ): Promise<void> {
   const response = await openTurnStream(input);

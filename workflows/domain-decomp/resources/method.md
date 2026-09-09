@@ -8,11 +8,18 @@ This section defines the orchestrator procedure for handbook/domain decompositio
 
 ### Output Target
 
-The agent maintains a **canonical working package** during the conversation (a living draft consisting of the main decomposition document, per-source HTML review surfaces, and companion registers), and repeatedly revises it after user feedback until it passes the validation gates in SPEC.
+The agent maintains a **canonical working package** during the conversation (a living draft consisting of the main decomposition document, per-source HTML review surfaces, and companion registers), and repeatedly revises it after user feedback until it passes the combined source checkpoint and three grouped decomposition checkpoints in SPEC.
+
+For the combined source checkpoint and each accepted group, finalize
+`checkpoint_snapshots/<checkpoint>-<UTC>/{DECISION.md,ACCEPTED_MANIFEST.csv,HANDOFF_STATE.md}`
+and then update `_LATEST_SOURCE.md`, `_LATEST_GROUP1.md`, `_LATEST_GROUP2.md`,
+or `_LATEST_ACCEPTED.md` as applicable. Each later stage begins by resolving
+and consuming the preceding accepted snapshot. A reopened decision produces a
+successor snapshot and never overwrites accepted history.
 
 ### Phases
 
-#### Phase 1 — Intake (capture the handbook reality)
+#### Source-basis preparation — intake and initial rendering
 
 **Goal:** Receive the handbook(s) and constraints and reflect them back faithfully. Lift each source's TOC skeleton and produce a Phase-1.5 review surface.
 
@@ -26,11 +33,11 @@ Working source materials live under `_Sources/` within the domain's package root
 
 **Actions:**
 
-1. Discover the source corpus by listing `_Sources/` subfolders (excluding `_Archive/`). Confirm with the user that the discovered set is the intended corpus.
+1. Discover the proposed source corpus by listing `_Sources/` subfolders (excluding `_Archive/`). Record the discovered set for the combined source-admission/fidelity checkpoint.
 2. For each admitted source:
    - Run `tools/decomp/build_source_skeleton.py --md <book>.md --asset-manifest <book>_assets_manifest.json --output-skeleton <book>_skeleton.json --output-dispatch-plan <book>_dispatch_plan.json` to produce the raw skeleton and dispatch plan.
-   - Render the **section+atom** review surface: `tools/decomp/render_source_html.py --md <book>.md --asset-manifest <book>_assets_manifest.json --skeleton <book>_skeleton.json --audit-dir _Sources/<book>/audit --output-html _Sources/<book>/audit/<book>.html --output-section-nodes <book>_section_nodes.csv --mode structure` (Gate 1.5-S surface).
-   - Render the **per-kind audit surfaces** (Gate 1.5-E/F/T/I and optionally 1.5-Fo):
+   - Render the **section+atom** review surface: `tools/decomp/render_source_html.py --md <book>.md --asset-manifest <book>_assets_manifest.json --skeleton <book>_skeleton.json --audit-dir _Sources/<book>/audit --output-html _Sources/<book>/audit/<book>.html --output-section-nodes <book>_section_nodes.csv --mode structure`.
+   - Render the **per-kind audit surfaces** used for the combined checkpoint:
      - `tools/equation_audit/audit_equations.py --work-dir _Sources/<book>_pdf2md_work --out-html _Sources/<book>/audit/equations.html --out-jsonl _Sources/<book>/audit/equations.jsonl`
      - `tools/source_audit/audit_figures.py --asset-manifest <book>_assets_manifest.json --audit-dir _Sources/<book>/audit --output-html _Sources/<book>/audit/figures.html`
      - `tools/source_audit/audit_tables.py --asset-manifest <book>_assets_manifest.json --audit-dir _Sources/<book>/audit --output-html _Sources/<book>/audit/tables.html`
@@ -49,28 +56,27 @@ Working source materials live under `_Sources/` within the domain's package root
 - Per-source `<book>_skeleton.json`, `<book>_dispatch_plan.json`, `<book>_section_nodes.csv`
 - Five review surfaces per source under `_Sources/<book>/audit/`: `<book>.html` (section+atom, structure mode), `equations.html`, `figures.html`, `tables.html`, `images.html`
 
-**Gate 1 (confirm intake understanding):**
-User confirms: "Yes, the discovered source set is the intended corpus, the per-source skeleton counts look right, and the Phase-1.5 review HTMLs render correctly." Proceed to Phase 1.5.
+#### Source-fidelity preparation — structure, assets, and reproducibility
 
----
+**Goal:** Prepare a consolidated assessment of each proposed source's parsed
+structure, prose reproducibility, equations, figures, tables, images, and
+folios before atomization. Review tracks isolate failure modes, but they feed
+one source-admission/fidelity decision. Folio review is required when folio
+extraction ran and otherwise records `NOT_APPLICABLE`.
 
-#### Phase 1.5 — Source review (six sub-gates plus conditional 1.5-Fo)
+**Review tracks** (each surface persists state in its own `<kind>_verified.json` / `<kind>_flagged.json` sidecar; all required tracks are complete before the combined checkpoint):
 
-**Goal:** Confirm the parsed structure of each source — skeleton outline AND every per-kind asset — before Phase-2 atomization fans out. The review work is split across six sub-gates so the human reviewer addresses one failure mode at a time. Five sub-gates are human-driven; one is a machine pre-check. A seventh sub-gate (**1.5-Fo**, printed-folio review) is **conditionally required**: it must PASS when folio extraction was run on the source (any page has `page_label_source: "vlm"` in the asset manifest); it is N/A when folio extraction was skipped.
-
-**Sub-gates** (each surface persists state in its own `<kind>_verified.json` / `<kind>_flagged.json` sidecar; Gate 1.5 closes only when all required sub-gates PASS — six unconditional plus 1.5-Fo when conditionally required):
-
-| Sub-gate | Driver | Surface | What the reviewer (or machine) does |
+| Track | Driver | Surface | What the reviewer (or machine) does |
 |---|---|---|---|
-| **1.5-S** Skeleton | Human | `<book>.html` (section+atom, structure mode) | Confirm section outline, depth, page-range mapping; tag front/back-matter as OUT |
-| **1.5-E** Equations | Human | `equations.html` | Per-equation accept/flag with LaTeX correction notes |
-| **1.5-F** Figures | Human | `figures.html` | Per-figure accept/flag (caption + crop quality) |
-| **1.5-T** Tables | Human | `tables.html` | Per-table accept/flag (structure + caption + `needs_extraction` triage) |
-| **1.5-I** Images | Human | `images.html` | Per-image accept/flag (real asset vs. false positive) |
-| **1.5-Fo** Folios | Human (conditional) | `folios.html` | Per-page accept/flag of the printed folio label emitted by `pdf2md-folio-extract`. Required only when the source has VLM-extracted folios |
-| **1.5-P** Extraction reproducibility | **Machine** (prefilter) | `prose_validation.json` sidecar + proposals into `equations_backcheck.json` | Independent VLM re-extraction of each page; deterministic comparator vs. the original `<book>.md`. Strict on prose, structural on equations/asset refs, with canonicalized-LaTeX content compare emitting *proposals* for human adjudication at 1.5-E. Pages with structural fails are auto-flagged for `pdf2md-page-assets` re-dispatch before any human gate runs |
+| **S** Skeleton | Human review | `<book>.html` (section+atom, structure mode) | Confirm section outline, depth, page-range mapping; tag front/back-matter as OUT |
+| **E** Equations | Human review | `equations.html` | Per-equation accept/flag with LaTeX correction notes |
+| **F** Figures | Human review | `figures.html` | Per-figure accept/flag (caption + crop quality) |
+| **T** Tables | Human review | `tables.html` | Per-table accept/flag (structure + caption + `needs_extraction` triage) |
+| **I** Images | Human review | `images.html` | Per-image accept/flag (real asset vs. false positive) |
+| **Fo** Folios | Human review (conditional) | `folios.html` | Per-page accept/flag of the printed folio label emitted by `pdf2md-folio-extract`. Required only when the source has VLM-extracted folios |
+| **P** Extraction reproducibility | **Machine** (prefilter) | `prose_validation.json` sidecar + proposals into `equations_backcheck.json` | Independent VLM re-extraction of each page; deterministic comparator vs. the original `<book>.md`. Strict on prose, structural on equations/asset refs, with canonicalized-LaTeX content compare emitting proposals for review in track E. Pages with structural fails are auto-flagged for `pdf2md-page-assets` re-dispatch before the combined checkpoint |
 
-**Actions (1.5-S Skeleton, human):**
+**Actions (track S, human review):**
 
 1. Open `_Sources/<book>/audit/<book>.html` in the browser.
 2. Filter by `Sections only` and walk the TOC at depth ≤ 3.
@@ -80,16 +86,19 @@ User confirms: "Yes, the discovered source set is the intended corpus, the per-s
 4. Export sidecars; user moves them into `_Sources/<book>/audit/`.
 5. Apply review overrides to the dispatch plan: extract front-matter and back-matter overrides, then re-run `build_source_skeleton.py --front-matter-overrides <JSON> --back-matter-overrides <JSON> --output-skeleton <book>_skeleton.reviewed.json --output-dispatch-plan <book>_dispatch_plan.json` (overwrite). The reviewed skeleton replaces the raw one as the input to Phase 2.
 
-**Actions (1.5-E / 1.5-F / 1.5-T / 1.5-I, human):**
+**Actions (tracks E / F / T / I, human review):**
 
 1. Open each per-kind HTML surface in the browser, one at a time.
 2. Walk the page-grouped chunks. For each chunk pick `Verified` / `Flagged`; for flagged, describe the defect in the note (wrong bbox, mis-bound caption, false-positive asset, table structure or value error, equation LaTeX correction, etc.).
 3. Export the per-kind sidecars (`<source_prefix>_<kind>_verified_<TS>.json` / `<source_prefix>_<kind>_flagged_<TS>.json`). Move the latest of each into `_Sources/<book>/audit/` (rename to canonical `<kind>_verified.json` / `<kind>_flagged.json` for the next render to pick them up automatically; the renderer also auto-detects the most recent `*_<role>_*.json` if you leave the timestamped names).
 4. WORKING_ITEMS drains flagged buckets iteratively. Asset-level corrections (re-cropping a figure, re-dispatching a table for structural re-extraction, fixing an equation LaTeX) are applied by the appropriate downstream tool — `pdf2md-page-assets` re-dispatch for assets, `WORKING_ITEMS (workflow: equation-audit)` Phase 3 for equations — and the surface is re-rendered.
 
-**Contract (1.5-P Extraction reproducibility prefilter, machine — implementation deferred):**
+**Contract (track P extraction reproducibility prefilter, machine):**
 
-1.5-P is a three-stage pipeline that runs **before any human sub-gate** (1.5-S / E / F / T / I). Its job is to detect pages where the pdf2md extract is not reproducible, route those pages for re-dispatch, and surface machine-generated equation-fix proposals for humans to adjudicate during 1.5-E.
+Track P is a three-stage pipeline that runs before the human review tracks. Its
+job is to detect pages where the pdf2md extract is not reproducible, route those
+pages for re-dispatch, and surface machine-generated equation-fix proposals for
+review during track E.
 
 **Stage 1 — Skill: independent re-extraction (perception, nondeterministic).**
 
@@ -129,13 +138,13 @@ The comparator can route human attention **TO** content (via proposals, structur
 - **Equation content match between extracts is silent but NOT verification.** Both VLM extracts can canonicalize-equal because they both made the same error against the printed equation. 1.5-P never writes to `equations_verified.json` or `equations_flagged.json`. The only equation-state sidecar it writes is `equations_backcheck.json` (proposals). The human at 1.5-E remains the sole authority that can verify any equation.
 - **Prose-line match between extracts is silent but NOT verification.** 1.5-P never marks any prose region as reviewed; it only flags divergences.
 - **Asset-placeholder structural match is silent but NOT verification.** Presence and position of a placeholder in both extracts does not attest that the asset's caption or crop is correct. 1.5-F/T/I remain the sole authorities.
-- **Page-level "no 1.5-P findings" status is silent but NOT exemption.** Atoms inheriting from such a page proceed through normal Gate-2 atom review with no 1.5-P-induced pre-flags AND no 1.5-P-induced exemption from review.
+- **Page-level "no track-P findings" status is silent but NOT exemption.** Atoms inheriting from such a page proceed through normal normalized-scope review with no machine-induced pre-flags and no machine-induced exemption from review.
 
-**Effect on downstream sub-gates and Gate 2:**
+**Effect on the remaining review tracks and normalized-scope review:**
 
 - 1.5-S / 1.5-F / 1.5-T / 1.5-I run on pages that have cleared 1.5-P structural checks. Reviewers see fewer obviously-broken pages, but every chunk still requires human attestation.
 - 1.5-E inherits machine proposals as pre-populated Backcheck entries (no new surface required).
-- At Gate 2, atoms inheriting from a page that has unresolved 1.5-P findings (open proposals or pending re-dispatch) are auto-pre-flagged in the atom review sidecar. Atoms from pages with no 1.5-P findings proceed through normal review with neither pre-flag nor exemption — 1.5-P silence is never an attestation.
+- During normalized-scope review, atoms inheriting from a page that has unresolved track-P findings (open proposals or pending re-dispatch) are auto-pre-flagged in the atom review sidecar. Atoms from pages with no track-P findings proceed through normal review with neither pre-flag nor exemption — machine silence is never an attestation.
 
 **Status**: implemented. `tools/source_audit/{tokenize_md,normalize_prose,canonicalize_latex,compare_extracts,validate_prose}.py` are the deterministic Stage 2 modules. `workflows/domain-prose-validate/` is the Stage 1 workflow. `tools/decomp/build_prose_validate_brief.py` + `tools/source_audit/run_prose_validation.py` are the dispatch/aggregation helpers for Stage 3. `audit_equations.py` renders the 1.5-P-machine source badge and the Reject-proposal action on Backcheck entries, with `equations_rejected.json` suppression sticky per `(equation_hash, proposal_hash)`.
 
@@ -145,14 +154,23 @@ The comparator can route human attention **TO** content (via proposals, structur
 - Updated `<book>_dispatch_plan.json` per source (excludes reviewer-confirmed out-of-scope sections)
 - Six sidecar JSON families under `_Sources/<book>/audit/`: `sections_*`, `equations_*` (legacy `verified.json` / `flagged.json` honored; `equations_backcheck.json` populated by both WORKING_ITEMS (workflow: equation-audit) Phase 3 fixes and 1.5-P machine proposals; `equations_rejected.json` for sticky-per-proposal rejections), `figures_*`, `tables_*`, `images_*`, plus the 1.5-P artifacts: `prose_validation.json` and the per-page re-extracts under `prose_validation_extracts/`
 
-**Gate 1.5 (all required sub-gates must PASS):**
-Ordering: **1.5-P first** as a machine prefilter — it consumes raw `<book>.md` + page rasters (no human input required) and routes structurally-broken pages back through `pdf2md-page-assets` re-dispatch before any human time is spent. Once 1.5-P's open structural fails are zero (proposals may still be open; those are adjudicated inline at 1.5-E), the human sub-gates run: **1.5-S** next (locks the skeleton + dispatch scope), then **1.5-E** / **1.5-F** / **1.5-T** / **1.5-I** in any order (the four per-kind surfaces are independent), plus **1.5-Fo** when folio extraction was run on the source. Proceed to Phase 2 only when all required sub-gates pass.
+**Combined source-admission and fidelity checkpoint:** Run track P first and
+drain structural repairs. Then complete track S and the applicable asset tracks,
+iterating repairs and re-renders as needed. Present the proposed admitted corpus,
+skeleton/dispatch scope, unresolved fidelity exceptions, and all track evidence
+as one reviewable package. The human accepts or revises source admission and
+fidelity in one decision. Asset-quality evidence informs this checkpoint and
+routes repair work; it never creates a separate workflow prompt. Atomization
+may begin only after this checkpoint is accepted.
+
+After acceptance, finalize the source-admission/fidelity snapshot, update
+`_LATEST_SOURCE.md`, and consume it as the atomization basis.
 
 ---
 
-#### Phase 2 — Normalize (per-dispatch-unit atomization via TASK fan-out)
+#### Checkpoint group 1 preparation — normalized scope and meaning
 
-**Goal:** Convert each in-scope dispatch unit into a per-unit atomic-unit CSV via a bounded `TASK + domain-source-atomize` invocation, then merge across all units of all sources into the consolidated Domain Ledger. Gate 2 closes on the merged ledger via browser-mediated review.
+**Goal:** Convert each in-scope dispatch unit into a per-unit atomic-unit CSV via a bounded `TASK + domain-source-atomize` invocation, then merge across all units of all sources into the consolidated Domain Ledger. Checkpoint group 1 decides the merged ledger through browser-mediated review.
 
 **Chunking strategy (delegated to the workflow):**
 
@@ -178,9 +196,9 @@ Per-unit atomization is performed by `workflows/domain-source-atomize/`. The wor
 4. Consolidate vocabulary:
    - Run `tools/decomp/merge_vocabulary_seeds.py --seed <book1>_vocabulary_seed.csv --source-doc <book1> --seed <book2>_vocabulary_seed.csv --source-doc <book2> ... --output Vocabulary_Map.csv`. (Per-source vocab seeds are produced by merging each source's per-unit `<book>_dispatch_<unit_id>_vocab.csv` outputs ahead of this step — typically by simple concat, since the per-unit outputs are already source-local.)
 5. Re-render each source's `<book>.html` in `atom-review` mode (sections + atoms):
-   - Run `tools/decomp/render_source_html.py --md <book>.md --asset-manifest <book>_assets_manifest.json --skeleton <book>_skeleton.reviewed.json --audit-dir _Sources/<book>/audit --output-html _Sources/<book>/audit/<book>.html --output-section-nodes <book>_section_nodes.csv --mode atom-review --atomic-units-csv <book>_atomic_units.csv`. Each in-scope section now carries its mapped atoms as a reviewable list next to the source-page image. Per-asset review state from Phase 1.5 (`equations.html` / `figures.html` / `tables.html` / `images.html`) stays where it is — those surfaces don't need re-rendering for Gate 2.
+   - Run `tools/decomp/render_source_html.py --md <book>.md --asset-manifest <book>_assets_manifest.json --skeleton <book>_skeleton.reviewed.json --audit-dir _Sources/<book>/audit --output-html _Sources/<book>/audit/<book>.html --output-section-nodes <book>_section_nodes.csv --mode atom-review --atomic-units-csv <book>_atomic_units.csv`. Each in-scope section now carries its mapped atoms as a reviewable list next to the source-page image. Per-asset review state from the source-fidelity preparation stays where it is; those surfaces do not need re-rendering for checkpoint group 1.
 
-**Gate-2 human review (browser-mediated):**
+**Checkpoint-group-1 review preparation (browser-mediated):**
 
 The user opens each source's regenerated `<book>.html` and reviews atoms via filter chips:
 
@@ -201,14 +219,20 @@ Sidecar exports from each browser session land in `_Sources/<book>/audit/`. WORK
 - Updated per-source HTML in `atom-review` mode
 - Sidecar exports under `_Sources/<book>/audit/`
 
-**Gate 2 (confirm normalization):**
-User confirms: "Yes, the merged Domain Ledger reflects the corpus content, the IN/OUT/TBD classifications are correct (flagged atoms = 0 or all flags resolved with resolution notes), the cleaning rule was applied correctly, and the vocabulary choices are acceptable." Proceed to Phase 2.5.
+**Checkpoint group 1 — normalized scope and meaning:** Present the merged
+Domain Ledger, Handbook Units, `IN | OUT | TBD` classifications, dual source
+bindings, vocabulary, resolved flags, and remaining meaning conflicts together.
+The human confirms or revises this normalized representation of the admitted
+corpus.
+
+After acceptance, finalize the group-1 snapshot, update `_LATEST_GROUP1.md`,
+and consume it as the structural-retrieval basis.
 
 ---
 
-#### Phase 2.5 — Retrieval prep (deterministic sub-step, not a gate)
+#### Structural retrieval preparation (deterministic, not a checkpoint)
 
-**Goal:** Build the V2 source database and retrieval index needed by Gate 3 / Gate 4 ratification.
+**Goal:** Build the V2 source database and retrieval index needed for the Category and Knowledge Type checks before checkpoint group 2.
 
 **Actions:**
 
@@ -216,9 +240,9 @@ User confirms: "Yes, the merged Domain Ledger reflects the corpus content, the I
 2. Run `tools/retrieval/build_source_index.py --snapshot <domain-root>/_LocalIndexes/_LATEST.md`. This builds BM25 + dense retrieval sidecars inside the same source database snapshot.
 3. Build the cross-source TOC reconciliation prior: `tools/decomp/build_toc_priors.py --skeleton <book1>_skeleton.reviewed.json --skeleton <book2>_skeleton.reviewed.json ... --output-md cross_source_toc_matrix.md --output-csv cross_source_toc_matrix.csv`.
 
-The source database, retrieval sidecars, and TOC matrix MUST refresh whenever source files, audit sidecars, section nodes, or the Domain Ledger change (e.g., post-Gate-2 fix).
+The source database, retrieval sidecars, and TOC matrix MUST refresh whenever source files, audit sidecars, section nodes, or the Domain Ledger change (for example after a checkpoint-group-1 repair).
 
-This step is deterministic and non-conversational; no user gate.
+This step is deterministic and non-conversational; it creates no human checkpoint.
 
 **Output:**
 
@@ -228,7 +252,7 @@ This step is deterministic and non-conversational; no user gate.
 
 ---
 
-#### Phase 3 — Define Categories (cross-source TOC reconciliation)
+#### Checkpoint group 2 preparation, part A — define Categories
 
 **Goal:** Partition IN-scope Handbook Units into flat Categories with no overlap and no gaps. The Phase-3 starting point is the cross-source TOC matrix — each admitted source's TOC is itself an expert decomposition, and Categories are proposed as a reconciliation of those structures.
 
@@ -246,11 +270,11 @@ This step is deterministic and non-conversational; no user gate.
    - keep units atomic and force a decision, **or**
    - split the unit into smaller units (user-confirmed). Unit splits change `UnitStatement` text for the affected rows and therefore invalidate their embeddings + BM25 tokens.
 
-**Index-refresh trigger:** If Phase 3 admits any unit splits, the source database and source retrieval index MUST be rebuilt before scope ratification opens.
+**Index-refresh trigger:** If Category work admits any unit splits, the source database and source retrieval index MUST be rebuilt before scope ratification opens.
 
-**Gate 3 prerequisite — retrieval-driven Category scope ratification (binding):**
+**Category check — retrieval-driven scope ratification (binding):**
 
-Before Gate 3 may close, every proposed Category MUST pass a retrieval-driven scope ratification check. Catching scope-vs-content drift at the Category level (10-ish entities) prevents it from propagating into KTY proposals at Phase 4 (dozens of entities). Same five-verdict shape as KTY ratification.
+Before checkpoint group 2 may be presented, every proposed Category MUST pass a retrieval-driven scope ratification check. Catching scope-vs-content drift at the Category level prevents it from propagating into Knowledge Type proposals. The check has the same five-verdict shape as KTY ratification.
 
 **Precondition (hard):** The source database snapshot at `<domain-root>/_LocalIndexes/_LATEST.md` MUST be current with respect to source files, audit sidecars, section nodes, and the Domain Ledger. The snapshot's `Chunks.csv` and retrieval sidecars MUST be current before ratification queries run.
 
@@ -276,7 +300,7 @@ Before Gate 3 may close, every proposed Category MUST pass a retrieval-driven sc
 
 In addition to per-Category ratification, run a per-atom assignment check: for each IN atom, query the atom index with the atom's assigned Category scope and verify the atom itself appears in top-`k`. Atoms that fail to retrieve under their assigned Category's scope are flagged as **misassignment candidates** and routed back for user review. This makes the "no gaps / no overlaps" invariant machine-checkable instead of merely asserted.
 
-Blocking Category-level verdicts route back to Phase 3 Category refinement (rename, rewrite ScopeDescription, split, merge, or reassign atoms). Misassignment candidates route to per-atom review. Gate 3 cannot close while any Category carries a blocking verdict or while unresolved misassignment candidates remain.
+Blocking Category-level verdicts route back to Category refinement (rename, rewrite ScopeDescription, split, merge, or reassign atoms). Misassignment candidates route to per-atom review. Checkpoint group 2 is not ready while any Category carries a blocking verdict or unresolved misassignment candidates remain.
 
 The full per-Category verdict set is recorded as a companion register (`Category_Scope_Ratification.csv`); the misassignment candidate list is recorded as `Category_Assignment_Findings.csv`. Both surface in the Decision Log.
 
@@ -287,12 +311,11 @@ The full per-Category verdict set is recorded as a companion register (`Category
 - `Category_Scope_Ratification.csv` (per-Category verdicts)
 - `Category_Assignment_Findings.csv` (per-atom misassignment candidates, if any)
 
-**Gate 3 (confirm categories):**
-User confirms: "Yes, Categories are correct, each IN-scope unit belongs to exactly one Category, every Category carries a `CLUSTER_COHERENT` ratification verdict, and all misassignment candidates have been resolved (advisory `LOW_COHESION` findings reviewed and accepted)."
+Continue directly into the Knowledge Type and Knowledge Subject proposal. The
+Category proposal and its findings are decided with the rest of the domain
+structure at checkpoint group 2.
 
----
-
-#### Phase 4 — Define Knowledge Types (within each Category)
+#### Checkpoint group 2 preparation, part B — define Knowledge Types and Subjects
 
 **Goal:** Define Knowledge Types that operationalize the domain into reusable units of structured knowledge.
 
@@ -326,9 +349,9 @@ For each Knowledge Subject (within its parent Knowledge Type):
 - Knowledge Type and Subject attribute tables
 - Unit→Subject mapping in the Domain Ledger (best-effort; gaps surfaced)
 
-**Gate 4 prerequisite — retrieval-driven KTY scope ratification (binding):**
+**Knowledge Type check — retrieval-driven scope ratification (binding):**
 
-Before Gate 4 may close, every proposed Knowledge Type MUST pass a retrieval-driven scope ratification check. This verifies that a KTY's declared scope (Name + Description) matches the atomic content actually mapped to it.
+Before checkpoint group 2 may be presented, every proposed Knowledge Type MUST pass a retrieval-driven scope ratification check. This verifies that a KTY's declared scope (Name + Description) matches the atomic content actually mapped to it.
 
 **Precondition (hard):** The atom retrieval index MUST be current with respect to the Domain Ledger's `UnitStatement` content.
 
@@ -350,18 +373,24 @@ Before Gate 4 may close, every proposed Knowledge Type MUST pass a retrieval-dri
 | `SCOPE_TOO_NARROW` | Mapped atoms span topics the KTY scope does not cover; KTY should be broadened, or atoms re-clustered into the correct KTYs | **Yes** |
 | `LOW_COHESION` | Mapped atoms have low pairwise similarity even though they satisfy the scope query; advisory only — does not block, but the user is shown the finding | No |
 
-**Blocking verdicts route back to Phase 4 KTY refinement** (rename, rewrite Description, split, merge, or re-cluster atoms) and the ratification check is re-run. Gate 4 cannot close while any KTY carries a blocking verdict.
+**Blocking verdicts route back to KTY refinement** (rename, rewrite Description, split, merge, or re-cluster atoms) and the ratification check is re-run. Checkpoint group 2 is not ready while any KTY carries a blocking verdict.
 
 The full per-KTY verdict set is recorded as a companion register (`KTY_Scope_Ratification.csv`) and surfaced in the Decision Log.
 
-**Gate 4 (confirm Knowledge Types):**
-User confirms: "Yes, Knowledge Types, Knowledge Subjects, schemas, and responsibilities are acceptable, and every KTY carries a `CLUSTER_COHERENT` ratification verdict (advisory `LOW_COHESION` findings reviewed and accepted)."
+**Checkpoint group 2 — Category, Knowledge Type, and Knowledge Subject
+structure:** Present the Categories, Knowledge Types, Knowledge Subjects,
+schemas, mappings, Category and KTY ratification registers, coverage findings,
+and exceptions as one reviewable structure. The human confirms or revises the
+domain structure and the recorded treatment of advisory findings.
+
+After acceptance, finalize the group-2 snapshot, update `_LATEST_GROUP2.md`,
+and consume it as the final-coverage and audit basis.
 
 ---
 
-#### Phase 5 — Verify Coverage (anti-fragile checks + browser-mediated section coverage)
+#### Checkpoint group 3 preparation, part A — verify coverage
 
-**Goal:** Prove that decomposition covers the handbook's IN-scope content and make gaps visible and trackable. Section-level coverage is attested by the user in the browser.
+**Goal:** Prove that decomposition covers the handbook's IN-scope content and make gaps visible and trackable. Section-level coverage findings and proposed scaffold-for-fill dispositions are prepared for the final grouped decision.
 
 **Actions:**
 
@@ -374,10 +403,14 @@ User confirms: "Yes, Knowledge Types, Knowledge Subjects, schemas, and responsib
    - Tabulate coverage density (atoms per ~50 source lines).
    - Flag zero-coverage sections as open issues.
 4. Re-render each source's `<book>.html` in `coverage-review` mode (sections only):
-   - `tools/decomp/render_source_html.py ... --mode coverage-review --atomic-units-csv <book>_atomic_units.csv`. Each section is color-coded by atom-coverage density (cov-empty / cov-low / cov-mid / cov-high). The per-kind asset surfaces are not part of Gate 5 — coverage is a section-level property.
-5. The user opens each source's HTML and reviews `cov-empty` sections in particular, attesting that:
-   - the zero-coverage is acceptable (e.g., section is true preamble / boilerplate; OR the section will be filled by scope-change cycles per AOP-08's scaffold-for-fill rule),
-   - OR the zero-coverage indicates a Phase-2 gap that warrants re-dispatching the affected unit.
+   - `tools/decomp/render_source_html.py ... --mode coverage-review --atomic-units-csv <book>_atomic_units.csv`. Each section is color-coded by atom-coverage density (cov-empty / cov-low / cov-mid / cov-high). Per-kind asset surfaces remain source-basis evidence; final coverage is a section-level property.
+5. Inspect `cov-empty` sections and prepare one of these proposed dispositions
+   for the final checkpoint:
+   - zero coverage is acceptable because the section is true preamble or
+     boilerplate;
+   - zero coverage is an explicit scaffold-for-fill candidate under AOP-08;
+   - zero coverage is an atomization gap that requires re-dispatch before the
+     final checkpoint.
 6. Produce **Coverage & Telemetry** summary (required).
 
 **Output (in draft):**
@@ -387,12 +420,10 @@ User confirms: "Yes, Knowledge Types, Knowledge Subjects, schemas, and responsib
 - Updated per-source HTML in `coverage-review` mode
 - Section coverage sidecar exports under `_Sources/<book>/audit/` (`<source_prefix>_sections_coverage_<TS>.json`)
 
-**Gate 5 (confirm verification):**
-User confirms: "Coverage and mappings are acceptable; section-coverage gaps have been ruled on (accepted as scaffold-for-fill OR routed back for Phase-2 re-dispatch); open issues list is correct."
+Do not ask for a separate coverage decision. Carry the coverage package and
+proposed dispositions into checkpoint group 3.
 
----
-
-#### Phase 6 — Publish the Domain Decomposition (finalize)
+#### Checkpoint group 3 preparation, part B — independent audit and final package
 
 **Goal:** Produce the final domain decomposition document as a single coherent artifact suitable for downstream agents.
 
@@ -407,8 +438,29 @@ User confirms: "Coverage and mappings are acceptable; section-coverage gaps have
   - Companion Inventory (required, listing all new register classes from Phase 1–5).
 - Confirm all per-source HTML review surfaces are in their final state with sidecar history archived.
 - Summarize what changed since last revision.
+- Dispatch a separate review instance that did not author the candidate. Audit
+  the complete package against the accepted source checkpoint and checkpoint
+  groups 1 and 2. Resolve mechanical defects and expose substantive findings.
 
-**Gate 6 (final acceptance):**
-User confirms: "This domain decomposition is the accepted basis for downstream work."
+**Checkpoint group 3 — audited final acceptance:** Present the audited final
+package, coverage evidence, scaffold-for-fill proposals, open issues, and
+independent review findings. The human accepts the domain decomposition as the
+basis for downstream use or returns affected parts for repair. Publication or
+output writing occurs around the accepted state and does not add a checkpoint.
+
+After acceptance, finalize the group-3 immutable snapshot under
+`{DECOMP_ROOT}/checkpoint_snapshots/<snapshot>/`. Write
+`ACCEPTED_MANIFEST.csv` with the accepted artifact paths, package roles, and
+hashes, and write `HANDOFF_STATE.md` with the accepted source and checkpoint
+basis, derivative status, closure verdict, rerun requirements, and remaining
+blockers. Update `{DECOMP_ROOT}/checkpoint_snapshots/_LATEST_ACCEPTED.md` only
+after those members are complete. This finalization records checkpoint group 3;
+it does not create another human checkpoint. Historical `gate_snapshots/`
+packages and pointers remain valid legacy evidence and are not renamed.
+
+If admitted material changes after a checkpoint, identify the affected source
+bindings and reopen only the decisions whose meaning, structure, mappings, or
+consequences depend on that material. Refresh the source database, retrieval
+evidence, coverage, and independent audit only where affected.
 
 ---

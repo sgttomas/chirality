@@ -1,0 +1,60 @@
+{
+  "verdict": "PASS",
+  "scope": "Approved plan Section 3 Runtime contracts/context delivery; source and controlled adapter evidence only",
+  "reviewer": "/root/astra_runtime_second_pass",
+  "baseCommit": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "review": {
+    "path": "REVIEW_V4.md",
+    "sha256": "3c0581675f4a0ebde2532ac13f4c43f9f563c6ca4230ae4fd2c21db43bca2509"
+  },
+  "subject": {
+    "path": "SOURCE_MANIFEST_V4.json",
+    "sha256": "47eb5e80d82603af4797f071eccf483c3e8e07eac286f9081022c052b070b4f9",
+    "members": 57,
+    "afterTestDrift": []
+  },
+  "managerFreezeSha256": "1fee69de0e1ade83cd414aed63380d1cabf0989fe070734a73c40867dd10e28c",
+  "closedFindings": [
+    {
+      "id": "R2-1",
+      "priority": "P1"
+    },
+    {
+      "id": "R2-2",
+      "priority": "P1"
+    },
+    {
+      "id": "R2-3",
+      "priority": "P1"
+    },
+    {
+      "id": "R2-4",
+      "priority": "P1"
+    },
+    {
+      "id": "R2-5",
+      "priority": "P1"
+    },
+    {
+      "id": "R2-6",
+      "priority": "P2"
+    },
+    {
+      "id": "R2-7",
+      "priority": "P2"
+    }
+  ],
+  "unresolvedFindings": [],
+  "independentChecks": {
+    "lifecycle": 7,
+    "SDKPermissions": 4,
+    "sharedDiscovery": 16,
+    "historicalPlan": 4
+  },
+  "terminalProductionChecks": {
+    "runtimeAPI": 26,
+    "instructionBasis": 13
+  },
+  "nativeSupplierQualified": false,
+  "productSourceEdits": false
+}

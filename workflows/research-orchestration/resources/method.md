@@ -6,8 +6,12 @@
 
 Before answering a domain-grounded question:
 1. Resolve `DOMAIN_ROOT`.
-2. Read the latest accepted gate pointer, preferably `gate_snapshots/_LATEST_GATE6.md`.
-3. Read the accepted handoff state and publication manifest when present.
+2. Read the canonical accepted decomposition pointer at
+   `checkpoint_snapshots/_LATEST_ACCEPTED.md`.
+3. Read its accepted `HANDOFF_STATE.md` and `ACCEPTED_MANIFEST.csv`. When the
+   canonical pointer is absent, resolve the historical
+   `gate_snapshots/_LATEST_GATE6.md` or latest explicitly accepted legacy gate
+   pointer and clearly label that compatibility basis.
 4. Record the active retrieval snapshot from `{LOCAL_INDEX_ROOT}/_LATEST.md`.
 5. Note any caveats, especially source-database freshness caveats or deferred refresh issues.
 
@@ -83,7 +87,12 @@ Research packets are derivative packages. Their `HANDOFF_STATE.md` must name acc
 If research identifies possible changes:
 - For source/decomposition truth changes, hand off to `WORKING_ITEMS (workflow: scope-change)` or the relevant decomposition agent.
 - For publication from accepted truth, hand off to `WORKING_ITEMS (workflow: dbm-publisher)` or the relevant publisher.
-- For repository edits, hand off to `WORKING_ITEMS (workflow: change)`.
+- For repository edits, hand the evidence and exact change scope to the
+  responsible current role. That role follows the applicable project's change
+  skill or repository conventions when present; the research workflow does not
+  require Git or select the retained legacy `change` workflow. Preserve an
+  explicitly selected historical `change` identity when processing a legacy
+  run.
 - For audits, hand off to the appropriate audit/review agent.
 
 WORKING_ITEMS does not apply those changes itself.

@@ -25,6 +25,9 @@ import {
   type ScaffoldRequest,
   type RuntimeSessionBootRequest,
   type SessionTurnRequest,
+  type ResolveSelectedContextRequest,
+  type ReplaceSelectedMethodsRequest,
+  type ExportNativePlanRequest,
   type UIEvent
 } from "@chirality/runtime-contracts";
 import {
@@ -480,6 +483,18 @@ export class RuntimeDaemon {
             )
           });
         }
+        if (segments.length === 4 && segments[3] === "roles" && method === "GET") {
+          await this.authorize(request, "sessions:read", projectId);
+          return this.json(response, 200, await this.options.service.listRoles(projectId));
+        }
+        if (segments.length === 4 && segments[3] === "methods" && method === "GET") {
+          await this.authorize(request, "sessions:read", projectId);
+          return this.json(response, 200, await this.options.service.listMethods(projectId));
+        }
+        if (segments.length === 5 && segments[3] === "methods" && method === "GET") {
+          await this.authorize(request, "sessions:read", projectId);
+          return this.json(response, 200, await this.options.service.inspectMethod(projectId, segments[4]!));
+        }
         if (segments.length === 4 && segments[3] === "scaffold" && method === "POST") {
           await this.authorize(request, "sessions:write", projectId);
           const body = await this.body<ScaffoldRequest>(request);
@@ -567,8 +582,31 @@ export class RuntimeDaemon {
         return this.json(response, 200, { deleted: true, sessionId });
       }
     }
+    if (segments.length === 7 && segments[5] === "context" && segments[6] === "resolve" && method === "POST") {
+      await this.authorize(request, "sessions:read", projectId);
+      const body = await this.body<ResolveSelectedContextRequest>(request);
+      return this.json(response, 200, await this.options.service.resolveSelectedContext(projectId, sessionId, body));
+    }
+    if (segments.length === 7 && segments[5] === "native-plan" && segments[6] === "capability" && method === "GET") {
+      await this.authorize(request, "sessions:read", projectId);
+      return this.json(response, 200, await this.options.service.getNativePlanCapability(projectId, sessionId));
+    }
+    if (segments.length === 7 && segments[5] === "native-plan" && segments[6] === "revisions" && method === "GET") {
+      await this.authorize(request, "sessions:read", projectId);
+      return this.json(response, 200, await this.options.service.listNativePlanRevisions(projectId, sessionId));
+    }
+    if (segments.length === 7 && segments[5] === "native-plan" && segments[6] === "export" && method === "POST") {
+      await this.authorize(request, "sessions:write", projectId);
+      const body = await this.body<ExportNativePlanRequest>(request);
+      return this.json(response, 200, await this.options.service.exportNativePlan(projectId, sessionId, body));
+    }
     if (segments.length !== 6) throw new RuntimeError("NOT_FOUND", "Route not found", 404);
     const action = segments[5];
+    if (action === "methods" && method === "PUT") {
+      await this.authorize(request, "sessions:write", projectId);
+      const body = await this.body<ReplaceSelectedMethodsRequest>(request);
+      return this.json(response, 200, await this.options.service.replaceSelectedMethods(projectId, sessionId, body));
+    }
     if (action === "boot" && method === "POST") {
       await this.authorize(request, "sessions:write", projectId);
       const body = await this.body<RuntimeSessionBootRequest>(request);
@@ -587,10 +625,15 @@ export class RuntimeDaemon {
       await this.authorize(request, "sessions:read", projectId);
       const session = await this.options.service.sessions.get(projectId, sessionId);
       const replay = await this.options.service.sessions.replayDetailed(projectId, sessionId);
+      const instructionHistory = await this.options.service.sessions.instructionBases.history(projectId, sessionId);
+      const basisIds = [...new Set(instructionHistory.filter(record => record.type === "instruction-basis.resolved").map(record => record.basisId))];
+      const instructionBases = await Promise.all(basisIds.map(basisId => this.options.service.sessions.instructionBases.get(projectId, sessionId, basisId)));
       return this.json(response, 200, {
         session,
         ...replay,
-        transcript: deriveTranscriptView(replay.events, session)
+        transcript: deriveTranscriptView(replay.events, session),
+        instructionHistory,
+        instructionBases
       });
     }
     if (action === "turn" && method === "POST") {
