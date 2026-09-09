@@ -1,0 +1,36 @@
+{
+  "schema": "chirality.runtime.pr761-daemon-reference-repair.manager-fanin.v1",
+  "status": "FROZEN_VALIDATED_PASS_READY_FOR_CHANGE_PR_CI_REQUIRED",
+  "members": [
+    {
+      "path": "RETURN.md",
+      "bytes": 1873,
+      "sha256": "d87ca5d3f5cb466942246381d487dff05eafe9e7fc25d998941ddc38dd073b80"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "../author/MANIFEST.json",
+      "sha256": "06d3c306c4b808a7dfdd5ebaaab0433dd991d57cb319d117069c3223ad28c08a"
+    },
+    {
+      "path": "../review/MANIFEST.json",
+      "sha256": "15f50f48b827cf479d4ac0ea32fbe43c17681b85e00a523df0687a685a6d4f13"
+    }
+  ],
+  "sourcePostimage": {
+    "path": "/private/tmp/chirality-graceful-source-closure-20260908/projects/chirality-runtime/packages/daemon/tsconfig.json",
+    "bytes": 394,
+    "sha256": "0bc20ec8bdb3348def4739751609e173745e12d8b4e6e346e78d692c173c2c9b"
+  },
+  "acceptedPriorSelectionPreserved": "29/29",
+  "publicationSelectionAfterRepair": {
+    "paths": 30,
+    "bytes": 605978
+  },
+  "buildPassClaimed": false,
+  "prCiRequired": true,
+  "executionAuthorityBeyondChangeCommitPushCi": false,
+  "safePauseResumes": true,
+  "manifestSelfHash": "EXCLUDED"
+}

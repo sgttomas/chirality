@@ -1,5 +1,5 @@
 {
-  "schema": "chirality.change.graceful-source-closure-manifest.v4",
+  "schema": "chirality.change.graceful-source-closure-manifest.v5",
   "members": [
     {
       "path": "PREFLIGHT.json",
@@ -37,9 +37,29 @@
       "bytes": 447
     },
     {
+      "path": "CI_FAILURE_AND_REPAIR.json",
+      "sha256": "159466f44c1dcad2f684bd76566ed3459e07d614b676bb1c83e91272801286b3",
+      "bytes": 1337
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/MANIFEST.json",
+      "sha256": "06d3c306c4b808a7dfdd5ebaaab0433dd991d57cb319d117069c3223ad28c08a",
+      "bytes": 1588
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/review/MANIFEST.json",
+      "sha256": "15f50f48b827cf479d4ac0ea32fbe43c17681b85e00a523df0687a685a6d4f13",
+      "bytes": 1281
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/manager/MANIFEST.json",
+      "sha256": "cfafa40326c92621a4572bb68b9ee2fdae8c2d85b1b511545f4a3dec622dd5d2",
+      "bytes": 1159
+    },
+    {
       "path": "PUBLICATION_SELECTION.json",
-      "sha256": "47678dd96a7559df98e211bfb9ad6668bc66306c2b59ff2d86cbb08353ba047a",
-      "bytes": 31752
+      "sha256": "c927edbe47c88655520968801f32e09b2869e261cf524cc45a1cc6a74f67b1d4",
+      "bytes": 35834
     }
   ],
   "manifestSelfHash": "EXCLUDED_BY_CONTRACT"

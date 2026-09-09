@@ -1,0 +1,35 @@
+{
+  "schema": "chirality.runtime.pr761-daemon-reference-repair.independent-review-manifest.v1",
+  "status": "FROZEN_PASS",
+  "derivativePackage": true,
+  "briefSha256": "28634c239b374c2d3b6f07170d200c4e0dd03eb8eacb5cb562804e320bc273e3",
+  "reviewedAuthorManifestSha256": "06d3c306c4b808a7dfdd5ebaaab0433dd991d57cb319d117069c3223ad28c08a",
+  "reviewedSourcePostimage": {
+    "path": "projects/chirality-runtime/packages/daemon/tsconfig.json",
+    "bytes": 394,
+    "sha256": "0bc20ec8bdb3348def4739751609e173745e12d8b4e6e346e78d692c173c2c9b"
+  },
+  "members": [
+    {
+      "path": "CHECKS.json",
+      "bytes": 4941,
+      "sha256": "508e2d96e6ff49cd3c5bf6da50acc35c8d0de3ffbf0079b812d8cd31489edb20"
+    },
+    {
+      "path": "RETURN.md",
+      "bytes": 1842,
+      "sha256": "bcb2ca4dcda053ff408cdf2ea07f05618cb3f2e2e563a3cd5abaebe9cd50eb20"
+    }
+  ],
+  "acceptedSourceMemberCount": 29,
+  "acceptedSourceMatchedCount": 29,
+  "sourceChangedPathCount": 1,
+  "secondSourceEditRequired": false,
+  "accountFunctionalityAccepted": false,
+  "accountFunctionalityEnabled": false,
+  "buildPassClaimed": false,
+  "prCiRequired": true,
+  "evidenceFileCount": 3,
+  "closureVerdict": "PASS__ONE_FILE_POSTIMAGE_APPROVED_FOR_CHANGE__PR_CI_REMAINS_REQUIRED",
+  "manifestSelfHash": "EXCLUDED"
+}

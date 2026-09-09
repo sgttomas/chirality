@@ -1,13 +1,14 @@
 {
-  "schema": "chirality.change.graceful-source-closure-selection.v4",
-  "status": "FINAL_CANDIDATE__TERMINAL_INDEPENDENT_REVIEW_PENDING",
+  "schema": "chirality.change.graceful-source-closure-selection.v5",
+  "status": "REVIEWED_CONFIG_REPAIR__FRESH_CI_AND_TERMINAL_REVIEW_PENDING",
   "baseCommit": "533332349a4607eee561d4ef90fb05a62d86519e",
-  "payloadCount": 105,
-  "publicationRule": "publish exactly payloadMembers plus this selection and its manifest; terminal independent review receipt is retained externally to avoid self-reference",
+  "payloadCount": 116,
+  "publicationRule": "publish exactly payloadMembers plus this selection and its manifest; terminal independent review receipt remains external to avoid self-reference",
   "sourceCounts": {
-    "app": 29,
-    "runtime": 29,
-    "total": 58
+    "appAccepted": 29,
+    "runtimeAccepted": 29,
+    "runtimePublicationConfigRepair": 1,
+    "totalSourceAndConfig": 59
   },
   "payloadMembers": [
     {
@@ -15,6 +16,12 @@
       "sha256": "8fb8126882d8ee78954e27711038f3f34eb1293360863f481fc4be1a9f18e4df",
       "bytes": 913,
       "group": "closure-documentation"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/CI_FAILURE_AND_REPAIR.json",
+      "sha256": "159466f44c1dcad2f684bd76566ed3459e07d614b676bb1c83e91272801286b3",
+      "bytes": 1337,
+      "group": "change-repair-disposition"
     },
     {
       "path": "execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/change-graceful-source-closure-2026-09-08/PREFLIGHT.json",
@@ -377,6 +384,60 @@
       "group": "runtime-evidence"
     },
     {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/CHECKS.json",
+      "sha256": "52ce3587b9242b80da122e768c1c98c418e33db23919b5e4bd3182cb119ef4ca",
+      "bytes": 4144,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/MANIFEST.json",
+      "sha256": "06d3c306c4b808a7dfdd5ebaaab0433dd991d57cb319d117069c3223ad28c08a",
+      "bytes": 1588,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/PATCH.diff",
+      "sha256": "ac6f229bb6950ee4409c305b440ef6dd53a771ba473422260389594cfc2a6bfc",
+      "bytes": 448,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/author/RETURN.md",
+      "sha256": "9fe020f74b697f3ddf5050fc2d42492b5e88874b812e73cc9fef33ed38d70302",
+      "bytes": 1788,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/manager/MANIFEST.json",
+      "sha256": "cfafa40326c92621a4572bb68b9ee2fdae8c2d85b1b511545f4a3dec622dd5d2",
+      "bytes": 1159,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/manager/RETURN.md",
+      "sha256": "d87ca5d3f5cb466942246381d487dff05eafe9e7fc25d998941ddc38dd073b80",
+      "bytes": 1873,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/review/CHECKS.json",
+      "sha256": "508e2d96e6ff49cd3c5bf6da50acc35c8d0de3ffbf0079b812d8cd31489edb20",
+      "bytes": 4941,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/review/MANIFEST.json",
+      "sha256": "15f50f48b827cf479d4ac0ea32fbe43c17681b85e00a523df0687a685a6d4f13",
+      "bytes": 1281,
+      "group": "runtime-publication-config-repair"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-pr761-tsconfig-reference-repair/review/RETURN.md",
+      "sha256": "bcb2ca4dcda053ff408cdf2ea07f05618cb3f2e2e563a3cd5abaebe9cd50eb20",
+      "bytes": 1842,
+      "group": "runtime-publication-config-repair"
+    },
+    {
       "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/APP_V3_CONSOLIDATED_RESUME_2026-09-07/pkg02/identity-extension-proposal/runtime-r-v3-source-acceptance/ACCEPTANCE.json",
       "sha256": "82ecafe5fd5746127fd16fbf2b804adff52604e8d7676dfbdb6f33451ace541f",
       "bytes": 1746,
@@ -561,6 +622,12 @@
       "sha256": "a986bf1b66714e971b8d8ae76a787636aea522fae36b63fb80c3f527c4d1b02d",
       "bytes": 10437,
       "group": "runtime-source"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/tsconfig.json",
+      "sha256": "0bc20ec8bdb3348def4739751609e173745e12d8b4e6e346e78d692c173c2c9b",
+      "bytes": 394,
+      "group": "runtime-publication-config-repair"
     },
     {
       "path": "projects/chirality-runtime/packages/native-admission/binding.gyp",
