@@ -53,8 +53,8 @@ function npmCommand() {
   return process.platform === 'win32' ? 'npm.cmd' : 'npm';
 }
 
-function safeSegment(value) {
-  return value.replace(/[^A-Za-z0-9_.-]/g, '_').slice(0, 120);
+function fullTestCommand() {
+  return `${npmCommand()} run test -- --testTimeout=15000`;
 }
 
 async function ensureReadableFile(filePath) {
@@ -108,11 +108,19 @@ async function writeJson(filePath, value) {
   await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
-function runVitest(testFiles, cwd) {
+function runVitest(testFiles, cwd, reportPath) {
   return new Promise((resolve, reject) => {
     const startedAt = nowIso();
     const startMs = Date.now();
-    const child = spawn(npmCommand(), ['run', 'test', '--', ...testFiles], {
+    const child = spawn(npmCommand(), [
+      'run',
+      'test',
+      '--',
+      ...testFiles,
+      '--reporter=default',
+      '--reporter=json',
+      `--outputFile.json=${reportPath}`
+    ], {
       cwd,
       env: process.env,
       stdio: ['ignore', 'pipe', 'pipe']
@@ -147,72 +155,143 @@ function runVitest(testFiles, cwd) {
   });
 }
 
-async function runCheck(check, cwd) {
+export function collectUniqueTestFiles(manifest) {
+  return [...new Set(manifest.checks.flatMap((check) => check.testFiles))];
+}
+
+function fileResultsFromReport(report, testFiles, cwd, processResult) {
+  const suites = new Map(
+    (Array.isArray(report?.testResults) ? report.testResults : []).map((suite) => [
+      path.resolve(cwd, suite.name),
+      suite
+    ])
+  );
+  return new Map(testFiles.map((testFile) => {
+    const suite = suites.get(path.resolve(cwd, testFile));
+    const assertions = Array.isArray(suite?.assertionResults) ? suite.assertionResults : [];
+    const passed =
+      (processResult.code ?? processResult.exitCode) === 0 &&
+      suite?.status === 'passed' &&
+      assertions.length > 0 &&
+      assertions.every((assertion) => assertion.status === 'passed');
+    return [testFile, {
+      code: passed ? 0 : 1,
+      startedAt: processResult.startedAt,
+      endedAt: processResult.endedAt,
+      durationMs: processResult.durationMs,
+      stdoutLog: processResult.stdoutLog,
+      stderrLog: processResult.stderrLog
+    }];
+  }));
+}
+
+export function isReusableFullTestResult(result, manifest, cwd) {
+  return (
+    result?.id === 'full_test' &&
+    result?.status === 'pass' &&
+    result?.exitCode === 0 &&
+    result?.command.startsWith(fullTestCommand()) &&
+    result.command.includes('--reporter=json') &&
+    result.command.includes('--outputFile.json=') &&
+    typeof result?.startedAt === 'string' &&
+    typeof result?.endedAt === 'string' &&
+    [...fileResultsFromReport(
+      result.vitestReport,
+      collectUniqueTestFiles(manifest),
+      cwd,
+      { code: result.exitCode }
+    ).values()].every((fileResult) => fileResult.code === 0)
+  );
+}
+
+async function runCheck(check, testResults, reusedFullTestResult) {
   const startedAt = nowIso();
   const startMs = Date.now();
-  const logBase = path.join(LOG_DIR, safeSegment(check.id));
-  const stdoutLog = `${logBase}.stdout.log`;
-  const stderrLog = `${logBase}.stderr.log`;
 
-  try {
-    await ensureTestFilesExist(check.testFiles, cwd);
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    await writeFile(stdoutLog, '', 'utf8');
-    await writeFile(stderrLog, `${message}\n`, 'utf8');
-    return {
-      id: check.id,
-      status: 'fail',
-      durationMs: Date.now() - startMs,
-      testFiles: check.testFiles,
-      sourceReferences: check.sourceReferences,
-      evidenceFiles: check.evidenceFiles,
-      warnings: check.warnings,
-      blockers: check.blockers,
-      details: {
-        exitCode: 1,
-        stdoutLog,
-        stderrLog
-      },
-      error: `Missing or unreadable test file: ${message}`,
-      startedAt,
-      endedAt: nowIso()
-    };
-  }
-
-  const result = await runVitest(check.testFiles, cwd);
-  await writeFile(stdoutLog, result.stdout, 'utf8');
-  await writeFile(stderrLog, result.stderr, 'utf8');
+  const fileResults = check.testFiles.map((testFile) => testResults.get(testFile));
+  const missingResult = fileResults.some((result) => !result);
+  const passed =
+    !missingResult && fileResults.every((result) => (result.code ?? result.exitCode) === 0);
+  const stdoutLog = fileResults.find((result) => result?.stdoutLog)?.stdoutLog;
+  const stderrLog = fileResults.find((result) => result?.stderrLog)?.stderrLog;
 
   return {
     id: check.id,
-    status: result.code === 0 ? 'pass' : 'fail',
-    durationMs: result.durationMs,
+    status: passed ? 'pass' : 'fail',
+    durationMs: reusedFullTestResult ? 0 : Math.max(...fileResults.map((result) => result?.durationMs ?? 0)),
     testFiles: check.testFiles,
     sourceReferences: check.sourceReferences,
     evidenceFiles: check.evidenceFiles,
     warnings: check.warnings,
     blockers: check.blockers,
     details: {
-      exitCode: result.code,
-      stdoutLog,
-      stderrLog
+      exitCode: passed ? 0 : 1,
+      ...(stdoutLog ? { stdoutLog } : {}),
+      ...(stderrLog ? { stderrLog } : {}),
+      ...(reusedFullTestResult
+        ? {
+            reusedFrom: {
+              id: reusedFullTestResult.id,
+              command: reusedFullTestResult.command,
+              startedAt: reusedFullTestResult.startedAt,
+              endedAt: reusedFullTestResult.endedAt
+            }
+          }
+        : { testRuns: check.testFiles })
     },
-    ...(result.code === 0 ? {} : { error: `Vitest exited with code ${result.code}` }),
-    startedAt: result.startedAt,
-    endedAt: result.endedAt
+    ...(passed
+      ? {}
+      : { error: missingResult ? 'Current invocation has no test result.' : 'Vitest failed.' }),
+    startedAt: reusedFullTestResult?.startedAt ?? startedAt,
+    endedAt: reusedFullTestResult?.endedAt ?? nowIso()
   };
 }
 
-async function runValidation({ cwd, log }) {
+async function runValidation({ cwd, log, reuseFullTestResult }) {
   const manifest = await loadManifest(cwd);
   await rm(TMP_ROOT, { recursive: true, force: true });
   await mkdir(LOG_DIR, { recursive: true });
 
+  const reuseRequested = reuseFullTestResult !== undefined;
+  const reusableFullTestResult = isReusableFullTestResult(reuseFullTestResult, manifest, cwd)
+    ? reuseFullTestResult
+    : undefined;
+  const uniqueTestFiles = collectUniqueTestFiles(manifest);
+  let testResults;
+  if (reuseRequested) {
+    testResults = reusableFullTestResult
+      ? fileResultsFromReport(
+          reusableFullTestResult.vitestReport,
+          uniqueTestFiles,
+          cwd,
+          reusableFullTestResult
+        )
+      : new Map();
+  } else {
+    const reportPath = path.join(TMP_ROOT, 'vitest-report.json');
+    const stdoutLog = path.join(LOG_DIR, 'vitest.stdout.log');
+    const stderrLog = path.join(LOG_DIR, 'vitest.stderr.log');
+    log(`HARNESS_SECTION9_TEST_FILE_COUNT=${uniqueTestFiles.length}`);
+    const processResult = await runVitest(uniqueTestFiles, cwd, reportPath);
+    await writeFile(stdoutLog, processResult.stdout, 'utf8');
+    await writeFile(stderrLog, processResult.stderr, 'utf8');
+    let report;
+    try {
+      report = JSON.parse(await readFile(reportPath, 'utf8'));
+    } catch {
+      report = undefined;
+    }
+    testResults = fileResultsFromReport(report, uniqueTestFiles, cwd, {
+      ...processResult,
+      stdoutLog,
+      stderrLog
+    });
+  }
+
   const results = [];
   for (const check of manifest.checks) {
     log(`HARNESS_SECTION9_CHECK_START=${check.id}`);
-    results.push(await runCheck(check, cwd));
+    results.push(await runCheck(check, testResults, reusableFullTestResult));
   }
 
   const status = results.every((result) => result.status === 'pass') ? 'pass' : 'fail';
@@ -257,7 +336,7 @@ export async function run(argv = process.argv.slice(2), opts = {}) {
   const logError = opts.logError ?? ((line) => console.error(line));
 
   try {
-    return await runValidation({ cwd, log });
+    return await runValidation({ cwd, log, reuseFullTestResult: opts.reuseFullTestResult });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     logError(`Harness Section 9 validation failed: ${message}`);

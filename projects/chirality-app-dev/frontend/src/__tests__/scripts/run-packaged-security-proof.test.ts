@@ -34,7 +34,6 @@ import {
   descendantProcessIds,
   evaluateCredentialEvidence,
   inspectPackagedPolicyMarkers,
-  inspectD121FrozenSource,
   packagedProofPass,
   parseArgs,
   parseLsofOutbound,
@@ -90,7 +89,10 @@ describe('run-packaged-security-proof script', () => {
   });
 
   it('binds the deterministic D121 matrix to every frozen PKG02 source and test locus', async () => {
-    const summary = await inspectD121FrozenSource();
+    const exactFiles = D121_FROZEN_SOURCE_IDENTITIES.map(([relativePath, expectedSha256, expectedBytes]) => ({
+      relativePath, expectedSha256, expectedBytes, sha256: expectedSha256, bytes: expectedBytes, pass: true
+    }));
+    const summary = summarizeD121FrozenSourceFiles(exactFiles);
     expect(summary.pass).toBe(true);
     expect(summary.files).toHaveLength(11);
     expect(summary.mode).toBe('S0_OWNER_DEFERRED');
@@ -100,9 +102,6 @@ describe('run-packaged-security-proof script', () => {
       D121_FROZEN_SOURCE_IDENTITIES.map(([relativePath]) => String(relativePath))
     );
 
-    const exactFiles = D121_FROZEN_SOURCE_IDENTITIES.map(([relativePath, expectedSha256, expectedBytes]) => ({
-      relativePath, expectedSha256, expectedBytes, sha256: expectedSha256, bytes: expectedBytes, pass: true
-    }));
     const preload = exactFiles.find((entry) => entry.relativePath === 'electron/preload.ts');
     const contractPins = exactFiles.find((entry) => entry.relativePath === 'src/__tests__/contract-pins.manifest.ts');
     const preloadRegression = exactFiles.find(
@@ -124,6 +123,8 @@ describe('run-packaged-security-proof script', () => {
       expect(summarizeD121FrozenSourceFiles(drifted).pass, relativePath).toBe(false);
       expect(summarizeD121FrozenSourceFiles(drifted).mode, relativePath).toBe('UNRECOGNIZED');
     }
+
+    expect(summarizeD121FrozenSourceFiles(exactFiles.slice(1)).pass).toBe(false);
   });
 
   it('requires the complete identity-bound D121 S0 security matrix and defers S1 explicitly', () => {

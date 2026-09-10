@@ -239,7 +239,7 @@ If the loop is parked pending owner direction, stop there.
 
 | Work type | Required before push | Notes |
 |---|---|---|
-| Any tranche | repo-wide `self-check` exit 0; practitioner-harness pytest at closeout; receipt validator pass before and after appending; `git diff --check` | Always. |
+| Any tranche | repo-wide `self-check` exit 0; practitioner-harness pytest at closeout; receipt validator pass before and after appending | Cosmetic whitespace is not a commit or merge gate. |
 | Product source (`frontend/src/**` outside `__tests__/**`, `frontend/electron/**`, `frontend/packages/**`, `frontend/scripts/**`, build/packaging config) | typecheck + vitest + build/premerge gates (`docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, `docs/BUILD_AND_RELEASE.md`); independent review per `AGENTS.md`; A1 re-stage declaration | Stop the dev server before build/package/premerge commands; build, premerge, and render-bar runs need host escalation per `AGENTS.md` where the sandbox denies them. |
 | UI work | the above plus the D-APP-36 render bar (`docs/ISSUE_READINESS_PROFILES.md` §4) | Evidence per `docs/ui/UI_POLISH_EXECUTION_PLAN.md`. |
 | Authority docs (`docs/DIRECTIVE.md`, `CONTRACT.md`, `SPEC.md`, `TYPES.md`) | D-APP-38 corpus reconciliation (`execution/_Reconciliation/References/reconcile_authority_corpus.py`) | Drift is repair-first. |

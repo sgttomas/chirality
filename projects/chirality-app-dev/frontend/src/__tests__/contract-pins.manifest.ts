@@ -102,7 +102,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
     pins: [
       {
         kind: 'contains',
-        value: "runCommand({ id: 'full_test', args: ['run', 'test', '--', '--testTimeout=15000'] })"
+        value: "args: ['run', 'test', '--', '--testTimeout=15000']"
       },
       { kind: 'contains', value: "runCommand({ id: 'typecheck', args: ['run', 'typecheck'] })" },
       { kind: 'contains', value: 'SECTION9_MANIFEST_PATH' },

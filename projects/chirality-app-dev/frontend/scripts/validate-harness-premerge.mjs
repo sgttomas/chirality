@@ -38,7 +38,13 @@ async function ensureReadableFile(filePath) {
   await access(filePath, fsConstants.R_OK);
 }
 
-async function runNodeScript(scriptToRun, cwd, echoChildOutput) {
+async function runNodeScript(
+  scriptToRun,
+  cwd,
+  echoChildOutput,
+  writeChildStdout = (text) => process.stdout.write(text),
+  writeChildStderr = (text) => process.stderr.write(text)
+) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [scriptToRun], {
       cwd,
@@ -53,7 +59,7 @@ async function runNodeScript(scriptToRun, cwd, echoChildOutput) {
       const text = chunk.toString();
       stdout += text;
       if (echoChildOutput) {
-        process.stdout.write(text);
+        writeChildStdout(text);
       }
     });
 
@@ -61,7 +67,7 @@ async function runNodeScript(scriptToRun, cwd, echoChildOutput) {
       const text = chunk.toString();
       stderr += text;
       if (echoChildOutput) {
-        process.stderr.write(text);
+        writeChildStderr(text);
       }
     });
 
@@ -100,7 +106,15 @@ export async function run(argv = process.argv.slice(2), opts = {}) {
   const echoChildOutput = opts.echoChildOutput ?? (opts.log === undefined);
 
   try {
-    return await runPremerge({ cwd, log, logError, echoChildOutput });
+    return await runPremerge({
+      cwd,
+      log,
+      logError,
+      echoChildOutput,
+      completedSection9Result: opts.completedSection9Result,
+      writeChildStdout: opts.writeChildStdout,
+      writeChildStderr: opts.writeChildStderr
+    });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     logError(`Harness premerge validation failed: ${message}`);
@@ -108,7 +122,15 @@ export async function run(argv = process.argv.slice(2), opts = {}) {
   }
 }
 
-async function runPremerge({ cwd, log, logError, echoChildOutput }) {
+async function runPremerge({
+  cwd,
+  log,
+  logError,
+  echoChildOutput,
+  completedSection9Result,
+  writeChildStdout,
+  writeChildStderr
+}) {
   const section8ScriptPath = path.resolve(cwd, 'scripts', 'validate-harness-section8.mjs');
   const section9ScriptPath = path.resolve(cwd, 'scripts', 'validate-harness-section9.mjs');
   const stableArtifactPath = path.resolve(
@@ -139,7 +161,13 @@ async function runPremerge({ cwd, log, logError, echoChildOutput }) {
     return 1;
   }
 
-  const section8Result = await runNodeScript(section8ScriptPath, cwd, echoChildOutput);
+  const section8Result = await runNodeScript(
+    section8ScriptPath,
+    cwd,
+    echoChildOutput,
+    writeChildStdout,
+    writeChildStderr
+  );
   if (section8Result.code !== 0) {
     const sourceSummaryPath = (() => {
       try {
@@ -207,8 +235,16 @@ async function runPremerge({ cwd, log, logError, echoChildOutput }) {
   let section9SourceSummaryPath = '';
   let section9TestCount = '0';
   try {
-    await ensureReadableFile(section9ScriptPath);
-    const section9Result = await runNodeScript(section9ScriptPath, cwd, echoChildOutput);
+    const section9Result = completedSection9Result ?? await (async () => {
+      await ensureReadableFile(section9ScriptPath);
+      return runNodeScript(
+        section9ScriptPath,
+        cwd,
+        echoChildOutput,
+        writeChildStdout,
+        writeChildStderr
+      );
+    })();
     section9Status = parseOptionalMachineLine(
       section9Result.stdout,
       'HARNESS_SECTION9_STATUS',

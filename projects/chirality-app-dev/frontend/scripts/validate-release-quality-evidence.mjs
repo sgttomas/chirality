@@ -2,8 +2,11 @@
 
 import { spawn } from 'node:child_process';
 import { constants as fsConstants } from 'node:fs';
-import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { access, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
+import { run as runPremerge } from './validate-harness-premerge.mjs';
+import { run as runSection9 } from './validate-harness-section9.mjs';
 
 const REQUIRED_SECTION8_IDS = [
   'setup.server_reachable',
@@ -139,11 +142,14 @@ function safeSegment(value) {
   return value.replace(/[^A-Za-z0-9_.-]/g, '_').slice(0, 120);
 }
 
-function runCommand({ id, args }) {
+function runCommand({ id, args, vitestReportPath }) {
   return new Promise((resolve, reject) => {
     const startedAt = nowIso();
     const startedMs = Date.now();
-    const child = spawn(npmCommand(), args, {
+    const commandArgs = vitestReportPath
+      ? [...args, '--reporter=default', '--reporter=json', `--outputFile.json=${vitestReportPath}`]
+      : args;
+    const child = spawn(npmCommand(), commandArgs, {
       cwd: process.cwd(),
       env: process.env,
       stdio: ['ignore', 'pipe', 'pipe']
@@ -169,7 +175,7 @@ function runCommand({ id, args }) {
       resolve({
         id,
         status: code === 0 ? 'pass' : 'fail',
-        command: `${npmCommand()} ${args.join(' ')}`,
+        command: `${npmCommand()} ${commandArgs.join(' ')}`,
         exitCode: code ?? 1,
         startedAt,
         endedAt: nowIso(),
@@ -179,6 +185,44 @@ function runCommand({ id, args }) {
       });
     });
   });
+}
+
+async function runModuleCommand({ id, command, executionMode, execute }) {
+  const startedAt = nowIso();
+  const startedMs = Date.now();
+  let stdout = '';
+  let stderr = '';
+  const log = (line) => {
+    const text = `${line}\n`;
+    stdout += text;
+    process.stdout.write(text);
+  };
+  const logError = (line) => {
+    const text = `${line}\n`;
+    stderr += text;
+    process.stderr.write(text);
+  };
+  const writeStdout = (text) => {
+    stdout += text;
+    process.stdout.write(text);
+  };
+  const writeStderr = (text) => {
+    stderr += text;
+    process.stderr.write(text);
+  };
+  const exitCode = await execute({ log, logError, writeStdout, writeStderr });
+  return {
+    id,
+    status: exitCode === 0 ? 'pass' : 'fail',
+    command,
+    executionMode,
+    exitCode,
+    startedAt,
+    endedAt: nowIso(),
+    durationMs: Date.now() - startedMs,
+    stdout,
+    stderr
+  };
 }
 
 async function writeCommandLogs(result) {
@@ -367,16 +411,58 @@ async function main() {
   await mkdir(OUTPUT_ROOT, { recursive: true });
 
   const rawCommands = [];
-  rawCommands.push(
-    await runCommand({ id: 'full_test', args: ['run', 'test', '--', '--testTimeout=15000'] })
-  );
+  const reportRoot = await mkdtemp(path.join(process.env.TMPDIR ?? os.tmpdir(), 'chirality-full-test-'));
+  const vitestReportPath = path.join(reportRoot, 'vitest-report.json');
+  const fullTestResult = await runCommand({
+    id: 'full_test',
+    args: ['run', 'test', '--', '--testTimeout=15000'],
+    vitestReportPath
+  });
+  try {
+    fullTestResult.vitestReport = JSON.parse(await readFile(vitestReportPath, 'utf8'));
+  } catch {
+    fullTestResult.vitestReport = undefined;
+  }
+  await rm(reportRoot, { recursive: true, force: true });
+  fullTestResult.stdoutLog = path.join(LOG_ROOT, 'full_test.stdout.log');
+  fullTestResult.stderrLog = path.join(LOG_ROOT, 'full_test.stderr.log');
+  await writeCommandLogs(fullTestResult);
+  rawCommands.push(fullTestResult);
   rawCommands.push(await runCommand({ id: 'typecheck', args: ['run', 'typecheck'] }));
-  rawCommands.push(await runCommand({ id: 'section9', args: ['run', 'harness:validate:section9'] }));
+  const section9Result = await runModuleCommand({
+    id: 'section9',
+    command: 'in-process validate-harness-section9.mjs (reuse full_test)',
+    executionMode: 'in_process_reuse',
+    execute: ({ log, logError }) => runSection9([], {
+      cwd: process.cwd(),
+      log,
+      logError,
+      reuseFullTestResult: fullTestResult
+    })
+  });
+  rawCommands.push(section9Result);
 
   if (options.skipPremergeReason) {
     rawCommands.push(skippedResult('premerge', options.skipPremergeReason));
   } else {
-    rawCommands.push(await runCommand({ id: 'premerge', args: ['run', 'harness:validate:premerge'] }));
+    rawCommands.push(await runModuleCommand({
+      id: 'premerge',
+      command: 'in-process validate-harness-premerge.mjs (reuse section9)',
+      executionMode: 'in_process_reuse',
+      execute: ({ log, logError, writeStdout, writeStderr }) => runPremerge([], {
+        cwd: process.cwd(),
+        log,
+        logError,
+        echoChildOutput: true,
+        writeChildStdout: writeStdout,
+        writeChildStderr: writeStderr,
+        completedSection9Result: {
+          code: section9Result.exitCode,
+          stdout: section9Result.stdout,
+          stderr: section9Result.stderr
+        }
+      })
+    }));
   }
 
   const commandResults = [];

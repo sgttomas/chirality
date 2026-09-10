@@ -22,7 +22,7 @@ remain protected by practitioner-harness `coord-check`.
 Raw reproduction stdout/stderr storage is independent of path portability.
 The piping `.gitattributes` rules apply `-diff -merge -text` only to those
 checksum-governed `.txt` artifacts. Authored text remains under ordinary Git
-diff and whitespace validation.
+diff inspection.
 
 ## Candidate whitespace
 
@@ -37,18 +37,15 @@ python3 tools/validation/validate_candidate_whitespace.py
 python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main
 ```
 
-The governance-harness workflow runs the committed-range form on every pull
-request. The versioned `.githooks/pre-commit` runs the worktree form locally
-when a clone is configured once with:
+This is an optional local diagnostic, not a commit or merge gate. Cosmetic
+whitespace does not block CI. `validate_conflict_markers.py --base <ref>`
+retains Git's unresolved-conflict-marker protection without gating whitespace. The former versioned pre-commit hook has been
+removed; clones configured with `core.hooksPath=.githooks` no longer invoke it.
+No Git configuration change is required.
 
-```bash
-git config core.hooksPath .githooks
-```
-
-Root `.editorconfig` settings trim trailing whitespace in compatible editors.
-Neither editor support nor an installed hook is treated as the
-authoritative gate; required pull-request CI remains the backstop.
-
+Root `.editorconfig` settings may trim trailing whitespace in compatible
+editors. Preserve intentional Markdown hard breaks and raw evidence bytes;
+formatting alone does not warrant an evidence-repair or approval cycle.
 
 ## Four-role and workflow validation
 

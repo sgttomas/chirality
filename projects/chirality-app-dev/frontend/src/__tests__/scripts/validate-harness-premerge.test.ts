@@ -146,4 +146,51 @@ describe('validate-harness-premerge wrapper failures', () => {
     expect(result.output).toContain('HARNESS_PREMERGE_TEST_COUNT=0');
     expect(await readFile(stablePath, 'utf8')).toBe(malformed);
   });
+
+  it('reuses the current caller Section 9 outcome after still running Section 8', async () => {
+    const cwd = await makeFixture();
+    const summaryPath = path.join(cwd, 'section8-summary.json');
+    const requiredIds = [
+      'setup.server_reachable',
+      'regression.session_crud',
+      'section8.boot_error_taxonomy',
+      'section8.smoke_stream',
+      'section8.session_persistence_resume',
+      'section8.permissions_dontask',
+      'section8.interrupt_sigint',
+      'section8.sdk_native_stream'
+    ];
+    await writeFile(
+      summaryPath,
+      JSON.stringify({ results: requiredIds.map((id) => ({ id, status: 'pass' })) })
+    );
+    await writeFile(
+      path.join(cwd, 'scripts', 'validate-harness-section8.mjs'),
+      `console.log('HARNESS_VALIDATION_SUMMARY_PATH=${summaryPath}');\nconsole.log('HARNESS_VALIDATION_STATUS=pass');\n`
+    );
+    const lines: string[] = [];
+    let childStdout = '';
+
+    const code = await run([], {
+      cwd,
+      log: (line: string) => lines.push(line),
+      logError: (line: string) => lines.push(line),
+      echoChildOutput: true,
+      writeChildStdout: (text: string) => { childStdout += text; },
+      completedSection9Result: {
+        code: 0,
+        stdout: [
+          'HARNESS_SECTION9_STATUS=pass',
+          'HARNESS_SECTION9_SOURCE_SUMMARY_PATH=/tmp/current-section9-summary.json',
+          'HARNESS_SECTION9_TEST_COUNT=16'
+        ].join('\n'),
+        stderr: ''
+      }
+    });
+
+    expect(code).toBe(0);
+    expect(childStdout).toContain('HARNESS_VALIDATION_STATUS=pass');
+    expect(lines.join('\n')).toContain('HARNESS_PREMERGE_SECTION9_STATUS=pass');
+    expect(lines.join('\n')).toContain('HARNESS_PREMERGE_SECTION9_TEST_COUNT=16');
+  });
 });

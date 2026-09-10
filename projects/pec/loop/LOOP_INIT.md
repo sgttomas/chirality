@@ -293,9 +293,11 @@ has supplied a scoped preparation or correction task for this run.
 
 ## 8. Checks by work type
 
+Cosmetic whitespace is not a commit or merge gate; local formatting diagnostics are optional.
+
 | Work type | Required checks |
 |---|---|
-| Every closeout | `python3 tools/validation/validate_pec_loop_receipts.py --repo-root .` before/after append; `PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check`; `git diff --check`; after commit, `python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main` |
+| Every closeout | `python3 tools/validation/validate_pec_loop_receipts.py --repo-root .` before/after append; `PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check` |
 | Task Management changes | `python3 tools/taskmgmt/taskmgmt.py validate --register projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv` and the same command with `REGISTER_CLOSED.csv`; federation/row dispositions follow its owning role |
 | Launcher/init/posture changes | `python3 tools/validation/validate_instruction_entrypoints.py .`; `python3 -m pytest -q tools/validation/test_validate_instruction_entrypoints.py tools/validation/test_validate_pec_loop_receipts.py` |
 | Tool changes | Focused tests for each changed tool plus practitioner-harness pytest when its code changes; record command, interpreter, and result |
