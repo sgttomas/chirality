@@ -25,6 +25,7 @@ import { CodexTurnSession, type CodexAuthorityInitialize } from "./codex-session
 import { AUTHORITY_CONTRACT } from "./supplier-authority-controller.js";
 
 const LIMBS = ["exact-supplier", "keyring-backend", "plaintext-fallback-absent", "process-containment", "storage-isolation", "provider-network", "bounded-protocol-purpose", "retirement"] as const;
+const DIAGNOSTIC_REQUEST_TIMEOUT_MS = 120_000;
 type Limb = typeof LIMBS[number];
 type Sha256 = string;
 
@@ -73,7 +74,7 @@ export interface AccountFreeLoginStartupDiagnosticV1 {
   cleanupStartedAtMs: number | null;
   retirementSettledAtMs: number | null;
   retirement: AccountFreeLoginObservationFailureV1["retirement"];
-  launchDeviation: Readonly<{ executable: "/bin/sh"; stderrCapture: "private-fifo"; sandboxExecutable: "/usr/bin/sandbox-exec"; compiledArgumentsUnchanged: true }>;
+  launchDeviation: Readonly<{ executable: "/bin/sh"; stderrCapture: "private-fifo"; sandboxExecutable: "/usr/bin/sandbox-exec"; compiledArgumentsUnchanged: true; requestTimeoutMs: 120000 }>;
   stderr: Readonly<{ status: "captured"; artifactPath: string; sha256: Sha256; retainedBytes: number; totalBytes: number; truncated: boolean } | { status: "unavailable" }>;
 }
 
@@ -118,8 +119,8 @@ export function accountFreeLoginStartupDiagnostic(error: unknown): Readonly<Acco
     || !value.issuedMethods.every(method => typeof method === "string" && (method === "initialize" || method === "initialized")) || !boundedMs(value.elapsedMs)
     || !exactKeys(value.initialize, ["issuedAtMs", "settledAtMs"]) || (value.initialize.issuedAtMs !== null && !boundedMs(value.initialize.issuedAtMs)) || (value.initialize.settledAtMs !== null && !boundedMs(value.initialize.settledAtMs))
     || (value.cleanupStartedAtMs !== null && !boundedMs(value.cleanupStartedAtMs)) || (value.retirementSettledAtMs !== null && !boundedMs(value.retirementSettledAtMs)) || !record(value.leaderObservation) || !record(value.retirement)
-    || !exactKeys(value.launchDeviation, ["executable", "stderrCapture", "sandboxExecutable", "compiledArgumentsUnchanged"]) || value.launchDeviation.executable !== "/bin/sh" || value.launchDeviation.stderrCapture !== "private-fifo"
-    || value.launchDeviation.sandboxExecutable !== "/usr/bin/sandbox-exec" || value.launchDeviation.compiledArgumentsUnchanged !== true || !record(value.stderr)) return undefined;
+    || !exactKeys(value.launchDeviation, ["executable", "stderrCapture", "sandboxExecutable", "compiledArgumentsUnchanged", "requestTimeoutMs"]) || value.launchDeviation.executable !== "/bin/sh" || value.launchDeviation.stderrCapture !== "private-fifo"
+    || value.launchDeviation.sandboxExecutable !== "/usr/bin/sandbox-exec" || value.launchDeviation.compiledArgumentsUnchanged !== true || value.launchDeviation.requestTimeoutMs !== DIAGNOSTIC_REQUEST_TIMEOUT_MS || !record(value.stderr)) return undefined;
   const leaderObservation = value.leaderObservation.status === "resolved" && exactKeys(value.leaderObservation, ["status", "elapsedMs", "leader"]) && boundedMs(value.leaderObservation.elapsedMs) && validLeader(value.leaderObservation.leader)
     ? Object.freeze({ status: "resolved" as const, elapsedMs: value.leaderObservation.elapsedMs, leader: Object.freeze({ ...value.leaderObservation.leader }) })
     : value.leaderObservation.status === "unavailable" && exactKeys(value.leaderObservation, ["status", "elapsedMs"]) && (value.leaderObservation.elapsedMs === null || boundedMs(value.leaderObservation.elapsedMs))
@@ -139,7 +140,7 @@ export function accountFreeLoginStartupDiagnostic(error: unknown): Readonly<Acco
   return Object.freeze({ schema: value.schema, status: value.status, outcome: value.outcome as AccountFreeLoginStartupDiagnosticV1["outcome"], qualification: false, phase: value.phase as AccountFreeLoginObservationPhaseV1,
     issuedMethods: Object.freeze([...value.issuedMethods]) as AccountFreeLoginStartupDiagnosticV1["issuedMethods"], elapsedMs: value.elapsedMs as number,
     initialize: Object.freeze({ issuedAtMs: value.initialize.issuedAtMs as number | null, settledAtMs: value.initialize.settledAtMs as number | null }), leaderObservation,
-    cleanupStartedAtMs: value.cleanupStartedAtMs as number | null, retirementSettledAtMs: value.retirementSettledAtMs as number | null, retirement, launchDeviation: Object.freeze({ executable: "/bin/sh", stderrCapture: "private-fifo", sandboxExecutable: "/usr/bin/sandbox-exec", compiledArgumentsUnchanged: true }), stderr });
+    cleanupStartedAtMs: value.cleanupStartedAtMs as number | null, retirementSettledAtMs: value.retirementSettledAtMs as number | null, retirement, launchDeviation: Object.freeze({ executable: "/bin/sh", stderrCapture: "private-fifo", sandboxExecutable: "/usr/bin/sandbox-exec", compiledArgumentsUnchanged: true, requestTimeoutMs: DIAGNOSTIC_REQUEST_TIMEOUT_MS }), stderr });
 }
 
 const unavailable = (reason: string, cause?: unknown) => {
@@ -349,7 +350,7 @@ async function runCodexAccountFreeLoginPurposeV2(input: AccountFreeLoginObservat
       try { if (!retired) retired = await retireAuthenticatedSupplierGroup(child!); }
       finally { if (mode === "diagnostic") retirementSettledAtMs ??= Math.max(0, Math.min(86_400_000, Date.now() - startedAt)); }
     };
-    actor = new CodexTurnSession({ purpose: "login", nativeSkills: "disabled", transport: { stdin: capture, stdout: child.stdout, close } });
+    actor = new CodexTurnSession({ purpose: "login", nativeSkills: "disabled", transport: { stdin: capture, stdout: child.stdout, close }, ...(mode === "diagnostic" ? { requestTimeoutMs: DIAGNOSTIC_REQUEST_TIMEOUT_MS } : {}) });
     const authority: CodexAuthorityInitialize = { runtimeProcessIncarnationId: randomUUID(), supplierGeneration: randomUUID(), runtimeChallenge: randomBytes(32).toString("base64url"), exactSupplyDigest: supply.sha256, authoritySecret: secret,
       descriptor: { capability: "chirality.local-admission-authority", contract: AUTHORITY_CONTRACT, major: 1, minor: 0 }, v4Descriptor: { capability: "account.identity-snapshot", contract: "chirality-supplier-account-identity/1", major: 1, minor: 0, method: "account/identitySnapshot" } };
     phase = "initialize";
@@ -371,7 +372,7 @@ async function runCodexAccountFreeLoginPurposeV2(input: AccountFreeLoginObservat
         issuedMethods: Object.freeze(methods.filter((value): value is "initialize" | "initialized" => value === "initialize" || value === "initialized")), elapsedMs: Math.max(0, Math.min(86_400_000, Date.now() - startedAt)),
         initialize: Object.freeze({ issuedAtMs: initializeIssuedAtMs, settledAtMs: initializeSettledAtMs }), leaderObservation: leader, cleanupStartedAtMs, retirementSettledAtMs,
         retirement: Object.freeze({ status: "verified", groupRetired: true, leader: Object.freeze({ ...retired.leader }), signalFailurePhases: Object.freeze(retired.signalFailures.map(value => value.phase)) }),
-        launchDeviation: Object.freeze({ executable: "/bin/sh", stderrCapture: "private-fifo", sandboxExecutable: "/usr/bin/sandbox-exec", compiledArgumentsUnchanged: true }), stderr });
+        launchDeviation: Object.freeze({ executable: "/bin/sh", stderrCapture: "private-fifo", sandboxExecutable: "/usr/bin/sandbox-exec", compiledArgumentsUnchanged: true, requestTimeoutMs: DIAGNOSTIC_REQUEST_TIMEOUT_MS }), stderr });
     }
     phase = "config-read";
     const readback = await actor.observeAccountFreeLoginConfiguration(canonicalRoot, containment.config);
@@ -436,7 +437,7 @@ async function runCodexAccountFreeLoginPurposeV2(input: AccountFreeLoginObservat
       const diagnostic = Object.freeze({ schema: "chirality-account-free-login-startup-diagnostic/v1" as const, status: "diagnostic-only" as const, outcome: initializeResolved ? "initialize-resolved" as const : "initialize-failed" as const, qualification: false as const, phase,
         issuedMethods: Object.freeze(methods.filter((value): value is "initialize" | "initialized" => value === "initialize" || value === "initialized")), elapsedMs: Math.max(0, Math.min(86_400_000, Date.now() - startedAt)),
         initialize: Object.freeze({ issuedAtMs: initializeIssuedAtMs, settledAtMs: initializeSettledAtMs }), leaderObservation: leader, cleanupStartedAtMs, retirementSettledAtMs, retirement,
-        launchDeviation: Object.freeze({ executable: "/bin/sh" as const, stderrCapture: "private-fifo" as const, sandboxExecutable: "/usr/bin/sandbox-exec" as const, compiledArgumentsUnchanged: true as const }), stderr: diagnosticStderr });
+        launchDeviation: Object.freeze({ executable: "/bin/sh" as const, stderrCapture: "private-fifo" as const, sandboxExecutable: "/usr/bin/sandbox-exec" as const, compiledArgumentsUnchanged: true as const, requestTimeoutMs: DIAGNOSTIC_REQUEST_TIMEOUT_MS }), stderr: diagnosticStderr });
       Object.defineProperty(failure, "accountFreeStartupDiagnostic", { value: diagnostic, enumerable: false });
     }
     failureFinalized = true;

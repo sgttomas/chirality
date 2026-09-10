@@ -1,5 +1,5 @@
 {
-  "mode": "DEV local trial with only sha2:0.10.9 opt-level3; no optimized/public release claim",
+  "mode": "cached dev-profile local trial candidate; not optimized/public-release",
   "argv": [
     "/usr/bin/sandbox-exec",
     "-f",
@@ -24,7 +24,7 @@
     "cargo",
     "build",
     "--manifest-path",
-    "/private/tmp/chirality-supplier-release-20260910-02/source/codex-rs/cli/Cargo.toml",
+    "codex-rs/cli/Cargo.toml",
     "--bin",
     "codex",
     "--locked",
@@ -34,17 +34,12 @@
   ],
   "cwd": "/private/tmp/chirality-supplier-release-20260910-02/source",
   "previousExecutable": {
-    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/artifact/codex",
-    "sha256": "0489a897c482dd03c79ee18055d796be5935c48c93a257f30c53141fec985100",
-    "size": 761944360
+    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-01/previous-codex",
+    "sha256": "d1f67d1b9140dafc579a2bad4a34365c1038bb3fef1b38176c9790457b5827bd",
+    "size": 758478728
   },
-  "sourceBeforeSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
+  "sourceBeforeSha256": "6fb19e9406c92b632e14f0dc5de1f4fa9ca5d185b40afd3117325a4f595bdfd4",
   "productionCut": "bef8889cefd0ecb64d18adc376d0c5f501f7bcb8cc63d00d8ee194fba19edf86",
-  "status": "completed exit0",
-  "sourceDelta": "final retained test-only source plus exact sha2 dev package override",
-  "changesSinceBuild03": [
-    "codex-rs/Cargo.toml",
-    "codex-rs/core/src/tools/handlers/multi_agents_tests.rs"
-  ],
-  "prebuildReviewSha256": "f912cf487e145c149e13d5174c0f90dd0a5924d66fb77a7777c39df30468c07b"
+  "status": "running successor after exact allocation and six CLI compatibility changes",
+  "sourceDelta": "source-complete-01 fe0d2d2c plus build02 six compatibility files"
 }

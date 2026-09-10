@@ -84,7 +84,8 @@ async function fixture(): Promise<AccountFreeLoginObservationInputV2> {
 
 describe("account-free final-Supplier observation", () => {
   it("uses private initialization and one readback, emits eight distinct facts, and retires without account or model calls", async () => {
-    const input = await fixture(), result = await observeCodexAccountFreeLoginPurposeV2(input);
+    const timeout = vi.spyOn(globalThis, "setTimeout"), input = await fixture(), result = await observeCodexAccountFreeLoginPurposeV2(input);
+    expect(timeout.mock.calls.some(call => call[1] === 10_000)).toBe(true); expect(timeout.mock.calls.some(call => call[1] === 120_000)).toBe(false); timeout.mockRestore();
     expect(state.methods).toEqual(["initialize", "initialized", "config/read"]); expect(state.retired).toBe(1); expect(state.cleaned).toBe(1);
     expect(Object.keys(result.limbs).sort()).toEqual(["bounded-protocol-purpose", "exact-supplier", "keyring-backend", "plaintext-fallback-absent", "process-containment", "provider-network", "retirement", "storage-isolation"]);
     expect(new Set(Object.values(result.limbs).map(value => value.evidenceSha256)).size).toBe(8);
@@ -100,10 +101,11 @@ describe("account-free final-Supplier observation", () => {
   });
 
   it("runs the fixed stderr trampoline through initialize only and returns diagnostic metadata without qualified limbs", async () => {
-    const input = await fixture(), result = await diagnoseCodexAccountFreeLoginStartupV1(input);
+    const timeout = vi.spyOn(globalThis, "setTimeout"), input = await fixture(), result = await diagnoseCodexAccountFreeLoginStartupV1(input);
+    expect(timeout.mock.calls.some(call => call[1] === 120_000)).toBe(true); timeout.mockRestore();
     expect(result).toMatchObject({ schema: "chirality-account-free-login-startup-diagnostic/v1", status: "diagnostic-only", outcome: "initialize-resolved", qualification: false,
       phase: "final-verification", issuedMethods: ["initialize", "initialized"], retirement: { status: "verified" },
-      launchDeviation: { executable: "/bin/sh", stderrCapture: "private-fifo", sandboxExecutable: "/usr/bin/sandbox-exec", compiledArgumentsUnchanged: true },
+      launchDeviation: { executable: "/bin/sh", stderrCapture: "private-fifo", sandboxExecutable: "/usr/bin/sandbox-exec", compiledArgumentsUnchanged: true, requestTimeoutMs: 120_000 },
       stderr: { status: "captured", retainedBytes: 65_536, totalBytes: 70_000, truncated: true } });
     expect(state.methods).toEqual(["initialize", "initialized"]); expect(state.spawnedExecutable).toBe("/bin/sh");
     expect(state.spawnedArguments.slice(0, 5)).toEqual(["-c", "stderr=$1; shift; exec \"$@\" 2>\"$stderr\"", "chirality-account-free-startup", join(input.runtimeDirectory, "account-free-observations", input.recipe.runId, "private", "supplier-stderr.fifo"), "/usr/bin/sandbox-exec"]);

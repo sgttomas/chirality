@@ -9,13 +9,13 @@
     "path": "/private/tmp/chirality-release-runtime-20260910/stagec-residual-evidence-backcheck.md",
     "sha256": "ce650800b89eb6a518d0bc102190e10bfea560909c86b8eec4a26acdb0a4ff67"
   },
-  "buildArtifactSha256": "871623860ef18212fabef851f24ad5f384d140395d50c41f6a63677fd42768fa",
-  "compiledPatchSha256": "5045e334a1efa02e84a5b7a1b88dd33c9ea126a7de3ee25df56bcaeda9f9df29",
-  "sourceBuildManifestSha256": "88cd85037a6d657a5e0fd94ba969da5179996e209a1e269e81969248bf6381d1",
+  "buildArtifactSha256": "0489a897c482dd03c79ee18055d796be5935c48c93a257f30c53141fec985100",
+  "compiledPatchSha256": "631cea7e0cfda308d1b5a252d650691d64ec27655452c994dfeb9157fe16707e",
+  "sourceBuildManifestSha256": "805aa4dd5aa38c9686a9c1f022997a9c89b6fb32e5e350d24976d1224a8d3cff",
   "postBuildTestsPatchSha256": "2a3cc381f0af89467cd53c24413d1020199e69311534d82dd6796eb6587d4b93",
-  "productionCorrespondence": "Build04 includes exact retained final cfg(test) source plus the sole sha2:0.10.9 opt-level3 dev override; all6444 entries unchanged during build.",
+  "productionCorrespondence": "full6444-entry source comparison: only cfg(test) multi_agents_tests.rs differs from compiled snapshot; production and lock unchanged",
   "actualEvidence": [
-    "confined locked/offline dev build04 exit0 (164.68s); previous build03 preserved",
+    "confined locked/offline dev build03 exit0",
     "confined actual executable --version: codex-cli 0.149.0",
     "CHECK_CONNECTED_04 initial/idle actual lifecycle exactly1 PASS",
     "CHECK_CONNECTED_06 current delivery, caller cancellation, NextTurn/coalesced B exactly1 PASS",
@@ -25,13 +25,11 @@
     "revocation case does not isolate consumption-time guard from terminal retirement; exact guard semantics supported by independent source review",
     "combined06 passed before final driver rejection reporting addition; no final combined rerun claimed",
     "broader combined fork/resume empty-history and queue-only durable-sleep/no-wake connections deferred and unqualified",
-    "dev with only sha2:0.10.9 opt-level3, otherwise unoptimized+debuginfo; no full optimized/public-release or vendor-signature claim",
+    "dev unoptimized+debuginfo; no optimized/public-release or vendor-signature claim",
     "packaging must measure nested-signed final bytes; account/model end-to-end trial remains human-owned"
   ],
   "quiescent": true,
   "noFurtherSupplierCasePlanned": "absent actual new finding",
   "maintainedDirectory": "/Users/ryan/.codex/worktrees/chirality-change-lessons-20260910/chirality/projects/chirality-runtime/tools/codex-supplier",
-  "derivativeStatus": "source/build handoff derived from accepted source/review snapshots; not operational supplier acceptance",
-  "startupMeasurement": "Pending new signed artifact under ordinary10s initialize deadline.",
-  "profileReviewSha256": "f912cf487e145c149e13d5174c0f90dd0a5924d66fb77a7777c39df30468c07b"
+  "derivativeStatus": "source/build handoff derived from accepted source/review snapshots; not operational supplier acceptance"
 }

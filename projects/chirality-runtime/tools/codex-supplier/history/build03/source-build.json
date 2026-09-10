@@ -2,26 +2,19 @@
   "schema": "chirality-codex-local-trial-source/v1",
   "upstreamCommit": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
   "upstreamTree": "0f7a27df60e01dccf918f3203235266a0d6e3258",
-  "patchSha256": "5045e334a1efa02e84a5b7a1b88dd33c9ea126a7de3ee25df56bcaeda9f9df29",
+  "patchSha256": "631cea7e0cfda308d1b5a252d650691d64ec27655452c994dfeb9157fe16707e",
   "patchAppliesToUpstream": true,
-  "sourceSnapshotSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
-  "buildProfile": "dev; sha2:0.10.9 opt-level=3 only",
+  "sourceSnapshotSha256": "6fb19e9406c92b632e14f0dc5de1f4fa9ca5d185b40afd3117325a4f595bdfd4",
+  "buildProfile": "dev unoptimized+debuginfo local trial",
   "artifact": {
-    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/artifact/codex",
-    "sha256": "871623860ef18212fabef851f24ad5f384d140395d50c41f6a63677fd42768fa",
-    "size": 761932488,
-    "sourceCount": 6444,
+    "profile": "dev unoptimized+debuginfo local trial",
+    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/artifact/codex",
+    "sha256": "0489a897c482dd03c79ee18055d796be5935c48c93a257f30c53141fec985100",
+    "size": 761944360,
     "sourceUnchanged": true,
-    "sourceBeforeSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
-    "lockSha256": "598546764c876b93c6a59edcd5879b8c1b17cdf7c8df023fb051bcfb755a81f4",
-    "profile": "dev; sha2:0.10.9 opt-level=3 only",
-    "buildExit": {
-      "exit": 0,
-      "seconds": 164.67973518371582
-    },
-    "dependenciesExit": 0,
-    "signatureExit": 0,
-    "fileExit": 0
+    "sourceCount": 6444,
+    "sourceBeforeSha256": "6fb19e9406c92b632e14f0dc5de1f4fa9ca5d185b40afd3117325a4f595bdfd4",
+    "buildExit": 0
   },
   "lockSha256": "598546764c876b93c6a59edcd5879b8c1b17cdf7c8df023fb051bcfb755a81f4",
   "changedFiles": [
@@ -29,11 +22,6 @@
       "path": "codex-rs/Cargo.lock",
       "upstreamSha256": "0c32858e9c47d0acf82735c8620c96840a5381152eec63acad15d1acadb9edad",
       "buildSha256": "598546764c876b93c6a59edcd5879b8c1b17cdf7c8df023fb051bcfb755a81f4"
-    },
-    {
-      "path": "codex-rs/Cargo.toml",
-      "upstreamSha256": "a3669102a1d1305b4b243b0fc6bd6bca9629ed9e5aa74b42936aba386c9805b4",
-      "buildSha256": "2c683b33f6e905d75ea185920a9653b6519db5de91c509a79b34691b17f3362f"
     },
     {
       "path": "codex-rs/app-server-client/src/lib.rs",
@@ -418,7 +406,7 @@
     {
       "path": "codex-rs/core/src/tools/handlers/multi_agents_tests.rs",
       "upstreamSha256": "59ab6baec4ddd5788cf7e29b542fe836298eec90255b193016aa96a97534a3ae",
-      "buildSha256": "ffe99e1c4388e0e19c1af86b638ae9e279fbb417f2bbdbe25061edd674efd91c"
+      "buildSha256": "ab284c7daac47a1519e6a89f19bca18d68f7654242c77d5524a32284fb347da4"
     },
     {
       "path": "codex-rs/ext/skills/src/extension.rs",
@@ -491,32 +479,27 @@
       "buildSha256": "5bb3ee41b40a8b1c30649e665b8fd90da56be7dcd9b229079a19c4fb00383fcc"
     }
   ],
-  "qualification": "Prior independently accepted bounded routing evidence retained. Profile-only production change separately reviewed and built offline. New signed-artifact startup latency remains pending actual measurement; broader fork/resume and durable-sleep cases remain unqualified.",
+  "qualification": "Source reviewed; exact actual no-model initial/idle V2 lifecycle test passed. Follow-on test-only residual case failed an assertion under causal review; no production finding established. Broader native/account/model trial remains human-owned.",
   "reportedVersion": "codex-cli 0.149.0",
   "payload": {
-    "root": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/artifact",
+    "root": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/artifact",
     "files": [
       {
         "path": "codex",
-        "sha256": "871623860ef18212fabef851f24ad5f384d140395d50c41f6a63677fd42768fa",
-        "size": 761932488
+        "sha256": "0489a897c482dd03c79ee18055d796be5935c48c93a257f30c53141fec985100",
+        "size": 761944360
       }
     ],
     "nonSystemDylibSidecars": [],
-    "signature": "linker ad-hoc; no team identifier"
+    "signature": "linker ad-hoc; no team identifier",
+    "cdHash": "ba52e77153955dd463d999b532fbbaa87815c8ef"
   },
   "evidence": {
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/RESULT.json": "d5d4d4cba25c21fb7c4cdfe274544a51c1a9a66a404da694c36bdf5f5b8b48af",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/stderr.log": "b36c59411d54a869d506e9415e546768a4b4ebca1a9ef9bc0a27b3cd4f03b691",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/ARTIFACT.json": "63377beeb8d77948f8c8fdae1ed0b7148ed5a8b592b0aa2e9bd34c47f135e192",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/SOURCE_BEFORE.json": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/dependencies.stdout": "e2058b51735d80a7bbdd4abb7ae4d6f182ab16d6c757b6efb33faab91cb43602",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/signature.stderr": "19645c8b1a2e3953df4c22f98859f9ab453065f5178d6eb8866f479565e92c38",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/version.stdout": "26247c5af0a85b5e7bd1d7064e175fa566b8c14624b9a6e08ab85fa0edd41f2d",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/version.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/sha2-optimized-fingerprint.json": "1823446bafb972ba0bf73124244d65d5b10a4167f5fda0b6916485e7e60cb48a",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/profile-author/PREBUILD_REVIEW.md": "f912cf487e145c149e13d5174c0f90dd0a5924d66fb77a7777c39df30468c07b"
-  },
-  "historicalBuild03": "history/build03/source-build.json",
-  "testSourceCorrespondence": "Final formerly post-build03 cfg(test) patch is now included in the exact build04 input patch; prior executed tests are not claimed rerun."
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/RESULT.json": "b31ba044a125d64c405c262d2c667af095e5c388445125b9218ed166637f2dd4",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/stderr.log": "f3ed4b56a425c57531095003e50ac720a04b09a716d5212c8c5ec1c27a1eb261",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/dependencies.stdout": "c9962bd782a53874d5806d62c6a4a56d9e8887d0a1bb37a51c36fd879999bc20",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/signature.stderr": "0ccbfbeaefca537d85953ac7552dd02e6e13b76c7747b7849f53198267161efa",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/version.stdout": "26247c5af0a85b5e7bd1d7064e175fa566b8c14624b9a6e08ab85fa0edd41f2d",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/version.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  }
 }
