@@ -10,7 +10,12 @@ import {
   DEPENDENCY_DIGEST_ENV,
   EXPECTED_DEPENDENCY_DIGEST_ENV,
   EXPECTED_SUPPLIER_DIGEST_ENV,
-  SUPPLIER_DIGEST_ENV
+  RUNTIME_MANIFEST_VERSION_ENV,
+  RUNTIME_V2_GOVERNANCE_ROOT_ENV,
+  RUNTIME_V2_INPUT_DIGEST_ENV,
+  RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV,
+  SUPPLIER_DIGEST_ENV,
+  inspectRuntimeV2ReleaseInputs
 } from './finalize-electron-resources.mjs';
 
 const SUPPORTED_TARGETS = new Set(['dir', 'dmg']);
@@ -149,10 +154,21 @@ export async function runElectronPack({
   prepareSupplier = prepareSupplierResources,
   computeDependencyDigest,
   env = process.env,
-  target = 'dir'
+  target = 'dir',
+  runtimeManifestVersion = 'v1'
 } = {}) {
+  if (runtimeManifestVersion !== 'v1' && runtimeManifestVersion !== 'v2') {
+    throw new Error(`Unsupported Runtime manifest version: ${String(runtimeManifestVersion)}`);
+  }
   const expectedSupplierDigest = expectedDigest(env, EXPECTED_SUPPLIER_DIGEST_ENV);
   const expectedDependencyDigest = expectedDigest(env, EXPECTED_DEPENDENCY_DIGEST_ENV);
+  let runtimeV2InputDigest;
+  if (runtimeManifestVersion === 'v2') {
+    const supportProfilesPath = env[RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV];
+    const governanceRoot = env[RUNTIME_V2_GOVERNANCE_ROOT_ENV];
+    if (!supportProfilesPath || !governanceRoot) throw new Error('Runtime v2 packaging requires explicit support-profile and governance inputs');
+    runtimeV2InputDigest = (await inspectRuntimeV2ReleaseInputs({ supportProfilesPath, governanceRoot })).digest;
+  }
   const electronDistDirectory = await verify();
   const supplier = await prepareSupplier({ env });
   const dependencyDigest = await (computeDependencyDigest
@@ -165,25 +181,38 @@ export async function runElectronPack({
     throw new Error('Dependency resolution inputs do not match the release-provided expected digest');
   }
   const args = buildElectronBuilderArgs(electronDistDirectory, target);
+  const builderEnvironment = {
+    ...env,
+    CSC_IDENTITY_AUTO_DISCOVERY: 'false',
+    [DEPENDENCY_DIGEST_ENV]: dependencyDigest,
+    [SUPPLIER_DIGEST_ENV]: supplier.digest
+  };
+  if (runtimeManifestVersion === 'v2') {
+    builderEnvironment[RUNTIME_MANIFEST_VERSION_ENV] = 'v2';
+    builderEnvironment[RUNTIME_V2_INPUT_DIGEST_ENV] = runtimeV2InputDigest;
+  } else {
+    delete builderEnvironment[RUNTIME_MANIFEST_VERSION_ENV];
+    delete builderEnvironment[RUNTIME_V2_INPUT_DIGEST_ENV];
+  }
   await spawnAndWait('electron-builder', args, {
     stdio: 'inherit',
     shell: false,
-    env: {
-      ...env,
-      CSC_IDENTITY_AUTO_DISCOVERY: 'false',
-      [DEPENDENCY_DIGEST_ENV]: dependencyDigest,
-      [SUPPLIER_DIGEST_ENV]: supplier.digest
-    }
+    env: builderEnvironment
   }, spawnProcess);
   await supplier.cleanup();
 }
 
 export function parseArgs(argv) {
   if (argv.length === 0) return { target: 'dir' };
-  if (argv.length === 2 && argv[0] === '--target') {
-    return { target: validateTarget(argv[1]) };
+  const parsed = { target: 'dir', runtimeManifestVersion: undefined };
+  for (let index = 0; index < argv.length; index += 2) {
+    const flag = argv[index], value = argv[index + 1];
+    if (value === undefined) throw new Error('Usage: node ./scripts/pack-electron-with-supply.mjs [--target dir|dmg] [--runtime-manifest v2]');
+    if (flag === '--target') parsed.target = validateTarget(value);
+    else if (flag === '--runtime-manifest' && value === 'v2') parsed.runtimeManifestVersion = 'v2';
+    else throw new Error('Usage: node ./scripts/pack-electron-with-supply.mjs [--target dir|dmg] [--runtime-manifest v2]');
   }
-  throw new Error('Usage: node ./scripts/pack-electron-with-supply.mjs [--target dir|dmg]');
+  return parsed.runtimeManifestVersion ? parsed : { target: parsed.target };
 }
 
 const isMain =

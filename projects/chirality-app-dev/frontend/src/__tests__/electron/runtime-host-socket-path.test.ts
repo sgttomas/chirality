@@ -1,16 +1,24 @@
 import path from 'node:path';
-import { mkdtemp, realpath, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, realpath, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { describe, expect, it, vi } from 'vitest';
 import {
+  loadPackagedHostedReleaseBasis,
   readHostedPrivateBootstrapConfiguration,
+  startHostedPackagedPrivateBootstrapRuntimeHost,
   startControlledHostedPrivateBootstrapRuntimeHostForTests
+} from '@chirality/runtime-daemon/hosted';
+import type {
+  HostedPackagedReleaseBasisV2,
+  HostedPackagedReleaseLoadResult
 } from '@chirality/runtime-daemon/hosted';
 
 import {
   MACOS_UNIX_SOCKET_PATH_MAX_BYTES,
   assertRuntimeSocketPathSupported,
   configuredPackagedRuntimeBootInput,
+  packagedRuntimeBootInput,
+  startControlledPackagedRuntimeHostForTests,
   startControlledRuntimeHostForTests
 } from '../../../electron/runtime-host';
 
@@ -34,6 +42,14 @@ const host = {
   runtimeDirectory: '/runtime',
   bootstrapTokenFile: '/runtime/auth/tokens/hosted-bootstrap-host.token',
   stop: vi.fn(async () => {})
+};
+
+const embeddedRuntime = {
+  electron: '43.2.0',
+  node: '24.12.0',
+  modules: '145',
+  napi: '10',
+  architecture: 'arm64'
 };
 
 function privateConfiguration(supplierExecutablePath = input.supplierExecutablePath) {
@@ -146,6 +162,147 @@ describe('runtime-host macOS socket-path boundary', () => {
       ...input,
       hostedPrivateConfigFile: '/private/config/hosted.json'
     });
+  });
+
+  it('maps only the packaged Resources root and this Electron process identity into v2 loading', () => {
+    expect(packagedRuntimeBootInput({
+      runtimeDirectory: '/runtime',
+      daemonSocket: 'control.sock',
+      resourcesRoot: `${inventory.resourcesRoot}/../Resources`,
+      embeddedRuntime
+    })).toEqual({
+      runtimeDirectory: '/runtime',
+      daemonSocket: 'control.sock',
+      resourcesRoot: inventory.resourcesRoot,
+      embeddedRuntime
+    });
+  });
+
+  it('uses the real loader missing-basis result and starts only the packaged unbound bootstrap', async () => {
+    const directory = await realpath(await mkdtemp('/tmp/app-d36-v2-'));
+    try {
+      const resourcesRoot = path.join(directory, 'Resources');
+      const runtimeDirectory = path.join(directory, 'runtime');
+      await Promise.all([
+        mkdir(resourcesRoot, { mode: 0o700 }),
+        mkdir(runtimeDirectory, { mode: 0o700 })
+      ]);
+      const startPackagedHost = vi.fn();
+      const startUnboundHost = vi.fn(async () => host);
+      await startControlledPackagedRuntimeHostForTests(
+        packagedRuntimeBootInput({
+          runtimeDirectory,
+          daemonSocket: 'control.sock',
+          resourcesRoot,
+          embeddedRuntime
+        }),
+        {
+          loadReleaseBasis: loadPackagedHostedReleaseBasis,
+          startPackagedHost,
+          startUnboundHost
+        }
+      );
+      expect(startPackagedHost).not.toHaveBeenCalled();
+      expect(startUnboundHost).toHaveBeenCalledWith({
+        enabled: true,
+        runtimeDirectory,
+        daemonSocket: 'control.sock',
+        instructionRoot: path.join(resourcesRoot, 'instruction-root')
+      });
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  });
+
+  it.each(['missing-release-basis', 'invalid-release-basis', 'unsupported-runtime'] as const)(
+    'collapses %s to the same nonsecret unbound bootstrap behavior',
+    async (reason) => {
+      const startPackagedHost = vi.fn();
+      const startUnboundHost = vi.fn(async () => host);
+      const unavailable: HostedPackagedReleaseLoadResult = {
+        status: 'unavailable',
+        reason
+      };
+      await startControlledPackagedRuntimeHostForTests(
+        packagedRuntimeBootInput({
+          runtimeDirectory: '/runtime',
+          daemonSocket: 'control.sock',
+          resourcesRoot: inventory.resourcesRoot,
+          embeddedRuntime
+        }),
+        {
+          loadReleaseBasis: vi.fn(async () => unavailable),
+          startPackagedHost,
+          startUnboundHost
+        }
+      );
+      expect(startPackagedHost).not.toHaveBeenCalled();
+      expect(startUnboundHost).toHaveBeenCalledWith({
+        enabled: true,
+        runtimeDirectory: '/runtime',
+        daemonSocket: 'control.sock',
+        instructionRoot: path.join(inventory.resourcesRoot, 'instruction-root')
+      });
+    }
+  );
+
+  it('forwards an adapter-issued ready basis unchanged with basis-derived bootstrap paths', async () => {
+    const basis = Object.freeze({
+      instructionRoot: path.join(inventory.resourcesRoot, 'instruction-root'),
+      nativeAddonPath: path.join(
+        inventory.resourcesRoot,
+        'native',
+        'chirality_native_admission.node'
+      )
+    }) as unknown as Readonly<HostedPackagedReleaseBasisV2>;
+    const ready: HostedPackagedReleaseLoadResult = { status: 'ready', basis };
+    const startPackagedHost = vi.fn(async () => host);
+    const startUnboundHost = vi.fn(async () => host);
+    await startControlledPackagedRuntimeHostForTests(
+      packagedRuntimeBootInput({
+        runtimeDirectory: '/runtime',
+        daemonSocket: 'control.sock',
+        resourcesRoot: inventory.resourcesRoot,
+        embeddedRuntime
+      }),
+      {
+        loadReleaseBasis: vi.fn(async () => ready),
+        startPackagedHost,
+        startUnboundHost
+      }
+    );
+    expect(startPackagedHost).toHaveBeenCalledWith({
+      bootstrap: {
+        enabled: true,
+        runtimeDirectory: '/runtime',
+        daemonSocket: 'control.sock',
+        instructionRoot: basis.instructionRoot,
+        nativeAddonPath: basis.nativeAddonPath
+      },
+      basis
+    });
+    expect(startUnboundHost).not.toHaveBeenCalled();
+  });
+
+  it('cannot pass a structurally fabricated basis into the real packaged starter', async () => {
+    const basis = Object.freeze({
+      instructionRoot: path.join(inventory.resourcesRoot, 'instruction-root'),
+      nativeAddonPath: path.join(
+        inventory.resourcesRoot,
+        'native',
+        'chirality_native_admission.node'
+      )
+    }) as unknown as Readonly<HostedPackagedReleaseBasisV2>;
+    await expect(startHostedPackagedPrivateBootstrapRuntimeHost({
+      bootstrap: {
+        enabled: true,
+        runtimeDirectory: '/runtime',
+        daemonSocket: 'control.sock',
+        instructionRoot: basis.instructionRoot,
+        nativeAddonPath: basis.nativeAddonPath
+      },
+      basis
+    })).rejects.toMatchObject({ code: 'ENGINE_UNAVAILABLE' });
   });
 
   it('starts an unbound bootstrap without selecting native or supplier composition', async () => {

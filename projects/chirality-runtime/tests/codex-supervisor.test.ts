@@ -2,10 +2,11 @@ import { PassThrough } from "node:stream";
 import { spawn } from "node:child_process";
 import { mkdtemp, mkdir, realpath, rm, writeFile, symlink } from "node:fs/promises";
 import { join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { prepareCodexNativePolicy } from "../packages/daemon/src/codex-containment.js";
 import { DescendantTracker } from "../packages/core/src/descendant-tracker.js";
 import { CodexSupervisor, codexRuntimeConformanceConfigDigest, createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
+import { admitHostedControlledForTests } from "../packages/daemon/src/codex-supervisor-test-support.js";
 import * as daemonPublicSurface from "../packages/daemon/src/index.js";
 import { recordKey } from "@chirality/runtime-core";
 import type { WorkerContinuity } from "@chirality/runtime-contracts";
@@ -61,6 +62,17 @@ describe("Codex supervisor adapter without account/network use", () => {
   it("does not expose controlled hosted conformance substitution on production surfaces", () => {
     expect(Object.hasOwn(daemonPublicSurface, "admitHostedControlledForTests")).toBe(false);
     expect(Object.hasOwn(CodexSupervisor, "admitHostedControlledForTests")).toBe(false);
+  });
+  it("rejects a structural v2 instance admission before creating a candidate", async () => {
+    const launchCandidate = vi.fn();
+    const options = { canonicalRoot: root, candidateLauncherFactory: { create: vi.fn(() => ({ launchCandidate })), close: vi.fn() },
+      executablePath: "/private/supplier/codex", model: "fixture-model", codexHome: "/private/codex-home", privateDirectory: "/private",
+      managedAuth: { backend: "keyring", binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" } },
+      providerNetworkConsent: { approvedBy: "owner", approvalReference: "act" }, commandNetworkPosture: "off" as const, configDigest: "a".repeat(64), consentVersion: "b".repeat(64),
+      runtimeV2: { purposeReleaseSource: {} as any, instanceInput: { purposeRelease: { purpose: "worker" }, hostAuthority: {} } as any, instanceAdmission: { purpose: "worker", evidence: "release-and-live-instance-v2" } as any } };
+    await expect(admitHostedControlledForTests(options as any, { verifyConformance: async () => {} })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+    expect(options.candidateLauncherFactory.create).not.toHaveBeenCalled();
+    expect(launchCandidate).not.toHaveBeenCalled();
   });
   it("drives actual JSONL child, genuine terminal and strict resumed thread selection", async () => {
     const s = fixture();

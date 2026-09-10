@@ -1,8 +1,13 @@
 import { PassThrough } from "node:stream";
+import { mkdir, mkdtemp, realpath, rm, symlink, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import {
   launchControlledAuthenticatedCodexCandidateForTests,
+  codexEffectiveConfigDigestV2,
   authenticatedSupplierRetirementOutcome,
+  assertOwnedCompiledPathV2,
   retireAuthenticatedSupplierGroup,
   type AuthenticatedCodexCandidateInput,
   type ControlledAuthenticatedCodexCandidateAdapters
@@ -28,13 +33,13 @@ function fixture() {
     protectedPaths: ["/private/broker"], readOnlyProjectPaths: ["/project/.chirality/attachments"], immutableReadRoots: ["/usr"], trustedRuntimeReadRoots: [{ path: "/runtime/instruction-root", readPaths:["/runtime/instruction-root"], contentDigest: "e".repeat(64), artifactInventory: { kind: "packaged-resources" as const, resourcesRoot: "/runtime", manifestPath:"/runtime/runtime-artifact-inventory.json" } }],
     policyDigest: DIGEST, nativeRoleConfiguration: { digest: "d".repeat(64), configOverrides: ["agents.enabled=true"] }, toolRuntime: { codexSelfExecutablePath: "/private/supplier/codex" }, kernelLease
   };
-  const outer = { cleanup: vi.fn(async () => { events.push("outer-cleanup"); }), launchArguments: vi.fn(async () => ["-f", "/private/supplier/outer.sb", "/private/supplier/codex"]), environment: { HOME: "/private/supplier", CODEX_HOME: "/private/supplier/home", TMPDIR: "/private/supplier/tmp", PATH: "/usr/bin:/bin:/usr/sbin:/sbin", LANG: "en_US.UTF-8" } };
-  const toolPolicy = { cleanup: vi.fn(async () => { events.push("tool-cleanup"); }), policyDigest: DIGEST, permissionProfile: "chirality_policy", expectedPermissions: { filesystem: { "/project": "write" }, network: { enabled: false } }, nativeRoleConfiguration: input.nativeRoleConfiguration, args: ["-c", "cli_auth_credentials_store=\"keyring\""] };
+  const outer = { cleanup: vi.fn(async () => { events.push("outer-cleanup"); }), sandboxProfilePath: "/private/supplier/outer.sb", launchArguments: vi.fn(async () => ["-f", "/private/supplier/outer.sb", "/private/supplier/codex"]), environment: { HOME: "/private/supplier", CODEX_HOME: "/private/supplier/home", TMPDIR: "/private/supplier/tmp", PATH: "/usr/bin:/bin:/usr/sbin:/sbin", LANG: "en_US.UTF-8" } };
+  const toolPolicy = { cleanup: vi.fn(async () => { events.push("tool-cleanup"); }), scratchDirectory: "/project/.chirality-native-policy-fixture", policyDigest: DIGEST, permissionProfile: "chirality_policy", expectedPermissions: { filesystem: { "/project": "write" }, network: { enabled: false } }, nativeRoleConfiguration: input.nativeRoleConfiguration, configOverrides: ["cli_auth_credentials_store=\"keyring\""], args: ["-c", "cli_auth_credentials_store=\"keyring\""] };
   const spawnSupplier = vi.fn(() => ({ state: "available" as const, value: child }));
   const adapters: ControlledAuthenticatedCodexCandidateAdapters = {
     verifySupply: vi.fn(async () => ({ executablePath: input.executablePath, canonicalPath: input.executablePath, version: "0.149.0", sha256: "b".repeat(64), size: 42, signatureStatus: "accepted", evidenceClass: "accepted-supply" }) as never),
     revalidateSupply: vi.fn(async () => { events.push("revalidate"); }),
-    prepareOuter: vi.fn(async () => outer as never), prepareToolPolicy: vi.fn(async () => toolPolicy as never),
+    prepareOuter: vi.fn(async () => outer as never), prepareToolPolicy: vi.fn(async () => toolPolicy as never), assertCompiledPathV2: vi.fn(async () => {}),
     assertNoPlaintext: vi.fn(async () => { events.push("plaintext-check"); }),
     openBindingStore: vi.fn(async () => ({}) as never),
     loadNative: vi.fn(() => ({ state: "available", value: { acquire: vi.fn(), spawnGroupedSupplier: spawnSupplier } }) as never),
@@ -45,6 +50,23 @@ function fixture() {
 }
 
 describe("authenticated Codex candidate transport", () => {
+  it("keeps semantic invocation identity stable while enforcing each fresh compiled path topology", async () => {
+    const root = await realpath(await mkdtemp(join(await realpath(tmpdir()), "chirality-compiled-paths-")));
+    try {
+      const privateRoot = join(root, "private"), first = join(privateRoot, "containment-a"), second = join(privateRoot, "containment-b");
+      await mkdir(privateRoot, { mode: 0o700 }); await mkdir(first, { mode: 0o700 }); await mkdir(second, { mode: 0o700 });
+      const firstProfile = join(first, "launch.sb"), secondProfile = join(second, "launch.sb");
+      await writeFile(firstProfile, "profile", { mode: 0o600 }); await writeFile(secondProfile, "profile", { mode: 0o600 });
+      await assertOwnedCompiledPathV2(privateRoot, first, "directory"); await assertOwnedCompiledPathV2(first, firstProfile, "file");
+      await assertOwnedCompiledPathV2(privateRoot, second, "directory"); await assertOwnedCompiledPathV2(second, secondProfile, "file");
+      const semantic = { executablePath: join(privateRoot, "codex"), cwd: root, environment: { HOME: privateRoot, CODEX_HOME: join(privateRoot, "home"), PATH: "/usr/bin:/bin", LANG: "en_US.UTF-8" }, configOverrides: ["features.plugins=false"] };
+      expect(codexEffectiveConfigDigestV2(semantic)).toBe(codexEffectiveConfigDigestV2({ ...semantic }));
+      const alias = join(privateRoot, "profile-alias"); await symlink(firstProfile, alias);
+      await expect(assertOwnedCompiledPathV2(privateRoot, alias, "file")).rejects.toThrow();
+      await expect(assertOwnedCompiledPathV2(first, secondProfile, "file")).rejects.toThrow();
+    } finally { await rm(root, { recursive: true, force: true }); }
+  });
+
   it("spawns one nonexecuting raw candidate with exact outer argv, cwd, environment and fd3 bootstrap", async () => {
     const f = fixture();
     const candidate = await launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters);
@@ -65,6 +87,27 @@ describe("authenticated Codex candidate transport", () => {
     await candidate.cleanup();
     expect(f.events.slice(-3)).toEqual(["retire", "tool-cleanup", "outer-cleanup"]);
     expect(f.kernelLease.close).not.toHaveBeenCalled();
+  });
+
+  it("rejects a structural v2 candidate before compilation when existing instance admission is absent", async () => {
+    const f = fixture(), outerPolicyDigest = "c".repeat(64);
+    const runtimeReadRoot = { path: "/runtime/instruction-root", readPaths: ["/runtime/instruction-root"], contentDigest: "e".repeat(64), artifactInventory: {
+      schema: "chirality-runtime-packaged-basis/v2" as const, resourcesRoot: "/runtime", inventoryPath: "/runtime/runtime-artifact-inventory-v2.json",
+      payloadManifestPath: "/runtime/runtime-payload-manifest.json", outerInventorySha256: "f".repeat(64), payloadDigest: "1".repeat(64)
+    } };
+    const policyInstanceV2 = { schema: "chirality-codex-policy-instance/v2" as const, outerPurpose: "trusted-supplier" as const, nativePurpose: "worker" as const,
+      canonicalRoot: f.input.canonicalRoot, privateDirectory: f.input.privateDirectory, codexHome: f.input.codexHome, executablePath: f.input.executablePath, nativeAddonPath: f.input.nativeAddonPath,
+      providerNetworkConsent: f.input.providerNetworkConsent, commandNetworkPosture: f.input.commandNetworkPosture,
+      immutableReadRoots: f.input.immutableReadRoots, protectedPaths: f.input.protectedPaths, readOnlyProjectPaths: f.input.readOnlyProjectPaths!, trustedRuntimeReadRoots: [runtimeReadRoot],
+      toolRuntime: { codexSelfExecutablePath: f.input.executablePath, requiresSandboxedFileSystem: true as const, requiresSandboxedFileStreaming: true as const }, nativeRoleConfiguration: f.input.nativeRoleConfiguration! };
+    const expectedEffectiveConfigDigestV2 = codexEffectiveConfigDigestV2({ executablePath: f.input.executablePath, cwd: f.input.canonicalRoot,
+      environment: { HOME: f.outer.environment.HOME, CODEX_HOME: f.outer.environment.CODEX_HOME, PATH: f.outer.environment.PATH, LANG: f.outer.environment.LANG }, configOverrides: f.toolPolicy.configOverrides });
+    f.input = { ...f.input, trustedRuntimeReadRoots: [runtimeReadRoot], policyInstanceV2, expectedEffectiveConfigDigestV2 };
+    f.adapters.prepareOuterV2 = vi.fn(async () => ({ ...f.outer, outerPolicyDigest }) as never);
+    f.adapters.prepareToolPolicyV2 = vi.fn(async () => ({ ...f.toolPolicy, policyInstance: policyInstanceV2, policyInstanceDigest: "2".repeat(64) }) as never);
+    await expect(launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters)).rejects.toMatchObject({ details: { reason: "INSTANCE_ADMISSION_INVALID" } });
+    expect(f.spawnSupplier).not.toHaveBeenCalled();
+    expect(f.adapters.prepareOuterV2).not.toHaveBeenCalled();
   });
 
   it("cleans prepared resources in reverse order when revalidation or post-spawn plaintext checks fail", async () => {

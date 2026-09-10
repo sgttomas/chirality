@@ -66,7 +66,7 @@ describe('electron/runtime-daemon signal integration', () => {
     );
   });
 
-  it('connects only explicit packaged private configuration to the hosted Runtime entry', () => {
+  it('loads packaged v2 only from Resources and the running Electron identity', () => {
     const initializeGui = mainSource.slice(
       mainSource.indexOf('async function initializeGui(): Promise<void> {'),
       mainSource.indexOf('async function initializeDaemon(): Promise<void> {')
@@ -76,13 +76,18 @@ describe('electron/runtime-daemon signal integration', () => {
       mainSource.indexOf('/**\n * Release everything this process owns')
     );
     expect(initializeGui).not.toContain('CHIRALITY_HOSTED_PRIVATE_CONFIG_FILE');
-    expect(initializeDaemon).toContain(
-      'process.env.CHIRALITY_HOSTED_PRIVATE_CONFIG_FILE;'
-    );
-    expect(initializeDaemon).toContain('hostedPrivateConfigFile !== undefined');
-    expect(initializeDaemon).not.toContain('CHIRALITY_HOSTED_PRIVATE_CONFIG_FILE?.trim()');
-    expect(initializeDaemon).toContain('configuredPackagedRuntimeBootInput({');
+    expect(initializeDaemon).toContain('packagedRuntimeBootInput({');
     expect(initializeDaemon).toContain('resourcesRoot: process.resourcesPath');
+    expect(initializeDaemon).toContain('electron: process.versions.electron');
+    expect(initializeDaemon).toContain('node: process.versions.node');
+    expect(initializeDaemon).toContain('modules: process.versions.modules');
+    expect(initializeDaemon).toContain('napi: process.versions.napi');
+    expect(initializeDaemon).toContain('architecture: process.arch');
+    expect(initializeDaemon).not.toContain('configuredPackagedRuntimeBootInput({');
+    expect(initializeDaemon).not.toContain('resolvePackagedDaemonInstructionRoot');
+    expect(initializeDaemon).toContain(
+      '!app.isPackaged && process.env.CHIRALITY_HOSTED_PRIVATE_CONFIG_FILE !== undefined'
+    );
     expect(initializeDaemon).toContain(
       'Hosted private configuration is unavailable in development until a reviewed source-tree artifact basis is provided.'
     );

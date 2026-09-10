@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { chmod, mkdtemp, mkdir, readFile, realpath, rm, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -6,9 +7,29 @@ import { describe, expect, it } from 'vitest';
 import {
   computeDependencyResolutionDigest,
   computeSupplierTreeDigest,
+  finalizeRuntimeResourcesV2,
+  inspectRuntimeV2ReleaseInputs,
+  stageRuntimeV2Governance,
+  writeRuntimeArtifactInventoryV2,
+  writeRuntimePayloadManifestV2,
   writeRuntimeArtifactInventory
 } from '../../../scripts/finalize-electron-resources.mjs';
 import { runtimeConformanceArtifactInventory } from '../../../../../chirality-runtime/packages/core/src/runtime-conformance.js';
+import {
+  RUNTIME_NATIVE_ADMISSION_NAPI_VERSION_V2,
+  runtimePolicyParameterSchemaDigestV2,
+  verifyPackagedRuntimeBasisV2
+} from '@chirality/runtime-core/runtime-conformance-v2';
+
+const GOVERNANCE_FILES = [
+  'login-purpose-record.json',
+  'login-purpose-acceptance.json',
+  'login-owner-act',
+  'worker-purpose-record.json',
+  'worker-purpose-acceptance.json',
+  'worker-owner-act'
+];
+const digest = (value: Buffer | string) => createHash('sha256').update(value).digest('hex');
 
 async function fixture() {
   const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-runtime-inventory-')));
@@ -37,6 +58,52 @@ async function fixture() {
   await writeFile(lockPaths[0], '{"lockfileVersion":3,"packages":{}}\n');
   await writeFile(lockPaths[1], '{"lockfileVersion":3,"packages":{}}\n');
   return { root, resourcesRoot, lockPaths };
+}
+
+async function v2Inputs(input: Awaited<ReturnType<typeof fixture>>, localeCount = 40) {
+  for (let index = 0; index < localeCount; index += 1) {
+    await mkdir(path.join(input.resourcesRoot, `locale-${String(index).padStart(2, '0')}.lproj`));
+  }
+  const governanceRoot = path.join(input.root, 'governance-input');
+  await mkdir(governanceRoot);
+  for (const name of GOVERNANCE_FILES) await writeFile(path.join(governanceRoot, name), `${name}\n`);
+  const nativeBytes = await readFile(path.join(input.resourcesRoot, 'native', 'chirality_native_admission.node'));
+  const supplierBytes = await readFile(path.join(input.resourcesRoot, 'supplier', 'codex'));
+  const profileWithoutDigest = {
+    schema: 'chirality-runtime-support-profile/v2',
+    macosProductVersion: '15.6.1',
+    macosBuildVersion: '24G90',
+    architecture: 'arm64',
+    electronVersion: '43.2.0',
+    nodeVersion: '24.18.0',
+    nodeModuleAbi: '148',
+    napiVersion: '10',
+    osMeasurement: { executablePath: '/usr/bin/sw_vers', executableSha256: '1'.repeat(64), executableSize: 1234 },
+    sandboxExec: { path: '/usr/bin/sandbox-exec', sha256: '2'.repeat(64), size: 2345 },
+    nativeAdmission: { contract: 'chirality-native-admission/v1', sha256: digest(nativeBytes), size: nativeBytes.length, napiVersion: RUNTIME_NATIVE_ADMISSION_NAPI_VERSION_V2 },
+    supplier: { version: '0.99.0-test-only', sha256: digest(supplierBytes), size: supplierBytes.length, appServerProtocolDigest: '3'.repeat(64), authorityContract: 'chirality.local-admission-authority/1.0', identityContract: 'chirality-supplier-account-identity/1' },
+    compiler: { outerPolicySchema: 'chirality-codex-outer-policy/v2', nativePolicyIdentityVersion: 10, sourceDigest: '4'.repeat(64), parameterSchemaDigest: runtimePolicyParameterSchemaDigestV2() },
+    immutableSystemRoots: ['/System', '/usr'],
+    kernelHelperContractDigest: '5'.repeat(64)
+  } as const;
+  const profile = { ...profileWithoutDigest, profileDigest: digest(`${JSON.stringify(profileWithoutDigest)}\n`) };
+  const supportProfilesPath = path.join(input.root, 'support-profiles.json');
+  await writeFile(supportProfilesPath, JSON.stringify([profile]));
+  return { governanceRoot, supportProfilesPath, profile };
+}
+
+async function produceV2(input: Awaited<ReturnType<typeof fixture>>, supplied?: Awaited<ReturnType<typeof v2Inputs>>) {
+  const release = supplied ?? await v2Inputs(input);
+  const inspected = await inspectRuntimeV2ReleaseInputs(release);
+  return finalizeRuntimeResourcesV2({
+    resourcesRoot: input.resourcesRoot,
+    expectedDependencyResolutionDigest: await computeDependencyResolutionDigest({ lockPaths: input.lockPaths }),
+    expectedSupplierStagingDigest: await computeSupplierTreeDigest(path.join(input.resourcesRoot, 'supplier')),
+    supportProfilesPath: release.supportProfilesPath,
+    governanceRoot: release.governanceRoot,
+    expectedInputDigest: inspected.digest,
+    lockPaths: input.lockPaths
+  });
 }
 
 async function produce(input: Awaited<ReturnType<typeof fixture>>) {
@@ -129,6 +196,94 @@ describe('Electron Runtime Resources inventory producer', () => {
       })).rejects.toThrow('changed after Electron packaging started');
     } finally {
       await rm(drifted.root, { recursive: true, force: true });
+    }
+  });
+
+  it('produces complete canonical v2 payload and fixed-six inventory accepted by the shared Runtime verifier', async () => {
+    const input = await fixture();
+    try {
+      const result = await produceV2(input);
+      const verified = await verifyPackagedRuntimeBasisV2({ resourcesRoot: input.resourcesRoot });
+      expect(result.verified.inventorySha256).toBe(verified.inventorySha256);
+      expect(verified.payload.roots.length).toBeGreaterThan(32);
+      expect(verified.payload.entries).toContainEqual({ relativePath: 'locale-00.lproj', type: 'directory' });
+      expect(verified.payload.entries.some((entry) => entry.relativePath.startsWith('runtime-governance'))).toBe(false);
+      expect(verified.payload.entries.some((entry) => entry.relativePath === 'runtime-artifact-inventory-v2.json')).toBe(false);
+      expect(verified.inventory.governance.map((entry) => entry.relativePath)).toEqual(
+        GOVERNANCE_FILES.map((name) => `runtime-governance/v2/${name}`)
+      );
+      expect(verified.payload.supportProfiles[0]?.supplier.version).toBe('0.99.0-test-only');
+      await writeFile(path.join(input.resourcesRoot, 'unexpected-after-finalize'), 'unknown');
+      await expect(verifyPackagedRuntimeBasisV2({ resourcesRoot: input.resourcesRoot })).rejects.toMatchObject({ code: 'ENGINE_UNAVAILABLE' });
+    } finally {
+      await rm(input.root, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects mismatched support, changed release inputs, and non-fixed governance without creating acceptance', async () => {
+    const mismatch = await fixture();
+    try {
+      const release = await v2Inputs(mismatch, 0);
+      const changedProfile = { ...release.profile, nativeAdmission: { ...release.profile.nativeAdmission, sha256: 'f'.repeat(64) } };
+      await writeFile(release.supportProfilesPath, JSON.stringify([{ ...changedProfile, profileDigest: digest(`${JSON.stringify(changedProfile)}\n`) }]));
+      await expect(produceV2(mismatch, release)).rejects.toThrow('support profile does not match');
+    } finally {
+      await rm(mismatch.root, { recursive: true, force: true });
+    }
+
+    const drift = await fixture();
+    try {
+      const release = await v2Inputs(drift, 0);
+      const before = await inspectRuntimeV2ReleaseInputs(release);
+      await writeFile(path.join(release.governanceRoot, 'worker-owner-act'), 'changed\n');
+      await expect(finalizeRuntimeResourcesV2({
+        resourcesRoot: drift.resourcesRoot,
+        expectedDependencyResolutionDigest: await computeDependencyResolutionDigest({ lockPaths: drift.lockPaths }),
+        expectedSupplierStagingDigest: await computeSupplierTreeDigest(path.join(drift.resourcesRoot, 'supplier')),
+        supportProfilesPath: release.supportProfilesPath,
+        governanceRoot: release.governanceRoot,
+        expectedInputDigest: before.digest,
+        lockPaths: drift.lockPaths
+      })).rejects.toThrow('release inputs changed');
+      await writeFile(path.join(release.governanceRoot, 'unexpected.json'), '{}\n');
+      await expect(inspectRuntimeV2ReleaseInputs(release)).rejects.toThrow('exactly the fixed six files');
+    } finally {
+      await rm(drift.root, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects a staged governance substitution before writing a verified outer inventory', async () => {
+    const input = await fixture();
+    try {
+      const release = await v2Inputs(input, 0);
+      const bound = await inspectRuntimeV2ReleaseInputs(release);
+      await stageRuntimeV2Governance({ resourcesRoot: input.resourcesRoot, governance: bound.governance });
+      await writeRuntimePayloadManifestV2({
+        resourcesRoot: input.resourcesRoot,
+        expectedDependencyResolutionDigest: await computeDependencyResolutionDigest({ lockPaths: input.lockPaths }),
+        expectedSupplierStagingDigest: await computeSupplierTreeDigest(path.join(input.resourcesRoot, 'supplier')),
+        supportProfiles: bound.supportProfiles,
+        lockPaths: input.lockPaths
+      });
+      await writeFile(path.join(input.resourcesRoot, 'runtime-governance', 'v2', 'worker-owner-act'), 'substituted\n');
+      await expect(writeRuntimeArtifactInventoryV2({
+        resourcesRoot: input.resourcesRoot,
+        expectedGovernance: bound.governance.map(({ relativePath, size, sha256 }) => ({ relativePath, size, sha256 }))
+      })).rejects.toThrow('governance changed after staging');
+      await expect(readFile(path.join(input.resourcesRoot, 'runtime-artifact-inventory-v2.json'))).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally {
+      await rm(input.root, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects a stale v1 inventory discovered before selected v2 payload encoding', async () => {
+    const input = await fixture();
+    try {
+      await writeFile(path.join(input.resourcesRoot, 'runtime-artifact-inventory.json'), '{"schema":"chirality-runtime-artifact-inventory/v1"}\n');
+      await expect(produceV2(input)).rejects.toMatchObject({ code: 'ENGINE_UNAVAILABLE' });
+      await expect(readFile(path.join(input.resourcesRoot, 'runtime-artifact-inventory-v2.json'))).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally {
+      await rm(input.root, { recursive: true, force: true });
     }
   });
 });

@@ -59,6 +59,7 @@ export interface HostedBootstrapRuntimeHost {
 export interface TrustedHostedLoginCeremony {
   start(): Promise<{ loginId: string; authUrl: string }>;
   status(): Promise<{ state: "pending" | "completed" | "failed"; hasAccount?: boolean }>;
+  resolveDefaultModel?(): Promise<Readonly<{ model: string; defaultReasoningEffort: string }>>;
   cancel(): Promise<void>;
   close(): Promise<void>;
 }
@@ -71,7 +72,7 @@ export interface TrustedHostedPrivateAdmission {
 }
 
 export interface HostedBootstrapPrivateBindings {
-  createCeremony(input: { projectId: string; canonicalRoot: string; privateDirectory: string; codexHome: string; providerNetworkConsent: { approvedBy: string; approvalReference: string; approvedAt: string } }): Promise<TrustedHostedLoginCeremony>;
+  createCeremony(input: { projectId: string; manifestHash?: string; canonicalRoot: string; privateDirectory: string; codexHome: string; providerNetworkConsent: { approvedBy: string; approvalReference: string; approvedAt: string } }): Promise<TrustedHostedLoginCeremony>;
   establishAdmission?(input: { projectId: string; canonicalRoot: string; ceremony: TrustedHostedLoginCeremony; nativeAddonPath?: string }): Promise<TrustedHostedPrivateAdmission>;
   /** Host-owned config/worker publication; receives private values and must not project them publicly. */
   materializeAdmission?(input: { projectId: string; canonicalRoot: string; admission: TrustedHostedPrivateAdmission; runtime: { projects: ProjectRegistry; sessions: SessionStore; nativePlanSink: DelegatedNativePlanSink; attachmentStagingRoot: string } }): Promise<
@@ -239,7 +240,7 @@ export class HostedBootstrapController {
     const privateDirectory = join(this.runtimeDirectory, "hosted-bootstrap", projectId);
     const codexHome = join(privateDirectory, "codex-home");
     await privateDirectoryReady(privateDirectory); await privateDirectoryReady(codexHome);
-    const ceremony = await this.bindings.createCeremony({ projectId, canonicalRoot, privateDirectory, codexHome, providerNetworkConsent: state.consent });
+    const ceremony = await this.bindings.createCeremony({ projectId, manifestHash: state.manifestHash, canonicalRoot, privateDirectory, codexHome, providerNetworkConsent: state.consent });
     if (this.closed || state.generation !== generation) { await ceremony.close(); throw unavailable("Hosted login start was superseded"); }
     state.ceremony = ceremony;
     try { const result = await ceremony.start(); if (this.closed || state.generation !== generation || state.ceremony !== ceremony) { await ceremony.close(); throw unavailable("Hosted login start was superseded"); } state.ceremonyState = "pending"; return result; }

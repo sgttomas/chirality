@@ -10,7 +10,31 @@ import {
   prepareSupplierResources,
   runElectronPack
 } from '../../../scripts/pack-electron-with-supply.mjs';
-import { computeDependencyResolutionDigest } from '../../../scripts/finalize-electron-resources.mjs';
+import {
+  computeDependencyResolutionDigest,
+  RUNTIME_MANIFEST_VERSION_ENV,
+  RUNTIME_V2_GOVERNANCE_ROOT_ENV,
+  RUNTIME_V2_INPUT_DIGEST_ENV,
+  RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV
+} from '../../../scripts/finalize-electron-resources.mjs';
+
+const GOVERNANCE_FILES = [
+  'login-purpose-record.json',
+  'login-purpose-acceptance.json',
+  'login-owner-act',
+  'worker-purpose-record.json',
+  'worker-purpose-acceptance.json',
+  'worker-owner-act'
+];
+
+async function v2ReleaseInputs(root: string) {
+  const supportProfilesPath = path.join(root, 'support-profiles.json');
+  const governanceRoot = path.join(root, 'governance');
+  await mkdir(governanceRoot);
+  await writeFile(supportProfilesPath, '[{"fixture":"bound-only"}]\n');
+  for (const name of GOVERNANCE_FILES) await writeFile(path.join(governanceRoot, name), `${name}\n`);
+  return { supportProfilesPath, governanceRoot };
+}
 
 describe('pack-electron-with-supply', () => {
   it('passes exactly one spaces-safe electronDist argument without a shell', async () => {
@@ -69,6 +93,72 @@ describe('pack-electron-with-supply', () => {
       `-c.electronDist=${directory}`
     ]);
     expect(parseArgs(['--target', 'dmg'])).toEqual({ target: 'dmg' });
+    expect(parseArgs(['--target', 'dmg', '--runtime-manifest', 'v2'])).toEqual({ target: 'dmg', runtimeManifestVersion: 'v2' });
+  });
+
+  it('routes normal desktop packaging through a core build and explicit v2 selection', async () => {
+    const pkg = JSON.parse(await readFile(path.resolve(process.cwd(), 'package.json'), 'utf8')) as { scripts: Record<string, string> };
+    expect(pkg.scripts['runtime:build-core']).toBe('npm --prefix ../../chirality-runtime run build --workspace @chirality/runtime-core');
+    for (const name of ['desktop:pack', 'desktop:dist']) {
+      const script = pkg.scripts[name] ?? '';
+      expect(script.indexOf('npm run runtime:build-core')).toBeGreaterThan(script.indexOf('npm run instruction-root:prepare'));
+      expect(script.indexOf('npm run build')).toBeGreaterThan(script.indexOf('npm run runtime:build-core'));
+      expect(script).toContain('pack-electron-with-supply.mjs');
+      expect(script).toContain('--runtime-manifest v2');
+    }
+  });
+
+  it('binds explicit v2 profile and fixed-six governance inputs into the builder environment', async () => {
+    const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-runtime-v2-pack-')));
+    const inputs = await v2ReleaseInputs(root);
+    const dependencyDigest = await computeDependencyResolutionDigest();
+    const calls: Array<{ options: { env?: Record<string, string> } }> = [];
+    try {
+      await runElectronPack({
+        runtimeManifestVersion: 'v2',
+        verify: async () => '/verified/electron',
+        spawnProcess: ((_command: string, _args: string[], options: { env?: Record<string, string> }) => {
+          calls.push({ options });
+          const child = new EventEmitter();
+          queueMicrotask(() => child.emit('exit', 0, null));
+          return child;
+        }) as never,
+        prepareSupplier: async () => ({ digest: 'a'.repeat(64), stagingRoot: '/staged/supplier', cleanup: async () => undefined }),
+        env: {
+          NODE_ENV: 'test',
+          CHIRALITY_EXPECTED_SUPPLIER_TREE_DIGEST: 'a'.repeat(64),
+          CHIRALITY_EXPECTED_DEPENDENCY_RESOLUTION_DIGEST: dependencyDigest,
+          [RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV]: inputs.supportProfilesPath,
+          [RUNTIME_V2_GOVERNANCE_ROOT_ENV]: inputs.governanceRoot
+        }
+      });
+      expect(calls[0]?.options.env).toMatchObject({
+        [RUNTIME_MANIFEST_VERSION_ENV]: 'v2',
+        [RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV]: inputs.supportProfilesPath,
+        [RUNTIME_V2_GOVERNANCE_ROOT_ENV]: inputs.governanceRoot
+      });
+      expect(calls[0]?.options.env?.[RUNTIME_V2_INPUT_DIGEST_ENV]).toMatch(/^[a-f0-9]{64}$/);
+      expect(parseArgs(['--runtime-manifest', 'v2'])).toEqual({ target: 'dir', runtimeManifestVersion: 'v2' });
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses a selected v2 build before verification or builder launch when release inputs are absent', async () => {
+    const verify = vi.fn();
+    const spawnProcess = vi.fn();
+    await expect(runElectronPack({
+      runtimeManifestVersion: 'v2',
+      verify,
+      spawnProcess: spawnProcess as never,
+      env: {
+        NODE_ENV: 'test',
+        CHIRALITY_EXPECTED_SUPPLIER_TREE_DIGEST: 'a'.repeat(64),
+        CHIRALITY_EXPECTED_DEPENDENCY_RESOLUTION_DIGEST: 'b'.repeat(64)
+      }
+    })).rejects.toThrow('explicit support-profile and governance inputs');
+    expect(verify).not.toHaveBeenCalled();
+    expect(spawnProcess).not.toHaveBeenCalled();
   });
 
   it('rejects unknown targets and malformed CLI arguments', () => {

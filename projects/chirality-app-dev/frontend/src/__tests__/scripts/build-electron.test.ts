@@ -5,7 +5,8 @@ import {
   resolveNativeAdmissionSource,
   resolveHostedRuntimeSource,
   resolveHostedRuntimePathsSource,
-  resolveRuntimeContractsSource
+  resolveRuntimeContractsSource,
+  resolveRuntimeConformanceV2Source
 } from '../../../scripts/build-electron.mjs';
 
 describe('build Electron Runtime contract aliases', () => {
@@ -36,6 +37,12 @@ describe('build Electron Runtime contract aliases', () => {
   it('resolves the dedicated hosted daemon entry for Electron private bootstrap wiring', () => {
     expect(resolveHostedRuntimeSource()).toBe(
       path.resolve(process.cwd(), '../../chirality-runtime/packages/daemon/src/hosted.ts')
+    );
+  });
+
+  it('resolves the v2 conformance subpath from the same Runtime source graph', () => {
+    expect(resolveRuntimeConformanceV2Source()).toBe(
+      path.resolve(process.cwd(), '../../chirality-runtime/packages/core/src/runtime-conformance-v2.ts')
     );
   });
 });

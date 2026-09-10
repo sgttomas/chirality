@@ -8,6 +8,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./runtime-conformance-v2": {
+      "types": "./dist/runtime-conformance-v2.d.ts",
+      "import": "./dist/runtime-conformance-v2.js"
     }
   },
   "files": [

@@ -1,11 +1,17 @@
-import { createHash } from "node:crypto";
+import { createHash, randomBytes } from "node:crypto";
 import { constants } from "node:fs";
 import { open, realpath } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { RuntimeError, validateHostedLoginStatus, type HostedLoginStatus } from "@chirality/runtime-contracts";
 import { computeRuntimeArtifactDigest, configureRuntimeConformanceArtifactInventory, isContained, privateDirectory, recordKey, revalidateExactSupply, runtimeConformanceArtifactInventory, RuntimeConformanceFileAcceptancePort, verifyExactSupply, type RuntimeConformanceConfiguration } from "@chirality/runtime-core";
-import { assertCodexKeyringHomeHasNoPlaintextCredentials, prepareCodexContainment } from "./codex-containment.js";
+import { assertCodexKeyringHomeHasNoPlaintextCredentials, codexLoginConfigOverridesV2, prepareCodexContainment, prepareCodexContainmentV2 } from "./codex-containment.js";
 import { CodexTurnSession, type CodexSessionTransport } from "./codex-session.js";
+import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2 } from "./runtime-conformance-v2-admission.js";
+import type { HostedPackagedReleaseBasisV2 } from "./hosted-packaged-release-state.js";
+import { loadNativeAdmissionBinding } from "@chirality/native-admission";
+import { assertOwnedCompiledPathV2, codexEffectiveConfigDigestV2, retireAuthenticatedSupplierGroup } from "./codex-authenticated-transport.js";
+
+const CODEX_LOGIN_V1_CONFIG_OVERRIDES = Object.freeze(['cli_auth_credentials_store="keyring"', "features.plugins=false", "allow_login_shell=false", 'approval_policy="never"', "check_for_update_on_startup=false", "analytics.enabled=false", "feedback.enabled=false"] as const);
 
 export interface CodexLoginOptions {
   executablePath: string; canonicalRoot: string; codexHome: string; privateDirectory: string;
@@ -15,6 +21,9 @@ export interface CodexLoginOptions {
   startupAdmission?: CodexLoginStartupAdmission;
   /** @deprecated Temporary private-composition source compatibility. */
   purposeAdmission?: CodexLoginStartupAdmission;
+  releaseV2?: Readonly<HostedPackagedReleaseBasisV2>;
+  instanceV2?: RuntimeInstanceAdmissionInputV2;
+  instanceAdmissionV2?: RuntimeInstanceAdmissionV2;
   timeoutMs?: number;
 }
 export interface CodexLoginStartupAdmission {
@@ -22,9 +31,10 @@ export interface CodexLoginStartupAdmission {
   readonly evidence: "externally-accepted-native-login-purpose";
   readonly recordSha256: string;
   readonly ownerReference: string;
+  readonly instanceAdmissionV2?: RuntimeInstanceAdmissionV2;
 }
 const loginAdmissions = new WeakSet<object>();
-function loginBinding(options: Omit<CodexLoginOptions, "timeoutMs" | "startupAdmission" | "purposeRelease">, supplySha256: string, outerPolicyDigest: string): string {
+function loginBinding(options: Omit<CodexLoginOptions, "timeoutMs" | "startupAdmission" | "purposeRelease" | "releaseV2" | "instanceV2" | "instanceAdmissionV2">, supplySha256: string, outerPolicyDigest: string): string {
   return recordKey({ purpose: "trusted-login", ...options, supplySha256, outerPolicyDigest });
 }
 const LOGIN_LIMBS = Object.freeze(["exact-supplier", "keyring-backend", "plaintext-fallback-absent", "process-containment", "storage-isolation", "provider-network", "bounded-protocol-purpose", "retirement"] as const);
@@ -86,11 +96,28 @@ export async function validateCodexLoginStartup(options: Omit<CodexLoginOptions,
   if (!isContained(options.privateDirectory, options.codexHome) || options.privateDirectory === options.codexHome || !isContained(options.privateDirectory, options.executablePath)) throw unavailable("Login home and exact executable must be inside the dedicated private directory");
   await privateDirectory(options.privateDirectory); await privateDirectory(options.codexHome);
   await assertCodexKeyringHomeHasNoPlaintextCredentials(options.codexHome);
-  const { purposeRelease, ...startup } = options;
+  const { purposeRelease, releaseV2, instanceV2, instanceAdmissionV2, ...startup } = options;
+  if ([releaseV2, instanceV2, instanceAdmissionV2].some(value => value !== undefined)) {
+    if (!releaseV2 || !instanceV2 || !instanceAdmissionV2 || instanceV2.purposeRelease.purpose !== "login" || instanceV2.account !== null) throw unavailable("Complete v2 login admission is required");
+    const supply = await verifyExactSupply({ executablePath: options.executablePath });
+    if (supply.sha256 !== releaseV2.supportProfile.supplier.sha256 || Number(supply.identity.size) !== releaseV2.supportProfile.supplier.size || supply.version !== releaseV2.supportProfile.supplier.version) throw unavailable("Login supply differs from v2 release profile");
+    const containment = await prepareCodexContainmentV2({ ...startup, purpose: "trusted-login" });
+    try {
+      await assertOwnedCompiledPathV2(options.privateDirectory, containment.environment.TMPDIR, "directory");
+      await assertOwnedCompiledPathV2(containment.environment.TMPDIR, containment.sandboxProfilePath, "file");
+      const effectiveConfigDigest = codexEffectiveConfigDigestV2({ executablePath: supply.executablePath, cwd: options.canonicalRoot,
+        environment: { HOME: containment.environment.HOME, CODEX_HOME: containment.environment.CODEX_HOME, PATH: containment.environment.PATH, LANG: containment.environment.LANG }, configOverrides: codexLoginConfigOverridesV2(containment.config) });
+      if (containment.outerPolicyDigest !== instanceV2.outerPolicyDigest || effectiveConfigDigest !== instanceV2.effectiveConfigDigest) throw unavailable("Login compiled policy differs from v2 admission");
+      await revalidateRuntimeInstanceAdmissionV2(instanceV2, instanceAdmissionV2); await revalidateExactSupply(supply);
+      const result = Object.freeze({ bindingDigest: instanceV2.outerPolicyDigest, evidence: "externally-accepted-native-login-purpose" as const, recordSha256: releaseV2.login.recordSha256,
+        ownerReference: instanceV2.purposeRelease.ownerReference, instanceAdmissionV2 });
+      loginAdmissions.add(result); return result;
+    } finally { await containment.cleanup(); }
+  }
   if (!purposeRelease || purposeRelease.gateIdentity !== CODEX_LOGIN_PURPOSE_GATE_IDENTITY) throw unavailable("Externally accepted D36 login purpose release evidence is required");
   const supply = await verifyExactSupply({ executablePath: options.executablePath });
   if (supply.version === "0.0.0") throw unavailable("Development supplier cannot qualify trusted login");
-  const containment = await prepareCodexContainment({ ...startup, purpose: "trusted-login" });
+    const containment = await prepareCodexContainment({ ...startup, purpose: "trusted-login" });
   try {
     await containment.launchArguments(supply.executablePath); await revalidateExactSupply(supply);
     configureRuntimeConformanceArtifactInventory(purposeRelease.artifactInventory);
@@ -124,16 +151,20 @@ export class CodexLogin {
   private started = false;
   private closed = false;
   private expired = false;
+  private cancelled = false;
   private timer: ReturnType<typeof setTimeout> | undefined;
+  private closeFailure: unknown;
   private result: CodexLoginStatus | undefined;
+  private selectedModel: Readonly<{ model: string; defaultReasoningEffort: string }> | undefined;
+  private retainAuthenticatedSessionForModelCatalog = false;
   constructor(private readonly options: CodexLoginOptions) {
     const timeout = options.timeoutMs ?? 300000;
     if (!Number.isSafeInteger(timeout) || timeout < 1 || timeout > 900000) throw unavailable("Invalid bounded login timeout");
   }
   /** Explicit fixture seam, never emits exact-supply-login evidence. */
-  static controlledForTests(input: { transport: CodexSessionTransport; codexHome: string; timeoutMs?: number }): CodexLogin {
+  static controlledForTests(input: { transport: CodexSessionTransport; codexHome: string; timeoutMs?: number; retainAuthenticatedSessionForModelCatalog?: boolean }): CodexLogin {
     const instance = new CodexLogin({ executablePath: "", canonicalRoot: "", privateDirectory: "", codexHome: input.codexHome, providerNetworkConsent: { approvedBy: "", approvalReference: "" }, timeoutMs: input.timeoutMs });
-    instance.fixture = input.transport; return instance;
+    instance.fixture = input.transport; instance.retainAuthenticatedSessionForModelCatalog = input.retainAuthenticatedSessionForModelCatalog === true; return instance;
   }
   private get evidenceClass(): CodexLoginStatus["evidenceClass"] { return this.fixture ? "controlled-fixture" : "exact-supply-login"; }
   private async launch(): Promise<CodexSessionTransport> {
@@ -145,12 +176,45 @@ export class CodexLogin {
     await privateDirectory(this.options.privateDirectory); await privateDirectory(this.options.codexHome);
     await assertCodexKeyringHomeHasNoPlaintextCredentials(this.options.codexHome);
     const supply = await verifyExactSupply({ executablePath: this.options.executablePath });
-    const containment = await prepareCodexContainment({ canonicalRoot: this.options.canonicalRoot, privateDirectory: this.options.privateDirectory, codexHome: this.options.codexHome, providerNetworkConsent: consent, purpose: "trusted-login" });
+    const containment = this.options.instanceV2
+      ? await prepareCodexContainmentV2({ canonicalRoot: this.options.canonicalRoot, privateDirectory: this.options.privateDirectory, codexHome: this.options.codexHome, providerNetworkConsent: consent, purpose: "trusted-login" })
+      : await prepareCodexContainment({ canonicalRoot: this.options.canonicalRoot, privateDirectory: this.options.privateDirectory, codexHome: this.options.codexHome, providerNetworkConsent: consent, purpose: "trusted-login" });
     try {
-      this.requireQualifiedLoginPurpose(supply.sha256, containment.outerPolicyDigest);
+      await this.requireQualifiedLoginPurpose(supply.sha256, containment.outerPolicyDigest);
       const args = await containment.launchArguments(supply.executablePath);
       await revalidateExactSupply(supply);
-      const flags = ["-c", 'cli_auth_credentials_store="keyring"', "-c", "features.plugins=false", "-c", "allow_login_shell=false", "-c", 'approval_policy="never"', "-c", "check_for_update_on_startup=false", "-c", "analytics.enabled=false", "-c", "feedback.enabled=false"];
+      const flags = (this.options.instanceV2 ? codexLoginConfigOverridesV2(containment.config) : CODEX_LOGIN_V1_CONFIG_OVERRIDES).flatMap(value => ["-c", value]);
+      if (this.options.instanceV2) {
+        await assertOwnedCompiledPathV2(this.options.privateDirectory, containment.environment.TMPDIR, "directory");
+        await assertOwnedCompiledPathV2(containment.environment.TMPDIR, containment.sandboxProfilePath, "file");
+        if (JSON.stringify(args) !== JSON.stringify(["-f", containment.sandboxProfilePath, supply.executablePath])) throw unavailable("Login outer invocation changed");
+        const effectiveConfigDigest = codexEffectiveConfigDigestV2({ executablePath: supply.executablePath, cwd: this.options.canonicalRoot,
+          environment: { HOME: containment.environment.HOME, CODEX_HOME: containment.environment.CODEX_HOME, PATH: containment.environment.PATH, LANG: containment.environment.LANG }, configOverrides: codexLoginConfigOverridesV2(containment.config) });
+        if (containment.outerPolicyDigest !== this.options.instanceV2.outerPolicyDigest || effectiveConfigDigest !== this.options.instanceV2.effectiveConfigDigest) throw unavailable("Login effective configuration changed");
+        const native = loadNativeAdmissionBinding(true, this.options.instanceV2.nativeAddonPath);
+        if (native.state !== "available") throw unavailable("Native grouped login lifecycle unavailable");
+        await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2!);
+        if (JSON.stringify(await containment.launchArguments(supply.executablePath)) !== JSON.stringify(args)) throw unavailable("Login outer invocation changed");
+        const current = this.options.instanceV2;
+        await revalidateHostedAccountAuthorityV2(current.hostAuthority, { purpose: "login", projectId: current.projectId, manifestHash: current.manifestHash, canonicalRoot: current.canonicalRoot, account: null, consentDigest: current.consent.digest });
+        if (this.closed || this.expired) throw unavailable("Login closed during preparation");
+        const child = native.value.spawnGroupedSupplier("/usr/bin/sandbox-exec", [...args, "app-server", ...flags], randomBytes(32), { cwd: this.options.canonicalRoot, environment: containment.environment, processGroup: true });
+        if (child.state !== "available") throw unavailable("Contained login process could not start");
+        let closing: Promise<void> | undefined;
+        const close = () => closing ??= (async () => {
+          let outcome;
+          try { outcome = await retireAuthenticatedSupplierGroup(child.value); }
+          catch (cause) {
+            const error = new RuntimeError("ENGINE_UNAVAILABLE", "Login group retirement is unproven; containment allocation retained", 503,
+              { reason: "LOGIN_RETIREMENT_UNVERIFIED", retainedResources: [containment.environment.TMPDIR, containment.sandboxProfilePath], pid: child.value.pid });
+            error.cause = new AggregateError([cause], "Login retirement failed; cleanup is unsafe"); throw error;
+          }
+          const failures: unknown[] = outcome.signalFailures.map(value => value.cause);
+          try { await containment.cleanup(); } catch (error) { failures.push(error); }
+          if (failures.length) throw new AggregateError(failures, "Login retirement and cleanup diagnostics");
+        })();
+        return { stdin: child.value.stdin, stdout: child.value.stdout, close };
+      }
       const child = spawn("/usr/bin/sandbox-exec", [...args, ...flags], { env: containment.environment, cwd: this.options.canonicalRoot, shell: false, detached: true, stdio: "pipe" });
       const closed = new Promise<void>(resolve => child.once("close", () => resolve()));
       const signal = (value: NodeJS.Signals) => { if (child.pid) { try { process.kill(-child.pid, value); } catch (error) { if ((error as NodeJS.ErrnoException).code !== "ESRCH") throw error; } } };
@@ -167,7 +231,7 @@ export class CodexLogin {
       try { await new Promise<void>((resolve, reject) => { child.once("spawn", resolve); child.once("error", reject); }); }
       catch { await close(); throw unavailable("Contained login process could not start"); }
       return { stdin: child.stdin, stdout: child.stdout, close };
-    } catch (error) { await containment.cleanup(); throw error; }
+    } catch (error) { try { await containment.cleanup(); } catch (cleanup) { throw new AggregateError([error, cleanup], "Login preparation and cleanup failed"); } throw error; }
   }
   async startLogin(): Promise<{ loginId: string; authUrl: string }> {
     if (this.started || this.closed) throw unavailable("Login component is single-use"); this.started = true;
@@ -175,14 +239,56 @@ export class CodexLogin {
       const transport = await this.launch();
       if (this.closed) { await transport.close(); throw unavailable("Login was closed during startup"); }
       this.actor = new CodexTurnSession({ transport, purpose: "login" });
-      this.timer = setTimeout(() => { this.expired = true; void this.close(); }, this.options.timeoutMs ?? 300000);
+      this.timer = setTimeout(() => { this.expired = true; void this.close().catch(error => { this.closeFailure = error; }); }, this.options.timeoutMs ?? 300000);
       await this.actor.initialize();
+      if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
+      if (this.closed || this.expired) throw unavailable("Login closed before account effect");
       return await this.actor.loginStart();
-    } catch (error) { await this.close(); throw error; }
+    } catch (error) { try { await this.close(); } catch (cleanup) { throw new AggregateError([error, cleanup], "Login startup and retirement failed"); } throw error; }
   }
-  private requireQualifiedLoginPurpose(supplySha256: string, outerPolicyDigest: string): void {
+  async resolveDefaultModel(): Promise<Readonly<{ model: string; defaultReasoningEffort: string }>> {
+    if (this.selectedModel) return this.selectedModel;
+    if (!this.actor || this.closed) throw unavailable("Authenticated model catalog is unavailable");
+    try {
+    const cursors = new Set<string>(), models = new Map<string, { hidden: boolean; isDefault: boolean; defaultReasoningEffort: string }>();
+    let cursor: string | undefined;
+    for (let pageIndex = 0; pageIndex < 64; pageIndex++) {
+      if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
+      if (this.closed || this.expired) throw unavailable("Model catalog closed before request");
+      const page = await this.actor.listModelsPage(cursor);
+      for (const item of page.data) {
+        const previous = models.get(item.model);
+        if (previous && (previous.hidden !== item.hidden || previous.isDefault !== item.isDefault || previous.defaultReasoningEffort !== item.defaultReasoningEffort)) throw unavailable("Conflicting model catalog record");
+        if (previous) throw unavailable("Duplicate model catalog record");
+        models.set(item.model, { hidden: item.hidden, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort });
+      }
+      if (page.nextCursor === null) {
+        const defaults = [...models].filter(([, value]) => value.isDefault && !value.hidden);
+        if (defaults.length !== 1) throw unavailable("Model catalog has no unique usable default");
+        if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
+        if (this.closed || this.expired) throw unavailable("Model catalog closed before selection");
+        const selected = Object.freeze({ model: defaults[0]![0], defaultReasoningEffort: defaults[0]![1].defaultReasoningEffort });
+        await this.close();
+        if (this.expired || this.cancelled) throw unavailable("Model catalog cancelled or expired during retirement");
+        this.selectedModel = selected; return selected;
+      }
+      if (page.nextCursor === cursor || cursors.has(page.nextCursor)) throw unavailable("Model catalog cursor did not make progress");
+      cursors.add(page.nextCursor); cursor = page.nextCursor;
+    }
+    throw unavailable("Model catalog pagination exceeded its bound");
+    } catch (error) {
+      try { await this.close(); } catch (cleanup) { throw new AggregateError([error, cleanup], "Model catalog and retirement failed"); }
+      throw error;
+    }
+  }
+  private async requireQualifiedLoginPurpose(supplySha256: string, outerPolicyDigest: string): Promise<void> {
     const admission = this.options.startupAdmission ?? this.options.purposeAdmission;
-    const { timeoutMs: _timeoutMs, startupAdmission: _startupAdmission, purposeAdmission: _purposeAdmission, purposeRelease: _purposeRelease, ...binding } = this.options;
+    if (this.options.instanceV2) {
+      if (!this.options.instanceAdmissionV2 || admission?.instanceAdmissionV2 !== this.options.instanceAdmissionV2 || this.options.instanceV2.outerPolicyDigest !== outerPolicyDigest
+        || this.options.releaseV2?.supportProfile.supplier.sha256 !== supplySha256) throw unavailable("Trusted v2 login admission is unavailable");
+      await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2); return;
+    }
+    const { timeoutMs: _timeoutMs, startupAdmission: _startupAdmission, purposeAdmission: _purposeAdmission, purposeRelease: _purposeRelease, releaseV2: _releaseV2, instanceV2: _instanceV2, instanceAdmissionV2: _instanceAdmissionV2, ...binding } = this.options;
     if (!admission || !loginAdmissions.has(admission) || admission.evidence !== "externally-accepted-native-login-purpose"
       || admission.bindingDigest !== loginBinding(binding, supplySha256, outerPolicyDigest)
       || !digest(admission.recordSha256) || !admission.ownerReference.trim()) throw unavailable("Trusted keyring login purpose lacks accepted release evidence");
@@ -198,26 +304,31 @@ export class CodexLogin {
     if (!current || this.expired || this.closed) return this.projectStatus({ state: "failed" });
     if (current.state !== "completed") { if (current.state === "failed") await this.close(); return this.projectStatus(current); }
     try {
+      if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
       const account = await this.actor!.accountRead();
       // Cancellation, timeout or close during account/read must not revive the ceremony.
       if (this.closed || this.expired) return this.projectStatus({ state: "failed", loginId: current.loginId });
       if (!account.hasAccount) throw unavailable("Provider completion has no account");
+      if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
       if (!this.fixture) await assertCodexKeyringHomeHasNoPlaintextCredentials(this.options.codexHome);
       this.result = this.projectStatus({ state: "completed", loginId: current.loginId, hasAccount: true });
-      clearTimeout(this.timer); await this.close(); return validateHostedLoginStatus(this.result);
+      if (!this.options.instanceV2 && !this.retainAuthenticatedSessionForModelCatalog) clearTimeout(this.timer);
+      if (!this.options.instanceV2 && !this.retainAuthenticatedSessionForModelCatalog) await this.close();
+      return validateHostedLoginStatus(this.result);
     } catch {
       this.result ??= this.projectStatus({ state: "failed", loginId: current.loginId });
       await this.close(); return validateHostedLoginStatus(this.result);
     }
   }
   async cancel(): Promise<void> {
-    this.closed = true;
+    this.cancelled = true; this.closed = true;
     try { if (this.actor?.loginStatus().state === "pending") await this.actor.loginCancel(); }
     finally { await this.close(); }
   }
   async close(): Promise<void> {
     this.closed = true; clearTimeout(this.timer);
     if (this.actor) await this.actor.close(); else if (this.fixture) await this.fixture.close();
+    if (this.closeFailure) throw this.closeFailure;
     // Persistent managed-auth storage remains supplier-owned; this component never reads credentials.
   }
 }

@@ -139,6 +139,24 @@ const expectedPolicy = { filesystem: { "/usr": "read", "/private/tmp": "write", 
 const expectedNativeRoles = { digest: "d".repeat(64), configOverrides: ["agents.enabled=true", "features.multi_agent=true", "features.multi_agent_v2=false", "agents.max_depth=2", "agents.HELP_HUMAN.description=\"Help\"", "agents.HELP_HUMAN.config_file=\"/private/roles/HELP_HUMAN.toml\"", "agents.HELPS_HUMANS.description=\"Manage\"", "agents.HELPS_HUMANS.config_file=\"/private/roles/HELPS_HUMANS.toml\"", "agents.WORKING_ITEMS.description=\"Work\"", "agents.WORKING_ITEMS.config_file=\"/private/roles/WORKING_ITEMS.toml\"", "agents.TASK.description=\"Task\"", "agents.TASK.config_file=\"/private/roles/TASK.toml\""] } as const;
 const turn = { threadId: "thread1", text: "fixture work", model: "fixture-model" };
 describe("persistent known-method Codex actor (controlled provider)", () => {
+  it("validates one private model/list page through the session request lifecycle", async () => {
+    const stdin = new PassThrough(), stdout = new PassThrough(), requests: unknown[] = [];
+    const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+    stdin.on("data", bytes => {
+      for (const line of bytes.toString().trim().split("\n")) {
+        const request = JSON.parse(line); requests.push(request);
+        if (request.method === "initialize") send({ id: request.id, result: {} });
+        else if (request.method === "model/list") send({ id: request.id, result: { data: [{ model: "gpt-default", hidden: false, isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: [{ reasoningEffort: "high", description: "High" }], displayName: "Catalog metadata" }], nextCursor: null } });
+      }
+    });
+    const session = new CodexTurnSession({ purpose: "login", transport: { stdin, stdout, async close() {} } });
+    try {
+      await session.initialize();
+      expect(await session.listModelsPage()).toEqual({ data: [{ model: "gpt-default", hidden: false, isDefault: true, defaultReasoningEffort: "high" }], nextCursor: null });
+      expect(requests).toContainEqual(expect.objectContaining({ method: "model/list", params: { limit: 100 } }));
+    } finally { await session.close(); stdin.destroy(); stdout.destroy(); }
+  });
+
   it("initializes, sanitizes account, streams text and accepts only an actual terminal", async () => {
     const f = fixture();
     try {

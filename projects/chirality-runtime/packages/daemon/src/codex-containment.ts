@@ -3,13 +3,23 @@ import { constants } from 'node:fs';
 import { mkdtemp, readdir, realpath, rm, stat, lstat, writeFile, open } from 'node:fs/promises';
 import { join, relative, isAbsolute, dirname, resolve } from 'node:path';
 import { CHIRALITY_ROLE_NAMES } from '@chirality/runtime-contracts';
-import { runtimeConformanceInstructionBundleDigest, type RuntimeConformanceArtifactInventorySelection } from '@chirality/runtime-core';
+import { compareRuntimeUtf8V2, runtimeConformanceInstructionBundleDigest, verifyPackagedRuntimeBasisV2, type RuntimeConformanceArtifactInventorySelection } from '@chirality/runtime-core';
+import { digestCodexPolicyInstanceV2, inspectCodexPolicyInstanceV2, type CodexPolicyInstanceV2, type RuntimePackagedPolicyBasisV2 } from './runtime-conformance-v2-admission.js';
 
 export interface TrustedRuntimeReadRootBinding {
   path: string;
   readPaths: readonly string[];
   contentDigest: string;
   artifactInventory: RuntimeConformanceArtifactInventorySelection;
+}
+export interface TrustedRuntimeReadRootBindingV2 {
+  path: string;
+  readPaths: readonly string[];
+  contentDigest: string;
+  artifactInventory: RuntimePackagedPolicyBasisV2;
+}
+export interface CodexContainmentOptionsV2 extends Omit<CodexContainmentOptions, 'trustedRuntimeReadRoots' | 'purpose'> {
+  trustedRuntimeReadRoots: readonly TrustedRuntimeReadRootBindingV2[];
 }
 
 export interface CodexContainmentOptions {
@@ -66,7 +76,7 @@ export async function assertTrustedRuntimeReadRoot(binding:TrustedRuntimeReadRoo
  * Exact supply verification and trusted operator consent verification belong to the caller.
  * Provider-enabled network is inherited by subprocesses: Codex config below is not a
  * mechanism-proven subprocess network boundary in that mode. */
-export async function prepareCodexContainment(options: CodexContainmentOptions) {
+async function prepareCodexContainmentVersion(options: CodexContainmentOptions | (CodexContainmentOptionsV2 & { purpose: 'trusted-supplier' }), identityVersion: 1 | 2) {
   if (options.purpose !== undefined && options.purpose !== 'worker' && options.purpose !== 'trusted-login' && options.purpose !== 'trusted-supplier') throw new Error('Unsupported containment purpose');
   if (process.platform !== 'darwin') throw new Error('Codex containment requires macOS sandbox-exec');
   await stat('/usr/bin/sandbox-exec');
@@ -88,14 +98,15 @@ export async function prepareCodexContainment(options: CodexContainmentOptions) 
   if (consent && (!consent.approvedBy.trim() || !consent.approvalReference.trim())) {
     throw new Error('Provider network requires an explicit trusted operator consent record');
   }
-  const trustedReads = [...(options.trustedRuntimeReadRoots ?? [])].sort((left, right) => left.path.localeCompare(right.path));
+  const trustedReads = [...(options.trustedRuntimeReadRoots ?? [])].sort((left, right) => identityVersion === 2 ? compareRuntimeUtf8V2(left.path, right.path) : left.path.localeCompare(right.path));
   for (const entry of trustedReads) {
     if (!entry || !/^[a-f0-9]{64}$/.test(entry.contentDigest) || !isAbsolute(entry.path) || resolve(entry.path) !== entry.path
       || await realpath(entry.path) !== entry.path || contained(root, entry.path) || contained(entry.path, root)
       || contained(privateDirectory, entry.path) || contained(entry.path, privateDirectory)) throw new Error('Trusted Runtime read root is not a disjoint conformance-bound path');
     const metadata = await stat(entry.path);
     if ((!metadata.isDirectory() && !metadata.isFile()) || (metadata.mode & 0o022) !== 0) throw new Error('Trusted Runtime read root must be a stable non-publicly-writable file or directory');
-    await assertTrustedRuntimeReadRoot(entry);
+    if (identityVersion === 2) await assertTrustedRuntimeReadRootV2(entry as TrustedRuntimeReadRootBindingV2);
+    else await assertTrustedRuntimeReadRoot(entry as TrustedRuntimeReadRootBinding);
   }
   const sessionDirectory = await mkdtemp(join(privateDirectory, 'containment-'));
   const sandboxProfilePath = join(sessionDirectory, 'launch.sb');
@@ -110,6 +121,8 @@ export async function prepareCodexContainment(options: CodexContainmentOptions) 
   ].join('\n');
   try { await writeFile(sandboxProfilePath, profile, { mode: 0o600, flag: 'wx' }); }
   catch (error) { await rm(sessionDirectory, { recursive: true, force: true }); throw error; }
+  const preparedDirectory = identityVersion === 2 ? await lstat(sessionDirectory, { bigint: true }) : undefined;
+  const preparedProfile = identityVersion === 2 ? await lstat(sandboxProfilePath, { bigint: true }) : undefined;
   const config = {
     sandbox_mode: 'workspace-write',
     sandbox_workspace_write: { writable_roots: [root], network_access: false, exclude_slash_tmp: true, exclude_tmpdir_env_var: true },
@@ -123,7 +136,7 @@ export async function prepareCodexContainment(options: CodexContainmentOptions) 
     feedback: { enabled: false },
   } as const;
   const outerPolicyDigest = createHash('sha256').update(JSON.stringify({
-    schema: 'chirality-codex-outer-policy/v1', purpose: options.purpose ?? 'worker', root, privateDirectory, codexHome,
+    schema: `chirality-codex-outer-policy/v${identityVersion}`, purpose: options.purpose ?? 'worker', root, privateDirectory, codexHome,
     trustedReads, profile, config, providerNetworkEnabled: Boolean(consent)
   })).digest('hex');
   return {
@@ -131,6 +144,12 @@ export async function prepareCodexContainment(options: CodexContainmentOptions) 
     args: ['-f', sandboxProfilePath],
     /** Caller verifies the supply digest/signature before calling this path gate. */
     launchArguments: async (verifiedExecutablePath: string): Promise<string[]> => {
+      if (identityVersion === 2) {
+        const directory = await lstat(sessionDirectory, { bigint: true }), profile = await lstat(sandboxProfilePath, { bigint: true });
+        if (await realpath(sessionDirectory) !== sessionDirectory || await realpath(sandboxProfilePath) !== sandboxProfilePath
+          || ['dev', 'ino', 'mode', 'uid'].some(key => directory[key as 'dev'] !== preparedDirectory![key as 'dev'])
+          || ['dev', 'ino', 'mode', 'uid', 'size', 'mtimeNs', 'ctimeNs'].some(key => profile[key as 'dev'] !== preparedProfile![key as 'dev'])) throw new Error('Prepared outer allocation changed');
+      }
       const executable = await realpath(verifiedExecutablePath);
       if (executable !== verifiedExecutablePath || (!contained(root, executable) && !contained(privateDirectory, executable)) || !(await stat(executable)).isFile()) {
         throw new Error('Verified Codex executable must be canonical and within the project or private directory');
@@ -149,6 +168,20 @@ export async function prepareCodexContainment(options: CodexContainmentOptions) 
     cleanup: async () => { await rm(sessionDirectory, { recursive: true, force: true }); },
   };
 }
+/** Ordered projection of the closed login compiler config; the same values are
+ * hashed and passed to App Server. Arrays remain TOML values, not path aliases. */
+export function codexLoginConfigOverridesV2(config: Awaited<ReturnType<typeof prepareCodexContainmentV2>>['config']): readonly string[] {
+  const entries: string[] = [];
+  const visit = (value: unknown, key: string): void => {
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      for (const [name, item] of Object.entries(value)) visit(item, key ? `${key}.${name}` : name);
+    } else entries.push(`${key}=${JSON.stringify(value)}`);
+  };
+  visit(config, '');
+  return Object.freeze(entries);
+}
+export function prepareCodexContainment(options: CodexContainmentOptions) { return prepareCodexContainmentVersion(options, 1); }
+export function prepareCodexContainmentV2(options: CodexContainmentOptions) { return prepareCodexContainmentVersion(options, 2); }
 
 /** Reject supplier plaintext credential persistence in its private keyring home.
  * Call before launch and again after login/status transitions. */
@@ -166,6 +199,9 @@ export async function assertCodexKeyringHomeHasNoPlaintextCredentials(codexHome:
  * file effects still require the separately bound native tool policy. */
 export async function prepareCodexTrustedSupplierContainment(options: Omit<CodexContainmentOptions, 'purpose'>) {
   return prepareCodexContainment({ ...options, purpose: 'trusted-supplier' });
+}
+export async function prepareCodexTrustedSupplierContainmentV2(options: CodexContainmentOptionsV2) {
+  return prepareCodexContainmentVersion({ ...options, purpose: 'trusted-supplier' }, 2);
 }
 
 
@@ -409,4 +445,97 @@ export async function prepareCodexNativePolicy(options: CodexNativePolicyOptions
     },
     cleanup: async () => { await rm(scratchDirectory, { recursive: true, force: true }); },
   };
+}
+
+export interface CodexNativePolicyOptionsV2 extends Omit<CodexNativePolicyOptions, 'trustedRuntimeReadRoots' | 'purpose'> {
+  purpose: 'worker';
+  executablePath: string;
+  nativeAddonPath: string;
+  trustedRuntimeReadRoots: readonly TrustedRuntimeReadRootBindingV2[];
+  toolRuntime: { codexSelfExecutablePath: string; requiresSandboxedFileSystem: true; requiresSandboxedFileStreaming: true };
+}
+
+async function assertTrustedRuntimeReadRootV2(binding: TrustedRuntimeReadRootBindingV2): Promise<void> {
+  const inventory = binding.artifactInventory;
+  if (!inventory || inventory.schema !== 'chirality-runtime-packaged-basis/v2' || binding.path !== join(inventory.resourcesRoot, 'instruction-root')
+    || binding.readPaths.length < 1 || binding.readPaths.length > 32 || !binding.readPaths.every(path => path === binding.path || contained(binding.path, path))) throw new Error('Trusted Runtime v2 read root is outside its packaged basis');
+  const verified = await verifyPackagedRuntimeBasisV2({ resourcesRoot: inventory.resourcesRoot });
+  if (verified.inventoryPath !== inventory.inventoryPath || verified.payloadManifestPath !== inventory.payloadManifestPath
+    || verified.inventorySha256 !== inventory.outerInventorySha256 || verified.payloadDigest !== inventory.payloadDigest) throw new Error('Trusted Runtime v2 packaged basis changed');
+  const records = verified.payload.entries.filter((entry): entry is Extract<typeof entry, {type:'file'}> => entry.type === 'file' && entry.relativePath.startsWith('instruction-root/'))
+    .map(entry => ({ path: entry.relativePath.slice('instruction-root/'.length), sha256: entry.sha256, size: entry.size }));
+  const observed = createHash('sha256').update(`${JSON.stringify(records)}\n`).digest('hex');
+  if (observed !== binding.contentDigest) throw new Error('Trusted Runtime v2 instruction content changed');
+}
+export async function bindTrustedRuntimeReadRootV2(path: string, artifactInventory: RuntimePackagedPolicyBasisV2): Promise<TrustedRuntimeReadRootBindingV2> {
+  const verified = await verifyPackagedRuntimeBasisV2({ resourcesRoot: artifactInventory.resourcesRoot });
+  if (path !== join(verified.resourcesRoot, 'instruction-root') || verified.inventoryPath !== artifactInventory.inventoryPath || verified.payloadManifestPath !== artifactInventory.payloadManifestPath
+    || verified.inventorySha256 !== artifactInventory.outerInventorySha256 || verified.payloadDigest !== artifactInventory.payloadDigest) throw new Error('Trusted Runtime v2 packaged basis changed');
+  const records = verified.payload.entries.filter((entry): entry is Extract<typeof entry, {type:'file'}> => entry.type === 'file' && entry.relativePath.startsWith('instruction-root/'))
+    .map(entry => ({ path: entry.relativePath.slice('instruction-root/'.length), sha256: entry.sha256, size: entry.size }));
+  const binding = Object.freeze({ path, readPaths: Object.freeze([path]), contentDigest: createHash('sha256').update(`${JSON.stringify(records)}\n`).digest('hex'), artifactInventory: structuredClone(artifactInventory) });
+  await assertTrustedRuntimeReadRootV2(binding);
+  return binding;
+}
+
+type CodexNativePolicyProjectionBase = Pick<Awaited<ReturnType<typeof prepareCodexNativePolicy>>, 'immutableFiles' | 'expectedPermissions' | 'approvalPolicy' | 'configOverrides'>;
+
+/** Deterministic native-10 projection used after the filesystem compiler has
+ * established its base permissions and immutable-file observations. */
+export function compileCodexNativePolicyProjectionV2(policyValue: CodexPolicyInstanceV2, base: CodexNativePolicyProjectionBase) {
+  const policyInstance = inspectCodexPolicyInstanceV2(policyValue);
+  const entries = Object.entries(base.expectedPermissions.filesystem).map(([path, permission]) => [path, permission] as [string, typeof permission]);
+  for (const binding of policyInstance.trustedRuntimeReadRoots) for (const path of binding.readPaths) entries.push([path, 'read']);
+  entries.sort((left, right) => compareRuntimeUtf8V2(left[0], right[0]));
+  if (entries.some((entry, index) => index > 0 && entries[index - 1]![0] === entry[0])) throw new Error('Native v2 permission mapping collides');
+  const expectedPermissions = { filesystem: Object.fromEntries(entries), network: structuredClone(base.expectedPermissions.network) };
+  const nativeIdentity = { version: 10, policyInstance, immutableFiles: structuredClone(base.immutableFiles), expectedPermissions, approvalPolicy: base.approvalPolicy };
+  const policyDigest = createHash('sha256').update(`${JSON.stringify(nativeIdentity)}\n`).digest('hex');
+  const profileId = `chirality_${policyDigest.slice(0, 24)}`;
+  const inlineToml = (value: unknown): string => {
+    if (typeof value === 'string' || typeof value === 'boolean') return JSON.stringify(value);
+    if (Array.isArray(value)) return `[${value.map(inlineToml).join(',')}]`;
+    if (value && typeof value === 'object') return `{${Object.entries(value).map(([key, item]) => `${JSON.stringify(key)}=${inlineToml(item)}`).join(',')}}`;
+    throw new Error('Unsupported native configuration value');
+  };
+  const configOverrides = [...base.configOverrides];
+  const permissionIndex = configOverrides.findIndex(value => value.startsWith('permissions='));
+  if (permissionIndex < 0) throw new Error('Native v2 permissions configuration is unavailable');
+  configOverrides[permissionIndex] = `permissions=${inlineToml({ [profileId]: expectedPermissions })}`;
+  return Object.freeze({ profileId, permissionProfile: profileId, policyDigest, policyInstance, policyInstanceDigest: digestCodexPolicyInstanceV2(policyInstance),
+    expectedPermissions: Object.freeze(expectedPermissions), configOverrides: Object.freeze(configOverrides), args: Object.freeze(configOverrides.flatMap(value => ['-c', value])), configToml: `${configOverrides.join('\n')}\n` });
+}
+
+/** Additive native-10 compiler. The v1 compiler above remains byte-for-byte compatible. */
+export async function prepareCodexNativePolicyV2(options: CodexNativePolicyOptionsV2) {
+  const ordered = (values: readonly string[]) => values.every((value, index) => index === 0 || compareRuntimeUtf8V2(values[index - 1]!, value) < 0);
+  if (options.purpose !== 'worker' || options.toolRuntime.codexSelfExecutablePath !== options.executablePath
+    || options.toolRuntime.requiresSandboxedFileSystem !== true || options.toolRuntime.requiresSandboxedFileStreaming !== true
+    || !ordered(options.immutableReadRoots) || !ordered(options.protectedPaths) || !ordered(options.readOnlyProjectPaths ?? [])
+    || options.trustedRuntimeReadRoots.length !== 1 || !ordered(options.trustedRuntimeReadRoots[0]!.readPaths)) throw new Error('Native v2 policy inputs are not exact and canonically ordered');
+  for (const binding of options.trustedRuntimeReadRoots) await assertTrustedRuntimeReadRootV2(binding);
+  const legacy = await prepareCodexNativePolicy({
+    purpose: 'worker', canonicalRoot: options.canonicalRoot, privateDirectory: options.privateDirectory, codexHome: options.codexHome,
+    providerNetworkConsent: options.providerNetworkConsent, commandNetworkPosture: options.commandNetworkPosture,
+    immutableReadRoots: [...options.immutableReadRoots], protectedPaths: [...options.protectedPaths], readOnlyProjectPaths: options.readOnlyProjectPaths === undefined ? undefined : [...options.readOnlyProjectPaths],
+    nativeRoleConfiguration: options.nativeRoleConfiguration
+  });
+  try {
+    const policyInstance = inspectCodexPolicyInstanceV2({
+      schema: 'chirality-codex-policy-instance/v2', outerPurpose: 'trusted-supplier', nativePurpose: 'worker',
+      canonicalRoot: options.canonicalRoot, privateDirectory: options.privateDirectory, codexHome: options.codexHome,
+      executablePath: options.executablePath, nativeAddonPath: options.nativeAddonPath,
+      providerNetworkConsent: structuredClone(options.providerNetworkConsent!), commandNetworkPosture: options.commandNetworkPosture ?? 'off',
+      immutableReadRoots: [...options.immutableReadRoots], protectedPaths: [...options.protectedPaths], readOnlyProjectPaths: [...(options.readOnlyProjectPaths ?? [])],
+      trustedRuntimeReadRoots: structuredClone(options.trustedRuntimeReadRoots), toolRuntime: structuredClone(options.toolRuntime),
+      nativeRoleConfiguration: options.nativeRoleConfiguration === undefined ? null : structuredClone(options.nativeRoleConfiguration)
+    });
+    const scratchIdentity = await lstat(legacy.scratchDirectory, { bigint: true });
+    return Object.freeze({ ...legacy, ...compileCodexNativePolicyProjectionV2(policyInstance, legacy),
+      async revalidateScratch(): Promise<void> {
+        const current = await lstat(legacy.scratchDirectory, { bigint: true });
+        if (await realpath(legacy.scratchDirectory) !== legacy.scratchDirectory || ['dev', 'ino', 'mode', 'uid'].some(key => current[key as 'dev'] !== scratchIdentity[key as 'dev'])) throw new Error('Prepared native allocation changed');
+      }
+    });
+  } catch (error) { await legacy.cleanup(); throw error; }
 }

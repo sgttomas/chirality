@@ -103,6 +103,7 @@ export async function readHostedPrivateBootstrapConfiguration(input: HostedPriva
     const record = parsed as { schema?: unknown; privateComposition?: unknown };
     if (record.schema !== "chirality.hosted-private-runtime/v1") throw unavailable("PRIVATE_CONFIG_FILE_INVALID");
     const privateComposition = validateHostedPrivateCompositionOptions(record.privateComposition);
+    if (privateComposition.releaseV2 !== undefined || !privateComposition.conformance || !privateComposition.loginPurposeRelease) throw unavailable("PRIVATE_CONFIG_FILE_INVALID");
     const packaged = input.packaged;
     if (privateComposition.supplierExecutablePath !== packaged.supplierExecutablePath || privateComposition.nativeAddonPath !== packaged.nativeAddonPath
       || privateComposition.instructionRoot !== packaged.instructionRoot || !sameInventory(privateComposition.conformance.artifactInventory, packaged.artifactInventory)
@@ -119,8 +120,13 @@ async function compose(input: HostedPrivateBootstrapHostInput, adapters: HostedP
   const trusted = input.privateComposition;
   if (trusted === undefined) return adapters.startHost(input.bootstrap);
   if (input.bootstrap.runtimeDirectory !== trusted.runtimeDirectory || input.bootstrap.instructionRoot !== trusted.instructionRoot
-    || input.bootstrap.nativeAddonPath !== trusted.nativeAddonPath || input.bootstrap.artifactInventory === undefined
-    || !sameInventory(input.bootstrap.artifactInventory, trusted.conformance.artifactInventory)) throw unavailable("BOOTSTRAP_PRIVATE_CONFIGURATION_MISMATCH");
+    || input.bootstrap.nativeAddonPath !== trusted.nativeAddonPath) throw unavailable("BOOTSTRAP_PRIVATE_CONFIGURATION_MISMATCH");
+  if (trusted.releaseV2 === undefined) {
+    if (!trusted.conformance || !trusted.loginPurposeRelease || input.bootstrap.artifactInventory === undefined
+      || !sameInventory(input.bootstrap.artifactInventory, trusted.conformance.artifactInventory)) throw unavailable("BOOTSTRAP_PRIVATE_CONFIGURATION_MISMATCH");
+  } else if (trusted.conformance !== undefined || trusted.loginPurposeRelease !== undefined || input.bootstrap.artifactInventory !== undefined) {
+    throw unavailable("BOOTSTRAP_PRIVATE_CONFIGURATION_MISMATCH");
+  }
   const bindings = await adapters.createBindings(trusted);
   try { return await adapters.startHost(input.bootstrap, bindings); }
   catch (error) {

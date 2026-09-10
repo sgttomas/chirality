@@ -6,6 +6,8 @@ import { CodexTurnSession, type CodexSessionTransport, type CodexDynamicTool, ty
 import { SupplierAuthorityController } from "./supplier-authority-controller.js";
 import type { AuthenticatedCodexCandidate } from "./codex-authenticated-transport.js";
 import type { CodexCandidateLauncherFactory } from "./codex-admitted-launcher.js";
+import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2 } from "./runtime-conformance-v2-admission.js";
+import type { HostedPackagedReleaseBasisV2 } from "./hosted-packaged-release-state.js";
 
 import { ManagerMailbox, type ManagerMessage } from "./codex-manager.js";
 
@@ -13,10 +15,13 @@ export interface CodexSupervisorOptions {
   conformance?: RuntimeConformanceConfiguration;
   executablePath: string;
   model: string;
+  reasoningEffort?: string;
   identity: WorkerContinuity;
   codexHome: string;
   privateDirectory: string;
-  managedAuth: HostedManagedAuth;
+  managedAuth?: HostedManagedAuth;
+  /** V2 storage backend policy. Account identity remains bound by the admitted same-actor authority. */
+  accountStorageBackend?: "keyring";
   providerNetworkConsent: { approvedBy: string; approvalReference: string };
   requestTimeoutMs?: number;
   turnTimeoutMs?: number;
@@ -34,9 +39,10 @@ export interface CodexSupervisorOptions {
 export interface HostedCodexSupervisorOptions extends Omit<CodexSupervisorOptions, "identity" | "supplierAuthority" | "candidateLauncherFactory"> {
   canonicalRoot: string;
   candidateLauncherFactory: CodexCandidateLauncherFactory;
-  conformance: RuntimeConformanceConfiguration;
+  conformance?: RuntimeConformanceConfiguration;
   configDigest: string;
   consentVersion: string;
+  runtimeV2?: { releaseBasis: Readonly<HostedPackagedReleaseBasisV2>; instanceInput: RuntimeInstanceAdmissionInputV2; instanceAdmission: RuntimeInstanceAdmissionV2 };
 }
 export interface HostedCodexSupervisorAdmission {
   supervisor: CodexSupervisor;
@@ -55,7 +61,7 @@ type NativePermissions = Awaited<ReturnType<typeof prepareCodexNativePolicy>>["e
 export function codexRuntimeConformanceConfigDigest(options: CodexSupervisorOptions, policy: { configToml: string; expectedPermissions: NativePermissions }): string {
   return recordKey({ model: options.model, executablePath: options.executablePath, identity: options.identity,
             codexHome: options.codexHome, privateDirectory: options.privateDirectory, protectedPaths: options.protectedPaths, readOnlyProjectPaths: options.readOnlyProjectPaths,
-            managedAuth: validateHostedManagedAuth(options.managedAuth), providerNetworkConsent: options.providerNetworkConsent,
+            ...(options.accountStorageBackend ? { accountStorage: { backend: options.accountStorageBackend } } : { managedAuth: validateHostedManagedAuth(options.managedAuth!) }), providerNetworkConsent: options.providerNetworkConsent,
             commandNetworkPosture: options.commandNetworkPosture ?? "off", requestTimeoutMs: options.requestTimeoutMs ?? 10000,
             supportedPermissionMode: options.supportedPermissionMode ?? "workspaceWrite",
             turnTimeoutMs: options.turnTimeoutMs ?? 120000, maxWorkers: options.maxWorkers ?? 16,
@@ -98,6 +104,12 @@ class RuntimeToolMailbox {
   finish(error: Error = unavailable("Runtime tool worker ended")): void { this.terminal = error; for (const callback of this.callbacks.values()) callback.reject(error); this.callbacks.clear(); }
 }
 
+async function failAfterCleanup(error: unknown, closes: Array<() => Promise<unknown> | undefined>): Promise<never> {
+  const failures: unknown[] = [error];
+  for (const close of closes) try { await close(); } catch (cleanup) { failures.push(cleanup); }
+  if (failures.length > 1) throw new AggregateError(failures, "Codex admission and retirement failed");
+  throw error;
+}
 /** Concrete hosted-validation adapter. Supply/account checks do not accept a vendor signature or authorize account use. */
 export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   private readonly options: CodexSupervisorOptions;
@@ -113,14 +125,16 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   private readonly runtimeToolMailboxes = new Map<string, RuntimeToolMailbox>();
   private candidateLauncherFactory?: CodexCandidateLauncherFactory;
   private controlledVerifyConformance?: ControlledHostedConformanceVerifier;
-  private conformance?: Pick<HostedCodexSupervisorOptions, "conformance" | "configDigest" | "consentVersion"> & { accountDigest: string };
+  private conformance?: Pick<HostedCodexSupervisorOptions, "conformance" | "configDigest" | "consentVersion" | "runtimeV2"> & { accountDigest: string };
   private preadmitted?: AdmittedCandidate;
   constructor(options: CodexSupervisorOptions) {
     if (!options || typeof options.model !== "string" || !options.model.trim() || options.model.length > 128 || /[\x00-\x1f]/.test(options.model)) throw new RuntimeError("INVALID_REQUEST", "Explicit Codex model required");
+    if (options.reasoningEffort !== undefined && !/^[\x21-\x7e]{1,64}$/.test(options.reasoningEffort)) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex reasoning effort");
     for (const value of [options.requestTimeoutMs ?? 10_000, options.turnTimeoutMs ?? 120_000, options.maxWorkers ?? 16]) if (!Number.isSafeInteger(value) || value < 1 || value > 600_000) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex supervisor bound");
     if (options.commandNetworkPosture !== undefined && !["off", "ask-per-destination", "on"].includes(options.commandNetworkPosture)) throw new RuntimeError("INVALID_REQUEST", "Unsupported executable command-network posture");
     if (options.supportedPermissionMode !== undefined && options.supportedPermissionMode !== "workspaceWrite") throw new RuntimeError("INVALID_REQUEST", "Unsupported native permission profile");
-    validateHostedManagedAuth(options.managedAuth);
+    if ((options.accountStorageBackend === "keyring") === (options.managedAuth !== undefined)) throw new RuntimeError("INVALID_REQUEST", "Codex account storage policy must use exactly one Runtime generation");
+    if (options.managedAuth) validateHostedManagedAuth(options.managedAuth);
     this.options = { ...structuredClone({ ...options, supplierAuthority: undefined, candidateLauncherFactory: undefined }), supplierAuthority: options.supplierAuthority };
     this.candidateLauncherFactory = options.candidateLauncherFactory;
   }
@@ -128,6 +142,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     return CodexSupervisor.admitHostedWithVerifier(options);
   }
   private static async admitHostedWithVerifier(options: HostedCodexSupervisorOptions, verifyConformance?: ControlledHostedConformanceVerifier): Promise<HostedCodexSupervisorAdmission> {
+    if (options.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(options.runtimeV2.instanceInput, options.runtimeV2.instanceAdmission);
     const raw = await options.candidateLauncherFactory.create().launchCandidate();
     const observed = await CodexSupervisor.observeTransport(raw, raw.descendantTracker);
     const candidate: AuthenticatedCodexCandidate = { ...observed, cleanup: observed.transport.close };
@@ -136,16 +151,17 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       admitted = await CodexSupervisor.admitCandidate(options, candidate, verifyConformance);
       const supervisor = new CodexSupervisor({ ...options, identity: admitted.continuity, candidateLauncherFactory: options.candidateLauncherFactory });
       supervisor.controlledVerifyConformance = verifyConformance;
-      supervisor.conformance = { conformance: options.conformance, configDigest: options.configDigest, accountDigest: admitted.accountDigest, consentVersion: options.consentVersion };
+      supervisor.conformance = { conformance: options.conformance, configDigest: options.configDigest, accountDigest: admitted.accountDigest, consentVersion: options.consentVersion, ...(options.runtimeV2 ? { runtimeV2: options.runtimeV2 } : {}) };
       supervisor.preadmitted = admitted;
       return Object.freeze({ supervisor, continuity: { ...admitted.continuity }, authority: { ...admitted.evidence }, accountDigest: admitted.accountDigest, retire: () => supervisor.close() });
-    } catch (error) { await admitted?.authority.close().catch(() => {}); await candidate.cleanup().catch(() => {}); throw error; }
+    } catch (error) { return failAfterCleanup(error, [() => admitted?.authority.close(), () => candidate.cleanup()]); }
   }
   private static async admitCandidate(options: Omit<HostedCodexSupervisorOptions, "candidateLauncherFactory"> & { expectedAccountDigest?: string }, candidate: AuthenticatedCodexCandidate, controlledVerifyConformance?: ControlledHostedConformanceVerifier): Promise<AdmittedCandidate> {
-    const session = new CodexTurnSession({ transport: candidate.transport, requestTimeoutMs: options.requestTimeoutMs, turnTimeoutMs: options.turnTimeoutMs,
+    const session = new CodexTurnSession({ runtimeV2: options.runtimeV2, transport: candidate.transport, requestTimeoutMs: options.requestTimeoutMs, turnTimeoutMs: options.turnTimeoutMs,
       commandNetworkPosture: options.commandNetworkPosture, permissionProfile: candidate.expectedPolicy.permissionProfile, policyDigest: candidate.expectedPolicy.policyDigest });
     let authority: SupplierAuthorityController | undefined;
     try {
+      if (options.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(options.runtimeV2.instanceInput, options.runtimeV2.instanceAdmission);
       authority = await session.establishAuthority(candidate.authorityInitialize, candidate.kernelLease, async () => {
         try { await candidate.privateBindingStore.fence("revoke"); } finally { await candidate.cleanup(); }
       });
@@ -158,15 +174,25 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       const account = await session.accountRead();
       if (!account.hasAccount) throw unavailable("Codex has no root-private authenticated account");
       if (options.expectedAccountDigest !== undefined && bound.accountDigest !== options.expectedAccountDigest) throw unavailable("Fresh candidate account identity changed");
+      if (options.runtimeV2) {
+        const expectedAccount = options.runtimeV2.instanceInput.account;
+        if (!expectedAccount || expectedAccount.accountId !== bound.continuity.accountId || expectedAccount.accountEpoch !== bound.continuity.accountEpoch || expectedAccount.accountDigest !== bound.accountDigest
+          || candidate.expectedOuterPolicyDigest !== options.runtimeV2.instanceInput.outerPolicyDigest || candidate.expectedPolicy.policyDigest !== options.runtimeV2.instanceInput.nativePolicyDigest
+          || candidate.expectedEffectiveConfigDigestV2 !== options.runtimeV2.instanceInput.effectiveConfigDigest
+          || recordKey(candidate.expectedPolicy.policyInstanceV2) !== recordKey(options.runtimeV2.instanceInput.policy)) throw unavailable("Fresh candidate differs from its v2 instance admission");
+      }
       const conformanceActual = { canonicalRoot: bound.continuity.canonicalRoot, cwd: bound.continuity.cwd,
         policyDigest: bound.continuity.policyDigest, configDigest: options.configDigest, accountId: bound.continuity.accountId,
         accountEpoch: bound.continuity.accountEpoch, accountDigest: bound.accountDigest, consentVersion: options.consentVersion,
         executablePath: candidate.expectedToolRuntime.codexSelfExecutablePath };
-      if (controlledVerifyConformance) await controlledVerifyConformance({ configuration: options.conformance, actual: conformanceActual });
-      else await verifyConfiguredRuntimeConformance(options.conformance, conformanceActual);
+      if (options.conformance) {
+        if (controlledVerifyConformance) await controlledVerifyConformance({ configuration: options.conformance, actual: conformanceActual });
+        else await verifyConfiguredRuntimeConformance(options.conformance, conformanceActual);
+      } else if (!options.runtimeV2) throw unavailable("Runtime conformance is unavailable");
       if (!candidate.expectedToolRuntime.requiresSandboxedFileSystem || !candidate.expectedToolRuntime.requiresSandboxedFileStreaming) throw unavailable("Required sandboxed file runtime is unavailable");
+      if (options.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(options.runtimeV2.instanceInput, options.runtimeV2.instanceAdmission);
       return { candidate, session, authority, continuity: bound.continuity, evidence: bound.authority, accountDigest: bound.accountDigest };
-    } catch (error) { await authority?.close().catch(() => {}); await session.close().catch(() => {}); await candidate.cleanup().catch(() => {}); throw error; }
+    } catch (error) { return failAfterCleanup(error, [() => authority?.close(), () => session.close(), () => candidate.cleanup()]); }
   }
   /** Controlled adapter tests are structurally excluded from verifyHostedBoundary. */
   static controlledForTests(options: { supplierAuthority?:SupplierAuthorityController; barrier?:(name:string)=>Promise<void>; commandNetworkPosture?: "off" | "ask-per-destination" | "on"; allowUnauthenticatedModel?: boolean; identity: WorkerContinuity; model: string; launch: ControlledCodexLauncher; requestTimeoutMs?: number; turnTimeoutMs?: number }): CodexSupervisor {
@@ -177,6 +203,10 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     result.barrier=options.barrier;
     result.fixtureAllowUnauthenticatedModel = options.allowUnauthenticatedModel === true;
     return result;
+  }
+  private async revalidateCurrentHost(): Promise<void> {
+    const input = this.conformance?.runtimeV2?.instanceInput;
+    if (input) await revalidateHostedAccountAuthorityV2(input.hostAuthority, { purpose: input.purposeRelease.purpose, projectId: input.projectId, manifestHash: input.manifestHash, canonicalRoot: input.canonicalRoot, account: input.account, consentDigest: input.consent.digest });
   }
   private requireHostedIdentity(): void {
     if (this.options.supplierAuthority?.projection().state === "ready" || (this.candidateLauncherFactory && this.conformance)) return;
@@ -207,7 +237,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       try { await launched.transport.close(); } catch (error) { cleanupError = error; }
       const after = await tracker.reconcile();
       await tracker.stop();
-      if (after.failure || after.detached.length || after.identityChanged.length || after.ownedGroup.length) throw diagnostic(after);
+      if (after.failure || after.detached.length || after.identityChanged.length || after.ownedGroup.length) { const failure = diagnostic(after); if (cleanupError) throw new AggregateError([cleanupError, failure], "Supplier retirement and descendant reconciliation failed"); throw failure; }
       if (cleanupError) throw cleanupError;
     })();
     return { ...launched, transport: { stdin: launched.transport.stdin, stdout: launched.transport.stdout, close } };
@@ -224,6 +254,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     const queued = this.preadmitted;
     if (queued) { this.preadmitted = undefined; return queued; }
     if (!this.candidateLauncherFactory || !this.conformance) throw unavailable("Hosted production launch is unavailable");
+    if (this.conformance.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(this.conformance.runtimeV2.instanceInput, this.conformance.runtimeV2.instanceAdmission);
     const raw = await this.candidateLauncherFactory.create().launchCandidate();
     let candidate = raw;
     try {
@@ -231,10 +262,10 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       candidate = { ...observed, cleanup: observed.transport.close };
       const admitted = await CodexSupervisor.admitCandidate({ ...this.options, canonicalRoot: this.options.identity.canonicalRoot,
         conformance: this.conformance.conformance, configDigest: this.conformance.configDigest,
-        expectedAccountDigest: this.conformance.accountDigest, consentVersion: this.conformance.consentVersion }, candidate, this.controlledVerifyConformance);
+        expectedAccountDigest: this.conformance.accountDigest, consentVersion: this.conformance.consentVersion, ...(this.conformance.runtimeV2 ? { runtimeV2: this.conformance.runtimeV2 } : {}) }, candidate, this.controlledVerifyConformance);
       if (recordKey(admitted.continuity) !== recordKey(this.options.identity)) throw unavailable("Fresh candidate continuity changed");
       return admitted;
-    } catch (error) { await candidate.cleanup().catch(() => {}); throw error; }
+    } catch (error) { return failAfterCleanup(error, [() => candidate.cleanup()]); }
   }
   async startManager(workerId: string, input: string): Promise<WorkerHandle> {
     if (!this.fixtureLauncher) this.requireHostedIdentity();
@@ -317,6 +348,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     this.pendingAcquisitions.set(workerId, new Promise<void>(resolve => { finishAcquisition = resolve; }));
     let launched: { pid: number; transport: CodexSessionTransport; permissionProfile?: string; policyDigest?: string; expectedPermissions?: NativePermissions } | undefined;
     let session: CodexTurnSession | undefined;
+    let supplierGeneration: string | undefined;
     try {
       await this.barrier?.(`${kind}/pre-acquire`);cancelled();
       if (this.fixtureLauncher) {
@@ -326,10 +358,17 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       } else {
         const candidate = await this.launchAdmittedCandidate();
         authority = candidate.authority; cancellation.authority = authority; session = candidate.session;
+        supplierGeneration = candidate.candidate.supplierGeneration;
         launched = { pid: candidate.candidate.pid, transport: candidate.candidate.transport,
           permissionProfile: candidate.candidate.expectedPolicy.permissionProfile, policyDigest: candidate.candidate.expectedPolicy.policyDigest,
           expectedPermissions: candidate.candidate.expectedPolicy.expectedPermissions };
         cancellation.acquiring=true; try { await authority.acquire(operationId); authorityAcquired=true; } finally { cancellation.acquiring=false; }
+        if (this.conformance?.runtimeV2) {
+          await revalidateRuntimeInstanceAdmissionV2(this.conformance.runtimeV2.instanceInput, this.conformance.runtimeV2.instanceAdmission);
+          const observedAccountDigest = await session.hostedAccountDigest(authority, supplierGeneration!);
+          if (observedAccountDigest !== this.conformance.runtimeV2.instanceInput.account?.accountDigest) throw unavailable("Fresh candidate account identity changed after acquire");
+          await this.revalidateCurrentHost();
+        }
         cancelled();
       }
       if (this.fixtureLauncher) await assertContinuity(this.options.identity);
@@ -375,13 +414,14 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
         try {
           if(!publicationCommitted)throw unavailable("Admission cancelled before publication");
           if(this.fixtureLauncher){await activeSession.initialize();if(launched.expectedPermissions)await activeSession.verifyNativePolicy(launched.expectedPermissions);}
+          if (!this.fixtureLauncher && this.conformance?.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(this.conformance.runtimeV2.instanceInput, this.conformance.runtimeV2.instanceAdmission);
           const account = await activeSession.accountRead();
           if (!account.hasAccount && !(this.fixtureLauncher && this.fixtureAllowUnauthenticatedModel && account.authRequired === false)) throw unavailable("Codex has no root-private authenticated account");
           if (!this.fixtureLauncher) this.requireHostedIdentity();
           const threadId = request.resumeThreadId
             ? await activeSession.resumeThread({ threadId: request.resumeThreadId, model: this.options.model, continuityChecked: true })
             : await activeSession.startThread({ cwd: this.options.identity.canonicalRoot, model: this.options.model, continuityChecked: true });
-          const turnId = await activeSession.startTurn({ threadId, text: prompt, model: this.options.model, interactionMode, attachments: request.attachments });
+          const turnId = await activeSession.startTurn({ threadId, text: prompt, model: this.options.model, reasoningEffort: this.options.reasoningEffort, interactionMode, attachments: request.attachments });
           const terminal = await activeSession.waitTurn(turnId);
           await eventDrain;
           return { worker: { ...handle, state: "exited" }, exitCode: terminal.status === "completed" ? 0 : terminal.status === "failed" ? 1 : null,
@@ -411,7 +451,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
         else await activeAuthority.abort(operationId).catch(()=>activeAuthority.revoke());
       }
       if(localEntry){await localEntry.session.close();await localEntry.result.catch(()=>{});await localEntry.cleanup();}
-      else { await session?.close().catch(() => {}); await launched?.transport.close().catch(() => {}); }
+      else return failAfterCleanup(error, [() => session?.close(), () => launched?.transport.close()]);
       throw error;
     } finally { this.cancellations.delete(workerId);this.acquiring.delete(workerId); this.pendingAcquisitions.delete(workerId); finishAcquisition(); }
   }
@@ -464,11 +504,14 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     this.closed = true;
     for (const id of this.cancellations.keys()) this.cancelAdmission(id);
     await Promise.all([...this.pendingAcquisitions.values()]);
-    await Promise.all([...this.entries.values()].map(entry => this.retire(entry.handle.workerId, entry.handle.generation)));
-    const queued = this.preadmitted; this.preadmitted = undefined;
-    await queued?.authority.close();
-    await this.candidateLauncherFactory?.close?.();
-    await this.options.supplierAuthority?.close();
+    const failures: unknown[] = [];
+    for (const close of [
+      ...[...this.entries.values()].map(entry => () => this.retire(entry.handle.workerId, entry.handle.generation)),
+      () => this.preadmitted?.authority.close(), () => this.candidateLauncherFactory?.close?.(), () => this.options.supplierAuthority?.close()
+    ]) try { await close(); } catch (error) { failures.push(error); }
+    if (failures.length === 1) throw failures[0];
+    if (failures.length > 1) throw new AggregateError(failures, "Supervisor retirement failed; candidate ownership retained");
+    this.preadmitted = undefined;
   }
 }
 export function createControlledCodexSupervisorForTests(options: Parameters<typeof CodexSupervisor.controlledForTests>[0]): CodexSupervisor { return CodexSupervisor.controlledForTests(options); }

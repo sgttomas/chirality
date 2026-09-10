@@ -16,6 +16,10 @@
     "./hosted": {
       "types": "./dist/hosted.d.ts",
       "import": "./dist/hosted.js"
+    },
+    "./hosted-release-provisioner": {
+      "types": "./dist/hosted-release-provisioner.d.ts",
+      "import": "./dist/hosted-release-provisioner.js"
     }
   },
   "files": [

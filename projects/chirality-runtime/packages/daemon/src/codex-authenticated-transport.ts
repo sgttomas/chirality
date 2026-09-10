@@ -1,6 +1,9 @@
 import { randomBytes, randomUUID } from "node:crypto";
+import { lstat, realpath } from "node:fs/promises";
+import { isAbsolute, relative, resolve, sep } from "node:path";
 import {
   DescendantTracker,
+  recordKey,
   revalidateExactSupply,
   verifyExactSupply,
   type RuntimeAdmissionLease
@@ -10,9 +13,13 @@ import { loadNativeAdmissionBinding, type NativeGroupedSupplierChild, type Nativ
 import {
   assertCodexKeyringHomeHasNoPlaintextCredentials,
   prepareCodexNativePolicy,
+  prepareCodexNativePolicyV2,
   prepareCodexTrustedSupplierContainment,
+  prepareCodexTrustedSupplierContainmentV2,
+  type TrustedRuntimeReadRootBindingV2,
   type TrustedRuntimeReadRootBinding
 } from "./codex-containment.js";
+import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2, type CodexPolicyInstanceV2 } from "./runtime-conformance-v2-admission.js";
 import type { CodexAuthorityInitialize, CodexSessionTransport } from "./codex-session.js";
 import { HostedIdentityBindingStore } from "./hosted-identity-binding.js";
 import { AUTHORITY_CONTRACT } from "./supplier-authority-controller.js";
@@ -28,10 +35,15 @@ export interface AuthenticatedCodexCandidateInput {
   protectedPaths: readonly string[];
   readOnlyProjectPaths?: readonly string[];
   immutableReadRoots: readonly string[];
-  trustedRuntimeReadRoots?: readonly TrustedRuntimeReadRootBinding[];
+  trustedRuntimeReadRoots?: readonly (TrustedRuntimeReadRootBinding | TrustedRuntimeReadRootBindingV2)[];
   nativeRoleConfiguration?: { digest: string; configOverrides: readonly string[] };
   policyDigest: string;
   toolRuntime: { codexSelfExecutablePath: string };
+  /** Additive private v2 policy binding. Absence preserves the v1 candidate path. */
+  policyInstanceV2?: CodexPolicyInstanceV2;
+  expectedEffectiveConfigDigestV2?: string;
+  instanceInputV2?: RuntimeInstanceAdmissionInputV2;
+  instanceAdmissionV2?: RuntimeInstanceAdmissionV2;
   /** Borrowed from the Runtime authority owner; candidate cleanup never closes it. */
   kernelLease: RuntimeAdmissionLease;
 }
@@ -49,12 +61,15 @@ export interface AuthenticatedCodexCandidate {
     policyDigest: string;
     expectedPermissions: Awaited<ReturnType<typeof prepareCodexNativePolicy>>["expectedPermissions"];
     nativeRoleConfiguration: Awaited<ReturnType<typeof prepareCodexNativePolicy>>["nativeRoleConfiguration"];
+    policyInstanceV2?: CodexPolicyInstanceV2;
   };
   expectedToolRuntime: {
     codexSelfExecutablePath: string;
     requiresSandboxedFileSystem: true;
     requiresSandboxedFileStreaming: true;
   };
+  expectedOuterPolicyDigest?: string;
+  expectedEffectiveConfigDigestV2?: string;
   descendantTracker: DescendantTracker;
 }
 
@@ -63,6 +78,9 @@ export interface ControlledAuthenticatedCodexCandidateAdapters {
   revalidateSupply(supply: Awaited<ReturnType<typeof verifyExactSupply>>): Promise<unknown>;
   prepareOuter: typeof prepareCodexTrustedSupplierContainment;
   prepareToolPolicy: typeof prepareCodexNativePolicy;
+  prepareOuterV2?: typeof prepareCodexTrustedSupplierContainmentV2;
+  prepareToolPolicyV2?: typeof prepareCodexNativePolicyV2;
+  assertCompiledPathV2?: typeof assertOwnedCompiledPathV2;
   assertNoPlaintext(codexHome: string): Promise<void>;
   openBindingStore: typeof HostedIdentityBindingStore.open;
   loadNative: typeof loadNativeAdmissionBinding;
@@ -77,6 +95,9 @@ const productionAdapters: ControlledAuthenticatedCodexCandidateAdapters = Object
   revalidateSupply: revalidateExactSupply,
   prepareOuter: prepareCodexTrustedSupplierContainment,
   prepareToolPolicy: prepareCodexNativePolicy,
+  prepareOuterV2: prepareCodexTrustedSupplierContainmentV2,
+  prepareToolPolicyV2: prepareCodexNativePolicyV2,
+  assertCompiledPathV2: assertOwnedCompiledPathV2,
   assertNoPlaintext: assertCodexKeyringHomeHasNoPlaintextCredentials,
   openBindingStore: HostedIdentityBindingStore.open,
   loadNative: loadNativeAdmissionBinding,
@@ -85,6 +106,16 @@ const productionAdapters: ControlledAuthenticatedCodexCandidateAdapters = Object
   retire: retireAuthenticatedSupplierGroup,
   createTracker: (pid: number) => new DescendantTracker({ leaderPid: pid, maxDurationMs: 3_600_000 })
 });
+
+export function codexEffectiveConfigDigestV2(input: { executablePath: string; cwd: string; environment: { HOME: string; CODEX_HOME: string; PATH: string; LANG: string }; configOverrides: readonly string[] }): string {
+  return recordKey({ schema: "chirality-codex-effective-config/v2", executablePath: input.executablePath, cwd: input.cwd, environment: input.environment,
+    appServerArgv: ["app-server", ...input.configOverrides.flatMap(value => ["-c", value])] });
+}
+export async function assertOwnedCompiledPathV2(parent: string, path: string, kind: "directory" | "file"): Promise<void> {
+  const rel = relative(parent, path), info = await lstat(path);
+  if (!isAbsolute(path) || resolve(path) !== path || rel === "" || rel === ".." || rel.startsWith(`..${sep}`) || isAbsolute(rel) || await realpath(path) !== path
+    || info.uid !== (process.getuid?.() ?? -1) || (info.mode & 0o077) !== 0 || (kind === "directory" ? !info.isDirectory() : !info.isFile())) throw unavailable("COMPILED_PATH_CUSTODY_INVALID");
+}
 
 function unavailable(reason: string, cause?: unknown): RuntimeError {
   const error = new RuntimeError("ENGINE_UNAVAILABLE", "Authenticated Codex supplier candidate is unavailable", 503, { reason });
@@ -153,27 +184,43 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
   let authoritySecret: Buffer | undefined;
   let closing: Promise<void> | undefined;
   let exposedCandidate: AuthenticatedCodexCandidate | undefined;
+  let retirement: (() => Promise<void>) | undefined;
+  let retainedPaths: string[] = [];
   const cleanup = () => closing ??= (async () => {
-    let failure: unknown;
-    for (const close of cleanups.splice(0).reverse()) {
-      try { await close(); } catch (error) { failure ??= error; }
+    const failures: unknown[] = [];
+    if (retirement) {
+      try { await retirement(); }
+      catch (cause) {
+        if (input.policyInstanceV2) throw unavailable("SUPPLIER_RETIREMENT_UNVERIFIED_RESOURCES_RETAINED", new AggregateError([cause, { retainedResources: retainedPaths }], "Supplier retirement failed; containment cleanup is unsafe"));
+        failures.push(cause);
+      }
     }
-    if (failure) throw failure;
+    for (const close of cleanups.splice(0).reverse()) {
+      try { await close(); } catch (error) { failures.push(error); }
+    }
+    if (failures.length) throw new AggregateError(failures, "Supplier cleanup failed");
   })();
   try {
+    if (input.policyInstanceV2) {
+      if (!input.instanceInputV2 || !input.instanceAdmissionV2) throw unavailable("INSTANCE_ADMISSION_INVALID");
+      await revalidateRuntimeInstanceAdmissionV2(input.instanceInputV2, input.instanceAdmissionV2);
+    }
     const supply = await adapters.verifySupply({ executablePath: input.executablePath });
     if (supply.version === "0.0.0") throw unavailable("DEVELOPMENT_SUPPLIER_BUILD");
     await adapters.assertNoPlaintext(input.codexHome);
-    const outer = await adapters.prepareOuter({
+    const outerInput = {
       canonicalRoot: input.canonicalRoot,
       privateDirectory: input.privateDirectory,
       codexHome: input.codexHome,
       providerNetworkConsent: input.providerNetworkConsent,
-      trustedRuntimeReadRoots: input.trustedRuntimeReadRoots === undefined ? undefined : structuredClone(input.trustedRuntimeReadRoots)
-    });
+      trustedRuntimeReadRoots: input.policyInstanceV2 ? structuredClone(input.policyInstanceV2.trustedRuntimeReadRoots) : input.trustedRuntimeReadRoots === undefined ? undefined : structuredClone(input.trustedRuntimeReadRoots as readonly TrustedRuntimeReadRootBinding[])
+    };
+    const outer = input.policyInstanceV2
+      ? await (adapters.prepareOuterV2 ?? (() => Promise.reject(unavailable("V2_OUTER_COMPILER_UNAVAILABLE"))))(outerInput as Parameters<typeof prepareCodexTrustedSupplierContainmentV2>[0])
+      : await adapters.prepareOuter(outerInput as Parameters<typeof prepareCodexTrustedSupplierContainment>[0]);
     cleanups.push(outer.cleanup);
-    const toolPolicy = await adapters.prepareToolPolicy({
-      purpose: "worker",
+    const commonPolicy = {
+      purpose: "worker" as const,
       canonicalRoot: input.canonicalRoot,
       privateDirectory: input.privateDirectory,
       codexHome: input.codexHome,
@@ -182,14 +229,24 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
       protectedPaths: [...input.protectedPaths],
       readOnlyProjectPaths: input.readOnlyProjectPaths === undefined ? undefined : [...input.readOnlyProjectPaths],
       immutableReadRoots: [...input.immutableReadRoots],
-      trustedRuntimeReadRoots: input.trustedRuntimeReadRoots === undefined ? undefined : structuredClone(input.trustedRuntimeReadRoots),
+      trustedRuntimeReadRoots: input.policyInstanceV2 ? undefined : input.trustedRuntimeReadRoots === undefined ? undefined : structuredClone(input.trustedRuntimeReadRoots as readonly TrustedRuntimeReadRootBinding[]),
       nativeRoleConfiguration: input.nativeRoleConfiguration === undefined ? undefined : {
         digest: input.nativeRoleConfiguration.digest,
         configOverrides: [...input.nativeRoleConfiguration.configOverrides]
       }
-    });
+    };
+    const toolPolicy = input.policyInstanceV2
+      ? await (adapters.prepareToolPolicyV2 ?? (() => Promise.reject(unavailable("V2_NATIVE_COMPILER_UNAVAILABLE"))))({
+          ...commonPolicy, executablePath: input.executablePath, nativeAddonPath: input.nativeAddonPath,
+          trustedRuntimeReadRoots: input.policyInstanceV2.trustedRuntimeReadRoots as readonly TrustedRuntimeReadRootBindingV2[],
+          toolRuntime: input.policyInstanceV2.toolRuntime
+        })
+      : await adapters.prepareToolPolicy(commonPolicy);
     cleanups.push(toolPolicy.cleanup);
+    retainedPaths = [outer.environment.TMPDIR, outer.sandboxProfilePath, toolPolicy.scratchDirectory];
     if (toolPolicy.policyDigest !== input.policyDigest) throw unavailable("TOOL_POLICY_BINDING_MISMATCH");
+    const compiledPolicyV2 = input.policyInstanceV2 ? (toolPolicy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).policyInstance : undefined;
+    if (input.policyInstanceV2 && (!compiledPolicyV2 || recordKey(compiledPolicyV2) !== recordKey(input.policyInstanceV2))) throw unavailable("TOOL_POLICY_INSTANCE_MISMATCH");
     if (input.toolRuntime.codexSelfExecutablePath !== supply.executablePath) throw unavailable("TOOL_RUNTIME_BINDING_MISMATCH");
 
     const runtimeAuthorityId = adapters.randomUUID();
@@ -219,9 +276,31 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
     await adapters.assertNoPlaintext(input.codexHome);
     const environment = outer.environment;
     if (typeof environment.HOME !== "string" || typeof environment.CODEX_HOME !== "string" || typeof environment.TMPDIR !== "string" || typeof environment.PATH !== "string" || typeof environment.LANG !== "string") throw unavailable("SUPPLIER_ENVIRONMENT_INVALID");
+    const effectiveConfigDigestV2 = input.policyInstanceV2 ? codexEffectiveConfigDigestV2({ executablePath: supply.executablePath, cwd: input.canonicalRoot,
+      environment: { HOME: environment.HOME, CODEX_HOME: environment.CODEX_HOME, PATH: environment.PATH, LANG: environment.LANG }, configOverrides: toolPolicy.configOverrides }) : undefined;
+    if (input.policyInstanceV2 && effectiveConfigDigestV2 !== input.expectedEffectiveConfigDigestV2) throw unavailable("EFFECTIVE_CONFIG_BINDING_MISMATCH");
+    if (input.policyInstanceV2) {
+      const assertPath = adapters.assertCompiledPathV2 ?? assertOwnedCompiledPathV2;
+      await assertPath(input.privateDirectory, environment.TMPDIR, "directory");
+      await assertPath(environment.TMPDIR, outer.sandboxProfilePath, "file");
+      await assertPath(input.canonicalRoot, (toolPolicy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).scratchDirectory, "directory");
+    }
+    const compilerArgs = toolPolicy.configOverrides.flatMap(value => ["-c", value]);
+    if (input.policyInstanceV2) {
+      if (JSON.stringify(launchArguments) !== JSON.stringify(["-f", outer.sandboxProfilePath, supply.executablePath])
+        || JSON.stringify(toolPolicy.args) !== JSON.stringify(compilerArgs)) throw unavailable("COMPILED_INVOCATION_MISMATCH");
+      const expected = input.instanceInputV2!;
+      if (outer.outerPolicyDigest !== expected.outerPolicyDigest || toolPolicy.policyDigest !== expected.nativePolicyDigest
+        || effectiveConfigDigestV2 !== expected.effectiveConfigDigest || recordKey(compiledPolicyV2) !== recordKey(expected.policy)) throw unavailable("COMPILED_INSTANCE_MISMATCH");
+      await revalidateRuntimeInstanceAdmissionV2(expected, input.instanceAdmissionV2!);
+      if (JSON.stringify(await outer.launchArguments(supply.executablePath)) !== JSON.stringify(launchArguments)) throw unavailable("COMPILED_INVOCATION_MISMATCH");
+      await (toolPolicy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).revalidateScratch();
+      await revalidateHostedAccountAuthorityV2(expected.hostAuthority, { purpose: expected.purposeRelease.purpose, projectId: expected.projectId, manifestHash: expected.manifestHash, canonicalRoot: expected.canonicalRoot, account: expected.account, consentDigest: expected.consent.digest });
+    }
+    if (!input.kernelLease.held) throw unavailable("KERNEL_LEASE_UNAVAILABLE");
     const spawned = native.value.spawnGroupedSupplier(
       "/usr/bin/sandbox-exec",
-      [...launchArguments, "app-server", ...toolPolicy.args],
+      [...launchArguments, "app-server", ...(input.policyInstanceV2 ? compilerArgs : toolPolicy.args)],
       authoritySecret,
       { cwd: input.canonicalRoot, environment: { HOME: environment.HOME, CODEX_HOME: environment.CODEX_HOME, TMPDIR: environment.TMPDIR, PATH: environment.PATH, LANG: environment.LANG }, processGroup: true }
     );
@@ -229,7 +308,7 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
     const child = spawned.value;
     const pid = child.pid;
     if (pid === undefined) throw unavailable("SUPPLIER_SPAWN_UNAVAILABLE");
-    cleanups.push(async () => { const outcome=await adapters.retire(child);if(exposedCandidate&&isRetirementOutcome(outcome))retainedRetirementOutcomes.set(exposedCandidate,outcome); });
+    retirement = async () => { const outcome=await adapters.retire(child);if(exposedCandidate&&isRetirementOutcome(outcome))retainedRetirementOutcomes.set(exposedCandidate,outcome); };
     await adapters.assertNoPlaintext(input.codexHome);
     const transport: CodexSessionTransport = { stdin: child.stdin, stdout: child.stdout, close: cleanup };
     exposedCandidate = Object.freeze({
@@ -240,13 +319,16 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
       kernelLease: input.kernelLease,
       supplierGeneration,
       privateBindingStore,
-      expectedPolicy: Object.freeze({ permissionProfile: toolPolicy.permissionProfile, policyDigest: toolPolicy.policyDigest, expectedPermissions: toolPolicy.expectedPermissions, nativeRoleConfiguration: toolPolicy.nativeRoleConfiguration }),
+      expectedPolicy: Object.freeze({ permissionProfile: toolPolicy.permissionProfile, policyDigest: toolPolicy.policyDigest, expectedPermissions: toolPolicy.expectedPermissions, nativeRoleConfiguration: toolPolicy.nativeRoleConfiguration,
+        ...(compiledPolicyV2 ? { policyInstanceV2: structuredClone(compiledPolicyV2) } : {}) }),
       expectedToolRuntime: Object.freeze({ codexSelfExecutablePath: supply.executablePath, requiresSandboxedFileSystem: true, requiresSandboxedFileStreaming: true }),
+      expectedOuterPolicyDigest: outer.outerPolicyDigest,
+      ...(effectiveConfigDigestV2 ? { expectedEffectiveConfigDigestV2: effectiveConfigDigestV2 } : {}),
       descendantTracker: adapters.createTracker(pid)
     });
     return exposedCandidate;
   } catch (error) {
-    await cleanup().catch(() => {});
+    try { await cleanup(); } catch (cleanupError) { throw new AggregateError([error, cleanupError], "Candidate preparation and cleanup failed"); }
     authoritySecret?.fill(0);
     throw error instanceof RuntimeError ? error : unavailable("CANDIDATE_PREPARATION_FAILED", error);
   }

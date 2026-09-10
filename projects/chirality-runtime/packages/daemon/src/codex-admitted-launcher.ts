@@ -5,6 +5,7 @@ import {
   type AuthenticatedCodexCandidate,
   type AuthenticatedCodexCandidateInput
 } from "./codex-authenticated-transport.js";
+import { inspectCodexPolicyInstanceV2 } from "./runtime-conformance-v2-admission.js";
 
 export type CodexAdmittedLauncherBindings = Omit<AuthenticatedCodexCandidateInput, "kernelLease"> & {
   model: string;
@@ -68,7 +69,7 @@ function contained(parent: string, child: string): boolean {
 
 function validateBindings(value: CodexAdmittedLauncherBindings): Readonly<CodexAdmittedLauncherBindings> {
   const keys = ["canonicalRoot", "privateDirectory", "codexHome", "executablePath", "nativeAddonPath", "model", "providerNetworkConsent", "commandNetworkPosture", "protectedPaths", "immutableReadRoots", "policyDigest", "configDigest", "consentVersion", "toolRuntime"];
-  const optionalKeys = [...(value.readOnlyProjectPaths === undefined ? [] : ["readOnlyProjectPaths"]), ...(value.trustedRuntimeReadRoots === undefined ? [] : ["trustedRuntimeReadRoots"]), ...(value.nativeRoleConfiguration === undefined ? [] : ["nativeRoleConfiguration"])];
+  const optionalKeys = [...(value.readOnlyProjectPaths === undefined ? [] : ["readOnlyProjectPaths"]), ...(value.trustedRuntimeReadRoots === undefined ? [] : ["trustedRuntimeReadRoots"]), ...(value.nativeRoleConfiguration === undefined ? [] : ["nativeRoleConfiguration"]), ...(value.policyInstanceV2 === undefined ? [] : ["policyInstanceV2"]), ...(value.expectedEffectiveConfigDigestV2 === undefined ? [] : ["expectedEffectiveConfigDigestV2"]), ...(value.instanceInputV2 === undefined ? [] : ["instanceInputV2"]), ...(value.instanceAdmissionV2 === undefined ? [] : ["instanceAdmissionV2"])];
   if (!exactKeys(value, [...keys, ...optionalKeys])) throw unavailable("BINDINGS_INVALID");
   for (const path of [value.canonicalRoot, value.privateDirectory, value.codexHome, value.executablePath, value.nativeAddonPath]) if (!canonicalPath(path)) throw unavailable("BINDINGS_INVALID");
   if (!contained(value.privateDirectory, value.codexHome) || !contained(value.privateDirectory, value.executablePath)
@@ -83,13 +84,22 @@ function validateBindings(value: CodexAdmittedLauncherBindings): Readonly<CodexA
     || (value.trustedRuntimeReadRoots !== undefined && (!Array.isArray(value.trustedRuntimeReadRoots) || value.trustedRuntimeReadRoots.some(entry => !exactKeys(entry, ["path", "readPaths", "contentDigest", "artifactInventory"]) || !canonicalPath(entry.path) || !HEX.test(entry.contentDigest) || !Array.isArray(entry.readPaths) || entry.readPaths.length<1 || entry.readPaths.some((path:string)=>!canonicalPath(path))
       || !entry.artifactInventory || (entry.artifactInventory.kind === "source-tree" ? !exactKeys(entry.artifactInventory,["kind","sourceRoot"]) || !canonicalPath(entry.artifactInventory.sourceRoot)
         : entry.artifactInventory.kind === "packaged-resources" ? !exactKeys(entry.artifactInventory,["kind","resourcesRoot","manifestPath"]) || !canonicalPath(entry.artifactInventory.resourcesRoot) || !canonicalPath(entry.artifactInventory.manifestPath)
-        : true))))
+        : entry.artifactInventory.schema === "chirality-runtime-packaged-basis/v2" ? false : true))))
     || (value.nativeRoleConfiguration !== undefined && (!exactKeys(value.nativeRoleConfiguration, ["digest", "configOverrides"]) || !HEX.test(value.nativeRoleConfiguration.digest) || !Array.isArray(value.nativeRoleConfiguration.configOverrides)))) throw unavailable("BINDINGS_INVALID");
   if (!exactKeys(value.providerNetworkConsent, ["approvedBy", "approvalReference"])
     || typeof value.providerNetworkConsent.approvedBy !== "string" || !value.providerNetworkConsent.approvedBy.trim()
     || typeof value.providerNetworkConsent.approvalReference !== "string" || !value.providerNetworkConsent.approvalReference.trim()) throw unavailable("PROVIDER_CONSENT_INVALID");
   if (!exactKeys(value.toolRuntime, ["codexSelfExecutablePath"]) || value.toolRuntime.codexSelfExecutablePath !== value.executablePath) throw unavailable("TOOL_RUNTIME_BINDING_MISMATCH");
-  return frozenClone(value);
+  if (value.policyInstanceV2 !== undefined) {
+    const policy = inspectCodexPolicyInstanceV2(value.policyInstanceV2);
+    if (!value.instanceInputV2 || !value.instanceAdmissionV2 || !HEX.test(value.expectedEffectiveConfigDigestV2 ?? "") || policy.executablePath !== value.executablePath || policy.nativeAddonPath !== value.nativeAddonPath || policy.canonicalRoot !== value.canonicalRoot || policy.privateDirectory !== value.privateDirectory || policy.codexHome !== value.codexHome
+      || policy.providerNetworkConsent.approvedBy !== value.providerNetworkConsent.approvedBy || policy.providerNetworkConsent.approvalReference !== value.providerNetworkConsent.approvalReference
+      || policy.commandNetworkPosture !== value.commandNetworkPosture || JSON.stringify(policy.immutableReadRoots) !== JSON.stringify(value.immutableReadRoots)
+      || JSON.stringify(policy.protectedPaths) !== JSON.stringify(value.protectedPaths) || JSON.stringify(policy.readOnlyProjectPaths) !== JSON.stringify(value.readOnlyProjectPaths ?? [])
+      || JSON.stringify(policy.nativeRoleConfiguration) !== JSON.stringify(value.nativeRoleConfiguration ?? null)) throw unavailable("V2_POLICY_BINDING_MISMATCH");
+  }
+  const { instanceInputV2, instanceAdmissionV2, ...data } = value;
+  return Object.freeze({ ...frozenClone(data), ...(instanceInputV2 ? { instanceInputV2, instanceAdmissionV2 } : {}) });
 }
 
 function compose(options: CodexCandidateLauncherOptions, adapters: ControlledCodexCandidateLauncherAdapters, onSettled: () => void = () => {}): CodexCandidateLauncher {
@@ -115,11 +125,9 @@ function compose(options: CodexCandidateLauncherOptions, adapters: ControlledCod
       launching = Promise.resolve().then(() => adapters.launchCandidate({ ...bindings, kernelLease })).then(value => {
         let closing: Promise<void> | undefined;
         const cleanup = (): Promise<void> => closing ??= (async () => {
-          try { await value.cleanup(); }
-          finally {
-            value.authorityInitialize.authoritySecret.fill(0);
-            settle();
-          }
+          await value.cleanup();
+          value.authorityInitialize.authoritySecret.fill(0);
+          settle();
         })();
         candidate = Object.freeze({ ...value, transport: Object.freeze({ ...value.transport, close: cleanup }), cleanup });
         return candidate;
@@ -152,7 +160,6 @@ function factory(options: CodexCandidateLauncherOptions, adapters: ControlledCod
     async close(): Promise<void> {
       closed = true;
       const results = await Promise.allSettled([...launchers].map(launcher => launcher.close?.()));
-      launchers.clear();
       const failed = results.find(result => result.status === "rejected");
       if (failed?.status === "rejected") throw failed.reason;
     }

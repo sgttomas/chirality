@@ -24,6 +24,7 @@ export * from "./role-policy.js";
 export * from "./descendant-tracker.js";
 
 export * from "./runtime-conformance.js";
+export * from "./runtime-conformance-v2.js";
 export * from "./runtime-admission-lock.js";
 export * from "./method-catalog.js";
 export * from "./native-role-config.js";

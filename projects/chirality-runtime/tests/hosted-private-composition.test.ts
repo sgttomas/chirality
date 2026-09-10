@@ -14,12 +14,14 @@ import { admitHostedControlledForTests } from "../packages/daemon/src/codex-supe
 import { createControlledCodexCandidateLauncherFactoryForTests } from "../packages/daemon/src/codex-admitted-launcher.js";
 import type { AuthenticatedCodexCandidate } from "../packages/daemon/src/codex-authenticated-transport.js";
 import { HostedIdentityBindingStore } from "../packages/daemon/src/hosted-identity-binding.js";
+import { hostAuthoritySubjectBindingDigestV2 } from "../packages/daemon/src/runtime-conformance-v2-admission.js";
 import { AuthorityTranscript, AUTHORITY_CONTRACT, initializationProof } from "../packages/daemon/src/supplier-authority-controller.js";
 import { resolveHostedProjectTokenFile } from "../packages/daemon/src/hosted-paths.js";
 import { startControlledHostedBootstrapRuntimeHostForTests } from "../packages/daemon/src/hosted-bootstrap.js";
 import { startControlledHostedPrivateBootstrapRuntimeHostForTests } from "../packages/daemon/src/hosted-private-entry.js";
 import {
   createControlledHostedBootstrapPrivateBindingsForTests,
+  validateHostedPrivateCompositionOptions,
   type ControlledHostedPrivateCompositionAdapters,
   type HostedPrivateCompositionOptions
 } from "../packages/daemon/src/hosted-private-composition.js";
@@ -162,6 +164,7 @@ async function fixture(input: { logoutFails?: boolean; openStoreFails?: boolean;
   let ceremonyState: "pending" | "completed" = "completed";
   let launcherFactoryCalls = 0;
   const adapters: ControlledHostedPrivateCompositionAdapters = {
+    revalidateReleaseBasis: async () => {},
     acquireLease: async () => lease,
     stageSupplier: async (_source, directory) => join(directory, "supplier", "codex"),
     prepareNativeRoles: async () => { events.push("roles-materialized"); return { digest: "9".repeat(64), configOverrides: ["agents.enabled=true", "features.multi_agent=true", "features.multi_agent_v2=false", "agents.max_depth=2"] }; },
@@ -189,10 +192,29 @@ async function fixture(input: { logoutFails?: boolean; openStoreFails?: boolean;
   const bindings = await createControlledHostedBootstrapPrivateBindingsForTests(options, adapters);
   const ceremony = await bindings.createCeremony({ projectId: "project", canonicalRoot, privateDirectory: privateRoot, codexHome,
     providerNetworkConsent: { approvedBy: "owner", approvalReference: "act-1", approvedAt: new Date().toISOString() } });
-  return { root, canonicalRoot, runtimeDirectory, instructionRoot, privateRoot, codexHome, events, lease, continuity, bindings, ceremony, setCeremonyState: (state: typeof ceremonyState) => { ceremonyState = state; } };
+  return { root, canonicalRoot, runtimeDirectory, instructionRoot, privateRoot, codexHome, events, lease, continuity, bindings, ceremony, options, adapters, setCeremonyState: (state: typeof ceremonyState) => { ceremonyState = state; } };
 }
 
 describe("hosted private production composition boundary", () => {
+  it("maps registered project and consent to P2 before staging, and rejects a structural host claim", async () => {
+    const f = await fixture();
+    const calls: unknown[] = [], stagedBeforeAuthority: string[] = [];
+    const hostAuthority = async (input: any) => { calls.push(input); return { authority: { evidence: "accepted-host-account-authority", mechanismId: "fake", daemonGeneration: "d", authorityGeneration: "a", subjectBindingDigest: hostAuthoritySubjectBindingDigestV2({ ...input, account: null }), liveLeaseDigest: "1".repeat(64) } as any, account: null }; };
+    const adapters = { ...f.adapters, hostAuthority, stageSupplier: async (...args: Parameters<typeof f.adapters.stageSupplier>) => { stagedBeforeAuthority.push("staged"); return f.adapters.stageSupplier(...args); } };
+    const { model: _model, managedAuth: _managedAuth, conformance: _conformance, loginPurposeRelease: _login, configDigest: _config, consentVersion: _consentVersion, commandNetworkConsent: _commandConsent, ...base } = f.options;
+    const options = { ...base, protectedPaths: [f.runtimeDirectory, join(f.runtimeDirectory, "release-authority"), join(f.runtimeDirectory, "release-basis")],
+      releaseV2: { basis: { schema: "chirality-hosted-packaged-release-basis/v2" as const, basisDigest: "7".repeat(64) } as any } };
+    expect(() => validateHostedPrivateCompositionOptions({ ...options, commandNetworkPosture: "on" })).toThrow();
+    expect(() => validateHostedPrivateCompositionOptions({ ...options, configDigest: "a".repeat(64) })).toThrow();
+    expect(() => validateHostedPrivateCompositionOptions({ ...options, managedAuth: f.options.managedAuth })).toThrow();
+    expect(validateHostedPrivateCompositionOptions(options)).not.toHaveProperty("managedAuth");
+    const bindings = await createControlledHostedBootstrapPrivateBindingsForTests(options, adapters);
+    await expect(bindings.createCeremony({ projectId: "project", manifestHash: "9".repeat(64), canonicalRoot: f.canonicalRoot, privateDirectory: f.privateRoot, codexHome: f.codexHome,
+      providerNetworkConsent: { approvedBy: "owner", approvalReference: "act-v2", approvedAt: "2026-09-10T00:00:00.000Z" } })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", details: { reason: "HOST_AUTHORITY_INVALID" } });
+    expect(stagedBeforeAuthority).toEqual([]);
+    expect(calls).toEqual([{ purpose: "login", projectId: "project", manifestHash: "9".repeat(64), canonicalRoot: f.canonicalRoot, consentDigest: expect.stringMatching(/^[a-f0-9]{64}$/) }]);
+    await bindings.close?.(); await f.bindings.close?.();
+  });
   it("binds ceremony, same admitted actor and materialized runtime, then closes the one host lease", async () => {
     const f = await fixture();
     const admission = await f.bindings.establishAdmission!({ projectId: "project", canonicalRoot: f.canonicalRoot, ceremony: f.ceremony, nativeAddonPath: join(f.root, "native.node") });

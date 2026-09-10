@@ -203,9 +203,11 @@ describe("hosted bootstrap public-to-private composition", () => {
     const runtimeDirectory = join(root, "runtime");
     await mkdir(runtimeDirectory, { mode: 0o700 });
     const observed: AgentEngineRunInput[] = [], retired: string[] = [], closed: string[] = [];
+    const ceremonyManifests = new Map<string, string>();
     const ceremonies = new Map<string, TrustedHostedLoginCeremony>();
     const bindings = {
-      async createCeremony(input: { projectId: string }) {
+      async createCeremony(input: { projectId: string; manifestHash: string }) {
+        ceremonyManifests.set(input.projectId, input.manifestHash);
         let cancelled = false;
         const ceremony: TrustedHostedLoginCeremony = {
           async start() { return { loginId: `login-${input.projectId}`, authUrl: `https://auth.example.test/${input.projectId}` }; },
@@ -246,6 +248,7 @@ describe("hosted bootstrap public-to-private composition", () => {
       expect(await bootstrap.startHostedBootstrapLogin(project.projectId)).toEqual({ loginId: `login-${project.projectId}`, authUrl: `https://auth.example.test/${project.projectId}` });
       await expect(bootstrap.startHostedBootstrapLogin(project.projectId)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
     }
+    for (const project of registrations) expect(ceremonyManifests.get(project.projectId)).toBe(project.manifestHash);
     expect(await bootstrap.hostedBootstrapStatus(signedInOnly.projectId)).toMatchObject({ ceremony: "signed-in", admission: "unavailable", canStartLogin: false });
     expect(await bootstrap.hostedBootstrapStatus(first.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready", canStartLogin: false });
     expect(await bootstrap.hostedBootstrapStatus(second.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready", canStartLogin: false });

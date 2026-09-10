@@ -32,12 +32,17 @@ export function resolveHostedRuntimeSource() {
   return path.join(runtimeRoot, 'packages', 'daemon', 'src', 'hosted.ts');
 }
 
+export function resolveRuntimeConformanceV2Source() {
+  return path.join(runtimeRoot, 'packages', 'core', 'src', 'runtime-conformance-v2.ts');
+}
+
 const runtimeEntries = {
   '@chirality/runtime-daemon/hosted': resolveHostedRuntimeSource(),
   '@chirality/runtime-daemon/hosted-paths': resolveHostedRuntimePathsSource(),
   '@chirality/native-admission': resolveNativeAdmissionSource(),
   '@chirality/runtime-contracts': resolveRuntimeContractsSource(),
   '@chirality/runtime-core': path.join(runtimeRoot, 'packages', 'core', 'src', 'index.ts'),
+  '@chirality/runtime-core/runtime-conformance-v2': resolveRuntimeConformanceV2Source(),
   '@chirality/runtime-daemon': path.join(
     runtimeRoot,
     'packages',

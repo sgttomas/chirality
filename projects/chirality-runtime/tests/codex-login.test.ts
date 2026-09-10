@@ -34,6 +34,31 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
   return { login, codexHome, child, async close() { await login.close(); expect(child.exitCode !== null || child.signalCode !== null).toBe(true); await rm(codexHome, { recursive: true, force: true }); } };
 }
 describe("operator-only sign-in component (controlled fixture)", () => {
+  it("selects one complete paginated default and rejects repeated cursors or multiple defaults", async () => {
+    const run = async (pages: Record<string, { data: unknown[]; nextCursor: string | null }>) => {
+      const stdin = new PassThrough(), stdout = new PassThrough();
+      const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+      stdin.on("data", bytes => {
+        for (const line of bytes.toString().trim().split("\n")) {
+          const request = JSON.parse(line);
+          if (request.method === "initialize") send({ id: request.id, result: {} });
+          else if (request.method === "account/login/start") { send({ id: request.id, result: { type: "chatgpt", loginId: "catalog", authUrl: "https://auth.openai.com/catalog" } }); send({ method: "account/login/completed", params: { loginId: "catalog", success: true, error: null } }); }
+          else if (request.method === "account/read") send({ id: request.id, result: { account: { type: "apiKey" }, requiresOpenaiAuth: true } });
+          else if (request.method === "model/list") send({ id: request.id, result: { ...pages[request.params.cursor ?? ""], data: pages[request.params.cursor ?? ""].data.map((item: any) => ({ hidden: false, supportedReasoningEfforts: [{ reasoningEffort: item.defaultReasoningEffort, description: "Supplier reasoning option" }], ...item })) } });
+        }
+      });
+      const login = createControlledCodexLoginForTests({ codexHome: "/synthetic/catalog", transport: { stdin, stdout, async close() {} }, timeoutMs: 1000, retainAuthenticatedSessionForModelCatalog: true });
+      await login.startLogin(); await expect.poll(async () => (await login.status()).state).toBe("completed");
+      return { login, close: async () => { await login.close(); stdin.destroy(); stdout.destroy(); } };
+    };
+    const valid = await run({ "": { data: [{ model: "other", isDefault: false, defaultReasoningEffort: "medium" }], nextCursor: "next" }, next: { data: [{ model: "gpt-default", isDefault: true, defaultReasoningEffort: "high" }], nextCursor: null } });
+    try { expect(await valid.login.resolveDefaultModel()).toEqual({ model: "gpt-default", defaultReasoningEffort: "high" }); } finally { await valid.close(); }
+    const repeated = await run({ "": { data: [], nextCursor: "same" }, same: { data: [], nextCursor: "same" } });
+    try { await expect(repeated.login.resolveDefaultModel()).rejects.toThrow("cursor"); } finally { await repeated.close(); }
+    const multiple = await run({ "": { data: [{ model: "a", isDefault: true, defaultReasoningEffort: "low" }, { model: "b", isDefault: true, defaultReasoningEffort: "high" }], nextCursor: null } });
+    try { await expect(multiple.login.resolveDefaultModel()).rejects.toThrow("unique usable default"); } finally { await multiple.close(); }
+  });
+
   it("accepts only an exact account-free observed login-purpose record", () => {
     const bindings = { bindingDigest:"a".repeat(64), outerPolicyDigest:"b".repeat(64), sourceDigest:"c".repeat(64), packageDigest:"d".repeat(64), activationId:"release-1", gateIdentity:"D36", consentDigest:"e".repeat(64) };
     const supply = { sha256:"f".repeat(64), size:123, version:"0.149.0" };

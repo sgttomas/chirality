@@ -12,6 +12,8 @@ export * from "./hosted-boot.js";
 export * from "./hosted-bootstrap.js";
 export * from "./hosted-private-composition.js";
 export * from "./hosted-private-entry.js";
+export { loadPackagedHostedReleaseBasis, startHostedPackagedPrivateBootstrapRuntimeHost } from "./hosted-packaged-release.js";
+export type { HostedPackagedReleaseBasisV2, HostedPackagedReleaseLoadResult, HostedPackagedPurposeBasisV2 } from "./hosted-packaged-release.js";
 export * from "./hosted-paths.js";
 export * from "./supplier-authority-controller.js";
 export * from "./supplier-authority-journal.js";

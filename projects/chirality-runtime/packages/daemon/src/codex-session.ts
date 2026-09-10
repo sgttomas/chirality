@@ -1,3 +1,4 @@
+import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2 } from "./runtime-conformance-v2-admission.js";
 import type { RuntimeAdmissionLease } from "@chirality/runtime-core";
 import { randomUUID, createHash } from "node:crypto";
 import { isIP } from "node:net";
@@ -105,6 +106,8 @@ export class CodexTurnSession {
   private received = 0;
   private ready = false;
   private authorityInitialized=false;
+  private supplierAuthority?: SupplierAuthorityController;
+  private supplierGeneration?: string;
   private authorityFrame?: (raw:Uint8Array)=>void;
   private authorityFailed?:()=>void;
   private initializing = false;
@@ -130,7 +133,7 @@ export class CodexTurnSession {
   private policyCwd: string | undefined;
   private readonly nativePolicy: Readonly<{ permissionProfile: string; policyDigest: string }> | undefined;
   private login: { state: "pending" | "completed" | "failed"; loginId?: string } | undefined;
-  constructor(private readonly options: { transport: CodexSessionTransport; requestTimeoutMs?: number; turnTimeoutMs?: number; purpose?: "turn" | "login"; permissionProfile?: string; policyDigest?: string; dynamicTools?: readonly CodexDynamicTool[]; toolTimeoutMs?: number; commandNetworkPosture?: "off" | "ask-per-destination" | "on" }) {
+  constructor(private readonly options: { runtimeV2?: { instanceInput: RuntimeInstanceAdmissionInputV2; instanceAdmission: RuntimeInstanceAdmissionV2 }; transport: CodexSessionTransport; requestTimeoutMs?: number; turnTimeoutMs?: number; purpose?: "turn" | "login"; permissionProfile?: string; policyDigest?: string; dynamicTools?: readonly CodexDynamicTool[]; toolTimeoutMs?: number; commandNetworkPosture?: "off" | "ask-per-destination" | "on" }) {
     this.commandNetworkPosture = options.commandNetworkPosture ?? "off";
     if (options.commandNetworkPosture !== undefined && !["off", "ask-per-destination", "on"].includes(options.commandNetworkPosture)) throw invalid("Invalid trusted command network posture");
     if ((options.dynamicTools?.length ?? 0) > 32 || (options.purpose === "login" && options.dynamicTools?.length)) throw invalid("Unsupported dynamic tool registry");
@@ -171,7 +174,8 @@ export class CodexTurnSession {
     this.requests.clear();
     if (this.active) { clearTimeout(this.active.timer); this.active.reject(error); this.active = undefined; }
     this.wake?.(); this.wake = undefined;
-    this.closing ??= this.options.transport.close().catch(() => {});
+    this.closing ??= this.options.transport.close();
+    void this.closing.catch(() => {});
   }
   private assertReady(): void { if (this.failure) throw this.failure; if (!this.ready) throw invalid("Initialize Codex session first"); }
   private write(message: Record<string, unknown>): void {
@@ -529,13 +533,37 @@ export class CodexTurnSession {
       authority.assertSnapshotBinding({supplierGeneration:snapshot.supplierGeneration,identityGeneration:snapshot.identityGeneration,snapshotDigest:snapshot.snapshotDigest});
       return createHash("sha256").update(JSON.stringify({schema:"chirality-hosted-account-conformance/v1",accountUserId:snapshot.accountUserId,providerWorkspaceId:snapshot.providerWorkspaceId})).digest("hex");});
   }
+  async listModelsPage(cursor?: string): Promise<{ data: readonly { model: string; hidden: boolean; isDefault: boolean; defaultReasoningEffort: string }[]; nextCursor: string | null }> {
+    this.assertReady();
+    if (cursor !== undefined && (typeof cursor !== "string" || !/^[\x21-\x7e]{1,512}$/.test(cursor))) throw invalid("Invalid model catalog cursor");
+    const response = await this.request("model/list", cursor === undefined ? { limit: 100 } : { limit: 100, cursor });
+    strictKeys(response, ["data", "nextCursor"]);
+    if (!Array.isArray(response.data) || response.data.length > 100 || (response.nextCursor !== null && (typeof response.nextCursor !== "string" || !/^[\x21-\x7e]{1,512}$/.test(response.nextCursor)))) throw protocol("Invalid model catalog page");
+    const data = response.data.map((entry: unknown) => {
+      if (!entry || typeof entry !== "object" || Array.isArray(entry)) throw protocol("Invalid model catalog entry");
+      const item = entry as Record<string, unknown>;
+      if (typeof item.model !== "string" || !/^[\x21-\x7e]{1,128}$/.test(item.model) || typeof item.isDefault !== "boolean" || typeof item.hidden !== "boolean"
+        || typeof item.defaultReasoningEffort !== "string" || !/^[\x21-\x7e]{1,64}$/.test(item.defaultReasoningEffort)) throw protocol("Invalid model catalog entry");
+      if (!Array.isArray(item.supportedReasoningEfforts) || item.supportedReasoningEfforts.length < 1 || item.supportedReasoningEfforts.length > 32) throw protocol("Invalid model reasoning options");
+      const efforts = item.supportedReasoningEfforts.map((option: unknown) => {
+        if (!option || typeof option !== "object" || Array.isArray(option)) throw protocol("Invalid model reasoning option");
+        const effort = (option as Record<string, unknown>).reasoningEffort;
+        if (typeof effort !== "string" || !/^[\x21-\x7e]{1,64}$/.test(effort)) throw protocol("Invalid model reasoning option");
+        return effort;
+      });
+      if (new Set(efforts).size !== efforts.length || !efforts.includes(item.defaultReasoningEffort)) throw protocol("Unusable default model reasoning");
+      return Object.freeze({ model: item.model, hidden: item.hidden, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort });
+    });
+    return Object.freeze({ data: Object.freeze(data), nextCursor: response.nextCursor as string | null });
+  }
   private connectedAuthorityTransport():AuthorityTransport {
     if(!this.authorityInitialized)throw invalid("Private authority initialization required");
     return {subscribe:(frame,failed)=>{if(this.authorityFrame)throw invalid("Private authority already attached");this.authorityFrame=frame;this.authorityFailed=failed;return()=>{this.authorityFrame=undefined;this.authorityFailed=undefined;};},send:async frame=>{this.assertReady();this.write(frame as unknown as Record<string,unknown>);},close:()=>this.close()};
   }
   async establishAuthority(input:CodexAuthorityInitialize,lease:RuntimeAdmissionLease,durableRevoke:()=>Promise<void>):Promise<SupplierAuthorityController> {
     await this.initializeAuthority(input);const snapshot=await this.authoritySnapshot(input.supplierGeneration);
-    return new SupplierAuthorityController({enabled:true,kernelLease:lease,transport:this.connectedAuthorityTransport(),authoritySecret:input.authoritySecret,runtimeProcessIncarnationId:input.runtimeProcessIncarnationId,...snapshot,durableRevoke,refreshSnapshot:()=>this.authoritySnapshot(input.supplierGeneration)});
+    const controller = new SupplierAuthorityController({enabled:true,kernelLease:lease,transport:this.connectedAuthorityTransport(),authoritySecret:input.authoritySecret,runtimeProcessIncarnationId:input.runtimeProcessIncarnationId,...snapshot,durableRevoke,refreshSnapshot:()=>this.authoritySnapshot(input.supplierGeneration)});
+    this.supplierAuthority = controller; this.supplierGeneration = input.supplierGeneration; return controller;
   }
   async initialize(): Promise<void> {
     if (this.ready || this.initializing) throw invalid("Codex connection initializes once");
@@ -654,6 +682,15 @@ export class CodexTurnSession {
     if (["permissionProfile", "policyDigest", "permissions", "sandbox", "sandboxPolicy", "approvalPolicy", "approval_policy", "approvalsReviewer", "approvals_reviewer"].some(field => Object.hasOwn(input, field))) throw invalid("Policy overrides are forbidden; use trusted constructor binding");
   }
   private policyParameters(): Record<string, unknown> { return this.nativePolicy ? { permissions: this.nativePolicy.permissionProfile, approvalPolicy: this.commandNetworkPosture === "ask-per-destination" ? "on-request" : "never", approvalsReviewer: "user" } : {}; }
+  private async revalidateModelEffectV2(): Promise<void> {
+    const binding = this.options.runtimeV2;
+    if (!binding) return;
+    const input = binding.instanceInput;
+    await revalidateRuntimeInstanceAdmissionV2(input, binding.instanceAdmission);
+    if (!this.supplierAuthority || !this.supplierGeneration || await this.hostedAccountDigest(this.supplierAuthority, this.supplierGeneration) !== input.account?.accountDigest) throw invalid("Current account differs from model admission");
+    await revalidateHostedAccountAuthorityV2(input.hostAuthority, { purpose: "worker", projectId: input.projectId, manifestHash: input.manifestHash, canonicalRoot: input.canonicalRoot, account: input.account, consentDigest: input.consent.digest });
+    this.assertReady();
+  }
   private model(model: string): void { if (typeof model !== "string" || !model.trim() || model.length > 128 || /[\x00-\x1f]/.test(model)) throw invalid("An explicit model is required"); }
   private async select(method: "thread/start" | "thread/resume", input: { model: string; continuityChecked: true }, params: Record<string, unknown>): Promise<string> {
     this.assertReady(); if (this.options.purpose === "login") throw invalid("Login transport cannot start model work"); this.model(input.model);
@@ -662,6 +699,7 @@ export class CodexTurnSession {
     this.selecting = true; this.threadNotice = undefined;
     try {
       await this.checkNativePolicy();
+      await this.revalidateModelEffectV2();
       const result = await this.request(method, { ...params, model: input.model, ...this.policyParameters() });
       if (this.nativePolicy && (result.approvalsReviewer !== "user" || result.approvalPolicy !== (this.commandNetworkPosture === "ask-per-destination" ? "on-request" : "never"))) throw protocol("Effective thread approval settings differ from trusted policy");
       const id = identifier(object(result.thread).id);
@@ -680,7 +718,7 @@ export class CodexTurnSession {
     const id = await this.select("thread/resume", input, { threadId: identifier(input.threadId) });
     if (id !== input.threadId) { this.fail(protocol("Resumed thread identity changed")); throw this.failure; } return id;
   }
-  async startTurn(input: { threadId: string; text: string; model: string; interactionMode?: "chat" | "native-plan"; attachments?: readonly DelegatedAttachmentInput[] }): Promise<string> {
+  async startTurn(input: { threadId: string; text: string; model: string; reasoningEffort?: string; interactionMode?: "chat" | "native-plan"; attachments?: readonly DelegatedAttachmentInput[] }): Promise<string> {
     this.rejectPolicyOverride(input);
     this.assertReady(); if (this.options.purpose === "login") throw invalid("Login transport cannot start model work"); this.model(input.model);
     if (input.threadId !== this.threadId || !this.threadId || this.selecting) throw invalid("Select this thread before starting a turn");
@@ -706,8 +744,10 @@ export class CodexTurnSession {
     try {
       await this.checkNativePolicy();
       const mode = input.interactionMode ?? "chat";
+      if (input.reasoningEffort !== undefined && !/^[\x21-\x7e]{1,64}$/.test(input.reasoningEffort)) throw invalid("Invalid reasoning effort");
+      await this.revalidateModelEffectV2();
       const result = await this.request("turn/start", { threadId: input.threadId, input: userInput, model: input.model,
-        collaborationMode: { mode: mode === "native-plan" ? "plan" : "default", settings: { model: input.model, reasoning_effort: null, developer_instructions: null } }, ...this.policyParameters() });
+        collaborationMode: { mode: mode === "native-plan" ? "plan" : "default", settings: { model: input.model, reasoning_effort: input.reasoningEffort ?? null, developer_instructions: null } }, ...this.policyParameters() });
       const id = identifier(object(result.turn).id);
       if ((turn.id && turn.id !== id) || (this.terminals.has(id) && turn.terminal?.turnId !== id)) throw protocol("Turn response identity mismatch");
       turn.id = id; if (!turn.startedEmitted) { turn.startedEmitted = true; this.emit({ type: "started", threadId: turn.threadId, turnId: id }); } return id;

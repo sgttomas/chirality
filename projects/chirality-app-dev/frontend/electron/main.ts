@@ -8,7 +8,6 @@ import { createServer, type IncomingMessage, type ServerResponse } from 'node:ht
 import type { AddressInfo } from 'node:net';
 import path from 'node:path';
 import { RuntimeClient } from '@chirality/runtime-client';
-import { ProjectRegistry } from '@chirality/runtime-core';
 import { installRuntimeDaemonSignalShutdown } from '@chirality/runtime-daemon';
 import { resolveHostedBootstrapTokenFile } from '@chirality/runtime-daemon/hosted-paths';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
@@ -30,7 +29,6 @@ import {
   prepareDesktopHarnessEnvironment,
   resolveDesktopProjectBinding
 } from './desktop-project-client';
-import { resolvePackagedDaemonInstructionRoot } from './daemon-instruction-root';
 import {
   applyPackagedRendererRequestPolicy,
   buildRendererContentSecurityPolicy,
@@ -40,7 +38,7 @@ import {
   runRendererSecurityProbe
 } from './renderer-window-policy';
 import {
-  configuredPackagedRuntimeBootInput,
+  packagedRuntimeBootInput,
   startRuntimeHost,
   type RuntimeHost
 } from './runtime-host';
@@ -821,31 +819,6 @@ async function initializeDaemon(): Promise<void> {
     directory: path.join(app.getPath('userData'), 'logs'),
     fileName: 'desktop-daemon.log'
   });
-  let instructionRoot: string;
-  if (app.isPackaged) {
-    const control = runtimeControlPaths();
-    const projects = new ProjectRegistry(control.runtimeDirectory);
-    const resolution = await resolvePackagedDaemonInstructionRoot({
-      projectId: DESKTOP_PROJECT_ID,
-      packagedResourcesPath: process.resourcesPath,
-      resolveProjectRoots: (projectId) => projects.roots(projectId)
-    });
-    instructionRoot = resolution.instructionRoot;
-    if (resolution.source === 'packaged-resources-fallback') {
-      desktopLogger.warn('runtime.daemon.instruction_root.fallback', {
-        instructionRoot: resolution.instructionRoot,
-        reason: resolution.reason
-      });
-    } else {
-      desktopLogger.info('runtime.daemon.instruction_root.resolved', {
-        instructionRoot: resolution.instructionRoot,
-        projectId: DESKTOP_PROJECT_ID,
-        source: resolution.source
-      });
-    }
-  } else {
-    instructionRoot = resolveInstructionRootForProcess();
-  }
   desktopLogger.info('runtime.daemon.starting', {
     activationPolicy: resolveDaemonActivationPolicy(process.env),
     packaged: app.isPackaged,
@@ -853,26 +826,34 @@ async function initializeDaemon(): Promise<void> {
     pid: process.pid
   });
   const control = runtimeControlPaths();
-  const bootstrapInput = {
-    runtimeDirectory: control.runtimeDirectory,
-    daemonSocket: 'control.sock',
-    instructionRoot
-  } as const;
-  const hostedPrivateConfigFile = process.env.CHIRALITY_HOSTED_PRIVATE_CONFIG_FILE;
-  if (hostedPrivateConfigFile !== undefined && !app.isPackaged) {
+  const instructionRoot = app.isPackaged
+    ? path.join(process.resourcesPath, 'instruction-root')
+    : resolveInstructionRootForProcess();
+  const runtimeBootInput =
+    app.isPackaged
+      ? packagedRuntimeBootInput({
+          runtimeDirectory: control.runtimeDirectory,
+          daemonSocket: 'control.sock',
+          resourcesRoot: process.resourcesPath,
+          embeddedRuntime: {
+            electron: process.versions.electron,
+            node: process.versions.node,
+            modules: process.versions.modules,
+            napi: process.versions.napi ?? '',
+            architecture: process.arch
+          }
+        })
+      : {
+          runtimeDirectory: control.runtimeDirectory,
+          daemonSocket: 'control.sock' as const,
+          instructionRoot
+        };
+  if (!app.isPackaged && process.env.CHIRALITY_HOSTED_PRIVATE_CONFIG_FILE !== undefined) {
     throw new Error(
       'Hosted private configuration is unavailable in development until a reviewed source-tree artifact basis is provided.'
     );
   }
-  const runtimeBootInput =
-    hostedPrivateConfigFile !== undefined
-      ? configuredPackagedRuntimeBootInput({
-          ...bootstrapInput,
-          configFile: hostedPrivateConfigFile,
-          resourcesRoot: process.resourcesPath
-        })
-      : bootstrapInput;
-  process.env.CHIRALITY_INSTRUCTION_ROOT = runtimeBootInput.instructionRoot;
+  process.env.CHIRALITY_INSTRUCTION_ROOT = instructionRoot;
   runtimeHost = await startRuntimeHost(runtimeBootInput);
   process.env.CHIRALITY_RUNTIME_DIRECTORY = runtimeHost.runtimeDirectory;
   process.env.CHIRALITY_RUNTIME_SOCKET_PATH = runtimeHost.socketPath;
