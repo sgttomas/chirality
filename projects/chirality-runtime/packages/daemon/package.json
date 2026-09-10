@@ -20,6 +20,10 @@
     "./hosted-release-provisioner": {
       "types": "./dist/hosted-release-provisioner.d.ts",
       "import": "./dist/hosted-release-provisioner.js"
+    },
+    "./account-free-login-observation": {
+      "types": "./dist/account-free-login-observation.d.ts",
+      "import": "./dist/account-free-login-observation.js"
     }
   },
   "files": [

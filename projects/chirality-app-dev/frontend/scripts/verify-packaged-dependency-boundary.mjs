@@ -6,17 +6,21 @@ import readline from 'node:readline';
 import { fileURLToPath } from 'node:url';
 
 const frontendRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+export const ELECTRON_OUTPUT_DIRECTORY_ENV = 'CHIRALITY_ELECTRON_OUTPUT_DIRECTORY';
+export function resolvePackagedDependencyBundlePath(env = process.env) {
+  let outputDirectory = path.join(frontendRoot, 'dist');
+  if (Object.prototype.hasOwnProperty.call(env, ELECTRON_OUTPUT_DIRECTORY_ENV)) {
+    const candidate = env[ELECTRON_OUTPUT_DIRECTORY_ENV];
+    if (typeof candidate !== 'string' || candidate.length === 0 || candidate.includes('\0')
+      || !path.isAbsolute(candidate) || path.normalize(candidate) !== candidate) {
+      throw new Error(`${ELECTRON_OUTPUT_DIRECTORY_ENV} must be a normalized absolute path`);
+    }
+    outputDirectory = candidate;
+  }
+  return path.join(outputDirectory, 'mac-arm64', 'Chirality.app', 'Contents', 'Resources', 'app.asar');
+}
 const bundlePath = path.resolve(
-  process.argv[2] ??
-    path.join(
-      frontendRoot,
-      'dist',
-      'mac-arm64',
-      'Chirality.app',
-      'Contents',
-      'Resources',
-      'app.asar'
-    )
+  process.argv[2] ?? resolvePackagedDependencyBundlePath()
 );
 const asarCli = path.join(frontendRoot, 'node_modules', '.bin', 'asar');
 const resourcesRoot = path.dirname(bundlePath);

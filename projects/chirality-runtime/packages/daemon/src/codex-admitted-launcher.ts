@@ -5,7 +5,8 @@ import {
   type AuthenticatedCodexCandidate,
   type AuthenticatedCodexCandidateInput
 } from "./codex-authenticated-transport.js";
-import { inspectCodexPolicyInstanceV2 } from "./runtime-conformance-v2-admission.js";
+import { inspectCodexPolicyInstanceV2, type RuntimeWorkerInstancePreparationV2 } from "./runtime-conformance-v2-admission.js";
+import { assertIssuedPackagedSupplyVerifierV2 } from "./hosted-packaged-release-state.js";
 
 export type CodexAdmittedLauncherBindings = Omit<AuthenticatedCodexCandidateInput, "kernelLease"> & {
   model: string;
@@ -69,7 +70,7 @@ function contained(parent: string, child: string): boolean {
 
 function validateBindings(value: CodexAdmittedLauncherBindings): Readonly<CodexAdmittedLauncherBindings> {
   const keys = ["canonicalRoot", "privateDirectory", "codexHome", "executablePath", "nativeAddonPath", "model", "providerNetworkConsent", "commandNetworkPosture", "protectedPaths", "immutableReadRoots", "policyDigest", "configDigest", "consentVersion", "toolRuntime"];
-  const optionalKeys = [...(value.readOnlyProjectPaths === undefined ? [] : ["readOnlyProjectPaths"]), ...(value.trustedRuntimeReadRoots === undefined ? [] : ["trustedRuntimeReadRoots"]), ...(value.nativeRoleConfiguration === undefined ? [] : ["nativeRoleConfiguration"]), ...(value.policyInstanceV2 === undefined ? [] : ["policyInstanceV2"]), ...(value.expectedEffectiveConfigDigestV2 === undefined ? [] : ["expectedEffectiveConfigDigestV2"]), ...(value.instanceInputV2 === undefined ? [] : ["instanceInputV2"]), ...(value.instanceAdmissionV2 === undefined ? [] : ["instanceAdmissionV2"])];
+  const optionalKeys = [...(value.supplyVerifier === undefined ? [] : ["supplyVerifier"]), ...(value.readOnlyProjectPaths === undefined ? [] : ["readOnlyProjectPaths"]), ...(value.trustedRuntimeReadRoots === undefined ? [] : ["trustedRuntimeReadRoots"]), ...(value.nativeRoleConfiguration === undefined ? [] : ["nativeRoleConfiguration"]), ...(value.policyInstanceV2 === undefined ? [] : ["policyInstanceV2"]), ...(value.expectedEffectiveConfigDigestV2 === undefined ? [] : ["expectedEffectiveConfigDigestV2"]), ...(value.instanceInputV2 === undefined ? [] : ["instanceInputV2"]), ...(value.instanceAdmissionV2 === undefined ? [] : ["instanceAdmissionV2"]), ...(value.instancePreparationV2 === undefined ? [] : ["instancePreparationV2"]), ...(value.nativePolicyIdentityVersion === undefined ? [] : ["nativePolicyIdentityVersion"])];
   if (!exactKeys(value, [...keys, ...optionalKeys])) throw unavailable("BINDINGS_INVALID");
   for (const path of [value.canonicalRoot, value.privateDirectory, value.codexHome, value.executablePath, value.nativeAddonPath]) if (!canonicalPath(path)) throw unavailable("BINDINGS_INVALID");
   if (!contained(value.privateDirectory, value.codexHome) || !contained(value.privateDirectory, value.executablePath)
@@ -90,16 +91,22 @@ function validateBindings(value: CodexAdmittedLauncherBindings): Readonly<CodexA
     || typeof value.providerNetworkConsent.approvedBy !== "string" || !value.providerNetworkConsent.approvedBy.trim()
     || typeof value.providerNetworkConsent.approvalReference !== "string" || !value.providerNetworkConsent.approvalReference.trim()) throw unavailable("PROVIDER_CONSENT_INVALID");
   if (!exactKeys(value.toolRuntime, ["codexSelfExecutablePath"]) || value.toolRuntime.codexSelfExecutablePath !== value.executablePath) throw unavailable("TOOL_RUNTIME_BINDING_MISMATCH");
+  if (value.supplyVerifier) assertIssuedPackagedSupplyVerifierV2(value.supplyVerifier);
+  if (value.nativePolicyIdentityVersion !== undefined && ![10,11].includes(value.nativePolicyIdentityVersion)) throw unavailable("COMPILER_IDENTITY_INVALID");
   if (value.policyInstanceV2 !== undefined) {
     const policy = inspectCodexPolicyInstanceV2(value.policyInstanceV2);
-    if (!value.instanceInputV2 || !value.instanceAdmissionV2 || !HEX.test(value.expectedEffectiveConfigDigestV2 ?? "") || policy.executablePath !== value.executablePath || policy.nativeAddonPath !== value.nativeAddonPath || policy.canonicalRoot !== value.canonicalRoot || policy.privateDirectory !== value.privateDirectory || policy.codexHome !== value.codexHome
+    const hasInstanceInput = value.instanceInputV2 !== undefined;
+    const hasInstanceAdmission = value.instanceAdmissionV2 !== undefined;
+    const hasAdmission = hasInstanceInput && hasInstanceAdmission;
+    const preparation = value.instancePreparationV2 as RuntimeWorkerInstancePreparationV2 | undefined;
+    if (hasInstanceInput !== hasInstanceAdmission || hasAdmission === (preparation !== undefined) || !HEX.test(value.expectedEffectiveConfigDigestV2 ?? "") || policy.executablePath !== value.executablePath || policy.nativeAddonPath !== value.nativeAddonPath || policy.canonicalRoot !== value.canonicalRoot || policy.privateDirectory !== value.privateDirectory || policy.codexHome !== value.codexHome
       || policy.providerNetworkConsent.approvedBy !== value.providerNetworkConsent.approvedBy || policy.providerNetworkConsent.approvalReference !== value.providerNetworkConsent.approvalReference
       || policy.commandNetworkPosture !== value.commandNetworkPosture || JSON.stringify(policy.immutableReadRoots) !== JSON.stringify(value.immutableReadRoots)
       || JSON.stringify(policy.protectedPaths) !== JSON.stringify(value.protectedPaths) || JSON.stringify(policy.readOnlyProjectPaths) !== JSON.stringify(value.readOnlyProjectPaths ?? [])
       || JSON.stringify(policy.nativeRoleConfiguration) !== JSON.stringify(value.nativeRoleConfiguration ?? null)) throw unavailable("V2_POLICY_BINDING_MISMATCH");
   }
-  const { instanceInputV2, instanceAdmissionV2, ...data } = value;
-  return Object.freeze({ ...frozenClone(data), ...(instanceInputV2 ? { instanceInputV2, instanceAdmissionV2 } : {}) });
+  const { supplyVerifier, instanceInputV2, instanceAdmissionV2, instancePreparationV2, ...data } = value;
+  return Object.freeze({ ...frozenClone(data), ...(supplyVerifier ? { supplyVerifier } : {}), ...(instanceInputV2 ? { instanceInputV2, instanceAdmissionV2 } : {}), ...(instancePreparationV2 ? { instancePreparationV2 } : {}) });
 }
 
 function compose(options: CodexCandidateLauncherOptions, adapters: ControlledCodexCandidateLauncherAdapters, onSettled: () => void = () => {}): CodexCandidateLauncher {

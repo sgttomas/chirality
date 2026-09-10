@@ -15,6 +15,20 @@ import {
 } from './prepare-packaged-instruction-root.mjs';
 
 const scriptPath = fileURLToPath(import.meta.url);
+export const ELECTRON_OUTPUT_DIRECTORY_ENV = 'CHIRALITY_ELECTRON_OUTPUT_DIRECTORY';
+
+export function resolvePackagedInstructionRoot(env = process.env, cwd = process.cwd()) {
+  let outputDirectory = path.join(cwd, 'dist');
+  if (Object.prototype.hasOwnProperty.call(env, ELECTRON_OUTPUT_DIRECTORY_ENV)) {
+    const candidate = env[ELECTRON_OUTPUT_DIRECTORY_ENV];
+    if (typeof candidate !== 'string' || candidate.length === 0 || candidate.includes('\0')
+      || !path.isAbsolute(candidate) || path.normalize(candidate) !== candidate) {
+      throw new Error(`${ELECTRON_OUTPUT_DIRECTORY_ENV} must be a normalized absolute path`);
+    }
+    outputDirectory = candidate;
+  }
+  return path.join(outputDirectory, 'mac-arm64', 'Chirality.app', 'Contents', 'Resources', 'instruction-root');
+}
 
 const REQUIRED_ROOT_FILES = [
   'AGENTS.md',
@@ -636,6 +650,7 @@ export async function run(argv = process.argv.slice(2), opts = {}) {
   try {
     return await runVerification(argv, {
       cwd,
+      env: opts.env ?? process.env,
       log,
       logError,
       legacyFixture: opts.legacyFixture === true
@@ -647,7 +662,7 @@ export async function run(argv = process.argv.slice(2), opts = {}) {
   }
 }
 
-async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
+async function runVerification(argv, { cwd, env, log, logError, legacyFixture }) {
   const args = parseArgs(argv);
   if (args.help) {
     printUsage(log);
@@ -661,7 +676,7 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
 
   const sourceRoots = resolveSourceRoots(args, cwd);
   const bundleRoot = path.resolve(
-    args.bundleRoot ?? path.join(cwd, 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources', 'instruction-root')
+    args.bundleRoot ?? resolvePackagedInstructionRoot(env, cwd)
   );
   const outputRoot = path.resolve(
     args.outputRoot ??

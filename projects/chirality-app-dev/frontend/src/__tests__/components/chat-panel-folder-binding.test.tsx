@@ -205,6 +205,25 @@ it('starts Plan Mode in a new Codex chat and keeps inspect, revise, save, and ex
   expect(saveDraft).toContain('# Approved plan');
 });
 
+it('enables genuine Plan controls for a trial admission and labels its empirical status', async () => {
+  const admission = { adapterId: 'codex-app-server', providerId: 'openai', dispositionId: 'human-trial', admissionSha256: 'b'.repeat(64), evidenceClass: 'native-adapter-local-human-trial' as const };
+  const revision = { revision: 1, sourceEvent: { qualificationState: 'trial' as const, eventId: 'trial-plan-1', occurredAt: '2026-09-10T00:00:00.000Z', admission, plan: '# Trial plan\n\nInspect before execution.' } };
+  state.boot.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'bound', projectRoot: '/chosen/subfolder', selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis-1' } });
+  state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'trial', admission });
+  state.nativeRevisions.mockResolvedValue({ schemaVersion: 'chirality.native-plan-revisions/v3', status: 'trial', admission, revisions: [revision] });
+  state.stream.mockResolvedValue(undefined);
+  await mount();
+  const mode = tree!.root.findByProps({ 'aria-label': 'Interaction mode' });
+  await act(async () => mode.props.onChange({ target: { value: 'native-plan' } }));
+  await type('Trial this plan');
+  await submit();
+  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
+  expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).findByProps({ value: 'native-plan' }).props.disabled).toBe(false);
+  expect(JSON.stringify(tree!.toJSON())).toContain('Human trial — empirical qualification pending');
+  expect(JSON.stringify(tree!.toJSON())).toContain('Trial plan');
+  expect(tree!.root.findAllByType('button').find(button => button.children.includes('Execute plan'))!.props.disabled).toBe(false);
+});
+
 it('answers every native clarification by question id, preserves numeric request ids, and retains masked input after failure', async () => {
   const qualification = { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const };
   const clarification = { clientTurnId: 'turn-1', providerThreadId: 'thread-1', providerTurnId: 'provider-turn-1', requestId: 7, itemId: 'item-7', isBlocking: true, autoResolutionMs: null,

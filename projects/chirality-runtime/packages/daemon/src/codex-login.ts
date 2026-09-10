@@ -1,13 +1,15 @@
-import { createHash, randomBytes } from "node:crypto";
+import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { constants } from "node:fs";
 import { open, realpath } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { RuntimeError, validateHostedLoginStatus, type HostedLoginStatus } from "@chirality/runtime-contracts";
-import { computeRuntimeArtifactDigest, configureRuntimeConformanceArtifactInventory, isContained, privateDirectory, recordKey, revalidateExactSupply, runtimeConformanceArtifactInventory, RuntimeConformanceFileAcceptancePort, verifyExactSupply, type RuntimeConformanceConfiguration } from "@chirality/runtime-core";
+import { computeRuntimeArtifactDigest, configureRuntimeConformanceArtifactInventory, isContained, privateDirectory, recordKey, revalidateExactSupply, runtimeConformanceArtifactInventory, runtimeStageCAppServerArguments, RuntimeConformanceFileAcceptancePort, verifyExactSupply, type ExactSupplyVerifier, type ExactVerifiedSupply, type RuntimeConformanceConfiguration } from "@chirality/runtime-core";
 import { assertCodexKeyringHomeHasNoPlaintextCredentials, codexLoginConfigOverridesV2, prepareCodexContainment, prepareCodexContainmentV2 } from "./codex-containment.js";
-import { CodexTurnSession, type CodexSessionTransport } from "./codex-session.js";
+import { CodexTurnSession, type CodexAuthorityInitialize, type CodexSessionTransport } from "./codex-session.js";
+import { AUTHORITY_CONTRACT } from "./supplier-authority-controller.js";
 import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2 } from "./runtime-conformance-v2-admission.js";
 import type { HostedPackagedReleaseBasisV2 } from "./hosted-packaged-release-state.js";
+import { assertIssuedPackagedSupplyVerifierV2 } from "./hosted-packaged-release-state.js";
 import { loadNativeAdmissionBinding } from "@chirality/native-admission";
 import { assertOwnedCompiledPathV2, codexEffectiveConfigDigestV2, retireAuthenticatedSupplierGroup } from "./codex-authenticated-transport.js";
 
@@ -22,6 +24,7 @@ export interface CodexLoginOptions {
   /** @deprecated Temporary private-composition source compatibility. */
   purposeAdmission?: CodexLoginStartupAdmission;
   releaseV2?: Readonly<HostedPackagedReleaseBasisV2>;
+  supplyVerifier?: ExactSupplyVerifier;
   instanceV2?: RuntimeInstanceAdmissionInputV2;
   instanceAdmissionV2?: RuntimeInstanceAdmissionV2;
   timeoutMs?: number;
@@ -34,7 +37,11 @@ export interface CodexLoginStartupAdmission {
   readonly instanceAdmissionV2?: RuntimeInstanceAdmissionV2;
 }
 const loginAdmissions = new WeakSet<object>();
-function loginBinding(options: Omit<CodexLoginOptions, "timeoutMs" | "startupAdmission" | "purposeRelease" | "releaseV2" | "instanceV2" | "instanceAdmissionV2">, supplySha256: string, outerPolicyDigest: string): string {
+function supplyOperations(options: Pick<CodexLoginOptions, "supplyVerifier">): { verify(input: { executablePath: string; custody?: "packaged" | "private-staged" }): Promise<ExactVerifiedSupply>; revalidate(value: ExactVerifiedSupply): Promise<unknown> } {
+  if (!options.supplyVerifier) return { verify: verifyExactSupply, revalidate: value => revalidateExactSupply(value as Awaited<ReturnType<typeof verifyExactSupply>>) };
+  assertIssuedPackagedSupplyVerifierV2(options.supplyVerifier); return options.supplyVerifier;
+}
+function loginBinding(options: Omit<CodexLoginOptions, "timeoutMs" | "startupAdmission" | "purposeRelease" | "releaseV2" | "supplyVerifier" | "instanceV2" | "instanceAdmissionV2">, supplySha256: string, outerPolicyDigest: string): string {
   return recordKey({ purpose: "trusted-login", ...options, supplySha256, outerPolicyDigest });
 }
 const LOGIN_LIMBS = Object.freeze(["exact-supplier", "keyring-backend", "plaintext-fallback-absent", "process-containment", "storage-isolation", "provider-network", "bounded-protocol-purpose", "retirement"] as const);
@@ -91,24 +98,25 @@ async function readPrivateReleaseRecord(path: string): Promise<{bytes:Buffer;sha
 /** Validates startup inputs and consumes independently accepted, account-free native-purpose evidence. It executes no login or account request. */
 export async function validateCodexLoginStartup(options: Omit<CodexLoginOptions, "timeoutMs" | "startupAdmission">): Promise<CodexLoginStartupAdmission> {
   if (process.platform !== "darwin" || process.arch !== "arm64") throw unavailable("Exact login requires darwin-arm64");
+  if (options.supplyVerifier) assertIssuedPackagedSupplyVerifierV2(options.supplyVerifier);
   const consent = options.providerNetworkConsent;
   if (!consent?.approvedBy?.trim() || !consent.approvalReference?.trim()) throw unavailable("Explicit trusted provider consent is required for sign-in");
   if (!isContained(options.privateDirectory, options.codexHome) || options.privateDirectory === options.codexHome || !isContained(options.privateDirectory, options.executablePath)) throw unavailable("Login home and exact executable must be inside the dedicated private directory");
   await privateDirectory(options.privateDirectory); await privateDirectory(options.codexHome);
   await assertCodexKeyringHomeHasNoPlaintextCredentials(options.codexHome);
-  const { purposeRelease, releaseV2, instanceV2, instanceAdmissionV2, ...startup } = options;
+  const { purposeRelease, releaseV2, supplyVerifier: _supplyVerifier, instanceV2, instanceAdmissionV2, ...startup } = options;
   if ([releaseV2, instanceV2, instanceAdmissionV2].some(value => value !== undefined)) {
     if (!releaseV2 || !instanceV2 || !instanceAdmissionV2 || instanceV2.purposeRelease.purpose !== "login" || instanceV2.account !== null) throw unavailable("Complete v2 login admission is required");
-    const supply = await verifyExactSupply({ executablePath: options.executablePath });
+    const supplyOps = supplyOperations(options), supply = await supplyOps.verify({ executablePath: options.executablePath, ...(options.supplyVerifier ? { custody: "private-staged" as const } : {}) });
     if (supply.sha256 !== releaseV2.supportProfile.supplier.sha256 || Number(supply.identity.size) !== releaseV2.supportProfile.supplier.size || supply.version !== releaseV2.supportProfile.supplier.version) throw unavailable("Login supply differs from v2 release profile");
     const containment = await prepareCodexContainmentV2({ ...startup, purpose: "trusted-login" });
     try {
       await assertOwnedCompiledPathV2(options.privateDirectory, containment.environment.TMPDIR, "directory");
       await assertOwnedCompiledPathV2(containment.environment.TMPDIR, containment.sandboxProfilePath, "file");
       const effectiveConfigDigest = codexEffectiveConfigDigestV2({ executablePath: supply.executablePath, cwd: options.canonicalRoot,
-        environment: { HOME: containment.environment.HOME, CODEX_HOME: containment.environment.CODEX_HOME, PATH: containment.environment.PATH, LANG: containment.environment.LANG }, configOverrides: codexLoginConfigOverridesV2(containment.config) });
+        environment: { HOME: containment.environment.HOME, CODEX_HOME: containment.environment.CODEX_HOME, PATH: containment.environment.PATH, LANG: containment.environment.LANG }, configOverrides: codexLoginConfigOverridesV2(containment.config), nativePolicyIdentityVersion: releaseV2!.supportProfile.compiler.nativePolicyIdentityVersion });
       if (containment.outerPolicyDigest !== instanceV2.outerPolicyDigest || effectiveConfigDigest !== instanceV2.effectiveConfigDigest) throw unavailable("Login compiled policy differs from v2 admission");
-      await revalidateRuntimeInstanceAdmissionV2(instanceV2, instanceAdmissionV2); await revalidateExactSupply(supply);
+      await revalidateRuntimeInstanceAdmissionV2(instanceV2, instanceAdmissionV2); await supplyOps.revalidate(supply);
       const result = Object.freeze({ bindingDigest: instanceV2.outerPolicyDigest, evidence: "externally-accepted-native-login-purpose" as const, recordSha256: releaseV2.login.recordSha256,
         ownerReference: instanceV2.purposeRelease.ownerReference, instanceAdmissionV2 });
       loginAdmissions.add(result); return result;
@@ -157,14 +165,18 @@ export class CodexLogin {
   private result: CodexLoginStatus | undefined;
   private selectedModel: Readonly<{ model: string; defaultReasoningEffort: string }> | undefined;
   private retainAuthenticatedSessionForModelCatalog = false;
+  private authorityInitialize: CodexAuthorityInitialize | undefined;
+  private controlledNativeSkills: "disabled" | undefined;
   constructor(private readonly options: CodexLoginOptions) {
     const timeout = options.timeoutMs ?? 300000;
     if (!Number.isSafeInteger(timeout) || timeout < 1 || timeout > 900000) throw unavailable("Invalid bounded login timeout");
+    if (options.supplyVerifier) assertIssuedPackagedSupplyVerifierV2(options.supplyVerifier);
   }
   /** Explicit fixture seam, never emits exact-supply-login evidence. */
-  static controlledForTests(input: { transport: CodexSessionTransport; codexHome: string; timeoutMs?: number; retainAuthenticatedSessionForModelCatalog?: boolean }): CodexLogin {
-    const instance = new CodexLogin({ executablePath: "", canonicalRoot: "", privateDirectory: "", codexHome: input.codexHome, providerNetworkConsent: { approvedBy: "", approvalReference: "" }, timeoutMs: input.timeoutMs });
-    instance.fixture = input.transport; instance.retainAuthenticatedSessionForModelCatalog = input.retainAuthenticatedSessionForModelCatalog === true; return instance;
+  static controlledForTests(input: { transport: CodexSessionTransport; codexHome: string; canonicalRoot?: string; timeoutMs?: number; retainAuthenticatedSessionForModelCatalog?: boolean; nativeSkills?: "disabled"; authorityInitialize?: CodexAuthorityInitialize }): CodexLogin {
+    const instance = new CodexLogin({ executablePath: "", canonicalRoot: input.canonicalRoot ?? "", privateDirectory: "", codexHome: input.codexHome, providerNetworkConsent: { approvedBy: "", approvalReference: "" }, timeoutMs: input.timeoutMs });
+    instance.fixture = input.transport; instance.retainAuthenticatedSessionForModelCatalog = input.retainAuthenticatedSessionForModelCatalog === true;
+    instance.controlledNativeSkills=input.nativeSkills;instance.authorityInitialize=input.authorityInitialize;return instance;
   }
   private get evidenceClass(): CodexLoginStatus["evidenceClass"] { return this.fixture ? "controlled-fixture" : "exact-supply-login"; }
   private async launch(): Promise<CodexSessionTransport> {
@@ -175,21 +187,22 @@ export class CodexLogin {
     if (!isContained(this.options.privateDirectory, this.options.codexHome) || this.options.privateDirectory === this.options.codexHome || !isContained(this.options.privateDirectory, this.options.executablePath)) throw unavailable("Login home and exact executable must be inside the dedicated private directory");
     await privateDirectory(this.options.privateDirectory); await privateDirectory(this.options.codexHome);
     await assertCodexKeyringHomeHasNoPlaintextCredentials(this.options.codexHome);
-    const supply = await verifyExactSupply({ executablePath: this.options.executablePath });
+    const supplyOps = supplyOperations(this.options), supply = await supplyOps.verify({ executablePath: this.options.executablePath, ...(this.options.supplyVerifier ? { custody: "private-staged" as const } : {}) });
     const containment = this.options.instanceV2
       ? await prepareCodexContainmentV2({ canonicalRoot: this.options.canonicalRoot, privateDirectory: this.options.privateDirectory, codexHome: this.options.codexHome, providerNetworkConsent: consent, purpose: "trusted-login" })
       : await prepareCodexContainment({ canonicalRoot: this.options.canonicalRoot, privateDirectory: this.options.privateDirectory, codexHome: this.options.codexHome, providerNetworkConsent: consent, purpose: "trusted-login" });
     try {
       await this.requireQualifiedLoginPurpose(supply.sha256, containment.outerPolicyDigest);
       const args = await containment.launchArguments(supply.executablePath);
-      await revalidateExactSupply(supply);
-      const flags = (this.options.instanceV2 ? codexLoginConfigOverridesV2(containment.config) : CODEX_LOGIN_V1_CONFIG_OVERRIDES).flatMap(value => ["-c", value]);
+      await supplyOps.revalidate(supply);
+      const configOverrides = this.options.instanceV2 ? codexLoginConfigOverridesV2(containment.config) : CODEX_LOGIN_V1_CONFIG_OVERRIDES;
+      const flags = configOverrides.flatMap(value => ["-c", value]);
       if (this.options.instanceV2) {
         await assertOwnedCompiledPathV2(this.options.privateDirectory, containment.environment.TMPDIR, "directory");
         await assertOwnedCompiledPathV2(containment.environment.TMPDIR, containment.sandboxProfilePath, "file");
         if (JSON.stringify(args) !== JSON.stringify(["-f", containment.sandboxProfilePath, supply.executablePath])) throw unavailable("Login outer invocation changed");
         const effectiveConfigDigest = codexEffectiveConfigDigestV2({ executablePath: supply.executablePath, cwd: this.options.canonicalRoot,
-          environment: { HOME: containment.environment.HOME, CODEX_HOME: containment.environment.CODEX_HOME, PATH: containment.environment.PATH, LANG: containment.environment.LANG }, configOverrides: codexLoginConfigOverridesV2(containment.config) });
+          environment: { HOME: containment.environment.HOME, CODEX_HOME: containment.environment.CODEX_HOME, PATH: containment.environment.PATH, LANG: containment.environment.LANG }, configOverrides: codexLoginConfigOverridesV2(containment.config), nativePolicyIdentityVersion: this.options.releaseV2!.supportProfile.compiler.nativePolicyIdentityVersion });
         if (containment.outerPolicyDigest !== this.options.instanceV2.outerPolicyDigest || effectiveConfigDigest !== this.options.instanceV2.effectiveConfigDigest) throw unavailable("Login effective configuration changed");
         const native = loadNativeAdmissionBinding(true, this.options.instanceV2.nativeAddonPath);
         if (native.state !== "available") throw unavailable("Native grouped login lifecycle unavailable");
@@ -198,7 +211,11 @@ export class CodexLogin {
         const current = this.options.instanceV2;
         await revalidateHostedAccountAuthorityV2(current.hostAuthority, { purpose: "login", projectId: current.projectId, manifestHash: current.manifestHash, canonicalRoot: current.canonicalRoot, account: null, consentDigest: current.consent.digest });
         if (this.closed || this.expired) throw unavailable("Login closed during preparation");
-        const child = native.value.spawnGroupedSupplier("/usr/bin/sandbox-exec", [...args, "app-server", ...flags], randomBytes(32), { cwd: this.options.canonicalRoot, environment: containment.environment, processGroup: true });
+        const authoritySecret=randomBytes(32),supplierGeneration=randomUUID();
+        this.authorityInitialize={runtimeProcessIncarnationId:randomUUID(),supplierGeneration,runtimeChallenge:randomBytes(32).toString("base64url"),exactSupplyDigest:supply.sha256,authoritySecret,
+          descriptor:{capability:"chirality.local-admission-authority",contract:AUTHORITY_CONTRACT,major:1,minor:0},v4Descriptor:{capability:"account.identity-snapshot",contract:"chirality-supplier-account-identity/1",major:1,minor:0,method:"account/identitySnapshot"}};
+        const appServerArguments=this.options.releaseV2?.supportProfile.compiler.nativePolicyIdentityVersion===11?runtimeStageCAppServerArguments(configOverrides):["app-server",...flags];
+        const child = native.value.spawnGroupedSupplier("/usr/bin/sandbox-exec", [...args, ...appServerArguments], authoritySecret, { cwd: this.options.canonicalRoot, environment: containment.environment, processGroup: true });
         if (child.state !== "available") throw unavailable("Contained login process could not start");
         let closing: Promise<void> | undefined;
         const close = () => closing ??= (async () => {
@@ -238,9 +255,11 @@ export class CodexLogin {
     try {
       const transport = await this.launch();
       if (this.closed) { await transport.close(); throw unavailable("Login was closed during startup"); }
-      this.actor = new CodexTurnSession({ transport, purpose: "login" });
+      const nativeSkills = this.controlledNativeSkills ?? (this.options.releaseV2?.supportProfile.compiler.nativePolicyIdentityVersion === 11 ? "disabled" as const : undefined);
+      this.actor = new CodexTurnSession({ transport, purpose: "login", nativeSkills, runtimeV2: this.options.instanceV2 && this.options.instanceAdmissionV2 ? { instanceInput: this.options.instanceV2, instanceAdmission: this.options.instanceAdmissionV2 } : undefined });
       this.timer = setTimeout(() => { this.expired = true; void this.close().catch(error => { this.closeFailure = error; }); }, this.options.timeoutMs ?? 300000);
-      await this.actor.initialize();
+      if(nativeSkills){if(!this.authorityInitialize)throw unavailable("Private login initialization unavailable");await this.actor.initializeAuthority(this.authorityInitialize);this.authorityInitialize.authoritySecret.fill(0);}else await this.actor.initialize();
+      await this.actor.verifyNativeSkillSelection(this.options.canonicalRoot);
       if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
       if (this.closed || this.expired) throw unavailable("Login closed before account effect");
       return await this.actor.loginStart();
@@ -327,6 +346,7 @@ export class CodexLogin {
   }
   async close(): Promise<void> {
     this.closed = true; clearTimeout(this.timer);
+    this.authorityInitialize?.authoritySecret.fill(0);
     if (this.actor) await this.actor.close(); else if (this.fixture) await this.fixture.close();
     if (this.closeFailure) throw this.closeFailure;
     // Persistent managed-auth storage remains supplier-owned; this component never reads credentials.

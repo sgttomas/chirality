@@ -1,6 +1,8 @@
 import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2 } from "./runtime-conformance-v2-admission.js";
 import type { RuntimeAdmissionLease } from "@chirality/runtime-core";
 import { randomUUID, createHash } from "node:crypto";
+import { constants } from "node:fs";
+import { lstat, open, realpath } from "node:fs/promises";
 import { isIP } from "node:net";
 import { CHIRALITY_ROLE_NAMES, type DelegatedAttachmentInput, type NetworkApprovalPrompt, type NetworkApprovalChoice, type NativePlanClarificationAnswers, type NativePlanClarificationQuestion, type WorkerContinuity } from "@chirality/runtime-contracts";
 import type { Readable, Writable } from "node:stream";
@@ -8,6 +10,7 @@ import { isAbsolute, resolve } from "node:path";
 import { RuntimeError } from "@chirality/runtime-contracts";
 import { AUTHORITY_CONTRACT, SupplierAuthorityController, initializationProof, verifyProof, strictKeys, parseAuthorityJson, type AuthorityTransport, type AuthorityEnvelope, type AuthorityNotification, type AuthorityRequest } from "./supplier-authority-controller.js";
 import type { HostedIdentityBindingStore, HostedIdentitySnapshot } from "./hosted-identity-binding.js";
+import { CODEX_NATIVE_TOOLS_SCHEMA, digestCodexNativeToolDefinitionsV1 } from "./codex-native-tools.js";
 
 export interface CodexAuthorityInitialize {
   runtimeProcessIncarnationId:string;supplierGeneration:string;runtimeChallenge:string;exactSupplyDigest:string;authoritySecret:Buffer;
@@ -30,9 +33,12 @@ export interface CodexDynamicTool {
   name: string;
   description: string;
   inputSchema: Readonly<Record<string, unknown>>;
-  handler(arguments_: Readonly<Record<string, unknown>>, context: { threadId: string; turnId: string; callId: string; signal: AbortSignal }): Promise<CodexDynamicToolResult>;
+  handler(arguments_: Readonly<Record<string, unknown>>, context: { threadId: string; turnId: string; callId: string; signal: AbortSignal; nativeChild?: NativeChildCallbackContext }): Promise<CodexDynamicToolResult>;
 }
-interface DynamicCall { signature: string; turnId: string; controller: AbortController; done: Promise<CodexDynamicToolResult>; completed: boolean }
+export type CodexNativeChildRole = Readonly<{ kind: "configured"; name: string; basisDigest: string }> | Readonly<{ kind: "upstream" }>;
+export interface NativeChildCallbackContext { associationId: string; supplierGeneration: string; rootThreadId: string; rootTurnId: string; parentThreadId: string; parentTurnId: string; selectedRole: CodexNativeChildRole; inheritedToolsDigest: string }
+interface DynamicCall { signature: string; threadId: string; turnId: string; associationId?: string; controller: AbortController; done: Promise<CodexDynamicToolResult>; completed: boolean }
+interface NativeChildAssociation extends NativeChildCallbackContext { childThreadId: string; childTurnId: string; rootThreadId: string; rootTurnId: string; live: boolean }
 export interface CodexNativePermissions { filesystem: Readonly<Record<string, "read" | "write" | "deny">>; network: { enabled: boolean; [key: string]: unknown } }
 export interface CodexSessionTransport { stdin: Writable; stdout: Readable; close(): Promise<void> }
 export interface CodexTurnTerminal { threadId: string; turnId: string; status: "completed" | "failed" | "interrupted"; output: string }
@@ -48,6 +54,7 @@ interface Turn {
   plans: Map<string, { deltaText: string; completed: boolean; completedText?: string }>;
   done: Promise<CodexTurnTerminal>; resolve(value: CodexTurnTerminal): void; reject(error: Error): void;
   timer: ReturnType<typeof setTimeout>;
+  familyEnabled: boolean; familySettled: boolean; primaryTerminal?: CodexTurnTerminal;
 }
 const invalid = (message: string) => new RuntimeError("INVALID_REQUEST", message, 400);
 const protocol = (message: string) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503, { reason: "CODEX_PROTOCOL_FAILURE" });
@@ -58,6 +65,31 @@ function object(value: unknown): Record<string, unknown> {
 function identifier(value: unknown): string {
   if (typeof value !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(value)) throw protocol("Invalid Codex identifier");
   return value;
+}
+function nativeIdentifier(value: unknown): string {
+  if (typeof value !== "string" || Buffer.byteLength(value, "utf8") < 1 || Buffer.byteLength(value, "utf8") > 128 || value.includes("\0") || Buffer.from(value, "utf8").toString("utf8") !== value) throw protocol("Invalid native child identifier");
+  return value;
+}
+function dynamicCallKey(threadId: string, turnId: string, callId: string, nativeChild?: NativeChildCallbackContext): string {
+  return JSON.stringify(nativeChild
+    ? ["child", nativeChild.associationId, threadId, turnId, callId]
+    : ["primary", threadId, turnId, callId]);
+}
+async function stableNativeRoleInstruction(path: string): Promise<string> {
+  const pathBefore = await lstat(path, { bigint: true });
+  if (!pathBefore.isFile() || pathBefore.isSymbolicLink() || pathBefore.nlink !== 1n || pathBefore.size > BigInt(1024 * 1024) || await realpath(path) !== path) throw protocol("Native role instruction source is not a stable direct file");
+  const handle = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
+  try {
+    const before = await handle.stat({ bigint: true });
+    const bytes = Buffer.alloc(Number(before.size) + 1); const read = await handle.read(bytes, 0, bytes.length, 0); const after = await handle.stat({ bigint: true }); const pathAfter = await lstat(path, { bigint: true });
+    const same = (left: typeof before, right: typeof before) => left.dev === right.dev && left.ino === right.ino && left.size === right.size && left.mtimeNs === right.mtimeNs && left.ctimeNs === right.ctimeNs;
+    if (!same(pathBefore, before) || !same(before, after) || !same(after, pathAfter) || read.bytesRead !== Number(before.size) || await realpath(path) !== path) throw protocol("Native role instruction source changed while it was read");
+    const source = bytes.subarray(0, read.bytesRead).toString("utf8");
+    if (Buffer.from(source, "utf8").length !== read.bytesRead || !source.startsWith("developer_instructions = ") || !source.endsWith("\n")) throw protocol("Native role instruction source is invalid");
+    const instruction: unknown = JSON.parse(source.slice("developer_instructions = ".length, -1));
+    if (typeof instruction !== "string") throw protocol("Native role instruction source is invalid");
+    return instruction;
+  } finally { await handle.close(); }
 }
 /** Network callback correlation IDs are opaque supplier tokens, not primary thread/turn identifiers. */
 function networkApprovalItemId(value: unknown, environmentId: unknown, host: string, protocolName: string): string {
@@ -123,17 +155,20 @@ export class CodexTurnSession {
   private iteratorClaimed = false;
   private quarantinedNotifications = 0;
   private readonly childAssociations = new Map<string, string>();
+  private readonly nativeChildAssociations = new Map<string, NativeChildAssociation>();
   private retryableErrors = 0;
   private readonly tools = new Map<string, CodexDynamicTool>();
+  private inheritableTools: readonly { name: string; description: string; inputSchema: Readonly<Record<string, unknown>> }[] | undefined;
+  private inheritableToolsDigest: string | undefined;
   private readonly toolCalls = new Map<string, DynamicCall>();
   private readonly resolvedServerRequests = new Set<string>();
   private readonly toolRequestIds = new Map<string, string>();
   private expectedPermissions: CodexNativePermissions | undefined;
-  private expectedNativeRoles: { digest: string; configOverrides: readonly string[]; roles: Readonly<Record<string, { description: string; config_file: string }>> } | undefined;
+  private expectedNativeRoles: { digest: string; configOverrides: readonly string[]; roles: Readonly<Record<string, { description: string; config_file: string; basisDigest?: string }>> } | undefined;
   private policyCwd: string | undefined;
   private readonly nativePolicy: Readonly<{ permissionProfile: string; policyDigest: string }> | undefined;
   private login: { state: "pending" | "completed" | "failed"; loginId?: string } | undefined;
-  constructor(private readonly options: { runtimeV2?: { instanceInput: RuntimeInstanceAdmissionInputV2; instanceAdmission: RuntimeInstanceAdmissionV2 }; transport: CodexSessionTransport; requestTimeoutMs?: number; turnTimeoutMs?: number; purpose?: "turn" | "login"; permissionProfile?: string; policyDigest?: string; dynamicTools?: readonly CodexDynamicTool[]; toolTimeoutMs?: number; commandNetworkPosture?: "off" | "ask-per-destination" | "on" }) {
+  constructor(private readonly options: { runtimeV2?: { instanceInput: RuntimeInstanceAdmissionInputV2; instanceAdmission: RuntimeInstanceAdmissionV2 }; transport: CodexSessionTransport; requestTimeoutMs?: number; turnTimeoutMs?: number; purpose?: "turn" | "login"; permissionProfile?: string; policyDigest?: string; nativeSkills?: "disabled"; dynamicTools?: readonly CodexDynamicTool[]; toolTimeoutMs?: number; commandNetworkPosture?: "off" | "ask-per-destination" | "on" }) {
     this.commandNetworkPosture = options.commandNetworkPosture ?? "off";
     if (options.commandNetworkPosture !== undefined && !["off", "ask-per-destination", "on"].includes(options.commandNetworkPosture)) throw invalid("Invalid trusted command network posture");
     if ((options.dynamicTools?.length ?? 0) > 32 || (options.purpose === "login" && options.dynamicTools?.length)) throw invalid("Unsupported dynamic tool registry");
@@ -162,6 +197,28 @@ export class CodexTurnSession {
       if (schema.type !== "object") throw invalid("Dynamic tool input must be a closed object");
       this.tools.set(tool.name, Object.freeze({ name: tool.name, description: tool.description, inputSchema: freezeTree(schema), handler: tool.handler }));
     }
+  }
+  /** Installs the exact Runtime-authorized inheritable subset before root selection. */
+  async installInheritableTools(tools: readonly { name: string; description: string; inputSchema: Readonly<Record<string, unknown>> }[]): Promise<void> {
+    if (this.options.nativeSkills !== "disabled") {
+      return;
+    }
+    if (this.threadId || this.active || this.selecting || this.inheritableTools !== undefined) throw invalid("Inherited tools must be installed once before thread selection");
+    const available = new Map([...this.tools.values()].map(tool => [tool.name, tool]));
+    const copy = tools.map(tool => ({ name: tool.name, description: tool.description, inputSchema: structuredClone(tool.inputSchema) }));
+    for (const tool of copy) {
+      const installed = available.get(tool.name);
+      if (!installed || JSON.stringify({ name: installed.name, description: installed.description, inputSchema: installed.inputSchema }) !== JSON.stringify(tool)) throw invalid("Inherited tool differs from the installed Runtime definition");
+    }
+    this.inheritableToolsDigest = digestCodexNativeToolDefinitionsV1(copy);
+    if (!this.expectedNativeRoles) throw invalid("Inherited native tools require verified native role configuration");
+    const roles: Record<string, { description: string; config_file: string; basisDigest: string }> = {};
+    for (const [name, role] of Object.entries(this.expectedNativeRoles.roles)) {
+      const instruction = await stableNativeRoleInstruction(role.config_file);
+      roles[name] = { ...role, basisDigest: createHash("sha256").update(instruction).digest("hex") };
+    }
+    this.expectedNativeRoles = Object.freeze({ ...this.expectedNativeRoles, roles: Object.freeze(roles) });
+    this.inheritableTools = Object.freeze(copy.map(tool => Object.freeze({ ...tool, inputSchema: freezeTree(tool.inputSchema) })));
   }
   private fail(error: RuntimeError): void {
     if (this.failure) return;
@@ -223,41 +280,55 @@ export class CodexTurnSession {
     const requestId = message.id;
     if ((typeof requestId !== "string" && typeof requestId !== "number") || (typeof requestId === "number" && !Number.isSafeInteger(requestId)) || String(requestId).length > 128) throw protocol("Invalid server request ID");
     const params = object(message.params), active = this.active;
-    const threadId = identifier(params.threadId), turnId = identifier(params.turnId), callId = identifier(params.callId);
-    if (!active?.id || active.id !== turnId || threadId !== this.threadId || threadId !== active.threadId) throw protocol("Dynamic callback is not bound to the active primary turn");
+    const childCarrierPresent = params.chiralityRuntime !== undefined;
+    const threadId = childCarrierPresent ? nativeIdentifier(params.threadId) : identifier(params.threadId);
+    const turnId = childCarrierPresent ? nativeIdentifier(params.turnId) : identifier(params.turnId);
+    const callId = identifier(params.callId);
+    let nativeChild: NativeChildCallbackContext | undefined;
+    if (params.chiralityRuntime !== undefined) {
+      const carrier = object(params.chiralityRuntime);
+      if (Object.keys(carrier).sort().join(",") !== "associationId,schema" || carrier.schema !== "chirality-native-child-call/v1" || typeof carrier.associationId !== "string") throw protocol("Invalid native child callback carrier");
+      const association = this.nativeChildAssociations.get(carrier.associationId);
+      if (!active?.id || !association || !association.live || association.childThreadId !== threadId || association.childTurnId !== turnId || association.rootTurnId !== active.id || association.rootThreadId !== active.threadId) throw protocol("Dynamic callback is not bound to a live native child association");
+      nativeChild = { associationId: association.associationId, supplierGeneration: this.supplierGeneration!, rootThreadId: association.rootThreadId, rootTurnId: association.rootTurnId, parentThreadId: association.parentThreadId, parentTurnId: association.parentTurnId, selectedRole: association.selectedRole, inheritedToolsDigest: association.inheritedToolsDigest };
+    } else if (!active?.id || active.id !== turnId || threadId !== this.threadId || threadId !== active.threadId) throw protocol("Dynamic callback is not bound to the active primary turn");
     const tool = this.tools.get(String(params.tool));
     if (!tool) throw protocol("Dynamic tool is not registered by the trusted host");
+    if (nativeChild && !this.inheritableTools?.some(inherited => inherited.name === tool.name)) throw protocol("Native child requested a non-inherited dynamic tool");
     const input = object(params.arguments);
     if (Buffer.byteLength(JSON.stringify(input)) > 65536 || !matchesToolSchema(input, tool.inputSchema)) throw protocol("Dynamic tool arguments violate the closed schema");
-    const signature = JSON.stringify([threadId, turnId, callId, params.tool, input]);
+    const signature = JSON.stringify([threadId, turnId, callId, params.tool, input, nativeChild?.associationId ?? null]);
     const requestKey = `${typeof requestId}:${requestId}`;
     if (this.networkApprovals.has(requestKey) || this.resolvedServerRequests.has(requestKey)) throw protocol("Reused or resolved server request ID");
     const previousRequest = this.toolRequestIds.get(requestKey);
     if (previousRequest !== undefined) { if (previousRequest !== signature) throw protocol("Conflicting duplicate dynamic request"); return; }
     if (this.toolRequestIds.size >= 128) throw protocol("Dynamic request inventory bound exceeded");
     this.toolRequestIds.set(requestKey, signature);
-    let call = this.toolCalls.get(callId);
+    const callKey = dynamicCallKey(threadId, turnId, callId, nativeChild);
+    let call = this.toolCalls.get(callKey);
     if (call && call.signature !== signature) throw protocol("Conflicting duplicate dynamic call");
     if (!call) {
       if (this.toolCalls.size >= 64 || [...this.toolCalls.values()].filter(value => !value.completed).length >= 8) throw protocol("Dynamic callback concurrency bound exceeded");
       const controller = new AbortController();
-      const entry: DynamicCall = { signature, turnId, controller, done: Promise.resolve({ success: false, contentItems: [] }), completed: false };
-      this.toolCalls.set(callId, entry);
+      const entry: DynamicCall = { signature, threadId, turnId, ...(nativeChild ? { associationId: nativeChild.associationId } : {}), controller, done: Promise.resolve({ success: false, contentItems: [] }), completed: false };
+      this.toolCalls.set(callKey, entry);
       entry.done = (async () => {
         let timer: ReturnType<typeof setTimeout> | undefined;
         let abort: (() => void) | undefined;
         try {
           const interrupted = new Promise<never>((_, reject) => { abort = () => reject(protocol("Dynamic call cancelled")); controller.signal.addEventListener("abort", abort, { once: true }); timer = setTimeout(() => controller.abort(), this.options.toolTimeoutMs ?? 30000); });
-          const result = await Promise.race([Promise.resolve().then(() => { if (controller.signal.aborted) throw protocol("Dynamic call cancelled before dispatch"); return tool.handler(freezeTree(JSON.parse(JSON.stringify(input)) as Record<string, unknown>), { threadId, turnId, callId, signal: controller.signal }); }), interrupted]);
+          const result = await Promise.race([Promise.resolve().then(() => { if (controller.signal.aborted) throw protocol("Dynamic call cancelled before dispatch"); return tool.handler(freezeTree(JSON.parse(JSON.stringify(input)) as Record<string, unknown>), { threadId, turnId, callId, signal: controller.signal, ...(nativeChild ? { nativeChild: structuredClone(nativeChild) } : {}) }); }), interrupted]);
           if (!result || Object.keys(result).sort().join(",") !== "contentItems,success" || typeof result.success !== "boolean" || !Array.isArray(result.contentItems) || result.contentItems.length > 16 || result.contentItems.some(item => !item || Object.keys(item).sort().join(",") !== "text,type" || item.type !== "inputText" || typeof item.text !== "string" || Buffer.byteLength(item.text) > 65536) || Buffer.byteLength(JSON.stringify(result)) > 262144) throw protocol("Invalid bounded dynamic tool result");
           return { success: result.success, contentItems: result.contentItems.map(item => ({ type: "inputText" as const, text: item.text })) };
         } catch { return { success: false, contentItems: [{ type: "inputText" as const, text: "Host tool failed or was cancelled." }] }; }
-        finally { clearTimeout(timer); if (abort) controller.signal.removeEventListener("abort", abort); entry.completed = true; }
+        finally { clearTimeout(timer); if (abort) controller.signal.removeEventListener("abort", abort); entry.completed = true; this.finishActiveIfSettled(); }
       })();
       call = entry;
     }
     void call.done.then(result => {
-      if (this.resolvedServerRequests.has(requestKey) || this.failure || this.active?.id !== turnId || this.threadId !== threadId) return;
+      const associationLive = nativeChild === undefined || this.nativeChildAssociations.get(nativeChild.associationId)?.live === true;
+      const rootMembership = nativeChild === undefined ? this.active?.id === turnId : this.active?.id === nativeChild.rootTurnId && this.active.threadId === nativeChild.rootThreadId;
+      if (this.resolvedServerRequests.has(requestKey) || this.failure || !rootMembership || !associationLive || (nativeChild === undefined && this.threadId !== threadId)) return;
       try { this.write({ id: requestId, result }); } catch (error) { this.fail(error instanceof RuntimeError ? error : protocol("Dynamic response failed")); }
     });
   }
@@ -394,7 +465,53 @@ export class CodexTurnSession {
     if (method === "error" && params && typeof params === "object" && (params as Record<string, unknown>).willRetry === true) this.retryableErrors++;
     // Retain counts only, never raw diagnostics, account material or authority.
   }
+  private finishActiveIfSettled(): void {
+    const active = this.active;
+    if (!active?.primaryTerminal || (active.familyEnabled && !active.familySettled)) return;
+    if ([...this.toolCalls.values()].some(call => !call.completed && (call.turnId === active.id || call.associationId !== undefined))) return;
+    const terminal = active.primaryTerminal;
+    this.emit({ type: "terminal", terminal: { ...terminal } });
+    clearTimeout(active.timer); this.terminals.set(terminal.turnId, terminal); active.terminal = terminal; this.active = undefined;
+    active.resolve(terminal);
+  }
+  private nativeChildNotification(method: string, value: unknown): void {
+    if (this.options.nativeSkills !== "disabled" || this.inheritableTools === undefined || !this.inheritableToolsDigest || !this.supplierGeneration) throw protocol("Native child lifecycle requires an admitted inherited-tool family");
+    const params = object(value), active = this.active;
+    if (!active?.id || !active.familyEnabled) throw protocol("Native child lifecycle is outside the active root family");
+    if (method === "chirality/nativeChild/turnStarted") {
+      if (active.familySettled || Object.keys(params).sort().join(",") !== "associationId,childThreadId,childTurnId,inheritedToolsDigest,parentThreadId,parentTurnId,schema,selectedRole,supplierGeneration" || params.schema !== "chirality-native-child-association/v1" || params.supplierGeneration !== this.supplierGeneration) throw protocol("Invalid native child association");
+      const associationId = params.associationId;
+      if (typeof associationId !== "string" || !/^[a-f0-9]{32}$/.test(associationId) || this.nativeChildAssociations.has(associationId)) throw protocol("Invalid or reused native child association identity");
+      const parentThreadId = nativeIdentifier(params.parentThreadId), parentTurnId = nativeIdentifier(params.parentTurnId);
+      const childThreadId = nativeIdentifier(params.childThreadId), childTurnId = nativeIdentifier(params.childTurnId);
+      const directRootParent = parentThreadId === active.threadId && parentTurnId === active.id;
+      const parentAssociation = directRootParent ? undefined
+        : [...this.nativeChildAssociations.values()].find(value => value.rootThreadId === active.threadId && value.rootTurnId === active.id && value.childThreadId === parentThreadId && value.childTurnId === parentTurnId);
+      if ((!directRootParent && !parentAssociation?.live) || params.inheritedToolsDigest !== this.inheritableToolsDigest) throw protocol("Native child association differs from its live root family or inherited definitions");
+      const selected = object(params.selectedRole); let selectedRole: CodexNativeChildRole;
+      if (selected.kind === "upstream" && Object.keys(selected).join(",") === "kind") selectedRole = Object.freeze({ kind: "upstream" });
+      else if (selected.kind === "configured" && Object.keys(selected).sort().join(",") === "basisDigest,kind,name") {
+        const name = nativeIdentifier(selected.name), basisDigest = selected.basisDigest;
+        const expected = this.expectedNativeRoles?.roles[name];
+        if (typeof basisDigest !== "string" || !/^[a-f0-9]{64}$/.test(basisDigest) || !expected || expected.basisDigest !== basisDigest) throw protocol("Native child configured role differs from the trusted applied instruction");
+        selectedRole = Object.freeze({ kind: "configured", name, basisDigest });
+      } else throw protocol("Invalid native child selected role");
+      if ([...this.nativeChildAssociations.values()].some(value => value.live && (value.childThreadId === childThreadId && value.childTurnId === childTurnId))) throw protocol("Native child turn is already associated");
+      this.nativeChildAssociations.set(associationId, Object.freeze({ associationId, supplierGeneration: this.supplierGeneration, parentThreadId, parentTurnId, childThreadId, childTurnId, rootThreadId: active.threadId, rootTurnId: active.id, selectedRole, inheritedToolsDigest: this.inheritableToolsDigest, live: true }));
+      this.childAssociations.set(childThreadId, parentTurnId); return;
+    }
+    if (method === "chirality/nativeChild/turnFinished") {
+      if (Object.keys(params).sort().join(",") !== "associationId,childThreadId,childTurnId,reason,schema,supplierGeneration" || params.schema !== "chirality-native-child-terminal/v1" || params.supplierGeneration !== this.supplierGeneration || !["completed", "cancelled", "failed"].includes(String(params.reason))) throw protocol("Invalid native child terminal");
+      const association = typeof params.associationId === "string" ? this.nativeChildAssociations.get(params.associationId) : undefined;
+      if (!association?.live || association.childThreadId !== nativeIdentifier(params.childThreadId) || association.childTurnId !== nativeIdentifier(params.childTurnId)) throw protocol("Unknown or retired native child terminal");
+      if ([...this.toolCalls.values()].some(call => call.associationId === association.associationId && !call.completed)) throw protocol("Native child terminal preceded callback completion");
+      this.nativeChildAssociations.set(association.associationId, Object.freeze({ ...association, live: false })); this.finishActiveIfSettled(); return;
+    }
+    if (Object.keys(params).sort().join(",") !== "rootThreadId,rootTurnId,schema,supplierGeneration" || params.schema !== "chirality-native-family-settled/v1" || params.supplierGeneration !== this.supplierGeneration || nativeIdentifier(params.rootThreadId) !== active.threadId || nativeIdentifier(params.rootTurnId) !== active.id || !active.primaryTerminal || active.familySettled || [...this.nativeChildAssociations.values()].some(value => value.rootTurnId === active.id && value.live)) throw protocol("Invalid or premature native child family settlement");
+    active.familySettled = true; this.finishActiveIfSettled();
+  }
   private notification(method: string, value: unknown): void {
+    if (["chirality/nativeChild/turnStarted", "chirality/nativeChild/turnFinished", "chirality/nativeChild/familySettled"].includes(method)) { this.nativeChildNotification(method, value); return; }
     if (method === "serverRequest/resolved") {
       const params = object(value), threadId = identifier(params.threadId), id = params.requestId;
       if ((typeof id !== "string" && typeof id !== "number") || (typeof id === "number" && !Number.isSafeInteger(id)) || String(id).length > 128) throw protocol("Invalid resolved request ID");
@@ -404,9 +521,11 @@ export class CodexTurnSession {
         const key = `${typeof id}:${id}`, question = this.userInputRequests.get(key), signature = this.toolRequestIds.get(key);
         if (question) { if (question.prompt.threadId !== threadId) throw protocol("Resolved user-input thread mismatch"); question.state = "resolved"; return; }
         if (signature) {
-          const [callThread, , callId] = JSON.parse(signature);
+          const [callThread, callTurn, callId, , , associationId] = JSON.parse(signature);
           if (callThread !== threadId) throw protocol("Resolved tool thread mismatch");
-          this.resolvedServerRequests.add(key); this.toolCalls.get(callId)?.controller.abort();
+          const association = associationId === null ? undefined : this.nativeChildAssociations.get(associationId);
+          const nativeChild = association === undefined ? undefined : { associationId: association.associationId, supplierGeneration: this.supplierGeneration!, rootThreadId: association.rootThreadId, rootTurnId: association.rootTurnId, parentThreadId: association.parentThreadId, parentTurnId: association.parentTurnId, selectedRole: association.selectedRole, inheritedToolsDigest: association.inheritedToolsDigest };
+          this.resolvedServerRequests.add(key); this.toolCalls.get(dynamicCallKey(callThread, callTurn, callId, nativeChild))?.controller.abort();
         } else this.quarantine(method, undefined);
       }
       return;
@@ -450,9 +569,8 @@ export class CodexTurnSession {
       this.resolveNetworkApprovals(turnId);
       for (const entry of this.userInputRequests.values()) if (entry.prompt.turnId === turnId) entry.state = "resolved";
       const terminal: CodexTurnTerminal = { threadId, turnId, status, output: [...active.items.values()].map(item => item.text).join("") };
-      this.emit({ type: "terminal", terminal: { ...terminal } });
-      clearTimeout(active.timer); this.terminals.set(turnId, terminal); active.terminal = terminal; this.active = undefined;
-      active.resolve(terminal); return;
+      if (active.primaryTerminal && JSON.stringify(active.primaryTerminal) !== JSON.stringify(terminal)) throw protocol("Conflicting duplicate Codex terminal");
+      active.primaryTerminal = terminal; this.finishActiveIfSettled(); return;
     }
     if (method === "item/agentMessage/delta") {
       const itemId = identifier(params.itemId), text = params.delta;
@@ -656,13 +774,20 @@ export class CodexTurnSession {
     try {
       const reply = await this.request("config/read", { includeLayers: true, cwd: this.policyCwd });
       const config = object(reply.config), profiles = object(config.permissions);
+      if (this.options.nativeSkills === "disabled") {
+        const runtime = object(config.chirality_runtime);
+        if (Object.keys(runtime).length !== 1 || runtime.nativeSkills !== "disabled") throw protocol("Effective native skill startup selection differs from the trusted compiler");
+      }
       const selected = normalizeObservedProfile(object(profiles[this.nativePolicy.permissionProfile]), this.expectedPermissions.network);
       if (!sameTable(selected, this.expectedPermissions)) throw protocol("Effective named policy differs from the trusted exact table");
       if (config.approvals_reviewer !== "user" || config.approval_policy !== (this.commandNetworkPosture === "ask-per-destination" ? "on-request" : "never") || config.allow_login_shell !== false || object(config.features).shell_snapshot !== false || object(config.features).plugins !== false || object(config.features).remote_plugin !== false || object(config.features).network_proxy !== (this.commandNetworkPosture !== "off")) throw protocol("Unsafe effective host execution settings");
       if (this.expectedNativeRoles) {
         const features = object(config.features), agents = object(config.agents);
         if (features.multi_agent !== true || features.multi_agent_v2 !== false || agents.enabled !== true || agents.max_depth !== 2) throw protocol("Effective native role pins differ from the trusted configuration");
-        for (const roleId of CHIRALITY_ROLE_NAMES) if (!sameTable(agents[roleId], this.expectedNativeRoles.roles[roleId])) throw protocol("Effective native role entry differs from the trusted configuration");
+        for (const roleId of CHIRALITY_ROLE_NAMES) {
+          const expectedRole = this.expectedNativeRoles.roles[roleId]!;
+          if (!sameTable(agents[roleId], { description: expectedRole.description, config_file: expectedRole.config_file })) throw protocol("Effective native role entry differs from the trusted configuration");
+        }
         const safeDefaults = new Set(["enabled", "max_depth", "max_concurrent_threads_per_session", "default_subagent_model", "default_subagent_reasoning_effort", "interrupt_message", ...CHIRALITY_ROLE_NAMES]);
         if (Object.entries(agents).some(([key, value]) => !safeDefaults.has(key) && value !== null && value !== undefined)) throw protocol("Unexpected effective native role configuration");
       }
@@ -676,6 +801,46 @@ export class CodexTurnSession {
     } catch (error) {
       this.fail(error instanceof RuntimeError ? error : protocol("Effective native policy is unavailable")); throw this.failure;
     }
+  }
+  /** Private initialized transport readback. It deliberately requires no operation lease. */
+  async verifyNativeSkillSelection(cwd?: string): Promise<void> {
+    if (this.options.nativeSkills !== "disabled") return;
+    this.assertReady();
+    const selectedCwd = cwd ?? this.options.runtimeV2?.instanceInput.canonicalRoot ?? this.policyCwd;
+    if (!selectedCwd) throw protocol("Native skill readback has no bound project root");
+    try {
+      const reply = await this.request("config/read", { includeLayers: true, cwd: selectedCwd });
+      const config = object(reply.config), runtime = object(config.chirality_runtime);
+      if (Object.keys(runtime).length !== 1 || runtime.nativeSkills !== "disabled") throw protocol("Effective native skill startup selection differs from the trusted compiler");
+    } catch (error) { this.fail(error instanceof RuntimeError ? error : protocol("Effective native skill startup selection is unavailable")); throw this.failure; }
+  }
+  /** Account-free login observation. Reads one compiler-owned projection after
+   * private initialization and before any account, model or admission request. */
+  async observeAccountFreeLoginConfiguration(cwd: string, expected: Readonly<Record<string, unknown>>): Promise<Readonly<{
+    schema: "chirality-account-free-login-config-observation/v1"; nativeSkills: "disabled"; credentialStore: "keyring"; plaintextFallback: false;
+    compilerConfigDigest: string; observedConfigProjectionDigest: string;
+  }>> {
+    if (this.options.purpose !== "login" || this.options.nativeSkills !== "disabled" || !this.authorityInitialized) throw invalid("Account-free login readback requires private login initialization");
+    if (!isAbsolute(cwd) || resolve(cwd) !== cwd || !expected || typeof expected !== "object" || Array.isArray(expected)
+      || expected.cli_auth_credentials_store !== "keyring") throw invalid("Account-free login compiler projection is invalid");
+    try {
+      const reply = await this.request("config/read", { includeLayers: true, cwd }), config = object(reply.config), runtime = object(config.chirality_runtime);
+      if (Object.keys(runtime).length !== 1 || runtime.nativeSkills !== "disabled") throw protocol("Effective native skill startup selection differs from the trusted compiler");
+      const project = (value: unknown, template: unknown): unknown => {
+        if (!template || typeof template !== "object" || Array.isArray(template)) return value;
+        const source = object(value), result: Record<string, unknown> = {};
+        for (const [key, child] of Object.entries(template)) result[key] = project(source[key], child);
+        return result;
+      };
+      const observed = project(config, expected);
+      if (JSON.stringify(observed) !== JSON.stringify(expected)) throw protocol("Effective login configuration differs from the trusted compiler");
+      for (const field of ["hooks", "mcp_servers", "notify", "plugins", "profiles", "projects"]) if (!emptyConfiguration(config[field])) throw protocol("Unsafe login configuration overlay");
+      if (config.profile !== null && config.profile !== undefined) throw protocol("Unexpected effective login profile");
+      const compilerConfigDigest = createHash("sha256").update(`${JSON.stringify(expected)}\n`).digest("hex");
+      const observedConfigProjectionDigest = createHash("sha256").update(`${JSON.stringify(observed)}\n`).digest("hex");
+      return Object.freeze({ schema: "chirality-account-free-login-config-observation/v1" as const, nativeSkills: "disabled" as const,
+        credentialStore: "keyring" as const, plaintextFallback: false as const, compilerConfigDigest, observedConfigProjectionDigest });
+    } catch (error) { this.fail(error instanceof RuntimeError ? error : protocol("Effective account-free login configuration is unavailable")); throw this.failure; }
   }
   policyBinding(): Readonly<{ permissionProfile: string; policyDigest: string }> | undefined { return this.nativePolicy; }
   private rejectPolicyOverride(input: object): void {
@@ -700,7 +865,8 @@ export class CodexTurnSession {
     try {
       await this.checkNativePolicy();
       await this.revalidateModelEffectV2();
-      const result = await this.request(method, { ...params, model: input.model, ...this.policyParameters() });
+      const chiralityRuntime = this.inheritableTools === undefined ? undefined : { schema: CODEX_NATIVE_TOOLS_SCHEMA, inheritableTools: this.inheritableTools };
+      const result = await this.request(method, { ...params, model: input.model, ...this.policyParameters(), ...(chiralityRuntime ? { chiralityRuntime } : {}) });
       if (this.nativePolicy && (result.approvalsReviewer !== "user" || result.approvalPolicy !== (this.commandNetworkPosture === "ask-per-destination" ? "on-request" : "never"))) throw protocol("Effective thread approval settings differ from trusted policy");
       const id = identifier(object(result.thread).id);
       if (this.threadNotice && this.threadNotice !== id) throw protocol("Thread response disagrees with notification");
@@ -739,7 +905,9 @@ export class CodexTurnSession {
         userInput.push({ type: "localImage", path: attachment.path });
       }
     }
-    const turn: Turn = { threadId: input.threadId, startedEmitted: false, items: new Map(), plans: new Map(), done, resolve: resolveTurn, reject: rejectTurn, timer: setTimeout(() => this.fail(protocol("Codex turn timed out")), this.options.turnTimeoutMs ?? 120000) };
+    const turn: Turn = { threadId: input.threadId, startedEmitted: false, items: new Map(), plans: new Map(), done, resolve: resolveTurn, reject: rejectTurn,
+      familyEnabled: this.inheritableTools !== undefined, familySettled: this.inheritableTools === undefined,
+      timer: setTimeout(() => this.fail(protocol("Codex turn timed out")), this.options.turnTimeoutMs ?? 120000) };
     this.active = turn;
     try {
       await this.checkNativePolicy();
@@ -761,7 +929,10 @@ export class CodexTurnSession {
   }
   async interrupt(turnId: string): Promise<void> {
     this.assertReady(); if (this.active?.id !== turnId) throw invalid("No matching active Codex turn");
-    for (const call of this.toolCalls.values()) if (call.turnId === turnId && !call.completed) call.controller.abort();
+    for (const call of this.toolCalls.values()) {
+      const association = call.associationId ? this.nativeChildAssociations.get(call.associationId) : undefined;
+      if ((call.turnId === turnId || (association?.rootThreadId === this.active.threadId && association.rootTurnId === turnId)) && !call.completed) call.controller.abort();
+    }
     this.resolveNetworkApprovals(turnId);
     await this.request("turn/interrupt", { threadId: this.active.threadId, turnId });
     // Only an actual terminal notification can resolve waitTurn; acknowledgement is not completion.

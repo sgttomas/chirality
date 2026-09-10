@@ -7,6 +7,7 @@ import {
   type EngineSelection,
   type HostedBootstrapStatus,
   type NativePlanAdapterQualification,
+  type NativePlanAdapterAdmission,
   type NativePlanCapabilityResponse,
   type NativePlanClarificationsResponse,
   type NativePlanRevisionsResponse,
@@ -39,6 +40,7 @@ import {
   type TrustedNativePlanAdapterRegistry
 } from "@chirality/runtime-core";
 import { RuntimeDaemon } from "./runtime-daemon.js";
+import type { HostAccountAuthority } from "./host-account-authority.js";
 import { HOSTED_BOOTSTRAP_CLIENT_ID } from "./hosted-paths.js";
 
 const invalid = (message: string) => new RuntimeError("INVALID_REQUEST", message);
@@ -67,11 +69,13 @@ export interface TrustedHostedLoginCeremony {
 export interface TrustedHostedPrivateAdmission {
   continuity: WorkerContinuity;
   authority: { supplierGeneration: string; identityGeneration: string; snapshotDigest: string };
-  nativePlanQualification?: NativePlanAdapterQualification;
+  nativePlanQualification?: NativePlanAdapterAdmission;
   retire(): Promise<void>;
 }
 
 export interface HostedBootstrapPrivateBindings {
+  /** Packaged internal factory only; receives the Runtime-owned registry after verified composition. */
+  createAccountHost?(auth: AuthRegistry): Promise<HostAccountAuthority>;
   createCeremony(input: { projectId: string; manifestHash?: string; canonicalRoot: string; privateDirectory: string; codexHome: string; providerNetworkConsent: { approvedBy: string; approvalReference: string; approvedAt: string } }): Promise<TrustedHostedLoginCeremony>;
   establishAdmission?(input: { projectId: string; canonicalRoot: string; ceremony: TrustedHostedLoginCeremony; nativeAddonPath?: string }): Promise<TrustedHostedPrivateAdmission>;
   /** Host-owned config/worker publication; receives private values and must not project them publicly. */
@@ -109,9 +113,9 @@ class BootstrapNativePlanRegistry implements TrustedNativePlanAdapterRegistry, D
     if (!registry) { registry = new TrustedNativePlanRegistry({ projectId, sessions: this.sessions, unavailableReason: "No admitted native Plan adapter qualification is available for this project" }); this.registries.set(projectId, registry); }
     return registry;
   }
-  qualify(projectId: string, qualification: NativePlanAdapterQualification): void {
+  qualify(projectId: string, qualification: NativePlanAdapterAdmission): void {
     // A qualified replacement reads durable revisions from the shared SessionStore.
-    this.registries.set(projectId, new TrustedNativePlanRegistry({ projectId, sessions: this.sessions, qualification }));
+    this.registries.set(projectId, new TrustedNativePlanRegistry({ projectId, sessions: this.sessions, admission: qualification }));
     this.activeQualifications.add(projectId);
   }
   deactivate(projectId: string): void { this.activeQualifications.delete(projectId); }
@@ -150,6 +154,28 @@ export class HostedBootstrapController {
   private closed = false;
   private admissionGuard: Promise<void> = Promise.resolve();
   constructor(private readonly projects: ProjectRegistry, private readonly sessions: SessionStore, private readonly nativePlans: BootstrapNativePlanRegistry, private readonly runtimeDirectory: string, private readonly bindings?: HostedBootstrapPrivateBindings, private readonly nativeAddonPath?: string, private readonly controlledNativePlanQualification?: NativePlanAdapterQualification) {}
+
+  private accountOperation(state: ProjectBootstrap, signal?: AbortSignal): { check(): Promise<void>; close(): void } {
+    let cancelled = signal?.aborted === true;
+    let fencing: Promise<void> | undefined;
+    let fencingFailure: unknown;
+    const onAbort = () => {
+      if (cancelled) return;
+      cancelled = true;
+      state.generation++;
+      fencing = this.invalidateState(state).catch((error) => { fencingFailure = error; });
+    };
+    signal?.addEventListener("abort", onAbort, { once: true });
+    return {
+      check: async () => {
+        if (!cancelled) return;
+        await fencing;
+        if (fencingFailure !== undefined) throw fencingFailure;
+        throw unavailable("Hosted account operation authority was revoked");
+      },
+      close: () => signal?.removeEventListener("abort", onAbort)
+    };
+  }
 
   private async invalidateState(state: ProjectBootstrap, cancelCeremony = true): Promise<void> {
     let failure: unknown;
@@ -200,11 +226,15 @@ export class HostedBootstrapController {
     return state.engine;
   }
 
-  async status(projectId: string): Promise<HostedBootstrapStatus> {
+  async status(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus> {
     const { state, canonicalRoot } = await this.state(projectId);
-    if (state.ceremony && state.ceremonyState === "pending") {
+    const operation = this.accountOperation(state, signal);
+    try {
+      await operation.check();
+      if (state.ceremony && state.ceremonyState === "pending") {
       const ceremony = state.ceremony, generation = state.generation;
       const observed = await ceremony.status();
+      await operation.check();
       if (this.closed || state.ceremony !== ceremony || state.generation !== generation) return this.projection(projectId, state);
       if (observed.state === "failed") { state.ceremonyState = "failed"; await this.retireAdmission(state); }
       else if (observed.state === "completed") {
@@ -216,46 +246,68 @@ export class HostedBootstrapController {
           finally { state.establishing = undefined; }
         }
       }
-    }
-    return this.projection(projectId, state);
+      }
+      await operation.check();
+      return this.projection(projectId, state);
+    } finally { operation.close(); }
   }
 
-  async grantProviderNetworkConsent(projectId: string, provenance: { approvedBy: string; approvalReference: string; approvedAt: string }): Promise<HostedBootstrapStatus> {
+  async grantProviderNetworkConsent(projectId: string, provenance: { approvedBy: string; approvalReference: string; approvedAt: string }, signal?: AbortSignal): Promise<HostedBootstrapStatus> {
     const { state } = await this.state(projectId);
+    const operation = this.accountOperation(state, signal);
+    try {
+    await operation.check();
     if (!provenance.approvedBy.trim() || !provenance.approvalReference.trim() || !Number.isFinite(Date.parse(provenance.approvedAt))) throw invalid("Invalid authenticated provider-network consent provenance");
     if (state.ceremonyState === "pending") throw invalid("Cannot replace provider-network consent during a login ceremony");
     state.generation++;
     await this.invalidateState(state, false);
+    await operation.check();
     state.consent = { ...provenance };
     state.ceremonyState = "ready-to-start";
     return this.projection(projectId, state);
+    } finally { operation.close(); }
   }
 
-  async startLogin(projectId: string): Promise<{ loginId: string; authUrl: string }> {
+  async startLogin(projectId: string, signal?: AbortSignal): Promise<{ loginId: string; authUrl: string }> {
     const { state, canonicalRoot } = await this.state(projectId);
+    const operation = this.accountOperation(state, signal);
+    try {
+    await operation.check();
     if (!state.consent || !this.bindings) throw unavailable("Hosted login is unavailable until explicit consent and a trusted private ceremony adapter are configured");
     if (!["ready-to-start", "failed", "cancelled"].includes(state.ceremonyState)) throw invalid("Hosted login ceremony cannot start in its current state");
     const generation = ++state.generation;
     await this.invalidateState(state, false);
+    await operation.check();
     const privateDirectory = join(this.runtimeDirectory, "hosted-bootstrap", projectId);
     const codexHome = join(privateDirectory, "codex-home");
-    await privateDirectoryReady(privateDirectory); await privateDirectoryReady(codexHome);
+    await privateDirectoryReady(privateDirectory); await operation.check();
+    await privateDirectoryReady(codexHome); await operation.check();
     const ceremony = await this.bindings.createCeremony({ projectId, manifestHash: state.manifestHash, canonicalRoot, privateDirectory, codexHome, providerNetworkConsent: state.consent });
+    try { await operation.check(); } catch (error) { await ceremony.close().catch(() => {}); throw error; }
     if (this.closed || state.generation !== generation) { await ceremony.close(); throw unavailable("Hosted login start was superseded"); }
     state.ceremony = ceremony;
-    try { const result = await ceremony.start(); if (this.closed || state.generation !== generation || state.ceremony !== ceremony) { await ceremony.close(); throw unavailable("Hosted login start was superseded"); } state.ceremonyState = "pending"; return result; }
+    try { const result = await ceremony.start(); await operation.check(); if (this.closed || state.generation !== generation || state.ceremony !== ceremony) { await ceremony.close(); throw unavailable("Hosted login start was superseded"); } state.ceremonyState = "pending"; return result; }
     catch (error) { state.ceremonyState = "failed"; await ceremony.close(); state.ceremony = undefined; throw error; }
+    } finally { operation.close(); }
   }
 
-  async cancelLogin(projectId: string): Promise<HostedBootstrapStatus> {
+  async cancelLogin(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus> {
     const { state } = await this.state(projectId);
+    const operation = this.accountOperation(state, signal);
+    try {
+    await operation.check();
     state.generation++;
     try { await this.invalidateState(state); } finally { state.ceremonyState = state.consent ? "cancelled" : "consent-required"; }
+    await operation.check();
     return this.projection(projectId, state);
+    } finally { operation.close(); }
   }
 
-  async signOut(projectId: string): Promise<HostedBootstrapStatus> {
+  async signOut(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus> {
     const { state, canonicalRoot } = await this.state(projectId);
+    const operation = this.accountOperation(state, signal);
+    try {
+    await operation.check();
     const privateDirectory = join(this.runtimeDirectory, "hosted-bootstrap", projectId), codexHome = join(privateDirectory, "codex-home");
     state.generation++;
     state.consent = undefined;
@@ -279,6 +331,7 @@ export class HostedBootstrapController {
       // candidates/controllers, and only then asks the supplier to log out.
       await this.bindings.signOut({ projectId, canonicalRoot, privateDirectory, codexHome });
       await retire();
+      await operation.check();
       if (cleanupFailure !== undefined) throw cleanupFailure;
       state.ceremonyState = "consent-required";
       return this.projection(projectId, state);
@@ -287,6 +340,7 @@ export class HostedBootstrapController {
       state.ceremonyState = "failed";
       throw unavailable("Project-local hosted sign-out failed after admission retirement");
     }
+    } finally { operation.close(); }
   }
 
   private establish(projectId: string, canonicalRoot: string, state: ProjectBootstrap, generation: number, ceremony: TrustedHostedLoginCeremony): Promise<void> {
@@ -380,11 +434,17 @@ async function startBootstrap(input: Extract<HostedBootstrapRuntimeBootInput, { 
   const residency = new ResidencyCoordinator({ async listStatus() { return []; }, load: offline, unload: offline }, input.runtimeDirectory);
   const bootstrap = new HostedBootstrapController(projects, sessions, nativePlans, input.runtimeDirectory, bindings, input.nativeAddonPath, controlledNativePlanQualification);
   engines.register(projectEngineDispatcher(bootstrap));
-  const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency, new RuntimeAttachmentResolver()), new AuthRegistry(input.runtimeDirectory), { async get() { return undefined; }, async status() { return { configured: false }; }, set: offline, remove: offline }, undefined, undefined, undefined,
+  const auth = new AuthRegistry(input.runtimeDirectory);
+  const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency, new RuntimeAttachmentResolver()), auth, { async get() { return undefined; }, async status() { return { configured: false }; }, set: offline, remove: offline }, undefined, undefined, undefined,
     { async resolve(request) { return { role: request.agentType === 0 ? "agent0" : "agent1", engineSelection: bootstrap.selection(request.projectId) }; } }, nativePlans);
   const issued = await service.auth.ensureClient(HOSTED_BOOTSTRAP_CLIENT_ID, ["runtime:read", "projects:write", "credentials:write"]);
-  const daemon = new RuntimeDaemon({ socketPath, runtimeDirectory: input.runtimeDirectory, service, hostedBootstrap: bootstrap });
-  try { await daemon.start(); } catch (error) { await bootstrap.close(); throw error; }
+  let accountHost: HostAccountAuthority | undefined;
+  let daemon: RuntimeDaemon;
+  try {
+    accountHost = await bindings?.createAccountHost?.(auth);
+    daemon = new RuntimeDaemon({ socketPath, runtimeDirectory: input.runtimeDirectory, service, hostedBootstrap: bootstrap, ...(accountHost ? { accountHost } : {}) });
+    await daemon.start();
+  } catch (error) { await accountHost?.close().catch(() => undefined); await bootstrap.close(); throw error; }
   let stopping: Promise<void> | undefined;
   return { socketPath, runtimeDirectory: input.runtimeDirectory, bootstrapTokenFile: issued.tokenFile, stop: () => stopping ??= (async () => { let failure: unknown; try { await daemon.stop(); } catch (error) { failure = error; } try { await bootstrap.close(); } catch (error) { failure ??= error; } if (failure !== undefined) throw failure; })() };
 }

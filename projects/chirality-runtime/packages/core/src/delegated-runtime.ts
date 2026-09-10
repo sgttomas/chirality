@@ -405,7 +405,9 @@ export class DelegatedRuntime {
         ...(interactionMode === "native-plan" ? { projectId, sessionId: request.sessionId, clientTurnId: request.turnId } : {}), ...(restart.threadId ? { resumeThreadId: restart.threadId } : {}) };
       const workerInput = binding.evidenceClass === "controlled-worker" && interactionMode === "chat" && runtimeToolMap.size === 0 && !request.attachments?.length ? request.prompt : JSON.stringify(hostedEnvelope);
       const declarations: RuntimeToolCallbackDeclaration[] = [...runtimeToolMap.values()].map(({ name, description, inputSchema }) => ({ name, description, inputSchema: structuredClone(inputSchema) }));
-      const worker = runtimeToolMap.size ? await runtimeToolPort.acquireWithRuntimeTools!(request.turnId, workerInput, declarations) : await binding.supervisor.acquire(request.turnId, workerInput);
+      const inheritedNames = new Set(["chirality_list_methods", "chirality_inspect_method", "chirality_load_method"]);
+      const inheritableTools = declarations.filter(tool => inheritedNames.has(tool.name));
+      const worker = runtimeToolMap.size ? await runtimeToolPort.acquireWithRuntimeTools!(request.turnId, workerInput, declarations, inheritableTools) : await binding.supervisor.acquire(request.turnId, workerInput);
       this.liveTurns.set(key, { ...identity, sessionId: request.turnId, turnId: request.turnId, workerGeneration: worker.generation });
       const nativePlanBinding = interactionMode === "native-plan" ? { projectId, sessionId: request.sessionId!, clientTurnId: request.turnId, workerId: worker.workerId, generation: worker.generation } : undefined;
       let nativePlanOpened = false, nativePlanClosed = false;
@@ -435,7 +437,10 @@ export class DelegatedRuntime {
         try {
           let abort!: () => void;
           const interrupted = new Promise<never>((_, reject) => { abort = () => reject(new RuntimeError("INTERRUPTED", "Runtime tool callback interrupted", 499)); controller.signal.addEventListener("abort", abort, { once: true }); });
-          const value = await Promise.race([tool.execute(structuredClone(message.args), controller.signal), interrupted]);
+          const value = await Promise.race([tool.execute(structuredClone(message.args), controller.signal, {
+            threadId: message.threadId, turnId: message.turnId, callId: message.callId,
+            ...(message.nativeChild ? { nativeChild: structuredClone(message.nativeChild) } : {})
+          }), interrupted]);
           controller.signal.removeEventListener("abort", abort);
           const text = JSON.stringify(value ?? null);
           if (Buffer.byteLength(text) > 65536) throw new Error("runtime tool result exceeds bound");

@@ -12,6 +12,7 @@ import {
   type DelegatedApprovalDecisionRequest,
   type SessionTurnRequest
 } from "@chirality/runtime-contracts";
+import { observeRuntimeSupportProfileFromPayloadV2, type RuntimePayloadSupportObservationInputV2, type RuntimeSupportProfileV2 } from "@chirality/runtime-core/runtime-conformance-v2";
 import {
   resolveCliRuntimePaths,
   runtimeClientOptions,
@@ -80,6 +81,7 @@ export interface CliDependencies {
   paths: CliRuntimePaths;
   executablePath: string;
   readTextFile(path: string): Promise<string>;
+  measureRuntimeSupportProfile(input: RuntimePayloadSupportObservationInputV2): Promise<Readonly<RuntimeSupportProfileV2>>;
 }
 
 type ParsedArguments = {
@@ -310,6 +312,15 @@ Login uses operator credentials. Approval records do not imply provider forwardi
     const args = parseArguments(rest);
     const json = flag(args, "json");
 
+    if (group === "release" && action === "measure-support") {
+      const path = requiredOption(args, "recipe");
+      let recipe: unknown;
+      try { recipe = JSON.parse(await deps.readTextFile(path)); } catch { throw new CliUsageError("Release support recipe must be valid JSON"); }
+      if (!recipe || typeof recipe !== "object" || Array.isArray(recipe)) throw new CliUsageError("Release support recipe must be an object");
+      const value = recipe as Omit<RuntimePayloadSupportObservationInputV2, "embeddedRuntime">;
+      const embeddedRuntime = { electron: process.versions.electron ?? "", node: process.versions.node, modules: process.versions.modules ?? "", napi: process.versions.napi ?? "", architecture: process.arch };
+      printJson(io, await deps.measureRuntimeSupportProfile({ ...value, embeddedRuntime }), true); return 0;
+    }
     if (group === "approvals") {
       const projectId = requiredOption(args, "project");
       let result: unknown;
@@ -563,7 +574,8 @@ export function createDefaultCliDependencies(): CliDependencies {
       resolveRuntimeLaunchAgentOptions(process.env, paths.userData)
     ),
     executablePath: process.execPath,
-    readTextFile: (path) => readFile(path, "utf8")
+    readTextFile: (path) => readFile(path, "utf8"),
+    measureRuntimeSupportProfile: (input) => observeRuntimeSupportProfileFromPayloadV2(input)
   };
 }
 

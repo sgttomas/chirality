@@ -9,9 +9,21 @@ import type { AddressInfo } from 'node:net';
 import path from 'node:path';
 import { RuntimeClient } from '@chirality/runtime-client';
 import { installRuntimeDaemonSignalShutdown } from '@chirality/runtime-daemon';
+import {
+  createVerifiedHostAccountClient,
+  loadPackagedHostedReleaseBasis,
+  type HostAccountClient
+} from '@chirality/runtime-daemon/hosted';
 import { resolveHostedBootstrapTokenFile } from '@chirality/runtime-daemon/hosted-paths';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
 import { installBundledCliLauncher } from './cli-launcher';
+import { resolveDesktopEntryMode } from './desktop-entry-mode';
+import { runProtectedRuntimeCli } from './protected-runtime-cli';
+import {
+  createHostAccountConnection,
+  type HostAccountConnection
+} from './host-account-connection';
+import { registerHostAccountHandler, unregisterHostAccountHandler } from './host-account-ipc';
 import {
   createDesktopLogger,
   createNoopDesktopLogger,
@@ -123,10 +135,13 @@ let shutdownStarted = false;
 let shutdownCompleted = false;
 let bindingSupervisor: RuntimeBindingSupervisor | undefined;
 let socketWatcher: SocketPresenceWatcher | undefined;
+let hostAccountConnection: HostAccountConnection | undefined;
 /** Monotonic timestamp of the last GUI spawned from daemon mode; see `activate`. */
 let lastGuiSpawnAt = 0;
 let desktopLogger: DesktopLogger = createNoopDesktopLogger();
-const runtimeDaemonMode = process.argv.includes('--runtime-daemon');
+const desktopEntryMode = resolveDesktopEntryMode(process.argv, app.isPackaged);
+const runtimeDaemonMode = desktopEntryMode.mode === 'runtime-daemon';
+const guiMode = desktopEntryMode.mode === 'gui';
 
 /**
  * Honor `CHIRALITY_USER_DATA` for the app itself.
@@ -707,8 +722,41 @@ async function initializeGui(): Promise<void> {
     onStateChange: (snapshot) => {
       desktopLogger.info('runtime.connectivity.state', snapshot);
       broadcastRuntimeConnectivity(snapshot);
+      void hostAccountConnection?.update(snapshot.state === 'connected');
     },
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
+  });
+
+  hostAccountConnection = createHostAccountConnection({
+    connect: async (): Promise<HostAccountClient> => {
+      if (!app.isPackaged) throw new Error('packaged-account-client-unavailable');
+      const release = await loadPackagedHostedReleaseBasis({
+        resourcesRoot: process.resourcesPath,
+        runtimeDirectory: control.runtimeDirectory,
+        embeddedRuntime: {
+          electron: process.versions.electron,
+          node: process.versions.node,
+          modules: process.versions.modules,
+          napi: process.versions.napi ?? '',
+          architecture: process.arch
+        }
+      });
+      if (release.status !== 'ready') throw new Error('packaged-account-client-unavailable');
+      const client = await createVerifiedHostAccountClient({
+        socketPath: control.socketPath,
+        executablePath: app.getPath('exe'),
+        resourcesPath: process.resourcesPath,
+        basis: release.basis
+      });
+      try {
+        await client.start();
+        return client;
+      } catch (error) {
+        await client.close().catch(() => undefined);
+        throw error;
+      }
+    },
+    log: (event) => desktopLogger.info(`runtime.account_host.${event}`)
   });
 
   // The supervisor's timers alone make a daemon bounce cost up to a probe
@@ -780,6 +828,14 @@ async function initializeGui(): Promise<void> {
     rendererOrigin,
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
   });
+  registerHostAccountHandler({
+    runtimeClient,
+    accountClient: () => hostAccountConnection?.client(),
+    invalidateAccountClient: (client) => {
+      void hostAccountConnection?.invalidate(client);
+    },
+    rendererOrigin
+  });
 
   registerRuntimeControlHandlers({
     client: runtimeClient,
@@ -835,6 +891,7 @@ async function initializeDaemon(): Promise<void> {
           runtimeDirectory: control.runtimeDirectory,
           daemonSocket: 'control.sock',
           resourcesRoot: process.resourcesPath,
+          executablePath: app.getPath('exe'),
           embeddedRuntime: {
             electron: process.versions.electron,
             node: process.versions.node,
@@ -901,7 +958,13 @@ async function teardown(exitCode: number, reason: string): Promise<number> {
   ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
   ipcMain.removeHandler(RUNTIME_CONNECTIVITY_QUERY_CHANNEL);
   unregisterApiKeyHandlers();
+  unregisterHostAccountHandler();
   unregisterRuntimeControlHandlers();
+
+  if (hostAccountConnection) {
+    await hostAccountConnection.close();
+    hostAccountConnection = undefined;
+  }
 
   if (runtimeHost) {
     try {
@@ -938,6 +1001,18 @@ async function shutdown(exitCode = 0, reason = 'unspecified'): Promise<void> {
 app
   .whenReady()
   .then(async () => {
+    if (desktopEntryMode.mode === 'invalid') {
+      throw new Error(desktopEntryMode.reason);
+    }
+    if (desktopEntryMode.mode === 'runtime-cli') {
+      const exitCode = await runProtectedRuntimeCli(
+        desktopEntryMode.arguments,
+        app.getPath('exe'),
+        app.isPackaged
+      );
+      app.exit(exitCode);
+      return;
+    }
     if (runtimeDaemonMode) {
       await initializeDaemon();
       return;
@@ -946,14 +1021,18 @@ app
   })
   .catch((error) => {
     desktopLogger.error(
-      runtimeDaemonMode ? 'runtime.daemon.initialize_failed' : 'desktop.gui.initialize_failed',
+      runtimeDaemonMode
+        ? 'runtime.daemon.initialize_failed'
+        : desktopEntryMode.mode === 'runtime-cli'
+          ? 'runtime.cli.failed'
+          : 'desktop.gui.initialize_failed',
       error instanceof Error ? error.message : String(error)
     );
     void shutdown(1, 'initialize-failed');
   });
 
 app.on('window-all-closed', () => {
-  if (!runtimeDaemonMode && process.platform !== 'darwin') {
+  if (guiMode && process.platform !== 'darwin') {
     app.quit();
   }
 });
@@ -1046,7 +1125,7 @@ function spawnGuiFromDaemon(): void {
   void shutdown(0, 'retire-after-gui-spawn');
 }
 
-if (!runtimeDaemonMode) {
+if (guiMode) {
   app.on('open-file', (event, filePath) => {
     event.preventDefault();
     // One latest unhandled intent is retained during renderer startup. This is
@@ -1079,7 +1158,7 @@ if (runtimeDaemonMode) {
 // GUI mode retains its direct Node signal path. Daemon mode instead installs
 // the shared one-shot binder after the active RuntimeHost exists, so these
 // listeners cannot race or duplicate its stop operation.
-if (!runtimeDaemonMode) {
+if (guiMode) {
   for (const signal of ['SIGINT', 'SIGTERM'] as const) {
     process.once(signal, () => {
       void shutdown(signal === 'SIGINT' ? 130 : 0, `signal:${signal}`);

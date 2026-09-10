@@ -134,7 +134,7 @@ export class TurnCoordinator {
       if ((request.interactionMode ?? session.interactionMode) === "native-plan") {
         if (this.runtimeMethods === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan runtime is unavailable", 503);
         const capability = await this.runtimeMethods.getNativePlanCapability(projectId, sessionId);
-        if (capability.status !== "qualified") throw new RuntimeError("ENGINE_UNAVAILABLE", capability.reason, 503);
+        if (capability.status === "unavailable") throw new RuntimeError("ENGINE_UNAVAILABLE", capability.reason, 503);
       }
       const requestedTools = request.opts?.tools ?? [...toolNames];
       const admittedTools = resolvedContext === undefined ? requestedTools : await this.runtimeMethods!.restrictRequestedTools(

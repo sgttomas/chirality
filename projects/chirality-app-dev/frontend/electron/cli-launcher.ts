@@ -14,15 +14,8 @@ function quoteForShell(value: string): string {
   return `'${value.replaceAll("'", "'\"'\"'")}'`;
 }
 
-export function resolveBundledCliEntry(): string {
-  return app.isPackaged
-    ? path.join(process.resourcesPath, 'runtime-cli', 'chirality-cli.mjs')
-    : path.resolve(__dirname, '..', 'dist-runtime', 'chirality-cli.mjs');
-}
-
 export function renderCliLauncher(input: {
   desktopExecutable: string;
-  cliEntry: string;
   /**
    * Values the CLI needs in order to address the same runtime directory *and the
    * same LaunchAgent job* as the app.
@@ -38,7 +31,6 @@ export function renderCliLauncher(input: {
   pinnedEnvironment: Readonly<Record<string, string>>;
 }): string {
   const desktopExecutable = quoteForShell(path.resolve(input.desktopExecutable));
-  const cliEntry = quoteForShell(path.resolve(input.cliEntry));
   // Sorted so the rendered file is deterministic: byte-stability is what lets the
   // idempotent install below skip a rewrite.
   const pinnedExports = Object.keys(input.pinnedEnvironment)
@@ -53,18 +45,8 @@ export function renderCliLauncher(input: {
   return `#!/bin/zsh
 set -eu
 desktop_executable=${desktopExecutable}
-cli_entry=${cliEntry}
-export ELECTRON_RUN_AS_NODE=1
 ${pinnedExports}
-if [[ "\${1:-}" == "daemon" && "\${2:-}" == "install" ]]; then
-  for argument in "$@"; do
-    if [[ "$argument" == "--executable" || "$argument" == --executable=* ]]; then
-      exec "$desktop_executable" "$cli_entry" "$@"
-    fi
-  done
-  exec "$desktop_executable" "$cli_entry" "$@" --executable "$desktop_executable"
-fi
-exec "$desktop_executable" "$cli_entry" "$@"
+exec "$desktop_executable" --runtime-cli "$@"
 `;
 }
 
@@ -94,7 +76,6 @@ export async function installBundledCliLauncher(
   const posture = resolveDesktopDaemonPosture(environment, app.getPath('userData'));
   const launcher = renderCliLauncher({
     desktopExecutable: app.getPath('exe'),
-    cliEntry: resolveBundledCliEntry(),
     pinnedEnvironment: daemonPostureEnvironment(posture)
   });
 

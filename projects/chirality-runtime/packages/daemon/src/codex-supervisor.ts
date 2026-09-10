@@ -6,7 +6,7 @@ import { CodexTurnSession, type CodexSessionTransport, type CodexDynamicTool, ty
 import { SupplierAuthorityController } from "./supplier-authority-controller.js";
 import type { AuthenticatedCodexCandidate } from "./codex-authenticated-transport.js";
 import type { CodexCandidateLauncherFactory } from "./codex-admitted-launcher.js";
-import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2 } from "./runtime-conformance-v2-admission.js";
+import { completeRuntimeWorkerInstanceV2FromP2, revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, revalidateRuntimeWorkerInstancePreparationV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2, type RuntimeWorkerInstancePreparationV2 } from "./runtime-conformance-v2-admission.js";
 import type { HostedPackagedReleaseBasisV2 } from "./hosted-packaged-release-state.js";
 
 import { ManagerMailbox, type ManagerMessage } from "./codex-manager.js";
@@ -43,6 +43,7 @@ export interface HostedCodexSupervisorOptions extends Omit<CodexSupervisorOption
   configDigest: string;
   consentVersion: string;
   runtimeV2?: { releaseBasis: Readonly<HostedPackagedReleaseBasisV2>; instanceInput: RuntimeInstanceAdmissionInputV2; instanceAdmission: RuntimeInstanceAdmissionV2 };
+  runtimeV2Preparation?: RuntimeWorkerInstancePreparationV2;
 }
 export interface HostedCodexSupervisorAdmission {
   supervisor: CodexSupervisor;
@@ -50,6 +51,7 @@ export interface HostedCodexSupervisorAdmission {
   authority: { supplierGeneration: string; identityGeneration: string; snapshotDigest: string };
   /** Stable digest of the privately observed account/workspace pair; no raw identity leaves the session. */
   accountDigest: string;
+  runtimeV2?: NonNullable<HostedCodexSupervisorOptions["runtimeV2"]>;
   retire(): Promise<void>;
 }
 export type ControlledHostedConformanceVerifier = (input: {
@@ -70,21 +72,28 @@ export function codexRuntimeConformanceConfigDigest(options: CodexSupervisorOpti
 export interface ControlledCodexLauncher { (): Promise<{ pid: number; transport: CodexSessionTransport; permissionProfile?: string; policyDigest?: string; expectedPermissions?: NativePermissions; descendantTracker?: DescendantTracker }> }
 interface NativePlanBinding { projectId: string; sessionId: string; clientTurnId: string }
 interface Entry { handle: WorkerHandle; session: CodexTurnSession; result: Promise<WorkerResult>; cleanup: () => Promise<void>; nativePlanBinding?: NativePlanBinding; nativePlanEvents: NativePlanTransportEvent[]; turnProgress: DelegatedTurnProgressEvent[] }
-interface AdmittedCandidate { candidate: AuthenticatedCodexCandidate; session: CodexTurnSession; authority: SupplierAuthorityController; continuity: WorkerContinuity; evidence: HostedCodexSupervisorAdmission["authority"]; accountDigest: string }
+interface AdmittedCandidate { candidate: AuthenticatedCodexCandidate; session: CodexTurnSession; authority: SupplierAuthorityController; continuity: WorkerContinuity; evidence: HostedCodexSupervisorAdmission["authority"]; accountDigest: string; runtimeV2?: NonNullable<HostedCodexSupervisorOptions["runtimeV2"]> }
 const unavailable = (message: string) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503);
 function id(value: string): void { if (typeof value !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(value)) throw new RuntimeError("INVALID_REQUEST", "Invalid worker identity"); }
 
 class RuntimeToolMailbox {
   private readonly callbacks = new Map<string, { message: Extract<RuntimeToolCallbackMessage, {kind:"callback"}>; delivered: boolean; resolve(value: CodexDynamicToolResult): void; reject(error: Error): void }>();
   private terminal?: Error;
+  private static callbackKey(message: Pick<Extract<RuntimeToolCallbackMessage, {kind:"callback"}>, "callId" | "threadId" | "turnId" | "nativeChild">): string {
+    return JSON.stringify(message.nativeChild
+      ? ["child", message.nativeChild.associationId, message.threadId, message.turnId, message.callId]
+      : ["primary", message.threadId, message.turnId, message.callId]);
+  }
   readonly tools: readonly CodexDynamicTool[];
   constructor(declarations: readonly RuntimeToolCallbackDeclaration[]) {
     if (!Array.isArray(declarations) || declarations.length < 1 || declarations.length > 32) throw new RuntimeError("INVALID_REQUEST", "Invalid admitted runtime tool declarations");
     this.tools = declarations.map(declaration => {
       if (!declaration || typeof declaration !== "object" || !/^[A-Za-z][A-Za-z0-9_-]{0,63}$/.test(declaration.name) || typeof declaration.description !== "string" || !declaration.description.trim() || typeof declaration.inputSchema !== "object") throw new RuntimeError("INVALID_REQUEST", "Invalid admitted runtime tool declaration");
       return { ...structuredClone(declaration), handler: async (args, context) => {
-        if (this.terminal || this.callbacks.has(context.callId) || this.callbacks.size >= 8) throw unavailable("Runtime tool callback unavailable");
-        return await new Promise((resolve, reject) => this.callbacks.set(context.callId, { message: { kind: "callback", callId: context.callId, threadId: context.threadId, turnId: context.turnId, name: declaration.name, args }, delivered: false, resolve, reject }));
+        const message = { kind: "callback" as const, callId: context.callId, threadId: context.threadId, turnId: context.turnId, name: declaration.name, args, ...(context.nativeChild ? { nativeChild: structuredClone(context.nativeChild) } : {}) };
+        const key = RuntimeToolMailbox.callbackKey(message);
+        if (this.terminal || this.callbacks.has(key) || this.callbacks.size >= 8) throw unavailable("Runtime tool callback unavailable");
+        return await new Promise((resolve, reject) => this.callbacks.set(key, { message, delivered: false, resolve, reject }));
       } };
     });
     if (new Set(this.tools.map(tool => tool.name)).size !== this.tools.length) throw new RuntimeError("INVALID_REQUEST", "Duplicate admitted runtime tool declaration");
@@ -96,10 +105,10 @@ class RuntimeToolMailbox {
     callback.delivered = true; return structuredClone(callback.message);
   }
   reply(message: Extract<RuntimeToolCallbackMessage, {kind:"callback"}>, result: RuntimeToolCallbackResult): void {
-    const callback = this.callbacks.get(message.callId);
+    const key = RuntimeToolMailbox.callbackKey(message), callback = this.callbacks.get(key);
     if (!callback || !callback.delivered || JSON.stringify(callback.message) !== JSON.stringify(message)) throw new RuntimeError("INVALID_REQUEST", "Unknown or stale runtime tool callback");
     if (!result || typeof result.success !== "boolean" || !Array.isArray(result.contentItems) || result.contentItems.length !== 1 || result.contentItems[0]?.type !== "inputText" || typeof result.contentItems[0].text !== "string" || Buffer.byteLength(result.contentItems[0].text) > 65536) throw new RuntimeError("INVALID_REQUEST", "Invalid runtime tool callback result");
-    this.callbacks.delete(message.callId); callback.resolve(structuredClone(result));
+    this.callbacks.delete(key); callback.resolve(structuredClone(result));
   }
   finish(error: Error = unavailable("Runtime tool worker ended")): void { this.terminal = error; for (const callback of this.callbacks.values()) callback.reject(error); this.callbacks.clear(); }
 }
@@ -142,23 +151,30 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     return CodexSupervisor.admitHostedWithVerifier(options);
   }
   private static async admitHostedWithVerifier(options: HostedCodexSupervisorOptions, verifyConformance?: ControlledHostedConformanceVerifier): Promise<HostedCodexSupervisorAdmission> {
-    if (options.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(options.runtimeV2.instanceInput, options.runtimeV2.instanceAdmission);
+    if (options.accountStorageBackend === "keyring") {
+      if ((options.runtimeV2 !== undefined) === (options.runtimeV2Preparation !== undefined)) throw unavailable("Exactly one worker v2 admission state is required");
+      if (options.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(options.runtimeV2.instanceInput, options.runtimeV2.instanceAdmission);
+      else await revalidateRuntimeWorkerInstancePreparationV2(options.runtimeV2Preparation!);
+    } else if (options.runtimeV2 || options.runtimeV2Preparation) throw unavailable("Worker v2 admission requires keyring storage");
     const raw = await options.candidateLauncherFactory.create().launchCandidate();
     const observed = await CodexSupervisor.observeTransport(raw, raw.descendantTracker);
     const candidate: AuthenticatedCodexCandidate = { ...observed, cleanup: observed.transport.close };
     let admitted: AdmittedCandidate | undefined;
     try {
       admitted = await CodexSupervisor.admitCandidate(options, candidate, verifyConformance);
-      const supervisor = new CodexSupervisor({ ...options, identity: admitted.continuity, candidateLauncherFactory: options.candidateLauncherFactory });
+      const { runtimeV2: _runtimeV2, runtimeV2Preparation: _runtimeV2Preparation, canonicalRoot: _canonicalRoot, ...supervisorOptions } = options;
+      const supervisor = new CodexSupervisor({ ...supervisorOptions, identity: admitted.continuity, candidateLauncherFactory: options.candidateLauncherFactory });
       supervisor.controlledVerifyConformance = verifyConformance;
-      supervisor.conformance = { conformance: options.conformance, configDigest: options.configDigest, accountDigest: admitted.accountDigest, consentVersion: options.consentVersion, ...(options.runtimeV2 ? { runtimeV2: options.runtimeV2 } : {}) };
+      supervisor.conformance = { conformance: options.conformance, configDigest: options.configDigest, accountDigest: admitted.accountDigest, consentVersion: options.consentVersion, ...(admitted.runtimeV2 ? { runtimeV2: admitted.runtimeV2 } : {}) };
       supervisor.preadmitted = admitted;
-      return Object.freeze({ supervisor, continuity: { ...admitted.continuity }, authority: { ...admitted.evidence }, accountDigest: admitted.accountDigest, retire: () => supervisor.close() });
+      return Object.freeze({ supervisor, continuity: { ...admitted.continuity }, authority: { ...admitted.evidence }, accountDigest: admitted.accountDigest, ...(admitted.runtimeV2 ? { runtimeV2: admitted.runtimeV2 } : {}), retire: () => supervisor.close() });
     } catch (error) { return failAfterCleanup(error, [() => admitted?.authority.close(), () => candidate.cleanup()]); }
   }
   private static async admitCandidate(options: Omit<HostedCodexSupervisorOptions, "candidateLauncherFactory"> & { expectedAccountDigest?: string }, candidate: AuthenticatedCodexCandidate, controlledVerifyConformance?: ControlledHostedConformanceVerifier): Promise<AdmittedCandidate> {
+    if (options.runtimeV2Preparation) await revalidateRuntimeWorkerInstancePreparationV2(options.runtimeV2Preparation);
     const session = new CodexTurnSession({ runtimeV2: options.runtimeV2, transport: candidate.transport, requestTimeoutMs: options.requestTimeoutMs, turnTimeoutMs: options.turnTimeoutMs,
-      commandNetworkPosture: options.commandNetworkPosture, permissionProfile: candidate.expectedPolicy.permissionProfile, policyDigest: candidate.expectedPolicy.policyDigest });
+      commandNetworkPosture: options.commandNetworkPosture, permissionProfile: candidate.expectedPolicy.permissionProfile, policyDigest: candidate.expectedPolicy.policyDigest,
+      nativeSkills: candidate.expectedPolicy.nativeSkills });
     let authority: SupplierAuthorityController | undefined;
     try {
       if (options.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(options.runtimeV2.instanceInput, options.runtimeV2.instanceAdmission);
@@ -169,17 +185,26 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       await assertContinuity(bound.continuity);
       if (bound.continuity.canonicalRoot !== options.canonicalRoot || bound.continuity.cwd !== options.canonicalRoot
         || bound.continuity.policyDigest !== candidate.expectedPolicy.policyDigest) throw unavailable("Candidate continuity does not match its project and native policy");
+      let runtimeV2 = options.runtimeV2;
+      if (options.runtimeV2Preparation) {
+        const completed = await completeRuntimeWorkerInstanceV2FromP2(options.runtimeV2Preparation, {
+          accountId: bound.continuity.accountId,
+          accountEpoch: bound.continuity.accountEpoch,
+          accountDigest: bound.accountDigest
+        });
+        runtimeV2 = { releaseBasis: options.runtimeV2Preparation.releaseBasis, ...completed };
+      }
       await session.verifyNativePolicy(candidate.expectedPolicy.expectedPermissions, candidate.expectedPolicy.nativeRoleConfiguration);
       if (candidate.expectedToolRuntime.codexSelfExecutablePath !== options.executablePath) throw unavailable("Candidate executable differs from the trusted supervisor binding");
       const account = await session.accountRead();
       if (!account.hasAccount) throw unavailable("Codex has no root-private authenticated account");
       if (options.expectedAccountDigest !== undefined && bound.accountDigest !== options.expectedAccountDigest) throw unavailable("Fresh candidate account identity changed");
-      if (options.runtimeV2) {
-        const expectedAccount = options.runtimeV2.instanceInput.account;
+      if (runtimeV2) {
+        const expectedAccount = runtimeV2.instanceInput.account;
         if (!expectedAccount || expectedAccount.accountId !== bound.continuity.accountId || expectedAccount.accountEpoch !== bound.continuity.accountEpoch || expectedAccount.accountDigest !== bound.accountDigest
-          || candidate.expectedOuterPolicyDigest !== options.runtimeV2.instanceInput.outerPolicyDigest || candidate.expectedPolicy.policyDigest !== options.runtimeV2.instanceInput.nativePolicyDigest
-          || candidate.expectedEffectiveConfigDigestV2 !== options.runtimeV2.instanceInput.effectiveConfigDigest
-          || recordKey(candidate.expectedPolicy.policyInstanceV2) !== recordKey(options.runtimeV2.instanceInput.policy)) throw unavailable("Fresh candidate differs from its v2 instance admission");
+          || candidate.expectedOuterPolicyDigest !== runtimeV2.instanceInput.outerPolicyDigest || candidate.expectedPolicy.policyDigest !== runtimeV2.instanceInput.nativePolicyDigest
+          || candidate.expectedEffectiveConfigDigestV2 !== runtimeV2.instanceInput.effectiveConfigDigest
+          || recordKey(candidate.expectedPolicy.policyInstanceV2) !== recordKey(runtimeV2.instanceInput.policy)) throw unavailable("Fresh candidate differs from its v2 instance admission");
       }
       const conformanceActual = { canonicalRoot: bound.continuity.canonicalRoot, cwd: bound.continuity.cwd,
         policyDigest: bound.continuity.policyDigest, configDigest: options.configDigest, accountId: bound.continuity.accountId,
@@ -188,10 +213,10 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       if (options.conformance) {
         if (controlledVerifyConformance) await controlledVerifyConformance({ configuration: options.conformance, actual: conformanceActual });
         else await verifyConfiguredRuntimeConformance(options.conformance, conformanceActual);
-      } else if (!options.runtimeV2) throw unavailable("Runtime conformance is unavailable");
+      } else if (!runtimeV2) throw unavailable("Runtime conformance is unavailable");
       if (!candidate.expectedToolRuntime.requiresSandboxedFileSystem || !candidate.expectedToolRuntime.requiresSandboxedFileStreaming) throw unavailable("Required sandboxed file runtime is unavailable");
-      if (options.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(options.runtimeV2.instanceInput, options.runtimeV2.instanceAdmission);
-      return { candidate, session, authority, continuity: bound.continuity, evidence: bound.authority, accountDigest: bound.accountDigest };
+      if (runtimeV2) await revalidateRuntimeInstanceAdmissionV2(runtimeV2.instanceInput, runtimeV2.instanceAdmission);
+      return { candidate, session, authority, continuity: bound.continuity, evidence: bound.authority, accountDigest: bound.accountDigest, ...(runtimeV2 ? { runtimeV2 } : {}) };
     } catch (error) { return failAfterCleanup(error, [() => authority?.close(), () => session.close(), () => candidate.cleanup()]); }
   }
   /** Controlled adapter tests are structurally excluded from verifyHostedBoundary. */
@@ -290,11 +315,11 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     const mailbox = this.managers.get(workerId); if (!mailbox) throw unavailable("Unknown manager worker"); mailbox.reply(input);
   }
   async acquire(workerId: string, input: string): Promise<WorkerHandle> { return this.acquireInternal(workerId, input); }
-  async acquireWithRuntimeTools(workerId: string, input: string, tools: readonly RuntimeToolCallbackDeclaration[]): Promise<WorkerHandle> {
+  async acquireWithRuntimeTools(workerId: string, input: string, tools: readonly RuntimeToolCallbackDeclaration[], inheritableTools: readonly RuntimeToolCallbackDeclaration[] = []): Promise<WorkerHandle> {
     if (this.runtimeToolMailboxes.has(workerId)) throw unavailable("Runtime tool worker already exists");
     const mailbox = new RuntimeToolMailbox(tools); this.runtimeToolMailboxes.set(workerId, mailbox);
     try {
-      const handle = await this.acquireInternal(workerId, input, mailbox.tools);
+      const handle = await this.acquireInternal(workerId, input, mailbox.tools, inheritableTools);
       void this.wait(workerId, handle.generation).then(() => mailbox.finish(), error => mailbox.finish(error));
       return handle;
     } catch (error) { this.runtimeToolMailboxes.delete(workerId); mailbox.finish(error as Error); throw error; }
@@ -306,8 +331,8 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     this.entry(workerId, generation); const mailbox = this.runtimeToolMailboxes.get(workerId); if (!mailbox) throw unavailable("Unknown runtime tool worker"); mailbox.reply(message, result);
   }
   cancelAdmission(workerId:string):void {const pending=this.cancellations.get(workerId);if(!pending)return;pending.cancelled=true;if(pending.acquiring)void pending.authority?.revoke();}
-  private async acquireInternal(workerId:string,input:string,dynamicTools?:readonly CodexDynamicTool[]):Promise<WorkerHandle>{return this.acquireGuarded(workerId,input,dynamicTools);}
-  private async acquireGuarded(workerId: string, input: string, dynamicTools?: readonly CodexDynamicTool[]): Promise<WorkerHandle> {
+  private async acquireInternal(workerId:string,input:string,dynamicTools?:readonly CodexDynamicTool[],inheritableTools?:readonly RuntimeToolCallbackDeclaration[]):Promise<WorkerHandle>{return this.acquireGuarded(workerId,input,dynamicTools,inheritableTools);}
+  private async acquireGuarded(workerId: string, input: string, dynamicTools?: readonly CodexDynamicTool[], inheritableTools?: readonly RuntimeToolCallbackDeclaration[]): Promise<WorkerHandle> {
     if (!this.fixtureLauncher) this.requireHostedIdentity();
     id(workerId);
     if (this.closed || this.entries.has(workerId) || this.acquiring.has(workerId) || this.entries.size + this.acquiring.size >= (this.options.maxWorkers ?? 16)) throw unavailable("Codex worker is unavailable or already acquired");
@@ -386,6 +411,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       if (!session) throw unavailable("Codex candidate session is unavailable");
       const activeSession = session;
       if (!this.fixtureLauncher) activeSession.installDynamicTools(dynamicTools ?? []);
+      if (inheritableTools !== undefined) await activeSession.installInheritableTools(inheritableTools);
       const nativePlanEvents: NativePlanTransportEvent[] = [], turnProgress: DelegatedTurnProgressEvent[] = [];
       // Completed plan items are authoritative; streamed deltas are never promoted.
       const eventDrain = (async () => { for await (const event of activeSession.events()) {

@@ -221,6 +221,16 @@ export interface NativePlanAdapterQualification {
   evidenceClass: "native-adapter-qualified";
 }
 
+export interface NativePlanAdapterTrialAdmission {
+  adapterId: string;
+  providerId: string;
+  dispositionId: string;
+  admissionSha256: string;
+  evidenceClass: "native-adapter-local-human-trial";
+}
+
+export type NativePlanAdapterAdmission = NativePlanAdapterQualification | NativePlanAdapterTrialAdmission;
+
 export type NativePlanCapabilityResponse =
   | {
       schemaVersion: "chirality.native-plan-capability/v3";
@@ -231,6 +241,11 @@ export type NativePlanCapabilityResponse =
       schemaVersion: "chirality.native-plan-capability/v3";
       status: "qualified";
       qualification: NativePlanAdapterQualification;
+    }
+  | {
+      schemaVersion: "chirality.native-plan-capability/v3";
+      status: "trial";
+      admission: NativePlanAdapterTrialAdmission;
     };
 
 export interface UnavailableNativePlanAdapterEvent {
@@ -255,13 +270,31 @@ export interface QualifiedNativePlanAdapterEvent {
   plan: unknown;
 }
 
+export interface TrialNativePlanAdapterEvent {
+  qualificationState: "trial";
+  eventId: string;
+  occurredAt: string;
+  admission: NativePlanAdapterTrialAdmission;
+  binding?: {
+    projectId: string;
+    sessionId: string;
+    clientTurnId: string;
+    providerThreadId: string;
+    providerTurnId: string;
+  };
+  plan: unknown;
+}
+
 export type NativePlanAdapterEvent =
   | UnavailableNativePlanAdapterEvent
-  | QualifiedNativePlanAdapterEvent;
+  | QualifiedNativePlanAdapterEvent
+  | TrialNativePlanAdapterEvent;
+
+export type AdmittedNativePlanAdapterEvent = QualifiedNativePlanAdapterEvent | TrialNativePlanAdapterEvent;
 
 export interface NativePlanRevision {
   revision: number;
-  sourceEvent: QualifiedNativePlanAdapterEvent;
+  sourceEvent: AdmittedNativePlanAdapterEvent;
 }
 
 export type NativePlanRevisionsResponse =
@@ -275,6 +308,12 @@ export type NativePlanRevisionsResponse =
       schemaVersion: "chirality.native-plan-revisions/v3";
       status: "qualified";
       qualification: NativePlanAdapterQualification;
+      revisions: readonly NativePlanRevision[];
+    }
+  | {
+      schemaVersion: "chirality.native-plan-revisions/v3";
+      status: "trial";
+      admission: NativePlanAdapterTrialAdmission;
       revisions: readonly NativePlanRevision[];
     };
 
@@ -315,6 +354,12 @@ export type NativePlanClarificationsResponse =
       status: "qualified";
       qualification: NativePlanAdapterQualification;
       clarifications: readonly NativePlanClarification[];
+    }
+  | {
+      schemaVersion: "chirality.native-plan-clarifications/v3";
+      status: "trial";
+      admission: NativePlanAdapterTrialAdmission;
+      clarifications: readonly NativePlanClarification[];
     };
 
 export interface ReplyNativePlanClarificationRequest {
@@ -352,7 +397,7 @@ export interface InstructionHistoryRecordV3 {
   sessionId: string;
   sequence: number;
   timestamp: string;
-  type: "selection.changed" | "resource.loaded" | "instruction-basis.resolved" | "method-change.requested" | "method-change.applied" | "method-change.failed" | "native-plan.revised" | "provider-span.prepared" | "provider-span.committed" | "provider-span.continued" | "provider-span.cancelled" | "provider-span.failed";
+  type: "selection.changed" | "resource.loaded" | "instruction-basis.resolved" | "method-change.requested" | "method-change.applied" | "method-change.failed" | "native-plan.revised" | "native-child.method-loaded" | "provider-span.prepared" | "provider-span.committed" | "provider-span.continued" | "provider-span.cancelled" | "provider-span.failed";
   [key: string]: unknown;
 }
 
@@ -385,11 +430,37 @@ export function assertQualifiedNativePlanEvent(
   }
 }
 
+/** Runtime guard for either currently admitted operational disposition. */
+export function assertAdmittedNativePlanEvent(
+  event: NativePlanAdapterEvent
+): asserts event is AdmittedNativePlanAdapterEvent {
+  if (event.qualificationState === "qualified") { assertQualifiedNativePlanEvent(event); return; }
+  if (
+    event.qualificationState !== "trial" ||
+    typeof event.eventId !== "string" || event.eventId.trim() === "" ||
+    typeof event.occurredAt !== "string" || !Number.isFinite(Date.parse(event.occurredAt)) ||
+    event.admission === null || typeof event.admission !== "object" ||
+    Object.keys(event.admission).sort().join(",") !== "adapterId,admissionSha256,dispositionId,evidenceClass,providerId" ||
+    event.admission.evidenceClass !== "native-adapter-local-human-trial" ||
+    typeof event.admission.adapterId !== "string" || event.admission.adapterId.trim() === "" ||
+    typeof event.admission.providerId !== "string" || event.admission.providerId.trim() === "" ||
+    typeof event.admission.dispositionId !== "string" || event.admission.dispositionId.trim() === "" ||
+    !SHA256.test(event.admission.admissionSha256) ||
+    (event.binding !== undefined && (
+      typeof event.binding.projectId !== "string" || event.binding.projectId.trim() === "" ||
+      typeof event.binding.sessionId !== "string" || event.binding.sessionId.trim() === "" ||
+      typeof event.binding.clientTurnId !== "string" || event.binding.clientTurnId.trim() === "" ||
+      typeof event.binding.providerThreadId !== "string" || event.binding.providerThreadId.trim() === "" ||
+      typeof event.binding.providerTurnId !== "string" || event.binding.providerTurnId.trim() === ""
+    ))
+  ) throw new Error("Native Plan event is not backed by an admitted adapter disposition");
+}
+
 export function nativePlanRevisionFromAdapterEvent(
   revision: number,
   event: NativePlanAdapterEvent
 ): NativePlanRevision {
-  assertQualifiedNativePlanEvent(event);
+  assertAdmittedNativePlanEvent(event);
   if (!Number.isSafeInteger(revision) || revision < 1) {
     throw new Error("Native Plan revision must be a positive safe integer");
   }

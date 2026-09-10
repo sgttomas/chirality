@@ -10,6 +10,7 @@ import {
   finalizeRuntimeResourcesV2,
   inspectRuntimeV2ReleaseInputs,
   stageRuntimeV2Governance,
+  verifyPreparedRuntimePayloadV2,
   writeRuntimeArtifactInventoryV2,
   writeRuntimePayloadManifestV2,
   writeRuntimeArtifactInventory
@@ -271,6 +272,27 @@ describe('Electron Runtime Resources inventory producer', () => {
         expectedGovernance: bound.governance.map(({ relativePath, size, sha256 }) => ({ relativePath, size, sha256 }))
       })).rejects.toThrow('governance changed after staging');
       await expect(readFile(path.join(input.resourcesRoot, 'runtime-artifact-inventory-v2.json'))).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally {
+      await rm(input.root, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects payload mutation between profile binding and final governance sealing', async () => {
+    const input = await fixture();
+    try {
+      const release = await v2Inputs(input, 0);
+      const bound = await inspectRuntimeV2ReleaseInputs(release);
+      await writeRuntimePayloadManifestV2({
+        resourcesRoot: input.resourcesRoot,
+        expectedDependencyResolutionDigest: await computeDependencyResolutionDigest({ lockPaths: input.lockPaths }),
+        expectedSupplierStagingDigest: await computeSupplierTreeDigest(path.join(input.resourcesRoot, 'supplier')),
+        supportProfiles: bound.supportProfiles,
+        lockPaths: input.lockPaths
+      });
+      await writeFile(path.join(input.resourcesRoot, 'app.asar'), 'changed after accepted profile binding');
+      await expect(verifyPreparedRuntimePayloadV2({ resourcesRoot: input.resourcesRoot })).rejects.toThrow(
+        'payload changed after its manifest was written'
+      );
     } finally {
       await rm(input.root, { recursive: true, force: true });
     }

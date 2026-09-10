@@ -7,6 +7,7 @@ import {
   RUNTIME_V2_REQUIRED_PAYLOAD_FILES,
   RUNTIME_V2_REQUIRED_PAYLOAD_ROOTS,
   compareRuntimeUtf8V2,
+  decodeRuntimePayloadManifestV2,
   encodeRuntimeArtifactInventoryV2,
   encodeRuntimePayloadManifestV2,
   encodeRuntimePolicyParameterDeclarationV2,
@@ -215,16 +216,21 @@ async function inspectRuntimeV2GovernanceSource(governanceRoot) {
 }
 
 export async function inspectRuntimeV2ReleaseInputs({ supportProfilesPath, governanceRoot }) {
-  const profileSource = await readBoundedJson(supportProfilesPath, 1_048_576);
-  if (!Array.isArray(profileSource.value) || profileSource.value.length < 1 || profileSource.value.length > 8) {
-    throw new Error('Runtime v2 support profile input must be a nonempty bounded JSON array');
-  }
+  const profileSource = await inspectRuntimeV2SupportProfiles(supportProfilesPath);
   const governance = await inspectRuntimeV2GovernanceSource(governanceRoot);
   const digest = hash(JSON.stringify({
     supportProfiles: { sha256: profileSource.sha256, size: profileSource.size },
     governance: governance.map(({ relativePath, sha256, size }) => ({ relativePath, sha256, size }))
   }));
-  return { digest, supportProfiles: profileSource.value, governance };
+  return { digest, supportProfiles: profileSource.supportProfiles, governance };
+}
+
+export async function inspectRuntimeV2SupportProfiles(supportProfilesPath) {
+  const profileSource = await readBoundedJson(supportProfilesPath, 1_048_576);
+  if (!Array.isArray(profileSource.value) || profileSource.value.length < 1 || profileSource.value.length > 8) {
+    throw new Error('Runtime v2 support profile input must be a nonempty bounded JSON array');
+  }
+  return { sha256: profileSource.sha256, size: profileSource.size, supportProfiles: profileSource.value };
 }
 
 export async function stageRuntimeV2Governance({ resourcesRoot, governance }) {
@@ -261,6 +267,27 @@ async function payloadEntriesV2(resourcesRoot) {
     .sort((left, right) => compareRuntimeUtf8V2(left.relativePath, right.relativePath));
 }
 
+export async function inspectRuntimeV2PayloadSnapshot(resourcesRoot) {
+  const entries = await payloadEntriesV2(resourcesRoot);
+  return { entries, digest: hash(JSON.stringify(entries)) };
+}
+
+export async function writeRuntimePolicyParameterDeclarationV2(resourcesRoot) {
+  const contractsRoot = path.join(resourcesRoot, 'runtime-contracts');
+  if (await lstat(contractsRoot).then(() => true, () => false)) {
+    if ((await realpath(contractsRoot).catch(() => undefined)) !== contractsRoot || !(await lstat(contractsRoot)).isDirectory()) {
+      throw new Error('Runtime v2 contract root must be a canonical directory');
+    }
+  } else await mkdir(contractsRoot, { mode: 0o700 });
+  const policyPath = path.join(resourcesRoot, POLICY_DECLARATION_V2);
+  const expected = encodeRuntimePolicyParameterDeclarationV2();
+  if (await lstat(policyPath).then(() => true, () => false)) {
+    const current = await readBoundedFile(policyPath, 1_048_576);
+    if (Buffer.compare(current.bytes, expected) !== 0) throw new Error('Runtime v2 policy declaration changed before payload binding');
+  } else await writeFile(policyPath, expected, { flag: 'wx', mode: 0o600 });
+  return policyPath;
+}
+
 export async function writeRuntimePayloadManifestV2({
   resourcesRoot,
   expectedDependencyResolutionDigest,
@@ -280,14 +307,7 @@ export async function writeRuntimePayloadManifestV2({
   const supplierDigest = await computeSupplierTreeDigest(path.join(resourcesRoot, 'supplier'));
   if (supplierDigest !== expectedSupplierStagingDigest) throw new Error('Packaged supplier tree changed after verified staging');
 
-  const contractsRoot = path.join(resourcesRoot, 'runtime-contracts');
-  if (await lstat(contractsRoot).then(() => true, () => false)) {
-    if ((await realpath(contractsRoot).catch(() => undefined)) !== contractsRoot || !(await lstat(contractsRoot)).isDirectory()) {
-      throw new Error('Runtime v2 contract root must be a canonical directory');
-    }
-  } else await mkdir(contractsRoot, { mode: 0o700 });
-  const policyPath = path.join(resourcesRoot, POLICY_DECLARATION_V2);
-  await writeFile(policyPath, encodeRuntimePolicyParameterDeclarationV2(), { flag: 'wx', mode: 0o600 });
+  await writeRuntimePolicyParameterDeclarationV2(resourcesRoot);
 
   const entries = await payloadEntriesV2(resourcesRoot);
   if (entries.length > MAX_ENTRIES) throw new Error('Runtime v2 payload exceeds 50000 entries');
@@ -315,6 +335,17 @@ export async function writeRuntimePayloadManifestV2({
   const manifestPath = path.join(resourcesRoot, PAYLOAD_MANIFEST_V2_NAME);
   await writeFile(manifestPath, bytes, { flag: 'wx', mode: 0o600 });
   return { manifestPath, manifest };
+}
+
+export async function verifyPreparedRuntimePayloadV2({ resourcesRoot }) {
+  const manifestPath = path.join(resourcesRoot, PAYLOAD_MANIFEST_V2_NAME);
+  const source = await readBoundedFile(manifestPath, 16_777_216);
+  const manifest = decodeRuntimePayloadManifestV2(source.bytes);
+  const entries = await payloadEntriesV2(resourcesRoot);
+  if (encodeRuntimePayloadManifestV2({ ...manifest, entries }).compare(source.bytes) !== 0) {
+    throw new Error('Prepared Runtime v2 payload changed after its manifest was written');
+  }
+  return { manifestPath, manifest, sha256: source.sha256, size: source.size };
 }
 
 export async function writeRuntimeArtifactInventoryV2({ resourcesRoot, expectedGovernance }) {
@@ -436,19 +467,14 @@ export default async function afterPack(context, { env = process.env } = {}) {
     throw new Error(`Unsupported Runtime manifest version: ${manifestVersion}`);
   }
   if (manifestVersion === 'v2') {
-    const supportProfilesPath = env[RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV];
-    const governanceRoot = env[RUNTIME_V2_GOVERNANCE_ROOT_ENV];
-    if (!supportProfilesPath || !governanceRoot) {
-      throw new Error('Runtime v2 packaging requires explicit support-profile and governance inputs');
+    if (!DIGEST_PATTERN.test(env[DEPENDENCY_DIGEST_ENV] ?? '') || !DIGEST_PATTERN.test(env[SUPPLIER_DIGEST_ENV] ?? '')) {
+      throw new Error('Runtime v2 signed preparation requires bound dependency and supplier digests');
     }
-    await finalizeRuntimeResourcesV2({
-      resourcesRoot,
-      expectedDependencyResolutionDigest: env[DEPENDENCY_DIGEST_ENV],
-      expectedSupplierStagingDigest: env[SUPPLIER_DIGEST_ENV],
-      supportProfilesPath,
-      governanceRoot,
-      expectedInputDigest: env[RUNTIME_V2_INPUT_DIGEST_ENV]
-    });
+    for (const name of [PAYLOAD_MANIFEST_V2_NAME, INVENTORY_V2_NAME]) {
+      if (await lstat(path.join(resourcesRoot, name)).then(() => true, () => false)) {
+        throw new Error(`Signed Runtime v2 preparation found premature output: ${name}`);
+      }
+    }
     return;
   }
   await writeRuntimeArtifactInventory({

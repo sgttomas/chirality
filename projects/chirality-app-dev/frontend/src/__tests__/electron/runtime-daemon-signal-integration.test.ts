@@ -27,7 +27,7 @@ describe('electron/runtime-daemon signal integration', () => {
 
   it('keeps direct process signals GUI-only and preserves the shared shutdown funnel', () => {
     expect(mainSource).toContain(
-      "if (!runtimeDaemonMode) {\n  for (const signal of ['SIGINT', 'SIGTERM'] as const)"
+      "if (guiMode) {\n  for (const signal of ['SIGINT', 'SIGTERM'] as const)"
     );
     expect(mainSource.match(/process\.once\(signal/g)).toHaveLength(1);
     expect(mainSource.match(/installRuntimeDaemonSignalShutdown\(\{/g)).toHaveLength(1);
@@ -78,6 +78,7 @@ describe('electron/runtime-daemon signal integration', () => {
     expect(initializeGui).not.toContain('CHIRALITY_HOSTED_PRIVATE_CONFIG_FILE');
     expect(initializeDaemon).toContain('packagedRuntimeBootInput({');
     expect(initializeDaemon).toContain('resourcesRoot: process.resourcesPath');
+    expect(initializeDaemon).toContain("executablePath: app.getPath('exe')");
     expect(initializeDaemon).toContain('electron: process.versions.electron');
     expect(initializeDaemon).toContain('node: process.versions.node');
     expect(initializeDaemon).toContain('modules: process.versions.modules');

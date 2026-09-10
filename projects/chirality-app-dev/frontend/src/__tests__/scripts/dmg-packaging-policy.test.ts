@@ -1,6 +1,9 @@
-import { readFile } from 'node:fs/promises';
+import { lstat, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { TmpDir } from 'builder-util';
+import { getMainFileMatchers } from 'app-builder-lib/out/fileMatcher.js';
+import { NpmNodeModulesCollector } from 'app-builder-lib/out/node-module-collector/npmNodeModulesCollector.js';
 
 const PACKAGE_JSON_PATH = path.resolve(process.cwd(), 'package.json');
 
@@ -20,6 +23,8 @@ type FrontendPackageJson = {
   scripts?: Record<string, string>;
   build?: {
     asar?: boolean;
+    files?: string[];
+    electronFuses?: Record<string, boolean>;
     mac?: {
       minimumSystemVersion?: string;
       target?: BuildTarget[];
@@ -93,8 +98,7 @@ describe('dmg packaging policy', () => {
     expect(pkg.scripts?.['instruction-root:prepare']).toContain(
       'prepare-packaged-instruction-root.mjs'
     );
-    expect(pkg.scripts?.['desktop:pack']).toContain('npm run instruction-root:prepare');
-    expect(pkg.scripts?.['desktop:dist']).toContain('npm run instruction-root:prepare');
+    expect(pkg.scripts?.['desktop:prepare']).toContain('npm run instruction-root:prepare');
     expect(pkg.scripts?.['desktop:dist']).toContain(
       'node ./scripts/pack-electron-with-supply.mjs --target dmg'
     );
@@ -129,6 +133,63 @@ describe('dmg packaging policy', () => {
   it('keeps application source in the asar archive', async () => {
     const pkg = await readPackageJson();
     expect(pkg.build?.asar).toBe(true);
+    expect(pkg.build?.electronFuses).toEqual({
+      runAsNode: false,
+      enableNodeOptionsEnvironmentVariable: false,
+      enableNodeCliInspectArguments: false,
+      enableEmbeddedAsarIntegrityValidation: true,
+      onlyLoadAppFromAsar: true
+    });
+    expect(pkg.build?.extraResources).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ from: 'dist-runtime', to: 'runtime-cli' })
+      ])
+    );
+  });
+
+  it('uses Electron Builder production dependency selection instead of the application file matcher', async () => {
+    const pkg = await readPackageJson();
+    const appDir = path.resolve(process.cwd());
+    const destination = path.join(appDir, '.test-packaged-app');
+    const matchers = getMainFileMatchers(
+      appDir,
+      destination,
+      (value) => value,
+      pkg.build ?? {},
+      {
+        info: {
+          projectDir: appDir,
+          buildResourcesDir: 'build',
+          config: pkg.build ?? {},
+          isPrepackedAppAsar: false,
+          debugLogger: { isEnabled: false }
+        }
+      } as never,
+      path.join(appDir, 'dist'),
+      false
+    );
+    const applicationFiles = matchers[0]?.createFilter();
+    const packagedMain = path.join(appDir, 'dist-electron', 'main.js');
+    const nextPackage = path.join(appDir, 'node_modules', 'next', 'package.json');
+    const vitestPackage = path.join(appDir, 'node_modules', 'vitest', 'package.json');
+    expect(applicationFiles?.(packagedMain, await lstat(packagedMain))).toBe(true);
+    expect(applicationFiles?.(nextPackage, await lstat(nextPackage))).toBe(false);
+    expect(applicationFiles?.(vitestPackage, await lstat(vitestPackage))).toBe(false);
+
+    const temporary = new TmpDir();
+    try {
+      const collector = new NpmNodeModulesCollector(appDir, temporary);
+      const selected = await collector.getNodeModules({ packageName: 'chirality-frontend' });
+      const selectedNames = selected.nodeModules.map((entry) => entry.name);
+      expect(selectedNames).toContain('next');
+      expect(selectedNames).toContain('ansi_up');
+      expect(selectedNames).not.toContain('vitest');
+      expect(selectedNames).not.toContain('@earendil-works/pi-ai');
+      expect(selectedNames).not.toContain('@chirality/engine-pi-omlx');
+      expect(selectedNames).not.toContain('@chirality/engine-claude');
+    } finally {
+      await temporary.cleanup();
+    }
   });
 
 });

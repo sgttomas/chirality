@@ -18,6 +18,31 @@ export class HostedBootstrapClientError extends Error {
   }
 }
 
+function desktopHostedAccount() {
+  const client = window.chirality?.runtime?.hostedAccount;
+  if (!client) {
+    throw new HostedBootstrapClientError(503, 'The hosted runtime bootstrap service is unavailable.');
+  }
+  return client;
+}
+
+function preflightSignal(signal?: AbortSignal): void {
+  if (signal?.aborted) {
+    throw signal.reason ?? new DOMException('The operation was aborted.', 'AbortError');
+  }
+}
+
+function withLocalAbort<T>(operation: Promise<T>, signal?: AbortSignal): Promise<T> {
+  if (!signal) return operation;
+  return new Promise<T>((resolve, reject) => {
+    const abort = (): void => reject(
+      signal.reason ?? new DOMException('The operation was aborted.', 'AbortError')
+    );
+    signal.addEventListener('abort', abort, { once: true });
+    operation.then(resolve, reject).finally(() => signal.removeEventListener('abort', abort));
+  });
+}
+
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, init);
   let payload: unknown;
@@ -49,8 +74,8 @@ export function getHostedBootstrapStatus(
   projectRoot: string,
   signal?: AbortSignal
 ): Promise<HostedBootstrapStatusResponse> {
-  const params = new URLSearchParams({ projectRoot });
-  return requestJson(`/api/harness/hosted-bootstrap/status?${params}`, { signal });
+  preflightSignal(signal);
+  return withLocalAbort(desktopHostedAccount().status(projectRoot), signal);
 }
 
 export function initializeHostedBootstrapProject(
@@ -67,38 +92,41 @@ export function grantHostedProviderNetworkConsent(
   projectRoot: string,
   signal?: AbortSignal
 ): Promise<HostedBootstrapStatus> {
-  return requestJson(
-    '/api/harness/hosted-bootstrap/provider-network-consent',
-    post(projectRoot, signal, { consent: true })
-  );
+  preflightSignal(signal);
+  return withLocalAbort(desktopHostedAccount()
+    .grantProviderNetworkConsent(projectRoot)
+    .then((result) => {
+      if (result.registration !== 'registered') throw new HostedBootstrapClientError(503, 'The hosted runtime bootstrap service is unavailable.');
+      return result.status;
+    }), signal);
 }
 
 export function startHostedBootstrapLogin(
   projectRoot: string,
   signal?: AbortSignal
 ): Promise<HostedBootstrapLoginStartResponse> {
-  return requestJson(
-    '/api/harness/hosted-bootstrap/login/start',
-    post(projectRoot, signal)
-  );
+  preflightSignal(signal);
+  return withLocalAbort(desktopHostedAccount().startLogin(projectRoot), signal);
 }
 
 export function cancelHostedBootstrapLogin(
   projectRoot: string,
   signal?: AbortSignal
 ): Promise<HostedBootstrapStatus> {
-  return requestJson(
-    '/api/harness/hosted-bootstrap/login/cancel',
-    post(projectRoot, signal)
-  );
+  preflightSignal(signal);
+  return withLocalAbort(desktopHostedAccount().cancelLogin(projectRoot).then((result) => {
+    if (result.registration !== 'registered') throw new HostedBootstrapClientError(503, 'The hosted runtime bootstrap service is unavailable.');
+    return result.status;
+  }), signal);
 }
 
 export function signOutHostedBootstrapProject(
   projectRoot: string,
   signal?: AbortSignal
 ): Promise<HostedBootstrapStatus> {
-  return requestJson(
-    '/api/harness/hosted-bootstrap/logout',
-    post(projectRoot, signal)
-  );
+  preflightSignal(signal);
+  return withLocalAbort(desktopHostedAccount().signOut(projectRoot).then((result) => {
+    if (result.registration !== 'registered') throw new HostedBootstrapClientError(503, 'The hosted runtime bootstrap service is unavailable.');
+    return result.status;
+  }), signal);
 }

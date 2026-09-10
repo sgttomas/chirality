@@ -3,7 +3,10 @@ import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { run } from '../../../scripts/verify-instruction-root-integrity.mjs';
+import {
+  resolvePackagedInstructionRoot,
+  run
+} from '../../../scripts/verify-instruction-root-integrity.mjs';
 import { preparePackagedInstructionRoot } from '../../../scripts/prepare-packaged-instruction-root.mjs';
 
 
@@ -124,6 +127,17 @@ afterEach(async () => {
 });
 
 describe('verify-instruction-root-integrity script', () => {
+  it('resolves the integrity check from the shared explicit candidate output', () => {
+    expect(resolvePackagedInstructionRoot(
+      { CHIRALITY_ELECTRON_OUTPUT_DIRECTORY: '/private/tmp/chirality candidate' },
+      '/frontend'
+    )).toBe('/private/tmp/chirality candidate/mac-arm64/Chirality.app/Contents/Resources/instruction-root');
+    expect(() => resolvePackagedInstructionRoot(
+      { CHIRALITY_ELECTRON_OUTPUT_DIRECTORY: '' },
+      '/frontend'
+    )).toThrow('must be a normalized absolute path');
+  });
+
   it('validates the complete v3 bundle and rejects omissions and unexpected files', async () => {
     const repoRoot = path.resolve(process.cwd(), '..', '..', '..');
     const resourcesRoot = path.join(tmpRoot, 'resources');

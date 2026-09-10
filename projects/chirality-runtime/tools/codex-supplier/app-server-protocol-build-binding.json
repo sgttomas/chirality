@@ -1,0 +1,9 @@
+{
+  "appServerProtocolDigest": "10ca915fe11c473c28e88f50fd6f0b855868944cf4e67438122baac425386906",
+  "manifestPath": "/Users/ryan/.codex/worktrees/chirality-change-lessons-20260910/chirality/projects/chirality-runtime/tools/codex-supplier/app-server-protocol-source-basis.json",
+  "fileCount": 65,
+  "verifiedAgainstBuildSourceSnapshotSha256": "6fb19e9406c92b632e14f0dc5de1f4fa9ca5d185b40afd3117325a4f595bdfd4",
+  "compiledPatchSha256": "631cea7e0cfda308d1b5a252d650691d64ec27655452c994dfeb9157fe16707e",
+  "artifactSha256": "0489a897c482dd03c79ee18055d796be5935c48c93a257f30c53141fec985100",
+  "meaning": "factual source-basis fingerprint only; no schema generation, binary invocation, or new acceptance"
+}

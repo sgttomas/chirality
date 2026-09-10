@@ -6,7 +6,8 @@ import { afterEach, describe, expect, it } from "vitest";
 import {
   compareRuntimeUtf8V2, decodeRuntimePayloadManifestV2, encodeRuntimeArtifactInventoryV2,
   encodeRuntimePayloadManifestV2, encodeRuntimePolicyParameterDeclarationV2,
-  observeRuntimeSupportProfileV2, runtimePolicyParameterSchemaDigestV2, verifyPackagedRuntimeBasisV2,
+  observeRuntimeSupportProfileFromPayloadV2, observeRuntimeSupportProfileV2, runtimePolicyParameterSchemaDigestV2, verifyPackagedRuntimeBasisV2,
+  runtimeStageCPolicyParameterSchemaDigest, RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES,
   type RuntimeArtifactInventoryV2, type RuntimePayloadEntryV2, type RuntimePayloadManifestV2,
   type RuntimeSupportProfileV2
 } from "../packages/core/src/runtime-conformance-v2.js";
@@ -87,11 +88,43 @@ describe("Runtime conformance v2 canonical basis",()=>{
     const badProfile={...manifest.supportProfiles[0]!,nativeAdmission:{...manifest.supportProfiles[0]!.nativeAdmission,napiVersion:"10"}};
     expect(()=>encodeRuntimePayloadManifestV2({...manifest,supportProfiles:[badProfile]})).toThrow();
   });
+  it("accepts a one-GiB payload declaration without allocating it and rejects the next byte",async()=>{
+    const {manifest}=await fixture(),large={relativePath:"supplier/large.data",type:"file" as const,size:RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES,sha256:hash("large")};
+    const supportWithout={...manifest.supportProfiles[0]!,supplier:{...manifest.supportProfiles[0]!.supplier,size:RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES}};delete (supportWithout as Partial<RuntimeSupportProfileV2>).profileDigest;
+    const support={...supportWithout,profileDigest:hash(`${JSON.stringify(supportWithout)}\n`)} as RuntimeSupportProfileV2;
+    const atLimit={...manifest,supportProfiles:[support],entries:[...manifest.entries,large].sort((a,b)=>compareRuntimeUtf8V2(a.relativePath,b.relativePath))};
+    expect(()=>encodeRuntimePayloadManifestV2(atLimit)).not.toThrow();
+    expect(()=>encodeRuntimePayloadManifestV2({...atLimit,entries:atLimit.entries.map(entry=>entry.relativePath===large.relativePath?{...large,size:RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES+1}:entry)})).toThrow();
+    const oversizedWithout={...support,supplier:{...support.supplier,size:RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES+1}};delete (oversizedWithout as Partial<RuntimeSupportProfileV2>).profileDigest;
+    const oversized={...oversizedWithout,profileDigest:hash(`${JSON.stringify(oversizedWithout)}\n`)} as RuntimeSupportProfileV2;
+    expect(()=>encodeRuntimePayloadManifestV2({...manifest,supportProfiles:[oversized]})).toThrow();
+  });
+  it("keeps native-10 and native-11 support profiles explicitly distinct",async()=>{
+    const {manifest}=await fixture(),ten=manifest.supportProfiles[0]!;
+    const elevenWithout={...ten,compiler:{...ten.compiler,nativePolicyIdentityVersion:11 as const,parameterSchemaDigest:runtimeStageCPolicyParameterSchemaDigest()}};delete (elevenWithout as Partial<RuntimeSupportProfileV2>).profileDigest;
+    const eleven={...elevenWithout,profileDigest:hash(`${JSON.stringify(elevenWithout)}\n`)} as RuntimeSupportProfileV2;
+    expect(()=>encodeRuntimePayloadManifestV2({...manifest,supportProfiles:[eleven]})).not.toThrow();
+    const mismatch={...eleven,compiler:{...eleven.compiler,parameterSchemaDigest:runtimePolicyParameterSchemaDigestV2()}};
+    expect(()=>encodeRuntimePayloadManifestV2({...manifest,supportProfiles:[mismatch]})).toThrow();
+    expect(eleven.profileDigest).not.toBe(ten.profileDigest);
+  });
   it("rejects a caller-nominated embedded runtime and payload mutation during verification",async()=>{
     const {root,manifest}=await fixture(true);
     await expect(observeRuntimeSupportProfileV2({embeddedRuntime:{electron:"0.0.0",node:"0.0.0",modules:"0",napi:"0",architecture:"arm64"},basis:{resourcesRoot:root,inventoryPath:"",payloadManifestPath:"",inventorySha256:"0".repeat(64),payloadDigest:"0".repeat(64),payload:manifest,inventory:{} as never},supplierVersion:"1.2.3",appServerProtocolDigest:"0".repeat(64),immutableSystemRoots:["/System"]})).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});
     let mutated=false;const pending=verifyPackagedRuntimeBasisV2({resourcesRoot:root});const mutation=new Promise<void>(resolve=>setTimeout(()=>{void writeFile(join(root,"app.asar"),"changed").then(()=>{mutated=true;resolve();});},2));
     await expect(pending).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});await mutation;expect(mutated).toBe(true);
+  });
+  it("uses one support derivation for a frozen pre-governance snapshot and the full accepted basis",async()=>{
+    if(process.platform!=="darwin"||process.arch!=="arm64")return;
+    const {root}=await fixture(),basis=await verifyPackagedRuntimeBasisV2({resourcesRoot:root});
+    const versions=process.versions as Record<string,string|undefined>,prior=versions.electron;Object.defineProperty(versions,"electron",{value:"43.2.0",configurable:true});
+    try{
+      const common={embeddedRuntime:{electron:"43.2.0",node:process.versions.node,modules:process.versions.modules!,napi:process.versions.napi!,architecture:"arm64"},supplierVersion:"1.2.3",appServerProtocolDigest:hash("protocol"),immutableSystemRoots:["/System","/usr"],nativePolicyIdentityVersion:11 as const};
+      const pre=await observeRuntimeSupportProfileFromPayloadV2({...common,resourcesRoot:root,payloadEntries:basis.payload.entries});
+      const full=await observeRuntimeSupportProfileV2({...common,basis});expect(pre).toEqual(full);
+      await expect(observeRuntimeSupportProfileFromPayloadV2({...common,resourcesRoot:root,payloadEntries:basis.payload.entries.map(entry=>entry.relativePath==="supplier/codex"&&entry.type==="file"?{...entry,sha256:"0".repeat(64)}:entry)})).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});
+      await writeFile(join(root,"app.asar"),"changed-compiler-byte");await expect(observeRuntimeSupportProfileFromPayloadV2({...common,resourcesRoot:root,payloadEntries:basis.payload.entries})).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});
+    }finally{Object.defineProperty(versions,"electron",{value:prior,configurable:true});}
   });
   it("rejects governance drift while the complete payload observation is in flight",async()=>{
     const {root}=await fixture(true);let mutated=false;

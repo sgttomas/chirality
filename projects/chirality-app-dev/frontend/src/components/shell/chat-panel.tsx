@@ -162,6 +162,10 @@ function nativePlanText(revision: NativePlanRevision): string {
   return typeof plan === 'string' ? plan : JSON.stringify(plan, null, 2);
 }
 
+function nativePlanAvailable(capability: NativePlanCapabilityResponse): boolean {
+  return capability.status === 'qualified' || capability.status === 'trial';
+}
+
 function NativePlanClarificationCard({ clarification, pending, onReply }: {
   clarification: NativePlanClarification;
   pending: boolean;
@@ -470,7 +474,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       .then(capability => {
         if (controller.signal.aborted || activeSessionIdRef.current !== activeSession.sessionId) return;
         setPlanCapability(capability);
-        if (capability.status !== 'qualified') setInteractionMode('chat');
+        if (!nativePlanAvailable(capability)) setInteractionMode('chat');
       })
       .catch(error => {
         if (controller.signal.aborted || activeSessionIdRef.current !== activeSession.sessionId) return;
@@ -1133,7 +1137,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         onRevise={beginPlanRevision} onExecute={revision => beginPlanFollowUp(revision, 'execute')}
         onSaveAsWorkflow={revision => beginPlanFollowUp(revision, 'workflow')}
         onReplyClarification={(clarification, answers) => { void answerPlanClarification(clarification, answers); }}
-        onSave={savePlanRevision} actionsDisabled={isRunning || planCapability.status !== 'qualified'} /> : null}
+        onSave={savePlanRevision} actionsDisabled={isRunning || !nativePlanAvailable(planCapability)} /> : null}
       </div>
 
       {/* Composer dock: every notice that sits between the transcript and the
@@ -1319,9 +1323,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           {!isSupportedOperatorMode(operatorMode) ? <option value={operatorMode} disabled>{PLAIN_MODE_LABELS[operatorMode] ?? operatorMode} (unsupported)</option> : null}
           {OPERATOR_MODES.map(option => <option key={option.value} value={option.value}>{PLAIN_MODE_LABELS[option.value]}</option>)}</select></label>
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Interaction mode</span><select aria-label="Interaction mode" value={interactionMode} disabled={isRunning} onChange={event => setInteractionMode(event.target.value as InteractionMode)}>
-          <option value="chat">Chat</option><option value="native-plan" disabled={Boolean(activeSession) && planCapability.status !== 'qualified'}>Plan Mode</option>
+          <option value="chat">Chat</option><option value="native-plan" disabled={Boolean(activeSession) && !nativePlanAvailable(planCapability)}>Plan Mode</option>
         </select></label>
         {activeSession && planCapability.status === 'unavailable' ? <span title={planCapability.reason}>Plan Mode unavailable</span> : null}
+        {activeSession && planCapability.status === 'trial' ? <span>Human trial — empirical qualification pending</span> : null}
         {folderSyncError ? <p role="alert">{folderSyncError}</p> : null}
         {nativeFolderError ? <p role="alert">{nativeFolderError}</p> : null}
       </div> : null}

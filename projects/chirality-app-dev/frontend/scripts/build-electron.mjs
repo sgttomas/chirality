@@ -36,6 +36,10 @@ export function resolveRuntimeConformanceV2Source() {
   return path.join(runtimeRoot, 'packages', 'core', 'src', 'runtime-conformance-v2.ts');
 }
 
+export function resolveProtectedRuntimeCliSource() {
+  return path.join(runtimeRoot, 'packages', 'cli', 'src', 'cli.ts');
+}
+
 const runtimeEntries = {
   '@chirality/runtime-daemon/hosted': resolveHostedRuntimeSource(),
   '@chirality/runtime-daemon/hosted-paths': resolveHostedRuntimePathsSource(),
@@ -57,6 +61,7 @@ const runtimeEntries = {
     'src',
     'index.ts'
   ),
+  '@chirality/runtime-cli/dist/src/cli.js': resolveProtectedRuntimeCliSource(),
   '@chirality/runtime-cli': path.join(runtimeRoot, 'packages', 'cli', 'src', 'index.ts')
 };
 

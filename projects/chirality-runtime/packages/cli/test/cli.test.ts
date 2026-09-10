@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import type { RuntimeStream } from "@chirality/runtime-client";
 import { RuntimeError } from "@chirality/runtime-contracts";
 import type { RuntimeSseFrame } from "@chirality/runtime-contracts";
+import type { RuntimePayloadSupportObservationInputV2, RuntimeSupportProfileV2 } from "@chirality/runtime-core/runtime-conformance-v2";
 import {
   LaunchAgentManager,
   RUNTIME_LAUNCH_AGENT_LABEL,
@@ -107,7 +108,8 @@ function dependencies(
       launchAgentsDirectory: "/tmp/chirality-test/LaunchAgents"
     },
     executablePath: "/Applications/Chirality.app/Contents/MacOS/Chirality",
-    readTextFile: (path) => readFile(path, "utf8")
+    readTextFile: (path) => readFile(path, "utf8"),
+    measureRuntimeSupportProfile: async () => { throw new Error("Unexpected support measurement"); }
   };
 }
 
@@ -121,6 +123,15 @@ afterEach(async () => {
 });
 
 describe("chirality CLI", () => {
+  it("measures a frozen pre-governance payload through the protected Runtime command", async () => {
+    const output = io(), recipe = { resourcesRoot: "/Applications/Chirality.app/Contents/Resources", payloadEntries: [{ relativePath: "app.asar", type: "file", size: 3, sha256: "a".repeat(64) }], supplierVersion: "1.2.3", appServerProtocolDigest: "b".repeat(64), immutableSystemRoots: ["/System"], nativePolicyIdentityVersion: 11 };
+    const measureRuntimeSupportProfile = vi.fn(async (input: RuntimePayloadSupportObservationInputV2) => ({ schema: "chirality-runtime-support-profile/v2", profileDigest: "c".repeat(64) }) as RuntimeSupportProfileV2);
+    const deps = dependencies(fakeClient()); deps.readTextFile = async path => { expect(path).toBe("/private/recipe.json"); return JSON.stringify(recipe); }; deps.measureRuntimeSupportProfile = measureRuntimeSupportProfile;
+    expect(await runCli(["release", "measure-support", "--recipe", "/private/recipe.json"], output.io, deps)).toBe(0);
+    expect(measureRuntimeSupportProfile).toHaveBeenCalledWith(expect.objectContaining({ ...recipe, embeddedRuntime: { electron: process.versions.electron ?? "", node: process.versions.node, modules: process.versions.modules ?? "", napi: process.versions.napi ?? "", architecture: process.arch } }));
+    expect(JSON.parse(output.stdout.join(""))).toMatchObject({ schema: "chirality-runtime-support-profile/v2", profileDigest: "c".repeat(64) });
+  });
+
   it("runs an Agent 1 request from a brief file and emits UIEvent NDJSON", async () => {
     const root = await mkdtemp(join(tmpdir(), "chirality-cli-run-"));
     temporaryDirectories.push(root);
@@ -328,6 +339,8 @@ describe("chirality CLI", () => {
     expect(logsMetadata.mode & 0o777).toBe(0o700);
     expect(source).toContain(`<string>${RUNTIME_LAUNCH_AGENT_LABEL}</string>`);
     expect(source).toContain("<string>--runtime-daemon</string>");
+    expect(source).toContain("<key>MachServices</key>");
+    expect(source).toContain("<key>com.chirality.app.runtime.account-host</key>");
     expect(source).toContain("<key>RunAtLoad</key>");
     expect(source).toContain("<key>KeepAlive</key>");
     expect(source).toContain("<key>SuccessfulExit</key>");

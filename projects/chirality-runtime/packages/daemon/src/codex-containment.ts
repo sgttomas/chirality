@@ -3,7 +3,7 @@ import { constants } from 'node:fs';
 import { mkdtemp, readdir, realpath, rm, stat, lstat, writeFile, open } from 'node:fs/promises';
 import { join, relative, isAbsolute, dirname, resolve } from 'node:path';
 import { CHIRALITY_ROLE_NAMES } from '@chirality/runtime-contracts';
-import { compareRuntimeUtf8V2, runtimeConformanceInstructionBundleDigest, verifyPackagedRuntimeBasisV2, type RuntimeConformanceArtifactInventorySelection } from '@chirality/runtime-core';
+import { compareRuntimeUtf8V2, runtimeConformanceInstructionBundleDigest, verifyPackagedRuntimeBasisV2, RUNTIME_STAGE_C_NATIVE_POLICY_IDENTITY_VERSION, RUNTIME_STAGE_C_NATIVE_SKILL_ARGUMENT, runtimeStageCAppServerArguments, runtimeStageCPolicyParameterSchemaDigest, type RuntimeConformanceArtifactInventorySelection } from '@chirality/runtime-core';
 import { digestCodexPolicyInstanceV2, inspectCodexPolicyInstanceV2, type CodexPolicyInstanceV2, type RuntimePackagedPolicyBasisV2 } from './runtime-conformance-v2-admission.js';
 
 export interface TrustedRuntimeReadRootBinding {
@@ -76,7 +76,8 @@ export async function assertTrustedRuntimeReadRoot(binding:TrustedRuntimeReadRoo
  * Exact supply verification and trusted operator consent verification belong to the caller.
  * Provider-enabled network is inherited by subprocesses: Codex config below is not a
  * mechanism-proven subprocess network boundary in that mode. */
-async function prepareCodexContainmentVersion(options: CodexContainmentOptions | (CodexContainmentOptionsV2 & { purpose: 'trusted-supplier' }), identityVersion: 1 | 2) {
+type CodexContainmentVersion2Options = CodexContainmentOptionsV2 & { purpose?: CodexContainmentOptions['purpose'] };
+async function prepareCodexContainmentVersion(options: CodexContainmentOptions | CodexContainmentVersion2Options, identityVersion: 1 | 2) {
   if (options.purpose !== undefined && options.purpose !== 'worker' && options.purpose !== 'trusted-login' && options.purpose !== 'trusted-supplier') throw new Error('Unsupported containment purpose');
   if (process.platform !== 'darwin') throw new Error('Codex containment requires macOS sandbox-exec');
   await stat('/usr/bin/sandbox-exec');
@@ -181,7 +182,7 @@ export function codexLoginConfigOverridesV2(config: Awaited<ReturnType<typeof pr
   return Object.freeze(entries);
 }
 export function prepareCodexContainment(options: CodexContainmentOptions) { return prepareCodexContainmentVersion(options, 1); }
-export function prepareCodexContainmentV2(options: CodexContainmentOptions) { return prepareCodexContainmentVersion(options, 2); }
+export function prepareCodexContainmentV2(options: CodexContainmentOptions | CodexContainmentVersion2Options) { return prepareCodexContainmentVersion(options, 2); }
 
 /** Reject supplier plaintext credential persistence in its private keyring home.
  * Call before launch and again after login/status transitions. */
@@ -453,6 +454,7 @@ export interface CodexNativePolicyOptionsV2 extends Omit<CodexNativePolicyOption
   nativeAddonPath: string;
   trustedRuntimeReadRoots: readonly TrustedRuntimeReadRootBindingV2[];
   toolRuntime: { codexSelfExecutablePath: string; requiresSandboxedFileSystem: true; requiresSandboxedFileStreaming: true };
+  nativePolicyIdentityVersion?: 10 | 11;
 }
 
 async function assertTrustedRuntimeReadRootV2(binding: TrustedRuntimeReadRootBindingV2): Promise<void> {
@@ -506,6 +508,29 @@ export function compileCodexNativePolicyProjectionV2(policyValue: CodexPolicyIns
     expectedPermissions: Object.freeze(expectedPermissions), configOverrides: Object.freeze(configOverrides), args: Object.freeze(configOverrides.flatMap(value => ['-c', value])), configToml: `${configOverrides.join('\n')}\n` });
 }
 
+/** Additive native-11 projection. It cannot be inferred from or substituted for native-10. */
+export function compileCodexNativePolicyStageC(
+  native10: ReturnType<typeof compileCodexNativePolicyProjectionV2>
+) {
+  const compilerIdentity = Object.freeze({
+    version: RUNTIME_STAGE_C_NATIVE_POLICY_IDENTITY_VERSION,
+    predecessorPolicyDigest: native10.policyDigest,
+    parameterSchemaDigest: runtimeStageCPolicyParameterSchemaDigest(),
+    nativeSkills: "disabled" as const,
+    effectiveReadback: Object.freeze({ nativeSkills: "disabled" as const }),
+    inheritedToolsSchema: 'chirality-native-tools/v1' as const,
+    orderedInvocation: Object.freeze(["app-server", RUNTIME_STAGE_C_NATIVE_SKILL_ARGUMENT, "<native-11-config-overrides>"])
+  });
+  const policyDigest = createHash('sha256').update(`${JSON.stringify(compilerIdentity)}\n`).digest('hex');
+  const permissionProfile = `chirality_${policyDigest.slice(0, 24)}`;
+  const configOverrides = Object.freeze(native10.configOverrides.map(value => value.startsWith('permissions=')
+    ? value.replace(JSON.stringify(native10.permissionProfile), JSON.stringify(permissionProfile)) : value));
+  const args = Object.freeze(configOverrides.flatMap(value => ['-c', value]));
+  const appServerArguments = runtimeStageCAppServerArguments(configOverrides);
+  return Object.freeze({ ...native10, policyDigest, permissionProfile, configOverrides, args,
+    configToml: `${configOverrides.join('\n')}\n`, nativeSkills: 'disabled' as const, appServerArguments, compilerIdentity });
+}
+
 /** Additive native-10 compiler. The v1 compiler above remains byte-for-byte compatible. */
 export async function prepareCodexNativePolicyV2(options: CodexNativePolicyOptionsV2) {
   const ordered = (values: readonly string[]) => values.every((value, index) => index === 0 || compareRuntimeUtf8V2(values[index - 1]!, value) < 0);
@@ -531,7 +556,9 @@ export async function prepareCodexNativePolicyV2(options: CodexNativePolicyOptio
       nativeRoleConfiguration: options.nativeRoleConfiguration === undefined ? null : structuredClone(options.nativeRoleConfiguration)
     });
     const scratchIdentity = await lstat(legacy.scratchDirectory, { bigint: true });
-    return Object.freeze({ ...legacy, ...compileCodexNativePolicyProjectionV2(policyInstance, legacy),
+    const native10 = compileCodexNativePolicyProjectionV2(policyInstance, legacy);
+    const compiled = options.nativePolicyIdentityVersion === 11 ? compileCodexNativePolicyStageC(native10) : native10;
+    return Object.freeze({ ...legacy, ...compiled,
       async revalidateScratch(): Promise<void> {
         const current = await lstat(legacy.scratchDirectory, { bigint: true });
         if (await realpath(legacy.scratchDirectory) !== legacy.scratchDirectory || ['dev', 'ino', 'mode', 'uid'].some(key => current[key as 'dev'] !== scratchIdentity[key as 'dev'])) throw new Error('Prepared native allocation changed');

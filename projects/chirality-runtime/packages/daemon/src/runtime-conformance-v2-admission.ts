@@ -7,12 +7,13 @@ import {
   REQUIRED_RUNTIME_CONFORMANCE_LIMBS,
   compareRuntimeUtf8V2,
   matchRuntimeSupportProfileV2,
-  runtimePolicyParameterSchemaDigestV2,
   type RuntimeSupportProfileV2
 } from "@chirality/runtime-core";
 import { revalidateIssuedPackagedReleaseBasisV2, type HostedPackagedReleaseBasisV2 } from "./hosted-packaged-release-state.js";
+import { HostAccountAuthority, type HostAccountAdmissionLeaseSnapshot } from "./host-account-authority.js";
 
 export type RuntimePurposeV2 = "login" | "worker";
+export type RuntimeWorkerReleaseDispositionV2 = "qualified" | "local-human-trial";
 export type RuntimeSha256AdmissionV2 = string;
 
 export interface RuntimePurposeReleaseSourceV2 {
@@ -35,6 +36,7 @@ export interface RuntimePurposeReleaseAdmissionV2 {
   readonly ownerReference: string;
   readonly profileDigest: RuntimeSha256AdmissionV2;
   readonly evidence: "externally-accepted-release-purpose-v2";
+  readonly disposition: RuntimeWorkerReleaseDispositionV2;
 }
 
 declare const hostedAuthorityBrand: unique symbol;
@@ -112,7 +114,17 @@ export interface RuntimeInstanceAdmissionV2 {
   readonly evidence: "release-and-live-instance-v2";
 }
 
-type ReleaseState = { basis: Readonly<HostedPackagedReleaseBasisV2>; source: Readonly<RuntimePurposeReleaseSourceV2>; ownerReference: string };
+export type RuntimeWorkerInstancePreparationInputV2 = Omit<RuntimeInstanceAdmissionInputV2, "hostAuthority" | "account">;
+export interface RuntimeWorkerInstancePreparationV2 {
+  readonly evidence: "release-live-host-policy-preparation-v2";
+  readonly releaseBasis: Readonly<HostedPackagedReleaseBasisV2>;
+  readonly source: HostAccountAuthority;
+  readonly lease: HostAccountAdmissionLeaseSnapshot;
+  readonly input: Readonly<RuntimeWorkerInstancePreparationInputV2>;
+  readonly inputDigest: RuntimeSha256AdmissionV2;
+}
+
+type ReleaseState = { basis: Readonly<HostedPackagedReleaseBasisV2>; source: Readonly<RuntimePurposeReleaseSourceV2>; ownerReference: string; disposition: RuntimeWorkerReleaseDispositionV2 };
 type InstanceState = { digest: string; input: RuntimeInstanceAdmissionInputV2 };
 const releaseAdmissions = new WeakMap<object, ReleaseState>();
 const hostAuthorities = new WeakMap<object, () => Promise<boolean>>();
@@ -152,6 +164,67 @@ export async function revalidateHostedAccountAuthorityV2(
     || authority.subjectBindingDigest !== hostAuthoritySubjectBindingDigestV2(expected)) throw unavailable("HOST_AUTHORITY_INVALID");
   if (!(await current())) throw unavailable("HOST_AUTHORITY_NOT_LIVE");
 }
+
+/** Package-internal issuer. Only a concrete live P2 authority can populate the private WeakMap. */
+export function issueHostedAccountAuthorityV2FromP2(
+  source: HostAccountAuthority,
+  subject: { purpose: RuntimePurposeV2; projectId: string; manifestHash: string; canonicalRoot: string; account: RuntimeInstanceAdmissionInputV2["account"]; consentDigest: string }
+): HostedAccountAuthorityAdmission {
+  if (!(source instanceof HostAccountAuthority)) throw unavailable("HOST_AUTHORITY_SOURCE_INVALID");
+  const lease = source.snapshotAdmissionLease();
+  const admission = Object.freeze({
+    evidence: "accepted-host-account-authority" as const,
+    mechanismId: lease.mechanismId,
+    daemonGeneration: lease.daemonGeneration,
+    authorityGeneration: lease.authorityGeneration,
+    subjectBindingDigest: hostAuthoritySubjectBindingDigestV2(subject),
+    liveLeaseDigest: lease.liveLeaseDigest
+  }) as HostedAccountAuthorityAdmission;
+  hostAuthorities.set(admission as object, async () => source.matchesAdmissionLease(lease));
+  return admission;
+}
+
+export async function prepareRuntimeWorkerInstanceV2FromP2(
+  source: HostAccountAuthority,
+  releaseBasis: Readonly<HostedPackagedReleaseBasisV2>,
+  input: RuntimeWorkerInstancePreparationInputV2
+): Promise<RuntimeWorkerInstancePreparationV2> {
+  if (!(source instanceof HostAccountAuthority)) throw unavailable("HOST_AUTHORITY_SOURCE_INVALID");
+  const inputDigest = inspectWorkerPreparationInput(input);
+  const release = releaseAdmissions.get(input.purposeRelease as object);
+  if (!release || release.basis !== releaseBasis) throw unavailable("PURPOSE_ADMISSION_INVALID");
+  const lease = source.snapshotAdmissionLease();
+  await revalidateRuntimePurposeReleaseV2(releaseBasis, input.purposeRelease);
+  if (inspectWorkerPreparationInput(input) !== inputDigest || !source.matchesAdmissionLease(lease)) throw unavailable("WORKER_PREPARATION_CHANGED");
+  return Object.freeze({ evidence: "release-live-host-policy-preparation-v2", releaseBasis, source, lease, input: Object.freeze({ ...input }), inputDigest });
+}
+
+export async function revalidateRuntimeWorkerInstancePreparationV2(preparation: RuntimeWorkerInstancePreparationV2): Promise<void> {
+  if (!exactKeys(preparation, ["evidence", "releaseBasis", "source", "lease", "input", "inputDigest"])
+    || preparation.evidence !== "release-live-host-policy-preparation-v2"
+    || !(preparation.source instanceof HostAccountAuthority)
+    || inspectWorkerPreparationInput(preparation.input) !== preparation.inputDigest
+    || !preparation.source.matchesAdmissionLease(preparation.lease)) throw unavailable("WORKER_PREPARATION_INVALID");
+  const release = releaseAdmissions.get(preparation.input.purposeRelease as object);
+  if (!release || release.basis !== preparation.releaseBasis) throw unavailable("PURPOSE_ADMISSION_INVALID");
+  await revalidateRuntimePurposeReleaseV2(preparation.releaseBasis, preparation.input.purposeRelease);
+  if (!preparation.source.matchesAdmissionLease(preparation.lease)) throw unavailable("HOST_AUTHORITY_NOT_LIVE");
+}
+
+export async function completeRuntimeWorkerInstanceV2FromP2(
+  preparation: RuntimeWorkerInstancePreparationV2,
+  account: NonNullable<RuntimeInstanceAdmissionInputV2["account"]>
+): Promise<{ instanceInput: RuntimeInstanceAdmissionInputV2; instanceAdmission: RuntimeInstanceAdmissionV2 }> {
+  await revalidateRuntimeWorkerInstancePreparationV2(preparation);
+  const subject = { purpose: "worker" as const, projectId: preparation.input.projectId, manifestHash: preparation.input.manifestHash,
+    canonicalRoot: preparation.input.canonicalRoot, account, consentDigest: preparation.input.consent.digest };
+  const hostAuthority = issueHostedAccountAuthorityV2FromP2(preparation.source, subject);
+  const instanceInput: RuntimeInstanceAdmissionInputV2 = { ...preparation.input, hostAuthority, account };
+  const instanceAdmission = await issueRuntimeInstanceAdmissionV2(instanceInput);
+  await revalidateRuntimeWorkerInstancePreparationV2(preparation);
+  await revalidateRuntimeInstanceAdmissionV2(instanceInput, instanceAdmission);
+  return Object.freeze({ instanceInput, instanceAdmission });
+}
 function utc(value: unknown): value is string {
   if (typeof value !== "string" || value.length !== 24 || !/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(value)) return false;
   const time = Date.parse(value);
@@ -189,12 +262,26 @@ function inspectLimbs(value: unknown, names: readonly string[]): void {
   }
 }
 
-export function inspectRuntimePurposeReleaseV2(input: { purpose: RuntimePurposeV2; record: unknown; expected: { payloadDigest: string; supportProfile: RuntimeSupportProfileV2 }; now?: number }): Readonly<{ sourceDigest: string }> {
+const TRIAL_PREREQUISITES = Object.freeze(["signed-payload-and-supply", "trusted-app-and-account-host", "native-enforcement-and-retirement", "connected-source-contract"] as const);
+function inspectPendingTrialLimbs(value: unknown): void {
+  if (!exactKeys(value, REQUIRED_RUNTIME_CONFORMANCE_LIMBS)) throw unavailable("PURPOSE_RELEASE_LIMBS_INVALID");
+  for (const name of REQUIRED_RUNTIME_CONFORMANCE_LIMBS) if (!exactKeys(value[name], ["status"]) || value[name].status !== "pending-human-trial") throw unavailable("PURPOSE_RELEASE_LIMBS_INVALID");
+}
+function inspectTrialPrerequisites(value: unknown): void {
+  if (!exactKeys(value, TRIAL_PREREQUISITES)) throw unavailable("PURPOSE_RELEASE_PREREQUISITES_INVALID");
+  for (const name of TRIAL_PREREQUISITES) {
+    const check = value[name];
+    if (!exactKeys(check, ["attempted", "passed", "evidenceSha256"]) || check.attempted !== true || check.passed !== true || !digest(check.evidenceSha256)) throw unavailable("PURPOSE_RELEASE_PREREQUISITES_INVALID");
+  }
+}
+
+export function inspectRuntimePurposeReleaseV2(input: { purpose: RuntimePurposeV2; record: unknown; expected: { payloadDigest: string; supportProfile: RuntimeSupportProfileV2 }; now?: number }): Readonly<{ sourceDigest: string; disposition: RuntimeWorkerReleaseDispositionV2 }> {
   const { purpose, record: value, expected } = input;
   matchRuntimeSupportProfileV2(expected.supportProfile, [expected.supportProfile]);
   const common = ["schema", "evidenceClass", "sourceDigest", "payloadDigest", "supportProfileDigests", "policyContractDigest", "supplyProfileDigest", "issuedAt", "expiresAt", "limbs"];
-  const keys = purpose === "login" ? [...common, "backend", "methods", "modelExecution"] : common;
-  if (!exactKeys(value, keys) || !digest(value.sourceDigest) || value.payloadDigest !== expected.payloadDigest || value.policyContractDigest !== runtimePolicyParameterSchemaDigestV2()) throw unavailable("PURPOSE_RELEASE_INVALID");
+  const trial = purpose === "worker" && !!value && typeof value === "object" && !Array.isArray(value) && (value as Record<string, unknown>).schema === "chirality-codex-worker-purpose-release/v3";
+  const keys = purpose === "login" ? [...common, "backend", "methods", "modelExecution"] : trial ? [...common, "trialScope", "prerequisites"] : common;
+  if (!exactKeys(value, keys) || !digest(value.sourceDigest) || value.payloadDigest !== expected.payloadDigest || value.policyContractDigest !== expected.supportProfile.compiler.parameterSchemaDigest) throw unavailable("PURPOSE_RELEASE_INVALID");
   const record = value as Record<string, any>;
   if (!Array.isArray(record.supportProfileDigests) || record.supportProfileDigests.length < 1 || record.supportProfileDigests.length > 8 || !record.supportProfileDigests.every(digest) || !strictlySorted(record.supportProfileDigests) || !record.supportProfileDigests.includes(expected.supportProfile.profileDigest)) throw unavailable("PURPOSE_SUPPORT_INVALID");
   const supplyProfileDigest = hash(`${JSON.stringify(expected.supportProfile.supplier)}\n`);
@@ -207,10 +294,16 @@ export function inspectRuntimePurposeReleaseV2(input: { purpose: RuntimePurposeV
       || record.modelExecution !== false || JSON.stringify(record.methods) !== JSON.stringify(["account/login/start", "account/login/cancel", "account/read", "model/list"])) throw unavailable("PURPOSE_RELEASE_INVALID");
     inspectLimbs(record.limbs, LOGIN_LIMBS);
   } else {
-    if (record.schema !== "chirality-codex-worker-purpose-release/v2" || record.evidenceClass !== "exact-worker-purpose-observed") throw unavailable("PURPOSE_RELEASE_INVALID");
-    inspectLimbs(record.limbs, REQUIRED_RUNTIME_CONFORMANCE_LIMBS);
+    if (trial) {
+      if (record.evidenceClass !== "exact-local-human-trial-authorized" || record.trialScope !== "local-human-functional-trial") throw unavailable("PURPOSE_RELEASE_INVALID");
+      inspectPendingTrialLimbs(record.limbs);
+      inspectTrialPrerequisites(record.prerequisites);
+    } else {
+      if (record.schema !== "chirality-codex-worker-purpose-release/v2" || record.evidenceClass !== "exact-worker-purpose-observed") throw unavailable("PURPOSE_RELEASE_INVALID");
+      inspectLimbs(record.limbs, REQUIRED_RUNTIME_CONFORMANCE_LIMBS);
+    }
   }
-  return Object.freeze({ sourceDigest: record.sourceDigest });
+  return Object.freeze({ sourceDigest: record.sourceDigest, disposition: trial ? "local-human-trial" : "qualified" });
 }
 
 export function inspectRuntimePurposeAcceptanceV2(input: { purpose: RuntimePurposeV2; acceptance: unknown; expected: { recordSha256: string; sourceDigest: string; ownerActSha256: string; activationId: string; gateIdentity: string }; now?: number }): Readonly<{ ownerReference: string }> {
@@ -225,7 +318,7 @@ export function inspectRuntimePurposeAcceptanceV2(input: { purpose: RuntimePurpo
   return Object.freeze({ ownerReference: acceptance.ownerReference });
 }
 
-async function inspectAcceptedRelease(source: RuntimePurposeReleaseSourceV2): Promise<{ ownerReference: string }> {
+async function inspectAcceptedRelease(source: RuntimePurposeReleaseSourceV2): Promise<{ ownerReference: string; disposition: RuntimeWorkerReleaseDispositionV2 }> {
   if (!exactKeys(source, ["purpose", "recordPath", "recordSha256", "acceptancePath", "acceptanceSha256", "ownerActPath", "ownerActSha256", "activationId", "gateIdentity", "payloadDigest", "supportProfile"])
     || !["login", "worker"].includes(source.purpose) || !text(source.activationId) || !text(source.gateIdentity) || (source.purpose === "login" && source.gateIdentity !== "D36")
     || ![source.recordSha256, source.acceptanceSha256, source.ownerActSha256, source.payloadDigest, source.supportProfile?.profileDigest].every(digest)) throw unavailable("PURPOSE_SOURCE_INVALID");
@@ -235,8 +328,9 @@ async function inspectAcceptedRelease(source: RuntimePurposeReleaseSourceV2): Pr
   try { record = JSON.parse(recordFile.bytes.toString("utf8")); acceptance = JSON.parse(acceptanceFile.bytes.toString("utf8")); } catch { throw unavailable("PURPOSE_RELEASE_INVALID"); }
   const inspected = inspectRuntimePurposeReleaseV2({ purpose: source.purpose, record, expected: { payloadDigest: source.payloadDigest, supportProfile: source.supportProfile } });
   if (!acceptance || typeof acceptance !== "object" || Array.isArray(acceptance)) throw unavailable("PURPOSE_RELEASE_NOT_ACCEPTED");
-  return inspectRuntimePurposeAcceptanceV2({ purpose: source.purpose, acceptance, expected: { recordSha256: recordFile.sha256, sourceDigest: inspected.sourceDigest,
+  const accepted = inspectRuntimePurposeAcceptanceV2({ purpose: source.purpose, acceptance, expected: { recordSha256: recordFile.sha256, sourceDigest: inspected.sourceDigest,
     ownerActSha256: ownerActFile.sha256, activationId: source.activationId, gateIdentity: source.gateIdentity } });
+  return Object.freeze({ ...accepted, disposition: inspected.disposition });
 }
 
 function purposeSourceFromBasis(basis: Readonly<HostedPackagedReleaseBasisV2>, purpose: RuntimePurposeV2): Readonly<RuntimePurposeReleaseSourceV2> {
@@ -249,8 +343,8 @@ export async function verifyRuntimePurposeReleaseV2(basis: Readonly<HostedPackag
   const frozenSource = purposeSourceFromBasis(basis, purpose);
   const accepted = await inspectAcceptedRelease(frozenSource);
   await revalidateIssuedPackagedReleaseBasisV2(basis);
-  const admission = Object.freeze({ purpose: frozenSource.purpose, recordSha256: frozenSource.recordSha256, ownerReference: accepted.ownerReference, profileDigest: frozenSource.supportProfile.profileDigest, evidence: "externally-accepted-release-purpose-v2" as const });
-  releaseAdmissions.set(admission, { basis, source: frozenSource, ownerReference: accepted.ownerReference });
+  const admission = Object.freeze({ purpose: frozenSource.purpose, recordSha256: frozenSource.recordSha256, ownerReference: accepted.ownerReference, profileDigest: frozenSource.supportProfile.profileDigest, evidence: "externally-accepted-release-purpose-v2" as const, disposition: accepted.disposition });
+  releaseAdmissions.set(admission, { basis, source: frozenSource, ownerReference: accepted.ownerReference, disposition: accepted.disposition });
   return admission;
 }
 
@@ -260,7 +354,7 @@ export async function revalidateRuntimePurposeReleaseV2(basis: Readonly<HostedPa
   await revalidateIssuedPackagedReleaseBasisV2(basis);
   const current = await inspectAcceptedRelease(state.source);
   await revalidateIssuedPackagedReleaseBasisV2(basis);
-  if (current.ownerReference !== state.ownerReference) throw unavailable("PURPOSE_ACCEPTANCE_CHANGED");
+  if (current.ownerReference !== state.ownerReference || current.disposition !== state.disposition || admission.disposition !== state.disposition) throw unavailable("PURPOSE_ACCEPTANCE_CHANGED");
 }
 
 export function inspectCodexPolicyInstanceV2(value: unknown): Readonly<CodexPolicyInstanceV2> {
@@ -308,6 +402,19 @@ export function digestCodexPolicyInstanceV2(value: CodexPolicyInstanceV2): Runti
   return hash(`${JSON.stringify(inspectCodexPolicyInstanceV2(value))}\n`);
 }
 
+function inspectWorkerPreparationInput(input: RuntimeWorkerInstancePreparationInputV2): string {
+  if (!exactKeys(input, ["purposeRelease", "projectId", "manifestHash", "canonicalRoot", "cwd", "privateDirectory", "codexHome", "brokerRoot", "instructionRoot", "nativeAddonPath", "supplierExecutablePath", "attachmentRoot", "consent", "policy", "outerPolicyDigest", "nativePolicyDigest", "effectiveConfigDigest"])) throw unavailable("WORKER_PREPARATION_INPUT_INVALID");
+  if (!releaseAdmissions.has(input.purposeRelease as object) || input.purposeRelease.purpose !== "worker" || !text(input.projectId, 128) || !digest(input.manifestHash)
+    || ![input.canonicalRoot, input.cwd, input.privateDirectory, input.codexHome, input.brokerRoot, input.instructionRoot, input.nativeAddonPath, input.supplierExecutablePath, input.attachmentRoot].every(canonical)
+    || input.cwd !== input.canonicalRoot || !properChild(input.brokerRoot, input.privateDirectory) || input.policy.canonicalRoot !== input.canonicalRoot || input.policy.privateDirectory !== input.privateDirectory
+    || input.policy.codexHome !== input.codexHome || input.policy.nativeAddonPath !== input.nativeAddonPath || input.policy.executablePath !== input.supplierExecutablePath
+    || !exactKeys(input.consent, ["version", "digest", "authenticatedExplicitUserAct"]) || !digest(input.consent.version) || !digest(input.consent.digest) || input.consent.authenticatedExplicitUserAct !== true
+    || !digest(input.outerPolicyDigest) || !digest(input.nativePolicyDigest) || !digest(input.effectiveConfigDigest)) throw unavailable("WORKER_PREPARATION_INPUT_INVALID");
+  const policy = inspectCodexPolicyInstanceV2(input.policy);
+  if (policy.outerPurpose !== "trusted-supplier" || policy.nativePurpose !== "worker") throw unavailable("WORKER_PREPARATION_INPUT_INVALID");
+  return hash(JSON.stringify(input));
+}
+
 function inspectInstanceInput(input: RuntimeInstanceAdmissionInputV2): string {
   if (!exactKeys(input, ["purposeRelease", "hostAuthority", "projectId", "manifestHash", "canonicalRoot", "cwd", "privateDirectory", "codexHome", "brokerRoot", "instructionRoot", "nativeAddonPath", "supplierExecutablePath", "attachmentRoot", "account", "consent", "policy", "outerPolicyDigest", "nativePolicyDigest", "effectiveConfigDigest"])) throw unavailable("INSTANCE_INPUT_INVALID");
   const purpose = input.purposeRelease?.purpose;
@@ -349,7 +456,3 @@ export async function revalidateRuntimeInstanceAdmissionV2(input: RuntimeInstanc
   await revalidateHostedAccountAuthorityV2(input.hostAuthority, { purpose: input.purposeRelease.purpose, projectId: input.projectId, manifestHash: input.manifestHash, canonicalRoot: input.canonicalRoot, account: input.account, consentDigest: input.consent.digest });
   if (inspectInstanceInput(input) !== state.digest) throw unavailable("INSTANCE_ADMISSION_INVALID");
 }
-
-// Intentionally no issuer exists here. The eventual authenticated HOST-P2 listener
-// owns issuance and live-lease invalidation. Until that module is adopted, this
-// WeakMap remains empty and every structurally fabricated authority fails closed.

@@ -1,0 +1,226 @@
+import { createHash, randomBytes, randomUUID } from "node:crypto";
+import { constants } from "node:fs";
+import { chmod, copyFile, mkdir, open, readdir, realpath, rm, stat } from "node:fs/promises";
+import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
+import { PassThrough } from "node:stream";
+import {
+  createCustomSupplyVerifier,
+  RUNTIME_STAGE_C_NATIVE_SKILL_ARGUMENT,
+  runtimeStageCAppServerArguments,
+  type CustomSupplyExactProfileV1,
+  type ExactSupplyClosureEntry
+} from "@chirality/runtime-core";
+import { RuntimeError } from "@chirality/runtime-contracts";
+import { loadNativeAdmissionBinding, type NativeGroupedSupplierChild } from "@chirality/native-admission";
+import {
+  assertCodexKeyringHomeHasNoPlaintextCredentials,
+  codexLoginConfigOverridesV2,
+  prepareCodexContainmentV2,
+  type TrustedRuntimeReadRootBindingV2
+} from "./codex-containment.js";
+import { retireAuthenticatedSupplierGroup } from "./codex-authenticated-transport.js";
+import { CodexTurnSession, type CodexAuthorityInitialize } from "./codex-session.js";
+import { AUTHORITY_CONTRACT } from "./supplier-authority-controller.js";
+
+const LIMBS = ["exact-supplier", "keyring-backend", "plaintext-fallback-absent", "process-containment", "storage-isolation", "provider-network", "bounded-protocol-purpose", "retirement"] as const;
+type Limb = typeof LIMBS[number];
+type Sha256 = string;
+
+export interface AccountFreeLoginObservationRecipeV1 {
+  schema: "chirality-account-free-login-observation-recipe/v1";
+  runId: string;
+  supplyProfile: Readonly<CustomSupplyExactProfileV1>;
+  supplyClosure: readonly Readonly<ExactSupplyClosureEntry>[];
+  nativeAddon: Readonly<{ sha256: Sha256; size: number; signatureEvidenceSha256: Sha256; sourceCorrespondenceEvidenceSha256: Sha256; xpcRecordSha256: Sha256; groupedRecordSha256: Sha256 }>;
+  providerNetworkConsent: Readonly<{ approvedBy: string; approvalReference: string }>;
+  supportProfileDigest: Sha256;
+  nativePolicyIdentityVersion: 11;
+}
+export interface AccountFreeLoginObservationInputV2 {
+  runtimeDirectory: string;
+  resourcesPath: string;
+  evidencePaths: Readonly<{ signatureEvidenceSha256: string; sourceCorrespondenceEvidenceSha256: string; xpcRecordSha256: string; groupedRecordSha256: string }>;
+  recipe: Readonly<AccountFreeLoginObservationRecipeV1>;
+}
+
+export interface AccountFreeLoginObservationResultV1 {
+  schema: "chirality-account-free-login-observation-result/v1";
+  observationSha256: Sha256;
+  outputDirectory: string;
+  limbs: Readonly<Record<Limb, Readonly<{ attempted: true; passed: true; evidenceSha256: Sha256 }>>>;
+}
+
+const unavailable = (reason: string, cause?: unknown) => {
+  const error = new RuntimeError("ENGINE_UNAVAILABLE", "Account-free Supplier observation is unavailable", 503, { reason });
+  if (cause !== undefined) error.cause = cause;
+  return error;
+};
+const hex = (value: unknown): value is string => typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
+const bytes = (value: unknown): Buffer => Buffer.from(`${JSON.stringify(value)}\n`);
+const digest = (value: Buffer | string): string => createHash("sha256").update(value).digest("hex");
+const record = (value: unknown): value is Record<string, unknown> => !!value && typeof value === "object" && !Array.isArray(value);
+const exactKeys = (value: unknown, keys: readonly string[]): value is Record<string, unknown> => record(value)
+  && Object.keys(value).length === keys.length && keys.every(key => Object.hasOwn(value, key));
+
+interface StableFile { path: string; sha256: string; size: number; identity: Readonly<{ dev: string; ino: string; mode: string; uid: string; nlink: string; size: string; mtimeNs: string; ctimeNs: string }> }
+async function stableFile(path: string, expected: { sha256: string; size: number }): Promise<StableFile> {
+  if (!isAbsolute(path) || resolve(path) !== path || !hex(expected.sha256) || !Number.isSafeInteger(expected.size) || expected.size < 1 || await realpath(path) !== path) throw unavailable("OBSERVATION_FILE_INVALID");
+  const handle = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
+  try {
+    const before = await handle.stat({ bigint: true });
+    if (!before.isFile() || before.isSymbolicLink() || before.nlink !== 1n || before.size !== BigInt(expected.size)) throw unavailable("OBSERVATION_FILE_INVALID");
+    const hash = createHash("sha256"), buffer = Buffer.alloc(65_536); let total = 0;
+    for (;;) { const read = await handle.read(buffer, 0, Math.min(buffer.length, expected.size + 1 - total), total); if (!read.bytesRead) break; total += read.bytesRead; if (total > expected.size) throw unavailable("OBSERVATION_FILE_CHANGED"); hash.update(buffer.subarray(0, read.bytesRead)); }
+    const after = await handle.stat({ bigint: true }), current = await stat(path, { bigint: true });
+    const identity = (value: typeof before) => ({ dev: `${value.dev}`, ino: `${value.ino}`, mode: `${value.mode}`, uid: `${value.uid}`, nlink: `${value.nlink}`, size: `${value.size}`, mtimeNs: `${value.mtimeNs}`, ctimeNs: `${value.ctimeNs}` });
+    const first = identity(before), final = identity(after), present = identity(current);
+    if (total !== expected.size || hash.digest("hex") !== expected.sha256 || JSON.stringify(first) !== JSON.stringify(final) || JSON.stringify(final) !== JSON.stringify(present) || await realpath(path) !== path) throw unavailable("OBSERVATION_FILE_CHANGED");
+    return Object.freeze({ path, sha256: expected.sha256, size: expected.size, identity: Object.freeze(final) });
+  } finally { await handle.close(); }
+}
+async function stableEvidence(path: string, expectedSha256: string): Promise<StableFile> {
+  if (!isAbsolute(path) || resolve(path) !== path || await realpath(path) !== path) throw unavailable("OBSERVATION_EVIDENCE_INVALID");
+  const info = await stat(path, { bigint: true });
+  if (!info.isFile() || info.isSymbolicLink() || info.nlink !== 1n || info.uid !== BigInt(process.getuid?.() ?? -1) || (info.mode & 0o022n) !== 0n || info.size < 1n || info.size > 16_777_216n) throw unavailable("OBSERVATION_EVIDENCE_INVALID");
+  return stableFile(path, { sha256: expectedSha256, size: Number(info.size) });
+}
+
+async function directoryObservation(path: string): Promise<Readonly<{ sha256: string; entries: readonly Readonly<{ name: string; type: "file" | "directory" | "other" }>[] }>> {
+  if (await realpath(path) !== path) throw unavailable("OBSERVATION_STORAGE_INVALID");
+  const info = await stat(path);
+  if (!info.isDirectory() || info.uid !== (process.getuid?.() ?? -1) || (info.mode & 0o077) !== 0) throw unavailable("OBSERVATION_STORAGE_INVALID");
+  const entries = await readdir(path, { withFileTypes: true });
+  const facts: Array<{ name: string; type: "file" | "directory" | "other" }> = entries.map(entry => ({ name: entry.name, type: entry.isFile() ? "file" as const : entry.isDirectory() ? "directory" as const : "other" as const }))
+    .sort((a, b) => Buffer.compare(Buffer.from(a.name), Buffer.from(b.name)));
+  return Object.freeze({ sha256: digest(bytes(facts)), entries: Object.freeze(facts.map(value => Object.freeze(value))) });
+}
+
+async function publish(outputDirectory: string, privateDirectory: string, observation: unknown, projections: Readonly<Record<Limb, unknown>>): Promise<void> {
+  const parent = dirname(outputDirectory), rel = relative(privateDirectory, outputDirectory);
+  if (!isAbsolute(outputDirectory) || resolve(outputDirectory) !== outputDirectory || rel === "" || rel === ".." || rel.startsWith(`..${sep}`) || isAbsolute(rel) || await realpath(parent) !== parent) throw unavailable("OBSERVATION_OUTPUT_INVALID");
+  const parentInfo = await stat(parent); if (!parentInfo.isDirectory() || parentInfo.uid !== (process.getuid?.() ?? -1) || (parentInfo.mode & 0o077) !== 0) throw unavailable("OBSERVATION_OUTPUT_INVALID");
+  let created = false;
+  try {
+    await mkdir(outputDirectory, { mode: 0o700 }); created = true;
+    const files: Array<readonly [string, unknown]> = [["observation.json", observation], ...LIMBS.map(limb => [`${limb}.json`, projections[limb]] as const)];
+    for (const [name, value] of files) {
+      const file = await open(resolve(outputDirectory, name), constants.O_CREAT | constants.O_EXCL | constants.O_WRONLY, 0o600);
+      try { await file.writeFile(bytes(value)); await file.sync(); } finally { await file.close(); }
+    }
+    const directory = await open(outputDirectory, constants.O_RDONLY); try { await directory.sync(); } finally { await directory.close(); }
+    const parentHandle = await open(parent, constants.O_RDONLY); try { await parentHandle.sync(); } finally { await parentHandle.close(); }
+  } catch (error) { if (created) await rm(outputDirectory, { recursive: true, force: true }); throw error; }
+}
+
+async function stageSupplierClosure(sourceExecutablePath: string, privateDirectory: string, entries: readonly Readonly<ExactSupplyClosureEntry>[]): Promise<{ executablePath: string; root: string }> {
+  const sourceRoot = dirname(sourceExecutablePath), root = join(privateDirectory, "supplier"), executablePath = join(root, "codex");
+  await mkdir(root, { mode: 0o700 });
+  try {
+    for (const entry of entries.slice(1)) {
+      const suffix = entry.relativePath.slice("supplier/".length), source = resolve(sourceRoot, suffix), destination = resolve(root, suffix);
+      if (!suffix || !source.startsWith(`${sourceRoot}${sep}`) || !destination.startsWith(`${root}${sep}`)) throw unavailable("OBSERVATION_SUPPLY_STAGE_INVALID");
+      if (entry.type === "directory") await mkdir(destination, { mode: 0o700 });
+      else { await copyFile(source, destination, constants.COPYFILE_EXCL); await chmod(destination, entry.mode === "executable" ? 0o700 : 0o600); }
+    }
+    return { executablePath, root };
+  } catch (error) { await rm(root, { recursive: true, force: true }); throw error; }
+}
+
+export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLoginObservationInputV2): Promise<Readonly<AccountFreeLoginObservationResultV1>> {
+  const recipe = input?.recipe;
+  if (!exactKeys(input, ["runtimeDirectory", "resourcesPath", "evidencePaths", "recipe"])
+    || !exactKeys(input.evidencePaths, ["signatureEvidenceSha256", "sourceCorrespondenceEvidenceSha256", "xpcRecordSha256", "groupedRecordSha256"])
+    || !exactKeys(recipe, ["schema", "runId", "supplyProfile", "supplyClosure", "nativeAddon", "providerNetworkConsent", "supportProfileDigest", "nativePolicyIdentityVersion"])
+    || !exactKeys(recipe.nativeAddon, ["sha256", "size", "signatureEvidenceSha256", "sourceCorrespondenceEvidenceSha256", "xpcRecordSha256", "groupedRecordSha256"])
+    || !exactKeys(recipe.providerNetworkConsent, ["approvedBy", "approvalReference"])
+    || process.platform !== "darwin" || process.arch !== "arm64" || process.versions.electron !== undefined
+    || recipe.schema !== "chirality-account-free-login-observation-recipe/v1" || recipe.nativePolicyIdentityVersion !== 11
+    || !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(recipe.runId)
+    || !hex(recipe.supportProfileDigest) || typeof recipe.nativeAddon.size !== "number" || !Number.isSafeInteger(recipe.nativeAddon.size) || recipe.nativeAddon.size < 1
+    || typeof recipe.providerNetworkConsent.approvedBy !== "string" || !recipe.providerNetworkConsent.approvedBy.trim() || recipe.providerNetworkConsent.approvedBy.length > 256
+    || typeof recipe.providerNetworkConsent.approvalReference !== "string" || !recipe.providerNetworkConsent.approvalReference.trim() || recipe.providerNetworkConsent.approvalReference.length > 1024) throw unavailable("OBSERVATION_INPUT_INVALID");
+  for (const value of [recipe.nativeAddon.sha256, recipe.nativeAddon.signatureEvidenceSha256, recipe.nativeAddon.sourceCorrespondenceEvidenceSha256, recipe.nativeAddon.xpcRecordSha256, recipe.nativeAddon.groupedRecordSha256]) if (!hex(value)) throw unavailable("OBSERVATION_INPUT_INVALID");
+  if (new Set(Object.values(input.evidencePaths)).size !== 4 || new Set([recipe.nativeAddon.signatureEvidenceSha256, recipe.nativeAddon.sourceCorrespondenceEvidenceSha256, recipe.nativeAddon.xpcRecordSha256, recipe.nativeAddon.groupedRecordSha256]).size !== 4) throw unavailable("OBSERVATION_EVIDENCE_INVALID");
+  const evidenceFiles = Object.freeze(Object.fromEntries(await Promise.all(Object.entries(input.evidencePaths).map(async ([field, path]) => {
+    if (typeof path !== "string") throw unavailable("OBSERVATION_EVIDENCE_INVALID");
+    const expected = recipe.nativeAddon[field as keyof typeof recipe.nativeAddon];
+    if (typeof expected !== "string") throw unavailable("OBSERVATION_EVIDENCE_INVALID");
+    const observed = await stableEvidence(path, expected);
+    return [field, Object.freeze({ sha256: observed.sha256, size: observed.size, identity: observed.identity })] as const;
+  }))));
+  const contained = (parent: string, path: string) => { const rel = relative(parent, path); return rel !== "" && rel !== ".." && !rel.startsWith(`..${sep}`) && !isAbsolute(rel); };
+  for (const path of [input.runtimeDirectory, input.resourcesPath]) if (!isAbsolute(path) || resolve(path) !== path || await realpath(path) !== path) throw unavailable("OBSERVATION_PATH_INVALID");
+  if (contained(input.runtimeDirectory, input.resourcesPath) || contained(input.resourcesPath, input.runtimeDirectory) || input.runtimeDirectory === input.resourcesPath) throw unavailable("OBSERVATION_PATH_INVALID");
+  const runtimeInfo = await stat(input.runtimeDirectory); if (!runtimeInfo.isDirectory() || runtimeInfo.uid !== (process.getuid?.() ?? -1) || (runtimeInfo.mode & 0o077) !== 0) throw unavailable("OBSERVATION_PATH_INVALID");
+  const observationsRoot = join(input.runtimeDirectory, "account-free-observations");
+  try { await mkdir(observationsRoot, { mode: 0o700 }); } catch (error) { if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error; }
+  if (await realpath(observationsRoot) !== observationsRoot || (await stat(observationsRoot)).uid !== (process.getuid?.() ?? -1) || ((await stat(observationsRoot)).mode & 0o077) !== 0) throw unavailable("OBSERVATION_PATH_INVALID");
+  const runRoot = join(observationsRoot, recipe.runId), canonicalRoot = join(runRoot, "project"), privateDirectory = join(runRoot, "private"), codexHome = join(privateDirectory, "home"), outputDirectory = join(privateDirectory, "evidence");
+  await mkdir(runRoot, { mode: 0o700 });
+  try { await mkdir(canonicalRoot, { mode: 0o700 }); await mkdir(privateDirectory, { mode: 0o700 }); await mkdir(codexHome, { mode: 0o700 }); }
+  catch (error) { await rm(runRoot, { recursive: true, force: true }); throw error; }
+  const sourceExecutablePath = join(input.resourcesPath, "supplier", "codex"), nativeAddonPath = join(input.resourcesPath, "native", "chirality_native_admission.node");
+  const supplyVerifier = createCustomSupplyVerifier(recipe.supplyProfile, recipe.supplyClosure);
+  let staged: Awaited<ReturnType<typeof stageSupplierClosure>> | undefined;
+  let sourceSupply: Awaited<ReturnType<typeof supplyVerifier.verify>> | undefined;
+  let supply: Awaited<ReturnType<typeof supplyVerifier.verify>> | undefined;
+  let containment: Awaited<ReturnType<typeof prepareCodexContainmentV2>> | undefined;
+  let child: NativeGroupedSupplierChild | undefined;
+  let actor: CodexTurnSession | undefined, retired: Awaited<ReturnType<typeof retireAuthenticatedSupplierGroup>> | undefined;
+  let published = false;
+  const secret = randomBytes(32), methods: string[] = [], capture = new PassThrough(); let pending = "";
+  try {
+    sourceSupply = await supplyVerifier.verify({ executablePath: sourceExecutablePath, custody: "packaged" });
+    staged = await stageSupplierClosure(sourceExecutablePath, privateDirectory, recipe.supplyClosure);
+    supply = await supplyVerifier.verify({ executablePath: staged.executablePath, custody: "private-staged" });
+    await supplyVerifier.revalidate(sourceSupply);
+    const addon = await stableFile(nativeAddonPath, recipe.nativeAddon), storageBefore = await directoryObservation(codexHome);
+    await assertCodexKeyringHomeHasNoPlaintextCredentials(codexHome);
+    containment = await prepareCodexContainmentV2({ purpose: "trusted-login", canonicalRoot, privateDirectory, codexHome,
+      providerNetworkConsent: recipe.providerNetworkConsent, trustedRuntimeReadRoots: [] as readonly TrustedRuntimeReadRootBindingV2[] });
+    const configOverrides = codexLoginConfigOverridesV2(containment.config), appServerArguments = runtimeStageCAppServerArguments(configOverrides), launch = await containment.launchArguments(supply.executablePath);
+    if (JSON.stringify(appServerArguments) !== JSON.stringify(["app-server", RUNTIME_STAGE_C_NATIVE_SKILL_ARGUMENT, ...configOverrides.flatMap(value => ["-c", value])])) throw unavailable("OBSERVATION_COMPILER_INVALID");
+    await supplyVerifier.revalidate(sourceSupply); await supplyVerifier.revalidate(supply); await stableFile(nativeAddonPath, recipe.nativeAddon);
+    const native = loadNativeAdmissionBinding(true, nativeAddonPath); if (native.state !== "available") throw unavailable("OBSERVATION_NATIVE_UNAVAILABLE");
+    const spawned = native.value.spawnGroupedSupplier("/usr/bin/sandbox-exec", [...launch, ...appServerArguments], secret, { cwd: canonicalRoot, environment: containment.environment, processGroup: true });
+    if (spawned.state !== "available") throw unavailable("OBSERVATION_SPAWN_UNAVAILABLE"); child = spawned.value;
+    capture.on("data", chunk => { pending += String(chunk); for (;;) { const newline = pending.indexOf("\n"); if (newline < 0) break; const line = pending.slice(0, newline); pending = pending.slice(newline + 1); const message = JSON.parse(line) as { method?: unknown }; if (typeof message.method === "string") methods.push(message.method); } });
+    capture.pipe(child.stdin);
+    const close = async () => { if (!retired) retired = await retireAuthenticatedSupplierGroup(child!); };
+    actor = new CodexTurnSession({ purpose: "login", nativeSkills: "disabled", transport: { stdin: capture, stdout: child.stdout, close } });
+    const authority: CodexAuthorityInitialize = { runtimeProcessIncarnationId: randomUUID(), supplierGeneration: randomUUID(), runtimeChallenge: randomBytes(32).toString("base64url"), exactSupplyDigest: supply.sha256, authoritySecret: secret,
+      descriptor: { capability: "chirality.local-admission-authority", contract: AUTHORITY_CONTRACT, major: 1, minor: 0 }, v4Descriptor: { capability: "account.identity-snapshot", contract: "chirality-supplier-account-identity/1", major: 1, minor: 0, method: "account/identitySnapshot" } };
+    await actor.initializeAuthority(authority); secret.fill(0);
+    const readback = await actor.observeAccountFreeLoginConfiguration(canonicalRoot, containment.config);
+    if (JSON.stringify(methods) !== JSON.stringify(["initialize", "initialized", "config/read"])) throw unavailable("OBSERVATION_PROTOCOL_INVALID");
+    await actor.close(); actor = undefined;
+    if (!retired?.groupRetired) throw unavailable("OBSERVATION_RETIREMENT_INVALID");
+    await supplyVerifier.revalidate(sourceSupply); await supplyVerifier.revalidate(supply); const addonAfter = await stableFile(nativeAddonPath, recipe.nativeAddon);
+    await assertCodexKeyringHomeHasNoPlaintextCredentials(codexHome); const storageAfter = await directoryObservation(codexHome);
+    if (JSON.stringify(addon.identity) !== JSON.stringify(addonAfter.identity)) throw unavailable("OBSERVATION_FINAL_STATE_CHANGED");
+    const common = Object.freeze({ schema: "chirality-account-free-login-observation/v1", observedAt: new Date().toISOString(), accountUsed: false, modelUsed: false, admissionUsed: false, networkTriggeringRpcUsed: false,
+      supportProfileDigest: recipe.supportProfileDigest, observationHost: { runtime: "external-node", node: process.versions.node, modules: process.versions.modules ?? "", napi: process.versions.napi ?? "", architecture: process.arch, platform: process.platform },
+      supply: { sourcePath: sourceExecutablePath, stagedPath: supply.executablePath, sha256: supply.sha256, size: Number(supply.identity.size), version: supply.version, closure: recipe.supplyClosure,
+        sourceIdentity: sourceSupply.identity, stagedIdentity: supply.identity },
+      nativeAddon: { path: nativeAddonPath, sha256: addon.sha256, size: addon.size, signatureEvidenceSha256: recipe.nativeAddon.signatureEvidenceSha256, sourceCorrespondenceEvidenceSha256: recipe.nativeAddon.sourceCorrespondenceEvidenceSha256,
+        xpcRecordSha256: recipe.nativeAddon.xpcRecordSha256, groupedRecordSha256: recipe.nativeAddon.groupedRecordSha256, evidenceFiles },
+      compiler: { nativePolicyIdentityVersion: 11, outerPolicyDigest: containment.outerPolicyDigest, appServerArgumentsSha256: digest(bytes(appServerArguments)), providerNetworkEnabled: containment.providerNetworkEnabled, commandNetworkBoundary: containment.commandNetworkBoundary },
+      readback, protocolMethods: methods, storage: { before: storageBefore, after: storageAfter }, retirement: { groupRetired: true, leader: retired.leader, signalFailurePhases: retired.signalFailures.map(value => value.phase) } });
+    const observationSha256 = digest(bytes(common)), facts: Record<Limb, unknown> = {
+      "exact-supplier": common.supply, "keyring-backend": { credentialStore: readback.credentialStore, compilerConfigDigest: readback.compilerConfigDigest, observedConfigProjectionDigest: readback.observedConfigProjectionDigest },
+      "plaintext-fallback-absent": { plaintextFallback: false, storageBefore, storageAfter }, "process-containment": { nativeAddon: common.nativeAddon, compiler: common.compiler },
+      "storage-isolation": { storageBefore, storageAfter, home: containment.environment.HOME === privateDirectory, codexHome: containment.environment.CODEX_HOME === codexHome, tmpPrivate: contained(privateDirectory, containment.environment.TMPDIR) },
+      "provider-network": { consentDigest: digest(bytes(recipe.providerNetworkConsent)), providerNetworkEnabled: containment.providerNetworkEnabled, commandNetworkBoundary: containment.commandNetworkBoundary, networkTriggeringRpcUsed: false },
+      "bounded-protocol-purpose": { privateInitialization: true, methods, laterPurposeMethods: ["account/login/start", "account/login/cancel", "account/read", "model/list"], modelExecution: false },
+      "retirement": common.retirement
+    };
+    const projections = Object.fromEntries(LIMBS.map(limb => [limb, Object.freeze({ schema: "chirality-account-free-login-limb-evidence/v1", limb, observationSha256, facts: facts[limb] })])) as Record<Limb, unknown>;
+    const limbs = Object.fromEntries(LIMBS.map(limb => [limb, Object.freeze({ attempted: true as const, passed: true as const, evidenceSha256: digest(bytes(projections[limb])) })])) as Record<Limb, { attempted: true; passed: true; evidenceSha256: string }>;
+    await publish(outputDirectory, privateDirectory, common, projections);
+    published = true;
+    return Object.freeze({ schema: "chirality-account-free-login-observation-result/v1", observationSha256, outputDirectory, limbs: Object.freeze(limbs) });
+  } catch (error) {
+    try { if (actor) await actor.close(); else if (child && !retired) retired = await retireAuthenticatedSupplierGroup(child); } catch (cleanup) { throw new AggregateError([error, cleanup], "Account-free observation and retirement failed"); }
+    throw error;
+  } finally { secret.fill(0); if (!child || retired) { await containment?.cleanup(); if (staged) await rm(staged.root, { recursive: true, force: true }); if (!published) await rm(runRoot, { recursive: true, force: true }); } }
+}

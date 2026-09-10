@@ -3,7 +3,8 @@ import { homedir } from "node:os";
 import { isAbsolute, join, relative, resolve, sep } from "node:path";
 import { lstat, mkdir, open, readFile, realpath } from "node:fs/promises";
 import {
-  assertQualifiedNativePlanEvent,
+  assertAdmittedNativePlanEvent,
+  CHIRALITY_ROLE_NAMES,
   RuntimeError,
   type ChiralityRoleName,
   type MethodInspectionResponse,
@@ -65,8 +66,12 @@ interface ResolvedInternal {
 }
 
 const READ_TOOL = /^(?:read|read_file|search|find|list|inspect|catalog|chirality_)/u;
+const responseAdmission = (value: Exclude<NativePlanCapabilityResponse | NativePlanRevisionsResponse | NativePlanClarificationsResponse, { status: "unavailable" }>) =>
+  value.status === "qualified" ? value.qualification : value.admission;
+const eventAdmission = (event: NativePlanRevision["sourceEvent"]) => event.qualificationState === "qualified" ? event.qualification : event.admission;
 
 export class RuntimeMethodService {
+  private readonly nativeChildActivationLocks = new Map<string, Promise<void>>();
   constructor(
     private readonly projects: ProjectRegistry,
     private readonly sessions: SessionStore,
@@ -81,6 +86,16 @@ export class RuntimeMethodService {
 
   async listMethods(projectId: string): Promise<MethodsResponse> {
     return (await this.catalog(projectId)).response;
+  }
+
+  private async withNativeChildActivationLock<T>(identity: string, action: () => Promise<T>): Promise<T> {
+    const previous = this.nativeChildActivationLocks.get(identity) ?? Promise.resolve();
+    let release!: () => void;
+    const current = previous.then(() => new Promise<void>(resolve => { release = resolve; }));
+    this.nativeChildActivationLocks.set(identity, current);
+    await previous;
+    try { return await action(); }
+    finally { release(); if (this.nativeChildActivationLocks.get(identity) === current) this.nativeChildActivationLocks.delete(identity); }
   }
 
   async inspectMethod(projectId: string, qualifiedId: string): Promise<MethodInspectionResponse> {
@@ -282,19 +297,19 @@ export class RuntimeMethodService {
       try {
         const [capability, live] = await Promise.all([this.nativePlan.capability(session), this.nativePlan.revisions(projectId, sessionId)]);
         unavailableReason = capability.status === "unavailable" ? capability.reason : live.status === "unavailable" ? live.reason : unavailableReason;
-        if (capability.status === "qualified" && live.status === "qualified") {
-          if (JSON.stringify(capability.qualification) !== JSON.stringify(live.qualification)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry qualification changed while reading revisions", 503);
+        if (capability.status !== "unavailable" && live.status !== "unavailable") {
+          if (capability.status !== live.status || JSON.stringify(responseAdmission(capability)) !== JSON.stringify(responseAdmission(live))) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry admission changed while reading revisions", 503);
           let priorRevision = 0;
           const eventIds = new Set<string>();
           for (const revision of live.revisions) {
-            try { assertQualifiedNativePlanEvent(revision.sourceEvent); } catch { throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry returned an unqualified revision", 503); }
+            try { assertAdmittedNativePlanEvent(revision.sourceEvent); } catch { throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry returned an unadmitted revision", 503); }
             if (!Number.isSafeInteger(revision.revision) || revision.revision <= priorRevision || eventIds.has(revision.sourceEvent.eventId)) {
               throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry returned conflicting or unordered revisions", 503);
             }
             const sameRevision = revisions.find(recorded => recorded.revision === revision.revision);
             const sameEvent = revisions.find(recorded => recorded.sourceEvent.eventId === revision.sourceEvent.eventId);
             if ((sameRevision !== undefined || sameEvent !== undefined) && JSON.stringify(sameRevision) !== JSON.stringify(revision)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry conflicts with durable revision history", 503);
-            if (sameRevision === undefined && JSON.stringify(revision.sourceEvent.qualification) !== JSON.stringify(capability.qualification)) throw new RuntimeError("ENGINE_UNAVAILABLE", "New Native Plan revision does not match the current trusted qualification", 503);
+            if (sameRevision === undefined && JSON.stringify(eventAdmission(revision.sourceEvent)) !== JSON.stringify(responseAdmission(capability))) throw new RuntimeError("ENGINE_UNAVAILABLE", "New Native Plan revision does not match the current trusted admission", 503);
             priorRevision = revision.revision;
             eventIds.add(revision.sourceEvent.eventId);
           }
@@ -308,7 +323,10 @@ export class RuntimeMethodService {
       }
     }
     if (revisions.length === 0) return { schemaVersion: "chirality.native-plan-revisions/v3", status: "unavailable", reason: unavailableReason, revisions: [] };
-    return { schemaVersion: "chirality.native-plan-revisions/v3", status: "qualified", qualification: revisions.at(-1)!.sourceEvent.qualification, revisions };
+    const latest = revisions.at(-1)!.sourceEvent;
+    return latest.qualificationState === "qualified"
+      ? { schemaVersion: "chirality.native-plan-revisions/v3", status: "qualified", qualification: latest.qualification, revisions }
+      : { schemaVersion: "chirality.native-plan-revisions/v3", status: "trial", admission: latest.admission, revisions };
   }
 
   async listNativePlanClarifications(projectId: string, sessionId: string): Promise<NativePlanClarificationsResponse> {
@@ -317,7 +335,7 @@ export class RuntimeMethodService {
     const [capability, pending] = await Promise.all([this.nativePlan.capability(session), this.nativePlan.clarifications(projectId, sessionId)]);
     if (capability.status === "unavailable") return { schemaVersion: "chirality.native-plan-clarifications/v3", status: "unavailable", reason: capability.reason, clarifications: [] };
     if (pending.status === "unavailable") return pending;
-    if (JSON.stringify(capability.qualification) !== JSON.stringify(pending.qualification)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry qualification changed while reading clarifications", 503);
+    if (capability.status !== pending.status || JSON.stringify(responseAdmission(capability)) !== JSON.stringify(responseAdmission(pending))) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry admission changed while reading clarifications", 503);
     return pending;
   }
 
@@ -345,7 +363,7 @@ export class RuntimeMethodService {
     const [revisions, project] = await Promise.all([this.persistedNativePlanRevisions(projectId, sessionId), this.projects.requireAuthorized(projectId)]);
     const revision = revisions.find(value => value.revision === request.revision);
     if (revision === undefined) {
-      throw new RuntimeError("NOT_FOUND", `Unknown qualified native Plan revision: ${request.revision}`, 404);
+      throw new RuntimeError("NOT_FOUND", `Unknown admitted native Plan revision: ${request.revision}`, 404);
     }
     const target = resolve(project.canonicalRoot, ...targetParts);
     if (!this.contained(project.canonicalRoot, target)) throw new RuntimeError("FORBIDDEN", "Native Plan export target escapes the project", 403);
@@ -386,18 +404,13 @@ export class RuntimeMethodService {
           methods: { type: "array", items: { type: "object", properties: { kind: { type: "string", enum: ["skill", "workflow"] }, name: { type: "string" }, sourceRootId: { type: "string" }, source: { type: "string", enum: ["project", "user", "bundled"] } }, required: ["kind", "name"], additionalProperties: false } },
           resources: { type: "array", items: { type: "object", properties: { method: { type: "object", properties: { kind: { type: "string", enum: ["skill", "workflow"] }, name: { type: "string" }, sourceRootId: { type: "string" }, source: { type: "string", enum: ["project", "user", "bundled"] } }, required: ["sourceRootId", "source", "kind", "name"], additionalProperties: false }, paths: { type: "array", items: { type: "string" } } }, required: ["method", "paths"], additionalProperties: false } }
         }, required: ["methods"], additionalProperties: false }, permission: read,
-        execute: async input => {
+        execute: async (input, _signal, executionContext) => {
           if (!input || typeof input !== "object" || Array.isArray(input)) throw new RuntimeError("INVALID_REQUEST", "Method load input must be an object");
           const value = input as Partial<ResolveSelectedContextRequest>;
           if (!Array.isArray(value.methods)) throw new RuntimeError("INVALID_REQUEST", "Method load requires a methods array");
           const invocationId = randomUUID();
           let exactResult: { documents: ResolveSelectedContextResponse["documents"]; dispositions: ResolveSelectedContextResponse["dispositions"] } | undefined;
-          await this.sessions.activateLoadedMethods(projectId, sessionId, {
-            turnId,
-            invocationId,
-            methods: [],
-            loadedEntries: [],
-            prepare: async current => {
+          const prepare = async (current: RuntimeSessionRecord, activationTurnId = turnId) => {
               const catalog = await this.catalog(projectId);
               let normalized: ReturnType<typeof normalizeMethodSelection>;
               try { normalized = normalizeMethodSelection(catalog, { methods: value.methods! }); }
@@ -411,19 +424,44 @@ export class RuntimeMethodService {
               if (dynamicallyRestricted.length) throw new RuntimeError("ENGINE_UNAVAILABLE", `Dynamically loaded method cannot admit the active read callback: ${dynamicallyRestricted.map(method => method.qualifiedId).join(", ")}`, 422, { unavailableOperation: "read", methods: dynamicallyRestricted.map(method => method.qualifiedId) });
               const loadedMethods = requestedMethods.map(method => this.reference(method));
               const unionReferences = [...new Map([...(current.selectedMethods ?? []), ...loadedMethods].map(reference => [formatQualifiedMethodId(reference), reference])).values()];
-              const union = await this.resolveInternal(projectId, current, { roleId: this.roleId(current), interactionMode: current.interactionMode ?? "chat", permissionMode: current.permissionMode ?? "ask", methods: unionReferences, ...(value.resources === undefined ? {} : { resources: value.resources }) }, catalog);
+              const union = await this.resolveInternal(projectId, { ...current, selectedMethods: unionReferences }, { roleId: this.roleId(current), interactionMode: current.interactionMode ?? "chat", permissionMode: current.permissionMode ?? "ask", methods: unionReferences, ...(value.resources === undefined ? {} : { resources: value.resources }) }, catalog);
               const loadedIds = new Set(loadedMethods.map(formatQualifiedMethodId));
               const documents = union.response.documents.filter(document => loadedIds.has(formatQualifiedMethodId(document.method)));
               const dispositions = union.response.dispositions.filter(disposition => loadedIds.has(formatQualifiedMethodId(disposition.method)));
               const loadedEntries: import("./instruction-basis-store.js").ResourceLoadedHistoryRecord[] = union.snapshot.suppliedEntries
                 .filter(entry => entry.method !== undefined && loadedIds.has(formatQualifiedMethodId(entry.method)) && (entry.kind === "method-body" || entry.kind === "resource"))
-                .map(entry => ({ type: "resource.loaded", resourceKind: entry.kind === "resource" ? "resource" : "method-body", id: entry.id, method: entry.method!, origin: entry.origin, path: entry.path, sha256: entry.sha256, content: entry.content, turnId, invocationId }));
+                .map(entry => ({ type: "resource.loaded", resourceKind: entry.kind === "resource" ? "resource" : "method-body", id: entry.id, method: entry.method!, origin: entry.origin, path: entry.path, sha256: entry.sha256, content: entry.content, turnId: activationTurnId, invocationId }));
               exactResult = { documents, dispositions };
-              return { methods: loadedMethods, instructionPolicySha256: union.activeInstructionPolicySha256, loadedEntries };
-            }
-          });
+              return { methods: loadedMethods, cumulativeMethods: union.response.methods.map(method => this.reference(method)), childInstructionBasisId: union.response.basisPreview.id, instructionPolicySha256: union.activeInstructionPolicySha256, loadedEntries };
+          };
+          if (executionContext?.nativeChild) {
+            const child = executionContext.nativeChild;
+            if (child.selectedRole.kind !== "configured" || !CHIRALITY_ROLE_NAMES.includes(child.selectedRole.name as ChiralityRoleName)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native child method loading requires an exact configured Runtime role", 422);
+            const selectedRole = child.selectedRole as Extract<typeof child.selectedRole, { kind: "configured" }>;
+            const parent = await this.sessions.get(projectId, sessionId);
+            if (executionContext.threadId === child.parentThreadId || executionContext.turnId === child.parentTurnId) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native child activation cannot use the parent turn identity", 503);
+            const childHistoryId = `native-${sha256(JSON.stringify({ schema: "chirality-native-child-history/v1", parentSessionId: sessionId, supplierGeneration: child.supplierGeneration, rootThreadId: child.rootThreadId, rootTurnId: child.rootTurnId, associationId: child.associationId, childThreadId: executionContext.threadId, childTurnId: executionContext.turnId }))}`;
+            await this.withNativeChildActivationLock(childHistoryId, async () => {
+              const history = await this.sessions.instructionBases.history(projectId, childHistoryId);
+              const prior = [...history].reverse().find(record => record.type === "native-child.method-loaded");
+              const scoped = { ...parent, sessionId: childHistoryId, schemaVersion: "chirality.session/v3" as const, roleId: selectedRole.name as ChiralityRoleName, persona: selectedRole.name,
+                selectedMethods: prior?.type === "native-child.method-loaded" ? prior.selectedMethods : [], methodSelectionRevision: history.length,
+                instructionBasisId: prior?.type === "native-child.method-loaded" ? prior.childInstructionBasisId : undefined };
+              const activation = await prepare(scoped, executionContext.turnId);
+              await this.sessions.instructionBases.appendHistory(projectId, childHistoryId, {
+                type: "native-child.method-loaded", associationId: child.associationId, supplierGeneration: child.supplierGeneration, parentSessionId: sessionId,
+                rootThreadId: child.rootThreadId, rootTurnId: child.rootTurnId, parentTurnId: child.parentTurnId,
+                childThreadId: executionContext.threadId, childTurnId: executionContext.turnId, roleId: scoped.roleId,
+                roleBasisDigest: selectedRole.basisDigest, inheritedToolsDigest: child.inheritedToolsDigest, invocationId,
+                selectedMethods: activation.cumulativeMethods, childInstructionBasisId: activation.childInstructionBasisId,
+                instructionPolicySha256: activation.instructionPolicySha256, loadedEntries: activation.loadedEntries
+              });
+            });
+          } else {
+            await this.sessions.activateLoadedMethods(projectId, sessionId, { turnId, invocationId, methods: [], loadedEntries: [], prepare });
+          }
           if (exactResult === undefined) throw new RuntimeError("INTERNAL_FAILURE", "Method activation produced no frozen result", 500);
-          return { schemaVersion: "chirality.method-load/v3", turnId, invocationId, documents: exactResult.documents, dispositions: exactResult.dispositions };
+          return { schemaVersion: "chirality.method-load/v3", turnId: executionContext?.turnId ?? turnId, invocationId, documents: exactResult.documents, dispositions: exactResult.dispositions };
         } },
       { name: "chirality_request_method_change", description: "Request an ordered method merge or replacement at the current turn's terminal boundary.", inputSchema: { type: "object", properties: {
           mode: { type: "string", enum: ["merge", "replace"] },

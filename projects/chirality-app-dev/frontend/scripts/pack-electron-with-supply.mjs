@@ -11,15 +11,21 @@ import {
   EXPECTED_DEPENDENCY_DIGEST_ENV,
   EXPECTED_SUPPLIER_DIGEST_ENV,
   RUNTIME_MANIFEST_VERSION_ENV,
-  RUNTIME_V2_GOVERNANCE_ROOT_ENV,
   RUNTIME_V2_INPUT_DIGEST_ENV,
-  RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV,
-  SUPPLIER_DIGEST_ENV,
-  inspectRuntimeV2ReleaseInputs
+  SUPPLIER_DIGEST_ENV
 } from './finalize-electron-resources.mjs';
+import {
+  SIGNING_BUNDLE_ID_ENV,
+  SIGNING_CHECKPOINT_FILE_ENV,
+  SIGNING_IDENTITY_SHA1_ENV,
+  SIGNING_TEAM_ID_ENV,
+  bindSignedRuntimeV2Payload,
+  sealSignedRuntimeV2
+} from './sign-electron-runtime-v2.mjs';
 
 const SUPPORTED_TARGETS = new Set(['dir', 'dmg']);
 const SUPPLIER_SOURCE_ENV = 'CHIRALITY_SUPPLIER_SOURCE_ROOT';
+export const ELECTRON_OUTPUT_DIRECTORY_ENV = 'CHIRALITY_ELECTRON_OUTPUT_DIRECTORY';
 const frontendRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const defaultSupplierStagingRoot = path.join(
   frontendRoot,
@@ -113,7 +119,28 @@ function expectedDigest(env, name) {
   return value;
 }
 
-export function buildElectronBuilderArgs(electronDistDirectory, target = 'dir') {
+export function resolveElectronOutputDirectory(env = process.env) {
+  if (!Object.prototype.hasOwnProperty.call(env, ELECTRON_OUTPUT_DIRECTORY_ENV)) {
+    return path.join(frontendRoot, 'dist');
+  }
+  const candidate = env[ELECTRON_OUTPUT_DIRECTORY_ENV];
+  if (
+    typeof candidate !== 'string' ||
+    candidate.length === 0 ||
+    candidate.includes('\0') ||
+    !path.isAbsolute(candidate) ||
+    path.normalize(candidate) !== candidate
+  ) {
+    throw new Error(`${ELECTRON_OUTPUT_DIRECTORY_ENV} must be a normalized absolute path`);
+  }
+  return candidate;
+}
+
+export function expectedPackagedAppPath(outputDirectory) {
+  return path.join(outputDirectory, 'mac-arm64', 'Chirality.app');
+}
+
+export function buildElectronBuilderArgs(electronDistDirectory, target = 'dir', prepackaged, outputDirectory) {
   if (typeof electronDistDirectory !== 'string' || electronDistDirectory.length === 0) {
     throw new Error('Verified Electron distribution directory is required');
   }
@@ -124,7 +151,9 @@ export function buildElectronBuilderArgs(electronDistDirectory, target = 'dir') 
     '--arm64',
     '--publish',
     'never',
-    `-c.electronDist=${electronDistDirectory}`
+    `-c.electronDist=${electronDistDirectory}`,
+    ...(outputDirectory ? [`-c.directories.output=${outputDirectory}`] : []),
+    ...(prepackaged ? ['--prepackaged', prepackaged] : [])
   ];
 }
 
@@ -155,20 +184,37 @@ export async function runElectronPack({
   computeDependencyDigest,
   env = process.env,
   target = 'dir',
-  runtimeManifestVersion = 'v1'
+  runtimeManifestVersion = 'v1',
+  runtimeV2Phase,
+  resumeCheckpoint,
+  bindPayload = bindSignedRuntimeV2Payload,
+  seal = sealSignedRuntimeV2
 } = {}) {
+  const outputDirectory = resolveElectronOutputDirectory(env);
+  const packagedAppPath = expectedPackagedAppPath(outputDirectory);
   if (runtimeManifestVersion !== 'v1' && runtimeManifestVersion !== 'v2') {
     throw new Error(`Unsupported Runtime manifest version: ${String(runtimeManifestVersion)}`);
   }
+  if (runtimeV2Phase) {
+    const selectedCheckpoint = resumeCheckpoint ?? env[SIGNING_CHECKPOINT_FILE_ENV];
+    if (runtimeManifestVersion !== 'v2' || !selectedCheckpoint) throw new Error('Runtime v2 payload/seal requires CHIRALITY_RUNTIME_V2_SIGNING_CHECKPOINT_FILE');
+    const resumeEnvironment = { ...env, [SIGNING_CHECKPOINT_FILE_ENV]: selectedCheckpoint };
+    if (runtimeV2Phase === 'payload') return bindPayload({ env: resumeEnvironment });
+    if (runtimeV2Phase !== 'seal') throw new Error(`Unsupported Runtime v2 signing phase: ${runtimeV2Phase}`);
+    const sealed = await seal({ env: resumeEnvironment, expectedAppPath: packagedAppPath });
+    if (path.resolve(sealed.appPath) !== packagedAppPath) {
+      throw new Error(`Sealed application is outside the selected Electron output directory: ${sealed.appPath}`);
+    }
+    if (target === 'dmg') {
+      const electronDistDirectory = await verify();
+      await spawnAndWait('electron-builder', buildElectronBuilderArgs(electronDistDirectory, target, sealed.appPath, outputDirectory), {
+        stdio: 'inherit', shell: false, env: resumeEnvironment
+      }, spawnProcess);
+    }
+    return sealed;
+  }
   const expectedSupplierDigest = expectedDigest(env, EXPECTED_SUPPLIER_DIGEST_ENV);
   const expectedDependencyDigest = expectedDigest(env, EXPECTED_DEPENDENCY_DIGEST_ENV);
-  let runtimeV2InputDigest;
-  if (runtimeManifestVersion === 'v2') {
-    const supportProfilesPath = env[RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV];
-    const governanceRoot = env[RUNTIME_V2_GOVERNANCE_ROOT_ENV];
-    if (!supportProfilesPath || !governanceRoot) throw new Error('Runtime v2 packaging requires explicit support-profile and governance inputs');
-    runtimeV2InputDigest = (await inspectRuntimeV2ReleaseInputs({ supportProfilesPath, governanceRoot })).digest;
-  }
   const electronDistDirectory = await verify();
   const supplier = await prepareSupplier({ env });
   const dependencyDigest = await (computeDependencyDigest
@@ -180,7 +226,7 @@ export async function runElectronPack({
   if (dependencyDigest !== expectedDependencyDigest) {
     throw new Error('Dependency resolution inputs do not match the release-provided expected digest');
   }
-  const args = buildElectronBuilderArgs(electronDistDirectory, target);
+  const args = buildElectronBuilderArgs(electronDistDirectory, target, undefined, outputDirectory);
   const builderEnvironment = {
     ...env,
     CSC_IDENTITY_AUTO_DISCOVERY: 'false',
@@ -188,31 +234,63 @@ export async function runElectronPack({
     [SUPPLIER_DIGEST_ENV]: supplier.digest
   };
   if (runtimeManifestVersion === 'v2') {
+    if (!/^[A-F0-9]{40}$/.test(env[SIGNING_IDENTITY_SHA1_ENV] ?? '')
+      || !/^[A-Z0-9]{10}$/.test(env[SIGNING_TEAM_ID_ENV] ?? '')
+      || env[SIGNING_BUNDLE_ID_ENV] !== 'com.chirality.app'
+      || !path.isAbsolute(env[SIGNING_CHECKPOINT_FILE_ENV] ?? '')) {
+      throw new Error('Runtime v2 signed preparation requires explicit identity, team, bundle, and checkpoint inputs');
+    }
     builderEnvironment[RUNTIME_MANIFEST_VERSION_ENV] = 'v2';
-    builderEnvironment[RUNTIME_V2_INPUT_DIGEST_ENV] = runtimeV2InputDigest;
+    builderEnvironment.CSC_NAME = env[SIGNING_IDENTITY_SHA1_ENV];
+    delete builderEnvironment[RUNTIME_V2_INPUT_DIGEST_ENV];
   } else {
     delete builderEnvironment[RUNTIME_MANIFEST_VERSION_ENV];
     delete builderEnvironment[RUNTIME_V2_INPUT_DIGEST_ENV];
   }
-  await spawnAndWait('electron-builder', args, {
-    stdio: 'inherit',
-    shell: false,
-    env: builderEnvironment
-  }, spawnProcess);
+  if (runtimeManifestVersion === 'v2' && await lstat(env[SIGNING_CHECKPOINT_FILE_ENV]).then(() => true, () => false)) {
+    throw new Error('Runtime v2 signing checkpoint output already exists');
+  }
+  try {
+    await spawnAndWait('electron-builder', args, {
+      stdio: 'inherit',
+      shell: false,
+      env: builderEnvironment
+    }, spawnProcess);
+  } catch (error) {
+    if (runtimeManifestVersion !== 'v2'
+      || !(await lstat(env[SIGNING_CHECKPOINT_FILE_ENV]).then(() => true, () => false))) throw error;
+    await supplier.cleanup();
+    return { phase: 'nested-signed', checkpointPath: env[SIGNING_CHECKPOINT_FILE_ENV] };
+  }
+  if (runtimeManifestVersion === 'v2') {
+    const checkpointPath = env[SIGNING_CHECKPOINT_FILE_ENV];
+    if (!(await lstat(checkpointPath).then(() => true, () => false))) {
+      throw new Error('electron-builder completed without the required Runtime v2 nested-signing checkpoint');
+    }
+    await supplier.cleanup();
+    return { phase: 'nested-signed', checkpointPath };
+  }
   await supplier.cleanup();
 }
 
 export function parseArgs(argv) {
   if (argv.length === 0) return { target: 'dir' };
-  const parsed = { target: 'dir', runtimeManifestVersion: undefined };
+  const parsed = { target: 'dir', runtimeManifestVersion: undefined, runtimeV2Phase: undefined, resumeCheckpoint: undefined };
   for (let index = 0; index < argv.length; index += 2) {
     const flag = argv[index], value = argv[index + 1];
-    if (value === undefined) throw new Error('Usage: node ./scripts/pack-electron-with-supply.mjs [--target dir|dmg] [--runtime-manifest v2]');
+    if (value === undefined) throw new Error('Usage: node ./scripts/pack-electron-with-supply.mjs [--target dir|dmg] [--runtime-manifest v2] [--resume-checkpoint PATH --runtime-v2-phase payload|seal]');
     if (flag === '--target') parsed.target = validateTarget(value);
     else if (flag === '--runtime-manifest' && value === 'v2') parsed.runtimeManifestVersion = 'v2';
-    else throw new Error('Usage: node ./scripts/pack-electron-with-supply.mjs [--target dir|dmg] [--runtime-manifest v2]');
+    else if (flag === '--runtime-v2-phase' && (value === 'payload' || value === 'seal')) parsed.runtimeV2Phase = value;
+    else if (flag === '--resume-checkpoint' && path.isAbsolute(value) && path.resolve(value) === value) parsed.resumeCheckpoint = value;
+    else throw new Error('Usage: node ./scripts/pack-electron-with-supply.mjs [--target dir|dmg] [--runtime-manifest v2] [--resume-checkpoint PATH --runtime-v2-phase payload|seal]');
   }
-  return parsed.runtimeManifestVersion ? parsed : { target: parsed.target };
+  return parsed.runtimeManifestVersion ? {
+    target: parsed.target,
+    runtimeManifestVersion: parsed.runtimeManifestVersion,
+    ...(parsed.runtimeV2Phase ? { runtimeV2Phase: parsed.runtimeV2Phase } : {}),
+    ...(parsed.resumeCheckpoint ? { resumeCheckpoint: parsed.resumeCheckpoint } : {})
+  } : { target: parsed.target };
 }
 
 const isMain =

@@ -5,6 +5,7 @@ import {
   resolveNativeAdmissionSource,
   resolveHostedRuntimeSource,
   resolveHostedRuntimePathsSource,
+  resolveProtectedRuntimeCliSource,
   resolveRuntimeContractsSource,
   resolveRuntimeConformanceV2Source
 } from '../../../scripts/build-electron.mjs';
@@ -43,6 +44,12 @@ describe('build Electron Runtime contract aliases', () => {
   it('resolves the v2 conformance subpath from the same Runtime source graph', () => {
     expect(resolveRuntimeConformanceV2Source()).toBe(
       path.resolve(process.cwd(), '../../chirality-runtime/packages/core/src/runtime-conformance-v2.ts')
+    );
+  });
+
+  it('pins the protected in-ASAR CLI closure to Runtime CLI source', () => {
+    expect(resolveProtectedRuntimeCliSource()).toBe(
+      path.resolve(process.cwd(), '../../chirality-runtime/packages/cli/src/cli.ts')
     );
   });
 });

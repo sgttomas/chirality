@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { PassThrough } from "node:stream";
 import { CodexLogin, createControlledCodexLoginForTests, inspectCodexLoginPurposeReleaseRecord } from "../packages/daemon/src/codex-login.js";
+import { AUTHORITY_CONTRACT, initializationProof } from "../packages/daemon/src/supplier-authority-controller.js";
 async function fixture(mode = "success", authUrl = "https://auth.openai.com/authorize?state=fixture", timeoutMs = 1000) {
   const codexHome = await mkdtemp(join(await realpath(tmpdir()), "login-fixture-"));
   const code = `
@@ -34,6 +35,13 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
   return { login, codexHome, child, async close() { await login.close(); expect(child.exitCode !== null || child.signalCode !== null).toBe(true); await rm(codexHome, { recursive: true, force: true }); } };
 }
 describe("operator-only sign-in component (controlled fixture)", () => {
+  it("authenticates the private transport and reads the compiler-owned skill selection before login",async()=>{
+    const stdin=new PassThrough(),stdout=new PassThrough(),calls:string[]=[],requests:any[]=[],secret=Buffer.alloc(32,9),descriptor={capability:"chirality.local-admission-authority",contract:AUTHORITY_CONTRACT,major:1,minor:0},v4Descriptor={capability:"account.identity-snapshot",contract:"chirality-supplier-account-identity/1",major:1,minor:0,method:"account/identitySnapshot"};
+    const authority={runtimeProcessIncarnationId:"22222222-2222-4222-8222-222222222222",supplierGeneration:"login-generation",runtimeChallenge:Buffer.alloc(32,2).toString("base64url"),exactSupplyDigest:"a".repeat(64),authoritySecret:secret,descriptor,v4Descriptor};
+    const send=(value:unknown)=>stdout.write(`${JSON.stringify(value)}\n`);stdin.on("data",bytes=>{for(const line of bytes.toString().trim().split("\n")){const r=JSON.parse(line);calls.push(r.method);requests.push(r);if(r.method==="initialize"){expect(r.params.chiralityAdmissionAuthority).toEqual({contract:AUTHORITY_CONTRACT,runtimeProcessIncarnationId:authority.runtimeProcessIncarnationId,supplierGeneration:"login-generation",runtimeChallenge:authority.runtimeChallenge});expect(JSON.stringify(r.params)).not.toContain(secret.toString("hex"));const result={contract:AUTHORITY_CONTRACT,runtimeProcessIncarnationId:authority.runtimeProcessIncarnationId,supplierGeneration:authority.supplierGeneration,supplierChallenge:Buffer.alloc(32,4).toString("base64url"),descriptor,v4Descriptor,proof:""};result.proof=initializationProof(secret,{...authority,...result});send({id:r.id,result:{chiralityAdmissionAuthority:result}});}else if(r.method==="config/read")send({id:r.id,result:{config:{chirality_runtime:{nativeSkills:"disabled"}}}});else if(r.method==="account/login/start")send({id:r.id,result:{type:"chatgpt",loginId:"private-login",authUrl:"https://auth.openai.com/private"}});}});
+    const login=createControlledCodexLoginForTests({transport:{stdin,stdout,async close(){}},codexHome:"/synthetic/private",canonicalRoot:"/private/tmp",nativeSkills:"disabled",authorityInitialize:authority});
+    try{expect(await login.startLogin()).toMatchObject({loginId:"private-login"});expect(calls).toEqual(["initialize","initialized","config/read","account/login/start"]);expect(requests.find(request=>request.method==="config/read")?.params).toEqual({includeLayers:true,cwd:"/private/tmp"});expect(calls).not.toContain("account/identitySnapshot");expect(secret.every(byte=>byte===0)).toBe(true);}finally{await login.close();stdin.destroy();stdout.destroy();}
+  });
   it("selects one complete paginated default and rejects repeated cursors or multiple defaults", async () => {
     const run = async (pages: Record<string, { data: unknown[]; nextCursor: string | null }>) => {
       const stdin = new PassThrough(), stdout = new PassThrough();

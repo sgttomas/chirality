@@ -8,6 +8,7 @@ import {
   type RuntimeSupportProfileV2,
   type VerifiedPackagedRuntimeBasisV2
 } from "@chirality/runtime-core/runtime-conformance-v2";
+import { createCustomSupplyVerifier, type ExactSupplyVerifier } from "@chirality/runtime-core";
 
 type Purpose = "login" | "worker";
 type Issuance = "production" | "controlled-test";
@@ -26,6 +27,14 @@ export interface HostedPackagedPurposeBasisV2 extends HostedReleaseAnchorPurpose
   ownerActPath: string;
 }
 
+export type HostedWorkerReleaseDispositionV2 = "qualified" | "local-human-trial";
+export interface HostedPackagedTrialSealObservationV1 {
+  path: string;
+  sha256: string;
+  mainCodeDirectoryHash: string;
+  peerRequirementSha256: string;
+}
+
 export interface HostedPackagedReleaseBasisV2 {
   schema: "chirality-hosted-packaged-release-basis/v2";
   basisDigest: string;
@@ -41,6 +50,8 @@ export interface HostedPackagedReleaseBasisV2 {
   };
   login: Readonly<HostedPackagedPurposeBasisV2>;
   worker: Readonly<HostedPackagedPurposeBasisV2>;
+  workerDisposition: HostedWorkerReleaseDispositionV2;
+  trialSealObservation?: Readonly<HostedPackagedTrialSealObservationV1>;
 }
 
 export interface RetainedIssuedPackagedBasisV2 {
@@ -56,6 +67,9 @@ export interface RetainedIssuedPackagedBasisV2 {
   basisDigest: string;
   login: Readonly<HostedPackagedPurposeBasisV2>;
   worker: Readonly<HostedPackagedPurposeBasisV2>;
+  workerDisposition: HostedWorkerReleaseDispositionV2;
+  trialSealObservation?: Readonly<HostedPackagedTrialSealObservationV1>;
+  revalidateTrialSeal?: () => Promise<void>;
 }
 
 export type IssuedPackagedFilesystemIdentityV2 = Readonly<{ dev: bigint; ino: bigint; size: bigint; mode: bigint; uid: bigint; nlink: bigint; mtimeNs: bigint; ctimeNs: bigint }>;
@@ -64,8 +78,10 @@ type StoredIssuedPackagedBasisV2 = Readonly<RetainedIssuedPackagedBasisV2 & {
   directories: Readonly<Record<"resourcesRoot" | "runtimeDirectory" | "anchorRoot" | "snapshotRoot", Identity>>;
   files: readonly Readonly<{ path: string; sha256: string; identity: Identity }>[];
   origin: readonly Readonly<{ path: string; kind: "file" | "directory"; identity: Identity }>[];
+  supplyVerifier: ExactSupplyVerifier;
 }>;
 const issuedPackagedBases = new WeakMap<object, StoredIssuedPackagedBasisV2>();
+const issuedSupplyVerifiers = new WeakSet<object>();
 const PURPOSE_FILES: Readonly<Record<Purpose, readonly [keyof HostedPackagedPurposeBasisV2, keyof HostedPackagedPurposeBasisV2, keyof HostedPackagedPurposeBasisV2]>> = Object.freeze({
   login: ["recordPath", "acceptancePath", "ownerActPath"],
   worker: ["recordPath", "acceptancePath", "ownerActPath"]
@@ -155,6 +171,7 @@ export async function registerIssuedPackagedReleaseBasisV2(basis: Readonly<Hoste
     const value = state[purpose];
     for (let index = 0; index < 3; index++) fileInputs.push({ path: String(value[PURPOSE_FILES[purpose][index]!]), sha256: String(value[PURPOSE_HASHES[purpose][index]!]) });
   }
+  if (state.trialSealObservation) fileInputs.push({ path: state.trialSealObservation.path, sha256: state.trialSealObservation.sha256 });
   const files = await Promise.all(fileInputs.map(async expected => {
     const observed = await observedFile(expected.path);
     if (observed.sha256 !== expected.sha256) throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
@@ -168,7 +185,28 @@ export async function registerIssuedPackagedReleaseBasisV2(basis: Readonly<Hoste
     ...basis.verified.inventory.governance.map(entry => ({ path: join(state.resourcesRoot, entry.relativePath), kind: "file" as const })),
     ...basis.verified.payload.entries.map(entry => ({ path: join(state.resourcesRoot, entry.relativePath), kind: entry.type }))];
   const origin = Object.freeze(await Promise.all(originInputs.map(async entry => Object.freeze({ ...entry, identity: await originIdentity(entry.path, entry.kind) }))));
-  issuedPackagedBases.set(basis as object, Object.freeze({ ...state, directories, files: Object.freeze(files), origin }));
+  const closureEntries = await Promise.all(basis.verified.payload.entries.filter(entry => entry.relativePath === "supplier" || entry.relativePath.startsWith("supplier/"))
+    .map(async entry => entry.type === "directory" ? Object.freeze({ relativePath: entry.relativePath, type: "directory" as const }) : Object.freeze({
+      relativePath: entry.relativePath, type: "file" as const, sha256: entry.sha256, size: entry.size,
+      mode: ((await lstat(join(state.resourcesRoot, entry.relativePath))).mode & 0o111) !== 0 ? "executable" as const : "data" as const
+    })));
+  const supplier = basis.supportProfile.supplier;
+  const supplyVerifier = createCustomSupplyVerifier({ schema: "chirality-custom-supplier-exact-profile/v1",
+    executable: { relativePath: "supplier/codex", version: supplier.version, sha256: supplier.sha256, size: supplier.size }
+  }, closureEntries);
+  issuedSupplyVerifiers.add(supplyVerifier as object);
+  issuedPackagedBases.set(basis as object, Object.freeze({ ...state, directories, files: Object.freeze(files), origin, supplyVerifier }));
+}
+
+/** Internal production projection; arbitrary verifier objects cannot cross this issued-basis gate. */
+export async function issuedPackagedSupplyVerifierV2(basis: Readonly<HostedPackagedReleaseBasisV2>): Promise<ExactSupplyVerifier> {
+  await revalidateIssuedPackagedReleaseBasisV2(basis);
+  const state = requireIssued(basis, "production");
+  if (!issuedSupplyVerifiers.has(state.supplyVerifier as object)) throw unavailable("PACKAGED_SUPPLY_VERIFIER_UNISSUED");
+  return state.supplyVerifier;
+}
+export function assertIssuedPackagedSupplyVerifierV2(verifier: ExactSupplyVerifier): void {
+  if (!verifier || !issuedSupplyVerifiers.has(verifier as object)) throw unavailable("PACKAGED_SUPPLY_VERIFIER_UNISSUED");
 }
 
 async function observePrivateState(state: StoredIssuedPackagedBasisV2): Promise<void> {
@@ -197,18 +235,23 @@ function requireIssued(basis: Readonly<HostedPackagedReleaseBasisV2>, expectedIs
   if (!state || state.issuance !== expectedIssuance || basis.basisDigest !== state.basisDigest || basis.verified.resourcesRoot !== state.resourcesRoot
     || basis.verified.inventorySha256 !== state.inventorySha256 || basis.verified.payloadDigest !== state.payloadDigest
     || basis.supportProfile.profileDigest !== state.profileDigest || basis.preNativeFilesystemObservation.runtimeDirectory !== state.runtimeDirectory
-    || basis.preNativeFilesystemObservation.anchorRoot !== state.anchorRoot || basis.login !== state.login || basis.worker !== state.worker) throw unavailable("PACKAGED_RELEASE_BASIS_NOT_ISSUED");
+    || basis.preNativeFilesystemObservation.anchorRoot !== state.anchorRoot || basis.login !== state.login || basis.worker !== state.worker
+    || basis.workerDisposition !== state.workerDisposition
+    || JSON.stringify(basis.trialSealObservation ?? null) !== JSON.stringify(state.trialSealObservation ?? null)
+    || (basis.workerDisposition === "local-human-trial") !== (state.revalidateTrialSeal !== undefined)) throw unavailable("PACKAGED_RELEASE_BASIS_NOT_ISSUED");
   return state;
 }
 async function revalidate(basis: Readonly<HostedPackagedReleaseBasisV2>, expectedIssuance: Issuance): Promise<void> {
   const state = requireIssued(basis, expectedIssuance);
   await observePrivateState(state);
   await observeOriginState(state);
+  await state.revalidateTrialSeal?.();
   const verified = await verifyPackagedRuntimeBasisV2({ resourcesRoot: state.resourcesRoot });
   if (verified.inventorySha256 !== state.inventorySha256 || verified.payloadDigest !== state.payloadDigest
     || !verified.payload.supportProfiles.some(profile => profile.profileDigest === state.profileDigest)) throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
   await observeOriginState(state);
   await observePrivateState(state);
+  await state.revalidateTrialSeal?.();
 }
 
 /** Cheap nominal entry check. Composition owns the immediately following live read. */

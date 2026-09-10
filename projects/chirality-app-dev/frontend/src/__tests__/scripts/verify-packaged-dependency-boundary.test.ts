@@ -4,6 +4,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
   findForbiddenLegacyRuntimePackage,
+  resolvePackagedDependencyBundlePath,
   verifyPackagedNativeAdmissionAsset,
   verifyPackagedRuntimeSources
 } from '../../../scripts/verify-packaged-dependency-boundary.mjs';
@@ -33,6 +34,15 @@ const cliSources = [
 const packagedEntries = new Set(['/dist-electron/main.js', '/dist-electron/main.js.map']);
 
 describe('packaged project runtime source proof', () => {
+  it('resolves the dependency check from the shared explicit candidate output', () => {
+    expect(resolvePackagedDependencyBundlePath({
+      CHIRALITY_ELECTRON_OUTPUT_DIRECTORY: '/private/tmp/chirality candidate'
+    })).toBe('/private/tmp/chirality candidate/mac-arm64/Chirality.app/Contents/Resources/app.asar');
+    expect(() => resolvePackagedDependencyBundlePath({
+      CHIRALITY_ELECTRON_OUTPUT_DIRECTORY: ''
+    })).toThrow('must be a normalized absolute path');
+  });
+
   it('accepts the shared hosted Codex runtime graph and a client-only CLI', () => {
     expect(
       verifyPackagedRuntimeSources({ desktopSources, cliSources, packagedEntries }).failures

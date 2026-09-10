@@ -1,10 +1,12 @@
 import { PassThrough } from "node:stream";
-import { mkdir, mkdtemp, realpath, rm, symlink, writeFile } from "node:fs/promises";
+import { chmod, mkdir, mkdtemp, readdir, realpath, rm, stat, symlink, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import {
   launchControlledAuthenticatedCodexCandidateForTests,
+  launchAuthenticatedCodexCandidate,
   codexEffectiveConfigDigestV2,
   authenticatedSupplierRetirementOutcome,
   assertOwnedCompiledPathV2,
@@ -12,6 +14,9 @@ import {
   type AuthenticatedCodexCandidateInput,
   type ControlledAuthenticatedCodexCandidateAdapters
 } from "../packages/daemon/src/codex-authenticated-transport.js";
+import { createCustomSupplyVerifier } from "../packages/core/src/exact-supply.js";
+import { stageExactSupplierExecutable, stageExactSupplierExecutableControlledForTests } from "../packages/daemon/src/hosted-private-composition.js";
+import { CodexLogin } from "../packages/daemon/src/codex-login.js";
 
 const DIGEST = "a".repeat(64);
 
@@ -50,6 +55,61 @@ function fixture() {
 }
 
 describe("authenticated Codex candidate transport", () => {
+  it("carries a complete custom exact closure through controlled staging and the real candidate verifier path without granting production acceptance", async () => {
+    const root = await realpath(await mkdtemp(join(tmpdir(), "custom-supply-flow-")));
+    try {
+      const sourceRoot = join(root, "source", "supplier"), privateRoot = join(root, "private"), nested = join(sourceRoot, "nested");
+      await mkdir(nested, { recursive: true }); await mkdir(privateRoot, { mode: 0o700 });
+      const source = join(sourceRoot, "codex"), helper = join(sourceRoot, "runtime.dat"), data = join(nested, "config.dat");
+      const executableBytes = Buffer.from("custom-supplier"), helperBytes = Buffer.from("closure-data"), dataBytes = Buffer.from("config-data");
+      await writeFile(source, executableBytes, { mode: 0o700 }); await writeFile(helper, helperBytes, { mode: 0o700 }); await writeFile(data, dataBytes, { mode: 0o600 });
+      const digest = (value: Buffer) => createHash("sha256").update(value).digest("hex");
+      const verifier = createCustomSupplyVerifier({ schema: "chirality-custom-supplier-exact-profile/v1", executable: {
+        relativePath: "supplier/codex", version: "custom-fixture", sha256: digest(executableBytes), size: executableBytes.length
+      } }, [
+        { relativePath: "supplier", type: "directory" },
+        { relativePath: "supplier/codex", type: "file", sha256: digest(executableBytes), size: executableBytes.length, mode: "executable" },
+        { relativePath: "supplier/nested", type: "directory" },
+        { relativePath: "supplier/nested/config.dat", type: "file", sha256: digest(dataBytes), size: dataBytes.length, mode: "data" },
+        { relativePath: "supplier/runtime.dat", type: "file", sha256: digest(helperBytes), size: helperBytes.length, mode: "executable" }
+      ]);
+      await expect(stageExactSupplierExecutable(source, privateRoot, verifier)).rejects.toMatchObject({ details: { reason: "PACKAGED_SUPPLY_VERIFIER_UNISSUED" } });
+      expect(await readdir(privateRoot)).toEqual([]);
+      const boundedRoot = join(root, "bounded"); await mkdir(boundedRoot, { mode: 0o700 });
+      const undersizedVerifier = Object.freeze({ ...verifier, closureEntries: verifier.closureEntries.map(entry => entry.relativePath === "supplier/runtime.dat" && entry.type === "file" ? { ...entry, size: entry.size - 1 } : entry) });
+      await expect(stageExactSupplierExecutableControlledForTests(source, boundedRoot, undersizedVerifier)).rejects.toMatchObject({ details: { reason: "PACKAGED_SUPPLIER_CHANGED" } });
+      expect(await readdir(boundedRoot)).toEqual([]);
+      const staged = await stageExactSupplierExecutableControlledForTests(source, privateRoot, verifier);
+      expect((await stat(join(privateRoot, "supplier", "runtime.dat"))).mode & 0o777).toBe(0o700);
+      expect((await stat(join(privateRoot, "supplier", "nested", "config.dat"))).mode & 0o777).toBe(0o600);
+      const f = fixture();
+      f.input = { ...f.input, executablePath: staged, toolRuntime: { codexSelfExecutablePath: staged }, supplyVerifier: verifier };
+      expect(() => new CodexLogin({ executablePath: staged, canonicalRoot: root, privateDirectory: privateRoot, codexHome: join(privateRoot, "home"),
+        providerNetworkConsent: { approvedBy: "fixture", approvalReference: "fixture" }, supplyVerifier: verifier })).toThrow();
+      await expect(launchAuthenticatedCodexCandidate(f.input)).rejects.toMatchObject({ details: { reason: "PACKAGED_SUPPLY_VERIFIER_UNISSUED" } });
+      f.adapters.assertSupplyVerifier = candidate => { if (candidate !== verifier) throw new Error("unexpected controlled verifier"); };
+      const candidate = await launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters);
+      expect(f.adapters.verifySupply).not.toHaveBeenCalled(); expect(f.adapters.revalidateSupply).not.toHaveBeenCalled(); expect(f.spawnSupplier).toHaveBeenCalledOnce();
+      await candidate.cleanup();
+
+      await writeFile(join(privateRoot, "supplier", "unlisted.dat"), "extra", { mode: 0o600 });
+      await expect(launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+      expect(f.spawnSupplier).toHaveBeenCalledOnce(); await rm(join(privateRoot, "supplier", "unlisted.dat"));
+      await writeFile(join(privateRoot, "supplier", "runtime.dat"), Buffer.from("changed-data!"), { mode: 0o700 });
+      await expect(launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+      expect(f.spawnSupplier).toHaveBeenCalledOnce();
+      await writeFile(join(privateRoot, "supplier", "runtime.dat"), helperBytes, { mode: 0o700 }); await chmod(join(privateRoot, "supplier", "runtime.dat"), 0o744);
+      await expect(launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+      expect(f.spawnSupplier).toHaveBeenCalledOnce();
+      await chmod(join(privateRoot, "supplier", "runtime.dat"), 0o700); await chmod(join(privateRoot, "supplier", "nested", "config.dat"), 0o400);
+      await expect(launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+      expect(f.spawnSupplier).toHaveBeenCalledOnce();
+      await chmod(join(privateRoot, "supplier", "nested", "config.dat"), 0o600); await chmod(join(privateRoot, "supplier"), 0o755);
+      await expect(launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+      expect(f.spawnSupplier).toHaveBeenCalledOnce();
+    } finally { await rm(root, { recursive: true, force: true }); }
+  });
+
   it("keeps semantic invocation identity stable while enforcing each fresh compiled path topology", async () => {
     const root = await realpath(await mkdtemp(join(await realpath(tmpdir()), "chirality-compiled-paths-")));
     try {
@@ -89,6 +149,16 @@ describe("authenticated Codex candidate transport", () => {
     expect(f.kernelLease.close).not.toHaveBeenCalled();
   });
 
+  it("spawns native-11 with the compiler-owned skill selector before every config override", async () => {
+    const f = fixture();
+    f.input.nativePolicyIdentityVersion = 11;
+    Object.assign(f.toolPolicy, { nativeSkills: "disabled", appServerArguments: ["app-server", "--chirality-disable-native-skills", ...f.toolPolicy.args] });
+    const candidate = await launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters);
+    expect(f.spawnSupplier.mock.calls[0]?.[1]).toEqual(["-f", "/private/supplier/outer.sb", "/private/supplier/codex", "app-server", "--chirality-disable-native-skills", "-c", "cli_auth_credentials_store=\"keyring\""]);
+    expect(candidate.expectedPolicy.nativeSkills).toBe("disabled");
+    await candidate.cleanup();
+  });
+
   it("rejects a structural v2 candidate before compilation when existing instance admission is absent", async () => {
     const f = fixture(), outerPolicyDigest = "c".repeat(64);
     const runtimeReadRoot = { path: "/runtime/instruction-root", readPaths: ["/runtime/instruction-root"], contentDigest: "e".repeat(64), artifactInventory: {
@@ -105,6 +175,10 @@ describe("authenticated Codex candidate transport", () => {
     f.input = { ...f.input, trustedRuntimeReadRoots: [runtimeReadRoot], policyInstanceV2, expectedEffectiveConfigDigestV2 };
     f.adapters.prepareOuterV2 = vi.fn(async () => ({ ...f.outer, outerPolicyDigest }) as never);
     f.adapters.prepareToolPolicyV2 = vi.fn(async () => ({ ...f.toolPolicy, policyInstance: policyInstanceV2, policyInstanceDigest: "2".repeat(64) }) as never);
+    await expect(launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters)).rejects.toMatchObject({ details: { reason: "INSTANCE_ADMISSION_INVALID" } });
+    f.input = { ...f.input, instanceInputV2: {} as never };
+    await expect(launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters)).rejects.toMatchObject({ details: { reason: "INSTANCE_ADMISSION_INVALID" } });
+    f.input = { ...f.input, instanceAdmissionV2: {} as never, instancePreparationV2: {} as never };
     await expect(launchControlledAuthenticatedCodexCandidateForTests(f.input, f.adapters)).rejects.toMatchObject({ details: { reason: "INSTANCE_ADMISSION_INVALID" } });
     expect(f.spawnSupplier).not.toHaveBeenCalled();
     expect(f.adapters.prepareOuterV2).not.toHaveBeenCalled();

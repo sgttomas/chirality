@@ -4,8 +4,10 @@ import { isAbsolute, relative, resolve, sep } from "node:path";
 import {
   DescendantTracker,
   recordKey,
+  runtimeStageCAppServerArguments,
   revalidateExactSupply,
   verifyExactSupply,
+  type ExactSupplyVerifier,
   type RuntimeAdmissionLease
 } from "@chirality/runtime-core";
 import { RuntimeError } from "@chirality/runtime-contracts";
@@ -19,16 +21,18 @@ import {
   type TrustedRuntimeReadRootBindingV2,
   type TrustedRuntimeReadRootBinding
 } from "./codex-containment.js";
-import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2, type CodexPolicyInstanceV2 } from "./runtime-conformance-v2-admission.js";
+import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, revalidateRuntimeWorkerInstancePreparationV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2, type RuntimeWorkerInstancePreparationV2, type CodexPolicyInstanceV2 } from "./runtime-conformance-v2-admission.js";
 import type { CodexAuthorityInitialize, CodexSessionTransport } from "./codex-session.js";
 import { HostedIdentityBindingStore } from "./hosted-identity-binding.js";
 import { AUTHORITY_CONTRACT } from "./supplier-authority-controller.js";
+import { assertIssuedPackagedSupplyVerifierV2 } from "./hosted-packaged-release-state.js";
 
 export interface AuthenticatedCodexCandidateInput {
   canonicalRoot: string;
   privateDirectory: string;
   codexHome: string;
   executablePath: string;
+  supplyVerifier?: ExactSupplyVerifier;
   nativeAddonPath: string;
   providerNetworkConsent: { approvedBy: string; approvalReference: string };
   commandNetworkPosture: "off" | "ask-per-destination" | "on";
@@ -44,6 +48,8 @@ export interface AuthenticatedCodexCandidateInput {
   expectedEffectiveConfigDigestV2?: string;
   instanceInputV2?: RuntimeInstanceAdmissionInputV2;
   instanceAdmissionV2?: RuntimeInstanceAdmissionV2;
+  instancePreparationV2?: RuntimeWorkerInstancePreparationV2;
+  nativePolicyIdentityVersion?: 10 | 11;
   /** Borrowed from the Runtime authority owner; candidate cleanup never closes it. */
   kernelLease: RuntimeAdmissionLease;
 }
@@ -62,6 +68,7 @@ export interface AuthenticatedCodexCandidate {
     expectedPermissions: Awaited<ReturnType<typeof prepareCodexNativePolicy>>["expectedPermissions"];
     nativeRoleConfiguration: Awaited<ReturnType<typeof prepareCodexNativePolicy>>["nativeRoleConfiguration"];
     policyInstanceV2?: CodexPolicyInstanceV2;
+    nativeSkills?: "disabled";
   };
   expectedToolRuntime: {
     codexSelfExecutablePath: string;
@@ -74,6 +81,8 @@ export interface AuthenticatedCodexCandidate {
 }
 
 export interface ControlledAuthenticatedCodexCandidateAdapters {
+  /** Test-only authority discriminator. Production always uses the packaged-basis issuance registry. */
+  assertSupplyVerifier?: (verifier: ExactSupplyVerifier) => void;
   verifySupply(input: { executablePath: string }): Promise<Awaited<ReturnType<typeof verifyExactSupply>>>;
   revalidateSupply(supply: Awaited<ReturnType<typeof verifyExactSupply>>): Promise<unknown>;
   prepareOuter: typeof prepareCodexTrustedSupplierContainment;
@@ -91,6 +100,7 @@ export interface ControlledAuthenticatedCodexCandidateAdapters {
 }
 
 const productionAdapters: ControlledAuthenticatedCodexCandidateAdapters = Object.freeze({
+  assertSupplyVerifier: assertIssuedPackagedSupplyVerifierV2,
   verifySupply: verifyExactSupply,
   revalidateSupply: revalidateExactSupply,
   prepareOuter: prepareCodexTrustedSupplierContainment,
@@ -107,9 +117,9 @@ const productionAdapters: ControlledAuthenticatedCodexCandidateAdapters = Object
   createTracker: (pid: number) => new DescendantTracker({ leaderPid: pid, maxDurationMs: 3_600_000 })
 });
 
-export function codexEffectiveConfigDigestV2(input: { executablePath: string; cwd: string; environment: { HOME: string; CODEX_HOME: string; PATH: string; LANG: string }; configOverrides: readonly string[] }): string {
+export function codexEffectiveConfigDigestV2(input: { executablePath: string; cwd: string; environment: { HOME: string; CODEX_HOME: string; PATH: string; LANG: string }; configOverrides: readonly string[]; nativePolicyIdentityVersion?: 10 | 11 }): string {
   return recordKey({ schema: "chirality-codex-effective-config/v2", executablePath: input.executablePath, cwd: input.cwd, environment: input.environment,
-    appServerArgv: ["app-server", ...input.configOverrides.flatMap(value => ["-c", value])] });
+    appServerArgv: input.nativePolicyIdentityVersion===11?runtimeStageCAppServerArguments(input.configOverrides):["app-server", ...input.configOverrides.flatMap(value => ["-c", value])] });
 }
 export async function assertOwnedCompiledPathV2(parent: string, path: string, kind: "directory" | "file"): Promise<void> {
   const rel = relative(parent, path), info = await lstat(path);
@@ -202,10 +212,20 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
   })();
   try {
     if (input.policyInstanceV2) {
-      if (!input.instanceInputV2 || !input.instanceAdmissionV2) throw unavailable("INSTANCE_ADMISSION_INVALID");
-      await revalidateRuntimeInstanceAdmissionV2(input.instanceInputV2, input.instanceAdmissionV2);
+      const hasPreparation = input.instancePreparationV2 !== undefined;
+      const hasInstanceInput = input.instanceInputV2 !== undefined;
+      const hasInstanceAdmission = input.instanceAdmissionV2 !== undefined;
+      const hasCompleteInstance = hasInstanceInput && hasInstanceAdmission;
+      if (hasInstanceInput !== hasInstanceAdmission || hasPreparation === hasCompleteInstance) throw unavailable("INSTANCE_ADMISSION_INVALID");
+      if (input.instancePreparationV2) await revalidateRuntimeWorkerInstancePreparationV2(input.instancePreparationV2);
+      else {
+        await revalidateRuntimeInstanceAdmissionV2(input.instanceInputV2!, input.instanceAdmissionV2!);
+      }
     }
-    const supply = await adapters.verifySupply({ executablePath: input.executablePath });
+    if (input.supplyVerifier) (adapters.assertSupplyVerifier ?? assertIssuedPackagedSupplyVerifierV2)(input.supplyVerifier);
+    const supply = input.supplyVerifier
+      ? await input.supplyVerifier.verify({ executablePath: input.executablePath, custody: "private-staged" })
+      : await adapters.verifySupply({ executablePath: input.executablePath });
     if (supply.version === "0.0.0") throw unavailable("DEVELOPMENT_SUPPLIER_BUILD");
     await adapters.assertNoPlaintext(input.codexHome);
     const outerInput = {
@@ -238,6 +258,7 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
     const toolPolicy = input.policyInstanceV2
       ? await (adapters.prepareToolPolicyV2 ?? (() => Promise.reject(unavailable("V2_NATIVE_COMPILER_UNAVAILABLE"))))({
           ...commonPolicy, executablePath: input.executablePath, nativeAddonPath: input.nativeAddonPath,
+          nativePolicyIdentityVersion: input.nativePolicyIdentityVersion,
           trustedRuntimeReadRoots: input.policyInstanceV2.trustedRuntimeReadRoots as readonly TrustedRuntimeReadRootBindingV2[],
           toolRuntime: input.policyInstanceV2.toolRuntime
         })
@@ -272,12 +293,12 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
       v4Descriptor: { capability: "account.identity-snapshot", contract: "chirality-supplier-account-identity/1", major: 1, minor: 0, method: "account/identitySnapshot" }
     };
     const launchArguments = await outer.launchArguments(supply.executablePath);
-    await adapters.revalidateSupply(supply);
+    if (input.supplyVerifier) await input.supplyVerifier.revalidate(supply); else await adapters.revalidateSupply(supply as Awaited<ReturnType<typeof verifyExactSupply>>);
     await adapters.assertNoPlaintext(input.codexHome);
     const environment = outer.environment;
     if (typeof environment.HOME !== "string" || typeof environment.CODEX_HOME !== "string" || typeof environment.TMPDIR !== "string" || typeof environment.PATH !== "string" || typeof environment.LANG !== "string") throw unavailable("SUPPLIER_ENVIRONMENT_INVALID");
     const effectiveConfigDigestV2 = input.policyInstanceV2 ? codexEffectiveConfigDigestV2({ executablePath: supply.executablePath, cwd: input.canonicalRoot,
-      environment: { HOME: environment.HOME, CODEX_HOME: environment.CODEX_HOME, PATH: environment.PATH, LANG: environment.LANG }, configOverrides: toolPolicy.configOverrides }) : undefined;
+      environment: { HOME: environment.HOME, CODEX_HOME: environment.CODEX_HOME, PATH: environment.PATH, LANG: environment.LANG }, configOverrides: toolPolicy.configOverrides, nativePolicyIdentityVersion: input.nativePolicyIdentityVersion }) : undefined;
     if (input.policyInstanceV2 && effectiveConfigDigestV2 !== input.expectedEffectiveConfigDigestV2) throw unavailable("EFFECTIVE_CONFIG_BINDING_MISMATCH");
     if (input.policyInstanceV2) {
       const assertPath = adapters.assertCompiledPathV2 ?? assertOwnedCompiledPathV2;
@@ -286,21 +307,30 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
       await assertPath(input.canonicalRoot, (toolPolicy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).scratchDirectory, "directory");
     }
     const compilerArgs = toolPolicy.configOverrides.flatMap(value => ["-c", value]);
+    const stageCPolicy = toolPolicy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>> & { nativeSkills?: "disabled"; appServerArguments?: readonly string[] };
+    const appServerArguments = input.nativePolicyIdentityVersion === 11
+      ? stageCPolicy.appServerArguments
+      : ["app-server", ...(input.policyInstanceV2 ? compilerArgs : toolPolicy.args)];
+    if (input.nativePolicyIdentityVersion === 11 && (stageCPolicy.nativeSkills !== "disabled"
+      || JSON.stringify(appServerArguments) !== JSON.stringify(runtimeStageCAppServerArguments(toolPolicy.configOverrides)))) throw unavailable("COMPILED_INVOCATION_MISMATCH");
     if (input.policyInstanceV2) {
       if (JSON.stringify(launchArguments) !== JSON.stringify(["-f", outer.sandboxProfilePath, supply.executablePath])
         || JSON.stringify(toolPolicy.args) !== JSON.stringify(compilerArgs)) throw unavailable("COMPILED_INVOCATION_MISMATCH");
-      const expected = input.instanceInputV2!;
+      const expected = input.instanceInputV2 ?? input.instancePreparationV2?.input;
+      if (!expected) throw unavailable("INSTANCE_ADMISSION_INVALID");
       if (outer.outerPolicyDigest !== expected.outerPolicyDigest || toolPolicy.policyDigest !== expected.nativePolicyDigest
         || effectiveConfigDigestV2 !== expected.effectiveConfigDigest || recordKey(compiledPolicyV2) !== recordKey(expected.policy)) throw unavailable("COMPILED_INSTANCE_MISMATCH");
-      await revalidateRuntimeInstanceAdmissionV2(expected, input.instanceAdmissionV2!);
+      if (input.instancePreparationV2) await revalidateRuntimeWorkerInstancePreparationV2(input.instancePreparationV2);
+      else await revalidateRuntimeInstanceAdmissionV2(input.instanceInputV2!, input.instanceAdmissionV2!);
       if (JSON.stringify(await outer.launchArguments(supply.executablePath)) !== JSON.stringify(launchArguments)) throw unavailable("COMPILED_INVOCATION_MISMATCH");
       await (toolPolicy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).revalidateScratch();
-      await revalidateHostedAccountAuthorityV2(expected.hostAuthority, { purpose: expected.purposeRelease.purpose, projectId: expected.projectId, manifestHash: expected.manifestHash, canonicalRoot: expected.canonicalRoot, account: expected.account, consentDigest: expected.consent.digest });
+      if (input.instancePreparationV2) await revalidateRuntimeWorkerInstancePreparationV2(input.instancePreparationV2);
+      else await revalidateHostedAccountAuthorityV2(input.instanceInputV2!.hostAuthority, { purpose: input.instanceInputV2!.purposeRelease.purpose, projectId: input.instanceInputV2!.projectId, manifestHash: input.instanceInputV2!.manifestHash, canonicalRoot: input.instanceInputV2!.canonicalRoot, account: input.instanceInputV2!.account, consentDigest: input.instanceInputV2!.consent.digest });
     }
     if (!input.kernelLease.held) throw unavailable("KERNEL_LEASE_UNAVAILABLE");
     const spawned = native.value.spawnGroupedSupplier(
       "/usr/bin/sandbox-exec",
-      [...launchArguments, "app-server", ...(input.policyInstanceV2 ? compilerArgs : toolPolicy.args)],
+      [...launchArguments, ...appServerArguments!],
       authoritySecret,
       { cwd: input.canonicalRoot, environment: { HOME: environment.HOME, CODEX_HOME: environment.CODEX_HOME, TMPDIR: environment.TMPDIR, PATH: environment.PATH, LANG: environment.LANG }, processGroup: true }
     );
@@ -320,6 +350,7 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
       supplierGeneration,
       privateBindingStore,
       expectedPolicy: Object.freeze({ permissionProfile: toolPolicy.permissionProfile, policyDigest: toolPolicy.policyDigest, expectedPermissions: toolPolicy.expectedPermissions, nativeRoleConfiguration: toolPolicy.nativeRoleConfiguration,
+        ...(input.nativePolicyIdentityVersion===11?{nativeSkills:"disabled" as const}:{}),
         ...(compiledPolicyV2 ? { policyInstanceV2: structuredClone(compiledPolicyV2) } : {}) }),
       expectedToolRuntime: Object.freeze({ codexSelfExecutablePath: supply.executablePath, requiresSandboxedFileSystem: true, requiresSandboxedFileStreaming: true }),
       expectedOuterPolicyDigest: outer.outerPolicyDigest,

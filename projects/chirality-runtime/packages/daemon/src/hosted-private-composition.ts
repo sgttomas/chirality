@@ -1,17 +1,19 @@
 import { codexLoginConfigOverridesV2 } from "./codex-containment.js";
 import { constants } from "node:fs";
-import { lstat, open, realpath, unlink } from "node:fs/promises";
+import { lstat, open, realpath, rmdir, unlink } from "node:fs/promises";
 import { isAbsolute, join, relative, resolve, sep } from "node:path";
 import {
   CHIRALITY_ROLE_NAMES,
   RuntimeError,
   validateHostedManagedAuth,
   type HostedManagedAuth,
+  type NativePlanAdapterAdmission,
   type NativePlanAdapterQualification,
   type RuntimeCompatibilityIdentity
 } from "@chirality/runtime-contracts";
 import {
   ApprovalStore,
+  AuthRegistry,
   DelegatedRuntime,
   HostedConsentStore,
   WorkerRetirementCoordinator,
@@ -22,6 +24,7 @@ import {
   revalidateExactSupply,
   syncDirectory,
   verifyExactSupply,
+  type ExactSupplyVerifier,
   type RuntimeAdmissionLease,
   type RuntimeConformanceConfiguration
 } from "@chirality/runtime-core";
@@ -36,7 +39,9 @@ import { HostedIdentityBindingStore } from "./hosted-identity-binding.js";
 import type { HostedBootstrapPrivateBindings, TrustedHostedLoginCeremony, TrustedHostedPrivateAdmission } from "./hosted-bootstrap.js";
 import {
   hostAuthoritySubjectBindingDigestV2,
+  issueHostedAccountAuthorityV2FromP2,
   issueRuntimeInstanceAdmissionV2,
+  prepareRuntimeWorkerInstanceV2FromP2,
   revalidateRuntimeInstanceAdmissionV2,
   revalidateHostedAccountAuthorityV2,
   verifyRuntimePurposeReleaseV2,
@@ -45,7 +50,9 @@ import {
   type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2, type RuntimePurposeReleaseAdmissionV2,
   type RuntimePackagedPolicyBasisV2,
 } from "./runtime-conformance-v2-admission.js";
-import { revalidateIssuedPackagedReleaseBasisV2, type HostedPackagedReleaseBasisV2 } from "./hosted-packaged-release-state.js";
+import { assertIssuedPackagedSupplyVerifierV2, issuedPackagedSupplyVerifierV2, revalidateIssuedPackagedReleaseBasisV2, type HostedPackagedReleaseBasisV2 } from "./hosted-packaged-release-state.js";
+import { createVerifiedHostAccountAuthority } from "./host-account-release.js";
+import type { HostAccountAuthority } from "./host-account-authority.js";
 
 const HEX = /^[a-f0-9]{64}$/;
 const ID = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
@@ -97,6 +104,8 @@ export interface HostedPrivateCompositionOptions {
   releaseV2?: {
     basis: Readonly<HostedPackagedReleaseBasisV2>;
   };
+  /** Packaged main executable/resources identity. It is never accepted from a public request. */
+  hostAccount?: { executablePath: string; resourcesPath: string };
 }
 
 interface PolicyResult {
@@ -105,9 +114,11 @@ interface PolicyResult {
 }
 
 export interface ControlledHostedPrivateCompositionAdapters {
+  /** Controlled tests may supply an actual lifecycle without invoking product signing tools. */
+  createAccountHost?(auth: AuthRegistry): Promise<HostAccountAuthority>;
   revalidateReleaseBasis?(basis: Readonly<HostedPackagedReleaseBasisV2>): Promise<void>;
   acquireLease(runtimeDirectory: string, nativeAddonPath: string): Promise<RuntimeAdmissionLease>;
-  stageSupplier(sourcePath: string, privateDirectory: string): Promise<string>;
+  stageSupplier(sourcePath: string, privateDirectory: string, supplyVerifier?: ExactSupplyVerifier): Promise<string>;
   prepareNativeRoles(instructionRoot: string, privateDirectory: string): Promise<{ digest: string; configOverrides: readonly string[] }>;
   bindRuntimeReadRoot(path: string, inventory: RuntimeConformanceConfiguration["artifactInventory"]): Promise<TrustedRuntimeReadRootBinding>;
   validateLoginStartup(options: Omit<ConstructorParameters<typeof CodexLogin>[0], "timeoutMs" | "startupAdmission">): Promise<CodexLoginStartupAdmission>;
@@ -135,6 +146,16 @@ async function assertStagedFile(path: string): Promise<void> {
   if (!info.isFile() || info.isSymbolicLink() || info.uid !== ownerId() || (info.mode & 0o777) !== 0o700 || info.nlink !== 1
     || await realpath(path) !== path) throw unavailable("STAGED_SUPPLIER_CUSTODY_UNSAFE");
 }
+async function assertStagedClosureFile(path: string, executable: boolean): Promise<void> {
+  const info = await lstat(path);
+  if (!info.isFile() || info.isSymbolicLink() || info.uid !== ownerId() || (info.mode & 0o777) !== (executable ? 0o700 : 0o600) || info.nlink !== 1
+    || await realpath(path) !== path) throw unavailable("STAGED_SUPPLIER_CUSTODY_UNSAFE");
+}
+async function assertStagedClosureDirectory(path: string): Promise<void> {
+  const info = await lstat(path);
+  if (!info.isDirectory() || info.isSymbolicLink() || info.uid !== ownerId() || (info.mode & 0o777) !== 0o700
+    || await realpath(path) !== path) throw unavailable("STAGED_SUPPLIER_CUSTODY_UNSAFE");
+}
 async function assertPackagedSourceFile(path: string): Promise<void> {
   const info = await lstat(path);
   if (!info.isFile() || info.isSymbolicLink() || info.uid !== ownerId() || info.nlink !== 1 || (info.mode & 0o022) !== 0 || (info.mode & 0o100) === 0
@@ -142,10 +163,73 @@ async function assertPackagedSourceFile(path: string): Promise<void> {
 }
 
 /** Create-only staging. Existing bytes are reusable only after full exact-supply verification. */
-export async function stageExactSupplierExecutable(sourcePath: string, privateRoot: string): Promise<string> {
+async function stageExactSupplierExecutableInternal(sourcePath: string, privateRoot: string, supplyVerifier: ExactSupplyVerifier | undefined, requireOperationalIssuance: boolean): Promise<string> {
   if (!canonical(sourcePath) || !canonical(privateRoot)) throw unavailable("SUPPLIER_STAGING_PATH_INVALID");
   const supplierDirectory = join(privateRoot, "supplier"), destination = join(supplierDirectory, "codex");
   if (!contained(privateRoot, destination)) throw unavailable("SUPPLIER_STAGING_PATH_INVALID");
+  if (supplyVerifier && requireOperationalIssuance) assertIssuedPackagedSupplyVerifierV2(supplyVerifier);
+  if (supplyVerifier) {
+    const createdPaths: string[] = [];
+    const createdDirectories: string[] = [];
+    const ensureTrackedDirectory = async (path: string) => {
+      let missing = false;
+      try { await lstat(path); } catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; missing = true; }
+      await privateDirectory(path); if (missing) createdDirectories.push(path);
+    };
+    try {
+      await ensureTrackedDirectory(supplierDirectory);
+      await assertPackagedSourceFile(sourcePath);
+      const source = await supplyVerifier.verify({ executablePath: sourcePath, custody: "packaged" }), sourceRoot = resolve(sourcePath, "..");
+      if (source.evidenceClass !== "custom-supply-profile-verified") throw unavailable("CUSTOM_SUPPLIER_DESCRIPTOR_INVALID");
+      try { await lstat(destination); }
+      catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+        for (const entry of supplyVerifier.closureEntries) {
+          const relativePath = entry.relativePath === "supplier" ? "" : entry.relativePath.slice("supplier/".length), from = relativePath ? resolve(sourceRoot, relativePath) : sourceRoot, to = relativePath ? resolve(supplierDirectory, relativePath) : supplierDirectory;
+          if ((relativePath && !contained(supplierDirectory, to)) || (!relativePath && entry.type !== "directory")) throw unavailable("SUPPLIER_STAGING_PATH_INVALID");
+          if (entry.type === "directory") { await ensureTrackedDirectory(to); continue; }
+          await ensureTrackedDirectory(resolve(to, ".."));
+          const input = await open(from, constants.O_RDONLY | constants.O_NOFOLLOW);
+          let output: Awaited<ReturnType<typeof open>> | undefined;
+          try {
+            const expectedIdentity = source.closure.find(value => value.relativePath === entry.relativePath)?.identity;
+            const before = await input.stat({ bigint: true });
+            if (!expectedIdentity || `${before.dev}` !== expectedIdentity.dev || `${before.ino}` !== expectedIdentity.ino || `${before.size}` !== expectedIdentity.size || `${before.mtimeNs}` !== expectedIdentity.mtimeNs || `${before.ctimeNs}` !== expectedIdentity.ctimeNs) throw unavailable("PACKAGED_SUPPLIER_CHANGED");
+            output = await open(to, constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW, entry.mode === "executable" ? 0o700 : 0o600);
+            createdPaths.push(to);
+            const buffer = Buffer.alloc(64 * 1024); let total = 0;
+            for (;;) {
+              const { bytesRead } = await input.read(buffer, 0, Math.min(buffer.length, entry.size - total + 1), null); if (!bytesRead) break;
+              total += bytesRead; if (total > entry.size) throw unavailable("PACKAGED_SUPPLIER_CHANGED");
+              let written = 0; while (written < bytesRead) written += (await output.write(buffer, written, bytesRead - written)).bytesWritten;
+            }
+            const after = await input.stat({ bigint: true }), current = await lstat(from, { bigint: true });
+            if (total !== entry.size || `${after.dev}` !== expectedIdentity.dev || `${after.ino}` !== expectedIdentity.ino || `${after.size}` !== expectedIdentity.size
+              || after.dev !== current.dev || after.ino !== current.ino || after.size !== current.size || after.mtimeNs !== current.mtimeNs || after.ctimeNs !== current.ctimeNs) throw unavailable("PACKAGED_SUPPLIER_CHANGED");
+            await output.sync();
+          } finally { await input.close(); await output?.close(); }
+        }
+        for (const path of [...new Set(supplyVerifier.closureEntries.filter(entry => entry.type === "directory").map(entry => entry.relativePath === "supplier" ? supplierDirectory : resolve(supplierDirectory, entry.relativePath.slice("supplier/".length))))].reverse()) await syncDirectory(path);
+      }
+      for (const entry of supplyVerifier.closureEntries) {
+        const relativePath = entry.relativePath === "supplier" ? "" : entry.relativePath.slice("supplier/".length), path = relativePath ? resolve(supplierDirectory, relativePath) : supplierDirectory;
+        if (relativePath && !contained(supplierDirectory, path)) throw unavailable("SUPPLIER_STAGING_PATH_INVALID");
+        if (entry.type === "directory") await assertStagedClosureDirectory(path); else await assertStagedClosureFile(path, entry.mode === "executable");
+      }
+      const staged = await supplyVerifier.verify({ executablePath: destination, custody: "private-staged" });
+      await assertPackagedSourceFile(sourcePath); await supplyVerifier.revalidate(source); await supplyVerifier.revalidate(staged);
+      return destination;
+    } catch (error) {
+      const cleanupErrors: unknown[] = [];
+      for (const path of createdPaths.reverse()) {
+        try { await unlink(path); await syncDirectory(resolve(path, "..")); } catch (cleanupError) { cleanupErrors.push(cleanupError); }
+      }
+      for (const path of createdDirectories.reverse()) {
+        try { await rmdir(path); await syncDirectory(resolve(path, "..")); } catch (cleanupError) { cleanupErrors.push(cleanupError); }
+      }
+      if (cleanupErrors.length) throw new AggregateError([error, ...cleanupErrors], "Supplier staging failed and cleanup was incomplete");
+      throw error instanceof RuntimeError ? error : unavailable("SUPPLIER_STAGING_FAILED", error);
+    }
+  }
   await privateDirectory(supplierDirectory);
   await assertPackagedSourceFile(sourcePath);
   const source = await verifyExactSupply({ executablePath: sourcePath });
@@ -181,6 +265,15 @@ export async function stageExactSupplierExecutable(sourcePath: string, privateRo
     if (created) await unlink(destination).catch(() => {});
     throw error instanceof RuntimeError ? error : unavailable("SUPPLIER_STAGING_FAILED", error);
   } finally { await input?.close().catch(() => {}); await output?.close().catch(() => {}); }
+}
+
+export function stageExactSupplierExecutable(sourcePath: string, privateRoot: string, supplyVerifier?: ExactSupplyVerifier): Promise<string> {
+  return stageExactSupplierExecutableInternal(sourcePath, privateRoot, supplyVerifier, true);
+}
+
+/** Controlled-I/O seam. It verifies and stages exact closure bytes but never issues the verifier for production use. */
+export function stageExactSupplierExecutableControlledForTests(sourcePath: string, privateRoot: string, supplyVerifier: ExactSupplyVerifier): Promise<string> {
+  return stageExactSupplierExecutableInternal(sourcePath, privateRoot, supplyVerifier, false);
 }
 
 export async function productionLogout(factory: CodexCandidateLauncherFactory, expectedAccountDigest: string, runtimeV2?: NonNullable<HostedCodexSupervisorOptions["runtimeV2"]>): Promise<void> {
@@ -280,6 +373,7 @@ export function validateHostedPrivateCompositionOptions(value: unknown): Readonl
   const optional = ["model", "conformance", "loginPurposeRelease", "configDigest", "consentVersion", "commandNetworkConsent", "nativePlanQualification", "requestTimeoutMs", "turnTimeoutMs", "maxWorkers"].filter(key => Object.prototype.hasOwnProperty.call(options ?? {}, key));
   if (Object.prototype.hasOwnProperty.call(options ?? {}, "managedAuth")) optional.push("managedAuth");
   if (Object.prototype.hasOwnProperty.call(options ?? {}, "releaseV2")) optional.push("releaseV2");
+  if (Object.prototype.hasOwnProperty.call(options ?? {}, "hostAccount")) optional.push("hostAccount");
   if (!exactKeys(options, [...required, ...optional])) throw unavailable("HOST_CONFIGURATION_INVALID");
   if (!options || !canonical(options.runtimeDirectory) || !canonical(options.supplierExecutablePath) || !canonical(options.nativeAddonPath) || !canonical(options.instructionRoot)
     || (options.model !== undefined && (!options.model.trim() || options.model.length > 128))
@@ -287,9 +381,12 @@ export function validateHostedPrivateCompositionOptions(value: unknown): Readonl
     || !Array.isArray(options.protectedPaths) || options.protectedPaths.some(path => !canonical(path))
     || !Array.isArray(options.immutableReadRoots) || options.immutableReadRoots.length === 0 || options.immutableReadRoots.some(path => !canonical(path))
     || !/^root-runtime-[1-9][0-9]*$/.test(options.compatibility?.compatibilityIdentity ?? "") || !HEX.test(options.compatibility?.contractBasisSha256 ?? "")) throw unavailable("HOST_CONFIGURATION_INVALID");
-  if (options.releaseV2 !== undefined && (options.model !== undefined || options.managedAuth !== undefined || options.conformance !== undefined || options.loginPurposeRelease !== undefined || options.configDigest !== undefined || options.consentVersion !== undefined || options.commandNetworkConsent !== undefined || options.commandNetworkPosture !== "off"
+  if (options.releaseV2 !== undefined && (options.model !== undefined || options.managedAuth !== undefined || options.conformance !== undefined || options.loginPurposeRelease !== undefined || options.configDigest !== undefined || options.consentVersion !== undefined || options.commandNetworkConsent !== undefined || options.nativePlanQualification !== undefined || options.commandNetworkPosture !== "off"
     || !exactKeys(options.releaseV2, ["basis"]) || options.releaseV2.basis.schema !== "chirality-hosted-packaged-release-basis/v2"
     || ![options.runtimeDirectory, join(options.runtimeDirectory, "release-authority"), join(options.runtimeDirectory, "release-basis")].every(path => options.protectedPaths.includes(path)))) throw unavailable("HOST_CONFIGURATION_INVALID");
+  if (options.hostAccount !== undefined && (options.releaseV2 === undefined || !exactKeys(options.hostAccount, ["executablePath", "resourcesPath"])
+    || !canonical(options.hostAccount.executablePath) || !canonical(options.hostAccount.resourcesPath)
+    || options.hostAccount.resourcesPath !== options.releaseV2.basis.verified.resourcesRoot)) throw unavailable("HOST_CONFIGURATION_INVALID");
   if (options.releaseV2 === undefined && (!options.model || !options.managedAuth || !options.consentVersion || !options.conformance?.artifactInventory || !options.loginPurposeRelease?.artifactInventory || !HEX.test(options.configDigest ?? "")
     || !exactKeys(options.commandNetworkConsent, ["approvedBy", "approvedAt", "explicitUserAct"]) || !options.commandNetworkConsent!.approvedBy.trim()
     || !Number.isFinite(Date.parse(options.commandNetworkConsent!.approvedAt)) || options.commandNetworkConsent!.explicitUserAct !== true)) throw unavailable("HOST_CONFIGURATION_INVALID");
@@ -303,7 +400,8 @@ export function validateHostedPrivateCompositionOptions(value: unknown): Readonl
 async function compose(options: HostedPrivateCompositionOptions, adapters: ControlledHostedPrivateCompositionAdapters): Promise<HostedBootstrapPrivateBindings> {
   const trusted = validateHostedPrivateCompositionOptions(options);
   if (trusted.releaseV2) await (adapters.revalidateReleaseBasis ?? revalidateIssuedPackagedReleaseBasisV2)(trusted.releaseV2.basis);
-  const adapterNames = ["acquireLease", "stageSupplier", "prepareNativeRoles", "bindRuntimeReadRoot", "validateLoginStartup", "createLogin", "preparePolicy", "createLauncherFactory", "admitHosted", "logout", "openBindingStore", ...(Object.prototype.hasOwnProperty.call(adapters, "hostAuthority") ? ["hostAuthority"] : []), ...(Object.prototype.hasOwnProperty.call(adapters, "revalidateReleaseBasis") ? ["revalidateReleaseBasis"] : [])];
+  const supplyVerifier = trusted.releaseV2 && adapters === productionAdapters ? await issuedPackagedSupplyVerifierV2(trusted.releaseV2.basis) : undefined;
+  const adapterNames = ["acquireLease", "stageSupplier", "prepareNativeRoles", "bindRuntimeReadRoot", "validateLoginStartup", "createLogin", "preparePolicy", "createLauncherFactory", "admitHosted", "logout", "openBindingStore", ...(Object.prototype.hasOwnProperty.call(adapters, "createAccountHost") ? ["createAccountHost"] : []), ...(Object.prototype.hasOwnProperty.call(adapters, "hostAuthority") ? ["hostAuthority"] : []), ...(Object.prototype.hasOwnProperty.call(adapters, "revalidateReleaseBasis") ? ["revalidateReleaseBasis"] : [])];
   if (!exactKeys(adapters, adapterNames)
     || Object.values(adapters).some(value => typeof value !== "function")) throw unavailable("COMPOSITION_ADAPTER_INVALID");
   const lease = await adapters.acquireLease(trusted.runtimeDirectory, trusted.nativeAddonPath);
@@ -311,6 +409,15 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
   const ceremonies = new Map<TrustedHostedLoginCeremony, CeremonyContext>();
   const admissions = new Map<TrustedHostedPrivateAdmission, AdmissionContext>();
   let closed = false, closing: Promise<void> | undefined;
+  let accountHost: HostAccountAuthority | undefined;
+  const observeHostAuthority = async (input: { purpose: "login" | "worker"; projectId: string; manifestHash: string; canonicalRoot: string; consentDigest: string; account?: RuntimeInstanceAdmissionInputV2["account"] }) => {
+    if (adapters.hostAuthority) return adapters.hostAuthority(input);
+    if (!accountHost) throw unavailable("HOST_ACCOUNT_AUTHORITY_UNAVAILABLE");
+    const account = input.purpose === "login" ? null : input.account;
+    if (input.purpose === "worker" && !account) throw unavailable("HOST_ACCOUNT_IDENTITY_UNAVAILABLE");
+    const subject = { ...input, account: account ?? null };
+    return Object.freeze({ authority: issueHostedAccountAuthorityV2FromP2(accountHost, subject), account: subject.account });
+  };
   const retire = (context: AdmissionContext): Promise<void> => context.retirement ??= (async () => {
     context.retired = true;
     const failures: unknown[] = [];
@@ -320,6 +427,19 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
     if (failures.length) throw new AggregateError(failures, "Hosted admission retirement failed; ownership retained");
   })();
   const bindings: HostedBootstrapPrivateBindings = {
+    ...(trusted.hostAccount && trusted.releaseV2 ? {
+      createAccountHost: async (auth: AuthRegistry) => {
+        if (accountHost) throw unavailable("HOST_ACCOUNT_AUTHORITY_ALREADY_CREATED");
+        accountHost = await (adapters.createAccountHost?.(auth) ?? createVerifiedHostAccountAuthority({
+          runtimeDirectory: trusted.runtimeDirectory,
+          auth,
+          executablePath: trusted.hostAccount!.executablePath,
+          resourcesPath: trusted.hostAccount!.resourcesPath,
+          basis: trusted.releaseV2!.basis
+        }));
+        return accountHost;
+      }
+    } : {}),
     async createCeremony(input) {
       if (closed || !lease.held || !ID.test(input.projectId) || (trusted.releaseV2 !== undefined && !HEX.test(input.manifestHash ?? "")) || !canonical(input.canonicalRoot) || !canonical(input.privateDirectory) || !canonical(input.codexHome)
         || !contained(input.privateDirectory, input.codexHome) || contained(input.canonicalRoot, input.privateDirectory) || contained(input.privateDirectory, input.canonicalRoot)
@@ -329,15 +449,14 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
       let v2ConsentDigest: string | undefined;
       let v2ConsentVersion: string | undefined;
       if (trusted.releaseV2) {
-        if (!adapters.hostAuthority) throw unavailable("HOST_ACCOUNT_AUTHORITY_UNAVAILABLE");
         const manifestHash = input.manifestHash!;
         v2ConsentVersion = recordKey({ schema: "chirality-hosted-consent-version/v2", projectId: input.projectId, manifestHash, provenance: input.providerNetworkConsent });
         v2ConsentDigest = recordKey({ schema: "chirality-hosted-consent/v2", projectId: input.projectId, manifestHash, version: v2ConsentVersion, provenance: input.providerNetworkConsent, authenticatedExplicitUserAct: true });
-        loginHost = await adapters.hostAuthority({ purpose: "login", projectId: input.projectId, manifestHash, canonicalRoot: input.canonicalRoot, consentDigest: v2ConsentDigest });
+        loginHost = await observeHostAuthority({ purpose: "login", projectId: input.projectId, manifestHash, canonicalRoot: input.canonicalRoot, consentDigest: v2ConsentDigest });
         if (loginHost.account !== null || loginHost.authority.subjectBindingDigest !== hostAuthoritySubjectBindingDigestV2({ purpose: "login", projectId: input.projectId, manifestHash, canonicalRoot: input.canonicalRoot, account: null, consentDigest: v2ConsentDigest })) throw unavailable("HOST_ACCOUNT_AUTHORITY_MISMATCH");
         await revalidateHostedAccountAuthorityV2(loginHost.authority, { purpose: "login", projectId: input.projectId, manifestHash, canonicalRoot: input.canonicalRoot, account: null, consentDigest: v2ConsentDigest });
       }
-      const stagedExecutable = await adapters.stageSupplier(trusted.supplierExecutablePath, input.privateDirectory);
+      const stagedExecutable = await adapters.stageSupplier(trusted.supplierExecutablePath, input.privateDirectory, supplyVerifier);
       if (!canonical(stagedExecutable) || !contained(input.privateDirectory, stagedExecutable)) throw unavailable("STAGED_SUPPLIER_PATH_INVALID");
       const nativeRoles = await adapters.prepareNativeRoles(trusted.instructionRoot, input.privateDirectory);
       const policyBasis: RuntimePackagedPolicyBasisV2 | undefined = trusted.releaseV2 ? { schema: "chirality-runtime-packaged-basis/v2", resourcesRoot: trusted.releaseV2.basis.verified.resourcesRoot,
@@ -357,7 +476,8 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
             trustedRuntimeReadRoot: { contentDigest: runtimeReadRoot.contentDigest, readPaths: runtimeReadRoot.readPaths }, loginPurposeRelease: trusted.loginPurposeRelease, consentVersion: trusted.consentVersion });
       if (!trusted.releaseV2 && trusted.configDigest !== expectedConfigDigest) throw unavailable("HOST_CONFIG_DIGEST_MISMATCH");
       const loginOptions = { executablePath: stagedExecutable, canonicalRoot: input.canonicalRoot, codexHome: input.codexHome,
-        privateDirectory: input.privateDirectory, providerNetworkConsent: { approvedBy: input.providerNetworkConsent.approvedBy, approvalReference: input.providerNetworkConsent.approvalReference }, ...(trusted.loginPurposeRelease ? { purposeRelease: trusted.loginPurposeRelease } : {}) };
+        privateDirectory: input.privateDirectory, providerNetworkConsent: { approvedBy: input.providerNetworkConsent.approvedBy, approvalReference: input.providerNetworkConsent.approvalReference },
+        ...(supplyVerifier ? { supplyVerifier } : {}), ...(trusted.loginPurposeRelease ? { purposeRelease: trusted.loginPurposeRelease } : {}) };
       let v2: CeremonyContext["v2"];
       if (trusted.releaseV2) {
         const manifestHash = input.manifestHash!;
@@ -374,7 +494,7 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
             instructionRoot: trusted.instructionRoot, nativeAddonPath: trusted.nativeAddonPath, supplierExecutablePath: stagedExecutable, attachmentRoot: join(input.canonicalRoot, ".chirality", "attachments"),
         account: null, consent: { version: v2ConsentVersion!, digest: consentDigest, authenticatedExplicitUserAct: true }, policy, outerPolicyDigest: outer.outerPolicyDigest,
             nativePolicyDigest: null, effectiveConfigDigest: codexEffectiveConfigDigestV2({ executablePath: stagedExecutable, cwd: input.canonicalRoot,
-              environment: { HOME: outer.environment.HOME, CODEX_HOME: outer.environment.CODEX_HOME, PATH: outer.environment.PATH, LANG: outer.environment.LANG }, configOverrides: codexLoginConfigOverridesV2(outer.config) }) };
+              environment: { HOME: outer.environment.HOME, CODEX_HOME: outer.environment.CODEX_HOME, PATH: outer.environment.PATH, LANG: outer.environment.LANG }, configOverrides: codexLoginConfigOverridesV2(outer.config), nativePolicyIdentityVersion: trusted.releaseV2!.basis.supportProfile.compiler.nativePolicyIdentityVersion }) };
           const instanceAdmission = await issueRuntimeInstanceAdmissionV2(instanceInput);
           Object.assign(loginOptions, { releaseV2: trusted.releaseV2.basis, instanceV2: instanceInput, instanceAdmissionV2: instanceAdmission });
           v2 = { loginRelease: purposeRelease, loginInput: instanceInput, loginAdmission: instanceAdmission, runtimeReadRoot: runtimeReadRoot as TrustedRuntimeReadRootBindingV2 };
@@ -407,55 +527,69 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
             providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference },
             commandNetworkPosture: trusted.commandNetworkPosture, protectedPaths: [...trusted.protectedPaths], readOnlyProjectPaths: [attachmentRoot], immutableReadRoots: [...trusted.immutableReadRoots],
             trustedRuntimeReadRoots: [context.v2.runtimeReadRoot], nativeRoleConfiguration: context.nativeRoles,
-            toolRuntime: { codexSelfExecutablePath: context.stagedExecutable, requiresSandboxedFileSystem: true, requiresSandboxedFileStreaming: true } })
+            toolRuntime: { codexSelfExecutablePath: context.stagedExecutable, requiresSandboxedFileSystem: true, requiresSandboxedFileStreaming: true }, nativePolicyIdentityVersion: trusted.releaseV2!.basis.supportProfile.compiler.nativePolicyIdentityVersion })
         : await adapters.preparePolicy({ purpose: "worker", canonicalRoot: context.canonicalRoot, privateDirectory: context.privateDirectory,
             codexHome: context.codexHome, providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference },
             commandNetworkPosture: trusted.commandNetworkPosture, protectedPaths: [...trusted.protectedPaths], readOnlyProjectPaths: [attachmentRoot], immutableReadRoots: [...trusted.immutableReadRoots],
             trustedRuntimeReadRoots: [context.runtimeReadRoot], nativeRoleConfiguration: context.nativeRoles });
       let launcherFactory: CodexCandidateLauncherFactory | undefined;
       let admitted: HostedCodexSupervisorAdmission | undefined;
+      let nativePlanAdmission: NativePlanAdapterAdmission | undefined = trusted.nativePlanQualification;
       try {
         let runtimeV2: HostedCodexSupervisorOptions["runtimeV2"];
+        let runtimeV2Preparation: HostedCodexSupervisorOptions["runtimeV2Preparation"];
         if (context.v2 && trusted.releaseV2) {
-          if (!adapters.hostAuthority) throw unavailable("HOST_ACCOUNT_AUTHORITY_UNAVAILABLE");
           const consentDigest = context.v2.loginInput.consent.digest;
-          const observedHost = await adapters.hostAuthority({ purpose: "worker", projectId: context.projectId, manifestHash: context.manifestHash, canonicalRoot: context.canonicalRoot, consentDigest });
-          if (!observedHost.account || observedHost.authority.subjectBindingDigest !== hostAuthoritySubjectBindingDigestV2({ purpose: "worker", projectId: context.projectId, manifestHash: context.manifestHash, canonicalRoot: context.canonicalRoot, account: observedHost.account, consentDigest })) throw unavailable("HOST_ACCOUNT_AUTHORITY_MISMATCH");
           const purposeRelease = await verifyRuntimePurposeReleaseV2(trusted.releaseV2.basis, "worker");
+          if (purposeRelease.disposition === "local-human-trial") nativePlanAdmission = Object.freeze({
+            adapterId: "codex-app-server", providerId: "openai", dispositionId: purposeRelease.ownerReference,
+            admissionSha256: purposeRelease.recordSha256, evidenceClass: "native-adapter-local-human-trial"
+          });
           const outer = await prepareCodexTrustedSupplierContainmentV2({ canonicalRoot: context.canonicalRoot, privateDirectory: context.privateDirectory, codexHome: context.codexHome,
             providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference }, trustedRuntimeReadRoots: [context.v2.runtimeReadRoot] });
           try {
-            const instanceInput: RuntimeInstanceAdmissionInputV2 = { purposeRelease, hostAuthority: observedHost.authority, projectId: context.projectId, manifestHash: context.manifestHash,
+            const preparedInput = { purposeRelease, projectId: context.projectId, manifestHash: context.manifestHash,
               canonicalRoot: context.canonicalRoot, cwd: context.canonicalRoot, privateDirectory: context.privateDirectory, codexHome: context.codexHome, brokerRoot: trusted.runtimeDirectory,
               instructionRoot: trusted.instructionRoot, nativeAddonPath: trusted.nativeAddonPath, supplierExecutablePath: context.stagedExecutable, attachmentRoot,
-              account: observedHost.account, consent: context.v2.loginInput.consent, policy: (policy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).policyInstance,
+              consent: context.v2.loginInput.consent, policy: (policy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).policyInstance,
               outerPolicyDigest: outer.outerPolicyDigest, nativePolicyDigest: policy.policyDigest, effectiveConfigDigest: codexEffectiveConfigDigestV2({ executablePath: context.stagedExecutable, cwd: context.canonicalRoot,
                 environment: { HOME: outer.environment.HOME, CODEX_HOME: outer.environment.CODEX_HOME, PATH: outer.environment.PATH, LANG: outer.environment.LANG },
-                configOverrides: (policy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).configOverrides }) };
-            const instanceAdmission = await issueRuntimeInstanceAdmissionV2(instanceInput);
-            runtimeV2 = { releaseBasis: trusted.releaseV2.basis, instanceInput, instanceAdmission };
+                configOverrides: (policy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).configOverrides, nativePolicyIdentityVersion: trusted.releaseV2!.basis.supportProfile.compiler.nativePolicyIdentityVersion }) };
+            if (adapters.hostAuthority) {
+              const observedHost = await observeHostAuthority({ purpose: "worker", projectId: context.projectId, manifestHash: context.manifestHash, canonicalRoot: context.canonicalRoot, consentDigest });
+              if (!observedHost.account || observedHost.authority.subjectBindingDigest !== hostAuthoritySubjectBindingDigestV2({ purpose: "worker", projectId: context.projectId, manifestHash: context.manifestHash, canonicalRoot: context.canonicalRoot, account: observedHost.account, consentDigest })) throw unavailable("HOST_ACCOUNT_AUTHORITY_MISMATCH");
+              const instanceInput: RuntimeInstanceAdmissionInputV2 = { ...preparedInput, hostAuthority: observedHost.authority, account: observedHost.account };
+              runtimeV2 = { releaseBasis: trusted.releaseV2.basis, instanceInput, instanceAdmission: await issueRuntimeInstanceAdmissionV2(instanceInput) };
+            } else {
+              if (!accountHost) throw unavailable("HOST_ACCOUNT_AUTHORITY_UNAVAILABLE");
+              runtimeV2Preparation = await prepareRuntimeWorkerInstanceV2FromP2(accountHost, trusted.releaseV2.basis, preparedInput);
+            }
           } finally { await outer.cleanup(); }
         }
         launcherFactory = adapters.createLauncherFactory({ bindings: { canonicalRoot: context.canonicalRoot, privateDirectory: context.privateDirectory,
           codexHome: context.codexHome, executablePath: context.stagedExecutable, nativeAddonPath: trusted.nativeAddonPath, model: selected.model,
+          ...(supplyVerifier ? { supplyVerifier } : {}),
           providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference },
           commandNetworkPosture: trusted.commandNetworkPosture, protectedPaths: [...trusted.protectedPaths], readOnlyProjectPaths: [attachmentRoot],
           immutableReadRoots: [...trusted.immutableReadRoots], trustedRuntimeReadRoots: [context.runtimeReadRoot], policyDigest: policy.policyDigest, configDigest: context.configDigest,
           consentVersion: context.consentVersion, toolRuntime: { codexSelfExecutablePath: context.stagedExecutable }, nativeRoleConfiguration: context.nativeRoles,
-          ...(context.v2 && runtimeV2 ? { policyInstanceV2: (policy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).policyInstance,
-            expectedEffectiveConfigDigestV2: runtimeV2.instanceInput.effectiveConfigDigest, instanceInputV2: runtimeV2.instanceInput, instanceAdmissionV2: runtimeV2.instanceAdmission } : {}) }, kernelLease: lease });
+          ...(context.v2 && (runtimeV2 || runtimeV2Preparation) ? { policyInstanceV2: (policy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).policyInstance,
+            expectedEffectiveConfigDigestV2: (runtimeV2?.instanceInput ?? runtimeV2Preparation!.input).effectiveConfigDigest,
+            ...(runtimeV2 ? { instanceInputV2: runtimeV2.instanceInput, instanceAdmissionV2: runtimeV2.instanceAdmission } : { instancePreparationV2: runtimeV2Preparation! }),
+            nativePolicyIdentityVersion: trusted.releaseV2!.basis.supportProfile.compiler.nativePolicyIdentityVersion } : {}) }, kernelLease: lease });
         const admission = admitted = await adapters.admitHosted({ canonicalRoot: context.canonicalRoot, candidateLauncherFactory: launcherFactory,
           ...(trusted.conformance ? { conformance: trusted.conformance } : {}), executablePath: context.stagedExecutable, model: selected.model, ...(context.v2 ? { reasoningEffort: selected.defaultReasoningEffort } : {}), codexHome: context.codexHome,
           privateDirectory: context.privateDirectory, ...(context.v2 ? { accountStorageBackend: "keyring" as const } : { managedAuth: trusted.managedAuth! }), providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference },
           protectedPaths: [...trusted.protectedPaths], readOnlyProjectPaths: [attachmentRoot], commandNetworkPosture: trusted.commandNetworkPosture,
-          configDigest: context.configDigest, consentVersion: context.consentVersion, ...(runtimeV2 ? { runtimeV2 } : {}),
+          configDigest: context.configDigest, consentVersion: context.consentVersion, ...(runtimeV2 ? { runtimeV2 } : {}), ...(runtimeV2Preparation ? { runtimeV2Preparation } : {}),
           requestTimeoutMs: trusted.requestTimeoutMs, turnTimeoutMs: trusted.turnTimeoutMs, maxWorkers: trusted.maxWorkers });
         if (admission.continuity.canonicalRoot !== context.canonicalRoot || admission.continuity.cwd !== context.canonicalRoot || admission.continuity.policyDigest !== policy.policyDigest) throw unavailable("ADMISSION_CONTINUITY_MISMATCH");
         const store = await adapters.openBindingStore({ privateDirectory: context.privateDirectory, canonicalRoot: context.canonicalRoot,
           policyDigest: policy.policyDigest, runtimeAuthorityId: `composition-${recordKey({ projectId: context.projectId, policyDigest: policy.policyDigest }).slice(0, 32)}` });
         const publicAdmission: TrustedHostedPrivateAdmission = Object.freeze({ continuity: { ...admission.continuity }, authority: { ...admission.authority },
-          ...(trusted.nativePlanQualification ? { nativePlanQualification: structuredClone(trusted.nativePlanQualification) } : {}), retire: async () => retire(admissions.get(publicAdmission)!) });
-        admissions.set(publicAdmission, { ...context, admission, launcherFactory, store, retired: false, signedOut: false, ...(runtimeV2 ? { runtimeV2 } : {}) }); ceremonies.delete(context.ceremony);
+          ...(nativePlanAdmission ? { nativePlanQualification: structuredClone(nativePlanAdmission) } : {}), retire: async () => retire(admissions.get(publicAdmission)!) });
+        const finalizedRuntimeV2 = runtimeV2 ?? admission.runtimeV2;
+        admissions.set(publicAdmission, { ...context, admission, launcherFactory, store, retired: false, signedOut: false, ...(finalizedRuntimeV2 ? { runtimeV2: finalizedRuntimeV2 } : {}) }); ceremonies.delete(context.ceremony);
         launcherFactory = undefined; return publicAdmission;
       } catch (error) {
         const failures: unknown[] = [error];
@@ -511,16 +645,16 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
         ? await prepareCodexNativePolicyV2({ purpose: "worker", canonicalRoot: input.canonicalRoot, privateDirectory: input.privateDirectory, codexHome: input.codexHome,
             executablePath: stagedExecutable, nativeAddonPath: trusted.nativeAddonPath, providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference },
             commandNetworkPosture: "off", protectedPaths: [...trusted.protectedPaths], readOnlyProjectPaths: [attachmentRoot], immutableReadRoots: [...trusted.immutableReadRoots], trustedRuntimeReadRoots: [context.v2.runtimeReadRoot],
-            nativeRoleConfiguration: context.nativeRoles, toolRuntime: { codexSelfExecutablePath: stagedExecutable, requiresSandboxedFileSystem: true, requiresSandboxedFileStreaming: true } })
+            nativeRoleConfiguration: context.nativeRoles, toolRuntime: { codexSelfExecutablePath: stagedExecutable, requiresSandboxedFileSystem: true, requiresSandboxedFileStreaming: true }, nativePolicyIdentityVersion: trusted.releaseV2!.basis.supportProfile.compiler.nativePolicyIdentityVersion })
         : await adapters.preparePolicy({ purpose: "worker", canonicalRoot: input.canonicalRoot, privateDirectory: input.privateDirectory, codexHome: input.codexHome,
             providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference }, commandNetworkPosture: "off", protectedPaths: [...trusted.protectedPaths], immutableReadRoots: [...trusted.immutableReadRoots],
             trustedRuntimeReadRoots: [context.runtimeReadRoot], nativeRoleConfiguration: context.nativeRoles });
       let factory: CodexCandidateLauncherFactory | undefined, failure: unknown;
       try {
         if (context.v2 && trusted.releaseV2) {
-          if (!fencedContinuity || !adapters.hostAuthority) throw unavailable("LOGOUT_FENCED_ACCOUNT_UNAVAILABLE");
+          if (!fencedContinuity) throw unavailable("LOGOUT_FENCED_ACCOUNT_UNAVAILABLE");
           const account = { accountId: fencedContinuity.accountId, accountEpoch: fencedContinuity.accountEpoch, accountDigest: context.admission.accountDigest };
-          const host = await adapters.hostAuthority({ purpose: "worker", projectId: context.projectId, manifestHash: context.manifestHash, canonicalRoot: context.canonicalRoot, account, consentDigest: context.v2.loginInput.consent.digest });
+          const host = await observeHostAuthority({ purpose: "worker", projectId: context.projectId, manifestHash: context.manifestHash, canonicalRoot: context.canonicalRoot, account, consentDigest: context.v2.loginInput.consent.digest });
           if (!host.account || recordKey(host.account) !== recordKey(account)) throw unavailable("HOST_ACCOUNT_AUTHORITY_MISMATCH");
           await revalidateHostedAccountAuthorityV2(host.authority, { purpose: "worker", projectId: context.projectId, manifestHash: context.manifestHash, canonicalRoot: context.canonicalRoot, account, consentDigest: context.v2.loginInput.consent.digest });
           const purposeRelease = await verifyRuntimePurposeReleaseV2(trusted.releaseV2.basis, "worker");
@@ -528,7 +662,7 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
             providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference },
             trustedRuntimeReadRoots: [context.v2.runtimeReadRoot] });
           const effectiveConfigDigest = codexEffectiveConfigDigestV2({ executablePath: stagedExecutable, cwd: input.canonicalRoot,
-            environment: { HOME: logoutOuter.environment.HOME, CODEX_HOME: logoutOuter.environment.CODEX_HOME, PATH: logoutOuter.environment.PATH, LANG: logoutOuter.environment.LANG }, configOverrides: (policy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).configOverrides });
+            environment: { HOME: logoutOuter.environment.HOME, CODEX_HOME: logoutOuter.environment.CODEX_HOME, PATH: logoutOuter.environment.PATH, LANG: logoutOuter.environment.LANG }, configOverrides: (policy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).configOverrides, nativePolicyIdentityVersion: trusted.releaseV2!.basis.supportProfile.compiler.nativePolicyIdentityVersion });
           const instanceInput: RuntimeInstanceAdmissionInputV2 = { purposeRelease, hostAuthority: host.authority, projectId: context.projectId, manifestHash: context.manifestHash,
             canonicalRoot: context.canonicalRoot, cwd: context.canonicalRoot, privateDirectory: context.privateDirectory, codexHome: context.codexHome, brokerRoot: trusted.runtimeDirectory,
             instructionRoot: trusted.instructionRoot, nativeAddonPath: trusted.nativeAddonPath, supplierExecutablePath: stagedExecutable, attachmentRoot, account,
@@ -538,10 +672,12 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
         }
         factory = adapters.createLauncherFactory({ bindings: { canonicalRoot: input.canonicalRoot, privateDirectory: input.privateDirectory, codexHome: input.codexHome,
           executablePath: stagedExecutable, nativeAddonPath: trusted.nativeAddonPath, model: context.model!, providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference },
+          ...(supplyVerifier ? { supplyVerifier } : {}),
           commandNetworkPosture: "off", protectedPaths: [...trusted.protectedPaths], readOnlyProjectPaths: [attachmentRoot], immutableReadRoots: [...trusted.immutableReadRoots], trustedRuntimeReadRoots: [context.v2?.runtimeReadRoot ?? context.runtimeReadRoot], policyDigest: policy.policyDigest,
           configDigest: context.configDigest, consentVersion: context.consentVersion, toolRuntime: { codexSelfExecutablePath: stagedExecutable }, nativeRoleConfiguration: context.nativeRoles,
           ...(context.v2 && logoutRuntimeV2 ? { policyInstanceV2: (policy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).policyInstance,
-            expectedEffectiveConfigDigestV2: logoutRuntimeV2.instanceInput.effectiveConfigDigest, instanceInputV2: logoutRuntimeV2.instanceInput, instanceAdmissionV2: logoutRuntimeV2.instanceAdmission } : {}) }, kernelLease: lease });
+            expectedEffectiveConfigDigestV2: logoutRuntimeV2.instanceInput.effectiveConfigDigest, instanceInputV2: logoutRuntimeV2.instanceInput, instanceAdmissionV2: logoutRuntimeV2.instanceAdmission,
+            nativePolicyIdentityVersion: trusted.releaseV2!.basis.supportProfile.compiler.nativePolicyIdentityVersion } : {}) }, kernelLease: lease });
         await adapters.logout(factory, context.admission.accountDigest, logoutRuntimeV2);
       } catch (error) { failure = error; }
       for (const cleanup of [() => factory?.close?.(), () => logoutOuter?.cleanup(), () => policy.cleanup()]) {

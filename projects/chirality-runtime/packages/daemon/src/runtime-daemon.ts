@@ -47,6 +47,8 @@ import {
   , ensureHostedProjectManifest
 } from "@chirality/runtime-core";
 import { hostedProjectClientId } from "./hosted-paths.js";
+import { hostAccountRequest, type HostAccountOperation } from "./host-account-protocol.js";
+import type { HostAccountAuthority } from "./host-account-authority.js";
 
 const JSON_LIMIT_BYTES = 1024 * 1024;
 const STOP_GRACE_MS = 2_000;
@@ -95,6 +97,7 @@ interface DaemonGeneration {
 
 export interface RuntimeDaemonOptions {
   supplierAuthority?:SupplierAuthorityLifecycle;
+  accountHost?: HostAccountAuthority;
   socketPath: string;
   runtimeDirectory: string;
   service: RuntimeService;
@@ -104,11 +107,11 @@ export interface RuntimeDaemonOptions {
   login?: { startLogin(): Promise<{ loginId: string; authUrl: string }>; status(): Promise<HostedLoginStatus>; cancel(): Promise<void> };
   hostedBootstrap?: {
     /** Each operation revalidates project registration/root/drift and retires stale admission. */
-    status(projectId: string): Promise<HostedBootstrapStatus>;
-    grantProviderNetworkConsent(projectId: string, provenance: { approvedBy: string; approvalReference: string; approvedAt: string }): Promise<HostedBootstrapStatus>;
-    startLogin(projectId: string): Promise<{ loginId: string; authUrl: string }>;
-    cancelLogin(projectId: string): Promise<HostedBootstrapStatus>;
-    signOut(projectId: string): Promise<HostedBootstrapStatus>;
+    status(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus>;
+    grantProviderNetworkConsent(projectId: string, provenance: { approvedBy: string; approvalReference: string; approvedAt: string }, signal?: AbortSignal): Promise<HostedBootstrapStatus>;
+    startLogin(projectId: string, signal?: AbortSignal): Promise<{ loginId: string; authUrl: string }>;
+    cancelLogin(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus>;
+    signOut(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus>;
   };
 }
 
@@ -148,6 +151,7 @@ export class RuntimeDaemon {
     let context: DaemonGeneration | undefined;
     let controlSocketBound = false;
     let authorityStarted = false;
+    let accountHostStarted = false;
     try {
       await ensurePrivateDirectory(this.options.runtimeDirectory);
       await ensurePrivateDirectory(dirname(this.options.socketPath));
@@ -156,6 +160,10 @@ export class RuntimeDaemon {
         this.authorityStartAttempted = true;
         await this.options.supplierAuthority.start(this.runtimeProcessIncarnationId);
         authorityStarted = true;
+      }
+      if (this.options.accountHost) {
+        await this.options.accountHost.start();
+        accountHostStarted = true;
       }
       await this.recoverStaleSocket();
       await atomicWriteJson(this.ownerFile, {
@@ -239,6 +247,10 @@ export class RuntimeDaemon {
       }
       if (authorityStarted) {
         try { await this.options.supplierAuthority!.close(); }
+        catch (cleanupError) { cleanupFailures.push(cleanupError); }
+      }
+      if (accountHostStarted) {
+        try { await this.options.accountHost!.close(); }
         catch (cleanupError) { cleanupFailures.push(cleanupError); }
       }
       if (controlSocketBound) {
@@ -374,37 +386,35 @@ export class RuntimeDaemon {
         const bootstrap = this.options.hostedBootstrap;
         if (!bootstrap) throw new RuntimeError("ENGINE_UNAVAILABLE", "Hosted bootstrap is unavailable", 503);
         if (segments.length === 5 && segments[4] === "status" && method === "GET") {
-          await this.authorize(request, "runtime:read", projectId);
-          return this.json(response, 200, this.safeBootstrapStatus(projectId, await this.loginOperation(generation, () => bootstrap.status(projectId))));
+          const status = await this.runHostedAccount(request, "status", "runtime:read", projectId, (_principal, signal) => this.loginOperation(generation, () => bootstrap.status(projectId, signal)));
+          return this.json(response, 200, this.safeBootstrapStatus(projectId, status));
         }
         if (segments.length === 5 && segments[4] === "provider-network-consent" && method === "POST") {
-          const principal = await this.authorize(request, "credentials:write", projectId);
           const body = await this.body<HostedProviderNetworkConsentRequest>(request);
           this.assertExactRecord(body, ["consent"]);
           if (body.consent !== true) throw new RuntimeError("INVALID_REQUEST", "Explicit provider-network consent is required");
-          const status = await this.loginOperation(generation, () => bootstrap.grantProviderNetworkConsent(projectId, {
-            ...this.bootstrapProvenance(principal.clientId, generation),
-            approvedAt: new Date().toISOString()
-          }));
+          const status = await this.runHostedAccount(request, "grant-provider-network-consent", "credentials:write", projectId, (principal, signal) =>
+            this.loginOperation(generation, () => bootstrap.grantProviderNetworkConsent(projectId, {
+              ...this.bootstrapProvenance(principal.clientId, generation),
+              approvedAt: new Date().toISOString()
+            }, signal)));
           return this.json(response, 200, this.safeBootstrapStatus(projectId, status));
         }
         if (segments.length === 5 && segments[4] === "logout" && method === "POST") {
-          await this.authorize(request, "credentials:write", projectId);
           const body = await this.body<Record<string, never>>(request);
           this.assertExactRecord(body, []);
-          const status = await this.loginOperation(generation, () => bootstrap.signOut(projectId));
+          const status = await this.runHostedAccount(request, "sign-out", "credentials:write", projectId, (_principal, signal) => this.loginOperation(generation, () => bootstrap.signOut(projectId, signal)));
           return this.json(response, 200, this.safeBootstrapStatus(projectId, status));
         }
         if (segments.length === 6 && segments[4] === "login" && method === "POST" && (segments[5] === "start" || segments[5] === "cancel")) {
-          await this.authorize(request, "credentials:write", projectId);
           const body = await this.body<Record<string, never>>(request);
           this.assertExactRecord(body, []);
           this.hostedBootstrapProjects.add(projectId);
           if (segments[5] === "cancel") {
-            const status = await this.loginOperation(generation, () => bootstrap.cancelLogin(projectId));
+            const status = await this.runHostedAccount(request, "cancel-login", "credentials:write", projectId, (_principal, signal) => this.loginOperation(generation, () => bootstrap.cancelLogin(projectId, signal)));
             return this.json(response, 200, this.safeBootstrapStatus(projectId, status));
           }
-          const result = await this.loginOperation(generation, () => bootstrap.startLogin(projectId));
+          const result = await this.runHostedAccount(request, "start-login", "credentials:write", projectId, (_principal, signal) => this.loginOperation(generation, () => bootstrap.startLogin(projectId, signal)));
           this.assertExactRecord(result, ["loginId", "authUrl"], "Invalid safe login response");
           if (typeof result.loginId !== "string" || result.loginId.length === 0 || result.loginId.length > 512 || typeof result.authUrl !== "string" || result.authUrl.length > 8192) {
             throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login response", 500);
@@ -786,6 +796,26 @@ export class RuntimeDaemon {
     return this.options.service.auth.authenticate(value, scope, projectId);
   }
 
+  private async runHostedAccount<T>(
+    request: IncomingMessage,
+    operation: HostAccountOperation,
+    legacyScope: RuntimeScope,
+    projectId: string,
+    effect: (principal: { clientId: string }, signal: AbortSignal) => Promise<T>
+  ): Promise<T> {
+    const proof = request.headers["x-chirality-account-proof"];
+    const authority = this.options.accountHost;
+    if (authority === undefined) return effect(await this.authorize(request, legacyScope, projectId), new AbortController().signal);
+    if (proof === undefined) throw new RuntimeError("UNAUTHORIZED", "Complete App account host proof is required", 401);
+    return authority.runAuthorizedRequest({
+      authorization: request.headers.authorization,
+      counter: request.headers["x-chirality-account-counter"],
+      generation: request.headers["x-chirality-account-generation"],
+      proof,
+      descriptor: hostAccountRequest(operation, projectId)
+    }, effect);
+  }
+
   private bootstrapProvenance(clientId: string, generation: DaemonGeneration): { approvedBy: string; approvalReference: string } {
     return {
       approvedBy: `runtime-client:${clientId}`,
@@ -1002,6 +1032,7 @@ export class RuntimeDaemon {
     if (!retry) {
       generation.stopStreams = [...generation.streams];
       this.beginServerClose(generation);
+      await this.options.accountHost?.close();
       await this.options.supplierAuthority?.close();
       // Admission is closed before any semantic interruption is requested.
       for (const stream of generation.stopStreams) this.cancelSse(stream);
@@ -1040,6 +1071,7 @@ export class RuntimeDaemon {
       }
     } else if (!generation.closeComplete || generation.sockets.size > 0) {
       this.beginServerClose(generation);
+      await this.options.accountHost?.close();
       await this.options.supplierAuthority?.close();
       this.forceGenerationTransport(generation, cleanupFailures);
     }

@@ -1,7 +1,8 @@
 import {
-  assertQualifiedNativePlanEvent,
+  assertAdmittedNativePlanEvent,
   RuntimeError,
   type NativePlanAdapterQualification,
+  type NativePlanAdapterAdmission,
   type NativePlanCapabilityResponse,
   type NativePlanClarification,
   type NativePlanClarificationPrompt,
@@ -28,6 +29,7 @@ export interface TrustedNativePlanRegistryOptions {
   projectId: string;
   sessions: SessionStore;
   qualification?: NativePlanAdapterQualification;
+  admission?: NativePlanAdapterAdmission;
   unavailableReason?: string;
 }
 
@@ -39,39 +41,49 @@ export interface TrustedNativePlanRegistryOptions {
 export class TrustedNativePlanRegistry implements TrustedNativePlanAdapterRegistry, DelegatedNativePlanSink {
   private readonly active = new Map<string, ActiveNativePlanTurn>();
   private readonly captures = new Map<string, Promise<void>>();
+  private readonly admission?: Readonly<NativePlanAdapterAdmission>;
 
   constructor(private readonly options: TrustedNativePlanRegistryOptions) {
-    const q = options.qualification;
-    if (q !== undefined && (q.adapterId.trim() === "" || q.providerId.trim() === "" || q.qualificationId.trim() === "" || q.evidenceClass !== "native-adapter-qualified" || !/^[a-f0-9]{64}$/u.test(q.admissionSha256))) throw new Error("Invalid native Plan adapter qualification");
+    if (options.qualification !== undefined && options.admission !== undefined) throw new Error("Native Plan adapter admission is ambiguous");
+    const q = options.admission ?? options.qualification;
+    if (q !== undefined && (q.adapterId.trim() === "" || q.providerId.trim() === "" || !/^[a-f0-9]{64}$/u.test(q.admissionSha256)
+      || (q.evidenceClass === "native-adapter-qualified" ? q.qualificationId.trim() === "" : q.evidenceClass !== "native-adapter-local-human-trial" || q.dispositionId.trim() === ""))) throw new Error("Invalid native Plan adapter admission");
+    this.admission = q === undefined ? undefined : Object.freeze(structuredClone(q));
   }
 
   async capability(session: RuntimeSessionRecord): Promise<NativePlanCapabilityResponse> {
-    if (this.options.qualification === undefined) return this.unavailable(this.options.unavailableReason ?? "Native Plan adapter qualification is unavailable");
+    if (this.admission === undefined) return this.unavailable(this.options.unavailableReason ?? "Native Plan adapter admission is unavailable");
     if (session.projectId !== this.options.projectId) return this.unavailable("Native Plan adapter is not bound to this project");
-    if (session.engineSelection.adapterId !== this.options.qualification.adapterId || session.engineSelection.providerId !== this.options.qualification.providerId) return this.unavailable("The selected engine is not the qualified native Plan adapter");
-    return { schemaVersion: "chirality.native-plan-capability/v3", status: "qualified", qualification: { ...this.options.qualification } };
+    if (session.engineSelection.adapterId !== this.admission.adapterId || session.engineSelection.providerId !== this.admission.providerId) return this.unavailable("The selected engine is not the admitted native Plan adapter");
+    return this.admission.evidenceClass === "native-adapter-qualified"
+      ? { schemaVersion: "chirality.native-plan-capability/v3", status: "qualified", qualification: { ...this.admission } }
+      : { schemaVersion: "chirality.native-plan-capability/v3", status: "trial", admission: { ...this.admission } };
   }
 
   async revisions(projectId: string, sessionId: string): Promise<NativePlanRevisionsResponse> {
     this.project(projectId);
     await this.options.sessions.get(projectId, sessionId);
     const revisions = await this.persisted(projectId, sessionId);
-    if (this.options.qualification === undefined) return { schemaVersion: "chirality.native-plan-revisions/v3", status: "unavailable", reason: this.options.unavailableReason ?? "Native Plan adapter qualification is unavailable", revisions: [] };
-    return { schemaVersion: "chirality.native-plan-revisions/v3", status: "qualified", qualification: { ...this.options.qualification }, revisions };
+    if (this.admission === undefined) return { schemaVersion: "chirality.native-plan-revisions/v3", status: "unavailable", reason: this.options.unavailableReason ?? "Native Plan adapter admission is unavailable", revisions: [] };
+    return this.admission.evidenceClass === "native-adapter-qualified"
+      ? { schemaVersion: "chirality.native-plan-revisions/v3", status: "qualified", qualification: { ...this.admission }, revisions }
+      : { schemaVersion: "chirality.native-plan-revisions/v3", status: "trial", admission: { ...this.admission }, revisions };
   }
 
   async clarifications(projectId: string, sessionId: string): Promise<NativePlanClarificationsResponse> {
     this.project(projectId);
     await this.options.sessions.get(projectId, sessionId);
-    if (this.options.qualification === undefined) return { schemaVersion: "chirality.native-plan-clarifications/v3", status: "unavailable", reason: this.options.unavailableReason ?? "Native Plan adapter qualification is unavailable", clarifications: [] };
+    if (this.admission === undefined) return { schemaVersion: "chirality.native-plan-clarifications/v3", status: "unavailable", reason: this.options.unavailableReason ?? "Native Plan adapter admission is unavailable", clarifications: [] };
     const entry = this.active.get(sessionId);
-    if (entry === undefined) return { schemaVersion: "chirality.native-plan-clarifications/v3", status: "qualified", qualification: { ...this.options.qualification }, clarifications: [] };
-    return { schemaVersion: "chirality.native-plan-clarifications/v3", status: "qualified", qualification: { ...this.options.qualification }, clarifications: entry.clarifications.map(prompt => this.publicClarification(prompt)) };
+    const clarifications = entry === undefined ? [] : entry.clarifications.map(prompt => this.publicClarification(prompt));
+    return this.admission.evidenceClass === "native-adapter-qualified"
+      ? { schemaVersion: "chirality.native-plan-clarifications/v3", status: "qualified", qualification: { ...this.admission }, clarifications }
+      : { schemaVersion: "chirality.native-plan-clarifications/v3", status: "trial", admission: { ...this.admission }, clarifications };
   }
 
   async replyClarification(projectId: string, sessionId: string, request: ReplyNativePlanClarificationRequest): Promise<{ sent: true }> {
     this.project(projectId);
-    if (this.options.qualification === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", this.options.unavailableReason ?? "Native Plan adapter qualification is unavailable", 503);
+    if (this.admission === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", this.options.unavailableReason ?? "Native Plan adapter admission is unavailable", 503);
     const entry = this.active.get(sessionId);
     if (entry === undefined) throw new RuntimeError("NOT_FOUND", "No live native Plan clarification exists for this session", 404);
     const prompt = entry.clarifications.find(value => value.requestId === request.requestId);
@@ -85,13 +97,13 @@ export class TrustedNativePlanRegistry implements TrustedNativePlanAdapterRegist
     this.binding(binding);
     const session = await this.options.sessions.get(binding.projectId, binding.sessionId);
     const capability = await this.capability(session);
-    if (capability.status !== "qualified") throw new RuntimeError("ENGINE_UNAVAILABLE", capability.reason, 503);
+    if (capability.status === "unavailable") throw new RuntimeError("ENGINE_UNAVAILABLE", capability.reason, 503);
     if (session.status !== "running") throw new RuntimeError("RUNTIME_COMPATIBILITY_MISMATCH", "Native Plan worker requires the Runtime session's active accepted turn", 409);
     const replay = await this.options.sessions.replayDetailed(binding.projectId, binding.sessionId);
     const accepted = [...replay.events].reverse().find(event => event.type === "turn.accepted");
     const terminal = replay.events.some(event => event.turnId === binding.clientTurnId && (event.type === "turn.completed" || event.type === "turn.failed" || event.type === "turn.interrupted"));
     if (accepted?.turnId !== binding.clientTurnId || terminal) throw new RuntimeError("RUNTIME_COMPATIBILITY_MISMATCH", "Native Plan worker does not match the current nonterminal accepted turn", 409);
-    if (this.options.qualification === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", this.options.unavailableReason ?? "Native Plan adapter qualification is unavailable", 503);
+    if (this.admission === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", this.options.unavailableReason ?? "Native Plan adapter admission is unavailable", 503);
     if (this.active.has(binding.sessionId)) throw new RuntimeError("SESSION_TURN_IN_PROGRESS", "Native Plan session already has a live worker", 409);
     this.active.set(binding.sessionId, { binding: structuredClone(binding), bridge, clarifications: [] });
   }
@@ -122,14 +134,17 @@ export class TrustedNativePlanRegistry implements TrustedNativePlanAdapterRegist
   }
 
   private async persistEvents(binding: DelegatedNativePlanWorkerBinding, events: readonly NativePlanTransportEvent[]): Promise<void> {
-    const qualification = this.options.qualification;
-    if (qualification === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", this.options.unavailableReason ?? "Native Plan adapter qualification is unavailable", 503);
+    const admission = this.admission;
+    if (admission === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", this.options.unavailableReason ?? "Native Plan adapter admission is unavailable", 503);
     let revisions = await this.persisted(binding.projectId, binding.sessionId);
     for (const event of events) {
       if (event.projectId !== binding.projectId || event.sessionId !== binding.sessionId || event.clientTurnId !== binding.clientTurnId || !event.providerThreadId || !event.providerTurnId || !event.eventId || !Number.isFinite(Date.parse(event.occurredAt))) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan event identity does not match the admitted worker", 503);
       const existing = revisions.find(value => value.sourceEvent.eventId === event.eventId);
-      const sourceEvent = { qualificationState: "qualified" as const, eventId: event.eventId, occurredAt: event.occurredAt, qualification: { ...qualification }, binding: { projectId: event.projectId, sessionId: event.sessionId, clientTurnId: event.clientTurnId, providerThreadId: event.providerThreadId, providerTurnId: event.providerTurnId }, plan: structuredClone(event.plan) };
-      assertQualifiedNativePlanEvent(sourceEvent);
+      const common = { eventId: event.eventId, occurredAt: event.occurredAt, binding: { projectId: event.projectId, sessionId: event.sessionId, clientTurnId: event.clientTurnId, providerThreadId: event.providerThreadId, providerTurnId: event.providerTurnId }, plan: structuredClone(event.plan) };
+      const sourceEvent = admission.evidenceClass === "native-adapter-qualified"
+        ? { qualificationState: "qualified" as const, qualification: { ...admission }, ...common }
+        : { qualificationState: "trial" as const, admission: { ...admission }, ...common };
+      assertAdmittedNativePlanEvent(sourceEvent);
       if (existing !== undefined) {
         if (JSON.stringify(existing.sourceEvent) !== JSON.stringify(sourceEvent)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan event identity was reused with different content", 503);
         continue;

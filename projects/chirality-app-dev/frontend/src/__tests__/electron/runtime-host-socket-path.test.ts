@@ -51,6 +51,7 @@ const embeddedRuntime = {
   napi: '10',
   architecture: 'arm64'
 };
+const executablePath = '/Applications/Chirality.app/Contents/MacOS/Chirality';
 
 function privateConfiguration(supplierExecutablePath = input.supplierExecutablePath) {
   return {
@@ -169,11 +170,13 @@ describe('runtime-host macOS socket-path boundary', () => {
       runtimeDirectory: '/runtime',
       daemonSocket: 'control.sock',
       resourcesRoot: `${inventory.resourcesRoot}/../Resources`,
+      executablePath: `${path.dirname(executablePath)}/./Chirality`,
       embeddedRuntime
     })).toEqual({
       runtimeDirectory: '/runtime',
       daemonSocket: 'control.sock',
       resourcesRoot: inventory.resourcesRoot,
+      executablePath,
       embeddedRuntime
     });
   });
@@ -194,6 +197,7 @@ describe('runtime-host macOS socket-path boundary', () => {
           runtimeDirectory,
           daemonSocket: 'control.sock',
           resourcesRoot,
+          executablePath,
           embeddedRuntime
         }),
         {
@@ -228,6 +232,7 @@ describe('runtime-host macOS socket-path boundary', () => {
           runtimeDirectory: '/runtime',
           daemonSocket: 'control.sock',
           resourcesRoot: inventory.resourcesRoot,
+          executablePath,
           embeddedRuntime
         }),
         {
@@ -263,6 +268,7 @@ describe('runtime-host macOS socket-path boundary', () => {
         runtimeDirectory: '/runtime',
         daemonSocket: 'control.sock',
         resourcesRoot: inventory.resourcesRoot,
+        executablePath,
         embeddedRuntime
       }),
       {
@@ -279,7 +285,8 @@ describe('runtime-host macOS socket-path boundary', () => {
         instructionRoot: basis.instructionRoot,
         nativeAddonPath: basis.nativeAddonPath
       },
-      basis
+      basis,
+      executablePath
     });
     expect(startUnboundHost).not.toHaveBeenCalled();
   });
@@ -301,7 +308,8 @@ describe('runtime-host macOS socket-path boundary', () => {
         instructionRoot: basis.instructionRoot,
         nativeAddonPath: basis.nativeAddonPath
       },
-      basis
+      basis,
+      executablePath
     })).rejects.toMatchObject({ code: 'ENGINE_UNAVAILABLE' });
   });
 

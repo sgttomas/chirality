@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { PassThrough } from "node:stream";
 import { CodexTurnSession, type CodexDynamicTool } from "../packages/daemon/src/codex-session.js";
-import { canonicalBytes, nextSequence20, parseSequence20, sequenceField } from "../packages/daemon/src/supplier-authority-controller.js";
+import { AUTHORITY_CONTRACT, canonicalBytes, initializationProof, nextSequence20, parseSequence20, sequenceField } from "../packages/daemon/src/supplier-authority-controller.js";
 
 function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "turn", tools?: readonly CodexDynamicTool[], posture: "off" | "ask-per-destination" | "on" = "off") {
   const code = `
@@ -28,6 +28,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    configReads++;if(r.params.includeLayers!==true||r.params.cwd!=='/private/tmp')process.exit(3);
    const selected={filesystem:{'/usr':'read','/private/tmp':'write','/private/protected':'deny'},network:{enabled:posture!=="off"}};
    const config={permissions:{'bound-profile':selected},approvals_reviewer:'user',approval_policy:posture==='ask-per-destination'?'on-request':'never',allow_login_shell:false,features:{plugins:false,remote_plugin:false,shell_snapshot:false,network_proxy:posture!=='off'},hooks:null,mcp_servers:{},notify:null,plugins:{},profiles:{},profile:null,projects:{'/private/tmp':{trust_level:'trusted'}}};
+   if(mode.startsWith('named-stage-c'))config.chirality_runtime={nativeSkills:(mode==='named-stage-c-start-drift'&&configReads>=2)||(mode==='named-stage-c-turn-drift'&&configReads>=3)||(mode==='named-stage-c-resume-drift'&&configReads>=4)?'upstream':'disabled'};
    if(mode.startsWith('named-roles')){config.features.multi_agent=true;config.features.multi_agent_v2=false;config.agents={enabled:true,max_depth:(mode==='named-roles-drift'&&configReads>=3)?1:2,HELP_HUMAN:{description:'Help',config_file:'/private/roles/HELP_HUMAN.toml'},HELPS_HUMANS:{description:'Manage',config_file:'/private/roles/HELPS_HUMANS.toml'},WORKING_ITEMS:{description:'Work',config_file:'/private/roles/WORKING_ITEMS.toml'},TASK:{description:'Task',config_file:'/private/roles/TASK.toml'}};}
    if(mode==='named-null-defaults'||mode==='named-nonnull-default'||mode==='named-unknown-default'){
     selected.description=null;selected.extends=null;selected.workspace_roots=null;selected.filesystem.glob_scan_max_depth=null;
@@ -130,7 +131,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
   const child = spawn(process.execPath, ["-e", code], { env: {}, stdio: "pipe", detached: process.platform !== "win32" });
   child.stderr.resume();
   const closed = new Promise<void>(resolve => child.once("close", () => resolve()));
-  const configuration = { commandNetworkPosture: posture, transport: { stdin: child.stdin, stdout: child.stdout, async close() { if (mode === "retry-exit") await Promise.race([closed, new Promise<void>(resolve => setTimeout(resolve, 30))]); if (child.pid) { try { process.kill(process.platform === "win32" ? child.pid : -child.pid, "SIGKILL"); } catch { /* exited */ } } await closed; } }, requestTimeoutMs: timeout, turnTimeoutMs: timeout, purpose, permissionProfile: mode.startsWith("named") ? "bound-profile" : undefined, policyDigest: mode.startsWith("named") ? "a".repeat(64) : undefined, dynamicTools: tools, toolTimeoutMs: 80 };
+  const configuration = { commandNetworkPosture: posture, transport: { stdin: child.stdin, stdout: child.stdout, async close() { if (mode === "retry-exit") await Promise.race([closed, new Promise<void>(resolve => setTimeout(resolve, 30))]); if (child.pid) { try { process.kill(process.platform === "win32" ? child.pid : -child.pid, "SIGKILL"); } catch { /* exited */ } } await closed; } }, requestTimeoutMs: timeout, turnTimeoutMs: timeout, purpose, permissionProfile: mode.startsWith("named") ? "bound-profile" : undefined, policyDigest: mode.startsWith("named") ? "a".repeat(64) : undefined, ...(mode.startsWith("named-stage-c") ? { nativeSkills: "disabled" as const } : {}), dynamicTools: tools, toolTimeoutMs: 80 };
   const session = new CodexTurnSession(configuration);
   return { session, child, configuration, async close() { await session.close(); expect(child.exitCode !== null || child.signalCode !== null).toBe(true); } };
 }
@@ -139,6 +140,17 @@ const expectedPolicy = { filesystem: { "/usr": "read", "/private/tmp": "write", 
 const expectedNativeRoles = { digest: "d".repeat(64), configOverrides: ["agents.enabled=true", "features.multi_agent=true", "features.multi_agent_v2=false", "agents.max_depth=2", "agents.HELP_HUMAN.description=\"Help\"", "agents.HELP_HUMAN.config_file=\"/private/roles/HELP_HUMAN.toml\"", "agents.HELPS_HUMANS.description=\"Manage\"", "agents.HELPS_HUMANS.config_file=\"/private/roles/HELPS_HUMANS.toml\"", "agents.WORKING_ITEMS.description=\"Work\"", "agents.WORKING_ITEMS.config_file=\"/private/roles/WORKING_ITEMS.toml\"", "agents.TASK.description=\"Task\"", "agents.TASK.config_file=\"/private/roles/TASK.toml\""] } as const;
 const turn = { threadId: "thread1", text: "fixture work", model: "fixture-model" };
 describe("persistent known-method Codex actor (controlled provider)", () => {
+  it.each(["disabled", "upstream", "missing"] as const)("checks authenticated private native-skill readback before effects: %s", async observed => {
+    const stdin=new PassThrough(),stdout=new PassThrough(),calls:string[]=[],secret=Buffer.alloc(32,7),descriptor={capability:"chirality.local-admission-authority",contract:AUTHORITY_CONTRACT,major:1,minor:0},v4Descriptor={capability:"account.identity-snapshot",contract:"chirality-supplier-account-identity/1",major:1,minor:0,method:"account/identitySnapshot"};
+    const authority={runtimeProcessIncarnationId:"11111111-1111-1111-1111-111111111111",supplierGeneration:"supplier",runtimeChallenge:Buffer.alloc(32,3).toString("base64url"),exactSupplyDigest:"a".repeat(64),authoritySecret:secret,descriptor,v4Descriptor};
+    stdin.on("data",bytes=>{for(const line of bytes.toString().trim().split("\n")){const request=JSON.parse(line);calls.push(request.method);if(request.method==="initialize"){const result={contract:AUTHORITY_CONTRACT,runtimeProcessIncarnationId:authority.runtimeProcessIncarnationId,supplierGeneration:authority.supplierGeneration,supplierChallenge:Buffer.alloc(32,4).toString("base64url"),descriptor,v4Descriptor,proof:""};result.proof=initializationProof(secret,{...authority,...result});stdout.write(`${JSON.stringify({id:request.id,result:{chiralityAdmissionAuthority:result}})}\n`);}else if(request.method==="config/read"){const config=observed==="missing"?{}:{chirality_runtime:{nativeSkills:observed}};stdout.write(`${JSON.stringify({id:request.id,result:{config}})}\n`);}}});
+    const session=new CodexTurnSession({purpose:"login",nativeSkills:"disabled",transport:{stdin,stdout,async close(){}}});
+    try{await session.initializeAuthority(authority);const result=session.verifyNativeSkillSelection("/private/tmp");if(observed==="disabled")await expect(result).resolves.toBeUndefined();else await expect(result).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});expect(calls.slice(0,3)).toEqual(["initialize","initialized","config/read"]);}finally{await session.close();stdin.destroy();stdout.destroy();}
+  });
+  it("keeps ordinary initialized sessions free of the private native-skill projection",async()=>{
+    const stdin=new PassThrough(),stdout=new PassThrough(),calls:string[]=[];stdin.on("data",bytes=>{const request=JSON.parse(bytes.toString());calls.push(request.method);stdout.write(`${JSON.stringify({id:request.id,result:{}})}\n`);});
+    const session=new CodexTurnSession({purpose:"login",transport:{stdin,stdout,async close(){}}});try{await session.initialize();await session.verifyNativeSkillSelection("/private/tmp");expect(calls).toEqual(["initialize","initialized"]);}finally{await session.close();stdin.destroy();stdout.destroy();}
+  });
   it("validates one private model/list page through the session request lifecycle", async () => {
     const stdin = new PassThrough(), stdout = new PassThrough(), requests: unknown[] = [];
     const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
@@ -190,6 +202,17 @@ describe("persistent known-method Codex actor (controlled provider)", () => {
       await expect(f.session.resumeThread({ threadId: "thread1", model: "fixture-model", continuityChecked: true, permissionProfile: "escalated" } as Parameters<CodexTurnSession["resumeThread"]>[0])).rejects.toThrow("overrides");
       await expect(f.session.startTurn({ ...turn, policyDigest: "b".repeat(64) } as Parameters<CodexTurnSession["startTurn"]>[0])).rejects.toThrow("overrides");
     } finally { await f.close(); }
+  });
+  it("rechecks the native-11 private skill selection at start, turn, and resume boundaries", async () => {
+    const valid=fixture("named-stage-c");
+    try {await valid.session.initialize();await valid.session.verifyNativePolicy(expectedPolicy);await valid.session.startThread({cwd:"/private/tmp",model:"fixture-model",continuityChecked:true});const turnId=await valid.session.startTurn(turn);await valid.session.waitTurn(turnId);expect(await valid.session.resumeThread({threadId:"thread1",model:"fixture-model",continuityChecked:true})).toBe("thread1");}
+    finally {await valid.close();}
+    for(const [mode,boundary] of [["named-stage-c-start-drift","start"],["named-stage-c-turn-drift","turn"],["named-stage-c-resume-drift","resume"]] as const){
+      const drift=fixture(mode);try{await drift.session.initialize();await drift.session.verifyNativePolicy(expectedPolicy);
+        if(boundary==="start")await expect(drift.session.startThread({cwd:"/private/tmp",model:"fixture-model",continuityChecked:true})).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});
+        else {await drift.session.startThread({cwd:"/private/tmp",model:"fixture-model",continuityChecked:true});if(boundary==="turn")await expect(drift.session.startTurn(turn)).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});else {const id=await drift.session.startTurn(turn);await drift.session.waitTurn(id);await expect(drift.session.resumeThread({threadId:"thread1",model:"fixture-model",continuityChecked:true})).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});}}
+      }finally{await drift.close();}
+    }
   });
   it("binds exact native role pins and four role files on every effective config read", async () => {
     const valid = fixture("named-roles");

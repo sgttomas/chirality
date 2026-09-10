@@ -33,6 +33,7 @@ export type DesktopPackagedRuntimeBootInput = {
   runtimeDirectory: string;
   daemonSocket: 'control.sock';
   resourcesRoot: string;
+  executablePath: string;
   embeddedRuntime: EmbeddedRuntimeVersionsV2;
 };
 
@@ -137,7 +138,8 @@ async function connectPackagedRuntimeHost(
         instructionRoot: release.basis.instructionRoot,
         nativeAddonPath: release.basis.nativeAddonPath
       },
-      basis: release.basis
+      basis: release.basis,
+      executablePath: input.executablePath
     });
   }
   // All loader failures have the same Desktop behavior and disclosure: the
@@ -155,12 +157,14 @@ export function packagedRuntimeBootInput(input: {
   runtimeDirectory: string;
   daemonSocket: 'control.sock';
   resourcesRoot: string;
+  executablePath: string;
   embeddedRuntime: EmbeddedRuntimeVersionsV2;
 }): DesktopPackagedRuntimeBootInput {
   return {
     runtimeDirectory: input.runtimeDirectory,
     daemonSocket: input.daemonSocket,
     resourcesRoot: path.resolve(input.resourcesRoot),
+    executablePath: path.resolve(input.executablePath),
     embeddedRuntime: { ...input.embeddedRuntime }
   };
 }

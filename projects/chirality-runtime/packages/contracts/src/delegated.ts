@@ -262,14 +262,14 @@ export interface RuntimeToolCallbackDeclaration {
 }
 export type RuntimeToolCallbackMessage =
   | { kind: "pending" }
-  | { kind: "callback"; callId: string; threadId: string; turnId: string; name: string; args: Readonly<Record<string, unknown>> };
+  | { kind: "callback"; callId: string; threadId: string; turnId: string; name: string; args: Readonly<Record<string, unknown>>; nativeChild?: Readonly<{ associationId: string; supplierGeneration: string; rootThreadId: string; rootTurnId: string; parentThreadId: string; parentTurnId: string; selectedRole: import("./engine.js").NativeChildSelectedRole; inheritedToolsDigest: string }> };
 export interface RuntimeToolCallbackResult {
   success: boolean;
   contentItems: readonly { type: "inputText"; text: string }[];
 }
 /** Private daemon-to-supervisor bridge. Tool implementations never cross it. */
 export interface SupervisorRuntimeToolPort {
-  acquireWithRuntimeTools(workerId: string, input: string, tools: readonly RuntimeToolCallbackDeclaration[]): Promise<WorkerHandle>;
+  acquireWithRuntimeTools(workerId: string, input: string, tools: readonly RuntimeToolCallbackDeclaration[], inheritableTools?: readonly RuntimeToolCallbackDeclaration[]): Promise<WorkerHandle>;
   nextRuntimeToolCallback(workerId: string, generation: string): Promise<RuntimeToolCallbackMessage>;
   replyRuntimeToolCallback(workerId: string, generation: string, message: Extract<RuntimeToolCallbackMessage, { kind: "callback" }>, result: RuntimeToolCallbackResult): Promise<void>;
 }
