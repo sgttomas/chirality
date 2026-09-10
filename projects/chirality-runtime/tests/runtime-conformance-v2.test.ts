@@ -35,13 +35,14 @@ async function fixture(delayFile=false): Promise<{ root: string; manifest: Runti
   const root = await realpath(await mkdtemp(join(tmpdir(), "runtime-v2-"))); created.push(root);
   const files = new Map<string,Buffer>([
     ["app.asar",Buffer.from("app")], ["instruction-root/instruction-bundle-manifest.json",Buffer.from("bundle")],
+    ["instruction-root/workflows/drawing-extract/ACCEPTANCE.md",Buffer.from("drawing-extract")], ["instruction-root/workflows/drawing-extract-page/SKILL.md",Buffer.from("drawing-extract-page")],
     ["native/chirality_native_admission.node",Buffer.from("native")], ["runtime-cli/chirality-cli.mjs",Buffer.from("cli")],
     ["runtime-cli/chirality-cli.mjs.map",Buffer.from("map")], ["runtime-contracts/runtime-policy-parameters-v2.json",encodeRuntimePolicyParameterDeclarationV2()],
     ["supplier/codex",Buffer.from("supplier")]
   ]);
   if(delayFile)files.set("zz-delay",Buffer.alloc(32*1024*1024,7));
   for (const [path, bytes] of files) { await mkdir(join(root, path, ".."), { recursive: true }); await writeFile(join(root, path), bytes); }
-  const directories = ["instruction-root","native","runtime-cli","runtime-contracts","supplier"].map(relativePath => ({ relativePath, type: "directory" as const }));
+  const directories = ["instruction-root","instruction-root/workflows","instruction-root/workflows/drawing-extract","instruction-root/workflows/drawing-extract-page","native","runtime-cli","runtime-contracts","supplier"].map(relativePath => ({ relativePath, type: "directory" as const }));
   const entries: RuntimePayloadEntryV2[] = [...directories, ...[...files].map(([relativePath, bytes]) => ({ ...artifact(relativePath,bytes), type: "file" as const }))].sort((a,b) => compareRuntimeUtf8V2(a.relativePath,b.relativePath));
   const roots = [...new Set(entries.map(entry=>entry.relativePath.split("/")[0]!))].sort(compareRuntimeUtf8V2);
   const support = profile(entries);
@@ -64,7 +65,7 @@ describe("Runtime conformance v2 canonical basis",()=>{
     expect(encodeRuntimePayloadManifestV2(reordered)).toEqual(encodeRuntimePayloadManifestV2(manifest));
     expect(decodeRuntimePayloadManifestV2(encodeRuntimePayloadManifestV2(reordered))).toEqual(manifest);
   });
-  it("verifies the complete fixed partition and rejects an unknown sibling",async()=>{
+  it("verifies a complete prefix-sibling partition independent of DFS order and rejects an unknown sibling",async()=>{
     const {root}=await fixture();
     await expect(verifyPackagedRuntimeBasisV2({resourcesRoot:root})).resolves.toMatchObject({resourcesRoot:root});
     await writeFile(join(root,"unknown"),"x");

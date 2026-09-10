@@ -341,7 +341,7 @@ export async function verifyPackagedRuntimeBasisV2(input: { resourcesRoot: strin
       if (entry.type === "directory") observations.set(entry.relativePath,await stableDirectory(path));
       else { const current = await stableFile(path, RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES, input.signal); if (current.size !== entry.size || current.sha256 !== entry.sha256) throw unavailable();observations.set(entry.relativePath,current.identity); }
     }
-    const seen: string[] = []; await walk(resourcesRoot, resourcesRoot, seen, input.signal);
+    const seen: string[] = []; await walk(resourcesRoot, resourcesRoot, seen, input.signal); seen.sort(compareRuntimeUtf8V2);
     const expected = [...payload.entries.map(entry => entry.relativePath), "runtime-payload-manifest.json", "runtime-governance", "runtime-governance/v2", ...inventory.governance.map(entry => entry.relativePath), "runtime-artifact-inventory-v2.json"].sort(compareRuntimeUtf8V2);
     if (seen.length !== expected.length || seen.some((path, index) => path !== expected[index])) throw unavailable();
     if (byPath.get("runtime-contracts/runtime-policy-parameters-v2.json")?.sha256 !== sha256(encodeRuntimePolicyParameterDeclarationV2())) throw unavailable();
