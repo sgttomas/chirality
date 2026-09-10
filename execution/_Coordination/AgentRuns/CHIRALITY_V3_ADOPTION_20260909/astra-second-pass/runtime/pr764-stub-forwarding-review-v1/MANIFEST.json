@@ -1,0 +1,17 @@
+{
+  "verdict": "PASS",
+  "members": [
+    {
+      "path": "REPAIR.patch",
+      "sha256": "d54313ca9e3fdc9226bca7f92f07fc7b061120804288188fa2f977112ee91767"
+    },
+    {
+      "path": "REVIEW.md",
+      "sha256": "b4b029ab47db80ac264f0f4ec50066952dcd0da6ea53a695b04b3d0aafc2ad0d"
+    },
+    {
+      "path": "SUBJECT.json",
+      "sha256": "486d9c08275acaaebb3f53bbb38fc439cff26609b770d0847fb47729ee471a59"
+    }
+  ]
+}

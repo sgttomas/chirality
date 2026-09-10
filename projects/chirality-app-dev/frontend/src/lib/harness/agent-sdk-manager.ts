@@ -102,7 +102,9 @@ export class StubAgentSdkManager implements IAgentSdkManager {
     return this.startTurn(
       input.session,
       input.message,
-      input.opts
+      input.opts,
+      input.contentBlocks,
+      input.turnId
     );
   }
 
@@ -120,7 +122,9 @@ export class StubAgentSdkManager implements IAgentSdkManager {
   async *startTurn(
     session: SessionRecord,
     message: string,
-    opts: ResolvedOpts
+    opts: ResolvedOpts,
+    _contentBlocks?: AgentEngineRunInput['contentBlocks'],
+    _turnId?: string
   ): AsyncIterable<UIEvent> {
     const turnState: ActiveTurnState = { interrupted: false };
     this.activeTurns.set(session.sessionId, turnState);
