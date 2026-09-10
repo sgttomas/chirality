@@ -255,6 +255,12 @@ describe('electron/runtime-control-ipc', () => {
 
 describe('createDesktopDaemonLifecycle', () => {
   const previousLabel = process.env.CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL;
+  const previousInstructionRoot = process.env.CHIRALITY_INSTRUCTION_ROOT;
+
+  beforeEach(() => {
+    delete process.env.CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL;
+    delete process.env.CHIRALITY_INSTRUCTION_ROOT;
+  });
 
   afterEach(() => {
     if (previousLabel === undefined) {
@@ -262,6 +268,24 @@ describe('createDesktopDaemonLifecycle', () => {
     } else {
       process.env.CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL = previousLabel;
     }
+    if (previousInstructionRoot === undefined) {
+      delete process.env.CHIRALITY_INSTRUCTION_ROOT;
+    } else {
+      process.env.CHIRALITY_INSTRUCTION_ROOT = previousInstructionRoot;
+    }
+  });
+
+  it('forwards an explicitly configured instruction root without inheriting unrelated test state', () => {
+    process.env.CHIRALITY_INSTRUCTION_ROOT = '/configured/instruction-root';
+
+    createDesktopDaemonLifecycle();
+
+    expect(vi.mocked(LaunchAgentManager).mock.calls[0]?.[3]?.environmentVariables).toEqual({
+      CHIRALITY_USER_DATA: '/Users/tester/Library/Application Support/Chirality',
+      CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: 'com.chirality.runtime',
+      CHIRALITY_RUNTIME_KEEP_ALIVE: 'always',
+      CHIRALITY_INSTRUCTION_ROOT: '/configured/instruction-root'
+    });
   });
 
   it('pins the whole posture, not just the runtime directory, into the LaunchAgent', () => {

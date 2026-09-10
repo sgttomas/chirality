@@ -1,5 +1,6 @@
 import path from 'node:path';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, realpath, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { describe, expect, it, vi } from 'vitest';
 import {
   readHostedPrivateBootstrapConfiguration,
@@ -97,6 +98,10 @@ function pathWithBytes(targetBytes: number, unicode = false): string {
   return value;
 }
 
+async function privateTempDirectory(): Promise<string> {
+  return mkdtemp(path.join(await realpath(tmpdir()), 'app-private-runtime-'));
+}
+
 describe('runtime-host macOS socket-path boundary', () => {
   it('accepts 103 bytes, rejects 104 bytes, and counts UTF-8 bytes', () => {
     expect(
@@ -163,7 +168,7 @@ describe('runtime-host macOS socket-path boundary', () => {
   });
 
   it('passes a matching strict carrier through the real Runtime reader and private entry', async () => {
-    const directory = await mkdtemp('/private/tmp/app-private-runtime-');
+    const directory = await privateTempDirectory();
     try {
       const configFile = path.join(directory, 'hosted.json');
       await writeFile(configFile, JSON.stringify(privateConfiguration()), { mode: 0o600 });
@@ -194,7 +199,7 @@ describe('runtime-host macOS socket-path boundary', () => {
   });
 
   it('does not start a host when the real Runtime reader rejects a mismatched carrier', async () => {
-    const directory = await mkdtemp('/private/tmp/app-private-runtime-');
+    const directory = await privateTempDirectory();
     try {
       const configFile = path.join(directory, 'hosted.json');
       await writeFile(configFile, JSON.stringify(privateConfiguration('/wrong/supplier')), {
