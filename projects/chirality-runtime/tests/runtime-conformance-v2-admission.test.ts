@@ -36,7 +36,7 @@ describe("D36 v2 shared purpose inspection", () => {
       backend: { credentialStore: "keyring", plaintextFallback: false }, methods: ["account/login/start", "account/login/cancel", "account/read", "model/list"], modelExecution: false,
       issuedAt: "2026-09-10T00:00:00.000Z", expiresAt: "2026-09-11T00:00:00.000Z",
       limbs: limbs(["exact-supplier", "keyring-backend", "plaintext-fallback-absent", "process-containment", "storage-isolation", "provider-network", "bounded-protocol-purpose", "retirement"]) };
-    expect(inspectRuntimePurposeReleaseV2({ purpose: "login", record, expected: { payloadDigest, supportProfile: profile }, now: Date.parse("2026-09-10T12:00:00.000Z") })).toEqual({ sourceDigest });
+    expect(inspectRuntimePurposeReleaseV2({ purpose: "login", record, expected: { payloadDigest, supportProfile: profile }, now: Date.parse("2026-09-10T12:00:00.000Z") })).toEqual({ sourceDigest, disposition: "qualified" });
     const acceptance = { schema: "chirality-runtime-conformance-acceptance/v1", status: "accepted", recordSha256, sourceDigest, activationId: "release-2", gateIdentity: "D36", ownerActSha256, ownerReference: "owner-act", expiresAt: "2026-09-11T00:00:00.000Z" };
     expect(inspectRuntimePurposeAcceptanceV2({ purpose: "login", acceptance, expected: { recordSha256, sourceDigest, ownerActSha256, activationId: "release-2", gateIdentity: "D36" }, now: Date.parse("2026-09-10T12:00:00.000Z") })).toEqual({ ownerReference: "owner-act" });
     expect(() => inspectRuntimePurposeAcceptanceV2({ purpose: "login", acceptance, expected: { recordSha256, sourceDigest, ownerActSha256, activationId: "other", gateIdentity: "D36" }, now: Date.parse("2026-09-10T12:00:00.000Z") })).toThrow();

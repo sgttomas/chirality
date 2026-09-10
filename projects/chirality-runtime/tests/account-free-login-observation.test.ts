@@ -3,7 +3,7 @@ import { chmod, mkdir, mkdtemp, readFile, readdir, realpath, rm, stat, writeFile
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { PassThrough } from "node:stream";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const state = vi.hoisted(() => ({ methods: [] as string[], invalidReadback: false, retired: 0, cleaned: 0,
   spawnedArguments: [] as string[], addonPath: "", proof: undefined as undefined | ((secret: Buffer, value: any) => string), contract: "", supplySha: "" }));
@@ -51,7 +51,14 @@ import { initializationProof, AUTHORITY_CONTRACT } from "../packages/daemon/src/
 import { observeCodexAccountFreeLoginPurposeV2, type AccountFreeLoginObservationInputV2 } from "../packages/daemon/src/account-free-login-observation.js";
 
 const roots: string[] = [];
+const originalPlatform = Object.getOwnPropertyDescriptor(process, "platform")!;
+const originalArch = Object.getOwnPropertyDescriptor(process, "arch")!;
+beforeEach(() => {
+  Object.defineProperty(process, "platform", { ...originalPlatform, value: "darwin" });
+  Object.defineProperty(process, "arch", { ...originalArch, value: "arm64" });
+});
 afterEach(async () => { state.methods = []; state.invalidReadback = false; state.retired = 0; state.cleaned = 0; state.spawnedArguments = []; state.addonPath = "";
+  Object.defineProperty(process, "platform", originalPlatform); Object.defineProperty(process, "arch", originalArch);
   await Promise.all(roots.splice(0).map(path => rm(path, { recursive: true, force: true }))); });
 
 async function fixture(): Promise<AccountFreeLoginObservationInputV2> {

@@ -1,9 +1,9 @@
 import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
 import { constants } from "node:fs";
-import { lstat, open, readdir, realpath } from "node:fs/promises";
 import { isAbsolute, join, relative, resolve, sep } from "node:path";
 import { RuntimeError } from "@chirality/runtime-contracts";
+import { runtimePhysicalFilesystem } from "./physical-filesystem.js";
 
 export type RuntimeSha256V2 = string;
 export const RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES = 1_073_741_824 as const;
@@ -289,16 +289,16 @@ async function stableFile(path: string, maximum: number, signal: AbortSignal | u
 async function stableFile(path: string, maximum: number, signal?: AbortSignal, retainBytes?: false): Promise<StableRuntimeFileV2>;
 async function stableFile(path: string, maximum: number, signal?: AbortSignal, retainBytes = false): Promise<StableRuntimeFileV2 | StableRuntimeDocumentV2> {
   signal?.throwIfAborted();
-  if (!isAbsolute(path) || resolve(path) !== path || await realpath(path) !== path) throw unavailable();
-  const handle = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
+  if (!isAbsolute(path) || resolve(path) !== path || await runtimePhysicalFilesystem().realpath(path) !== path) throw unavailable();
+  const handle = await runtimePhysicalFilesystem().open(path, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
   try {
     const before = await handle.stat({ bigint: true });
     if (!before.isFile() || before.nlink !== 1n || before.size > BigInt(maximum)) throw unavailable();
     const parts:Buffer[]=[];const digest=createHash("sha256");let total=0,position=0;const buffer=Buffer.alloc(65_536);
     for(;;){signal?.throwIfAborted();const {bytesRead}=await handle.read(buffer,0,Math.min(buffer.length,Number(before.size)+1-total),position);if(bytesRead===0)break;total+=bytesRead;position+=bytesRead;if(total>Number(before.size)||total>maximum)throw unavailable();const chunk=buffer.subarray(0,bytesRead);digest.update(chunk);if(retainBytes)parts.push(Buffer.from(chunk));}
-    const after = await handle.stat({ bigint: true }); const current = await lstat(path, { bigint: true });
+    const after = await handle.stat({ bigint: true }); const current = await runtimePhysicalFilesystem().lstat(path, { bigint: true });
     for (const key of ["dev","ino","size","mtimeNs","ctimeNs"] as const) if (before[key] !== after[key] || before[key] !== current[key]) throw unavailable();
-    if (total !== Number(before.size) || await realpath(path) !== path) throw unavailable();
+    if (total !== Number(before.size) || await runtimePhysicalFilesystem().realpath(path) !== path) throw unavailable();
     const identity=JSON.stringify([before.dev,before.ino,before.size,before.mtimeNs,before.ctimeNs,before.mode,before.uid,before.nlink].map(String));
     const observed={size:total,sha256:digest.digest("hex"),identity};
     return retainBytes ? {...observed,bytes:Buffer.concat(parts,total)} : observed;
@@ -306,23 +306,23 @@ async function stableFile(path: string, maximum: number, signal?: AbortSignal, r
 }
 
 async function stableDirectory(path:string):Promise<string>{
-  if(!isAbsolute(path)||resolve(path)!==path||await realpath(path)!==path)throw unavailable();const info=await lstat(path,{bigint:true});if(!info.isDirectory()||info.isSymbolicLink())throw unavailable();
+  if(!isAbsolute(path)||resolve(path)!==path||await runtimePhysicalFilesystem().realpath(path)!==path)throw unavailable();const info=await runtimePhysicalFilesystem().lstat(path,{bigint:true});if(!info.isDirectory()||info.isSymbolicLink())throw unavailable();
   return JSON.stringify([info.dev,info.ino,info.size,info.mtimeNs,info.ctimeNs,info.mode,info.uid,info.nlink].map(String));
 }
 
 async function walk(root: string, base: string, output: string[], signal?: AbortSignal): Promise<void> {
   signal?.throwIfAborted();
-  if (output.length > 50_010 || await realpath(root) !== root) throw unavailable();
-  const info = await lstat(root);
+  if (output.length > 50_010 || await runtimePhysicalFilesystem().realpath(root) !== root) throw unavailable();
+  const info = await runtimePhysicalFilesystem().lstat(root);
   if (info.isSymbolicLink() || (info.isFile() && info.nlink !== 1) || (!info.isDirectory() && !info.isFile())) throw unavailable();
   const rel = relative(base, root).split(sep).join("/"); if (rel) output.push(rel);
-  if (info.isDirectory()) for (const name of (await readdir(root)).sort(compareRuntimeUtf8V2)) await walk(join(root, name), base, output, signal);
+  if (info.isDirectory()) for (const name of (await runtimePhysicalFilesystem().readdir(root)).sort(compareRuntimeUtf8V2)) await walk(join(root, name), base, output, signal);
 }
 
 export async function verifyPackagedRuntimeBasisV2(input: { resourcesRoot: string; signal?: AbortSignal }): Promise<Readonly<VerifiedPackagedRuntimeBasisV2>> {
   try {
-    const resourcesRoot = await realpath(input.resourcesRoot);
-    if (resourcesRoot !== input.resourcesRoot || !(await lstat(resourcesRoot)).isDirectory()) throw unavailable();
+    const resourcesRoot = await runtimePhysicalFilesystem().realpath(input.resourcesRoot);
+    if (resourcesRoot !== input.resourcesRoot || !(await runtimePhysicalFilesystem().lstat(resourcesRoot)).isDirectory()) throw unavailable();
     const resourcesIdentity=await stableDirectory(resourcesRoot);
     const inventoryPath = join(resourcesRoot, "runtime-artifact-inventory-v2.json");
     const payloadManifestPath = join(resourcesRoot, "runtime-payload-manifest.json");
@@ -370,7 +370,7 @@ export async function observeRuntimeSupportProfileFromPayloadV2(input: RuntimePa
   try {
     const live={electron:process.versions.electron,node:process.versions.node,modules:process.versions.modules,napi:process.versions.napi,architecture:process.arch};
     if (process.platform !== "darwin" || live.architecture !== "arm64" || !live.electron || !live.node || !live.modules || !live.napi || Object.entries(live).some(([key,value])=>input.embeddedRuntime[key as keyof EmbeddedRuntimeVersionsV2]!==value)) throw unavailable();
-    if (!isAbsolute(input.resourcesRoot) || resolve(input.resourcesRoot) !== input.resourcesRoot || await realpath(input.resourcesRoot) !== input.resourcesRoot
+    if (!isAbsolute(input.resourcesRoot) || resolve(input.resourcesRoot) !== input.resourcesRoot || await runtimePhysicalFilesystem().realpath(input.resourcesRoot) !== input.resourcesRoot
       || !Array.isArray(input.payloadEntries) || input.payloadEntries.length < 1 || input.payloadEntries.length > 50_000) throw unavailable();
     const resourcesIdentity=await stableDirectory(input.resourcesRoot);
     const paths=input.payloadEntries.map(entry=>entry.relativePath);

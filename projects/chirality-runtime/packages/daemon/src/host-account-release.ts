@@ -1,10 +1,10 @@
 import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
-import { open, readFile, realpath } from "node:fs/promises";
 import { dirname, isAbsolute, join, resolve } from "node:path";
 import { promisify } from "node:util";
 import { RuntimeError } from "@chirality/runtime-contracts";
 import type { AuthRegistry } from "@chirality/runtime-core";
+import { runtimePhysicalFilesystem } from "@chirality/runtime-core/physical-filesystem";
 import { loadNativeAdmissionBinding } from "@chirality/native-admission";
 import { assertIssuedPackagedReleaseBasisV2, revalidateIssuedPackagedReleaseBasisV2, type HostedPackagedReleaseBasisV2 } from "./hosted-packaged-release-state.js";
 import { HostAccountAuthority } from "./host-account-authority.js";
@@ -46,7 +46,7 @@ function appPaths(executablePath: string, resourcesPath: string): { appRoot: str
 }
 
 async function verifyFuses(frameworkPath: string): Promise<void> {
-  const bytes = await readFile(frameworkPath).catch(() => { throw unavailable("ELECTRON_FUSE_VERIFICATION_FAILED"); });
+  const bytes = await runtimePhysicalFilesystem().readFile(frameworkPath).catch(() => { throw unavailable("ELECTRON_FUSE_VERIFICATION_FAILED"); });
   const positions: number[] = [];
   for (let offset = 0; ; ) {
     const found = bytes.indexOf(FUSE_SENTINEL, offset);
@@ -66,7 +66,7 @@ async function verifyFuses(frameworkPath: string): Promise<void> {
 }
 
 async function asarHeaderHash(path: string): Promise<string> {
-  const handle = await open(path, "r").catch(() => { throw unavailable("ASAR_INTEGRITY_VERIFICATION_FAILED"); });
+  const handle = await runtimePhysicalFilesystem().open(path, "r").catch(() => { throw unavailable("ASAR_INTEGRITY_VERIFICATION_FAILED"); });
   try {
     const sizeBytes = Buffer.alloc(8);
     if ((await handle.read(sizeBytes, 0, 8, 0)).bytesRead !== 8) throw unavailable("ASAR_INTEGRITY_VERIFICATION_FAILED");
@@ -79,6 +79,9 @@ async function asarHeaderHash(path: string): Promise<string> {
     return createHash("sha256").update(pickle.subarray(8, 8 + stringSize)).digest("hex");
   } finally { await handle.close(); }
 }
+
+/** Controlled physical-byte regression seam; it performs no signing, native load, or App execution. */
+export function readPhysicalAsarHeaderHashForTests(path: string): Promise<string> { return asarHeaderHash(path); }
 
 async function verifyAsarIntegrity(plistPath: string, asarPath: string): Promise<void> {
   const { stdout } = await run("/usr/bin/plutil", ["-convert", "json", "-o", "-", plistPath]);
@@ -131,7 +134,7 @@ export async function inspectHostAccountSignedPeerIdentity(input: {
 }): Promise<VerifiedHostAccountPackagedIdentity> {
   if (process.platform !== "darwin") throw unavailable("PLATFORM_UNSUPPORTED");
   const paths = appPaths(input.executablePath, input.resourcesPath);
-  if (await realpath(input.executablePath) !== input.executablePath || await realpath(paths.appRoot) !== paths.appRoot) throw unavailable("PACKAGED_APP_PATH_INVALID");
+  if (await runtimePhysicalFilesystem().realpath(input.executablePath) !== input.executablePath || await runtimePhysicalFilesystem().realpath(paths.appRoot) !== paths.appRoot) throw unavailable("PACKAGED_APP_PATH_INVALID");
   const predicate = await loadHostAccountSigningPredicate(input.resourcesPath);
   const identity = await verifyExecutable(input.executablePath, paths, predicate);
   const effectivePeerRequirement = `(${predicate.peerRequirement}) and cdhash H"${identity.subject.cdHash}"`;

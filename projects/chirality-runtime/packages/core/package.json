@@ -12,6 +12,10 @@
     "./runtime-conformance-v2": {
       "types": "./dist/runtime-conformance-v2.d.ts",
       "import": "./dist/runtime-conformance-v2.js"
+    },
+    "./physical-filesystem": {
+      "types": "./dist/physical-filesystem.d.ts",
+      "import": "./dist/physical-filesystem.js"
     }
   },
   "files": [

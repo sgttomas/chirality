@@ -1,6 +1,5 @@
 import { createHash } from "node:crypto";
 import { constants, type BigIntStats } from "node:fs";
-import { lstat, open, realpath } from "node:fs/promises";
 import { dirname, isAbsolute, join, resolve } from "node:path";
 import { RuntimeError } from "@chirality/runtime-contracts";
 import {
@@ -9,6 +8,7 @@ import {
   type VerifiedPackagedRuntimeBasisV2
 } from "@chirality/runtime-core/runtime-conformance-v2";
 import { createCustomSupplyVerifier, type ExactSupplyVerifier } from "@chirality/runtime-core";
+import { runtimePhysicalFilesystem } from "@chirality/runtime-core/physical-filesystem";
 
 type Purpose = "login" | "worker";
 type Issuance = "production" | "controlled-test";
@@ -109,8 +109,8 @@ function sameMutableAncestor(left: Identity, right: Identity): boolean {
   return left.dev === right.dev && left.ino === right.ino && left.mode === right.mode && left.uid === right.uid;
 }
 async function directoryIdentity(path: string): Promise<Identity> {
-  if (!canonical(path) || await realpath(path) !== path) throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
-  const info = await lstat(path, { bigint: true });
+  if (!canonical(path) || await runtimePhysicalFilesystem().realpath(path) !== path) throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
+  const info = await runtimePhysicalFilesystem().lstat(path, { bigint: true });
   if (!info.isDirectory() || info.isSymbolicLink()) throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
   return identity(info);
 }
@@ -121,14 +121,14 @@ export async function assertIssuedPrivateDirectoryChainV2(runtimeDirectory: stri
   let current = runtimeDirectory;
   for (const part of ["", ...suffix]) {
     if (part) current = join(current, part);
-    const info = await lstat(current);
-    if (!info.isDirectory() || info.isSymbolicLink() || info.uid !== (process.getuid?.() ?? -1) || (info.mode & 0o777) !== 0o700 || await realpath(current) !== current) throw unavailable("PRIVATE_RELEASE_DIRECTORY_UNSAFE");
+    const info = await runtimePhysicalFilesystem().lstat(current);
+    if (!info.isDirectory() || info.isSymbolicLink() || info.uid !== (process.getuid?.() ?? -1) || (info.mode & 0o777) !== 0o700 || await runtimePhysicalFilesystem().realpath(current) !== current) throw unavailable("PRIVATE_RELEASE_DIRECTORY_UNSAFE");
   }
 }
 
 export async function readIssuedPrivateFileV2(path: string, maximum = 1_048_576): Promise<{ bytes: Buffer; sha256: string; identity: Identity }> {
-  if (!canonical(path) || await realpath(path) !== path) throw unavailable("INVALID_PRIVATE_RELEASE_BASIS");
-  const file = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
+  if (!canonical(path) || await runtimePhysicalFilesystem().realpath(path) !== path) throw unavailable("INVALID_PRIVATE_RELEASE_BASIS");
+  const file = await runtimePhysicalFilesystem().open(path, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
   try {
     const before = await file.stat({ bigint: true });
     const uid = BigInt(process.getuid?.() ?? -1);
@@ -142,8 +142,8 @@ export async function readIssuedPrivateFileV2(path: string, maximum = 1_048_576)
       total += result.bytesRead;
     }
     const after = await file.stat({ bigint: true });
-    const pathInfo = await lstat(path, { bigint: true });
-    if (total !== expected || !sameIdentity(before, after) || !sameIdentity(after, pathInfo) || await realpath(path) !== path) throw unavailable("CHANGED_PRIVATE_RELEASE_BASIS");
+    const pathInfo = await runtimePhysicalFilesystem().lstat(path, { bigint: true });
+    if (total !== expected || !sameIdentity(before, after) || !sameIdentity(after, pathInfo) || await runtimePhysicalFilesystem().realpath(path) !== path) throw unavailable("CHANGED_PRIVATE_RELEASE_BASIS");
     const result = bytes.subarray(0, total);
     return { bytes: result, sha256: hash(result), identity: identity(after) };
   } finally {
@@ -156,8 +156,8 @@ async function observedFile(path: string): Promise<{ path: string; sha256: strin
   return Object.freeze({ path, sha256: value.sha256, identity: value.identity });
 }
 async function originIdentity(path: string, kind: "file" | "directory"): Promise<Identity> {
-  if (!canonical(path) || await realpath(path) !== path) throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
-  const info = await lstat(path, { bigint: true });
+  if (!canonical(path) || await runtimePhysicalFilesystem().realpath(path) !== path) throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
+  const info = await runtimePhysicalFilesystem().lstat(path, { bigint: true });
   if (info.isSymbolicLink() || (kind === "file" ? (!info.isFile() || info.nlink !== 1n) : !info.isDirectory())) throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
   return identity(info);
 }
@@ -188,7 +188,7 @@ export async function registerIssuedPackagedReleaseBasisV2(basis: Readonly<Hoste
   const closureEntries = await Promise.all(basis.verified.payload.entries.filter(entry => entry.relativePath === "supplier" || entry.relativePath.startsWith("supplier/"))
     .map(async entry => entry.type === "directory" ? Object.freeze({ relativePath: entry.relativePath, type: "directory" as const }) : Object.freeze({
       relativePath: entry.relativePath, type: "file" as const, sha256: entry.sha256, size: entry.size,
-      mode: ((await lstat(join(state.resourcesRoot, entry.relativePath))).mode & 0o111) !== 0 ? "executable" as const : "data" as const
+      mode: ((await runtimePhysicalFilesystem().lstat(join(state.resourcesRoot, entry.relativePath))).mode & 0o111) !== 0 ? "executable" as const : "data" as const
     })));
   const supplier = basis.supportProfile.supplier;
   const supplyVerifier = createCustomSupplyVerifier({ schema: "chirality-custom-supplier-exact-profile/v1",

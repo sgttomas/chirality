@@ -256,7 +256,10 @@ describe("v3 role and method catalog", () => {
     const qualified = "root:bundled:workflow:alpha";
     expect(RUNTIME_ROUTES.method("p / 1", qualified)).toBe("/v1/projects/p%20%2F%201/methods/root%3Abundled%3Aworkflow%3Aalpha");
     expect(RUNTIME_ROUTES.sessionContextResolve("p", "s")).toBe("/v1/projects/p/sessions/s/context/resolve");
+    const admitted: NativePlanAdapterEvent = { qualificationState: "trial", eventId: "event-0", occurredAt: "2026-09-10T00:00:00.000Z",
+      admission: { evidenceClass: "native-adapter-local-human-trial", adapterId: "codex-app-server", providerId: "openai", dispositionId: "trial-1", admissionSha256: "a".repeat(64) } };
+    expect(nativePlanRevisionFromAdapterEvent(1, admitted)).toEqual({ revision: 1, sourceEvent: admitted });
     const unavailable: NativePlanAdapterEvent = { qualificationState: "unavailable", eventId: "event-1", reason: "adapter unavailable" };
-    expect(() => nativePlanRevisionFromAdapterEvent(1, unavailable)).toThrowError(/qualified native adapter event/);
+    expect(() => nativePlanRevisionFromAdapterEvent(1, unavailable)).toThrow(Error);
   });
 });

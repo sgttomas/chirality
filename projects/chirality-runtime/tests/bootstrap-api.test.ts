@@ -53,8 +53,8 @@ async function setup(hostedBootstrap: any) {
 describe("hosted bootstrap API", () => {
   it("registers an explicit manifest, derives provenance, and keeps the project token server-only", async () => {
     const status = { schema: "chirality-hosted-bootstrap-status/v1", projectId: "bootstrap-project", ceremony: "consent-required", admission: "unavailable", canStartLogin: false } as const;
-    const grant = vi.fn(async (_projectId: string, _provenance: unknown) => ({ ...status, ceremony: "ready-to-start", canStartLogin: true } as const));
-    const signOut = vi.fn(async () => status);
+    const grant = vi.fn(async (_projectId: string, _provenance: unknown, _signal?: AbortSignal) => ({ ...status, ceremony: "ready-to-start", canStartLogin: true } as const));
+    const signOut = vi.fn(async (_projectId: string, _signal?: AbortSignal) => status);
     const port = { status: vi.fn(async () => status), grantProviderNetworkConsent: grant, startLogin: vi.fn(async () => ({ loginId: "login-1", authUrl: "https://auth.example.test/authorize?state=opaque" })), cancelLogin: vi.fn(async () => ({ ...status, ceremony: "cancelled", canStartLogin: true } as const)), signOut };
     const fixture = await setup(port);
     const projectRoot = join(fixture.root, "project");
@@ -82,11 +82,13 @@ describe("hosted bootstrap API", () => {
       approvedBy: `runtime-client:${HOSTED_BOOTSTRAP_CLIENT_ID}`,
       approvalReference: expect.stringMatching(/^hosted-bootstrap:/u),
       approvedAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T/u)
-    }));
+    }), expect.any(AbortSignal));
+    expect(grant.mock.calls[0]![2].aborted).toBe(false);
     expect(await fixture.bootstrapClient.startHostedBootstrapLogin("bootstrap-project")).toEqual({ loginId: "login-1", authUrl: "https://auth.example.test/authorize?state=opaque" });
     expect(await fixture.bootstrapClient.cancelHostedBootstrapLogin("bootstrap-project")).toMatchObject({ ceremony: "cancelled" });
     expect(await fixture.bootstrapClient.signOutHostedProject("bootstrap-project")).toEqual(status);
-    expect(signOut).toHaveBeenCalledWith("bootstrap-project");
+    expect(signOut).toHaveBeenCalledWith("bootstrap-project", expect.any(AbortSignal));
+    expect(signOut.mock.calls[0]![1].aborted).toBe(false);
     await expect(fixture.bootstrapClient.requestJson("/v3/projects/bootstrap-project/hosted-bootstrap/logout", { method: "POST", body: { accountWide: true } })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
   });
 

@@ -36,6 +36,10 @@ export function resolveRuntimeConformanceV2Source() {
   return path.join(runtimeRoot, 'packages', 'core', 'src', 'runtime-conformance-v2.ts');
 }
 
+export function resolveRuntimePhysicalFilesystemSource() {
+  return path.join(runtimeRoot, 'packages', 'core', 'src', 'physical-filesystem.ts');
+}
+
 export function resolveProtectedRuntimeCliSource() {
   return path.join(runtimeRoot, 'packages', 'cli', 'src', 'cli.ts');
 }
@@ -47,6 +51,7 @@ const runtimeEntries = {
   '@chirality/runtime-contracts': resolveRuntimeContractsSource(),
   '@chirality/runtime-core': path.join(runtimeRoot, 'packages', 'core', 'src', 'index.ts'),
   '@chirality/runtime-core/runtime-conformance-v2': resolveRuntimeConformanceV2Source(),
+  '@chirality/runtime-core/physical-filesystem': resolveRuntimePhysicalFilesystemSource(),
   '@chirality/runtime-daemon': path.join(
     runtimeRoot,
     'packages',
@@ -65,7 +70,7 @@ const runtimeEntries = {
   '@chirality/runtime-cli': path.join(runtimeRoot, 'packages', 'cli', 'src', 'index.ts')
 };
 
-const runtimePackagePlugin = {
+export const runtimePackagePlugin = {
   name: 'chirality-runtime-workspace',
   setup(buildApi) {
     buildApi.onResolve(
