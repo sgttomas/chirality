@@ -27,6 +27,7 @@ import type { ProjectRegistry } from "./project-registry.js";
 import type { ResidencyCoordinator } from "./residency-coordinator.js";
 import type { SessionStore } from "./session-store.js";
 import type { TurnCoordinator } from "./turn-coordinator.js";
+import { RuntimeMethodService, type TrustedNativePlanAdapterRegistry } from "./runtime-method-service.js";
 
 export interface RuntimeCredentialStore extends ProviderCredentialPort {
   set(providerId: string, value: string): Promise<void>;
@@ -61,6 +62,7 @@ export interface DefaultSessionPolicy {
 }
 
 export class RuntimeService {
+  readonly methods: RuntimeMethodService;
   constructor(
     readonly projects: ProjectRegistry,
     readonly sessions: SessionStore,
@@ -72,8 +74,12 @@ export class RuntimeService {
     private readonly scaffoldPort?: ProjectScaffoldPort,
     private readonly agent1Runs?: Agent1RunPort,
     private readonly permissions?: PermissionDecisionPort,
-    private readonly defaultSessionPolicy?: DefaultSessionPolicy
-  ) {}
+    private readonly defaultSessionPolicy?: DefaultSessionPolicy,
+    nativePlan?: TrustedNativePlanAdapterRegistry
+  ) {
+    this.methods = new RuntimeMethodService(projects, sessions, engines, nativePlan);
+    this.turns.configureRuntimeMethods(this.methods);
+  }
 
   async registerProject(
     manifestPath: string,
@@ -115,13 +121,17 @@ export class RuntimeService {
 
   async createSession(request: CreateSessionRequest) {
     const project = await this.projects.requireAuthorized(request.projectId);
-    const persona = request.persona ?? "UNTYPED";
+    const persona = request.persona ?? request.roleId ?? "HELP_HUMAN";
     const mode = request.mode ?? "direct";
-    const roster = await this.listAgents(request.projectId, true);
-    const rosterEntry =
-      persona.trim().toUpperCase() === "UNTYPED"
-        ? { name: persona, type: 1 as const }
-        : roster.find((entry) => entry.name === persona);
+    const selectedRoleId = request.roleId ?? (request.persona === undefined ? "HELP_HUMAN" : undefined);
+    const v3Role = selectedRoleId === undefined ? undefined : (await this.methods.listRoles(request.projectId)).roles.find(value => value.id === selectedRoleId);
+    if (selectedRoleId !== undefined && (v3Role === undefined || !v3Role.directEntry)) {
+      throw new HarnessError("INVALID_REQUEST", 400, `Role '${selectedRoleId}' is not available for direct chat`);
+    }
+    const roster = v3Role === undefined ? await this.listAgents(request.projectId, true) : [];
+    const rosterEntry = v3Role === undefined
+      ? (persona.trim().toUpperCase() === "UNTYPED" ? { name: persona, type: 1 as const } : roster.find((entry) => entry.name === persona))
+      : { name: v3Role.id, type: v3Role.agentType };
     if (rosterEntry?.type !== 0 && rosterEntry?.type !== 1) {
       throw new HarnessError(
         "INVALID_REQUEST",
@@ -176,14 +186,32 @@ export class RuntimeService {
         403
       );
     }
-    return this.sessions.create({
+    const created = await this.sessions.create({
       ...request,
       role,
       engineSelection,
       persona,
       mode
     });
+    if (selectedRoleId === undefined && request.selectedMethods === undefined && request.interactionMode === undefined && request.permissionMode === undefined) return created;
+    const roleId = selectedRoleId ?? (role === "agent0" ? "HELP_HUMAN" : "WORKING_ITEMS");
+    const seeded = { ...created, schemaVersion: "chirality.session/v3" as const, roleId,
+      interactionMode: request.interactionMode ?? "chat", permissionMode: request.permissionMode ?? "ask",
+      selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: "basis-pending" };
+    const resolved = await this.methods.resolveForTurn(request.projectId, seeded, { methods: request.selectedMethods ?? [] });
+    const updated = { ...seeded, selectedMethods: resolved.response.methods.map(value => ({ sourceRootId: value.sourceRootId, source: value.source, kind: value.kind, name: value.name })), instructionBasisId: resolved.response.basisPreview.id };
+    await this.sessions.update(updated);
+    return updated;
   }
+
+  listRoles(projectId: string) { return this.methods.listRoles(projectId); }
+  listMethods(projectId: string) { return this.methods.listMethods(projectId); }
+  inspectMethod(projectId: string, qualifiedId: string) { return this.methods.inspectMethod(projectId, qualifiedId); }
+  resolveSelectedContext(projectId: string, sessionId: string, request: import("@chirality/runtime-contracts").ResolveSelectedContextRequest) { return this.methods.resolveSelectedContext(projectId, sessionId, request); }
+  replaceSelectedMethods(projectId: string, sessionId: string, request: import("@chirality/runtime-contracts").ReplaceSelectedMethodsRequest) { return this.methods.replaceSelectedMethods(projectId, sessionId, request); }
+  getNativePlanCapability(projectId: string, sessionId: string) { return this.methods.getNativePlanCapability(projectId, sessionId); }
+  listNativePlanRevisions(projectId: string, sessionId: string) { return this.methods.listNativePlanRevisions(projectId, sessionId); }
+  exportNativePlan(projectId: string, sessionId: string, request: import("@chirality/runtime-contracts").ExportNativePlanRequest) { return this.methods.exportNativePlan(projectId, sessionId, request); }
 
   async bootSession(
     projectId: string,
@@ -208,7 +236,10 @@ export class RuntimeService {
     const project = await this.projects.requireAuthorized(projectId);
     const persona = opts.persona ?? session.persona;
     const mode = opts.mode ?? session.mode;
-    if (persona.trim().toUpperCase() !== "UNTYPED") {
+    if (session.schemaVersion === "chirality.session/v3") {
+      const role = (await this.methods.listRoles(projectId)).roles.find(value => value.id === session.roleId);
+      if (role === undefined || !role.directEntry || persona !== role.id) throw new HarnessError("INVALID_REQUEST", 400, `Persona '${persona}' is not available for direct chat`);
+    } else if (persona.trim().toUpperCase() !== "UNTYPED") {
       const roster = await this.listAgents(projectId, true);
       if (!roster.some((agent) => agent.name === persona)) {
         throw new HarnessError(
@@ -219,12 +250,19 @@ export class RuntimeService {
       }
     }
     const engine = this.engines.resolve(session.engineSelection);
+    const turnId = randomUUID();
+    const resolvedContext = session.schemaVersion === "chirality.session/v3" ? await this.methods.resolveForTurn(projectId, session) : undefined;
+    const requestedTools = opts.tools ?? [];
+    const admittedTools = resolvedContext === undefined ? requestedTools : await this.methods.restrictRequestedTools(projectId, resolvedContext.response.roleId, session.permissionMode, resolvedContext.response.methods, requestedTools);
     const input: AgentEngineRunInput = {
       session,
-      message: "",
+      // Boot is a real adapter turn with a reserved compatibility message.
+      // Production adapters use this value to distinguish an attributed boot
+      // from an ordinary turn while still carrying Runtime's frozen context.
+      message: "bootstrap",
       opts: {
         model: opts.model ?? session.engineSelection.model,
-        tools: opts.tools ?? [],
+        tools: admittedTools,
         maxTurns: opts.maxTurns ?? 1,
         persona,
         mode,
@@ -232,9 +270,28 @@ export class RuntimeService {
           ? {}
           : { subagentGovernance: opts.subagentGovernance })
       },
-      turnId: randomUUID()
+      turnId,
+      ...(resolvedContext === undefined ? {} : {
+        instructionContext: resolvedContext.response,
+        runtimeTools: await this.methods.restrictRuntimeTools(projectId, resolvedContext.response.roleId, session.permissionMode, resolvedContext.response.methods, this.methods.runtimeTools(projectId, sessionId, turnId, admittedTools))
+      }),
+      ...(session.adapterSession?.contextSuccessor === undefined ? {} : { contextSuccessor: session.adapterSession.contextSuccessor })
     };
-    await engine.preflight(input);
+    if (resolvedContext !== undefined) await this.sessions.commitWithAcceptedTurn(session, { sessionId, turnId, type: "turn.accepted", data: { message: input.message, boot: true } }, resolvedContext.snapshot);
+    const failBoot = async (error: unknown): Promise<void> => {
+      if (resolvedContext === undefined) return;
+      const failure = error instanceof Error ? error : new Error("Boot failed");
+      await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.failed", data: { code: error instanceof RuntimeError ? error.code : "ENGINE_UNAVAILABLE", message: failure.message, boot: true } }).catch(() => undefined);
+      const current = await this.sessions.get(projectId, sessionId);
+      const adapterSession = { ...(current.adapterSession ?? {}) };
+      delete adapterSession.contextSuccessor;
+      await this.sessions.update({ ...current, status: "failed", adapterSession }).catch(() => undefined);
+      if (input.contextSuccessor !== undefined) {
+        await engine.cancelContextSuccessor?.(input.contextSuccessor.preparationId).catch(() => undefined);
+        await this.sessions.failProviderSpanPreparation(projectId, sessionId, input.contextSuccessor.preparationId, { code: error instanceof RuntimeError ? error.code : "BOOT_FAILED", message: failure.message }).catch(() => undefined);
+      }
+    };
+    try { await engine.preflight(input); } catch (error) { await failBoot(error); throw error; }
     let engineSessionId: string | undefined;
     let adapterId: string | undefined;
     let providerId: string | undefined;
@@ -245,7 +302,7 @@ export class RuntimeService {
     let fatalTurnError = false;
     let eventIndex = 0;
     const harnessEvents: HarnessEvent[] = [];
-    for await (const event of engine.startTurn(input)) {
+    try { for await (const event of engine.startTurn(input)) {
       if (processExit !== undefined) {
         throw new HarnessError(
           "SDK_FAILURE",
@@ -313,6 +370,7 @@ export class RuntimeService {
         model = event.data.model;
         claudeSessionId =
           providerId === "anthropic" ? event.data.claudeSessionId : undefined;
+        if (input.contextSuccessor !== undefined) await this.sessions.recordProviderSpanSessionInit(projectId, sessionId, input.contextSuccessor.preparationId, { sessionInitEventId: randomUUID(), engineSessionId: event.data.engineSessionId, providerSpanId: event.data.providerSpanId ?? event.data.engineSessionId });
       }
       if (event.type === "turn:error" && event.data.fatal) {
         fatalTurnError = true;
@@ -321,7 +379,7 @@ export class RuntimeService {
         processExit = event;
       }
       eventIndex += 1;
-    }
+    } } catch (error) { await failBoot(error); throw error; }
     if (
       processExit === undefined ||
       processExit.data.exitCode !== 0 ||
@@ -333,12 +391,14 @@ export class RuntimeService {
       (terminalHarnessEvent !== undefined &&
         terminalHarnessEvent.type !== "turn.completed")
     ) {
-      throw new HarnessError(
+      const failure = new HarnessError(
         "SDK_FAILURE",
         500,
         "Boot turn did not initialize and complete a conformant engine session",
         processExit === undefined ? undefined : { exitCode: processExit.data.exitCode }
       );
+      await failBoot(failure);
+      throw failure;
     }
     for (const event of harnessEvents) {
       await this.sessions.persistEvent(projectId, event);
@@ -387,6 +447,13 @@ export class RuntimeService {
       runtimeFingerprint: fingerprint,
       bootedAt
     };
+    if (updated.adapterSession !== undefined) delete updated.adapterSession.contextSuccessor;
+    if (input.contextSuccessor !== undefined) {
+      delete updated.sdkSessionId;
+      delete updated.sdkTranscriptPath;
+      delete updated.sdkSessionStoreKey;
+      if (claudeSessionId === undefined) delete updated.claudeSessionId;
+    }
     await this.sessions.update(updated);
     return {
       session: updated,

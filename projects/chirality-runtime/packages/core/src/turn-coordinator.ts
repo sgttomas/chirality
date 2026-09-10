@@ -5,6 +5,7 @@ import {
   type AgentEngineRunInput,
   type HarnessEvent,
   type IAttachmentResolver,
+  type PreparedContextSuccessor,
   type SessionTurnRequest,
   type UIEvent
 } from "@chirality/runtime-contracts";
@@ -12,6 +13,7 @@ import type { EngineRegistry } from "./engine-registry.js";
 import type { ProjectRegistry } from "./project-registry.js";
 import type { ResidencyCoordinator } from "./residency-coordinator.js";
 import type { SessionStore } from "./session-store.js";
+import type { RuntimeMethodService } from "./runtime-method-service.js";
 
 interface ActiveTurn {
   controller: AbortController;
@@ -69,6 +71,7 @@ function normalizeEngineFailure(error: unknown, local: boolean): RuntimeError {
 
 export class TurnCoordinator {
   private readonly active = new Map<string, ActiveTurn>();
+  private runtimeMethods?: RuntimeMethodService;
 
   constructor(
     private readonly projects: ProjectRegistry,
@@ -77,6 +80,10 @@ export class TurnCoordinator {
     private readonly residency: ResidencyCoordinator,
     private readonly attachments?: IAttachmentResolver
   ) {}
+
+  configureRuntimeMethods(methods: RuntimeMethodService): void {
+    this.runtimeMethods = methods;
+  }
 
   async *run(
     projectId: string,
@@ -110,24 +117,58 @@ export class TurnCoordinator {
     let terminalPersisted = false;
     let sessionInitSeen = false;
     let engineEventIndex = 0;
+    let acceptedOwned = false;
+    const contextSuccessor: PreparedContextSuccessor | undefined = session.adapterSession?.contextSuccessor;
+    let successorRecorded = false;
     try {
       releaseResidency = local
         ? await this.residency.admitTurn(session.engineSelection.model)
         : () => undefined;
+      const resolvedContext = this.runtimeMethods === undefined || session.schemaVersion !== "chirality.session/v3" ? undefined : await this.runtimeMethods.resolveForTurn(projectId, session, {
+        interactionMode: request.interactionMode,
+        permissionMode: request.permissionMode,
+        methods: request.methods,
+        workflow: request.workflow,
+        taskSkill: request.taskSkill
+      });
+      if ((request.interactionMode ?? session.interactionMode) === "native-plan") {
+        if (this.runtimeMethods === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan runtime is unavailable", 503);
+        const capability = await this.runtimeMethods.getNativePlanCapability(projectId, sessionId);
+        if (capability.status !== "qualified") throw new RuntimeError("ENGINE_UNAVAILABLE", capability.reason, 503);
+      }
+      const requestedTools = request.opts?.tools ?? [...toolNames];
+      const admittedTools = resolvedContext === undefined ? requestedTools : await this.runtimeMethods!.restrictRequestedTools(
+        projectId,
+        resolvedContext.response.roleId,
+        request.permissionMode ?? session.permissionMode,
+        resolvedContext.response.methods,
+        requestedTools
+      );
       const input: AgentEngineRunInput = {
         session,
         message,
         opts: {
           model: request.opts?.model ?? session.engineSelection.model,
-          tools: request.opts?.tools ?? [...toolNames],
+          tools: admittedTools,
           maxTurns: request.opts?.maxTurns ?? 50,
           persona: request.opts?.persona ?? session.persona,
-          mode: request.opts?.mode ?? session.mode,
+          mode: request.permissionMode ?? session.permissionMode ?? request.opts?.mode ?? session.mode,
           ...(request.opts?.subagentGovernance === undefined
             ? {}
             : { subagentGovernance: request.opts.subagentGovernance })
         },
         turnId,
+        ...(contextSuccessor === undefined ? {} : { contextSuccessor }),
+        ...(resolvedContext === undefined ? {} : {
+          instructionContext: resolvedContext.response,
+          runtimeTools: await this.runtimeMethods!.restrictRuntimeTools(
+            projectId,
+            resolvedContext.response.roleId,
+            request.permissionMode ?? session.permissionMode,
+            resolvedContext.response.methods,
+            this.runtimeMethods!.runtimeTools(projectId, sessionId, turnId, admittedTools).filter(tool => tool.permission.operation !== "control" || engine.descriptor.capabilities.runtimeControlTools === true)
+          )
+        }),
         ...(request.attachments === undefined || request.attachments.length === 0
           ? {}
           : this.attachments === undefined
@@ -147,12 +188,10 @@ export class TurnCoordinator {
                 ).contentBlocks
               })
       };
-      const accepted = await this.sessions.appendEvent(projectId, {
-        sessionId,
-        turnId,
-        type: "turn.accepted",
-        data: { message }
-      });
+      const accepted = resolvedContext === undefined
+        ? await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.accepted", data: { message } })
+        : (await this.sessions.commitWithAcceptedTurn(session, { sessionId, turnId, type: "turn.accepted", data: { message } }, resolvedContext.snapshot)).event;
+      acceptedOwned = true;
       yield { type: "harness:event", data: accepted };
       await engine.preflight(input);
       await this.sessions.update({ ...session, status: "running" });
@@ -214,6 +253,9 @@ export class TurnCoordinator {
           }
           await this.sessions.persistEvent(projectId, received.data);
         }
+        if (received.type === "chat:delta" && received.data.text) {
+          await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "message.delta", data: { text: received.data.text } });
+        }
         if (received.type === "session:init") {
           if (sessionInitSeen || engineEventIndex !== 0) {
             throw new RuntimeError(
@@ -234,18 +276,22 @@ export class TurnCoordinator {
             );
           }
           const residencyStatus = local ? await this.residency.status() : undefined;
+          if (contextSuccessor !== undefined) {
+            await this.sessions.recordProviderSpanSessionInit(projectId, sessionId, contextSuccessor.preparationId, { sessionInitEventId: randomUUID(), engineSessionId: received.data.engineSessionId, providerSpanId: received.data.providerSpanId ?? received.data.engineSessionId });
+            successorRecorded = true;
+          }
+          const adapterSession = { ...(session.adapterSession ?? {}), engineSessionId: received.data.engineSessionId };
+          delete adapterSession.contextSuccessor;
           session = {
             ...session,
+            status: "running",
             engineSessionId: received.data.engineSessionId,
             engineSelection: {
               adapterId: received.data.adapterId,
               providerId: received.data.providerId,
               model: received.data.model
             },
-            adapterSession: {
-              ...(session.adapterSession ?? {}),
-              engineSessionId: received.data.engineSessionId
-            },
+            adapterSession,
             ...(received.data.claudeSessionId === undefined
               ? {}
               : { claudeSessionId: received.data.claudeSessionId }),
@@ -253,6 +299,12 @@ export class TurnCoordinator {
               ? {}
               : { residencyEpoch: residencyStatus.epoch.epochId })
           };
+          if (contextSuccessor !== undefined) {
+            delete session.sdkSessionId;
+            delete session.sdkTranscriptPath;
+            delete session.sdkSessionStoreKey;
+            if (received.data.claudeSessionId === undefined) delete session.claudeSessionId;
+          }
           await this.sessions.update(session);
           sessionInitSeen = true;
         }
@@ -323,7 +375,6 @@ export class TurnCoordinator {
           502
         );
       }
-      yield processExit;
       await this.sessions.update({
         ...session,
         status: controller.signal.aborted
@@ -332,8 +383,17 @@ export class TurnCoordinator {
             ? "completed"
             : "failed"
       });
+      await this.runtimeMethods?.applyPendingMethodChanges(projectId, sessionId, turnId);
+      yield processExit;
     } catch (error) {
       const runtimeError = normalizeEngineFailure(error, local);
+      if (contextSuccessor !== undefined && !successorRecorded) {
+        const currentSuccessor = (await this.sessions.get(projectId, sessionId).catch(() => undefined))?.adapterSession?.contextSuccessor;
+        if (currentSuccessor?.preparationId === contextSuccessor.preparationId) {
+          await engine.cancelContextSuccessor?.(contextSuccessor.preparationId).catch(() => undefined);
+          await this.sessions.failProviderSpanPreparation(projectId, sessionId, contextSuccessor.preparationId, { code: runtimeError.code, message: runtimeError.message }).catch(() => undefined);
+        }
+      }
       if (!terminalPersisted) {
         const failed = await this.sessions.appendEvent(projectId, {
           sessionId,
@@ -357,6 +417,11 @@ export class TurnCoordinator {
           }
         };
       }
+      if (acceptedOwned) await this.sessions.update({
+        ...session,
+        status: controller.signal.aborted ? "interrupted" : "failed"
+      });
+      if (acceptedOwned) await this.runtimeMethods?.applyPendingMethodChanges(projectId, sessionId, turnId);
       yield {
         type: "process:exit",
         data: {
@@ -374,10 +439,6 @@ export class TurnCoordinator {
           fatal: true
         }
       };
-      await this.sessions.update({
-        ...session,
-        status: controller.signal.aborted ? "interrupted" : "failed"
-      });
     } finally {
       this.active.delete(key);
       releaseResidency();

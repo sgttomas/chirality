@@ -30,7 +30,7 @@ export function PortalLoopShell(): JSX.Element {
           <PersonaPicker buildHref={buildPortalPersonaHref} disabled={streaming} />
           {streaming ? (
             <p className="portal-launch-notice" role="status">
-              Persona changes pause while the current turn is running.
+              Role changes pause while the current turn is running.
             </p>
           ) : null}
         </div>

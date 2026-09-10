@@ -4,6 +4,7 @@ import type {
   ProjectionCurrency,
   ProjectionDiagnostic
 } from './contracts';
+import type { ChiralityRoleName, QualifiedMethodReference } from '@chirality/runtime-contracts/v3';
 
 type SessionSource = SessionRecord & Record<string, unknown>;
 
@@ -27,6 +28,25 @@ const RUNTIME_STATUSES = new Set([
 
 function readString(value: unknown): string | undefined {
   return typeof value === 'string' && value.trim().length > 0 ? value : undefined;
+}
+
+const ROLE_IDS = new Set<ChiralityRoleName>(['HELP_HUMAN', 'HELPS_HUMANS', 'WORKING_ITEMS', 'TASK']);
+const DIRECT_ENTRY_ROLE_IDS = new Set<ChiralityRoleName>(['HELP_HUMAN', 'HELPS_HUMANS', 'WORKING_ITEMS']);
+const INTERACTION_MODES = new Set(['chat', 'native-plan'] as const);
+const PERMISSION_MODES = new Set(['readOnly', 'ask', 'workspaceWrite', 'bypass'] as const);
+
+function readMethods(value: unknown): QualifiedMethodReference[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const methods: QualifiedMethodReference[] = [];
+  for (const entry of value) {
+    if (!entry || typeof entry !== 'object') return undefined;
+    const item = entry as Record<string, unknown>;
+    if ((item.kind !== 'skill' && item.kind !== 'workflow') ||
+      (item.source !== 'project' && item.source !== 'user' && item.source !== 'bundled') ||
+      !readString(item.name) || !readString(item.sourceRootId)) return undefined;
+    methods.push({ kind: item.kind, source: item.source, name: item.name as string, sourceRootId: item.sourceRootId as string });
+  }
+  return methods;
 }
 
 function recordedRole(
@@ -78,6 +98,13 @@ function projectionSignature(source: SessionSource): string {
     engineSelection: source.engineSelection,
     model: source.model,
     residencyEpoch: source.residencyEpoch,
+    schemaVersion: source.schemaVersion,
+    roleId: source.roleId,
+    interactionMode: source.interactionMode,
+    permissionMode: source.permissionMode,
+    selectedMethods: source.selectedMethods,
+    methodSelectionRevision: source.methodSelectionRevision,
+    instructionBasisId: source.instructionBasisId,
     outputArtifact: source.outputArtifact,
     approvalRef: source.approvalRef
   });
@@ -114,6 +141,22 @@ function projectOne(
   const residencyEpoch = readString(source.residencyEpoch);
   const outputArtifactReference = readString(source.outputArtifact);
   const approvalEvidenceReference = readString(source.approvalRef);
+  const roleId = typeof source.roleId === 'string' && ROLE_IDS.has(source.roleId as ChiralityRoleName)
+    ? source.roleId as ChiralityRoleName : undefined;
+  const interactionMode = typeof source.interactionMode === 'string' && INTERACTION_MODES.has(source.interactionMode as 'chat' | 'native-plan')
+    ? source.interactionMode as 'chat' | 'native-plan' : undefined;
+  const permissionMode = typeof source.permissionMode === 'string' && PERMISSION_MODES.has(source.permissionMode as 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass')
+    ? source.permissionMode as 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass' : undefined;
+  const selectedMethods = readMethods(source.selectedMethods);
+  const instructionBasisId = readString(source.instructionBasisId);
+  const methodSelectionRevision = typeof source.methodSelectionRevision === 'number' && Number.isSafeInteger(source.methodSelectionRevision) && source.methodSelectionRevision >= 0
+    ? source.methodSelectionRevision : undefined;
+  const expectedRole = roleId === 'HELP_HUMAN' ? 'agent0' : roleId === 'TASK' ? 'agent2' : roleId ? 'agent1' : undefined;
+  const continuation = source.schemaVersion === 'chirality.session/v3' && roleId && DIRECT_ENTRY_ROLE_IDS.has(roleId) && interactionMode && permissionMode && selectedMethods &&
+    instructionBasisId && methodSelectionRevision !== undefined && status && status !== 'running' && role === expectedRole
+    ? { schemaVersion: 'chirality.session/v3' as const, projectRoot: session.projectRoot, roleId,
+        mode: session.mode, interactionMode, permissionMode, selectedMethods, methodSelectionRevision, instructionBasisId }
+    : undefined;
 
   return {
     projectionId: `operator-session:${session.sessionId}`,
@@ -137,6 +180,7 @@ function projectOne(
       : { state: 'NOT_RECORDED' },
     ...(outputArtifactReference ? { outputArtifactReference } : {}),
     ...(approvalEvidenceReference ? { approvalEvidenceReference } : {}),
+    ...(continuation ? { continuation } : {}),
     diagnostics
   };
 }

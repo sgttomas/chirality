@@ -184,6 +184,13 @@ def test_claude_md_is_instruction_surface():
     assert not g4.intersects_instruction_surface("projects/demo/CLAUDE.md")
 
 
+def test_canonical_and_legacy_skill_roots_are_instruction_surfaces():
+    assert g4.intersects_instruction_surface(".agents/skills/researcher/SKILL.md")
+    assert g4.intersects_instruction_surface("./.agents/skills/researcher/execution.json")
+    assert g4.intersects_instruction_surface("skills/historical/SKILL.md")
+    assert not g4.intersects_instruction_surface("projects/demo/.agents/skills/local/SKILL.md")
+
+
 def test_diff_mode_blocks_uncovered_claude_md_change(tmp_path):
     _init_repo(tmp_path)
     _write_manifest(

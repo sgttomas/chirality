@@ -1,0 +1,40 @@
+{
+  "reviewerExecuted": [
+    {
+      "cwd": "projects/chirality-runtime",
+      "command": "./node_modules/.bin/vitest run tests/runtime-v3-api.test.ts tests/instruction-basis-and-method-transition.test.ts tests/method-catalog.test.ts tests/pi-turn-runtime.test.ts --fileParallelism=false",
+      "result": "PASS",
+      "files": 4,
+      "tests": 52,
+      "startedLocal": "2026-09-09 13:00:53 America/Edmonton"
+    },
+    {
+      "cwd": "projects/chirality-runtime",
+      "command": "./node_modules/.bin/vitest run tests/runtime-v3-api.test.ts tests/turn-hardening.test.ts --fileParallelism=false",
+      "result": "PASS",
+      "files": 2,
+      "tests": 19,
+      "startedLocal": "2026-09-09 13:03:29 America/Edmonton",
+      "note": "Rerun after final legacy boot failure compatibility correction; overlaps 11 tests in the preceding run."
+    },
+    {
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "./node_modules/.bin/vitest run src/__tests__/api/harness/agents-route.test.ts src/__tests__/api/harness/daemon-proxy-boundary.test.ts src/__tests__/api/harness/routes.test.ts src/__tests__/integration/v3-runtime-proxy.integration.test.ts src/__tests__/lib/agent-roster.test.ts src/__tests__/lib/claude-agent-sdk-manager.test.ts src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts src/__tests__/lib/harness-options.test.ts src/__tests__/lib/pi-agent-engine-adapter.test.ts src/__tests__/lib/runtime-daemon-harness-port.test.ts src/__tests__/lib/sdk-options-builder.test.ts --fileParallelism=false",
+      "result": "PASS",
+      "files": 11,
+      "tests": 193,
+      "startedLocal": "2026-09-09 13:02:34 America/Edmonton"
+    }
+  ],
+  "managerReportedOnly": [
+    "Runtime build PASS",
+    "App typecheck PASS",
+    "App broader 13-file / 201-test PASS"
+  ],
+  "notPerformedByReviewer": [
+    "build",
+    "typecheck",
+    "native launch",
+    "live provider requests"
+  ]
+}

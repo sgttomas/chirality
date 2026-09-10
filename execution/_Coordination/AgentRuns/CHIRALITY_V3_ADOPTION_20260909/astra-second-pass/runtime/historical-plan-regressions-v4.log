@@ -1,0 +1,9 @@
+
+ RUN  v3.2.7 /private/tmp/chirality-v3-adoption-20260909/projects/chirality-runtime
+
+ ✓ ../../execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/historical-plan-regressions.test.ts (4 tests) 387ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  14:43:22
+   Duration  845ms (transform 191ms, setup 0ms, collect 277ms, tests 387ms, environment 0ms, prepare 38ms)

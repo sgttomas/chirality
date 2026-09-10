@@ -1,0 +1,102 @@
+{
+  "sourceHashes": {
+    "tools/validation/build_workflow_index.py": "c448cea83b4cf5fb4f8974ad2d0d589436fe276be2b09440fe36f9860bdd44b9",
+    "tools/validation/validate_skill_metadata.py": "76e4d89a250ca05f6981e5067435e71b59ef57ae0966777dc6975484ddc2fb24",
+    "tools/workflow_runtime/resolve_workflow.py": "46a8b917a19e3725331a7d7c1d4da6410f71a323ce7432383a729eee0d8e3d63"
+  },
+  "results": [
+    {
+      "case": "skill-package-escape",
+      "pass": true,
+      "rejection": "missing or escaping skill package: outside"
+    },
+    {
+      "case": "skill-library-escape",
+      "pass": true,
+      "rejection": "skill collection escapes declared library root"
+    },
+    {
+      "case": "invalid-name-a--b",
+      "pass": true,
+      "rejection": "invalid bundled skill identity: a--b"
+    },
+    {
+      "case": "standalone-skill-invalid-name-a--b",
+      "pass": true,
+      "issues": [
+        "name must use lowercase letters, digits, and hyphens only, max 64 chars"
+      ]
+    },
+    {
+      "case": "invalid-name-ends-",
+      "pass": true,
+      "rejection": "invalid bundled skill identity: ends-"
+    },
+    {
+      "case": "standalone-skill-invalid-name-ends-",
+      "pass": true,
+      "issues": [
+        "name must use lowercase letters, digits, and hyphens only, max 64 chars"
+      ]
+    },
+    {
+      "case": "invalid-name-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "pass": true,
+      "rejection": "invalid bundled skill identity: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "case": "standalone-skill-invalid-name-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "pass": true,
+      "issues": [
+        "name must use lowercase letters, digits, and hyphens only, max 64 chars"
+      ]
+    },
+    {
+      "case": "frontmatter-before---after",
+      "pass": true,
+      "actual": "before---after",
+      "expected": "before---after"
+    },
+    {
+      "case": "frontmatter-\"quoted --- text\"",
+      "pass": true,
+      "actual": "quoted --- text",
+      "expected": "quoted --- text"
+    },
+    {
+      "case": "frontmatter->\n  folded --- words\n  continue",
+      "pass": true,
+      "actual": "folded --- words continue",
+      "expected": "folded --- words continue"
+    },
+    {
+      "case": "optional-workflow-execution",
+      "pass": true
+    },
+    {
+      "case": "empty-role-list-denies",
+      "pass": true
+    },
+    {
+      "case": "standalone-workflow-empty-role-list",
+      "pass": true,
+      "issues": []
+    },
+    {
+      "case": "malformed-roles-TASK",
+      "pass": true,
+      "rejection": "malformed execution.json: project-setup"
+    },
+    {
+      "case": "malformed-roles-['UNKNOWN']",
+      "pass": true,
+      "rejection": "malformed compatible_roles: project-setup"
+    },
+    {
+      "case": "unregistered-qualified-source",
+      "pass": true,
+      "rejection": "qualified method identity is outside the declared Root catalog"
+    }
+  ],
+  "pass": true
+}

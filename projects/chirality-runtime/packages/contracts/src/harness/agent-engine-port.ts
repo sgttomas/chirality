@@ -1,4 +1,6 @@
 import { ContentBlock, ResolvedOpts, SessionRecord, UIEvent } from './types.js';
+import type { ResolveSelectedContextResponse } from '../v3.js';
+import type { RuntimeToolDefinition } from '../engine.js';
 
 export type EngineAdapterSubject = string;
 
@@ -9,6 +11,8 @@ export type EngineCapabilities = {
   interruption: boolean;
   durableResume: boolean;
   compaction: boolean;
+  /** Adapter bridge can expose the exact Runtime method-lifecycle control callback. */
+  runtimeControlTools?: boolean;
 };
 
 export type EngineDescriptor = {
@@ -25,7 +29,35 @@ export type AgentEngineRunInput = {
   opts: ResolvedOpts;
   contentBlocks?: ContentBlock[];
   turnId: string;
+  /** Exact runtime-resolved instructions supplied for this turn. */
+  instructionContext?: ResolveSelectedContextResponse;
+  /** Runtime-owned tools; adapters must expose only definitions admitted by their own tool bridge. */
+  runtimeTools?: readonly RuntimeToolDefinition[];
+  contextSuccessor?: PreparedContextSuccessor;
 };
+
+export interface ContextSuccessorRequest {
+  sessionId: string;
+  predecessorEngineSessionId: string;
+  fromBasisId: string;
+  toBasisPreview: { id: string; sha256: string };
+  continuationContext: {
+    transcript: string;
+    sha256: string;
+    priorBasisRefs: readonly { basisId: string; sha256: string }[];
+  };
+}
+
+export interface PreparedContextSuccessor {
+  preparationId: string;
+  adapterId: string;
+  providerId: string;
+  predecessorEngineSessionId: string;
+  continuationText: string;
+  continuationSha256: string;
+  targetBasisId: string;
+  targetReference: string;
+}
 
 export interface AgentEnginePort {
   readonly descriptor: EngineDescriptor;
@@ -34,6 +66,8 @@ export interface AgentEnginePort {
   preflight(input: AgentEngineRunInput): Promise<void>;
   startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>;
   interrupt(sessionId: string): Promise<void>;
+  prepareContextSuccessor?(request: ContextSuccessorRequest): Promise<PreparedContextSuccessor>;
+  cancelContextSuccessor?(preparationId: string): Promise<void>;
 }
 
 export type RuntimeEngineContract = {

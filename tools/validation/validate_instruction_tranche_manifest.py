@@ -79,7 +79,8 @@ provenance: this guard verifies it is named and well-formed, never that the
 direction itself was lawful (K-AUTH-1).
 
 The instruction surface is `docs/SPEC.md` §0.2.1's enumeration as amended by
-D-GOV-26: `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root
+D-GOV-26: `AGENTS.md`, `CLAUDE.md`, `agents/`, `.agents/skills/`, legacy
+`skills/`, `tools/`, root
 `docs/`, `init/`, `.github/workflows/`. `CLAUDE.md` is the session-init
 instruction pointer importing `AGENTS.md`; `.github/workflows/` holds the CI
 workflow definitions that gate merges, and had previously been guarded on the
@@ -170,6 +171,7 @@ REQUIRED_OWNER_DIRECTION_KEYS = (
 INSTRUCTION_SURFACE_FILES = ("AGENTS.md", "CLAUDE.md")
 INSTRUCTION_SURFACE_DIRS = (
     "agents/",
+    ".agents/skills/",  # Canonical portable skill packages.
     "skills/",  # Historical packages remain instruction surfaces.
     "workflows/",
     "tools/",

@@ -1,0 +1,26 @@
+
+ RUN  v4.1.10 /private/tmp/chirality-v3-adoption-20260909/projects/chirality-app-dev/frontend
+
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > only mounts Dialogue even with historical dialogue surface input 8ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > only mounts Dialogue even with historical workbench surface input 1ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > only mounts Dialogue even with historical pipeline surface input 1ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > preserves controller identity and focusable composer through replay, panel controls, resize, and return 41ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > persists file/document widths and expand return while primary stays mounted 8ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > binds the loaded catalog to the current root and routes chat links through the contained file opener 4ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > opens a recorded parent through the existing selection guard, preserving live-turn and primary behavior 4ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > continues a compatible v3 replay in the mounted primary dialogue and leaves legacy replay read-only 3ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > responds to measured stacked widths without removing primary, document or activity controls 4ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > provides explicit desktop reopen glyphs and full accessible names across responsive states 3ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > keeps collapse, detail return and expansion as distinct real controls without remounting primary 5ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > preserves the legacy compatibility link with the current query string 1ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > persists a redacted live title and rejects an older recorded-title completion 4ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > loads recorded titles only for visible active sessions 1ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > exposes collapsed search, guarded new-chat, expand, and account controls 2ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > owns Cmd-K while collapsed and suppresses it behind every Navigator dialog 5ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > WovenDialogueShell composition > replaces cleaned-up real replay readers across StrictMode effect replay and retains title/search work 268ms
+ ✓ src/__tests__/components/woven-dialogue-shell.test.tsx > opens Settings from the sole footer or collapsed account control without remounting the chat 6ms
+
+ Test Files  1 passed (1)
+      Tests  18 passed (18)
+   Start at  14:52:16
+   Duration  686ms (transform 181ms, setup 0ms, import 229ms, tests 370ms, environment 0ms)

@@ -8,12 +8,18 @@ Defaults, when not otherwise specified:
 - `DOMAIN_ROOT` = the domain package named by the human, e.g. `domains/chirality`
 - `DECOMP_ROOT = {DOMAIN_ROOT}/_Decomposition`
 - `LOCAL_INDEX_ROOT = {DOMAIN_ROOT}/_LocalIndexes`
-- `ACCEPTED_GATE_POINTER = {DECOMP_ROOT}/gate_snapshots/_LATEST_GATE6.md`, falling back to the latest accepted gate pointer if Gate 6 is not present
+- `ACCEPTED_DECOMP_POINTER = {DECOMP_ROOT}/checkpoint_snapshots/_LATEST_ACCEPTED.md`
+- `LEGACY_ACCEPTED_GATE_POINTER = {DECOMP_ROOT}/gate_snapshots/_LATEST_GATE6.md`
 - `RESEARCH_ROOT = {DOMAIN_ROOT}/_Research`
 - `RETRIEVAL_SNAPSHOT = {LOCAL_INDEX_ROOT}/_LATEST.md`
 - `DEFAULT_RETRIEVAL_MODE = hybrid`
 
-If a user asks a general research question without naming a domain, first look for the nearest active domain context in the prompt/session. If none is clear, ask for the domain root or accepted Gate snapshot.
+Resolve the canonical accepted decomposition pointer first. For a historical
+package that has no canonical pointer, use the legacy Gate 6 pointer or the
+latest explicitly accepted legacy gate pointer. Never translate or rename a
+historical pointer in place.
+
+If a user asks a general research question without naming a domain, first look for the nearest active domain context in the prompt/session. If none is clear, ask for the domain root or accepted decomposition snapshot.
 
 ---
 
@@ -35,7 +41,7 @@ WORKING_ITEMS must not edit accepted snapshots, ledgers, registers, decompositio
 
 ## Non-Negotiable Invariants
 
-- **Accepted decomposition truth comes first.** The accepted Gate snapshot chain and companion registers are the authority boundary. Mutable working files and regenerated packages are not automatically authoritative.
+- **Accepted decomposition truth comes first.** The accepted grouped-checkpoint snapshot and companion registers are the authority boundary. An explicitly accepted legacy Gate snapshot remains a valid historical authority boundary. Mutable working files and regenerated packages are not automatically authoritative.
 - **Derivative-package rule.** Source catalogs, BM25 indexes, dense embedding arrays, hypergraphs, concordance packages, summaries, and research packets are derivative unless separately accepted. They aid discovery; they do not replace accepted decomposition truth.
 - **No invention.** If a claim is not supported by accepted source/decomposition evidence, mark it `UNKNOWN`, `TBD`, or `INFERENCE` and say what evidence would be needed.
 - **Evidence-first answers.** Material claims must cite stable evidence: `AtomicUnitID`, `SourceRef`, `SectionID`, `CategoryID`, `KnowledgeTypeID`, `SubjectID`, source path, or accepted snapshot artifact.
@@ -53,20 +59,25 @@ When researching an accepted WORKING_ITEMS (workflow: domain-decomp) package, pr
 
 | Surface | Role |
 |---|---|
-| `gate_snapshots/_LATEST_GATE6.md` | latest accepted final snapshot pointer, when present |
-| `gate_snapshots/<GATE6>/HANDOFF_STATE.md` | accepted snapshot chain, derivative status, rerun/amendment requirements |
-| `Gate6_Publication_Manifest.csv` | final accepted artifact manifest and hashes |
+| `checkpoint_snapshots/_LATEST_ACCEPTED.md` | canonical latest accepted checkpoint-group-3 snapshot pointer |
+| `checkpoint_snapshots/<snapshot>/HANDOFF_STATE.md` | accepted source/checkpoint basis, derivative status, closure, rerun requirements, and blockers |
+| `checkpoint_snapshots/<snapshot>/ACCEPTED_MANIFEST.csv` | canonical accepted artifact inventory and hashes |
 | `*_Domain_Decomposition.md` or equivalent main document named by the accepted manifest | concise control surface and human-readable summary |
-| `Atomic_Domain_Ledger.csv` | accepted atom ledger from Gate 2 |
-| `Domain_Ledger_Gate4_KTY_Draft.csv` or accepted KTY ledger | atom rows with accepted Category/KTY/Subject mappings; historical `Draft` filename may be accepted by snapshot |
+| `Atomic_Domain_Ledger.csv` | accepted atom ledger from checkpoint group 1 |
+| accepted domain ledger named by the manifest | atom rows with accepted Category/KTY/Subject mappings; a historical `Domain_Ledger_Gate4_KTY_Draft.csv` filename may remain accepted by a legacy snapshot |
 | `Category_Register.csv` | flat Category ontology/navigation partition |
 | `Knowledge_Type_Register.csv` | accepted KTY definitions and parent Category |
 | `Knowledge_Subject_Register.csv` | accepted Subjects and parent KTY |
 | `Vocabulary_Map.csv` | accepted vocabulary/synonym surface |
-| `Section_Coverage_Register.csv` | Gate 5 section coverage and attestation |
+| `Section_Coverage_Register.csv` | checkpoint-group-3 section coverage and attestation |
 | `_LocalIndexes/_LATEST.md` | pointer to derived source catalog/retrieval snapshot |
 
-If a domain has not reached Gate 6, use the latest accepted gate pointer and clearly state the highest accepted gate.
+For historical packages without `checkpoint_snapshots/_LATEST_ACCEPTED.md`,
+use `gate_snapshots/_LATEST_GATE6.md` and its `HANDOFF_STATE.md` and
+`Gate6_Publication_Manifest.csv`, or the latest explicitly accepted legacy gate
+pointer. Clearly label that basis as legacy and state the highest accepted
+checkpoint. If neither canonical nor legacy accepted evidence exists, do not
+treat a working decomposition as accepted.
 
 ---
 
@@ -104,19 +115,24 @@ Retrieval interpretation:
 
 ---
 
-## Delegating to TASK (workflow: researcher) (Fan-Out)
+## Delegating to TASK with the researcher skill (Fan-Out)
 
 For a small, in-session question, WORKING_ITEMS answers directly. For breadth — many sub-questions,
 a large corpus, or a synthesis spanning several areas — WORKING_ITEMS dispatches the Type-2
-specialist **`TASK (workflow: researcher)`** (`workflows/researcher/WORKFLOW.md`) as one or more bounded research streams,
-then synthesizes their returned packets. TASK (workflow: researcher) inherits this file's evidence rubric,
-packet schema, and invariants (this file remains their authority) and adds the dispatched
-execution contract (runtime parameters, structured return, re-verify-load-bearing-anchors,
-write-as-you-go, partial-return-on-failure).
+executor with the effective **`researcher` skill** as one or more bounded
+research streams, then synthesizes their returned packets. Discover the skill
+through the effective catalog and retain its complete descriptor in the ordered
+`methods` field:
+`[{kind: "skill", name: "researcher", source: <descriptor.source>, sourceRootId: <descriptor.sourceRootId>}]`.
+Do not hardcode an origin or reduce the selected identity to its basename. The
+TASK brief supplies this file's evidence rubric, packet schema, and invariants
+and the selected skill adds its bounded execution contract (runtime parameters,
+structured return, re-verification of load-bearing anchors, write-as-you-go,
+and partial return on failure).
 
 When fanning out, follow the `research-orchestration` workflow (`workflows/research-orchestration/`):
 triage cheap greppable facts to a direct `query_source_index.py` call; anchor lightly and
-require each `TASK (workflow: researcher)` to re-verify load-bearing anchors; run an adversarial live critic on
+require each TASK stream using the selected `researcher` skill to re-verify load-bearing anchors; run an adversarial live critic on
 load-bearing claims before they enter authority; on a transient `API 500`/timeout, **retry only
 the failed stream(s)** (resume, do not restart the whole batch), cap retries, and surface
 coverage-gaps rather than dropping a stream silently. WORKING_ITEMS owns the synthesis and the
@@ -236,7 +252,10 @@ AmendmentID,ClaimID,CandidateKind,TargetSurface,CurrentState,ProposedChange,Evid
 ```
 
 - `CandidateKind` ∈ `NEW_ATOM | SCOPE_GAP | KTY_REMAP | CATEGORY_CONFLICT | SOURCE_UPDATE | VOCAB`.
-- `RecommendedRoute` ∈ `WORKING_ITEMS (workflow: scope-change) | WORKING_ITEMS (workflow: domain-decomp) | WORKING_ITEMS (workflow: change) | WORKING_ITEMS (workflow: dbm-publisher)`.
+- `RecommendedRoute` ∈ `WORKING_ITEMS (workflow: scope-change) | WORKING_ITEMS (workflow: domain-decomp) | RESPONSIBLE_ROLE_WITH_APPLICABLE_CHANGE_CONVENTIONS | WORKING_ITEMS (workflow: dbm-publisher)`.
+- Readers may continue to accept historical `WORKING_ITEMS (workflow: change)`
+  values without rewriting them. New repository-edit rows use
+  `RESPONSIBLE_ROLE_WITH_APPLICABLE_CHANGE_CONVENTIONS`.
 - `HumanRuling` defaults `TBD` — WORKING_ITEMS proposes; the human rules.
 
 ### Open Questions Columns

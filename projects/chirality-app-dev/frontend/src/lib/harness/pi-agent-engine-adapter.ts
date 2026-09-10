@@ -1,6 +1,11 @@
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import path from 'node:path';
-import type { AgentEnginePort, AgentEngineRunInput } from '@chirality/runtime-contracts/agent-engine-port';
+import type {
+  AgentEnginePort,
+  AgentEngineRunInput,
+  ContextSuccessorRequest,
+  PreparedContextSuccessor
+} from '@chirality/runtime-contracts/agent-engine-port';
 import { HarnessError } from '@chirality/runtime-contracts/errors';
 import type { HarnessEventType } from '@chirality/runtime-contracts/event-schema';
 import type { HarnessErrorType, UIEvent } from '@chirality/runtime-contracts/types';
@@ -400,16 +405,22 @@ function selectAuthorizedTools(
 ): readonly PiCustomToolDefinition[] {
   const byName = new Map<string, PiCustomToolDefinition>();
   for (const tool of availableTools) {
-    if (
-      tool.chirality?.readOnly !== true ||
-      tool.chirality.evidenceSource !== 'chirality-tool-bridge' ||
-      tool.chirality.permissions.length !== 1 ||
-      tool.chirality.permissions[0] !== 'read'
-    ) {
+    const readTool =
+      tool.chirality?.readOnly === true &&
+      tool.chirality.evidenceSource === 'chirality-tool-bridge' &&
+      tool.chirality.permissions.length === 1 &&
+      tool.chirality.permissions[0] === 'read';
+    const sessionControl =
+      tool.name === 'chirality_request_method_change' &&
+      tool.chirality?.readOnly === false &&
+      tool.chirality.evidenceSource === 'chirality-tool-bridge' &&
+      tool.chirality.permissions.length === 1 &&
+      tool.chirality.permissions[0] === 'control';
+    if (!readTool && !sessionControl) {
       throw new HarnessError(
         'INVALID_REQUEST',
         400,
-        `Pi tool '${tool.name}' is not explicitly classified as read-only.`
+        `Pi tool '${tool.name}' is not an explicitly classified read tool or exact Runtime session-control tool.`
       );
     }
     if (!asNonEmptyString(tool.name) || byName.has(tool.name)) {
@@ -418,12 +429,16 @@ function selectAuthorizedTools(
     byName.set(tool.name, tool);
   }
 
-  if (new Set(input.opts.tools).size !== input.opts.tools.length) {
+  const authorizedToolNames = [
+    ...input.opts.tools,
+    ...(input.runtimeTools ?? []).map((tool) => tool.name)
+  ];
+  if (new Set(authorizedToolNames).size !== authorizedToolNames.length) {
     throw new HarnessError('INVALID_REQUEST', 400, 'Pi tool allowlist must not contain duplicates.');
   }
   if (
-    byName.size !== input.opts.tools.length ||
-    [...byName.keys()].some((name) => !input.opts.tools.includes(name))
+    byName.size !== authorizedToolNames.length ||
+    [...byName.keys()].some((name) => !authorizedToolNames.includes(name))
   ) {
     throw new HarnessError(
       'INVALID_REQUEST',
@@ -432,7 +447,7 @@ function selectAuthorizedTools(
     );
   }
 
-  return input.opts.tools.map((name) => {
+  return authorizedToolNames.map((name) => {
     const tool = byName.get(name);
     if (!tool) {
       throw new HarnessError(
@@ -664,7 +679,8 @@ export class PiAgentEngineAdapter implements AgentEnginePort {
       attachments: false,
       interruption: true,
       durableResume: false,
-      compaction: true
+      compaction: true,
+      runtimeControlTools: true
     }
   } as const;
 
@@ -695,6 +711,31 @@ export class PiAgentEngineAdapter implements AgentEnginePort {
     validateBoundedChildPosture(input);
     await this.resolveProvider(input);
     selectAuthorizedTools(input, await this.resolveCustomTools(input));
+  }
+
+  async prepareContextSuccessor(request: ContextSuccessorRequest): Promise<PreparedContextSuccessor> {
+    const preparationId = `context_${randomUUID()}`;
+    const continuationText = JSON.stringify({
+      predecessorEngineSessionId: request.predecessorEngineSessionId,
+      fromBasisId: request.fromBasisId,
+      toBasisId: request.toBasisPreview.id,
+      priorBasisRefs: request.continuationContext.priorBasisRefs,
+      transcript: request.continuationContext.transcript
+    });
+    return {
+      preparationId,
+      adapterId: this.descriptor.adapterId,
+      providerId: this.descriptor.providerId,
+      predecessorEngineSessionId: request.predecessorEngineSessionId,
+      continuationText,
+      continuationSha256: createHash('sha256').update(continuationText).digest('hex'),
+      targetBasisId: request.toBasisPreview.id,
+      targetReference: `${request.toBasisPreview.id}:${request.toBasisPreview.sha256}`
+    };
+  }
+
+  async cancelContextSuccessor(_preparationId: string): Promise<void> {
+    // Preparation is pure and creates no provider state before the next turn.
   }
 
   async interrupt(sessionId: string): Promise<void> {
@@ -729,7 +770,9 @@ export class PiAgentEngineAdapter implements AgentEnginePort {
       cancelled: false
     };
     this.activeTurns.set(input.session.sessionId, active);
-    const engineSessionId = input.session.engineSessionId ?? `pi_${randomUUID()}`;
+    const engineSessionId = input.contextSuccessor === undefined
+      ? input.session.engineSessionId ?? `pi_${randomUUID()}`
+      : `pi_${randomUUID()}`;
     let provider: PiOmlxProviderConfiguration | undefined;
     let unsubscribe: (() => void) | undefined;
     let timeoutHandle: NodeJS.Timeout | undefined;
@@ -842,7 +885,12 @@ export class PiAgentEngineAdapter implements AgentEnginePort {
         .filter((block): block is Extract<typeof block, { type: 'text' }> => block.type === 'text')
         .map((block) => block.text)
         .filter(Boolean);
-      const prompt = [input.message, ...textBlocks].filter(Boolean).join('\n\n');
+      const prompt = [
+        input.contextSuccessor?.continuationText,
+        input.contextSuccessor === undefined ? undefined : 'Current user message:',
+        input.message,
+        ...textBlocks
+      ].filter(Boolean).join('\n\n');
       const promptRun = (async () => {
         try {
           await session.prompt(prompt, { expandPromptTemplates: false });

@@ -18,6 +18,7 @@ describe('chat draft helpers', () => {
   it('sanitizes persisted draft state and attachment records', () => {
     const snapshot = sanitizeChatDraftSnapshot({
       draft: 'continue this turn',
+      methods: [],
       attachments: [
         {
           path: '/tmp/example/data.csv',
@@ -33,6 +34,7 @@ describe('chat draft helpers', () => {
 
     expect(snapshot).toEqual({
       draft: 'continue this turn',
+      methods: [],
       attachments: [
         {
           path: '/tmp/example/data.csv',
@@ -41,6 +43,21 @@ describe('chat draft helpers', () => {
           clientType: 'csv'
         }
       ]
+    });
+  });
+
+  it('keeps qualified methods separate from ordinary file attachments', () => {
+    expect(sanitizeChatDraftSnapshot({
+      draft: 'set up this project',
+      attachments: [{ path: '/tmp/example/PROJECT_SETUP.md', displayName: 'PROJECT_SETUP.md', mimeType: 'text/markdown', clientType: 'markdown' }],
+      methods: [
+        { kind: 'workflow', name: 'project-setup', source: 'bundled', sourceRootId: 'chirality-root' },
+        { kind: 'workflow', name: '', source: 'bundled', sourceRootId: 'chirality-root' }
+      ]
+    })).toEqual({
+      draft: 'set up this project',
+      attachments: [{ path: '/tmp/example/PROJECT_SETUP.md', displayName: 'PROJECT_SETUP.md', mimeType: 'text/markdown', clientType: 'markdown' }],
+      methods: [{ kind: 'workflow', name: 'project-setup', source: 'bundled', sourceRootId: 'chirality-root' }]
     });
   });
 
@@ -67,6 +84,7 @@ describe('chat draft helpers', () => {
     expect(result).toEqual({
       snapshot: {
         draft: 'resume this turn',
+        methods: [],
         attachments: [
           {
             path: '/tmp/example/notes.md',
@@ -92,7 +110,8 @@ describe('chat draft helpers', () => {
     expect(result).toEqual({
       snapshot: {
         draft: '',
-        attachments: []
+        attachments: [],
+        methods: []
       },
       writable: true,
       warning: CHAT_DRAFT_STORAGE_WARNING_CORRUPT
@@ -113,7 +132,8 @@ describe('chat draft helpers', () => {
     expect(result).toEqual({
       snapshot: {
         draft: '',
-        attachments: []
+        attachments: [],
+        methods: []
       },
       writable: false,
       warning: CHAT_DRAFT_STORAGE_WARNING_UNAVAILABLE
@@ -133,7 +153,8 @@ describe('chat draft helpers', () => {
     expect(result).toEqual({
       snapshot: {
         draft: '',
-        attachments: []
+        attachments: [],
+        methods: []
       },
       writable: false,
       warning: CHAT_DRAFT_STORAGE_WARNING_UNAVAILABLE
@@ -148,6 +169,7 @@ describe('chat draft helpers', () => {
 
     const result = persistChatDraftSnapshotToStorage(storage, 'draft-key', {
       draft: 'continue',
+      methods: [],
       attachments: [
         {
           path: '/tmp/example/data.csv',
@@ -166,6 +188,7 @@ describe('chat draft helpers', () => {
       'draft-key',
       JSON.stringify({
         draft: 'continue',
+        methods: [],
         attachments: [
           {
             path: '/tmp/example/data.csv',
@@ -187,7 +210,8 @@ describe('chat draft helpers', () => {
 
     const result = persistChatDraftSnapshotToStorage(storage, 'draft-key', {
       draft: '',
-      attachments: []
+      attachments: [],
+      methods: []
     });
 
     expect(result).toEqual({
@@ -208,7 +232,8 @@ describe('chat draft helpers', () => {
 
     const result = persistChatDraftSnapshotToStorage(storage, 'draft-key', {
       draft: 'continue',
-      attachments: []
+      attachments: [],
+      methods: []
     });
 
     expect(result).toEqual({

@@ -1,0 +1,89 @@
+{
+  "schema": "chirality-v3-runtime-validation/v6",
+  "generatedAt": "2026-09-09T21:16:40Z",
+  "sourceFreeze": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V6.json",
+    "bytes": 11581,
+    "sha256": "559b0166c5488e8309481ac1f2f46c7270ae7b4415aede9748859ae66a68cc8e"
+  },
+  "sourceReverification": {
+    "members": 48,
+    "fixtures": 2,
+    "result": "PASS"
+  },
+  "predecessorValidation": {
+    "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/VALIDATION_V5.json",
+    "bytes": 2977,
+    "sha256": "ef00c578c9afed04df74f7aeee0a2f232f31e37ab0cf084200ed2616789efca8"
+  },
+  "r2_8": {
+    "problem": "App production successor preparers returned adapter-local target references rejected by Runtime frozen-basis validation.",
+    "author": "/root/app_redesign_plan",
+    "repair": "All three preparers return basisId:basisSha256. Runtime-to-Claude and Runtime-to-Legacy/Anthropic integration tests cross actual validation. Pi remains durableResume=false and is not represented as a qualified Runtime successor.",
+    "changedProductPaths": [
+      "projects/chirality-app-dev/frontend/src/lib/harness/claude-agent-sdk-manager.ts",
+      "projects/chirality-app-dev/frontend/src/lib/harness/anthropic-agent-sdk-manager.ts",
+      "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts"
+    ],
+    "exactSubjectPaths": 7
+  },
+  "authorValidation": {
+    "typecheck": "PASS",
+    "focused": "4 files / 118 tests PASS",
+    "diffCheck": "PASS"
+  },
+  "managerValidation": {
+    "typecheck": "PASS",
+    "focused": "4 files / 118 tests PASS",
+    "fullApp": {
+      "command": "npm run typecheck && npm test -- --maxWorkers=4",
+      "result": "PASS",
+      "testFiles": "189 passed / 1 expected skip",
+      "tests": "1996 passed / 4 expected skip",
+      "duration": "11.60s",
+      "typecheckLog": {
+        "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/APP_TYPECHECK_R2_8.log",
+        "bytes": 136,
+        "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f"
+      },
+      "testLog": {
+        "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/APP_FULL_TEST_R2_8.log",
+        "bytes": 503,
+        "sha256": "56930d89f1c75af7e765bf6faeac54cd33e9f84b8b95f5d9722b705894df3bc8"
+      }
+    },
+    "runtimeCore": "Unchanged since V5; prior final build and 772 passed / 14 expected skip remain applicable."
+  },
+  "independentReview": {
+    "reviewer": "/root/astra_runtime_second_pass",
+    "model": "gpt-6-astra high",
+    "verdict": "PASS",
+    "finding": "R2-8 closed",
+    "checks": "118/118 exact focused + 2/2 independent tampered-preparer negatives; all 50 V6 bindings and 61 review sources unchanged",
+    "preRepairFailReview": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/APP_ADAPTER_TESTS_SUPPLEMENT_V1.md",
+      "bytes": 7994,
+      "sha256": "2795df36a4db1d6bd2b04730fec7a9066949942a219f60b7b4b579cf89403ba6"
+    },
+    "preRepairFailManifest": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/APP_ADAPTER_TESTS_SUPPLEMENT_MANIFEST_V1.json",
+      "bytes": 6940,
+      "sha256": "0f2b11182d646f6d2e88c7f8475cab9a3f6f3404344b94491b92cf7d6eb842ee"
+    },
+    "successorReview": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/APP_ADAPTER_TESTS_SUPPLEMENT_V2.md",
+      "bytes": 7388,
+      "sha256": "fa067c79d2bd9f4066ddcd32d2e7fdaca88abc4cefe2c51d9faac272d2208a11"
+    },
+    "successorManifest": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/APP_ADAPTER_TESTS_SUPPLEMENT_MANIFEST_V2.json",
+      "bytes": 2617,
+      "sha256": "0260ae74e83c95d3f555af6d6318c3aa605fc3f0d22f9e29d9369aa30c2b004c"
+    }
+  },
+  "limitations": [
+    "Pi durable resume is unavailable and no Runtime successor qualification is claimed for Pi.",
+    "No native/provider/supplier/network/packaging qualification was performed.",
+    "No commit or staging action was performed."
+  ]
+}

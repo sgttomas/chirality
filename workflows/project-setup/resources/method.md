@@ -84,23 +84,30 @@ Run this phase **only if** the human selects `DECLARED` or `FULL_GRAPH`.
 
 ---
 
-#### Phase 2.1: Spawn TASK (workflow: preparation) sub-agents (scaffolding)
+#### Phase 2.1: Apply the preparation skill (scaffolding)
 
 **Action:**
-- **WORKING_ITEMS (workflow: project-decomp) / WORKING_ITEMS (workflow: software-decomp):** For each package in the decomposition, TASK (workflow: preparation) uses deterministic scaffolding/status tools for filesystem operations:
+- Discover the effective `preparation` skill descriptor. Preserve its complete
+  source-qualified identity in the ordered `methods` field as
+  `[{kind: "skill", name: "preparation", source: <descriptor.source>, sourceRootId: <descriptor.sourceRootId>}]`.
+  Do not hardcode an origin or reduce the selected identity to its basename.
+- Select `PREPARATION_ACTOR` from the skill's eligible roles under the active
+  host, role, and brief. WORKING_ITEMS may apply the bounded method directly or
+  dispatch TASK; using the skill does not force delegation.
+- **WORKING_ITEMS (workflow: project-decomp) / WORKING_ITEMS (workflow: software-decomp):** For each package in the decomposition, `PREPARATION_ACTOR` uses deterministic scaffolding/status tools for filesystem operations:
   - `tools/scaffolding/scaffold_package.sh {EXECUTION_ROOT} {PKG_ID} {PkgLabel}` — creates the package folder with all 9 lifecycle subfolders.
   - `tools/scaffolding/scaffold_deliverable.sh {pkg_folder}/1_Working {DEL_ID} {DelLabel}` — creates each deliverable folder with minimum viable fileset stubs.
-  - `tools/scaffolding/write_status.sh {deliverable_folder} OPEN TASK (workflow: preparation)` — initializes lifecycle state where applicable.
-- **WORKING_ITEMS (workflow: domain-decomp):** For each category in the decomposition, TASK (workflow: preparation) uses deterministic scaffolding/status tools for filesystem operations:
+  - `tools/scaffolding/write_status.sh {deliverable_folder} OPEN {PREPARATION_ACTOR}` — initializes lifecycle state where applicable and records the actual actor.
+- **WORKING_ITEMS (workflow: domain-decomp):** For each category in the decomposition, `PREPARATION_ACTOR` uses deterministic scaffolding/status tools for filesystem operations:
   - `tools/scaffolding/scaffold_package.sh {EXECUTION_ROOT} {CAT_ID} {CatLabel}` — creates the category folder with all 9 lifecycle subfolders.
   - `tools/scaffolding/scaffold_deliverable.sh {cat_folder}/1_Working {KTY_ID} {KtyLabel}` — creates each Knowledge Type folder with minimum viable fileset stubs.
-  - `tools/scaffolding/write_status.sh {kty_folder} OPEN TASK (workflow: preparation)` — initializes lifecycle state where applicable.
-  - If the domain pipeline requires structural prereqs for hypergraph/closure work, TASK (workflow: preparation) also uses `tools/scaffolding/scaffold_tool_root.sh` to initialize the required domain-level tool roots.
-- TASK (workflow: preparation) uses the language model only to populate metadata text from the decomposition and any human-confirmed declarations:
+  - `tools/scaffolding/write_status.sh {kty_folder} OPEN {PREPARATION_ACTOR}` — initializes lifecycle state where applicable and records the actual actor.
+  - If the domain pipeline requires structural prereqs for hypergraph/closure work, `PREPARATION_ACTOR` also uses `tools/scaffolding/scaffold_tool_root.sh` to initialize the required domain-level tool roots.
+- `PREPARATION_ACTOR` uses the language model only to populate metadata text from the decomposition and any human-confirmed declarations:
   - `_CONTEXT.md`
   - `_DEPENDENCIES.md`
   - `_REFERENCES.md`
-- TASK (workflow: preparation) validates each newly created deliverable or knowledge-type folder with:
+- `PREPARATION_ACTOR` validates each newly created deliverable or knowledge-type folder with:
   - `tools/validation/check_min_viable_fileset.sh {folder}`
 
 **Gate question:** “Scaffolding complete. [N] packages/categories and [M] deliverables/knowledge types created. Minimum viable fileset validation passed for all newly created folders. Any missing references flagged. Ready to run document drafting?”
@@ -311,7 +318,7 @@ See `workflows/scope-of-work/WORKFLOW.md` and retained compatibility
 
 **Action (WORKING_ITEMS (workflow: domain-decomp) only):**
 - Spawn **TASK (workflow: domain-hypergraph)** to build the normalized hypergraph from the workspace folders (pass `EXECUTION_ROOT`, `SCOPE=ALL`, `DECOMPOSITION_PATH`).
-- TASK (workflow: domain-hypergraph) reads the final state of Category/Knowledge Type folders — after TASK (workflow: preparation) scaffolded them and the `domain-documents` workflow drafted, cross-validated, and source-verified them (Passes 1, 2, and 3 via `RUN_PASSES: FULL`).
+- TASK (workflow: domain-hypergraph) reads the final state of Category/Knowledge Type folders — after the actual eligible actor using the selected `preparation` skill scaffolded them and the `domain-documents` workflow drafted, cross-validated, and source-verified them (Passes 1, 2, and 3 via `RUN_PASSES: FULL`).
 - Output: immutable snapshot under `{EXECUTION_ROOT}/_Aggregation/Hypergraph/` containing `nodes.csv`, `hyperedges.csv`, `incidence.csv`, `hypergraph.json`, and QA evidence.
 - TASK (workflow: domain-hypergraph) is read-only on all Category/Knowledge Type folders.
 

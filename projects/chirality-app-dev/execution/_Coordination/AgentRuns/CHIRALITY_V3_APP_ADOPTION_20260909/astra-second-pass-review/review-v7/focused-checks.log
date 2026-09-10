@@ -1,0 +1,66 @@
+
+ RUN  v4.1.10 /private/tmp/chirality-v3-adoption-20260909/projects/chirality-app-dev/frontend
+
+ ✓ src/__tests__/lib/operator-projection.test.ts > operator session projection > uses exact recorded parentage and provider-neutral attribution fields 2ms
+ ✓ src/__tests__/lib/operator-projection.test.ts > operator session projection > does not infer role, parentage, status, model, or currency from persona and time 0ms
+ ✓ src/__tests__/lib/operator-projection.test.ts > operator session projection > preserves an unresolved exact parent identifier without inventing an edge target 0ms
+ ✓ src/__tests__/lib/operator-projection.test.ts > operator session projection > fails closed on conflicting role fields and duplicate session records 1ms
+ ✓ src/__tests__/lib/operator-projection.test.ts > operator session projection > offers continuation only for a complete, non-running canonical v3 session record 0ms
+ ✓ src/__tests__/lib/selected-session-replay.test.ts > selected-session replay projection > bounds copied transcript data and exposes rendered versus available counts 2ms
+ ✓ src/__tests__/lib/selected-session-replay.test.ts > selected-session replay projection > discloses malformed, stale, empty, and evidence-only snapshots honestly 1ms
+ ✓ src/__tests__/lib/selected-session-replay.test.ts > selected-session replay projection > fails closed when replay metadata or events identify another session 0ms
+ ✓ src/__tests__/lib/selected-session-replay.test.ts > selected-session replay loader > publishes loading and prevents a late prior response from replacing selection 1ms
+ ✓ src/__tests__/lib/selected-session-replay.test.ts > selected-session replay loader > reports only the current request as unavailable and cancellation returns to idle 0ms
+ ✓ src/__tests__/lib/method-selection-client.test.ts > Runtime method selection client > reads the Runtime catalog without accepting method bodies from the caller 16ms
+ ✓ src/__tests__/lib/method-selection-client.test.ts > Runtime method selection client > preserves ordered source-qualified selections 0ms
+ ✓ src/__tests__/lib/method-selection-client.test.ts > Runtime method selection client > omits methods for a role-only transition so the active selection is preserved 0ms
+ ✓ src/__tests__/lib/method-selection-client.test.ts > Runtime method selection client > sends interaction and permission modes as independent fields 0ms
+ ✓ src/__tests__/lib/method-selection-client.test.ts > Runtime method selection client > reports Runtime native Plan Mode unavailability without a local fallback 0ms
+ ✓ src/__tests__/lib/method-selection-client.test.ts > Runtime method selection client > exports a stored plan revision only to an explicit project-relative target 0ms
+ ✓ src/__tests__/components/selected-session-replay-lens.test.tsx > SelectedSessionReplayLens > labels replay as read-only and renders exact provenance and attribution 4ms
+ ✓ src/__tests__/components/selected-session-replay-lens.test.tsx > SelectedSessionReplayLens > exposes no historical mutation controls 1ms
+ ✓ src/__tests__/components/selected-session-replay-lens.test.tsx > SelectedSessionReplayLens > shows frozen instruction selection and supplied-entry hashes without progress claims 1ms
+ ✓ src/__tests__/components/selected-session-replay-lens.test.tsx > SelectedSessionReplayLens > offers only Return and optional Retry when replay is unavailable 4ms
+ ✓ src/__tests__/components/selected-session-replay-lens.test.tsx > SelectedSessionReplayLens > keeps Return available while canonical replay evidence is loading 0ms
+ ✓ src/__tests__/components/selected-session-replay-lens.test.tsx > SelectedSessionReplayLens > offers continuation for an admitted v3 record and renders recorded native plan revisions 5ms
+ ✓ src/__tests__/components/right-panel-method-refresh.test.tsx > retries an unavailable method catalog through the panel Refresh action 11ms
+ ✓ src/__tests__/components/method-library-view.test.tsx > does not let an aborted project catalog overwrite the current project 10ms
+ ✓ src/__tests__/components/method-library-view.test.tsx > keeps only the newest inspection result 9ms
+ ✓ src/__tests__/components/method-library-view.test.tsx > reloads the catalog when the panel requests a refresh 4ms
+stderr | src/__tests__/components/chat-panel-folder-binding.test.tsx > preserves an explicit empty next-message selection when a bound turn fails
+Warning: You called act(async () => ...) without await. This could lead to unexpected testing behaviour, interleaving multiple act calls and mixing their scopes. You should - await act(async () => ...);
+
+ ✓ src/__tests__/components/chat-panel-failed-send.test.ts > ChatPanel failed-send retry state > restores the entered draft and attachment after session API failure 24ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > uses the returned canonical root without migrating or overwriting either conversation draft 20ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > retains the actual binding and failed draft when provider synchronization refuses 5ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > rejects a stale boot result after an unrelated folder change without restoring its old draft 3ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > rejects a stale synchronization completion after a different folder transition 3ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > blocks native folder intent while bound or pending and blocks Send during pending selection 4ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > keeps Enter submission distinct from Shift+Enter and IME composition 1ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > captures only the first prompt after a session boots successfully 4ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > merges next-message methods into the active basis without sending turn-time overrides 6ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > restores method references when the first method-bearing turn fails after boot 3ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > uses the replayed active method revision after an agent changes methods during a turn 4ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > preserves methods selected for the next message while the current turn finishes 4ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > preserves an explicit empty next-message selection when a bound turn fails 5ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > rejects empty and multiple-file drops without invoking folder validation 2ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > retains conversation binding across an Agent change (provider sync true), until New chat 6ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > retains conversation binding across an Agent change (provider sync false), until New chat 4ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > changes roles at a confirmed boundary without booting another App session 4ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > keeps the unsent draft under the bound conversation when its role changes 3ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > continues a compatible recorded v3 conversation without creating or booting another session 4ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > reopens a bound draft under the canonical session root after initial root synchronization 4ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > keeps unsent drafts isolated between recorded conversations with the same root and role 3ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > does not resurrect a sent unbound draft when a new chat starts with the same root and role 2ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > does not resurrect a consumed unbound method reference in the next chat 3ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > keeps retained assistant speaker labels and titles tied to their originating Agent 4ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > captures first input and paste before parent restoration, and delays restoration during IME 2ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > keeps legacy session creation and draft storage aligned with a changed Working Root 3ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > threads file navigation only to assistant Markdown and preserves attachment payload and failure restoration 3ms
+ ✓ src/__tests__/components/chat-panel-folder-binding.test.tsx > keeps retained assistant Markdown bound to the root that produced it 4ms
+ ✓ src/__tests__/integration/v3-runtime-proxy.integration.test.ts > v3 App proxy to RuntimeClient transport > preserves registry identity, ordered context, attachment separation, native truth, and replay basis 32ms
+
+ Test Files  9 passed (9)
+      Tests  55 passed (55)
+   Start at  14:32:46
+   Duration  388ms (transform 1.15s, setup 0ms, import 1.52s, tests 251ms, environment 0ms)

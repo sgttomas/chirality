@@ -32,7 +32,7 @@ afterEach(() => vi.unstubAllGlobals());
 function readySession(): Extract<SelectedSessionReplayState, { status: 'READY' }> {
   return { status: 'READY', projection: {
     selectedSessionId: 'child-exact', sourceReference: 'events:child-exact', observedAt: '2026-09-05T10:00:00Z', disclosure: 'READY_SNAPSHOT', currency: 'CURRENT',
-    sourceEventCount: 5, renderedItemCount: 3, malformedLineCount: 0, transcript: { itemCount: 0, items: [] }, diagnostics: [],
+    sourceEventCount: 5, renderedItemCount: 3, malformedLineCount: 0, transcript: { itemCount: 0, items: [] }, instructionHistory: [], instructionBases: [], diagnostics: [],
     session: { projectionId: 'session:child-exact', sessionId: 'child-exact', sourceReference: 'record:child-exact', observedAt: '2026-09-05T10:00:00Z', currency: 'CURRENT', persona: 'TASK', parentage: { state: 'RECORDED', parentSessionId: 'parent', parentAvailable: true }, diagnostics: [] }
   } };
 }

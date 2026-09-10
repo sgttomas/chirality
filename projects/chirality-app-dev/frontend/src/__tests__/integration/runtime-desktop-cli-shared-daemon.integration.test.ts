@@ -209,7 +209,9 @@ function createPiAdapter(input: {
     runtime: {
       preflight: (runInput) => runtime.preflight(runInput),
       startTurn: (runInput) => runtime.startTurn(runInput),
-      interrupt: (sessionId) => runtime.interrupt(sessionId)
+      interrupt: (sessionId) => runtime.interrupt(sessionId),
+      prepareContextSuccessor: (request) => runtime.prepareContextSuccessor(request),
+      cancelContextSuccessor: (preparationId) => runtime.cancelContextSuccessor(preparationId)
     },
     transcriptRootFor: (sessionId) => join(input.projectRoot, 'adapter-events', sessionId),
     isExactlyResident: async (modelId) => modelId === input.model

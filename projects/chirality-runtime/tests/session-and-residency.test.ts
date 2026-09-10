@@ -35,6 +35,48 @@ class FakeOmlx implements OmlxControlPort {
 }
 
 describe("central sessions", () => {
+  it("preserves absent, empty, and bounded brief scopes as distinct session state", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-session-scopes-"));
+    const { manifestPath } = await createProjectFixture(root);
+    const runtime = join(root, "user-data", "runtime");
+    const projects = new ProjectRegistry(runtime);
+    await projects.register(manifestPath, {
+      approvedBy: "test",
+      approvalReference: "D-TEST"
+    });
+    const sessions = new SessionStore(runtime, projects);
+    const base = {
+      projectId: "fixture",
+      role: "agent1" as const,
+      engineSelection: { adapterId: "stub", providerId: "stub", model: "fixture" }
+    };
+
+    const inherited = await sessions.create(base);
+    const denied = await sessions.create({
+      ...base,
+      declaredContext: [],
+      allowedWriteTargets: []
+    });
+    const boundedContext = [join(root, "execution", "PKG-01")];
+    const boundedWrites = [join(root, "execution", "PKG-01", "output.md")];
+    const bounded = await sessions.create({
+      ...base,
+      declaredContext: boundedContext,
+      allowedWriteTargets: boundedWrites
+    });
+
+    expect(await sessions.get("fixture", inherited.sessionId)).not.toHaveProperty("declaredContext");
+    expect(await sessions.get("fixture", inherited.sessionId)).not.toHaveProperty("allowedWriteTargets");
+    expect(await sessions.get("fixture", denied.sessionId)).toMatchObject({
+      declaredContext: [],
+      allowedWriteTargets: []
+    });
+    expect(await sessions.get("fixture", bounded.sessionId)).toMatchObject({
+      declaredContext: boundedContext,
+      allowedWriteTargets: boundedWrites
+    });
+  });
+
   it("lazily copies a legacy record without modifying the source", async () => {
     const root = await mkdtemp(join(tmpdir(), "chirality-session-"));
     const { manifestPath } = await createProjectFixture(root);

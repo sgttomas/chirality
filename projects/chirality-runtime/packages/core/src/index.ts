@@ -20,3 +20,4 @@ export * from "./descendant-tracker.js";
 
 export * from "./runtime-conformance.js";
 export * from "./runtime-admission-lock.js";
+export * from "./method-catalog.js";

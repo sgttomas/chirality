@@ -4,6 +4,7 @@ import type { HarnessEventType } from '@chirality/runtime-contracts/event-schema
 import { HarnessError } from '@chirality/runtime-contracts/errors';
 import { harnessEventToUiEvent } from './harness-ui-bridge';
 import { IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from '@chirality/runtime-contracts/types';
+import type { AgentEngineRunInput } from '@chirality/runtime-contracts/agent-engine-port';
 
 type ActiveTurnState = {
   interrupted: boolean;
@@ -85,6 +86,28 @@ const TURN_SDK_FAIL_MARKER = 'TURN_SDK_FAIL_TEST';
 export class StubAgentSdkManager implements IAgentSdkManager {
   private readonly activeTurns = new Map<string, ActiveTurnState>();
 
+  /**
+   * Explicit Runtime entrypoint for the deterministic controlled adapter.
+   * The stub receives the complete frozen instruction input but does not claim
+   * to execute it semantically; it emits only the fixed harness simulation.
+   */
+  startRuntimeTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent> {
+    if ('instructionBasisId' in input.session && input.instructionContext === undefined) {
+      throw new HarnessError(
+        'ENGINE_UNAVAILABLE',
+        503,
+        'Controlled stub requires Runtime to supply the frozen instruction basis.'
+      );
+    }
+    return this.startTurn(
+      input.session,
+      input.message,
+      input.opts,
+      input.contentBlocks,
+      input.turnId
+    );
+  }
+
   async interrupt(sessionId: string): Promise<void> {
     const activeTurn = this.activeTurns.get(sessionId);
     if (!activeTurn) {
@@ -99,7 +122,9 @@ export class StubAgentSdkManager implements IAgentSdkManager {
   async *startTurn(
     session: SessionRecord,
     message: string,
-    opts: ResolvedOpts
+    opts: ResolvedOpts,
+    _contentBlocks?: AgentEngineRunInput['contentBlocks'],
+    _turnId?: string
   ): AsyncIterable<UIEvent> {
     const turnState: ActiveTurnState = { interrupted: false };
     this.activeTurns.set(session.sessionId, turnState);
@@ -137,7 +162,7 @@ export class StubAgentSdkManager implements IAgentSdkManager {
         });
       }
 
-      const isDontAskMode = opts.mode === 'dontAsk';
+      const isDontAskMode = opts.mode === 'dontAsk' || opts.mode === 'readOnly';
       if (isDontAskMode && message.includes(PERMISSION_DENY_MARKER)) {
         yield {
           type: 'tool:result',

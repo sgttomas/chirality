@@ -2,20 +2,29 @@
 
 ## Non-negotiable invariants
 
-- **Human-validated scope.** The SSOW and decomposition must be confirmed by the user at defined gates.
+- **Human-validated scope.** The agent prepares proposals and checks before
+  three grouped human checkpoints: (1) basis, normalized scope, vocabulary, and
+  objectives; (2) proposed Packages and Deliverables with coverage findings and
+  exceptions; and (3) the audited final decomposition for downstream use.
+  Internal analysis, repair, or asset-quality evidence does not add prompts.
+- **Checkpoint snapshots.** Each accepted group finalizes a new immutable
+  snapshot under `checkpoint_snapshots/` with `DECISION.md`,
+  `ACCEPTED_MANIFEST.csv`, and `HANDOFF_STATE.md`, then updates that group's
+  authorized pointer. Each later group consumes the preceding accepted
+  snapshot rather than mutable working files alone.
 - **No invention.** Do not create scope items, objectives, packages, deliverables, or artifacts beyond what the user’s intent supports. If unknown, mark `TBD` and surface as an open issue.
 - **Packages are flat.** Do not create sub-packages. If more partitioning is needed, propose additional Packages.
-- **No overlap / no gaps at the package level.** Every SSOW scope item must be assigned to exactly one Package (forced decision if ambiguous; user resolves at gates).
+- **No overlap / no gaps at the package level.** Every SSOW scope item must be assigned to exactly one Package (forced decision if ambiguous; human resolves at checkpoint group 2).
 - **Design packages are discipline-exclusive.** Any Package that includes design work MUST correspond to exactly one discipline. If scope mixes design disciplines, split into multiple Packages so each design Package has one discipline.
 - **Stable identifiers.** Once assigned, IDs must remain stable across revisions unless the user explicitly requests renumbering.
 - **Deterministic DeliverableID ↔ PackageID coupling.**
-  - Package IDs MUST be fixed-width: `PKG-XXX` (3 digits, zero-padded; e.g., `PKG-012`).
-  - Deliverable IDs MUST be fixed-width and mechanically derived from the parent package: `DEL-XXX-YY_{shortDescription}`.
-    - The first `XXX` MUST equal the numeric portion of `ParentPackageID` / `PackageID`.
+  - Package IDs MUST be fixed-width: `PKG-XX` (2 digits, zero-padded; e.g., `PKG-12`).
+  - Deliverable IDs MUST be fixed-width and mechanically derived from the parent package: `DEL-XX-YY_{shortDescription}`.
+    - The first `XX` MUST equal the numeric portion of `ParentPackageID` / `PackageID`.
     - The `YY` is a sequential counter **unique within that package** (`01`, `02`, …).
-  - Example: `PKG-012` → `DEL-012-03_Pre-commissioning-Installation`
+  - Example: `PKG-12` → `DEL-12-03_Pre-commissioning-Installation`
   - `{shortDescription}` MUST be filesystem-safe (no spaces; use hyphens); SHOULD be kebab-case; once set, keep stable.
-  - MUST NOT use the older dot style (`DEL-XXX.YY_{...}`) or non–package-coupled IDs, because downstream folder paths and lookups assume deterministic mapping.
+  - MUST NOT use the older dot style (`DEL-XX.YY_{...}`) or non–package-coupled IDs, because downstream folder paths and lookups assume deterministic mapping.
 - **Design deliverables are artifact-kind based.** Within design Packages, Deliverables MUST be defined by distinct knowledge-artifact kinds (for example: drawing set, calculation package, specification set, model package). Repeated instances of a kind (for example: many sheets in one drawing set) MUST be represented as Artifacts under that Deliverable, not as separate Deliverables.
 - **Objective mapping is best-effort.** Objectives are derived from SSOW. Unmapped objectives must be surfaced as open issues.
 - **Traceable rationale.** Non-trivial assignment decisions must be recorded as explicit decisions in the decomposition output.
@@ -42,7 +51,7 @@
 
 ## Package Architecture (PROJECT variant)
 
-WORKING_ITEMS conforms to the package architecture defined in `docs/DECOMPOSITION_STANDARD.md`. The PROJECT canonical working package consists of:
+The `project-decomp` workflow conforms to the package architecture defined in `docs/DECOMPOSITION_STANDARD.md`. The PROJECT canonical working package consists of:
 
 - one concise main decomposition document (the working surface)
 - authoritative companion registers when heavy machine-truth warrants separate files (e.g., Scope Ledger CSV, objective mappings, coverage telemetry)
@@ -138,7 +147,7 @@ This section defines the entities and required tables in the decomposition outpu
 - `MappedDeliverables` (best-effort; may be empty but must be flagged)
 
 #### Package
-- `PackageID` (stable; e.g., `PKG-001`)
+- `PackageID` (stable; e.g., `PKG-01`)
 - `Name`
 - `ScopeDescription`
 - `Discipline` (required for design packages; exactly one discipline value)
@@ -146,7 +155,7 @@ This section defines the entities and required tables in the decomposition outpu
 - `Exclusions` (optional)
 
 #### Deliverable
-- `DeliverableID` (stable; follows `DEL-XXX-YY_{shortDescription}`, e.g., `DEL-012-03_Pre-commissioning-Installation`)
+- `DeliverableID` (stable; follows `DEL-XX-YY_{shortDescription}`, e.g., `DEL-12-03_Pre-commissioning-Installation`)
 - `Name`
 - `ParentPackageID`
 - `Description`
@@ -211,7 +220,7 @@ Minimum fields:
 
 #### 4) Open Issues list
 - A list of unresolved items referencing stable IDs:
-  - `SOW-####`, `OBJ-###`, `PKG-XXX`, `DEL-XXX-YY_{shortDescription}` pattern (e.g., `DEL-012-03_Pre-commissioning-Installation`)
+  - `SOW-####`, `OBJ-###`, `PKG-XX`, `DEL-XX-YY_{shortDescription}` pattern (e.g., `DEL-12-03_Pre-commissioning-Installation`)
 
 #### 5) Decision Log / Change Log
 - A small section where non-trivial choices are recorded so later work can trace why boundaries were set.

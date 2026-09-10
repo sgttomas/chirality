@@ -22,9 +22,9 @@ type Relationship =
   | { kind: 'DETACHED' };
 
 const ROLE_LABELS: Record<NonNullable<OperatorSessionProjection['role']>, string> = {
-  agent0: 'Agent 0',
-  agent1: 'Agent 1',
-  agent2: 'Agent 2'
+  agent0: 'Type 0',
+  agent1: 'Type 1',
+  agent2: 'Type 2'
 };
 
 function recordedAgentLabel(session: OperatorSessionProjection): string | undefined {
@@ -80,7 +80,7 @@ function SessionCard({
         }}
       >
         {roleLabel ? <strong>{roleLabel}</strong> : null}
-        {session.persona ? <span>{session.persona}</span> : null}
+        {session.persona ? <span>Role: {session.persona}</span> : null}
         <small>{relationshipLabel(relationship)}</small>
       </button>
       {children.length > 0 ? (

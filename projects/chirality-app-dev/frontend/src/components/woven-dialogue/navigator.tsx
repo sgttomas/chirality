@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import React from 'react';
 import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import { handoffDocument } from '../shell/document-view';
@@ -100,6 +99,7 @@ function SessionRow({ entry, live, selected, disabled, onSelectSession, onOpenMe
 
 export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, onOpenSurface, sessions = EMPTY_SESSIONS, sessionSurfaces = EMPTY_SESSION_SURFACES, liveSessionId, selectedSessionId, selectionDisabled = false, sessionsLoading = false, sessionsError = null, onSelectSession, chatTitles = EMPTY_CHAT_TITLES, chatPins = EMPTY_CHAT_IDS, chatArchived = EMPTY_CHAT_IDS, chatDeleted = EMPTY_CHAT_IDS, chatGroups = EMPTY_CHAT_GROUPS, groupsCollapsed = EMPTY_CHAT_IDS, firstOperatorMessages = EMPTY_CHAT_TITLES, referenceDay = '1970-01-01', searchEpoch = '', focusSearchRequest = 0, onModalStateChange, onOrganizationChange, searchMessages }: NavigatorProps): JSX.Element {
   void sessionSurfaces;
+  void legacyHref;
   const [query, setQuery] = React.useState(''); const [messageMatchIds, setMessageMatchIds] = React.useState<string[]>([]); const [messageSearchPending, setMessageSearchPending] = React.useState(false);
   const [menuSessionId, setMenuSessionId] = React.useState<string | null>(null); const [dialog, setDialog] = React.useState<'rename' | 'new-group' | 'delete' | null>(null); const [dialogValue, setDialogValue] = React.useState('');
   const [visibility, setVisibility] = React.useState<'active' | 'archived' | 'deleted'>('active');
@@ -196,7 +196,7 @@ export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, on
         {normalizedQuery ? <><section className="woven-chat-section"><h2 className="woven-chat-section-label">Title matches</h2><ul className="woven-navigator-session-list" aria-label="Title matches">{titleMatches.map(renderRow)}</ul>{titleMatches.length === 0 ? <p className="panel-empty">No title matches.</p> : null}</section><section className="woven-chat-section"><h2 className="woven-chat-section-label">Message matches</h2>{messageSearchPending ? <p className="panel-empty" role="status">Searching messages…</p> : <ul className="woven-navigator-session-list" aria-label="Message matches">{messageMatches.map(renderRow)}</ul>}{!messageSearchPending && messageMatches.length === 0 ? <p className="panel-empty">No message matches.</p> : null}</section></> : sections.map(renderSection)}
       </div>
     </div>
-    <footer className="woven-compatibility">{footerSlot}{!footerSlot ? <Link href={legacyHref} target="_blank" rel="noreferrer" aria-label="Open legacy interface in a new window">Legacy window</Link> : null}</footer>
+    {footerSlot ? <footer className="woven-compatibility">{footerSlot}</footer> : null}
     {activeEntry ? <div className="woven-chat-menu" role="menu" ref={menuRef} aria-label={`Actions for ${activeEntry.title}`} onKeyDown={menuKeyDown}>
       {visibility !== 'active' ? <><button role="menuitem" type="button" onClick={() => { onOrganizationChange?.(visibility === 'archived' ? { chatArchived: chatArchived.filter(id => id !== activeEntry.sessionId) } : { chatDeleted: chatDeleted.filter(id => id !== activeEntry.sessionId) }); closeMenu(); }}>Restore</button><button role="menuitem" type="button" onClick={() => closeMenu()}>Close menu</button></> : <>
       <button role="menuitem" type="button" onClick={() => { setDialogValue(activeEntry.title); setDialog('rename'); }}>Rename</button><button role="menuitem" type="button" onClick={() => { onOrganizationChange?.({ chatPins: (pinned ? chatPins.filter(id => id !== activeEntry.sessionId) : [activeEntry.sessionId, ...chatPins.filter(id => id !== activeEntry.sessionId)]).slice(0, MAX_CHAT_REFERENCES) }); closeMenu(); }}>{pinned ? 'Unpin' : 'Pin'}</button>

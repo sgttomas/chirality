@@ -1,0 +1,24 @@
+{
+  "manifest": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/integration-custody/STAGING_MANIFEST_V1.json",
+  "manifestSha256": "b0bb71cb39d439cc61c39a1cf91cc306198cdcdbd09af715c9927f1ad07388bc",
+  "manifestBytes": 160721,
+  "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "branch": "codex/chirality-v3-adoption-20260909",
+  "sourceRows": 268,
+  "sourceBytes": 3367997,
+  "evidenceRows": 90,
+  "evidenceBytes": 512477,
+  "subjectFileBindings": 9,
+  "independentUnionPaths": 297,
+  "independentUnionSha256": "197110c664f4beda154e3e0f679f4f4c3a8f36cc4d5b258e2b85166269fd6c5f",
+  "duplicateSourceRows": 0,
+  "duplicateEvidenceRows": 0,
+  "missingChangedSource": [],
+  "manifestReportedGaps": {
+    "sourceOwnerGaps": [],
+    "currentPostimageBindingGaps": [],
+    "missingEvidence": []
+  },
+  "issues": [],
+  "verdict": "PASS"
+}

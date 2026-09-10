@@ -1,6 +1,6 @@
 {
   "model": "D-APP-38 Option D hybrid: reconciliation tool feeding versioned corpus snapshots",
-  "current_version": "v20",
+  "current_version": "v21",
   "refs": [
     "docs/DIRECTIVE.md",
     "docs/CONTRACT.md",
@@ -8,8 +8,12 @@
     "docs/TYPES.md",
     "docs/PLAN.md",
     "docs/PRD.md",
-    "AGENT_SOFTWARE_DECOMP.md",
-    "AGENT_DOMAIN_ENGINE.md"
+    "workflows/software-decomp/WORKFLOW.md",
+    "workflows/software-decomp/resources/contract.md",
+    "workflows/software-decomp/resources/method.md",
+    "workflows/domain-engine/WORKFLOW.md",
+    "workflows/domain-engine/resources/contract.md",
+    "workflows/domain-engine/resources/method.md"
   ],
   "versions": [
     {
@@ -327,6 +331,26 @@
         "docs/PRD.md": "87ced649beae245e7b0290b3ef8afb46681d04e671964a0583fdce83a7ccb586",
         "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
         "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
+      }
+    },
+    {
+      "version": "v21",
+      "date": "2026-09-09",
+      "binding_commit": "c16812685831a1cae3d44bf478d08b033c605c3a",
+      "reason": "Chirality v3 adoption candidate: replace retired SOFTWARE_DECOMP and DOMAIN_ENGINE role files with complete canonical workflow closures under the four-role registry.",
+      "hashes": {
+        "docs/DIRECTIVE.md": "50b816d5be74021f173e19b39773b4f5d2cc3f434966dc9d6faf9399ddf26099",
+        "docs/CONTRACT.md": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517",
+        "docs/SPEC.md": "c2fb9ecbbc37a98577a64a3e7e641de8c26b3145ad8cc40dc4a9a014aa66a12b",
+        "docs/TYPES.md": "a8cdc94d39e16271ec4ef7fde5be76969f23ca3fe9e1663ac53ad1915eefd56c",
+        "docs/PLAN.md": "3741bb7ec389c12f0856cf64acc27d4d17b77d1683275564b75182fcdbab5187",
+        "docs/PRD.md": "87ced649beae245e7b0290b3ef8afb46681d04e671964a0583fdce83a7ccb586",
+        "workflows/software-decomp/WORKFLOW.md": "fd79f8001404a99c3438500fae413d56193dc1db408b3416bdee20414977d452",
+        "workflows/software-decomp/resources/contract.md": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+        "workflows/software-decomp/resources/method.md": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+        "workflows/domain-engine/WORKFLOW.md": "922b6dadbc8a8f71899954a6f7e47b45df753fb81a6ca644218a9cf642b0e94e",
+        "workflows/domain-engine/resources/contract.md": "414cccf9805318c6a450d17077cc1091a47e82ac7be5e2ac48596a6789ac6998",
+        "workflows/domain-engine/resources/method.md": "e3bbb3e344c7c5eb69d5288b190287595b739333b09825541f58305e20926caf"
       }
     }
   ]

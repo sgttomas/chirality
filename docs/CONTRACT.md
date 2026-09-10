@@ -67,8 +67,8 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-HIER-1** | Projects are decomposed as **packages containing deliverables** (flat; no nesting; no phases layer). | PROJECT_DECOMP gates; PREPARATION folder creation; human review |
-| **K-ID-1** | Deliverable IDs are **stable** and persist across path changes. Path is a physical projection of decomposition, not identity. | PROJECT_DECOMP (ID assignment); all agents (ID referencing) |
+| **K-HIER-1** | Projects are decomposed as **packages containing deliverables** (flat; no nesting; no phases layer). | `project-decomp` grouped checkpoints; `preparation` folder creation; human review |
+| **K-ID-1** | Deliverable IDs are **stable** and persist across path changes. Path is a physical projection of decomposition, not identity. | decomposition workflows (ID assignment); all agents (ID referencing) |
 
 ### 1.2 Authority and Approval
 
@@ -204,7 +204,7 @@ the "candidate" label in the PRD's §10 heading ends here.
 | **Human review** (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4, K-TM-3, K-TM-4, K-TM-5 |
 | **TASK with audit-governance / audit-agents** | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4, K-TM-1, K-TM-2, K-TM-6 |
 | **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2, K-TM-1, K-TM-2, K-TM-5, K-TM-6 |
-| **WORKING_ITEMS with project-decomp** (decomposition) | K-HIER-1, K-ID-1 |
+| **WORKING_ITEMS with decomposition workflows** | K-HIER-1, K-ID-1 |
 | **Shared runtime daemon and clients** (runtime) | K-RUNTIME-1, K-CONTROL-1, K-PROJECT-1, K-STORE-2, K-RESIDENCY-1, K-ROLE-2 |
 | **Public export builder** (publication boundary) | K-EXPORT-1 |
 

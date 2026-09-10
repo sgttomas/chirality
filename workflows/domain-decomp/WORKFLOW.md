@@ -11,10 +11,10 @@ WORKING_ITEMS coordinates this undertaking and assigns bounded contributions to 
 
 ## Method
 
-1. Admit and review sources, recording the human review decisions separately from their rendered evidence.
+1. Prepare source-admission and fidelity evidence, drain repair findings, and present one combined pre-atomization checkpoint.
 2. Build the source skeleton and dispatch bounded atomization; merge ledgers deterministically with provenance.
-3. Develop and ratify categories, knowledge types, and knowledge subjects through retrieval-assisted coverage checks and human decisions.
-4. Emit the accepted decomposition and derivative handoff, invalidating dependent review or index evidence when their source basis changes.
+3. Develop Categories, Knowledge Types, and Knowledge Subjects; complete retrieval-assisted checks before the grouped structural decision.
+4. Dispatch a separate review instance and present three domain checkpoint groups: normalized scope and meaning; domain structure; and audited final acceptance.
 
 ## Resources
 

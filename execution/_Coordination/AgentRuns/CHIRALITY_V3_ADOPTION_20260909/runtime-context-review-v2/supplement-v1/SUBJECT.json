@@ -1,0 +1,41 @@
+{
+  "schema": "chirality-independent-review-supplement/v1",
+  "reviewer": "/root/runtime_context_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "authorization": "Parent-directed bounded nonauthor supplemental source review; evidence-only writes",
+  "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "gitHead": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "checkout": "/private/tmp/chirality-v3-adoption-20260909",
+  "capturedAt": "2026-09-09T19:18:04.466039+00:00",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/package-lock.json",
+      "sha256": "a23fe9fd906dd88a67c697e12a75bd1fc18492cbb7c337e3fcc56bb0c40e60c6"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/package.json",
+      "sha256": "0a092759f3729bb8026c2c790b8ce126c800a355285fc83ccb38d8457f32ca32"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/index.ts",
+      "sha256": "d3d82540e2a5c6f4aadde92e641a2f6d8a192c83708ef8d4d8c156af5e62e681"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/package.json",
+      "sha256": "0d87c535ae0ea8e1e936136d0c432fd06e80ec78c670069fd594fc709b7ec497"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/index.ts",
+      "sha256": "1d6989093eb6c7b7bd958808cb0d3a4a2141538050c59ba3ddbbb62fcc0ef98e"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-daemon-signal.test.ts",
+      "sha256": "99ebbfec8562e954d1e799a3695a005ff893bacc4b1fed7a1c666f38f2553b5a"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts",
+      "sha256": "0bb51df06836eaf8ca470b76a885b2316b9cce3ed22322e35787b20979abf80e"
+    }
+  ]
+}

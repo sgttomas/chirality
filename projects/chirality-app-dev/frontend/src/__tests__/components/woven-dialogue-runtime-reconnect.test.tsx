@@ -25,7 +25,8 @@ const state = vi.hoisted(() => ({
 
 vi.mock('next/navigation', () => ({
   usePathname: () => '/',
-  useSearchParams: () => new URLSearchParams()
+  useSearchParams: () => new URLSearchParams(),
+  useRouter: () => ({ replace: vi.fn() })
 }));
 vi.mock('next/link', () => ({
   default: ({ children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) =>

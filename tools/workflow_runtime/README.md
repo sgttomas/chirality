@@ -1,9 +1,9 @@
 # Root workflow runtime utilities
 
 `agents/registry.json` declares the four roles. `resolve_workflow.py` resolves
-one explicit workflow selection and requested resources; it does not preload
-the library or launch an agent. App and Runtime adoption remains held under
-D-GOV-41 until their consumers support this interface.
+ordered method selections, legacy compatibility fields, and requested
+resources; it does not preload the library or launch an agent. App and Runtime
+adoption remains a separate owning-loop decision.
 
 ```sh
 python3 /declared/instruction/root/tools/workflow_runtime/resolve_workflow.py \
@@ -14,14 +14,21 @@ python3 /declared/instruction/root/tools/workflow_runtime/resolve_workflow.py \
 The JSON result includes the role, selected definition and resources with
 SHA-256 hashes, execution configuration, effective tools, and absolute tool
 paths. `TaskSkill` is accepted through `--task-skill`; its historical underscore
-spelling resolves to hyphens. Equal selections resolve once; conflicts fail.
-`--legacy-agent` reads the explicit legacy-agent map. A tool-only alias returns
-that tool route and the TASK role, with no manager workflow loaded.
+spelling resolves to hyphens. Both it and an unqualified legacy `Workflow` name
+consume `workflows/legacy-methods.json`. Equal resolved identities resolve
+once; genuinely different identities conflict; an unknown `TaskSkill` alias
+fails. A source-qualified `Workflow` identity explicitly preserves its
+historical workflow and bypasses alias conversion. `--method` accepts ordered
+JSON references or source-qualified identities; distinct ordered methods stay
+ordered. Results record original fields, mapping decisions, normalized methods,
+and fully qualified resolved identities separately. `--legacy-agent` reads the
+explicit legacy-agent map and preserves its historical workflow route.
 
-A package's `compatible_roles` applies to the whole workflow. TASK receives a
+A package's `compatible_roles` applies to the whole method. TASK receives a
 bounded child workflow or a brief. Resources are selected explicitly through
-repeatable `--resource`; omitted resources are not read. Missing resources,
-escaping symlinks, unknown selections and incompatible roles fail resolution.
+repeatable `--resource` when exactly one method is selected; omitted resources
+are not read. Missing resources, escaping symlinks, unsupported qualified
+origins, unknown legacy aliases, and incompatible roles fail resolution.
 
 ## Policy composition and tools
 

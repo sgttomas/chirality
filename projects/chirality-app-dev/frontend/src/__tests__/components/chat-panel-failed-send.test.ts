@@ -126,8 +126,12 @@ describe('ChatPanel failed-send retry state', () => {
 
     expect(mocks.createHarnessSession).toHaveBeenCalledWith({
       projectRoot: '/tmp/chirality-workroot',
-      persona: 'WORKING_ITEMS',
-      mode: 'CHAT'
+      persona: 'HELP_HUMAN',
+      roleId: 'HELP_HUMAN',
+      mode: 'CHAT',
+      interactionMode: 'chat',
+      permissionMode: 'ask',
+      selectedMethods: []
     });
     expect(mocks.bootHarnessSession).not.toHaveBeenCalled();
     expect(mocks.streamHarnessTurn).not.toHaveBeenCalled();

@@ -14,25 +14,18 @@ import { CHIRALITY_MCP_SERVER_NAME } from '@chirality/runtime-contracts/mcp/tool
 import { IPersonaManager } from '@chirality/runtime-contracts/types';
 import { GENERALIST_AGENT2_PERSONA, UNTYPED_PERSONA } from './agent-roster';
 
-export const PERSONA_COMPOSER_VERSION = 'persona-composer.v1.instruction-root';
+export const PERSONA_COMPOSER_VERSION = 'persona-composer.v2.role-selective';
 
-const GOVERNANCE_EXCERPT_CHAR_LIMIT = 4_000;
 const HASH_LENGTH = 64;
 
 const GOVERNANCE_RESOURCE_PATHS = [
-  'AGENTS.md',
-  path.join('docs', 'DIRECTIVE.md'),
-  path.join('docs', 'CONTRACT.md'),
-  path.join('docs', 'SPEC.md'),
-  path.join('docs', 'TYPES.md'),
-  path.join('docs', 'PLAN.md')
+  'AGENTS.md'
 ] as const;
 
 type GovernanceResource = {
   relativePath: string;
   content: string;
   contentHash: string;
-  excerpt: string;
 };
 
 type PersonaComposition = {
@@ -47,14 +40,6 @@ function sha256Hex(value: string): string {
 
 function normalizeMarkdown(value: string): string {
   return value.replace(/\r\n/g, '\n').trim();
-}
-
-function boundedExcerpt(content: string): string {
-  const normalized = normalizeMarkdown(content);
-  if (normalized.length <= GOVERNANCE_EXCERPT_CHAR_LIMIT) {
-    return normalized;
-  }
-  return `${normalized.slice(0, GOVERNANCE_EXCERPT_CHAR_LIMIT).trimEnd()}\n\n[excerpt truncated; full resource hash recorded above]`;
 }
 
 function normalizeTools(tools: readonly string[] | undefined): string[] {
@@ -85,8 +70,7 @@ async function readGovernanceResources(instructionRoot: string): Promise<Governa
     resources.push({
       relativePath,
       content,
-      contentHash: sha256Hex(normalizeMarkdown(content)),
-      excerpt: boundedExcerpt(content)
+      contentHash: sha256Hex(normalizeMarkdown(content))
     });
   }
 
@@ -98,14 +82,14 @@ function renderGovernancePreface(resources: readonly GovernanceResource[]): stri
     [
       `### ${resource.relativePath}`,
       `contentSha256: ${resource.contentHash}`,
-      resource.excerpt
+      normalizeMarkdown(resource.content)
     ].join('\n')
   );
 
   return [
     '## Chirality Governance Preface',
     `composerVersion: ${PERSONA_COMPOSER_VERSION}`,
-    'The following bounded excerpts are sourced from the resolved instruction root. Full-content hashes are recorded for each excerpted resource.',
+    'The role overview below is sourced from the resolved instruction root. Runtime supplies selected method bodies and resources separately as a frozen context basis.',
     'Agents propose; humans approve. Do not represent runtime output or validation evidence as approval, issuance, publication authorization, certification, sealing, authentication, code-compliance acceptance, or a substitute for professional judgment.',
     ...resourceSections
   ].join('\n\n');

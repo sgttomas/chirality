@@ -1,0 +1,471 @@
+{
+  "schema": "chirality-root-scope-freeze/v7",
+  "status": "terminal-root-candidate-excluding-distribution-owned-validation",
+  "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "branch": "codex/chirality-v3-adoption-20260909",
+  "fileCount": 91,
+  "files": [
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sizeBytes": 2055,
+      "sha256": "b77629c52f027eeb103e97c20cf38f357c7d5801b82e3eb60ff0c4ed5abf975d"
+    },
+    {
+      "path": ".agents/skills/chirality-change/execution.json",
+      "sizeBytes": 75,
+      "sha256": "d1c668ae85f9f5a0edf2ecb312a449e21aa9101f99da9997fc4a7805677074df"
+    },
+    {
+      "path": ".agents/skills/deliverable-consistency/SKILL.md",
+      "sizeBytes": 1304,
+      "sha256": "e4f77fb5d181463f026d7aa1457f032749d97693a4ac69c00b5fe55d66a9f459"
+    },
+    {
+      "path": ".agents/skills/deliverable-consistency/execution.json",
+      "sizeBytes": 216,
+      "sha256": "02c313a989c7dc7254b3f3fbc0d699d883107e04a080d142206009c13d67d01b"
+    },
+    {
+      "path": ".agents/skills/drawing-titleblock-page/SKILL.md",
+      "sizeBytes": 1810,
+      "sha256": "cb828c93bf34b72f761ad94dd1c746f8d972783ec77f9d6100f30c2aece20b57"
+    },
+    {
+      "path": ".agents/skills/drawing-titleblock-page/execution.json",
+      "sizeBytes": 144,
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": ".agents/skills/drawing-titleblock-page/references/stub-contract.md",
+      "sizeBytes": 1174,
+      "sha256": "ad1c1799e728105caeaf3b53a4b2f40354fd1c97e1958ddc6f6a91cf2b153997"
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "sizeBytes": 2868,
+      "sha256": "23e1dc6c775a3cf031295942885311b8f29f74e045c078b192cbd99069ffa4ed"
+    },
+    {
+      "path": ".agents/skills/preparation/execution.json",
+      "sizeBytes": 216,
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": ".agents/skills/preparation/references/scaffold-contract.md",
+      "sizeBytes": 2924,
+      "sha256": "2f506ad62cc2c77057488f302742af267f4a2226cbdd4ceef0f4a8cc9d321603"
+    },
+    {
+      "path": ".agents/skills/proposal-format/SKILL.md",
+      "sizeBytes": 1689,
+      "sha256": "92168d0d3ec0dbc1008c7254313d608c527556592499f75af3d0290af557273f"
+    },
+    {
+      "path": ".agents/skills/proposal-format/execution.json",
+      "sizeBytes": 144,
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619"
+    },
+    {
+      "path": ".agents/skills/researcher/SKILL.md",
+      "sizeBytes": 3206,
+      "sha256": "acfc12cc880bf7a5fa370639f1a6808b53f07a04eb73b87b37fd81b847424207"
+    },
+    {
+      "path": ".agents/skills/researcher/execution.json",
+      "sizeBytes": 216,
+      "sha256": "5183e34217c8d68e63456eb698531882b8c9aebdf083a2fc1a705e27f540d8d1"
+    },
+    {
+      "path": ".agents/skills/researcher/references/evidence-contract.md",
+      "sizeBytes": 2257,
+      "sha256": "09f0d99b90f9d6fa7c9d225ad1b97bf6e651cab330a753b232604dca188fd7ae"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sizeBytes": 1304,
+      "sha256": "e81e4619afb0351706e04caa54164b8c3b1c2d9dda56ac0b08d3130135657b60"
+    },
+    {
+      "path": ".agents/skills/software-code-review/execution.json",
+      "sizeBytes": 422,
+      "sha256": "569c85b4b9f2323d76bfa6c007a98af261122d6c75be275ae85a4333cff846de"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sizeBytes": 1214,
+      "sha256": "d514aba052482c23bab6355af2a4340b8a4a2a5d992bb7e8507d4e949fbe9baa"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/execution.json",
+      "sizeBytes": 351,
+      "sha256": "5c219842a60f1bce31ca58f6f1c888828fef4883fcceadfa91bd51f4ff906c8c"
+    },
+    {
+      "path": "AGENTS.md",
+      "sizeBytes": 8013,
+      "sha256": "72ad15edef189c65a80b6ac4ae85114ddb68665257c0b114cb42cae3ef05c802"
+    },
+    {
+      "path": "_DomainEngines/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 721,
+      "sha256": "0df5286a635ce63e938363ab21576386c6069b5ff28da7cd96fc4a3fe2e8242c"
+    },
+    {
+      "path": "agents/registry.json",
+      "sizeBytes": 2486,
+      "sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4"
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "sizeBytes": 15353,
+      "sha256": "1889a89c0e21575738671b43be93c3df2e24937b2ded0566d158fa1ae1cd445d"
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "sizeBytes": 20928,
+      "sha256": "1d21889e369628f9aef544932b4101108444cd69294eb52a139fcef87edad030"
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "sizeBytes": 26222,
+      "sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef"
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "sizeBytes": 28714,
+      "sha256": "bd53a656de347b963f98047b2db9fe655a70cc9d31d6c6489957e32b391d6730"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sizeBytes": 53006,
+      "sha256": "282c42a60d47100e2f9158796991ef7912f7d7c6a36dd9b75b4e9dab27dbdda7"
+    },
+    {
+      "path": "docs/TYPES.md",
+      "sizeBytes": 35376,
+      "sha256": "9a4abbad62fe8ceb63a5f2d8630cbc4d8f420ebd6b0397ec9225fb229a62b038"
+    },
+    {
+      "path": "docs/WORKFLOW_COMPONENT_STANDARD.md",
+      "sizeBytes": 8593,
+      "sha256": "8d07544976fa106ca0f1d23b48843aa8554cf0570f1ff50caafe3f84feadf28c"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-42_chirality_v3_role_skill_workflow_adoption.md",
+      "sizeBytes": 5114,
+      "sha256": "64726293c4666984f80e718cda64ee4af1048215d68bd432a4e730d58b11350b"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "sizeBytes": 40961,
+      "sha256": "c9bb43fad9b62b476bbf7b5a9ca148e57b955fe7040fcfbb40079afc43167f2e"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-CHIRALITY-V3-ADOPTION-20260909.yaml",
+      "sizeBytes": 1632,
+      "sha256": "565a56b003b5952ee3c2450cad036c0a03db9696af2ebd655ad98748502d3b3a"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ACCEPTANCE_MATRIX.md",
+      "sizeBytes": 3623,
+      "sha256": "5dabeb83f793ec94dc46246c0f2e202a9e05513c9f56e54473af1cf4e42adde5"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/BASIS.md",
+      "sizeBytes": 1845,
+      "sha256": "3a01abcbaf08ae6d9c7645c64db0cd2bf12efb40bc87d0b0f3ab36832f84bc42"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/METADATA_FREEZE.md",
+      "sizeBytes": 2327,
+      "sha256": "924b1d8ca3174846a3351740dbadd864f1c5caff8b6959e85861912489c8ca29"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V1.json",
+      "sizeBytes": 17085,
+      "sha256": "808b0d50849f4cc5ad9a280f7e7aa015a16da9cf26ca6d12184fb2a1a6ba37b7"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V2.json",
+      "sizeBytes": 17344,
+      "sha256": "d9dcc461090106dd6d88abccbcd5a7fe50191a93f85e5381b5d88da0809911dc"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V3.json",
+      "sizeBytes": 17569,
+      "sha256": "f7817efddd2478f6d723341c2b74d5db39d34223cc0ffb6d26e98cd3a795427b"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V4.json",
+      "sizeBytes": 18192,
+      "sha256": "6d03eea70e0bb84427fe72b5253bda6f60d37ac421d06991f2dbf67ffd99179f"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V5.json",
+      "sizeBytes": 18423,
+      "sha256": "690582bb3378ea42a9b9fc19f90a289de7be076baf58124d4d0971daf0bfcafe"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V6.json",
+      "sizeBytes": 18661,
+      "sha256": "8719bfbf678c222d82b68145e1cba650431d944e582767ef95f63afa48a4bc21"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/WORK_GRAPH.md",
+      "sizeBytes": 1153,
+      "sha256": "6913737736e6bd86c702a9bffba77606a20335f414df9e5c412d89fff1981961"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/catalog-author.md",
+      "sizeBytes": 3914,
+      "sha256": "b1ad8f45e39f0f561eafca9dff604e23c4af519fd8b9094971f8616d051aa954"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/catalog-metadata-freeze-v2.json",
+      "sizeBytes": 2114,
+      "sha256": "2b22d616b21f37993b633af2826cb2aa9a266c4a565972b89d2b19ca08920b95"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/catalog-schema-proposal.md",
+      "sizeBytes": 3663,
+      "sha256": "229f956fec42700d1d37046791e2da155d34c7368fe94883e0402a60a91466e9"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/AUTHOR_BRIEF.md",
+      "sizeBytes": 3168,
+      "sha256": "20622dd0326a4e3ffc6884f496dcc539c1fcc4884bd666de6d9e528e0e3b97f2"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/AUTHOR_RETURN.md",
+      "sizeBytes": 854,
+      "sha256": "198537dbee2032de3ac208f669c93a87afa8900efa372162548ac1f70b2bc4fe"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/HANDOFF.md",
+      "sizeBytes": 1713,
+      "sha256": "387038a376797df322afa0f942759c476023d2318446ba33f16d3b4bbae33404"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/MANIFEST.sha256",
+      "sizeBytes": 1143,
+      "sha256": "6df3e4559c31d5ccc1d98fada2944655c06c5fec4062c8928c09b555b291bf9d"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/REVIEW_BRIEF.md",
+      "sizeBytes": 2451,
+      "sha256": "33fc099edffc998fc19e07e09a3a5ae48f791424c570501fb3b6f43d9f6e6753"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/REVIEW_RETURN.md",
+      "sizeBytes": 1185,
+      "sha256": "f72c3fa38af981f494fdf8b20fb0dbc3a8e343e40d637274237c9e009d6697c2"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/SOURCE_PROVENANCE.md",
+      "sizeBytes": 1780,
+      "sha256": "a69a99575b7af4bb67666a01412f73bdc990f8e052a024ce898615f681bf72e6"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/VALIDATION.md",
+      "sizeBytes": 1331,
+      "sha256": "4c7578b10906abe5f3fb28038bdbf49b921789eec0e9924ec997b9d61cc82b63"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/governance-author.md",
+      "sizeBytes": 6137,
+      "sha256": "b47b4894b85c1bdd1848cf0adde4c42285d3c913a68f851800e349324438b121"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json",
+      "sizeBytes": 1792,
+      "sha256": "43369a46db0a99193aeae9706828ef1d90558dc4d9d30d70d1139c3733d052d6"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skills-author-validation.txt",
+      "sizeBytes": 1790,
+      "sha256": "1766649d3ef8c9632cbce5dbe8f2bb0a63a3e6bf9237e2960b7ae5701fc78cb9"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skills-author.md",
+      "sizeBytes": 3842,
+      "sha256": "37636a2c381aa99c5415faa29f5a29150ee6c959136cf02624bc9dffb03a650c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 1138,
+      "sha256": "5f8354a6cf56437394b2b6d9614f0a736917bb8ee2e1d580d2d874364167b559"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 761,
+      "sha256": "c7be15effa28ade2a3c79cff020147563be43312029978441aa7d0a9099299a6"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 1101,
+      "sha256": "1632c920299dc64b8c0645da11624693670b17514342e318e64bd55da91831f2"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 603,
+      "sha256": "a6830015f5a4d0df7e9a77ddeb63608134a32b39239b05933753483fe4ed72c8"
+    },
+    {
+      "path": "tools/validation/build_workflow_index.py",
+      "sizeBytes": 17196,
+      "sha256": "6ae614a4fbe857bfe80d7ac6d85c94ae9c517e8c243329eb59c2b369c81fb93d"
+    },
+    {
+      "path": "tools/validation/fixtures/method_discovery_v1.json",
+      "sizeBytes": 4198,
+      "sha256": "62c37e25498500edb59fd7c41e027cede4e6fcfdfe46a40551fb07ac599c7922"
+    },
+    {
+      "path": "tools/validation/test_validate_instruction_tranche_manifest.py",
+      "sizeBytes": 26051,
+      "sha256": "ca3d59fb03fc0fa2cfc9393d16f43bc45f9c1a9b1271590347d087bcd37fefdb"
+    },
+    {
+      "path": "tools/validation/test_workflow_catalog.py",
+      "sizeBytes": 9010,
+      "sha256": "892780585ee11a34a54957f86647aa3dd9b1acded6d4e805ccb9298ce7d423e4"
+    },
+    {
+      "path": "tools/validation/validate_agent_instructions.py",
+      "sizeBytes": 19314,
+      "sha256": "32417d6be55e847ec25ae71e3f5babf163ccfc5390063bcbcf686033be0ae488"
+    },
+    {
+      "path": "tools/validation/validate_instruction_tranche_manifest.py",
+      "sizeBytes": 30743,
+      "sha256": "b4935733ba917dc7bd5e3ef696ce4d35cfe1c8129b390477765f2ab1d0bc22d3"
+    },
+    {
+      "path": "tools/validation/validate_skill_metadata.py",
+      "sizeBytes": 9469,
+      "sha256": "dadd5e60bbc2b49ae719d9d5e85c08adf8dfdd9873183eb576509815c1d100f0"
+    },
+    {
+      "path": "tools/validation/validate_workflow_metadata.py",
+      "sizeBytes": 4170,
+      "sha256": "c69b0740b683d2272a4e7a051712d043a0eb9efcabca7eee6b4408d0f9d37acd"
+    },
+    {
+      "path": "workflows/README.md",
+      "sizeBytes": 4354,
+      "sha256": "aca4fc2b261fece67374d356e256ebc6aa0a6249b4f5171a9eea13a345cb4af7"
+    },
+    {
+      "path": "workflows/catalog.schema.json",
+      "sizeBytes": 743,
+      "sha256": "c5db6374cf890b0adbe249b188bf664173c76dec3bad0b9a21eeede0146e0d68"
+    },
+    {
+      "path": "workflows/catalog.yaml",
+      "sizeBytes": 299,
+      "sha256": "88aa40afd11eede5cff1e1b1f2c4b364d0af44a1cfa9579015e8e73beb17a877"
+    },
+    {
+      "path": "workflows/domain-decomp/WORKFLOW.md",
+      "sizeBytes": 1123,
+      "sha256": "9b922cb62c2b641e4231a99b6f66cdd880a15ead913a64f2a2be4038ad3aa90b"
+    },
+    {
+      "path": "workflows/domain-decomp/resources/contract.md",
+      "sizeBytes": 24415,
+      "sha256": "88f3713870c48b8f7418d2d4193529b1f11df9bbd66e12c34ebcc51dd105026b"
+    },
+    {
+      "path": "workflows/domain-decomp/resources/method.md",
+      "sizeBytes": 41953,
+      "sha256": "5502d01a0c469c3dba1bd6ff80df435a645b6d332c08c6da97b754c1264de1da"
+    },
+    {
+      "path": "workflows/index.json",
+      "sizeBytes": 79787,
+      "sha256": "d264b49c6b1534c199d77ff748727369bf445b1346ebcf8aeef48462ed3e0229"
+    },
+    {
+      "path": "workflows/legacy-agents.json",
+      "sizeBytes": 3375,
+      "sha256": "c632821831194002e9c976a69f3b49227aff448e18a4c803527f90c1ef23ea42"
+    },
+    {
+      "path": "workflows/legacy-methods.json",
+      "sizeBytes": 4729,
+      "sha256": "bd591cd7cff2d66288df332b08512b265815b74d04b5a34a1321f1baff8b8936"
+    },
+    {
+      "path": "workflows/project-decomp/WORKFLOW.md",
+      "sizeBytes": 1118,
+      "sha256": "74fb7e783c2185943564875a74dd838590cc442ac6ae432a4ade00b2559bd710"
+    },
+    {
+      "path": "workflows/project-decomp/resources/contract.md",
+      "sizeBytes": 11556,
+      "sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058"
+    },
+    {
+      "path": "workflows/project-decomp/resources/method.md",
+      "sizeBytes": 4570,
+      "sha256": "503a7880ae3e1b2a821a85f7da62932697ce0e3725cbef6d03aa1bac4ea26e28"
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "sizeBytes": 1793,
+      "sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2"
+    },
+    {
+      "path": "workflows/research-orchestration/WORKFLOW.md",
+      "sizeBytes": 2825,
+      "sha256": "d3941ec58c961b43820254c8519c4cbadbf62e31aa9afbaa9f32499e1f8eded4"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/contract.md",
+      "sizeBytes": 14535,
+      "sha256": "fbc364ae14f1e5574db9551672fa2cc5ca28c73bd348d3df49c7ed7d02a4e465"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/method.md",
+      "sizeBytes": 5457,
+      "sha256": "777364102e0edf5162534ffa14ed252b1dfb4c674aeec748d884dcaa2f2fc5de"
+    },
+    {
+      "path": "workflows/scope-change/WORKFLOW.md",
+      "sizeBytes": 1163,
+      "sha256": "58f5d1d53c655fdc5668d928f6087003590f40e321e25e3d9447805ee64a7a90"
+    },
+    {
+      "path": "workflows/scope-change/resources/contract.md",
+      "sizeBytes": 37845,
+      "sha256": "06633c3067a4334ad4e262b8188adb833b674336eb2ef6f6b9fac7755c8fb9fe"
+    },
+    {
+      "path": "workflows/scope-change/resources/method.md",
+      "sizeBytes": 30019,
+      "sha256": "bae76bb1cb75ae35b9dd00fd74b7ab710fce078886c37ffa90244178c1c90aaa"
+    },
+    {
+      "path": "workflows/software-decomp/WORKFLOW.md",
+      "sizeBytes": 1077,
+      "sha256": "fd79f8001404a99c3438500fae413d56193dc1db408b3416bdee20414977d452"
+    },
+    {
+      "path": "workflows/software-decomp/resources/contract.md",
+      "sizeBytes": 12302,
+      "sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f"
+    },
+    {
+      "path": "workflows/software-decomp/resources/method.md",
+      "sizeBytes": 4737,
+      "sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3"
+    }
+  ],
+  "excludedSharedLanes": [
+    "projects/chirality-app-dev product source and App run evidence",
+    "projects/chirality-runtime product source",
+    "exports/chirality-app and .github packaging changes owned by distribution",
+    "execution/.../distribution evidence",
+    "tools/validation/test_public_export_profile.py owned by distribution"
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "schema": "chirality-v3-distribution-semantic-successor-manager-checks/v2",
+  "verdict": "candidate-ready-for-parent-final-staging-fan-in",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json",
+    "sha256": "485cc778ab131e477d792fad0e06b310023398d734609cdd9ec4421f1087ea18",
+    "sizeBytes": 13126
+  },
+  "predecessorManagerEvidence": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/manager/MANIFEST.json",
+    "sha256": "ceb817a358de8c5f47c37417da42ec875ff868903b873c31a64262a46f2a3921",
+    "sizeBytes": 1324
+  },
+  "sourceClosures": {
+    "root": {
+      "freeze": {
+        "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+        "sha256": "8669df0d1b2ab639e0e3d1352843130aabf8d88ab8050ed9f5169b022d9afad5",
+        "sizeBytes": 7469
+      },
+      "review": {
+        "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/root/REVIEW_V2.md",
+        "sha256": "bdd213c929e5214f8b80d94143499d728ee85b99abc011339e0438b9d3db7f09",
+        "sizeBytes": 10096
+      },
+      "evidence": {
+        "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/root/EVIDENCE_MANIFEST_V2.json",
+        "sha256": "984039e2bff6ad8bdac095f82cb0cf7897f09f24104abc95613974085451dcd7",
+        "sizeBytes": 5044
+      },
+      "verdict": "PASS"
+    },
+    "app": {
+      "freeze": {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md",
+        "sha256": "240a974e9e6a0c9317ea77b9588997adf2d03b613bfd78595ee1a8c3c5405a80",
+        "sizeBytes": 8682
+      },
+      "review": {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/RETURN.md",
+        "sha256": "0bbe887d2d6a9fe4c3324a1083a99f206daebf544b80ab367e71519dd8250c94",
+        "sizeBytes": 8281
+      },
+      "reviewManifest": {
+        "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/MANIFEST.json",
+        "sha256": "483f6abaaa0cf5151e4e4e185ffe7b87d4538c6ac8ee36bc0d5a47b9baa38997",
+        "sizeBytes": 18711
+      },
+      "verdict": "PASS",
+      "fullValidation": "1993 passed / 4 registered skips; typecheck PASS"
+    },
+    "runtime": {
+      "freeze": {
+        "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V4.json",
+        "sha256": "1fee69de0e1ade83cd414aed63380d1cabf0989fe070734a73c40867dd10e28c",
+        "sizeBytes": 10246
+      },
+      "review": {
+        "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/REVIEW_V4.md",
+        "sha256": "3c0581675f4a0ebde2532ac13f4c43f9f563c6ca4230ae4fd2c21db43bca2509",
+        "sizeBytes": 11301
+      },
+      "evidence": {
+        "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/EVIDENCE_MANIFEST_V4.json",
+        "sha256": "93bf744dddfb4f247751ad310b16acd60a884277a4cacd8d1b6941fd7bb3acaf",
+        "sizeBytes": 12461
+      },
+      "validation": {
+        "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/VALIDATION_V4.json",
+        "sha256": "e3a576d918f01b9a1e81e11d1b41a63269469d9ec8cad090ad324323d5622f44",
+        "sizeBytes": 2428
+      },
+      "handoff": {
+        "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/HANDOFF_V2.md",
+        "sha256": "3e73e26796f8bd45ce5dd118d5a5d7211a2efce342f456fd2422bd51170fbdc3",
+        "sizeBytes": 3897
+      },
+      "verdict": "PASS",
+      "fullValidation": "build PASS; 772 passed / 14 registered skips"
+    }
+  },
+  "distributionReview": {
+    "verdict": "PASS",
+    "return": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v10/RETURN.md",
+      "sha256": "d464176a663079c6128d6aaffb6af9f81bec9b2ca46caff103c2081636267da3",
+      "sizeBytes": 2444
+    },
+    "checks": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v10/CHECKS.json",
+      "sha256": "bfdafa54d8563dade7a8cddbe765af343120e0dc00a6ca19aae4ebed658c0125",
+      "sizeBytes": 4380
+    },
+    "manifest": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v10/MANIFEST.json",
+      "sha256": "aff71b891432b14e6159d8e00a889548a5947e887be29d614dd6e5f3fed06a2e",
+      "sizeBytes": 899
+    }
+  },
+  "managerValidation": [
+    {
+      "name": "final subject member and source-anchor rehash",
+      "result": "PASS",
+      "members": "19/19",
+      "sourceAnchors": "3/3"
+    },
+    {
+      "name": "public export generation",
+      "result": "PASS",
+      "manifestRows": 1104,
+      "stageFiles": 1104,
+      "pathHashSizeMismatches": 0,
+      "boundaryFindings": 0
+    },
+    {
+      "name": "projection type and exclusion checks",
+      "result": "PASS",
+      "symlinks": 0,
+      "specialFiles": 0,
+      "chiralityChange": 0,
+      "appFrontendSource": 0
+    },
+    {
+      "name": "focused distribution tests",
+      "result": "PASS",
+      "vitest": "32/32",
+      "pytest": "6/6"
+    },
+    {
+      "name": "instruction bundle preparation",
+      "result": "PASS",
+      "files": 366
+    },
+    {
+      "name": "contract-pin implications",
+      "result": "PASS",
+      "changedContractPinMembers": 0,
+      "d121IdentityChanged": false
+    },
+    {
+      "name": "git diff whitespace check",
+      "result": "PASS"
+    },
+    {
+      "name": "PKG09 semantic successor reliance preflight",
+      "result": "ALLOW",
+      "targets": [
+        "DEL-09-04",
+        "DEL-09-05"
+      ],
+      "registerSha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+      "scanFingerprintSha256": "1f5527e2205580c50de224bca24fa5724ce956f617f8d84e981200a24126f36b"
+    }
+  ],
+  "readiness": {
+    "bundleParity": "PASS",
+    "kg001": "needs_remediation",
+    "adoptionHold": "retained",
+    "releaseHold": "retained",
+    "nativePackageQualified": false,
+    "supplierQualified": false,
+    "releaseQualified": false
+  }
+}

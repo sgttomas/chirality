@@ -6,6 +6,9 @@ repository from the public canonical `chirality` source tree.
 The projection is allowlist-based. Non-release projects, domain repositories,
 migration records, historical plans, source corpora, archives, dependency
 folders, build outputs, local runtime state, and environment files are excluded.
+The reusable Codex skill projection is the explicit seven-skill allowlist under
+`.agents/skills/`; the project-only `chirality-change` skill remains excluded
+from the public bundle and its method-discovery list.
 
 Private-project CI workflows are also excluded when their working directories
 do not exist in the public tree. The public init prompt is generated as a

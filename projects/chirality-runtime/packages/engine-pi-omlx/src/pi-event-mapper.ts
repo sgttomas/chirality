@@ -26,7 +26,7 @@ export function mapPiEvent(event: unknown, identity?: { sessionId: string; turnI
     return [{ type: "chat:complete", data: { text: content.filter(item => item?.type === "text" && typeof item.text === "string").map(item => item.text).join("") } }];
   }
   if (e.type === "tool_execution_end") {
-    if (!["read", "read_file"].includes(e.toolName)) throw new HarnessError("PROVIDER_PROTOCOL_FAILURE", 502, "Unexpected Pi tool execution");
+    if (!["read", "read_file"].includes(e.toolName) && !/^chirality_[a-z0-9_]+$/u.test(e.toolName)) throw new HarnessError("PROVIDER_PROTOCOL_FAILURE", 502, "Unexpected Pi tool execution");
     return [{ type: "tool:result", data: { name: e.toolName, ok: e.isError !== true } }];
   }
   return [];

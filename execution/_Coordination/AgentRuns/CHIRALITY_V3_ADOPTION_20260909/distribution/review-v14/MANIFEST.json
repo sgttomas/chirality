@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-distribution-independent-review-manifest/v1",
+  "subjectVersion": "v14",
+  "verdict": "PASS",
+  "reviewMeaning": "minimal-provenance-export-consistency",
+  "members": [
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v14.json",
+      "sha256": "96bc38f15d9a4c35f8369ed5fb9ccbb8b8a6ebe2294358df4d798cabd53553be",
+      "sizeBytes": 18835
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v14/CHECKS.json",
+      "sha256": "7138d4481a0cdcf8d1e7ae6fc034b792f0d6d923bb74335adc72faee927336da",
+      "sizeBytes": 2876
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v14/RETURN.md",
+      "sha256": "a96b220f96e4710ee5bdaea368e9f92b7d9af14f25bed19ac6831c9376e88ac9",
+      "sizeBytes": 1648
+    }
+  ]
+}

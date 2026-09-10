@@ -1,0 +1,15 @@
+{
+  "schema": "chirality-manager-return/v1",
+  "task": "/root/app_adoption",
+  "status": "validated-candidate",
+  "return": {"path": "RETURN.md", "sha256": "5a39fe2e21183fc710aff9c0134673ec1c44d034d74fb914646bbaa6de457266"},
+  "externalEvidenceRoot": "/private/tmp/chirality-pr764-section8-repair-v2",
+  "externalEvidence": {
+    "subject": "de58343b109a95b60e555e70a616754de18e9ebf1bb600b5af9ee6869ff53bf6",
+    "patch": "020bc5badd9f1cb5518a8d838290f0cd8199e0253439f32a14e3844128b88131",
+    "runtimeTest": "88c535d2e9d8b7be8425a221697027f1c25b404a2005da86a64cf107e818b757",
+    "appTest": "ef22effd87b380d63071bf09939d81f3db67ff57fb12df4b6b9ce7dc551993dc",
+    "runtimeTypecheck": "ee6e82cf50eb2a50f7033996ea25a1ced7b0951240c7dd854619bbd0a5c21c00",
+    "appTypecheck": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f"
+  }
+}

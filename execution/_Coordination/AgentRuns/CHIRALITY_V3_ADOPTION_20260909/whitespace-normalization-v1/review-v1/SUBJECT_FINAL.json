@@ -1,0 +1,178 @@
+{
+  "schema": "chirality-whitespace-independent-terminal-subject/v1",
+  "baseCommit": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "predecessorCommit": "9b005c23a76fc2619780d27f5fabb70e3221cf02",
+  "normalizationFreeze": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/NORMALIZATION_FREEZE_V1.json",
+    "sha256": "2ade5f523b75d812132c64772ba4edaa1803f6dac90e5c396aed10dcdfaf286b",
+    "sizeBytes": 9353
+  },
+  "files": [
+    {
+      "path": ".agents/skills/deliverable-consistency/SKILL.md",
+      "sizeBytes": 1303,
+      "sha256": "9dde9339e89fb7cc8603f9dacba1b243d982f066062b43915b5c1fbe55ea516b"
+    },
+    {
+      "path": ".agents/skills/drawing-titleblock-page/SKILL.md",
+      "sizeBytes": 1809,
+      "sha256": "4fe50e6b07472afcbabe06fa404108c1881d08db254513a5cf3e17bb69949977"
+    },
+    {
+      "path": ".agents/skills/drawing-titleblock-page/references/stub-contract.md",
+      "sizeBytes": 1173,
+      "sha256": "263d2706aea56c135f2ba85010ce9c3d5ccdd99bb07c629993a91b9bdc4e424e"
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "sizeBytes": 2867,
+      "sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc"
+    },
+    {
+      "path": ".agents/skills/proposal-format/SKILL.md",
+      "sizeBytes": 1688,
+      "sha256": "63e6d2545c31df939511a5a137c214d5444ca562f6abf9b048de3aa2f8dac59d"
+    },
+    {
+      "path": ".agents/skills/researcher/SKILL.md",
+      "sizeBytes": 3205,
+      "sha256": "70273643f0382ecd3dab88b6e18a85484f1e0c15037fa949998f1310ea2febaf"
+    },
+    {
+      "path": ".agents/skills/researcher/references/evidence-contract.md",
+      "sizeBytes": 2256,
+      "sha256": "f13afe78c3cf9ebb0258eab9703ad0fb9114e2d3f5627642dde51b904f0b3579"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sizeBytes": 1303,
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sizeBytes": 1213,
+      "sha256": "f281558734732ab0a97cf1407ba80a53c25e8c2b9dd96069bec589fd521a7a23"
+    },
+    {
+      "path": "_DomainEngines/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 720,
+      "sha256": "56bd83c523aa42b5957f13bb849171d26de9dfb91b873fdedf96863ece90823b"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-42_chirality_v3_role_skill_workflow_adoption.md",
+      "sizeBytes": 5113,
+      "sha256": "fd98058bdcdfec2f2af6e50b8a2070fe2e6c1bdb02bba5954a6a9b3ad5feb6b0"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-CHIRALITY-V3-ADOPTION-20260909.yaml",
+      "sizeBytes": 1631,
+      "sha256": "33430d58279c3f830b49d508ba3cd4141f6ea886984dd8563c47c204fcb9e247"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/app-adapter-tests-supplement-v2/FOCUSED_TESTS.log",
+      "sizeBytes": 267,
+      "sha256": "e9ee2bd24559a3c67e529aaac3359bde4bbba82477c576869bfe6b07b4981f5e"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/app-adapter-tests-supplement-v2/NEGATIVE_TESTS.log",
+      "sizeBytes": 263,
+      "sha256": "de001613fbabebce615ef25bdd650b2811e0c916d0c32a30ec0f82e231084227"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/historical-plan-regressions-v4.log",
+      "sizeBytes": 422,
+      "sha256": "e6573fcbf86c758096be3585d0929f88c3c9d158086d58b19dcccde3896584f0"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/runtime-regressions-v4.log",
+      "sizeBytes": 419,
+      "sha256": "8e2e3bf1db4d5ed169b67e2b70222c0d8cd897cfb46b0c8fbcf60a6de5b9f7d8"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/shared-discovery-probe-v2.log",
+      "sizeBytes": 418,
+      "sha256": "e677ea64ffb8dd37b57037e333157ec59d67ba6b36d2df6cc28ca5f090b1a02d"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/integration-custody/INVENTORY.md",
+      "sizeBytes": 13318,
+      "sha256": "dd480319cd2dd9a2a7f5bdd381c9cb2d2f4121bb4ac507e805fe3dc74b012c69"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/integration-custody/STAGING_GAP_SIZE_SUMMARY.md",
+      "sizeBytes": 1590,
+      "sha256": "20997ac99d691b01129461ebf9d0b35ee3c8248b18a1f9d08d8fbe66669d7cc2"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_FREEZE_v2.md",
+      "sizeBytes": 2494,
+      "sha256": "346afd72a06d8ca3916179e896227113516d147ceba780e262cdef5d91a1aa5e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-supplemental-two-files-v1/vitest.log",
+      "sizeBytes": 3524,
+      "sha256": "6e85de17affae6ec597b8a0b2c214da2e111809011cd002a79fc5d559cf94eb4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.log",
+      "sizeBytes": 13366,
+      "sha256": "25c56df09ffe454b19a8f65a1fbe39d0c6c6d709623ec403e8a620c4ac9c4d06"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/focused-checks.log",
+      "sizeBytes": 9356,
+      "sha256": "886c053fe97bfb373b27946d5ae24b2d9aa0073c331903b33a119d41c0e35b7c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 1137,
+      "sha256": "a9c71d7cd20525db6b288bb81a0365e7a992c924a145ef9c2cf876856dca1b16"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 760,
+      "sha256": "5089d12c79935523a3a31f7e8b075bfd67a1dd6ac4a0ae7be44ddebfd642d031"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 1100,
+      "sha256": "055c0e6c0fdfa6d7aa0fb25a6a82de945c2cfe51d4bb8a09e297104feb613c4d"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 602,
+      "sha256": "647539cfa8a77069577437585201c4468860353d01993d35724056e84c56b0e3"
+    }
+  ],
+  "overlay": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/NORMALIZATION_OVERLAY.json",
+    "sha256": "443093a6f58d23f461975481674fd1316213a22d7ff535c29cce10efe57b1fd4",
+    "sizeBytes": 14019
+  },
+  "preimageManifest": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/whitespace-normalization-v1/PREIMAGE_MANIFEST.json",
+    "sha256": "d794ed491500727e212d6991937376b617a9f710464f1656edb1e48d1da6701d",
+    "sizeBytes": 9818
+  },
+  "derivedExportManifest": {
+    "path": "exports/chirality-app/export-manifest.csv",
+    "sha256": "fba551ef6aebff7f2950ddaac8e2a4e09697f23901f82bbd21645763f4ded8a2",
+    "sizeBytes": 133383
+  },
+  "unchangedWorkflowIndex": {
+    "path": "workflows/index.json",
+    "sha256": "1f34a12e0db95467c7c7a3500ff7301a1fd8aa30e01ab4dc4c789656ab12d9b7",
+    "sizeBytes": 80075
+  },
+  "distributionBindingObserved": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v13.json",
+    "sha256": "d2f6c7e4d276643ce3628c510a4e5fb1e96cbb1c214cada30f0b26111bc089cb",
+    "sizeBytes": 16968
+  },
+  "distributionOwnerVerdict": "Separate parent closure dependency; not waived or included in this bounded verdict",
+  "exclusions": [
+    "Separately owned .github/workflows/harness-premerge.yml CI worker change",
+    "Distribution V13 independent and manager terminal verdicts",
+    "Commit/staging/push/PR closure/package/provider/native/release actions"
+  ]
+}

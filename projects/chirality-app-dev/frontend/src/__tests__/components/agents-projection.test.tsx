@@ -87,9 +87,9 @@ describe('Agents projection minimal presentation', () => {
   it('shows recorded agent type, persona, and human-readable tree relationships', () => {
     const html = renderProjection();
 
-    expect(html).toContain('<strong>Agent 1</strong><span>WORKING_ITEMS</span>');
-    expect(html).toContain('<strong>Agent 2</strong><span>TASK</span>');
-    expect(html).toContain('<strong>Agent 0</strong><span>HELP_HUMAN</span>');
+    expect(html).toContain('<strong>Type 1</strong><span>Role: WORKING_ITEMS</span>');
+    expect(html).toContain('<strong>Type 2</strong><span>Role: TASK</span>');
+    expect(html).toContain('<strong>Type 0</strong><span>Role: HELP_HUMAN</span>');
     expect(html).toContain('Top-level');
     expect(html).toContain('Parent: WORKING_ITEMS');
     expect(html).toContain('Agents reporting to WORKING_ITEMS');
@@ -108,7 +108,7 @@ describe('Agents projection minimal presentation', () => {
     const html = renderProjection();
 
     expect(html).toContain('<h3>Parent relationship unavailable</h3>');
-    expect(html).toContain('<strong>Agent 1</strong><span>RESEARCH</span>');
+    expect(html).toContain('<strong>Type 1</strong><span>Role: RESEARCH</span>');
     expect(html.match(/Parent relationship unavailable/g)).toHaveLength(2);
     expect(html).not.toContain('unresolved');
     expect(html).not.toContain('conflicting');

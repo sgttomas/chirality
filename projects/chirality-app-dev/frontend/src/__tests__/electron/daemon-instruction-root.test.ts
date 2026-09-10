@@ -36,7 +36,7 @@ describe('electron/daemon-instruction-root', () => {
         resolveProjectRoots: vi.fn().mockRejectedValue(error)
       })
     ).resolves.toEqual({
-      instructionRoot: path.resolve('/Applications/Chirality.app/Contents/Resources'),
+      instructionRoot: path.resolve('/Applications/Chirality.app/Contents/Resources/instruction-root'),
       source: 'packaged-resources-fallback',
       reason: 'PROJECT_NOT_FOUND'
     });
@@ -52,7 +52,7 @@ describe('electron/daemon-instruction-root', () => {
           .mockRejectedValue(new Error('secret-bearing implementation detail'))
       })
     ).resolves.toEqual({
-      instructionRoot: path.resolve('/packaged/resources'),
+      instructionRoot: path.resolve('/packaged/resources/instruction-root'),
       source: 'packaged-resources-fallback',
       reason: 'MANIFEST_RESOLUTION_UNAVAILABLE'
     });

@@ -20,7 +20,7 @@ import type { RuntimeConnectivitySnapshot } from '../../lib/shell/runtime-connec
  */
 
 const state = vi.hoisted(() => ({
-  listDirectChatPersonas: vi.fn(),
+  listRoles: vi.fn(),
   listHarnessSessions: vi.fn(),
   projectRoot: '/tmp/execution-root' as string | null
 }));
@@ -37,9 +37,13 @@ vi.mock('../../lib/harness/client', async (importOriginal) => {
   const original = await importOriginal<typeof import('../../lib/harness/client')>();
   return {
     ...original,
-    listDirectChatPersonas: state.listDirectChatPersonas,
     listHarnessSessions: state.listHarnessSessions
   };
+});
+
+vi.mock('../../lib/harness/method-selection-client', async (importOriginal) => {
+  const original = await importOriginal<typeof import('../../lib/harness/method-selection-client')>();
+  return { ...original, listRoles: state.listRoles };
 });
 
 vi.mock('../../components/workspace/workspace-provider', () => ({
@@ -177,9 +181,9 @@ describe('persona roster refresh on runtime reconnect', () => {
 
   it('re-fetches once and drops the stale error when the daemon comes back', async () => {
     const bridge = installBridge(snapshot({ state: 'disconnected', lastError: 'socket refused' }));
-    state.listDirectChatPersonas
+    state.listRoles
       .mockRejectedValueOnce(engineUnavailable())
-      .mockResolvedValue([{ name: 'HELP_HUMAN', type: 0 }]);
+      .mockResolvedValue([{ id: 'HELP_HUMAN', agentType: 0, directEntry: true, defaultForNewChat: true, description: '', instruction: '' }]);
 
     const tree = await render(
       <RuntimeConnectivityProvider>
@@ -191,23 +195,23 @@ describe('persona roster refresh on runtime reconnect', () => {
     // The reported symptom, reproduced: an unusable picker and a banner that
     // nothing in the renderer would ever clear.
     expect(epochOf(tree)).toBe(0);
-    expect(state.listDirectChatPersonas).toHaveBeenCalledTimes(1);
+    expect(state.listRoles).toHaveBeenCalledTimes(1);
     expect(textByClass(tree, 'persona-picker-error')).toEqual([
       `ENGINE_UNAVAILABLE: ${DAEMON_UNBOUND}`
     ]);
-    expect(optionTexts(tree)).toEqual(['WORKING_ITEMS (unavailable)']);
+    expect(optionTexts(tree)).toEqual(['HELP_HUMAN (unavailable)']);
 
     await pushSnapshot(bridge, snapshot({ changedAt: '2026-07-25T12:00:05.000Z' }));
 
     expect(epochOf(tree)).toBe(1);
-    expect(state.listDirectChatPersonas).toHaveBeenCalledTimes(2);
+    expect(state.listRoles).toHaveBeenCalledTimes(2);
     expect(textByClass(tree, 'persona-picker-error')).toEqual([]);
-    expect(optionTexts(tree)).toEqual(['WORKING_ITEMS (unavailable)', 'HELP_HUMAN · Type 0']);
+    expect(optionTexts(tree)).toEqual(['HELP_HUMAN · Type 0']);
   });
 
   it('does not re-fetch when the main process repeats a connected report', async () => {
     const bridge = installBridge(snapshot({ state: 'disconnected' }));
-    state.listDirectChatPersonas.mockResolvedValue([{ name: 'HELP_HUMAN', type: 0 }]);
+    state.listRoles.mockResolvedValue([{ id: 'HELP_HUMAN', agentType: 0, directEntry: true, defaultForNewChat: true, description: '', instruction: '' }]);
 
     const tree = await render(
       <RuntimeConnectivityProvider>
@@ -216,7 +220,7 @@ describe('persona roster refresh on runtime reconnect', () => {
       </RuntimeConnectivityProvider>
     );
     await pushSnapshot(bridge, snapshot({ changedAt: '2026-07-25T12:00:05.000Z' }));
-    expect(state.listDirectChatPersonas).toHaveBeenCalledTimes(2);
+    expect(state.listRoles).toHaveBeenCalledTimes(2);
 
     // The main process owns retry and backoff and may re-publish liveness; only
     // an actual transition is a reason to ask the API again.
@@ -224,12 +228,12 @@ describe('persona roster refresh on runtime reconnect', () => {
     await pushSnapshot(bridge, snapshot({ changedAt: '2026-07-25T12:00:25.000Z' }));
 
     expect(epochOf(tree)).toBe(1);
-    expect(state.listDirectChatPersonas).toHaveBeenCalledTimes(2);
+    expect(state.listRoles).toHaveBeenCalledTimes(2);
   });
 
   it('does not re-fetch when the daemon merely drops out', async () => {
     const bridge = installBridge(snapshot({ state: 'connected' }));
-    state.listDirectChatPersonas.mockResolvedValue([{ name: 'HELP_HUMAN', type: 0 }]);
+    state.listRoles.mockResolvedValue([{ id: 'HELP_HUMAN', agentType: 0, directEntry: true, defaultForNewChat: true, description: '', instruction: '' }]);
 
     const tree = await render(
       <RuntimeConnectivityProvider>
@@ -237,7 +241,7 @@ describe('persona roster refresh on runtime reconnect', () => {
         <PersonaPicker />
       </RuntimeConnectivityProvider>
     );
-    expect(state.listDirectChatPersonas).toHaveBeenCalledTimes(1);
+    expect(state.listRoles).toHaveBeenCalledTimes(1);
 
     await pushSnapshot(
       bridge,
@@ -245,21 +249,21 @@ describe('persona roster refresh on runtime reconnect', () => {
     );
 
     expect(epochOf(tree)).toBe(0);
-    expect(state.listDirectChatPersonas).toHaveBeenCalledTimes(1);
+    expect(state.listRoles).toHaveBeenCalledTimes(1);
   });
 
   it('leaves a pane rendered without the provider exactly as it was', async () => {
     // Most suites render one pane in isolation. Those panes must keep fetching
     // once and only once, with no bridge subscription of their own.
     const bridge = installBridge(snapshot({ state: 'disconnected' }));
-    state.listDirectChatPersonas.mockResolvedValue([{ name: 'HELP_HUMAN', type: 0 }]);
+    state.listRoles.mockResolvedValue([{ id: 'HELP_HUMAN', agentType: 0, directEntry: true, defaultForNewChat: true, description: '', instruction: '' }]);
 
     await render(<PersonaPicker />);
-    expect(state.listDirectChatPersonas).toHaveBeenCalledTimes(1);
+    expect(state.listRoles).toHaveBeenCalledTimes(1);
 
     await pushSnapshot(bridge, snapshot({ changedAt: '2026-07-25T12:00:05.000Z' }));
 
-    expect(state.listDirectChatPersonas).toHaveBeenCalledTimes(1);
+    expect(state.listRoles).toHaveBeenCalledTimes(1);
   });
 });
 

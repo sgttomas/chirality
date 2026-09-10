@@ -2,9 +2,10 @@ import { afterEach, beforeEach, expect, it } from "vitest";
 import { mkdtemp, realpath, rm, writeFile, mkdir, symlink } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { createHash } from "node:crypto";
 import { createPiTurnRuntime } from "../packages/engine-pi-omlx/src/pi-turn-runtime.js";
 import { createPiReadTool } from "../packages/engine-pi-omlx/src/pi-read-tool.js";
-import type { AgentEngineRunInput, UIEvent } from "@chirality/runtime-contracts";
+import type { AgentEngineRunInput, ResolveSelectedContextResponse, RuntimeToolDefinition, UIEvent } from "@chirality/runtime-contracts";
 let directory: string, root: string, transcript: string, input: AgentEngineRunInput;
 beforeEach(async () => {
   directory = await realpath(await mkdtemp(join(tmpdir(), "pi-port-")));
@@ -206,6 +207,149 @@ it("invokes the actual bound coordinator callback with empty input and revokes w
   delete input.session.parentSessionId;
   await expect(port.preflight(input, "synthetic-fixture-key")).rejects.toThrow("fresh Runtime session");
   expect(receipts).toBe(1); await port.close();
+});
+it("delivers exact selected instructions and an admitted runtime method tool across two turns without cloning callbacks", async () => {
+  const file = join(root, "selected-method-resource.txt"); await writeFile(file, "selected");
+  const method = { sourceRootId: "chirality-root", source: "bundled" as const, kind: "skill" as const, name: "researcher" };
+  const instructionContext: ResolveSelectedContextResponse = {
+    schemaVersion: "chirality.selected-context/v3",
+    roleId: "TASK",
+    methods: [{ ...method, qualifiedId: "chirality-root:bundled:skill:researcher", description: "Research one bounded question.", central: false, compatibility: "canonical", executionRoleIds: ["TASK"], resources: ["SKILL.md", "references/evidence-contract.md"] }],
+    documents: [],
+    dispositions: [{ method, selected: true, activeRoleCompatible: true, eligibleRoleIds: ["TASK"], route: "primary" }],
+    supplied: [
+      { kind: "root", id: "root", content: "ROOT_INSTRUCTION_EXACT", sha256: "1".repeat(64) },
+      { kind: "project", id: "project", content: "PROJECT_INSTRUCTION_EXACT", sha256: "2".repeat(64) },
+      { kind: "role", id: "TASK", content: "ROLE_INSTRUCTION_EXACT", sha256: "3".repeat(64) },
+      { kind: "catalog-description", id: "researcher", method, content: "CATALOG_DESCRIPTION_EXACT", sha256: "4".repeat(64) },
+      { kind: "method-body", id: "researcher/SKILL.md", method, content: "METHOD_BODY_EXACT", sha256: "5".repeat(64) },
+      { kind: "resource", id: "researcher/evidence-contract", method, resourcePath: "references/evidence-contract.md", content: "METHOD_RESOURCE_EXACT", sha256: "6".repeat(64) }
+    ],
+    basisPreview: { id: "basis-preview-1", sha256: "7".repeat(64), sources: [{ sourceRootId: "chirality-root", source: "bundled", version: "fixture-v1", rootSha256: "8".repeat(64) }], persisted: false },
+    compatibilityInputs: []
+  };
+  let callbackReceipts = 0;
+  const runtimeTool: RuntimeToolDefinition = {
+    name: "chirality_method_resource", description: "read one selected method resource",
+    inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    permission: { effect: "allow", operation: "read", roots: [file] },
+    async execute(args, signal) {
+      expect(args).toEqual({}); expect(signal.aborted).toBe(false); callbackReceipts++;
+      return { content: "METHOD_TOOL_CALLBACK_EXACT" };
+    }
+  };
+  input.instructionContext = instructionContext;
+  input.runtimeTools = [runtimeTool];
+  let providerCalls = 0;
+  const observedSystemPrompts: string[] = [];
+  const port = runtime(async (_url, init) => {
+    const body = JSON.parse(String(init?.body));
+    const system = body.messages.find((message: any) => message.role === "system")?.content;
+    expect(typeof system).toBe("string"); observedSystemPrompts.push(system);
+    expect(system).toBe(`You are an Agent 2 specialist. Use only the supplied read tools and, when present, the Chirality method-change control callback inside the authorized project. Do not claim write, shell, network or delegation authority.\n\n<chirality-runtime-context schema="v3">\n${JSON.stringify(instructionContext.supplied)}\n</chirality-runtime-context>`);
+    providerCalls++;
+    if (providerCalls === 1) return new Response(JSON.stringify({ model: "fixture-model", choices: [{ message: { role: "assistant", tool_calls: [{ id: "method-tool", type: "function", function: { name: "chirality_method_resource", arguments: "{}" } }] }, finish_reason: "tool_calls" }] }));
+    if (providerCalls === 2) {
+      expect(body.messages).toContainEqual(expect.objectContaining({ role: "tool", content: expect.stringContaining("METHOD_TOOL_CALLBACK_EXACT") }));
+      return answer("FIRST_METHOD_TURN_COMPLETE");
+    }
+    expect(JSON.stringify(body.messages)).toContain("FIRST_METHOD_TURN_COMPLETE");
+    expect(JSON.stringify(body.messages)).toContain("SECOND_METHOD_TURN");
+    return answer("SECOND_METHOD_TURN_COMPLETE");
+  });
+  const firstEvents = await run(port);
+  expect(firstEvents.at(-1), JSON.stringify({ firstEvents, providerCalls, observedSystemPrompts, callbackReceipts })).toMatchObject({ data: { exitCode: 0 } });
+  input.message = "SECOND_METHOD_TURN"; input.turnId = "method-turn-2";
+  const secondEvents = await run(port);
+  expect(secondEvents.at(-1), JSON.stringify({ secondEvents, providerCalls, observedSystemPrompts, callbackReceipts })).toMatchObject({ data: { exitCode: 0 } });
+  expect(providerCalls).toBe(3);
+  expect(callbackReceipts).toBe(1);
+  expect(new Set(observedSystemPrompts)).toHaveLength(1);
+  expect(input.runtimeTools?.[0]?.execute).toBe(runtimeTool.execute);
+  await port.close();
+});
+it("executes only the exact admitted method-change control callback", async () => {
+  let callbackReceipts = 0;
+  const controlTool: RuntimeToolDefinition = {
+    name: "chirality_request_method_change",
+    description: "request a method change at the terminal boundary",
+    inputSchema: {
+      type: "object",
+      properties: {
+        mode: { type: "string", enum: ["merge", "replace"] },
+        methods: { type: "array", items: { type: "object" } }
+      },
+      required: ["mode", "methods"],
+      additionalProperties: false
+    },
+    permission: { effect: "allow", operation: "control" },
+    async execute(args, signal) {
+      expect(args).toEqual({ mode: "replace", methods: [] });
+      expect(signal.aborted).toBe(false);
+      callbackReceipts++;
+      return { status: "requested", requestId: "request-1" };
+    }
+  };
+  input.runtimeTools = [controlTool];
+  let providerCalls = 0;
+  const port = runtime(async (_url, init) => {
+    const body = JSON.parse(String(init?.body));
+    expect(body.tools.map((tool: any) => tool.function.name)).toEqual(["read_file", "chirality_request_method_change"]);
+    providerCalls++;
+    if (providerCalls === 1) return new Response(JSON.stringify({ model: "fixture-model", choices: [{ message: { role: "assistant", tool_calls: [{ id: "control-call", type: "function", function: { name: "chirality_request_method_change", arguments: '{"mode":"replace","methods":[]}' } }] }, finish_reason: "tool_calls" }] }));
+    expect(body.messages).toContainEqual(expect.objectContaining({ role: "tool", content: expect.stringContaining('"status":"requested"') }));
+    return answer("CONTROL_REQUEST_RECORDED");
+  });
+
+  const events = await run(port);
+  expect(events).toContainEqual({ type: "tool:result", data: { name: "chirality_request_method_change", ok: true } });
+  expect(events.at(-1)).toMatchObject({ data: { exitCode: 0 } });
+  expect(callbackReceipts).toBe(1);
+  expect(providerCalls).toBe(2);
+  await port.close();
+});
+it("rejects unknown control and all mutating Runtime callbacks before transport", async () => {
+  let providerCalls = 0;
+  const port = runtime(async () => { providerCalls++; return answer("UNREACHABLE"); });
+  for (const [name, operation] of [
+    ["chirality_unknown_control", "control"],
+    ["chirality_write", "write"],
+    ["chirality_shell", "shell"],
+    ["chirality_network", "network"]
+  ] as const) {
+    input.runtimeTools = [{
+      name,
+      description: "forbidden",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
+      permission: { effect: "allow", operation },
+      async execute() { throw new Error("must not execute"); }
+    }];
+    await expect(port.preflight(input, "synthetic-fixture-key")).rejects.toMatchObject({ type: "INVALID_REQUEST", status: 403 });
+  }
+
+  expect(providerCalls).toBe(0);
+  await port.close();
+});
+it("prepares a reversible context successor and starts a distinct provider span", async () => {
+  const supplied = (content: string, sha: string) => ({ kind: "role" as const, id: "TASK", content, sha256: sha.repeat(64) });
+  const context = (id: string, content: string, sha: string): ResolveSelectedContextResponse => ({
+    schemaVersion: "chirality.selected-context/v3", roleId: "TASK", methods: [], documents: [], dispositions: [], supplied: [supplied(content, sha)],
+    basisPreview: { id, sha256: sha.repeat(64), sources: [], persisted: false }, compatibilityInputs: []
+  });
+  input.instructionContext = context("basis-before", "OLD_ROLE_BODY", "a");
+  const bodies: any[] = [];
+  const port = runtime(async (_url, init) => { bodies.push(JSON.parse(String(init?.body))); return answer(bodies.length === 1 ? "PRIOR_ASSISTANT" : "SUCCESSOR_ASSISTANT"); });
+  const first = await run(port);
+  const predecessorEngineSessionId = (first[0] as Extract<UIEvent, { type: "session:init" }>).data.engineSessionId;
+  const transcript = JSON.stringify([{ role: "user", content: "PRIOR_USER" }, { role: "assistant", content: "PRIOR_ASSISTANT" }]);
+  const continuationSha = createHash("sha256").update(transcript).digest("hex");
+  const prepared = await port.prepareContextSuccessor({ sessionId: input.session.sessionId, predecessorEngineSessionId, fromBasisId: "basis-before", toBasisPreview: { id: "basis-after", sha256: "b".repeat(64) }, continuationContext: { transcript, sha256: continuationSha, priorBasisRefs: [{ basisId: "basis-before", sha256: "a".repeat(64) }] } });
+  input.instructionContext = context("basis-after", "NEW_ROLE_BODY", "b"); input.contextSuccessor = prepared; input.message = "CURRENT_USER"; input.turnId = "successor-turn";
+  const second = await run(port);
+  expect((second[0] as Extract<UIEvent, { type: "session:init" }>).data.engineSessionId).not.toBe(predecessorEngineSessionId);
+  const successorPrompt = JSON.stringify(bodies[1]);
+  expect(successorPrompt).toContain("PRIOR_USER"); expect(successorPrompt).toContain("PRIOR_ASSISTANT"); expect(successorPrompt).toContain("NEW_ROLE_BODY"); expect(successorPrompt).not.toContain("OLD_ROLE_BODY");
+  await port.close();
 });
 it("rejects model-supplied paths on the bound tool and never invents callback evidence", async () => {
   const file = join(root, "selected.txt"); await writeFile(file, "selected"); let calls = 0, receipts = 0;

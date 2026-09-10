@@ -1,0 +1,275 @@
+{
+  "schema": "chirality-independent-review-subject/v1",
+  "reviewer": "/root/runtime_context_review",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "authorization": "Parent-directed bounded rare model escalation exception; nonauthor independent reviewer; no delegation",
+  "capturedAt": "2026-09-09T19:04:26.479730+00:00",
+  "checkout": "/private/tmp/chirality-v3-adoption-20260909",
+  "gitHead": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "dirtySubject": true,
+  "runtimeFiles": [
+    {
+      "path": "agents/registry.json",
+      "sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "02e137b0d5024e231a780d1db6cb49412ac059a5e640a07ae85239fbcff7d2f0"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/engine.ts",
+      "sha256": "d76fab70ef8ff7a6b5f4b5d669fb6367fa7707b664256433420b8b210c61ebdb"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/agent-engine-port.ts",
+      "sha256": "73eaa140e32c1c460e01fbfe81535c467ebc3427f9a296658d80ec7a3eb76b7b"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/types.ts",
+      "sha256": "76b0ad2a6fa1ae2fadebfa8a8875fb6d5090861bcb23cbb7cde5b0ebc10a2a0a"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/protocol.ts",
+      "sha256": "d5b249888169647c335bdb45dc2b76d1189f95c8d8d37b697c273105f2de92b0"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/session.ts",
+      "sha256": "45dee2d6365e0a11a3872419612ac6a776479d088924da8e0008b92aaa702dd4"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/v3.ts",
+      "sha256": "cdff6a8276702a94f24a0e3e1faced249416de3961f1c11212c5433b5bece1de"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/instruction-basis-store.ts",
+      "sha256": "f4b0ec908791ef96b15604ae9f79cbae89576a8d0080ea2c1f8754f25c2bfa40"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/method-catalog.ts",
+      "sha256": "05b067ae122178db307e567af460bfb098a5ee5c04e2ef2a4b3af4597835bc49"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/method-transition.ts",
+      "sha256": "7fc67b02c979ce1eb64f4b77ea0b7192cf1ece2c0baf395c622526853046f5c1"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-method-service.ts",
+      "sha256": "bdde91149ecfd58cef90583386ee9e17d9588cb9ae61d7cc3597d5a13fef6e41"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-service.ts",
+      "sha256": "a8bf0b518c6a4ed06caf3199a8ffd4b697b803b16b7542fd76c964352eee7a8c"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/session-store.ts",
+      "sha256": "ed29113a017e9e4be23b3392752052d3f1d4033ad4a9b9495fadcb164bff9fc6"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/turn-coordinator.ts",
+      "sha256": "e238a5117fb7634f39c3b20449541c573e0dfada425bed5be91cd29865fa5ed2"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "834f093bc16da5931c2d6f648a072f16f9a7d5baf039e1930771dbc2e41e8cbb"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-claude/src/index.ts",
+      "sha256": "f397ac1a54b4af77d5d131b8fed27308b5d24852d5e856c36136c8d3bdb5d592"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-event-mapper.ts",
+      "sha256": "6230d0043dcf04532180f85ed26a1ef854114a347c90d511f419b4053ffb8a8f"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts",
+      "sha256": "064359fedd1e37536330822c0eef2eb25007321efec5a0fd16aa438f72f3ca66"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+      "sha256": "1d60d3b22150136e024397b0148c9acc0414f6e651254bc5e727a752aa0ad46c"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/instruction-basis-and-method-transition.test.ts",
+      "sha256": "83b3702340730d899a4e879baa0c9b0c91f4690abdbd48db5af8f71367275441"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/method-catalog.test.ts",
+      "sha256": "84ced7f1192cc7e4481d410255ec138a6e877f20514bae2f78c409c247ed4c1a"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/pi-turn-runtime.test.ts",
+      "sha256": "741e1e50dc50f43e93457d2cc81be240a69ad9960f1b4670c2172078ab6be292"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-v3-api.test.ts",
+      "sha256": "36e7e3be7086ea0943e0101533c31deaed83fc1cd2375bdf2c23c5ee9927ac87"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/turn-hardening.test.ts",
+      "sha256": "e5880870ef7ee94b90ebef4baf72335bf24073ca35b1d829ead05c3be9ee7b2b"
+    },
+    {
+      "path": "workflows/index.json",
+      "sha256": "d264b49c6b1534c199d77ff748727369bf445b1346ebcf8aeef48462ed3e0229"
+    }
+  ],
+  "appScopeManifestSha256": "657190f5299c39ee90e576251a5cff570be4fb1f8a1740322bd7e927d0299670",
+  "appFiles": [
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/runtime-host.ts",
+      "sha256": "5cbdcc8cf78b74969d30237cd46fb745b4563093f5f367f8c3291c2b5b6254d2"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/harness/agents-route.test.ts",
+      "sha256": "6170bc798dca852b686a6d8e20f6c54deeee8c637a89e087d34cf51a2d91e710"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/harness/daemon-proxy-boundary.test.ts",
+      "sha256": "bb9aa6b6081f75a719731196d85560aba234bde5c9030f11813969608f465d66"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/harness/fake-daemon-harness-port.ts",
+      "sha256": "0560cc1e5335382c4f8fa3bee5b1645a676a2f7c41293fc642fd3291a7a97a66"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/harness/routes.test.ts",
+      "sha256": "8f0c819c96ec3ec316f6f82f71777c3cf519630b22a63e8b5f304ded485bcbec"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/fixtures/controlled-v3-runtime.mjs",
+      "sha256": "4962fca5c90f14e545b7d1f271c30d838310189c8722da0022510a6dc7132926"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/integration/v3-runtime-proxy.integration.test.ts",
+      "sha256": "327dffec5e099612443d93908a7e4006160cc322f383ecdf9fa515e83399476b"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/agent-roster.test.ts",
+      "sha256": "abad387b93f1da83896a2fc4697a07179d0459bf23f0f27a01f45b82f06c41be"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/claude-agent-sdk-manager.test.ts",
+      "sha256": "3b885f7b704bd1bb3646630600645bf0265397618f07c4254a2d44373c657785"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts",
+      "sha256": "193bd36bd7492002080050b7a623d14963315cbbc458e681abf1464cfafd4348"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-options.test.ts",
+      "sha256": "ded686ac231ce9e6016881d062681f857b6a007ddd8c0295163c5d611c5a3ab4"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/pi-agent-engine-adapter.test.ts",
+      "sha256": "d6924f95b345be4f3f70627bb9dbe1cf20362660cfd483b994fa5d27b5598225"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/runtime-daemon-harness-port.test.ts",
+      "sha256": "5ecc19a498531ba0f46795fbfd1d479a844a52ac50c02046e7f4ddd8cd8faba7"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/sdk-options-builder.test.ts",
+      "sha256": "5fae0e067b5e085e2aaa7414350ce7e8fe278306dbc3da1a6a706d9bfed71aff"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/agents/route.ts",
+      "sha256": "71af0a800e0efbac1cb168745b00fceb4b5897e4169727f069d1614f4377c70e"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/methods/inspect/route.ts",
+      "sha256": "674066da37f6e9003d9223cb0fa615154cb7e80b439b8ab175b830608a14c125"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/methods/route.ts",
+      "sha256": "3b0c74b82cc25cee66d7085e5bf0cecb0c8703762a8c3f9d89c63402d212ee26"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/roles/route.ts",
+      "sha256": "dbbeb889d33f5ad52df6c876c7d54c2208ec3801e05b4d728b5b9897c49a8d74"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/context/resolve/route.ts",
+      "sha256": "aa64479bceb00d4eb41359892f0ca389a3fdc8db42eb3c0f8983038576207e3e"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/methods/route.ts",
+      "sha256": "6c08ef657e8733b32a81e7c5a88b0bfc0021dae72aa828dacb4c35e085128b93"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/native-plan/capability/route.ts",
+      "sha256": "d4ede84b995174ad6c0b6387840487744a6c2cad4d2bad7d6329e2d9155a2e5b"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/native-plan/export/route.ts",
+      "sha256": "99e66c9d0d0ad08baeb924de1d68f86939ce0f6610c55eb448def1e074e664d7"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/native-plan/revisions/route.ts",
+      "sha256": "3d53b96a3eea291538b62de7042c508817e771f1a1f7a4b95e2c27cc6981295a"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/boot/route.ts",
+      "sha256": "1a444594169ee2d602c54c9a2839df32ebe41ed427e830922731faa315fc966f"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/create/route.ts",
+      "sha256": "f4682bf1d4c445504cdaf76f04a3937eef9d82de41bfd7adb5b4c2dd20e37636"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/turn/route.ts",
+      "sha256": "fed656884565b810c4cc80b6fd4db4a2ea4b396f74e745831fd7f249cfa0d81e"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/agent-roster.ts",
+      "sha256": "98ae8e3bf866b8e64110ccd3f1df222e7cc034115d7e85508cae26ea73955c7c"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/anthropic-agent-sdk-manager.ts",
+      "sha256": "92dcd52ea34bf43f1a413fb2bee5780fa7b3f31ca383505ed89318f179dfe1d6"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/claude-agent-sdk-manager.ts",
+      "sha256": "9ed1def592cf39e405a3ccdbbf1fa046534f9f31776de22d69e6e6a42149dd02"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/client.ts",
+      "sha256": "0f4a000c8f8bd8ab3d7bbf3e69a017e39f2c1b782a0faa84645bdb0a1e7f9b27"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/engine-registry.ts",
+      "sha256": "c1532b80212e6baeccaddfca89e09f53b2e8dd669cace8c36f0bc366ad1d9d5a"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/options.ts",
+      "sha256": "fc59e27db63784d0728afaa413105507624c859a324894aad7538c6f48caae96"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/persona-manager.ts",
+      "sha256": "8069e0fc7fa7036f26a641e8a51fda29c179de9a323cf16c2765834a852ef49a"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts",
+      "sha256": "aa97795d4aaee7bb8e11f19466aa3751d96c426be08c6a655f20a9ec4abacad2"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts",
+      "sha256": "379b2b9381a59eb40763a196cb26e98b202529b0ef3c990854b5cecc17cfb2e7"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/daemon-harness-port.ts",
+      "sha256": "7d78a69b8ce05d405fa47f151f261e6d9126f3b549a8e3e88f47c437ee8ef563"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts",
+      "sha256": "0218c6a597f2b542e59406d704a321221b87ad819253d374a4316e87e2f664d0"
+    }
+  ],
+  "evidenceClass": "offline-source-and-controlled-adapter-review",
+  "excluded": [
+    "native supplier execution",
+    "network/credential access",
+    "live provider qualification",
+    "full repository acceptance"
+  ]
+}

@@ -9,7 +9,7 @@ import {
   RuntimeError,
   type ProjectStatus,
   type RegisteredProject,
-  type RuntimeSessionRecord
+  type ReadableRuntimeSessionRecord
 } from '@chirality/runtime-contracts';
 import { HarnessError } from '@chirality/runtime-contracts/errors';
 import type {
@@ -41,9 +41,9 @@ export interface RuntimeDaemonHarnessEnvironment {
 }
 
 function asLegacySession(
-  session: RuntimeSessionRecord,
+  session: ReadableRuntimeSessionRecord,
   projectId = APP_DEV_PROJECT_ID
-): SessionRecord {
+): ReadableRuntimeSessionRecord {
   if (session.projectId !== projectId) {
     throw new RuntimeError(
       'FORBIDDEN',
@@ -172,10 +172,29 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
         request.projectRoot,
         options?.signal
       );
+      const permissionMode = request.permissionMode ?? (
+        request.mode === 'dontAsk' ? 'readOnly' : undefined
+      );
       const session = await this.client.createSession(
         this.projectId,
         {
           projectId: this.projectId,
+          ...(request.roleId === undefined ? {} : { roleId: request.roleId }),
+          ...(request.interactionMode === undefined
+            ? {}
+            : { interactionMode: request.interactionMode }),
+          ...(permissionMode === undefined
+            ? {}
+            : { permissionMode }),
+          ...(request.selectedMethods === undefined
+            ? {}
+            : { selectedMethods: request.selectedMethods }),
+          ...(request.declaredContext === undefined
+            ? {}
+            : { declaredContext: request.declaredContext }),
+          ...(request.allowedWriteTargets === undefined
+            ? {}
+            : { allowedWriteTargets: request.allowedWriteTargets }),
           ...(request.persona === undefined ? {} : { persona: request.persona }),
           ...(request.mode === undefined ? {} : { mode: request.mode })
         },
@@ -272,7 +291,14 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
           ...(request.opts === undefined ? {} : { opts: request.opts }),
           ...(request.attachments === undefined
             ? {}
-            : { attachments: request.attachments })
+            : { attachments: request.attachments }),
+          ...(request.interactionMode === undefined
+            ? {}
+            : { interactionMode: request.interactionMode }),
+          ...(request.permissionMode === undefined
+            ? {}
+            : { permissionMode: request.permissionMode }),
+          ...(request.methods === undefined ? {} : { methods: request.methods })
         },
         options?.signal
       );
@@ -328,16 +354,119 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
   ): ReturnType<DaemonHarnessPort['listAgents']> {
     return mapped(async () => {
       await this.requireConfiguredProject(options?.signal);
-      const agents = await this.client.listAgents(this.projectId, options?.signal);
+      const roles = await this.client.listRoles(this.projectId, options?.signal);
       return {
-        agents: agents
-          .filter((agent) => !request.directChatOnly || agent.type === 0 || agent.type === 1)
-          .map((agent) => ({
-            name: agent.name,
-            type: agent.type,
-            class: agent.class
+        agents: roles.roles
+          .filter((role) => !request.directChatOnly || role.directEntry)
+          .map((role) => ({
+            name: role.id,
+            type: role.agentType,
+            class: role.agentType === 2 ? 'TASK' : 'PERSONA'
           }))
       };
+    });
+  }
+
+  async listRoles(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): ReturnType<DaemonHarnessPort['listRoles']> {
+    return mapped(async () => {
+      await this.requirePathInConfiguredProject(projectRoot, options?.signal);
+      return this.client.listRoles(this.projectId, options?.signal);
+    });
+  }
+
+  async listMethods(
+    request: Parameters<DaemonHarnessPort['listMethods']>[0],
+    options?: DaemonRequestOptions
+  ): ReturnType<DaemonHarnessPort['listMethods']> {
+    return mapped(async () => {
+      await this.requirePathInConfiguredProject(request.projectRoot, options?.signal);
+      const response = await this.client.listMethods(this.projectId, options?.signal);
+      const query = request.query?.trim().toLocaleLowerCase();
+      return {
+        ...response,
+        methods: response.methods.filter((method) =>
+          (request.kind === undefined || method.kind === request.kind) &&
+          (query === undefined ||
+            method.name.toLocaleLowerCase().includes(query) ||
+            method.description.toLocaleLowerCase().includes(query))
+        )
+      };
+    });
+  }
+
+  async inspectMethod(
+    request: Parameters<DaemonHarnessPort['inspectMethod']>[0],
+    options?: DaemonRequestOptions
+  ): ReturnType<DaemonHarnessPort['inspectMethod']> {
+    return mapped(async () => {
+      await this.requirePathInConfiguredProject(request.projectRoot, options?.signal);
+      return this.client.inspectMethod(this.projectId, request.qualifiedId, options?.signal);
+    });
+  }
+
+  async resolveSelectedContext(
+    sessionId: string,
+    request: Parameters<DaemonHarnessPort['resolveSelectedContext']>[1],
+    options?: DaemonRequestOptions
+  ): ReturnType<DaemonHarnessPort['resolveSelectedContext']> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.resolveSelectedContext(
+        this.projectId,
+        sessionId,
+        request,
+        options?.signal
+      );
+    });
+  }
+
+  async replaceSelectedMethods(
+    sessionId: string,
+    request: Parameters<DaemonHarnessPort['replaceSelectedMethods']>[1],
+    options?: DaemonRequestOptions
+  ): ReturnType<DaemonHarnessPort['replaceSelectedMethods']> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.replaceSelectedMethods(
+        this.projectId,
+        sessionId,
+        request,
+        options?.signal
+      );
+    });
+  }
+
+  async getNativePlanCapability(
+    sessionId: string,
+    options?: DaemonRequestOptions
+  ): ReturnType<DaemonHarnessPort['getNativePlanCapability']> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.getNativePlanCapability(this.projectId, sessionId, options?.signal);
+    });
+  }
+
+  async listNativePlanRevisions(
+    sessionId: string,
+    options?: DaemonRequestOptions
+  ): ReturnType<DaemonHarnessPort['listNativePlanRevisions']> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.listNativePlanRevisions(this.projectId, sessionId, options?.signal);
+    });
+  }
+
+  async exportNativePlan(
+    sessionId: string,
+    request: Parameters<DaemonHarnessPort['exportNativePlan']>[1],
+    options?: DaemonRequestOptions
+  ): ReturnType<DaemonHarnessPort['exportNativePlan']> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.exportNativePlan(this.projectId, sessionId, request, options?.signal);
     });
   }
 

@@ -1,0 +1,1994 @@
+{
+  "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "subjects": [
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "sha256": "7f5ef062acd1e3ea63bc4fa3c5e61ad534cd24823c4b18ee28b9cfe1ff1c4ff8",
+      "count": 91
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "sha256": "8669df0d1b2ab639e0e3d1352843130aabf8d88ab8050ed9f5169b022d9afad5",
+      "count": 30
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "sha256": "b4a1ecd017321111c3a24a550d438f2429827d66f217439a17e02f87ce125af0",
+      "count": 28
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "sha256": "657190f5299c39ee90e576251a5cff570be4fb1f8a1740322bd7e927d0299670",
+      "count": 37
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "sha256": "fe91df552fb8f5bf36facf5186b9085203d0eb6e3bfa28322f596f8799494802",
+      "count": 7
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "sha256": "bf38a29e2b1999b3ce6f219c39308e24fcfb554d89733a5e33c05d868de1dd40",
+      "count": 46
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md",
+      "sha256": "240a974e9e6a0c9317ea77b9588997adf2d03b613bfd78595ee1a8c3c5405a80",
+      "count": 48
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_FREEZE_v2.md",
+      "sha256": "31d9269c57a6722ab5615883f373bfa0d1bda72732acf2b149d2def53271670c",
+      "count": 5
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256",
+      "sha256": "e537d15e84e6c61f91704d1cab5055804cae2fec0d2abfda631f5a20a08910f4",
+      "count": 52
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json",
+      "sha256": "485cc778ab131e477d792fad0e06b310023398d734609cdd9ec4421f1087ea18",
+      "count": 19
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CUSTODY_SUPPLEMENT_TWO_FILES_v1.md",
+      "sha256": "e6948c4b723ccdcc0b62d007800428b3c8258ff06e56567dbf24dd45c181301a",
+      "count": 2
+    }
+  ],
+  "sourceUnion": [
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "b77629c52f027eeb103e97c20cf38f357c7d5801b82e3eb60ff0c4ed5abf975d",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/chirality-change/execution.json",
+      "sha256": "d489c69e3cc3fdf6d8c2f14812859c319a4049649ec880637ccbc9010cde53df",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": ".agents/skills/deliverable-consistency/SKILL.md",
+      "sha256": "e4f77fb5d181463f026d7aa1457f032749d97693a4ac69c00b5fe55d66a9f459",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/deliverable-consistency/execution.json",
+      "sha256": "02c313a989c7dc7254b3f3fbc0d699d883107e04a080d142206009c13d67d01b",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/drawing-titleblock-page/SKILL.md",
+      "sha256": "cb828c93bf34b72f761ad94dd1c746f8d972783ec77f9d6100f30c2aece20b57",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/drawing-titleblock-page/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/drawing-titleblock-page/references/stub-contract.md",
+      "sha256": "ad1c1799e728105caeaf3b53a4b2f40354fd1c97e1958ddc6f6a91cf2b153997",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "sha256": "23e1dc6c775a3cf031295942885311b8f29f74e045c078b192cbd99069ffa4ed",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/preparation/execution.json",
+      "sha256": "dd59f002bdfe7b8b86555d7786dedbc88394b015b3b3dc90665f520ffa4bec2d",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": ".agents/skills/preparation/references/scaffold-contract.md",
+      "sha256": "801589c833fab1a785aa464c50a681457921e2c08caf3277c3bc8f263473f0b9",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": ".agents/skills/proposal-format/SKILL.md",
+      "sha256": "92168d0d3ec0dbc1008c7254313d608c527556592499f75af3d0290af557273f",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/proposal-format/execution.json",
+      "sha256": "19f0f4774247871545cfe949f9f92f3eba6909f6befba284e82d8ec327400619",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/researcher/SKILL.md",
+      "sha256": "acfc12cc880bf7a5fa370639f1a6808b53f07a04eb73b87b37fd81b847424207",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/researcher/execution.json",
+      "sha256": "dd59f002bdfe7b8b86555d7786dedbc88394b015b3b3dc90665f520ffa4bec2d",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": ".agents/skills/researcher/references/evidence-contract.md",
+      "sha256": "09f0d99b90f9d6fa7c9d225ad1b97bf6e651cab330a753b232604dca188fd7ae",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sha256": "e81e4619afb0351706e04caa54164b8c3b1c2d9dda56ac0b08d3130135657b60",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/software-code-review/execution.json",
+      "sha256": "569c85b4b9f2323d76bfa6c007a98af261122d6c75be275ae85a4333cff846de",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sha256": "d514aba052482c23bab6355af2a4340b8a4a2a5d992bb7e8507d4e949fbe9baa",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/execution.json",
+      "sha256": "5c219842a60f1bce31ca58f6f1c888828fef4883fcceadfa91bd51f4ff906c8c",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": ".github/workflows/harness-premerge.yml",
+      "sha256": "b2434b1d4afad7c1722794b96cf3dca5802f30395b7317df5f0304da507e03e5",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "72ad15edef189c65a80b6ac4ae85114ddb68665257c0b114cb42cae3ef05c802",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "_DomainEngines/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sha256": "0df5286a635ce63e938363ab21576386c6069b5ff28da7cd96fc4a3fe2e8242c",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "agents/registry.json",
+      "sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "sha256": "9e51bad1a3884efb709511c8496189a91f58e41eb8ba5f0952e6c39ffbe51c20",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "sha256": "1d21889e369628f9aef544932b4101108444cd69294eb52a139fcef87edad030",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "sha256": "bd53a656de347b963f98047b2db9fe655a70cc9d31d6c6489957e32b391d6730",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sha256": "282c42a60d47100e2f9158796991ef7912f7d7c6a36dd9b75b4e9dab27dbdda7",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "docs/TYPES.md",
+      "sha256": "9a4abbad62fe8ceb63a5f2d8630cbc4d8f420ebd6b0397ec9225fb229a62b038",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "docs/WORKFLOW_COMPONENT_STANDARD.md",
+      "sha256": "8d07544976fa106ca0f1d23b48843aa8554cf0570f1ff50caafe3f84feadf28c",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-42_chirality_v3_role_skill_workflow_adoption.md",
+      "sha256": "64726293c4666984f80e718cda64ee4af1048215d68bd432a4e730d58b11350b",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "sha256": "c9bb43fad9b62b476bbf7b5a9ca148e57b955fe7040fcfbb40079afc43167f2e",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-CHIRALITY-V3-ADOPTION-20260909.yaml",
+      "sha256": "565a56b003b5952ee3c2450cad036c0a03db9696af2ebd655ad98748502d3b3a",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ACCEPTANCE_MATRIX.md",
+      "sha256": "5dabeb83f793ec94dc46246c0f2e202a9e05513c9f56e54473af1cf4e42adde5",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/BASIS.md",
+      "sha256": "3a01abcbaf08ae6d9c7645c64db0cd2bf12efb40bc87d0b0f3ab36832f84bc42",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/METADATA_FREEZE.md",
+      "sha256": "924b1d8ca3174846a3351740dbadd864f1c5caff8b6959e85861912489c8ca29",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V1.json",
+      "sha256": "808b0d50849f4cc5ad9a280f7e7aa015a16da9cf26ca6d12184fb2a1a6ba37b7",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V2.json",
+      "sha256": "d9dcc461090106dd6d88abccbcd5a7fe50191a93f85e5381b5d88da0809911dc",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V3.json",
+      "sha256": "f7817efddd2478f6d723341c2b74d5db39d34223cc0ffb6d26e98cd3a795427b",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V4.json",
+      "sha256": "6d03eea70e0bb84427fe72b5253bda6f60d37ac421d06991f2dbf67ffd99179f",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V5.json",
+      "sha256": "690582bb3378ea42a9b9fc19f90a289de7be076baf58124d4d0971daf0bfcafe",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V6.json",
+      "sha256": "8719bfbf678c222d82b68145e1cba650431d944e582767ef95f63afa48a4bc21",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/WORK_GRAPH.md",
+      "sha256": "6913737736e6bd86c702a9bffba77606a20335f414df9e5c412d89fff1981961",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/catalog-author.md",
+      "sha256": "b1ad8f45e39f0f561eafca9dff604e23c4af519fd8b9094971f8616d051aa954",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/catalog-metadata-freeze-v2.json",
+      "sha256": "2b22d616b21f37993b633af2826cb2aa9a266c4a565972b89d2b19ca08920b95",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/catalog-schema-proposal.md",
+      "sha256": "229f956fec42700d1d37046791e2da155d34c7368fe94883e0402a60a91466e9",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/AUTHOR_BRIEF.md",
+      "sha256": "20622dd0326a4e3ffc6884f496dcc539c1fcc4884bd666de6d9e528e0e3b97f2",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/AUTHOR_RETURN.md",
+      "sha256": "198537dbee2032de3ac208f669c93a87afa8900efa372162548ac1f70b2bc4fe",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/HANDOFF.md",
+      "sha256": "387038a376797df322afa0f942759c476023d2318446ba33f16d3b4bbae33404",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/MANIFEST.sha256",
+      "sha256": "6df3e4559c31d5ccc1d98fada2944655c06c5fec4062c8928c09b555b291bf9d",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/REVIEW_BRIEF.md",
+      "sha256": "33fc099edffc998fc19e07e09a3a5ae48f791424c570501fb3b6f43d9f6e6753",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/REVIEW_RETURN.md",
+      "sha256": "f72c3fa38af981f494fdf8b20fb0dbc3a8e343e40d637274237c9e009d6697c2",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/SOURCE_PROVENANCE.md",
+      "sha256": "a69a99575b7af4bb67666a01412f73bdc990f8e052a024ce898615f681bf72e6",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/evidence/CHIRALITY_CHANGE_SKILL_20260909/VALIDATION.md",
+      "sha256": "4c7578b10906abe5f3fb28038bdbf49b921789eec0e9924ec997b9d61cc82b63",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/governance-author.md",
+      "sha256": "b47b4894b85c1bdd1848cf0adde4c42285d3c913a68f851800e349324438b121",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json",
+      "sha256": "331c2a4ad4859440eb4dec611af8f62cc2c424f7c84bb5dc076b5c76fcd85f04",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skills-author-validation.txt",
+      "sha256": "1766649d3ef8c9632cbce5dbe8f2bb0a63a3e6bf9237e2960b7ae5701fc78cb9",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skills-author.md",
+      "sha256": "37636a2c381aa99c5415faa29f5a29150ee6c959136cf02624bc9dffb03a650c",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "exports/chirality-app/README.md",
+      "sha256": "82f3737a9dd143b3d89d87d606499bad09857b8bb186dfc6e7ccbeba0581df33",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "exports/chirality-app/export-manifest.csv",
+      "sha256": "6c961d087ebd2be9f7d71fb9cd651f45d40baba64a7927ab5f31ea3361696a3b",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "exports/chirality-app/export-report.md",
+      "sha256": "6d34dc6f770560ab11388e50e1d92a23062620f8906e6b3d46c4608691c759bb",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "exports/chirality-app/export_public.py",
+      "sha256": "2ed72fa156195cabf9c881ba94e4385502bff4de023f2f29fe4dbba241e93401",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/_REFERENCES.md",
+      "sha256": "4066c53cb7e7c71ead21b836bb537a3c07427c8ebd8ba18b6518c1cd0c93af0f",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register/_REFERENCES.md",
+      "sha256": "ac5ab2ced817503bf6a5bcb13c7e1a7bc3a9c7d528aefe06cd3d4cd462d26edc",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy/_REFERENCES.md",
+      "sha256": "79825346fc8b04385380108e1a9c3cb9449cc2aed0a4707da9d67917536e66ba",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-04_Scope_Boundary_and_Retired_Scope_Register/_REFERENCES.md",
+      "sha256": "eed232cb55c97e26d789193cadb676645b1b7cc5d89b7eb16d0647f29533b756",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_REFERENCES.md",
+      "sha256": "3f8354414e163f308df9332076e7556b6529a24e20ddc417e816983814c9caae",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_REFERENCES.md",
+      "sha256": "b96f726066228bb3133642f9b86500a0ffa375119bf52bad1e363c211e11746b",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/_REFERENCES.md",
+      "sha256": "36aff32a604d92ea008afac762cffe03f656db73d83aa52f19ad547b8201854c",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_REFERENCES.md",
+      "sha256": "bf6455222311dc78c4318295ce0d375f47fb4211201a21ed9b1f73e3ad1aec5d",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_REFERENCES.md",
+      "sha256": "cf7bd8e1fd8bec8fd76a47b7f8738d77644729e4deb607e736706ee75190d051",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_REFERENCES.md",
+      "sha256": "3b9f62185252888f12103f79de8c1c6e069bcac726e015c24b2bbf3de6485bef",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_REFERENCES.md",
+      "sha256": "4401cf2a562c485758f38b1fad9030a2bf465067655bc9f9d0191d096edcd0fa",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_REFERENCES.md",
+      "sha256": "1d414b702dde973990eb18bd40681cb3e263b369ef216b118b08e248d89a8ad0",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/_REFERENCES.md",
+      "sha256": "53e5a968ecaca4fcab0ed81f4c7f04929c0bc3e34df6159b400ebec3e84d3a1e",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/_REFERENCES.md",
+      "sha256": "4543328197cf1e3d80e5096742ebe74b3403677a3908fe267c57e072a8333d99",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/_REFERENCES.md",
+      "sha256": "9258c36c38d4dfa6653cbe14add32a558c0e7d78c597328ddb828fcd077323bc",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation/_REFERENCES.md",
+      "sha256": "9b68a0648ea4df19586ca7a8831c7db798d8ec2ec2ac96936f1809e3b233c755",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_REFERENCES.md",
+      "sha256": "7a8f67b7be393961457d234ff78d0765f6e05c69675e025c381deff600a5efe7",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/_REFERENCES.md",
+      "sha256": "01efd8d56b5e077c009b6c6ddcfbcebbc8ecb95b3d3a75db54b5fd34de7001fc",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/_REFERENCES.md",
+      "sha256": "54dc3ecb249f805f80a3ac39837ba45fb89bbde796151391a55450675e4f5266",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_REFERENCES.md",
+      "sha256": "36a46961593bdfddbc6227e026fe66d1b01632ae7f54c584c7d289c67e4e381b",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/_REFERENCES.md",
+      "sha256": "1e375123c9062c69d2aec2d4c122aff29916d52b4e7a7a0d744c2bec25cb56ea",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/_REFERENCES.md",
+      "sha256": "c25d86d4553fec6bb60e381f690bc64569ad99bbe77c36fa0ad7a5cb13250f64",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts/_REFERENCES.md",
+      "sha256": "fd0d4ba5cd788624071a0affb74d4cff39e0d6a8226879c20db8411eb25274e9",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/_REFERENCES.md",
+      "sha256": "452ac172a41f36ebf239309b61a90960a515a9cb51b6775bcb5b959cb54310a8",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_REFERENCES.md",
+      "sha256": "a9dc798a2c423738191d8eafa52b0d68f5af83462114f7c055eacd112f937422",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_REFERENCES.md",
+      "sha256": "634b5103fe74771026a495b3e05ac3bf4595b6bc6c0b0b9aade0fb5e4b207741",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/_REFERENCES.md",
+      "sha256": "b30045c097a7c49675824b25960a7deaff4366708d8b518ba859e55904853c35",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/_REFERENCES.md",
+      "sha256": "53ef522c7d5602f7092f8fe27a19f7dd9c36af50c16d85318528bbb2dbd7a896",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/_REFERENCES.md",
+      "sha256": "40d22d8fd97017d428c68a2f6f057ee8c5f3c058702b6aa43318d860f1bc53bd",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_REFERENCES.md",
+      "sha256": "130ad16c2a8813a0ec79c5bc56d68270d8354e9ac7fbefee987170dd625f550a",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/_REFERENCES.md",
+      "sha256": "ca3dabf9ed768dcd03cb758b298c943c2ebfd2e99d2c494d6f0ff9b9258d4174",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_REFERENCES.md",
+      "sha256": "6f7d79188ab5f5c0b853a5d42121315b934c70ae2e69ee5f60c9b0cc09a2f757",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/_REFERENCES.md",
+      "sha256": "e278a35fbbaaae7a06bb46abc32aebfa06a5a2c0cf810d3d8f3bd1a2956956bf",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/_REFERENCES.md",
+      "sha256": "4ae088e945f8505cbcc53f1e5b036452c4056aa51f86f879abdb30b8a7d1096e",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/_REFERENCES.md",
+      "sha256": "5c7cf0b0d1e28eab3c6a64ba7e439ae2b73721a17b96720875fe7020a4d2d847",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_REFERENCES.md",
+      "sha256": "f4b3ff74ef60e6a7dedfe7168402e4bbccdd258b51982a30eb839bdbdb7f6829",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/_REFERENCES.md",
+      "sha256": "eafa8ddfe0d5b590a3538257232dfb903f8cae1017b1b9ea0b82b3026801640f",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/_REFERENCES.md",
+      "sha256": "b413dc713dba440705acd46978ce2897af1476a32b17685ef27bfb57681bf29f",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_REFERENCES.md",
+      "sha256": "82a7e1453702d0bb7d533679e171d15137b4ba57f909cbc4876dce88aa146b0d",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/_REFERENCES.md",
+      "sha256": "2a461cf0f149df85988fb0497c92f6b2c56658a0f094a759b47ab41cda0b0f3d",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/_REFERENCES.md",
+      "sha256": "0c0d43b26d727644ca4c65bf907e03cefd8808f60550f14c4fbacbabf28ad6b5",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/_REFERENCES.md",
+      "sha256": "5adc29d0fbb309ec288e3e17f0f07067d82539eedf4fb9da77e516413d574cc2",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/_REFERENCES.md",
+      "sha256": "d0c94f04f7d79d6f2a5d61ca01133bb1b8c2b0be43d824c4b9dc22926250f92d",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_REFERENCES.md",
+      "sha256": "504cb264ad0a198daee3de9e10d806eef53ec0ff4b94a77fab6cafbe81f3e812",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_REFERENCES.md",
+      "sha256": "62a0c50e9c1d8ea84aefa092f23fe55e03d30c959e660b287c4257933564abe1",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_REFERENCES.md",
+      "sha256": "655f7372e3b40d99632cd4918cdb1e877aaf9296966b5132c9646fe5eb749ff2",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_REFERENCES.md",
+      "sha256": "9b10941e4264e9c3520dfeb1d153133928d4613d5b9af264aa896a74376e75c8",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/_REFERENCES.md",
+      "sha256": "0b24c5b4fab518e00565cfd8b424535eb530a10ceb6b026250e2aead0fc61af7",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/_REFERENCES.md",
+      "sha256": "976d35e432af40d3b1c864007d99f050b5a4c44574510262a0d48b7b8a84e031",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/_REFERENCES.md",
+      "sha256": "b2aa271f59c0fb565c0f9c197f6549faba3c45186c48de93a0a9f5baa70cbdb7",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/_REFERENCES.md",
+      "sha256": "26fdf66dd56c611092af22b95ca335201f9298a588dfefff49e3fef55f805d90",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/_REFERENCES.md",
+      "sha256": "0a1dcab10a3b13132e9364bc6f6ae9627596bc6b519f3f45d5f04dd9a8116323",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_CANDIDATE.md",
+      "sha256": "648dcc7d7ba23c02470779849788e9ed4108fc5bc3da19cc0b911f75bd37ead8",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_FREEZE_v2.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_REFERENCE_MANIFEST.sha256",
+      "sha256": "e537d15e84e6c61f91704d1cab5055804cae2fec0d2abfda631f5a20a08910f4",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_FREEZE_v2.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sha256": "5f8354a6cf56437394b2b6d9614f0a736917bb8ee2e1d580d2d874364167b559",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/References/AUTHORITY_CORPUS.json",
+      "sha256": "4ac2afb2793048d5d7e56401cddb448fe4cf66408c9f73de8767dc64771abdaa",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_FREEZE_v2.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/References/_README.md",
+      "sha256": "682d42e2d0035a27baece60e233fe6d613291e8a420b0ca9677b3e4b27818b3b",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_FREEZE_v2.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "sha256": "d6706247388b3819a6730d9987ea522f3da0b4a2a54a445ddf6e8bfb228904ec",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_FREEZE_v2.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/References/test_reconcile_authority_corpus.py",
+      "sha256": "d554422d5a221964e3279073aae6fef301516e1ebac360329415bcea3cda5ab1",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CUSTODY_SUPPLEMENT_TWO_FILES_v1.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/daemon-instruction-root.ts",
+      "sha256": "5c5bc08218a6f978f92564bdf33caf69eef3b94406fd42bd28113c21619c7e43",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/runtime-host.ts",
+      "sha256": "9da054f7be78e664f1da58688db3cd26dca7b9c2fd8ef72efa70f4212b4f3821",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "sha256": "3d14e1fec007603a7f3a81c9869c3e151088623bec123a4106a7aa03fc323cce",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/build-electron.mjs",
+      "sha256": "98f2d356ce720012f2cbab94b83f04c1ef72c3f0f457dd263a22fc1d183a7685",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/prepare-packaged-instruction-root.mjs",
+      "sha256": "15ff45fee98bd246001b3e04b28e861951ff8ee82c25f8b6715d75c49403a190",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs",
+      "sha256": "5585d6a471661bf1984448b9f5b75c47509f2388707ad9d546cdab93783ee5de",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs",
+      "sha256": "556fb678067cecc71bd06ab7e18819bc282b4be2c2008641fb71be9dcfc41d03",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/harness/agents-route.test.ts",
+      "sha256": "6170bc798dca852b686a6d8e20f6c54deeee8c637a89e087d34cf51a2d91e710",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/harness/daemon-proxy-boundary.test.ts",
+      "sha256": "bb9aa6b6081f75a719731196d85560aba234bde5c9030f11813969608f465d66",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/harness/fake-daemon-harness-port.ts",
+      "sha256": "0560cc1e5335382c4f8fa3bee5b1645a676a2f7c41293fc642fd3291a7a97a66",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/api/harness/routes.test.ts",
+      "sha256": "8f0c819c96ec3ec316f6f82f71777c3cf519630b22a63e8b5f304ded485bcbec",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/agent-matrix-panel.test.ts",
+      "sha256": "76fe0ec866ee5ac885f9c59a57c0002a02ac36ac5d67b7d72e951836e0b8c0b2",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/agents-projection.test.tsx",
+      "sha256": "efbd353ef77a73a32a00149a8452567f894f8d13998c58304994ac07e88acda1",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-failed-send.test.ts",
+      "sha256": "5dfd9e4aee4840b66b4c37646b9b38952b424c80e66f868b2cdd392c140b9040",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx",
+      "sha256": "fd645ff910484e10318321e759908639a6b65e52407403c96f75ffdb47490e54",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/historical-chat-reveal.test.tsx",
+      "sha256": "a3c248a8c0bd785f73cfd756aa83c2512733828cb6fe6d27d8ea020d7e79463e",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/loop-tertiary-routes.test.ts",
+      "sha256": "e6b9ceb5a7f49124ff84a1020ae33839e8548eb7acd7c546ec1b33aa4ea9a52e",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/method-library-view.test.tsx",
+      "sha256": "edb7024edf0944917c3d9d3e3a99553cc06425c5fa5b25381a8805422b38b56b",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/right-panel-method-refresh.test.tsx",
+      "sha256": "aad4bbde67085c185a586734f5805ac12707e5d68211453947f6052fa34ab96b",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/runtime-reconnect-refresh.test.tsx",
+      "sha256": "a9e3e41c531acadd9ff8175d23e2f381ccde46c0c003c9b4da316d95379a629f",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/selected-session-replay-lens.test.tsx",
+      "sha256": "02ea12536311b9dc8b779a98ea43317d18707af9774f2e0fcd3036a4ceb2c837",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-route.test.tsx",
+      "sha256": "7ac9a9b8d0e0405ebb83e3037cbeab61add75bd1ac5af025ac47322b11b7544c",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+      "sha256": "7e8e1034d8b84a40c3f5f2b18ca199f96e1678dbd87d149656203d368e8067a7",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+      "sha256": "ac8f3938a45995c6a647bc16af28ab799b08f20b36607acbe1a3cbd3937021d0",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CUSTODY_SUPPLEMENT_TWO_FILES_v1.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/woven-right-panel.test.tsx",
+      "sha256": "a0cd828761a13371ab4e9961da32daa20a7b02f3acdc265175e9956a6a0edb56",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts",
+      "sha256": "f8aa8b27564bb516e938e3d4a81d17ca58d640743c0e8ba105c3e90b041eb753",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/daemon-instruction-root.test.ts",
+      "sha256": "49c47ea632cb6e4dde487ab4098695051e832a6ea23ee7f69443317958f6511b",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/electron/runtime-host-agent1-manager.test.ts",
+      "sha256": "ffc10e242538a30be56feae3285b7d04def78ca80274c7d77f46769a189202f4",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/fixtures/controlled-v3-runtime.mjs",
+      "sha256": "255e47a2a84b21db6bb9df3e41abfe7996207c5247eff3ba0e47aecf2995e747",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts",
+      "sha256": "0bb51df06836eaf8ca470b76a885b2316b9cce3ed22322e35787b20979abf80e",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/integration/v3-runtime-proxy.integration.test.ts",
+      "sha256": "17111c3de7f1ffb0b38f6a1ab508fcb7bac39f8fb0e2d6b9a96e07a3648c2b30",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/agent-matrix-cells.test.ts",
+      "sha256": "0494a69a0e41445c198f427f65abe1944d0b2fcff19b359690d9d5037ffb316c",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/agent-roster.test.ts",
+      "sha256": "abad387b93f1da83896a2fc4697a07179d0459bf23f0f27a01f45b82f06c41be",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/chat-organization.test.ts",
+      "sha256": "7260e158c18955b314eb14163771c8239ac34781fe8bcf53d5750c9fc43c581a",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/claude-agent-sdk-manager.test.ts",
+      "sha256": "3b885f7b704bd1bb3646630600645bf0265397618f07c4254a2d44373c657785",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/guarded-session-selection.test.ts",
+      "sha256": "4129f282ea06acd769eb616892885feb7bd3344fa0d8e82fb0cb26c9f29ed8a7",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts",
+      "sha256": "193bd36bd7492002080050b7a623d14963315cbbc458e681abf1464cfafd4348",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-chat-draft.test.ts",
+      "sha256": "3040247da9cde2c6e1052e73b8f3765e826744807bf089831bba9ef68edd9ef6",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-options.test.ts",
+      "sha256": "ded686ac231ce9e6016881d062681f857b6a007ddd8c0295163c5d611c5a3ab4",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/method-selection-client.test.ts",
+      "sha256": "2cf9e1564bda4bf893430b82316bd97825aba8c5d374ede5f04ff65bbb1fbb3a",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/operator-projection.test.ts",
+      "sha256": "2d135bf51d25ad910aa8286f74d935d76579b8a5ae2599803ed2151f41f44dc0",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/persona-resolution.test.ts",
+      "sha256": "6c475dbaefc8348b48c36092276548af8cbd598e6da12ce7575b6cdd4b609387",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/pi-agent-engine-adapter.test.ts",
+      "sha256": "b005dfa5bea816777865f61cdb1b13822596e7981b6a9b306bfb5951a14b220d",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/pkg08-compatibility-boundaries.test.ts",
+      "sha256": "3d5f6478492b4603372fd5f32e176942275841daab1380ed61d3e0c6899350b8",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/runtime-daemon-harness-port.test.ts",
+      "sha256": "6cc8eb209cb3c99c92eae25c7c697f093df1c5af547042722b2b487bac4f82b5",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/sdk-options-builder.test.ts",
+      "sha256": "23d55303da74255cfb302fb70d715c501bd12e064473787606d4abbd88198b17",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/selected-session-replay.test.ts",
+      "sha256": "9411e8ff6a106f15ba1b7f87882cd0d2929b3ea8478808c8ef3f0f4f3ca1cc61",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/build-electron.test.ts",
+      "sha256": "aadbcd6d8dde0ae1294fc5220fe9735393af5f9136767401e49b4f0b3a67b36d",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/dmg-packaging-policy.test.ts",
+      "sha256": "610c594f90e859d6fc97fed408a206b20c2f31b16128e3e6b4bc05dff6d97a5d",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/prepare-packaged-instruction-root.test.ts",
+      "sha256": "37679314e70c61eafaca895cb0da4cc8a337c350d0a4112df1eda16fb2333eb7",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "sha256": "80bbee4f039dc51c38a81f72b55184b3485156eaccc142415e12dcde58a6815c",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-instruction-root-integrity.test.ts",
+      "sha256": "557ce43f11e9fb1a64fe2d18b9dc1e1377f15f453bbfc0c395699f374dc9fe67",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/agents/route.ts",
+      "sha256": "71af0a800e0efbac1cb168745b00fceb4b5897e4169727f069d1614f4377c70e",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/methods/inspect/route.ts",
+      "sha256": "674066da37f6e9003d9223cb0fa615154cb7e80b439b8ab175b830608a14c125",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/methods/route.ts",
+      "sha256": "3b0c74b82cc25cee66d7085e5bf0cecb0c8703762a8c3f9d89c63402d212ee26",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/roles/route.ts",
+      "sha256": "dbbeb889d33f5ad52df6c876c7d54c2208ec3801e05b4d728b5b9897c49a8d74",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/context/resolve/route.ts",
+      "sha256": "aa64479bceb00d4eb41359892f0ca389a3fdc8db42eb3c0f8983038576207e3e",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/methods/route.ts",
+      "sha256": "6c08ef657e8733b32a81e7c5a88b0bfc0021dae72aa828dacb4c35e085128b93",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/native-plan/capability/route.ts",
+      "sha256": "d4ede84b995174ad6c0b6387840487744a6c2cad4d2bad7d6329e2d9155a2e5b",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/native-plan/export/route.ts",
+      "sha256": "99e66c9d0d0ad08baeb924de1d68f86939ce0f6610c55eb448def1e074e664d7",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/native-plan/revisions/route.ts",
+      "sha256": "3d53b96a3eea291538b62de7042c508817e771f1a1f7a4b95e2c27cc6981295a",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/boot/route.ts",
+      "sha256": "1a444594169ee2d602c54c9a2839df32ebe41ed427e830922731faa315fc966f",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/create/route.ts",
+      "sha256": "1f76bce21e67851e38fd89d907db9ac917de90284db1bc1f26ab54c5e9c0285d",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/turn/route.ts",
+      "sha256": "fed656884565b810c4cc80b6fd4db4a2ea4b396f74e745831fd7f249cfa0d81e",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/globals.css",
+      "sha256": "0d4377a1e56953535b78bb7154f6cce28155768e76e38a031b87ae6281325af6",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/portal/agent-matrix.tsx",
+      "sha256": "06294bda98ae9691e73353f26e57f94f517cd9c9e0e63051e1ecabb0f0218b5e",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/account-popover.tsx",
+      "sha256": "ad8aa9ab600ba6bbc4f965df6291bf8db1ce8a74b55921105a8e15129543c9a1",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx",
+      "sha256": "29938aa3cd877567d9620d8c2d56095f8dcf19c5851081243fce8dfddc6fce41",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/loop-shell.tsx",
+      "sha256": "93610e2681e3bb6b631efa143a52b3a37461a91a473d17255ce7fa7643c2cbe2",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/persona-picker.tsx",
+      "sha256": "b3223a4c3f2cc1171d950f3e150615784e68b6633741353273b1ec9100eca7d8",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/portal-loop-shell.tsx",
+      "sha256": "a9be515bfe029bce30a5a81b44d7277acc23f9a38ba0b1b56cb1063c24e7fee2",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/agents-projection.tsx",
+      "sha256": "83cd2fa9b1dade4ce2f250cda69902ea205928733b7dfe992e63b9337a9f0634",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/method-library-view.tsx",
+      "sha256": "e1d4ec4b5f910c2d5613570b440d44976bf2eec88af1878bf269551707fdbc31",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+      "sha256": "e9cec68b067d7574ffcf06f7dbe3ec86a85f5f7efde5c8be52b3ba770b306017",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/right-panel.tsx",
+      "sha256": "1f7ac32ac176c5ff78f00d4fb365294a3852789f3c8ac4987c878bbf78e55e1d",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+      "sha256": "1cac29ce24865b3380d4c01b1f686948d9f5f30638ab71c710582c1569e15833",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx",
+      "sha256": "7a8ec779dfb043c3e8bacf6369f1fbe1362f5b078a78dddff3750438727dd57e",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx",
+      "sha256": "fab483ab1266ff5533311cd5fd3dfe4c9eea631565a7332b0412a9674db28033",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/agent-roster.ts",
+      "sha256": "98ae8e3bf866b8e64110ccd3f1df222e7cc034115d7e85508cae26ea73955c7c",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/anthropic-agent-sdk-manager.ts",
+      "sha256": "92dcd52ea34bf43f1a413fb2bee5780fa7b3f31ca383505ed89318f179dfe1d6",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/chat-draft.ts",
+      "sha256": "f8ec5e7d44e93223c2ec4e3be21d5e4d79fb802ac49a15ec415bc7d2dbcc963c",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts",
+      "sha256": "308ee6ff03c41b781c2cb6474625afdb1aa0e9f1a6a22392aaa7426124dbb643",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/claude-agent-sdk-manager.ts",
+      "sha256": "475562440c8f3c9aae053cd9489ecdfe8983696a8baf7a8456518c68b33d6265",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/client.ts",
+      "sha256": "b4f5d5f88e1c3771920c20e90f95dde47af12b1ec3376b1c953a8e4838504344",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/engine-registry.ts",
+      "sha256": "c1532b80212e6baeccaddfca89e09f53b2e8dd669cace8c36f0bc366ad1d9d5a",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/method-selection-client.ts",
+      "sha256": "3a3e4e34a60171f7261d26384aff4530df3c42550c1c288fd01895146b4f1db1",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/options.ts",
+      "sha256": "fc59e27db63784d0728afaa413105507624c859a324894aad7538c6f48caae96",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts",
+      "sha256": "2a63308454ef4387baac92219bc6fadd941cdfb77c378b3ad3a3c03969959a5a",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/persona-manager.ts",
+      "sha256": "8069e0fc7fa7036f26a641e8a51fda29c179de9a323cf16c2765834a852ef49a",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts",
+      "sha256": "11ad69e20545d0f8699e4403fde84ba67a2496e27e9977af320eeced60c1a8fa",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts",
+      "sha256": "ad6b0f6ea0d8f88f8036aca1c78701228d04a53e6698b4f1e245f0a5b32c7a90",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/portal/agent-matrix-cells.ts",
+      "sha256": "30a796dca3bdd721744b74fa192f8fa8b6036a50ac7bbc839b1232601141a638",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/daemon-harness-port.ts",
+      "sha256": "ef9611819801c240a37c13d8878a119ee36fa7a90081ed33ce3070924da8af62",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts",
+      "sha256": "317f19e0d82b9daa0af98933ad2167ebf60d5ce33ef2742f54442938755b51e4",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/shell/persona-resolution.ts",
+      "sha256": "48eae60bc10e13133a19c7107ef083d32f5dd5ae4d1e79773700b3c796bcdad7",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/contracts.ts",
+      "sha256": "fd9143541893817eff7c876a58ed825ef7848234801dc2be7d49a9edb14e247f",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/operator-projection.ts",
+      "sha256": "4cd9c4fa46e88d90fa3ae8f2467262846bbb68fd2a2555ba2d8d929897b6c2e8",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/selected-session-replay.ts",
+      "sha256": "23c73b6c9d3d8f972f835fb88f15d579b96400a8c475d74ce6322149cde5f697",
+      "subject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sha256": "c7be15effa28ade2a3c79cff020147563be43312029978441aa7d0a9099299a6",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sha256": "1632c920299dc64b8c0645da11624693670b17514342e318e64bd55da91831f2",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/package-lock.json",
+      "sha256": "a23fe9fd906dd88a67c697e12a75bd1fc18492cbb7c337e3fcc56bb0c40e60c6",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "02e137b0d5024e231a780d1db6cb49412ac059a5e640a07ae85239fbcff7d2f0",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/package.json",
+      "sha256": "0a092759f3729bb8026c2c790b8ce126c800a355285fc83ccb38d8457f32ca32",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/engine.ts",
+      "sha256": "1f64f99fedb1932f615a2ee960b424ef8e5f95f073b4fd1a5a1446ef52e5b0d5",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/agent-engine-port.ts",
+      "sha256": "1e2fc956249934b04d535049e0b838e634f88116effadf8bb8c716ff7bdda2f1",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts",
+      "sha256": "c0ebc9b041a5e994ae40ae3335d39b6baac259252b834a2de68794e51a7c4f93",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/types.ts",
+      "sha256": "76b0ad2a6fa1ae2fadebfa8a8875fb6d5090861bcb23cbb7cde5b0ebc10a2a0a",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/index.ts",
+      "sha256": "d3d82540e2a5c6f4aadde92e641a2f6d8a192c83708ef8d4d8c156af5e62e681",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/protocol.ts",
+      "sha256": "d5b249888169647c335bdb45dc2b76d1189f95c8d8d37b697c273105f2de92b0",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/session.ts",
+      "sha256": "3859902ee9137968dfaec265dc9bd0a21eb5c09ec279df68b745003353d2339a",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/v3.ts",
+      "sha256": "5c3ad6efcb4cb92bf30b632d15c10fc31f4e5dc5413c44d808cbeb87417661aa",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/package.json",
+      "sha256": "0d87c535ae0ea8e1e936136d0c432fd06e80ec78c670069fd594fc709b7ec497",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/index.ts",
+      "sha256": "1d6989093eb6c7b7bd958808cb0d3a4a2141538050c59ba3ddbbb62fcc0ef98e",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/instruction-basis-store.ts",
+      "sha256": "1acb5ea8cdddc7098edd3aad532883a5ab3dacce64a5862739bd699eb7b514ef",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/method-catalog.ts",
+      "sha256": "86f78c22405a920776e09a75ed4578d0eb55d3cd752ebb9a93730463a8d6061a",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/method-transition.ts",
+      "sha256": "7fc67b02c979ce1eb64f4b77ea0b7192cf1ece2c0baf395c622526853046f5c1",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-method-service.ts",
+      "sha256": "0a0115db1c5730104d326cec6aaae0255455e8ddf469c5bfc2791a27ec762876",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-service.ts",
+      "sha256": "a8bf0b518c6a4ed06caf3199a8ffd4b697b803b16b7542fd76c964352eee7a8c",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/session-store.ts",
+      "sha256": "bf83b3968b4bd860d9d0531a39744c822930689530613311c4b41c80af52f6c1",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/turn-coordinator.ts",
+      "sha256": "de7189450e22492dce54d51459779e024592dcfcfffcb91bac96f4ff3ffb12c9",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "834f093bc16da5931c2d6f648a072f16f9a7d5baf039e1930771dbc2e41e8cbb",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-event-mapper.ts",
+      "sha256": "6230d0043dcf04532180f85ed26a1ef854114a347c90d511f419b4053ffb8a8f",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts",
+      "sha256": "7b6494a89d7b1e278f7fa3cd09c151dd1ebd73a3985559686b24f3928330a4cd",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+      "sha256": "bb91ad08129b99bb5e51717c94df42ce19e5b88253ff401c8e6cba6f218dd84e",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/instruction-basis-and-method-transition.test.ts",
+      "sha256": "b8831f5d859ea0b5d7a820a3bd78b73c91fa4ff0b20f8c96f6d92d92ea86b572",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/method-catalog.test.ts",
+      "sha256": "c2886f896dd831dd36ae0fe71c1c8cbd0a71313df34bec3a18782350fb45a8f2",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/pi-turn-runtime.test.ts",
+      "sha256": "05b2120d29fd85b49cf521d605082db4d59641907e9a135f5346ab8c9d151ec4",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-daemon-signal.test.ts",
+      "sha256": "99ebbfec8562e954d1e799a3695a005ff893bacc4b1fed7a1c666f38f2553b5a",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-v3-api.test.ts",
+      "sha256": "018b6bf03e369a57396260632801da58e07b595666c8963a23bd07d0c51d64d1",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/session-and-residency.test.ts",
+      "sha256": "693e666fcdafe6a67edb3f5b46a697d44d46e5da663df8597800c57d47ab2169",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sha256": "a6830015f5a4d0df7e9a77ddeb63608134a32b39239b05933753483fe4ed72c8",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "tools/validation/build_workflow_index.py",
+      "sha256": "c448cea83b4cf5fb4f8974ad2d0d589436fe276be2b09440fe36f9860bdd44b9",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "tools/validation/fixtures/method_discovery_v1.json",
+      "sha256": "2c7e3fb24b19f9f126af70d9735753a0999bf8b62429d143ff818413f8358cfb",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "tools/validation/test_public_export_profile.py",
+      "sha256": "994049786552ea3bac662b3e381372ce6f15c8248f965efc446824a4dfc988b2",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json"
+    },
+    {
+      "path": "tools/validation/test_validate_domain_decomposition_integrity.py",
+      "sha256": "999c40a4b0790bbc51c4131039a7c31b80a86b29cbabb6d4cf373e86431e8265",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "tools/validation/test_validate_instruction_tranche_manifest.py",
+      "sha256": "ca3d59fb03fc0fa2cfc9393d16f43bc45f9c1a9b1271590347d087bcd37fefdb",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "tools/validation/test_workflow_catalog.py",
+      "sha256": "2c1f0808f6db13af4347c270bd7cb03fc6933839c122345e38736cd1c3be2340",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "tools/validation/validate_agent_instructions.py",
+      "sha256": "32417d6be55e847ec25ae71e3f5babf163ccfc5390063bcbcf686033be0ae488",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "tools/validation/validate_domain_decomposition_integrity.py",
+      "sha256": "cb5b1077a4ce0bf60ea700b50688b10119379f21cb8ae94a47e6bfc16c4124fc",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "tools/validation/validate_instruction_tranche_manifest.py",
+      "sha256": "b4935733ba917dc7bd5e3ef696ce4d35cfe1c8129b390477765f2ab1d0bc22d3",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "tools/validation/validate_skill_metadata.py",
+      "sha256": "76e4d89a250ca05f6981e5067435e71b59ef57ae0966777dc6975484ddc2fb24",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "tools/validation/validate_workflow_metadata.py",
+      "sha256": "8670af57509dfb928f7d3ac82cde1418f70ccc8dad6e283d98bee14d0f9583cc",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "tools/workflow_runtime/README.md",
+      "sha256": "92e98c67437f6f2443925a8078d5a890dcaf84946f18f787bd4a998f770f7523",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "tools/workflow_runtime/fixtures/legacy_method_normalization_cases.json",
+      "sha256": "bb244510229acb22e559018a7851d41c9a4d7684bdfad4e18945d3ba4ffd82cc",
+      "subject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json"
+    },
+    {
+      "path": "tools/workflow_runtime/resolve_workflow.py",
+      "sha256": "46a8b917a19e3725331a7d7c1d4da6410f71a323ce7432383a729eee0d8e3d63",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "tools/workflow_runtime/test_resolve_workflow.py",
+      "sha256": "2d58d974135014506a8dcf1bae77e08e3f4bc6d9c3f6cc7add67aa9b90555beb",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/README.md",
+      "sha256": "6c6bcfcb1be84653222ca4c7e4206fddda98dd474cf52b6620a9e85a2c4795e7",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/catalog.schema.json",
+      "sha256": "c5db6374cf890b0adbe249b188bf664173c76dec3bad0b9a21eeede0146e0d68",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/catalog.yaml",
+      "sha256": "88aa40afd11eede5cff1e1b1f2c4b364d0af44a1cfa9579015e8e73beb17a877",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/domain-decomp/WORKFLOW.md",
+      "sha256": "9b922cb62c2b641e4231a99b6f66cdd880a15ead913a64f2a2be4038ad3aa90b",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/domain-decomp/resources/contract.md",
+      "sha256": "319a787bcf8daf97375fbbb92c2c15907fa5ab642e6b173d0fadb64d9f34a34d",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/domain-decomp/resources/method.md",
+      "sha256": "5502d01a0c469c3dba1bd6ff80df435a645b6d332c08c6da97b754c1264de1da",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/index.json",
+      "sha256": "1f34a12e0db95467c7c7a3500ff7301a1fd8aa30e01ab4dc4c789656ab12d9b7",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/legacy-agents.json",
+      "sha256": "c632821831194002e9c976a69f3b49227aff448e18a4c803527f90c1ef23ea42",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/legacy-methods.json",
+      "sha256": "bd591cd7cff2d66288df332b08512b265815b74d04b5a34a1321f1baff8b8936",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/project-decomp/WORKFLOW.md",
+      "sha256": "74fb7e783c2185943564875a74dd838590cc442ac6ae432a4ade00b2559bd710",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/project-decomp/resources/contract.md",
+      "sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/project-decomp/resources/method.md",
+      "sha256": "503a7880ae3e1b2a821a85f7da62932697ce0e3725cbef6d03aa1bac4ea26e28",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/project-setup/resources/method.md",
+      "sha256": "ce23e911e2f35e8c0644f344f096a39a46be95056736249c18b55c126fbb75ed",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/project-setup/resources/package-activation.md",
+      "sha256": "813ca9be124a171ba425045e93a67bf1c5413d8d76797876b01fbf966e361c1c",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/research-orchestration/WORKFLOW.md",
+      "sha256": "e05ad2b92c1bca11a1c79aa1bdeb3cfb1b7b714a183eb0d77488de95a813e382",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/brief.md",
+      "sha256": "c2ac3c50f874e74dce1cb0c3f136aa938151aa74df1a78072253ef9e103e6317",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/contract.md",
+      "sha256": "08cf059c544b3aa33c81ab90a6f203f8fdc044a36b2981c9b672397e380fecbd",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/method.md",
+      "sha256": "2308f3381f7481b53e213db5a1c52b66e31dd1e339015b24eb5261cff7ba578f",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/tools.md",
+      "sha256": "da14fad153924b6e726e4f2500023da61916e1c973802358a768b9ab79d8dc69",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/scope-change/WORKFLOW.md",
+      "sha256": "58f5d1d53c655fdc5668d928f6087003590f40e321e25e3d9447805ee64a7a90",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/scope-change/resources/contract.md",
+      "sha256": "4453a719f1588c4eba08bdb4a979140ff3541ed5a29f04477ea58a844f344d02",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/scope-change/resources/method.md",
+      "sha256": "34187e83856853f655389625e3465e3c2cb9ff8ad38be1f4d138ee7470d167f5",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json"
+    },
+    {
+      "path": "workflows/software-decomp/WORKFLOW.md",
+      "sha256": "fd79f8001404a99c3438500fae413d56193dc1db408b3416bdee20414977d452",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/software-decomp/resources/contract.md",
+      "sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    },
+    {
+      "path": "workflows/software-decomp/resources/method.md",
+      "sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json"
+    }
+  ],
+  "overlays": [
+    {
+      "path": ".agents/skills/chirality-change/execution.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": ".agents/skills/preparation/execution.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": ".agents/skills/preparation/references/scaffold-contract.md",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": ".agents/skills/researcher/execution.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "tools/validation/build_workflow_index.py",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "tools/validation/fixtures/method_discovery_v1.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "tools/validation/test_workflow_catalog.py",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "tools/validation/validate_skill_metadata.py",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "tools/validation/validate_workflow_metadata.py",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "workflows/README.md",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "workflows/domain-decomp/resources/contract.md",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "workflows/index.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "workflows/research-orchestration/WORKFLOW.md",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "workflows/research-orchestration/resources/contract.md",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "workflows/research-orchestration/resources/method.md",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "workflows/scope-change/resources/contract.md",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "workflows/scope-change/resources/method.md",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/package-lock.json",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/package.json",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/index.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/package.json",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/index.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-daemon-signal.test.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/runtime-host.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/pi-agent-engine-adapter.test.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/runtime-daemon-harness-port.test.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/sdk-options-builder.test.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/app/api/harness/session/create/route.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/claude-agent-sdk-manager.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/daemon-harness-port.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/package-lock.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/package.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/agent-engine-port.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/types.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/index.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/protocol.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/session.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/v3.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/package.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/index.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/instruction-basis-store.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/method-catalog.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/method-transition.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-method-service.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-service.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/session-store.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/turn-coordinator.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-event-mapper.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/packages/engine-pi-omlx/src/pi-turn-runtime.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/tests/instruction-basis-and-method-transition.test.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/tests/method-catalog.test.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/tests/pi-turn-runtime.test.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-daemon-signal.test.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/supplement-v1/SUBJECT.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-v3-api.test.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": false
+    },
+    {
+      "path": "tools/workflow_runtime/fixtures/legacy_method_normalization_cases.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "tools/validation/fixtures/method_discovery_v1.json",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SEMANTIC_SUCCESSOR_V1.json",
+      "newSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/fixtures/controlled-v3-runtime.mjs",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/integration/v3-runtime-proxy.integration.test.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/client.ts",
+      "priorSubject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "newSubject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md",
+      "identical": false
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/daemon-harness-port.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "newSubject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md",
+      "identical": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts",
+      "priorSubject": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/SOURCE_FREEZE_V5.json",
+      "newSubject": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/UI_SOURCE_FREEZE_v7.md",
+      "identical": true
+    }
+  ],
+  "drift": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/claude-agent-sdk-manager.test.ts",
+      "sha256": "3b885f7b704bd1bb3646630600645bf0265397618f07c4254a2d44373c657785",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "actual": "4cea167779d0cbfb63008afa46a65a033ad3770cb64d319e1f7c7d8f51a502b9"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts",
+      "sha256": "193bd36bd7492002080050b7a623d14963315cbbc458e681abf1464cfafd4348",
+      "subject": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/runtime-context-review-v2/APP_SUBJECT.sha256",
+      "actual": "76c8ea537f6a6762e9261b29a07c0cf09ff6cbe1aef9b58586097da67ba9b633"
+    }
+  ],
+  "changedCount": 6178,
+  "changedOutsideAgentRunCount": 267,
+  "missingOutsideAgentRuns": [
+    "projects/chirality-app-dev/AGENTS.md",
+    "projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md"
+  ],
+  "unchangedUnionPaths": [
+    "projects/chirality-app-dev/frontend/src/app/api/harness/agents/route.ts",
+    "projects/chirality-app-dev/frontend/src/app/api/harness/session/boot/route.ts"
+  ],
+  "instructionContext": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "72ad15edef189c65a80b6ac4ae85114ddb68665257c0b114cb42cae3ef05c802"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    }
+  ]
+}

@@ -233,6 +233,8 @@ export function buildSelectedSessionReplayProjection(
     currency,
     ...(session ? { session } : {}),
     transcript,
+    instructionHistory: [...replay.instructionHistory],
+    instructionBases: [...replay.instructionBases],
     malformedLineCount,
     sourceEventCount: replay.events.length,
     renderedItemCount: transcript.items.length,

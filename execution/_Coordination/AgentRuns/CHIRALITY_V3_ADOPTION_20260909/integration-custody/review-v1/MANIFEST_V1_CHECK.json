@@ -1,0 +1,30 @@
+{
+  "manifest": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/integration-custody/STAGING_MANIFEST_V1.json",
+  "manifestSha256": "43dba2577469547181d061e8dd77de7bf751a4e70db5a2b85318b8f4437e54d8",
+  "sourceRows": 267,
+  "evidenceRows": 59,
+  "duplicateSourceRows": 0,
+  "sourceEvidenceOverlap": [],
+  "physicalHashIssues": [],
+  "independentBindingIssues": [
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "issue": "absent from independent lane union"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md",
+      "issue": "absent from independent lane union"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/claude-agent-sdk-manager.test.ts",
+      "issue": "effective source hash mismatch"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts",
+      "issue": "effective source hash mismatch"
+    }
+  ],
+  "changedSourceCovered": 267,
+  "missingChangedSource": [],
+  "verdict": "HOLD_FOR_EXACT_ATTRIBUTION_AND_TERMINAL_EVIDENCE_SELECTION"
+}

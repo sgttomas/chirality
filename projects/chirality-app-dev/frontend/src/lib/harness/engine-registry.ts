@@ -1,6 +1,8 @@
 import type {
   AgentEnginePort,
   AgentEngineRunInput,
+  ContextSuccessorRequest,
+  PreparedContextSuccessor,
   EngineDescriptor
 } from '@chirality/runtime-contracts/agent-engine-port';
 import { HarnessError } from '@chirality/runtime-contracts/errors';
@@ -14,6 +16,9 @@ import type {
 
 type LegacyManager = IAgentSdkManager & {
   cancel?(sessionId: string): Promise<void>;
+  startRuntimeTurn?(input: AgentEngineRunInput): AsyncIterable<UIEvent>;
+  prepareContextSuccessor?(request: ContextSuccessorRequest): Promise<PreparedContextSuccessor>;
+  cancelContextSuccessor?(preparationId: string): Promise<void>;
   startTurn(
     session: SessionRecord,
     message: string,
@@ -41,6 +46,16 @@ export class LegacyAgentEngineAdapter implements AgentEnginePort {
   }
 
   startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent> {
+    if (this.manager.startRuntimeTurn !== undefined) {
+      return this.manager.startRuntimeTurn(input);
+    }
+    if (input.message.trim() !== 'bootstrap' && 'instructionBasisId' in input.session) {
+      throw new HarnessError(
+        'ENGINE_UNAVAILABLE',
+        503,
+        `Legacy adapter '${this.descriptor.adapterId}' cannot consume a frozen Runtime instruction basis.`
+      );
+    }
     return this.manager.startTurn(
       input.session,
       input.message,
@@ -52,6 +67,17 @@ export class LegacyAgentEngineAdapter implements AgentEnginePort {
 
   async interrupt(sessionId: string): Promise<void> {
     await this.manager.interrupt(sessionId);
+  }
+
+  prepareContextSuccessor(request: ContextSuccessorRequest): Promise<PreparedContextSuccessor> {
+    if (this.manager.prepareContextSuccessor === undefined) {
+      throw new HarnessError('ENGINE_UNAVAILABLE', 409, `Legacy adapter '${this.descriptor.adapterId}' cannot prepare a context successor.`);
+    }
+    return this.manager.prepareContextSuccessor(request);
+  }
+
+  async cancelContextSuccessor(preparationId: string): Promise<void> {
+    await this.manager.cancelContextSuccessor?.(preparationId);
   }
 
   async cancel(sessionId: string): Promise<void> {

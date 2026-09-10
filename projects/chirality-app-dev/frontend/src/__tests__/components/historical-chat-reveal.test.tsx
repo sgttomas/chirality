@@ -154,13 +154,13 @@ describe('recorded-chat Reveal', () => {
     expect(props.onSelectSession).not.toHaveBeenCalled(); expect(props.onNewChat).not.toHaveBeenCalled();
   });
 
-  it('renders friendly persona copy with exact recorded persona in the tooltip and leaves fallback IDs unchanged', () => {
+  it('renders friendly role copy with exact recorded role in the tooltip and leaves fallback IDs unchanged', () => {
     const sessions = [record('a', '/a'), record('b', '/b', 'WORKING_ITEMS'), record('c', '/c', 'AUDIT_DEP_CLOSURE'), record('RAW_SESSION_ID', '/d', '')];
     const { tree } = mount(sessions);
     expect(buildNavigatorSessionGroups(sessions, {}).all.map(entry => entry.label)).toEqual(['Assistant', 'Working Items', 'Audit Dep Closure', 'RAW_SESSION_ID']);
     expect(tree.root.findByProps({ 'data-session-id': 'a' }).props.title).toContain('HELP_HUMAN');
     expect(tree.root.findByProps({ 'data-session-id': 'b' }).props.title).toContain('WORKING_ITEMS');
     expect(buildNavigatorSessionGroups(sessions, {}).all[0]).toMatchObject({ persona: 'HELP_HUMAN', projectRoot: '/a', sessionId: 'a' });
-    expect(tree.root.findByType('a').children).toEqual(['Legacy window']);
+    expect(tree.root.findAllByType('a')).toHaveLength(0);
   });
 });

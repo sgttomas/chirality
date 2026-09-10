@@ -6,6 +6,13 @@ import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  BUNDLE_MANIFEST,
+  BUNDLED_SKILL_NAMES,
+  DOC_FILES,
+  SKILL_TOOL_CLOSURE,
+  buildExpectedInstructionManifest
+} from './prepare-packaged-instruction-root.mjs';
 
 const scriptPath = fileURLToPath(import.meta.url);
 
@@ -69,9 +76,11 @@ Options:
                          Source root for AGENTS.md, CLAUDE.md, and README.md
                          (default: auto-detected monorepo root)
   --agents-root <path>   Source agents directory root (default: <root-files-root>/agents)
-  --docs-root <path>     Source docs directory root (default: auto-detected app-dev docs)
-  --bundle-root <path>   Packaged Resources root (default: dist/mac-arm64/Chirality.app/Contents/Resources)
+  --docs-root <path>     Source canonical docs directory root (default: <root-files-root>/docs)
+  --bundle-root <path>   Packaged instruction root (default: packaged Resources/instruction-root)
   --output-root <path>   Output directory for manifest + summary (default: artifacts/harness/instruction-root-integrity/latest)
+  --sdk-bundle-root <path>
+                         Packaged Resources root containing app.asar.unpacked
   --help                 Show this message
 `);
 }
@@ -127,6 +136,12 @@ function parseArgs(argv) {
 
     if (token === '--output-root') {
       options.outputRoot = readArgValue(argv, index + 1, token);
+      index += 1;
+      continue;
+    }
+
+    if (token === '--sdk-bundle-root') {
+      options.sdkBundleRoot = readArgValue(argv, index + 1, token);
       index += 1;
       continue;
     }
@@ -194,11 +209,10 @@ function resolveDefaultSourceRoots(cwd) {
   }
 
   const monorepoRoot = path.resolve(cwd, '..', '..', '..');
-  const appDevRoot = path.resolve(cwd, '..');
   const splitCandidate = {
     rootFilesRoot: monorepoRoot,
     agentsRoot: path.join(monorepoRoot, 'agents'),
-    docsRoot: path.join(appDevRoot, 'docs'),
+    docsRoot: path.join(monorepoRoot, 'docs'),
     sourceLayout: 'split'
   };
 
@@ -282,7 +296,39 @@ async function listBundleAgentFiles(bundleRoot) {
     .sort();
 }
 
-async function buildSourceManifest({ rootFilesRoot, agentsRoot, docsRoot }) {
+async function listBundleInstructionFiles(bundleRoot) {
+  const files = [];
+  async function visit(directory, prefix = '') {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const relativePath = prefix ? `${prefix}/${entry.name}` : entry.name;
+      if (entry.isDirectory()) await visit(path.join(directory, entry.name), relativePath);
+      else files.push(toPosix(relativePath));
+    }
+  }
+  await visit(bundleRoot);
+  return files.sort();
+}
+
+async function buildSourceManifest({ rootFilesRoot, agentsRoot, docsRoot }, legacyFixture = false) {
+  if (!legacyFixture) {
+    const expected = await buildExpectedInstructionManifest({ rootFilesRoot, agentsRoot, docsRoot });
+    const entries = [];
+    for (const entry of expected.entries) {
+      const digest = entry.expectedContent
+        ? {
+            sha256: createHash('sha256').update(entry.expectedContent).digest('hex'),
+            sizeBytes: entry.expectedContent.length
+          }
+        : await sha256ForFile(entry.sourcePath);
+      entries.push({
+        path: entry.bundlePath,
+        sourcePath: entry.sourcePath,
+        sha256: digest.sha256,
+        sizeBytes: digest.sizeBytes
+      });
+    }
+    return entries;
+  }
   const sourceAgentFiles = await listSourceAgentFiles(agentsRoot);
   const sourceEntries = [
     ...REQUIRED_ROOT_FILES.map((fileName) => ({
@@ -313,7 +359,7 @@ async function buildSourceManifest({ rootFilesRoot, agentsRoot, docsRoot }) {
   return entries;
 }
 
-async function verifyManifestAgainstBundle({ manifestEntries, bundleRoot }) {
+async function verifyManifestAgainstBundle({ manifestEntries, bundleRoot, legacyFixture }) {
   const missingInBundle = [];
   const mismatchedFiles = [];
   const comparisons = [];
@@ -351,10 +397,52 @@ async function verifyManifestAgainstBundle({ manifestEntries, bundleRoot }) {
   const bundleAgentFiles = await listBundleAgentFiles(bundleRoot);
   const unexpectedBundleAgentFiles = bundleAgentFiles.filter((entry) => !sourceAgentSet.has(entry));
 
+  let unexpectedBundleFiles = [];
+  let bundleManifestStatus = legacyFixture ? 'not-applicable' : 'missing';
+  if (!legacyFixture) {
+    const expectedSet = new Set([...manifestEntries.map((entry) => entry.path), BUNDLE_MANIFEST]);
+    unexpectedBundleFiles = (await listBundleInstructionFiles(bundleRoot)).filter(
+      (entry) => !expectedSet.has(entry)
+    );
+    try {
+      const value = JSON.parse(await readFile(path.join(bundleRoot, BUNDLE_MANIFEST), 'utf8'));
+      const expectedFiles = manifestEntries.map(({ path: filePath, sha256, sizeBytes }) => ({
+        path: filePath,
+        sizeBytes,
+        sha256
+      }));
+      const skills = Array.isArray(value.skills) ? value.skills : [];
+      const expectedSkills = [...BUNDLED_SKILL_NAMES].sort().map((name) => ({
+        name,
+        resources: expectedFiles.filter((entry) => entry.path.startsWith(`.agents/skills/${name}/`)).map((entry) => entry.path),
+        toolMembers: (SKILL_TOOL_CLOSURE[name]?.toolMembers ?? []).map((entry) => `tools/${entry}`),
+        externalPrerequisites: SKILL_TOOL_CLOSURE[name]?.externalPrerequisites ?? []
+      }));
+      bundleManifestStatus =
+        value.schema === 'chirality-instruction-bundle-manifest/v2' &&
+        value.sourceSchema === 'chirality-method-index/v1' &&
+        JSON.stringify(value.files) === JSON.stringify(expectedFiles) &&
+        JSON.stringify(value.excludedSkillNames) === JSON.stringify(['chirality-change']) &&
+        value.toolMembersSemantics ===
+          'packaged dependency bytes only; allowed capabilities and commands come from each skill execution.json and the outer policy intersection' &&
+        JSON.stringify(value.documentationClosure) === JSON.stringify({
+          rule: 'direct-root-doc-references-from-bundled-entry-roles-workflows-and-skills',
+          files: DOC_FILES.map((entry) => `docs/${entry}`)
+        }) &&
+        JSON.stringify(skills) === JSON.stringify(expectedSkills)
+          ? 'match'
+          : 'mismatch';
+    } catch {
+      bundleManifestStatus = 'missing';
+    }
+  }
+
   return {
     missingInBundle,
     mismatchedFiles,
     unexpectedBundleAgentFiles,
+    unexpectedBundleFiles,
+    bundleManifestStatus,
     comparisons
   };
 }
@@ -463,11 +551,13 @@ async function verifyUnpackedSdkBundle({ bundleRoot }) {
   };
 }
 
-function buildSourceCompletenessChecklist({ sourceRoots, manifestEntries, verification }) {
+function buildSourceCompletenessChecklist({ sourceRoots, manifestEntries, verification, legacyFixture }) {
   const bundleIssueCount =
     verification.missingInBundle.length +
     verification.mismatchedFiles.length +
-    verification.unexpectedBundleAgentFiles.length;
+    verification.unexpectedBundleAgentFiles.length +
+    verification.unexpectedBundleFiles.length +
+    (['missing', 'mismatch'].includes(verification.bundleManifestStatus) ? 1 : 0);
 
   const rows = [
     {
@@ -481,24 +571,32 @@ function buildSourceCompletenessChecklist({ sourceRoots, manifestEntries, verifi
         checkedFileCount: manifestEntries.length,
         missingInBundle: verification.missingInBundle,
         mismatchedFiles: verification.mismatchedFiles.map((entry) => entry.path),
-        unexpectedBundleAgentFiles: verification.unexpectedBundleAgentFiles
+        unexpectedBundleAgentFiles: verification.unexpectedBundleAgentFiles,
+        unexpectedBundleFiles: verification.unexpectedBundleFiles,
+        bundleManifestStatus: verification.bundleManifestStatus
       }
     }
   ];
 
   for (const candidate of SOURCE_COMPLETENESS_CANDIDATE_PATHS) {
     const absolutePath = path.join(sourceRoots.rootFilesRoot, candidate.path);
-    const present = existsSync(absolutePath);
+    const sourcePresent = existsSync(absolutePath);
+    const bundledPresent = manifestEntries.some(
+      (entry) => entry.path === candidate.path || entry.path.startsWith(`${candidate.path}/`)
+    );
+    const satisfied = legacyFixture ? sourcePresent : sourcePresent && bundledPresent;
     rows.push({
       id: candidate.id,
       source: 'docs/PRD.md KG-001 under D-APP-38',
       description: candidate.description,
       path: candidate.path,
       absolutePath,
-      status: present ? 'satisfied' : 'remediation_required',
-      remediationStatus: present ? 'not_required' : 'required',
+      status: satisfied ? 'satisfied' : 'remediation_required',
+      remediationStatus: satisfied ? 'not_required' : 'required',
       evidence: {
-        present
+        sourcePresent,
+        bundledPresent,
+        legacySourceOnlyCheck: legacyFixture
       }
     });
   }
@@ -525,7 +623,12 @@ export async function run(argv = process.argv.slice(2), opts = {}) {
   const logError = opts.logError ?? ((line) => console.error(line));
 
   try {
-    return await runVerification(argv, { cwd, log, logError });
+    return await runVerification(argv, {
+      cwd,
+      log,
+      logError,
+      legacyFixture: opts.legacyFixture === true
+    });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     logError(`instruction-root integrity verification failed: ${message}`);
@@ -533,7 +636,7 @@ export async function run(argv = process.argv.slice(2), opts = {}) {
   }
 }
 
-async function runVerification(argv, { cwd, log, logError }) {
+async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
   const args = parseArgs(argv);
   if (args.help) {
     printUsage(log);
@@ -542,7 +645,7 @@ async function runVerification(argv, { cwd, log, logError }) {
 
   const sourceRoots = resolveSourceRoots(args, cwd);
   const bundleRoot = path.resolve(
-    args.bundleRoot ?? path.join(cwd, 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources')
+    args.bundleRoot ?? path.join(cwd, 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources', 'instruction-root')
   );
   const outputRoot = path.resolve(
     args.outputRoot ??
@@ -551,22 +654,29 @@ async function runVerification(argv, { cwd, log, logError }) {
 
   await mkdir(outputRoot, { recursive: true });
 
-  const manifestEntries = await buildSourceManifest(sourceRoots);
+  const manifestEntries = await buildSourceManifest(sourceRoots, legacyFixture);
   const verification = await verifyManifestAgainstBundle({
     manifestEntries,
-    bundleRoot
+    bundleRoot,
+    legacyFixture
   });
-  const sdkBundleVerification = await verifyUnpackedSdkBundle({ bundleRoot });
+  const sdkBundleRoot = path.resolve(
+    args.sdkBundleRoot ?? (path.basename(bundleRoot) === 'instruction-root' ? path.dirname(bundleRoot) : bundleRoot)
+  );
+  const sdkBundleVerification = await verifyUnpackedSdkBundle({ bundleRoot: sdkBundleRoot });
   const sourceCompleteness = buildSourceCompletenessChecklist({
     sourceRoots,
     manifestEntries,
-    verification
+    verification,
+    legacyFixture
   });
 
   const status =
     verification.missingInBundle.length === 0 &&
     verification.mismatchedFiles.length === 0 &&
     verification.unexpectedBundleAgentFiles.length === 0 &&
+    verification.unexpectedBundleFiles.length === 0 &&
+    !['missing', 'mismatch'].includes(verification.bundleManifestStatus) &&
     sdkBundleVerification.missingFiles.length === 0
       ? 'pass'
       : 'fail';
@@ -601,6 +711,8 @@ async function runVerification(argv, { cwd, log, logError }) {
     missingInBundle: verification.missingInBundle,
     mismatchedFiles: verification.mismatchedFiles,
     unexpectedBundleAgentFiles: verification.unexpectedBundleAgentFiles,
+    unexpectedBundleFiles: verification.unexpectedBundleFiles,
+    bundleManifestStatus: verification.bundleManifestStatus,
     comparisons: verification.comparisons,
     sourceCompleteness,
     sdkBundle: {
@@ -644,6 +756,13 @@ async function runVerification(argv, { cwd, log, logError }) {
       for (const filePath of verification.unexpectedBundleAgentFiles) {
         logError(`  - ${filePath}`);
       }
+    }
+    if (verification.unexpectedBundleFiles.length > 0) {
+      logError(`Unexpected bundled instruction files (${verification.unexpectedBundleFiles.length}):`);
+      for (const filePath of verification.unexpectedBundleFiles) logError(`  - ${filePath}`);
+    }
+    if (['missing', 'mismatch'].includes(verification.bundleManifestStatus)) {
+      logError(`Instruction bundle manifest: ${verification.bundleManifestStatus}`);
     }
     if (sdkBundleVerification.missingFiles.length > 0) {
       logError(`Missing unpacked Claude Agent SDK files (${sdkBundleVerification.missingFiles.length}):`);

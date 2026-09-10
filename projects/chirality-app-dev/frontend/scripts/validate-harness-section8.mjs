@@ -174,6 +174,10 @@ function assert(condition, message) {
   }
 }
 
+function describeHttpResult(result) {
+  return `HTTP ${result.response.status}; payload=${JSON.stringify(result.payload)}`;
+}
+
 function assertOrderedEvents(events, expectedOrder) {
   let previousIndex = -1;
   for (const type of expectedOrder) {
@@ -498,7 +502,10 @@ async function main() {
           }
     });
     if (SHARED_RUNTIME_MODE) {
-      assert(sdkFailureBoot.response.status === 200, 'Shared-runtime boot should complete');
+      assert(
+        sdkFailureBoot.response.status === 200,
+        `Shared-runtime boot should complete: ${describeHttpResult(sdkFailureBoot)}`
+      );
       assert(
         sdkFailureBoot.payload?.boot?.engineSessionId &&
           sdkFailureBoot.payload?.boot?.adapterId &&

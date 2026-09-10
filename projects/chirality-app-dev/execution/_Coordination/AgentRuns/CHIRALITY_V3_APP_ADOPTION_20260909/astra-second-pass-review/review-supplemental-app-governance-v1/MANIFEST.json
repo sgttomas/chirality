@@ -1,0 +1,86 @@
+{
+  "reviewer": "/root/astra_app_second_pass",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "verdict": "PASS",
+  "blockingFindings": 0,
+  "nonblockingInheritedObservations": 1,
+  "subjects": [
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "23c52d171561f3f116f6808f1edfdff2e585e49f28528f1ac861e5dc779d1e15",
+      "bytes": 18492,
+      "lines": 307,
+      "fullPostimageReviewed": true,
+      "fullBaseDiffReviewed": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md",
+      "sha256": "9270855674f7652755d2e016d163ce05dde616672c666d663c735c7eb190a70f",
+      "bytes": 5735,
+      "lines": 94,
+      "fullPostimageReviewed": true,
+      "fullBaseDiffReviewed": true
+    }
+  ],
+  "authorityReferences": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "72ad15edef189c65a80b6ac4ae85114ddb68665257c0b114cb42cae3ef05c802"
+    },
+    {
+      "path": "agents/registry.json",
+      "sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4"
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "sha256": "9e51bad1a3884efb709511c8496189a91f58e41eb8ba5f0952e6c39ffbe51c20"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "sha256": "b77629c52f027eeb103e97c20cf38f357c7d5801b82e3eb60ff0c4ed5abf975d"
+    },
+    {
+      "path": ".agents/skills/chirality-change/execution.json",
+      "sha256": "d489c69e3cc3fdf6d8c2f14812859c319a4049649ec880637ccbc9010cde53df"
+    },
+    {
+      "path": ".agents/skills/software-code-review/execution.json",
+      "sha256": "569c85b4b9f2323d76bfa6c007a98af261122d6c75be275ae85a4333cff846de"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "sha256": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf"
+    }
+  ],
+  "staticChecks": {
+    "exactSubjects": "PASS",
+    "fourRoles": "PASS",
+    "threeDirectEntries": "PASS",
+    "reusableSkillEligibility": "PASS",
+    "helpHumanNoWriteScope": "PASS"
+  },
+  "artifacts": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "23c52d171561f3f116f6808f1edfdff2e585e49f28528f1ac861e5dc779d1e15"
+    },
+    {
+      "path": "AGENTS.md.base.diff",
+      "sha256": "aa75475068e1784c180aea086c4cf59c06e502875865765d77af9427df3f4602"
+    },
+    {
+      "path": "RETURN.md",
+      "sha256": "26ea0c30c7355d4a1d22d3c41c4e7385a21f39fb4af50689e21881ea99481ba2"
+    },
+    {
+      "path": "_COORDINATION.md",
+      "sha256": "9270855674f7652755d2e016d163ce05dde616672c666d663c735c7eb190a70f"
+    },
+    {
+      "path": "_COORDINATION.md.base.diff",
+      "sha256": "3dfa123b34ed3fe64c3cf641fe934890f5ab9edc5f906c7db0f88999d3f3ae74"
+    }
+  ]
+}

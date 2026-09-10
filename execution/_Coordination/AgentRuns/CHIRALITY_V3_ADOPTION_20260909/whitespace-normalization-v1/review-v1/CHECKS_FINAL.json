@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "subjectSha256": "ac1debe05f98a093758d431c0376544d1f59c4dad1de9a406fcd3f4c8930f08b",
+  "fileCount": 27,
+  "findingsRemoved": 30,
+  "bytesRemoved": 36,
+  "preimagesExactlyMatchPredecessorGit": true,
+  "oldNewHashesAndSizesMatch": true,
+  "onlyReportedTrailingWhitespaceOrEOFBlankLinesRemoved": true,
+  "canonicalTextAndTokenSequenceUnchanged": true,
+  "exportManifestChangedRows": [
+    ".agents/skills/deliverable-consistency/SKILL.md",
+    ".agents/skills/drawing-titleblock-page/SKILL.md",
+    ".agents/skills/drawing-titleblock-page/references/stub-contract.md",
+    ".agents/skills/preparation/SKILL.md",
+    ".agents/skills/proposal-format/SKILL.md",
+    ".agents/skills/researcher/SKILL.md",
+    ".agents/skills/researcher/references/evidence-contract.md",
+    ".agents/skills/software-code-review/SKILL.md",
+    ".agents/skills/software-defect-diagnosis/SKILL.md",
+    "docs/governance_harness/_DECISIONS/D-GOV-42_chirality_v3_role_skill_workflow_adoption.md",
+    "docs/governance_harness/tranche_manifests/ROOT-CHIRALITY-V3-ADOPTION-20260909.yaml"
+  ],
+  "exportRowOrderAndAllOtherRowsUnchanged": true,
+  "workflowIndexExactAndSemanticValidation": "PASS 79 methods; predecessor bytes unchanged",
+  "historicalEvidenceOutsideEnumeratedOverlay": "unchanged from predecessor; prior verdicts continue to describe prior bytes",
+  "historicalEvidenceInsideOverlay": "only whitespace removed; exact predecessor preimages preserved and git-reproducible",
+  "distributionBinding": "V13 d2f6c7e4d276643ce3628c510a4e5fb1e96cbb1c214cada30f0b26111bc089cb all 36 nested hash bindings verified",
+  "remainingParentClosure": [
+    "Obtain Distribution V13 independent and manager verdicts",
+    "Rerun committed-range candidate whitespace validator in clean successor checkout after commit; current validator checks working/index and untracked selected evidence, plus prospective base-to-working diff check"
+  ],
+  "blockersWithinBoundedScope": []
+}

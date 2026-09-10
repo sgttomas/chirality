@@ -1,12 +1,12 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import type { AgentRosterEntry } from '../../lib/harness/agent-roster';
-import { harnessApiErrorMessage, listDirectChatPersonas } from '../../lib/harness/client';
-import { buildDirectChatHref } from '../../lib/shell/loop-first';
+import { harnessApiErrorMessage } from '../../lib/harness/client';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
 import { useRuntimeEpoch } from './runtime-connectivity-provider';
+import { listRoles, type RoleDescriptor } from '../../lib/harness/method-selection-client';
+import { useWorkspace } from '../workspace/workspace-provider';
 
 type PersonaPickerProps = {
   compact?: boolean;
@@ -24,16 +24,18 @@ type PersonaPickerProps = {
  */
 export function PersonaPicker({
   compact = false,
-  buildHref = buildDirectChatHref,
+  buildHref,
   disabled = false,
   onPersonaSelected
 }: PersonaPickerProps): JSX.Element {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [personas, setPersonas] = useState<AgentRosterEntry[]>([]);
+  const [personas, setPersonas] = useState<RoleDescriptor[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const runtimeEpoch = useRuntimeEpoch();
+  const { projectRoot } = useWorkspace();
 
   // The roster is fetched once per mount and once per reconnect. A roster loaded
   // while the daemon was unreachable is the "WORKING_ITEMS (unavailable)" state
@@ -42,10 +44,11 @@ export function PersonaPicker({
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    listDirectChatPersonas()
-      .then((agents) => {
+    if (!projectRoot) { setPersonas([]); setLoading(false); return; }
+    listRoles(projectRoot)
+      .then((roles) => {
         if (!cancelled) {
-          setPersonas(agents);
+          setPersonas(roles.filter(role => role.directEntry));
           setLoadError(null);
         }
       })
@@ -62,14 +65,14 @@ export function PersonaPicker({
     return () => {
       cancelled = true;
     };
-  }, [runtimeEpoch]);
+  }, [runtimeEpoch, projectRoot]);
 
   const selected = resolvePersona(searchParams.get('agent'));
-  const selectedInRoster = personas.some((persona) => persona.name === selected);
+  const selectedInRoster = personas.some((persona) => persona.id === selected);
 
   return (
     <div className="persona-picker">
-      <label className={compact ? 'visually-hidden' : undefined} htmlFor="persona-picker-select">{compact ? 'Agent' : 'Persona'}</label>
+      <label className={compact ? 'visually-hidden' : undefined} htmlFor="persona-picker-select">Role</label>
       <select
         id="persona-picker-select"
         title={compact ? selected : undefined}
@@ -77,11 +80,16 @@ export function PersonaPicker({
         disabled={disabled || loading || personas.length === 0}
         onChange={(event) => {
           const persona = event.target.value;
-          router.replace(buildHref(persona));
+          const href = buildHref ? buildHref(persona) : (() => {
+            const params = new URLSearchParams(searchParams.toString());
+            params.set('agent', persona);
+            return `${pathname || '/'}?${params.toString()}`;
+          })();
+          router.replace(href);
           onPersonaSelected?.(persona);
         }}
       >
-        {loading ? <option value="">Loading personas…</option> : null}
+        {loading ? <option value="">Loading roles…</option> : null}
         {/* A `?agent=` that is not a Type-0/Type-1 persona (e.g. a hand-edited
             URL) is shown disabled so the control stays controlled without
             silently offering a non-direct-chat agent. */}
@@ -91,9 +99,9 @@ export function PersonaPicker({
           </option>
         ) : null}
         {personas.map((persona) => (
-          <option key={persona.name} value={persona.name}>
-            {compact ? persona.name.toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ') : persona.name}
-            {!compact ? persona.type === 0 ? ' · Type 0' : ' · Type 1' : null}
+          <option key={persona.id} value={persona.id}>
+            {compact ? persona.id.toLowerCase().split('_').map((word: string) => word[0].toUpperCase() + word.slice(1)).join(' ') : persona.id}
+            {!compact ? ` · Type ${persona.agentType}` : null}
           </option>
         ))}
       </select>

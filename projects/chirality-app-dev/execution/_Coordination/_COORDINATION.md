@@ -72,7 +72,7 @@ and correct the guidance surface. Do not silently rewrite authority.
 ## Active Development Loop
 
 The operative loop — intake, selection, bounded `TASK` workers, validation gates,
-`CHANGE` closeout, and the hard fences — is absorbed into the newest `WORKPLAN_*.md`
+`chirality-change` closeout, and the hard fences — is absorbed into the newest `WORKPLAN_*.md`
 under `loop/` as of 2026-07-10 (owner-adopted, K-AUTH-1). Historical references to
 this file's Baseline Intake, Active Development Loop, Subagent Use, Git And Validation
 Closeout, and Human-Ruling Stops sections resolve to that plan's protocol steps and
@@ -85,8 +85,10 @@ fence list. The pre-2026-07-10 text is in git history at this path.
 - Work surface: `execution/PKG-*/1_Working/DEL-*/_STATUS.md` (`## Remaining`).
 - Decision register: `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 - Discovery pointer: `execution/_Coordination/_LATEST.md`.
-- Agent posture: `{REPO_ROOT}/AGENTS.md`, `{REPO_ROOT}/agents/AGENT_WORKING_ITEMS.md`,
-  `{WORKING_ROOT}/AGENTS.md` (WORKING_ITEMS persona; CHANGE closeout).
+- Role posture: `{REPO_ROOT}/AGENTS.md`, the active role instruction under
+  `{REPO_ROOT}/agents/`, and `{WORKING_ROOT}/AGENTS.md`. New chats default to
+  HELP_HUMAN; implementation uses WORKING_ITEMS with bounded TASK executors;
+  Git closeout uses the project-scoped `chirality-change` skill.
 - Landed-work narrative: `plans/PLAN_COMPLETION_LOG.md` (history, never a queue).
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`: dated historical map (pre-loop
   session entry; never authority).

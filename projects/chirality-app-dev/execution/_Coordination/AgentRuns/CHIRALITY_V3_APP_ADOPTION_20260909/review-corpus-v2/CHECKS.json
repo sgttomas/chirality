@@ -1,0 +1,75 @@
+{
+  "schema": "chirality-independent-app-corpus-review/v2",
+  "verdict": "PASS",
+  "reviewer": "/root/root_adoption/root_full_diff_reviewer",
+  "independent": true,
+  "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "subject": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_FREEZE_v2.md",
+    "sha256": "31d9269c57a6722ab5615883f373bfa0d1bda72732acf2b149d2def53271670c"
+  },
+  "findings": {
+    "open": [],
+    "closed": [
+      {
+        "id": "ACR-1-BUMP-SNAPSHOT-VALIDATION",
+        "severity": "HIGH",
+        "result": "CLOSED",
+        "backcheck": "malformed current snapshot makes bump return 1 with INVALID CURRENT CORPUS and no mutation"
+      },
+      {
+        "id": "ACR-2-RELEVANCE-DOCUMENTATION",
+        "severity": "MEDIUM",
+        "result": "CLOSED",
+        "backcheck": "README states common documents plus complete applicable workflow closures and cites the D-APP-45 domain scope"
+      },
+      {
+        "id": "ACR-3-ALIAS-ACCOUNTING",
+        "severity": "LOW",
+        "result": "CLOSED",
+        "backcheck": "candidate records 53 table aliases plus seven bullet refreshes including the remaining alias plus 108 companions"
+      }
+    ],
+    "withdrawn": [
+      {
+        "id": "ACR-W1-UNIVERSAL-12-MEMBERS",
+        "reason": "Owning D-APP-38 and D-APP-45 instruments require applicable-reference reconciliation; domain-engine is applicable only to DEL-10-01 and DEL-10-03"
+      }
+    ]
+  },
+  "counts": {
+    "globalCorpusMembers": 12,
+    "historicalVersionsPreserved": 20,
+    "referencePostimages": 52,
+    "nineMemberReferences": 50,
+    "twelveMemberReferences": 2,
+    "softwareEntrypoints": 52,
+    "softwareCompleteClosures": 52,
+    "domainEngineEntrypoints": 2,
+    "domainEngineCompleteClosures": 2,
+    "baseRetiredAliasRows": 54,
+    "candidateRetiredAliasRows": 0,
+    "referenceOperations": 168
+  },
+  "checks": [
+    {"name": "freeze-v2-sha", "result": "PASS", "detail": "31d9269c57a6722ab5615883f373bfa0d1bda72732acf2b149d2def53271670c"},
+    {"name": "core-postimage-hashes", "result": "PASS", "detail": "5/5"},
+    {"name": "reference-manifest", "result": "PASS", "detail": "52 unique paths; 52/52 SHA-256 matches"},
+    {"name": "history-preservation", "result": "PASS", "detail": "v1-v20 structurally identical to base; v21 sole append"},
+    {"name": "global-membership", "result": "PASS", "detail": "12 ordered members; 12/12 live hashes match"},
+    {"name": "conditional-closure", "result": "PASS", "detail": "software 52/52; domain-engine 2/2; distribution 50x9 plus 2x12"},
+    {"name": "alias-migration", "result": "PASS", "detail": "54 base aliases; zero candidate aliases; table and bullet synthetic migrations idempotent"},
+    {"name": "conditional-removal-failure", "result": "PASS", "detail": "each software companion removal independently makes audit return 1, identify the missing path, and preserve bytes"},
+    {"name": "malformed-current-fail-closed", "result": "PASS", "detail": "status/apply/audit/bump each return 1 with no mutation"},
+    {"name": "live-status", "result": "PASS", "detail": "12 MATCH; no drift"},
+    {"name": "live-audit", "result": "PASS", "detail": "all applicable rows reconciled"},
+    {"name": "live-apply-idempotence", "result": "PASS", "detail": "0 rows across 0 files; pre/post path-and-content aggregate identical"},
+    {"name": "post-apply-reference-hashes", "result": "PASS", "detail": "52/52"},
+    {"name": "diff-check", "result": "PASS"},
+    {"name": "prospective-acceptance-claims", "result": "PASS", "detail": "candidate-only boundary explicit"}
+  ],
+  "limitations": [
+    "The review establishes candidate conformance and does not perform or claim App owning acceptance.",
+    "No governed pointer, lifecycle, publication, release, adoption, or reliance state was changed."
+  ]
+}

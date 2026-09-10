@@ -1,0 +1,41 @@
+{
+  "schema": "chirality-engine-contract-review-supplement/v1",
+  "verdict": "PASS",
+  "reviewer": {
+    "agent": "/root/astra_runtime_second_pass",
+    "model": "gpt-6-astra",
+    "reasoningEffort": "high",
+    "modelIdentityBasis": "dispatch specification"
+  },
+  "baseCommit": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "sourcePath": "projects/chirality-runtime/packages/contracts/src/engine.ts",
+  "baseSha256": "d76fab70ef8ff7a6b5f4b5d669fb6367fa7707b664256433420b8b210c61ebdb",
+  "currentSha256": "1f64f99fedb1932f615a2ee960b424ef8e5f95f073b4fd1a5a1446ef52e5b0d5",
+  "diffSha256": "42e51e67ecdd56e20aae5af184edbe402a68dbbed0cc099d4fc667857b0006e3",
+  "priorReviewSha256": "3c0581675f4a0ebde2532ac13f4c43f9f563c6ca4230ae4fd2c21db43bca2509",
+  "priorEvidenceManifestSha256": "93bf744dddfb4f247751ad310b16acd60a884277a4cacd8d1b6941fd7bb3acaf",
+  "previouslyAssessedFilesUnchanged": 57,
+  "findings": [],
+  "members": [
+    {
+      "path": "ENGINE_CONTRACT_SUPPLEMENT_V1.md",
+      "sha256": "800be0ede26b3e0e4b6cd865b84acf44eebe956107a0eabad8cdf7a859cc2022",
+      "bytes": 4369
+    },
+    {
+      "path": "ENGINE_CONTRACT_BASE_V1.ts",
+      "sha256": "d76fab70ef8ff7a6b5f4b5d669fb6367fa7707b664256433420b8b210c61ebdb",
+      "bytes": 1727
+    },
+    {
+      "path": "ENGINE_CONTRACT_CURRENT_V1.ts",
+      "sha256": "1f64f99fedb1932f615a2ee960b424ef8e5f95f073b4fd1a5a1446ef52e5b0d5",
+      "bytes": 1739
+    },
+    {
+      "path": "ENGINE_CONTRACT_DIFF_V1.patch",
+      "sha256": "42e51e67ecdd56e20aae5af184edbe402a68dbbed0cc099d4fc667857b0006e3",
+      "bytes": 614
+    }
+  ]
+}

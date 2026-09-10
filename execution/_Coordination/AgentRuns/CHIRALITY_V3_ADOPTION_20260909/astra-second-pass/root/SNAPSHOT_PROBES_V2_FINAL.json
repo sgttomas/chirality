@@ -1,0 +1,103 @@
+{
+  "sourceSHA256": "cb5b1077a4ce0bf60ea700b50688b10119379f21cb8ae94a47e6bfc16c4124fc",
+  "results": [
+    {
+      "case": "first-amendment-absent-pointer",
+      "pass": true,
+      "expectedValid": true,
+      "findings": []
+    },
+    {
+      "case": "first-amendment-premature-pointer",
+      "pass": true,
+      "expectedValid": false,
+      "findings": [
+        {
+          "severity": "MAJOR",
+          "category": "LATEST_POINTER_UNEXPECTED",
+          "evidence_file": "/private/tmp/chirality-v3-adoption-20260909/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/root/tmpntqq3ci8/workspace/execution/_ScopeChange/_LATEST.md",
+          "source_ref": "_LATEST.md",
+          "message": "_LATEST.md must remain absent for a first-amendment candidate"
+        }
+      ]
+    },
+    {
+      "case": "current-field",
+      "pass": true,
+      "expectedValid": true,
+      "findings": []
+    },
+    {
+      "case": "legacy-snapshot-field",
+      "pass": true,
+      "expectedValid": true,
+      "findings": []
+    },
+    {
+      "case": "legacy-bold-field",
+      "pass": true,
+      "expectedValid": true,
+      "findings": []
+    },
+    {
+      "case": "legacy-table-path",
+      "pass": true,
+      "expectedValid": true,
+      "findings": []
+    },
+    {
+      "case": "legacy-raw-name",
+      "pass": true,
+      "expectedValid": true,
+      "findings": []
+    },
+    {
+      "case": "candidate-prefix-collision",
+      "pass": true,
+      "expectedValid": false,
+      "findings": [
+        {
+          "severity": "MAJOR",
+          "category": "LATEST_POINTER_MISMATCH",
+          "evidence_file": "/private/tmp/chirality-v3-adoption-20260909/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/root/tmpntqq3ci8/workspace/execution/_ScopeChange/_LATEST.md",
+          "source_ref": "_LATEST.md",
+          "message": "_LATEST.md does not point exactly to active snapshot SCA-001"
+        }
+      ]
+    },
+    {
+      "case": "historical-mention-is-not-target",
+      "pass": true,
+      "expectedValid": false,
+      "findings": [
+        {
+          "severity": "MAJOR",
+          "category": "LATEST_POINTER_MISMATCH",
+          "evidence_file": "/private/tmp/chirality-v3-adoption-20260909/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/root/tmpntqq3ci8/workspace/execution/_ScopeChange/_LATEST.md",
+          "source_ref": "_LATEST.md",
+          "message": "_LATEST.md does not point exactly to active snapshot SCA-001"
+        }
+      ]
+    },
+    {
+      "case": "foreign-same-basename",
+      "pass": true,
+      "expectedValid": false,
+      "findings": [
+        {
+          "severity": "MAJOR",
+          "category": "LATEST_POINTER_MISMATCH",
+          "evidence_file": "/private/tmp/chirality-v3-adoption-20260909/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/root/tmpntqq3ci8/workspace/execution/_ScopeChange/_LATEST.md",
+          "source_ref": "_LATEST.md",
+          "message": "_LATEST.md does not point exactly to active snapshot SCA-001"
+        }
+      ]
+    },
+    {
+      "case": "accepted-active-mode",
+      "pass": true,
+      "findings": []
+    }
+  ],
+  "pass": true
+}

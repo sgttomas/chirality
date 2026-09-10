@@ -1,0 +1,26 @@
+{
+  "verdict": "PASS",
+  "reviewerExecutedReadOnlyChecks": {
+    "productionYamlPinMatchesLock": true,
+    "v3ExportTargetsExist": true,
+    "v3RootSourceExport": true,
+    "catalogSourceExport": true,
+    "catalogUsesDeclaredYamlParser": true,
+    "yamlFixtureEsmEntrypointExists": true,
+    "diffCheck": true
+  },
+  "testAttribution": {
+    "newTestsExecutedByReviewer": false,
+    "parentReportedFullSuite": {
+      "Runtime": 748,
+      "App": 1971
+    },
+    "note": "Parent-reported full-suite results are not represented as independently rerun. Existing assertions in both changed tests are unchanged."
+  },
+  "excluded": [
+    "dependency installation",
+    "network or credentials",
+    "supplier/native provider execution",
+    "product edits"
+  ]
+}

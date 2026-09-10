@@ -1,0 +1,69 @@
+{
+  "schema": "chirality-v3-distribution-normalization-manager-checks/v4",
+  "verdict": "ready-for-integration-normalization-fan-in",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v13.json",
+    "sha256": "d2f6c7e4d276643ce3628c510a4e5fb1e96cbb1c214cada30f0b26111bc089cb",
+    "sizeBytes": 16968
+  },
+  "bindings": {
+    "distributionMembers": "19/19",
+    "normalizationAndCi": "3/3",
+    "mismatches": []
+  },
+  "delta": {
+    "changedFromV12": [
+      ".github/workflows/harness-premerge.yml",
+      "exports/chirality-app/export-manifest.csv"
+    ],
+    "unchangedMembers": 17,
+    "normalizedPublicRows": 11,
+    "projectionRows": 1104,
+    "boundaryFindings": 0
+  },
+  "tests": {
+    "publicExport": "6/6 PASS",
+    "instructionPreparationIntegrity": "10/10 PASS",
+    "contractSecurityPackaging": "57/57 PASS",
+    "runtimeSerialized": "772 PASS / 14 expected skips",
+    "diffCheck": "PASS"
+  },
+  "independentReview": {
+    "verdict": "PASS",
+    "return": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v13/RETURN.md",
+      "sha256": "a6649edec0307ba0a7db25f2411fe7547e1abb5c858d3454997220948ad690f1",
+      "sizeBytes": 2335
+    },
+    "checks": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v13/CHECKS.json",
+      "sha256": "2381311d02bb61fdb30c3e42e1406bf41f9b7196a13de39dfdeaf04646a939d4",
+      "sizeBytes": 4564
+    },
+    "manifest": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v13/MANIFEST.json",
+      "sha256": "dc65d01bf7f580daa29ef61cb9ac82f3467ec9994c6704ec3678195f88730ab3",
+      "sizeBytes": 915
+    }
+  },
+  "ciWorkerReview": {
+    "verdict": "PASS",
+    "return": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/PR764_CI_WORKER_REVIEW_V1.md",
+      "sha256": "fde809c7a99f30a33bb7841ac57259b36cf95b1a3c13c38f9e65d304a0e485e9",
+      "sizeBytes": 5480
+    },
+    "manifest": {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/PR764_CI_WORKER_REVIEW_MANIFEST_V1.json",
+      "sha256": "a26c45f54e0157de6296b6060f9be20aa5b6c30c4a2771619d8b27979a2ad3c9",
+      "sizeBytes": 1883
+    }
+  },
+  "holds": {
+    "kg001": "needs_remediation",
+    "adoption": "retained",
+    "release": "retained",
+    "nativePackageQualified": false,
+    "releaseQualified": false
+  }
+}

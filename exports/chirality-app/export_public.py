@@ -28,6 +28,10 @@ ROOT_FILES = [
 
 PUBLIC_ROOT_FILES = {
     "README.md": PROFILE_DIR / "PUBLIC_README.md",
+    "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json": (
+        REPO_ROOT
+        / "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json"
+    ),
 }
 
 ROOT_DIRS = [
@@ -57,7 +61,19 @@ EXCLUDED_PUBLIC_PATHS = {
 
 EXCLUDED_PUBLIC_PREFIXES = (
     "docs/governance_harness/briefs/",
+    ".agents/skills/chirality-change/",
 )
+
+BUNDLED_SKILL_NAMES = {
+    "deliverable-consistency",
+    "drawing-titleblock-page",
+    "preparation",
+    "proposal-format",
+    "researcher",
+    "software-code-review",
+    "software-defect-diagnosis",
+}
+EXCLUDED_SKILL_NAMES = {"chirality-change"}
 
 SKIP_DIRS = {
     ".git",
@@ -158,8 +174,100 @@ def should_skip(path: Path) -> bool:
     return False
 
 
+def resolve_potential_path(value: Path) -> Path:
+    cursor = value.absolute()
+    suffix: list[str] = []
+    while not cursor.exists() and not cursor.is_symlink():
+        parent = cursor.parent
+        if parent == cursor:
+            break
+        suffix.append(cursor.name)
+        cursor = parent
+    return cursor.resolve(strict=True).joinpath(*reversed(suffix))
+
+
+def paths_overlap(left: Path, right: Path) -> bool:
+    return left == right or left in right.parents or right in left.parents
+
+
+def require_source_path(source: Path, *, expect_directory: bool) -> Path:
+    lexical_repo = REPO_ROOT.absolute()
+    lexical_source = source.absolute()
+    try:
+        relative_source = lexical_source.relative_to(lexical_repo)
+    except ValueError as exc:
+        raise SystemExit(f"export source escapes canonical repository: {source}") from exc
+    cursor = lexical_repo
+    if cursor.is_symlink():
+        raise SystemExit(f"refusing symlinked canonical repository root: {REPO_ROOT}")
+    for segment in relative_source.parts:
+        cursor /= segment
+        if cursor.is_symlink():
+            raise SystemExit(f"refusing export source with symlinked path component: {cursor}")
+    canonical_repo = REPO_ROOT.resolve(strict=True)
+    canonical_source = source.resolve(strict=True)
+    if not canonical_source.is_relative_to(canonical_repo):
+        raise SystemExit(f"export source escapes canonical repository: {source}")
+    if expect_directory and not canonical_source.is_dir():
+        raise SystemExit(f"export source is not a directory: {source}")
+    if not expect_directory and not canonical_source.is_file():
+        raise SystemExit(f"export source is not a regular file: {source}")
+    return canonical_source
+
+
+def admit_stage_path(stage: Path) -> None:
+    lexical_stage = stage.absolute()
+    canonical_stage = resolve_potential_path(stage)
+    lexical_default = DEFAULT_STAGE.absolute()
+    canonical_default = resolve_potential_path(DEFAULT_STAGE)
+    if stage.is_symlink():
+        raise SystemExit(f"refusing symlinked export stage: {stage}")
+    if stage.exists() and not stage.is_dir():
+        raise SystemExit(f"export stage is not a directory: {stage}")
+    if lexical_stage == lexical_default and canonical_stage == canonical_default:
+        return
+    if paths_overlap(lexical_stage, REPO_ROOT.absolute()) or paths_overlap(
+        canonical_stage, REPO_ROOT.resolve(strict=True)
+    ):
+        raise SystemExit(f"refusing export stage that overlaps the canonical repository: {stage}")
+
+
+def admit_fixed_profile_output(output: Path, expected: Path) -> None:
+    lexical_profile = PROFILE_DIR.absolute()
+    lexical_output = output.absolute()
+    if lexical_output != expected.absolute():
+        raise SystemExit(f"refusing unexpected export metadata output: {output}")
+    try:
+        relative_output = lexical_output.relative_to(lexical_profile)
+    except ValueError as exc:
+        raise SystemExit(f"export metadata output escapes profile: {output}") from exc
+    cursor = lexical_profile
+    if cursor.is_symlink():
+        raise SystemExit(f"refusing symlinked export profile root: {PROFILE_DIR}")
+    for segment in relative_output.parts:
+        cursor /= segment
+        if cursor.is_symlink():
+            raise SystemExit(f"refusing export metadata output with symlinked path component: {cursor}")
+    if output.parent.resolve(strict=True) != PROFILE_DIR.resolve(strict=True):
+        raise SystemExit(f"export metadata output parent escapes profile: {output}")
+    if output.exists() and not output.is_file():
+        raise SystemExit(f"export metadata output is not a regular file: {output}")
+
+
+def copy_source_file(src: Path, dest: Path) -> None:
+    canonical_src = require_source_path(src, expect_directory=False)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(canonical_src, dest)
+
+
 def copy_tree(src: Path, dest: Path, root_name: str) -> None:
+    canonical_src = require_source_path(src, expect_directory=True)
     for path in src.rglob("*"):
+        if path.is_symlink():
+            raise SystemExit(f"refusing symlinked export source entry: {path}")
+        canonical_path = path.resolve(strict=True)
+        if not canonical_path.is_relative_to(canonical_src):
+            raise SystemExit(f"export source entry escapes its declared root: {path}")
         rel = path.relative_to(src)
         public_rel = (Path(root_name) / rel).as_posix()
         if public_rel in EXCLUDED_PUBLIC_PATHS or public_rel.startswith(EXCLUDED_PUBLIC_PREFIXES):
@@ -174,6 +282,8 @@ def copy_tree(src: Path, dest: Path, root_name: str) -> None:
         elif path.is_file():
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(path, target)
+        else:
+            raise SystemExit(f"refusing unsupported export source entry: {path}")
 
 
 def write_public_init_prompt(stage: Path) -> None:
@@ -227,6 +337,8 @@ def build_stage(stage: Path) -> int:
         for name in RUNTIME_FILES + RUNTIME_DIRS
         if not (RUNTIME_ROOT / name).exists()
     )
+    if not (REPO_ROOT / ".agents" / "skills").is_dir():
+        missing.append(".agents/skills")
     missing.extend(
         str(source.relative_to(REPO_ROOT))
         for source in PUBLIC_ROOT_FILES.values()
@@ -239,27 +351,54 @@ def build_stage(stage: Path) -> int:
             + "; update ROOT_FILES/ROOT_DIRS to match the tree"
         )
 
-    claude_contract = (REPO_ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+    claude_contract = require_source_path(
+        REPO_ROOT / "CLAUDE.md", expect_directory=False
+    ).read_text(encoding="utf-8")
     if claude_contract != "@AGENTS.md\n":
         raise SystemExit("CLAUDE.md must contain exactly '@AGENTS.md\\n'")
 
+    admit_stage_path(stage)
     if stage.exists():
         shutil.rmtree(stage)
     stage.mkdir(parents=True)
 
     for name in ROOT_FILES:
-        shutil.copy2(REPO_ROOT / name, stage / name)
+        copy_source_file(REPO_ROOT / name, stage / name)
 
     for public_name, source in PUBLIC_ROOT_FILES.items():
-        shutil.copy2(source, stage / public_name)
+        copy_source_file(source, stage / public_name)
 
     for name in ROOT_DIRS:
         copy_tree(REPO_ROOT / name, stage / name, name)
 
+    skill_root = REPO_ROOT / ".agents" / "skills"
+    require_source_path(skill_root, expect_directory=True)
+    actual_skills = {path.name for path in skill_root.iterdir() if path.is_dir()}
+    expected_skills = BUNDLED_SKILL_NAMES | EXCLUDED_SKILL_NAMES
+    if actual_skills != expected_skills:
+        raise SystemExit(
+            "canonical skill membership mismatch: "
+            f"missing={sorted(expected_skills - actual_skills)}, "
+            f"unexpected={sorted(actual_skills - expected_skills)}"
+        )
+    for name in sorted(BUNDLED_SKILL_NAMES):
+        copy_tree(skill_root / name, stage / ".agents" / "skills" / name, f".agents/skills/{name}")
+    index_path = stage / "workflows" / "index.json"
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    if index.get("schema") != "chirality-method-index/v1" or not isinstance(index.get("methods"), list):
+        raise SystemExit("workflows/index.json must use chirality-method-index/v1")
+    filtered_methods = [
+        item for item in index["methods"]
+        if not (item.get("kind") == "skill" and item.get("name") == "chirality-change")
+    ]
+    if len(filtered_methods) != len(index["methods"]):
+        index["methods"] = filtered_methods
+        index_path.write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8")
+
     runtime_stage = stage / "runtime"
     runtime_stage.mkdir(parents=True)
     for name in RUNTIME_FILES:
-        shutil.copy2(RUNTIME_ROOT / name, runtime_stage / name)
+        copy_source_file(RUNTIME_ROOT / name, runtime_stage / name)
     for name in RUNTIME_DIRS:
         copy_tree(RUNTIME_ROOT / name, runtime_stage / name, f"runtime/{name}")
 
@@ -281,6 +420,7 @@ def iter_files(root: Path):
 
 
 def write_manifest(stage: Path, output: Path) -> int:
+    admit_fixed_profile_output(output, MANIFEST_PATH)
     rows = []
     for path in iter_files(stage):
         rel = path.relative_to(stage).as_posix()
@@ -346,6 +486,7 @@ def boundary_findings(stage: Path) -> list[str]:
 
 
 def write_report(stage: Path, manifest_count: int, sanitized_count: int, findings: list[str], output: Path) -> None:
+    admit_fixed_profile_output(output, REPORT_PATH)
     top_counts: dict[str, int] = {}
     for path in iter_files(stage):
         rel = path.relative_to(stage)
@@ -411,7 +552,7 @@ def main() -> int:
     parser.add_argument("--apply-target", help="Replace a local chirality-app worktree from the clean staging tree")
     args = parser.parse_args()
 
-    stage = Path(args.stage_dir).resolve()
+    stage = Path(args.stage_dir).absolute()
     sanitized_count = build_stage(stage)
     manifest_count = write_manifest(stage, MANIFEST_PATH)
     findings = boundary_findings(stage)

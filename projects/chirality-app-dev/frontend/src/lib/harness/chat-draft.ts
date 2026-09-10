@@ -1,4 +1,5 @@
 import { sanitizeStoredAttachments, type UiAttachment } from './ui-attachments';
+import type { QualifiedMethodReference } from './method-selection-client';
 
 export const CHAT_DRAFT_STORAGE_PREFIX = 'chirality.chatDraft.v1';
 export const CHAT_DRAFT_STORAGE_WARNING_UNAVAILABLE =
@@ -9,6 +10,7 @@ export const CHAT_DRAFT_STORAGE_WARNING_CORRUPT =
 export type ChatDraftSnapshot = {
   draft: string;
   attachments: UiAttachment[];
+  methods: QualifiedMethodReference[];
 };
 
 export type ChatDraftStorageReadResult = {
@@ -40,7 +42,8 @@ export function buildChatDraftStorageKey(
 export function emptyChatDraftSnapshot(): ChatDraftSnapshot {
   return {
     draft: '',
-    attachments: []
+    attachments: [],
+    methods: []
   };
 }
 
@@ -50,14 +53,25 @@ export function sanitizeChatDraftSnapshot(value: unknown): ChatDraftSnapshot {
   }
 
   const record = value as Record<string, unknown>;
+  const methods = Array.isArray(record.methods) ? record.methods.flatMap((entry): QualifiedMethodReference[] => {
+    if (!entry || typeof entry !== 'object') return [];
+    const item = entry as Record<string, unknown>;
+    if (!['skill', 'workflow'].includes(String(item.kind)) ||
+      !['project', 'user', 'bundled'].includes(String(item.source)) ||
+      typeof item.name !== 'string' || !item.name.trim() ||
+      typeof item.sourceRootId !== 'string' || !item.sourceRootId.trim()) return [];
+    return [{ kind: item.kind as QualifiedMethodReference['kind'], name: item.name,
+      source: item.source as QualifiedMethodReference['source'], sourceRootId: item.sourceRootId }];
+  }).slice(0, 50) : [];
   return {
     draft: readString(record.draft),
-    attachments: sanitizeStoredAttachments(record.attachments)
+    attachments: sanitizeStoredAttachments(record.attachments),
+    methods
   };
 }
 
 function isEmptySnapshot(snapshot: ChatDraftSnapshot): boolean {
-  return snapshot.draft.length === 0 && snapshot.attachments.length === 0;
+  return snapshot.draft.length === 0 && snapshot.attachments.length === 0 && snapshot.methods.length === 0;
 }
 
 export function readChatDraftSnapshotFromStorage(

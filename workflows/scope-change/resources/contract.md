@@ -25,8 +25,17 @@ Defaults (only when not otherwise specified by the human):
 
 ## Non-negotiable invariants
 
-- **Human-initiated only.** WORKING_ITEMS does not propose decomposition changes. It only processes requests that originate from the human.
-- **Gate-controlled.** Every change to decomposition truth (and any approved variant-local metadata) requires explicit human approval at the defined gate. No silent modifications.
+- **Agent initiative, human-gated application.** WORKING_ITEMS may identify and
+  propose a decomposition amendment when evidence exposes a gap, conflict,
+  changed material basis, or downstream inconsistency. It records the proposal
+  and supporting evidence without changing canonical truth. Application begins
+  only after the human accepts checkpoint group 1 and remains bounded by the
+  exact checkpoint-group-2 amendment and propagation decision.
+- **Three grouped human checkpoints.** The agent prepares the full reviewable
+  package before each checkpoint: (1) proposed change and impact; (2) exact
+  amendment and propagation plan; and (3) audited poststate acceptance. Internal
+  analysis, validation, remediation, and derivative-quality evidence do not add
+  prompts.
 - **Non-destructive.** Removed entities are retired or legacy-annotated; they are not silently erased. For `PROJECT/SOFTWARE`, removed deliverables are marked `RETIRED` in `_STATUS.md` and folders are never deleted. For `DOMAIN`, Domain Ledger rows and change records are preserved even when entities move out of active scope.
 - **Impact before action.** The human must review and accept the impact assessment before any file is modified.
 - **No direct collateral writes.** WORKING_ITEMS does not directly modify the four-doc set, `Dependencies.csv`, estimates, schedules, generated knowledge artifacts, or other downstream truth. When a `DOMAIN` amendment affects KTY-local content or metadata needs, WORKING_ITEMS must dispatch bounded TASK workflows, collect their evidence, update SCA-owned closure surfaces, and block closure when required evidence is missing. WORKING_ITEMS never edits active `Scoping.md`, `KA-*.md`, `_CONTEXT.md`, `_STATUS.md`, or `_REFERENCES.md` inside KTY folders itself.
@@ -37,9 +46,9 @@ Defaults (only when not otherwise specified by the human):
 - **Stable IDs preserved.** Existing IDs are never reused for different entities. Removed IDs remain reserved. If a reclassification would make an embedded index or mnemonic stale, keep the existing ID unless the human explicitly approves renumbering and downstream ripple changes.
 - **Structural closure required.** A parent partition or parent entity (`PACKAGE`, `CATEGORY`, `KNOWLEDGE_TYPE`, or any stricter variant-local equivalent) cannot be removed, merged, split, or reclassified unless all child entities and authoritative ledger bindings are retired, remapped, or explicitly preserved in the same amendment. No orphan children, no dangling parent bindings.
 - **Closure is stateful.** An amendment is not closed when edits finish. Closure requires accepted authoritative truth, recorded downstream rerun obligations for every affected derivative package, explicit blocker disclosure, and a `HANDOFF_STATE` artifact that tells the next workflow what is current versus stale.
-- **Variant invariants preserved.** WORKING_ITEMS must preserve the originating decomposition agent's invariants. For `DOMAIN`, this includes flat Categories, exactly-one-Category assignment for every `IN` Handbook Unit, single-parent `KnowledgeType` / `KnowledgeSubject` relationships, at-least-one-`KnowledgeSubject` cardinality for every `KnowledgeType`, and an updated Domain Ledger + Coverage & Telemetry block. For `PROJECT/SOFTWARE`, package/deliverable integrity and the originating decomposition's invariants remain binding.
+- **Variant invariants preserved.** WORKING_ITEMS must preserve the originating decomposition workflow's invariants. For `DOMAIN`, this includes flat Categories, exactly-one-Category assignment for every `IN` Handbook Unit, single-parent `KnowledgeType` / `KnowledgeSubject` relationships, at-least-one-`KnowledgeSubject` cardinality for every `KnowledgeType`, and an updated Domain Ledger + Coverage & Telemetry block. For `PROJECT/SOFTWARE`, package/deliverable integrity and the originating decomposition's invariants remain binding.
 - **Full package truth for `DOMAIN`.** For `DOMAIN`, `AUTHORITATIVE_TRUTH` is the full active decomposition package: the main decomposition document, active decomposition-local annex / derivative surfaces under `_Decomposition/`, `_ScopeChange/_LATEST.md`, and the active snapshot state describing the amendment and its current handoff position.
-- **Variant-local structural rules must be operationalized.** If the originating decomposition defines stricter structural rules than the generic model, WORKING_ITEMS must turn them into explicit gate checks for the affected amendment. For `PROJECT`, this includes package-discipline isolation, artifact-kind deliverable granularity, or any equivalent design-partition rule when those rules are present in the source decomposition.
+- **Variant-local structural rules must be operationalized.** If the originating decomposition defines stricter structural rules than the generic model, WORKING_ITEMS must turn them into explicit checks for the affected amendment. For `PROJECT`, this includes package-discipline isolation, artifact-kind deliverable granularity, or any equivalent design-partition rule when those rules are present in the source decomposition.
 - **Semantic binding first.** Protocol steps operate on semantic sections (`ledger`, `partitions`, `entities`, `objectives`, `change register`, `telemetry`) rather than hard-coded project vocabulary. Human-facing outputs MUST use the variant's canonical nouns.
 - **Type-level change preference.** Prefer the smallest amendment that changes instances, mappings, or attributes before changing the decomposition contract itself. If the request would alter the decomposition ontology, canonical vocabulary, or section contract, flag it explicitly as a contract-level change.
 - **Amendments operate on the canonical working package.** The amendment surface is the main decomposition document, authoritative companion registers, and `_ScopeChange` state. Derived publication artifacts (monolithic renders, publication bundles, review documents) must never be the default amendment target. If a derived artifact must be updated, it is regenerated from the amended canonical working package, not edited directly.
@@ -48,15 +57,38 @@ Defaults (only when not otherwise specified by the human):
 - **Evidence-first.** Every impact claim traces to specific files, rows, or sections.
 - **No invention.** If the impact or correct amendment is uncertain, mark it as `UNKNOWN` or `TBD` and surface it for human decision.
 - **Immutable snapshots.** Each amendment produces a new snapshot folder under `_ScopeChange/`; never overwrite prior snapshots.
+- **Checkpoint snapshots.** Checkpoint groups 1 and 2 each finalize an
+  immutable decision snapshot before the next stage consumes their accepted
+  state. Group 3 finalizes the immutable active amendment snapshot only after
+  audited poststate acceptance. Each snapshot records its decision, manifest,
+  upstream basis, derivative status, closure, reruns, and blockers.
 - **Snapshot before handoff.** No handoff to downstream reruns, audits, or publication planning is valid until the new immutable amendment snapshot exists and the `HANDOFF_STATE` points to it.
 - **Active snapshot integrity matters.** `_LATEST.md` must point to exactly one active snapshot. The active snapshot must contain every required artifact. Historical incomplete snapshots may remain as residue, but they must not be treated as current truth.
+- **Candidate posture is exclusive.** Checkpoint-group-3 preparation uses
+  exactly one pointer posture: either `_LATEST.md` continues to name a verified
+  accepted SCA predecessor, or this is the first amendment and `_LATEST.md` is
+  absent. The first-amendment posture is grounded in the accepted decomposition
+  and accepted group-2 decision snapshot; it does not invent a predecessor or
+  create `_LATEST.md` before group-3 acceptance.
+- **Affected-decision reopening.** If accepted material basis changes after a
+  checkpoint, reopen only the decisions whose warrants, scope, propagation, or
+  closure consequences are affected. Refresh their dependent evidence and
+  preserve unaffected accepted decisions.
 
 ---
 
 ## Explicit non-ownership
 
-- **TASK (workflow: preparation) (Type 2)** owns creating new deliverable folders and metadata files for `PROJECT/SOFTWARE`. WORKING_ITEMS hands off via WORKING_ITEMS (workflow: project-setup).
-- **WORKING_ITEMS (workflow: change) (Type 1)** owns git staging and commits. WORKING_ITEMS hands off with a file list and recommended commit message.
+- **The actual eligible actor using the selected `preparation` skill** owns
+  creating new deliverable folders and metadata files for `PROJECT/SOFTWARE`
+  within its existing role and brief. The selection uses the effective
+  source-qualified skill descriptor in the ordered `methods` field and is
+  coordinated through WORKING_ITEMS with project-setup; delegation is optional.
+- **The responsible current role** receives repository-change evidence and the
+  exact change scope. It follows the applicable project's change skill or
+  repository conventions when present. This current workflow does not require
+  Git or select the retained legacy `change` workflow; explicitly selected
+  historical identities keep their legacy procedure.
 - The **`dependency-extract` workflow (dispatched via TASK)** owns dependency re-extraction. WORKING_ITEMS recommends reruns; does not execute them.
 - The **`estimate-snapshot` workflow (dispatched via TASK)** and **WORKING_ITEMS (workflow: project-setup) scheduling workflow** own estimate/schedule updates. WORKING_ITEMS recommends reruns; does not execute them.
 - **Downstream knowledge-production workflows** own creation, regeneration, and retirement of structured knowledge artifacts derived from a `DOMAIN` decomposition, including KTY-local documents (`Scoping.md`, `KA-*.md`, `_CONTEXT.md`, `_STATUS.md`, `_REFERENCES.md`), `_Aggregation` outputs, hypergraph outputs, and publication outputs. For SCA-required KTY-local content disposition and approved metadata alignment, WORKING_ITEMS owns dispatch-and-block orchestration through bounded TASK workflows and records evidence in the SCA snapshot; it does not perform the KTY-local edits directly. Other derivative-package reruns remain handoff work unless this protocol explicitly adds an orchestration lane.
@@ -86,10 +118,11 @@ WORKING_ITEMS classifies every change request into one or more atomic actions:
 
 ## Inputs
 
-### Required (before any gate)
-- A decomposition change request from the human (natural language or structured)
+### Required before checkpoint group 1
+- A human request or an evidence-backed agent proposal for a decomposition
+  change (natural language or structured)
 
-### Resolved at Gate 1
+### Resolved before checkpoint group 1
 - `DECOMP_VARIANT`
 - `CONTEXT_ROOT`
 - `DECOMPOSITION_PATH`
@@ -141,7 +174,7 @@ All protocol steps reference sections by **semantic name** and then bind those s
 
 When validating or proposing IDs, use the originating decomposition's grammar:
 
-- `WORKING_ITEMS (workflow: project-decomp)`: `PKG-XXX` / `DEL-XXX-YY_{desc}`
+- `WORKING_ITEMS (workflow: project-decomp)`: `PKG-XX` / `DEL-XX-YY_{desc}`
 - `WORKING_ITEMS (workflow: software-decomp)`: `PKG-XX` / `DEL-XX-YY`
 - `WORKING_ITEMS (workflow: domain-decomp)`:
   - `HBA-####` (accepted source identifier; read historical HBK aliases only when the accepted basis supplies their mapping)
@@ -158,10 +191,14 @@ When validating or proposing IDs, use the originating decomposition's grammar:
 
 A decomposition amendment cycle is valid when:
 
-- The change was initiated by the human (not self-generated).
-- All 5 gates received explicit human confirmation before proceeding.
-- The decomposition document was modified only per the Gate 3 approved text.
-- Variant-local metadata files were modified only per the Gate 4 approved propagation plan.
+- The change has a human-accepted checkpoint-group-1 basis, whether first
+  requested by the human or identified as an evidence-backed agent proposal.
+- All three grouped checkpoints received explicit human confirmation before
+  the workflow claimed accepted closure.
+- The decomposition document was modified only per the checkpoint-group-2
+  accepted amendment.
+- Variant-local metadata files were modified only per the checkpoint-group-2
+  accepted propagation plan.
 - No files outside the approved write scope were modified.
 - An immutable amendment snapshot exists under `_ScopeChange/` with all required artifacts.
 - For `DOMAIN`, the full active decomposition package is internally consistent: main markdown, affected decomposition-local derivatives, `_LATEST.md`, and active snapshot state all agree.
@@ -170,7 +207,7 @@ A decomposition amendment cycle is valid when:
 - Stable IDs were preserved unless the human explicitly approved renumbering.
 - Retired / removed source IDs were not reused.
 - `Amendment_Actions.csv` accounts for every atomic change.
-- `Decision_Log.md` records all human decisions at each gate.
+- `Decision_Log.md` records all human decisions at each checkpoint.
 - `Handoff_State.md` exists and names the accepted snapshot, derivative-package status, closure verdict, blockers, and next owning workflow.
 - Every affected `DOMAIN` derivative surface was classified as `DIRECT_EDIT`, `RECOMPUTE`, or `NO_CHANGE`, and the active state matches that classification.
 - `_LATEST.md` points to exactly one active snapshot.
@@ -193,7 +230,7 @@ A decomposition amendment cycle is valid when:
   - `BLOCKED` KTY remediation rows cap `ReadyForNextPhase = NO`
   - `DEFERRED` KTY remediation rows require substantive blocker notes and cap `ReadyForNextPhase = REGEN_ONLY`
   - `PHASE7_REVIEW` and `PUBLICATION_GATED` are forbidden while any KTY remediation row is pending, deferred, blocked for factual use, or missing required evidence
-  - when KTY-local metadata alignment is approved in Gate 4, WORKING_ITEMS records `TASK + kty-metadata-align` evidence and does not directly edit `_CONTEXT.md`, `_STATUS.md`, or `_REFERENCES.md`
+  - when KTY-local metadata alignment is accepted in checkpoint group 2, WORKING_ITEMS records `TASK + kty-metadata-align` evidence and does not directly edit `_CONTEXT.md`, `_STATUS.md`, or `_REFERENCES.md`
   - `.Archive/` scanner exclusion is recorded for any downstream allowlist, section map, regeneration input, or publication input present in the snapshot
   - a Phase-5-only closeout may set `ReadyForNextPhase = REGEN_ONLY` but must not imply downstream regeneration complete
   - a post-regeneration closeout may set `ReadyForNextPhase = PHASE7_REVIEW` only when downstream reruns, metadata alignment, audit, and terminology checks are all recorded non-blocking
@@ -209,12 +246,12 @@ A decomposition amendment cycle is valid when:
   _LATEST.md
   SCA-{NNN}_{YYYY-MM-DD}_{HHMM}/
     Brief.md                       (human's original request + parsed actions)
-    Impact_Assessment.md           (Gate 2 output)
-    Propagation_Plan.md            (Gate 4 output)
+    Impact_Assessment.md           (checkpoint-group-1 output)
+    Propagation_Plan.md            (checkpoint-group-2 output)
     Amendment_Actions.csv          (machine-readable action register)
     Pre_Change_Coverage.json       (audit output copy or synthesized baseline)
     Post_Change_Coverage.json      (audit output copy or synthesized baseline)
-    Decision_Log.md                (all gate decisions)
+    Decision_Log.md                (all checkpoint decisions)
     Handoff_State.md               (closure + downstream ownership state)
     RUN_SUMMARY.md                 (final summary + handoffs)
     Domain_Integrity_Report.md     (DOMAIN-only deterministic integrity validator output)

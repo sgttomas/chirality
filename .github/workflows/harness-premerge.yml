@@ -7,7 +7,16 @@ on:
       - "projects/chirality-app-dev/**"
       - "projects/chirality-runtime/**"
       - "exports/chirality-app/**"
+      - ".agents/skills/**"
       - "agents/**"
+      - "docs/**"
+      - "workflows/**"
+      - "tools/scaffolding/**"
+      - "tools/retrieval/**"
+      - "tools/scope_of_work/**"
+      - "tools/software_workflow/**"
+      - "tools/source_catalog/**"
+      - "tools/validation/**"
       - "AGENTS.md"
       - "CLAUDE.md"
       - "README.md"
@@ -41,6 +50,7 @@ jobs:
           filter: blob:none
           sparse-checkout: |
             .github
+            .agents
             _DomainEngines
             agents
             docs
@@ -51,6 +61,7 @@ jobs:
             projects/chirality-runtime
             skills
             tools
+            workflows
 
       - name: Initialize runner paths
         shell: bash
@@ -83,7 +94,7 @@ jobs:
         working-directory: projects/chirality-runtime
 
       - name: Test shared runtime
-        run: npm test
+        run: npm test -- --maxWorkers=1
         working-directory: projects/chirality-runtime
 
       - name: Install frontend dependencies
@@ -116,23 +127,14 @@ jobs:
           SDK_PLATFORM="claude-agent-sdk-linux-$(node -p 'process.arch')"
 
           rm -rf "${BUNDLE_ROOT}"
+          node "${FRONTEND}/scripts/prepare-packaged-instruction-root.mjs" \
+            --source-root "${REPO_ROOT}" \
+            --docs-root "${REPO_ROOT}/docs" \
+            --output-root "${BUNDLE_ROOT}/instruction-root"
+
           mkdir -p \
-            "${BUNDLE_ROOT}/agents" \
-            "${BUNDLE_ROOT}/docs" \
             "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk" \
             "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/${SDK_PLATFORM}"
-
-          cp "${REPO_ROOT}/AGENTS.md" "${REPO_ROOT}/CLAUDE.md" "${REPO_ROOT}/README.md" \
-            "${BUNDLE_ROOT}/"
-          cp "${REPO_ROOT}"/agents/AGENT_*.md "${BUNDLE_ROOT}/agents/"
-          cp \
-            "${REPO_ROOT}/projects/chirality-app-dev/docs/DIRECTIVE.md" \
-            "${REPO_ROOT}/projects/chirality-app-dev/docs/CONTRACT.md" \
-            "${REPO_ROOT}/projects/chirality-app-dev/docs/SPEC.md" \
-            "${REPO_ROOT}/projects/chirality-app-dev/docs/TYPES.md" \
-            "${REPO_ROOT}/projects/chirality-app-dev/docs/PLAN.md" \
-            "${REPO_ROOT}/projects/chirality-app-dev/docs/WHAT-IS-AN-AGENT.md" \
-            "${BUNDLE_ROOT}/docs/"
           cp \
             "${FRONTEND}/node_modules/@anthropic-ai/claude-agent-sdk/package.json" \
             "${FRONTEND}/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs" \
@@ -148,8 +150,9 @@ jobs:
           npm run instruction-root:integrity --
           --root-files-root "${GITHUB_WORKSPACE}"
           --agents-root "${GITHUB_WORKSPACE}/agents"
-          --docs-root "${GITHUB_WORKSPACE}/projects/chirality-app-dev/docs"
-          --bundle-root "${RUNNER_TEMP}/chirality-instruction-root-fixture"
+          --docs-root "${GITHUB_WORKSPACE}/docs"
+          --bundle-root "${RUNNER_TEMP}/chirality-instruction-root-fixture/instruction-root"
+          --sdk-bundle-root "${RUNNER_TEMP}/chirality-instruction-root-fixture"
         working-directory: projects/chirality-app-dev/frontend
 
       - name: Build Electron runtime host

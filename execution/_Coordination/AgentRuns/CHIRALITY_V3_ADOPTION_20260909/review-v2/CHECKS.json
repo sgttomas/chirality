@@ -1,0 +1,64 @@
+{
+  "schema": "chirality-independent-review/v2",
+  "verdict": "PASS",
+  "reviewer": "/root/root_adoption/root_full_diff_reviewer",
+  "independent": true,
+  "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+    "sha256": "7f5ef062acd1e3ea63bc4fa3c5e61ad534cd24823c4b18ee28b9cfe1ff1c4ff8",
+    "fileCount": 91,
+    "verifiedFiles": 91,
+    "mismatches": 0
+  },
+  "predecessor": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V6.json",
+    "sha256": "8719bfbf678c222d82b68145e1cba650431d944e582767ef95f63afa48a4bc21",
+    "commonFiles": 90,
+    "changedCommonFiles": 0,
+    "removed": ["tools/validation/test_public_export_profile.py"],
+    "added": ["execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V6.json"]
+  },
+  "findings": {
+    "open": [],
+    "resolvedFromV1": [
+      "R1-STALE-V1-FREEZE",
+      "R2-PKG-WIDTH",
+      "R3-RESEARCH-GATE6",
+      "R4-CHECKPOINT-SNAPSHOTS"
+    ]
+  },
+  "counts": {
+    "rootMethods": 79,
+    "canonicalWorkflows": 6,
+    "legacyWorkflows": 65,
+    "canonicalSkillsRoot": 8,
+    "projectCheckpoints": 3,
+    "softwareCheckpoints": 3,
+    "domainCheckpoints": 4,
+    "scopeChangeCheckpoints": 3,
+    "projectNotices": 4,
+    "totalNotices": 5
+  },
+  "checks": [
+    {"name": "root-scope-freeze-v7-sha", "result": "PASS", "detail": "7f5ef062acd1e3ea63bc4fa3c5e61ad534cd24823c4b18ee28b9cfe1ff1c4ff8"},
+    {"name": "root-scope-freeze-v7-entries", "result": "PASS", "detail": "91/91 sizes and SHA-256 values match"},
+    {"name": "v6-v7-custody-delta", "result": "PASS", "detail": "90 common files unchanged; distribution test removed; historical V6 freeze added"},
+    {"name": "custody-exclusions", "result": "PASS", "detail": "distribution test, .github, exports, sibling product, distribution evidence, and post-review evidence absent"},
+    {"name": "catalog-metadata-freeze-v2", "result": "PASS", "detail": "15/15 input SHA-256 values match"},
+    {"name": "generated-index-freshness", "result": "PASS", "detail": "79 methods"},
+    {"name": "workflow-metadata", "result": "PASS", "detail": "71 valid, 0 invalid"},
+    {"name": "skill-metadata", "result": "PASS", "detail": "8 valid, 0 invalid"},
+    {"name": "agent-instructions", "result": "PASS", "detail": "4 files, 0 errors, 0 warnings"},
+    {"name": "instruction-entrypoints", "result": "PASS"},
+    {"name": "instruction-tranche-manifests", "result": "PASS", "detail": "G4 CI mode, 65 schema-valid manifests"},
+    {"name": "root-owned-python-tests", "result": "PASS", "detail": "488 passed, 48 subtests; distribution-owned public export test excluded"},
+    {"name": "diff-check", "result": "PASS"},
+    {"name": "checkpoint-counts", "result": "PASS", "detail": "PROJECT 3, SOFTWARE 3, DOMAIN 4, SCOPE_CHANGE 3; snapshot finalization adds no prompt"}
+  ],
+  "limitations": [
+    "The distribution-owned public export test and all distribution product and evidence surfaces were excluded from this Root successor review.",
+    "Sibling App and Runtime product code and post-review manager/reviewer evidence were excluded.",
+    "This review does not claim commit, merge, publication, release, receiving-loop adoption, or effective D-GOV-42 acceptance."
+  ]
+}

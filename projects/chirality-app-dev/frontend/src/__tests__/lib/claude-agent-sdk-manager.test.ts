@@ -11,6 +11,7 @@ import {
 } from '../../lib/harness/permission-event-channel';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type { ResolvedOpts, SessionRecord } from '@chirality/runtime-contracts/types';
+import type { AgentEngineRunInput } from '@chirality/runtime-contracts/agent-engine-port';
 
 async function* createSdkStream(events: SDKMessage[]): AsyncGenerator<SDKMessage, void> {
   for (const event of events) {
@@ -62,6 +63,134 @@ afterEach(async () => {
 });
 
 describe('ClaudeAgentSdkManager', () => {
+  it('prepares a reversible successor and starts it with a fresh provider identity', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-successor-'));
+    process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
+    const query = createQuery([{
+      type: 'system', subtype: 'init', session_id: 'sdk_successor',
+      uuid: '00000000-0000-0000-0000-000000000089', apiKeySource: 'temporary',
+      claude_code_version: '1.2.3', cwd: '/tmp/project', tools: [], mcp_servers: [],
+      model: 'claude-test', permissionMode: 'default', slash_commands: [],
+      output_style: 'default', skills: [], plugins: []
+    }, {
+      type: 'result', subtype: 'success', duration_ms: 1, duration_api_ms: 1,
+      is_error: false, num_turns: 1, result: 'continued', stop_reason: 'end_turn',
+      total_cost_usd: 0, usage: {} as never, modelUsage: {}, permission_denials: [],
+      uuid: '00000000-0000-0000-0000-000000000088', session_id: 'sdk_successor'
+    }]);
+    const manager = new ClaudeAgentSdkManager(query as never, async () => 'new frozen role and method body');
+    const predecessor = { ...session, sdkSessionId: 'sdk_predecessor', engineSessionId: 'sdk_predecessor' };
+    const request = {
+      sessionId: session.sessionId,
+      predecessorEngineSessionId: 'sdk_predecessor',
+      fromBasisId: 'basis-old',
+      toBasisPreview: { id: 'basis-new', sha256: 'a'.repeat(64) },
+      continuationContext: {
+        transcript: '[{"role":"user","text":"prior human"},{"role":"assistant","text":"prior assistant"}]', sha256: 'b'.repeat(64),
+        priorBasisRefs: [{ basisId: 'basis-old', sha256: 'c'.repeat(64) }]
+      }
+    };
+    const cancelled = await manager.prepareContextSuccessor(request);
+    await expect(manager.cancelContextSuccessor(cancelled.preparationId)).resolves.toBeUndefined();
+
+    const predecessorQuery = createQuery([{
+      type: 'result', subtype: 'success', duration_ms: 1, duration_api_ms: 1,
+      is_error: false, num_turns: 1, result: 'old', stop_reason: 'end_turn',
+      total_cost_usd: 0, usage: {} as never, modelUsage: {}, permission_denials: [],
+      uuid: '00000000-0000-0000-0000-000000000087', session_id: 'sdk_predecessor'
+    }]);
+    const predecessorManager = new ClaudeAgentSdkManager(predecessorQuery as never, async () => 'old prompt');
+    for await (const _event of predecessorManager.startTurn({ session: predecessor, message: 'still usable', opts, turnId: 'old-turn' })) { /* exhaust */ }
+    const predecessorCall = (predecessorQuery.mock.calls as unknown[][])[0]?.[0] as { options: { resume?: string } };
+    expect(predecessorCall.options.resume).toBe('sdk_predecessor');
+
+    const prepared = await manager.prepareContextSuccessor(request);
+    const events = [];
+    for await (const event of manager.startTurn({
+      session: predecessor, message: 'new request', opts, turnId: 'new-turn', contextSuccessor: prepared
+    })) events.push(event);
+    expect(events[0]).toMatchObject({ type: 'session:init', data: { adapterId: 'claude-agent-sdk' } });
+    expect((events[0] as { data: { engineSessionId: string } }).data.engineSessionId).not.toBe('sdk_predecessor');
+    const successorCall = (query.mock.calls as unknown[][])[0]?.[0] as { options: { resume?: string }; prompt: string };
+    expect(successorCall.options.resume).toBeUndefined();
+    expect(successorCall.prompt).toContain('basis-old');
+    expect(successorCall.prompt).toContain('basis-new');
+    expect(successorCall.prompt).toContain('prior human');
+    expect(successorCall.prompt).toContain('prior assistant');
+    expect(successorCall.prompt).toContain('new request');
+    expect(successorCall.prompt).not.toContain('old prompt');
+    expect(prepared.continuationSha256).toMatch(/^[a-f0-9]{64}$/);
+
+    const nextQuery = createQuery([{
+      type: 'result', subtype: 'success', duration_ms: 1, duration_api_ms: 1,
+      is_error: false, num_turns: 1, result: 'next', stop_reason: 'end_turn',
+      total_cost_usd: 0, usage: {} as never, modelUsage: {}, permission_denials: [],
+      uuid: '00000000-0000-0000-0000-000000000086', session_id: 'sdk_successor'
+    }]);
+    const nextManager = new ClaudeAgentSdkManager(nextQuery as never, async () => 'new frozen role and method body');
+    const migratedAfterSuccessor = {
+      ...predecessor,
+      engineSessionId: 'sdk_successor',
+      claudeSessionId: 'sdk_successor',
+      sdkSessionId: 'sdk_predecessor'
+    };
+    for await (const _event of nextManager.startTurn({ session: migratedAfterSuccessor, message: 'third turn', opts, turnId: 'third-turn' })) { /* exhaust */ }
+    const nextCall = (nextQuery.mock.calls as unknown[][])[0]?.[0] as { options: { resume?: string } };
+    expect(nextCall.options.resume).toBe('sdk_successor');
+  });
+
+  it('passes only Runtime-supplied instructions and tools to the real SDK adapter boundary', async () => {
+    tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-runtime-context-'));
+    process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');
+    const query = createQuery([{
+      type: 'result', subtype: 'success', duration_ms: 1, duration_api_ms: 1,
+      is_error: false, num_turns: 1, result: 'done', stop_reason: 'end_turn',
+      total_cost_usd: 0, usage: {} as never, modelUsage: {}, permission_denials: [],
+      uuid: '00000000-0000-0000-0000-000000000099', session_id: 'sdk_context'
+    }]);
+    const promptBuilder = vi.fn(async (_root, _persona, _mode, _tools, supplied) => supplied ?? 'legacy');
+    const manager = new ClaudeAgentSdkManager(query as never, promptBuilder);
+    const execute = vi.fn(async () => ({ methods: [] }));
+    const input: AgentEngineRunInput = {
+      session,
+      message: 'work normally',
+      opts,
+      turnId: 'turn_runtime_context',
+      contentBlocks: [{ type: 'text', text: 'ordinary attachment body' }],
+      instructionContext: {
+        schemaVersion: 'chirality.selected-context/v3',
+        roleId: 'HELP_HUMAN', methods: [], documents: [], dispositions: [],
+        supplied: [
+          { kind: 'root', id: 'AGENTS.md', content: 'root overview', sha256: 'a'.repeat(64) },
+          { kind: 'role', id: 'HELP_HUMAN', content: 'active helper body', sha256: 'b'.repeat(64) },
+          { kind: 'method-body', id: 'workflow:central', content: 'selected workflow body', sha256: 'c'.repeat(64) }
+        ],
+        basisPreview: { id: 'basis-1', sha256: 'd'.repeat(64), instructionPolicySha256: '9'.repeat(64), sources: [], persisted: false },
+        compatibilityInputs: [], compatibilityMappings: []
+      },
+      runtimeTools: [{
+        name: 'chirality_list_methods', description: 'List methods',
+        inputSchema: { type: 'object', additionalProperties: false },
+        permission: { effect: 'allow', operation: 'read' }, execute
+      }]
+    };
+
+    for await (const _event of manager.startTurn(input)) { /* exhaust */ }
+
+    const supplied = promptBuilder.mock.calls[0]?.[4] as string;
+    expect(supplied).toContain('active helper body');
+    expect(supplied).toContain('selected workflow body');
+    expect(supplied).not.toContain('ordinary attachment body');
+    expect(query).toHaveBeenCalledWith(expect.objectContaining({
+      prompt: expect.stringContaining('ordinary attachment body'),
+      options: expect.objectContaining({
+        systemPrompt: expect.objectContaining({ append: supplied }),
+        allowedTools: expect.arrayContaining(['mcp__chirality_runtime__chirality_list_methods']),
+        mcpServers: expect.objectContaining({ chirality_runtime: expect.anything() })
+      })
+    }));
+  });
+
   it('maps SDK stream messages to existing UI events and appends HarnessEvent evidence', async () => {
     tmpDir = await mkdtemp(path.join(os.tmpdir(), 'chirality-sdk-manager-'));
     process.env.CHIRALITY_SESSION_ROOT = path.join(tmpDir, 'sessions');

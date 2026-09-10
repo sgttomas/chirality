@@ -1,0 +1,317 @@
+{
+  "schema": "chirality-whitespace-normalization-preimage/v1",
+  "baseCommit": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "committedCandidate": "9b005c23a76fc2619780d27f5fabb70e3221cf02",
+  "fileCount": 27,
+  "files": [
+    {
+      "path": ".agents/skills/deliverable-consistency/SKILL.md",
+      "sizeBytes": 1304,
+      "sha256": "e4f77fb5d181463f026d7aa1457f032749d97693a4ac69c00b5fe55d66a9f459",
+      "issues": [
+        {
+          "line": 15,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": ".agents/skills/drawing-titleblock-page/SKILL.md",
+      "sizeBytes": 1810,
+      "sha256": "cb828c93bf34b72f761ad94dd1c746f8d972783ec77f9d6100f30c2aece20b57",
+      "issues": [
+        {
+          "line": 23,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": ".agents/skills/drawing-titleblock-page/references/stub-contract.md",
+      "sizeBytes": 1174,
+      "sha256": "ad1c1799e728105caeaf3b53a4b2f40354fd1c97e1958ddc6f6a91cf2b153997",
+      "issues": [
+        {
+          "line": 32,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "sizeBytes": 2868,
+      "sha256": "23e1dc6c775a3cf031295942885311b8f29f74e045c078b192cbd99069ffa4ed",
+      "issues": [
+        {
+          "line": 36,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": ".agents/skills/proposal-format/SKILL.md",
+      "sizeBytes": 1689,
+      "sha256": "92168d0d3ec0dbc1008c7254313d608c527556592499f75af3d0290af557273f",
+      "issues": [
+        {
+          "line": 26,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": ".agents/skills/researcher/SKILL.md",
+      "sizeBytes": 3206,
+      "sha256": "acfc12cc880bf7a5fa370639f1a6808b53f07a04eb73b87b37fd81b847424207",
+      "issues": [
+        {
+          "line": 34,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": ".agents/skills/researcher/references/evidence-contract.md",
+      "sizeBytes": 2257,
+      "sha256": "09f0d99b90f9d6fa7c9d225ad1b97bf6e651cab330a753b232604dca188fd7ae",
+      "issues": [
+        {
+          "line": 44,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "sizeBytes": 1304,
+      "sha256": "e81e4619afb0351706e04caa54164b8c3b1c2d9dda56ac0b08d3130135657b60",
+      "issues": [
+        {
+          "line": 15,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": ".agents/skills/software-defect-diagnosis/SKILL.md",
+      "sizeBytes": 1214,
+      "sha256": "d514aba052482c23bab6355af2a4340b8a4a2a5d992bb7e8507d4e949fbe9baa",
+      "issues": [
+        {
+          "line": 21,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "_DomainEngines/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 721,
+      "sha256": "0df5286a635ce63e938363ab21576386c6069b5ff28da7cd96fc4a3fe2e8242c",
+      "issues": [
+        {
+          "line": 13,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-42_chirality_v3_role_skill_workflow_adoption.md",
+      "sizeBytes": 5114,
+      "sha256": "64726293c4666984f80e718cda64ee4af1048215d68bd432a4e730d58b11350b",
+      "issues": [
+        {
+          "line": 94,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-CHIRALITY-V3-ADOPTION-20260909.yaml",
+      "sizeBytes": 1632,
+      "sha256": "565a56b003b5952ee3c2450cad036c0a03db9696af2ebd655ad98748502d3b3a",
+      "issues": [
+        {
+          "line": 30,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/app-adapter-tests-supplement-v2/FOCUSED_TESTS.log",
+      "sizeBytes": 268,
+      "sha256": "37737bc29a230fa77680c2809f3819475deaa75bd844384924db25b96360d42c",
+      "issues": [
+        {
+          "line": 9,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/app-adapter-tests-supplement-v2/NEGATIVE_TESTS.log",
+      "sizeBytes": 264,
+      "sha256": "25bec6390a32717eba9808b7c6f162209060e7ea2b16472cc3f45a8c1e02a71c",
+      "issues": [
+        {
+          "line": 9,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/historical-plan-regressions-v4.log",
+      "sizeBytes": 423,
+      "sha256": "110a25403fe2e664019a2e9dbca22fd23b10312667708b9a284f200a4452e2c6",
+      "issues": [
+        {
+          "line": 10,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/runtime-regressions-v4.log",
+      "sizeBytes": 420,
+      "sha256": "f91acbb905e40ac86498a11e8cfed591f8ead70aa699a3ede86b93b66196e22f",
+      "issues": [
+        {
+          "line": 10,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/shared-discovery-probe-v2.log",
+      "sizeBytes": 419,
+      "sha256": "5b1b8a578503e980499343a082dee9f3dec20fe79fffe0a3625ce62d83c8c49a",
+      "issues": [
+        {
+          "line": 10,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/integration-custody/INVENTORY.md",
+      "sizeBytes": 13324,
+      "sha256": "3ba76f0e4d217326124349eb83fc022319e1ccb10c4642c50b4cda43d0c59558",
+      "issues": [
+        {
+          "line": 3,
+          "issue": "trailing whitespace."
+        },
+        {
+          "line": 4,
+          "issue": "trailing whitespace."
+        },
+        {
+          "line": 5,
+          "issue": "trailing whitespace."
+        }
+      ]
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/integration-custody/STAGING_GAP_SIZE_SUMMARY.md",
+      "sizeBytes": 1594,
+      "sha256": "2b9f43854e4341a4218ccb1a276f2d75bc830021b6e2d5225446ca33639e9b24",
+      "issues": [
+        {
+          "line": 3,
+          "issue": "trailing whitespace."
+        },
+        {
+          "line": 4,
+          "issue": "trailing whitespace."
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/CORPUS_V21_FREEZE_v2.md",
+      "sizeBytes": 2496,
+      "sha256": "31d9269c57a6722ab5615883f373bfa0d1bda72732acf2b149d2def53271670c",
+      "issues": [
+        {
+          "line": 3,
+          "issue": "trailing whitespace."
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-supplemental-two-files-v1/vitest.log",
+      "sizeBytes": 3525,
+      "sha256": "e7c7437f965bc9ed365ae2f45fb918ab5e4faf2cea9b6ffee8d6f6dad064ca11",
+      "issues": [
+        {
+          "line": 27,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/counterexamples.log",
+      "sizeBytes": 13367,
+      "sha256": "cc438f114a4c72c0d7999024f0e846ea0bc3684d1cf1de77dd23aac1065a0d75",
+      "issues": [
+        {
+          "line": 69,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/CHIRALITY_V3_APP_ADOPTION_20260909/astra-second-pass-review/review-v7/focused-checks.log",
+      "sizeBytes": 9357,
+      "sha256": "645d41c55337e7e8dec8486911482e1cbfd675ea0121268a09513a65c4fe1e28",
+      "issues": [
+        {
+          "line": 67,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 1138,
+      "sha256": "5f8354a6cf56437394b2b6d9614f0a736917bb8ee2e1d580d2d874364167b559",
+      "issues": [
+        {
+          "line": 20,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 761,
+      "sha256": "c7be15effa28ade2a3c79cff020147563be43312029978441aa7d0a9099299a6",
+      "issues": [
+        {
+          "line": 14,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 1101,
+      "sha256": "1632c920299dc64b8c0645da11624693670b17514342e318e64bd55da91831f2",
+      "issues": [
+        {
+          "line": 20,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sizeBytes": 603,
+      "sha256": "a6830015f5a4d0df7e9a77ddeb63608134a32b39239b05933753483fe4ed72c8",
+      "issues": [
+        {
+          "line": 11,
+          "issue": "new blank line at EOF."
+        }
+      ]
+    }
+  ]
+}

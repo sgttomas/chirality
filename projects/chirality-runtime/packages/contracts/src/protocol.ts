@@ -7,6 +7,7 @@ import type {
 } from "./harness/index.js";
 import type { EngineDescriptor } from "./harness/agent-engine-port.js";
 import type { RuntimeSessionRecord } from "./session.js";
+import type { FrozenInstructionBasisV3, InstructionHistoryRecordV3 } from "./v3.js";
 import type { ProjectStatus } from "./project.js";
 import type { ResidencyStatus } from "./residency.js";
 
@@ -18,6 +19,10 @@ export const RUNTIME_ROUTES = {
   projects: "/v1/projects",
   projectRegister: "/v1/projects/register",
   projectStatus: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/status`,
+  roles: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/roles`,
+  methods: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/methods`,
+  method: (projectId: string, qualifiedId: string) =>
+    `/v1/projects/${encodeURIComponent(projectId)}/methods/${encodeURIComponent(qualifiedId)}`,
   sessions: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/sessions`,
   session: (projectId: string, sessionId: string) =>
     `/v1/projects/${encodeURIComponent(projectId)}/sessions/${encodeURIComponent(sessionId)}`,
@@ -31,6 +36,16 @@ export const RUNTIME_ROUTES = {
     `${RUNTIME_ROUTES.session(projectId, sessionId)}/interrupt`,
   sessionPermission: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.session(projectId, sessionId)}/permission`,
+  sessionContextResolve: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.session(projectId, sessionId)}/context/resolve`,
+  sessionMethods: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.session(projectId, sessionId)}/methods`,
+  nativePlanCapability: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.session(projectId, sessionId)}/native-plan/capability`,
+  nativePlanRevisions: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.session(projectId, sessionId)}/native-plan/revisions`,
+  nativePlanExport: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.session(projectId, sessionId)}/native-plan/export`,
   agents: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/agents`,
   scaffold: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/scaffold`,
   runs: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/runs`,
@@ -136,6 +151,8 @@ export interface SessionReplayResponse {
   malformedLineCount: number;
   summary: HarnessReplaySummary;
   transcript: TranscriptView;
+  instructionHistory: readonly InstructionHistoryRecordV3[];
+  instructionBases: readonly FrozenInstructionBasisV3[];
 }
 
 export interface HarnessReplaySummary {

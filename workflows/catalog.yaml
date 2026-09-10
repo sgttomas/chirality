@@ -1,0 +1,15 @@
+{
+  "schema": "chirality-workflow-catalog/v1",
+  "library": {
+    "source": "bundled",
+    "sourceRootId": "chirality-root"
+  },
+  "centralWorkflowNames": [
+    "project-setup",
+    "project-decomp",
+    "software-decomp",
+    "domain-decomp",
+    "research-orchestration",
+    "scope-change"
+  ]
+}

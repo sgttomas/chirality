@@ -1,13 +1,15 @@
 # References: DEL-09-07 Two-Job Runtime-Control Installer Migration and Rollback
 
 ## Applicable References
-- REF-001 — Location: `docs/DIRECTIVE.md` — Relevance: Intent, authority, and professional boundaries — Accepted SHA-256: `e1a3d00b18fa728f0886f036774c4825ad8f65f3245b56b4545da2714a903031`.
-- REF-002 — Location: `docs/CONTRACT.md` — Relevance: Invariants and enforcement surfaces — Accepted SHA-256: `6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7`.
-- REF-003 — Location: `docs/SPEC.md` — Relevance: Physical structures, runtime mechanics, and API/file contracts — Accepted SHA-256: `eee520f783ce0161c84bb8c2bd570b7521b3f6926bceea8cde7d387bbc3df990`.
-- REF-004 — Location: `docs/TYPES.md` — Relevance: Vocabulary, identifiers, enums, and type targets — Accepted SHA-256: `998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169`.
-- REF-005 — Location: `docs/PLAN.md` — Relevance: Roadmap and implementation sequencing — Accepted SHA-256: `c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff`.
-- REF-006 — Location: `docs/PRD.md` — Relevance: Product requirements, runtime direction, and approved vNext scope — Accepted SHA-256: `ef638f43ccae1cd78b26b1ae078a33770cf64cc36c247c5d7da04b35196a4010`.
-- REF-007 — Location: `agents/AGENT_SOFTWARE_DECOMP.md` — Relevance: Decomposition method, gate protocol, package/deliverable structure, and Context Envelope discipline — Accepted SHA-256: `ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409`.
+- REF-001 — Location: `docs/DIRECTIVE.md` — Relevance: Intent, authority, and professional boundaries — Accepted SHA-256: `50b816d5be74021f173e19b39773b4f5d2cc3f434966dc9d6faf9399ddf26099`.
+- REF-002 — Location: `docs/CONTRACT.md` — Relevance: Invariants and enforcement surfaces — Accepted SHA-256: `51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517`.
+- REF-003 — Location: `docs/SPEC.md` — Relevance: Physical structures, runtime mechanics, and API/file contracts — Accepted SHA-256: `c2fb9ecbbc37a98577a64a3e7e641de8c26b3145ad8cc40dc4a9a014aa66a12b`.
+- REF-004 — Location: `docs/TYPES.md` — Relevance: Vocabulary, identifiers, enums, and type targets — Accepted SHA-256: `a8cdc94d39e16271ec4ef7fde5be76969f23ca3fe9e1663ac53ad1915eefd56c`.
+- REF-005 — Location: `docs/PLAN.md` — Relevance: Roadmap and implementation sequencing — Accepted SHA-256: `3741bb7ec389c12f0856cf64acc27d4d17b77d1683275564b75182fcdbab5187`.
+- REF-006 — Location: `docs/PRD.md` — Relevance: Product requirements, runtime direction, and approved vNext scope — Accepted SHA-256: `87ced649beae245e7b0290b3ef8afb46681d04e671964a0583fdce83a7ccb586`.
+- REF-007 — Location: `workflows/software-decomp/WORKFLOW.md` — Relevance: Software decomposition method and grouped checkpoint protocol — Accepted SHA-256: `fd79f8001404a99c3438500fae413d56193dc1db408b3416bdee20414977d452`.
+- REF-009 — Location: `workflows/software-decomp/resources/contract.md` — Relevance: Software decomposition inputs, modes, and output contract — Accepted SHA-256: `f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f`.
+- REF-010 — Location: `workflows/software-decomp/resources/method.md` — Relevance: Software decomposition detailed method — Accepted SHA-256: `1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3`.
 - TASKC-REF-001 — Location: `projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` — Relevance: Accepted Gate-3 postimage for PKG-09, SOW-080, DEL-09-07, and DEC-024 — Accepted SHA-256: `e46084abc0f85970dbe4ed49d1366a99e9930bbb9d9bd87b86f998f98155ab97`.
 - TASKC-REF-002 — Location: `projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-009_2026-09-04_0944_App_V3_Pathway_Seating/Brief.md` — Relevance: Candidate initiation and boundary record; not evidence that `_LATEST.md` moved.
 - TASKC-REF-003 — Location: `projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-009_2026-09-04_0944_App_V3_Pathway_Seating/Amendment_Actions.csv` — Relevance: Exact 16-row Gate-3 amendment ledger, especially actions 7–8 — Accepted SHA-256: `46273d39b991551326688fac9d5f4f8381b181503bdf38aced4a94d46223c2b6`.

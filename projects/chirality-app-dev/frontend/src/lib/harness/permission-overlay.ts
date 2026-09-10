@@ -244,6 +244,20 @@ export function resolveHarnessPermissionDecision(
     );
   }
 
+  if (hasDescriptorPermission(descriptor, 'control')) {
+    return createDecision(
+      input,
+      'allow',
+      `${descriptor.name} is admitted as bounded Runtime session control.`,
+      {
+        allowClass: 'control',
+        filesystemCapability: false,
+        processCapability: false,
+        networkCapability: false
+      }
+    );
+  }
+
   if (hasDescriptorPermission(descriptor, 'workspace-write')) {
     if (mode === 'workspaceWrite') {
       return createDecision(

@@ -1,0 +1,41 @@
+{
+  "schema": "chirality-v3-distribution-semantic-successor-manager-evidence/v2",
+  "verdict": "candidate-ready-for-parent-final-staging-fan-in",
+  "subject": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/subject-v10.json",
+    "sha256": "485cc778ab131e477d792fad0e06b310023398d734609cdd9ec4421f1087ea18",
+    "sizeBytes": 13126
+  },
+  "members": [
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/manager-v2/RETURN.md",
+      "sha256": "6d4251352c065f95734a644cf628a65f5ea976f42bb4680d1a30c00283c91554",
+      "sizeBytes": 2414
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/manager-v2/CHECKS.json",
+      "sha256": "219631ea49a2783b22440a192303d12a999a19dedf3535c166d4238de5a70a9a",
+      "sizeBytes": 6445
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/review-v10/MANIFEST.json",
+      "sha256": "aff71b891432b14e6159d8e00a889548a5947e887be29d614dd6e5f3fed06a2e",
+      "sizeBytes": 899
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/astra-second-pass/runtime/REVIEW_V4.md",
+      "sha256": "3c0581675f4a0ebde2532ac13f4c43f9f563c6ca4230ae4fd2c21db43bca2509",
+      "sizeBytes": 11301
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/MANAGER/HANDOFF_V2.md",
+      "sha256": "3e73e26796f8bd45ce5dd118d5a5d7211a2efce342f456fd2422bd51170fbdc3",
+      "sizeBytes": 3897
+    }
+  ],
+  "predecessor": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/distribution/manager/MANIFEST.json",
+    "sha256": "ceb817a358de8c5f47c37417da42ec875ff868903b873c31a64262a46f2a3921",
+    "sizeBytes": 1324
+  }
+}

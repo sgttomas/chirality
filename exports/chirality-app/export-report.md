@@ -2,8 +2,8 @@
 
 Generated from the public `chirality` source profile `exports/chirality-app`.
 
-- Staging path: `/private/tmp/root-runtime-migration-20260905/gate5/public-export-final`
-- Manifest rows: 864
+- Staging path: `exports/chirality-app/staging`
+- Manifest rows: 1105
 - Text files sanitized for machine-absolute paths: 0
 - Boundary findings: 0
 
@@ -11,18 +11,21 @@ Generated from the public `chirality` source profile `exports/chirality-app`.
 
 | Path | Files |
 |---|---:|
+| `.agents` | 17 |
 | `.github` | 4 |
 | `.gitignore` | 1 |
+| `ADOPTION_HOLD.json` | 1 |
 | `AGENTS.md` | 1 |
 | `CLAUDE.md` | 1 |
 | `LICENSE.md` | 1 |
 | `README.md` | 1 |
-| `agents` | 34 |
-| `docs` | 184 |
+| `agents` | 5 |
+| `docs` | 201 |
+| `execution` | 1 |
 | `init` | 1 |
-| `runtime` | 79 |
-| `skills` | 185 |
-| `tools` | 372 |
+| `runtime` | 167 |
+| `tools` | 392 |
+| `workflows` | 311 |
 
 ## Boundary Findings
 

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/astra_runtime_second_pass",
+  "model": "gpt-6-astra",
+  "reasoningEffort": "high",
+  "role": "TASK independent reviewer",
+  "verdict": "PASS",
+  "baseCommit": "73c9f4d77d9a78de6f929c47508ea5fa47154c2d",
+  "managerSubjectSha256": "de58343b109a95b60e555e70a616754de18e9ebf1bb600b5af9ee6869ff53bf6",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-service.ts",
+      "sha256": "d0b0debf6e47b844483e6f29cef27e323a2bb662c9d1c0ef2d77b77a4ec0bbbb",
+      "baseSha256": "a8bf0b518c6a4ed06caf3199a8ffd4b697b803b16b7542fd76c964352eee7a8c",
+      "diffSha256": "944dc323a8ca2a88239008e10d3ecabe92c1bd126f7076fcb0ec38ed9b0d0c3b"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-v3-api.test.ts",
+      "sha256": "005725ec2d50f4fb99f5043514cf45c05a3b9e5eabefa07d016bcca9e9180e6e",
+      "baseSha256": "018b6bf03e369a57396260632801da58e07b595666c8963a23bd07d0c51d64d1",
+      "diffSha256": "9ab1d77356b53cf74626dc6c02e711985921a49d4af8c1cfabedd2d319efdca2"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/validate-harness-section8.mjs",
+      "sha256": "9ce64529359fe3134fbead391a22162561ffa248111349fc2182664bb24c00b4",
+      "baseSha256": "9be9dc1b47b83ae0802f108dc14e471eaa96b320b8104153878d643dc947f5fc",
+      "diffSha256": "9a4a768868112ecca590ef009be18d85093973da13203b075e9d7f7f0cad6a29"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/scripts/validate-harness-premerge.mjs",
+      "sha256": "2d23414e7cdc90cf20943ea22fde4f9c9a38f58f7aacae8d572ab79fb6eba535",
+      "baseSha256": "4073bcbbd8aed00d43d40b64ddcc5a680bd2c9bb745402a5746b381a7f300660",
+      "diffSha256": "e6ddb3011b8cede00e95581635f2ef2640a97b40689ffeb57256f032f6c8e3c9"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/scripts/validate-harness-premerge.test.ts",
+      "sha256": "7e2b8f99fc10fd7efee23c19adf39721c8ab31037b2b2fe7e3a33af22626bbc8",
+      "baseSha256": "dd12a25a02679f6282fa2806174f4358b74fbd2b663e3c0e40ddbf5d7d6a6285",
+      "diffSha256": "19c400e57f09cdc1a94fc59619dc0465c72c7355b6407501793695241ded8b71"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/integration/runtime-successor-adapters.integration.test.ts",
+      "sha256": "3f3807f043948a3e6799e61b9ba323ced2b3af02623bc3cf751418b330870e45",
+      "baseSha256": "462e2ad1ae543c22aa64d82ee14e02d9889478225365311287eca21796fa6178",
+      "diffSha256": "2b5a93b97615808590c00d7a2f2068373c4fbb566fb84565045180107658ca49"
+    }
+  ],
+  "prePostTestStable": true,
+  "independentTests": {
+    "exitCode": 0,
+    "files": 2,
+    "passed": 8,
+    "config": "vitest.config.mjs",
+    "logSha256": "2efb81f1904729688cef160b03a369c54dfd7fddf6987e862a106aad7eaff0af"
+  }
+}

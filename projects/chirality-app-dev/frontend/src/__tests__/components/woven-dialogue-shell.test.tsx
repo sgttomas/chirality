@@ -23,11 +23,13 @@ const shellState = vi.hoisted(() => ({
   titleDispose: vi.fn(),
   useRealReader: false,
   realReaders: [] as Array<{ dispose: ReturnType<typeof vi.fn>; cancel: ReturnType<typeof vi.fn> }>
+  , routerReplace: vi.fn(), resumedSession: undefined as string | undefined
 }));
 
 vi.mock('next/navigation', () => ({
   usePathname: () => shellState.pathname,
-  useSearchParams: () => new URLSearchParams(shellState.query)
+  useSearchParams: () => new URLSearchParams(shellState.query),
+  useRouter: () => ({ replace: shellState.routerReplace })
 }));
 vi.mock('next/link', () => ({
   default: ({ children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) =>
@@ -64,8 +66,9 @@ vi.mock('../../components/shell/shell-frame', () => ({
   )
 }));
 vi.mock('../../components/shell/chat-panel', () => ({
-  ChatPanel: ({ onActiveSessionChange, onDraftCaptured, onSessionBootedPrompt, fileCatalog = [], onOpenFile }: { onActiveSessionChange: (id: string) => void; onDraftCaptured: () => void; onSessionBootedPrompt: (input: { sessionId: string; prompt: string; persona: string }) => void; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void }) => {
+  ChatPanel: ({ onActiveSessionChange, onDraftCaptured, onSessionBootedPrompt, fileCatalog = [], onOpenFile, resumeConversation, onConversationResumed }: { onActiveSessionChange: (id: string) => void; onDraftCaptured: () => void; onSessionBootedPrompt: (input: { sessionId: string; prompt: string; persona: string }) => void; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void; resumeConversation?: { projection: { selectedSessionId: string } }; onConversationResumed?: (sessionId: string) => void }) => {
     useEffect(() => { shellState.mounted++; onActiveSessionChange('primary'); return () => { shellState.unmounted++; }; }, [onActiveSessionChange]);
+    useEffect(() => { if (resumeConversation) { shellState.resumedSession = resumeConversation.projection.selectedSessionId; onConversationResumed?.(resumeConversation.projection.selectedSessionId); } }, [resumeConversation, onConversationResumed]);
     return <><input data-chat-panel="mounted" data-chat-input="primary" onChange={onDraftCaptured} /><button data-chat-file={fileCatalog.length} onClick={() => { if (fileCatalog[0]) onOpenFile?.(fileCatalog[0]); }}>open linked file</button><button data-live-title onClick={() => onSessionBootedPrompt({ sessionId: 'primary', prompt: `Review ${process.env.CHIRALITY_ANTHROPIC_API_KEY ?? ''} safely`, persona: 'TASK' })}>capture title</button></>;
   }
 }));
@@ -113,7 +116,7 @@ vi.mock('../../components/woven-dialogue/activity-shelf', () => ({
   ActivityView: () => <div data-activity-view="mounted" />
 }));
 vi.mock('../../components/woven-dialogue/selected-session-replay-lens', () => ({
-  SelectedSessionReplayLens: ({ state, onReturnToPrimary, onRetry }: { state: { status: string }; onReturnToPrimary: () => void; onRetry: () => void }) => <section data-replay-lens={state.status}><button onClick={onReturnToPrimary}>Return to primary dialogue</button><button onClick={onRetry}>Retry</button></section>
+  SelectedSessionReplayLens: ({ state, onReturnToPrimary, onRetry, onContinue }: { state: any; onReturnToPrimary: () => void; onRetry: () => void; onContinue?: (projection: any) => void }) => <section data-replay-lens={state.status}><button onClick={onReturnToPrimary}>Return to primary dialogue</button><button onClick={onRetry}>Retry</button>{state.status === 'READY' && state.projection.session?.continuation && onContinue ? <button onClick={() => onContinue(state.projection)}>Continue this chat</button> : null}</section>
 }));
 
 function navigatorItemCount(html: string): number {
@@ -132,6 +135,7 @@ describe('WovenDialogueShell composition', () => {
     shellState.titleLoad.mockReset(); shellState.titleLoad.mockResolvedValue({});
     shellState.titleCancel.mockClear(); shellState.titleDispose.mockClear();
     shellState.useRealReader = false; shellState.realReaders = [];
+    shellState.routerReplace.mockClear(); shellState.resumedSession = undefined;
   });
 
   it.each(['dialogue', 'workbench', 'pipeline'] as const)('only mounts Dialogue even with historical %s surface input', (surface) => {
@@ -280,6 +284,25 @@ describe('WovenDialogueShell composition', () => {
     expect(openParent().props.disabled).toBe(false); act(() => openParent().props.onClick());
     expect(focus).toHaveBeenCalled(); expect(shellState.replayLoad).toHaveBeenCalledTimes(calls);
     expect(tree.root.findByProps({ 'data-chat-input': 'primary' })).toBe(input);
+    act(() => tree.unmount());
+  });
+
+  it('continues a compatible v3 replay in the mounted primary dialogue and leaves legacy replay read-only', async () => {
+    shellState.query = '';
+    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (callback: () => void) => callback() });
+    vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
+    const projection = { selectedSessionId: 'recorded', sourceReference: 'session:recorded/events', observedAt: '2026-09-09', disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', transcript: { itemCount: 0, items: [] }, instructionHistory: [], instructionBases: [], malformedLineCount: 0, sourceEventCount: 0, renderedItemCount: 0, diagnostics: [], session: { sessionId: 'recorded', parentage: { state: 'NOT_RECORDED' }, diagnostics: [], continuation: { schemaVersion: 'chirality.session/v3', projectRoot: shellState.projectRoot, roleId: 'WORKING_ITEMS', mode: 'CHAT', interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [], methodSelectionRevision: 1, instructionBasisId: 'basis-1' } } };
+    await act(async () => shellState.replayNotify?.({ status: 'READY', projection }));
+    await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('Continue this chat'))!.props.onClick());
+    expect(shellState.routerReplace).toHaveBeenCalledWith('/?agent=WORKING_ITEMS');
+    expect(shellState.resumedSession).toBeUndefined();
+    shellState.query = 'agent=WORKING_ITEMS';
+    await act(async () => tree.update(<WovenDialogueShell defaultSurface="dialogue" />));
+    expect(shellState.resumedSession).toBe('recorded');
+    expect(tree.root.findAll(node => Boolean(node.props['data-replay-lens']))).toHaveLength(0);
     act(() => tree.unmount());
   });
 

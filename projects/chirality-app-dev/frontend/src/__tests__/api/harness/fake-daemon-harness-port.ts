@@ -11,6 +11,7 @@ import { replayHarnessEvents } from '../../../lib/harness/session-events';
 import { assertProjectRootAccessible } from '../../../lib/harness/session-manager';
 import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import { CHAT_SECTION } from '../../../lib/shell/loop-first';
+import { CHIRALITY_ROLES } from '@chirality/runtime-contracts/v3';
 
 /**
  * Hermetic daemon-port fixture for the pre-existing route contract suite. It
@@ -152,7 +153,9 @@ export function createFakeDaemonHarnessPort(): DaemonHarnessPort {
       return {
         ...replay,
         session,
-        transcript: deriveTranscriptView(replay.events, session)
+        transcript: deriveTranscriptView(replay.events, session),
+        instructionHistory: [],
+        instructionBases: []
       };
     },
 
@@ -178,6 +181,47 @@ export function createFakeDaemonHarnessPort(): DaemonHarnessPort {
       return {
         agents: request.directChatOnly ? selectDirectChatPersonas(roster) : roster
       };
+    },
+
+    async listRoles() {
+      return { schemaVersion: 'chirality.roles/v3', defaultRole: 'HELP_HUMAN', roles: CHIRALITY_ROLES };
+    },
+
+    async listMethods() {
+      return { schemaVersion: 'chirality.methods/v3', methods: [], malformedPackages: [] };
+    },
+
+    async inspectMethod() {
+      throw new HarnessError('INVALID_REQUEST', 404, 'Method not found in fake daemon');
+    },
+
+    async resolveSelectedContext() {
+      throw new HarnessError('ENGINE_UNAVAILABLE', 503, 'Selected context is not configured in fake daemon');
+    },
+
+    async replaceSelectedMethods() {
+      throw new HarnessError('ENGINE_UNAVAILABLE', 503, 'Method replacement is not configured in fake daemon');
+    },
+
+    async getNativePlanCapability() {
+      return {
+        schemaVersion: 'chirality.native-plan-capability/v3',
+        status: 'unavailable',
+        reason: 'Fake daemon has no qualified native Plan adapter'
+      };
+    },
+
+    async listNativePlanRevisions() {
+      return {
+        schemaVersion: 'chirality.native-plan-revisions/v3',
+        status: 'unavailable',
+        reason: 'Fake daemon has no qualified native Plan adapter',
+        revisions: []
+      };
+    },
+
+    async exportNativePlan() {
+      throw new HarnessError('ENGINE_UNAVAILABLE', 503, 'Native Plan export is not configured in fake daemon');
     },
 
     async scaffold(request) {

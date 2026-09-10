@@ -50,6 +50,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       'ORN-01 gate set: repo-root harness premerge workflow runs on pull requests without provider secrets (from harness-premerge-workflow.test.ts)',
     pins: [
       { kind: 'contains', value: 'pull_request:' },
+      { kind: 'contains', value: '- "docs/**"' },
       { kind: 'contains', value: 'CHIRALITY_HARNESS_PROVIDER: stub' },
       {
         kind: 'contains',
@@ -73,8 +74,16 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       },
       { kind: 'notContains', value: '${{ runner.temp }}' },
       { kind: 'contains', value: 'mkdir -p "${HARNESS_PROJECT_ROOT}"' },
-      { kind: 'contains', value: '"${REPO_ROOT}/AGENTS.md" "${REPO_ROOT}/CLAUDE.md"' },
+      {
+        kind: 'contains',
+        value: 'node "${FRONTEND}/scripts/prepare-packaged-instruction-root.mjs"'
+      },
+      { kind: 'contains', value: '--output-root "${BUNDLE_ROOT}/instruction-root"' },
       { kind: 'contains', value: 'npm run instruction-root:integrity --' },
+      {
+        kind: 'contains',
+        value: '--bundle-root "${RUNNER_TEMP}/chirality-instruction-root-fixture/instruction-root"'
+      },
       { kind: 'contains', value: 'run: npm run validate:release-quality' },
       { kind: 'contains', value: 'artifacts/harness/section8/latest/summary.json' },
       { kind: 'contains', value: 'artifacts/harness/release-quality/latest/summary.json' },

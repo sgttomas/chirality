@@ -6,11 +6,20 @@ description: Coordinate bounded research streams, independent verification, reco
 # research-orchestration
 
 WORKING_ITEMS investigates a question through bounded research streams, independent verification, and synthesis. It owns stream allocation, retries, fan-in, human decision routing, and any shared pointer.
+It may consult the wider source-qualified skill/workflow catalogs deliberately
+when the research route is unclear, recording origins and collisions without
+silently replacing an already selected method. Catalog visibility and workflow
+metadata never grant tools or execution permissions.
 
 ## Method
 
 1. Freeze the question, accepted domain basis, retrieval snapshot, and expected coverage. Use [the brief fields](resources/brief.md) and [accepted-source contract](resources/contract.md).
-2. Scout freshness. Route a narrow exact lookup to a direct tool call; assign broader inquiry to TASK with `Workflow: researcher`. Treat inherited anchors as claims to verify.
+2. Scout freshness. Route a narrow exact lookup to a direct tool call. For a
+   broader inquiry, discover the effective `researcher` skill descriptor and
+   assign it to TASK in the ordered `methods` field as
+   `[{kind: "skill", name: "researcher", source: <descriptor.source>, sourceRootId: <descriptor.sourceRootId>}]`.
+   Preserve that selected source-qualified identity and treat inherited anchors
+   as claims to verify.
 3. Allocate a distinct `OUTPUT_DIR` for each stream. Each child writes its own packet and query log with `--no-update-latest`. Shared synthesis and pointer writes have one owner.
 4. Validate returned packets and independently re-verify load-bearing claims before they enter authority at `R3+`. Record disagreements in `Conflicts.csv` with both sources.
 5. Recover failed streams individually, retaining completed packets. Resume a failed stream only when the host exposes a real resume facility; otherwise start a new bounded attempt from the preserved evidence. Record attempt parentage and never claim a resume that did not execute.

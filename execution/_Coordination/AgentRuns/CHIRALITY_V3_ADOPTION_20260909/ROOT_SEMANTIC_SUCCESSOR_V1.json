@@ -1,0 +1,195 @@
+{
+  "schema": "chirality-root-semantic-successor/v1",
+  "status": "review-candidate",
+  "base": "c16812685831a1cae3d44bf478d08b033c605c3a",
+  "branch": "codex/chirality-v3-adoption-20260909",
+  "predecessor": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/ROOT_SCOPE_FREEZE_V7.json",
+    "sha256": "7f5ef062acd1e3ea63bc4fa3c5e61ad534cd24823c4b18ee28b9cfe1ff1c4ff8"
+  },
+  "semanticReview": {
+    "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/semantic-review/REVIEW_V1.md",
+    "sha256": "f1c2075902ac16d388a01f59238b8c2dcf43e960900300ae5a53a10dfc4289f7",
+    "packetManifestSha256": "154fadd274c5b444090c19adec436b89298d7c4e8f18490a889cde69da78029c"
+  },
+  "authorEvidence": [
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/semantic-correction/root-author-v1/REPORT.md",
+      "sha256": "c7f718c0e5ac9d6de4e8130991f039802d9bdc4ac8b880833544140c25889e60"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/semantic-correction/root-author-v2/REPORT.md",
+      "sha256": "9bba0909f7d9a2015412c783af00f138d49e401dfbee098bc9767542308c28dc"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/semantic-correction/python-author-v1/RETURN.md",
+      "sha256": "342bbfefb2f6f44b182cf6b1f5bae70d8b4f7f0a233ecdd1647eebe0af58deeb"
+    }
+  ],
+  "managerValidation": {
+    "focused": "59 passed",
+    "rootOwned": "514 passed, 48 subtests",
+    "workflowPackages": 71,
+    "skills": 8,
+    "methods": 79,
+    "diffCheck": "PASS"
+  },
+  "fileCount": 30,
+  "files": [
+    {
+      "path": ".agents/skills/chirality-change/execution.json",
+      "sizeBytes": 107,
+      "sha256": "d489c69e3cc3fdf6d8c2f14812859c319a4049649ec880637ccbc9010cde53df"
+    },
+    {
+      "path": ".agents/skills/preparation/execution.json",
+      "sizeBytes": 257,
+      "sha256": "dd59f002bdfe7b8b86555d7786dedbc88394b015b3b3dc90665f520ffa4bec2d"
+    },
+    {
+      "path": ".agents/skills/preparation/references/scaffold-contract.md",
+      "sizeBytes": 2944,
+      "sha256": "801589c833fab1a785aa464c50a681457921e2c08caf3277c3bc8f263473f0b9"
+    },
+    {
+      "path": ".agents/skills/researcher/execution.json",
+      "sizeBytes": 257,
+      "sha256": "dd59f002bdfe7b8b86555d7786dedbc88394b015b3b3dc90665f520ffa4bec2d"
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "sizeBytes": 15939,
+      "sha256": "9e51bad1a3884efb709511c8496189a91f58e41eb8ba5f0952e6c39ffbe51c20"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json",
+      "sizeBytes": 3392,
+      "sha256": "331c2a4ad4859440eb4dec611af8f62cc2c424f7c84bb5dc076b5c76fcd85f04"
+    },
+    {
+      "path": "tools/validation/build_workflow_index.py",
+      "sizeBytes": 17717,
+      "sha256": "c448cea83b4cf5fb4f8974ad2d0d589436fe276be2b09440fe36f9860bdd44b9"
+    },
+    {
+      "path": "tools/validation/fixtures/method_discovery_v1.json",
+      "sizeBytes": 5913,
+      "sha256": "2c7e3fb24b19f9f126af70d9735753a0999bf8b62429d143ff818413f8358cfb"
+    },
+    {
+      "path": "tools/validation/test_validate_domain_decomposition_integrity.py",
+      "sizeBytes": 16968,
+      "sha256": "999c40a4b0790bbc51c4131039a7c31b80a86b29cbabb6d4cf373e86431e8265"
+    },
+    {
+      "path": "tools/validation/test_workflow_catalog.py",
+      "sizeBytes": 13718,
+      "sha256": "2c1f0808f6db13af4347c270bd7cb03fc6933839c122345e38736cd1c3be2340"
+    },
+    {
+      "path": "tools/validation/validate_domain_decomposition_integrity.py",
+      "sizeBytes": 34042,
+      "sha256": "cb5b1077a4ce0bf60ea700b50688b10119379f21cb8ae94a47e6bfc16c4124fc"
+    },
+    {
+      "path": "tools/validation/validate_skill_metadata.py",
+      "sizeBytes": 9490,
+      "sha256": "76e4d89a250ca05f6981e5067435e71b59ef57ae0966777dc6975484ddc2fb24"
+    },
+    {
+      "path": "tools/validation/validate_workflow_metadata.py",
+      "sizeBytes": 4192,
+      "sha256": "8670af57509dfb928f7d3ac82cde1418f70ccc8dad6e283d98bee14d0f9583cc"
+    },
+    {
+      "path": "tools/workflow_runtime/README.md",
+      "sizeBytes": 5714,
+      "sha256": "92e98c67437f6f2443925a8078d5a890dcaf84946f18f787bd4a998f770f7523"
+    },
+    {
+      "path": "tools/workflow_runtime/fixtures/legacy_method_normalization_cases.json",
+      "sizeBytes": 3727,
+      "sha256": "bb244510229acb22e559018a7851d41c9a4d7684bdfad4e18945d3ba4ffd82cc"
+    },
+    {
+      "path": "tools/workflow_runtime/resolve_workflow.py",
+      "sizeBytes": 20585,
+      "sha256": "46a8b917a19e3725331a7d7c1d4da6410f71a323ce7432383a729eee0d8e3d63"
+    },
+    {
+      "path": "tools/workflow_runtime/test_resolve_workflow.py",
+      "sizeBytes": 10077,
+      "sha256": "2d58d974135014506a8dcf1bae77e08e3f4bc6d9c3f6cc7add67aa9b90555beb"
+    },
+    {
+      "path": "workflows/README.md",
+      "sizeBytes": 4343,
+      "sha256": "6c6bcfcb1be84653222ca4c7e4206fddda98dd474cf52b6620a9e85a2c4795e7"
+    },
+    {
+      "path": "workflows/domain-decomp/resources/contract.md",
+      "sizeBytes": 24803,
+      "sha256": "319a787bcf8daf97375fbbb92c2c15907fa5ab642e6b173d0fadb64d9f34a34d"
+    },
+    {
+      "path": "workflows/index.json",
+      "sizeBytes": 80075,
+      "sha256": "1f34a12e0db95467c7c7a3500ff7301a1fd8aa30e01ab4dc4c789656ab12d9b7"
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "sizeBytes": 15090,
+      "sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f"
+    },
+    {
+      "path": "workflows/project-setup/resources/method.md",
+      "sizeBytes": 29474,
+      "sha256": "ce23e911e2f35e8c0644f344f096a39a46be95056736249c18b55c126fbb75ed"
+    },
+    {
+      "path": "workflows/project-setup/resources/package-activation.md",
+      "sizeBytes": 2913,
+      "sha256": "813ca9be124a171ba425045e93a67bf1c5413d8d76797876b01fbf966e361c1c"
+    },
+    {
+      "path": "workflows/research-orchestration/WORKFLOW.md",
+      "sizeBytes": 3076,
+      "sha256": "e05ad2b92c1bca11a1c79aa1bdeb3cfb1b7b714a183eb0d77488de95a813e382"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/brief.md",
+      "sizeBytes": 2229,
+      "sha256": "c2ac3c50f874e74dce1cb0c3f136aa938151aa74df1a78072253ef9e103e6317"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/contract.md",
+      "sizeBytes": 15026,
+      "sha256": "08cf059c544b3aa33c81ab90a6f203f8fdc044a36b2981c9b672397e380fecbd"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/method.md",
+      "sizeBytes": 5772,
+      "sha256": "2308f3381f7481b53e213db5a1c52b66e31dd1e339015b24eb5261cff7ba578f"
+    },
+    {
+      "path": "workflows/research-orchestration/resources/tools.md",
+      "sizeBytes": 2437,
+      "sha256": "da14fad153924b6e726e4f2500023da61916e1c973802358a768b9ab79d8dc69"
+    },
+    {
+      "path": "workflows/scope-change/resources/contract.md",
+      "sizeBytes": 38677,
+      "sha256": "4453a719f1588c4eba08bdb4a979140ff3541ed5a29f04477ea58a844f344d02"
+    },
+    {
+      "path": "workflows/scope-change/resources/method.md",
+      "sizeBytes": 33907,
+      "sha256": "34187e83856853f655389625e3465e3c2cb9ff8ad38be1f4d138ee7470d167f5"
+    }
+  ],
+  "exclusions": [
+    "App, Runtime, distribution and corpus source/evidence are separately owned",
+    "supplier/native/package/credential/release operations",
+    "staging, commit, push, merge, publication and governed acceptance"
+  ]
+}
