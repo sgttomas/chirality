@@ -128,6 +128,7 @@ describe("hosted bootstrap public-to-private composition", () => {
     const supervisorServer = await startSupervisorServer({ socketPath: supervisorSocket, supervisor: controlled });
     cleanup.push(() => supervisorServer.close());
     const supervisor = new SupervisorClient({ socketPath: supervisorSocket, credential: supervisorServer.credential });
+    const immutableSystemRoot = await realpath("/usr/bin");
     let delegated: DelegatedRuntime | undefined; let retired = 0; let stagedPolicy: Awaited<ReturnType<typeof prepareCodexNativePolicy>> | undefined;
     const ceremony: TrustedHostedLoginCeremony = { async start() { return { loginId: "login", authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "completed", hasAccount: true }; }, async cancel() {}, async close() {} };
     const bindings = {
@@ -135,7 +136,7 @@ describe("hosted bootstrap public-to-private composition", () => {
       async establishAdmission() { return { continuity: identity, authority: { supplierGeneration: "supplier", identityGeneration: "identity", snapshotDigest: "c".repeat(64) }, async retire() { retired++; await delegated?.close(); await controlled.close(); } }; },
       async materializeAdmission(input: { projectId: string; runtime: { nativePlanSink: DelegatedNativePlanSink; attachmentStagingRoot: string } }) {
         expect((await stat(input.runtime.attachmentStagingRoot)).isDirectory()).toBe(true);
-        stagedPolicy = await prepareCodexNativePolicy({ canonicalRoot: projectRoot, privateDirectory: workerPrivate, codexHome, immutableReadRoots: ["/System", "/usr/bin"], protectedPaths: [brokerRoot], readOnlyProjectPaths: [input.runtime.attachmentStagingRoot] });
+        stagedPolicy = await prepareCodexNativePolicy({ canonicalRoot: projectRoot, privateDirectory: workerPrivate, codexHome, immutableReadRoots: [immutableSystemRoot], protectedPaths: [brokerRoot], readOnlyProjectPaths: [input.runtime.attachmentStagingRoot] });
         expect(stagedPolicy.expectedPermissions.filesystem[projectRoot]).toBe("write");
         expect(stagedPolicy.expectedPermissions.filesystem[input.runtime.attachmentStagingRoot]).toBe("read");
         const consent = new HostedConsentStore({ canonicalRoot: projectRoot, codexHome: join(runtimeDirectory, "consent-home") });

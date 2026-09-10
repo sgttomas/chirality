@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { chmod, link, mkdtemp, rm, symlink, writeFile } from "node:fs/promises";
+import { chmod, link, mkdtemp, realpath, rm, symlink, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { HostedBootstrapPrivateBindings, HostedBootstrapRuntimeHost } from "../packages/daemon/src/hosted-bootstrap.js";
 import { readHostedPrivateBootstrapConfiguration, startControlledHostedPrivateBootstrapRuntimeHostForTests, type HostedPrivateBootstrapHostInput } from "../packages/daemon/src/hosted-private-entry.js";
@@ -47,7 +47,7 @@ describe("hosted private production entry wiring", () => {
   });
 
   it("reads only the strict owner-private carrier and binds the packaged basis", async () => {
-    const directory = await mkdtemp("/private/tmp/hosted-private-config-");
+    const directory = await mkdtemp(join(await realpath("/tmp"), "hpc-"));
     try {
       const file = join(directory, "private.json");
       await writeFile(file, JSON.stringify({ schema: "chirality.hosted-private-runtime/v1", privateComposition }), { mode: 0o600 });

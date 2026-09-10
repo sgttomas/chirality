@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
-import { cp, mkdir, mkdtemp, readFile, readdir, realpath, rm, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { mkdir, mkdtemp, readFile, readdir, realpath, rm, writeFile } from "node:fs/promises";
+import { join, resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import { PassThrough } from "node:stream";
 import { afterEach, describe, expect, it } from "vitest";
 import { CHIRALITY_ROLE_NAMES } from "@chirality/runtime-contracts";
@@ -37,8 +38,11 @@ async function packagedInventoryFixture(root: string) {
     "runtime-cli/chirality-cli.mjs.map": "controlled runtime source identity"
   };
   for (const [name, contents] of Object.entries(files)) { await mkdir(join(resourcesRoot, name, ".."), { recursive: true }); await writeFile(join(resourcesRoot, name), contents); }
-  const stagedInstructionRoot = "/private/tmp/chirality-release-instruction-stage-20260910-01";
-  await cp(stagedInstructionRoot, join(resourcesRoot, "instruction-root"), { recursive: true, force: false, errorOnExist: true });
+  const builder = await import(pathToFileURL(resolve(process.cwd(), "../chirality-app-dev/frontend/scripts/prepare-packaged-instruction-root.mjs")).href) as {
+    preparePackagedInstructionRoot(input: { sourceRoot: string; docsRoot: string; outputRoot: string }): Promise<string[]>;
+  };
+  const sourceRoot = resolve(process.cwd(), "../..");
+  await builder.preparePackagedInstructionRoot({ sourceRoot, docsRoot: join(sourceRoot, "docs"), outputRoot: join(resourcesRoot, "instruction-root") });
   const relativePaths: string[] = [];
   const walk = async (relativeDirectory: string): Promise<void> => {
     for (const entry of (await readdir(join(resourcesRoot, relativeDirectory), { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name))) {
@@ -147,7 +151,7 @@ async function controlledAuthenticatedCandidate(input: {
 }
 
 async function fixture(input: { logoutFails?: boolean; openStoreFails?: boolean; fenceFails?: boolean; logoutLauncherFails?: boolean } = {}) {
-  const root = await mkdtemp(join("/private/tmp", "hosted-composition-")); roots.push(root);
+  const root = await realpath(await mkdtemp(join(await realpath("/tmp"), "hc-"))); roots.push(root);
   const canonicalRoot = join(root, "project"), runtimeDirectory = join(root, "runtime"), instructionRoot = join(root, "instructions");
   const privateRoot = join(runtimeDirectory, "hosted-bootstrap", "project"), codexHome = join(privateRoot, "codex-home");
   await Promise.all([canonicalRoot, runtimeDirectory, instructionRoot, privateRoot, codexHome].map(path => mkdir(path, { recursive: true, mode: 0o700 })));
@@ -269,7 +273,7 @@ describe("hosted private production composition boundary", () => {
   });
 
   it("connects public bootstrap through real same-actor admission to retained and fresh controlled candidates", async () => {
-    const root = await realpath(await mkdtemp(join("/private/tmp", "hosted-composition-public-"))); roots.push(root);
+    const root = await realpath(await mkdtemp(join(await realpath("/tmp"), "hcp-"))); roots.push(root);
     const runtimeDirectory = join(root, "runtime"), projectRoot = join(root, "project"), packaged = await packagedInventoryFixture(root);
     const instructionRoot = packaged.instructionRoot;
     await mkdir(runtimeDirectory, { mode: 0o700 }); await mkdir(projectRoot);
