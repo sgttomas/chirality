@@ -41,6 +41,7 @@ const TEAM_ID = /^[A-Z0-9]{10}$/u;
 const BUNDLE_ID = /^com\.chirality\.app$/u;
 const CHECKPOINT_SCHEMA = 'chirality-signed-runtime-v2-checkpoint/v1';
 const CHECKPOINT_MAX_BYTES = 1_048_576;
+const OUTER_MAIN_RELATIVE_PATH = 'Contents/MacOS/Chirality';
 const frontendRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const defaultEntitlements = path.join(frontendRoot, 'build', 'entitlements.mac.plist');
 const defaultInheritEntitlements = path.join(frontendRoot, 'build', 'entitlements.mac.inherit.plist');
@@ -210,11 +211,7 @@ export function createRuntimeV2SignOptions(options, { appPath, peerRequirement, 
 
 async function defaultVerifyFinal({ appPath, resourcesRoot, peerRequirement, teamId, identitySha1 }) {
   await execFileAsync('/usr/bin/codesign', ['--verify', '--deep', '--strict', '--verbose=2', appPath]);
-  const requirement = await execFileAsync('/usr/bin/codesign', ['-d', '-r-', appPath]);
-  if (!requirement.stderr.includes(`identifier "com.chirality.app"`) || !requirement.stderr.includes(`certificate leaf[subject.OU] = "${teamId}"`)) {
-    throw new Error('Final application designated requirement does not contain the sealed bundle/team predicate');
-  }
-  await execFileAsync('/usr/bin/codesign', ['--verify', `-R${peerRequirement}`, appPath]);
+  await execFileAsync('/usr/bin/codesign', ['--verify', `-R=${peerRequirement}`, appPath]);
   const predicate = await loadHostAccountSigningPredicate(resourcesRoot);
   if (predicate.peerRequirement !== peerRequirement || predicate.teamId !== teamId || predicate.bundleId !== 'com.chirality.app') {
     throw new Error('Final application does not contain the exact sealed signing predicate');
@@ -226,7 +223,43 @@ async function defaultVerifyFinal({ appPath, resourcesRoot, peerRequirement, tea
     const leafSha1 = createHash('sha1').update(await readFile(`${prefix}0`)).digest('hex').toUpperCase();
     if (leafSha1 !== identitySha1) throw new Error('Final application certificate does not match the explicit signing identity');
   } finally { await rm(certificateRoot, { recursive: true, force: true }); }
-  await verifyPackagedRuntimeBasisV2({ resourcesRoot });
+  return verifyPackagedRuntimeBasisV2({ resourcesRoot });
+}
+
+function assertTrueNestedSignatures(checkpointSignatures, currentSignatures) {
+  const checkpointMain = checkpointSignatures.filter(({ relativePath }) => relativePath === OUTER_MAIN_RELATIVE_PATH);
+  const currentMain = currentSignatures.filter(({ relativePath }) => relativePath === OUTER_MAIN_RELATIVE_PATH);
+  if (checkpointMain.length !== 1 || currentMain.length !== 1
+    || checkpointMain[0].type !== 'file' || currentMain[0].type !== 'file') {
+    throw new Error('Outer-owned application executable is missing or ambiguous');
+  }
+  const checkpointNested = checkpointSignatures.filter(({ relativePath }) => relativePath !== OUTER_MAIN_RELATIVE_PATH);
+  const currentNested = currentSignatures.filter(({ relativePath }) => relativePath !== OUTER_MAIN_RELATIVE_PATH);
+  if (JSON.stringify(currentNested) !== JSON.stringify(checkpointNested)) {
+    throw new Error('Nested signed code changed during outer verification');
+  }
+  return currentMain[0];
+}
+
+function assertOuterMainContent(main, expected) {
+  if (!expected || !DIGEST.test(expected.sha256 ?? '') || !Number.isSafeInteger(expected.size) || expected.size < 1
+    || main.content?.sha256 !== expected.sha256 || main.content?.size !== expected.size) {
+    throw new Error('Outer-owned application executable does not match the accepted content identity');
+  }
+}
+
+async function writeVerifiedResult({ inputs, checkpoint, inventorySha256 }) {
+  const artifactPath = `${inputs.checkpointPath}.sealed.json`;
+  await writeCheckpoint(artifactPath, {
+    schema: 'chirality-signed-runtime-v2-result/v1',
+    appPath: checkpoint.appPath,
+    payloadManifest: checkpoint.payloadManifest,
+    inventorySha256,
+    peerRequirementSha256: sha256(checkpoint.peerRequirement),
+    verified: true
+  });
+  await chmod(artifactPath, 0o400);
+  return artifactPath;
 }
 
 async function defaultInspectNestedSignatures(appPath) {
@@ -338,7 +371,7 @@ export async function bindSignedRuntimeV2Payload({ env = process.env, lockPaths 
  *   env?: NodeJS.ProcessEnv,
  *   expectedAppPath?: string,
  *   sign?: typeof signAsync,
- *   verifyFinal?: typeof defaultVerifyFinal,
+ *   verifyFinal?: (input: {appPath: string, resourcesRoot: string, peerRequirement: string, teamId: string, identitySha1: string}) => Promise<unknown>,
  *   inspectNestedSignatures?: typeof defaultInspectNestedSignatures,
  *   verifyPayload?: typeof verifyPreparedRuntimePayloadV2,
  *   inspectReleaseInputs?: typeof inspectRuntimeV2ReleaseInputs,
@@ -395,18 +428,75 @@ export async function sealSignedRuntimeV2({
   }));
   await verifyFinal({ appPath: checkpoint.appPath, resourcesRoot: checkpoint.resourcesRoot, peerRequirement: checkpoint.peerRequirement, teamId: checkpoint.teamId, identitySha1: checkpoint.identitySha1 });
   const finalNestedSignatures = await inspectNestedSignatures(checkpoint.appPath);
-  if (JSON.stringify(finalNestedSignatures) !== JSON.stringify(checkpoint.nestedSignatures)) throw new Error('Nested signed code changed during outer sealing');
-  const artifactPath = `${inputs.checkpointPath}.sealed.json`;
-  await writeCheckpoint(artifactPath, {
-    schema: 'chirality-signed-runtime-v2-result/v1',
-    appPath: checkpoint.appPath,
-    payloadManifest: checkpoint.payloadManifest,
-    inventorySha256: inventory.verified.inventorySha256,
-    peerRequirementSha256: sha256(checkpoint.peerRequirement),
-    verified: true
-  });
-  await chmod(artifactPath, 0o400);
+  assertTrueNestedSignatures(checkpoint.nestedSignatures, finalNestedSignatures);
+  const artifactPath = await writeVerifiedResult({ inputs, checkpoint, inventorySha256: inventory.verified.inventorySha256 });
   return { appPath: checkpoint.appPath, artifactPath, inventory };
+}
+
+/**
+ * Complete a previously outer-signed Runtime v2 candidate without mutating the
+ * application. This is intentionally limited to verification and the final
+ * create-only result record.
+ * @param {{
+ *   env?: NodeJS.ProcessEnv,
+ *   expectedAppPath: string,
+ *   expectedOuterMainContent: {sha256: string, size: number},
+ *   verifyFinal?: (input: {appPath: string, resourcesRoot: string, peerRequirement: string, teamId: string, identitySha1: string}) => Promise<Readonly<import('@chirality/runtime-core/runtime-conformance-v2').VerifiedPackagedRuntimeBasisV2>>,
+ *   inspectNestedSignatures?: typeof defaultInspectNestedSignatures,
+ *   inspectReleaseInputs?: typeof inspectRuntimeV2ReleaseInputs,
+ *   inspectSupportProfiles?: typeof inspectRuntimeV2SupportProfiles
+ * }} options
+ */
+export async function completeSignedRuntimeV2Verification({
+  env = process.env,
+  expectedAppPath,
+  expectedOuterMainContent,
+  verifyFinal = defaultVerifyFinal,
+  inspectNestedSignatures = defaultInspectNestedSignatures,
+  inspectReleaseInputs = inspectRuntimeV2ReleaseInputs,
+  inspectSupportProfiles = inspectRuntimeV2SupportProfiles
+} = {}) {
+  const inputs = exactSigningInputs(env);
+  const source = await stableJson(inputs.checkpointPath);
+  const checkpoint = inspectCheckpoint(source.value, 'payload-bound');
+  await assertCheckpointPaths(checkpoint);
+  if (typeof expectedAppPath !== 'string' || !path.isAbsolute(expectedAppPath)
+    || path.resolve(expectedAppPath) !== expectedAppPath || checkpoint.appPath !== expectedAppPath) {
+    throw new Error('Signing checkpoint application does not match the selected Electron packaging candidate');
+  }
+  checkpointMatchesInputs(checkpoint, inputs);
+  const nestedSignatures = await inspectNestedSignatures(checkpoint.appPath);
+  assertOuterMainContent(assertTrueNestedSignatures(checkpoint.nestedSignatures, nestedSignatures), expectedOuterMainContent);
+  const release = await inspectReleaseInputs({
+    supportProfilesPath: env[RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV],
+    governanceRoot: env[RUNTIME_V2_GOVERNANCE_ROOT_ENV]
+  });
+  const supportIdentity = await inspectSupportProfiles(env[RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV]);
+  if (supportIdentity.sha256 !== checkpoint.supportProfilesIdentity.sha256
+    || supportIdentity.size !== checkpoint.supportProfilesIdentity.size
+    || release.digest !== env[RUNTIME_V2_INPUT_DIGEST_ENV]) {
+    throw new Error('Accepted Runtime v2 inputs changed before verification completion');
+  }
+  const basis = await verifyFinal({
+    appPath: checkpoint.appPath,
+    resourcesRoot: checkpoint.resourcesRoot,
+    peerRequirement: checkpoint.peerRequirement,
+    teamId: checkpoint.teamId,
+    identitySha1: checkpoint.identitySha1
+  });
+  if (!basis || basis.payloadDigest !== checkpoint.payloadManifest.sha256
+    || basis.inventory?.payloadManifest.sha256 !== checkpoint.payloadManifest.sha256
+    || basis.inventory.payloadManifest.size !== checkpoint.payloadManifest.size) {
+    throw new Error('Packaged Runtime v2 payload identity does not match the signing checkpoint');
+  }
+  const expectedGovernance = release.governance.map(({ relativePath, size, sha256: digest }) => ({ relativePath, size, sha256: digest }));
+  if (JSON.stringify(basis.inventory.governance) !== JSON.stringify(expectedGovernance)) {
+    throw new Error('Packaged Runtime v2 governance inventory does not match the accepted inputs');
+  }
+  const finalNestedSignatures = await inspectNestedSignatures(checkpoint.appPath);
+  assertOuterMainContent(assertTrueNestedSignatures(checkpoint.nestedSignatures, finalNestedSignatures), expectedOuterMainContent);
+  const artifactPath = await writeVerifiedResult({ inputs, checkpoint, inventorySha256: basis.inventorySha256 });
+  return { appPath: checkpoint.appPath, artifactPath, inventory: basis.inventory };
 }
 
 export default async function customMacSign(options) {

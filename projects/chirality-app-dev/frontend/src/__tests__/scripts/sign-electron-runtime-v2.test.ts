@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { appendFile, chmod, lstat, mkdtemp, mkdir, open, readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -10,6 +11,7 @@ import {
   SIGNING_IDENTITY_SHA1_ENV,
   SIGNING_TEAM_ID_ENV,
   bindSignedRuntimeV2Payload,
+  completeSignedRuntimeV2Verification,
   createRuntimeV2SignOptions,
   deriveHostPeerRequirement,
   prepareSignedRuntimeV2,
@@ -20,8 +22,17 @@ import {
   RUNTIME_V2_GOVERNANCE_ROOT_ENV,
   RUNTIME_V2_INPUT_DIGEST_ENV,
   RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV,
-  SUPPLIER_DIGEST_ENV
+  SUPPLIER_DIGEST_ENV,
+  computeDependencyResolutionDigest,
+  computeSupplierTreeDigest,
+  finalizeRuntimeResourcesV2,
+  inspectRuntimeV2ReleaseInputs
 } from '../../../scripts/finalize-electron-resources.mjs';
+import {
+  RUNTIME_NATIVE_ADMISSION_NAPI_VERSION_V2,
+  runtimePolicyParameterSchemaDigestV2,
+  verifyPackagedRuntimeBasisV2
+} from '@chirality/runtime-core/runtime-conformance-v2';
 
 type GovernanceFixture = [
   RuntimeArtifactEntryV2<'runtime-governance/v2/login-purpose-record.json'>,
@@ -34,6 +45,142 @@ type GovernanceFixture = [
 
 function governanceArtifact<P extends string>(relativePath: P): RuntimeArtifactEntryV2<P> {
   return { relativePath, size: 1, sha256: 'c'.repeat(64) };
+}
+
+function governanceFixture(): GovernanceFixture {
+  return [
+    governanceArtifact('runtime-governance/v2/login-purpose-record.json'),
+    governanceArtifact('runtime-governance/v2/login-purpose-acceptance.json'),
+    governanceArtifact('runtime-governance/v2/login-owner-act'),
+    governanceArtifact('runtime-governance/v2/worker-purpose-record.json'),
+    governanceArtifact('runtime-governance/v2/worker-purpose-acceptance.json'),
+    governanceArtifact('runtime-governance/v2/worker-owner-act')
+  ];
+}
+
+async function completionFixture() {
+  const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-sign-complete-')));
+  const appPath = path.join(root, 'Chirality.app');
+  const resourcesRoot = path.join(appPath, 'Contents', 'Resources');
+  const checkpointPath = path.join(root, 'prepared.json');
+  const checkpointNestedSignatures = [
+    { relativePath: 'Contents/Frameworks/Electron Framework.framework', type: 'bundle' as const, identitySha256: '5'.repeat(64) },
+    { relativePath: 'Contents/MacOS/Chirality', type: 'file' as const, identitySha256: '6'.repeat(64), content: { size: 40, sha256: '7'.repeat(64) } }
+  ];
+  const expectedOuterMainContent = { size: 42, sha256: '8'.repeat(64) };
+  const currentNestedSignatures = [
+    checkpointNestedSignatures[0],
+    { relativePath: 'Contents/MacOS/Chirality', type: 'file' as const, identitySha256: '9'.repeat(64), content: expectedOuterMainContent }
+  ];
+  const governance = governanceFixture();
+  const payload: RuntimePayloadManifestV2 = {
+    schema: 'chirality-runtime-payload-manifest/v2', dependencyResolutionDigest: 'd'.repeat(64), roots: [], supportProfiles: [], entries: []
+  };
+  const inventory = {
+    schema: 'chirality-runtime-artifact-inventory/v2' as const,
+    payloadManifest: { relativePath: 'runtime-payload-manifest.json' as const, size: 20, sha256: 'a'.repeat(64) },
+    governance
+  };
+  const basis: VerifiedPackagedRuntimeBasisV2 = {
+    resourcesRoot,
+    inventoryPath: path.join(resourcesRoot, 'runtime-artifact-inventory-v2.json'),
+    payloadManifestPath: path.join(resourcesRoot, 'runtime-payload-manifest.json'),
+    inventorySha256: 'b'.repeat(64), payloadDigest: 'a'.repeat(64), payload, inventory
+  };
+  await mkdir(resourcesRoot, { recursive: true });
+  const checkpoint = {
+    schema: 'chirality-signed-runtime-v2-checkpoint/v1', phase: 'payload-bound', appPath, resourcesRoot,
+    identitySha1: 'A'.repeat(40), teamId: 'A1B2C3D4E5', bundleId: 'com.chirality.app',
+    peerRequirement: deriveHostPeerRequirement({ bundleId: 'com.chirality.app', teamId: 'A1B2C3D4E5' }),
+    dependencyDigest: '1'.repeat(64), supplierDigest: '2'.repeat(64), signedSupplierDigest: '3'.repeat(64),
+    nestedSignatures: checkpointNestedSignatures, payloadSnapshotDigest: '4'.repeat(64),
+    payloadManifest: { sha256: 'a'.repeat(64), size: 20 }, supportProfilesIdentity: { sha256: 'e'.repeat(64), size: 30 }
+  };
+  await writeFile(checkpointPath, `${JSON.stringify(checkpoint)}\n`);
+  const env = {
+    NODE_ENV: 'test' as const,
+    [SIGNING_IDENTITY_SHA1_ENV]: 'A'.repeat(40), [SIGNING_TEAM_ID_ENV]: 'A1B2C3D4E5',
+    [SIGNING_BUNDLE_ID_ENV]: 'com.chirality.app', [SIGNING_CHECKPOINT_FILE_ENV]: checkpointPath,
+    [RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV]: '/accepted/profiles.json', [RUNTIME_V2_GOVERNANCE_ROOT_ENV]: '/accepted/governance',
+    [RUNTIME_V2_INPUT_DIGEST_ENV]: 'f'.repeat(64)
+  };
+  return { root, appPath, resourcesRoot, checkpointPath, checkpoint, env, governance, basis, currentNestedSignatures, expectedOuterMainContent };
+}
+
+async function governedCompletionFixture() {
+  const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-sign-governed-complete-')));
+  const appPath = path.join(root, 'Chirality.app');
+  const resourcesRoot = path.join(appPath, 'Contents', 'Resources');
+  const checkpointPath = path.join(root, 'prepared.json');
+  const lockRoot = path.join(root, 'locks');
+  const lockPaths = [path.join(lockRoot, 'frontend.json'), path.join(lockRoot, 'runtime.json')];
+  for (const directory of [resourcesRoot, path.join(resourcesRoot, 'instruction-root'), path.join(resourcesRoot, 'native'),
+    path.join(resourcesRoot, 'runtime-cli'), path.join(resourcesRoot, 'supplier'), lockRoot]) await mkdir(directory, { recursive: true });
+  await writeFile(path.join(resourcesRoot, 'app.asar'), 'application');
+  await writeFile(path.join(resourcesRoot, 'instruction-root', 'instruction-bundle-manifest.json'), '{}\n');
+  await writeFile(path.join(resourcesRoot, 'native', 'chirality_native_admission.node'), 'native');
+  await writeFile(path.join(resourcesRoot, 'runtime-cli', 'chirality-cli.mjs'), 'export {};\n');
+  await writeFile(path.join(resourcesRoot, 'runtime-cli', 'chirality-cli.mjs.map'), '{"version":3}\n');
+  await writeFile(path.join(resourcesRoot, 'supplier', 'codex'), 'supplier');
+  await chmod(path.join(resourcesRoot, 'supplier', 'codex'), 0o755);
+  await writeFile(lockPaths[0], '{"lockfileVersion":3,"packages":{}}\n');
+  await writeFile(lockPaths[1], '{"lockfileVersion":3,"packages":{}}\n');
+  const governanceRoot = path.join(root, 'governance');
+  await mkdir(governanceRoot);
+  for (const entry of governanceFixture()) await writeFile(path.join(governanceRoot, path.basename(entry.relativePath)), `${entry.relativePath}\n`);
+  const fileDigest = (value: Buffer | string) => createHash('sha256').update(value).digest('hex');
+  const nativeBytes = await readFile(path.join(resourcesRoot, 'native', 'chirality_native_admission.node'));
+  const supplierBytes = await readFile(path.join(resourcesRoot, 'supplier', 'codex'));
+  const profileWithoutDigest = {
+    schema: 'chirality-runtime-support-profile/v2', macosProductVersion: '15.6.1', macosBuildVersion: '24G90', architecture: 'arm64',
+    electronVersion: '43.2.0', nodeVersion: '24.18.0', nodeModuleAbi: '148', napiVersion: '10',
+    osMeasurement: { executablePath: '/usr/bin/sw_vers', executableSha256: '1'.repeat(64), executableSize: 1234 },
+    sandboxExec: { path: '/usr/bin/sandbox-exec', sha256: '2'.repeat(64), size: 2345 },
+    nativeAdmission: { contract: 'chirality-native-admission/v1', sha256: fileDigest(nativeBytes), size: nativeBytes.length, napiVersion: RUNTIME_NATIVE_ADMISSION_NAPI_VERSION_V2 },
+    supplier: { version: '0.99.0-test-only', sha256: fileDigest(supplierBytes), size: supplierBytes.length, appServerProtocolDigest: '3'.repeat(64), authorityContract: 'chirality.local-admission-authority/1.0', identityContract: 'chirality-supplier-account-identity/1' },
+    compiler: { outerPolicySchema: 'chirality-codex-outer-policy/v2', nativePolicyIdentityVersion: 10, sourceDigest: '4'.repeat(64), parameterSchemaDigest: runtimePolicyParameterSchemaDigestV2() },
+    immutableSystemRoots: ['/System', '/usr'], kernelHelperContractDigest: '5'.repeat(64)
+  } as const;
+  const profile = { ...profileWithoutDigest, profileDigest: fileDigest(`${JSON.stringify(profileWithoutDigest)}\n`) };
+  const supportProfilesPath = path.join(root, 'support-profiles.json');
+  await writeFile(supportProfilesPath, JSON.stringify([profile]));
+  const release = await inspectRuntimeV2ReleaseInputs({ supportProfilesPath, governanceRoot });
+  const finalized = await finalizeRuntimeResourcesV2({
+    resourcesRoot,
+    expectedDependencyResolutionDigest: await computeDependencyResolutionDigest({ lockPaths }),
+    expectedSupplierStagingDigest: await computeSupplierTreeDigest(path.join(resourcesRoot, 'supplier')),
+    supportProfilesPath,
+    governanceRoot,
+    expectedInputDigest: release.digest,
+    lockPaths
+  });
+  const supportBytes = await readFile(supportProfilesPath);
+  const checkpointNestedSignatures = [
+    { relativePath: 'Contents/Frameworks/Electron Framework.framework', type: 'bundle' as const, identitySha256: '5'.repeat(64) },
+    { relativePath: 'Contents/MacOS/Chirality', type: 'file' as const, identitySha256: '6'.repeat(64), content: { size: 40, sha256: '7'.repeat(64) } }
+  ];
+  const expectedOuterMainContent = { size: 42, sha256: '8'.repeat(64) };
+  const currentNestedSignatures = [checkpointNestedSignatures[0], {
+    relativePath: 'Contents/MacOS/Chirality', type: 'file' as const, identitySha256: '9'.repeat(64), content: expectedOuterMainContent
+  }];
+  const checkpoint = {
+    schema: 'chirality-signed-runtime-v2-checkpoint/v1', phase: 'payload-bound', appPath, resourcesRoot,
+    identitySha1: 'A'.repeat(40), teamId: 'A1B2C3D4E5', bundleId: 'com.chirality.app',
+    peerRequirement: deriveHostPeerRequirement({ bundleId: 'com.chirality.app', teamId: 'A1B2C3D4E5' }),
+    dependencyDigest: '1'.repeat(64), supplierDigest: '2'.repeat(64), signedSupplierDigest: '3'.repeat(64),
+    nestedSignatures: checkpointNestedSignatures, payloadSnapshotDigest: '4'.repeat(64),
+    payloadManifest: { sha256: finalized.verified.payloadDigest, size: finalized.verified.inventory.payloadManifest.size },
+    supportProfilesIdentity: { sha256: fileDigest(supportBytes), size: supportBytes.length }
+  };
+  await writeFile(checkpointPath, `${JSON.stringify(checkpoint)}\n`);
+  const env = {
+    NODE_ENV: 'test' as const,
+    [SIGNING_IDENTITY_SHA1_ENV]: 'A'.repeat(40), [SIGNING_TEAM_ID_ENV]: 'A1B2C3D4E5',
+    [SIGNING_BUNDLE_ID_ENV]: 'com.chirality.app', [SIGNING_CHECKPOINT_FILE_ENV]: checkpointPath,
+    [RUNTIME_V2_SUPPORT_PROFILES_FILE_ENV]: supportProfilesPath, [RUNTIME_V2_GOVERNANCE_ROOT_ENV]: governanceRoot,
+    [RUNTIME_V2_INPUT_DIGEST_ENV]: release.digest
+  };
+  return { root, appPath, resourcesRoot, checkpointPath, env, finalized, release, currentNestedSignatures, expectedOuterMainContent };
 }
 
 describe('signed Runtime v2 assembly', () => {
@@ -262,8 +409,11 @@ describe('signed Runtime v2 assembly', () => {
     const resourcesRoot = path.join(appPath, 'Contents', 'Resources');
     const checkpointPath = path.join(root, 'prepared.json');
     await mkdir(resourcesRoot, { recursive: true });
-    const nestedA = [{ relativePath: 'Contents/MacOS/Chirality', type: 'file', identitySha256: '5'.repeat(64), content: { size: 10, sha256: '6'.repeat(64) } }];
-    const nestedB = [{ ...nestedA[0], content: { size: 10, sha256: '7'.repeat(64) } }];
+    const nestedA = [
+      { relativePath: 'Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework', type: 'file', identitySha256: '5'.repeat(64), content: { size: 10, sha256: '6'.repeat(64) } },
+      { relativePath: 'Contents/MacOS/Chirality', type: 'file', identitySha256: '7'.repeat(64), content: { size: 10, sha256: '8'.repeat(64) } }
+    ];
+    const nestedB = [{ ...nestedA[0], content: { size: 10, sha256: '9'.repeat(64) } }, nestedA[1]];
     await writeFile(checkpointPath, `${JSON.stringify({
       schema: 'chirality-signed-runtime-v2-checkpoint/v1', phase: 'payload-bound', appPath, resourcesRoot,
       identitySha1: 'A'.repeat(40), teamId: 'A1B2C3D4E5', bundleId: 'com.chirality.app',
@@ -311,9 +461,118 @@ describe('signed Runtime v2 assembly', () => {
           const verified: VerifiedPackagedRuntimeBasisV2 = { resourcesRoot, inventoryPath, payloadManifestPath, inventorySha256: 'b'.repeat(64), payloadDigest: 'e'.repeat(64), payload, inventory };
           return { inventoryPath, inventory, verified };
         }
-      })).rejects.toThrow('changed during outer sealing');
+      })).rejects.toThrow('changed during outer verification');
       await expect(readFile(`${checkpointPath}.sealed.json`)).rejects.toMatchObject({ code: 'ENOENT' });
     } finally { await rm(root, { recursive: true, force: true }); }
+  });
+
+  it('completes verification of an already outer-signed candidate without signing or staging again', async () => {
+    const fixture = await completionFixture();
+    const checkpointBefore = await readFile(fixture.checkpointPath);
+    const inspectNestedSignatures = vi.fn(async () => fixture.currentNestedSignatures);
+    const verifyFinal = vi.fn(async () => fixture.basis);
+    try {
+      const result = await completeSignedRuntimeV2Verification({
+        env: fixture.env,
+        expectedAppPath: fixture.appPath,
+        expectedOuterMainContent: fixture.expectedOuterMainContent,
+        inspectNestedSignatures,
+        inspectReleaseInputs: async () => ({
+          digest: 'f'.repeat(64), supportProfiles: [], governance: fixture.governance.map((entry) => ({ ...entry, bytes: Buffer.from('x') }))
+        }),
+        inspectSupportProfiles: async () => ({ sha256: 'e'.repeat(64), size: 30, supportProfiles: [] }),
+        verifyFinal
+      });
+      expect(result).toMatchObject({ appPath: fixture.appPath, inventory: fixture.basis.inventory });
+      expect(inspectNestedSignatures).toHaveBeenCalledTimes(2);
+      expect(verifyFinal).toHaveBeenCalledTimes(1);
+      expect(await readFile(fixture.checkpointPath)).toEqual(checkpointBefore);
+      expect(JSON.parse(await readFile(result.artifactPath, 'utf8'))).toMatchObject({
+        schema: 'chirality-signed-runtime-v2-result/v1', inventorySha256: 'b'.repeat(64), verified: true
+      });
+    } finally { await rm(fixture.root, { recursive: true, force: true }); }
+  });
+
+  it('completes against a real post-inventory Resources basis', async () => {
+    const fixture = await governedCompletionFixture();
+    try {
+      const result = await completeSignedRuntimeV2Verification({
+        env: fixture.env,
+        expectedAppPath: fixture.appPath,
+        expectedOuterMainContent: fixture.expectedOuterMainContent,
+        inspectNestedSignatures: async () => fixture.currentNestedSignatures,
+        verifyFinal: async ({ resourcesRoot }) => verifyPackagedRuntimeBasisV2({ resourcesRoot })
+      });
+      expect(result.inventory).toEqual(fixture.finalized.verified.inventory);
+      expect(JSON.parse(await readFile(result.artifactPath, 'utf8'))).toMatchObject({
+        inventorySha256: fixture.finalized.verified.inventorySha256,
+        verified: true
+      });
+    } finally { await rm(fixture.root, { recursive: true, force: true }); }
+  });
+
+  it.each([
+    ['payload manifest', 'runtime-payload-manifest.json'],
+    ['governance member', 'runtime-governance/v2/login-purpose-record.json']
+  ])('rejects a changed %s in a real post-inventory Resources basis', async (_label, relativePath) => {
+    const fixture = await governedCompletionFixture();
+    await writeFile(path.join(fixture.resourcesRoot, relativePath), 'changed\n');
+    try {
+      await expect(completeSignedRuntimeV2Verification({
+        env: fixture.env,
+        expectedAppPath: fixture.appPath,
+        expectedOuterMainContent: fixture.expectedOuterMainContent,
+        inspectNestedSignatures: async () => fixture.currentNestedSignatures,
+        verifyFinal: async ({ resourcesRoot }) => verifyPackagedRuntimeBasisV2({ resourcesRoot })
+      })).rejects.toMatchObject({ code: 'ENGINE_UNAVAILABLE' });
+      await expect(readFile(`${fixture.checkpointPath}.sealed.json`)).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally { await rm(fixture.root, { recursive: true, force: true }); }
+  });
+
+  it('rejects a wrong checkpoint predicate without writing a completion result', async () => {
+    const fixture = await completionFixture();
+    await writeFile(fixture.checkpointPath, `${JSON.stringify({ ...fixture.checkpoint, peerRequirement: 'anchor apple' })}\n`);
+    try {
+      await expect(completeSignedRuntimeV2Verification({
+        env: fixture.env,
+        expectedAppPath: fixture.appPath,
+        expectedOuterMainContent: fixture.expectedOuterMainContent
+      })).rejects.toThrow('Signing inputs do not match');
+      await expect(readFile(`${fixture.checkpointPath}.sealed.json`)).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally { await rm(fixture.root, { recursive: true, force: true }); }
+  });
+
+  it('rejects changed accepted governance without writing a completion result', async () => {
+    const fixture = await completionFixture();
+    const changedGovernance = fixture.governance.map((entry, index) => index === 0 ? { ...entry, sha256: 'd'.repeat(64) } : entry) as GovernanceFixture;
+    try {
+      await expect(completeSignedRuntimeV2Verification({
+        env: fixture.env,
+        expectedAppPath: fixture.appPath,
+        expectedOuterMainContent: fixture.expectedOuterMainContent,
+        inspectNestedSignatures: async () => fixture.currentNestedSignatures,
+        inspectReleaseInputs: async () => ({ digest: 'f'.repeat(64), supportProfiles: [], governance: changedGovernance.map((entry) => ({ ...entry, bytes: Buffer.from('x') })) }),
+        inspectSupportProfiles: async () => ({ sha256: 'e'.repeat(64), size: 30, supportProfiles: [] }),
+        verifyFinal: async () => fixture.basis
+      })).rejects.toThrow('governance inventory does not match');
+      await expect(readFile(`${fixture.checkpointPath}.sealed.json`)).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally { await rm(fixture.root, { recursive: true, force: true }); }
+  });
+
+  it('rejects true nested-code drift without writing a completion result', async () => {
+    const fixture = await completionFixture();
+    const verifyFinal = vi.fn(async () => fixture.basis);
+    const changedNested = [{ ...fixture.currentNestedSignatures[0], identitySha256: '0'.repeat(64) }, fixture.currentNestedSignatures[1]];
+    try {
+      await expect(completeSignedRuntimeV2Verification({
+        env: fixture.env,
+        expectedAppPath: fixture.appPath,
+        expectedOuterMainContent: fixture.expectedOuterMainContent,
+        inspectNestedSignatures: async () => changedNested
+      })).rejects.toThrow('Nested signed code changed during outer verification');
+      expect(verifyFinal).not.toHaveBeenCalled();
+      await expect(readFile(`${fixture.checkpointPath}.sealed.json`)).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally { await rm(fixture.root, { recursive: true, force: true }); }
   });
 
   it('rejects a different selected packaging candidate before sealing work begins', async () => {
