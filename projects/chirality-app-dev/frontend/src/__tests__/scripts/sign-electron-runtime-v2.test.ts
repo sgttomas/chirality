@@ -1,4 +1,4 @@
-import { chmod, mkdtemp, mkdir, readFile, realpath, rm, writeFile } from 'node:fs/promises';
+import { appendFile, chmod, lstat, mkdtemp, mkdir, open, readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
@@ -94,6 +94,113 @@ describe('signed Runtime v2 assembly', () => {
     } finally {
       await rm(root, { recursive: true, force: true });
     }
+  });
+
+  it('reads a valid nested checkpoint above 64 KiB through the payload resume path', async () => {
+    const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-sign-large-resume-')));
+    const appPath = path.join(root, 'Chirality.app');
+    const resourcesRoot = path.join(appPath, 'Contents', 'Resources');
+    const checkpointPath = path.join(root, 'prepared.json');
+    const nestedSignatures = Array.from({ length: 729 }, (_, index) => ({
+      relativePath: `Contents/Frameworks/F${String(index).padStart(4, '0')}`,
+      type: 'file',
+      identitySha256: '3'.repeat(64),
+      content: { size: index, sha256: '4'.repeat(64) }
+    }));
+    await mkdir(resourcesRoot, { recursive: true });
+    await writeFile(checkpointPath, `${JSON.stringify({
+      schema: 'chirality-signed-runtime-v2-checkpoint/v1', phase: 'nested-signed', appPath, resourcesRoot,
+      identitySha1: 'A'.repeat(40), teamId: 'A1B2C3D4E5', bundleId: 'com.chirality.app',
+      peerRequirement: deriveHostPeerRequirement({ bundleId: 'com.chirality.app', teamId: 'A1B2C3D4E5' }),
+      dependencyDigest: '1'.repeat(64), supplierDigest: '2'.repeat(64), signedSupplierDigest: '3'.repeat(64),
+      nestedSignatures, payloadSnapshotDigest: '4'.repeat(64)
+    }, null, 2)}\n`);
+    try {
+      const checkpointSize = (await lstat(checkpointPath)).size;
+      expect(checkpointSize).toBeGreaterThan(65_536);
+      expect(checkpointSize).toBeLessThanOrEqual(1_048_576);
+      await expect(bindSignedRuntimeV2Payload({ env: {
+        NODE_ENV: 'test' as const,
+        [SIGNING_IDENTITY_SHA1_ENV]: 'A'.repeat(40), [SIGNING_TEAM_ID_ENV]: 'A1B2C3D4E5',
+        [SIGNING_BUNDLE_ID_ENV]: 'com.chirality.app', [SIGNING_CHECKPOINT_FILE_ENV]: checkpointPath
+      } })).rejects.toThrow('Prepared signed payload bytes changed before profile binding');
+      await expect(readFile(path.join(resourcesRoot, 'runtime-payload-manifest.json'))).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally { await rm(root, { recursive: true, force: true }); }
+  });
+
+  it('caps a checkpoint read when the held regular file grows after its initial stat', async () => {
+    const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-sign-growing-read-')));
+    const appPath = path.join(root, 'Chirality.app');
+    const resourcesRoot = path.join(appPath, 'Contents', 'Resources');
+    const checkpointPath = path.join(root, 'prepared.json');
+    await mkdir(resourcesRoot, { recursive: true });
+    await writeFile(checkpointPath, `${JSON.stringify({
+      schema: 'chirality-signed-runtime-v2-checkpoint/v1', phase: 'nested-signed', appPath, resourcesRoot,
+      identitySha1: 'A'.repeat(40), teamId: 'A1B2C3D4E5', bundleId: 'com.chirality.app',
+      peerRequirement: deriveHostPeerRequirement({ bundleId: 'com.chirality.app', teamId: 'A1B2C3D4E5' }),
+      dependencyDigest: '1'.repeat(64), supplierDigest: '2'.repeat(64), signedSupplierDigest: '3'.repeat(64),
+      nestedSignatures: [], payloadSnapshotDigest: '4'.repeat(64)
+    })}\n`);
+    const prototypeHandle = await open(checkpointPath, 'r');
+    const fileHandlePrototype = Object.getPrototypeOf(prototypeHandle);
+    await prototypeHandle.close();
+    const originalRead = fileHandlePrototype.read;
+    let grew = false;
+    const readSpy = vi.spyOn(fileHandlePrototype, 'read').mockImplementation(async function (...args) {
+      if (!grew) {
+        grew = true;
+        await appendFile(checkpointPath, Buffer.alloc(1_048_576));
+      }
+      return Reflect.apply(originalRead, this, args);
+    });
+    try {
+      await expect(bindSignedRuntimeV2Payload({ env: {
+        NODE_ENV: 'test' as const,
+        [SIGNING_IDENTITY_SHA1_ENV]: 'A'.repeat(40), [SIGNING_TEAM_ID_ENV]: 'A1B2C3D4E5',
+        [SIGNING_BUNDLE_ID_ENV]: 'com.chirality.app', [SIGNING_CHECKPOINT_FILE_ENV]: checkpointPath
+      } })).rejects.toThrow('Signing checkpoint is not a bounded regular file');
+      expect(grew).toBe(true);
+      expect(readSpy).toHaveBeenCalledTimes(1);
+      await expect(readFile(path.join(resourcesRoot, 'runtime-payload-manifest.json'))).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally {
+      readSpy.mockRestore();
+      await rm(root, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects an overbound prepared checkpoint before creating its output directory', async () => {
+    const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-sign-overbound-')));
+    const appPath = path.join(root, 'Chirality.app');
+    const resourcesRoot = path.join(appPath, 'Contents', 'Resources');
+    const checkpointPath = path.join(root, 'evidence', 'prepared.json');
+    await mkdir(path.join(resourcesRoot, 'supplier'), { recursive: true });
+    await writeFile(path.join(resourcesRoot, 'supplier', 'codex'), 'signed supplier');
+    await chmod(path.join(resourcesRoot, 'supplier', 'codex'), 0o755);
+    await writeFile(path.join(appPath, 'Contents', 'Info.plist'), '<plist/>');
+    try {
+      await expect(prepareSignedRuntimeV2({
+        app: appPath,
+        identity: 'A'.repeat(40),
+        optionsForFile: (filePath: string) => ({ entitlements: filePath === appPath ? '/main.plist' : '/inherit.plist' })
+      }, {
+        env: {
+          NODE_ENV: 'test' as const,
+          [SIGNING_IDENTITY_SHA1_ENV]: 'A'.repeat(40), [SIGNING_TEAM_ID_ENV]: 'A1B2C3D4E5',
+          [SIGNING_BUNDLE_ID_ENV]: 'com.chirality.app', [SIGNING_CHECKPOINT_FILE_ENV]: checkpointPath,
+          [DEPENDENCY_DIGEST_ENV]: '1'.repeat(64), [SUPPLIER_DIGEST_ENV]: '2'.repeat(64)
+        },
+        sign: async () => undefined,
+        inspectBundleId: async () => 'com.chirality.app',
+        inspectNestedSignatures: async () => Array.from({ length: 10_000 }, (_, index) => ({
+          relativePath: `Contents/Frameworks/F${String(index).padStart(5, '0')}`,
+          type: 'file' as const,
+          identitySha256: '3'.repeat(64),
+          content: { size: index, sha256: '4'.repeat(64) }
+        }))
+      })).rejects.toThrow('Signing checkpoint exceeds the bounded size limit');
+      await expect(lstat(path.dirname(checkpointPath))).rejects.toMatchObject({ code: 'ENOENT' });
+      await expect(readFile(checkpointPath)).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally { await rm(root, { recursive: true, force: true }); }
   });
 
   it('makes the resumed signing pass outer-only and prevents late provisioning or entitlement mutation', () => {

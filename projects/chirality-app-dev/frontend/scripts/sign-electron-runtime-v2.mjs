@@ -40,6 +40,7 @@ const IDENTITY_SHA1 = /^[A-F0-9]{40}$/u;
 const TEAM_ID = /^[A-Z0-9]{10}$/u;
 const BUNDLE_ID = /^com\.chirality\.app$/u;
 const CHECKPOINT_SCHEMA = 'chirality-signed-runtime-v2-checkpoint/v1';
+const CHECKPOINT_MAX_BYTES = 1_048_576;
 const frontendRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const defaultEntitlements = path.join(frontendRoot, 'build', 'entitlements.mac.plist');
 const defaultInheritEntitlements = path.join(frontendRoot, 'build', 'entitlements.mac.inherit.plist');
@@ -81,7 +82,7 @@ async function defaultInspectBundleId(appPath) {
   return stdout.trim();
 }
 
-async function stableJson(filePath, maximum = 65_536) {
+async function stableJson(filePath, maximum = CHECKPOINT_MAX_BYTES) {
   if (!path.isAbsolute(filePath) || path.resolve(filePath) !== filePath || await realpath(filePath).catch(() => undefined) !== filePath) {
     throw new Error('Signing checkpoint is missing, linked, or noncanonical');
   }
@@ -89,17 +90,33 @@ async function stableJson(filePath, maximum = 65_536) {
   try {
     const before = await handle.stat({ bigint: true });
     if (!before.isFile() || before.nlink !== 1n || before.size > BigInt(maximum)) throw new Error('Signing checkpoint is not a bounded regular file');
-    const bytes = await handle.readFile();
+    const bytes = Buffer.allocUnsafe(maximum + 1);
+    let length = 0;
+    while (length < bytes.length) {
+      let bytesRead;
+      try {
+        ({ bytesRead } = await handle.read(bytes, length, bytes.length - length, length));
+      } catch (error) {
+        if (error?.code === 'EINTR') continue;
+        throw error;
+      }
+      if (bytesRead === 0) break;
+      length += bytesRead;
+    }
     const after = await handle.stat({ bigint: true });
+    if (length > maximum) throw new Error('Signing checkpoint is not a bounded regular file');
     if (before.dev !== after.dev || before.ino !== after.ino || before.size !== after.size || before.mtimeNs !== after.mtimeNs || before.ctimeNs !== after.ctimeNs) {
       throw new Error('Signing checkpoint changed while reading');
     }
-    return { value: JSON.parse(bytes.toString('utf8')), sha256: sha256(bytes) };
+    if (BigInt(length) !== before.size || BigInt(length) !== after.size) throw new Error('Signing checkpoint read length does not match its file identity');
+    const contents = bytes.subarray(0, length);
+    return { value: JSON.parse(contents.toString('utf8')), sha256: sha256(contents) };
   } finally { await handle.close(); }
 }
 
 async function writeCheckpoint(filePath, value, { replace = false } = {}) {
   const bytes = Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
+  if (bytes.length > CHECKPOINT_MAX_BYTES) throw new Error('Signing checkpoint exceeds the bounded size limit');
   await mkdir(path.dirname(filePath), { recursive: true, mode: 0o700 });
   if (!replace) {
     await writeFile(filePath, bytes, { flag: 'wx', mode: 0o600 });
