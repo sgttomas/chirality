@@ -34,6 +34,16 @@ async function persistedText(root: string): Promise<string> {
   return values.join("\n");
 }
 
+async function compileControlledNativePolicy(
+  options: Parameters<typeof prepareCodexNativePolicy>[0]
+): ReturnType<typeof prepareCodexNativePolicy> {
+  const descriptor = Object.getOwnPropertyDescriptor(process, "platform");
+  if (!descriptor) throw new Error("Controlled platform descriptor is unavailable");
+  Object.defineProperty(process, "platform", { ...descriptor, value: "darwin" });
+  try { return await prepareCodexNativePolicy(options); }
+  finally { Object.defineProperty(process, "platform", descriptor); }
+}
+
 function engine(projectId: string, model: string, observed: AgentEngineRunInput[]): AgentEnginePort {
   const descriptor = { adapterId: "codex-app-server", providerId: "openai", capabilities: { credentials: false, tools: true, attachments: false, interruption: true, durableResume: true, compaction: false, runtimeControlTools: true } } as const;
   return {
@@ -130,23 +140,31 @@ describe("hosted bootstrap public-to-private composition", () => {
     const supervisor = new SupervisorClient({ socketPath: supervisorSocket, credential: supervisorServer.credential });
     const immutableSystemRoot = await realpath("/usr/bin");
     let delegated: DelegatedRuntime | undefined; let retired = 0; let stagedPolicy: Awaited<ReturnType<typeof prepareCodexNativePolicy>> | undefined;
+    let materializationFailure: unknown;
     const ceremony: TrustedHostedLoginCeremony = { async start() { return { loginId: "login", authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "completed", hasAccount: true }; }, async cancel() {}, async close() {} };
     const bindings = {
       async createCeremony() { return ceremony; },
       async establishAdmission() { return { continuity: identity, authority: { supplierGeneration: "supplier", identityGeneration: "identity", snapshotDigest: "c".repeat(64) }, async retire() { retired++; await delegated?.close(); await controlled.close(); } }; },
       async materializeAdmission(input: { projectId: string; runtime: { nativePlanSink: DelegatedNativePlanSink; attachmentStagingRoot: string } }) {
-        expect((await stat(input.runtime.attachmentStagingRoot)).isDirectory()).toBe(true);
-        stagedPolicy = await prepareCodexNativePolicy({ canonicalRoot: projectRoot, privateDirectory: workerPrivate, codexHome, immutableReadRoots: [immutableSystemRoot], protectedPaths: [brokerRoot], readOnlyProjectPaths: [input.runtime.attachmentStagingRoot] });
-        expect(stagedPolicy.expectedPermissions.filesystem[projectRoot]).toBe("write");
-        expect(stagedPolicy.expectedPermissions.filesystem[input.runtime.attachmentStagingRoot]).toBe("read");
-        const consent = new HostedConsentStore({ canonicalRoot: projectRoot, codexHome: join(runtimeDirectory, "consent-home") });
-        await consent.grant({ identity, posture: "off", approvedBy: "controlled-test", approvedAt: new Date(0).toISOString() });
-        delegated = new DelegatedRuntime({ daemonId: "bootstrap-controlled", projects: new Map([[input.projectId, {
-          identity, compatibility, supervisor, consent, retirement: new WorkerRetirementCoordinator({ directory: join(runtimeDirectory, "retirements") }),
-          nativePlanSink: input.runtime.nativePlanSink, commandNetworkPosture: "off" as const, evidenceClass: "controlled-worker" as const,
-          actual: { adapterId: selection.adapterId, providerId: selection.providerId, model: selection.model }
-        }]]) });
-        return { delegated, selection, compatibility, evidenceClass: "controlled-worker" as const };
+        try {
+          expect((await stat(input.runtime.attachmentStagingRoot)).isDirectory()).toBe(true);
+          const policyInput = { canonicalRoot: projectRoot, privateDirectory: workerPrivate, codexHome, immutableReadRoots: [immutableSystemRoot], protectedPaths: [brokerRoot], readOnlyProjectPaths: [input.runtime.attachmentStagingRoot] };
+          if (process.platform !== "darwin") await expect(prepareCodexNativePolicy(policyInput)).rejects.toThrow("Native policy requires macOS Seatbelt verification");
+          const platformBeforeCompile = process.platform;
+          stagedPolicy = await compileControlledNativePolicy(policyInput);
+          expect(process.platform).toBe(platformBeforeCompile);
+          cleanup.push(() => stagedPolicy?.cleanup() ?? Promise.resolve());
+          expect(stagedPolicy.expectedPermissions.filesystem[projectRoot]).toBe("write");
+          expect(stagedPolicy.expectedPermissions.filesystem[input.runtime.attachmentStagingRoot]).toBe("read");
+          const consent = new HostedConsentStore({ canonicalRoot: projectRoot, codexHome: join(runtimeDirectory, "consent-home") });
+          await consent.grant({ identity, posture: "off", approvedBy: "controlled-test", approvedAt: new Date(0).toISOString() });
+          delegated = new DelegatedRuntime({ daemonId: "bootstrap-controlled", projects: new Map([[input.projectId, {
+            identity, compatibility, supervisor, consent, retirement: new WorkerRetirementCoordinator({ directory: join(runtimeDirectory, "retirements") }),
+            nativePlanSink: input.runtime.nativePlanSink, commandNetworkPosture: "off" as const, evidenceClass: "controlled-worker" as const,
+            actual: { adapterId: selection.adapterId, providerId: selection.providerId, model: selection.model }
+          }]]) });
+          return { delegated, selection, compatibility, evidenceClass: "controlled-worker" as const };
+        } catch (error) { materializationFailure = error; throw error; }
       }
     };
     const qualification = { adapterId: selection.adapterId, providerId: selection.providerId, qualificationId: "controlled-bootstrap-only", evidenceClass: "native-adapter-qualified" as const, admissionSha256: "a".repeat(64) };
@@ -156,7 +174,9 @@ describe("hosted bootstrap public-to-private composition", () => {
     const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
     expect(registered.projectId).toMatch(/^[0-9a-f-]{36}$/);
     await bootstrap.grantHostedProviderNetworkConsent(registered.projectId); await bootstrap.startHostedBootstrapLogin(registered.projectId);
-    expect(await bootstrap.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
+    const admittedStatus = await bootstrap.hostedBootstrapStatus(registered.projectId);
+    if (admittedStatus.admission !== "ready" && materializationFailure !== undefined) throw new Error("Controlled native Plan materialization failed", { cause: materializationFailure });
+    expect(admittedStatus).toMatchObject({ ceremony: "signed-in", admission: "ready" });
     const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtimeDirectory, registered.projectId) });
     const session = await client.createSession(registered.projectId, { projectId: registered.projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", interactionMode: "native-plan" });
     expect(await client.getNativePlanCapability(registered.projectId, session.sessionId)).toMatchObject({ status: "qualified", qualification });
@@ -175,7 +195,6 @@ describe("hosted bootstrap public-to-private composition", () => {
     expect(await client.getNativePlanCapability(registered.projectId, session.sessionId)).toMatchObject({ status: "unavailable" });
     await expect(client.replyNativePlanClarification(registered.projectId, session.sessionId, { requestId: "bootstrap-question", answers: { scope: { answers: ["A"] } } })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
     expect(await client.listNativePlanRevisions(registered.projectId, session.sessionId)).toEqual(beforeRetirement);
-    await stagedPolicy?.cleanup();
   }, 20_000);
 
   it("keeps ceremony coarse and project-isolated, then publishes the exact trusted engine on the same socket", async () => {
