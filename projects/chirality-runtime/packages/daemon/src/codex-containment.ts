@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { constants } from 'node:fs';
 import { mkdtemp, readdir, realpath, rm, stat, lstat, writeFile, open } from 'node:fs/promises';
 import { join, relative, isAbsolute, dirname, resolve } from 'node:path';
+import { userInfo } from 'node:os';
 import { CHIRALITY_ROLE_NAMES } from '@chirality/runtime-contracts';
 import { compareRuntimeUtf8V2, runtimeConformanceInstructionBundleDigest, verifyPackagedRuntimeBasisV2, RUNTIME_STAGE_C_NATIVE_POLICY_IDENTITY_VERSION, RUNTIME_STAGE_C_NATIVE_SKILL_ARGUMENT, runtimeStageCAppServerArguments, runtimeStageCPolicyParameterSchemaDigest, type RuntimeConformanceArtifactInventorySelection } from '@chirality/runtime-core';
 import { digestCodexPolicyInstanceV2, inspectCodexPolicyInstanceV2, type CodexPolicyInstanceV2, type RuntimePackagedPolicyBasisV2 } from './runtime-conformance-v2-admission.js';
@@ -77,6 +78,14 @@ export async function assertTrustedRuntimeReadRoot(binding:TrustedRuntimeReadRoo
  * Provider-enabled network is inherited by subprocesses: Codex config below is not a
  * mechanism-proven subprocess network boundary in that mode. */
 type CodexContainmentVersion2Options = CodexContainmentOptionsV2 & { purpose?: CodexContainmentOptions['purpose'] };
+async function trustedOsUserHome(): Promise<string> {
+  const account = userInfo(), home = account.homedir;
+  if (typeof home !== 'string' || home.length < 2 || home.length > 4096 || /[\x00-\x1f\x7f]/u.test(home) || !isAbsolute(home) || resolve(home) !== home || home === '/' || await realpath(home) !== home
+    || !Number.isSafeInteger(account.uid) || account.uid !== process.getuid?.()) throw new Error('OS user home is unavailable');
+  const metadata = await stat(home);
+  if (!metadata.isDirectory() || metadata.uid !== account.uid) throw new Error('OS user home is unavailable');
+  return home;
+}
 async function prepareCodexContainmentVersion(options: CodexContainmentOptions | CodexContainmentVersion2Options, identityVersion: 1 | 2) {
   if (options.purpose !== undefined && options.purpose !== 'worker' && options.purpose !== 'trusted-login' && options.purpose !== 'trusted-supplier') throw new Error('Unsupported containment purpose');
   if (process.platform !== 'darwin') throw new Error('Codex containment requires macOS sandbox-exec');
@@ -95,6 +104,8 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
     }
   }
   if (contained(privateDirectory, root)) throw new Error('Private directory must not enclose the project');
+  const keyringPurpose = options.purpose === 'trusted-login' || options.purpose === 'trusted-supplier';
+  const home = keyringPurpose && identityVersion === 2 ? await trustedOsUserHome() : privateDirectory;
   const consent = options.providerNetworkConsent;
   if (consent && (!consent.approvedBy.trim() || !consent.approvalReference.trim())) {
     throw new Error('Provider network requires an explicit trusted operator consent record');
@@ -116,7 +127,7 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
     '(version 1)', '(allow default)',
     `(deny file-read-data (require-not (require-any (literal "/") ${readable.map(path => `(subpath ${quote(path)})`).join(' ')} (literal "/dev/null") (literal "/dev/urandom") (literal "/dev/random"))))`,
     `(deny file-write* (require-not (require-any (subpath ${quote(root)}) (subpath ${quote(privateDirectory)}) (literal "/dev/null"))))`,
-    ...((options.purpose === 'trusted-login' || options.purpose === 'trusted-supplier') ? [] : ['(deny mach-lookup (global-name "com.apple.securityd"))']),
+    ...(keyringPurpose ? [] : ['(deny mach-lookup (global-name "com.apple.securityd"))']),
     ...(consent ? [] : ['(deny network*)']),
     '',
   ].join('\n');
@@ -130,16 +141,17 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
     approval_policy: 'never',
     features: { plugins: false, shell_snapshot: false },
     allow_login_shell: false,
-    cli_auth_credentials_store: (options.purpose === 'trusted-login' || options.purpose === 'trusted-supplier') ? 'keyring' : 'file',
+    cli_auth_credentials_store: keyringPurpose ? 'keyring' : 'file',
     check_for_update_on_startup: false,
     web_search: 'disabled',
     analytics: { enabled: false },
     feedback: { enabled: false },
   } as const;
-  const outerPolicyDigest = createHash('sha256').update(JSON.stringify({
+  const outerPolicyIdentity = {
     schema: `chirality-codex-outer-policy/v${identityVersion}`, purpose: options.purpose ?? 'worker', root, privateDirectory, codexHome,
-    trustedReads, profile, config, providerNetworkEnabled: Boolean(consent)
-  })).digest('hex');
+    ...(identityVersion === 2 ? { home } : {}), trustedReads, profile, config, providerNetworkEnabled: Boolean(consent)
+  };
+  const outerPolicyDigest = createHash('sha256').update(JSON.stringify(outerPolicyIdentity)).digest('hex');
   return {
     sandboxProfilePath,
     args: ['-f', sandboxProfilePath],
@@ -158,7 +170,7 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
       return ['-f', sandboxProfilePath, executable];
     },
     environment: {
-      HOME: privateDirectory, CODEX_HOME: codexHome, TMPDIR: sessionDirectory,
+      HOME: home, CODEX_HOME: codexHome, TMPDIR: sessionDirectory,
       PATH: '/usr/bin:/bin:/usr/sbin:/sbin', LANG: 'en_US.UTF-8',
     } satisfies NodeJS.ProcessEnv,
     config,

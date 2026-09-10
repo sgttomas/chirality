@@ -6,19 +6,21 @@ import { PassThrough } from "node:stream";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const state = vi.hoisted(() => ({ methods: [] as string[], invalidReadback: false, invalidInitialize: false, retirementFailure: false, retired: 0, cleaned: 0,
-  spawnedArguments: [] as string[], addonPath: "", proof: undefined as undefined | ((secret: Buffer, value: any) => string), contract: "", supplySha: "" }));
+  spawnedExecutable: "", spawnedArguments: [] as string[], stderrWrite: undefined as Promise<void> | undefined, addonPath: "", proof: undefined as undefined | ((secret: Buffer, value: any) => string), contract: "", supplySha: "" }));
 
 vi.mock("@chirality/native-admission", async importOriginal => {
   const actual = await importOriginal<typeof import("@chirality/native-admission")>();
-  return { ...actual, loadNativeAdmissionBinding: (_required: boolean, addonPath: string) => { state.addonPath = addonPath; return ({ state: "available", value: { spawnGroupedSupplier(_program: string, args: readonly string[], secret: Buffer) {
-    state.spawnedArguments = [...args];
+  return { ...actual, loadNativeAdmissionBinding: (_required: boolean, addonPath: string) => { state.addonPath = addonPath; return ({ state: "available", value: { spawnGroupedSupplier(program: string, args: readonly string[], secret: Buffer) {
+    state.spawnedExecutable = program; state.spawnedArguments = [...args];
+    if (program === "/bin/sh") state.stderrWrite = writeFile(args[3]!, Buffer.alloc(70_000, 0x65));
     const stdin = new PassThrough(), stdout = new PassThrough(); let buffered = "";
     stdin.on("data", chunk => { buffered += String(chunk); for (;;) { const newline = buffered.indexOf("\n"); if (newline < 0) break; const raw = buffered.slice(0, newline); buffered = buffered.slice(newline + 1); const request = JSON.parse(raw); if (request.method) state.methods.push(request.method);
       if (request.method === "initialize") {
         const descriptor = { capability: "chirality.local-admission-authority", contract: state.contract, major: 1, minor: 0 }, v4Descriptor = { capability: "account.identity-snapshot", contract: "chirality-supplier-account-identity/1", major: 1, minor: 0, method: "account/identitySnapshot" };
         const input = { ...request.params.chiralityAdmissionAuthority, exactSupplyDigest: state.supplySha, authoritySecret: secret, descriptor, v4Descriptor };
         const result = { contract: state.contract, runtimeProcessIncarnationId: input.runtimeProcessIncarnationId, supplierGeneration: input.supplierGeneration, supplierChallenge: Buffer.alloc(32, 7).toString("base64url"), descriptor, v4Descriptor, proof: "" };
-        result.proof = state.invalidInitialize ? "invalid" : state.proof!(secret, { ...input, ...result }); stdout.write(`${JSON.stringify({ id: request.id, result: { chiralityAdmissionAuthority: result } })}\n`);
+        const respond = () => { result.proof = state.invalidInitialize ? "invalid" : state.proof!(secret, { ...input, ...result }); stdout.write(`${JSON.stringify({ id: request.id, result: { chiralityAdmissionAuthority: result } })}\n`); };
+        if (state.stderrWrite) void state.stderrWrite.then(respond); else respond();
       } else if (request.method === "config/read") {
         const config = { sandbox_mode: "workspace-write", sandbox_workspace_write: { writable_roots: [stateRoot], network_access: false, exclude_slash_tmp: true, exclude_tmpdir_env_var: true }, approval_policy: "never", features: { plugins: false, shell_snapshot: false }, allow_login_shell: false,
           cli_auth_credentials_store: state.invalidReadback ? "file" : "keyring", check_for_update_on_startup: false, web_search: "disabled", analytics: { enabled: false }, feedback: { enabled: false }, chirality_runtime: { nativeSkills: "disabled" },
@@ -37,7 +39,7 @@ vi.mock("../packages/daemon/src/codex-containment.js", async importOriginal => {
     stateRoot = input.canonicalRoot;
     const config = { sandbox_mode: "workspace-write", sandbox_workspace_write: { writable_roots: [input.canonicalRoot], network_access: false, exclude_slash_tmp: true, exclude_tmpdir_env_var: true }, approval_policy: "never", features: { plugins: false, shell_snapshot: false }, allow_login_shell: false,
       cli_auth_credentials_store: "keyring", check_for_update_on_startup: false, web_search: "disabled", analytics: { enabled: false }, feedback: { enabled: false } };
-    return { config, outerPolicyDigest: "d".repeat(64), providerNetworkEnabled: true, commandNetworkBoundary: "configuration-only", environment: { HOME: input.privateDirectory, CODEX_HOME: input.codexHome, TMPDIR: join(input.privateDirectory, "scratch"), PATH: "/usr/bin:/bin:/usr/sbin:/sbin", LANG: "en_US.UTF-8" },
+    return { config, outerPolicyDigest: "d".repeat(64), providerNetworkEnabled: true, commandNetworkBoundary: "configuration-only", environment: { HOME: "/synthetic/os-user-home", CODEX_HOME: input.codexHome, TMPDIR: join(input.privateDirectory, "scratch"), PATH: "/usr/bin:/bin:/usr/sbin:/sbin", LANG: "en_US.UTF-8" },
       sandboxProfilePath: join(input.privateDirectory, "launch.sb"), async launchArguments(path: string) { return ["-f", join(input.privateDirectory, "launch.sb"), path]; }, async cleanup() { state.cleaned++; } };
   }) };
 });
@@ -48,7 +50,7 @@ vi.mock("../packages/daemon/src/codex-authenticated-transport.js", async importO
 });
 
 import { initializationProof, AUTHORITY_CONTRACT } from "../packages/daemon/src/supplier-authority-controller.js";
-import { accountFreeLoginObservationFailure, observeCodexAccountFreeLoginPurposeV2, type AccountFreeLoginObservationInputV2 } from "../packages/daemon/src/account-free-login-observation.js";
+import { accountFreeLoginObservationFailure, accountFreeLoginStartupDiagnostic, diagnoseCodexAccountFreeLoginStartupV1, observeCodexAccountFreeLoginPurposeV2, type AccountFreeLoginObservationInputV2 } from "../packages/daemon/src/account-free-login-observation.js";
 
 const roots: string[] = [];
 const originalPlatform = Object.getOwnPropertyDescriptor(process, "platform")!;
@@ -57,7 +59,7 @@ beforeEach(() => {
   Object.defineProperty(process, "platform", { ...originalPlatform, value: "darwin" });
   Object.defineProperty(process, "arch", { ...originalArch, value: "arm64" });
 });
-afterEach(async () => { state.methods = []; state.invalidReadback = false; state.invalidInitialize = false; state.retirementFailure = false; state.retired = 0; state.cleaned = 0; state.spawnedArguments = []; state.addonPath = "";
+afterEach(async () => { state.methods = []; state.invalidReadback = false; state.invalidInitialize = false; state.retirementFailure = false; state.retired = 0; state.cleaned = 0; state.spawnedExecutable = ""; state.spawnedArguments = []; state.stderrWrite = undefined; state.addonPath = "";
   Object.defineProperty(process, "platform", originalPlatform); Object.defineProperty(process, "arch", originalArch);
   await Promise.all(roots.splice(0).map(path => rm(path, { recursive: true, force: true }))); });
 
@@ -92,7 +94,49 @@ describe("account-free final-Supplier observation", () => {
     expect(state.spawnedArguments).toContain(join(input.runtimeDirectory, "account-free-observations", input.recipe.runId, "private", "supplier", "codex"));
     const protocol = JSON.parse(await readFile(join(outputDirectory, "bounded-protocol-purpose.json"), "utf8"));
     expect(protocol.facts).toMatchObject({ privateInitialization: true, methods: ["initialize", "initialized", "config/read"], modelExecution: false });
+    const storage = JSON.parse(await readFile(join(outputDirectory, "storage-isolation.json"), "utf8"));
+    expect(storage.facts).toMatchObject({ home: { source: "os-user-record", privateDirectory: false }, keyringNamespace: { codexHomePrivate: true }, tmpPrivate: true });
     expect(JSON.stringify(protocol)).not.toContain("account/identitySnapshot");
+  });
+
+  it("runs the fixed stderr trampoline through initialize only and returns diagnostic metadata without qualified limbs", async () => {
+    const input = await fixture(), result = await diagnoseCodexAccountFreeLoginStartupV1(input);
+    expect(result).toMatchObject({ schema: "chirality-account-free-login-startup-diagnostic/v1", status: "diagnostic-only", outcome: "initialize-resolved", qualification: false,
+      phase: "final-verification", issuedMethods: ["initialize", "initialized"], retirement: { status: "verified" },
+      launchDeviation: { executable: "/bin/sh", stderrCapture: "private-fifo", sandboxExecutable: "/usr/bin/sandbox-exec", compiledArgumentsUnchanged: true },
+      stderr: { status: "captured", retainedBytes: 65_536, totalBytes: 70_000, truncated: true } });
+    expect(state.methods).toEqual(["initialize", "initialized"]); expect(state.spawnedExecutable).toBe("/bin/sh");
+    expect(state.spawnedArguments.slice(0, 5)).toEqual(["-c", "stderr=$1; shift; exec \"$@\" 2>\"$stderr\"", "chirality-account-free-startup", join(input.runtimeDirectory, "account-free-observations", input.recipe.runId, "private", "supplier-stderr.fifo"), "/usr/bin/sandbox-exec"]);
+    expect(state.spawnedArguments.slice(5)).toContain(join(input.runtimeDirectory, "account-free-observations", input.recipe.runId, "private", "supplier", "codex"));
+    expect(Object.hasOwn(result, "limbs")).toBe(false); expect((await stat(result.stderr.status === "captured" ? result.stderr.artifactPath : "")).mode & 0o777).toBe(0o600);
+    expect((await readFile(result.stderr.status === "captured" ? result.stderr.artifactPath : "")).length).toBe(65_536);
+    await expect(stat(join(input.runtimeDirectory, "account-free-observations", input.recipe.runId))).rejects.toMatchObject({ code: "ENOENT" });
+  });
+
+  it("attaches bounded startup metadata and stderr evidence to the original initialize failure", async () => {
+    const input = await fixture(); state.invalidInitialize = true;
+    let failure: unknown; try { await diagnoseCodexAccountFreeLoginStartupV1(input); } catch (error) { failure = error; }
+    expect(failure).toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+    expect(accountFreeLoginStartupDiagnostic(failure)).toMatchObject({ status: "diagnostic-only", outcome: "initialize-failed", phase: "initialize", issuedMethods: ["initialize"],
+      initialize: { issuedAtMs: expect.any(Number), settledAtMs: expect.any(Number) }, leaderObservation: { status: "resolved", leader: { exitCode: 0, signal: null } },
+      cleanupStartedAtMs: expect.any(Number), retirementSettledAtMs: expect.any(Number), retirement: { status: "verified" }, stderr: { status: "captured", retainedBytes: 65_536, totalBytes: 70_000, truncated: true } });
+    expect(state.methods).toEqual(["initialize"]); expect(state.retired).toBe(1); expect(state.cleaned).toBe(1);
+  });
+
+  it("retains initialize-resolved when later diagnostic artifact publication fails", async () => {
+    const input = await fixture(), output = join(input.runtimeDirectory, "account-free-startup-diagnostics", input.recipe.runId);
+    await mkdir(output, { recursive: true, mode: 0o700 });
+    let failure: unknown; try { await diagnoseCodexAccountFreeLoginStartupV1(input); } catch (error) { failure = error; }
+    expect(accountFreeLoginStartupDiagnostic(failure)).toMatchObject({ outcome: "initialize-resolved", phase: "final-verification", issuedMethods: ["initialize", "initialized"], retirement: { status: "verified" }, stderr: { status: "unavailable" } });
+    expect(state.retired).toBe(1); expect(state.cleaned).toBe(1);
+  });
+
+  it("bounds and closes diagnostic capture but retains containment when retirement is unverified", async () => {
+    const input = await fixture(); state.invalidInitialize = true; state.retirementFailure = true;
+    let failure: unknown; try { await diagnoseCodexAccountFreeLoginStartupV1(input); } catch (error) { failure = error; }
+    expect(failure).toBeInstanceOf(AggregateError);
+    expect(accountFreeLoginStartupDiagnostic(failure)).toMatchObject({ outcome: "initialize-failed", retirement: { status: "unavailable" }, stderr: { status: "unavailable" } });
+    expect(state.cleaned).toBe(0); expect((await stat(join(input.runtimeDirectory, "account-free-observations", input.recipe.runId))).isDirectory()).toBe(true);
   });
 
   it("rejects changed effective backend and still retires without publishing passing evidence", async () => {

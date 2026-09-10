@@ -1,8 +1,10 @@
 import { createHash, randomBytes, randomUUID } from "node:crypto";
+import { execFile } from "node:child_process";
 import { constants } from "node:fs";
 import { chmod, copyFile, mkdir, open, readdir, realpath, rm, stat } from "node:fs/promises";
 import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { PassThrough } from "node:stream";
+import { promisify } from "node:util";
 import {
   createCustomSupplyVerifier,
   RUNTIME_STAGE_C_NATIVE_SKILL_ARGUMENT,
@@ -58,6 +60,22 @@ export interface AccountFreeLoginObservationFailureV1 {
   elapsedMs: number;
   retirement: Readonly<{ status: "verified"; groupRetired: true; leader: Readonly<{ exitCode: number | null; signal: number | null }>; signalFailurePhases: readonly string[] } | { status: "unavailable" }>;
 }
+export interface AccountFreeLoginStartupDiagnosticV1 {
+  schema: "chirality-account-free-login-startup-diagnostic/v1";
+  status: "diagnostic-only";
+  outcome: "initialize-resolved" | "initialize-failed";
+  qualification: false;
+  phase: AccountFreeLoginObservationPhaseV1;
+  issuedMethods: readonly ("initialize" | "initialized")[];
+  elapsedMs: number;
+  initialize: Readonly<{ issuedAtMs: number | null; settledAtMs: number | null }>;
+  leaderObservation: Readonly<{ status: "resolved"; elapsedMs: number; leader: Readonly<{ exitCode: number | null; signal: number | null }> } | { status: "unavailable"; elapsedMs: number | null }>;
+  cleanupStartedAtMs: number | null;
+  retirementSettledAtMs: number | null;
+  retirement: AccountFreeLoginObservationFailureV1["retirement"];
+  launchDeviation: Readonly<{ executable: "/bin/sh"; stderrCapture: "private-fifo"; sandboxExecutable: "/usr/bin/sandbox-exec"; compiledArgumentsUnchanged: true }>;
+  stderr: Readonly<{ status: "captured"; artifactPath: string; sha256: Sha256; retainedBytes: number; totalBytes: number; truncated: boolean } | { status: "unavailable" }>;
+}
 
 export function accountFreeLoginObservationFailure(error: unknown): Readonly<AccountFreeLoginObservationFailureV1> | undefined {
   const value = error && typeof error === "object" ? (error as { accountFreeObservationFailure?: unknown }).accountFreeObservationFailure : undefined;
@@ -81,6 +99,47 @@ export function accountFreeLoginObservationFailure(error: unknown): Readonly<Acc
   return Object.freeze({ schema: value.schema, status: value.status, phase: value.phase as AccountFreeLoginObservationPhaseV1,
     issuedMethods: Object.freeze([...value.issuedMethods]) as AccountFreeLoginObservationFailureV1["issuedMethods"], elapsedMs: Number(value.elapsedMs), retirement: Object.freeze({ status: "verified", groupRetired: true,
       leader: Object.freeze({ exitCode: retirement.leader.exitCode as number | null, signal: retirement.leader.signal as number | null }), signalFailurePhases: Object.freeze([...retirement.signalFailurePhases]) }) });
+}
+
+const boundedMs = (value: unknown): value is number => Number.isSafeInteger(value) && Number(value) >= 0 && Number(value) <= 86_400_000;
+const validLeader = (value: unknown): value is Readonly<{ exitCode: number | null; signal: number | null }> => exactKeys(value, ["exitCode", "signal"])
+  && (value.exitCode === null || (Number.isSafeInteger(value.exitCode) && Number(value.exitCode) >= 0 && Number(value.exitCode) <= 255))
+  && (value.signal === null || (Number.isSafeInteger(value.signal) && Number(value.signal) >= 1 && Number(value.signal) <= 127))
+  && (value.exitCode === null) !== (value.signal === null);
+const safePath = (value: unknown): value is string => typeof value === "string" && value.length <= 4096 && isAbsolute(value) && resolve(value) === value && !/[\x00-\x1f\x7f]/u.test(value);
+
+/** Reconstructs only bounded diagnostic metadata; raw Supplier stderr is never returned. */
+export function accountFreeLoginStartupDiagnostic(error: unknown): Readonly<AccountFreeLoginStartupDiagnosticV1> | undefined {
+  const value = error && typeof error === "object" ? (error as { accountFreeStartupDiagnostic?: unknown }).accountFreeStartupDiagnostic : undefined;
+  const phases: readonly AccountFreeLoginObservationPhaseV1[] = ["supply-verification", "prelaunch-verification", "containment", "native-load", "supplier-spawn", "initialize", "retirement", "final-verification"];
+  if (!exactKeys(value, ["schema", "status", "outcome", "qualification", "phase", "issuedMethods", "elapsedMs", "initialize", "leaderObservation", "cleanupStartedAtMs", "retirementSettledAtMs", "retirement", "launchDeviation", "stderr"])
+    || value.schema !== "chirality-account-free-login-startup-diagnostic/v1" || value.status !== "diagnostic-only" || (value.outcome !== "initialize-resolved" && value.outcome !== "initialize-failed") || value.qualification !== false
+    || !phases.includes(value.phase as AccountFreeLoginObservationPhaseV1) || !Array.isArray(value.issuedMethods) || value.issuedMethods.length > 2
+    || !value.issuedMethods.every(method => typeof method === "string" && (method === "initialize" || method === "initialized")) || !boundedMs(value.elapsedMs)
+    || !exactKeys(value.initialize, ["issuedAtMs", "settledAtMs"]) || (value.initialize.issuedAtMs !== null && !boundedMs(value.initialize.issuedAtMs)) || (value.initialize.settledAtMs !== null && !boundedMs(value.initialize.settledAtMs))
+    || (value.cleanupStartedAtMs !== null && !boundedMs(value.cleanupStartedAtMs)) || (value.retirementSettledAtMs !== null && !boundedMs(value.retirementSettledAtMs)) || !record(value.leaderObservation) || !record(value.retirement)
+    || !exactKeys(value.launchDeviation, ["executable", "stderrCapture", "sandboxExecutable", "compiledArgumentsUnchanged"]) || value.launchDeviation.executable !== "/bin/sh" || value.launchDeviation.stderrCapture !== "private-fifo"
+    || value.launchDeviation.sandboxExecutable !== "/usr/bin/sandbox-exec" || value.launchDeviation.compiledArgumentsUnchanged !== true || !record(value.stderr)) return undefined;
+  const leaderObservation = value.leaderObservation.status === "resolved" && exactKeys(value.leaderObservation, ["status", "elapsedMs", "leader"]) && boundedMs(value.leaderObservation.elapsedMs) && validLeader(value.leaderObservation.leader)
+    ? Object.freeze({ status: "resolved" as const, elapsedMs: value.leaderObservation.elapsedMs, leader: Object.freeze({ ...value.leaderObservation.leader }) })
+    : value.leaderObservation.status === "unavailable" && exactKeys(value.leaderObservation, ["status", "elapsedMs"]) && (value.leaderObservation.elapsedMs === null || boundedMs(value.leaderObservation.elapsedMs))
+      ? Object.freeze({ status: "unavailable" as const, elapsedMs: value.leaderObservation.elapsedMs as number | null }) : undefined;
+  const retirement = value.retirement.status === "unavailable" && exactKeys(value.retirement, ["status"])
+    ? Object.freeze({ status: "unavailable" as const })
+    : value.retirement.status === "verified" && exactKeys(value.retirement, ["status", "groupRetired", "leader", "signalFailurePhases"]) && value.retirement.groupRetired === true && validLeader(value.retirement.leader)
+      && Array.isArray(value.retirement.signalFailurePhases) && value.retirement.signalFailurePhases.length <= 2 && value.retirement.signalFailurePhases.every(item => item === "term" || item === "kill")
+      ? Object.freeze({ status: "verified" as const, groupRetired: true as const, leader: Object.freeze({ ...value.retirement.leader }), signalFailurePhases: Object.freeze([...value.retirement.signalFailurePhases]) }) : undefined;
+  const stderr = value.stderr.status === "unavailable" && exactKeys(value.stderr, ["status"])
+    ? Object.freeze({ status: "unavailable" as const })
+    : value.stderr.status === "captured" && exactKeys(value.stderr, ["status", "artifactPath", "sha256", "retainedBytes", "totalBytes", "truncated"]) && safePath(value.stderr.artifactPath) && hex(value.stderr.sha256)
+      && Number.isSafeInteger(value.stderr.retainedBytes) && Number(value.stderr.retainedBytes) >= 0 && Number(value.stderr.retainedBytes) <= 65_536
+      && Number.isSafeInteger(value.stderr.totalBytes) && Number(value.stderr.totalBytes) >= Number(value.stderr.retainedBytes) && value.stderr.truncated === (Number(value.stderr.totalBytes) > Number(value.stderr.retainedBytes))
+      ? Object.freeze({ status: "captured" as const, artifactPath: value.stderr.artifactPath, sha256: value.stderr.sha256, retainedBytes: Number(value.stderr.retainedBytes), totalBytes: Number(value.stderr.totalBytes), truncated: value.stderr.truncated }) : undefined;
+  if (!leaderObservation || !retirement || !stderr) return undefined;
+  return Object.freeze({ schema: value.schema, status: value.status, outcome: value.outcome as AccountFreeLoginStartupDiagnosticV1["outcome"], qualification: false, phase: value.phase as AccountFreeLoginObservationPhaseV1,
+    issuedMethods: Object.freeze([...value.issuedMethods]) as AccountFreeLoginStartupDiagnosticV1["issuedMethods"], elapsedMs: value.elapsedMs as number,
+    initialize: Object.freeze({ issuedAtMs: value.initialize.issuedAtMs as number | null, settledAtMs: value.initialize.settledAtMs as number | null }), leaderObservation,
+    cleanupStartedAtMs: value.cleanupStartedAtMs as number | null, retirementSettledAtMs: value.retirementSettledAtMs as number | null, retirement, launchDeviation: Object.freeze({ executable: "/bin/sh", stderrCapture: "private-fifo", sandboxExecutable: "/usr/bin/sandbox-exec", compiledArgumentsUnchanged: true }), stderr });
 }
 
 const unavailable = (reason: string, cause?: unknown) => {
@@ -159,7 +218,58 @@ async function stageSupplierClosure(sourceExecutablePath: string, privateDirecto
   } catch (error) { await rm(root, { recursive: true, force: true }); throw error; }
 }
 
-export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLoginObservationInputV2): Promise<Readonly<AccountFreeLoginObservationResultV1>> {
+const execFileAsync = promisify(execFile);
+interface DiagnosticStderrCapture {
+  readonly fifoPath: string;
+  stop(): Promise<Readonly<{ bytes: Buffer; totalBytes: number }>>;
+}
+async function startDiagnosticStderrCapture(privateDirectory: string): Promise<DiagnosticStderrCapture> {
+  const fifoPath = join(privateDirectory, "supplier-stderr.fifo");
+  await execFileAsync("/usr/bin/mkfifo", ["-m", "600", fifoPath], { shell: false, timeout: 10_000, maxBuffer: 1024 });
+  const handle = await open(fifoPath, constants.O_RDWR | constants.O_NONBLOCK | constants.O_NOFOLLOW);
+  try {
+    const info = await handle.stat();
+    if (!info.isFIFO() || info.uid !== (process.getuid?.() ?? -1) || (info.mode & 0o777) !== 0o600 || info.nlink !== 1) throw unavailable("OBSERVATION_STDERR_FIFO_INVALID");
+  } catch (error) { await handle.close(); throw error; }
+  let stopping = false, totalBytes = 0;
+  const retained: Buffer[] = [];
+  let retainedBytes = 0;
+  const pause = () => new Promise<void>(resolvePause => { setTimeout(resolvePause, 5); });
+  const drain = (async () => {
+    const buffer = Buffer.alloc(8192); let finalReads = 0;
+    for (;;) {
+      try {
+        const read = await handle.read(buffer, 0, buffer.length, null);
+        if (read.bytesRead) {
+          totalBytes = Math.min(Number.MAX_SAFE_INTEGER, totalBytes + read.bytesRead);
+          const keep = Math.min(read.bytesRead, 65_536 - retainedBytes);
+          if (keep > 0) { retained.push(Buffer.from(buffer.subarray(0, keep))); retainedBytes += keep; }
+          if (stopping && ++finalReads >= 16) break;
+          continue;
+        }
+      } catch (error) { if ((error as NodeJS.ErrnoException).code !== "EAGAIN") throw error; }
+      if (stopping) break;
+      await pause();
+    }
+    return Object.freeze({ bytes: Buffer.concat(retained, retainedBytes), totalBytes });
+  })();
+  void drain.catch(() => {});
+  return Object.freeze({ fifoPath, async stop() { stopping = true; try { return await drain; } finally { await handle.close(); } } });
+}
+
+async function persistDiagnosticStderr(runtimeDirectory: string, runId: string, capture: Readonly<{ bytes: Buffer; totalBytes: number }>): Promise<AccountFreeLoginStartupDiagnosticV1["stderr"]> {
+  const root = join(runtimeDirectory, "account-free-startup-diagnostics"), output = join(root, runId);
+  try { await mkdir(root, { mode: 0o700 }); } catch (error) { if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error; }
+  const rootInfo = await stat(root); if (await realpath(root) !== root || !rootInfo.isDirectory() || rootInfo.uid !== (process.getuid?.() ?? -1) || (rootInfo.mode & 0o077) !== 0) throw unavailable("OBSERVATION_DIAGNOSTIC_OUTPUT_INVALID");
+  await mkdir(output, { mode: 0o700 });
+  const artifactPath = join(output, "supplier-stderr.bin"), file = await open(artifactPath, constants.O_CREAT | constants.O_EXCL | constants.O_WRONLY, 0o600);
+  try { await file.writeFile(capture.bytes); await file.sync(); } finally { await file.close(); }
+  const directory = await open(output, constants.O_RDONLY); try { await directory.sync(); } finally { await directory.close(); }
+  const parent = await open(root, constants.O_RDONLY); try { await parent.sync(); } finally { await parent.close(); }
+  return Object.freeze({ status: "captured", artifactPath, sha256: digest(capture.bytes), retainedBytes: capture.bytes.length, totalBytes: capture.totalBytes, truncated: capture.totalBytes > capture.bytes.length });
+}
+
+async function runCodexAccountFreeLoginPurposeV2(input: AccountFreeLoginObservationInputV2, mode: "observe" | "diagnostic"): Promise<Readonly<AccountFreeLoginObservationResultV1 | AccountFreeLoginStartupDiagnosticV1>> {
   const recipe = input?.recipe;
   if (!exactKeys(input, ["runtimeDirectory", "resourcesPath", "evidencePaths", "recipe"])
     || !exactKeys(input.evidencePaths, ["signatureEvidenceSha256", "sourceCorrespondenceEvidenceSha256", "xpcRecordSha256", "groupedRecordSha256"])
@@ -200,6 +310,9 @@ export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLo
   let containment: Awaited<ReturnType<typeof prepareCodexContainmentV2>> | undefined;
   let child: NativeGroupedSupplierChild | undefined;
   let actor: CodexTurnSession | undefined, retired: Awaited<ReturnType<typeof retireAuthenticatedSupplierGroup>> | undefined;
+  let stderrCapture: DiagnosticStderrCapture | undefined, stderrStopped = false;
+  let leaderObservation: Promise<Readonly<{ status: "resolved"; elapsedMs: number; leader: Readonly<{ exitCode: number | null; signal: number | null }> } | { status: "unavailable"; elapsedMs: number | null }>> | undefined;
+  let initializeIssuedAtMs: number | null = null, initializeSettledAtMs: number | null = null, initializeResolved = false, cleanupStartedAtMs: number | null = null, retirementSettledAtMs: number | null = null;
   let published = false, failureFinalized = false;
   let phase: AccountFreeLoginObservationPhaseV1 = "supply-verification";
   const startedAt = Date.now();
@@ -222,16 +335,44 @@ export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLo
     phase = "native-load";
     const native = loadNativeAdmissionBinding(true, nativeAddonPath); if (native.state !== "available") throw unavailable("OBSERVATION_NATIVE_UNAVAILABLE");
     phase = "supplier-spawn";
-    const spawned = native.value.spawnGroupedSupplier("/usr/bin/sandbox-exec", [...launch, ...appServerArguments], secret, { cwd: canonicalRoot, environment: containment.environment, processGroup: true });
+    if (mode === "diagnostic") stderrCapture = await startDiagnosticStderrCapture(privateDirectory);
+    const sandboxArguments = [...launch, ...appServerArguments];
+    const spawned = mode === "diagnostic"
+      ? native.value.spawnGroupedSupplier("/bin/sh", ["-c", "stderr=$1; shift; exec \"$@\" 2>\"$stderr\"", "chirality-account-free-startup", stderrCapture!.fifoPath, "/usr/bin/sandbox-exec", ...sandboxArguments], secret, { cwd: canonicalRoot, environment: containment.environment, processGroup: true })
+      : native.value.spawnGroupedSupplier("/usr/bin/sandbox-exec", sandboxArguments, secret, { cwd: canonicalRoot, environment: containment.environment, processGroup: true });
     if (spawned.state !== "available") throw unavailable("OBSERVATION_SPAWN_UNAVAILABLE"); child = spawned.value;
+    if (mode === "diagnostic") leaderObservation = child.observeLeader().then(leader => Object.freeze({ status: "resolved" as const, elapsedMs: Math.max(0, Math.min(86_400_000, Date.now() - startedAt)), leader: Object.freeze({ ...leader }) }), () => Object.freeze({ status: "unavailable" as const, elapsedMs: Math.max(0, Math.min(86_400_000, Date.now() - startedAt)) }));
     capture.on("data", chunk => { pending += String(chunk); for (;;) { const newline = pending.indexOf("\n"); if (newline < 0) break; const line = pending.slice(0, newline); pending = pending.slice(newline + 1); const message = JSON.parse(line) as { method?: unknown }; if (typeof message.method === "string") methods.push(message.method); } });
     capture.pipe(child.stdin);
-    const close = async () => { if (!retired) retired = await retireAuthenticatedSupplierGroup(child!); };
+    const close = async () => {
+      if (mode === "diagnostic") cleanupStartedAtMs ??= Math.max(0, Math.min(86_400_000, Date.now() - startedAt));
+      try { if (!retired) retired = await retireAuthenticatedSupplierGroup(child!); }
+      finally { if (mode === "diagnostic") retirementSettledAtMs ??= Math.max(0, Math.min(86_400_000, Date.now() - startedAt)); }
+    };
     actor = new CodexTurnSession({ purpose: "login", nativeSkills: "disabled", transport: { stdin: capture, stdout: child.stdout, close } });
     const authority: CodexAuthorityInitialize = { runtimeProcessIncarnationId: randomUUID(), supplierGeneration: randomUUID(), runtimeChallenge: randomBytes(32).toString("base64url"), exactSupplyDigest: supply.sha256, authoritySecret: secret,
       descriptor: { capability: "chirality.local-admission-authority", contract: AUTHORITY_CONTRACT, major: 1, minor: 0 }, v4Descriptor: { capability: "account.identity-snapshot", contract: "chirality-supplier-account-identity/1", major: 1, minor: 0, method: "account/identitySnapshot" } };
     phase = "initialize";
-    await actor.initializeAuthority(authority); secret.fill(0);
+    if (mode === "diagnostic") initializeIssuedAtMs = Math.max(0, Math.min(86_400_000, Date.now() - startedAt));
+    try { await actor.initializeAuthority(authority); initializeResolved = true; initializeSettledAtMs = Math.max(0, Math.min(86_400_000, Date.now() - startedAt)); }
+    catch (error) { initializeSettledAtMs = Math.max(0, Math.min(86_400_000, Date.now() - startedAt)); throw error; }
+    secret.fill(0);
+    if (mode === "diagnostic") {
+      phase = "retirement"; cleanupStartedAtMs = Math.max(0, Math.min(86_400_000, Date.now() - startedAt));
+      await actor.close(); actor = undefined;
+      retirementSettledAtMs ??= Math.max(0, Math.min(86_400_000, Date.now() - startedAt));
+      if (!retired?.groupRetired) throw unavailable("OBSERVATION_RETIREMENT_INVALID");
+      phase = "final-verification";
+      await supplyVerifier.revalidate(sourceSupply); await supplyVerifier.revalidate(supply); await stableFile(nativeAddonPath, recipe.nativeAddon);
+      const captured = await stderrCapture!.stop(); stderrStopped = true;
+      const stderr = await persistDiagnosticStderr(input.runtimeDirectory, recipe.runId, captured);
+      const leader = await leaderObservation!;
+      return Object.freeze({ schema: "chirality-account-free-login-startup-diagnostic/v1", status: "diagnostic-only", outcome: "initialize-resolved", qualification: false, phase,
+        issuedMethods: Object.freeze(methods.filter((value): value is "initialize" | "initialized" => value === "initialize" || value === "initialized")), elapsedMs: Math.max(0, Math.min(86_400_000, Date.now() - startedAt)),
+        initialize: Object.freeze({ issuedAtMs: initializeIssuedAtMs, settledAtMs: initializeSettledAtMs }), leaderObservation: leader, cleanupStartedAtMs, retirementSettledAtMs,
+        retirement: Object.freeze({ status: "verified", groupRetired: true, leader: Object.freeze({ ...retired.leader }), signalFailurePhases: Object.freeze(retired.signalFailures.map(value => value.phase)) }),
+        launchDeviation: Object.freeze({ executable: "/bin/sh", stderrCapture: "private-fifo", sandboxExecutable: "/usr/bin/sandbox-exec", compiledArgumentsUnchanged: true }), stderr });
+    }
     phase = "config-read";
     const readback = await actor.observeAccountFreeLoginConfiguration(canonicalRoot, containment.config);
     phase = "protocol-validation";
@@ -254,7 +395,8 @@ export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLo
     const observationSha256 = digest(bytes(common)), facts: Record<Limb, unknown> = {
       "exact-supplier": common.supply, "keyring-backend": { credentialStore: readback.credentialStore, compilerConfigDigest: readback.compilerConfigDigest, observedConfigProjectionDigest: readback.observedConfigProjectionDigest },
       "plaintext-fallback-absent": { plaintextFallback: false, storageBefore, storageAfter }, "process-containment": { nativeAddon: common.nativeAddon, compiler: common.compiler },
-      "storage-isolation": { storageBefore, storageAfter, home: containment.environment.HOME === privateDirectory, codexHome: containment.environment.CODEX_HOME === codexHome, tmpPrivate: contained(privateDirectory, containment.environment.TMPDIR) },
+      "storage-isolation": { storageBefore, storageAfter, home: { source: "os-user-record", privateDirectory: containment.environment.HOME === privateDirectory },
+        keyringNamespace: { codexHomePrivate: containment.environment.CODEX_HOME === codexHome }, tmpPrivate: contained(privateDirectory, containment.environment.TMPDIR) },
       "provider-network": { consentDigest: digest(bytes(recipe.providerNetworkConsent)), providerNetworkEnabled: containment.providerNetworkEnabled, commandNetworkBoundary: containment.commandNetworkBoundary, networkTriggeringRpcUsed: false },
       "bounded-protocol-purpose": { privateInitialization: true, methods, laterPurposeMethods: ["account/login/start", "account/login/cancel", "account/read", "model/list"], modelExecution: false },
       "retirement": common.retirement
@@ -267,7 +409,16 @@ export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLo
     return Object.freeze({ schema: "chirality-account-free-login-observation-result/v1", observationSha256, outputDirectory, limbs: Object.freeze(limbs) });
   } catch (error) {
     const cleanupFailures: unknown[] = [];
+    if (mode === "diagnostic" && child) cleanupStartedAtMs ??= Math.max(0, Math.min(86_400_000, Date.now() - startedAt));
     try { if (actor) await actor.close(); else if (child && !retired) retired = await retireAuthenticatedSupplierGroup(child); } catch (cleanup) { cleanupFailures.push(cleanup); }
+    finally { if (child) retirementSettledAtMs ??= Math.max(0, Math.min(86_400_000, Date.now() - startedAt)); }
+    let diagnosticStderr: AccountFreeLoginStartupDiagnosticV1["stderr"] = Object.freeze({ status: "unavailable" });
+    if (mode === "diagnostic" && stderrCapture && !stderrStopped) {
+      try {
+        const captured = await stderrCapture.stop(); stderrStopped = true;
+        if (retired?.groupRetired) diagnosticStderr = await persistDiagnosticStderr(input.runtimeDirectory, recipe.runId, captured);
+      } catch (cleanup) { cleanupFailures.push(cleanup); }
+    }
     if (!child || retired) {
       try { await containment?.cleanup(); containment = undefined; } catch (cleanup) { cleanupFailures.push(cleanup); }
       try { if (staged) await rm(staged.root, { recursive: true, force: true }); staged = undefined; } catch (cleanup) { cleanupFailures.push(cleanup); }
@@ -280,7 +431,27 @@ export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLo
     const failure = cleanupFailures.length ? new AggregateError([error, ...cleanupFailures], "Account-free observation and cleanup failed")
       : error && typeof error === "object" ? error : new Error("Account-free observation failed", { cause: error });
     Object.defineProperty(failure, "accountFreeObservationFailure", { value: projection, enumerable: false });
+    if (mode === "diagnostic") {
+      const leader = retired?.groupRetired && leaderObservation ? await leaderObservation : Object.freeze({ status: "unavailable" as const, elapsedMs: null });
+      const diagnostic = Object.freeze({ schema: "chirality-account-free-login-startup-diagnostic/v1" as const, status: "diagnostic-only" as const, outcome: initializeResolved ? "initialize-resolved" as const : "initialize-failed" as const, qualification: false as const, phase,
+        issuedMethods: Object.freeze(methods.filter((value): value is "initialize" | "initialized" => value === "initialize" || value === "initialized")), elapsedMs: Math.max(0, Math.min(86_400_000, Date.now() - startedAt)),
+        initialize: Object.freeze({ issuedAtMs: initializeIssuedAtMs, settledAtMs: initializeSettledAtMs }), leaderObservation: leader, cleanupStartedAtMs, retirementSettledAtMs, retirement,
+        launchDeviation: Object.freeze({ executable: "/bin/sh" as const, stderrCapture: "private-fifo" as const, sandboxExecutable: "/usr/bin/sandbox-exec" as const, compiledArgumentsUnchanged: true as const }), stderr: diagnosticStderr });
+      Object.defineProperty(failure, "accountFreeStartupDiagnostic", { value: diagnostic, enumerable: false });
+    }
     failureFinalized = true;
     throw failure;
-  } finally { secret.fill(0); if (!failureFinalized && (!child || retired)) { await containment?.cleanup(); if (staged) await rm(staged.root, { recursive: true, force: true }); if (!published) await rm(runRoot, { recursive: true, force: true }); } }
+  } finally {
+    secret.fill(0);
+    if (!stderrStopped && stderrCapture && (!child || retired)) { await stderrCapture.stop(); stderrStopped = true; }
+    if (!failureFinalized && (!child || retired)) { await containment?.cleanup(); if (staged) await rm(staged.root, { recursive: true, force: true }); if (!published) await rm(runRoot, { recursive: true, force: true }); }
+  }
+}
+
+export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLoginObservationInputV2): Promise<Readonly<AccountFreeLoginObservationResultV1>> {
+  return await runCodexAccountFreeLoginPurposeV2(input, "observe") as Readonly<AccountFreeLoginObservationResultV1>;
+}
+
+export async function diagnoseCodexAccountFreeLoginStartupV1(input: AccountFreeLoginObservationInputV2): Promise<Readonly<AccountFreeLoginStartupDiagnosticV1>> {
+  return await runCodexAccountFreeLoginPurposeV2(input, "diagnostic") as Readonly<AccountFreeLoginStartupDiagnosticV1>;
 }
