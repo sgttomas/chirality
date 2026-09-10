@@ -3,6 +3,7 @@ import { appendFile, chmod, lstat, mkdtemp, mkdir, open, readFile, realpath, rm,
 import os from 'node:os';
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
+import { signAsync, walkAsync } from '@electron/osx-sign';
 import type { RuntimeArtifactEntryV2, RuntimePayloadManifestV2, VerifiedPackagedRuntimeBasisV2 } from '@chirality/runtime-core/runtime-conformance-v2';
 
 import {
@@ -368,14 +369,70 @@ describe('signed Runtime v2 assembly', () => {
     });
     expect(options.preEmbedProvisioningProfile).toBe(false);
     expect(options.preAutoEntitlements).toBe(false);
-    expect(options.ignore[0]('/stage/Chirality.app/Contents/MacOS/Chirality')).toBe(true);
-    expect(options.ignore[0](appPath)).toBe(false);
+    expect(options.ignore('/stage/Chirality.app/Contents/MacOS/Chirality')).toBe(true);
+    expect(options.ignore(appPath)).toBe(false);
     expect(options.optionsForFile(appPath)).toMatchObject({
       entitlements: '/main.plist',
       hardenedRuntime: true,
       requirements: '=designated => requirement',
       timestamp: true
     });
+  });
+
+  it('preserves the scalar outer-only filter through the installed signer option normalization', async () => {
+    const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-sign-outer-filter-')));
+    const appPath = path.join(root, 'Chirality.app');
+    const mainPath = path.join(appPath, 'Contents', 'MacOS', 'Chirality');
+    const binRoot = path.join(root, 'bin');
+    const logPath = path.join(root, 'codesign.jsonl');
+    const previousPath = process.env.PATH;
+    const previousLog = process.env.CHIRALITY_TEST_CODESIGN_LOG;
+    await mkdir(path.dirname(mainPath), { recursive: true });
+    await mkdir(binRoot);
+    const mainBytes = Buffer.alloc(64);
+    mainBytes.writeUInt32LE(0xfeedfacf, 0);
+    await writeFile(mainPath, mainBytes);
+    await chmod(mainPath, 0o755);
+    await writeFile(path.join(appPath, 'Contents', 'Info.plist'), [
+      '<?xml version="1.0" encoding="UTF-8"?>',
+      '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">',
+      '<plist version="1.0"><dict><key>CFBundleExecutable</key><string>Chirality</string><key>CFBundleIdentifier</key><string>com.chirality.app</string></dict></plist>'
+    ].join('\n'));
+    const fakeCodesign = path.join(binRoot, 'codesign');
+    await writeFile(fakeCodesign, [
+      '#!/bin/sh',
+      `printf '%s\\n' "$*" >> "${logPath}"`,
+      'exit 0'
+    ].join('\n'));
+    await chmod(fakeCodesign, 0o755);
+    process.env.PATH = `${binRoot}:/usr/bin:/bin`;
+    process.env.CHIRALITY_TEST_CODESIGN_LOG = logPath;
+    try {
+      expect(await walkAsync(path.join(appPath, 'Contents'))).toContain(mainPath);
+      const options = createRuntimeV2SignOptions({
+        app: appPath,
+        platform: 'darwin',
+        type: 'distribution',
+        identity: 'A'.repeat(40),
+        identityValidation: false
+      }, {
+        appPath,
+        peerRequirement: deriveHostPeerRequirement({ bundleId: 'com.chirality.app', teamId: 'A1B2C3D4E5' }),
+        outerOnly: true,
+        entitlements: '/main.plist',
+        inheritEntitlements: '/inherit.plist'
+      });
+      await signAsync(options);
+      const calls = (await readFile(logPath, 'utf8')).trim().split('\n');
+      const signingCalls = calls.filter((call) => call.includes('--sign'));
+      expect(signingCalls).toHaveLength(1);
+      expect(signingCalls[0]).toContain(appPath);
+      expect(signingCalls[0]).not.toContain(mainPath);
+    } finally {
+      if (previousPath === undefined) delete process.env.PATH; else process.env.PATH = previousPath;
+      if (previousLog === undefined) delete process.env.CHIRALITY_TEST_CODESIGN_LOG; else process.env.CHIRALITY_TEST_CODESIGN_LOG = previousLog;
+      await rm(root, { recursive: true, force: true });
+    }
   });
 
   it('rejects a checkpoint that combines an app with a different Resources tree before any payload write', async () => {

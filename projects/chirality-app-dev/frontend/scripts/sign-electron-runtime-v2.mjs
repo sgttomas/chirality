@@ -195,7 +195,7 @@ export function createRuntimeV2SignOptions(options, { appPath, peerRequirement, 
   return {
     ...options,
     preAutoEntitlements: false,
-    ...(outerOnly ? { ignore: [(filePath) => filePath !== appPath], preEmbedProvisioningProfile: false, preAutoEntitlements: false } : {}),
+    ...(outerOnly ? { ignore: (filePath) => filePath !== appPath, preEmbedProvisioningProfile: false, preAutoEntitlements: false } : {}),
     optionsForFile(filePath) {
       const inherited = original?.(filePath) ?? {};
       const applicationBundle = filePath === appPath || filePath.endsWith('.app');
