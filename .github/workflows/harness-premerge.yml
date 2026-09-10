@@ -75,8 +75,10 @@ jobs:
           RUNTIME_USER_DATA="${RUNNER_TEMP}/chirality-runtime-user-data"
           echo "HARNESS_PROJECT_ROOT=${RUNNER_TEMP}/chirality-harness-workroot" >> "${GITHUB_ENV}"
           echo "CHIRALITY_RUNTIME_USER_DATA=${RUNTIME_USER_DATA}" >> "${GITHUB_ENV}"
+          echo "CHIRALITY_RUNTIME_DIRECTORY=${RUNTIME_USER_DATA}/runtime" >> "${GITHUB_ENV}"
           echo "CHIRALITY_RUNTIME_SOCKET_PATH=${RUNTIME_USER_DATA}/runtime/control.sock" >> "${GITHUB_ENV}"
           echo "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE=${RUNTIME_USER_DATA}/runtime/auth/tokens/operator.token" >> "${GITHUB_ENV}"
+          echo "CHIRALITY_INSTRUCTION_ROOT=${GITHUB_WORKSPACE}" >> "${GITHUB_ENV}"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -109,10 +111,6 @@ jobs:
       # evidence-bearing gate; its summary is asserted in Verify stable
       # summaries.
 
-      - name: Pi supply-chain policy
-        run: npm run pi:supply-chain
-        working-directory: projects/chirality-app-dev/frontend
-
       - name: Secret scan
         run: npm run proof:secret-scan
         working-directory: projects/chirality-app-dev/frontend
@@ -124,26 +122,12 @@ jobs:
           REPO_ROOT="${GITHUB_WORKSPACE}"
           FRONTEND="${REPO_ROOT}/projects/chirality-app-dev/frontend"
           BUNDLE_ROOT="${RUNNER_TEMP}/chirality-instruction-root-fixture"
-          SDK_PLATFORM="claude-agent-sdk-linux-$(node -p 'process.arch')"
 
           rm -rf "${BUNDLE_ROOT}"
           node "${FRONTEND}/scripts/prepare-packaged-instruction-root.mjs" \
             --source-root "${REPO_ROOT}" \
             --docs-root "${REPO_ROOT}/docs" \
             --output-root "${BUNDLE_ROOT}/instruction-root"
-
-          mkdir -p \
-            "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk" \
-            "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/${SDK_PLATFORM}"
-          cp \
-            "${FRONTEND}/node_modules/@anthropic-ai/claude-agent-sdk/package.json" \
-            "${FRONTEND}/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs" \
-            "${FRONTEND}/node_modules/@anthropic-ai/claude-agent-sdk/manifest.json" \
-            "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/"
-          cp \
-            "${FRONTEND}/node_modules/@anthropic-ai/${SDK_PLATFORM}/package.json" \
-            "${FRONTEND}/node_modules/@anthropic-ai/${SDK_PLATFORM}/claude" \
-            "${BUNDLE_ROOT}/app.asar.unpacked/node_modules/@anthropic-ai/${SDK_PLATFORM}/"
 
       - name: Instruction-root integrity
         run: >-
@@ -152,22 +136,20 @@ jobs:
           --agents-root "${GITHUB_WORKSPACE}/agents"
           --docs-root "${GITHUB_WORKSPACE}/docs"
           --bundle-root "${RUNNER_TEMP}/chirality-instruction-root-fixture/instruction-root"
-          --sdk-bundle-root "${RUNNER_TEMP}/chirality-instruction-root-fixture"
         working-directory: projects/chirality-app-dev/frontend
 
-      - name: Build Electron runtime host
-        run: npm run build:electron
+      - name: Build controlled CI runtime
+        run: node ./scripts/build-controlled-ci-runtime.mjs
         working-directory: projects/chirality-app-dev/frontend
 
       - name: Start shared runtime daemon
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p "${CHIRALITY_RUNTIME_USER_DATA}"
-          nohup xvfb-run -a ./node_modules/.bin/electron \
-            --no-sandbox \
-            "--user-data-dir=${CHIRALITY_RUNTIME_USER_DATA}" \
-            dist-electron/main.js --runtime-daemon \
+          mkdir -p "${CHIRALITY_RUNTIME_DIRECTORY}"
+          nohup env \
+            CHIRALITY_CONTROLLED_CI_RUNTIME=chirality-controlled-ci-runtime/v1 \
+            node out/controlled-ci/controlled-runtime.mjs \
             >/tmp/chirality-runtime-daemon.log 2>&1 &
           echo $! >/tmp/chirality-runtime-daemon.pid
         working-directory: projects/chirality-app-dev/frontend
@@ -193,7 +175,7 @@ jobs:
 
           registration="$(
             CHIRALITY_RUNTIME_TOKEN_FILE="${CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE}" \
-              node projects/chirality-app-dev/frontend/dist-runtime/chirality-cli.mjs \
+              node projects/chirality-app-dev/frontend/out/controlled-ci/chirality-cli.mjs \
                 project register \
                 --manifest "${GITHUB_WORKSPACE}/projects/chirality-app-dev/chirality.project.json" \
                 --approved-by github-actions \

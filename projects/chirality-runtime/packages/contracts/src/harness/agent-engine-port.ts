@@ -24,11 +24,15 @@ export type EngineDescriptor = {
 };
 
 export type AgentEngineRunInput = {
+  /** Modern Runtime coordinators supply this; legacy adapters may omit it. */
+  projectId?: string;
   session: SessionRecord;
   message: string;
   opts: ResolvedOpts;
   contentBlocks?: ContentBlock[];
   turnId: string;
+  /** Effective interaction mode for this turn, including an explicit per-turn override. */
+  interactionMode?: "chat" | "native-plan";
   /** Exact runtime-resolved instructions supplied for this turn. */
   instructionContext?: ResolveSelectedContextResponse;
   /** Runtime-owned tools; adapters must expose only definitions admitted by their own tool bridge. */

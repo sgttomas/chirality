@@ -10,6 +10,7 @@ import path from 'node:path';
 import { RuntimeClient } from '@chirality/runtime-client';
 import { ProjectRegistry } from '@chirality/runtime-core';
 import { installRuntimeDaemonSignalShutdown } from '@chirality/runtime-daemon';
+import { resolveHostedBootstrapTokenFile } from '@chirality/runtime-daemon/hosted-paths';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
 import { installBundledCliLauncher } from './cli-launcher';
 import {
@@ -38,7 +39,11 @@ import {
   runEgressLayerProbe,
   runRendererSecurityProbe
 } from './renderer-window-policy';
-import { startRuntimeHost, type RuntimeHost } from './runtime-host';
+import {
+  configuredPackagedRuntimeBootInput,
+  startRuntimeHost,
+  type RuntimeHost
+} from './runtime-host';
 import {
   createRuntimeBindingSupervisor,
   RUNTIME_CONNECTIVITY_CHANGED_CHANNEL,
@@ -609,7 +614,7 @@ function createMainWindow(rendererUrl: string, route = '/'): BrowserWindow {
 function runtimeControlPaths(): {
   runtimeDirectory: string;
   socketPath: string;
-  operatorTokenFile: string;
+  bootstrapTokenFile: string;
 } {
   const runtimeDirectory = path.join(app.getPath('userData'), 'runtime');
   return {
@@ -617,9 +622,7 @@ function runtimeControlPaths(): {
     socketPath:
       process.env.CHIRALITY_RUNTIME_SOCKET_PATH?.trim() ||
       path.join(runtimeDirectory, 'control.sock'),
-    operatorTokenFile:
-      process.env.CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE?.trim() ||
-      path.join(runtimeDirectory, 'auth', 'tokens', 'operator.token')
+    bootstrapTokenFile: resolveHostedBootstrapTokenFile(runtimeDirectory)
   };
 }
 
@@ -658,12 +661,15 @@ async function registerRuntimeConnectivityHandler(): Promise<void> {
 
 async function initializeGui(): Promise<void> {
   const control = runtimeControlPaths();
+  process.env.CHIRALITY_RUNTIME_DIRECTORY = control.runtimeDirectory;
+  process.env.CHIRALITY_RUNTIME_SOCKET_PATH = control.socketPath;
+  process.env.CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE = control.bootstrapTokenFile;
   desktopLogger = createDesktopLogger({
     directory: path.join(app.getPath('userData'), 'logs')
   });
   const runtimeClient = new RuntimeClient({
     socketPath: control.socketPath,
-    tokenFile: control.operatorTokenFile
+    tokenFile: control.bootstrapTokenFile
   });
   await registerDirectorySelectionHandler();
   await registerRuntimeConnectivityHandler();
@@ -815,6 +821,7 @@ async function initializeDaemon(): Promise<void> {
     directory: path.join(app.getPath('userData'), 'logs'),
     fileName: 'desktop-daemon.log'
   });
+  let instructionRoot: string;
   if (app.isPackaged) {
     const control = runtimeControlPaths();
     const projects = new ProjectRegistry(control.runtimeDirectory);
@@ -823,7 +830,7 @@ async function initializeDaemon(): Promise<void> {
       packagedResourcesPath: process.resourcesPath,
       resolveProjectRoots: (projectId) => projects.roots(projectId)
     });
-    process.env.CHIRALITY_INSTRUCTION_ROOT = resolution.instructionRoot;
+    instructionRoot = resolution.instructionRoot;
     if (resolution.source === 'packaged-resources-fallback') {
       desktopLogger.warn('runtime.daemon.instruction_root.fallback', {
         instructionRoot: resolution.instructionRoot,
@@ -837,7 +844,7 @@ async function initializeDaemon(): Promise<void> {
       });
     }
   } else {
-    process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
+    instructionRoot = resolveInstructionRootForProcess();
   }
   desktopLogger.info('runtime.daemon.starting', {
     activationPolicy: resolveDaemonActivationPolicy(process.env),
@@ -845,7 +852,31 @@ async function initializeDaemon(): Promise<void> {
     userData: app.getPath('userData'),
     pid: process.pid
   });
-  runtimeHost = await startRuntimeHost();
+  const control = runtimeControlPaths();
+  const bootstrapInput = {
+    runtimeDirectory: control.runtimeDirectory,
+    daemonSocket: 'control.sock',
+    instructionRoot
+  } as const;
+  const hostedPrivateConfigFile = process.env.CHIRALITY_HOSTED_PRIVATE_CONFIG_FILE;
+  if (hostedPrivateConfigFile !== undefined && !app.isPackaged) {
+    throw new Error(
+      'Hosted private configuration is unavailable in development until a reviewed source-tree artifact basis is provided.'
+    );
+  }
+  const runtimeBootInput =
+    hostedPrivateConfigFile !== undefined
+      ? configuredPackagedRuntimeBootInput({
+          ...bootstrapInput,
+          configFile: hostedPrivateConfigFile,
+          resourcesRoot: process.resourcesPath
+        })
+      : bootstrapInput;
+  process.env.CHIRALITY_INSTRUCTION_ROOT = runtimeBootInput.instructionRoot;
+  runtimeHost = await startRuntimeHost(runtimeBootInput);
+  process.env.CHIRALITY_RUNTIME_DIRECTORY = runtimeHost.runtimeDirectory;
+  process.env.CHIRALITY_RUNTIME_SOCKET_PATH = runtimeHost.socketPath;
+  process.env.CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE = runtimeHost.bootstrapTokenFile;
   installRuntimeDaemonSignalShutdown({
     // Keep signal-driven shutdown inside the same Electron funnel as
     // before-quit, initialization failure, and daemon retirement. The facade

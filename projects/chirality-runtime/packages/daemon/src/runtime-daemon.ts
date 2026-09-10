@@ -12,6 +12,7 @@ import {
   RUNTIME_API_VERSION,
   RuntimeError,
   validateHostedLoginStatus,
+  validateHostedBootstrapStatus,
   deriveTranscriptView,
   type Agent1RunRequest,
   type CreateSessionRequest,
@@ -19,6 +20,11 @@ import {
   type DaemonStatusResponse,
   type HealthResponse,
   type HostedLoginStatus,
+  type HostedBootstrapStatus,
+  type HostedProviderNetworkConsentRequest,
+  type HostedBootstrapProjectRegistrationRequest,
+  type HostedBootstrapProjectInitializationRequest,
+  type HostedBootstrapProjectRegistrationResponse,
   type PermissionDecisionRequest,
   type ProjectRegistrationRequest,
   type RuntimeErrorBody,
@@ -28,6 +34,7 @@ import {
   type ResolveSelectedContextRequest,
   type ReplaceSelectedMethodsRequest,
   type ExportNativePlanRequest,
+  type ReplyNativePlanClarificationRequest,
   type UIEvent
 } from "@chirality/runtime-contracts";
 import {
@@ -37,7 +44,9 @@ import {
   type RuntimeScope,
   type RuntimeService,
   type DelegatedRuntime
+  , ensureHostedProjectManifest
 } from "@chirality/runtime-core";
+import { hostedProjectClientId } from "./hosted-paths.js";
 
 const JSON_LIMIT_BYTES = 1024 * 1024;
 const STOP_GRACE_MS = 2_000;
@@ -93,6 +102,14 @@ export interface RuntimeDaemonOptions {
   approvals?: RuntimeApprovalControlPort;
   loginProjectId?: string;
   login?: { startLogin(): Promise<{ loginId: string; authUrl: string }>; status(): Promise<HostedLoginStatus>; cancel(): Promise<void> };
+  hostedBootstrap?: {
+    /** Each operation revalidates project registration/root/drift and retires stale admission. */
+    status(projectId: string): Promise<HostedBootstrapStatus>;
+    grantProviderNetworkConsent(projectId: string, provenance: { approvedBy: string; approvalReference: string; approvedAt: string }): Promise<HostedBootstrapStatus>;
+    startLogin(projectId: string): Promise<{ loginId: string; authUrl: string }>;
+    cancelLogin(projectId: string): Promise<HostedBootstrapStatus>;
+    signOut(projectId: string): Promise<HostedBootstrapStatus>;
+  };
 }
 
 export class RuntimeDaemon {
@@ -110,6 +127,7 @@ export class RuntimeDaemon {
   readonly runtimeProcessIncarnationId = randomUUID();
   private readonly ownerFile: string;
   private readonly loginOperations = new Set<Promise<unknown>>();
+  private readonly hostedBootstrapProjects = new Set<string>();
 
   constructor(private readonly options: RuntimeDaemonOptions) {
     this.ownerFile = `${options.socketPath}.owner.json`;
@@ -260,15 +278,23 @@ export class RuntimeDaemon {
 
   private async stopLogin(deadline: number): Promise<void> {
     const login = this.options.login;
-    if (!login) return;
+    const hosted = this.options.hostedBootstrap;
+    if (!login && !hosted && this.loginOperations.size === 0) return;
     const pending = [...this.loginOperations];
     // Cancel promptly, then again after starts drain: an admitted startup must not
     // create a live actor after the first cancellation has already returned.
     const drain = (async () => {
-      const results = await Promise.allSettled([login.cancel(), ...pending]);
-      await login.cancel();
-      const cancellation = results[0]!;
-      if (cancellation.status === "rejected") throw cancellation.reason;
+      const cancellations = [
+        ...(login ? [login.cancel()] : []),
+        ...(hosted ? [...this.hostedBootstrapProjects].map(projectId => hosted.cancelLogin(projectId)) : [])
+      ];
+      const results = await Promise.allSettled([...cancellations, ...pending]);
+      await Promise.all([
+        ...(login ? [login.cancel()] : []),
+        ...(hosted ? [...this.hostedBootstrapProjects].map(projectId => hosted.cancelLogin(projectId)) : [])
+      ]);
+      const cancellation = results.slice(0, cancellations.length).find(result => result.status === "rejected");
+      if (cancellation?.status === "rejected") throw cancellation.reason;
     })();
     let timer: ReturnType<typeof setTimeout> | undefined;
     try {
@@ -325,6 +351,72 @@ export class RuntimeDaemon {
       const url = new URL(request.url ?? "/", "http://chirality.invalid");
       const method = request.method ?? "GET";
       const segments = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
+      if (segments[0] === "v3" && segments[1] === "hosted-bootstrap" && segments[2] === "projects" && segments.length === 4 && method === "POST") {
+        const principal = await this.authorize(request, "projects:write");
+        const provenance = this.bootstrapProvenance(principal.clientId, generation);
+        if (segments[3] === "register") {
+          const body = await this.body<HostedBootstrapProjectRegistrationRequest>(request);
+          this.assertExactRecord(body, ["manifestPath"]);
+          if (typeof body.manifestPath !== "string" || body.manifestPath.trim() === "") throw new RuntimeError("INVALID_REQUEST", "manifestPath must be a non-empty path");
+          return this.json(response, 201, await this.registerHostedProject(body.manifestPath, provenance));
+        }
+        if (segments[3] === "initialize") {
+          const body = await this.body<HostedBootstrapProjectInitializationRequest>(request);
+          this.assertExactRecord(body, ["projectRoot"]);
+          if (typeof body.projectRoot !== "string" || body.projectRoot.trim() === "") throw new RuntimeError("INVALID_REQUEST", "projectRoot must be a non-empty path");
+          const manifestPath = await ensureHostedProjectManifest(body.projectRoot);
+          return this.json(response, 201, await this.registerHostedProject(manifestPath, provenance));
+        }
+        throw new RuntimeError("NOT_FOUND", "Route not found", 404);
+      }
+      if (segments[0] === "v3" && segments[1] === "projects" && segments.length >= 5 && segments[3] === "hosted-bootstrap") {
+        const projectId = segments[2]!;
+        const bootstrap = this.options.hostedBootstrap;
+        if (!bootstrap) throw new RuntimeError("ENGINE_UNAVAILABLE", "Hosted bootstrap is unavailable", 503);
+        if (segments.length === 5 && segments[4] === "status" && method === "GET") {
+          await this.authorize(request, "runtime:read", projectId);
+          return this.json(response, 200, this.safeBootstrapStatus(projectId, await this.loginOperation(generation, () => bootstrap.status(projectId))));
+        }
+        if (segments.length === 5 && segments[4] === "provider-network-consent" && method === "POST") {
+          const principal = await this.authorize(request, "credentials:write", projectId);
+          const body = await this.body<HostedProviderNetworkConsentRequest>(request);
+          this.assertExactRecord(body, ["consent"]);
+          if (body.consent !== true) throw new RuntimeError("INVALID_REQUEST", "Explicit provider-network consent is required");
+          const status = await this.loginOperation(generation, () => bootstrap.grantProviderNetworkConsent(projectId, {
+            ...this.bootstrapProvenance(principal.clientId, generation),
+            approvedAt: new Date().toISOString()
+          }));
+          return this.json(response, 200, this.safeBootstrapStatus(projectId, status));
+        }
+        if (segments.length === 5 && segments[4] === "logout" && method === "POST") {
+          await this.authorize(request, "credentials:write", projectId);
+          const body = await this.body<Record<string, never>>(request);
+          this.assertExactRecord(body, []);
+          const status = await this.loginOperation(generation, () => bootstrap.signOut(projectId));
+          return this.json(response, 200, this.safeBootstrapStatus(projectId, status));
+        }
+        if (segments.length === 6 && segments[4] === "login" && method === "POST" && (segments[5] === "start" || segments[5] === "cancel")) {
+          await this.authorize(request, "credentials:write", projectId);
+          const body = await this.body<Record<string, never>>(request);
+          this.assertExactRecord(body, []);
+          this.hostedBootstrapProjects.add(projectId);
+          if (segments[5] === "cancel") {
+            const status = await this.loginOperation(generation, () => bootstrap.cancelLogin(projectId));
+            return this.json(response, 200, this.safeBootstrapStatus(projectId, status));
+          }
+          const result = await this.loginOperation(generation, () => bootstrap.startLogin(projectId));
+          this.assertExactRecord(result, ["loginId", "authUrl"], "Invalid safe login response");
+          if (typeof result.loginId !== "string" || result.loginId.length === 0 || result.loginId.length > 512 || typeof result.authUrl !== "string" || result.authUrl.length > 8192) {
+            throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login response", 500);
+          }
+          let authUrl: URL;
+          try { authUrl = new URL(result.authUrl); }
+          catch { throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login URL", 500); }
+          if (authUrl.protocol !== "https:" || authUrl.username || authUrl.password) throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login URL", 500);
+          return this.json(response, 200, { loginId: result.loginId, authUrl: result.authUrl });
+        }
+        throw new RuntimeError("NOT_FOUND", "Route not found", 404);
+      }
       if (segments[0] === "v2" && segments[1] === "projects" && segments.length === 5 && segments[3] === "login") {
         const projectId = segments[2]!;
         await this.authorize(request, "credentials:write", projectId);
@@ -600,6 +692,15 @@ export class RuntimeDaemon {
       const body = await this.body<ExportNativePlanRequest>(request);
       return this.json(response, 200, await this.options.service.exportNativePlan(projectId, sessionId, body));
     }
+    if (segments.length === 7 && segments[5] === "native-plan" && segments[6] === "clarifications" && method === "GET") {
+      await this.authorize(request, "sessions:read", projectId);
+      return this.json(response, 200, await this.options.service.listNativePlanClarifications(projectId, sessionId));
+    }
+    if (segments.length === 8 && segments[5] === "native-plan" && segments[6] === "clarifications" && segments[7] === "reply" && method === "POST") {
+      await this.authorize(request, "sessions:write", projectId);
+      const body = await this.body<ReplyNativePlanClarificationRequest>(request);
+      return this.json(response, 200, await this.options.service.replyNativePlanClarification(projectId, sessionId, body));
+    }
     if (segments.length !== 6) throw new RuntimeError("NOT_FOUND", "Route not found", 404);
     const action = segments[5];
     if (action === "methods" && method === "PUT") {
@@ -683,6 +784,42 @@ export class RuntimeDaemon {
       ? request.headers.authorization[0]
       : request.headers.authorization;
     return this.options.service.auth.authenticate(value, scope, projectId);
+  }
+
+  private bootstrapProvenance(clientId: string, generation: DaemonGeneration): { approvedBy: string; approvalReference: string } {
+    return {
+      approvedBy: `runtime-client:${clientId}`,
+      approvalReference: `hosted-bootstrap:${this.daemonId}:${generation.ownerGenerationId}`
+    };
+  }
+
+  private async registerHostedProject(
+    manifestPath: string,
+    provenance: { approvedBy: string; approvalReference: string }
+  ): Promise<HostedBootstrapProjectRegistrationResponse> {
+    const project = await this.options.service.projects.register(manifestPath, provenance, hostedProjectClientId);
+    await this.options.service.auth.revokeProjectClients(project.projectId);
+    await this.options.service.auth.ensureClient(project.clientId, [
+      "runtime:read",
+      "sessions:read",
+      "sessions:write",
+      "models:read"
+    ], project.projectId);
+    return { projectId: project.projectId, manifestHash: project.manifestHash };
+  }
+
+  private safeBootstrapStatus(projectId: string, value: unknown): HostedBootstrapStatus {
+    let status: HostedBootstrapStatus;
+    try { status = validateHostedBootstrapStatus(value); }
+    catch { throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe hosted bootstrap status", 500); }
+    if (status.projectId !== projectId) throw new RuntimeError("INTERNAL_FAILURE", "Hosted bootstrap status project mismatch", 500);
+    return status;
+  }
+
+  private assertExactRecord(value: unknown, keys: readonly string[], message = "Invalid request fields"): asserts value is Record<string, unknown> {
+    if (!value || typeof value !== "object" || Array.isArray(value) || Object.keys(value).length !== keys.length || Object.keys(value).some(key => !keys.includes(key))) {
+      throw new RuntimeError(message.startsWith("Invalid safe") ? "INTERNAL_FAILURE" : "INVALID_REQUEST", message, message.startsWith("Invalid safe") ? 500 : 400);
+    }
   }
 
   private async body<T>(request: IncomingMessage): Promise<T> {

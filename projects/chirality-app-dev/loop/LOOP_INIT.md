@@ -62,10 +62,13 @@ authorize work; sources govern on any disagreement.
 
 ## 3. Standing constraints — hard fences (all iterations; always stop for a human ruling)
 
-- **F-APP-1 (provider/network):** no provider or network expansion beyond
-  the Anthropic path; no remote MCP, plugin, or broad tool-search enablement
-  without a fresh ruling (F1 as amended by D-APP-44: owner-permitted,
-  default-closed provider/residency configuration).
+- **F-APP-1 (provider/network):** Codex is the sole current MVP engine under
+  the recorded owner release direction. Its supplier/account admission,
+  per-root consent, credential custody and exact accepted endpoint/command-
+  network safeguards remain required under K-NET-1 and Runtime-owned
+  contracts. No other provider expansion, remote MCP, plugin or broad
+  tool-search enablement is authorized by this direction. Historical
+  Anthropic/Pi provider rules do not require enabling those engines.
 - **F-APP-2 (release/distribution):** no signing, notarization, publication,
   external distribution, or release-readiness / professional / certification
   claims.
@@ -81,8 +84,8 @@ authorize work; sources govern on any disagreement.
   plan, queue, register, or status surface is created without an owner
   ruling. `plans/` is a historical archive; never select work from it.
 - **Fresh-ruling stops** (carried from the pre-consolidation coordination
-  record): Pi-backed execution (unapproved after D-APP-01/02); concrete
-  non-Anthropic provider implementation or routing; write/edit/bash/
+  record): provider execution outside the current Codex MVP direction and
+  its accepted supplier/account/containment scope; write/edit/bash/
   tool-execution exposure beyond the current approved item; changes to the
   project-truth model for sessions, transcripts, chats, runtime logs, or
   completion logs; professional-boundary or release-readiness posture.

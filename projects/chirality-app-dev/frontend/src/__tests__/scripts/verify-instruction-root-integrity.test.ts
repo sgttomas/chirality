@@ -230,12 +230,7 @@ describe('verify-instruction-root-integrity script', () => {
         })
       ])
     );
-    expect(summary.sdkBundle.missingFiles).toHaveLength(0);
-    if (SDK_PLATFORM_PACKAGE_BY_RUNTIME[`${process.platform}:${process.arch}`]) {
-      expect(summary.sdkBundle.selectedPlatformPackageRoot).toContain(
-        'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/'
-      );
-    }
+    expect(summary.sdkBundle).toMatchObject({ status: 'not-applicable', missingFiles: [] });
   });
 
   it('fails when bundled content diverges from source', async () => {
@@ -335,7 +330,7 @@ describe('verify-instruction-root-integrity script', () => {
     );
   });
 
-  it('fails when the packaged bundle is missing unpacked Claude Agent SDK files', async () => {
+  it('preserves the explicit historical Claude SDK proof path', async () => {
     const sourceRoot = path.join(tmpRoot, 'source-root');
     const bundleRoot = path.join(tmpRoot, 'bundle-root');
     const outputRoot = path.join(tmpRoot, 'output');
@@ -349,7 +344,9 @@ describe('verify-instruction-root-integrity script', () => {
       '--bundle-root',
       bundleRoot,
       '--output-root',
-      outputRoot
+      outputRoot,
+      '--runtime-profile',
+      'legacy-claude'
     ]);
 
     expect(result.code).toBe(1);
@@ -358,12 +355,16 @@ describe('verify-instruction-root-integrity script', () => {
     const summaryRaw = await readFile(path.join(outputRoot, 'summary.json'), 'utf8');
     const summary = JSON.parse(summaryRaw) as {
       status: string;
+      runtimeProfile: string;
       sdkBundle: {
+        status: string;
         missingFiles: string[];
       };
     };
 
     expect(summary.status).toBe('fail');
+    expect(summary.runtimeProfile).toBe('legacy-claude');
+    expect(summary.sdkBundle.status).toBe('checked');
     expect(summary.sdkBundle.missingFiles).toEqual(
       expect.arrayContaining([
         'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/package.json',

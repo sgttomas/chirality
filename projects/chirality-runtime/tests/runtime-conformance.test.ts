@@ -1,11 +1,22 @@
 import { mkdir, mkdtemp, realpath, rm, writeFile, symlink, chmod } from "node:fs/promises";
 import { join } from "node:path";
-import { afterEach, expect, it, vi } from "vitest";
+import { afterAll, afterEach, beforeAll, expect, it, vi } from "vitest";
 import { ACCEPTED_SUPPLY } from "../packages/core/src/exact-supply.js";
-import { computeRuntimeArtifactDigest, inspectRuntimeConformanceRecord, isRuntimeConformanceAdmission, REQUIRED_RUNTIME_CONFORMANCE_LIMBS, RuntimeConformanceVerifier, type RuntimeConformanceBasis, type RuntimeConformanceBindings } from "../packages/core/src/runtime-conformance.js";
+import { computeRuntimeArtifactDigest, configureRuntimeConformanceArtifactInventory, inspectRuntimeConformanceRecord, isRuntimeConformanceAdmission, REQUIRED_RUNTIME_CONFORMANCE_LIMBS, RuntimeConformanceVerifier, type RuntimeConformanceBasis, type RuntimeConformanceBindings } from "../packages/core/src/runtime-conformance.js";
 // Production generation verification inventories the installed dependency closure.
 vi.setConfig({ testTimeout: 120_000 });
 const roots: string[] = [];
+let runtimeRoot: string;
+beforeAll(async () => {
+  runtimeRoot = await realpath(await mkdtemp(join(await realpath("/tmp"), "runtime-source-inventory-")));
+  await mkdir(join(runtimeRoot, "packages/runtime/dist"), { recursive: true });
+  await writeFile(join(runtimeRoot, "package.json"), JSON.stringify({ name: "runtime", version: "1.0.0" }));
+  await writeFile(join(runtimeRoot, "package-lock.json"), JSON.stringify({ lockfileVersion: 3 }));
+  await writeFile(join(runtimeRoot, "packages/runtime/package.json"), JSON.stringify({ name: "@test/runtime", version: "1.0.0" }));
+  await writeFile(join(runtimeRoot, "packages/runtime/dist/runtime.js"), "export const runtime = true;");
+  configureRuntimeConformanceArtifactInventory({ kind: "source-tree", sourceRoot: runtimeRoot });
+});
+afterAll(async () => { await rm(runtimeRoot, { recursive: true, force: true }); });
 afterEach(async () => { await Promise.all(roots.splice(0).map(root => rm(root, { recursive: true, force: true }))); });
 async function fixture() {
   const root = await realpath(await mkdtemp(join(await realpath("/tmp"), "rc-"))); roots.push(root);
@@ -75,13 +86,10 @@ it("file acceptance requires exact externally pinned owner act and observes revo
 });
 it("derives all first-party runtime package artifacts instead of accepting a caller-selected subset", async () => {
   const { runtimeConformanceArtifactInventory } = await import("../packages/core/src/runtime-conformance.js");
-  const inventory = await runtimeConformanceArtifactInventory();
-  expect(inventory.packageFiles.some(path => path.endsWith("/chirality-runtime/package.json"))).toBe(true);
-  expect(inventory.packageFiles.some(path => path.includes("/node_modules/@earendil-works/pi-coding-agent/"))).toBe(true);
+  const inventory = await runtimeConformanceArtifactInventory({ kind: "source-tree", sourceRoot: runtimeRoot });
+  expect(inventory.packageFiles.some(path => path.endsWith("/package.json"))).toBe(true);
   expect(inventory.dependencyResolutionDigest).toMatch(/^[a-f0-9]{64}$/);
-  expect(inventory.sourceFiles.some(path => path.endsWith("/engine-pi-omlx/dist/pi-turn-runtime.js"))).toBe(true);
-  expect(inventory.sourceFiles.some(path => path.endsWith("/daemon/dist/codex-supervisor.js"))).toBe(true);
-  expect(inventory.sourceFiles.some(path => path.endsWith("/core/dist/runtime-conformance.js"))).toBe(true);
+  expect(inventory.sourceFiles).toEqual([join(runtimeRoot, "packages/runtime/dist/runtime.js")]);
   expect(inventory.packageFiles.some(path => path.endsWith("/package-lock.json"))).toBe(true);
 });
 

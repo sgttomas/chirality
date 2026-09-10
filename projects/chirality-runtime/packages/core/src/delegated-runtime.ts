@@ -11,7 +11,15 @@ import {
   type HostedEngineConsentPort,
   type RuntimeCompatibilityIdentity,
   type WorkerContinuity,
-  type WorkerRetirementCoordinatorPort
+  type WorkerRetirementCoordinatorPort,
+  type SupervisorNativePlanPort,
+  type NativePlanTransportEvent,
+  type NativePlanClarificationPrompt,
+  type SupervisorRuntimeToolPort,
+  type RuntimeToolDefinition,
+  type RuntimeToolCallbackDeclaration,
+  type SupervisorTurnProgressPort,
+  type DelegatedTurnProgressEvent
 } from "@chirality/runtime-contracts";
 
 import { ApprovalStore, type ApprovalBinding, type NetworkApprovalContext } from "./approval-store.js";
@@ -28,8 +36,24 @@ export interface DelegatedProjectBinding {
   supervisor: DelegatedHarnessProcessSupervisorPort;
   consent: HostedEngineConsentPort;
   retirement?: WorkerRetirementCoordinatorPort;
+  nativePlanSink?: DelegatedNativePlanSink;
   /** Controlled fixture evidence must never be upgraded by a client request. */
   evidenceClass: "controlled-worker" | "provider-observed";
+}
+export interface DelegatedNativePlanWorkerBinding {
+  projectId: string;
+  sessionId: string;
+  clientTurnId: string;
+  workerId: string;
+  generation: string;
+}
+export interface DelegatedNativePlanSink {
+  open(binding: DelegatedNativePlanWorkerBinding, bridge: SupervisorNativePlanPort): Promise<void>;
+  capture(binding: DelegatedNativePlanWorkerBinding, events: readonly NativePlanTransportEvent[], clarifications: readonly NativePlanClarificationPrompt[]): Promise<void>;
+  close(binding: DelegatedNativePlanWorkerBinding): Promise<void>;
+}
+export interface DelegatedTurnObserver {
+  onProgress(event: DelegatedTurnProgressEvent): void | Promise<void>;
 }
 export interface DelegatedRuntimeOptions {
   daemonId: string;
@@ -322,20 +346,35 @@ export class DelegatedRuntime {
     return { posture: request.posture };
   }
 
-  turn(projectId: string, request: DelegatedTurnRequest): Promise<DelegatedTurnResponse> {
-    const pending = this.executeTurn(projectId, structuredClone(request));
+  turn(projectId: string, request: DelegatedTurnRequest, runtimeTools: readonly RuntimeToolDefinition[] = [], observer?: DelegatedTurnObserver): Promise<DelegatedTurnResponse> {
+    const pending = this.executeTurn(projectId, structuredClone(request), [...runtimeTools], observer);
     this.inFlight.add(pending);
     void pending.finally(() => this.inFlight.delete(pending)).catch(() => undefined);
     return pending;
   }
 
-  private async executeTurn(projectId: string, request: DelegatedTurnRequest): Promise<DelegatedTurnResponse> {
+  private async executeTurn(projectId: string, request: DelegatedTurnRequest, runtimeTools: readonly RuntimeToolDefinition[], observer?: DelegatedTurnObserver): Promise<DelegatedTurnResponse> {
     if (!request || typeof request !== "object" || typeof request.turnId !== "string") throw new RuntimeError("INVALID_REQUEST", "A scalar turn identity is required");
     if (this.options.approvalOnly) throw new RuntimeError("FORBIDDEN", "Approval-only composition cannot start delegated work", 403);
     const binding = this.admit(projectId, `turn:${request.turnId}`, request);
     if (!nonempty(request.turnId) || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/u.test(request.turnId) || typeof request.prompt !== "string" || Buffer.byteLength(request.prompt) > 65_536) {
       throw new RuntimeError("INVALID_REQUEST", "Invalid bounded turn request");
     }
+    const interactionMode = request.interactionMode ?? "chat";
+    if (interactionMode !== "chat" && interactionMode !== "native-plan") throw new RuntimeError("INVALID_REQUEST", "Unknown interaction mode");
+    if (request.sessionId !== undefined && (!nonempty(request.sessionId) || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/u.test(request.sessionId))) throw new RuntimeError("INVALID_REQUEST", "Invalid runtime session identity");
+    if (request.permissionMode !== undefined && !["readOnly", "ask", "workspaceWrite", "bypass"].includes(request.permissionMode)) throw new RuntimeError("INVALID_REQUEST", "Unknown permission mode");
+    const nativePlanPort = binding.supervisor as DelegatedHarnessProcessSupervisorPort & Partial<SupervisorNativePlanPort>;
+    if (interactionMode === "native-plan" && (!request.sessionId || !binding.nativePlanSink || !nativePlanPort.drainNativePlanEvents || !nativePlanPort.pendingNativePlanClarifications || !nativePlanPort.replyNativePlanClarification)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Trusted native Plan supervisor and registry composition is unavailable", 503);
+    const runtimeToolPort = binding.supervisor as DelegatedHarnessProcessSupervisorPort & Partial<SupervisorRuntimeToolPort>;
+    const runtimeToolMap = new Map<string, RuntimeToolDefinition>();
+    for (const tool of runtimeTools) {
+      if (!tool || typeof tool !== "object" || !/^[A-Za-z][A-Za-z0-9_-]{0,63}$/.test(tool.name) || typeof tool.description !== "string" || !tool.description.trim() || typeof tool.inputSchema !== "object" || typeof tool.execute !== "function" || runtimeToolMap.has(tool.name)) throw new RuntimeError("INVALID_REQUEST", "Invalid or duplicate admitted runtime tool definition");
+      runtimeToolMap.set(tool.name, tool);
+    }
+    if (runtimeToolMap.size && (!runtimeToolPort.acquireWithRuntimeTools || !runtimeToolPort.nextRuntimeToolCallback || !runtimeToolPort.replyRuntimeToolCallback)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Governed runtime tool callback bridge is unavailable", 503);
+    const progressPort = binding.supervisor as DelegatedHarnessProcessSupervisorPort & Partial<SupervisorTurnProgressPort>;
+    if (observer && !progressPort.drainTurnProgress) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated turn progress bridge is unavailable", 503);
     await this.verifyHosted(binding);
     const requestedRole = request.requestedRole ?? "untyped";
     if (!RUNTIME_ROLES.includes(requestedRole)) throw new RuntimeError("INVALID_REQUEST", "Unknown requested role");
@@ -361,20 +400,69 @@ export class DelegatedRuntime {
       const restart = request.previousTurnId === undefined ? { method: "thread/start" as const } : await retirement.restart(request.previousTurnId, identity, roleEvidence.policyDigest);
       await retirement.prepare({ turnId: request.turnId, identity, rolePolicyDigest: roleEvidence.policyDigest, state: "prepared", ...(restart.threadId ? { threadId: restart.threadId } : {}) });
       if (this.closing) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated runtime is shutting down", 503);
-      const worker = await binding.supervisor.acquire(request.turnId, binding.evidenceClass === "controlled-worker" ? request.prompt : JSON.stringify({ prompt: request.prompt, requestedRole, roleEvidence, ...(restart.threadId ? { resumeThreadId: restart.threadId } : {}) }));
+      const hostedEnvelope = { prompt: request.prompt, requestedRole, roleEvidence, interactionMode, ...(request.permissionMode ? { permissionMode: request.permissionMode } : {}),
+        ...(request.attachments?.length ? { attachments: structuredClone(request.attachments) } : {}),
+        ...(interactionMode === "native-plan" ? { projectId, sessionId: request.sessionId, clientTurnId: request.turnId } : {}), ...(restart.threadId ? { resumeThreadId: restart.threadId } : {}) };
+      const workerInput = binding.evidenceClass === "controlled-worker" && interactionMode === "chat" && runtimeToolMap.size === 0 && !request.attachments?.length ? request.prompt : JSON.stringify(hostedEnvelope);
+      const declarations: RuntimeToolCallbackDeclaration[] = [...runtimeToolMap.values()].map(({ name, description, inputSchema }) => ({ name, description, inputSchema: structuredClone(inputSchema) }));
+      const worker = runtimeToolMap.size ? await runtimeToolPort.acquireWithRuntimeTools!(request.turnId, workerInput, declarations) : await binding.supervisor.acquire(request.turnId, workerInput);
       this.liveTurns.set(key, { ...identity, sessionId: request.turnId, turnId: request.turnId, workerGeneration: worker.generation });
+      const nativePlanBinding = interactionMode === "native-plan" ? { projectId, sessionId: request.sessionId!, clientTurnId: request.turnId, workerId: worker.workerId, generation: worker.generation } : undefined;
+      let nativePlanOpened = false, nativePlanClosed = false;
+      const captureNativePlan = async () => {
+        if (!nativePlanBinding || !binding.nativePlanSink) return;
+        const [events, clarifications] = await Promise.all([nativePlanPort.drainNativePlanEvents!(worker.workerId, worker.generation), nativePlanPort.pendingNativePlanClarifications!(worker.workerId, worker.generation)]);
+        // Empty clarification snapshots clear requests resolved by the supplier.
+        await binding.nativePlanSink.capture(nativePlanBinding, events, clarifications);
+      };
+      const closeNativePlan = async () => {
+        if (!nativePlanBinding || !binding.nativePlanSink || !nativePlanOpened || nativePlanClosed) return;
+        nativePlanClosed = true; await binding.nativePlanSink.close(nativePlanBinding);
+      };
+      const captureProgress = async () => {
+        if (!observer) return;
+        for (const event of await progressPort.drainTurnProgress!(worker.workerId, worker.generation)) await observer.onProgress(event);
+      };
+      const runtimeToolControllers = new Set<AbortController>();
+      const syncRuntimeTool = async () => {
+        if (!runtimeToolMap.size) return;
+        const message = await runtimeToolPort.nextRuntimeToolCallback!(worker.workerId, worker.generation);
+        if (message.kind === "pending") return;
+        const tool = runtimeToolMap.get(message.name);
+        if (!tool) throw new RuntimeError("ENGINE_UNAVAILABLE", "Supervisor requested an unadmitted runtime tool", 503);
+        const controller = new AbortController(); runtimeToolControllers.add(controller);
+        let result: { success: boolean; contentItems: readonly { type: "inputText"; text: string }[] };
+        try {
+          let abort!: () => void;
+          const interrupted = new Promise<never>((_, reject) => { abort = () => reject(new RuntimeError("INTERRUPTED", "Runtime tool callback interrupted", 499)); controller.signal.addEventListener("abort", abort, { once: true }); });
+          const value = await Promise.race([tool.execute(structuredClone(message.args), controller.signal), interrupted]);
+          controller.signal.removeEventListener("abort", abort);
+          const text = JSON.stringify(value ?? null);
+          if (Buffer.byteLength(text) > 65536) throw new Error("runtime tool result exceeds bound");
+          result = { success: true, contentItems: [{ type: "inputText", text }] };
+        } catch { result = { success: false, contentItems: [{ type: "inputText", text: "Runtime tool failed or was cancelled." }] }; }
+        finally { runtimeToolControllers.delete(controller); }
+        await runtimeToolPort.replyRuntimeToolCallback!(worker.workerId, worker.generation, message, result);
+      };
       // Polling callbacks can outlive registry cleanup; retain their exact
       // generation's settled attempt rather than recreating it afterward.
       let retirementAttempt: Promise<void> | undefined;
-      const retire = () => retirementAttempt ??= this.retireWorker(binding, key, worker.workerId, worker.generation);
+      const retire = () => retirementAttempt ??= (async () => { for (const controller of runtimeToolControllers) controller.abort(); await this.retireWorker(binding, key, worker.workerId, worker.generation); })();
       try {
+        if (nativePlanBinding && binding.nativePlanSink) { await binding.nativePlanSink.open(nativePlanBinding, nativePlanPort as SupervisorNativePlanPort); nativePlanOpened = true; }
         let waiting = true;
         const resultPromise = binding.supervisor.wait(worker.workerId, worker.generation);
-        void resultPromise.finally(() => { waiting = false; }).catch(() => {});
-        const polling = (async () => { while (waiting && this.approvalPort(binding) && binding.approvals) { await this.syncApprovals(projectId, request.turnId); if (waiting) await new Promise(resolve => setTimeout(resolve, 25)); } })();
+        void resultPromise.finally(() => { waiting = false; for (const controller of runtimeToolControllers) controller.abort(); }).catch(() => {});
+        const polling = (async () => { while (waiting) {
+          if (this.approvalPort(binding) && binding.approvals) await this.syncApprovals(projectId, request.turnId);
+          await captureNativePlan();
+          await captureProgress();
+          await syncRuntimeTool();
+          if (waiting) await new Promise(resolve => setTimeout(resolve, 25));
+        } })();
         void polling.catch(() => { void retire().catch(() => {}); });
         const result = await resultPromise;
-        waiting = false; await polling;
+        waiting = false; await polling; await captureNativePlan(); await captureProgress();
         if (result.threadId !== undefined) {
           if (retirement.associateThread === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Durable thread association is unavailable", 503);
           await retirement.associateThread(request.turnId, result.threadId);
@@ -382,11 +470,11 @@ export class DelegatedRuntime {
         // Process reconciliation must succeed before publishing any terminal.
         await retire();
         const terminal = await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: this.interruptedTurns.has(key) ? "interrupted" : result.exitCode === 0 ? "completed" : "failed", recordedAt: new Date().toISOString() });
-        const event = { schemaVersion: 2, eventId: randomUUID(), sequence: 0, timestamp: terminal.recordedAt, projectId, sessionId: request.turnId, turnId: request.turnId, attribution: actual,
+        const event = { schemaVersion: 2, eventId: randomUUID(), sequence: 0, timestamp: terminal.recordedAt, projectId, sessionId: request.sessionId ?? request.turnId, turnId: request.turnId, attribution: actual,
           type: terminal.outcome === "completed" ? "turn.completed" : terminal.outcome === "interrupted" ? "turn.interrupted" : "turn.failed",
           data: terminal.outcome === "completed" ? { outcome: "completed" } : terminal.outcome === "interrupted" ? { outcome: "interrupted" } : { code: "WORKER_FAILED", message: "Delegated worker did not complete successfully" } };
         if (!validateHarnessEventV2(event)) throw new RuntimeError("INTERNAL_FAILURE", "Invalid canonical v2 terminal projection", 500);
-        return { terminal, output: result.stdout, evidenceClass: binding.evidenceClass, roleEvidence, event };
+        return { terminal, output: result.stdout, ...(result.threadId ? { providerThreadId: result.threadId } : {}), evidenceClass: binding.evidenceClass, roleEvidence, event };
       } catch (error) {
         // A transport outcome or interruption intent is not retirement evidence.
         // Keep the prepared record unresolved when cleanup cannot be confirmed.
@@ -394,7 +482,8 @@ export class DelegatedRuntime {
         await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: this.interruptedTurns.has(key) ? "interrupted" : "failed", recordedAt: new Date().toISOString() });
         throw error;
       } finally {
-        await retire();
+        try { await retire(); }
+        finally { await closeNativePlan(); }
       }
     } finally {
       this.turnRetirements.delete(key);

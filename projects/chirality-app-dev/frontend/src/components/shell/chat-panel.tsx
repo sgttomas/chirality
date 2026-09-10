@@ -32,7 +32,9 @@ import { useRuntimeEpoch } from './runtime-connectivity-provider';
 import {
   getNativePlanCapability,
   exportNativePlanRevision,
+  listNativePlanClarifications,
   listNativePlanRevisions,
+  replyNativePlanClarification,
   replaceSelectedMethods,
   resolveSelectedContext,
   type InteractionMode,
@@ -40,7 +42,7 @@ import {
   type ChiralityRoleName,
   MethodSelectionClientError
 } from '../../lib/harness/method-selection-client';
-import type { FrozenInstructionBasisV3, InstructionHistoryRecordV3, NativePlanCapabilityResponse, NativePlanRevision } from '@chirality/runtime-contracts/v3';
+import type { FrozenInstructionBasisV3, InstructionHistoryRecordV3, NativePlanCapabilityResponse, NativePlanClarification, NativePlanRevision } from '@chirality/runtime-contracts/v3';
 import type { SelectedSessionReplayProjection } from '../../lib/woven-dialogue/contracts';
 import type { RuntimeSessionRecordV3 } from '@chirality/runtime-contracts';
 
@@ -81,14 +83,15 @@ type OperatorModeOption = {
 };
 
 const OPERATOR_MODES: readonly OperatorModeOption[] = [
-  { value: 'readOnly', label: 'Read-only' },
-  { value: 'ask', label: 'Ask before changes' },
-  { value: 'workspaceWrite', label: 'Gated-write' },
-  { value: 'bypass', label: 'Autonomous' }
+  { value: 'workspaceWrite', label: 'Project access' }
 ];
 
-const DEFAULT_OPERATOR_MODE = 'ask';
-const PLAIN_MODE_LABELS: Record<string, string> = { readOnly: 'Read only', ask: 'Ask before changes', workspaceWrite: 'Approve each write', bypass: 'Run on its own' };
+const DEFAULT_OPERATOR_MODE = 'workspaceWrite';
+const PLAIN_MODE_LABELS: Record<string, string> = { readOnly: 'Read only', ask: 'Ask before changes', workspaceWrite: 'Project access', bypass: 'Autonomous' };
+
+function isSupportedOperatorMode(mode: string): boolean {
+  return mode === 'workspaceWrite';
+}
 
 function readTextField(data: unknown): string | undefined {
   if (!data || typeof data !== 'object') {
@@ -159,6 +162,76 @@ function nativePlanText(revision: NativePlanRevision): string {
   return typeof plan === 'string' ? plan : JSON.stringify(plan, null, 2);
 }
 
+function NativePlanClarificationCard({ clarification, pending, onReply }: {
+  clarification: NativePlanClarification;
+  pending: boolean;
+  onReply: (clarification: NativePlanClarification, answers: Record<string, { answers: string[] }>) => void;
+}): JSX.Element {
+  const [values, setValues] = useState<Record<string, string>>({});
+  const complete = clarification.questions.every(question => Boolean(values[question.id]?.trim()));
+  return <form className="native-plan-clarification" onSubmit={event => {
+    event.preventDefault();
+    if (!complete || pending) return;
+    onReply(clarification, Object.fromEntries(clarification.questions.map(question => [question.id, { answers: [values[question.id]!.trim()] }])));
+  }}>
+    <p className="native-plan-sidebar-meta">Planning needs your input{clarification.isBlocking ? ' before it can continue' : ''}.</p>
+    {clarification.questions.map(question => <fieldset key={question.id}>
+      <legend>{question.header}</legend>
+      <p>{question.question}</p>
+      {question.options.map(option => <label key={option.label}><input type="radio" name={`${String(clarification.requestId)}:${question.id}`} value={option.label}
+        checked={values[question.id] === option.label} disabled={pending}
+        onChange={() => setValues(current => ({ ...current, [question.id]: option.label }))} />
+        <span><strong>{option.label}</strong>{option.description ? <small>{option.description}</small> : null}</span></label>)}
+      {question.isOther ? <label className="native-plan-clarification-other"><span>Other answer</span><input type={question.isSecret ? 'password' : 'text'} value={values[question.id] && !question.options.some(option => option.label === values[question.id]) ? values[question.id] : ''}
+        disabled={pending} autoComplete="off" onChange={event => setValues(current => ({ ...current, [question.id]: event.target.value }))} /></label> : null}
+    </fieldset>)}
+    <button type="submit" disabled={!complete || pending}>{pending ? 'Sending answers…' : 'Continue planning'}</button>
+  </form>;
+}
+
+function NativePlanSidebar({ revisions, clarifications, active, refreshing, clarificationPendingId, clarificationError, projectRoot, fileCatalog, onOpenFile, onRefresh, onRevise, onSave, onExecute, onSaveAsWorkflow, onReplyClarification, actionsDisabled = false }: {
+  revisions: readonly NativePlanRevision[];
+  clarifications: readonly NativePlanClarification[];
+  active: boolean;
+  refreshing: boolean;
+  projectRoot?: string;
+  fileCatalog: readonly string[];
+  onOpenFile?: (path: string) => void;
+  onRefresh: () => void;
+  onRevise: (revision: number | undefined) => void;
+  onSave: (revision: NativePlanRevision) => void;
+  onExecute?: (revision: NativePlanRevision) => void;
+  onSaveAsWorkflow?: (revision: NativePlanRevision) => void;
+  clarificationPendingId?: string | number;
+  clarificationError?: string | null;
+  onReplyClarification: (clarification: NativePlanClarification, answers: Record<string, { answers: string[] }>) => void;
+  actionsDisabled?: boolean;
+}): JSX.Element {
+  const current = revisions.at(-1);
+  return <aside className="native-plan-sidebar" aria-label="Plan Mode">
+    <header>
+      <div><p className="woven-eyebrow">Plan Mode</p><h2>Current plan</h2></div>
+      <button type="button" className="button-muted" disabled={refreshing} onClick={onRefresh}>{refreshing ? 'Refreshing…' : 'Refresh'}</button>
+    </header>
+    {clarifications.map(clarification => <NativePlanClarificationCard key={String(clarification.requestId)} clarification={clarification}
+      pending={clarificationPendingId === clarification.requestId} onReply={onReplyClarification} />)}
+    {clarificationError ? <p className="panel-error" role="alert">{clarificationError}</p> : null}
+    {!current ? <p>{active ? 'Describe what you want to plan in the conversation. The first revision will appear here.' : 'Switch to Plan Mode to inspect and revise a plan in this conversation.'}</p> : <>
+      <p className="native-plan-sidebar-meta">Revision {current.revision} · read-only</p>
+      <div className="native-plan-sidebar-body"><ChatMarkdown source={nativePlanText(current)} projectRoot={projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} /></div>
+      <div className="native-plan-sidebar-actions">
+        <button type="button" disabled={actionsDisabled} onClick={() => onRevise(current.revision)}>Revise in chat</button>
+        <button type="button" disabled={actionsDisabled} onClick={() => onExecute?.(current)}>Execute plan</button>
+        <button type="button" disabled={actionsDisabled} className="button-muted" onClick={() => onSaveAsWorkflow?.(current)}>Save as workflow in chat</button>
+        <button type="button" className="button-muted" onClick={() => onSave(current)}>Save plan…</button>
+      </div>
+      {revisions.length > 1 ? <details className="native-plan-history"><summary>Earlier revisions ({revisions.length - 1})</summary>
+        <ol>{revisions.slice(0, -1).reverse().map(revision => <li key={revision.revision}><details><summary>Revision {revision.revision}</summary><div><ChatMarkdown source={nativePlanText(revision)} projectRoot={projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} /></div><button type="button" className="button-muted" onClick={() => onSave(revision)}>Save this revision…</button></details></li>)}</ol>
+      </details> : null}
+    </>}
+  </aside>;
+}
+
 function instructionActivityLabel(record: InstructionHistoryRecordV3): string {
   switch (record.type) {
     case 'selection.changed': return 'Role or method selection updated';
@@ -224,6 +297,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const [interactionMode, setInteractionMode] = useState<InteractionMode>('chat');
   const [planCapability, setPlanCapability] = useState<NativePlanCapabilityResponse>({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: 'Start a chat to check native Plan Mode support.' });
   const [planRevisions, setPlanRevisions] = useState<readonly NativePlanRevision[]>([]);
+  const [planClarifications, setPlanClarifications] = useState<readonly NativePlanClarification[]>([]);
+  const [planRefreshing, setPlanRefreshing] = useState(false);
+  const [clarificationPendingId, setClarificationPendingId] = useState<string | number>();
+  const [planClarificationError, setPlanClarificationError] = useState<string | null>(null);
   const [planExportStatus, setPlanExportStatus] = useState<string | null>(null);
   const [conversationBinding, setConversationBinding] = useState<{ projectRoot: string; selectedRootAtBinding: string } | null>(null);
   const [activeSession, setActiveSession] = useState<ActiveSession | null>(null);
@@ -254,6 +331,31 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   ]);
 
   const runtimeEpoch = useRuntimeEpoch();
+
+  const refreshNativePlan = useCallback(async (sessionId: string, signal?: AbortSignal): Promise<void> => {
+    setPlanRefreshing(true);
+    try {
+      const result = await listNativePlanRevisions(sessionId, signal);
+      if (!signal?.aborted && activeSessionIdRef.current === sessionId) setPlanRevisions(result.revisions);
+    } finally {
+      if (!signal?.aborted && activeSessionIdRef.current === sessionId) setPlanRefreshing(false);
+    }
+  }, []);
+
+  const refreshNativePlanClarifications = useCallback(async (sessionId: string, signal?: AbortSignal): Promise<void> => {
+    const result = await listNativePlanClarifications(sessionId, signal);
+    if (!signal?.aborted && activeSessionIdRef.current === sessionId) setPlanClarifications(result.clarifications);
+  }, []);
+
+  const clearNativePlanProjection = useCallback((): void => {
+    setPlanCapability({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: 'Checking Native Plan Mode support for this chat.' });
+    setPlanRevisions([]);
+    setPlanClarifications([]);
+    setPlanRefreshing(false);
+    setClarificationPendingId(undefined);
+    setPlanClarificationError(null);
+    setPlanExportStatus(null);
+  }, []);
 
   useEffect(() => {
     activeSessionIdRef.current = activeSession?.sessionId;
@@ -359,29 +461,49 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
   useEffect(() => {
     if (!activeSession) {
-      setPlanExportStatus(null);
-      setPlanCapability({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: 'Start a chat to check native Plan Mode support.' });
-      setPlanRevisions([]);
+      clearNativePlanProjection();
       setInteractionMode('chat');
       return;
     }
     const controller = new AbortController();
     void getNativePlanCapability(activeSession.sessionId, controller.signal)
       .then(capability => {
-        if (controller.signal.aborted) return;
+        if (controller.signal.aborted || activeSessionIdRef.current !== activeSession.sessionId) return;
         setPlanCapability(capability);
         if (capability.status !== 'qualified') setInteractionMode('chat');
       })
       .catch(error => {
-        if (controller.signal.aborted) return;
+        if (controller.signal.aborted || activeSessionIdRef.current !== activeSession.sessionId) return;
         setPlanCapability({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: error instanceof Error ? error.message : 'Native Plan Mode is unavailable.' });
         setInteractionMode('chat');
       });
-    void listNativePlanRevisions(activeSession.sessionId, controller.signal)
-      .then(result => { if (!controller.signal.aborted) setPlanRevisions(result.revisions); })
+    void refreshNativePlan(activeSession.sessionId, controller.signal)
       .catch(() => { if (!controller.signal.aborted) setPlanRevisions([]); });
+    void refreshNativePlanClarifications(activeSession.sessionId, controller.signal)
+      .catch(() => { if (!controller.signal.aborted) setPlanClarifications([]); });
     return () => controller.abort();
-  }, [activeSession?.sessionId]);
+  }, [activeSession?.sessionId, runtimeEpoch, refreshNativePlan, refreshNativePlanClarifications, clearNativePlanProjection]);
+
+  useEffect(() => {
+    if (!activeSession || !isRunning || interactionMode !== 'native-plan') return;
+    const controller = new AbortController();
+    let requestActive = false;
+    const poll = async (): Promise<void> => {
+      if (requestActive || controller.signal.aborted) return;
+      requestActive = true;
+      try {
+        await Promise.allSettled([
+          refreshNativePlanClarifications(activeSession.sessionId, controller.signal),
+          refreshNativePlan(activeSession.sessionId, controller.signal)
+        ]);
+      } finally {
+        requestActive = false;
+      }
+    };
+    void poll();
+    const interval = window.setInterval(() => { void poll(); }, 1_000);
+    return () => { controller.abort(); window.clearInterval(interval); };
+  }, [activeSession?.sessionId, isRunning, interactionMode, refreshNativePlan, refreshNativePlanClarifications]);
 
   useEffect(() => {
     const expected = canonicalTransition.current;
@@ -410,12 +532,14 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if ((draft.trim() || attachments.length || selectedMethods.length) && !window.confirm('Start a new chat and discard the unsent draft, attachments, and methods?')) return;
     bindingGeneration.current++;
     activeSessionIdRef.current = undefined;
+    clearNativePlanProjection();
     lastInstructionSequenceRef.current = 0;
     setActiveSession(null); setConversationBinding(null); setDraft(''); setAttachments([]); onSelectedMethodsChange([]); setMessages([]);
+    setOperatorMode(DEFAULT_OPERATOR_MODE);
     setRuntimeError(null); setRuntimeStatus(null); setFolderSyncError(null);
     // This clears only the current local view; no runtime record is deleted.
     clearEvents();
-  }, [newChatRequest, isRunning, folderSelectionPending, draft, attachments, selectedMethods, clearEvents, onSelectedMethodsChange]);
+  }, [newChatRequest, isRunning, folderSelectionPending, draft, attachments, selectedMethods, clearEvents, onSelectedMethodsChange, clearNativePlanProjection]);
 
   useEffect(() => {
     if (!resumeConversation || resumeConversation.requestId === resumeRequestSeen.current || isRunning) return;
@@ -453,6 +577,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       instructionBasisId: continuation.instructionBasisId
     };
     activeSessionIdRef.current = nextSession.sessionId;
+    clearNativePlanProjection();
     setConversationBinding({ projectRoot: continuation.projectRoot, selectedRootAtBinding: continuation.projectRoot });
     setActiveSession(nextSession);
     setOperatorMode(continuation.permissionMode);
@@ -462,7 +587,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     setRuntimeError(null); setRuntimeStatus(null); setFolderSyncError(null);
     clearEvents();
     onConversationResumed?.(nextSession.sessionId);
-  }, [resumeConversation, isRunning, activePersona, activeMode, projectRoot, clearEvents, onConversationResumed]);
+  }, [resumeConversation, isRunning, activePersona, activeMode, projectRoot, clearEvents, onConversationResumed, clearNativePlanProjection]);
 
   const selectNativeFolder = useCallback(async (intent: { path?: string; error?: string }) => {
     if (intent.error) { setNativeFolderError(intent.error); return; }
@@ -578,7 +703,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
   async function submitDraft(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
-    if (isRunning || folderSelectionPending || nativeSelectionActive.current || !draftIdentityReady) return;
+    if (isRunning || folderSelectionPending || nativeSelectionActive.current || !draftIdentityReady || !isSupportedOperatorMode(operatorMode)) return;
     const text = draft.trim();
 
     if (!text && attachments.length === 0) {
@@ -679,6 +804,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           if (streamEvent.event === 'harness:event') {
             if (isHarnessEvent(streamEvent.data)) {
               appendEvent(streamEvent.data);
+              if (streamEvent.data.type.includes('clarification') || streamEvent.data.type.includes('native-plan')) {
+                void refreshNativePlanClarifications(session.sessionId).catch(() => {});
+              }
             }
             return;
           }
@@ -848,12 +976,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         });
       }
       if (interactionMode === 'native-plan') {
-        void listNativePlanRevisions(session.sessionId)
-          .then(result => {
-            if (activeSessionIdRef.current === session.sessionId) {
-              setPlanRevisions(result.revisions);
-            }
-          })
+        void refreshNativePlan(session.sessionId)
           .catch(() => {});
       }
     } catch (error) {
@@ -880,6 +1003,65 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
   }
 
+  function beginPlanRevision(revision: number | undefined): void {
+    setInteractionMode('native-plan');
+    setDraft(revision
+      ? `Revise plan revision ${revision}. Describe the changes you want me to make:\n\n`
+      : 'Create a plan for:\n\n');
+    onDraftCaptured?.();
+    window.requestAnimationFrame(() => composerRef.current?.focus());
+  }
+
+  function beginPlanFollowUp(revision: NativePlanRevision, intent: 'execute' | 'workflow'): void {
+    setInteractionMode('chat');
+    const recordedPlan = nativePlanText(revision);
+    setDraft(intent === 'execute'
+      ? `Execute the accepted native Plan Mode revision ${revision.revision} below. Preserve its recorded constraints.\n\n--- plan revision ${revision.revision} ---\n${recordedPlan}`
+      : `Save native Plan Mode revision ${revision.revision} below as a reusable project workflow at .chirality/workflows/<suitable-name>/WORKFLOW.md. Limit this turn to the bounded workflow save; do not execute the plan. Preserve its constraints and add valid purpose and applicability metadata.\n\n--- plan revision ${revision.revision} ---\n${recordedPlan}`);
+    onDraftCaptured?.();
+    window.requestAnimationFrame(() => composerRef.current?.focus());
+  }
+
+  function savePlanRevision(revision: NativePlanRevision): void {
+    if (!activeSession) return;
+    const targetRelativePath = window.prompt(`Save this plan in ${activeSession.projectRoot} as`, `plans/native-plan-${revision.revision}.md`)?.trim();
+    if (!targetRelativePath) return;
+    setPlanExportStatus('Saving plan…');
+    const sessionId = activeSession.sessionId;
+    const request = { sessionId, revision: revision.revision, targetRelativePath };
+    void exportNativePlanRevision(request)
+      .then(result => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${activeSession.projectRoot}/${result.targetRelativePath}`); })
+      .catch(error => {
+        if (activeSessionIdRef.current !== sessionId) return;
+        if (error instanceof MethodSelectionClientError && error.status === 409 && window.confirm(`${targetRelativePath} already exists. Replace it?`)) {
+          void exportNativePlanRevision({ ...request, overwrite: true })
+            .then(result => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${activeSession.projectRoot}/${result.targetRelativePath}`); })
+            .catch(reason => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(reason instanceof Error ? reason.message : 'The plan could not be saved.'); });
+          return;
+        }
+        setPlanExportStatus(error instanceof Error ? error.message : 'The plan could not be saved.');
+      });
+  }
+
+  async function answerPlanClarification(clarification: NativePlanClarification, answers: Record<string, { answers: string[] }>): Promise<void> {
+    if (!activeSession || clarificationPendingId !== undefined) return;
+    const sessionId = activeSession.sessionId;
+    setClarificationPendingId(clarification.requestId);
+    setPlanClarificationError(null);
+    try {
+      await replyNativePlanClarification({ sessionId, requestId: clarification.requestId, answers });
+      if (activeSessionIdRef.current !== sessionId) return;
+      setPlanClarifications(current => current.filter(item => item.requestId !== clarification.requestId));
+      await refreshNativePlan(sessionId).catch(() => {});
+      await refreshNativePlanClarifications(sessionId).catch(() => {});
+    } catch (error) {
+      if (activeSessionIdRef.current !== sessionId) return;
+      setPlanClarificationError(error instanceof Error ? error.message : 'The planning answers could not be sent. Try again.');
+    } finally {
+      if (activeSessionIdRef.current === sessionId) setClarificationPendingId(undefined);
+    }
+  }
+
   return (
     <aside className={`panel panel--chat${presentation === 'woven' ? ' chat-panel--woven' : ''}`}>
       {presentation !== 'woven' ? <header className="panel-header">
@@ -896,6 +1078,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
               setOperatorMode(event.target.value);
             }}
           >
+            {!isSupportedOperatorMode(operatorMode) ? <option value={operatorMode} disabled>{PLAIN_MODE_LABELS[operatorMode] ?? operatorMode} (unsupported)</option> : null}
             {OPERATOR_MODES.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -905,6 +1088,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         </label>
       </header> : null}
 
+      <div className={presentation === 'woven' && (interactionMode === 'native-plan' || planRevisions.length > 0) ? 'chat-conversation-stage chat-conversation-stage--planning' : 'chat-conversation-stage'}>
       <div className="panel-body chat-transcript">
         {!projectRoot ? (
           <p className="panel-empty">{presentation === 'woven' ? 'Choose a folder below to start a chat.' : 'Select a Working Root before starting a harness turn.'}</p>
@@ -933,32 +1117,23 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             </ul> : null}
           </article>
         ))}
-        {planRevisions.map(revision => <article key={`native-plan-${revision.revision}`} className="chat-bubble chat-bubble--assistant native-plan-revision">
+        {presentation !== 'woven' ? planRevisions.map(revision => <article key={`native-plan-${revision.revision}`} className="chat-bubble chat-bubble--assistant native-plan-revision">
           <p className="chat-speaker">Native plan · revision {revision.revision}</p>
           <ChatMarkdown source={nativePlanText(revision)} projectRoot={activeSession?.projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} />
-          <button type="button" className="button-muted" onClick={() => {
-            if (!activeSession) return;
-            const targetRelativePath = window.prompt(`Save this plan in ${activeSession.projectRoot} as`, `plans/native-plan-${revision.revision}.md`)?.trim();
-            if (!targetRelativePath) return;
-            setPlanExportStatus('Saving plan…');
-            const sessionId = activeSession.sessionId;
-            const request = { sessionId, revision: revision.revision, targetRelativePath };
-            void exportNativePlanRevision(request)
-              .then(result => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${activeSession.projectRoot}/${result.targetRelativePath}`); })
-              .catch(error => {
-                if (activeSessionIdRef.current !== sessionId) return;
-                if (error instanceof MethodSelectionClientError && error.status === 409 && window.confirm(`${targetRelativePath} already exists. Replace it?`)) {
-                  void exportNativePlanRevision({ ...request, overwrite: true })
-                    .then(result => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${activeSession.projectRoot}/${result.targetRelativePath}`); })
-                    .catch(reason => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(reason instanceof Error ? reason.message : 'The plan could not be saved.'); });
-                  return;
-                }
-                setPlanExportStatus(error instanceof Error ? error.message : 'The plan could not be saved.');
-              });
-          }}>Export plan…</button>
-        </article>)}
+          <button type="button" className="button-muted" onClick={() => savePlanRevision(revision)}>Export plan…</button>
+        </article>) : null}
         {planExportStatus ? <p role="status">{planExportStatus}</p> : null}
         <PermissionRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} />
+      </div>
+      {presentation === 'woven' && (interactionMode === 'native-plan' || planRevisions.length > 0) ? <NativePlanSidebar
+        revisions={planRevisions} clarifications={planClarifications} active={interactionMode === 'native-plan'} refreshing={planRefreshing}
+        clarificationPendingId={clarificationPendingId} clarificationError={planClarificationError}
+        projectRoot={activeSession?.projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile}
+        onRefresh={() => { if (activeSession) void refreshNativePlan(activeSession.sessionId).catch(() => {}); }}
+        onRevise={beginPlanRevision} onExecute={revision => beginPlanFollowUp(revision, 'execute')}
+        onSaveAsWorkflow={revision => beginPlanFollowUp(revision, 'workflow')}
+        onReplyClarification={(clarification, answers) => { void answerPlanClarification(clarification, answers); }}
+        onSave={savePlanRevision} actionsDisabled={isRunning || planCapability.status !== 'qualified'} /> : null}
       </div>
 
       {/* Composer dock: every notice that sits between the transcript and the
@@ -1047,6 +1222,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             <p>{runtimeError.nextStep}</p>
           </div>
         ) : null}
+        {!isSupportedOperatorMode(operatorMode) ? <div className="chat-runtime-error" role="alert">
+          <p className="chat-runtime-error-title">Unsupported permission profile</p>
+          <p>This recorded chat used {PLAIN_MODE_LABELS[operatorMode] ?? operatorMode}. Select Project access before sending another message.</p>
+        </div> : null}
       </div>
 
       <form
@@ -1112,11 +1291,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           }
         />)}
         {presentation === 'woven' ? <button type="button" aria-label="Attach files" title="Attach files" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={() => setPickerOpen(true)}>⊕</button> : null}
-        {presentation === 'woven' ? <button type="button" aria-label="Choose methods" title="Choose methods" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={onOpenMethods}>Method</button> : null}
+        {presentation === 'woven' ? <button type="button" className="chat-workflow-button" aria-label="Choose a workflow" title="Open workflows and skill references" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={onOpenMethods}>Workflows</button> : null}
         <button
           type="submit"
           aria-label={isRunning ? 'Running' : 'Send'}
-          disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady || (!draft.trim() && attachments.length === 0)}
+          disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady || !isSupportedOperatorMode(operatorMode) || (!draft.trim() && attachments.length === 0)}
         >
           {presentation === 'woven' ? '↑' : isRunning ? 'Running...' : 'Send'}
         </button>
@@ -1136,11 +1315,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <span>{conversationBinding ? 'Working in' : 'Start in'}</span>
         <FolderSelect knownRoots={knownRoots} root={conversationBinding?.projectRoot ?? projectRoot} locked={Boolean(conversationBinding)} disabled={isRunning || folderSelectionPending} onPendingChange={onFolderSelectionPending} />
         <span aria-hidden="true">·</span><PersonaPicker compact disabled={isRunning} />
-        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Operator mode</span><select value={operatorMode} disabled={isRunning} onChange={event => setOperatorMode(event.target.value)}>{OPERATOR_MODES.map(option => <option key={option.value} value={option.value}>{PLAIN_MODE_LABELS[option.value]}</option>)}</select></label>
+        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Operator mode</span><select value={operatorMode} disabled={isRunning} onChange={event => setOperatorMode(event.target.value)}>
+          {!isSupportedOperatorMode(operatorMode) ? <option value={operatorMode} disabled>{PLAIN_MODE_LABELS[operatorMode] ?? operatorMode} (unsupported)</option> : null}
+          {OPERATOR_MODES.map(option => <option key={option.value} value={option.value}>{PLAIN_MODE_LABELS[option.value]}</option>)}</select></label>
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Interaction mode</span><select aria-label="Interaction mode" value={interactionMode} disabled={isRunning} onChange={event => setInteractionMode(event.target.value as InteractionMode)}>
-          <option value="chat">Chat</option><option value="native-plan" disabled={planCapability.status !== 'qualified'}>Plan Mode</option>
+          <option value="chat">Chat</option><option value="native-plan" disabled={Boolean(activeSession) && planCapability.status !== 'qualified'}>Plan Mode</option>
         </select></label>
-        {planCapability.status === 'unavailable' ? <span title={planCapability.reason}>Plan Mode unavailable</span> : null}
+        {activeSession && planCapability.status === 'unavailable' ? <span title={planCapability.reason}>Plan Mode unavailable</span> : null}
         {folderSyncError ? <p role="alert">{folderSyncError}</p> : null}
         {nativeFolderError ? <p role="alert">{nativeFolderError}</p> : null}
       </div> : null}

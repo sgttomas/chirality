@@ -1,4 +1,5 @@
-import { chmod, mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { chmod, mkdtemp, mkdir, rm, stat, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
@@ -50,6 +51,8 @@ describe('v3 App proxy to RuntimeClient transport', () => {
     roots.push(root);
     const projectRoot = path.join(root, 'project');
     await mkdir(projectRoot);
+    const instructionRoot = path.join(root, 'instruction-root');
+    await mkdir(instructionRoot);
     const tokenFile = path.join(root, 'runtime.token');
     const socketPath = path.join(root, 'runtime.sock');
     await writeFile(tokenFile, 'test-token\n');
@@ -97,6 +100,18 @@ describe('v3 App proxy to RuntimeClient transport', () => {
         { kind: 'method-body', id: descriptors[2].qualifiedId, content: 'manager coordination workflow', sha256: 'c'.repeat(64), method: methodWorkflow },
         { kind: 'method-body', id: descriptors[0].qualifiedId, content: 'project review body', sha256: 'd'.repeat(64), method: methodProject }
       ],
+      executionRoots: {
+        workingRoot: {
+          path: projectRoot,
+          origin: 'registered-project-root',
+          identitySha256: createHash('sha256').update(JSON.stringify({ schema: 'chirality.execution-root/v1', path: projectRoot, origin: 'registered-project-root', dev: `${(await stat(projectRoot)).dev}`, ino: `${(await stat(projectRoot)).ino}` })).digest('hex')
+        },
+        toolRoot: {
+          path: instructionRoot,
+          origin: 'trusted-runtime-instruction-root',
+          identitySha256: createHash('sha256').update(JSON.stringify({ schema: 'chirality.execution-root/v1', path: instructionRoot, origin: 'trusted-runtime-instruction-root', dev: `${(await stat(instructionRoot)).dev}`, ino: `${(await stat(instructionRoot)).ino}` })).digest('hex')
+        }
+      },
       basisPreview: { id: 'basis-preview', sha256: 'e'.repeat(64), instructionPolicySha256: '9'.repeat(64), sources: [], persisted: false }, compatibilityInputs: [], compatibilityMappings: []
     } as const satisfies ResolveSelectedContextResponse;
 

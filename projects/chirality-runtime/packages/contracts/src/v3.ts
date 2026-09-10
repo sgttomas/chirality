@@ -1,3 +1,5 @@
+import type { NativePlanClarificationAnswers, NativePlanClarificationQuestion } from "./delegated.js";
+
 export const CHIRALITY_ROLE_NAMES = [
   "HELP_HUMAN",
   "HELPS_HUMANS",
@@ -178,6 +180,11 @@ export interface ResolveSelectedContextResponse {
   documents: readonly ResolvedContextDocument[];
   dispositions: readonly SelectedMethodDisposition[];
   supplied: readonly SuppliedContextEntry[];
+  executionRoots: Readonly<{
+    workingRoot: { path: string; origin: "registered-project-root"; identitySha256: string };
+    /** Base for reviewed repository-relative commands such as tools/.... */
+    toolRoot: { path: string; origin: "trusted-runtime-instruction-root"; identitySha256: string };
+  }>;
   basisPreview: ResolvedContextBasisPreview;
   compatibilityInputs: readonly ("Workflow" | "TaskSkill")[];
   compatibilityMappings: readonly MethodCompatibilityMapping[];
@@ -237,6 +244,14 @@ export interface QualifiedNativePlanAdapterEvent {
   eventId: string;
   occurredAt: string;
   qualification: NativePlanAdapterQualification;
+  /** Real supervisor/provider identity retained by production captures; legacy revisions may omit it. */
+  binding?: {
+    projectId: string;
+    sessionId: string;
+    clientTurnId: string;
+    providerThreadId: string;
+    providerTurnId: string;
+  };
   plan: unknown;
 }
 
@@ -275,6 +290,43 @@ export interface ExportNativePlanResponse {
   revision: number;
   targetRelativePath: string;
   sha256: string;
+}
+
+export interface NativePlanClarification {
+  clientTurnId: string;
+  providerThreadId: string;
+  providerTurnId: string;
+  requestId: string | number;
+  itemId: string;
+  questions: readonly NativePlanClarificationQuestion[];
+  isBlocking: boolean;
+  autoResolutionMs: number | null;
+}
+
+export type NativePlanClarificationsResponse =
+  | {
+      schemaVersion: "chirality.native-plan-clarifications/v3";
+      status: "unavailable";
+      reason: string;
+      clarifications: readonly [];
+    }
+  | {
+      schemaVersion: "chirality.native-plan-clarifications/v3";
+      status: "qualified";
+      qualification: NativePlanAdapterQualification;
+      clarifications: readonly NativePlanClarification[];
+    };
+
+export interface ReplyNativePlanClarificationRequest {
+  requestId: string | number;
+  answers: NativePlanClarificationAnswers;
+}
+
+export interface ReplyNativePlanClarificationResponse {
+  schemaVersion: "chirality.native-plan-clarification-reply/v3";
+  sessionId: string;
+  requestId: string | number;
+  sent: true;
 }
 
 export interface FrozenInstructionBasisV3 {
@@ -321,6 +373,13 @@ export function assertQualifiedNativePlanEvent(
     event.qualification.adapterId.trim() === "" ||
     event.qualification.providerId.trim() === "" ||
     event.qualification.qualificationId.trim() === ""
+    || (event.binding !== undefined && (
+      typeof event.binding.projectId !== "string" || event.binding.projectId.trim() === "" ||
+      typeof event.binding.sessionId !== "string" || event.binding.sessionId.trim() === "" ||
+      typeof event.binding.clientTurnId !== "string" || event.binding.clientTurnId.trim() === "" ||
+      typeof event.binding.providerThreadId !== "string" || event.binding.providerThreadId.trim() === "" ||
+      typeof event.binding.providerTurnId !== "string" || event.binding.providerTurnId.trim() === ""
+    ))
   ) {
     throw new Error("Native Plan revisions require a qualified native adapter event");
   }

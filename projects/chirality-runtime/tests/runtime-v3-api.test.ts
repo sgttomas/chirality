@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -106,6 +106,76 @@ describe("v3 Runtime API integration", () => {
     expect(await afterRestart.getNativePlanCapability("v3-api", session.sessionId)).toMatchObject({ status: "unavailable" });
   }, 15_000);
 
+  it("refuses project skills across discovery, inspection, context resolution, and dynamic loading", async () => {
+    let dynamicLoadError: unknown;
+    const fixture = await setup(async function* (input) {
+      const projectWorkflow = (await fixture.client.listMethods("v3-api")).methods.find(method => method.source === "project" && method.kind === "workflow")!;
+      try {
+        await input.runtimeTools?.find(tool => tool.name === "chirality_load_method")?.execute({
+          methods: [{ sourceRootId: projectWorkflow.sourceRootId, source: "project", kind: "skill", name: "untrusted-skill" }]
+        }, new AbortController().signal);
+      } catch (error) { dynamicLoadError = error; }
+      yield { type: "session:init", data: { engineSessionId: "untrusted-skill-engine", adapterId: "stub", providerId: "stub", model: "fixture" } };
+      yield { type: "process:exit", data: { exitCode: 0 } };
+    });
+    const skillPath = join(fixture.projectRoot, ".agents", "skills", "untrusted-skill", "SKILL.md");
+    await mkdir(join(fixture.projectRoot, ".agents", "skills", "untrusted-skill"), { recursive: true });
+    await writeFile(skillPath, "---\nname: untrusted-skill\ndescription: Must remain unavailable.\n---\n\nUNTRUSTED_SKILL_BODY\n", "utf8");
+    const methods = await fixture.client.listMethods("v3-api");
+    expect(methods.methods).not.toContainEqual(expect.objectContaining({ kind: "skill", name: "untrusted-skill" }));
+    const projectSourceRootId = methods.methods.find(method => method.source === "project" && method.kind === "workflow")!.sourceRootId;
+    const qualified = `${projectSourceRootId}:project:skill:untrusted-skill`;
+    await expect(fixture.client.inspectMethod("v3-api", qualified)).rejects.toMatchObject({ code: "FORBIDDEN" });
+    const session = await fixture.client.createSession("v3-api", { projectId: "v3-api" });
+    await expect(fixture.client.resolveSelectedContext("v3-api", session.sessionId, {
+      roleId: "HELP_HUMAN", interactionMode: "chat", permissionMode: "ask", methods: [{ kind: "skill", name: "untrusted-skill" }]
+    })).rejects.toMatchObject({ code: "NOT_FOUND" });
+    await expect(fixture.client.resolveSelectedContext("v3-api", session.sessionId, {
+      roleId: "HELP_HUMAN", interactionMode: "chat", permissionMode: "ask",
+      methods: [{ sourceRootId: projectSourceRootId, source: "project", kind: "skill", name: "untrusted-skill" }]
+    })).rejects.toMatchObject({ code: "FORBIDDEN" });
+    await drain(await fixture.client.turnSession("v3-api", session.sessionId, { message: "attempt untrusted skill load" }));
+    expect(dynamicLoadError).toMatchObject({ code: "FORBIDDEN", status: 403 });
+    expect((await fixture.sessions.get("v3-api", session.sessionId)).selectedMethods).toEqual([]);
+    expect(JSON.stringify(await fixture.sessions.instructionBases.history("v3-api", session.sessionId))).not.toContain("UNTRUSTED_SKILL_BODY");
+  });
+
+  it("round-trips a contained project workflow revision while leaving its prior frozen basis unchanged", async () => {
+    const captured: AgentEngineRunInput[] = [];
+    const fixture = await setup(async function* (input) {
+      captured.push(input);
+      yield { type: "session:init", data: { engineSessionId: `workflow-roundtrip-${captured.length}`, adapterId: "stub", providerId: "stub", model: "fixture" } };
+      yield { type: "process:exit", data: { exitCode: 0 } };
+    });
+    const packageRoot = join(fixture.projectRoot, ".chirality", "workflows", "roundtrip-workflow");
+    const workflowPath = join(packageRoot, "WORKFLOW.md");
+    await mkdir(packageRoot, { recursive: true });
+    await writeFile(workflowPath, "---\nname: roundtrip-workflow\ndescription: Contained roundtrip fixture.\n---\n\nROUNDTRIP_REVISION_ONE\n", "utf8");
+
+    const firstDescriptor = (await fixture.client.listMethods("v3-api")).methods.find(method => method.name === "roundtrip-workflow")!;
+    expect(firstDescriptor).toMatchObject({ source: "project", kind: "workflow" });
+    expect(firstDescriptor.qualifiedId).toBe(`${firstDescriptor.sourceRootId}:project:workflow:roundtrip-workflow`);
+    const firstInspection = await fixture.client.inspectMethod("v3-api", firstDescriptor.qualifiedId);
+    const session = await fixture.client.createSession("v3-api", { projectId: "v3-api", selectedMethods: [{ kind: "workflow", name: "roundtrip-workflow" }] });
+    await drain(await fixture.client.turnSession("v3-api", session.sessionId, { message: "freeze revision one" }));
+    const frozenBefore = (await fixture.client.replaySession("v3-api", session.sessionId)).instructionBases[0]!;
+    expect(frozenBefore.suppliedEntries.some(entry => entry.content.includes("ROUNDTRIP_REVISION_ONE"))).toBe(true);
+
+    await writeFile(workflowPath, "---\nname: roundtrip-workflow\ndescription: Contained roundtrip fixture.\n---\n\nROUNDTRIP_REVISION_TWO\n", "utf8");
+    const refreshedDescriptor = (await fixture.client.listMethods("v3-api")).methods.find(method => method.name === "roundtrip-workflow")!;
+    expect(refreshedDescriptor.qualifiedId).toBe(firstDescriptor.qualifiedId);
+    const secondInspection = await fixture.client.inspectMethod("v3-api", refreshedDescriptor.qualifiedId);
+    expect(secondInspection.entrypoint.sha256).not.toBe(firstInspection.entrypoint.sha256);
+    expect(secondInspection.entrypoint.content).toContain("ROUNDTRIP_REVISION_TWO");
+    const refreshed = await fixture.client.resolveSelectedContext("v3-api", session.sessionId, {
+      roleId: "HELP_HUMAN", interactionMode: "chat", permissionMode: "ask", methods: [{ sourceRootId: firstDescriptor.sourceRootId, source: "project", kind: "workflow", name: "roundtrip-workflow" }]
+    });
+    expect(refreshed.documents[0]?.sha256).toBe(secondInspection.entrypoint.sha256);
+    const frozenAfter = (await fixture.client.replaySession("v3-api", session.sessionId)).instructionBases[0]!;
+    expect(frozenAfter).toEqual(frozenBefore);
+    expect(JSON.stringify(frozenAfter)).not.toContain("ROUNDTRIP_REVISION_TWO");
+  });
+
   it("preserves legacy mapping inputs and decisions in selected context and frozen replay", async () => {
     let captured: AgentEngineRunInput | undefined;
     const fixture = await setup(async function* (input) {
@@ -124,9 +194,15 @@ describe("v3 Runtime API integration", () => {
     const metadata = captured?.instructionContext?.supplied.find(entry => entry.kind === "selection-metadata")?.content ?? "";
     expect(metadata).toContain('"original":"deliverable-consistency"');
     expect(metadata).toContain('"mapping":"converted-alias"');
+    expect(captured?.instructionContext?.executionRoots).toEqual({
+      workingRoot: { path: await realpath(fixture.projectRoot), origin: "registered-project-root", identitySha256: expect.stringMatching(/^[a-f0-9]{64}$/u) },
+      toolRoot: { path: resolve(process.cwd(), "../.."), origin: "trusted-runtime-instruction-root", identitySha256: expect.stringMatching(/^[a-f0-9]{64}$/u) }
+    });
+    expect(JSON.parse(metadata).executionRoots).toEqual(captured?.instructionContext?.executionRoots);
     const replay = await fixture.client.replaySession("v3-api", session.sessionId);
     expect(replay.instructionBases[0]?.compatibilityInputs).toEqual(["Workflow", "TaskSkill"]);
     expect(replay.instructionBases[0]?.compatibilityMappings).toEqual(captured?.instructionContext?.compatibilityMappings);
+    expect(replay.instructionBases[0]?.suppliedEntries.find(entry => entry.kind === "selection-metadata")?.content).toContain('"trusted-runtime-instruction-root"');
   });
 
   it("rejects a method replacement after turn acceptance while provider preflight is delayed", async () => {
@@ -557,18 +633,44 @@ describe("v3 Runtime API integration", () => {
   it("exports only a trusted stored native Plan revision and rejects symlinked parents", async () => {
     const qualification = { adapterId: "stub", providerId: "stub", qualificationId: "fixture-qualified", admissionSha256: "a".repeat(64), evidenceClass: "native-adapter-qualified" as const };
     const sourceEvent = { qualificationState: "qualified" as const, eventId: "native-event", occurredAt: new Date().toISOString(), qualification, plan: { title: "trusted plan" } };
+    const markdownEvent = { qualificationState: "qualified" as const, eventId: "native-markdown", occurredAt: new Date().toISOString(), qualification, plan: { id: "plan-item", type: "plan", text: "# Trusted plan\n\n1. Inspect\n2. Revise" } };
+    const stringEvent = { qualificationState: "qualified" as const, eventId: "native-string", occurredAt: new Date().toISOString(), qualification, plan: "# Earlier text plan" };
     const fixture = await setup(async function* (input) { yield { type: "session:init", data: { engineSessionId: "engine", adapterId: "stub", providerId: "stub", model: input.opts.model } }; yield { type: "process:exit", data: { exitCode: 0 } }; }, {
       async capability() { return { schemaVersion: "chirality.native-plan-capability/v3", status: "qualified", qualification }; },
-      async revisions() { return { schemaVersion: "chirality.native-plan-revisions/v3", status: "qualified", qualification, revisions: [{ revision: 1, sourceEvent }] }; }
+      async revisions() { return { schemaVersion: "chirality.native-plan-revisions/v3", status: "qualified", qualification, revisions: [{ revision: 1, sourceEvent }, { revision: 2, sourceEvent: markdownEvent }, { revision: 3, sourceEvent: stringEvent }] }; }
     });
     const session = await fixture.client.createSession("v3-api", { projectId: "v3-api" });
     await fixture.client.listNativePlanRevisions("v3-api", session.sessionId);
     const exported = await fixture.client.exportNativePlan("v3-api", session.sessionId, { revision: 1, targetRelativePath: "plans/revision-1.json" });
     expect(exported).toMatchObject({ revision: 1, targetRelativePath: "plans/revision-1.json" });
     expect(JSON.parse(await readFile(join(fixture.projectRoot, "plans", "revision-1.json"), "utf8"))).toEqual({ title: "trusted plan" });
+    await fixture.client.exportNativePlan("v3-api", session.sessionId, { revision: 2, targetRelativePath: "plans/revision-2.md" });
+    expect(await readFile(join(fixture.projectRoot, "plans", "revision-2.md"), "utf8")).toBe("# Trusted plan\n\n1. Inspect\n2. Revise\n");
+    await fixture.client.exportNativePlan("v3-api", session.sessionId, { revision: 3, targetRelativePath: "plans/revision-3.md" });
+    expect(await readFile(join(fixture.projectRoot, "plans", "revision-3.md"), "utf8")).toBe("# Earlier text plan\n");
     const outside = join(fixture.directory, "outside"); await mkdir(outside); await symlink(outside, join(fixture.projectRoot, "escape"));
     await expect(fixture.client.exportNativePlan("v3-api", session.sessionId, { revision: 1, targetRelativePath: "escape/plan.json" })).rejects.toMatchObject({ code: "FORBIDDEN" });
     await expect(readFile(join(outside, "plan.json"))).rejects.toMatchObject({ code: "ENOENT" });
+  });
+
+  it("keeps native Plan clarifications distinct from permission decisions and preserves multi-question answers", async () => {
+    const qualification = { adapterId: "stub", providerId: "stub", qualificationId: "fixture-qualified", admissionSha256: "a".repeat(64), evidenceClass: "native-adapter-qualified" as const };
+    const replies: unknown[] = [];
+    const clarification = { clientTurnId: "client-turn", providerThreadId: "provider-thread", providerTurnId: "provider-turn", requestId: 42, itemId: "question-item", questions: [
+      { id: "scope", header: "Scope", question: "Which scope?", options: [{ label: "A", description: "First" }], isOther: true, isSecret: false },
+      { id: "token", header: "Secret", question: "Supply token", options: [], isOther: false, isSecret: true }
+    ], isBlocking: true, autoResolutionMs: null };
+    const fixture = await setup(async function* () { yield { type: "process:exit", data: { exitCode: 0 } }; }, {
+      async capability() { return { schemaVersion: "chirality.native-plan-capability/v3", status: "qualified", qualification }; },
+      async revisions() { return { schemaVersion: "chirality.native-plan-revisions/v3", status: "qualified", qualification, revisions: [] }; },
+      async clarifications() { return { schemaVersion: "chirality.native-plan-clarifications/v3", status: "qualified", qualification, clarifications: [clarification] }; },
+      async replyClarification(projectId: string, sessionId: string, request: unknown) { replies.push({ projectId, sessionId, request }); return { sent: true }; }
+    });
+    const session = await fixture.client.createSession("v3-api", { projectId: "v3-api" });
+    expect(await fixture.client.listNativePlanClarifications("v3-api", session.sessionId)).toMatchObject({ status: "qualified", clarifications: [clarification] });
+    const request = { requestId: 42, answers: { scope: { answers: ["A", "custom"] }, token: { answers: ["secret"] } } };
+    await expect(fixture.client.replyNativePlanClarification("v3-api", session.sessionId, request)).resolves.toEqual({ schemaVersion: "chirality.native-plan-clarification-reply/v3", sessionId: session.sessionId, requestId: 42, sent: true });
+    expect(replies).toEqual([{ projectId: "v3-api", sessionId: session.sessionId, request }]);
   });
 
   it("lists and exports recorded qualified Native Plan revisions after restart without the registry", async () => {

@@ -4,7 +4,7 @@ import { dirname, isAbsolute, parse, join } from "node:path";
 import { randomBytes, randomUUID, timingSafeEqual, createHmac } from "node:crypto";
 import type { SupervisorManagerPort, ManagerMessage } from "./codex-manager.js";
 import type { CodexLoginStatus } from "./codex-login.js";
-import { RuntimeError, validateHostedLoginStatus, type DelegatedHarnessProcessSupervisorPort, type WorkerHandle, type WorkerResult, type WorkerContinuity, type SupervisorNetworkApprovalPort, type NetworkApprovalPrompt, type NetworkApprovalChoice, type SupervisorApprovalDescription, type RuntimeCompatibilityIdentity } from "@chirality/runtime-contracts";
+import { RuntimeError, validateHostedLoginStatus, type DelegatedHarnessProcessSupervisorPort, type WorkerHandle, type WorkerResult, type WorkerContinuity, type SupervisorNetworkApprovalPort, type NetworkApprovalPrompt, type NetworkApprovalChoice, type SupervisorApprovalDescription, type RuntimeCompatibilityIdentity, type SupervisorNativePlanPort, type NativePlanTransportEvent, type NativePlanClarificationPrompt, type NativePlanClarificationAnswers, type SupervisorRuntimeToolPort, type RuntimeToolCallbackDeclaration, type RuntimeToolCallbackMessage, type RuntimeToolCallbackResult, type SupervisorTurnProgressPort, type DelegatedTurnProgressEvent } from "@chirality/runtime-contracts";
 
 function reconciliationDetails(value: unknown): Record<string, unknown> | undefined {
   if (!value || typeof value !== "object" || (value as Record<string, unknown>).reason !== "DESCENDANT_RECONCILIATION_REQUIRED") return undefined;
@@ -98,7 +98,7 @@ export async function startSupervisorServer(options: { socketPath: string; super
           if(Object.keys(r).some(key=>!["owner","epoch","op","generation","workerId","input","token"].includes(key)))throw new Error("invalid request fields");
           if (!r || typeof r !== "object" || !validString(r.token, 64) || !/^[a-f0-9]{64}$/.test(r.token) || !timingSafeEqual(Buffer.from(r.token), Buffer.from(requestToken(credential.token, r))) || r.owner !== credential.owner || r.epoch !== credential.epoch) throw new Error("unauthorized supervisor request");
           const op = r.op;
-          if (!["acquire", "inventory", "reconnect", "wait", "retire", "verify-hosted", "login-start", "login-status", "login-cancel", "manager-start", "manager-next", "manager-reply", "approval-pending", "approval-reply", "approval-describe"].includes(String(op))) throw new Error("unknown operation");
+          if (!["acquire", "inventory", "reconnect", "wait", "retire", "verify-hosted", "login-start", "login-status", "login-cancel", "manager-start", "manager-next", "manager-reply", "approval-pending", "approval-reply", "approval-describe", "native-plan-events", "native-plan-questions", "native-plan-answer", "runtime-tool-start", "runtime-tool-next", "runtime-tool-reply", "turn-progress"].includes(String(op))) throw new Error("unknown operation");
           let result: unknown;
           if (op === "approval-describe") {
             const describe = options.supervisor as DelegatedHarnessProcessSupervisorPort & { describeApprovalScope?: (workerId?: string, generation?: string) => Promise<Omit<SupervisorApprovalDescription, "compatibility">> };
@@ -124,7 +124,40 @@ export async function startSupervisorServer(options: { socketPath: string; super
           else if (op === "inventory") { if (r.generation !== null) throw new Error("invalid generation"); result = await options.supervisor.inventory(); }
           else {
             if (!validString(r.workerId) || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(r.workerId)) throw new Error("invalid worker");
-            if (op === "approval-pending" || op === "approval-reply") {
+            if (op === "turn-progress") {
+              const progress = options.supervisor as DelegatedHarnessProcessSupervisorPort & Partial<SupervisorTurnProgressPort>;
+              if (!validString(r.generation) || r.input !== undefined || !progress.drainTurnProgress) throw new Error("Turn progress service unavailable");
+              result = await progress.drainTurnProgress(r.workerId, r.generation);
+            } else if (op === "runtime-tool-start" || op === "runtime-tool-next" || op === "runtime-tool-reply") {
+              const runtimeTools = options.supervisor as DelegatedHarnessProcessSupervisorPort & Partial<SupervisorRuntimeToolPort>;
+              if (!runtimeTools.acquireWithRuntimeTools || !runtimeTools.nextRuntimeToolCallback || !runtimeTools.replyRuntimeToolCallback) throw new Error("Runtime tool supervisor service unavailable");
+              if (op === "runtime-tool-start") {
+                if (r.generation !== null || typeof r.input !== "string" || Buffer.byteLength(r.input) > 196608) throw new Error("Invalid runtime tool start");
+                const start = JSON.parse(r.input);
+                if (!start || Object.keys(start).sort().join(",") !== "input,tools" || typeof start.input !== "string" || !Array.isArray(start.tools)) throw new Error("Invalid runtime tool start");
+                result = await runtimeTools.acquireWithRuntimeTools(r.workerId, start.input, start.tools);
+              } else {
+                if (!validString(r.generation)) throw new Error("Invalid runtime tool generation");
+                if (op === "runtime-tool-next") { if (r.input !== undefined) throw new Error("Unexpected runtime tool poll input"); result = await runtimeTools.nextRuntimeToolCallback(r.workerId, r.generation); }
+                else {
+                  if (typeof r.input !== "string" || Buffer.byteLength(r.input) > 131072) throw new Error("Invalid runtime tool reply");
+                  const reply = JSON.parse(r.input);
+                  if (!reply || Object.keys(reply).sort().join(",") !== "message,result") throw new Error("Invalid runtime tool reply");
+                  result = await runtimeTools.replyRuntimeToolCallback(r.workerId, r.generation, reply.message, reply.result);
+                }
+              }
+            } else if (op === "native-plan-events" || op === "native-plan-questions" || op === "native-plan-answer") {
+              const nativePlan = options.supervisor as DelegatedHarnessProcessSupervisorPort & Partial<SupervisorNativePlanPort>;
+              if (!validString(r.generation) || !nativePlan.drainNativePlanEvents || !nativePlan.pendingNativePlanClarifications || !nativePlan.replyNativePlanClarification) throw new Error("Native Plan supervisor service unavailable");
+              if (op === "native-plan-events") { if (r.input !== undefined) throw new Error("Unexpected native Plan event input"); result = await nativePlan.drainNativePlanEvents(r.workerId, r.generation); }
+              else if (op === "native-plan-questions") { if (r.input !== undefined) throw new Error("Unexpected native Plan question input"); result = await nativePlan.pendingNativePlanClarifications(r.workerId, r.generation); }
+              else {
+                if (typeof r.input !== "string" || Buffer.byteLength(r.input) > 131072) throw new Error("Invalid native Plan answer");
+                const reply = JSON.parse(r.input);
+                if (!reply || typeof reply !== "object" || Array.isArray(reply) || Object.keys(reply).sort().join(",") !== "answers,requestId" || (typeof reply.requestId !== "string" && typeof reply.requestId !== "number") || typeof reply.answers !== "object" || reply.answers === null || Array.isArray(reply.answers)) throw new Error("Invalid native Plan answer");
+                result = await nativePlan.replyNativePlanClarification(r.workerId, r.generation, reply.requestId, reply.answers);
+              }
+            } else if (op === "approval-pending" || op === "approval-reply") {
               const approvals = options.supervisor as DelegatedHarnessProcessSupervisorPort & Partial<SupervisorNetworkApprovalPort>;
               if (!validString(r.generation) || !approvals.pendingNetworkApprovals || !approvals.replyNetworkApproval) throw new Error("Approval service unavailable");
               if (op === "approval-pending") { if (r.input !== undefined) throw new Error("Unexpected approval input"); result = await approvals.pendingNetworkApprovals(r.workerId, r.generation); }
@@ -218,6 +251,29 @@ export class SupervisorClient implements DelegatedHarnessProcessSupervisorPort {
     const reply = await this.request("approval-reply", { workerId, generation, input: JSON.stringify({ approvalId, decision }) });
     if (!reply || typeof reply !== "object" || Object.keys(reply).join(",") !== "sent" || (reply as { sent?: unknown }).sent !== true) throw new Error("Invalid approval delivery receipt");
     return { sent: true };
+  }
+  async drainNativePlanEvents(workerId: string, generation: string): Promise<readonly NativePlanTransportEvent[]> {
+    return await this.request("native-plan-events", { workerId, generation }) as NativePlanTransportEvent[];
+  }
+  async pendingNativePlanClarifications(workerId: string, generation: string): Promise<readonly NativePlanClarificationPrompt[]> {
+    return await this.request("native-plan-questions", { workerId, generation }) as NativePlanClarificationPrompt[];
+  }
+  async replyNativePlanClarification(workerId: string, generation: string, requestId: string | number, answers: NativePlanClarificationAnswers): Promise<{ sent: true }> {
+    const reply = await this.request("native-plan-answer", { workerId, generation, input: JSON.stringify({ requestId, answers }) });
+    if (!reply || typeof reply !== "object" || Object.keys(reply).join(",") !== "sent" || (reply as { sent?: unknown }).sent !== true) throw new Error("Invalid native Plan answer delivery receipt");
+    return { sent: true };
+  }
+  async acquireWithRuntimeTools(workerId: string, input: string, tools: readonly RuntimeToolCallbackDeclaration[]): Promise<WorkerHandle> {
+    return await this.request("runtime-tool-start", { workerId, input: JSON.stringify({ input, tools }) }) as WorkerHandle;
+  }
+  async nextRuntimeToolCallback(workerId: string, generation: string): Promise<RuntimeToolCallbackMessage> {
+    return await this.request("runtime-tool-next", { workerId, generation }) as RuntimeToolCallbackMessage;
+  }
+  async replyRuntimeToolCallback(workerId: string, generation: string, message: Extract<RuntimeToolCallbackMessage, {kind:"callback"}>, result: RuntimeToolCallbackResult): Promise<void> {
+    await this.request("runtime-tool-reply", { workerId, generation, input: JSON.stringify({ message, result }) });
+  }
+  async drainTurnProgress(workerId: string, generation: string): Promise<readonly DelegatedTurnProgressEvent[]> {
+    return await this.request("turn-progress", { workerId, generation }) as DelegatedTurnProgressEvent[];
   }
   async acquire(workerId: string, input: string): Promise<WorkerHandle> { return await this.request("acquire", { workerId, input }) as WorkerHandle; }
   async inventory(): Promise<readonly WorkerHandle[]> { return await this.request("inventory") as WorkerHandle[]; }

@@ -20,14 +20,22 @@ export function resolveRuntimeContractsSource(subpath = '') {
   );
 }
 
+export function resolveNativeAdmissionSource() {
+  return path.join(runtimeRoot, 'packages', 'native-admission', 'src', 'index.ts');
+}
+
+export function resolveHostedRuntimePathsSource() {
+  return path.join(runtimeRoot, 'packages', 'daemon', 'src', 'hosted-paths.ts');
+}
+
+export function resolveHostedRuntimeSource() {
+  return path.join(runtimeRoot, 'packages', 'daemon', 'src', 'hosted.ts');
+}
+
 const runtimeEntries = {
-  '@chirality/engine-claude': path.join(
-    runtimeRoot,
-    'packages',
-    'engine-claude',
-    'src',
-    'index.ts'
-  ),
+  '@chirality/runtime-daemon/hosted': resolveHostedRuntimeSource(),
+  '@chirality/runtime-daemon/hosted-paths': resolveHostedRuntimePathsSource(),
+  '@chirality/native-admission': resolveNativeAdmissionSource(),
   '@chirality/runtime-contracts': resolveRuntimeContractsSource(),
   '@chirality/runtime-core': path.join(runtimeRoot, 'packages', 'core', 'src', 'index.ts'),
   '@chirality/runtime-daemon': path.join(
@@ -44,14 +52,7 @@ const runtimeEntries = {
     'src',
     'index.ts'
   ),
-  '@chirality/runtime-cli': path.join(runtimeRoot, 'packages', 'cli', 'src', 'index.ts'),
-  '@chirality/engine-pi-omlx': path.join(
-    runtimeRoot,
-    'packages',
-    'engine-pi-omlx',
-    'src',
-    'index.ts'
-  )
+  '@chirality/runtime-cli': path.join(runtimeRoot, 'packages', 'cli', 'src', 'index.ts')
 };
 
 const runtimePackagePlugin = {
@@ -89,16 +90,7 @@ export async function buildElectron() {
     format: 'cjs',
     sourcemap: true,
     plugins: [runtimePackagePlugin],
-    external: [
-      'electron',
-      'next',
-      '@anthropic-ai/claude-agent-sdk',
-      '@anthropic-ai/claude-agent-sdk/*',
-      '@anthropic-ai/sdk',
-      '@anthropic-ai/sdk/*',
-      '@earendil-works/pi-coding-agent',
-      '@earendil-works/pi-coding-agent/*'
-    ],
+    external: ['electron', 'next'],
     logLevel: 'info'
   });
 

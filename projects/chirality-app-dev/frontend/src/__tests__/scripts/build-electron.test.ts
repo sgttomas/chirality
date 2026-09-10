@@ -1,7 +1,12 @@
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-import { resolveRuntimeContractsSource } from '../../../scripts/build-electron.mjs';
+import {
+  resolveNativeAdmissionSource,
+  resolveHostedRuntimeSource,
+  resolveHostedRuntimePathsSource,
+  resolveRuntimeContractsSource
+} from '../../../scripts/build-electron.mjs';
 
 describe('build Electron Runtime contract aliases', () => {
   it('resolves the v3 package export from the contracts source root', () => {
@@ -13,6 +18,24 @@ describe('build Electron Runtime contract aliases', () => {
   it('keeps established Harness subpath exports under the Harness source directory', () => {
     expect(resolveRuntimeContractsSource('errors')).toBe(
       path.resolve(process.cwd(), '../../chirality-runtime/packages/contracts/src/harness/errors.ts')
+    );
+  });
+
+  it('resolves native admission from the Runtime package source', () => {
+    expect(resolveNativeAdmissionSource()).toBe(
+      path.resolve(process.cwd(), '../../chirality-runtime/packages/native-admission/src/index.ts')
+    );
+  });
+
+  it('resolves hosted path helpers without importing the daemon barrel', () => {
+    expect(resolveHostedRuntimePathsSource()).toBe(
+      path.resolve(process.cwd(), '../../chirality-runtime/packages/daemon/src/hosted-paths.ts')
+    );
+  });
+
+  it('resolves the dedicated hosted daemon entry for Electron private bootstrap wiring', () => {
+    expect(resolveHostedRuntimeSource()).toBe(
+      path.resolve(process.cwd(), '../../chirality-runtime/packages/daemon/src/hosted.ts')
     );
   });
 });

@@ -411,9 +411,9 @@ Packaging:
 npm run desktop:dist
 ```
 
-Expected package artifacts:
+Expected package artifacts (candidate-version is the explicitly recorded, consistent package.json/package-lock.json and actual App bundle identity; no version is selected by this plan):
 
-- `frontend/dist/Chirality-0.1.0-arm64.dmg`
+- `frontend/dist/Chirality-<candidate-version>-arm64.dmg`
 - `frontend/dist/mac-arm64/Chirality.app`
 - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
 

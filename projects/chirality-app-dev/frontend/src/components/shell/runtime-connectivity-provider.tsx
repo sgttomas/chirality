@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -23,6 +24,8 @@ type RuntimeConnectivityContextValue = {
    * get exactly one re-run per reconnect, for free, with no listener of their own.
    */
   epoch: number;
+  /** Publish one renderer refresh after an explicit project binding changes. */
+  refreshBindings: () => void;
 };
 
 const RuntimeConnectivityContext = createContext<RuntimeConnectivityContextValue | null>(
@@ -53,6 +56,7 @@ export function RuntimeConnectivityProvider({
   const snapshot = useRuntimeConnectivity();
   const [epoch, setEpoch] = useState(0);
   const previousRef = useRef<RuntimeConnectivitySnapshot | null>(null);
+  const refreshBindings = useCallback(() => setEpoch((value) => value + 1), []);
 
   useEffect(() => {
     const previous = previousRef.current;
@@ -63,8 +67,8 @@ export function RuntimeConnectivityProvider({
   }, [snapshot]);
 
   const value = useMemo<RuntimeConnectivityContextValue>(
-    () => ({ snapshot, epoch }),
-    [snapshot, epoch]
+    () => ({ snapshot, epoch, refreshBindings }),
+    [snapshot, epoch, refreshBindings]
   );
 
   return (
@@ -82,6 +86,11 @@ export function RuntimeConnectivityProvider({
  */
 export function useRuntimeEpoch(): number {
   return useContext(RuntimeConnectivityContext)?.epoch ?? 0;
+}
+
+/** Re-fetch runtime-backed panes after an explicit renderer-initiated binding. */
+export function useRuntimeBindingRefresh(): () => void {
+  return useContext(RuntimeConnectivityContext)?.refreshBindings ?? (() => {});
 }
 
 /**

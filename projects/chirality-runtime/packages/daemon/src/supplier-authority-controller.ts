@@ -99,7 +99,7 @@ export interface AuthorityTransport {send(frame:AuthorityEnvelope<AuthorityReque
 export type SupplierAuthorityProjection={state:"disabled"}|{state:"unavailable";reason:"not-configured"|"starting"|"revoking"|"retiring"|"blocked"}|{state:"ready"};
 interface Pending {request:AuthorityRequest;result?:AuthorityResult;resolve:(result:AuthorityResult)=>void;reject:(error:Error)=>void}
 export class SupplierAuthorityController {
-  private state:"disabled"|"active"|"revoking"="disabled";private heldOperation?:string;private heldLeaseId?:string;private pending?:Pending;private guard:Promise<void>=Promise.resolve();private outgoing?:AuthorityTranscript;private incoming?:AuthorityTranscript;private revocation?:Promise<void>;private detach?:()=>void;private lastSent?:Sequence20;
+  private state:"disabled"|"active"|"retired"|"revoking"="disabled";private heldOperation?:string;private heldLeaseId?:string;private pending?:Pending;private guard:Promise<void>=Promise.resolve();private outgoing?:AuthorityTranscript;private incoming?:AuthorityTranscript;private revocation?:Promise<void>;private detach?:()=>void;private lastSent?:Sequence20;
   constructor(private readonly options:{enabled:boolean;kernelLease?:RuntimeAdmissionLease;transport?:AuthorityTransport;authoritySecret?:Buffer;runtimeProcessIncarnationId?:string;supplierGeneration?:string;identityGeneration?:string;snapshotDigest?:string;durableRevoke?:()=>Promise<void>;refreshSnapshot?:()=>Promise<{supplierGeneration:string;identityGeneration:string;snapshotDigest:string}>}){
     if(!options.enabled)return;
     if(!options.kernelLease?.held||!options.transport||!options.authoritySecret||!options.runtimeProcessIncarnationId||!options.supplierGeneration||!options.identityGeneration||!options.snapshotDigest)return;
@@ -107,8 +107,12 @@ export class SupplierAuthorityController {
     this.outgoing=new AuthorityTranscript(options.authoritySecret,identity,"runtime-to-supplier");this.incoming=new AuthorityTranscript(options.authoritySecret,identity,"supplier-to-runtime");this.state="active";
     this.detach=options.transport.subscribe(raw=>{try{this.receive(raw);}catch{void this.revoke();}},()=>{void this.revoke();});
   }
-  projection():SupplierAuthorityProjection{return this.state==="active"&&this.options.kernelLease?.held?{state:"ready"}:this.options.enabled?{state:"unavailable",reason:this.state==="revoking"?"revoking":"starting"}:{state:"disabled"};}
+  projection():SupplierAuthorityProjection{return this.state==="active"&&this.options.kernelLease?.held?{state:"ready"}:this.options.enabled?{state:"unavailable",reason:this.state==="revoking"?"revoking":this.state==="retired"?"retiring":"starting"}:{state:"disabled"};}
   runGuarded<T>(fn:()=>Promise<T>):Promise<T>{const run=this.guard.then(fn,fn);this.guard=run.then(()=>{},()=>{});return run;}
+  assertSnapshotBinding(snapshot:{supplierGeneration:string;identityGeneration:string;snapshotDigest:string}):void {
+    if(this.state!=="active"||!this.options.kernelLease?.held||snapshot.supplierGeneration!==this.options.supplierGeneration
+      ||snapshot.identityGeneration!==this.options.identityGeneration||snapshot.snapshotDigest!==this.options.snapshotDigest)throw new Error("authority-unavailable");
+  }
   assertCommit(operationId:string):void {if(this.state!=="active"||!this.options.kernelLease?.held||this.heldOperation!==operationId||!this.heldLeaseId)throw new Error("authority-unavailable");}
   private receive(raw:string|Uint8Array):void {
     if(this.state!=="active"||!this.incoming)throw new Error("authority-revoked");const body=this.incoming.accept(raw);
@@ -124,6 +128,8 @@ export class SupplierAuthorityController {
   async release(operationId:string):Promise<void>{return this.finish(operationId,true);}
   async abort(operationId:string):Promise<void>{return this.finish(operationId,false);}
   private async finish(operationId:string,committed:boolean):Promise<void>{this.assertCommit(operationId);const leaseId=this.heldLeaseId!;this.heldLeaseId=undefined;this.heldOperation=undefined;try{const requestId=randomUUID();const r=await this.exchange(committed?{kind:"request",op:"chirality/admissionRelease",requestId,leaseId,disposition:"worker-accepted"}:{kind:"request",op:"chirality/admissionAbort",requestId,leaseId,disposition:"worker-not-accepted"});if(r.op!==(committed?"chirality/admissionRelease":"chirality/admissionAbort")||!("leaseId"in r)||r.leaseId!==leaseId)throw new Error("transcript-invalid");}catch(error){await this.revoke();throw error;}}
-  revoke():Promise<void>{if(this.revocation)return this.revocation;this.state="revoking";this.heldLeaseId=undefined;this.heldOperation=undefined;const pending=this.pending;this.pending=undefined;pending?.reject(new Error("authority-revoked"));this.detach?.();this.revocation=(async()=>{await this.options.durableRevoke?.();await this.options.transport?.close();})();void this.revocation.catch(()=>{});return this.revocation;}
+  revoke():Promise<void>{if(this.state==="retired")return Promise.resolve();if(this.revocation)return this.revocation;this.state="revoking";this.heldLeaseId=undefined;this.heldOperation=undefined;const pending=this.pending;this.pending=undefined;pending?.reject(new Error("authority-revoked"));this.detach?.();this.revocation=(async()=>{await this.options.durableRevoke?.();await this.options.transport?.close();})();void this.revocation.catch(()=>{});return this.revocation;}
+  /** Graceful post-release retirement. Only a fully released live authority may retire without advancing durable continuity. */
+  retire():Promise<void>{return this.runGuarded(async()=>{if(this.state!=="active"||this.pending||this.heldLeaseId||this.heldOperation||!this.options.kernelLease?.held)throw new Error("authority-unavailable");this.state="retired";this.detach?.();this.detach=undefined;});}
   async close():Promise<void>{await this.runGuarded(async()=>{await this.revoke();});}
 }

@@ -1,11 +1,12 @@
 import type { RuntimeAdmissionLease } from "@chirality/runtime-core";
 import { randomUUID, createHash } from "node:crypto";
 import { isIP } from "node:net";
-import type { NetworkApprovalPrompt, NetworkApprovalChoice } from "@chirality/runtime-contracts";
+import { CHIRALITY_ROLE_NAMES, type DelegatedAttachmentInput, type NetworkApprovalPrompt, type NetworkApprovalChoice, type NativePlanClarificationAnswers, type NativePlanClarificationQuestion, type WorkerContinuity } from "@chirality/runtime-contracts";
 import type { Readable, Writable } from "node:stream";
 import { isAbsolute, resolve } from "node:path";
 import { RuntimeError } from "@chirality/runtime-contracts";
 import { AUTHORITY_CONTRACT, SupplierAuthorityController, initializationProof, verifyProof, strictKeys, parseAuthorityJson, type AuthorityTransport, type AuthorityEnvelope, type AuthorityNotification, type AuthorityRequest } from "./supplier-authority-controller.js";
+import type { HostedIdentityBindingStore, HostedIdentitySnapshot } from "./hosted-identity-binding.js";
 
 export interface CodexAuthorityInitialize {
   runtimeProcessIncarnationId:string;supplierGeneration:string;runtimeChallenge:string;exactSupplyDigest:string;authoritySecret:Buffer;
@@ -25,7 +26,7 @@ export type CodexPrivateAuthorityFrame = AuthorityEnvelope<AuthorityRequest|Auth
 
 export interface CodexDynamicToolResult { success: boolean; contentItems: readonly { type: "inputText"; text: string }[] }
 export interface CodexDynamicTool {
-  name: "delegate_agent" | "review";
+  name: string;
   description: string;
   inputSchema: Readonly<Record<string, unknown>>;
   handler(arguments_: Readonly<Record<string, unknown>>, context: { threadId: string; turnId: string; callId: string; signal: AbortSignal }): Promise<CodexDynamicToolResult>;
@@ -34,10 +35,16 @@ interface DynamicCall { signature: string; turnId: string; controller: AbortCont
 export interface CodexNativePermissions { filesystem: Readonly<Record<string, "read" | "write" | "deny">>; network: { enabled: boolean; [key: string]: unknown } }
 export interface CodexSessionTransport { stdin: Writable; stdout: Readable; close(): Promise<void> }
 export interface CodexTurnTerminal { threadId: string; turnId: string; status: "completed" | "failed" | "interrupted"; output: string }
-export type CodexSessionEvent = { type: "text"; threadId: string; turnId: string; text: string } | { type: "terminal"; terminal: CodexTurnTerminal };
+export interface CodexPlanEvent { type: "plan"; threadId: string; turnId: string; eventId: string; occurredAt: string; plan: { id: string; type: "plan"; text: string } }
+export interface CodexUserInputRequest {
+  threadId: string; turnId: string; requestId: string | number; itemId: string;
+  questions: readonly NativePlanClarificationQuestion[]; isBlocking: boolean; autoResolutionMs: number | null;
+}
+export type CodexSessionEvent = { type: "started"; threadId: string; turnId: string } | { type: "text"; threadId: string; turnId: string; text: string } | CodexPlanEvent | { type: "terminal"; terminal: CodexTurnTerminal };
 interface Pending { resolve(value: Record<string, unknown>): void; reject(error: Error): void; timer: ReturnType<typeof setTimeout> }
 interface Turn {
-  threadId: string; id?: string; terminal?: CodexTurnTerminal; items: Map<string, { text: string; completed: boolean }>;
+  threadId: string; id?: string; terminal?: CodexTurnTerminal; startedEmitted: boolean; items: Map<string, { text: string; completed: boolean }>;
+  plans: Map<string, { deltaText: string; completed: boolean; completedText?: string }>;
   done: Promise<CodexTurnTerminal>; resolve(value: CodexTurnTerminal): void; reject(error: Error): void;
   timer: ReturnType<typeof setTimeout>;
 }
@@ -91,6 +98,7 @@ export class CodexTurnSession {
 
   private readonly commandNetworkPosture: "off" | "ask-per-destination" | "on";
   private readonly networkApprovals = new Map<string, { prompt: NetworkApprovalPrompt; requestId: string | number; signature: string; state: "pending" | "sending" | "sent" | "resolved" }>();
+  private readonly userInputRequests = new Map<string, { prompt: CodexUserInputRequest; signature: string; state: "pending" | "sending" | "sent" | "resolved" }>();
   private readonly requests = new Map<number, Pending>();
   private nextId = 1;
   private buffer: Buffer = Buffer.alloc(0);
@@ -118,21 +126,15 @@ export class CodexTurnSession {
   private readonly resolvedServerRequests = new Set<string>();
   private readonly toolRequestIds = new Map<string, string>();
   private expectedPermissions: CodexNativePermissions | undefined;
+  private expectedNativeRoles: { digest: string; configOverrides: readonly string[]; roles: Readonly<Record<string, { description: string; config_file: string }>> } | undefined;
   private policyCwd: string | undefined;
   private readonly nativePolicy: Readonly<{ permissionProfile: string; policyDigest: string }> | undefined;
   private login: { state: "pending" | "completed" | "failed"; loginId?: string } | undefined;
   constructor(private readonly options: { transport: CodexSessionTransport; requestTimeoutMs?: number; turnTimeoutMs?: number; purpose?: "turn" | "login"; permissionProfile?: string; policyDigest?: string; dynamicTools?: readonly CodexDynamicTool[]; toolTimeoutMs?: number; commandNetworkPosture?: "off" | "ask-per-destination" | "on" }) {
     this.commandNetworkPosture = options.commandNetworkPosture ?? "off";
     if (options.commandNetworkPosture !== undefined && !["off", "ask-per-destination", "on"].includes(options.commandNetworkPosture)) throw invalid("Invalid trusted command network posture");
-    if ((options.dynamicTools?.length ?? 0) > 2 || (options.purpose === "login" && options.dynamicTools?.length)) throw invalid("Unsupported dynamic tool registry");
-    for (const tool of options.dynamicTools ?? []) {
-      if (!["delegate_agent", "review"].includes(tool.name) || this.tools.has(tool.name) || typeof tool.description !== "string" || !tool.description.trim() || tool.description.length > 4096 || typeof tool.handler !== "function") throw invalid("Invalid immutable dynamic tool declaration");
-      const schema = JSON.parse(JSON.stringify(tool.inputSchema)) as Record<string, unknown>;
-      if (Buffer.byteLength(JSON.stringify(schema)) > 16384) throw invalid("Dynamic tool schema exceeds bound");
-      checkToolSchema(schema);
-      if (schema.type !== "object") throw invalid("Dynamic tool input must be a closed object");
-      this.tools.set(tool.name, Object.freeze({ name: tool.name, description: tool.description, inputSchema: freezeTree(schema), handler: tool.handler }));
-    }
+    if ((options.dynamicTools?.length ?? 0) > 32 || (options.purpose === "login" && options.dynamicTools?.length)) throw invalid("Unsupported dynamic tool registry");
+    this.installDynamicTools(options.dynamicTools ?? []);
     if (options.permissionProfile !== undefined || options.policyDigest !== undefined) {
       if (typeof options.permissionProfile !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(options.permissionProfile) || typeof options.policyDigest !== "string" || !/^[a-f0-9]{64}$/.test(options.policyDigest)) throw invalid("Named policy requires an explicit profile and SHA-256 digest");
       this.nativePolicy = Object.freeze({ permissionProfile: options.permissionProfile, policyDigest: options.policyDigest });
@@ -142,6 +144,21 @@ export class CodexTurnSession {
     options.transport.stdout.on("error", () => this.fail(protocol("Codex transport failed")));
     options.transport.stdout.on("end", () => this.fail(protocol("Codex transport ended")));
     options.transport.stdin.on("error", () => this.fail(protocol("Codex input failed")));
+  }
+  /** Installs host callbacks once, after private admission and before thread selection. */
+  installDynamicTools(tools: readonly CodexDynamicTool[]): void {
+    if (this.threadId || this.active || this.selecting || this.tools.size || tools.length > 32 || this.options.purpose === "login") {
+      if (tools.length) throw invalid("Dynamic tools must be installed once before thread selection");
+      return;
+    }
+    for (const tool of tools) {
+      if (!/^[A-Za-z][A-Za-z0-9_-]{0,63}$/.test(tool.name) || this.tools.has(tool.name) || typeof tool.description !== "string" || !tool.description.trim() || tool.description.length > 4096 || typeof tool.handler !== "function") throw invalid("Invalid immutable dynamic tool declaration");
+      const schema = JSON.parse(JSON.stringify(tool.inputSchema)) as Record<string, unknown>;
+      if (Buffer.byteLength(JSON.stringify(schema)) > 16384) throw invalid("Dynamic tool schema exceeds bound");
+      checkToolSchema(schema);
+      if (schema.type !== "object") throw invalid("Dynamic tool input must be a closed object");
+      this.tools.set(tool.name, Object.freeze({ name: tool.name, description: tool.description, inputSchema: freezeTree(schema), handler: tool.handler }));
+    }
   }
   private fail(error: RuntimeError): void {
     if (this.failure) return;
@@ -162,14 +179,14 @@ export class CodexTurnSession {
     if (Buffer.byteLength(data) > 262144) throw invalid("Codex request is too large");
     this.options.transport.stdin.write(data, error => { if (error) this.fail(protocol("Codex input failed")); });
   }
-  private request(method: string, params: Record<string, unknown>): Promise<Record<string, unknown>> {
+  private request(method: string, params?: Record<string, unknown>): Promise<Record<string, unknown>> {
     if (this.failure) return Promise.reject(this.failure);
     if (this.requests.size >= 8) return Promise.reject(invalid("Too many outstanding Codex requests"));
     const id = this.nextId++;
     return new Promise((resolveRequest, reject) => {
       const timer = setTimeout(() => this.fail(protocol("Codex request timed out")), this.options.requestTimeoutMs ?? 10000);
       this.requests.set(id, { resolve: resolveRequest, reject, timer });
-      try { this.write({ id, method, params }); }
+      try { this.write(params === undefined ? { id, method } : { id, method, params }); }
       catch (error) { clearTimeout(timer); this.requests.delete(id); reject(error); }
     });
   }
@@ -197,6 +214,7 @@ export class CodexTurnSession {
   }
   private serverRequest(message: Record<string, unknown>): void {
     if (message.method === "item/commandExecution/requestApproval") { this.networkApprovalRequest(message); return; }
+    if (message.method === "item/tool/requestUserInput") { this.userInputRequest(message); return; }
     if (message.method !== "item/tool/call") throw protocol("Unsupported Codex server request; no approval granted");
     const requestId = message.id;
     if ((typeof requestId !== "string" && typeof requestId !== "number") || (typeof requestId === "number" && !Number.isSafeInteger(requestId)) || String(requestId).length > 128) throw protocol("Invalid server request ID");
@@ -238,6 +256,68 @@ export class CodexTurnSession {
       if (this.resolvedServerRequests.has(requestKey) || this.failure || this.active?.id !== turnId || this.threadId !== threadId) return;
       try { this.write({ id: requestId, result }); } catch (error) { this.fail(error instanceof RuntimeError ? error : protocol("Dynamic response failed")); }
     });
+  }
+  private userInputRequest(message: Record<string, unknown>): void {
+    const requestId = message.id;
+    if ((typeof requestId !== "string" && typeof requestId !== "number") || (typeof requestId === "number" && !Number.isSafeInteger(requestId)) || String(requestId).length > 128) throw protocol("Invalid user-input request ID");
+    const params = object(message.params), active = this.active;
+    const threadId = identifier(params.threadId), turnId = identifier(params.turnId), itemId = identifier(params.itemId);
+    if (!active?.id || active.id !== turnId || active.threadId !== threadId || this.threadId !== threadId) throw protocol("User-input request is outside the active primary turn");
+    if (!Array.isArray(params.questions) || params.questions.length < 1 || params.questions.length > 3) throw protocol("Invalid native Plan questions");
+    const questions = params.questions.map(value => {
+      const q = object(value), questionId = identifier(q.id);
+      if (typeof q.header !== "string" || !q.header.trim() || q.header.length > 64 || typeof q.question !== "string" || !q.question.trim() || Buffer.byteLength(q.question) > 8192) throw protocol("Invalid native Plan question");
+      const sourceOptions = q.options === undefined || q.options === null ? [] : q.options;
+      if (!Array.isArray(sourceOptions) || sourceOptions.length > 16) throw protocol("Invalid native Plan question options");
+      const options = sourceOptions.map(value => {
+        const option = object(value);
+        if (typeof option.label !== "string" || !option.label.trim() || option.label.length > 256 || typeof option.description !== "string" || Buffer.byteLength(option.description) > 4096) throw protocol("Invalid native Plan question option");
+        return { label: option.label, description: option.description };
+      });
+      if (q.isOther !== undefined && typeof q.isOther !== "boolean") throw protocol("Invalid native Plan other-answer flag");
+      if (q.isSecret !== undefined && typeof q.isSecret !== "boolean") throw protocol("Invalid native Plan secret-answer flag");
+      return { id: questionId, header: q.header, question: q.question, options, isOther: q.isOther === true, isSecret: q.isSecret === true };
+    });
+    if (new Set(questions.map(question => question.id)).size !== questions.length) throw protocol("Duplicate native Plan question identity");
+    if (params.isBlocking !== undefined && typeof params.isBlocking !== "boolean") throw protocol("Invalid native Plan blocking flag");
+    if (params.autoResolutionMs !== undefined && params.autoResolutionMs !== null && (!Number.isSafeInteger(params.autoResolutionMs) || Number(params.autoResolutionMs) < 0)) throw protocol("Invalid native Plan auto-resolution interval");
+    const prompt: CodexUserInputRequest = { threadId, turnId, requestId, itemId, questions, isBlocking: params.isBlocking !== false, autoResolutionMs: params.autoResolutionMs === undefined ? null : params.autoResolutionMs as number | null };
+    const key = `${typeof requestId}:${requestId}`, signature = JSON.stringify(params), prior = this.userInputRequests.get(key);
+    if (prior) { if (prior.signature !== signature || prior.state !== "pending") throw protocol("Conflicting or stale user-input request"); return; }
+    if (this.userInputRequests.size >= 64 || this.networkApprovals.has(key) || this.toolRequestIds.has(key)) throw protocol("User-input request inventory bound exceeded or ID reused");
+    this.userInputRequests.set(key, { prompt, signature, state: "pending" });
+  }
+  pendingNativePlanClarifications(): readonly CodexUserInputRequest[] {
+    if (this.failure) throw this.failure;
+    if (!this.ready) return [];
+    return [...this.userInputRequests.values()].filter(entry => entry.state === "pending" && entry.prompt.turnId === this.active?.id && entry.prompt.threadId === this.threadId).map(entry => structuredClone(entry.prompt));
+  }
+  async replyNativePlanClarification(requestId: string | number, answers: NativePlanClarificationAnswers): Promise<{ sent: true }> {
+    this.assertReady();
+    const key = `${typeof requestId}:${requestId}`, entry = this.userInputRequests.get(key);
+    if (!entry || entry.state !== "pending" || entry.prompt.turnId !== this.active?.id || entry.prompt.threadId !== this.threadId) throw invalid("Unknown or resolved native Plan clarification");
+    if (!answers || typeof answers !== "object" || Array.isArray(answers) || Object.keys(answers).sort().join(",") !== entry.prompt.questions.map(question => question.id).sort().join(",")) throw invalid("Native Plan answers must match every question identity");
+    const copy: Record<string, { answers: string[] }> = {};
+    for (const question of entry.prompt.questions) {
+      const answer = answers[question.id];
+      if (!answer || typeof answer !== "object" || Array.isArray(answer) || Object.keys(answer).join(",") !== "answers" || !Array.isArray(answer.answers) || answer.answers.length < 1 || answer.answers.length > 16 || answer.answers.some(value => typeof value !== "string" || Buffer.byteLength(value) > 8192)) throw invalid("Invalid native Plan answer payload");
+      copy[question.id] = { answers: [...answer.answers] };
+    }
+    const frame = JSON.stringify({ id: requestId, result: { answers: copy } }) + "\n";
+    entry.state = "sending";
+    await new Promise<void>((resolveWrite, rejectWrite) => {
+      let settled = false;
+      const finish = (error?: Error | null) => {
+        if (settled) return; settled = true; clearTimeout(timer);
+        if (error || this.failure) { const failure = this.failure ?? protocol("Native Plan answer transport write failed"); this.fail(failure); rejectWrite(failure); }
+        else resolveWrite();
+      };
+      const timer = setTimeout(() => finish(protocol("Native Plan answer transport write timed out")), this.options.requestTimeoutMs ?? 10000);
+      try { this.options.transport.stdin.write(frame, error => finish(error)); }
+      catch { finish(protocol("Native Plan answer transport write failed")); }
+    });
+    if (entry.state === "sending") entry.state = "sent";
+    return { sent: true };
   }
   private resolveNetworkApprovals(turnId?: string): void {
     for (const entry of this.networkApprovals.values()) if (!turnId || entry.prompt.turnId === turnId) entry.state = "resolved";
@@ -317,7 +397,8 @@ export class CodexTurnSession {
       const entry = this.networkApprovals.get(`${typeof id}:${id}`);
       if (entry) { if (entry.prompt.threadId !== threadId) throw protocol("Resolved approval thread mismatch"); entry.state = "resolved"; }
       else {
-        const key = `${typeof id}:${id}`, signature = this.toolRequestIds.get(key);
+        const key = `${typeof id}:${id}`, question = this.userInputRequests.get(key), signature = this.toolRequestIds.get(key);
+        if (question) { if (question.prompt.threadId !== threadId) throw protocol("Resolved user-input thread mismatch"); question.state = "resolved"; return; }
         if (signature) {
           const [callThread, , callId] = JSON.parse(signature);
           if (callThread !== threadId) throw protocol("Resolved tool thread mismatch");
@@ -326,7 +407,7 @@ export class CodexTurnSession {
       }
       return;
     }
-    if (!["account/login/completed", "thread/started", "turn/started", "turn/completed", "item/agentMessage/delta", "item/started", "item/completed"].includes(method)) { this.quarantine(method, value); return; }
+    if (!["account/login/completed", "thread/started", "turn/started", "turn/completed", "item/agentMessage/delta", "item/plan/delta", "item/started", "item/completed"].includes(method)) { this.quarantine(method, value); return; }
     const params = object(value);
     if (method === "account/login/completed") {
       if (this.options.purpose !== "login" || !this.login) throw protocol("Unexpected login completion");
@@ -353,12 +434,17 @@ export class CodexTurnSession {
     const active = this.active;
     if (!active || (active.id && active.id !== turnId)) throw protocol("Late or mismatched Codex turn event");
     active.id ??= turnId;
-    if (method === "turn/started") { if (object(params.turn).status !== "inProgress") throw protocol("Unsupported started turn status"); return; }
+    if (method === "turn/started") {
+      if (object(params.turn).status !== "inProgress") throw protocol("Unsupported started turn status");
+      if (!active.startedEmitted) { active.startedEmitted = true; this.emit({ type: "started", threadId, turnId }); }
+      return;
+    }
     if (method === "turn/completed") {
       const status = object(params.turn).status;
       if (status !== "completed" && status !== "failed" && status !== "interrupted") throw protocol("Unsupported terminal status");
       if ([...this.toolCalls.values()].some(call => call.turnId === turnId && !call.completed && !call.controller.signal.aborted)) throw protocol("Codex terminal preceded host tool completion");
       this.resolveNetworkApprovals(turnId);
+      for (const entry of this.userInputRequests.values()) if (entry.prompt.turnId === turnId) entry.state = "resolved";
       const terminal: CodexTurnTerminal = { threadId, turnId, status, output: [...active.items.values()].map(item => item.text).join("") };
       this.emit({ type: "terminal", terminal: { ...terminal } });
       clearTimeout(active.timer); this.terminals.set(turnId, terminal); active.terminal = terminal; this.active = undefined;
@@ -371,6 +457,13 @@ export class CodexTurnSession {
       if (item.completed || Buffer.byteLength(item.text) + Buffer.byteLength(text) > 262144) throw protocol("Late or oversized text delta");
       item.text += text; active.items.set(itemId, item); this.emit({ type: "text", threadId, turnId, text }); return;
     }
+    if (method === "item/plan/delta") {
+      const itemId = identifier(params.itemId), text = params.delta;
+      if (typeof text !== "string" || Buffer.byteLength(text) > 65536) throw protocol("Unsupported plan delta");
+      const item = active.plans.get(itemId) ?? { deltaText: "", completed: false };
+      if (item.completed || Buffer.byteLength(item.deltaText) + Buffer.byteLength(text) > 262144) throw protocol("Late or oversized plan delta");
+      item.deltaText += text; active.plans.set(itemId, item); return;
+    }
     if (method === "item/started" || method === "item/completed") {
       const item = object(params.item), itemId = identifier(item.id);
       if (item.type === "collabAgentToolCall" && item.receiverThreadIds !== undefined) {
@@ -382,6 +475,14 @@ export class CodexTurnSession {
         }
       }
       if (typeof item.type !== "string" || item.type.length > 128) throw protocol("Unsupported Codex item shape");
+      if (item.type === "plan") {
+        if (method === "item/started") { if (!active.plans.has(itemId)) active.plans.set(itemId, { deltaText: "", completed: false }); return; }
+        if (typeof item.text !== "string" || Buffer.byteLength(item.text) > 262144) throw protocol("Unsupported completed plan");
+        const prior = active.plans.get(itemId);
+        if (prior?.completed) { if (prior.completedText !== item.text) throw protocol("Conflicting completed plan"); return; }
+        active.plans.set(itemId, { deltaText: prior?.deltaText ?? "", completed: true, completedText: item.text });
+        this.emit({ type: "plan", threadId, turnId, eventId: randomUUID(), occurredAt: new Date().toISOString(), plan: { id: itemId, type: "plan", text: item.text } }); return;
+      }
       if (item.type !== "agentMessage" && item.type !== "userMessage") { this.quarantine(method, undefined); return; }
       if (item.type === "userMessage") return;
       if (method === "item/started") { if (!active.items.has(itemId)) active.items.set(itemId, { text: "", completed: false }); return; }
@@ -400,15 +501,33 @@ export class CodexTurnSession {
       verifyAuthorityInitialization(input,result.chiralityAdmissionAuthority);this.authorityInitialized=true;this.write({method:"initialized"});this.ready=true;
     }catch{this.fail(protocol("Private authority initialization unavailable"));throw this.failure;}finally{this.initializing=false;}
   }
-  async authoritySnapshot(supplierGeneration:string):Promise<{supplierGeneration:string;identityGeneration:string;snapshotDigest:string}> {
+  private async privateAuthoritySnapshot(supplierGeneration:string):Promise<HostedIdentitySnapshot> {
     this.assertReady();if(!this.authorityInitialized)throw invalid("Private authority initialization required");
     try{const response=await this.request("account/identitySnapshot",{schema:"chirality-supplier-account-identity-request/1",expectedSupplierGeneration:supplierGeneration});
       strictKeys(response,["schema","state","supplierGeneration","identityGeneration","accountUserId","providerWorkspaceId"]);
       if(response.schema!=="chirality-supplier-account-identity-response/1"||response.state!=="available"||response.supplierGeneration!==supplierGeneration)throw new Error("authority-unavailable");
       for(const key of ["supplierGeneration","identityGeneration","accountUserId","providerWorkspaceId"])if(typeof response[key]!=="string"||!/^[\x21-\x7e]{1,128}$/.test(response[key]))throw new Error("authority-unavailable");
       const canonical={schema:response.schema,state:response.state,supplierGeneration:response.supplierGeneration,identityGeneration:response.identityGeneration,accountUserId:response.accountUserId,providerWorkspaceId:response.providerWorkspaceId};
-      return {supplierGeneration,identityGeneration:response.identityGeneration as string,snapshotDigest:createHash("sha256").update(JSON.stringify(canonical)).digest("hex")};
+      return {supplierGeneration,identityGeneration:response.identityGeneration as string,accountUserId:response.accountUserId as string,providerWorkspaceId:response.providerWorkspaceId as string,snapshotDigest:createHash("sha256").update(JSON.stringify(canonical)).digest("hex")};
     }catch{this.fail(protocol("Private identity snapshot unavailable"));throw this.failure;}
+  }
+  async authoritySnapshot(supplierGeneration:string):Promise<{supplierGeneration:string;identityGeneration:string;snapshotDigest:string}> {
+    const {identityGeneration,snapshotDigest}=await this.privateAuthoritySnapshot(supplierGeneration);return{supplierGeneration,identityGeneration,snapshotDigest};
+  }
+  /** Consumes raw identity only within the private session/store seam and returns no supplier principal. */
+  async establishHostedIdentityBinding(store:HostedIdentityBindingStore,authority:SupplierAuthorityController,supplierGeneration:string,signal?:AbortSignal):Promise<{continuity:WorkerContinuity;authority:{supplierGeneration:string;identityGeneration:string;snapshotDigest:string};accountDigest:string}> {
+    return authority.runGuarded(async()=>{const snapshot=await this.privateAuthoritySnapshot(supplierGeneration);
+      const projected={supplierGeneration:snapshot.supplierGeneration,identityGeneration:snapshot.identityGeneration,snapshotDigest:snapshot.snapshotDigest};
+      const accountDigest=createHash("sha256").update(JSON.stringify({schema:"chirality-hosted-account-conformance/v1",accountUserId:snapshot.accountUserId,providerWorkspaceId:snapshot.providerWorkspaceId})).digest("hex");
+      const assertLive=()=>authority.assertSnapshotBinding(projected);assertLive();
+      try{const continuity=await store.establishLive(snapshot,{assertLive},signal);assertLive();return{continuity,authority:projected,accountDigest};}
+      catch(error){if(authority.projection().state!=="ready")await store.fence("revoke");throw error;}});
+  }
+  /** Returns only a stable digest of the private account/workspace pair for same-principal checks. */
+  async hostedAccountDigest(authority:SupplierAuthorityController,supplierGeneration:string):Promise<string> {
+    return authority.runGuarded(async()=>{const snapshot=await this.privateAuthoritySnapshot(supplierGeneration);
+      authority.assertSnapshotBinding({supplierGeneration:snapshot.supplierGeneration,identityGeneration:snapshot.identityGeneration,snapshotDigest:snapshot.snapshotDigest});
+      return createHash("sha256").update(JSON.stringify({schema:"chirality-hosted-account-conformance/v1",accountUserId:snapshot.accountUserId,providerWorkspaceId:snapshot.providerWorkspaceId})).digest("hex");});
   }
   private connectedAuthorityTransport():AuthorityTransport {
     if(!this.authorityInitialized)throw invalid("Private authority initialization required");
@@ -438,6 +557,12 @@ export class CodexTurnSession {
     }
     return { authRequired: result.requiresOpenaiAuth, hasAccount: result.account !== null };
   }
+  /** Supplier-owned logout. Runtime observes only the empty acknowledgement. */
+  async accountLogout(): Promise<void> {
+    this.assertReady();
+    const result = await this.request("account/logout");
+    if (Object.keys(result).length !== 0) { this.fail(protocol("Unsupported logout response")); throw this.failure; }
+  }
   async loginStart(): Promise<{ loginId: string; authUrl: string }> {
     this.assertReady();
     if (this.options.purpose !== "login" || this.login) throw invalid("Login requires a fresh dedicated login transport");
@@ -462,7 +587,7 @@ export class CodexTurnSession {
     if (this.options.purpose !== "login" || !this.login?.loginId || this.login.state !== "pending") throw invalid("No pending login to cancel");
     await this.request("account/login/cancel", { loginId: this.login.loginId });
   }
-  async verifyNativePolicy(expected: CodexNativePermissions): Promise<void> {
+  async verifyNativePolicy(expected: CodexNativePermissions, nativeRoles?: { digest: string; configOverrides: readonly string[] }): Promise<void> {
     this.assertReady();
     if (!this.nativePolicy) throw invalid("No trusted named policy is bound");
     let copy: CodexNativePermissions;
@@ -475,6 +600,25 @@ export class CodexTurnSession {
     if (roots.length !== 1 || roots[0] === "/") throw invalid("Native policy needs one bounded project write root");
     if (this.expectedPermissions && !sameTable(this.expectedPermissions, copy)) throw invalid("Expected native policy cannot be replaced in this session");
     this.expectedPermissions ??= Object.freeze({ filesystem: Object.freeze(copy.filesystem), network: Object.freeze(copy.network) });
+    if (nativeRoles !== undefined) {
+      const prefix = ["agents.enabled=true", "features.multi_agent=true", "features.multi_agent_v2=false", "agents.max_depth=2"];
+      if (!/^[a-f0-9]{64}$/.test(nativeRoles.digest) || !Array.isArray(nativeRoles.configOverrides) || nativeRoles.configOverrides.length !== 12
+        || prefix.some((value, index) => nativeRoles.configOverrides[index] !== value)) throw invalid("Invalid expected native role configuration");
+      const roles: Record<string, { description: string; config_file: string }> = {}; let index = prefix.length;
+      for (const roleId of CHIRALITY_ROLE_NAMES) {
+        const descriptionPrefix = `agents.${roleId}.description=`, filePrefix = `agents.${roleId}.config_file=`;
+        const description = nativeRoles.configOverrides[index++]!, file = nativeRoles.configOverrides[index++]!;
+        try {
+          if (!description.startsWith(descriptionPrefix) || !file.startsWith(filePrefix)) throw new Error();
+          const parsedDescription: unknown = JSON.parse(description.slice(descriptionPrefix.length)), parsedFile: unknown = JSON.parse(file.slice(filePrefix.length));
+          if (typeof parsedDescription !== "string" || typeof parsedFile !== "string" || !isAbsolute(parsedFile) || resolve(parsedFile) !== parsedFile) throw new Error();
+          roles[roleId] = { description: parsedDescription, config_file: parsedFile };
+        } catch { throw invalid("Invalid expected native role configuration"); }
+      }
+      const projected = { digest: nativeRoles.digest, configOverrides: [...nativeRoles.configOverrides], roles };
+      if (this.expectedNativeRoles && JSON.stringify(this.expectedNativeRoles) !== JSON.stringify(projected)) throw invalid("Expected native role configuration cannot be replaced in this session");
+      this.expectedNativeRoles ??= Object.freeze({ digest: projected.digest, configOverrides: Object.freeze(projected.configOverrides), roles: Object.freeze(projected.roles) });
+    } else if (this.expectedNativeRoles) throw invalid("Expected native role configuration cannot be removed from this session");
     this.policyCwd = roots[0]!;
     await this.checkNativePolicy();
   }
@@ -487,6 +631,13 @@ export class CodexTurnSession {
       const selected = normalizeObservedProfile(object(profiles[this.nativePolicy.permissionProfile]), this.expectedPermissions.network);
       if (!sameTable(selected, this.expectedPermissions)) throw protocol("Effective named policy differs from the trusted exact table");
       if (config.approvals_reviewer !== "user" || config.approval_policy !== (this.commandNetworkPosture === "ask-per-destination" ? "on-request" : "never") || config.allow_login_shell !== false || object(config.features).shell_snapshot !== false || object(config.features).plugins !== false || object(config.features).remote_plugin !== false || object(config.features).network_proxy !== (this.commandNetworkPosture !== "off")) throw protocol("Unsafe effective host execution settings");
+      if (this.expectedNativeRoles) {
+        const features = object(config.features), agents = object(config.agents);
+        if (features.multi_agent !== true || features.multi_agent_v2 !== false || agents.enabled !== true || agents.max_depth !== 2) throw protocol("Effective native role pins differ from the trusted configuration");
+        for (const roleId of CHIRALITY_ROLE_NAMES) if (!sameTable(agents[roleId], this.expectedNativeRoles.roles[roleId])) throw protocol("Effective native role entry differs from the trusted configuration");
+        const safeDefaults = new Set(["enabled", "max_depth", "max_concurrent_threads_per_session", "default_subagent_model", "default_subagent_reasoning_effort", "interrupt_message", ...CHIRALITY_ROLE_NAMES]);
+        if (Object.entries(agents).some(([key, value]) => !safeDefaults.has(key) && value !== null && value !== undefined)) throw protocol("Unexpected effective native role configuration");
+      }
       for (const field of ["hooks", "mcp_servers", "notify", "plugins", "profiles"]) if (!emptyConfiguration(config[field])) throw protocol("Unsafe host hooks, tools or profile overlays");
       if (config.profile !== null && config.profile !== undefined) throw protocol("Unexpected effective profile override");
       if (config.projects !== null && config.projects !== undefined) {
@@ -529,7 +680,7 @@ export class CodexTurnSession {
     const id = await this.select("thread/resume", input, { threadId: identifier(input.threadId) });
     if (id !== input.threadId) { this.fail(protocol("Resumed thread identity changed")); throw this.failure; } return id;
   }
-  async startTurn(input: { threadId: string; text: string; model: string }): Promise<string> {
+  async startTurn(input: { threadId: string; text: string; model: string; interactionMode?: "chat" | "native-plan"; attachments?: readonly DelegatedAttachmentInput[] }): Promise<string> {
     this.rejectPolicyOverride(input);
     this.assertReady(); if (this.options.purpose === "login") throw invalid("Login transport cannot start model work"); this.model(input.model);
     if (input.threadId !== this.threadId || !this.threadId || this.selecting) throw invalid("Select this thread before starting a turn");
@@ -537,14 +688,29 @@ export class CodexTurnSession {
     if (typeof input.text !== "string" || !input.text.trim() || Buffer.byteLength(input.text) > 65536 || this.terminals.size >= 64) throw invalid("Invalid prompt or session turn capacity reached");
     let resolveTurn!: (value: CodexTurnTerminal) => void, rejectTurn!: (error: Error) => void;
     const done = new Promise<CodexTurnTerminal>((yes, no) => { resolveTurn = yes; rejectTurn = no; }); void done.catch(() => {});
-    const turn: Turn = { threadId: input.threadId, items: new Map(), done, resolve: resolveTurn, reject: rejectTurn, timer: setTimeout(() => this.fail(protocol("Codex turn timed out")), this.options.turnTimeoutMs ?? 120000) };
+    if (input.interactionMode !== undefined && input.interactionMode !== "chat" && input.interactionMode !== "native-plan") throw invalid("Unknown interaction mode");
+    const attachments = input.attachments ?? [];
+    if (!Array.isArray(attachments) || attachments.length > 32) throw invalid("Invalid turn attachments");
+    const userInput: Record<string, unknown>[] = [{ type: "text", text: input.text, text_elements: [] }];
+    for (const attachment of attachments) {
+      if (attachment.type === "text") {
+        if (attachment.source !== "untrusted-document" || typeof attachment.text !== "string" || Buffer.byteLength(attachment.text) > 262144) throw invalid("Invalid untrusted document attachment");
+        userInput.push({ type: "text", text: attachment.text, text_elements: [] });
+      } else {
+        if (attachment.source !== "untrusted-attachment" || !isAbsolute(attachment.path) || resolve(attachment.path) !== attachment.path || !["image/png", "image/jpeg", "image/gif", "image/webp"].includes(attachment.mimeType)) throw invalid("Invalid local image attachment");
+        userInput.push({ type: "localImage", path: attachment.path });
+      }
+    }
+    const turn: Turn = { threadId: input.threadId, startedEmitted: false, items: new Map(), plans: new Map(), done, resolve: resolveTurn, reject: rejectTurn, timer: setTimeout(() => this.fail(protocol("Codex turn timed out")), this.options.turnTimeoutMs ?? 120000) };
     this.active = turn;
     try {
       await this.checkNativePolicy();
-      const result = await this.request("turn/start", { threadId: input.threadId, input: [{ type: "text", text: input.text }], model: input.model, ...this.policyParameters() });
+      const mode = input.interactionMode ?? "chat";
+      const result = await this.request("turn/start", { threadId: input.threadId, input: userInput, model: input.model,
+        collaborationMode: { mode: mode === "native-plan" ? "plan" : "default", settings: { model: input.model, reasoning_effort: null, developer_instructions: null } }, ...this.policyParameters() });
       const id = identifier(object(result.turn).id);
       if ((turn.id && turn.id !== id) || (this.terminals.has(id) && turn.terminal?.turnId !== id)) throw protocol("Turn response identity mismatch");
-      turn.id = id; return id;
+      turn.id = id; if (!turn.startedEmitted) { turn.startedEmitted = true; this.emit({ type: "started", threadId: turn.threadId, turnId: id }); } return id;
     } catch (error) { clearTimeout(turn.timer); if (this.active === turn) this.active = undefined; turn.reject(error as Error); if (error instanceof RuntimeError && error.details?.reason === "CODEX_PROTOCOL_FAILURE") this.fail(error); throw error; }
   }
   async waitTurn(turnId: string): Promise<CodexTurnTerminal> {
@@ -606,8 +772,8 @@ function checkToolSchema(schema: Record<string, unknown>, depth = 0): void {
   if (schema.enum !== undefined && (!Array.isArray(schema.enum) || schema.enum.length > 64 || schema.enum.some(value => value !== null && typeof value === "object"))) throw invalid("Unsupported dynamic enum");
   for (const key of ["maxItems", "minItems", "maxLength", "minLength", "minimum", "maximum"]) if (schema[key] !== undefined && (typeof schema[key] !== "number" || !Number.isFinite(schema[key]))) throw invalid("Invalid dynamic schema bound");
   if (schema.type === "object") {
-    const properties = schema.properties;
-    if (schema.additionalProperties !== false || !properties || typeof properties !== "object" || Array.isArray(properties) || Object.keys(properties).length > 64) throw invalid("Dynamic objects require closed properties");
+    const properties = schema.properties ?? {};
+    if (schema.additionalProperties !== false || typeof properties !== "object" || Array.isArray(properties) || Object.keys(properties).length > 64) throw invalid("Dynamic objects require closed properties");
     if (schema.required !== undefined && (!Array.isArray(schema.required) || schema.required.some(key => typeof key !== "string" || !Object.hasOwn(properties, key)))) throw invalid("Invalid required tool fields");
     for (const child of Object.values(properties)) checkToolSchema(object(child), depth + 1);
   }
@@ -623,7 +789,7 @@ function matchesToolSchema(value: unknown, schema: Readonly<Record<string, unkno
     case "array": return Array.isArray(value) && value.length <= Math.min(Number(schema.maxItems ?? 64), 64) && value.length >= Number(schema.minItems ?? 0) && value.every(item => matchesToolSchema(item, schema.items as Record<string, unknown>));
     case "object": {
       if (!value || typeof value !== "object" || Array.isArray(value)) return false;
-      const properties = schema.properties as Record<string, Record<string, unknown>>, input = value as Record<string, unknown>;
+      const properties = (schema.properties ?? {}) as Record<string, Record<string, unknown>>, input = value as Record<string, unknown>;
       return Object.keys(input).every(key => Object.hasOwn(properties, key) && matchesToolSchema(input[key], properties[key]!)) && ((schema.required ?? []) as string[]).every(key => Object.hasOwn(input, key));
     }
     default: return false;

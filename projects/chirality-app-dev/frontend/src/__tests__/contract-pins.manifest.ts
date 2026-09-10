@@ -60,9 +60,6 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'contains', value: 'runtime/package-lock.json' },
       { kind: 'contains', value: 'working-directory: projects/chirality-runtime' },
       { kind: 'contains', value: 'npm run build' },
-      { kind: 'contains', value: 'dist-electron/main.js --runtime-daemon' },
-      { kind: 'contains', value: '--no-sandbox' },
-      { kind: 'contains', value: 'dist-runtime/chirality-cli.mjs' },
       {
         kind: 'contains',
         value: '--manifest "${GITHUB_WORKSPACE}/projects/chirality-app-dev/chirality.project.json"'

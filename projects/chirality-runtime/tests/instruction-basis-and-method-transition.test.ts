@@ -672,6 +672,32 @@ describe("instruction basis persistence", () => {
 });
 
 describe("method transitions", () => {
+  it("retains a forbidden historical skill in the from-boundary but refuses to select it again", () => {
+    const historicalSkill = { sourceRootId: "project-history", source: "project" as const, kind: "skill" as const, name: "historical-skill" };
+    const nextWorkflow = { sourceRootId: "project-current", source: "project" as const, kind: "workflow" as const, name: "current-workflow" };
+    const decision = evaluateMethodTransition({
+      sessionId: "session-history",
+      sessionStatus: "completed",
+      currentRoleId: "WORKING_ITEMS",
+      currentMethods: [historicalSkill],
+      nextMethods: [nextWorkflow],
+      methodCompatibility: "incompatible",
+      boundaryConfirmed: true,
+      recordContinuationBoundary: true
+    });
+    expect(decision.continuationBoundary?.fromMethods).toEqual([historicalSkill]);
+    expect(decision.selectedMethods).toEqual([nextWorkflow]);
+    expect(() => evaluateMethodTransition({
+      sessionId: "session-history",
+      sessionStatus: "completed",
+      currentRoleId: "WORKING_ITEMS",
+      currentMethods: [historicalSkill],
+      nextMethods: [historicalSkill],
+      methodCompatibility: "compatible",
+      boundaryConfirmed: true
+    })).toThrow(expect.objectContaining({ code: "FORBIDDEN", status: 403 }));
+  });
+
   it("rejects incompatible replacement until a confirmed non-running boundary", () => {
     const base = {
       sessionId: "session-3",

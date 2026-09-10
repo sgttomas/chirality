@@ -1,6 +1,9 @@
 ---
 name: reconciliation
 description: Reconcile claims, artifacts, implementation, evidence, lifecycle, and remaining work with accepted project truth.
+metadata:
+  category: Review and validation
+  applicability: Reconcile claims, evidence, lifecycle, and remaining work across a deliverable corpus.
 ---
 
 # reconciliation

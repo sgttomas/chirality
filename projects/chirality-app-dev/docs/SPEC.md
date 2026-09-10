@@ -9,6 +9,14 @@ This document is the authoritative specification for Chirality App physical stru
 
 Normative keywords `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, and `MAY` are used in their ordinary specification sense.
 
+## Current Codex-only MVP release basis
+
+For the current MVP release, Codex is the sole model engine. Claude/Anthropic and Pi/oMLX descriptions, default-provider rules and engine-specific proof records below describe compatibility history; they do not require shipping or enabling those engines, and their historical qualification does not establish Codex qualification. Existing conversation history remains readable without reactivating unavailable providers or inheriting their authority.
+
+Codex account sign-in and native Plan Mode are required. This scope direction is not supplier admission or account-interoperability acceptance: the actual adapter must satisfy accepted identity/currentness, per-root consent, credential custody, containment and endpoint restrictions, and native evidence must establish its supported behavior. K-NET-1, K-PACKAGE-1 and K-RELEASE-1 remain unchanged. Source tests, controlled adapters and package generation do not substitute for required actual packaged provider and native lifecycle evidence. Publication remains separately human-authorized.
+
+Release artifact identity is the explicitly recorded candidate version in frontend/package.json and both root version fields of frontend/package-lock.json. `Chirality-<candidate-version>-arm64.dmg`, the actual App Info.plist identity and the candidate evidence must agree. This amendment selects no version.
+
 ---
 
 ## 1. Root Model
@@ -1115,7 +1123,7 @@ npm run desktop:dist
 
 Expected packaging outputs:
 
-- `frontend/dist/Chirality-0.1.0-arm64.dmg`
+- `frontend/dist/Chirality-<candidate-version>-arm64.dmg`
 - `frontend/dist/mac-arm64/Chirality.app`
 - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
 
@@ -1162,7 +1170,7 @@ For macOS DMG:
 - signing posture is unsigned/adhoc as scoped;
 - app resources contain required instruction-root assets;
 - working-root selector is available;
-- current loopback plus Anthropic network guardrails remain in force;
+- accepted Codex supplier endpoint and per-root command-network safeguards under K-NET-1 remain in force;
 - no-live first-adapter SDK resolver/HOME proof passes from package layout and mounted DMG;
 - SDK subprocess/binary is executable from package layout;
 - live packaged provider turn and transcript creation remain unapproved until a later ruling.

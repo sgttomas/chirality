@@ -37,6 +37,7 @@ it('retries an unavailable method catalog through the panel Refresh action', asy
   });
   await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
   expect(JSON.stringify(tree.toJSON())).toContain('Daemon was unavailable');
+  expect(JSON.stringify(tree.toJSON())).toContain('Workflows');
   const refresh = tree.root.findAllByType('button').find(node => node.children.includes('Refresh'))!;
   await act(async () => refresh.props.onClick());
   await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });

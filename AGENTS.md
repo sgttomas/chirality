@@ -42,16 +42,28 @@ may also be simple or complex, and selecting one is optional unless an accepted
 instrument requires it. Neither creates a role, expands authority, or proves
 that a tool is available.
 
-Project skills live at `.agents/skills/<name>/SKILL.md`; user skills at
-`~/.agents/skills/<name>/SKILL.md`. Project workflows live at
-`.chirality/workflows/<name>/WORKFLOW.md`; user workflows at
-`~/.chirality/workflows/<name>/WORKFLOW.md`; the App may also supply bundled,
-reviewed methods. Root's `workflows/` packages are the current bundled source
-tree. For an unqualified name, lookup order is project, then user, then bundled.
-Selection retains the source-qualified identity. Expose every colliding origin,
-and never let a later discovery silently replace an already selected method.
+Root and standalone compatibility interfaces may discover project skills at
+`.agents/skills/<name>/SKILL.md` and user skills at
+`~/.agents/skills/<name>/SKILL.md`. Ordinary App skill resolution is narrower:
+only the App-supplied reviewed bundled skill library is trusted for agent
+context.
+Project and user skill definitions remain readable standalone-compatibility
+inputs and historical origins, but the ordinary App catalog does not discover
+or activate them, whether or not their files still exist. Read-only replay may
+render preserved historical bytes and origin without activating the skill for a
+new turn. Continuing from such a selection requires an explicit drop or change
+to an eligible bundled skill; it is never silently rebound to a same-named
+bundled definition.
 
-Ordinary context may include the available skill names and descriptions. Load a
+Project workflows live at `.chirality/workflows/<name>/WORKFLOW.md`; user
+workflows at `~/.chirality/workflows/<name>/WORKFLOW.md`; the App may also
+supply bundled, reviewed workflows. Root's `workflows/` packages are the
+current bundled source tree. Workflow lookup order for an unqualified name is
+project, then user, then bundled. Selection retains the source-qualified
+identity. Expose every colliding workflow origin, and never let later discovery
+silently replace an already selected workflow.
+
+Ordinary App context may include bundled skill names and descriptions. Load a
 skill body and its resources only when selected or needed. Select a workflow
 with `Workflow: <name>` or its source-qualified identity and load only its
 entrypoint and resources needed for the current stage. Consult the generated
@@ -77,6 +89,14 @@ applicable. This attention does not require their use:
 Other workflows remain available through deliberate discovery. A workflow may
 compose deterministic tools and bounded TASK assignments while preserving its
 own human checkpoints and output contract.
+
+A user may ask in the active chat to create, save, or revise a workflow. The
+agent prepares a valid `.chirality/workflows/<name>/WORKFLOW.md` project package
+or `~/.chirality/workflows/<name>/WORKFLOW.md` user package through authorized
+file tools, adds only the resources the method needs, validates package metadata
+and containment, and refreshes the Runtime catalog. This conversational path is
+the ordinary authoring experience; the App does not require or provide a
+separate workflow editor.
 
 ## Tools, briefs, and ad hoc plans
 
@@ -107,6 +127,12 @@ Executable delegation uses either Chirality-managed `delegate_agent` sessions
 or delegated-harness-native descendants under D-GOV-35. Record the actual
 mechanism, parentage, supplied basis, scopes, enforcement limits, and returns.
 An executing child and a written launch brief are different facts.
+
+For the App MVP, Codex is the sole engine qualification and release target.
+Model choice within Codex does not create another engine. Historical sessions,
+standalone compatibility records, and retained compatibility surfaces may name
+other engines or providers, but they do not establish qualified MVP support and
+never substitute for required Codex capability.
 
 The shared governance is in `docs/DIRECTIVE.md`, `docs/CONTRACT.md`,
 `docs/SPEC.md`, and `docs/TYPES.md`, with accepted amendments. Component design

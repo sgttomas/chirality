@@ -4,7 +4,7 @@ import { mkdtemp, readdir, realpath, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { PassThrough } from "node:stream";
-import { CodexLogin, createControlledCodexLoginForTests } from "../packages/daemon/src/codex-login.js";
+import { CodexLogin, createControlledCodexLoginForTests, inspectCodexLoginPurposeReleaseRecord } from "../packages/daemon/src/codex-login.js";
 async function fixture(mode = "success", authUrl = "https://auth.openai.com/authorize?state=fixture", timeoutMs = 1000) {
   const codexHome = await mkdtemp(join(await realpath(tmpdir()), "login-fixture-"));
   const code = `
@@ -34,6 +34,18 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
   return { login, codexHome, child, async close() { await login.close(); expect(child.exitCode !== null || child.signalCode !== null).toBe(true); await rm(codexHome, { recursive: true, force: true }); } };
 }
 describe("operator-only sign-in component (controlled fixture)", () => {
+  it("accepts only an exact account-free observed login-purpose record", () => {
+    const bindings = { bindingDigest:"a".repeat(64), outerPolicyDigest:"b".repeat(64), sourceDigest:"c".repeat(64), packageDigest:"d".repeat(64), activationId:"release-1", gateIdentity:"D36", consentDigest:"e".repeat(64) };
+    const supply = { sha256:"f".repeat(64), size:123, version:"0.149.0" };
+    const limbs = Object.fromEntries(["exact-supplier","keyring-backend","plaintext-fallback-absent","process-containment","storage-isolation","provider-network","bounded-protocol-purpose","retirement"].map(name=>[name,{attempted:true,passed:true,evidenceSha256:"1".repeat(64)}]));
+    const record = { schema:"chirality-codex-login-purpose-release/v1", evidenceClass:"exact-login-purpose-observed", bindings, supply,
+      backend:{credentialStore:"keyring",plaintextFallback:false},purpose:{modelExecution:false,methods:["account/login/start","account/login/cancel","account/read"]},issuedAt:"2026-01-01T00:00:00.000Z",expiresAt:"2027-01-01T00:00:00.000Z",limbs };
+    expect(inspectCodexLoginPurposeReleaseRecord(record,{...bindings,supply},Date.parse("2026-06-01T00:00:00.000Z"))).toMatchObject({evidenceClass:"exact-login-purpose-observed",backend:{credentialStore:"keyring",plaintextFallback:false}});
+    expect(()=>inspectCodexLoginPurposeReleaseRecord({...record,backend:{credentialStore:"auto",plaintextFallback:false}},{...bindings,supply},Date.parse("2026-06-01T00:00:00.000Z"))).toThrow("backend");
+    expect(()=>inspectCodexLoginPurposeReleaseRecord({...record,purpose:{...record.purpose,modelExecution:true}},{...bindings,supply},Date.parse("2026-06-01T00:00:00.000Z"))).toThrow("protocol");
+    expect(()=>inspectCodexLoginPurposeReleaseRecord({...record,limbs:{...limbs,retirement:{attempted:true,passed:false,evidenceSha256:"1".repeat(64)}}},{...bindings,supply},Date.parse("2026-06-01T00:00:00.000Z"))).toThrow("incomplete");
+    expect(()=>inspectCodexLoginPurposeReleaseRecord({...record,bindings:{...bindings,gateIdentity:"other"}},{...bindings,gateIdentity:"other",supply},Date.parse("2026-06-01T00:00:00.000Z"))).toThrow("gate");
+  });
   it("reports completed ceremony with unavailable identity and never creates credential files", async () => {
     const f = await fixture();
     try {

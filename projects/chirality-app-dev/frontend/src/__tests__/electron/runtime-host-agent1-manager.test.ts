@@ -19,7 +19,7 @@ import type {
 import type { Agent1ManagerHooks } from '@chirality/runtime-core';
 import { PersonaComposer } from '../../lib/harness/persona-manager';
 import { SafeStorageCredentialStore } from '../../../electron/api-key-storage';
-import { createEngines, EngineBackedAgent1Manager } from '../../../electron/runtime-host';
+import { createEngines, EngineBackedAgent1Manager } from '../../../electron/runtime-host-legacy';
 
 const session: RuntimeSessionRecord = {
   schemaVersion: 'chirality.session/v2',

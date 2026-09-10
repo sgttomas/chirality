@@ -1,0 +1,87 @@
+   ▲ Next.js 15.5.21
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings in 2.8s
+
+./src/components/shell/account-popover.tsx
+Should not import the named export 'version' (imported as 'version') from default-exporting module (only default export is available soon)
+
+Import trace for requested module:
+./src/components/shell/account-popover.tsx
+./src/components/shell/account-row.tsx
+./src/components/shell/shell-frame.tsx
+./src/components/shell/loop-shell.tsx
+
+ ⚠ Compiled with warnings in 1682ms
+
+./src/components/shell/account-popover.tsx
+Should not import the named export 'version' (imported as 'version') from default-exporting module (only default export is available soon)
+
+Import trace for requested module:
+./src/components/shell/account-popover.tsx
+./src/components/shell/account-row.tsx
+./src/components/shell/shell-frame.tsx
+./src/components/shell/app-shell.tsx
+
+ ✓ Compiled successfully in 4.6s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/34) ...
+   Generating static pages (8/34) 
+   Generating static pages (16/34) 
+   Generating static pages (25/34) 
+ ✓ Generating static pages (34/34)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                        Size  First Load JS
+┌ ƒ /                                                             724 B         231 kB
+├ ƒ /_not-found                                                   219 B         103 kB
+├ ƒ /api/harness/agents                                           219 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/login/cancel                    219 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/login/start                     219 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/project/initialize              219 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/provider-network-consent        219 B         103 kB
+├ ƒ /api/harness/hosted-bootstrap/status                          219 B         103 kB
+├ ƒ /api/harness/interrupt                                        219 B         103 kB
+├ ƒ /api/harness/methods                                          219 B         103 kB
+├ ƒ /api/harness/methods/inspect                                  219 B         103 kB
+├ ƒ /api/harness/permission                                       219 B         103 kB
+├ ƒ /api/harness/roles                                            219 B         103 kB
+├ ƒ /api/harness/scaffold                                         219 B         103 kB
+├ ƒ /api/harness/session/[id]                                     219 B         103 kB
+├ ƒ /api/harness/session/[id]/context/resolve                     219 B         103 kB
+├ ƒ /api/harness/session/[id]/events                              219 B         103 kB
+├ ƒ /api/harness/session/[id]/methods                             219 B         103 kB
+├ ƒ /api/harness/session/[id]/native-plan/capability              219 B         103 kB
+├ ƒ /api/harness/session/[id]/native-plan/clarifications          219 B         103 kB
+├ ƒ /api/harness/session/[id]/native-plan/clarifications/reply    219 B         103 kB
+├ ƒ /api/harness/session/[id]/native-plan/export                  219 B         103 kB
+├ ƒ /api/harness/session/[id]/native-plan/revisions               219 B         103 kB
+├ ƒ /api/harness/session/boot                                     219 B         103 kB
+├ ƒ /api/harness/session/create                                   219 B         103 kB
+├ ƒ /api/harness/session/list                                     219 B         103 kB
+├ ƒ /api/harness/turn                                             219 B         103 kB
+├ ƒ /api/project/deliverables                                     219 B         103 kB
+├ ƒ /api/working-root/deliverable/content                         219 B         103 kB
+├ ƒ /api/working-root/deliverable/dependencies                    219 B         103 kB
+├ ƒ /api/working-root/deliverable/status                          219 B         103 kB
+├ ƒ /api/working-root/deliverable/status/transition               219 B         103 kB
+├ ƒ /api/working-root/file                                        219 B         103 kB
+├ ƒ /api/working-root/scope                                       219 B         103 kB
+├ ƒ /api/working-root/tree                                        219 B         103 kB
+├ ƒ /api/working-root/validate                                    219 B         103 kB
+├ ƒ /api/working-root/workflow                                    219 B         103 kB
+├ ƒ /chat                                                         702 B         231 kB
+├ ○ /icon.svg                                                       0 B            0 B
+├ ƒ /pipeline                                                     687 B         231 kB
+└ ƒ /workbench                                                    678 B         231 kB
++ First Load JS shared by all                                    102 kB
+  ├ chunks/1479-06f4687ed64e8144.js                             46.3 kB
+  ├ chunks/289b575f-206c90709dcc6d93.js                         54.2 kB
+  └ other shared chunks (total)                                 1.95 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

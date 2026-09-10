@@ -20,12 +20,12 @@ type FrontendPackageJson = {
   scripts?: Record<string, string>;
   build?: {
     asar?: boolean;
-    asarUnpack?: string[];
     mac?: {
       minimumSystemVersion?: string;
       target?: BuildTarget[];
     };
     extraResources?: ExtraResource[];
+    afterPack?: string;
   };
 };
 
@@ -95,35 +95,40 @@ describe('dmg packaging policy', () => {
     );
     expect(pkg.scripts?.['desktop:pack']).toContain('npm run instruction-root:prepare');
     expect(pkg.scripts?.['desktop:dist']).toContain('npm run instruction-root:prepare');
-  });
-
-  it('unpacks the Claude SDK and Pi native/WASM assets outside app.asar', async () => {
-    const pkg = await readPackageJson();
-    const asarUnpack = pkg.build?.asarUnpack ?? [];
-
-    expect(pkg.build?.asar).toBe(true);
-    expect(asarUnpack).toEqual(
-      expect.arrayContaining([
-        'node_modules/@anthropic-ai/claude-agent-sdk/**',
-        'node_modules/@anthropic-ai/claude-agent-sdk-*/**',
-        'node_modules/@earendil-works/pi-coding-agent/node_modules/**/*.node',
-        'node_modules/@earendil-works/pi-coding-agent/node_modules/**/*.wasm',
-        'node_modules/@earendil-works/pi-tui/**/*.node',
-        'node_modules/@mariozechner/clipboard-*/**/*.node',
-        'node_modules/@silvia-odwyer/photon-node/**/*.wasm'
-      ])
+    expect(pkg.scripts?.['desktop:dist']).toContain(
+      'node ./scripts/pack-electron-with-supply.mjs --target dmg'
     );
   });
 
-  it('ships the Pi third-party notice as a packaged resource', async () => {
+  it('ships the Runtime native-admission addon at its trusted packaged path', async () => {
     const pkg = await readPackageJson();
     expect(pkg.build?.extraResources).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({
-          from: 'THIRD_PARTY_NOTICES_PI.md',
-          to: 'THIRD_PARTY_NOTICES_PI.md'
-        })
+        {
+          from: '../../chirality-runtime/packages/native-admission/build/Release/chirality_native_admission.node',
+          to: 'native/chirality_native_admission.node'
+        }
       ])
     );
   });
+
+  it('requires the staged supplier tree and final Runtime inventory hook', async () => {
+    const pkg = await readPackageJson();
+    expect(pkg.build?.afterPack).toBe('./scripts/finalize-electron-resources.mjs');
+    expect(pkg.build?.extraResources).toEqual(
+      expect.arrayContaining([
+        {
+          from: 'node_modules/.cache/chirality-supplier',
+          to: 'supplier',
+          filter: ['**/*']
+        }
+      ])
+    );
+  });
+
+  it('keeps application source in the asar archive', async () => {
+    const pkg = await readPackageJson();
+    expect(pkg.build?.asar).toBe(true);
+  });
+
 });

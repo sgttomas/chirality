@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { prepareCodexNativePolicy } from "../packages/daemon/src/codex-containment.js";
 import { DescendantTracker } from "../packages/core/src/descendant-tracker.js";
 import { CodexSupervisor, codexRuntimeConformanceConfigDigest, createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
+import * as daemonPublicSurface from "../packages/daemon/src/index.js";
 import { recordKey } from "@chirality/runtime-core";
 import type { WorkerContinuity } from "@chirality/runtime-contracts";
 
@@ -57,6 +58,10 @@ function fixture(noAccount = false, timeout = 1000, nativePolicy?: { permissionP
 }
 
 describe("Codex supervisor adapter without account/network use", () => {
+  it("does not expose controlled hosted conformance substitution on production surfaces", () => {
+    expect(Object.hasOwn(daemonPublicSurface, "admitHostedControlledForTests")).toBe(false);
+    expect(Object.hasOwn(CodexSupervisor, "admitHostedControlledForTests")).toBe(false);
+  });
   it("drives actual JSONL child, genuine terminal and strict resumed thread selection", async () => {
     const s = fixture();
     const h = await s.acquire("worker", JSON.stringify({ prompt: "hello", resumeThreadId: "thread-recorded" }));
@@ -203,6 +208,7 @@ it("custody changes the config digest without treating unavailable binding as an
     codexHome: common.codexHome, privateDirectory: common.privateDirectory, protectedPaths: common.protectedPaths,
     authBindingSha256: "a".repeat(64), providerNetworkConsent: common.providerNetworkConsent,
     commandNetworkPosture: common.commandNetworkPosture, requestTimeoutMs: common.requestTimeoutMs,
+    supportedPermissionMode: "workspaceWrite",
     turnTimeoutMs: common.turnTimeoutMs, maxWorkers: common.maxWorkers,
     nativeConfig: policy.configToml, expectedPermissions: policy.expectedPermissions };
   const legacy = recordKey(legacyFields);

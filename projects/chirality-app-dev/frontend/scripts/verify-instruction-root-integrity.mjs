@@ -59,6 +59,8 @@ const SDK_PLATFORM_PACKAGE_BY_RUNTIME = new Map([
   ['win32:x64', '@anthropic-ai/claude-agent-sdk-win32-x64']
 ]);
 
+const RUNTIME_PROFILES = new Set(['codex-only', 'legacy-claude']);
+
 function toPosix(relativePath) {
   return relativePath.split(path.sep).join('/');
 }
@@ -81,6 +83,9 @@ Options:
   --output-root <path>   Output directory for manifest + summary (default: artifacts/harness/instruction-root-integrity/latest)
   --sdk-bundle-root <path>
                          Packaged Resources root containing app.asar.unpacked
+                         (used only by --runtime-profile legacy-claude)
+  --runtime-profile <profile>
+                         Runtime supplier proof: codex-only (default) or legacy-claude
   --help                 Show this message
 `);
 }
@@ -142,6 +147,12 @@ function parseArgs(argv) {
 
     if (token === '--sdk-bundle-root') {
       options.sdkBundleRoot = readArgValue(argv, index + 1, token);
+      index += 1;
+      continue;
+    }
+
+    if (token === '--runtime-profile') {
+      options.runtimeProfile = readArgValue(argv, index + 1, token);
       index += 1;
       continue;
     }
@@ -643,6 +654,11 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
     return 0;
   }
 
+  const runtimeProfile = args.runtimeProfile ?? 'codex-only';
+  if (!RUNTIME_PROFILES.has(runtimeProfile)) {
+    throw new Error(`Unsupported runtime profile: ${runtimeProfile}`);
+  }
+
   const sourceRoots = resolveSourceRoots(args, cwd);
   const bundleRoot = path.resolve(
     args.bundleRoot ?? path.join(cwd, 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources', 'instruction-root')
@@ -663,7 +679,16 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
   const sdkBundleRoot = path.resolve(
     args.sdkBundleRoot ?? (path.basename(bundleRoot) === 'instruction-root' ? path.dirname(bundleRoot) : bundleRoot)
   );
-  const sdkBundleVerification = await verifyUnpackedSdkBundle({ bundleRoot: sdkBundleRoot });
+  const sdkBundleVerification =
+    runtimeProfile === 'legacy-claude'
+      ? await verifyUnpackedSdkBundle({ bundleRoot: sdkBundleRoot })
+      : {
+          platformPackageName: null,
+          selectedPlatformPackageRoot: null,
+          missingFiles: [],
+          comparisons: [],
+          platformPackageCandidates: []
+        };
   const sourceCompleteness = buildSourceCompletenessChecklist({
     sourceRoots,
     manifestEntries,
@@ -692,12 +717,14 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
       agentsRoot: sourceRoots.agentsRoot,
       docsRoot: sourceRoots.docsRoot
     },
+    runtimeProfile,
     files: manifestEntries
   };
 
   const summary = {
     generatedAt: nowIso(),
     gitSha,
+    runtimeProfile,
     sourceLayout: sourceRoots.sourceLayout,
     sourceRoot: sourceRoots.sourceRoot ?? null,
     sourceRoots: {
@@ -716,6 +743,7 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
     comparisons: verification.comparisons,
     sourceCompleteness,
     sdkBundle: {
+      status: runtimeProfile === 'legacy-claude' ? 'checked' : 'not-applicable',
       platformPackageName: sdkBundleVerification.platformPackageName,
       selectedPlatformPackageRoot: sdkBundleVerification.selectedPlatformPackageRoot,
       requiredFiles: sdkBundleVerification.comparisons,
@@ -764,7 +792,7 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
     if (['missing', 'mismatch'].includes(verification.bundleManifestStatus)) {
       logError(`Instruction bundle manifest: ${verification.bundleManifestStatus}`);
     }
-    if (sdkBundleVerification.missingFiles.length > 0) {
+    if (runtimeProfile === 'legacy-claude' && sdkBundleVerification.missingFiles.length > 0) {
       logError(`Missing unpacked Claude Agent SDK files (${sdkBundleVerification.missingFiles.length}):`);
       for (const filePath of sdkBundleVerification.missingFiles) {
         logError(`  - ${filePath}`);

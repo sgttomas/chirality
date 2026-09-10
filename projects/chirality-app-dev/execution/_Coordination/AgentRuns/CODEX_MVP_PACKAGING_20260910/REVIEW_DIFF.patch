@@ -1,0 +1,797 @@
+diff --git a/projects/chirality-app-dev/frontend/package.json b/projects/chirality-app-dev/frontend/package.json
+index 81081ce6a..a4039d343 100644
+--- a/projects/chirality-app-dev/frontend/package.json
++++ b/projects/chirality-app-dev/frontend/package.json
+@@ -37,7 +37,7 @@
+     "electron:supply-chain": "node ./scripts/verify-electron-dist.mjs",
+     "desktop:verify-dependencies": "node ./scripts/verify-packaged-dependency-boundary.mjs",
+     "desktop:pack": "npm run instruction-root:prepare && npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false node ./scripts/pack-electron-with-supply.mjs && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
+-    "desktop:dist": "npm run instruction-root:prepare && npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg --arm64 --publish never && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
++    "desktop:dist": "npm run instruction-root:prepare && npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false node ./scripts/pack-electron-with-supply.mjs --target dmg && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
+     "sbom:generate": "node ./scripts/generate-sbom.mjs",
+     "notices:generate": "node ./scripts/generate-third-party-notices.mjs",
+     "verify:version-identity": "node ./scripts/verify-version-identity.mjs"
+@@ -117,6 +117,10 @@
+       "next.config.mjs"
+     ],
+     "extraResources": [
++      {
++        "from": "../../chirality-runtime/packages/native-admission/build/Release/chirality_native_admission.node",
++        "to": "native/chirality_native_admission.node"
++      },
+       {
+         "from": "THIRD_PARTY_NOTICES_PI.md",
+         "to": "THIRD_PARTY_NOTICES_PI.md"
+diff --git a/projects/chirality-app-dev/frontend/scripts/build-electron.mjs b/projects/chirality-app-dev/frontend/scripts/build-electron.mjs
+index f658b24f9..f68242288 100644
+--- a/projects/chirality-app-dev/frontend/scripts/build-electron.mjs
++++ b/projects/chirality-app-dev/frontend/scripts/build-electron.mjs
+@@ -20,7 +20,12 @@ export function resolveRuntimeContractsSource(subpath = '') {
+   );
+ }
+ 
++export function resolveNativeAdmissionSource() {
++  return path.join(runtimeRoot, 'packages', 'native-admission', 'src', 'index.ts');
++}
++
+ const runtimeEntries = {
++  '@chirality/native-admission': resolveNativeAdmissionSource(),
+   '@chirality/engine-claude': path.join(
+     runtimeRoot,
+     'packages',
+diff --git a/projects/chirality-app-dev/frontend/scripts/pack-electron-with-supply.mjs b/projects/chirality-app-dev/frontend/scripts/pack-electron-with-supply.mjs
+index 92de60bc6..667a48375 100644
+--- a/projects/chirality-app-dev/frontend/scripts/pack-electron-with-supply.mjs
++++ b/projects/chirality-app-dev/frontend/scripts/pack-electron-with-supply.mjs
+@@ -4,14 +4,24 @@ import { pathToFileURL } from 'node:url';
+ 
+ import { verifyElectronDist } from './verify-electron-dist.mjs';
+ 
+-export function buildElectronBuilderArgs(electronDistDirectory) {
++const SUPPORTED_TARGETS = new Set(['dir', 'dmg']);
++
++function validateTarget(target) {
++  if (!SUPPORTED_TARGETS.has(target)) {
++    throw new Error(`Unsupported Electron packaging target: ${String(target)}`);
++  }
++  return target;
++}
++
++export function buildElectronBuilderArgs(electronDistDirectory, target = 'dir') {
+   if (typeof electronDistDirectory !== 'string' || electronDistDirectory.length === 0) {
+     throw new Error('Verified Electron distribution directory is required');
+   }
++  const validatedTarget = validateTarget(target);
+   return [
+     '--mac',
++    ...(validatedTarget === 'dir' ? ['--dir'] : ['dmg']),
+     '--arm64',
+-    '--dir',
+     '--publish',
+     'never',
+     `-c.electronDist=${electronDistDirectory}`
+@@ -41,10 +51,11 @@ function spawnAndWait(command, args, options, spawnProcess) {
+ export async function runElectronPack({
+   verify = verifyElectronDist,
+   spawnProcess = spawn,
+-  env = process.env
++  env = process.env,
++  target = 'dir'
+ } = {}) {
+   const electronDistDirectory = await verify();
+-  const args = buildElectronBuilderArgs(electronDistDirectory);
++  const args = buildElectronBuilderArgs(electronDistDirectory, target);
+   await spawnAndWait(
+     'electron-builder',
+     args,
+@@ -57,11 +68,19 @@ export async function runElectronPack({
+   );
+ }
+ 
++export function parseArgs(argv) {
++  if (argv.length === 0) return { target: 'dir' };
++  if (argv.length === 2 && argv[0] === '--target') {
++    return { target: validateTarget(argv[1]) };
++  }
++  throw new Error('Usage: node ./scripts/pack-electron-with-supply.mjs [--target dir|dmg]');
++}
++
+ const isMain =
+   process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url;
+ if (isMain) {
+   try {
+-    await runElectronPack();
++    await runElectronPack(parseArgs(process.argv.slice(2)));
+   } catch (error) {
+     process.stderr.write(`Offline Electron packaging failed: ${error.message}\n`);
+     process.exitCode = 1;
+diff --git a/projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs b/projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs
+index 4df1e1319..b9becaafd 100644
+--- a/projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs
++++ b/projects/chirality-app-dev/frontend/scripts/verify-instruction-root-integrity.mjs
+@@ -59,6 +59,8 @@ const SDK_PLATFORM_PACKAGE_BY_RUNTIME = new Map([
+   ['win32:x64', '@anthropic-ai/claude-agent-sdk-win32-x64']
+ ]);
+ 
++const RUNTIME_PROFILES = new Set(['codex-only', 'legacy-claude']);
++
+ function toPosix(relativePath) {
+   return relativePath.split(path.sep).join('/');
+ }
+@@ -81,6 +83,9 @@ Options:
+   --output-root <path>   Output directory for manifest + summary (default: artifacts/harness/instruction-root-integrity/latest)
+   --sdk-bundle-root <path>
+                          Packaged Resources root containing app.asar.unpacked
++                         (used only by --runtime-profile legacy-claude)
++  --runtime-profile <profile>
++                         Runtime supplier proof: codex-only (default) or legacy-claude
+   --help                 Show this message
+ `);
+ }
+@@ -146,6 +151,12 @@ function parseArgs(argv) {
+       continue;
+     }
+ 
++    if (token === '--runtime-profile') {
++      options.runtimeProfile = readArgValue(argv, index + 1, token);
++      index += 1;
++      continue;
++    }
++
+     throw new Error(`Unknown argument: ${token}`);
+   }
+ 
+@@ -643,6 +654,11 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
+     return 0;
+   }
+ 
++  const runtimeProfile = args.runtimeProfile ?? 'codex-only';
++  if (!RUNTIME_PROFILES.has(runtimeProfile)) {
++    throw new Error(`Unsupported runtime profile: ${runtimeProfile}`);
++  }
++
+   const sourceRoots = resolveSourceRoots(args, cwd);
+   const bundleRoot = path.resolve(
+     args.bundleRoot ?? path.join(cwd, 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources', 'instruction-root')
+@@ -663,7 +679,16 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
+   const sdkBundleRoot = path.resolve(
+     args.sdkBundleRoot ?? (path.basename(bundleRoot) === 'instruction-root' ? path.dirname(bundleRoot) : bundleRoot)
+   );
+-  const sdkBundleVerification = await verifyUnpackedSdkBundle({ bundleRoot: sdkBundleRoot });
++  const sdkBundleVerification =
++    runtimeProfile === 'legacy-claude'
++      ? await verifyUnpackedSdkBundle({ bundleRoot: sdkBundleRoot })
++      : {
++          platformPackageName: null,
++          selectedPlatformPackageRoot: null,
++          missingFiles: [],
++          comparisons: [],
++          platformPackageCandidates: []
++        };
+   const sourceCompleteness = buildSourceCompletenessChecklist({
+     sourceRoots,
+     manifestEntries,
+@@ -692,12 +717,14 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
+       agentsRoot: sourceRoots.agentsRoot,
+       docsRoot: sourceRoots.docsRoot
+     },
++    runtimeProfile,
+     files: manifestEntries
+   };
+ 
+   const summary = {
+     generatedAt: nowIso(),
+     gitSha,
++    runtimeProfile,
+     sourceLayout: sourceRoots.sourceLayout,
+     sourceRoot: sourceRoots.sourceRoot ?? null,
+     sourceRoots: {
+@@ -716,6 +743,7 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
+     comparisons: verification.comparisons,
+     sourceCompleteness,
+     sdkBundle: {
++      status: runtimeProfile === 'legacy-claude' ? 'checked' : 'not-applicable',
+       platformPackageName: sdkBundleVerification.platformPackageName,
+       selectedPlatformPackageRoot: sdkBundleVerification.selectedPlatformPackageRoot,
+       requiredFiles: sdkBundleVerification.comparisons,
+@@ -764,7 +792,7 @@ async function runVerification(argv, { cwd, log, logError, legacyFixture }) {
+     if (['missing', 'mismatch'].includes(verification.bundleManifestStatus)) {
+       logError(`Instruction bundle manifest: ${verification.bundleManifestStatus}`);
+     }
+-    if (sdkBundleVerification.missingFiles.length > 0) {
++    if (runtimeProfile === 'legacy-claude' && sdkBundleVerification.missingFiles.length > 0) {
+       logError(`Missing unpacked Claude Agent SDK files (${sdkBundleVerification.missingFiles.length}):`);
+       for (const filePath of sdkBundleVerification.missingFiles) {
+         logError(`  - ${filePath}`);
+diff --git a/projects/chirality-app-dev/frontend/scripts/verify-packaged-dependency-boundary.mjs b/projects/chirality-app-dev/frontend/scripts/verify-packaged-dependency-boundary.mjs
+index 9891bc723..6adbe716c 100644
+--- a/projects/chirality-app-dev/frontend/scripts/verify-packaged-dependency-boundary.mjs
++++ b/projects/chirality-app-dev/frontend/scripts/verify-packaged-dependency-boundary.mjs
+@@ -1,4 +1,4 @@
+-import { access, mkdtemp, readFile, rm } from 'node:fs/promises';
++import { access, lstat, mkdtemp, readFile, realpath, rm } from 'node:fs/promises';
+ import { spawn } from 'node:child_process';
+ import { tmpdir } from 'node:os';
+ import path from 'node:path';
+@@ -22,12 +22,19 @@ const asarCli = path.join(frontendRoot, 'node_modules', '.bin', 'asar');
+ const resourcesRoot = path.dirname(bundlePath);
+ const packagedCliPath = path.join(resourcesRoot, 'runtime-cli', 'chirality-cli.mjs');
+ const packagedCliSourceMapPath = `${packagedCliPath}.map`;
++const nativeAdmissionAssetName = 'chirality_native_admission.node';
+ 
+-const requiredPackages = [
++const requiredPackages = ['next'];
++const forbiddenLegacyRuntimePackages = [
+   '@anthropic-ai/claude-agent-sdk',
++  '@anthropic-ai/sdk',
++  '@earendil-works/pi-agent-core',
++  '@earendil-works/pi-ai',
+   '@earendil-works/pi-coding-agent',
+-  'next'
++  '@earendil-works/pi-tui'
+ ];
++const claudePlatformPackagePattern =
++  /(?:^|\/)node_modules\/(@anthropic-ai\/claude-agent-sdk-[^/]+)(?:\/|$)/;
+ const forbiddenDevelopmentPackages = [
+   'concurrently',
+   'electron-builder',
+@@ -44,6 +51,13 @@ function containsPackage(entry, packageName) {
+   return entry === marker || entry.startsWith(`${marker}/`) || entry.includes(`${marker}/`);
+ }
+ 
++export function findForbiddenLegacyRuntimePackage(entry) {
++  for (const packageName of forbiddenLegacyRuntimePackages) {
++    if (containsPackage(entry, packageName)) return packageName;
++  }
++  return normalizeSourcePath(entry).match(claudePlatformPackagePattern)?.[1] ?? null;
++}
++
+ function normalizeSourcePath(source) {
+   return source.replaceAll('\\', '/');
+ }
+@@ -53,6 +67,73 @@ function hasSource(sources, suffix) {
+   return sources.some((source) => normalizeSourcePath(source).endsWith(normalizedSuffix));
+ }
+ 
++export async function verifyPackagedNativeAdmissionAsset({ resourcesRoot: candidateRoot }) {
++  const failures = [];
++  const fallbackPath =
++    typeof candidateRoot === 'string'
++      ? path.join(path.resolve(candidateRoot), 'native', nativeAdmissionAssetName)
++      : null;
++  if (
++    typeof candidateRoot !== 'string' ||
++    candidateRoot.length === 0 ||
++    candidateRoot.includes('\0') ||
++    !path.isAbsolute(candidateRoot) ||
++    path.normalize(candidateRoot) !== candidateRoot
++  ) {
++    return {
++      status: 'FAIL',
++      path: fallbackPath,
++      canonicalResourcesRoot: null,
++      failures: ['Resources root must be a normalized absolute path']
++    };
++  }
++
++  let canonicalResourcesRoot;
++  try {
++    canonicalResourcesRoot = await realpath(candidateRoot);
++  } catch (error) {
++    return {
++      status: 'FAIL',
++      path: fallbackPath,
++      canonicalResourcesRoot: null,
++      failures: [`Unable to resolve packaged Resources root: ${error.message}`]
++    };
++  }
++
++  const nativeDirectory = path.join(canonicalResourcesRoot, 'native');
++  const assetPath = path.join(nativeDirectory, nativeAdmissionAssetName);
++  try {
++    const directoryStat = await lstat(nativeDirectory);
++    if (!directoryStat.isDirectory() || directoryStat.isSymbolicLink()) {
++      failures.push('Packaged native directory must be a regular non-symlink directory');
++    } else if ((await realpath(nativeDirectory)) !== nativeDirectory) {
++      failures.push('Packaged native directory resolves outside its exact Resources path');
++    }
++  } catch (error) {
++    failures.push(`Unable to inspect packaged native directory: ${error.message}`);
++  }
++
++  try {
++    const assetStat = await lstat(assetPath);
++    if (!assetStat.isFile() || assetStat.isSymbolicLink()) {
++      failures.push('Packaged native-admission asset must be a regular non-symlink file');
++    } else if ((await realpath(assetPath)) !== assetPath) {
++      failures.push('Packaged native-admission asset resolves outside its exact Resources path');
++    } else {
++      await readFile(assetPath);
++    }
++  } catch (error) {
++    failures.push(`Unable to read packaged native-admission asset: ${error.message}`);
++  }
++
++  return {
++    status: failures.length === 0 ? 'PASS' : 'FAIL',
++    path: assetPath,
++    canonicalResourcesRoot,
++    failures
++  };
++}
++
+ export function verifyPackagedRuntimeSources({
+   desktopSources,
+   cliSources,
+@@ -62,7 +143,15 @@ export function verifyPackagedRuntimeSources({
+     'electron/main.ts',
+     'electron/runtime-host.ts',
+     'chirality-runtime/packages/client/src/client.ts',
+-    'chirality-runtime/packages/daemon/src/runtime-daemon.ts',
++    'chirality-runtime/packages/daemon/src/runtime-daemon.ts'
++  ];
++  // Populated only after the Runtime owner supplies the final shared Codex
++  // production boot module. An empty list fails closed below.
++  const requiredCodexDesktopSources = [];
++  const forbiddenLegacyDesktopSources = [
++    'src/lib/harness/anthropic-agent-sdk-manager.ts',
++    'src/lib/harness/claude-agent-sdk-manager.ts',
++    'src/lib/harness/pi-agent-engine-adapter.ts',
+     'chirality-runtime/packages/engine-claude/src/index.ts',
+     'chirality-runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts'
+   ];
+@@ -84,11 +173,25 @@ export function verifyPackagedRuntimeSources({
+   const requiredPackagedEntries = ['/dist-electron/main.js', '/dist-electron/main.js.map'];
+   const failures = [];
+ 
++  if (requiredCodexDesktopSources.length === 0) {
++    failures.push('Codex production source proof is not configured');
++  }
++
+   for (const suffix of requiredDesktopSources) {
+     if (!hasSource(desktopSources, suffix)) {
+       failures.push(`desktop bundle is missing source ${suffix}`);
+     }
+   }
++  for (const suffix of requiredCodexDesktopSources) {
++    if (!hasSource(desktopSources, suffix)) {
++      failures.push(`desktop bundle is missing Codex production source ${suffix}`);
++    }
++  }
++  for (const suffix of forbiddenLegacyDesktopSources) {
++    if (hasSource(desktopSources, suffix)) {
++      failures.push(`Codex-only desktop bundle unexpectedly embeds legacy engine source ${suffix}`);
++    }
++  }
+   for (const suffix of requiredCliSources) {
+     if (!hasSource(cliSources, suffix)) {
+       failures.push(`CLI bundle is missing source ${suffix}`);
+@@ -108,6 +211,8 @@ export function verifyPackagedRuntimeSources({
+   return {
+     failures,
+     requiredDesktopSources,
++    requiredCodexDesktopSources,
++    forbiddenLegacyDesktopSources,
+     requiredCliSources,
+     forbiddenCliSources,
+     requiredPackagedEntries
+@@ -147,9 +252,11 @@ async function inspectBundle() {
+   await access(asarCli);
+   await access(packagedCliPath);
+   await access(packagedCliSourceMapPath);
++  const nativeAdmissionAsset = await verifyPackagedNativeAdmissionAsset({ resourcesRoot });
+ 
+   const requiredPresent = new Set();
+   const forbiddenPresent = new Set();
++  const forbiddenLegacyRuntimePresent = new Set();
+   let localPackageEntries = 0;
+   const packagedEntries = new Set();
+ 
+@@ -174,6 +281,8 @@ async function inspectBundle() {
+         forbiddenPresent.add(packageName);
+       }
+     }
++    const forbiddenLegacyPackage = findForbiddenLegacyRuntimePackage(entry);
++    if (forbiddenLegacyPackage) forbiddenLegacyRuntimePresent.add(forbiddenLegacyPackage);
+   }
+ 
+   const exitCode = await new Promise((resolve, reject) => {
+@@ -188,6 +297,7 @@ async function inspectBundle() {
+     (packageName) => !requiredPresent.has(packageName)
+   );
+   const failures = [];
++  failures.push(...nativeAdmissionAsset.failures);
+   if (localPackageEntries > 0) {
+     failures.push(`found ${localPackageEntries} monorepo-only @chirality package entries`);
+   }
+@@ -196,6 +306,11 @@ async function inspectBundle() {
+       `found development-only packages: ${[...forbiddenPresent].sort().join(', ')}`
+     );
+   }
++  if (forbiddenLegacyRuntimePresent.size > 0) {
++    failures.push(
++      `found legacy runtime packages in Codex-only artifact: ${[...forbiddenLegacyRuntimePresent].sort().join(', ')}`
++    );
++  }
+   if (missingRequired.length > 0) {
+     failures.push(`missing runtime packages: ${missingRequired.join(', ')}`);
+   }
+@@ -219,12 +334,16 @@ async function inspectBundle() {
+     bundlePath,
+     localPackageEntries,
+     forbiddenDevelopmentPackagesPresent: [...forbiddenPresent].sort(),
++    forbiddenLegacyRuntimePackagesPresent: [...forbiddenLegacyRuntimePresent].sort(),
++    runtimeProfile: 'codex-only',
++    nativeAdmissionAsset,
+     requiredPackagesPresent: [...requiredPresent].sort(),
+     packagedRuntimeSourceProof: {
+       status: runtimeSourceProof.failures.length === 0 ? 'PASS' : 'FAIL',
+       desktopSourceCount: desktopSources.length,
+       cliSourceCount: cliSources.length,
+       requiredDesktopSources: runtimeSourceProof.requiredDesktopSources,
++      requiredCodexDesktopSources: runtimeSourceProof.requiredCodexDesktopSources,
+       requiredCliSources: runtimeSourceProof.requiredCliSources
+     },
+     failures
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/scripts/build-electron.test.ts b/projects/chirality-app-dev/frontend/src/__tests__/scripts/build-electron.test.ts
+index 319f52a50..b6bb2c0ff 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/scripts/build-electron.test.ts
++++ b/projects/chirality-app-dev/frontend/src/__tests__/scripts/build-electron.test.ts
+@@ -1,7 +1,10 @@
+ import path from 'node:path';
+ import { describe, expect, it } from 'vitest';
+ 
+-import { resolveRuntimeContractsSource } from '../../../scripts/build-electron.mjs';
++import {
++  resolveNativeAdmissionSource,
++  resolveRuntimeContractsSource
++} from '../../../scripts/build-electron.mjs';
+ 
+ describe('build Electron Runtime contract aliases', () => {
+   it('resolves the v3 package export from the contracts source root', () => {
+@@ -15,4 +18,10 @@ describe('build Electron Runtime contract aliases', () => {
+       path.resolve(process.cwd(), '../../chirality-runtime/packages/contracts/src/harness/errors.ts')
+     );
+   });
++
++  it('resolves native admission from the Runtime package source', () => {
++    expect(resolveNativeAdmissionSource()).toBe(
++      path.resolve(process.cwd(), '../../chirality-runtime/packages/native-admission/src/index.ts')
++    );
++  });
+ });
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/scripts/dmg-packaging-policy.test.ts b/projects/chirality-app-dev/frontend/src/__tests__/scripts/dmg-packaging-policy.test.ts
+index e400fe167..6d800926e 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/scripts/dmg-packaging-policy.test.ts
++++ b/projects/chirality-app-dev/frontend/src/__tests__/scripts/dmg-packaging-policy.test.ts
+@@ -95,6 +95,21 @@ describe('dmg packaging policy', () => {
+     );
+     expect(pkg.scripts?.['desktop:pack']).toContain('npm run instruction-root:prepare');
+     expect(pkg.scripts?.['desktop:dist']).toContain('npm run instruction-root:prepare');
++    expect(pkg.scripts?.['desktop:dist']).toContain(
++      'node ./scripts/pack-electron-with-supply.mjs --target dmg'
++    );
++  });
++
++  it('ships the Runtime native-admission addon at its trusted packaged path', async () => {
++    const pkg = await readPackageJson();
++    expect(pkg.build?.extraResources).toEqual(
++      expect.arrayContaining([
++        {
++          from: '../../chirality-runtime/packages/native-admission/build/Release/chirality_native_admission.node',
++          to: 'native/chirality_native_admission.node'
++        }
++      ])
++    );
+   });
+ 
+   it('unpacks the Claude SDK and Pi native/WASM assets outside app.asar', async () => {
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/scripts/pack-electron-with-supply.test.ts b/projects/chirality-app-dev/frontend/src/__tests__/scripts/pack-electron-with-supply.test.ts
+index 7cd8fa410..96329edac 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/scripts/pack-electron-with-supply.test.ts
++++ b/projects/chirality-app-dev/frontend/src/__tests__/scripts/pack-electron-with-supply.test.ts
+@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
+ 
+ import {
+   buildElectronBuilderArgs,
++  parseArgs,
+   runElectronPack
+ } from '../../../scripts/pack-electron-with-supply.mjs';
+ 
+@@ -36,4 +37,24 @@ describe('pack-electron-with-supply', () => {
+     expect(calls[0]?.options.shell).toBe(false);
+     expect(calls[0]?.options.env).toMatchObject({ CSC_IDENTITY_AUTO_DISCOVERY: 'false' });
+   });
++
++  it('uses the verified Electron distribution for a dmg target', async () => {
++    const directory = '/verified/electron dist';
++    expect(buildElectronBuilderArgs(directory, 'dmg')).toEqual([
++      '--mac',
++      'dmg',
++      '--arm64',
++      '--publish',
++      'never',
++      `-c.electronDist=${directory}`
++    ]);
++    expect(parseArgs(['--target', 'dmg'])).toEqual({ target: 'dmg' });
++  });
++
++  it('rejects unknown targets and malformed CLI arguments', () => {
++    expect(() => buildElectronBuilderArgs('/verified/electron', 'zip')).toThrow(
++      'Unsupported Electron packaging target'
++    );
++    expect(() => parseArgs(['--target'])).toThrow('Usage:');
++  });
+ });
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-instruction-root-integrity.test.ts b/projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-instruction-root-integrity.test.ts
+index 05c204eba..f587b9189 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-instruction-root-integrity.test.ts
++++ b/projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-instruction-root-integrity.test.ts
+@@ -230,12 +230,7 @@ describe('verify-instruction-root-integrity script', () => {
+         })
+       ])
+     );
+-    expect(summary.sdkBundle.missingFiles).toHaveLength(0);
+-    if (SDK_PLATFORM_PACKAGE_BY_RUNTIME[`${process.platform}:${process.arch}`]) {
+-      expect(summary.sdkBundle.selectedPlatformPackageRoot).toContain(
+-        'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/'
+-      );
+-    }
++    expect(summary.sdkBundle).toMatchObject({ status: 'not-applicable', missingFiles: [] });
+   });
+ 
+   it('fails when bundled content diverges from source', async () => {
+@@ -335,7 +330,7 @@ describe('verify-instruction-root-integrity script', () => {
+     );
+   });
+ 
+-  it('fails when the packaged bundle is missing unpacked Claude Agent SDK files', async () => {
++  it('preserves the explicit historical Claude SDK proof path', async () => {
+     const sourceRoot = path.join(tmpRoot, 'source-root');
+     const bundleRoot = path.join(tmpRoot, 'bundle-root');
+     const outputRoot = path.join(tmpRoot, 'output');
+@@ -349,7 +344,9 @@ describe('verify-instruction-root-integrity script', () => {
+       '--bundle-root',
+       bundleRoot,
+       '--output-root',
+-      outputRoot
++      outputRoot,
++      '--runtime-profile',
++      'legacy-claude'
+     ]);
+ 
+     expect(result.code).toBe(1);
+@@ -358,12 +355,16 @@ describe('verify-instruction-root-integrity script', () => {
+     const summaryRaw = await readFile(path.join(outputRoot, 'summary.json'), 'utf8');
+     const summary = JSON.parse(summaryRaw) as {
+       status: string;
++      runtimeProfile: string;
+       sdkBundle: {
++        status: string;
+         missingFiles: string[];
+       };
+     };
+ 
+     expect(summary.status).toBe('fail');
++    expect(summary.runtimeProfile).toBe('legacy-claude');
++    expect(summary.sdkBundle.status).toBe('checked');
+     expect(summary.sdkBundle.missingFiles).toEqual(
+       expect.arrayContaining([
+         'app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/package.json',
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-packaged-dependency-boundary.test.ts b/projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-packaged-dependency-boundary.test.ts
+index b7c0a3d01..5abfae929 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-packaged-dependency-boundary.test.ts
++++ b/projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-packaged-dependency-boundary.test.ts
+@@ -1,13 +1,18 @@
++import { mkdtemp, mkdir, realpath, rm, symlink, writeFile } from 'node:fs/promises';
++import os from 'node:os';
++import path from 'node:path';
+ import { describe, expect, it } from 'vitest';
+-import { verifyPackagedRuntimeSources } from '../../../scripts/verify-packaged-dependency-boundary.mjs';
++import {
++  findForbiddenLegacyRuntimePackage,
++  verifyPackagedNativeAdmissionAsset,
++  verifyPackagedRuntimeSources
++} from '../../../scripts/verify-packaged-dependency-boundary.mjs';
+ 
+ const desktopSources = [
+   '../electron/main.ts',
+   '../electron/runtime-host.ts',
+   '../../../chirality-runtime/packages/client/src/client.ts',
+-  '../../../chirality-runtime/packages/daemon/src/runtime-daemon.ts',
+-  '../../../chirality-runtime/packages/engine-claude/src/index.ts',
+-  '../../../chirality-runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts'
++  '../../../chirality-runtime/packages/daemon/src/runtime-daemon.ts'
+ ];
+ const cliSources = [
+   '../../../chirality-runtime/packages/cli/src/bin.ts',
+@@ -17,10 +22,10 @@ const cliSources = [
+ const packagedEntries = new Set(['/dist-electron/main.js', '/dist-electron/main.js.map']);
+ 
+ describe('packaged project runtime source proof', () => {
+-  it('accepts runtime project adapters in the desktop daemon and a client-only CLI', () => {
+-    expect(
+-      verifyPackagedRuntimeSources({ desktopSources, cliSources, packagedEntries }).failures
+-    ).toEqual([]);
++  it('fails closed until the Runtime-owned Codex production source is configured', () => {
++    expect(verifyPackagedRuntimeSources({ desktopSources, cliSources, packagedEntries }).failures).toEqual([
++      'Codex production source proof is not configured'
++    ]);
+   });
+ 
+   it('rejects stale server code from the previous runtime location', () => {
+@@ -29,21 +34,120 @@ describe('packaged project runtime source proof', () => {
+       cliSources: [...cliSources, '../../../../runtime/packages/daemon/src/runtime-daemon.ts'],
+       packagedEntries
+     });
+-    expect(result.failures).toEqual([expect.stringContaining('CLI client bundle unexpectedly embeds server source')]);
++    expect(result.failures).toEqual(expect.arrayContaining([
++      'Codex production source proof is not configured',
++      expect.stringContaining('CLI client bundle unexpectedly embeds server source')
++    ]));
+   });
+ 
+-  it('rejects a missing promoted adapter or server code embedded in the CLI client', () => {
++  it('rejects legacy engines in the Codex-only desktop and server code in the CLI client', () => {
+     const result = verifyPackagedRuntimeSources({
+-      desktopSources: desktopSources.filter((source) => !source.includes('engine-claude')),
++      desktopSources: [
++        ...desktopSources,
++        '../src/lib/harness/claude-agent-sdk-manager.ts',
++        '../src/lib/harness/pi-agent-engine-adapter.ts',
++        '../../../chirality-runtime/packages/engine-claude/src/index.ts',
++        '../../../chirality-runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts'
++      ],
+       cliSources: [...cliSources, '../../../chirality-runtime/packages/daemon/src/runtime-daemon.ts'],
+       packagedEntries
+     });
+ 
+     expect(result.failures).toEqual(
+       expect.arrayContaining([
+-        expect.stringContaining('desktop bundle is missing source chirality-runtime/packages/engine-claude'),
++        expect.stringContaining('unexpectedly embeds legacy engine source'),
+         expect.stringContaining('CLI client bundle unexpectedly embeds server source')
+       ])
+     );
+   });
++
++  it('identifies base and platform-specific legacy Claude packages', () => {
++    expect(
++      findForbiddenLegacyRuntimePackage(
++        '/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/claude'
++      )
++    ).toBe('@anthropic-ai/claude-agent-sdk-darwin-arm64');
++    expect(
++      findForbiddenLegacyRuntimePackage('/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs')
++    ).toBe('@anthropic-ai/claude-agent-sdk');
++    expect(findForbiddenLegacyRuntimePackage('/node_modules/next/package.json')).toBeNull();
++  });
++});
++
++describe('packaged native-admission asset proof', () => {
++  it('accepts only the readable regular asset at the exact packaged path', async () => {
++    const resourcesRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-native-resource-'));
++    try {
++      const nativeDirectory = path.join(resourcesRoot, 'native');
++      await mkdir(nativeDirectory);
++      const assetPath = path.join(nativeDirectory, 'chirality_native_admission.node');
++      await writeFile(assetPath, 'fixture');
++      const canonicalResourcesRoot = await realpath(resourcesRoot);
++
++      await expect(verifyPackagedNativeAdmissionAsset({ resourcesRoot })).resolves.toMatchObject({
++        status: 'PASS',
++        path: path.join(canonicalResourcesRoot, 'native', 'chirality_native_admission.node'),
++        canonicalResourcesRoot,
++        failures: []
++      });
++    } finally {
++      await rm(resourcesRoot, { recursive: true, force: true });
++    }
++  });
++
++  it('fails when the exact native asset is missing', async () => {
++    const resourcesRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-native-resource-'));
++    try {
++      await mkdir(path.join(resourcesRoot, 'native'));
++      const result = await verifyPackagedNativeAdmissionAsset({ resourcesRoot });
++      expect(result.status).toBe('FAIL');
++      expect(result.failures).toEqual([
++        expect.stringContaining('Unable to read packaged native-admission asset')
++      ]);
++    } finally {
++      await rm(resourcesRoot, { recursive: true, force: true });
++    }
++  });
++
++  it('rejects symlinked native directories, symlinked assets, and traversal-shaped roots', async () => {
++    const fixtureRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-native-resource-'));
++    try {
++      const realNative = path.join(fixtureRoot, 'real-native');
++      await mkdir(realNative);
++      await writeFile(path.join(realNative, 'chirality_native_admission.node'), 'fixture');
++
++      const directoryLinkRoot = path.join(fixtureRoot, 'directory-link-resources');
++      await mkdir(directoryLinkRoot);
++      await symlink(realNative, path.join(directoryLinkRoot, 'native'));
++      const directoryLink = await verifyPackagedNativeAdmissionAsset({
++        resourcesRoot: directoryLinkRoot
++      });
++      expect(directoryLink.status).toBe('FAIL');
++      expect(directoryLink.failures).toEqual(
++        expect.arrayContaining([expect.stringContaining('native directory must be')])
++      );
++
++      const assetLinkRoot = path.join(fixtureRoot, 'asset-link-resources');
++      await mkdir(path.join(assetLinkRoot, 'native'), { recursive: true });
++      await symlink(
++        path.join(realNative, 'chirality_native_admission.node'),
++        path.join(assetLinkRoot, 'native', 'chirality_native_admission.node')
++      );
++      const assetLink = await verifyPackagedNativeAdmissionAsset({ resourcesRoot: assetLinkRoot });
++      expect(assetLink.status).toBe('FAIL');
++      expect(assetLink.failures).toEqual(
++        expect.arrayContaining([expect.stringContaining('native-admission asset must be')])
++      );
++
++      const traversalRoot = `${fixtureRoot}/native/..`;
++      await expect(
++        verifyPackagedNativeAdmissionAsset({ resourcesRoot: traversalRoot })
++      ).resolves.toMatchObject({
++        status: 'FAIL',
++        failures: ['Resources root must be a normalized absolute path']
++      });
++    } finally {
++      await rm(fixtureRoot, { recursive: true, force: true });
++    }
++  });
+ });
+diff --git a/projects/chirality-runtime/packages/daemon/src/codex-worker.ts b/projects/chirality-runtime/packages/daemon/src/codex-worker.ts
+index b78b039f7..7062a6a9d 100644
+--- a/projects/chirality-runtime/packages/daemon/src/codex-worker.ts
++++ b/projects/chirality-runtime/packages/daemon/src/codex-worker.ts
+@@ -139,9 +139,9 @@ export async function runControlledCodexProbeForTests(input: CodexProbeInput & {
+ }
+ 
+ /** Private supplier source composition. This is never used by the public worker route. */
+-export async function createNativeSupplierTransport(input:{executable:string;args:readonly string[];authoritySecret:Buffer}):Promise<import("./codex-session.js").CodexSessionTransport> {
++export async function createNativeSupplierTransport(input:{executable:string;args:readonly string[];authoritySecret:Buffer;nativeAddonPath:string}):Promise<import("./codex-session.js").CodexSessionTransport> {
+   const {loadNativeAdmissionBinding}=await import("@chirality/native-admission");
+-  const native=loadNativeAdmissionBinding(true);if(native.state!=="available")throw new Error("Supplier authority native package unavailable");
++  const native=loadNativeAdmissionBinding(true,input.nativeAddonPath);if(native.state!=="available")throw new Error("Supplier authority native package unavailable");
+   const spawned=native.value.spawnSupplier(input.executable,input.args,input.authoritySecret);if(spawned.state!=="available")throw new Error("Supplier authority spawn unavailable");
+   const child=spawned.value;let closing:Promise<void>|undefined;
+   return {stdin:child.stdin,stdout:child.stdout,close:()=>closing??=retireNativeSupplier(child)};
+diff --git a/projects/chirality-runtime/packages/native-admission/src/index.ts b/projects/chirality-runtime/packages/native-admission/src/index.ts
+index 7bd53cb93..b332ea73e 100644
+--- a/projects/chirality-runtime/packages/native-admission/src/index.ts
++++ b/projects/chirality-runtime/packages/native-admission/src/index.ts
+@@ -11,12 +11,12 @@ export interface NativeSupplierChild {readonly stdin:Writable;readonly stdout:Re
+ function unavailable<T>(reason:NativeUnavailableReason):NativeAuthorityResult<T>{return{state:"unavailable",reason};}
+ const reasons:readonly string[]=["platform-unsupported","api-unavailable","filesystem-unqualified","path-unsafe","lock-contended","inode-mismatch","descriptor-closure-unqualified","spawn-failed","wait-unavailable","native-package-unqualified"];
+ function translate<T>(fn:()=>T):NativeAuthorityResult<T>{try{return{state:"available",value:fn()};}catch(error){const reason=error&&typeof error==="object"&&"code"in error?error.code:undefined;return unavailable(typeof reason==="string"&&reasons.includes(reason)?reason as NativeUnavailableReason:"native-package-unqualified");}}
+-function path(value:unknown):asserts value is string {if(typeof value!=="string"||!isAbsolute(value)||normalize(value)!==value||Buffer.byteLength(value)>4095||/[\x00-\x1f]/.test(value))throw new Error("invalid-native-path");}
++function path(value:unknown):asserts value is string {if(typeof value!=="string"||!isAbsolute(value)||normalize(value)!==value||Buffer.byteLength(value)>4095||/[\x00-\x1f]/.test(value))throw Object.assign(new Error("invalid-native-path"),{code:"path-unsafe"});}
+ /** Test injection proves wrapper behavior only; it never establishes native qualification. */
+ export function wrapNativeAdmissionBinding(raw:unknown):{acquire(directory:string):NativeAuthorityResult<RuntimeAdmissionLease>;spawnSupplier(executable:string,args:readonly string[],secret:Buffer):NativeAuthorityResult<NativeSupplierChild>}{
+   const binding=raw as Binding;
+   return {acquire(directory){return translate(()=>{path(directory);if(!binding||typeof binding.acquire!=="function")throw new Error("invalid-native-binding");const lease=binding.acquire(directory,"runtime-admission-authority.lock");if(!lease||typeof lease.device!=="bigint"||lease.device<0n||typeof lease.inode!=="bigint"||lease.inode<0n||lease.held!==true||typeof lease.created!=="boolean"||typeof lease.close!=="function")throw new Error("invalid-native-lease");let closed=false;return Object.freeze({device:lease.device,inode:lease.inode,created:lease.created,get held(){return !closed&&lease.held===true;},close(){if(closed)throw new Error("native-lease-already-closed");closed=true;lease.close();}});});},
+     spawnSupplier(executable,args,secret){return translate(()=>{path(executable);if(!Array.isArray(args)||args.length>128||args.some(a=>typeof a!=="string"||Buffer.byteLength(a)>4096||/[\x00-\x1f]/.test(a))||!Buffer.isBuffer(secret)||secret.length!==32||typeof binding?.spawnSupplier!=="function")throw new Error("invalid-native-bootstrap");const child=binding.spawnSupplier(executable,args,secret);if(!child||["read","write","closeInput","terminate","kill","wait"].some(k=>typeof(child as unknown as Record<string,unknown>)[k]!=="function"))throw new Error("invalid-native-child");let reading=false,wait:Promise<{exitCode:number|null;signal:number|null}>|undefined;const stdout=new Readable({read(){if(reading)return;reading=true;void child.read().then(bytes=>{reading=false;if(!Buffer.isBuffer(bytes))throw new Error("invalid-native-read");this.push(bytes.length?bytes:null);},()=>{reading=false;this.destroy(new Error("native-read-unavailable"));});}});const stdin=new Writable({write(chunk:Buffer,_encoding,callback){void child.write(Buffer.from(chunk)).then(()=>callback(),()=>callback(new Error("native-write-unavailable")));},final(callback){try{child.closeInput();callback();}catch{callback(new Error("native-input-unavailable"));}}});return Object.freeze({stdin,stdout,closeInput:()=>{stdin.end();},terminate:()=>child.terminate(),kill:()=>child.kill(),wait:()=>wait??=child.wait().then(result=>{if(!result||Object.keys(result).sort().join(",")!=="exitCode,signal"||!(result.exitCode===null||Number.isInteger(result.exitCode))||!(result.signal===null||Number.isInteger(result.signal))||(result.exitCode===null)===(result.signal===null))throw new Error("wait-unavailable");return result;},()=>{throw new Error("wait-unavailable");})});});}}
+ }
+-/** Importing the package never loads the addon. A later qualified composition must own this call. */
+-export function loadNativeAdmissionBinding(enabled:boolean):NativeAuthorityResult<ReturnType<typeof wrapNativeAdmissionBinding>> {if(!enabled)return unavailable("native-package-unqualified");if(process.platform!=="darwin"||!["arm64","x64"].includes(process.arch))return unavailable("platform-unsupported");return translate(()=>wrapNativeAdmissionBinding(createRequire(import.meta.url)("../build/Release/chirality_native_admission.node")));}
++/** Importing the package never loads the addon. A later qualified composition must inject its trusted absolute packaged path. */
++export function loadNativeAdmissionBinding(enabled:boolean,addonPath?:string):NativeAuthorityResult<ReturnType<typeof wrapNativeAdmissionBinding>> {if(!enabled)return unavailable("native-package-unqualified");if(addonPath===undefined)return unavailable("native-package-unqualified");try{path(addonPath);}catch{return unavailable("path-unsafe");}if(process.platform!=="darwin"||!["arm64","x64"].includes(process.arch))return unavailable("platform-unsupported");return translate(()=>wrapNativeAdmissionBinding(createRequire(addonPath)(addonPath)));}
+diff --git a/projects/chirality-runtime/tests/runtime-admission-native.test.ts b/projects/chirality-runtime/tests/runtime-admission-native.test.ts
+index 8ad1fea6c..c9c1ef93f 100644
+--- a/projects/chirality-runtime/tests/runtime-admission-native.test.ts
++++ b/projects/chirality-runtime/tests/runtime-admission-native.test.ts
+@@ -3,7 +3,8 @@ import {createFakeRuntimeAdmissionNativeAdapter} from "../packages/core/src/runt
+ import {loadNativeAdmissionBinding,wrapNativeAdmissionBinding} from "../packages/native-admission/src/index.js";
+ import {retireNativeSupplier} from "../packages/daemon/src/codex-transport-lifecycle.js";
+ describe("native admission fake and wrapper (native behavior unqualified)",()=>{
+- it("is default-off and models opaque single ownership",()=>{expect(loadNativeAdmissionBinding(false)).toEqual({state:"unavailable",reason:"native-package-unqualified"});const a=createFakeRuntimeAdmissionNativeAdapter(),l=a.acquire("x","runtime-admission-authority.lock");expect(l.held).toBe(true);expect(()=>a.acquire("x","runtime-admission-authority.lock")).toThrow("lock-contended");l.close();expect(l.held).toBe(false);expect(()=>l.close()).toThrow();});
++ it("is default-off without consulting the injected addon path and models opaque single ownership",()=>{expect(loadNativeAdmissionBinding(false,"relative-or-untrusted.node")).toEqual({state:"unavailable",reason:"native-package-unqualified"});const a=createFakeRuntimeAdmissionNativeAdapter(),l=a.acquire("x","runtime-admission-authority.lock");expect(l.held).toBe(true);expect(()=>a.acquire("x","runtime-admission-authority.lock")).toThrow("lock-contended");l.close();expect(l.held).toBe(false);expect(()=>l.close()).toThrow();});
++ it("requires an explicit safe absolute addon path before attempting a native load",()=>{expect(loadNativeAdmissionBinding(true)).toEqual({state:"unavailable",reason:"native-package-unqualified"});for(const value of ["relative.node","/private/tmp/../unsafe.node","/private/tmp/unsafe\n.node"])expect(loadNativeAdmissionBinding(true,value)).toEqual({state:"unavailable",reason:"path-unsafe"});});
+  it("rejects inode mismatch",()=>expect(()=>createFakeRuntimeAdmissionNativeAdapter({pathMatches:false}).acquire("x","runtime-admission-authority.lock")).toThrow("inode-mismatch"));
+  it("strictly translates lease getters and known/unknown native errors",()=>{let held=true,closes=0;const adapter=wrapNativeAdmissionBinding({acquire:()=>({device:1n,inode:2n,created:true,get held(){return held;},close(){held=false;closes++;}})});const result=adapter.acquire("/private/tmp");expect(result.state).toBe("available");if(result.state!=="available")throw Error();expect(Object.keys(result.value).sort()).toEqual(["close","created","device","held","inode"]);result.value.close();expect(result.value.held).toBe(false);expect(()=>result.value.close()).toThrow();expect(closes).toBe(1);for(const code of ["lock-contended","unknown"]){const r=wrapNativeAdmissionBinding({acquire(){throw Object.assign(Error(),{code});}}).acquire("/private/tmp");expect(r).toEqual({state:"unavailable",reason:code==="unknown"?"native-package-unqualified":code});}});
+  it("rejects every non-32-byte bootstrap before invoking native",()=>{let calls=0;const binding=wrapNativeAdmissionBinding({spawnSupplier(){calls++;}});for(const size of [0,31,33,64])expect(binding.spawnSupplier("/private/fake",[],Buffer.alloc(size)).state).toBe("unavailable");expect(calls).toBe(0);});

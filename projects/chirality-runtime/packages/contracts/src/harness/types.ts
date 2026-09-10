@@ -75,6 +75,8 @@ export interface EngineSelection {
 
 export interface AdapterSessionMetadata {
   engineSessionId?: string;
+  /** Runtime turn whose provider thread may be resumed on the next delegated turn. */
+  lastRuntimeTurnId?: string;
   transcriptPath?: string;
   storeKey?: string;
   configDir?: string;
@@ -242,6 +244,10 @@ export type ContentBlock =
       type: 'file';
       path: string;
       mimeType: string;
+      /** Original display name only; the provider receives the contained staged path. */
+      name?: string;
+      sha256?: string;
+      bytes?: number;
     };
 
 export interface AttachmentError {
@@ -267,6 +273,7 @@ export type UIEvent =
       type: 'session:init';
       data: {
         engineSessionId: string;
+        lastRuntimeTurnId?: string;
         providerSpanId?: string;
         adapterId: string;
         providerId: string;
@@ -359,7 +366,8 @@ export interface IPersonaManager {
 export interface IAttachmentResolver {
   resolveAttachmentsToContentBlocks(
     message: string,
-    attachmentPaths: string[]
+    attachmentPaths: string[],
+    context?: { projectId: string; sessionId: string; projectRoot: string }
   ): Promise<ResolvedAttachments>;
 }
 

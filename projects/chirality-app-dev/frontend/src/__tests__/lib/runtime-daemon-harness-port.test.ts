@@ -1,4 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
+import { mkdtemp, realpath, rm, symlink } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { tmpdir } from 'node:os';
 
 import { RuntimeError, type RuntimeSessionRecord } from '@chirality/runtime-contracts';
 import type { RuntimeClient, RuntimeStream } from '@chirality/runtime-client';
@@ -6,6 +9,7 @@ import type { UIEvent } from '@chirality/runtime-contracts/types';
 
 import {
   RuntimeDaemonHarnessPort,
+  RuntimeHostedBootstrapPort,
   createRuntimeDaemonHarnessPortFromEnvironment
 } from '../../lib/runtime-client/runtime-daemon-harness-port';
 
@@ -305,6 +309,473 @@ describe('RuntimeDaemonHarnessPort', () => {
         { name: 'WORKING_ITEMS', type: 1, class: 'PERSONA' }
       ]
     });
+  });
+
+  it('passes native Plan clarification reads and replies through the fixed project binding', async () => {
+    const clarificationResponse = {
+      schemaVersion: 'chirality.native-plan-clarifications/v3' as const,
+      status: 'qualified' as const,
+      qualification: {
+        adapterId: 'codex-app-server',
+        providerId: 'openai',
+        qualificationId: 'native-plan-v3',
+        admissionSha256: 'a'.repeat(64),
+        evidenceClass: 'native-adapter-qualified' as const
+      },
+      clarifications: [{
+        clientTurnId: 'client-turn-1',
+        providerThreadId: 'thread-1',
+        providerTurnId: 'turn-1',
+        requestId: 17,
+        itemId: 'item-1',
+        questions: [{
+          id: 'scope',
+          header: 'Scope',
+          question: 'Which scope?',
+          options: [{ label: 'Current', description: 'Use the current scope.' }],
+          isOther: true,
+          isSecret: false
+        }],
+        isBlocking: true,
+        autoResolutionMs: null
+      }]
+    };
+    const replyResponse = {
+      schemaVersion: 'chirality.native-plan-clarification-reply/v3' as const,
+      sessionId: session.sessionId,
+      requestId: 17,
+      sent: true as const
+    };
+    const listNativePlanClarifications = vi.fn().mockResolvedValue(clarificationResponse);
+    const replyNativePlanClarification = vi.fn().mockResolvedValue(replyResponse);
+    const runtimeClient = client({
+      listNativePlanClarifications,
+      replyNativePlanClarification
+    });
+    const port = new RuntimeDaemonHarnessPort(
+      runtimeClient,
+      project.projectId,
+      project.canonicalRoot
+    );
+    const abortController = new AbortController();
+
+    await expect(
+      port.listNativePlanClarifications(session.sessionId, {
+        signal: abortController.signal
+      })
+    ).resolves.toEqual(clarificationResponse);
+    expect(listNativePlanClarifications).toHaveBeenCalledWith(
+      project.projectId,
+      session.sessionId,
+      abortController.signal
+    );
+
+    const answers = { scope: { answers: ['Current'] } };
+    await expect(
+      port.replyNativePlanClarification(
+        session.sessionId,
+        17,
+        answers,
+        { signal: abortController.signal }
+      )
+    ).resolves.toEqual(replyResponse);
+    expect(replyNativePlanClarification).toHaveBeenCalledWith(
+      project.projectId,
+      session.sessionId,
+      { requestId: 17, answers },
+      abortController.signal
+    );
+    expect(runtimeClient.projectStatus).toHaveBeenCalledTimes(2);
+  });
+
+  it('keeps hosted status lookup read-only when the selected folder is unregistered', async () => {
+    const projectRoot = await realpath(process.cwd());
+    const initializeHostedBootstrapProject = vi.fn();
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient: client({
+        resolveProjectByRoot: vi.fn().mockRejectedValue(
+          new RuntimeError('PROJECT_NOT_FOUND', 'not registered', 404)
+        ),
+        initializeHostedBootstrapProject
+      }),
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock'
+    });
+
+    await expect(port.getStatus(projectRoot)).resolves.toEqual({
+      registration: 'required'
+    });
+    expect(initializeHostedBootstrapProject).not.toHaveBeenCalled();
+  });
+
+  it('initializes explicitly, verifies both principals, and installs an arbitrary project binding', async () => {
+    const projectRoot = await realpath(process.cwd());
+    const registered = {
+      ...project,
+      projectId: 'user-project',
+      canonicalRoot: projectRoot,
+      manifestPath: join(projectRoot, 'chirality.project.json'),
+      manifestHash: 'hosted-manifest',
+      clientId: 'hosted-project-user-project'
+    };
+    const registration = {
+      projectId: registered.projectId,
+      manifestHash: registered.manifestHash
+    };
+    const status = {
+      schema: 'chirality-hosted-bootstrap-status/v1' as const,
+      projectId: registered.projectId,
+      ceremony: 'consent-required' as const,
+      admission: 'unavailable' as const,
+      canStartLogin: false
+    };
+    const bootstrapClient = client({
+      initializeHostedBootstrapProject: vi.fn().mockResolvedValue(registration),
+      projectStatus: vi.fn().mockResolvedValue({
+        project: registered,
+        manifestDrift: false,
+        adaptersEnabled: true
+      })
+    });
+    const scopedClient = client({
+      projectStatus: vi.fn().mockResolvedValue({
+        project: registered,
+        manifestDrift: false,
+        adaptersEnabled: true
+      }),
+      hostedBootstrapStatus: vi.fn().mockResolvedValue(status)
+    });
+    const createScopedClient = vi.fn().mockReturnValue(scopedClient);
+    const installBoundPort = vi.fn();
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient,
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock',
+      createScopedClient,
+      installBoundPort
+    });
+
+    await expect(port.initializeProject(projectRoot)).resolves.toEqual({
+      registration: 'registered',
+      projectId: registered.projectId,
+      status
+    });
+    expect(bootstrapClient.initializeHostedBootstrapProject).toHaveBeenCalledWith(
+      { projectRoot },
+      undefined
+    );
+    expect(createScopedClient).toHaveBeenCalledWith({
+      socketPath: '/runtime/control.sock',
+      tokenFile: '/runtime/auth/tokens/hosted-project-user-project.token'
+    });
+    expect(installBoundPort).toHaveBeenCalledWith(
+      expect.any(RuntimeDaemonHarnessPort),
+      { projectId: registered.projectId, projectRoot },
+      true
+    );
+
+    await expect(port.getStatus(dirname(projectRoot))).rejects.toMatchObject({
+      type: 'WORKING_ROOT_CONFLICT',
+      status: 409
+    });
+    expect(installBoundPort).toHaveBeenCalledOnce();
+  });
+
+  it('rejects a late project initialization before it can replace the newer binding', async () => {
+    const temporaryA = await mkdtemp(join(tmpdir(), 'chirality-hosted-a-'));
+    const temporaryB = await mkdtemp(join(tmpdir(), 'chirality-hosted-b-'));
+    const rootA = await realpath(temporaryA);
+    const rootB = await realpath(temporaryB);
+    let resolveA!: (value: { projectId: string; manifestHash: string }) => void;
+    let resolveB!: (value: { projectId: string; manifestHash: string }) => void;
+    const initializationA = new Promise<{ projectId: string; manifestHash: string }>(resolve => { resolveA = resolve; });
+    const initializationB = new Promise<{ projectId: string; manifestHash: string }>(resolve => { resolveB = resolve; });
+    const projects = new Map([
+      ['project-a', { ...project, projectId: 'project-a', canonicalRoot: rootA, manifestPath: join(rootA, 'chirality.project.json'), manifestHash: 'manifest-a', clientId: 'hosted-project-project-a' }],
+      ['project-b', { ...project, projectId: 'project-b', canonicalRoot: rootB, manifestPath: join(rootB, 'chirality.project.json'), manifestHash: 'manifest-b', clientId: 'hosted-project-project-b' }]
+    ]);
+    const hostedStatus = (projectId: string) => ({ schema: 'chirality-hosted-bootstrap-status/v1' as const, projectId, ceremony: 'consent-required' as const, admission: 'unavailable' as const, canStartLogin: false });
+    const bootstrapClient = client({
+      initializeHostedBootstrapProject: vi.fn().mockImplementation(({ projectRoot }: { projectRoot: string }) => projectRoot === rootA ? initializationA : initializationB),
+      projectStatus: vi.fn().mockImplementation((projectId: string) => Promise.resolve({ project: projects.get(projectId)!, manifestDrift: false, adaptersEnabled: true }))
+    });
+    const scopedClients = new Map([...projects].map(([projectId, registered]) => [projectId, client({
+      projectStatus: vi.fn().mockResolvedValue({ project: registered, manifestDrift: false, adaptersEnabled: true }),
+      hostedBootstrapStatus: vi.fn().mockResolvedValue(hostedStatus(projectId))
+    })]));
+    const installBoundPort = vi.fn();
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient,
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock',
+      createScopedClient: ({ tokenFile }) => scopedClients.get(tokenFile.includes('project-a') ? 'project-a' : 'project-b')!,
+      installBoundPort
+    });
+
+    try {
+      const requestA = port.initializeProject(rootA);
+      const requestB = port.initializeProject(rootB);
+      resolveB({ projectId: 'project-b', manifestHash: 'manifest-b' });
+      await expect(requestB).resolves.toEqual({ registration: 'registered', projectId: 'project-b', status: hostedStatus('project-b') });
+      resolveA({ projectId: 'project-a', manifestHash: 'manifest-a' });
+      await expect(requestA).rejects.toMatchObject({ type: 'WORKING_ROOT_CONFLICT', status: 409 });
+      expect(installBoundPort).toHaveBeenCalledTimes(1);
+      expect(installBoundPort).toHaveBeenCalledWith(expect.any(RuntimeDaemonHarnessPort), { projectId: 'project-b', projectRoot: rootB }, true);
+      await expect(port.getStatus(rootB)).resolves.toMatchObject({ registration: 'registered', projectId: 'project-b' });
+    } finally {
+      await rm(temporaryA, { recursive: true, force: true });
+      await rm(temporaryB, { recursive: true, force: true });
+    }
+  });
+
+  it('lets a newer explicit selection commit while status and consent finish on the captured old binding', async () => {
+    const temporaryA = await mkdtemp(join(tmpdir(), 'chirality-hosted-selected-a-'));
+    const temporaryB = await mkdtemp(join(tmpdir(), 'chirality-hosted-selected-b-'));
+    const rootA = await realpath(temporaryA);
+    const rootB = await realpath(temporaryB);
+    const registeredA = { ...project, projectId: 'selected-a', canonicalRoot: rootA, manifestPath: join(rootA, 'chirality.project.json'), manifestHash: 'selected-manifest-a', clientId: 'hosted-project-selected-a' };
+    const registeredB = { ...project, projectId: 'selected-b', canonicalRoot: rootB, manifestPath: join(rootB, 'chirality.project.json'), manifestHash: 'selected-manifest-b', clientId: 'hosted-project-selected-b' };
+    const registrationA = { projectId: 'selected-a', manifestHash: 'selected-manifest-a' };
+    const registrationB = { projectId: 'selected-b', manifestHash: 'selected-manifest-b' };
+    const statusA = { schema: 'chirality-hosted-bootstrap-status/v1' as const, projectId: 'selected-a', ceremony: 'consent-required' as const, admission: 'unavailable' as const, canStartLogin: false };
+    const consentA = { ...statusA, ceremony: 'ready-to-start' as const, canStartLogin: true };
+    const statusB = { ...statusA, projectId: 'selected-b' };
+    let resolveB!: (value: typeof registrationB) => void;
+    let resolveLateStatusA!: (value: typeof statusA) => void;
+    const pendingB = new Promise<typeof registrationB>(resolve => { resolveB = resolve; });
+    const pendingStatusA = new Promise<typeof statusA>(resolve => { resolveLateStatusA = resolve; });
+    const bootstrapClient = client({
+      initializeHostedBootstrapProject: vi.fn().mockImplementation(({ projectRoot }: { projectRoot: string }) => projectRoot === rootA ? Promise.resolve(registrationA) : pendingB),
+      projectStatus: vi.fn().mockImplementation((projectId: string) => Promise.resolve({ project: projectId === 'selected-a' ? registeredA : registeredB, manifestDrift: false, adaptersEnabled: true }))
+    });
+    const scopedA = client({
+      projectStatus: vi.fn().mockResolvedValue({ project: registeredA, manifestDrift: false, adaptersEnabled: true }),
+      hostedBootstrapStatus: vi.fn().mockResolvedValueOnce(statusA).mockReturnValueOnce(pendingStatusA),
+      grantHostedProviderNetworkConsent: vi.fn().mockResolvedValue(consentA)
+    });
+    const scopedB = client({
+      projectStatus: vi.fn().mockResolvedValue({ project: registeredB, manifestDrift: false, adaptersEnabled: true }),
+      hostedBootstrapStatus: vi.fn().mockResolvedValue(statusB)
+    });
+    const installBoundPort = vi.fn();
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient,
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock',
+      createScopedClient: ({ tokenFile }) => tokenFile.includes('selected-a') ? scopedA : scopedB,
+      installBoundPort
+    });
+
+    try {
+      await port.initializeProject(rootA);
+      const selectionB = port.initializeProject(rootB);
+      const lateStatusA = port.getStatus(rootA);
+      const lateConsentA = port.grantProviderNetworkConsent(rootA);
+      await expect(lateConsentA).resolves.toEqual(consentA);
+      resolveB(registrationB);
+      await expect(selectionB).resolves.toEqual({ registration: 'registered', projectId: 'selected-b', status: statusB });
+      resolveLateStatusA(statusA);
+      await expect(lateStatusA).resolves.toEqual({ registration: 'registered', projectId: 'selected-a', status: statusA });
+      await expect(port.getStatus(rootB)).resolves.toMatchObject({ registration: 'registered', projectId: 'selected-b' });
+      expect(installBoundPort).toHaveBeenCalledTimes(2);
+      expect(installBoundPort).toHaveBeenLastCalledWith(expect.any(RuntimeDaemonHarnessPort), { projectId: 'selected-b', projectRoot: rootB }, true);
+    } finally {
+      await rm(temporaryA, { recursive: true, force: true });
+      await rm(temporaryB, { recursive: true, force: true });
+    }
+  });
+
+  it('allows a verified normal daemon port to serve a non-app-dev project ID', async () => {
+    const projectRoot = await realpath(process.cwd());
+    const registered = {
+      ...project,
+      projectId: 'user-project',
+      canonicalRoot: projectRoot
+    };
+    const listRoles = vi.fn().mockResolvedValue({
+      schemaVersion: 'chirality.roles/v3',
+      defaultRole: 'HELP_HUMAN',
+      roles: []
+    });
+    const runtimeClient = client({
+      projectStatus: vi.fn().mockResolvedValue({
+        project: registered,
+        manifestDrift: false,
+        adaptersEnabled: true
+      }),
+      listRoles
+    });
+    const port = new RuntimeDaemonHarnessPort(
+      runtimeClient,
+      registered.projectId,
+      projectRoot
+    );
+
+    await port.listRoles(projectRoot);
+    expect(listRoles).toHaveBeenCalledWith(registered.projectId, undefined);
+  });
+
+  it('revalidates a cached hosted binding before a consent mutation', async () => {
+    const projectRoot = await realpath(process.cwd());
+    const registered = {
+      ...project,
+      projectId: 'drift-project',
+      canonicalRoot: projectRoot,
+      manifestHash: 'before',
+      clientId: 'hosted-project-drift-project'
+    };
+    const healthy = {
+      project: registered,
+      manifestDrift: false,
+      adaptersEnabled: true
+    };
+    const bootstrapProjectStatus = vi.fn().mockResolvedValue(healthy);
+    const scopedProjectStatus = vi.fn().mockResolvedValue(healthy);
+    const scopedClient = client({
+      projectStatus: scopedProjectStatus,
+      hostedBootstrapStatus: vi.fn().mockResolvedValue({
+        schema: 'chirality-hosted-bootstrap-status/v1',
+        projectId: registered.projectId,
+        ceremony: 'consent-required',
+        admission: 'unavailable',
+        canStartLogin: false
+      }),
+      grantHostedProviderNetworkConsent: vi.fn()
+    });
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient: client({
+        resolveProjectByRoot: vi.fn().mockResolvedValue(registered),
+        projectStatus: bootstrapProjectStatus
+      }),
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock',
+      createScopedClient: () => scopedClient
+    });
+    await port.getStatus(projectRoot);
+    bootstrapProjectStatus.mockResolvedValueOnce({
+      ...healthy,
+      project: { ...registered, manifestHash: 'after' }
+    });
+
+    await expect(
+      port.grantProviderNetworkConsent(projectRoot)
+    ).rejects.toMatchObject({ type: 'WORKING_ROOT_CONFLICT', status: 409 });
+    expect(scopedClient.grantHostedProviderNetworkConsent).not.toHaveBeenCalled();
+  });
+
+  it('revalidates and preserves the selected binding for project-local sign-out', async () => {
+    const projectRoot = await realpath(process.cwd());
+    const registered = {
+      ...project,
+      projectId: 'logout-project',
+      canonicalRoot: projectRoot,
+      manifestHash: 'logout-manifest',
+      clientId: 'hosted-project-logout-project'
+    };
+    const healthy = { project: registered, manifestDrift: false, adaptersEnabled: true };
+    const signedOut = {
+      schema: 'chirality-hosted-bootstrap-status/v1' as const,
+      projectId: registered.projectId,
+      ceremony: 'consent-required' as const,
+      admission: 'unavailable' as const,
+      canStartLogin: false
+    };
+    const signOutHostedProject = vi.fn().mockResolvedValue(signedOut);
+    const scopedClient = client({
+      projectStatus: vi.fn().mockResolvedValue(healthy),
+      hostedBootstrapStatus: vi.fn().mockResolvedValue({ ...signedOut, ceremony: 'signed-in', admission: 'ready' }),
+      signOutHostedProject
+    });
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient: client({
+        resolveProjectByRoot: vi.fn().mockResolvedValue(registered),
+        projectStatus: vi.fn().mockResolvedValue(healthy)
+      }),
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock',
+      createScopedClient: () => scopedClient
+    });
+    await port.getStatus(projectRoot);
+    const controller = new AbortController();
+    await expect(port.signOut(projectRoot, { signal: controller.signal })).resolves.toEqual(signedOut);
+    expect(signOutHostedProject).toHaveBeenCalledWith(registered.projectId, controller.signal);
+  });
+
+  it('rejects a symlink alias before explicit hosted project initialization', async () => {
+    const fixtureRoot = await mkdtemp(join(tmpdir(), 'chirality-hosted-root-'));
+    const alias = `${fixtureRoot}-alias`;
+    await symlink(fixtureRoot, alias);
+    const initializeHostedBootstrapProject = vi.fn();
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient: client({ initializeHostedBootstrapProject }),
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock'
+    });
+
+    try {
+      await expect(port.initializeProject(alias)).rejects.toMatchObject({
+        type: 'INVALID_REQUEST',
+        status: 400
+      });
+      expect(initializeHostedBootstrapProject).not.toHaveBeenCalled();
+    } finally {
+      await rm(alias);
+      await rm(fixtureRoot, { recursive: true, force: true });
+    }
+  });
+
+  it('does not install a normal port when Runtime returns a conflicting registration', async () => {
+    const projectRoot = await realpath(process.cwd());
+    const registration = { projectId: 'project-one', manifestHash: 'expected' };
+    const installBoundPort = vi.fn();
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient: client({
+        initializeHostedBootstrapProject: vi.fn().mockResolvedValue(registration),
+        projectStatus: vi.fn().mockResolvedValue({
+          project: {
+            ...project,
+            projectId: registration.projectId,
+            canonicalRoot: projectRoot,
+            manifestHash: 'conflicting'
+          },
+          manifestDrift: false,
+          adaptersEnabled: true
+        })
+      }),
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock',
+      createScopedClient: vi.fn(),
+      installBoundPort
+    });
+
+    await expect(port.initializeProject(projectRoot)).rejects.toMatchObject({
+      type: 'WORKING_ROOT_CONFLICT',
+      status: 409
+    });
+    expect(installBoundPort).not.toHaveBeenCalled();
+  });
+
+  it('does not install a normal port when Runtime rejects project initialization', async () => {
+    const projectRoot = await realpath(process.cwd());
+    const installBoundPort = vi.fn();
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient: client({
+        initializeHostedBootstrapProject: vi.fn().mockRejectedValue(
+          new RuntimeError('INVALID_REQUEST', 'Malformed existing manifest', 400)
+        )
+      }),
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock',
+      createScopedClient: vi.fn(),
+      installBoundPort
+    });
+
+    await expect(port.initializeProject(projectRoot)).rejects.toMatchObject({
+      type: 'INVALID_REQUEST',
+      status: 400,
+      message: 'Malformed existing manifest'
+    });
+    expect(installBoundPort).not.toHaveBeenCalled();
   });
 
   it('uses only the fixed app-dev project for contained scaffold requests', async () => {

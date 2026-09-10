@@ -10,17 +10,18 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
 }));
 import { MethodLibraryView } from '../../components/woven-dialogue/method-library-view';
 
-const descriptor = (name: string, sourceRootId: string) => ({
-  qualifiedId: `${sourceRootId}/skill/${name}`,
+const descriptor = (name: string, sourceRootId: string, input: Partial<{ source: 'project' | 'user' | 'bundled'; kind: 'skill' | 'workflow'; central: boolean; metadata: Readonly<Record<string, unknown>> }> = {}) => ({
+  qualifiedId: `${sourceRootId}/${input.kind ?? 'workflow'}/${name}`,
   sourceRootId,
-  source: 'project' as const,
-  kind: 'skill' as const,
+  source: input.source ?? 'project' as const,
+  kind: input.kind ?? 'workflow' as const,
   name,
   description: `${name} description`,
-  central: false,
+  central: input.central ?? false,
   compatibility: 'canonical' as const,
   executionRoleIds: ['TASK'] as const,
-  resources: []
+  resources: [],
+  ...(input.metadata ? { metadata: input.metadata } : {})
 });
 const response = (methods: ReturnType<typeof descriptor>[]) => ({ schemaVersion: 'chirality.methods/v3' as const, methods, malformedPackages: [] });
 function deferred<T>() { let resolve!: (value: T) => void; const promise = new Promise<T>(done => { resolve = done; }); return { promise, resolve }; }
@@ -74,4 +75,37 @@ it('reloads the catalog when the panel requests a refresh', async () => {
   await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
   expect(mocks.list).toHaveBeenCalledTimes(2);
   expect(JSON.stringify(tree.toJSON())).toContain('available-again');
+});
+
+it('puts central and project workflows first and presents metadata as purpose and applicability', async () => {
+  mocks.list.mockResolvedValue(response([
+    descriptor('later', 'bundled', { source: 'bundled', metadata: { category: 'Documents and drawings', applicability: 'Publishing work' } }),
+    descriptor('project-flow', 'project', { metadata: { purpose: 'Prepare a release', applicability: ['App work', 'Runtime work'] } }),
+    descriptor('project-setup', 'bundled', { source: 'bundled', central: true })
+  ]));
+  let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<MethodLibraryView projectRoot="/project" selected={[]} onSelectedChange={() => {}} />); });
+  await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
+  const text = JSON.stringify(tree.toJSON());
+  expect(text.indexOf('Start here')).toBeLessThan(text.indexOf('For this project'));
+  expect(text).toContain('Prepare a release');
+  expect(text).toContain('App work, Runtime work');
+  expect(text).toContain('Documents and drawings');
+  expect(text).toContain('Publishing work');
+});
+
+it('keeps bundled skills in a secondary read-only inspection view and hides other skill sources', async () => {
+  const bundled = descriptor('trusted-check', 'bundled', { source: 'bundled', kind: 'skill' });
+  const project = descriptor('project-skill', 'project', { kind: 'skill' });
+  mocks.list.mockResolvedValue(response([bundled, project]));
+  let tree!: ReactTestRenderer;
+  const onSelectedChange = vi.fn();
+  await act(async () => { tree = create(<MethodLibraryView projectRoot="/project" selected={[]} onSelectedChange={onSelectedChange} />); });
+  await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
+  await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('Skills reference'))!.props.onClick());
+  const text = JSON.stringify(tree.toJSON());
+  expect(text).toContain('trusted-check');
+  expect(text).toContain('Read-only reference');
+  expect(text).not.toContain('project-skill');
+  expect(tree.root.findAllByType('button').some(button => button.children.includes('Use in message'))).toBe(false);
 });

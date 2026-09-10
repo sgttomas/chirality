@@ -8,6 +8,14 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./hosted-paths": {
+      "types": "./dist/hosted-paths.d.ts",
+      "import": "./dist/hosted-paths.js"
+    },
+    "./hosted": {
+      "types": "./dist/hosted.d.ts",
+      "import": "./dist/hosted.js"
     }
   },
   "files": [
@@ -16,7 +24,9 @@
   "dependencies": {
     "@chirality/runtime-contracts": "*",
     "@chirality/runtime-core": "*",
-    "@chirality/native-admission": "*",
+    "@chirality/native-admission": "*"
+  },
+  "devDependencies": {
     "@chirality/engine-pi-omlx": "*"
   },
   "bin": {

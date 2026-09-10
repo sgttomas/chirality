@@ -1,18 +1,18 @@
 import { constants } from "node:fs";
 import { open, lstat, readdir, realpath, unlink } from "node:fs/promises";
 import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
-import { RuntimeError, validateHostedManagedAuth, type HostedManagedAuth, type EngineSelection, type ProviderCredentialPort, type RuntimeCompatibilityIdentity, type WorkerContinuity } from "@chirality/runtime-contracts";
+import { CHIRALITY_INSTRUCTION_ROOT_ENV, RuntimeError, validateHostedManagedAuth, type HostedManagedAuth, type EngineSelection, type NativePlanAdapterQualification, type ProviderCredentialPort, type RuntimeCompatibilityIdentity, type WorkerContinuity } from "@chirality/runtime-contracts";
 import {
-  assertContinuity, type RuntimeConformanceConfiguration, GovernedAgent1RunCoordinator, type Agent1ManagerRuntimePort, ApprovalStore, AuthRegistry, DelegatedRuntime, EngineRegistry, HostedConsentStore, privateDirectory,
+  assertContinuity, type RuntimeConformanceArtifactInventorySelection, type RuntimeConformanceConfiguration, GovernedAgent1RunCoordinator, type Agent1ManagerRuntimePort, ApprovalStore, AuthRegistry, createDelegatedEngineAdapter, DelegatedRuntime, EngineRegistry, HostedConsentStore, privateDirectory,
   privateRead, ProcessSupervisor, ProjectRegistry, publishPrivate, recordKey, ResidencyCoordinator,
-  RuntimeService, SessionStore, TurnCoordinator, WorkerRetirementCoordinator
+  RuntimeService, SessionStore, TrustedNativePlanRegistry, TurnCoordinator, WorkerRetirementCoordinator
 } from "@chirality/runtime-core";
-import { createPiTurnRuntime, createPiOmlxEngineAdapter, normalizeOmlxBaseUrl, OmlxClient } from "@chirality/engine-pi-omlx";
 import { CodexAgent1ManagerPort } from "./codex-manager.js";
 import { CodexLogin } from "./codex-login.js";
 import { CodexSupervisor } from "./codex-supervisor.js";
 import { RuntimeDaemon } from "./runtime-daemon.js";
 import { startSupervisorServer, SupervisorClient, type SupervisorCredential } from "./supervisor-server.js";
+import { startHostedStandaloneJob, startHostedStandaloneJobWithControlledSupervisorForTests } from "./hosted-standalone.js";
 
 export type StandaloneSupplierAuthorityConfig={enabled:false}|{schema:"chirality-standalone-supplier-authority/v1";enabled:true;authorityDirectory:string;supplierExecutable:string;supplierArgs:string[];nativeBindingSha256:string;exactSupplyDigest:string};
 export function validateStandaloneSupplierAuthority(value:unknown,runtimeDirectory:string):StandaloneSupplierAuthorityConfig|undefined {
@@ -51,6 +51,14 @@ export interface LocalStandaloneConfig {
 }
 export type StandaloneConfig = DelegatedStandaloneConfig | LocalStandaloneConfig;
 export interface StandaloneJob { role: "daemon" | "supervisor"; mode: StandaloneConfig["mode"]; socketPath: string; close(): Promise<void> }
+export interface StandaloneRuntimeBindings {
+  /** Trusted in-process composition evidence; never read from public daemon input or the standalone config file. */
+  nativePlanQualification?: NativePlanAdapterQualification;
+  /** Exact packaged admission add-on path carried by the trusted host composition. It is never loaded while supplier authority is disabled. */
+  nativeAddonPath?: string;
+  /** Explicit trusted instruction root used to resolve v2 project manifests; never inherited from ambient process state. */
+  instructionRoot?: string;
+}
 interface CredentialRecord {
   schema: "chirality-supervisor-credential/v1";
   socketPath: string;
@@ -59,11 +67,22 @@ interface CredentialRecord {
 }
 const invalid = (message: string) => new RuntimeError("INVALID_REQUEST", message);
 const unavailable = (message: string) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503);
+const isHostedMode = (config: StandaloneConfig): boolean => config.mode === "hosted-validation";
 function keys(value: unknown, allowed: string[]): asserts value is Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value) || Object.keys(value).some(key => !allowed.includes(key))) throw invalid("Unsupported standalone configuration fields");
 }
 function absolute(path: string): void {
   if (typeof path !== "string" || !isAbsolute(path) || resolve(path) !== path || /[\x00-\x1f]/.test(path)) throw invalid("Standalone paths must be canonical absolute paths");
+}
+function artifactInventory(value: RuntimeConformanceArtifactInventorySelection): void {
+  if (!value || typeof value !== "object" || Array.isArray(value)) throw invalid("Conformance artifact inventory selection is required");
+  if (value.kind === "source-tree") { keys(value,["kind","sourceRoot"]);absolute(value.sourceRoot);return; }
+  if (value.kind === "packaged-resources") {
+    keys(value, ["kind", "resourcesRoot", "manifestPath"]); absolute(value.resourcesRoot); absolute(value.manifestPath);
+    if (value.manifestPath !== join(value.resourcesRoot, "runtime-artifact-inventory.json")) throw invalid("Packaged conformance inventory manifest must use the fixed resources path");
+    return;
+  }
+  throw invalid("Unknown conformance artifact inventory selection");
 }
 function within(root: string, path: string): boolean {
   const value = relative(root, path);
@@ -123,7 +142,8 @@ export async function readStandaloneConfig(path: string): Promise<StandaloneConf
     keys(config.worker.providerNetworkConsent, ["approvedBy", "approvalReference"]);
     if (config.worker.conformance !== undefined) {
       const c = config.worker.conformance;
-      keys(c, ["recordPath", "acceptancePath", "ownerActPath", "ownerActSha256", "activationId", "gateIdentity"]);
+      keys(c, ["recordPath", "acceptancePath", "ownerActPath", "ownerActSha256", "activationId", "gateIdentity", "artifactInventory"]);
+      artifactInventory(c.artifactInventory);
       const record = child(config.runtimeDirectory, c.recordPath), acceptance = child(config.runtimeDirectory, c.acceptancePath);
       if (record === acceptance || [record, acceptance].includes(path)) throw invalid("Conformance resources must be distinct");
       absolute(c.ownerActPath);
@@ -158,9 +178,13 @@ async function loadCredential(config: DelegatedStandaloneConfig, expectedDigest 
   if (!socket.isSocket() || socket.uid !== process.getuid?.() || (socket.mode & 0o777) !== 0o600) throw unavailable("Supervisor Unix endpoint is not owner-private");
   return credential;
 }
-export async function startStandaloneJob(role: "daemon" | "supervisor", configPath: string): Promise<StandaloneJob> {
+interface StandaloneTestBindings { hostedSupervisor?: CodexSupervisor }
+async function startStandaloneJobWithBindings(role: "daemon" | "supervisor", configPath: string, runtimeBindings: StandaloneRuntimeBindings = {}, testBindings: StandaloneTestBindings = {}): Promise<StandaloneJob> {
   if (role !== "daemon" && role !== "supervisor") throw invalid("Expected daemon or supervisor job");
   const config = await readStandaloneConfig(configPath);
+  if (isHostedMode(config)) return startHostedStandaloneJob(role, configPath, runtimeBindings);
+  if (runtimeBindings.nativeAddonPath !== undefined) absolute(runtimeBindings.nativeAddonPath);
+  if (runtimeBindings.instructionRoot !== undefined) absolute(runtimeBindings.instructionRoot);
   if(config.mode==="hosted-validation"&&config.supplierAuthority?.enabled)throw unavailable("Supplier authority native package remains unqualified");
   if (config.mode === "local-engine-only") {
     if (role !== "daemon") throw invalid("Local engine mode has no supervisor job");
@@ -174,7 +198,7 @@ export async function startStandaloneJob(role: "daemon" | "supervisor", configPa
       ? new ProcessSupervisor({ command: config.worker.executablePath, args: config.worker.args, cwd: config.project.identity.canonicalRoot,
         env: { CODEX_HOME: codexHome }, maxRunMs: config.worker.maxRunMs ?? 30_000 })
       // Supplier authority is deliberately absent here: packaging remains default-off until a later qualified composition.
-      : new CodexSupervisor({ executablePath: config.worker.executablePath, model: config.worker.model, identity: config.project.identity,
+      : testBindings.hostedSupervisor ?? new CodexSupervisor({ executablePath: config.worker.executablePath, model: config.worker.model, identity: config.project.identity,
         codexHome, privateDirectory: child(config.runtimeDirectory, config.worker.privateDirectory), protectedPaths: [config.runtimeDirectory], commandNetworkPosture: config.worker.commandNetworkPosture ?? "off", managedAuth: config.worker.managedAuth,
         providerNetworkConsent: config.worker.providerNetworkConsent, turnTimeoutMs: config.worker.maxRunMs ?? 120_000,
         ...(config.worker.conformance === undefined ? {} : { conformance: { ...config.worker.conformance,
@@ -200,27 +224,29 @@ export async function startStandaloneJob(role: "daemon" | "supervisor", configPa
   const credential = await loadCredential(config);
   const supervisor = new SupervisorClient({ socketPath: child(config.runtimeDirectory, config.supervisorSocket), credential });
   await supervisor.inventory(); // Prove the loaded credential belongs to the live endpoint.
-  const projects = new ProjectRegistry(config.runtimeDirectory, {});
+  const projects = new ProjectRegistry(config.runtimeDirectory, runtimeBindings.instructionRoot === undefined ? {} : { [CHIRALITY_INSTRUCTION_ROOT_ENV]: runtimeBindings.instructionRoot });
   const registered = await projects.requireAuthorized(config.project.projectId);
   if (registered.canonicalRoot !== config.project.identity.canonicalRoot) throw invalid("Configured root differs from explicit project registration");
   const sessions = new SessionStore(config.runtimeDirectory, projects), engines = new EngineRegistry();
   const offline = async (): Promise<never> => { throw unavailable("No hosted or local model engine is configured in controlled standalone mode"); };
   const residency = new ResidencyCoordinator({ async listStatus() { return []; }, load: offline, unload: offline }, config.runtimeDirectory);
-  const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency), new AuthRegistry(config.runtimeDirectory), {
-    async get() { return undefined; }, async status() { return { configured: false }; }, set: offline, remove: offline
-  });
   const retirement = new WorkerRetirementCoordinator({ directory: child(config.runtimeDirectory, config.project.retirementDirectory) });
   await retirement.reconcile();
   const consent = new HostedConsentStore({ canonicalRoot: config.project.identity.canonicalRoot, codexHome: child(config.runtimeDirectory, config.project.codexHome) });
+  const nativePlan = new TrustedNativePlanRegistry({ projectId: config.project.projectId, sessions, qualification: runtimeBindings.nativePlanQualification, unavailableReason: "No accepted native Plan adapter qualification is supplied to this standalone composition" });
   let delegated!: DelegatedRuntime;
   const approvals = new ApprovalStore({ canonicalRoot: config.project.identity.canonicalRoot, storageRoot: join(config.runtimeDirectory, "approvals"), consent, isLive: binding => delegated.isApprovalLive(binding) });
   delegated = new DelegatedRuntime({ daemonId: "standalone-starting", projects: new Map([[config.project.projectId, {
     identity: config.project.identity, compatibility: config.project.compatibility, supervisor,
-    consent, retirement, approvals, approvalForwardingEnabled: config.mode === "hosted-validation",
+    consent, retirement, approvals, approvalForwardingEnabled: config.mode === "hosted-validation", nativePlanSink: nativePlan,
     actual: config.mode === "hosted-validation" ? { adapterId: "codex-app-server", providerId: "openai", model: config.worker.model } : { adapterId: "controlled-worker", providerId: "not-applicable", model: "not-applicable" },
     commandNetworkPosture: config.mode === "controlled-worker" ? "off" : config.worker.commandNetworkPosture ?? "off",
-    evidenceClass: config.mode === "controlled-worker" ? "controlled-worker" : "provider-observed"
+    evidenceClass: config.mode === "controlled-worker" || testBindings.hostedSupervisor !== undefined ? "controlled-worker" : "provider-observed"
   }]]) });
+  if (config.mode === "hosted-validation") engines.register(createDelegatedEngineAdapter({ projectId: config.project.projectId, delegated, compatibility: config.project.compatibility, selection: { adapterId: "codex-app-server", providerId: "openai", model: config.worker.model } }));
+  const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency), new AuthRegistry(config.runtimeDirectory), {
+    async get() { return undefined; }, async status() { return { configured: false }; }, set: offline, remove: offline
+  }, undefined, undefined, undefined, config.mode === "hosted-validation" ? { async resolve({ agentType }) { return { role: agentType === 0 ? "agent0" : "agent1", engineSelection: { adapterId: "codex-app-server", providerId: "openai", model: config.worker.model } }; } } : undefined, nativePlan);
   const daemon = new RuntimeDaemon({ socketPath, runtimeDirectory: config.runtimeDirectory, service, delegated,
     ...(config.mode === "hosted-validation" ? { loginProjectId: config.project.projectId, login: {
       startLogin: () => supervisor.startLogin(), status: () => supervisor.loginStatus(), cancel: () => supervisor.cancelLogin()
@@ -229,7 +255,19 @@ export async function startStandaloneJob(role: "daemon" | "supervisor", configPa
   return { role, mode: config.mode, socketPath, close: () => daemon.stop() };
 }
 
+export async function startStandaloneJob(role: "daemon" | "supervisor", configPath: string, runtimeBindings: StandaloneRuntimeBindings = {}): Promise<StandaloneJob> {
+  return startStandaloneJobWithBindings(role, configPath, runtimeBindings);
+}
+
+/** Test-only composition seam: substitutes a controlled hosted supervisor without weakening serialized production configuration. */
+export async function startStandaloneJobWithControlledHostedSupervisorForTests(role: "daemon" | "supervisor", configPath: string, supervisor: CodexSupervisor, runtimeBindings: StandaloneRuntimeBindings = {}): Promise<StandaloneJob> {
+  const config = await readStandaloneConfig(configPath);
+  if (isHostedMode(config)) return startHostedStandaloneJobWithControlledSupervisorForTests(role, configPath, supervisor, runtimeBindings);
+  return startStandaloneJobWithBindings(role, configPath, runtimeBindings, { hostedSupervisor: supervisor });
+}
+
 async function validateLocalConfig(config: LocalStandaloneConfig, path: string, checkCredential = true): Promise<LocalStandaloneConfig> {
+  const { normalizeOmlxBaseUrl } = await import("@chirality/engine-pi-omlx");
   keys(config, ["schema", "mode", "runtimeDirectory", "daemonSocket", "project", "engine", "manager"]);
   if (config.schema !== "chirality-standalone/v1") throw invalid("Unknown local configuration schema");
   absolute(config.runtimeDirectory);
@@ -272,6 +310,7 @@ async function localCredential(path: string): Promise<string> {
   return value.credential;
 }
 export async function startLocalDaemon(config: LocalStandaloneConfig, injectedCredentials?: ProviderCredentialPort, injectedManager?: { port: Agent1ManagerRuntimePort; selection: EngineSelection }): Promise<StandaloneJob> {
+  const { createPiTurnRuntime, createPiOmlxEngineAdapter, OmlxClient } = await import("@chirality/engine-pi-omlx");
   config = await validateLocalConfig(config, join(config.runtimeDirectory, "memory-configuration"), injectedCredentials === undefined);
   const projects = new ProjectRegistry(config.runtimeDirectory, {});
   const registered = await projects.requireAuthorized(config.project.projectId);

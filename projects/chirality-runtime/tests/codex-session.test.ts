@@ -28,6 +28,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    configReads++;if(r.params.includeLayers!==true||r.params.cwd!=='/private/tmp')process.exit(3);
    const selected={filesystem:{'/usr':'read','/private/tmp':'write','/private/protected':'deny'},network:{enabled:posture!=="off"}};
    const config={permissions:{'bound-profile':selected},approvals_reviewer:'user',approval_policy:posture==='ask-per-destination'?'on-request':'never',allow_login_shell:false,features:{plugins:false,remote_plugin:false,shell_snapshot:false,network_proxy:posture!=='off'},hooks:null,mcp_servers:{},notify:null,plugins:{},profiles:{},profile:null,projects:{'/private/tmp':{trust_level:'trusted'}}};
+   if(mode.startsWith('named-roles')){config.features.multi_agent=true;config.features.multi_agent_v2=false;config.agents={enabled:true,max_depth:(mode==='named-roles-drift'&&configReads>=3)?1:2,HELP_HUMAN:{description:'Help',config_file:'/private/roles/HELP_HUMAN.toml'},HELPS_HUMANS:{description:'Manage',config_file:'/private/roles/HELPS_HUMANS.toml'},WORKING_ITEMS:{description:'Work',config_file:'/private/roles/WORKING_ITEMS.toml'},TASK:{description:'Task',config_file:'/private/roles/TASK.toml'}};}
    if(mode==='named-null-defaults'||mode==='named-nonnull-default'||mode==='named-unknown-default'){
     selected.description=null;selected.extends=null;selected.workspace_roots=null;selected.filesystem.glob_scan_max_depth=null;
     for(const field of ['proxy_url','enable_socks5','socks_url','enable_socks5_udp','allow_upstream_proxy','dangerously_allow_non_loopback_proxy','dangerously_allow_all_unix_sockets','mode','domains','unix_sockets','allow_local_binding','mitm'])selected.network[field]=null;
@@ -70,6 +71,10 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    if(mode==='account-bad-boolean')result.requiresOpenaiAuth='true';
    response(r,result);return;
   }
+  if(r.method==='account/logout'){
+   if('params' in r)process.exit(11);
+   response(r,mode==='logout-extra'?{account:'must-not-project'}:{});return;
+  }
   if(r.method==='thread/start'||r.method==='thread/resume'){
    if(mode.startsWith('dynamic') && (!Array.isArray(r.params.dynamicTools)||r.params.dynamicTools[0].name!=='review'||r.params.dynamicTools[0].inputSchema.additionalProperties!==false||'handler' in r.params.dynamicTools[0]))process.exit(1);
    if(r.params.model!=='fixture-model')process.exit(8);
@@ -83,6 +88,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
   }
   if(r.method==='turn/start'){
    if(r.params.model!=='fixture-model'||r.params.input[0].type!=='text')process.exit(6);
+   if(mode==='attachments'&&JSON.stringify(r.params.input)!==JSON.stringify([{type:'text',text:'fixture work',text_elements:[]},{type:'text',text:'Untrusted document',text_elements:[]},{type:'localImage',path:'/private/tmp/image.png'}]))process.exit(10);
    if(mode==='reject'){send({id:r.id,error:{code:-32600,message:'fixture'}});return;}
    if(mode==='malformed'){response(r,null);return;}
    response(r,{turn:{id:'turn1',status:'inProgress'}});
@@ -130,6 +136,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
 }
 async function ready(f: ReturnType<typeof fixture>) { await f.session.initialize(); return f.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true }); }
 const expectedPolicy = { filesystem: { "/usr": "read", "/private/tmp": "write", "/private/protected": "deny" }, network: { enabled: false } } as const;
+const expectedNativeRoles = { digest: "d".repeat(64), configOverrides: ["agents.enabled=true", "features.multi_agent=true", "features.multi_agent_v2=false", "agents.max_depth=2", "agents.HELP_HUMAN.description=\"Help\"", "agents.HELP_HUMAN.config_file=\"/private/roles/HELP_HUMAN.toml\"", "agents.HELPS_HUMANS.description=\"Manage\"", "agents.HELPS_HUMANS.config_file=\"/private/roles/HELPS_HUMANS.toml\"", "agents.WORKING_ITEMS.description=\"Work\"", "agents.WORKING_ITEMS.config_file=\"/private/roles/WORKING_ITEMS.toml\"", "agents.TASK.description=\"Task\"", "agents.TASK.config_file=\"/private/roles/TASK.toml\""] } as const;
 const turn = { threadId: "thread1", text: "fixture work", model: "fixture-model" };
 describe("persistent known-method Codex actor (controlled provider)", () => {
   it("initializes, sanitizes account, streams text and accepts only an actual terminal", async () => {
@@ -139,7 +146,18 @@ describe("persistent known-method Codex actor (controlled provider)", () => {
       const id = await f.session.startTurn(turn); expect(id).toBe("turn1");
       expect(await f.session.waitTurn(id)).toEqual({ threadId: "thread1", turnId: "turn1", status: "completed", output: "hello" });
       const events = []; for await (const event of f.session.events()) { events.push(event); if (event.type === "terminal") break; }
-      expect(events.map(event => event.type)).toEqual(["text", "terminal"]);
+      expect(events.map(event => event.type)).toEqual(["started", "text", "terminal"]);
+    } finally { await f.close(); }
+  });
+  it("maps only text documents and local images into exact native turn input", async () => {
+    const f = fixture("attachments");
+    try {
+      await ready(f);
+      const id = await f.session.startTurn({ ...turn, attachments: [
+        { type: "text", text: "Untrusted document", source: "untrusted-document" },
+        { type: "localImage", path: "/private/tmp/image.png", mimeType: "image/png", source: "untrusted-attachment" }
+      ] });
+      expect((await f.session.waitTurn(id)).status).toBe("completed");
     } finally { await f.close(); }
   });
   it("immutably binds the trusted named policy on start, resume and turn without legacy overrides", async () => {
@@ -154,6 +172,14 @@ describe("persistent known-method Codex actor (controlled provider)", () => {
       await expect(f.session.resumeThread({ threadId: "thread1", model: "fixture-model", continuityChecked: true, permissionProfile: "escalated" } as Parameters<CodexTurnSession["resumeThread"]>[0])).rejects.toThrow("overrides");
       await expect(f.session.startTurn({ ...turn, policyDigest: "b".repeat(64) } as Parameters<CodexTurnSession["startTurn"]>[0])).rejects.toThrow("overrides");
     } finally { await f.close(); }
+  });
+  it("binds exact native role pins and four role files on every effective config read", async () => {
+    const valid = fixture("named-roles");
+    try { await valid.session.initialize(); await valid.session.verifyNativePolicy(expectedPolicy, expectedNativeRoles); await valid.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true }); const turnId = await valid.session.startTurn(turn); expect((await valid.session.waitTurn(turnId)).status).toBe("completed"); }
+    finally { await valid.close(); }
+    const drift = fixture("named-roles-drift");
+    try { await drift.session.initialize(); await drift.session.verifyNativePolicy(expectedPolicy, expectedNativeRoles); await drift.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true }); await expect(drift.session.startTurn(turn)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" }); }
+    finally { await drift.close(); }
   });
   it("rejects merged grants, missing denies, network changes and host-side overrides on readback", async () => {
     for (const mode of ["named-extra", "named-missing", "named-network", "named-preset", "named-hook", "named-mcp", "named-notify", "named-project", "named-nonnull-default", "named-unknown-default", "named-remote-plugin"]) {
@@ -601,6 +627,14 @@ it.each(["off", "ask-per-destination", "on"] as const)("disables shell snapshots
 
 
 describe("custody account-only projection", () => {
+  it("sends the accepted parameterless logout request and accepts only an empty acknowledgement", async () => {
+    const f = fixture("normal", 1000, "login");
+    try { await f.session.initialize(); await expect(f.session.accountLogout()).resolves.toBeUndefined(); }
+    finally { await f.close(); }
+    const invalid = fixture("logout-extra", 1000, "login");
+    try { await invalid.session.initialize(); await expect(invalid.session.accountLogout()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" }); }
+    finally { await invalid.close(); }
+  });
   it.each(["account-api", "account-chatgpt", "account-null-email"])("projects %s to presence without an identity claim", async mode => {
     const f = fixture(mode, 1000, "login");
     try { await f.session.initialize(); expect(await f.session.accountRead()).toEqual({ authRequired: true, hasAccount: true }); }

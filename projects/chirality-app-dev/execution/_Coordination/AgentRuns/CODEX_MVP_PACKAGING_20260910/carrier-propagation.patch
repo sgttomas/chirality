@@ -1,0 +1,102 @@
+--- a/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/ScopeOfWork.md
+@@ -8,6 +8,12 @@
+ ---
+ 
+ # Scope of Work — DEL-09-05
++
++## Current Codex MVP conformity
++
++This carrier adopts the owner-directed current-release basis in App CONTRACT/SPEC/PRD: Codex is the sole MVP engine. Historical Anthropic/Claude/Pi-specific descriptions below are compatibility history and do not require enabling or qualifying an unused engine. Accepted Codex supplier/account identity-currentness, credential custody, per-root consent, containment and exact K-NET-1 endpoint/command-network safeguards remain required. Provider service traffic and renderer egress are separate surfaces; admitting a supplier endpoint does not authorize renderer or tool traffic. Existing secret protection and attachment controls remain mandatory. No supplier/native/publication acceptance is created here.
++
++Artifact version is the explicitly recorded candidate package.json/package-lock.json version, checked against actual App Info.plist and `Chirality-<candidate-version>-arm64.dmg`. Staged and mounted package inspection must establish the actual admitted Codex supplier/native resource layout and executable behavior; old Claude scripted proofs do not establish this. Existing CI qualification stop remains until accepted current inputs exist.
+ 
+ ## Purpose and Objective Traceability
+ 
+@@ -54,7 +60,7 @@
+ > | Anticipated artifacts | CI workflow; stable artifact upload; release verification runbook | `_CONTEXT.md` Anticipated Artifacts; decomposition `DEL-09-05` row |
+ > | Local check command sequence | `npm run test`; `npm run typecheck`; `npm run harness:validate:premerge`; `npm run instruction-root:integrity`; `npm run desktop:dist` | `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1; `docs/PLAN.md` Section 7 |
+ > | Stable summary artifact | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` | `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1; `docs/PLAN.md` Section 7 |
+-> | Expected packaging outputs | `frontend/dist/Chirality-0.1.0-arm64.dmg`; `frontend/dist/mac-arm64/Chirality.app`; instruction-root integrity summary JSON | `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1 |
++> | Expected packaging outputs | `frontend/dist/Chirality-<candidate-version>-arm64.dmg`; `frontend/dist/mac-arm64/Chirality.app`; instruction-root integrity summary JSON | `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1 |
+ > | CI workflow baseline | Checkout repository; setup Node.js 20; run `npm ci`; verify instruction-root assets; preflight validation script presence; start Next server; poll readiness; run premerge validation; verify stable summary artifact; upload summary artifact | `docs/PRD.md` Section 12.7 |
+ > | Release target | macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless amended | `docs/CONTRACT.md` K-RELEASE-1; `docs/SPEC.md` Section 19.4 |
+ > | Ownership disposition | `ResponsibleParty` remains `TBD` until a human assigns ownership; CI/release execution must not be delegated on an inferred owner. | `_CONTEXT.md` Identity and Source Authority; `Procedure.md` Prerequisites |
+@@ -70,7 +76,7 @@
+ > | CI provider implementation | ASSUMPTION: GitHub Actions is the intended CI surface because `docs/PRD.md` Section 12.7 names "The GitHub workflow"; exact workflow file path is TBD. | `docs/PRD.md` Section 12.7 |
+ > | Stable summary artifact path | The review target is `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. | `docs/PRD.md` Sections 12.2 and 12.7; `docs/SPEC.md` Section 19.1 |
+ > | CI upload artifact identity | The CI workflow must upload the stable summary artifact, but the CI upload artifact name, retention period, and workflow file path are `TBD` until source-defined or human-approved. | `docs/PRD.md` Section 12.7; `_SEMANTIC_LENSING.md` D-001 |
+-> | Security posture during verification | API keys must not be written to project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts; outbound network access remains loopback plus Anthropic API path unless amended. | `docs/CONTRACT.md` K-NET-1 and K-KEY-1 |
++> | Security posture during verification | API keys must not be written to project files, logs, runtime events, SDK transcripts if avoidable, or tool artifacts; outbound network access remains accepted K-NET-1 product transport and per-root command-network scope. | `docs/CONTRACT.md` K-NET-1 and K-KEY-1 |
+ > | Dependency state | Declared upstream and downstream dependencies remain `TBD`; extracted `Dependencies.csv` v3.1 rows exist but readiness remains blocked until accepted dependency-edge or blocker disposition is recorded. | `_DEPENDENCIES.md` Extracted Dependency Register; `_SEMANTIC_LENSING.md` X-002 |
+ >
+ 
+@@ -83,7 +89,7 @@
+ > | CI workflow | Implement or maintain a premerge workflow that executes the PRD Section 12.7 sequence and uploads the stable validation summary artifact. |
+ > | Local command sequence | Document a reproducible local sequence from `frontend/` that runs test, typecheck, premerge validation, instruction-root integrity, and desktop distribution checks. |
+ > | Stable artifact verification | Verify that `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` exists after relevant checks and is uploaded by CI. |
+-> | Manual release checklist | Verify macOS DMG architecture, minimum system version, signing posture, instruction-root assets, working-root selector availability, current shipped Anthropic network guardrails, SDK-backed packaged turn startup after R1, SDK subprocess execution access, and SDK transcript storage/mirroring decision conformance. |
++> | Manual release checklist | Verify macOS DMG architecture, minimum system version, signing posture, instruction-root assets, working-root selector availability, accepted Codex supplier network safeguards, SDK-backed packaged turn startup after R1, SDK subprocess execution access, and SDK transcript storage/mirroring decision conformance. |
+ > | Evidence capture | Record command outcomes, artifact paths, and release-check findings in a release verification runbook or equivalent reviewable artifact. |
+ >
+ 
+@@ -160,14 +166,14 @@
+ > |---|---|---|
+ > | REQ-09-05-001 | The local release-significant check sequence MUST include `npm run test`, `npm run typecheck`, `npm run harness:validate:premerge`, and `npm run instruction-root:integrity` from `frontend/`; current runtime-premerge evidence may be collected through `npm run validate:release-quality`, with explicit skip reasons for environment-dependent premerge. | `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1; `docs/PLAN.md` Section 7; ADQ-14 implementation evidence |
+ > | REQ-09-05-002 | The packaging check MUST include `npm run desktop:dist`. | `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1; `docs/PLAN.md` Section 7 |
+-> | REQ-09-05-003 | The expected packaging outputs MUST include `frontend/dist/Chirality-0.1.0-arm64.dmg`, `frontend/dist/mac-arm64/Chirality.app`, and `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. | `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1 |
++> | REQ-09-05-003 | The expected packaging outputs MUST include `frontend/dist/Chirality-<candidate-version>-arm64.dmg`, `frontend/dist/mac-arm64/Chirality.app`, and `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. | `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1 |
+ > | REQ-09-05-004 | The CI workflow MUST checkout the repository, set up Node.js 20, install dependencies with `npm ci`, verify required instruction-root assets, check preflight validation script presence, start the Next server, poll readiness, run `npm run harness:validate:premerge`, verify the stable summary artifact, and upload the summary artifact. | `docs/PRD.md` Section 12.7 |
+ > | REQ-09-05-005 | Runtime premerge validation MUST verify and upload the stable Section 8 summary at `frontend/artifacts/harness/section8/latest/summary.json`; packaging/instruction-root review separately uses `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`; the runtime-premerge wrapper writes `frontend/artifacts/harness/release-quality/latest/summary.json` as derivative evidence. | `docs/PRD.md` FR-066 and Section 12.7; `docs/SPEC.md` Section 19.1; ADQ-14 implementation evidence |
+-> | REQ-09-05-006 | Manual macOS DMG release verification MUST check arm64 binary posture, `LSMinimumSystemVersion` `15.0.0` or later, unsigned/adhoc signing posture, required instruction-root assets in app resources, working-root selector availability, current shipped Anthropic network guardrails, packaged SDK-backed turn startup after R1, SDK subprocess execution access outside trapped `app.asar` layout, and accepted SDK transcript storage/mirroring behavior. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 |
++> | REQ-09-05-006 | Manual macOS DMG release verification MUST check arm64 binary posture, `LSMinimumSystemVersion` `15.0.0` or later, unsigned/adhoc signing posture, required instruction-root assets in app resources, working-root selector availability, accepted Codex supplier network safeguards, packaged SDK-backed turn startup after R1, SDK subprocess execution access outside trapped `app.asar` layout, and accepted SDK transcript storage/mirroring behavior. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 |
+ > | REQ-09-05-007 | Release validation MUST preserve current release target constraints: macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless amended. | `docs/CONTRACT.md` K-RELEASE-1; `docs/SPEC.md` Section 19.4 |
+ > | REQ-09-05-008 | Release-significant changes MUST pass required local checks before acceptance. | `docs/CONTRACT.md` K-VALIDATE-1 |
+ > | REQ-09-05-009 | Verification records MUST avoid writing API keys or secrets to project files, runtime event payloads, logs, SDK transcripts if avoidable, or tool artifacts. | `docs/CONTRACT.md` K-KEY-1 |
+-> | REQ-09-05-010 | Verification MUST keep outbound network scope limited to explicit product scope: loopback plus Anthropic API path unless governed future scope expands it. | `docs/CONTRACT.md` K-NET-1 |
++> | REQ-09-05-010 | Verification MUST keep outbound network scope limited to explicit product scope: accepted K-NET-1 product transport and per-root command-network scope. | `docs/CONTRACT.md` K-NET-1 |
+ > | REQ-09-05-011 | The release workflow MUST NOT represent Chirality as providing automated professional approval, code compliance, external validation, or solver ownership. | `docs/PRD.md` Section 12.1; `docs/DIRECTIVE.md` professional-boundary sections |
+ > | REQ-09-05-012 | ASSUMPTION: The CI implementation target is a GitHub Actions workflow because `docs/PRD.md` Section 12.7 specifies "The GitHub workflow"; the exact workflow file path is TBD. | `docs/PRD.md` Section 12.7 |
+ > | REQ-09-05-013 | Release evidence MUST map each requirement in this specification to a concrete evidence artifact, checklist row, or `TBD` blocker before workflow readiness is claimed. | `docs/CONTRACT.md` K-VALIDATE-1 and K-INVENT-1; `_SEMANTIC_LENSING.md` C-001 |
+@@ -305,7 +311,7 @@
+ > | Local development environment can run commands from `frontend/`. | TBD |
+ > | Required instruction-root assets are present. | To be verified by workflow |
+ > | API keys and secrets are excluded from project files, logs, runtime events, and artifacts. | Required by `docs/CONTRACT.md` K-KEY-1 |
+-> | Network scope remains loopback plus Anthropic API path unless amended. | Required by `docs/CONTRACT.md` K-NET-1 |
++> | Network scope remains accepted K-NET-1 product transport and per-root command-network scope. | Required by `docs/CONTRACT.md` K-NET-1 |
+ >
+ 
+ ### CLM-020 — Steps
+@@ -354,7 +360,7 @@
+ > 5. Execute or document packaging verification.
+ >    - Run or require `npm run desktop:dist` from `frontend/`.
+ >    - Confirm expected outputs:
+->      - `frontend/dist/Chirality-0.1.0-arm64.dmg`
++>      - `frontend/dist/Chirality-<candidate-version>-arm64.dmg`
+ >      - `frontend/dist/mac-arm64/Chirality.app`
+ >      - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
+ >
+@@ -364,7 +370,7 @@
+ >    - Confirm signing posture is unsigned/adhoc as scoped.
+ >    - Confirm app resources contain required instruction-root assets.
+ >    - Confirm app launches and working-root selector is available.
+->    - Confirm current shipped Anthropic network guardrails remain in force.
++>    - Confirm accepted Codex supplier network safeguards remain in force.
+ >    - Confirm SDK-backed harness turn can start in packaged app after R1.
+ >    - Confirm SDK subprocess or bundled binary is executable from package layout and not trapped inside `app.asar` without execution access.
+ >    - Confirm SDK transcript storage/mirroring follows the accepted R1 storage decision.
+--- a/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md
+@@ -8,6 +8,12 @@
+ ---
+ 
+ # Scope of Work — DEL-09-06
++
++## Current Codex MVP conformity
++
++This carrier adopts the owner-directed current-release basis in App CONTRACT/SPEC/PRD: Codex is the sole MVP engine. Historical Anthropic/Claude/Pi-specific descriptions below are compatibility history and do not require enabling or qualifying an unused engine. Accepted Codex supplier/account identity-currentness, credential custody, per-root consent, containment and exact K-NET-1 endpoint/command-network safeguards remain required. Provider service traffic and renderer egress are separate surfaces; admitting a supplier endpoint does not authorize renderer or tool traffic. Existing secret protection and attachment controls remain mandatory. No supplier/native/publication acceptance is created here.
++
++Current MVP PDF behavior is the accepted S0/default-app fallback. Historical S1/built-in multi-page PDF requirements below are inapplicable to this release; retain the applicable S0 response, containment, nonce/window/IPC/egress controls and actual packaged default-app PDF observations. Do not infer native PASS from source tests or waive current security evidence. This is conformity to the already settled fallback scope, not a new PDF scope decision.
+ 
+ ## Purpose and Objective Traceability
+ 

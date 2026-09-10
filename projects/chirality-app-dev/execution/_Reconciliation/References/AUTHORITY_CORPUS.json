@@ -1,6 +1,6 @@
 {
   "model": "D-APP-38 Option D hybrid: reconciliation tool feeding versioned corpus snapshots",
-  "current_version": "v21",
+  "current_version": "v22",
   "refs": [
     "docs/DIRECTIVE.md",
     "docs/CONTRACT.md",
@@ -345,6 +345,26 @@
         "docs/TYPES.md": "a8cdc94d39e16271ec4ef7fde5be76969f23ca3fe9e1663ac53ad1915eefd56c",
         "docs/PLAN.md": "3741bb7ec389c12f0856cf64acc27d4d17b77d1683275564b75182fcdbab5187",
         "docs/PRD.md": "87ced649beae245e7b0290b3ef8afb46681d04e671964a0583fdce83a7ccb586",
+        "workflows/software-decomp/WORKFLOW.md": "fd79f8001404a99c3438500fae413d56193dc1db408b3416bdee20414977d452",
+        "workflows/software-decomp/resources/contract.md": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+        "workflows/software-decomp/resources/method.md": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+        "workflows/domain-engine/WORKFLOW.md": "922b6dadbc8a8f71899954a6f7e47b45df753fb81a6ca644218a9cf642b0e94e",
+        "workflows/domain-engine/resources/contract.md": "414cccf9805318c6a450d17077cc1091a47e82ac7be5e2ac48596a6789ac6998",
+        "workflows/domain-engine/resources/method.md": "e3bbb3e344c7c5eb69d5288b190287595b739333b09825541f58305e20926caf"
+      }
+    },
+    {
+      "version": "v22",
+      "date": "2026-09-10",
+      "binding_commit": "718b0d47afea3fa9633fc7dc76a814c747fe843f",
+      "reason": "Owner-directed Codex-only MVP release contract and recorded artifact identity; reviewed six-file amendment 52a7fcc878017cd072e6759f1e444ca2d41a56f7e817d25abe34cde1c1d2c0b3",
+      "hashes": {
+        "docs/DIRECTIVE.md": "50b816d5be74021f173e19b39773b4f5d2cc3f434966dc9d6faf9399ddf26099",
+        "docs/CONTRACT.md": "88178c2504637eb87425474ad721eb35a9e838547c84b44d183ebaa4c2404251",
+        "docs/SPEC.md": "c72ac9c9acede1cde590302225715e4ab4b73778e14bff44ac930d46c34f9dfa",
+        "docs/TYPES.md": "a8cdc94d39e16271ec4ef7fde5be76969f23ca3fe9e1663ac53ad1915eefd56c",
+        "docs/PLAN.md": "b3aa26e8dfa8610b12b912c182b5a23646ca71e4a5fc76cb6018872c3c77ef21",
+        "docs/PRD.md": "292b5d5636e169a4f7901f5be6e7054108f131328652a6d087b3d3332c6c2f19",
         "workflows/software-decomp/WORKFLOW.md": "fd79f8001404a99c3438500fae413d56193dc1db408b3416bdee20414977d452",
         "workflows/software-decomp/resources/contract.md": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
         "workflows/software-decomp/resources/method.md": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",

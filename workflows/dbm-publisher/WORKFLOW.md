@@ -1,6 +1,9 @@
 ---
 name: dbm-publisher
 description: "Develop and publish one engineering Design Basis Memorandum from accepted domain state, with frozen planning, section production, post-authoring review, and human acceptance."
+metadata:
+  category: Documents and drawings
+  applicability: Develop and publish one Design Basis Memorandum from accepted domain state.
 ---
 
 # Publish a Design Basis Memorandum

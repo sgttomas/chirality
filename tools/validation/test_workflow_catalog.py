@@ -43,6 +43,34 @@ def test_root_index_is_fresh_and_classification_is_bounded():
     assert index["legacy"]["convertedWorkflowAliases"]["deliverable-consistency"] == {"kind": "skill", "name": "deliverable-consistency"}
 
 
+def test_workflow_purpose_metadata_reaches_descriptors(tmp_path):
+    index = validate_and_build(ROOT)
+    workflows = {item["name"]: item for item in index["methods"] if item["kind"] == "workflow"}
+    expected_categories = {
+        "review": "Review and validation",
+        "reconciliation": "Review and validation",
+        "pdf2md-orchestration": "Documents and drawings",
+        "drawing-extract": "Documents and drawings",
+        "dbm-publisher": "Documents and drawings",
+    }
+    for name, category in expected_categories.items():
+        metadata = workflows[name]["metadata"]
+        assert metadata["category"] == category
+        assert isinstance(metadata["applicability"], str)
+        assert metadata["applicability"].strip()
+
+    root = _fixture_root(tmp_path)
+    target_name = CENTRAL[0]
+    target = root / "workflows" / target_name / "WORKFLOW.md"
+    fixture_metadata = {"category": "Fixture group", "applicability": "Fixture use"}
+    target.write_text(
+        f"---\nname: {target_name}\ndescription: Fixture\nmetadata:\n"
+        "  category: Fixture group\n  applicability: Fixture use\n---\n"
+    )
+    descriptor = next(item for item in validate_and_build(root)["methods"] if item["name"] == target_name)
+    assert descriptor["metadata"] == fixture_metadata
+
+
 def test_canonical_skill_execution_policies_and_catalog_projection():
     # Current policy expectations belong here, not in the one-time conversion
     # evidence or retired workflow packages. Role order has no policy meaning.

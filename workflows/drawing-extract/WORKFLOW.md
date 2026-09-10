@@ -1,6 +1,9 @@
 ---
 name: drawing-extract
 description: "Extract target-specific evidence from engineering drawings through coverage design, bounded visual extraction, deterministic QA, assembly, and recovery."
+metadata:
+  category: Documents and drawings
+  applicability: Extract target-specific structured evidence from engineering drawing sets.
 ---
 
 # Extract evidence from drawings

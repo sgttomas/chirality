@@ -145,8 +145,10 @@ export class TurnCoordinator {
         requestedTools
       );
       const input: AgentEngineRunInput = {
+        projectId,
         session,
         message,
+        interactionMode: request.interactionMode ?? session.interactionMode ?? "chat",
         opts: {
           model: request.opts?.model ?? session.engineSelection.model,
           tools: admittedTools,
@@ -183,7 +185,8 @@ export class TurnCoordinator {
                 contentBlocks: (
                   await this.attachments.resolveAttachmentsToContentBlocks(
                     message,
-                    request.attachments
+                    request.attachments,
+                    { projectId, sessionId, projectRoot: session.projectRoot }
                   )
                 ).contentBlocks
               })
@@ -280,7 +283,7 @@ export class TurnCoordinator {
             await this.sessions.recordProviderSpanSessionInit(projectId, sessionId, contextSuccessor.preparationId, { sessionInitEventId: randomUUID(), engineSessionId: received.data.engineSessionId, providerSpanId: received.data.providerSpanId ?? received.data.engineSessionId });
             successorRecorded = true;
           }
-          const adapterSession = { ...(session.adapterSession ?? {}), engineSessionId: received.data.engineSessionId };
+          const adapterSession = { ...(session.adapterSession ?? {}), engineSessionId: received.data.engineSessionId, ...(received.data.lastRuntimeTurnId === undefined ? {} : { lastRuntimeTurnId: received.data.lastRuntimeTurnId }) };
           delete adapterSession.contextSuccessor;
           session = {
             ...session,

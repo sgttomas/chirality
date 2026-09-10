@@ -142,20 +142,22 @@ describe('ChatPanel empty-state and composer arrangement', () => {
 
     const rows = panelRows(root);
 
-    // Four rows and only four, whatever the state: header, transcript,
-    // composer dock, composer. The grid template depends on this.
+    // The conversation stage owns the transcript (and the Plan sidebar when
+    // active), while the dock and composer remain independent grid rows.
     expect(rows).toHaveLength(4);
     expect(hasClass(rows[0], 'panel-header')).toBe(true);
-    expect(hasClass(rows[1], 'chat-transcript')).toBe(true);
+    expect(hasClass(rows[1], 'chat-conversation-stage')).toBe(true);
     expect(hasClass(rows[2], 'chat-composer-dock')).toBe(true);
     expect(rows[3].props.className).toBe('chat-input-row');
+    const transcript = byClass(rows[1], 'chat-transcript')[0];
+    expect(transcript).toBeDefined();
 
     // The working-root empty state belongs to the transcript, not to the dock.
-    const transcriptEmpty = byClass(rows[1], 'panel-empty');
+    const transcriptEmpty = byClass(transcript, 'panel-empty');
     expect(transcriptEmpty).toHaveLength(1);
     expect(transcriptEmpty[0].children.join(' ')).toContain('Working Root');
     expect(byClass(rows[2], 'chat-attachment-preview')).toHaveLength(1);
-    expect(byClass(rows[1], 'chat-attachment-preview')).toHaveLength(0);
+    expect(byClass(transcript, 'chat-attachment-preview')).toHaveLength(0);
 
     // The attachments empty state is a separate node inside the dock.
     const dockEmpty = byClass(rows[2], 'panel-empty');

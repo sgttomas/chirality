@@ -22,6 +22,8 @@ import type { RuntimeConnectivitySnapshot } from '../../lib/shell/runtime-connec
 const state = vi.hoisted(() => ({
   listRoles: vi.fn(),
   listHarnessSessions: vi.fn(),
+  hostedStatus: vi.fn(),
+  hostedInitialize: vi.fn(),
   projectRoot: '/tmp/execution-root' as string | null
 }));
 
@@ -49,6 +51,13 @@ vi.mock('../../lib/harness/method-selection-client', async (importOriginal) => {
 vi.mock('../../components/workspace/workspace-provider', () => ({
   useWorkspace: () => ({ projectRoot: state.projectRoot })
 }));
+vi.mock('../../lib/harness/hosted-bootstrap-client', () => ({
+  getHostedBootstrapStatus: state.hostedStatus,
+  initializeHostedBootstrapProject: state.hostedInitialize,
+  grantHostedProviderNetworkConsent: vi.fn(),
+  startHostedBootstrapLogin: vi.fn(),
+  cancelHostedBootstrapLogin: vi.fn()
+}));
 
 vi.mock('../../components/workspace/harness-events-provider', () => ({
   useHarnessEventActions: () => ({ hydrateEvents: vi.fn() }),
@@ -59,9 +68,11 @@ import { HarnessApiClientError } from '../../lib/harness/client';
 import { PersonaPicker } from '../../components/shell/persona-picker';
 import {
   RuntimeConnectivityProvider,
+  useRuntimeBindingRefresh,
   useRuntimeEpoch
 } from '../../components/shell/runtime-connectivity-provider';
 import { SessionListView } from '../../components/shell/session-list-view';
+import { useHostedBootstrapController } from '../../components/settings/hosted-bootstrap-controller';
 
 // The repo compiles JSX with the classic transform, so component modules that do
 // not import React themselves resolve `React.createElement` off the global.
@@ -121,6 +132,17 @@ function EpochProbe(): JSX.Element {
   return <span data-runtime-epoch={useRuntimeEpoch()} />;
 }
 
+function BindingRefreshProbe(): JSX.Element {
+  const refresh = useRuntimeBindingRefresh();
+  return <button type="button" onClick={refresh}>Refresh binding</button>;
+}
+
+function BootstrapBindingProbe(): JSX.Element {
+  const refresh = useRuntimeBindingRefresh();
+  const bootstrap = useHostedBootstrapController(state.projectRoot, refresh);
+  return <button type="button" data-bootstrap-setup onClick={bootstrap.onSetup}>Use this folder</button>;
+}
+
 async function render(node: React.ReactElement): Promise<ReactTestRenderer> {
   let tree!: ReactTestRenderer;
   await act(async () => {
@@ -173,6 +195,7 @@ describe('persona roster refresh on runtime reconnect', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     state.projectRoot = '/tmp/execution-root';
+    state.hostedStatus.mockResolvedValue({ registration: 'required' });
   });
 
   afterEach(() => {
@@ -203,6 +226,47 @@ describe('persona roster refresh on runtime reconnect', () => {
 
     await pushSnapshot(bridge, snapshot({ changedAt: '2026-07-25T12:00:05.000Z' }));
 
+    expect(epochOf(tree)).toBe(1);
+    expect(state.listRoles).toHaveBeenCalledTimes(2);
+    expect(textByClass(tree, 'persona-picker-error')).toEqual([]);
+    expect(optionTexts(tree)).toEqual(['HELP_HUMAN · Type 0']);
+  });
+
+  it('re-fetches runtime-backed panes once after an explicit project binding', async () => {
+    installBridge(snapshot());
+    state.listRoles.mockResolvedValue([{ id: 'HELP_HUMAN', agentType: 0, directEntry: true, defaultForNewChat: true, description: '', instruction: '' }]);
+    const tree = await render(
+      <RuntimeConnectivityProvider>
+        <EpochProbe />
+        <BindingRefreshProbe />
+        <PersonaPicker />
+      </RuntimeConnectivityProvider>
+    );
+    expect(epochOf(tree)).toBe(0);
+    expect(state.listRoles).toHaveBeenCalledTimes(1);
+    await act(async () => tree.root.findByType('button').props.onClick());
+    expect(epochOf(tree)).toBe(1);
+    expect(state.listRoles).toHaveBeenCalledTimes(2);
+  });
+
+  it('makes the ordinary role entry usable immediately after explicit hosted project setup', async () => {
+    installBridge(snapshot());
+    state.listRoles.mockRejectedValueOnce(engineUnavailable()).mockResolvedValue([{ id: 'HELP_HUMAN', agentType: 0, directEntry: true, defaultForNewChat: true, description: '', instruction: '' }]);
+    state.hostedInitialize.mockResolvedValue({
+      registration: 'registered', projectId: 'fixture-project', status: {
+        schema: 'chirality-hosted-bootstrap-status/v1', projectId: 'fixture-project', ceremony: 'consent-required', admission: 'unavailable', canStartLogin: false
+      }
+    });
+    const tree = await render(
+      <RuntimeConnectivityProvider>
+        <EpochProbe />
+        <BootstrapBindingProbe />
+        <PersonaPicker />
+      </RuntimeConnectivityProvider>
+    );
+    expect(state.listRoles).toHaveBeenCalledTimes(1);
+    expect(textByClass(tree, 'persona-picker-error')).toHaveLength(1);
+    await act(async () => { tree.root.findByProps({ 'data-bootstrap-setup': true }).props.onClick(); await Promise.resolve(); await Promise.resolve(); });
     expect(epochOf(tree)).toBe(1);
     expect(state.listRoles).toHaveBeenCalledTimes(2);
     expect(textByClass(tree, 'persona-picker-error')).toEqual([]);

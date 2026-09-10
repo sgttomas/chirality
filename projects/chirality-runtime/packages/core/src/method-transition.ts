@@ -48,6 +48,18 @@ const NON_RUNNING = new Set<TransitionSessionStatus>([
 
 /** Enforces replacement boundaries without coupling method selection to role identity. */
 export function evaluateMethodTransition(input: MethodTransitionInput): MethodTransitionDecision {
+  const forbiddenSkills = input.nextMethods.filter(method => method.kind === "skill" && method.source !== "bundled");
+  if (forbiddenSkills.length) {
+    throw new RuntimeError(
+      "FORBIDDEN",
+      "Skills may be selected only from a trusted bundled source",
+      403,
+      {
+        sessionId: input.sessionId,
+        methods: forbiddenSkills.map(method => `${method.sourceRootId}:${method.source}:${method.kind}:${method.name}`)
+      }
+    );
+  }
   const nextRoleId = input.nextRoleId ?? input.currentRoleId;
   const roleChanged = nextRoleId !== input.currentRoleId;
   const methodsChanged = !sameOrderedValues(input.currentMethods, input.nextMethods);
