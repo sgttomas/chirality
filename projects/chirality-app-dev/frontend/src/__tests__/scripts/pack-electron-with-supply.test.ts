@@ -50,6 +50,35 @@ function governanceArtifact<P extends string>(relativePath: P): RuntimeArtifactE
   return { relativePath, size: 1, sha256: 'd'.repeat(64) };
 }
 
+function sealedResult(appPath: string) {
+  const resourcesRoot = path.join(appPath, 'Contents', 'Resources');
+  const payload: RuntimePayloadManifestV2 = {
+    schema: 'chirality-runtime-payload-manifest/v2',
+    dependencyResolutionDigest: 'c'.repeat(64),
+    roots: [], supportProfiles: [], entries: []
+  };
+  const governance = [
+    governanceArtifact('runtime-governance/v2/login-purpose-record.json'), governanceArtifact('runtime-governance/v2/login-purpose-acceptance.json'), governanceArtifact('runtime-governance/v2/login-owner-act'),
+    governanceArtifact('runtime-governance/v2/worker-purpose-record.json'), governanceArtifact('runtime-governance/v2/worker-purpose-acceptance.json'), governanceArtifact('runtime-governance/v2/worker-owner-act')
+  ] satisfies GovernanceFixture;
+  const inventoryDocument = {
+    schema: 'chirality-runtime-artifact-inventory/v2' as const,
+    payloadManifest: { relativePath: 'runtime-payload-manifest.json' as const, size: 1, sha256: 'a'.repeat(64) },
+    governance
+  };
+  const verified: VerifiedPackagedRuntimeBasisV2 = {
+    resourcesRoot,
+    inventoryPath: path.join(resourcesRoot, 'runtime-artifact-inventory-v2.json'),
+    payloadManifestPath: path.join(resourcesRoot, 'runtime-payload-manifest.json'),
+    inventorySha256: 'b'.repeat(64), payloadDigest: 'c'.repeat(64), payload, inventory: inventoryDocument
+  };
+  return {
+    appPath,
+    artifactPath: path.join(appPath, 'sealed.json'),
+    inventory: { inventoryPath: verified.inventoryPath, inventory: inventoryDocument, verified }
+  };
+}
+
 async function v2ReleaseInputs(root: string) {
   const supportProfilesPath = path.join(root, 'support-profiles.json');
   const governanceRoot = path.join(root, 'governance');
@@ -146,10 +175,10 @@ describe('pack-electron-with-supply', () => {
     expect(expectedPackagedAppPath(outputDirectory)).toBe(
       '/private/tmp/chirality candidate/mac-arm64/Chirality.app'
     );
-    expect(() => resolveElectronOutputDirectory({ [ELECTRON_OUTPUT_DIRECTORY_ENV]: '' })).toThrow(
+    expect(() => resolveElectronOutputDirectory({ NODE_ENV: 'test', [ELECTRON_OUTPUT_DIRECTORY_ENV]: '' })).toThrow(
       'must be a normalized absolute path'
     );
-    expect(() => resolveElectronOutputDirectory({ [ELECTRON_OUTPUT_DIRECTORY_ENV]: 'relative/dist' })).toThrow(
+    expect(() => resolveElectronOutputDirectory({ NODE_ENV: 'test', [ELECTRON_OUTPUT_DIRECTORY_ENV]: 'relative/dist' })).toThrow(
       'must be a normalized absolute path'
     );
   });
@@ -341,7 +370,7 @@ describe('pack-electron-with-supply', () => {
       runtimeManifestVersion: 'v2',
       runtimeV2Phase: 'seal',
       resumeCheckpoint: '/checkpoint.json',
-      seal: async () => ({ appPath: '/other/mac-arm64/Chirality.app' }),
+      seal: async () => sealedResult('/other/mac-arm64/Chirality.app'),
       spawnProcess: spawnProcess as never,
       env: {
         NODE_ENV: 'test',

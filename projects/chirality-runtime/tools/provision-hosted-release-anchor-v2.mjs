@@ -4,7 +4,7 @@ import { pathToFileURL } from 'node:url';
 import { constants } from 'node:fs';
 import { mkdir, open, readFile, realpath, rm, stat } from 'node:fs/promises';
 import { installHostedReleaseAnchorV2, observeHostedReleaseTrialSealV1, prepareHostedReleaseGovernanceV2 } from '@chirality/runtime-daemon/hosted-release-provisioner';
-import { observeCodexAccountFreeLoginPurposeV2 } from '@chirality/runtime-daemon/account-free-login-observation';
+import { accountFreeLoginObservationFailure, observeCodexAccountFreeLoginPurposeV2 } from '@chirality/runtime-daemon/account-free-login-observation';
 
 const USAGE = 'Usage: provision-hosted-release-anchor-v2 --app <canonical .app> --runtime-directory <canonical path> --accepted-governance-root <canonical path> --expected-outer-inventory-sha256 <digest> --login-activation-id <value> --worker-activation-id <value> --worker-gate-identity <value> [--trial-observation <canonical path> --expected-trial-observation-sha256 <digest> --trial-executable <canonical path>]';
 const BASE_FLAGS = Object.freeze([
@@ -51,6 +51,11 @@ export async function runObserveAccountFreeLoginV2(argv, observe = observeCodexA
   try { recipe = JSON.parse((await readOwnerAct(recipePath)).toString('utf8')); }
   catch (error) { throw new Error('Account-free observation recipe is invalid', { cause: error }); }
   return observe({ runtimeDirectory, resourcesPath, evidencePaths, recipe });
+}
+
+export function accountFreeLoginFailureOutput(error) {
+  const projection = accountFreeLoginObservationFailure(error);
+  return projection ? `${JSON.stringify({ schema: 'chirality-account-free-login-observation-failure-output/v1', failure: projection })}\n` : undefined;
 }
 
 export function parsePrepareHostedReleaseGovernanceArguments(argv) {
@@ -118,6 +123,8 @@ if (isMain) {
       process.stdout.write(`${JSON.stringify(installed)}\n`);
     }
   } catch (error) {
+    const projection = accountFreeLoginFailureOutput(error);
+    if (projection) process.stderr.write(projection);
     const message = error instanceof Error ? error.message : 'unknown error';
     process.stderr.write(`Hosted release provisioning failed: ${message}\n`);
     process.exitCode = 1;

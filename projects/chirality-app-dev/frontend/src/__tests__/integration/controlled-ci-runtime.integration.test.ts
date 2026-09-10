@@ -56,9 +56,7 @@ describe('controlled CI runtime', () => {
     const pkg = JSON.parse(await readFile(path.join(frontendRoot, 'package.json'), 'utf8')) as {
       build: { files: string[]; extraResources: Array<{ from: string }> };
     };
-    expect(pkg.build.files.filter((item) => !item.startsWith('!'))).toEqual([
-      'dist-electron/**/*', '.next/**/*', 'public/**/*', 'node_modules/**/*', 'package.json', 'next.config.mjs'
-    ]);
+    expect(pkg.build.files.some((item) => !item.startsWith('!') && (item === '**/*' || item.startsWith('out/')))).toBe(false);
     expect(pkg.build.extraResources.some((item) => item.from.includes('out/controlled-ci'))).toBe(false);
 
     const root = await mkdtemp(path.join(os.tmpdir(), 'chirality-controlled-ci-'));

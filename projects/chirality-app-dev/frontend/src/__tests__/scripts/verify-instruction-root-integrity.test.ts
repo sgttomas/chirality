@@ -129,11 +129,11 @@ afterEach(async () => {
 describe('verify-instruction-root-integrity script', () => {
   it('resolves the integrity check from the shared explicit candidate output', () => {
     expect(resolvePackagedInstructionRoot(
-      { CHIRALITY_ELECTRON_OUTPUT_DIRECTORY: '/private/tmp/chirality candidate' },
+      { NODE_ENV: 'test', CHIRALITY_ELECTRON_OUTPUT_DIRECTORY: '/private/tmp/chirality candidate' },
       '/frontend'
     )).toBe('/private/tmp/chirality candidate/mac-arm64/Chirality.app/Contents/Resources/instruction-root');
     expect(() => resolvePackagedInstructionRoot(
-      { CHIRALITY_ELECTRON_OUTPUT_DIRECTORY: '' },
+      { NODE_ENV: 'test', CHIRALITY_ELECTRON_OUTPUT_DIRECTORY: '' },
       '/frontend'
     )).toThrow('must be a normalized absolute path');
   });

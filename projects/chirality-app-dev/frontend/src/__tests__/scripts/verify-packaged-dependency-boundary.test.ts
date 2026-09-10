@@ -36,9 +36,11 @@ const packagedEntries = new Set(['/dist-electron/main.js', '/dist-electron/main.
 describe('packaged project runtime source proof', () => {
   it('resolves the dependency check from the shared explicit candidate output', () => {
     expect(resolvePackagedDependencyBundlePath({
+      NODE_ENV: 'test',
       CHIRALITY_ELECTRON_OUTPUT_DIRECTORY: '/private/tmp/chirality candidate'
     })).toBe('/private/tmp/chirality candidate/mac-arm64/Chirality.app/Contents/Resources/app.asar');
     expect(() => resolvePackagedDependencyBundlePath({
+      NODE_ENV: 'test',
       CHIRALITY_ELECTRON_OUTPUT_DIRECTORY: ''
     })).toThrow('must be a normalized absolute path');
   });

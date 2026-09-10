@@ -49,6 +49,39 @@ export interface AccountFreeLoginObservationResultV1 {
   outputDirectory: string;
   limbs: Readonly<Record<Limb, Readonly<{ attempted: true; passed: true; evidenceSha256: Sha256 }>>>;
 }
+export type AccountFreeLoginObservationPhaseV1 = "supply-verification" | "prelaunch-verification" | "containment" | "native-load" | "supplier-spawn" | "initialize" | "config-read" | "protocol-validation" | "retirement" | "final-verification" | "publication";
+export interface AccountFreeLoginObservationFailureV1 {
+  schema: "chirality-account-free-login-observation-failure/v1";
+  status: "failed";
+  phase: AccountFreeLoginObservationPhaseV1;
+  issuedMethods: readonly ("initialize" | "initialized" | "config/read")[];
+  elapsedMs: number;
+  retirement: Readonly<{ status: "verified"; groupRetired: true; leader: Readonly<{ exitCode: number | null; signal: number | null }>; signalFailurePhases: readonly string[] } | { status: "unavailable" }>;
+}
+
+export function accountFreeLoginObservationFailure(error: unknown): Readonly<AccountFreeLoginObservationFailureV1> | undefined {
+  const value = error && typeof error === "object" ? (error as { accountFreeObservationFailure?: unknown }).accountFreeObservationFailure : undefined;
+  const phases: readonly AccountFreeLoginObservationPhaseV1[] = ["supply-verification", "prelaunch-verification", "containment", "native-load", "supplier-spawn", "initialize", "config-read", "protocol-validation", "retirement", "final-verification", "publication"];
+  if (!exactKeys(value, ["schema", "status", "phase", "issuedMethods", "elapsedMs", "retirement"]) || value.schema !== "chirality-account-free-login-observation-failure/v1" || value.status !== "failed"
+    || !phases.includes(value.phase as AccountFreeLoginObservationPhaseV1) || !Array.isArray(value.issuedMethods) || value.issuedMethods.length > 16
+    || !value.issuedMethods.every(method => typeof method === "string" && ["initialize", "initialized", "config/read"].includes(method)) || !Number.isSafeInteger(value.elapsedMs) || Number(value.elapsedMs) < 0 || Number(value.elapsedMs) > 86_400_000
+    || !record(value.retirement)) return undefined;
+  const retirement = value.retirement;
+  if (retirement.status === "unavailable") {
+    if (!exactKeys(retirement, ["status"])) return undefined;
+    return Object.freeze({ schema: value.schema, status: value.status, phase: value.phase as AccountFreeLoginObservationPhaseV1,
+      issuedMethods: Object.freeze([...value.issuedMethods]) as AccountFreeLoginObservationFailureV1["issuedMethods"], elapsedMs: Number(value.elapsedMs), retirement: Object.freeze({ status: "unavailable" }) });
+  }
+  if (!exactKeys(retirement, ["status", "groupRetired", "leader", "signalFailurePhases"]) || retirement.status !== "verified" || retirement.groupRetired !== true
+    || !exactKeys(retirement.leader, ["exitCode", "signal"])
+    || (retirement.leader.exitCode !== null && (!Number.isSafeInteger(retirement.leader.exitCode) || Number(retirement.leader.exitCode) < 0 || Number(retirement.leader.exitCode) > 255))
+    || (retirement.leader.signal !== null && (!Number.isSafeInteger(retirement.leader.signal) || Number(retirement.leader.signal) < 1 || Number(retirement.leader.signal) > 127))
+    || (retirement.leader.exitCode === null) === (retirement.leader.signal === null)
+    || !Array.isArray(retirement.signalFailurePhases) || retirement.signalFailurePhases.length > 2 || !retirement.signalFailurePhases.every(item => item === "term" || item === "kill")) return undefined;
+  return Object.freeze({ schema: value.schema, status: value.status, phase: value.phase as AccountFreeLoginObservationPhaseV1,
+    issuedMethods: Object.freeze([...value.issuedMethods]) as AccountFreeLoginObservationFailureV1["issuedMethods"], elapsedMs: Number(value.elapsedMs), retirement: Object.freeze({ status: "verified", groupRetired: true,
+      leader: Object.freeze({ exitCode: retirement.leader.exitCode as number | null, signal: retirement.leader.signal as number | null }), signalFailurePhases: Object.freeze([...retirement.signalFailurePhases]) }) });
+}
 
 const unavailable = (reason: string, cause?: unknown) => {
   const error = new RuntimeError("ENGINE_UNAVAILABLE", "Account-free Supplier observation is unavailable", 503, { reason });
@@ -167,21 +200,28 @@ export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLo
   let containment: Awaited<ReturnType<typeof prepareCodexContainmentV2>> | undefined;
   let child: NativeGroupedSupplierChild | undefined;
   let actor: CodexTurnSession | undefined, retired: Awaited<ReturnType<typeof retireAuthenticatedSupplierGroup>> | undefined;
-  let published = false;
+  let published = false, failureFinalized = false;
+  let phase: AccountFreeLoginObservationPhaseV1 = "supply-verification";
+  const startedAt = Date.now();
+  const allowedMethods = new Set(["initialize", "initialized", "config/read"] as const);
   const secret = randomBytes(32), methods: string[] = [], capture = new PassThrough(); let pending = "";
   try {
     sourceSupply = await supplyVerifier.verify({ executablePath: sourceExecutablePath, custody: "packaged" });
     staged = await stageSupplierClosure(sourceExecutablePath, privateDirectory, recipe.supplyClosure);
     supply = await supplyVerifier.verify({ executablePath: staged.executablePath, custody: "private-staged" });
     await supplyVerifier.revalidate(sourceSupply);
+    phase = "prelaunch-verification";
     const addon = await stableFile(nativeAddonPath, recipe.nativeAddon), storageBefore = await directoryObservation(codexHome);
     await assertCodexKeyringHomeHasNoPlaintextCredentials(codexHome);
+    phase = "containment";
     containment = await prepareCodexContainmentV2({ purpose: "trusted-login", canonicalRoot, privateDirectory, codexHome,
       providerNetworkConsent: recipe.providerNetworkConsent, trustedRuntimeReadRoots: [] as readonly TrustedRuntimeReadRootBindingV2[] });
     const configOverrides = codexLoginConfigOverridesV2(containment.config), appServerArguments = runtimeStageCAppServerArguments(configOverrides), launch = await containment.launchArguments(supply.executablePath);
     if (JSON.stringify(appServerArguments) !== JSON.stringify(["app-server", RUNTIME_STAGE_C_NATIVE_SKILL_ARGUMENT, ...configOverrides.flatMap(value => ["-c", value])])) throw unavailable("OBSERVATION_COMPILER_INVALID");
     await supplyVerifier.revalidate(sourceSupply); await supplyVerifier.revalidate(supply); await stableFile(nativeAddonPath, recipe.nativeAddon);
+    phase = "native-load";
     const native = loadNativeAdmissionBinding(true, nativeAddonPath); if (native.state !== "available") throw unavailable("OBSERVATION_NATIVE_UNAVAILABLE");
+    phase = "supplier-spawn";
     const spawned = native.value.spawnGroupedSupplier("/usr/bin/sandbox-exec", [...launch, ...appServerArguments], secret, { cwd: canonicalRoot, environment: containment.environment, processGroup: true });
     if (spawned.state !== "available") throw unavailable("OBSERVATION_SPAWN_UNAVAILABLE"); child = spawned.value;
     capture.on("data", chunk => { pending += String(chunk); for (;;) { const newline = pending.indexOf("\n"); if (newline < 0) break; const line = pending.slice(0, newline); pending = pending.slice(newline + 1); const message = JSON.parse(line) as { method?: unknown }; if (typeof message.method === "string") methods.push(message.method); } });
@@ -190,11 +230,16 @@ export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLo
     actor = new CodexTurnSession({ purpose: "login", nativeSkills: "disabled", transport: { stdin: capture, stdout: child.stdout, close } });
     const authority: CodexAuthorityInitialize = { runtimeProcessIncarnationId: randomUUID(), supplierGeneration: randomUUID(), runtimeChallenge: randomBytes(32).toString("base64url"), exactSupplyDigest: supply.sha256, authoritySecret: secret,
       descriptor: { capability: "chirality.local-admission-authority", contract: AUTHORITY_CONTRACT, major: 1, minor: 0 }, v4Descriptor: { capability: "account.identity-snapshot", contract: "chirality-supplier-account-identity/1", major: 1, minor: 0, method: "account/identitySnapshot" } };
+    phase = "initialize";
     await actor.initializeAuthority(authority); secret.fill(0);
+    phase = "config-read";
     const readback = await actor.observeAccountFreeLoginConfiguration(canonicalRoot, containment.config);
+    phase = "protocol-validation";
     if (JSON.stringify(methods) !== JSON.stringify(["initialize", "initialized", "config/read"])) throw unavailable("OBSERVATION_PROTOCOL_INVALID");
+    phase = "retirement";
     await actor.close(); actor = undefined;
     if (!retired?.groupRetired) throw unavailable("OBSERVATION_RETIREMENT_INVALID");
+    phase = "final-verification";
     await supplyVerifier.revalidate(sourceSupply); await supplyVerifier.revalidate(supply); const addonAfter = await stableFile(nativeAddonPath, recipe.nativeAddon);
     await assertCodexKeyringHomeHasNoPlaintextCredentials(codexHome); const storageAfter = await directoryObservation(codexHome);
     if (JSON.stringify(addon.identity) !== JSON.stringify(addonAfter.identity)) throw unavailable("OBSERVATION_FINAL_STATE_CHANGED");
@@ -216,11 +261,26 @@ export async function observeCodexAccountFreeLoginPurposeV2(input: AccountFreeLo
     };
     const projections = Object.fromEntries(LIMBS.map(limb => [limb, Object.freeze({ schema: "chirality-account-free-login-limb-evidence/v1", limb, observationSha256, facts: facts[limb] })])) as Record<Limb, unknown>;
     const limbs = Object.fromEntries(LIMBS.map(limb => [limb, Object.freeze({ attempted: true as const, passed: true as const, evidenceSha256: digest(bytes(projections[limb])) })])) as Record<Limb, { attempted: true; passed: true; evidenceSha256: string }>;
+    phase = "publication";
     await publish(outputDirectory, privateDirectory, common, projections);
     published = true;
     return Object.freeze({ schema: "chirality-account-free-login-observation-result/v1", observationSha256, outputDirectory, limbs: Object.freeze(limbs) });
   } catch (error) {
-    try { if (actor) await actor.close(); else if (child && !retired) retired = await retireAuthenticatedSupplierGroup(child); } catch (cleanup) { throw new AggregateError([error, cleanup], "Account-free observation and retirement failed"); }
-    throw error;
-  } finally { secret.fill(0); if (!child || retired) { await containment?.cleanup(); if (staged) await rm(staged.root, { recursive: true, force: true }); if (!published) await rm(runRoot, { recursive: true, force: true }); } }
+    const cleanupFailures: unknown[] = [];
+    try { if (actor) await actor.close(); else if (child && !retired) retired = await retireAuthenticatedSupplierGroup(child); } catch (cleanup) { cleanupFailures.push(cleanup); }
+    if (!child || retired) {
+      try { await containment?.cleanup(); containment = undefined; } catch (cleanup) { cleanupFailures.push(cleanup); }
+      try { if (staged) await rm(staged.root, { recursive: true, force: true }); staged = undefined; } catch (cleanup) { cleanupFailures.push(cleanup); }
+      try { if (!published) await rm(runRoot, { recursive: true, force: true }); } catch (cleanup) { cleanupFailures.push(cleanup); }
+    }
+    const retirement = retired?.groupRetired ? Object.freeze({ status: "verified" as const, groupRetired: true as const, leader: Object.freeze({ ...retired.leader }), signalFailurePhases: Object.freeze(retired.signalFailures.map(value => value.phase)) }) : Object.freeze({ status: "unavailable" as const });
+    const projection = Object.freeze({ schema: "chirality-account-free-login-observation-failure/v1" as const, status: "failed" as const, phase,
+      issuedMethods: Object.freeze(methods.filter((value): value is "initialize" | "initialized" | "config/read" => allowedMethods.has(value as "initialize" | "initialized" | "config/read"))),
+      elapsedMs: Math.max(0, Math.min(86_400_000, Date.now() - startedAt)), retirement });
+    const failure = cleanupFailures.length ? new AggregateError([error, ...cleanupFailures], "Account-free observation and cleanup failed")
+      : error && typeof error === "object" ? error : new Error("Account-free observation failed", { cause: error });
+    Object.defineProperty(failure, "accountFreeObservationFailure", { value: projection, enumerable: false });
+    failureFinalized = true;
+    throw failure;
+  } finally { secret.fill(0); if (!failureFinalized && (!child || retired)) { await containment?.cleanup(); if (staged) await rm(staged.root, { recursive: true, force: true }); if (!published) await rm(runRoot, { recursive: true, force: true }); } }
 }

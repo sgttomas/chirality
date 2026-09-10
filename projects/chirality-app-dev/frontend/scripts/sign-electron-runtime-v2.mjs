@@ -316,6 +316,20 @@ export async function bindSignedRuntimeV2Payload({ env = process.env, lockPaths 
   return { checkpointPath: inputs.checkpointPath, payloadManifest: payload.manifestPath };
 }
 
+/**
+ * @param {{
+ *   env?: NodeJS.ProcessEnv,
+ *   expectedAppPath?: string,
+ *   sign?: typeof signAsync,
+ *   verifyFinal?: typeof defaultVerifyFinal,
+ *   inspectNestedSignatures?: typeof defaultInspectNestedSignatures,
+ *   verifyPayload?: typeof verifyPreparedRuntimePayloadV2,
+ *   inspectReleaseInputs?: typeof inspectRuntimeV2ReleaseInputs,
+ *   inspectSupportProfiles?: typeof inspectRuntimeV2SupportProfiles,
+ *   stageGovernance?: typeof stageRuntimeV2Governance,
+ *   writeInventory?: typeof writeRuntimeArtifactInventoryV2
+ * }} [options]
+ */
 export async function sealSignedRuntimeV2({
   env = process.env,
   expectedAppPath,

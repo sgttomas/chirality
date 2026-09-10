@@ -177,6 +177,21 @@ function spawnAndWait(command, args, options, spawnProcess) {
   });
 }
 
+/**
+ * @param {{
+ *   verify?: typeof verifyElectronDist,
+ *   spawnProcess?: typeof spawn,
+ *   prepareSupplier?: typeof prepareSupplierResources,
+ *   computeDependencyDigest?: typeof computeDependencyResolutionDigest,
+ *   env?: NodeJS.ProcessEnv,
+ *   target?: string,
+ *   runtimeManifestVersion?: string,
+ *   runtimeV2Phase?: string,
+ *   resumeCheckpoint?: string,
+ *   bindPayload?: typeof bindSignedRuntimeV2Payload,
+ *   seal?: typeof sealSignedRuntimeV2
+ * }} [options]
+ */
 export async function runElectronPack({
   verify = verifyElectronDist,
   spawnProcess = spawn,
