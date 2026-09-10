@@ -11,7 +11,6 @@ import {
   encodeRuntimeArtifactInventoryV2,
   encodeRuntimePayloadManifestV2,
   encodeRuntimePolicyParameterDeclarationV2,
-  runtimePolicyParameterSchemaDigestV2,
   verifyPackagedRuntimeBasisV2
 } from '@chirality/runtime-core/runtime-conformance-v2';
 
@@ -319,8 +318,7 @@ export async function writeRuntimePayloadManifestV2({
   const supplier = byPath.get('supplier/codex');
   for (const profile of supportProfiles ?? []) {
     if (profile?.nativeAdmission?.sha256 !== native?.sha256 || profile?.nativeAdmission?.size !== native?.size
-      || profile?.supplier?.sha256 !== supplier?.sha256 || profile?.supplier?.size !== supplier?.size
-      || profile?.compiler?.parameterSchemaDigest !== runtimePolicyParameterSchemaDigestV2()) {
+      || profile?.supplier?.sha256 !== supplier?.sha256 || profile?.supplier?.size !== supplier?.size) {
       throw new Error('Runtime v2 support profile does not match the packaged payload');
     }
   }

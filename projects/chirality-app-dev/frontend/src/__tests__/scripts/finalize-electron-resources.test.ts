@@ -19,6 +19,7 @@ import { runtimeConformanceArtifactInventory } from '../../../../../chirality-ru
 import {
   RUNTIME_NATIVE_ADMISSION_NAPI_VERSION_V2,
   runtimePolicyParameterSchemaDigestV2,
+  runtimeStageCPolicyParameterSchemaDigest,
   verifyPackagedRuntimeBasisV2
 } from '@chirality/runtime-core/runtime-conformance-v2';
 
@@ -61,7 +62,14 @@ async function fixture() {
   return { root, resourcesRoot, lockPaths };
 }
 
-async function v2Inputs(input: Awaited<ReturnType<typeof fixture>>, localeCount = 40) {
+async function v2Inputs(
+  input: Awaited<ReturnType<typeof fixture>>,
+  localeCount = 40,
+  nativePolicyIdentityVersion: 10 | 11 = 10,
+  parameterSchemaDigest = nativePolicyIdentityVersion === 11
+    ? runtimeStageCPolicyParameterSchemaDigest()
+    : runtimePolicyParameterSchemaDigestV2()
+) {
   for (let index = 0; index < localeCount; index += 1) {
     await mkdir(path.join(input.resourcesRoot, `locale-${String(index).padStart(2, '0')}.lproj`));
   }
@@ -83,7 +91,7 @@ async function v2Inputs(input: Awaited<ReturnType<typeof fixture>>, localeCount 
     sandboxExec: { path: '/usr/bin/sandbox-exec', sha256: '2'.repeat(64), size: 2345 },
     nativeAdmission: { contract: 'chirality-native-admission/v1', sha256: digest(nativeBytes), size: nativeBytes.length, napiVersion: RUNTIME_NATIVE_ADMISSION_NAPI_VERSION_V2 },
     supplier: { version: '0.99.0-test-only', sha256: digest(supplierBytes), size: supplierBytes.length, appServerProtocolDigest: '3'.repeat(64), authorityContract: 'chirality.local-admission-authority/1.0', identityContract: 'chirality-supplier-account-identity/1' },
-    compiler: { outerPolicySchema: 'chirality-codex-outer-policy/v2', nativePolicyIdentityVersion: 10, sourceDigest: '4'.repeat(64), parameterSchemaDigest: runtimePolicyParameterSchemaDigestV2() },
+    compiler: { outerPolicySchema: 'chirality-codex-outer-policy/v2', nativePolicyIdentityVersion, sourceDigest: '4'.repeat(64), parameterSchemaDigest },
     immutableSystemRoots: ['/System', '/usr'],
     kernelHelperContractDigest: '5'.repeat(64)
   } as const;
@@ -218,6 +226,29 @@ describe('Electron Runtime Resources inventory producer', () => {
       await expect(verifyPackagedRuntimeBasisV2({ resourcesRoot: input.resourcesRoot })).rejects.toMatchObject({ code: 'ENGINE_UNAVAILABLE' });
     } finally {
       await rm(input.root, { recursive: true, force: true });
+    }
+  });
+
+  it('uses the shared version-aware profile validator for native policy identity 11', async () => {
+    const valid = await fixture();
+    try {
+      const release = await v2Inputs(valid, 0, 11);
+      const result = await produceV2(valid, release);
+      expect(result.verified.payload.supportProfiles[0]?.compiler).toMatchObject({
+        nativePolicyIdentityVersion: 11,
+        parameterSchemaDigest: runtimeStageCPolicyParameterSchemaDigest()
+      });
+    } finally {
+      await rm(valid.root, { recursive: true, force: true });
+    }
+
+    const invalid = await fixture();
+    try {
+      const release = await v2Inputs(invalid, 0, 11, 'f'.repeat(64));
+      await expect(produceV2(invalid, release)).rejects.toMatchObject({ code: 'ENGINE_UNAVAILABLE' });
+      await expect(readFile(path.join(invalid.resourcesRoot, 'runtime-payload-manifest.json'))).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally {
+      await rm(invalid.root, { recursive: true, force: true });
     }
   });
 
