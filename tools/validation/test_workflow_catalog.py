@@ -43,24 +43,38 @@ def test_root_index_is_fresh_and_classification_is_bounded():
     assert index["legacy"]["convertedWorkflowAliases"]["deliverable-consistency"] == {"kind": "skill", "name": "deliverable-consistency"}
 
 
-def test_canonical_skill_execution_policies_preserve_or_record_reassessment():
+def test_canonical_skill_execution_policies_and_catalog_projection():
+    # Current policy expectations belong here, not in the one-time conversion
+    # evidence or retired workflow packages. Role order has no policy meaning.
+    expected_tools = {
+        "chirality-change": None,
+        "preparation": {"capabilities": ["read", "write", "bash", "report_coordination_notice", "ack_agent_update"]},
+        "researcher": {"capabilities": ["read", "write", "bash", "report_coordination_notice", "ack_agent_update"]},
+        "deliverable-consistency": {"commands": ["python3 tools/validation/scan_deliverable_consistency.py:*"]},
+        "drawing-titleblock-page": {"commands": []},
+        "proposal-format": {"commands": []},
+        "software-code-review": {"commands": [
+            "python3 tools/software_workflow/select_affected_checks.py:*",
+            "python3 tools/software_workflow/validate_change_scope.py:*",
+            "python3 tools/software_workflow/compare_structured.py:*",
+            "python3 tools/software_workflow/verify_generated_manifest.py:*",
+        ]},
+        "software-defect-diagnosis": {"commands": [
+            "python3 tools/software_workflow/discover_repository.py:*",
+            "python3 tools/software_workflow/select_affected_checks.py:*",
+            "python3 tools/software_workflow/run_registered_checks.py:*",
+        ]},
+    }
     index = validate_and_build(ROOT)
     by_name = {(item["kind"], item["name"]): item for item in index["methods"]}
-    provenance = json.loads((ROOT / "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json").read_text())
-    reassessed = {"chirality-change", "preparation", "researcher"}
-    for skill_name, conversion in provenance["conversions"].items():
-        source = json.loads((ROOT / "workflows" / conversion["sourceWorkflow"] / "execution.json").read_text())
+    for skill_name, tools in expected_tools.items():
         target = json.loads((ROOT / ".agents/skills" / skill_name / "execution.json").read_text())
-        assert conversion["rationale"].strip()
-        if skill_name in reassessed:
-            assert target["compatible_roles"] == ["HELPS_HUMANS", "WORKING_ITEMS", "TASK"]
-            assert target.get("tools") == source.get("tools")
-        else:
-            assert target == source
+        assert set(target["compatible_roles"]) == {"HELPS_HUMANS", "WORKING_ITEMS", "TASK"}
+        assert target.get("tools") == tools
         descriptor = by_name[("skill", skill_name)]
         assert descriptor["executionRoleIds"] == target["compatible_roles"]
         assert descriptor["execution"]["compatibleRoles"] == target["compatible_roles"]
-        assert descriptor["execution"].get("tools") == target.get("tools")
+        assert descriptor["execution"].get("tools") == tools
 
 
 def test_absent_skill_execution_inherits_and_empty_roles_deny_all(tmp_path):

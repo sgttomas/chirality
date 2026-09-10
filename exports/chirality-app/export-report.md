@@ -20,8 +20,7 @@ Generated from the public `chirality` source profile `exports/chirality-app`.
 | `LICENSE.md` | 1 |
 | `README.md` | 1 |
 | `agents` | 5 |
-| `docs` | 201 |
-| `execution` | 1 |
+| `docs` | 202 |
 | `init` | 1 |
 | `runtime` | 167 |
 | `tools` | 392 |
