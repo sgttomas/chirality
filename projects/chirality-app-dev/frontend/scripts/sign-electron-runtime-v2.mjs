@@ -219,7 +219,7 @@ async function defaultVerifyFinal({ appPath, resourcesRoot, peerRequirement, tea
   const certificateRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-signing-certificate-'));
   try {
     const prefix = path.join(certificateRoot, 'certificate');
-    await execFileAsync('/usr/bin/codesign', ['-d', '--extract-certificates', prefix, appPath]);
+    await execFileAsync('/usr/bin/codesign', ['-d', `--extract-certificates=${prefix}`, appPath]);
     const leafSha1 = createHash('sha1').update(await readFile(`${prefix}0`)).digest('hex').toUpperCase();
     if (leafSha1 !== identitySha1) throw new Error('Final application certificate does not match the explicit signing identity');
   } finally { await rm(certificateRoot, { recursive: true, force: true }); }
