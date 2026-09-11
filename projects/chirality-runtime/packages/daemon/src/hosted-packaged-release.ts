@@ -131,11 +131,15 @@ async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;emb
     await assertPrivateChain(input.runtimeDirectory,anchorRoot);
     if(!anchorRootInfo.isDirectory()||anchorRootInfo.uid!==(process.getuid?.()??-1)||(anchorRootInfo.mode&0o077)!==0||await realpath(anchorRoot)!==anchorRoot)throw unavailable("INVALID_RELEASE_ANCHOR_CUSTODY");
     const anchorPath=join(anchorRoot,"release-anchor.json"),anchorSource=await stablePrivateFile(anchorPath);
-    const anchor=inspectAnchor(JSON.parse(anchorSource.bytes.toString("utf8"))),verified=await verifyPackagedRuntimeBasisV2({resourcesRoot:input.resourcesRoot});
+    // Sealed-bundle basis: the payload's shape, sizes and filesystem identities are checked against the manifests, and the
+    // manifests, governance records and anchor are hashed; payload bytes are not read. Their integrity is the packaged
+    // app's code signature, which the host verifies (codesign --verify --strict --deep) at trial-seal inspection and again
+    // before the host-account authority loads the native addon.
+    const anchor=inspectAnchor(JSON.parse(anchorSource.bytes.toString("utf8"))),verified=await verifyPackagedRuntimeBasisV2({resourcesRoot:input.resourcesRoot,payloadBytes:"sealed"});
     if(verified.inventorySha256!==anchor.outerInventorySha256)throw unavailable("ANCHOR_INVENTORY_MISMATCH");
     const observedCandidates:RuntimeSupportProfileV2[]=[];
     for(const candidate of verified.payload.supportProfiles){
-      try{const observed=await observe({embeddedRuntime:input.embeddedRuntime,basis:verified,supplierVersion:candidate.supplier.version,appServerProtocolDigest:candidate.supplier.appServerProtocolDigest,immutableSystemRoots:candidate.immutableSystemRoots,nativePolicyIdentityVersion:candidate.compiler.nativePolicyIdentityVersion});if(observed.profileDigest===candidate.profileDigest)observedCandidates.push(observed);}catch{}
+      try{const observed=await observe({embeddedRuntime:input.embeddedRuntime,basis:verified,supplierVersion:candidate.supplier.version,appServerProtocolDigest:candidate.supplier.appServerProtocolDigest,immutableSystemRoots:candidate.immutableSystemRoots,nativePolicyIdentityVersion:candidate.compiler.nativePolicyIdentityVersion,payloadBytes:"sealed"});if(observed.profileDigest===candidate.profileDigest)observedCandidates.push(observed);}catch{}
     }
     if(observedCandidates.length!==1)throw unavailable("UNSUPPORTED_RUNTIME");
     const supportProfile=matchRuntimeSupportProfileV2(observedCandidates[0]!,verified.payload.supportProfiles);
@@ -151,8 +155,8 @@ async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;emb
       ? (await inspectTrialSeal({path:observationPath,expectedSha256:anchor.postSealObservationSha256!,outerInventorySha256:verified.inventorySha256,payloadDigest:verified.payloadDigest,executablePath:input.executablePath??"",resourcesPath:verified.resourcesRoot},inspect)).observation
       : undefined;
     await hooks?.beforeFinalRevalidation?.();
-    // The payload bytes were hashed once above. The final pass rechecks every packaged entry by filesystem identity
-    // only, the same boundary the issued-basis registry applies afterwards; the bundle's code signature carries byte integrity.
+    // The payload was observed in sealed mode above. The final pass rechecks every packaged entry by filesystem
+    // identity, the same boundary the issued-basis registry applies afterwards; the bundle's code signature carries byte integrity.
     const finalAnchor=await stablePrivateFile(anchorPath);
     if(finalAnchor.sha256!==anchorSource.sha256||await observePackagedRuntimeBasisIdentityV2(verified)!==verified.identityDigest)throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
     const finalVerified=verified;

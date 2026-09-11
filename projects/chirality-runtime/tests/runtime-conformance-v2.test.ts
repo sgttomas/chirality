@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdtemp, mkdir, readFile, realpath, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, readFile, realpath, rm, symlink, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { afterEach, describe, expect, it } from "vitest";
@@ -135,6 +135,22 @@ describe("Runtime conformance v2 canonical basis",()=>{
     await expect(observePackagedRuntimeBasisIdentityV2(basis)).resolves.not.toBe(basis.identityDigest);
     await rm(join(root,"runtime-governance/v2/login-owner-act"));
     await expect(observePackagedRuntimeBasisIdentityV2(basis)).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});
+  });
+  it("sealed mode checks payload shape, size and identity without hashing bytes, and hash mode still rejects a same-size byte change",async()=>{
+    const {root}=await fixture();
+    const hashed=await verifyPackagedRuntimeBasisV2({resourcesRoot:root}),sealed=await verifyPackagedRuntimeBasisV2({resourcesRoot:root,payloadBytes:"sealed"});
+    expect(sealed).toEqual(hashed);
+    // Same-size byte change: outside sealed mode's check (the code signature's responsibility), still rejected by hash mode.
+    await writeFile(join(root,"supplier/codex"),"SUPPLIER");
+    await expect(verifyPackagedRuntimeBasisV2({resourcesRoot:root,payloadBytes:"sealed"})).resolves.toMatchObject({payloadDigest:hashed.payloadDigest});
+    await expect(verifyPackagedRuntimeBasisV2({resourcesRoot:root})).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});
+    // Size change, missing file and a symlinked entry are rejected in sealed mode.
+    await writeFile(join(root,"supplier/codex"),"supplier!");
+    await expect(verifyPackagedRuntimeBasisV2({resourcesRoot:root,payloadBytes:"sealed"})).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});
+    await rm(join(root,"supplier/codex"));
+    await expect(verifyPackagedRuntimeBasisV2({resourcesRoot:root,payloadBytes:"sealed"})).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});
+    await writeFile(join(root,"supplier/codex.real"),"supplier");await symlink(join(root,"supplier/codex.real"),join(root,"supplier/codex"));
+    await expect(verifyPackagedRuntimeBasisV2({resourcesRoot:root,payloadBytes:"sealed"})).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE"});
   });
   it("rejects governance drift while the complete payload observation is in flight",async()=>{
     const {root}=await fixture(true);let mutated=false;
