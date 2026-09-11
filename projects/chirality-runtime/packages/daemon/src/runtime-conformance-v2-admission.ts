@@ -221,8 +221,6 @@ export async function completeRuntimeWorkerInstanceV2FromP2(
   const hostAuthority = issueHostedAccountAuthorityV2FromP2(preparation.source, subject);
   const instanceInput: RuntimeInstanceAdmissionInputV2 = { ...preparation.input, hostAuthority, account };
   const instanceAdmission = await issueRuntimeInstanceAdmissionV2(instanceInput);
-  await revalidateRuntimeWorkerInstancePreparationV2(preparation);
-  await revalidateRuntimeInstanceAdmissionV2(instanceInput, instanceAdmission);
   return Object.freeze({ instanceInput, instanceAdmission });
 }
 function utc(value: unknown): value is string {
@@ -342,7 +340,6 @@ export async function verifyRuntimePurposeReleaseV2(basis: Readonly<HostedPackag
   await revalidateIssuedPackagedReleaseBasisV2(basis);
   const frozenSource = purposeSourceFromBasis(basis, purpose);
   const accepted = await inspectAcceptedRelease(frozenSource);
-  await revalidateIssuedPackagedReleaseBasisV2(basis);
   const admission = Object.freeze({ purpose: frozenSource.purpose, recordSha256: frozenSource.recordSha256, ownerReference: accepted.ownerReference, profileDigest: frozenSource.supportProfile.profileDigest, evidence: "externally-accepted-release-purpose-v2" as const, disposition: accepted.disposition });
   releaseAdmissions.set(admission, { basis, source: frozenSource, ownerReference: accepted.ownerReference, disposition: accepted.disposition });
   return admission;
@@ -353,7 +350,6 @@ export async function revalidateRuntimePurposeReleaseV2(basis: Readonly<HostedPa
   if (!state || state.basis !== basis || admission.evidence !== "externally-accepted-release-purpose-v2") throw unavailable("PURPOSE_ADMISSION_INVALID");
   await revalidateIssuedPackagedReleaseBasisV2(basis);
   const current = await inspectAcceptedRelease(state.source);
-  await revalidateIssuedPackagedReleaseBasisV2(basis);
   if (current.ownerReference !== state.ownerReference || current.disposition !== state.disposition || admission.disposition !== state.disposition) throw unavailable("PURPOSE_ACCEPTANCE_CHANGED");
 }
 

@@ -21,6 +21,8 @@ import {
   registerIssuedPackagedReleaseBasisV2,
   revalidateControlledPackagedReleaseBasisForTests,
   revalidateIssuedPackagedReleaseBasisV2,
+  issuedFilesystemIdentityV2,
+  sameIssuedFilesystemIdentityV2,
   type HostedPackagedPurposeBasisV2,
   type HostedPackagedReleaseBasisV2,
   type HostedReleaseAnchorPurposeV2
@@ -112,7 +114,7 @@ async function inspectTrialSeal(input:{path:string;expectedSha256:string;outerIn
   for(const name of names){const check=value.checks[name];if(!exactKeys(check,["attempted","passed","evidenceSha256"])||check.attempted!==true||check.passed!==true||!digest(check.evidenceSha256))throw unavailable("TRIAL_SEAL_OBSERVATION_INVALID");}
   const identity=await inspect({executablePath:input.executablePath,resourcesPath:input.resourcesPath});
   if(value.mainCodeDirectoryHash!==identity.subject.cdHash||value.peerRequirementSha256!==hash(identity.effectivePeerRequirement))throw unavailable("TRIAL_SEAL_SUBJECT_MISMATCH");
-  return Object.freeze({path:input.path,sha256:source.sha256,mainCodeDirectoryHash:value.mainCodeDirectoryHash,peerRequirementSha256:value.peerRequirementSha256});
+  return Object.freeze({observation:Object.freeze({path:input.path,sha256:source.sha256,mainCodeDirectoryHash:value.mainCodeDirectoryHash,peerRequirementSha256:value.peerRequirementSha256}),observedFiles:Object.freeze([...(identity.observedFiles??[])])});
 }
 
 async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;embeddedRuntime:EmbeddedRuntimeVersionsV2;executablePath?:string},observe:typeof observeRuntimeSupportProfileV2,issuance:"production"|"controlled-test",hooks?:{captureFailure?:(error:unknown)=>void;beforeFinalRevalidation?:()=>Promise<void>;inspectSignedPeerIdentity?:TrialSealInspector}):Promise<HostedPackagedReleaseLoadResult>{
@@ -139,7 +141,7 @@ async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;emb
     if(loginRelease.disposition!=="qualified"||(anchor.schema==="chirality-runtime-release-anchor/v3")!==(workerRelease.disposition==="local-human-trial"))throw unavailable("RELEASE_DISPOSITION_MISMATCH");
     const observationPath=join(anchorRoot,"trial-seal-observation.json"),inspect=hooks?.inspectSignedPeerIdentity??inspectHostAccountSignedPeerIdentity;
     const trialSealObservation=workerRelease.disposition==="local-human-trial"
-      ? await inspectTrialSeal({path:observationPath,expectedSha256:anchor.postSealObservationSha256!,outerInventorySha256:verified.inventorySha256,payloadDigest:verified.payloadDigest,executablePath:input.executablePath??"",resourcesPath:verified.resourcesRoot},inspect)
+      ? (await inspectTrialSeal({path:observationPath,expectedSha256:anchor.postSealObservationSha256!,outerInventorySha256:verified.inventorySha256,payloadDigest:verified.payloadDigest,executablePath:input.executablePath??"",resourcesPath:verified.resourcesRoot},inspect)).observation
       : undefined;
     await hooks?.beforeFinalRevalidation?.();
     const finalAnchor=await stablePrivateFile(anchorPath),finalVerified=await verifyPackagedRuntimeBasisV2({resourcesRoot:input.resourcesRoot});
@@ -148,10 +150,16 @@ async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;emb
     if(JSON.stringify(finalLogin)!==JSON.stringify(login)||JSON.stringify(finalWorker)!==JSON.stringify(worker))throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
     const finalLoginRelease=await verifyPurposeAcceptance({purpose:"login",basis:finalLogin,payloadDigest:finalVerified.payloadDigest,profile:supportProfile});const finalWorkerRelease=await verifyPurposeAcceptance({purpose:"worker",basis:finalWorker,payloadDigest:finalVerified.payloadDigest,profile:supportProfile});
     if(finalLoginRelease.disposition!==loginRelease.disposition||finalWorkerRelease.disposition!==workerRelease.disposition)throw unavailable("RELEASE_DISPOSITION_CHANGED");
-    const finalTrialSealObservation=trialSealObservation?await inspectTrialSeal({path:observationPath,expectedSha256:anchor.postSealObservationSha256!,outerInventorySha256:finalVerified.inventorySha256,payloadDigest:finalVerified.payloadDigest,executablePath:input.executablePath!,resourcesPath:finalVerified.resourcesRoot},inspect):undefined;
+    const finalTrialSeal=trialSealObservation?await inspectTrialSeal({path:observationPath,expectedSha256:anchor.postSealObservationSha256!,outerInventorySha256:finalVerified.inventorySha256,payloadDigest:finalVerified.payloadDigest,executablePath:input.executablePath!,resourcesPath:finalVerified.resourcesRoot},inspect):undefined;
+    const finalTrialSealObservation=finalTrialSeal?.observation;
     if(JSON.stringify(finalTrialSealObservation??null)!==JSON.stringify(trialSealObservation??null))throw unavailable("TRIAL_SEAL_OBSERVATION_CHANGED");
     const basis=deepFreeze(structuredClone({schema:"chirality-hosted-packaged-release-basis/v2" as const,basisDigest,verified:finalVerified,supportProfile,instructionRoot:join(verified.resourcesRoot,"instruction-root"),nativeAddonPath:join(verified.resourcesRoot,"native/chirality_native_admission.node"),supplierExecutablePath:join(verified.resourcesRoot,"supplier/codex"),preNativeFilesystemObservation:{runtimeDirectory:input.runtimeDirectory,anchorRoot,evidence:"canonical-owner-mode-chain-observed" as const},login:finalLogin,worker:finalWorker,workerDisposition:workerRelease.disposition,...(finalTrialSealObservation?{trialSealObservation:finalTrialSealObservation}:{})}));
-    const revalidateTrialSeal=finalTrialSealObservation?async()=>{const current=await inspectTrialSeal({path:observationPath,expectedSha256:finalTrialSealObservation.sha256,outerInventorySha256:finalVerified.inventorySha256,payloadDigest:finalVerified.payloadDigest,executablePath:input.executablePath!,resourcesPath:finalVerified.resourcesRoot},inspect);if(JSON.stringify(current)!==JSON.stringify(finalTrialSealObservation))throw unavailable("TRIAL_SEAL_OBSERVATION_CHANGED");}:undefined;
+    // Single-boundary trial-seal revalidation: the signed-app inspection (codesign, fuses, asar) ran at issuance; afterwards the
+    // small observation record is re-read and every signed-app file it was bound to is compared by filesystem identity.
+    const revalidateTrialSeal=finalTrialSeal?async()=>{
+      const current=await stablePrivateFile(observationPath);if(current.sha256!==finalTrialSeal.observation.sha256)throw unavailable("TRIAL_SEAL_OBSERVATION_CHANGED");
+      for(const file of finalTrialSeal.observedFiles){const info=await lstat(file.path,{bigint:true});if(!info.isFile()||info.isSymbolicLink()||!sameIssuedFilesystemIdentityV2(file.identity,issuedFilesystemIdentityV2(info)))throw unavailable("TRIAL_SEAL_SUBJECT_CHANGED");}
+    }:undefined;
     await registerIssuedPackagedReleaseBasisV2(basis,{issuance,resourcesRoot:finalVerified.resourcesRoot,runtimeDirectory:input.runtimeDirectory,anchorRoot,anchorPath,anchorSha256:finalAnchor.sha256,
       inventorySha256:finalVerified.inventorySha256,payloadDigest:finalVerified.payloadDigest,profileDigest:supportProfile.profileDigest,basisDigest,login:basis.login,worker:basis.worker,workerDisposition:basis.workerDisposition,...(basis.trialSealObservation?{trialSealObservation:basis.trialSealObservation,revalidateTrialSeal}:{})});
     return {status:"ready",basis};
