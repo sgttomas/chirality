@@ -510,6 +510,12 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
           // itself completed.
           let retirementFailure: unknown, retirementFailed = false;
           const note = (error: unknown) => { retirementFailure = retirementFailed ? withRetirementFailure(retirementFailure, error) : error; retirementFailed = true; };
+          // The supplier requires the admission lease for every private model request and native descendant.
+          // Keep it through the terminal/event drain, then release before retiring the private authority.
+          if (authority && graceful && !releaseAttempted) {
+            releaseAttempted = true;
+            try { await authority.release(operationId); } catch (error) { note(error); await authority.revoke().catch(note); }
+          }
           if(authority&&!this.fixtureLauncher){try{if(graceful)await authority.retire();else await authority.revoke();}catch(error){note(error);}}
           try { await activeSession.close(); } catch (error) { note(error); }
           try { await launched.transport.close(); } catch (error) { note(error); }
@@ -522,8 +528,8 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       this.entries.set(workerId,localEntry);
       publicationCommitted = true;begin?.();
       await this.barrier?.(`${kind}/post-publication-pre-release`);
-      if (authority) {releaseAttempted=true;await authority.release(operationId);}
-      cancelled();finishAdmissionLifecycle?.(true);return { ...handle };
+      // Publication is not the end of supplier work. Releasing here races thread/start and removes its live lease.
+      cancelled();authority?.assertCommit(operationId);finishAdmissionLifecycle?.(true);return { ...handle };
     } catch (error) {
       // Removal is synchronous and precedes all cleanup awaits and caller return.
       if(localEntry&&this.entries.get(workerId)===localEntry)this.entries.delete(workerId);

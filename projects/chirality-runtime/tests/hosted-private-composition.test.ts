@@ -90,7 +90,7 @@ async function controlledAuthenticatedCandidate(input: {
     roles[roleId] = { description: JSON.parse(input.nativeRoles.configOverrides[offset]!.slice(`agents.${roleId}.description=`.length)),
       config_file: JSON.parse(input.nativeRoles.configOverrides[offset + 1]!.slice(`agents.${roleId}.config_file=`.length)) };
   }
-  let buffered = "", closed = false;
+  let buffered = "", closed = false, operationHeld = false;
   stdin.on("data", chunk => {
     buffered += String(chunk);
     for (;;) {
@@ -113,6 +113,11 @@ async function controlledAuthenticatedCandidate(input: {
           projects: { [input.projectRoot]: { trust_level: "trusted" } } } } }); continue;
       }
       if (message.method === "account/read") { input.trace.push(`account-${input.index}`); send({ id: message.id, result: { requiresOpenaiAuth: true, account: { type: "chatgpt", email: null, planType: "fixture" } } }); continue; }
+      // Mirror the pinned supplier's live_lease_matches guard: private model operations require a live lease.
+      if (["thread/start", "thread/resume", "turn/start", "turn/interrupt"].includes(message.method) && !operationHeld) {
+        input.trace.push(`rejected-without-lease-${input.index}`);
+        send({ id: message.id, error: { code: -32600, message: "Private authority unavailable" } }); continue;
+      }
       if (message.method === "thread/start" || message.method === "thread/resume") {
         const threadId = message.params.threadId ?? "provider-thread"; input.trace.push(`${message.method}-${input.index}`);
         send({ method: "thread/started", params: { thread: { id: threadId } } });
@@ -131,10 +136,12 @@ async function controlledAuthenticatedCandidate(input: {
       if (body.kind !== "request") throw new Error("controlled authority request expected");
       input.trace.push(`${body.op}-${input.index}`);
       if (body.op === "chirality/admissionAcquire") {
+        operationHeld = true;
         const common = { requestId: body.requestId, operationId: body.operationId, leaseId: `lease-${input.index}`, supplierGeneration, identityGeneration, snapshotDigest };
         send(outbound.encode({ kind: "result", op: body.op, state: "acquired", ...common }));
         send(outbound.encode({ kind: "notification", op: "chirality/admissionAcquired", ...common }));
       } else {
+        operationHeld = false;
         const released = body.op === "chirality/admissionRelease", common = { requestId: body.requestId, leaseId: body.leaseId, disposition: body.disposition };
         send(outbound.encode({ kind: "result", op: body.op, state: released ? "released" : "aborted", ...common } as any));
         send(outbound.encode({ kind: "notification", op: released ? "chirality/admissionReleased" : "chirality/admissionAborted", ...common } as any));
@@ -368,6 +375,8 @@ describe("hosted private production composition boundary", () => {
       expect(conformanceActuals[1]).toMatchObject({ accountId: conformanceActuals[0]!.accountId, accountEpoch: 1, accountDigest: conformanceActuals[0]!.accountDigest, policyDigest });
       expect(trace.filter(value => value.startsWith("initialize-"))).toEqual(["initialize-1", "initialize-2"]);
       expect(trace).toEqual(expect.arrayContaining(["snapshot-1", "snapshot-2", "chirality/admissionAcquire-1", "chirality/admissionRelease-1", "chirality/admissionAcquire-2", "chirality/admissionRelease-2", "cleanup-1", "cleanup-2"]));
+      expect(trace.some(value => value.startsWith("rejected-without-lease-"))).toBe(false);
+      for (const index of [1, 2]) expect(trace.indexOf(`chirality/admissionRelease-${index}`)).toBeGreaterThan(trace.indexOf(`turn-${index}`));
       expect(secrets).toHaveLength(2); expect(secrets.every(secret => secret.every(byte => byte === 0))).toBe(true);
       // Sign-in and admission phases are reported in order with non-negative durations, bound to the project.
       expect(phases.map(entry => entry.phase)).toEqual(["login.host-authority", "login.stage-supplier", "login.native-roles", "login.runtime-read-root", "login.instance-admission", "login.validate-startup",

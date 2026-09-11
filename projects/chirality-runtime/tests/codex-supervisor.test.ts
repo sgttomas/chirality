@@ -339,5 +339,49 @@ it("custody changes the config digest without treating unavailable binding as an
 describe("deterministic supplier admission cancellation",()=>{
   function authorityFixture(trace:string[],releaseFailure=false){let held=false;return {projection:()=>({state:"ready"}),runGuarded:async(fn:()=>Promise<unknown>)=>fn(),acquire:async()=>{trace.push("acquire");held=true;return{leaseId:"private"};},assertCommit:()=>{if(!held)throw Error("not-held");},release:async()=>{trace.push("release");held=false;if(releaseFailure)throw Error("release-response-lost");},abort:async()=>{trace.push("abort");held=false;},revoke:async()=>{trace.push("revoke");held=false;},close:async()=>{}} as any;}
   for(const kind of ["regular","manager"]){for(const phase of ["pre-acquire","post-acquire-pre-worker-publication","post-publication-pre-release"]){it(`${kind}/${phase} has exact ordered cancellation cardinalities`,async()=>{const trace:string[]=[];let reached!:()=>void,unblock!:()=>void;const at=new Promise<void>(r=>reached=r),gate=new Promise<void>(r=>unblock=r);let closed=false;const supervisor=createControlledCodexSupervisorForTests({identity,model:"fixture-model",supplierAuthority:authorityFixture(trace),barrier:async name=>{trace.push(name);if(name===`${kind}/${phase}`){reached();await gate;}},launch:async()=>{trace.push("launch");const stdin=new PassThrough(),stdout=new PassThrough();return{pid:12345,transport:{stdin,stdout,close:async()=>{if(!closed){closed=true;trace.push("retire");stdin.destroy();stdout.destroy();}}}};}});supervisors.push(supervisor);const pending=kind==="regular"?supervisor.acquire("w",JSON.stringify({prompt:"test"})):supervisor.startManager("w",JSON.stringify({canonicalRoot:root,model:"fixture-model",prompt:"test"}));void pending.catch(()=>{});await at;supervisor.cancelAdmission("w");unblock();await expect(pending).rejects.toThrow("cancelled");expect(await supervisor.inventory()).toEqual([]);const relevant=trace.filter(x=>["acquire","launch","release","abort","retire"].includes(x));expect(relevant).toEqual(phase==="pre-acquire"?[]:phase==="post-acquire-pre-worker-publication"?["acquire","launch","abort","retire"]:["acquire","launch","release","retire"]);});}}
-  it("release failure removes publication and retires once without a second release or abort",async()=>{const trace:string[]=[];let closed=false;const supervisor=createControlledCodexSupervisorForTests({identity,model:"fixture-model",supplierAuthority:authorityFixture(trace,true),launch:async()=>{const stdin=new PassThrough(),stdout=new PassThrough();return{pid:12345,transport:{stdin,stdout,close:async()=>{if(!closed){closed=true;trace.push("retire");stdin.destroy();stdout.destroy();}}}};}});supervisors.push(supervisor);await expect(supervisor.acquire("w",JSON.stringify({prompt:"test"}))).rejects.toThrow("release-response-lost");expect(await supervisor.inventory()).toEqual([]);expect(trace).toEqual(["acquire","release","retire"]);});
+  it.each(["completed", "failed", "interrupted", "release-failure"])("retains authority through %s and releases once at retirement", async outcome => {
+    const trace: string[] = [];
+    const authority = authorityFixture(trace, outcome === "release-failure");
+    let finish!: () => void, started!: () => void, closed = false;
+    const turnStarted = new Promise<void>(resolve => { started = resolve; });
+    const supervisor = createControlledCodexSupervisorForTests({ identity, model: "fixture-model", supplierAuthority: authority,
+      launch: async () => {
+        const stdin = new PassThrough(), stdout = new PassThrough();
+        const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+        stdin.on("data", chunk => {
+          for (const line of String(chunk).trim().split("\n")) {
+            const frame = JSON.parse(line);
+            if (frame.method === "initialized") continue;
+            if (frame.method === "initialize") send({ id: frame.id, result: {} });
+            else if (frame.method === "account/read") send({ id: frame.id, result: { requiresOpenaiAuth: true, account: { type: "apiKey" } } });
+            else if (frame.method === "thread/start") {
+              authority.assertCommit("regular:w"); trace.push("thread");
+              send({ id: frame.id, result: { thread: { id: "thread" } } });
+            } else if (frame.method === "turn/start") {
+              authority.assertCommit("regular:w"); trace.push("turn");
+              send({ id: frame.id, result: { turn: { id: "turn", status: "inProgress" } } });
+              finish = () => {
+                authority.assertCommit("regular:w"); trace.push("terminal");
+                send({ method: "turn/completed", params: { threadId: "thread", turn: { id: "turn", status: outcome === "release-failure" ? "completed" : outcome } } });
+              };
+              started();
+            }
+          }
+        });
+        return { pid: 12345, transport: { stdin, stdout, close: async () => {
+          if (!closed) { closed = true; trace.push("retire"); stdin.destroy(); stdout.destroy(); }
+        } } };
+      }
+    });
+    supervisors.push(supervisor);
+    const worker = await supervisor.acquire("w", JSON.stringify({ prompt: "test" }));
+    await turnStarted;
+    expect(trace).toEqual(["acquire", "thread", "turn"]);
+    finish();
+    if (outcome === "release-failure") await expect(supervisor.wait(worker.workerId, worker.generation)).rejects.toThrow("release-response-lost");
+    else expect(await supervisor.wait(worker.workerId, worker.generation)).toMatchObject({ exitCode: outcome === "completed" ? 0 : outcome === "failed" ? 1 : null });
+    expect(trace).toEqual(["acquire", "thread", "turn", "terminal", "release", ...(outcome === "release-failure" ? ["revoke"] : []), "retire"]);
+    await supervisor.retire(worker.workerId, worker.generation);
+    expect(await supervisor.inventory()).toEqual([]);
+  });
 });
