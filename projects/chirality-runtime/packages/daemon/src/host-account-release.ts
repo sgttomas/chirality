@@ -6,7 +6,7 @@ import { RuntimeError } from "@chirality/runtime-contracts";
 import type { AuthRegistry } from "@chirality/runtime-core";
 import { runtimePhysicalFilesystem } from "@chirality/runtime-core/physical-filesystem";
 import { loadNativeAdmissionBinding } from "@chirality/native-admission";
-import { assertIssuedPackagedReleaseBasisV2, issuedFilesystemIdentityV2, revalidateIssuedPackagedReleaseBasisV2, type HostedPackagedReleaseBasisV2, type IssuedPackagedFilesystemIdentityV2 } from "./hosted-packaged-release-state.js";
+import { assertIssuedPackagedReleaseBasisV2, issuedFilesystemIdentityV2, revalidateIssuedPackagedReleaseBasisV2, sameIssuedFilesystemIdentityV2, type HostedPackagedReleaseBasisV2, type IssuedPackagedFilesystemIdentityV2 } from "./hosted-packaged-release-state.js";
 import { HostAccountAuthority } from "./host-account-authority.js";
 import { createHostAccountClient, type HostAccountClient } from "./host-account-client.js";
 import {
@@ -102,7 +102,7 @@ export interface VerifiedHostAccountPackagedIdentity {
   fuses: "electron-runtime-fuses-verified";
   asarIntegrity: "electron-asar-integrity-verified";
   /** Filesystem identity of every signed-app file this inspection read (executable, framework, Info.plist, app.asar); revalidation compares identity instead of re-running codesign. */
-  observedFiles?: readonly Readonly<{ path: string; identity: IssuedPackagedFilesystemIdentityV2 }>[];
+  observedFiles?: readonly ObservedSignedAppFile[];
 }
 
 async function inspectSignedCode(path: string): Promise<VerifiedHostAccountPackagedIdentity["subject"]> {
@@ -129,6 +129,41 @@ async function verifyExecutable(executablePath: string, paths: ReturnType<typeof
   return { subject, outer };
 }
 
+/** A signed-app file the inspection read: its declared bundle path, the regular file it resolves to, and that file's identity. */
+export interface ObservedSignedAppFile {
+  readonly path: string;
+  /** Realpath of `path`; differs when the bundle reaches the file through a symlink (Electron's framework layout). */
+  readonly resolvedPath: string;
+  readonly identity: IssuedPackagedFilesystemIdentityV2;
+}
+
+/**
+ * Records the filesystem identity of each signed-app file. Electron bundles reach `Electron Framework`
+ * through `Versions/Current` symlinks, so a path is followed to its regular file; the target must stay
+ * inside the app bundle, and revalidation checks that the same path still resolves to the same file.
+ */
+export async function observeSignedAppFiles(appRoot: string, paths: readonly string[]): Promise<readonly ObservedSignedAppFile[]> {
+  const filesystem = runtimePhysicalFilesystem();
+  return Object.freeze(await Promise.all(paths.map(async path => {
+    const resolvedPath = await filesystem.realpath(path).catch(() => { throw unavailable("PACKAGED_APP_PATH_INVALID"); });
+    if (!resolvedPath.startsWith(`${appRoot}/`)) throw unavailable("PACKAGED_APP_PATH_INVALID");
+    const info = await filesystem.lstat(resolvedPath, { bigint: true });
+    if (!info.isFile() || info.isSymbolicLink()) throw unavailable("PACKAGED_APP_PATH_INVALID");
+    return Object.freeze({ path, resolvedPath, identity: issuedFilesystemIdentityV2(info) });
+  })));
+}
+
+/** Throws unless every observed file still resolves to the same regular file with the same identity. */
+export async function revalidateObservedSignedAppFiles(observed: readonly ObservedSignedAppFile[], reason: string): Promise<void> {
+  const filesystem = runtimePhysicalFilesystem();
+  for (const file of observed) {
+    const resolvedPath = await filesystem.realpath(file.path).catch(() => undefined);
+    if (resolvedPath !== file.resolvedPath) throw unavailable(reason);
+    const info = await filesystem.lstat(file.resolvedPath, { bigint: true });
+    if (!info.isFile() || info.isSymbolicLink() || !sameIssuedFilesystemIdentityV2(file.identity, issuedFilesystemIdentityV2(info))) throw unavailable(reason);
+  }
+}
+
 /** Pure static final-product inspection. It neither consumes release admission nor loads native/XPC. */
 export async function inspectHostAccountSignedPeerIdentity(input: {
   executablePath: string;
@@ -143,11 +178,7 @@ export async function inspectHostAccountSignedPeerIdentity(input: {
   await run("/usr/bin/codesign", ["--verify", "--strict", `-R=${effectivePeerRequirement}`, input.executablePath]);
   await verifyFuses(paths.framework);
   await verifyAsarIntegrity(paths.plist, paths.asar);
-  const observedFiles = Object.freeze(await Promise.all([input.executablePath, paths.framework, paths.plist, paths.asar].map(async path => {
-    const info = await runtimePhysicalFilesystem().lstat(path, { bigint: true });
-    if (!info.isFile() || info.isSymbolicLink()) throw unavailable("PACKAGED_APP_PATH_INVALID");
-    return Object.freeze({ path, identity: issuedFilesystemIdentityV2(info) });
-  })));
+  const observedFiles = await observeSignedAppFiles(paths.appRoot, [input.executablePath, paths.framework, paths.plist, paths.asar]);
   return Object.freeze({ schema: "chirality.host-account-signed-peer-identity-binding/v1", predicate, effectivePeerRequirement,
     subject: identity.subject, outer: identity.outer, fuses: "electron-runtime-fuses-verified", asarIntegrity: "electron-asar-integrity-verified", observedFiles });
 }

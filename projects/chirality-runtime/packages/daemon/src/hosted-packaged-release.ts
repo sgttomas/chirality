@@ -12,7 +12,7 @@ import { type HostedBootstrapRuntimeBootInput, type HostedBootstrapRuntimeHost }
 import { startHostedPrivateBootstrapRuntimeHost } from "./hosted-private-entry.js";
 import type { RuntimeDaemonLogger } from "./runtime-daemon.js";
 import { inspectRuntimePurposeAcceptanceV2,inspectRuntimePurposeReleaseV2 } from "./runtime-conformance-v2-admission.js";
-import { inspectHostAccountSignedPeerIdentity, type VerifiedHostAccountPackagedIdentity } from "./host-account-release.js";
+import { inspectHostAccountSignedPeerIdentity, revalidateObservedSignedAppFiles, type VerifiedHostAccountPackagedIdentity } from "./host-account-release.js";
 
 /**
  * Supplier request budget for the packaged release. The first `thread/start`
@@ -30,8 +30,6 @@ import {
   registerIssuedPackagedReleaseBasisV2,
   revalidateControlledPackagedReleaseBasisForTests,
   revalidateIssuedPackagedReleaseBasisV2,
-  issuedFilesystemIdentityV2,
-  sameIssuedFilesystemIdentityV2,
   type HostedPackagedPurposeBasisV2,
   type HostedPackagedReleaseBasisV2,
   type HostedReleaseAnchorPurposeV2
@@ -167,7 +165,7 @@ async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;emb
     // small observation record is re-read and every signed-app file it was bound to is compared by filesystem identity.
     const revalidateTrialSeal=finalTrialSeal?async()=>{
       const current=await stablePrivateFile(observationPath);if(current.sha256!==finalTrialSeal.observation.sha256)throw unavailable("TRIAL_SEAL_OBSERVATION_CHANGED");
-      for(const file of finalTrialSeal.observedFiles){const info=await lstat(file.path,{bigint:true});if(!info.isFile()||info.isSymbolicLink()||!sameIssuedFilesystemIdentityV2(file.identity,issuedFilesystemIdentityV2(info)))throw unavailable("TRIAL_SEAL_SUBJECT_CHANGED");}
+      await revalidateObservedSignedAppFiles(finalTrialSeal.observedFiles,"TRIAL_SEAL_SUBJECT_CHANGED");
     }:undefined;
     await registerIssuedPackagedReleaseBasisV2(basis,{issuance,resourcesRoot:finalVerified.resourcesRoot,runtimeDirectory:input.runtimeDirectory,anchorRoot,anchorPath,anchorSha256:finalAnchor.sha256,
       inventorySha256:finalVerified.inventorySha256,payloadDigest:finalVerified.payloadDigest,profileDigest:supportProfile.profileDigest,basisDigest,login:basis.login,worker:basis.worker,workerDisposition:basis.workerDisposition,...(basis.trialSealObservation?{trialSealObservation:basis.trialSealObservation,revalidateTrialSeal}:{})});
