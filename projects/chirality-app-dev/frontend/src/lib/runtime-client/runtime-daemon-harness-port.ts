@@ -120,10 +120,15 @@ function translateDaemonError(error: unknown): HarnessError {
     );
   }
   if (error instanceof RuntimeTransportError) {
+    const transport = error as RuntimeTransportError & { reason?: string; operation?: string; sessionId?: string };
+    const timeout = transport.reason === 'timeout';
+    const boot = transport.operation === 'boot';
+    const sessionId = typeof transport.sessionId === 'string' && /^[A-Za-z0-9_.-]{1,160}$/.test(transport.sessionId) ? transport.sessionId : undefined;
     return new HarnessError(
       'ENGINE_UNAVAILABLE',
-      503,
-      'Chirality runtime daemon is unavailable'
+      timeout ? 504 : 503,
+      timeout ? (boot ? 'Session initialization timed out while waiting for Runtime.' : 'The Runtime request timed out.') : 'Chirality runtime daemon is unavailable',
+      { transportReason: timeout ? 'timeout' : 'transport', ...(boot ? { operation: 'boot' } : {}), ...(sessionId ? { sessionId } : {}) }
     );
   }
   if (error instanceof Error) {

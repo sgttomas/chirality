@@ -81,6 +81,7 @@ function validateModelSelection(value: unknown): { model: string; reasoningEffor
 
 export class RuntimeService {
   readonly methods: RuntimeMethodService;
+  private readonly bootingSessions = new Set<string>();
   constructor(
     readonly projects: ProjectRegistry,
     readonly sessions: SessionStore,
@@ -245,11 +246,20 @@ export class RuntimeService {
   replyNativePlanClarification(projectId: string, sessionId: string, request: import("@chirality/runtime-contracts").ReplyNativePlanClarificationRequest) { return this.methods.replyNativePlanClarification(projectId, sessionId, request); }
   exportNativePlan(projectId: string, sessionId: string, request: import("@chirality/runtime-contracts").ExportNativePlanRequest) { return this.methods.exportNativePlan(projectId, sessionId, request); }
 
-  async bootSession(
+  async bootSession(projectId: string, sessionId: string, opts: HarnessOpts = {}, expectedSelection?: EngineSelection, signal?: AbortSignal): Promise<SessionBootResponse> {
+    const key = `${projectId}:${sessionId}`;
+    if (this.bootingSessions.has(key)) throw new RuntimeError("SESSION_TURN_IN_PROGRESS", "Session boot is still settling", 409, { sessionId });
+    this.bootingSessions.add(key);
+    try { return await this.performBootSession(projectId, sessionId, opts, expectedSelection, signal); }
+    finally { this.bootingSessions.delete(key); }
+  }
+
+  private async performBootSession(
     projectId: string,
     sessionId: string,
     opts: HarnessOpts = {},
-    expectedSelection?: EngineSelection
+    expectedSelection?: EngineSelection,
+    signal?: AbortSignal
   ): Promise<SessionBootResponse> {
     let session = await this.sessions.get(projectId, sessionId);
     if (
@@ -296,6 +306,7 @@ export class RuntimeService {
       // Production adapters use this value to distinguish an attributed boot
       // from an ordinary turn while still carrying Runtime's frozen context.
       message: "bootstrap",
+      ...(signal === undefined ? {} : { signal }),
       interactionMode: session.interactionMode ?? "chat",
       opts: {
         model: opts.model ?? session.engineSelection.model,
@@ -329,7 +340,8 @@ export class RuntimeService {
         await this.sessions.failProviderSpanPreparation(projectId, sessionId, input.contextSuccessor.preparationId, { code: error instanceof RuntimeError ? error.code : "BOOT_FAILED", message: failure.message }).catch(() => undefined);
       }
     };
-    try { await engine.preflight(input); } catch (error) { await failBoot(error); throw error; }
+    const cancelled = () => new RuntimeError("ENGINE_UNAVAILABLE", "Session boot was cancelled before completion", 503, { reason: "BOOT_CANCELLED", sessionId });
+    try { if (signal?.aborted) throw cancelled(); await engine.preflight(input); } catch (error) { await failBoot(error); throw error; }
     let engineSessionId: string | undefined;
     let adapterId: string | undefined;
     let providerId: string | undefined;
@@ -340,7 +352,12 @@ export class RuntimeService {
     let fatalTurnError = false;
     let eventIndex = 0;
     const harnessEvents: HarnessEvent[] = [];
+    let interruption: Promise<void> | undefined;
+    let interruptionError: unknown;
+    const interrupt = () => { if (!engine.handlesAbortSignal) interruption ??= engine.interrupt(sessionId).catch(error => { interruptionError = error; }); };
+    signal?.addEventListener("abort", interrupt, { once: true });
     try { for await (const event of engine.startTurn(input)) {
+      if (signal?.aborted) interrupt();
       if (processExit !== undefined) {
         throw new HarnessError(
           "SDK_FAILURE",
@@ -418,6 +435,8 @@ export class RuntimeService {
       }
       eventIndex += 1;
     } } catch (error) { await failBoot(error); throw error; }
+    finally { signal?.removeEventListener("abort", interrupt); await interruption; }
+    if (interruptionError !== undefined) { await failBoot(interruptionError); throw interruptionError; }
     if (
       processExit === undefined ||
       processExit.data.exitCode !== 0 ||
@@ -429,12 +448,12 @@ export class RuntimeService {
       (terminalHarnessEvent !== undefined &&
         terminalHarnessEvent.type !== "turn.completed")
     ) {
-      const failure = new HarnessError(
-        "SDK_FAILURE",
-        500,
-        "Boot turn did not initialize and complete a conformant engine session",
-        processExit === undefined ? undefined : { exitCode: processExit.data.exitCode }
-      );
+      const failure = signal?.aborted && processExit?.data.interrupted === true
+        ? new RuntimeError("ENGINE_UNAVAILABLE", "Session boot was interrupted before completion", 503, {
+            reason: signal.reason?.name === "TimeoutError" ? "BOOT_TIMEOUT" : "BOOT_CANCELLED", operation: "boot", sessionId
+          })
+        : new HarnessError("SDK_FAILURE", 500, "Boot turn did not initialize and complete a conformant engine session",
+            processExit === undefined ? undefined : { exitCode: processExit.data.exitCode });
       await failBoot(failure);
       throw failure;
     }

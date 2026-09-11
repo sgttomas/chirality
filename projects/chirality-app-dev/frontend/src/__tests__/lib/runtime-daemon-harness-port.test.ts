@@ -4,7 +4,7 @@ import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 
 import { RuntimeError, type RuntimeSessionRecord } from '@chirality/runtime-contracts';
-import type { RuntimeClient, RuntimeStream } from '@chirality/runtime-client';
+import { RuntimeTransportError, type RuntimeClient, type RuntimeStream } from '@chirality/runtime-client';
 import type { UIEvent } from '@chirality/runtime-contracts/types';
 
 import {
@@ -1051,5 +1051,16 @@ describe('RuntimeDaemonHarnessPort', () => {
       type: 'WORKING_ROOT_CONFLICT',
       status: 409
     });
+  });
+});
+
+
+it('preserves sanitized timeout classification and boot identity without exposing transport causes', async () => {
+  const failure = Object.assign(new RuntimeTransportError('secret socket path and token'), { reason: 'timeout', operation: 'boot', sessionId: 'created-session' });
+  const runtimeClient = client({ bootSession: vi.fn().mockRejectedValue(failure) });
+  const port = new RuntimeDaemonHarnessPort(runtimeClient, project.projectId);
+  await expect(port.bootSession({ sessionId: 'created-session' })).rejects.toMatchObject({
+    status: 504, message: 'Session initialization timed out while waiting for Runtime.',
+    details: { transportReason: 'timeout', operation: 'boot', sessionId: 'created-session' }
   });
 });

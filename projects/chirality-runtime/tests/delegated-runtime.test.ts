@@ -635,8 +635,31 @@ describe("per-turn catalog choice through the delegated hosted envelope", () => 
       actual: { adapterId: "codex-app-server", providerId: "openai", model: "gpt-default", reasoningEffort: "high" }, ...(withCatalog ? { catalog } : {})
     }]]) });
     const turn = async (turnId: string, choice: { model?: string; reasoningEffort?: string }) => delegated.turn("project", { compatibility, preflight: await delegated.preflight("project", `turn:${turnId}`), turnId, prompt: "hello", ...choice });
-    return { delegated, acquired, retirement, turn };
+    return { delegated, acquired, retirement, turn, supervisor };
   }
+  it("latches cancellation before acquisition publication and awaits genuine terminal settlement", async () => {
+    const f = await catalogFixture();
+    let publish!: () => void, began!: () => void, finish!: (result: WorkerResult) => void;
+    const entered = new Promise<void>(resolve => { began = resolve; });
+    const gate = new Promise<void>(resolve => { publish = resolve; });
+    const terminal = new Promise<WorkerResult>(resolve => { finish = resolve; });
+    const acquire = f.supervisor.acquire;
+    f.supervisor.acquire = async (id, input) => { began(); await gate; return acquire(id, input); };
+    f.supervisor.wait = async () => terminal;
+    let interrupts = 0;
+    Object.assign(f.supervisor, { async drainTurnProgress() { return []; }, async interrupt(id: string, generation: string) {
+      expect([id, generation]).toEqual(["early", "g1"]); interrupts++;
+    } });
+    const controller = new AbortController();
+    const request = { compatibility, preflight: await f.delegated.preflight("project", "turn:early"), turnId: "early", prompt: "bootstrap" };
+    let settled = false;
+    const running = f.delegated.turn("project", request, [], { signal: controller.signal, onProgress() {} }).finally(() => { settled = true; });
+    await entered; controller.abort(); expect(interrupts).toBe(0); publish();
+    await expect.poll(() => interrupts).toBe(1); expect(settled).toBe(false);
+    finish({ worker: { workerId: "early", generation: "g1", pid: 4242, state: "exited" }, exitCode: null, signal: "SIGTERM", stdout: "", stderr: "" });
+    await expect(running).resolves.toMatchObject({ terminal: { outcome: "interrupted" } });
+  });
+
   it("carries the chosen model and effort in the envelope and stamps them on the terminal attribution", async () => {
     const f = await catalogFixture();
     const chosen = await f.turn("chosen", { model: "gpt-alt", reasoningEffort: "medium" });

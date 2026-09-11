@@ -751,16 +751,15 @@ export class RuntimeDaemon {
     if (action === "boot" && method === "POST") {
       await this.authorize(request, "sessions:write", projectId);
       const body = await this.body<RuntimeSessionBootRequest>(request);
-      return this.json(
-        response,
-        200,
-        await this.options.service.bootSession(
-          projectId,
-          sessionId,
-          body.opts,
-          body.expectedSelection
-        )
-      );
+      const disconnected = new AbortController();
+      const close = () => { if (!response.writableEnded) disconnected.abort(); };
+      response.once("close", close);
+      const signal = AbortSignal.any([disconnected.signal, AbortSignal.timeout(150_000)]);
+      try {
+        const result = await this.options.service.bootSession(projectId, sessionId, body.opts, body.expectedSelection, signal);
+        if (!response.destroyed) return this.json(response, 200, result);
+        return;
+      } finally { response.off("close", close); }
     }
     if (action === "replay" && method === "GET") {
       await this.authorize(request, "sessions:read", projectId);

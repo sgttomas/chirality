@@ -7,6 +7,7 @@ import React, { FormEvent, useEffect, useMemo, useRef, useState, useCallback } f
 import {
   HarnessApiClientError,
   bootHarnessSession,
+  getHarnessSession,
   createHarnessSession,
   interruptHarnessSession,
   replaySessionEvents,
@@ -75,6 +76,7 @@ type ActiveSession = {
   /** Recorded `engineSelection.model` / `reasoningEffort`; fixed for the session's lifetime. */
   model?: string;
   reasoningEffort?: string;
+  bootstrapPending?: boolean;
 };
 
 export type ResumeConversationRequest = {
@@ -361,6 +363,14 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   // True only while a create request is outstanding, so a MODEL_NOT_IN_CATALOG
   // rejection can be told apart from one raised for an existing session.
   const sessionCreateInFlight = useRef(false);
+  // A failed boot response never means creation failed. Retain its identity so
+  // the next explicit Send only reconciles this session, never creates twice.
+  const pendingBootstrap = useRef<{
+    session: Awaited<ReturnType<typeof createHarnessSession>>;
+    selectedRootAtBinding: string;
+    persona: string;
+    mode: string;
+  }>();
   const canonicalTransition = useRef<{ from: string; to: string; persona: string; mode: string } | null>(null);
   const previousContext = useRef<{ root: string | null; persona: string; mode: string } | null>(null);
   const newChatSeen = useRef(newChatRequest);
@@ -590,6 +600,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if ((draft.trim() || attachments.length || selectedMethods.length) && !window.confirm('Start a new chat and discard the unsent draft, attachments, and methods?')) return;
     bindingGeneration.current++;
     activeSessionIdRef.current = undefined;
+    pendingBootstrap.current = undefined;
     clearNativePlanProjection();
     lastInstructionSequenceRef.current = 0;
     setActiveSession(null); setConversationBinding(null); setDraft(''); setAttachments([]); onSelectedMethodsChange([]); setMessages([]);
@@ -605,6 +616,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const continuation = projection.session?.continuation;
     if (!continuation || continuation.roleId !== activePersona || continuation.projectRoot !== projectRoot) return;
     resumeRequestSeen.current = resumeConversation.requestId;
+    pendingBootstrap.current = undefined;
     bindingGeneration.current += 1;
     lastInstructionSequenceRef.current = projection.instructionHistory.reduce((maximum, record) => Math.max(maximum, record.sequence), 0);
     const nextMessages: ChatMessage[] = projection.transcript.items.flatMap(item => {
@@ -626,6 +638,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
     const nextSession: ActiveSession = {
       sessionId: projection.selectedSessionId,
+      ...(projection.session?.bootstrapConfirmed === false ? { bootstrapPending: true } : {}),
       projectRoot: continuation.projectRoot,
       selectedRootAtBinding: continuation.projectRoot,
       persona: continuation.roleId,
@@ -635,6 +648,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       instructionBasisId: continuation.instructionBasisId,
       ...(projection.session?.model ? { model: projection.session.model } : {}),
       ...(projection.session?.reasoningEffort ? { reasoningEffort: projection.session.reasoningEffort } : {})
+    };
+    if (nextSession.bootstrapPending) pendingBootstrap.current = {
+      session: { sessionId: nextSession.sessionId, projectRoot: nextSession.projectRoot, persona: nextSession.persona,
+        mode: nextSession.mode, createdAt: projection.observedAt, updatedAt: projection.observedAt },
+      selectedRootAtBinding: nextSession.selectedRootAtBinding, persona: nextSession.persona, mode: nextSession.mode
     };
     activeSessionIdRef.current = nextSession.sessionId;
     clearNativePlanProjection();
@@ -681,7 +699,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
 
     if (
-      activeSession &&
+      activeSession && !activeSession.bootstrapPending &&
       (activeSession.projectRoot === projectRoot || activeSession.selectedRootAtBinding === projectRoot) &&
       activeSession.mode === activeMode
     ) {
@@ -690,9 +708,34 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
     const generation = bindingGeneration.current;
     const selectedRootAtBinding = conversationBinding?.selectedRootAtBinding ?? projectRoot;
+    const pending = pendingBootstrap.current;
+    if (pending && (pending.persona !== activePersona || pending.mode !== activeMode ||
+      (pending.selectedRootAtBinding !== projectRoot && pending.session.projectRoot !== projectRoot))) {
+      throw new HarnessApiClientError(409, 'INVALID_REQUEST', 'The created chat is still awaiting initialization.', { bootstrapState: 'conflict', sessionId: pending.session.sessionId });
+    }
+    let session = pending?.session;
+    let boot: { session: Awaited<ReturnType<typeof getHarnessSession>> };
+    if (pending) {
+      setRuntimeStatus('Checking session initialization...');
+      const recorded = await getHarnessSession(pending.session.sessionId);
+      const recordedRole = 'schemaVersion' in recorded && recorded.schemaVersion === 'chirality.session/v3'
+        ? ('roleId' in recorded ? recorded.roleId : undefined) : recorded.persona;
+      if (recordedRole !== pending.persona || recorded.sessionId !== pending.session.sessionId ||
+        (pending.session.projectRoot && recorded.projectRoot !== pending.session.projectRoot)) {
+        throw new HarnessApiClientError(409, 'INVALID_REQUEST', 'Session reconciliation returned a different chat.', { bootstrapState: 'conflict', sessionId: pending.session.sessionId });
+      }
+      if (!recorded.bootedAt || !recorded.bootFingerprint || !recorded.engineSessionId) {
+        const status = 'status' in recorded ? recorded.status : undefined;
+        throw new HarnessApiClientError(409, 'ENGINE_UNAVAILABLE', 'Session initialization is not confirmed.', {
+          bootstrapState: status === 'running' ? 'pending' : status === 'failed' || status === 'interrupted' ? 'failed' : 'unknown',
+          sessionId: pending.session.sessionId
+        });
+      }
+      boot = { session: recorded };
+    } else {
     setRuntimeStatus('Creating session...');
     sessionCreateInFlight.current = true;
-    const session = await createHarnessSession({
+    session = await createHarnessSession({
       projectRoot: conversationBinding?.projectRoot ?? projectRoot,
       persona: activePersona,
       roleId: activePersona,
@@ -706,9 +749,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       ...(nextSessionSelection ? { modelSelection: nextSessionSelection } : {})
     });
     sessionCreateInFlight.current = false;
+    pendingBootstrap.current = { session, selectedRootAtBinding, persona: activePersona, mode: activeMode };
 
     setRuntimeStatus('Booting session...');
-    const boot = await bootHarnessSession(
+    boot = await bootHarnessSession(
       optsPayload
         ? {
             sessionId: session.sessionId,
@@ -718,6 +762,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             sessionId: session.sessionId
           }
     );
+    }
 
     if (generation !== bindingGeneration.current) throw new Error('The chat context changed while the session was starting.');
     const runtimeSession = boot.session as typeof boot.session & Partial<RuntimeSessionRecordV3>;
@@ -743,6 +788,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       setConversationBinding(existing => existing ?? { projectRoot: nextSession.projectRoot, selectedRootAtBinding });
     }
     setActiveSession(nextSession);
+    pendingBootstrap.current = undefined;
     if (presentation === 'woven' && nextSession.projectRoot !== projectRoot) {
       canonicalTransition.current = { from: projectRoot, to: nextSession.projectRoot, persona: activePersona, mode: activeMode };
       const applied = await applyProjectRoot(nextSession.projectRoot);
@@ -1069,7 +1115,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     } catch (error) {
       const origin = sessionCreateInFlight.current ? 'session-create' : 'session';
       sessionCreateInFlight.current = false;
-      const uiError = toHarnessUiError(error, { sessionModel: bootedSession?.model, origin });
+      const uiError = toHarnessUiError(error, { sessionModel: bootedSession?.model, origin, bootBeforePrompt: Boolean(pendingBootstrap.current) && !bootedSession });
       setRuntimeError(uiError);
       setRuntimeStatus(null);
       if (requestGeneration === bindingGeneration.current) {
@@ -1165,6 +1211,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       if (activeSessionIdRef.current === sessionId) setClarificationPendingId(undefined);
     }
   }
+
+  const fixedModelSelection = activeSession ?? (pendingBootstrap.current
+    ? recordedModelSelection(pendingBootstrap.current.session) : null);
 
   // Desktop builds pick attachments through the native dialog (main process
   // canonicalises and scopes the paths); web builds keep the in-app picker.
@@ -1425,29 +1474,31 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         </select></label>
         {/* Model and reasoning are session-fixed catalog choices, distinct from Plan Mode (interaction) and permissions. */}
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Model</span><select aria-label="Model"
-          value={activeSession ? activeSession.model ?? '' : nextSessionSelection?.model ?? ''}
-          disabled={Boolean(activeSession) || !modelCatalog || isRunning}
-          title={activeSession ? MODEL_SELECTOR_FIXED_TITLE : modelCatalog ? MODEL_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          value={fixedModelSelection ? fixedModelSelection.model ?? '' : nextSessionSelection?.model ?? ''}
+          disabled={Boolean(fixedModelSelection) || !modelCatalog || isRunning}
+          title={fixedModelSelection ? MODEL_SELECTOR_FIXED_TITLE : modelCatalog ? MODEL_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
           onChange={event => {
+            if (fixedModelSelection) return;
             const entry = modelCatalog?.models.find(model => model.model === event.target.value);
             if (entry) setModelChoice({ model: entry.model, reasoningEffort: entry.defaultReasoningEffort });
           }}>
-          {activeSession
-            ? <option value={activeSession.model ?? ''}>{activeSession.model ?? 'Model'}</option>
+          {fixedModelSelection
+            ? <option value={fixedModelSelection.model ?? ''}>{fixedModelSelection.model ?? 'Model'}</option>
             : modelCatalog
               ? modelCatalog.models.map(entry => <option key={entry.model} value={entry.model}>{entry.model}</option>)
               : <option value="">Model</option>}
         </select></label>
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Reasoning</span><select aria-label="Reasoning"
-          value={activeSession ? activeSession.reasoningEffort ?? '' : nextSessionSelection?.reasoningEffort ?? ''}
-          disabled={Boolean(activeSession) || !modelCatalog || isRunning}
-          title={activeSession ? MODEL_SELECTOR_FIXED_TITLE : modelCatalog ? REASONING_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          value={fixedModelSelection ? fixedModelSelection.reasoningEffort ?? '' : nextSessionSelection?.reasoningEffort ?? ''}
+          disabled={Boolean(fixedModelSelection) || !modelCatalog || isRunning}
+          title={fixedModelSelection ? MODEL_SELECTOR_FIXED_TITLE : modelCatalog ? REASONING_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
           onChange={event => {
+            if (fixedModelSelection) return;
             const entry = nextSessionSelection && modelCatalog?.models.find(model => model.model === nextSessionSelection.model);
             if (entry && entry.supportedReasoningEfforts.includes(event.target.value)) setModelChoice({ model: entry.model, reasoningEffort: event.target.value });
           }}>
-          {activeSession
-            ? <option value={activeSession.reasoningEffort ?? ''}>{activeSession.reasoningEffort ?? 'Reasoning'}</option>
+          {fixedModelSelection
+            ? <option value={fixedModelSelection.reasoningEffort ?? ''}>{fixedModelSelection.reasoningEffort ?? 'Reasoning'}</option>
             : modelCatalog && nextSessionSelection
               ? (modelCatalog.models.find(entry => entry.model === nextSessionSelection.model)?.supportedReasoningEfforts ?? []).map(effort => <option key={effort} value={effort}>{effort}</option>)
               : <option value="">Reasoning</option>}

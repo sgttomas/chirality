@@ -152,6 +152,8 @@ function readDetailString(details: unknown, key: string): string | undefined {
 export type ModelNotInCatalogOrigin = 'session-create' | 'session';
 
 export type HarnessUiErrorContext = {
+  /** The caller retained the unsent draft after a boot request failed. */
+  bootBeforePrompt?: boolean;
   /** Names the model when the details omit it (the turn stream forwards only `runtimeCode` and `reason`). */
   sessionModel?: string;
   /** Defaults to `session`. */
@@ -193,6 +195,25 @@ export function toHarnessUiError(error: unknown, context: HarnessUiErrorContext 
   const catalogError = modelNotInCatalogUiError(error, context);
   if (catalogError) return catalogError;
   if (error instanceof HarnessApiClientError) {
+    const bootstrapState = readDetailString(error.details, 'bootstrapState');
+    const bootTimeout = readDetailString(error.details, 'operation') === 'boot' &&
+      (readDetailString(error.details, 'transportReason') === 'timeout' || readDetailString(error.details, 'reason') === 'BOOT_TIMEOUT');
+    const bootTransportFailure = readDetailString(error.details, 'operation') === 'boot' && readDetailString(error.details, 'transportReason') === 'transport';
+    const bootCancelled = readDetailString(error.details, 'operation') === 'boot' && readDetailString(error.details, 'reason') === 'BOOT_CANCELLED';
+    if (bootTimeout || bootTransportFailure || bootCancelled || bootstrapState) {
+      const failed = bootstrapState === 'failed' || bootCancelled;
+      const conflict = bootstrapState === 'conflict';
+      return {
+        title: bootTimeout ? 'Chat took too long to start' : failed ? 'Chat could not start' : conflict ? 'Chat context changed' : bootstrapState === 'pending' ? 'Chat is still starting' : 'Chat start is not confirmed',
+        message: context.bootBeforePrompt ? 'Your message is saved.' : 'The chat did not finish starting.',
+        nextStep: failed ? 'Start a new chat to try again.' : conflict ? "Return to this chat's original role and folder, or start a new chat." : 'Send again to check this chat, or start a new chat.',
+        code: error.code
+      };
+    }
+    if (readDetailString(error.details, 'transportReason') === 'timeout') return {
+      title: 'Runtime Request Timed Out', message: 'Runtime did not respond within the request wait period.',
+      nextStep: 'Check the current session before retrying.', code: error.code
+    };
     const copy = ERROR_COPY[error.code as HarnessErrorType];
     if (copy) {
       const message =

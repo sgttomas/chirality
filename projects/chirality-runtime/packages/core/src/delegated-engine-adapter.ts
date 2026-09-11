@@ -167,7 +167,7 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
           ...(session.reasoningEffort === undefined ? {} : { reasoningEffort: session.reasoningEffort }),
           compatibility: options.compatibility,
           preflight: prepared.preflight
-        }, input.runtimeTools ?? [], { onProgress(event) { progress.push(structuredClone(event)); wake(); } });
+        }, input.runtimeTools ?? [], { signal: input.signal, onProgress(event) { progress.push(structuredClone(event)); wake(); } });
         void running.then(result => { delegatedSettled = true; outcome = { result }; wake(); }, error => { delegatedSettled = true; outcome = { error }; wake(); });
         let provider: { threadId: string; turnId: string } | undefined;
         while (outcome === undefined || progress.length > 0) {
@@ -202,6 +202,7 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
         active.delete(input.session.sessionId);
       }
     },
+    handlesAbortSignal: true,
     async interrupt(sessionId) {
       const turnId = active.get(sessionId);
       if (turnId === undefined) return;

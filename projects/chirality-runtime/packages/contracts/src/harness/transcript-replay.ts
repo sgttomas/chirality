@@ -233,6 +233,7 @@ export function deriveTranscriptView(
   session?: SessionRecord
 ): TranscriptView {
   const items: TranscriptItem[] = [];
+  const bootTurns = new Set(events.filter(event => event.type === "turn.accepted" && event.data.boot === true).map(turnKey));
   const assistantCompletionKeys = completedAssistantKeys(events);
   // Older adapters also emitted a user message event. Prefer that record to
   // avoid duplicating the same accepted input during mixed-version replay.
@@ -247,6 +248,7 @@ export function deriveTranscriptView(
 
   for (const event of events) {
     const data = event.data;
+    if (bootTurns.has(turnKey(event))) continue;
 
     if (event.type === 'turn.accepted' && !explicitUserTurns.has(turnKey(event))) {
       const text = readString(data.message) ?? readString(data.text);

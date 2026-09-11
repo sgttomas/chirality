@@ -253,10 +253,15 @@ describe('WovenDialogueShell composition', () => {
     const oldCatalogCallback = panel.props.onFileCatalog;
     act(() => oldCatalogCallback({ root: shellState.projectRoot, paths: [`${shellState.projectRoot}/docs/SPEC.md`] }));
     expect(tree.root.findByProps({ 'data-chat-file': 1 })).toBeTruthy();
+    act(() => panel.props.onClose());
+    expect(tree.root.findByProps({ 'aria-label': 'Open Coordination' })).toBeTruthy();
+    expect(tree.root.findAllByType(RightPanel)).toHaveLength(0);
     act(() => tree.root.findByProps({ 'data-chat-file': 1 }).props.onClick());
+    expect(tree.root.findAllByProps({ 'aria-label': 'Open Coordination' })).toHaveLength(0);
+    expect(tree.root.findByType(RightPanel).props.state.openDocumentPath).toBe('docs/SPEC.md');
     expect(JSON.parse(persist.mock.calls.at(-1)![1])).toMatchObject({ openDocumentPath: 'docs/SPEC.md', rightPanelView: 'files', coordinationCollapsed: false });
 
-    act(() => panel.props.onOpenFile('/repo/projects/chirality-app-dev-other/docs/SPEC.md'));
+    act(() => tree.root.findByType(RightPanel).props.onOpenFile('/repo/projects/chirality-app-dev-other/docs/SPEC.md'));
     expect(JSON.parse(persist.mock.calls.at(-1)![1]).openDocumentPath).toBe('docs/SPEC.md');
 
     shellState.projectRoot = '/repo/next';

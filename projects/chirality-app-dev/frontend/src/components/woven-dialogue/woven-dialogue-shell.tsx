@@ -533,7 +533,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     const prefix = `${projectRoot.replace(/\/$/, '')}/`;
     if (!filePath.startsWith(prefix)) return;
     restoreExpanded();
-    updateWorkspaceState({ openDocumentPath: filePath.slice(prefix.length), rightPanelView: 'files' });
+    updateWorkspaceState({ openDocumentPath: filePath.slice(prefix.length), rightPanelView: 'files', coordinationCollapsed: false });
   }, [projectRoot, restoreExpanded, updateWorkspaceState]);
 
   return (

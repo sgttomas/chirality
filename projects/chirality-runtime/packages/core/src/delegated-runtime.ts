@@ -58,6 +58,7 @@ export interface DelegatedNativePlanSink {
   close(binding: DelegatedNativePlanWorkerBinding): Promise<void>;
 }
 export interface DelegatedTurnObserver {
+  signal?: AbortSignal;
   onProgress(event: DelegatedTurnProgressEvent): void | Promise<void>;
 }
 export interface DelegatedRuntimeOptions {
@@ -482,6 +483,16 @@ export class DelegatedRuntime {
       // generation's settled attempt rather than recreating it afterward.
       let retirementAttempt: Promise<void> | undefined;
       const retire = () => retirementAttempt ??= (async () => { for (const controller of runtimeToolControllers) controller.abort(); await this.retireWorker(binding, key, worker.workerId, worker.generation); })();
+      let cancellation: Promise<void> | undefined;
+      let cancellationError: unknown;
+      const cancel = () => {
+        cancellation ??= (async () => {
+          if (binding.supervisor.interrupt) await binding.supervisor.interrupt(worker.workerId, worker.generation);
+          else { this.interruptedTurns.add(key); await retire(); }
+        })().catch(error => { cancellationError = error; });
+      };
+      observer?.signal?.addEventListener("abort", cancel, { once: true });
+      if (observer?.signal?.aborted) cancel();
       try {
         if (nativePlanBinding && binding.nativePlanSink) { await binding.nativePlanSink.open(nativePlanBinding, nativePlanPort as SupervisorNativePlanPort); nativePlanOpened = true; }
         let waiting = true;
@@ -496,6 +507,8 @@ export class DelegatedRuntime {
         } })();
         void polling.catch(() => { void retire().catch(() => {}); });
         const result = await resultPromise;
+        await cancellation;
+        if (cancellationError !== undefined) throw cancellationError;
         waiting = false; await polling; await captureNativePlan(); await captureProgress();
         if (result.threadId !== undefined) {
           if (retirement.associateThread === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Durable thread association is unavailable", 503);
@@ -519,6 +532,8 @@ export class DelegatedRuntime {
         if (retired) await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: !binding.supervisor.interrupt && this.interruptedTurns.has(key) ? "interrupted" : "failed", recordedAt: new Date().toISOString() });
         throw failure;
       } finally {
+        observer?.signal?.removeEventListener("abort", cancel);
+        await cancellation;
         // The settled retirement attempt already reported its outcome above.
         try { await retire().catch(() => {}); }
         finally { await closeNativePlan(); }

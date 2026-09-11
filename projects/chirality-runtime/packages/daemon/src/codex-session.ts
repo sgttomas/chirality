@@ -1,3 +1,4 @@
+import { CodexTextAssembly } from "./codex-text-assembly.js";
 import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2 } from "./runtime-conformance-v2-admission.js";
 import type { RuntimeAdmissionLease } from "@chirality/runtime-core";
 import { randomUUID, createHash } from "node:crypto";
@@ -59,6 +60,7 @@ export function describeCodexRejection(value: unknown): { codexCode?: number | s
   return result;
 }
 interface Turn {
+  textAssembly: CodexTextAssembly;
   threadId: string; id?: string; terminal?: CodexTurnTerminal; startedEmitted: boolean; items: Map<string, { text: string; completed: boolean }>;
   plans: Map<string, { deltaText: string; completed: boolean; completedText?: string }>;
   done: Promise<CodexTurnTerminal>; resolve(value: CodexTurnTerminal): void; reject(error: Error): void;
@@ -578,7 +580,9 @@ export class CodexTurnSession {
       if ([...this.toolCalls.values()].some(call => call.turnId === turnId && !call.completed && !call.controller.signal.aborted)) throw protocol("Codex terminal preceded host tool completion");
       this.resolveNetworkApprovals(turnId);
       for (const entry of this.userInputRequests.values()) if (entry.prompt.turnId === turnId) entry.state = "resolved";
-      const terminal: CodexTurnTerminal = { threadId, turnId, status, output: [...active.items.values()].map(item => item.text).join("") };
+      const remainder = active.textAssembly.flush(active.items, true);
+      if (remainder) this.emit({ type: "text", threadId, turnId, text: remainder });
+      const terminal: CodexTurnTerminal = { threadId, turnId, status, output: active.textAssembly.text };
       if (active.primaryTerminal && JSON.stringify(active.primaryTerminal) !== JSON.stringify(terminal)) throw protocol("Conflicting duplicate Codex terminal");
       active.primaryTerminal = terminal; this.finishActiveIfSettled(); return;
     }
@@ -587,7 +591,9 @@ export class CodexTurnSession {
       if (typeof text !== "string" || Buffer.byteLength(text) > 65536) throw protocol("Unsupported text delta");
       const item = active.items.get(itemId) ?? { text: "", completed: false };
       if (item.completed || Buffer.byteLength(item.text) + Buffer.byteLength(text) > 262144) throw protocol("Late or oversized text delta");
-      item.text += text; active.items.set(itemId, item); this.emit({ type: "text", threadId, turnId, text }); return;
+      item.text += text; active.items.set(itemId, item);
+      const delta = active.textAssembly.flush(active.items);
+      if (delta) this.emit({ type: "text", threadId, turnId, text: delta }); return;
     }
     if (method === "item/plan/delta") {
       const itemId = identifier(params.itemId), text = params.delta;
@@ -620,9 +626,10 @@ export class CodexTurnSession {
       if (method === "item/started") { if (!active.items.has(itemId)) active.items.set(itemId, { text: "", completed: false }); return; }
       if (typeof item.text !== "string" || Buffer.byteLength(item.text) > 262144) throw protocol("Unsupported completed message");
       const prior = active.items.get(itemId);
-      if (prior?.completed || (prior && !item.text.startsWith(prior.text))) throw protocol("Conflicting completed message");
-      const remainder = item.text.slice(prior?.text.length ?? 0);
+      if (prior?.completed) { if (prior.text !== item.text) throw protocol("Conflicting completed message"); return; }
+      if (prior && !item.text.startsWith(prior.text)) throw protocol("Conflicting completed message");
       active.items.set(itemId, { text: item.text, completed: true });
+      const remainder = active.textAssembly.flush(active.items);
       if (remainder) this.emit({ type: "text", threadId, turnId, text: remainder }); return;
     }
     throw protocol("Unsupported Codex notification");
@@ -915,7 +922,7 @@ export class CodexTurnSession {
         userInput.push({ type: "localImage", path: attachment.path });
       }
     }
-    const turn: Turn = { threadId: input.threadId, startedEmitted: false, items: new Map(), plans: new Map(), done, resolve: resolveTurn, reject: rejectTurn,
+    const turn: Turn = { threadId: input.threadId, startedEmitted: false, items: new Map(), textAssembly: new CodexTextAssembly(), plans: new Map(), done, resolve: resolveTurn, reject: rejectTurn,
       familyEnabled: this.inheritableTools !== undefined, familySettled: this.inheritableTools === undefined,
       timer: setTimeout(() => this.expireTurn(turn), this.options.turnTimeoutMs ?? 120000) };
     this.active = turn;

@@ -53,3 +53,21 @@ it('keeps matching tool IDs in different sessions distinct and reveals a later c
   expect(state.events).toHaveLength(3); expect(state.events[2]).toBe(completion);
   act(() => { tree.unmount(); strip.unmount(); });
 });
+
+
+it('distinguishes absent recorded actions from filtering and clearing a recorded view', () => {
+  state.events = [];
+  const tree = create(<ActivityView />);
+  expect(JSON.stringify(tree.toJSON())).toContain('No recorded actions.');
+  act(() => tree.root.findByProps({ 'aria-label': 'Filter activity' }).props.onChange({ target: { value: 'missing' } }));
+  expect(JSON.stringify(tree.toJSON())).toContain('No matching actions.');
+  act(() => tree.root.findByProps({ 'aria-label': 'Filter activity' }).props.onChange({ target: { value: '' } }));
+  state.events = [event('recorded', 'tool.started', { toolUseId: 'tool', toolName: 'read_file' })];
+  act(() => tree.update(<ActivityView />));
+  expect(actionRows(tree)).toHaveLength(1);
+  act(() => tree.root.findAllByType('button').find(button => button.children.includes('Clear view'))!.props.onClick());
+  expect(JSON.stringify(tree.toJSON())).toContain('No actions in this view.');
+  expect(JSON.stringify(tree.toJSON())).not.toContain('No recorded actions.');
+  expect(state.events).toHaveLength(1);
+  act(() => tree.unmount());
+});

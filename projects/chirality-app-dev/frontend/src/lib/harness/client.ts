@@ -342,6 +342,14 @@ export async function createHarnessSession(input: SessionCreateRequest & {
   return payload.session;
 }
 
+/** Read only: reconciliation never retries creation or bootstrap. */
+export async function getHarnessSession(sessionId: string): Promise<HarnessReadableSessionRecord> {
+  const payload = await requestHarnessJson<{ session: HarnessReadableSessionRecord }>(
+    `/api/harness/session/${encodeURIComponent(sessionId)}`, { method: 'GET' }, 'Unable to check session initialization'
+  );
+  return payload.session;
+}
+
 export async function bootHarnessSession(input: SessionBootRequest): Promise<SessionBootResponse> {
   return requestHarnessJson<SessionBootResponse>(
     '/api/harness/session/boot',

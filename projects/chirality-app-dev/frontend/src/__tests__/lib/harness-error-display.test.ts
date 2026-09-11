@@ -120,3 +120,24 @@ describe('harness ui error mapping', () => {
     expect(unnamed.message).toBe('The chosen model is no longer offered by your Codex account. Refresh your account status and choose again.');
   });
 });
+
+
+it('uses safe initialization timeout copy and retained-session guidance', () => {
+  const error = new HarnessApiClientError(504, 'ENGINE_UNAVAILABLE', 'secret socket details', { operation: 'boot', transportReason: 'timeout', sessionId: 'session-fixture' });
+  const display = toHarnessUiError(error, { bootBeforePrompt: true });
+  expect(display.title).toBe('Chat took too long to start');
+  expect(display.message).toBe('Your message is saved.');
+  expect(display.message).not.toContain('session-fixture');
+  expect(display.message).not.toContain('secret');
+  expect(display.message).not.toContain('daemon is unavailable');
+  expect(display.nextStep).toContain('check this chat');
+});
+
+
+it.each([['BOOT_TIMEOUT', 'Chat took too long to start'], ['BOOT_CANCELLED', 'Chat could not start']])('renders %s as initialization state without raw causes', (reason, title) => {
+  const display = toHarnessUiError(new HarnessApiClientError(503, 'ENGINE_UNAVAILABLE', 'raw sensitive cause', { reason, operation: 'boot', sessionId: '/private/socket?token=secret' }));
+  expect(display.title).toBe(title);
+  expect(display.message).not.toContain('sensitive');
+  expect(display.message).not.toContain('private');
+  expect(display.message).not.toContain('secret');
+});

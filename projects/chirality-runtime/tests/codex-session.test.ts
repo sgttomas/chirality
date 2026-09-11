@@ -118,6 +118,15 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    if(mode==='diagnostic-flood'){for(let i=0;i<1025;i++)note('warning',{message:'private'});return;}
    if(mode==='bad-terminal'){note('turn/completed',{threadId:'thread1',turn:{id:'turn1',status:'inProgress'}});return;}
    note('item/started',{threadId:'thread1',turnId:'turn1',item:{id:'item1',type:'agentMessage',text:''}});
+   if(mode==='multiple-messages'){
+    note('item/started',{threadId:'thread1',turnId:'turn1',item:{id:'a',type:'agentMessage'}});
+    note('item/started',{threadId:'thread1',turnId:'turn1',item:{id:'b',type:'agentMessage'}});
+    note('item/agentMessage/delta',{threadId:'thread1',turnId:'turn1',itemId:'a',delta:'Hel'});
+    note('item/completed',{threadId:'thread1',turnId:'turn1',item:{id:'b',type:'agentMessage',text:'Final'}});
+    note('item/completed',{threadId:'thread1',turnId:'turn1',item:{id:'a',type:'agentMessage',text:'Hello'}});
+    note('item/completed',{threadId:'thread1',turnId:'turn1',item:{id:'a',type:'agentMessage',text:'Hello'}});
+    end('completed');return;
+   }
    note('item/agentMessage/delta',{threadId:'thread1',turnId:'turn1',itemId:'item1',delta:'hello'});
    note('item/completed',{threadId:'thread1',turnId:'turn1',item:{id:'item1',type:'agentMessage',text:'hello'}});
    end(mode==='failed'?'failed':'completed');
@@ -765,4 +774,20 @@ describe("private authority session transport",()=>{
 
 describe("connected private initialize/snapshot/admission",()=>{
  it("authenticates initialization, refreshes V4 and exchanges envelopes through CodexTurnSession",async()=>{const {initializationProof,AuthorityTranscript,AUTHORITY_CONTRACT}=await import("../packages/daemon/src/supplier-authority-controller.js");const {createFakeRuntimeAdmissionNativeAdapter}=await import("../packages/core/src/runtime-admission-lock.js");const secret=Buffer.alloc(32,6),stdin=new PassThrough(),stdout=new PassThrough();const identity={runtimeProcessIncarnationId:"11111111-1111-1111-1111-111111111111",supplierGeneration:"s"};const descriptor={capability:"chirality.local-admission-authority",contract:AUTHORITY_CONTRACT,major:1,minor:0},v4Descriptor={capability:"account.identity-snapshot",contract:"chirality-supplier-account-identity/1",major:1,minor:0,method:"account/identitySnapshot"};const input={...identity,authoritySecret:secret,runtimeChallenge:Buffer.alloc(32,3).toString("base64url"),exactSupplyDigest:"a".repeat(64),descriptor,v4Descriptor};const inbound=new AuthorityTranscript(secret,identity,"runtime-to-supplier"),outbound=new AuthorityTranscript(secret,identity,"supplier-to-runtime");const calls:string[]=[];let buffered="";const send=(value:unknown)=>stdout.write(JSON.stringify(value)+"\n");stdin.on("data",chunk=>{buffered+=String(chunk);let newline:number;while((newline=buffered.indexOf("\n"))>=0){const raw=buffered.slice(0,newline);buffered=buffered.slice(newline+1);const message=JSON.parse(raw);if(message.method==="initialize"){calls.push("initialize");const result={contract:AUTHORITY_CONTRACT,...identity,supplierChallenge:Buffer.alloc(32,4).toString("base64url"),descriptor,v4Descriptor,proof:""};result.proof=initializationProof(secret,{...input,...result});send({id:message.id,result:{chiralityAdmissionAuthority:result}});}else if(message.method==="initialized")continue;else if(message.method==="account/identitySnapshot"){calls.push("snapshot");send({id:message.id,result:{schema:"chirality-supplier-account-identity-response/1",state:"available",supplierGeneration:"s",identityGeneration:"i",accountUserId:"u",providerWorkspaceId:"w"}});}else {const b=inbound.accept(raw);if(b.kind!=="request")throw Error();calls.push(b.op);const acquire=b.op==="chirality/admissionAcquire";const base=acquire?{requestId:b.requestId,operationId:b.operationId,leaseId:"l",supplierGeneration:"s",identityGeneration:"i",snapshotDigest:b.v4.snapshotDigest}:{requestId:b.requestId,leaseId:b.leaseId,disposition:b.disposition};send(outbound.encode({kind:"result",op:b.op,state:acquire?"acquired":"aborted",...base} as any));send(outbound.encode({kind:"notification",op:acquire?"chirality/admissionAcquired":"chirality/admissionAborted",...base} as any));}}});const session=new CodexTurnSession({transport:{stdin,stdout,close:async()=>{stdin.destroy();stdout.destroy();}}});const controller=await session.establishAuthority(input,createFakeRuntimeAdmissionNativeAdapter().acquire("","runtime-admission-authority.lock"),async()=>{});await controller.acquire("w");await controller.abort("w");expect(calls).toEqual(["initialize","snapshot","snapshot","chirality/admissionAcquire","chirality/admissionAbort"]);await controller.close();});
+});
+
+it("projects ordered message boundaries identically in native progress and terminal output", async () => {
+  const f = fixture("multiple-messages");
+  try {
+    await ready(f);
+    const id = await f.session.startTurn(turn);
+    const terminal = await f.session.waitTurn(id);
+    expect(terminal.output).toBe("Hello\n\nFinal");
+    const chunks: string[] = [];
+    for await (const event of f.session.events()) {
+      if (event.type === "text") chunks.push(event.text);
+      if (event.type === "terminal") break;
+    }
+    expect(chunks.join("")).toBe(terminal.output);
+  } finally { await f.close(); }
 });

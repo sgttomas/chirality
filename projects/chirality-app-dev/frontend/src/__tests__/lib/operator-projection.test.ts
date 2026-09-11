@@ -144,6 +144,8 @@ describe('operator session projection', () => {
       interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [selectedMethod], methodSelectionRevision: 3,
       instructionBasisId: 'basis-3'
     });
+    expect(projectOperatorSession(v3, new Set(['v3']), { observedAt: '2026-09-09' }).bootstrapConfirmed).toBe(false);
+    expect(projectOperatorSession({ ...v3, bootedAt: '2026-09-09', bootFingerprint: 'confirmed', engineSessionId: 'native' }, new Set(['v3']), { observedAt: '2026-09-09' }).bootstrapConfirmed).toBe(true);
     expect(projectOperatorSession(v3, new Set(['v3']), { observedAt: '2026-09-09' }).continuation).toEqual({
       schemaVersion: 'chirality.session/v3', projectRoot: '/repo/project', roleId: 'WORKING_ITEMS', mode: 'governed',
       interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [selectedMethod], methodSelectionRevision: 3,

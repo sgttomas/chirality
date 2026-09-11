@@ -6,7 +6,7 @@ import type { QualifiedMethodReference } from '../../lib/harness/method-selectio
 import type { SelectedSessionReplayProjection } from '../../lib/woven-dialogue/contracts';
 
 const state = vi.hoisted(() => ({ root: '/chosen/subfolder', query: '', listeners: new Set<() => void>(),
-  create: vi.fn(), boot: vi.fn(), replay: vi.fn(), stream: vi.fn(), apply: vi.fn(), append: vi.fn(), clear: vi.fn(), streaming: vi.fn(),
+  create: vi.fn(), boot: vi.fn(), getSession: vi.fn(), replay: vi.fn(), stream: vi.fn(), apply: vi.fn(), append: vi.fn(), clear: vi.fn(), streaming: vi.fn(),
   replaceMethods: vi.fn(), resolveContext: vi.fn(),
   nativeCapability: vi.fn(), nativeRevisions: vi.fn(), nativeClarifications: vi.fn(), replyClarification: vi.fn(), exportPlan: vi.fn(),
   markdownProps: [] as Array<{ source: string; projectRoot?: string | null; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void }>,
@@ -34,7 +34,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
   replyNativePlanClarification: state.replyClarification,
   exportNativePlanRevision: state.exportPlan
 }));
-vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn() }));
+vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, getHarnessSession: state.getSession, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn() }));
 import { ChatPanel } from '../../components/shell/chat-panel';
 
 let tree: ReactTestRenderer | undefined;
@@ -756,4 +756,78 @@ it('does not erase an earlier fatal turn error when a later exit is marked inter
   await mount(); await type('Preserve failure evidence'); await submit();
   expect(JSON.stringify(tree!.toJSON())).toContain('SDK_FAILURE');
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Preserve failure evidence');
+});
+
+
+it('retains a created chat after boot timeout and reconciles without duplicate creation, boot, or prompt', async () => {
+  const { HarnessApiClientError } = await import('../../lib/harness/client');
+  state.create.mockResolvedValue({ sessionId: 'created-before-timeout', projectRoot: '/chosen/subfolder', engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'gpt-5.6-terra' }, reasoningEffort: 'high' });
+  state.boot.mockRejectedValue(new HarnessApiClientError(504, 'ENGINE_UNAVAILABLE', 'hidden raw cause', { transportReason: 'timeout', operation: 'boot', sessionId: 'created-before-timeout' }));
+  await mount(); await type('Send this exactly once'); await submit();
+  expect(state.stream).not.toHaveBeenCalled();
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Send this exactly once');
+  expect(JSON.stringify(tree!.toJSON())).toContain('Chat took too long to start');
+  expect(JSON.stringify(tree!.toJSON())).not.toContain('hidden raw cause');
+  expect(tree!.root.findByProps({ 'aria-label': 'Model' }).props).toMatchObject({ disabled: true, value: 'gpt-5.6-terra' });
+  expect(tree!.root.findByProps({ 'aria-label': 'Reasoning' }).props).toMatchObject({ disabled: true, value: 'high' });
+  state.getSession.mockResolvedValue({ persona: 'WORKING_ITEMS', sessionId: 'created-before-timeout', projectRoot: '/chosen/subfolder', status: 'running' });
+  await submit();
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1); expect(state.stream).not.toHaveBeenCalled();
+  state.getSession.mockResolvedValue({ persona: 'WORKING_ITEMS', sessionId: 'created-before-timeout', projectRoot: '/chosen/subfolder', status: 'idle', bootedAt: '2026-09-11T00:00:00Z', bootFingerprint: 'fingerprint', engineSessionId: 'native-fixture', engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'gpt-5.6-terra' }, reasoningEffort: 'high' });
+  state.stream.mockResolvedValue(undefined);
+  await submit();
+  expect(state.getSession).toHaveBeenCalledTimes(2);
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(state.stream.mock.calls[0][0]).toMatchObject({ sessionId: 'created-before-timeout', message: 'Send this exactly once' });
+});
+
+it('never replaces or reboots an unconfirmed failed chat on another Send', async () => {
+  state.create.mockResolvedValue({ sessionId: 'created-failed', projectRoot: '/chosen/subfolder' });
+  state.boot.mockRejectedValue(new Error('boot failed'));
+  await mount(); await type('Retain this request'); await submit();
+  for (const status of ['failed', 'interrupted', 'idle']) {
+    state.getSession.mockResolvedValue({ persona: 'WORKING_ITEMS', sessionId: 'created-failed', projectRoot: '/chosen/subfolder', status });
+    await submit();
+  }
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1); expect(state.stream).not.toHaveBeenCalled();
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Retain this request');
+});
+
+
+it('reconciles known unbooted history sessions before sending and resets for an explicit new chat', async () => {
+  const projection = resumableProjection('historic-unbooted');
+  projection.session!.bootstrapConfirmed = false;
+  projection.session!.continuation!.permissionMode = 'workspaceWrite';
+  state.getSession.mockResolvedValue({ persona: 'WORKING_ITEMS', sessionId: 'historic-unbooted', projectRoot: '/chosen/subfolder', status: 'failed' });
+  await mount({ resumeConversation: { requestId: 1, projection } });
+  await type('Unsatisfied original request'); await submit();
+  expect(state.getSession).toHaveBeenCalledWith('historic-unbooted');
+  expect(state.stream).not.toHaveBeenCalled(); expect(state.create).not.toHaveBeenCalled(); expect(state.boot).not.toHaveBeenCalled();
+  await act(async () => tree!.update(<ChatPanel presentation="woven" newChatRequest={1} />));
+  state.create.mockResolvedValue({ sessionId: 'fresh', projectRoot: '/chosen/subfolder' });
+  state.boot.mockResolvedValue({ session: { sessionId: 'fresh', projectRoot: '/chosen/subfolder' } });
+  state.stream.mockResolvedValue(undefined);
+  await type('A deliberately new request'); await submit();
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'fresh', message: 'A deliberately new request' }), expect.any(Function));
+});
+
+
+it.each([
+  { schemaVersion: 'chirality.session/v3', roleId: 'HELPS_HUMANS', persona: 'WORKING_ITEMS' },
+  { schemaVersion: 'chirality.session/v3', persona: 'WORKING_ITEMS' },
+  { persona: 'HELPS_HUMANS' },
+  {}
+])('rejects mismatched or missing canonical reconciliation role before sending: %j', async roleFields => {
+  state.create.mockResolvedValue({ sessionId: 'role-check', projectRoot: '/chosen/subfolder', persona: 'WORKING_ITEMS' });
+  state.boot.mockRejectedValue(new Error('boot response lost'));
+  await mount(); await type('Keep this request with its role'); await submit();
+  state.getSession.mockResolvedValue({ sessionId: 'role-check', projectRoot: '/chosen/subfolder', status: 'idle',
+    bootedAt: '2026-09-11T00:00:00Z', bootFingerprint: 'confirmed', engineSessionId: 'native', ...roleFields });
+  await submit();
+  expect(state.stream).not.toHaveBeenCalled();
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
+  expect(JSON.stringify(tree!.toJSON())).toContain('Chat context changed');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this request with its role');
 });

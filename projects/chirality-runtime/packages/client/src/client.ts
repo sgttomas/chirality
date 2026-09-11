@@ -80,6 +80,7 @@ export type RuntimeStream = CancellableStream<RuntimeSseFrame>;
 export type RawSseStream = CancellableStream<SseFrame>;
 
 type JsonRequestOptions = {
+  timeoutMs?: number;
   method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
   body?: unknown;
   signal?: AbortSignal;
@@ -151,7 +152,8 @@ export class RuntimeClient {
       token,
       body,
       signal: options.signal,
-      accept: "application/json"
+      accept: "application/json",
+      timeoutMs: options.timeoutMs
     });
     const value = await readResponseJson(response);
     const status = response.statusCode ?? 500;
@@ -399,14 +401,18 @@ export class RuntimeClient {
     request: RuntimeSessionBootRequest = {},
     signal?: AbortSignal
   ): Promise<SessionBootResponse> {
-    return this.requestJson<SessionBootResponse>(
-      RUNTIME_ROUTES.sessionBoot(projectId, sessionId),
-      {
-        method: "POST",
-        body: request,
-        signal
-      }
-    );
+    try {
+      return await this.requestJson<SessionBootResponse>(
+        RUNTIME_ROUTES.sessionBoot(projectId, sessionId),
+        { method: "POST", body: request, signal, timeoutMs: 180_000 }
+      );
+    } catch (error) {
+      if (error instanceof RuntimeTransportError) throw new RuntimeTransportError(
+        error.reason === "timeout" ? "Session boot request timed out" : "Session boot transport failed",
+        error, error.reason, "boot", sessionId
+      );
+      throw error;
+    }
   }
 
   replaySession(
@@ -676,6 +682,7 @@ export class RuntimeClient {
       body?: Buffer;
       signal?: AbortSignal;
       accept: string;
+      timeoutMs?: number;
     }
   ): Promise<IncomingMessage> {
     return new Promise<IncomingMessage>((resolveResponse, reject) => {
@@ -718,8 +725,8 @@ export class RuntimeClient {
           resolveResponse(response);
         }
       );
-      request.setTimeout(this.timeoutMs, () => {
-        request.destroy(new Error("Runtime request timed out"));
+      request.setTimeout(input.timeoutMs ?? this.timeoutMs, () => {
+        request.destroy(new RuntimeTransportError("Runtime request timed out", undefined, "timeout"));
       });
       request.once("error", fail);
       if (input.body !== undefined) request.write(input.body);
