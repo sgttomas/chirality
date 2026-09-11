@@ -17,8 +17,7 @@ import {
 import {
   isControlledPackagedReleaseBasisForTests, loadPackagedHostedReleaseBasis,
   loadPackagedHostedReleaseBasisControlledForTests, startHostedPackagedPrivateBootstrapRuntimeHost,
-  startHostedPackagedPrivateBootstrapRuntimeHostControlledForTests
-} from "../packages/daemon/src/hosted-packaged-release.js";
+  startHostedPackagedPrivateBootstrapRuntimeHostControlledForTests, PACKAGED_REQUEST_TIMEOUT_MS, PACKAGED_TURN_TIMEOUT_MS } from "../packages/daemon/src/hosted-packaged-release.js";
 import { revalidateControlledPackagedReleaseBasisForTests } from "../packages/daemon/src/hosted-packaged-release-state.js";
 import { validateHostedPrivateCompositionOptions } from "../packages/daemon/src/hosted-private-composition.js";
 import { RuntimeError } from "../packages/contracts/src/errors.js";
@@ -203,7 +202,7 @@ describe("packaged hosted release basis",()=>{
     expect(composition.releaseV2?.basis).toBe(result.basis);
     expect(composition.hostAccount).toEqual({executablePath:appExecutable(fixture.resources),resourcesPath:fixture.resources});
     expect(composition).toMatchObject({runtimeDirectory:fixture.runtime,supplierExecutablePath:result.basis.supplierExecutablePath,nativeAddonPath:result.basis.nativeAddonPath,
-      instructionRoot:result.basis.instructionRoot,commandNetworkPosture:"off",compatibility:{compatibilityIdentity:"root-runtime-1",contractBasisSha256:"6005a00695a96eb46e59896f01653d3504ef85b35a7d28509bba8d33171425e2"},turnTimeoutMs:600_000});
+      instructionRoot:result.basis.instructionRoot,commandNetworkPosture:"off",compatibility:{compatibilityIdentity:"root-runtime-1",contractBasisSha256:"6005a00695a96eb46e59896f01653d3504ef85b35a7d28509bba8d33171425e2"},requestTimeoutMs:PACKAGED_REQUEST_TIMEOUT_MS,turnTimeoutMs:PACKAGED_TURN_TIMEOUT_MS});
     expect(composition).not.toHaveProperty("model");expect(composition).not.toHaveProperty("consentVersion");expect(composition).not.toHaveProperty("managedAuth");
   });
   it.each([undefined, {}, { login: {} }, { schema: "chirality-hosted-packaged-release-basis/v2", login: { recordPath: "/fabricated" } }])("rejects malformed or fabricated packaged starter basis coarsely", async basis => {

@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { describeFailureDetails } from "./retirement-failure.js";
 import {
   RuntimeError,
   asHarnessError,
@@ -398,11 +399,12 @@ export class TurnCoordinator {
         }
       }
       if (!terminalPersisted) {
+        const failureDetails = controller.signal.aborted ? undefined : describeFailureDetails(error);
         const failed = await this.sessions.appendEvent(projectId, {
           sessionId,
           turnId,
           type: controller.signal.aborted ? "turn.interrupted" : "turn.failed",
-          data: { code: runtimeError.code, message: runtimeError.message }
+          data: { code: runtimeError.code, message: runtimeError.message, ...(failureDetails ? { details: failureDetails } : {}) }
         });
         yield { type: "harness:event", data: failed };
       }

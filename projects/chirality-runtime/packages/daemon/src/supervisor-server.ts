@@ -13,6 +13,7 @@ function reconciliationDetails(value: unknown): Record<string, unknown> | undefi
   for (const key of ["leaderObserved", "censusFailed"]) if (typeof source[key] === "boolean") result[key] = source[key];
   if (Array.isArray(source.detachedPids)) result.detachedPids = source.detachedPids.filter(value => Number.isSafeInteger(value) && value > 0).slice(0, 32);
   if (Array.isArray(source.limitations)) result.limitations = source.limitations.filter(value => typeof value === "string" && /^[A-Z_]{1,64}$/.test(value)).slice(0, 8);
+  if (typeof source.censusFailure === "string" && source.censusFailure.length > 0) result.censusFailure = source.censusFailure.slice(0, 257);
   result.signalAuthority = "NONE";
   return result;
 }

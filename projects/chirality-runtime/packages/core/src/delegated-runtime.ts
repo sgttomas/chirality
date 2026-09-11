@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { withRetirementFailure } from "./retirement-failure.js";
 import { realpath } from "node:fs/promises";
 import {
   HOSTED_MODEL_ID_PATTERN, HOSTED_REASONING_EFFORT_PATTERN,
@@ -510,11 +511,15 @@ export class DelegatedRuntime {
       } catch (error) {
         // A transport outcome or interruption intent is not retirement evidence.
         // Keep the prepared record unresolved when cleanup cannot be confirmed.
-        await retire();
-        await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: this.interruptedTurns.has(key) ? "interrupted" : "failed", recordedAt: new Date().toISOString() });
-        throw error;
+        // The turn's own failure stays the reported error; a retirement
+        // diagnostic travels with it as the cause instead of replacing it.
+        let retired = false, failure: unknown = error;
+        try { await retire(); retired = true; } catch (cleanup) { failure = withRetirementFailure(error, cleanup); }
+        if (retired) await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: this.interruptedTurns.has(key) ? "interrupted" : "failed", recordedAt: new Date().toISOString() });
+        throw failure;
       } finally {
-        try { await retire(); }
+        // The settled retirement attempt already reported its outcome above.
+        try { await retire().catch(() => {}); }
         finally { await closeNativePlan(); }
       }
     } finally {

@@ -1,3 +1,4 @@
+import { RuntimeError } from "@chirality/runtime-contracts";
 import { mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
@@ -302,11 +303,14 @@ describe("v3 Runtime API integration", () => {
   });
 
   it("terminalizes an accepted v3 boot when preflight fails", async () => {
-    const fixture = await setup(async function* () { yield { type: "process:exit", data: { exitCode: 1 } }; }, undefined, { async preflight() { throw new Error("controlled preflight failure"); } });
+    const preflightFailure = new RuntimeError("ENGINE_UNAVAILABLE", "controlled preflight failure", 503, { reason: "CODEX_PROTOCOL_FAILURE" });
+    preflightFailure.cause = new RuntimeError("ENGINE_UNAVAILABLE", "controlled retirement diagnostic", 503, { reason: "DESCENDANT_RECONCILIATION_REQUIRED", detachedCount: 1 });
+    const fixture = await setup(async function* () { yield { type: "process:exit", data: { exitCode: 1 } }; }, undefined, { async preflight() { throw preflightFailure; } });
     const session = await fixture.client.createSession("v3-api", { projectId: "v3-api" });
     await expect(fixture.service.bootSession("v3-api", session.sessionId)).rejects.toThrow("controlled preflight failure");
     expect(await fixture.sessions.get("v3-api", session.sessionId)).toMatchObject({ status: "failed" });
-    expect(await fixture.sessions.replay("v3-api", session.sessionId)).toContainEqual(expect.objectContaining({ type: "turn.failed", data: expect.objectContaining({ boot: true }) }));
+    expect(await fixture.sessions.replay("v3-api", session.sessionId)).toContainEqual(expect.objectContaining({ type: "turn.failed", data: expect.objectContaining({ boot: true, code: "ENGINE_UNAVAILABLE",
+      details: { reason: "CODEX_PROTOCOL_FAILURE", cause: expect.objectContaining({ message: "controlled retirement diagnostic", details: { reason: "DESCENDANT_RECONCILIATION_REQUIRED", detachedCount: 1 } }) } }) }));
   });
 
   it("terminalizes an accepted v3 boot when the provider exits unsuccessfully", async () => {

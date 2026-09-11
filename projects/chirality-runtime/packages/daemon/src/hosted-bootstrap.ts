@@ -82,6 +82,8 @@ export interface TrustedHostedPrivateAdmission {
   authority: { supplierGeneration: string; identityGeneration: string; snapshotDigest: string };
   nativePlanQualification?: NativePlanAdapterAdmission;
   retire(): Promise<void>;
+  /** False once the durable account binding this admission was issued at is fenced or replaced. */
+  live?(): Promise<boolean>;
 }
 
 export interface HostedBootstrapPrivateBindings {
@@ -272,6 +274,20 @@ export class HostedBootstrapController {
     const operation = this.accountOperation(state, signal);
     try {
       await operation.check();
+      const liveness = state.admissionState === "ready" ? state.admission?.live?.bind(state.admission) : undefined;
+      if (liveness) {
+        // A candidate failure fences the durable account binding underneath a
+        // ready admission. Report that as sign-in required rather than "ready".
+        const admission = state.admission, generation = state.generation;
+        let live = false, failure: unknown;
+        try { live = await liveness(); } catch (error) { failure = error; }
+        await operation.check();
+        if (!live && !this.closed && state.admission === admission && state.generation === generation) {
+          this.log("hosted.admission.fenced", { projectId, ...(failure === undefined ? {} : describeRuntimeFailure(failure)) });
+          state.ceremonyState = "failed";
+          await this.retireAdmission(state);
+        }
+      }
       if (state.ceremony && state.ceremonyState === "pending") {
       const ceremony = state.ceremony, generation = state.generation;
       const observed = await ceremony.status();

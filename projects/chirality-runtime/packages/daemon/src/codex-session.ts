@@ -907,7 +907,7 @@ export class CodexTurnSession {
     }
     const turn: Turn = { threadId: input.threadId, startedEmitted: false, items: new Map(), plans: new Map(), done, resolve: resolveTurn, reject: rejectTurn,
       familyEnabled: this.inheritableTools !== undefined, familySettled: this.inheritableTools === undefined,
-      timer: setTimeout(() => this.fail(protocol("Codex turn timed out")), this.options.turnTimeoutMs ?? 120000) };
+      timer: setTimeout(() => this.expireTurn(turn), this.options.turnTimeoutMs ?? 120000) };
     this.active = turn;
     try {
       await this.checkNativePolicy();
@@ -920,6 +920,18 @@ export class CodexTurnSession {
       if ((turn.id && turn.id !== id) || (this.terminals.has(id) && turn.terminal?.turnId !== id)) throw protocol("Turn response identity mismatch");
       turn.id = id; if (!turn.startedEmitted) { turn.startedEmitted = true; this.emit({ type: "started", threadId: turn.threadId, turnId: id }); } return id;
     } catch (error) { clearTimeout(turn.timer); if (this.active === turn) this.active = undefined; turn.reject(error as Error); if (error instanceof RuntimeError && error.details?.reason === "CODEX_PROTOCOL_FAILURE") this.fail(error); throw error; }
+  }
+  /**
+   * A turn that outlives its budget is interrupted through the provider, not
+   * treated as a transport failure: the account authority stays intact and the
+   * turn ends with the provider's own "interrupted" terminal. Only a provider
+   * that ignores the interrupt within one request budget is a protocol failure.
+   */
+  private expireTurn(turn: Turn): void {
+    if (this.failure || this.active !== turn || !turn.id) { if (this.active === turn && !turn.id) this.fail(protocol("Codex turn timed out")); return; }
+    const turnId = turn.id;
+    turn.timer = setTimeout(() => { if (this.active === turn && !this.failure) this.fail(protocol("Codex turn timed out")); }, this.options.requestTimeoutMs ?? 10000);
+    this.interrupt(turnId).catch(() => { if (this.active === turn && !this.failure) this.fail(protocol("Codex turn timed out")); });
   }
   async waitTurn(turnId: string): Promise<CodexTurnTerminal> {
     const terminal = this.terminals.get(turnId); if (terminal) return { ...terminal };

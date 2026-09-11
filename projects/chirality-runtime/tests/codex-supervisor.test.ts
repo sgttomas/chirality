@@ -9,7 +9,7 @@ import { CodexSupervisor, codexRuntimeConformanceConfigDigest, createControlledC
 import { admitHostedControlledForTests } from "../packages/daemon/src/codex-supervisor-test-support.js";
 import * as daemonPublicSurface from "../packages/daemon/src/index.js";
 import { recordKey } from "@chirality/runtime-core";
-import type { WorkerContinuity } from "@chirality/runtime-contracts";
+import type { RuntimeError, WorkerContinuity } from "@chirality/runtime-contracts";
 
 let root: string;
 let identity: WorkerContinuity;
@@ -110,6 +110,26 @@ describe("Codex supervisor adapter without account/network use", () => {
     await expect(s.close()).rejects.toMatchObject({ details: { detachedCount: 1 } });
     expect(() => process.kill(handle.pid, 0)).toThrow();
     supervisors.splice(supervisors.indexOf(s), 1); // Expected persistent diagnostic, no actual detached process was created.
+  });
+  it("reports the turn's own failure and carries the reconciliation diagnostic as its cause", async () => {
+    const s = fixture(false, 300, undefined, false, "detached");
+    const unhandled: unknown[] = []; const onUnhandled = (reason: unknown) => { unhandled.push(reason); };
+    process.on("unhandledRejection", onUnhandled);
+    try {
+      const handle = await s.acquire("hung", JSON.stringify({ prompt: "hang" }));
+      const failure = await s.wait(handle.workerId, handle.generation).then(() => undefined, error => error as RuntimeError);
+      expect(failure).toMatchObject({ code: "ENGINE_UNAVAILABLE", message: expect.stringContaining("timed out"), details: { reason: "CODEX_PROTOCOL_FAILURE" } });
+      expect(failure?.cause).toMatchObject({ code: "ENGINE_UNAVAILABLE", details: { reason: "DESCENDANT_RECONCILIATION_REQUIRED", detachedCount: 1, detachedPids: [999991] } });
+      await expect(s.retire(handle.workerId, handle.generation)).rejects.toMatchObject({ details: { reason: "DESCENDANT_RECONCILIATION_REQUIRED" } });
+      await new Promise(resolve => setTimeout(resolve, 20));
+      expect(unhandled).toEqual([]);
+    } finally { process.off("unhandledRejection", onUnhandled); }
+    await expect(s.close()).rejects.toMatchObject({ details: { detachedCount: 1 } });
+    supervisors.splice(supervisors.indexOf(s), 1);
+  });
+  it("names the census failure in the reconciliation diagnostic", async () => {
+    const s = fixture(false, 1000, undefined, false, "census-failure");
+    await expect(s.acquire("no-census-text", JSON.stringify({ prompt: "hello" }))).rejects.toMatchObject({ details: { censusFailed: true, censusFailure: "fixture census failure" } });
   });
   it("permits an observed clean closure while retaining the tracker's polling limitation", async () => {
     const s = fixture(false, 1000, undefined, false, "gone");

@@ -594,7 +594,13 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
         const store = await adapters.openBindingStore({ privateDirectory: context.privateDirectory, canonicalRoot: context.canonicalRoot,
           policyDigest: policy.policyDigest, runtimeAuthorityId: `composition-${recordKey({ projectId: context.projectId, policyDigest: policy.policyDigest }).slice(0, 32)}` });
         const publicAdmission: TrustedHostedPrivateAdmission = Object.freeze({ continuity: { ...admission.continuity }, authority: { ...admission.authority },
-          ...(nativePlanAdmission ? { nativePlanQualification: structuredClone(nativePlanAdmission) } : {}), retire: async () => retire(admissions.get(publicAdmission)!) });
+          ...(nativePlanAdmission ? { nativePlanQualification: structuredClone(nativePlanAdmission) } : {}), retire: async () => retire(admissions.get(publicAdmission)!),
+          live: async () => {
+            const context = admissions.get(publicAdmission);
+            if (closed || !context || context.retired || context.signedOut) return false;
+            const observed = await context.store.observe();
+            return observed.state === "active" && observed.accountId === admission.continuity.accountId && observed.accountEpoch === admission.continuity.accountEpoch;
+          } });
         const finalizedRuntimeV2 = runtimeV2 ?? admission.runtimeV2;
         admissions.set(publicAdmission, { ...context, admission, launcherFactory, store, retired: false, signedOut: false, ...(finalizedRuntimeV2 ? { runtimeV2: finalizedRuntimeV2 } : {}) }); ceremonies.delete(context.ceremony);
         launcherFactory = undefined; return publicAdmission;

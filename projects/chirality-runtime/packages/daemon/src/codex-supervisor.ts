@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { HOSTED_MODEL_ID_PATTERN, HOSTED_REASONING_EFFORT_PATTERN, RuntimeError, validateHostedManagedAuth, validateHostedModelCatalogEntries, type HostedManagedAuth, type HostedModelCatalogEntry, type DelegatedAttachmentInput, type DelegatedHarnessProcessSupervisorPort, type WorkerContinuity, type WorkerHandle, type WorkerResult, type NetworkApprovalPrompt, type NetworkApprovalChoice, type HostedConsent, type NativePlanTransportEvent, type NativePlanClarificationPrompt, type NativePlanClarificationAnswers, type RuntimeToolCallbackDeclaration, type RuntimeToolCallbackMessage, type RuntimeToolCallbackResult, type DelegatedTurnProgressEvent } from "@chirality/runtime-contracts";
-import { assertContinuity, recordKey, verifyConfiguredRuntimeConformance, type RuntimeConformanceConfiguration, DescendantTracker, HostedConsentStore } from "@chirality/runtime-core";
+import { assertContinuity, recordKey, verifyConfiguredRuntimeConformance, withRetirementFailure, type RuntimeConformanceConfiguration, DescendantTracker, HostedConsentStore } from "@chirality/runtime-core";
 import { prepareCodexNativePolicy } from "./codex-containment.js";
 import { CodexTurnSession, type CodexSessionTransport, type CodexDynamicTool, type CodexDynamicToolResult } from "./codex-session.js";
 import { SupplierAuthorityController } from "./supplier-authority-controller.js";
@@ -115,6 +115,10 @@ class RuntimeToolMailbox {
   finish(error: Error = unavailable("Runtime tool worker ended")): void { this.terminal = error; for (const callback of this.callbacks.values()) callback.reject(error); this.callbacks.clear(); }
 }
 
+function censusFailureText(failure: unknown): string {
+  const text = failure instanceof Error ? `${failure.name}: ${failure.message}` : String(failure);
+  return text.length > 256 ? `${text.slice(0, 256)}…` : text;
+}
 async function failAfterCleanup(error: unknown, closes: Array<() => Promise<unknown> | undefined>): Promise<never> {
   const failures: unknown[] = [error];
   for (const close of closes) try { await close(); } catch (cleanup) { failures.push(cleanup); }
@@ -272,7 +276,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       reason: "DESCENDANT_RECONCILIATION_REQUIRED", leaderObserved: Boolean(state.leader), observed: state.observed, scans: state.scans,
       detachedCount: state.detached.length, detachedPids: state.detached.slice(0, 32).map(value => value.pid),
       ownedGroupCount: state.ownedGroup.length, identityChangedCount: state.identityChanged.length,
-      censusFailed: Boolean(state.failure), limitations: state.limitations, signalAuthority: "NONE"
+      censusFailed: Boolean(state.failure), ...(state.failure ? { censusFailure: censusFailureText(state.failure) } : {}), limitations: state.limitations, signalAuthority: "NONE"
     });
     try { await tracker.start(); }
     catch {
@@ -457,12 +461,13 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       } })();
       // A projection failure is a worker failure, including when the provider has
       // already emitted a terminal. Never publish success after losing an event.
-      void eventDrain.catch(() => activeSession.close());
+      void eventDrain.catch(() => activeSession.close().catch(() => {}));
       const admitted=new Promise<void>(resolve=>{begin=resolve;});
       let admissionLifecycleFinished=false;
       const admissionLifecycle=new Promise<boolean>(resolve=>{finishAdmissionLifecycle=value=>{if(!admissionLifecycleFinished){admissionLifecycleFinished=true;resolve(value);}};});
       const result = (async (): Promise<WorkerResult> => {
         await admitted;
+        let primary: unknown, failed = false;
         try {
           if(!publicationCommitted)throw unavailable("Admission cancelled before publication");
           if(this.fixtureLauncher){await activeSession.initialize();if(launched.expectedPermissions)await activeSession.verifyNativePolicy(launched.expectedPermissions);}
@@ -478,11 +483,19 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
           await eventDrain;
           return { worker: { ...handle, state: "exited" }, exitCode: terminal.status === "completed" ? 0 : terminal.status === "failed" ? 1 : null,
             signal: terminal.status === "interrupted" ? "SIGTERM" : null, stdout: terminal.output, stderr: "", threadId };
-        } finally {
+        } catch (error) { primary = error; failed = true; throw error; }
+        finally {
           handle.state = "exited";
           const graceful=await admissionLifecycle;
-          if(authority&&!this.fixtureLauncher){if(graceful)await authority.retire();else await authority.revoke();}
-          await activeSession.close(); await launched.transport.close();
+          // Every retirement step runs. A retirement diagnostic is attached to the
+          // turn's own failure as its cause; it only becomes the error when the turn
+          // itself completed.
+          let retirementFailure: unknown, retirementFailed = false;
+          const note = (error: unknown) => { retirementFailure = retirementFailed ? withRetirementFailure(retirementFailure, error) : error; retirementFailed = true; };
+          if(authority&&!this.fixtureLauncher){try{if(graceful)await authority.retire();else await authority.revoke();}catch(error){note(error);}}
+          try { await activeSession.close(); } catch (error) { note(error); }
+          try { await launched.transport.close(); } catch (error) { note(error); }
+          if (retirementFailed) { if (failed) { const combined = withRetirementFailure(primary, retirementFailure); if (combined !== primary) throw combined; } else throw retirementFailure; }
         }
       })();
       void result.catch(() => {});
@@ -502,9 +515,14 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
         if (publicationCommitted) {if(!releaseAttempted){releaseAttempted=true;await activeAuthority.release(operationId).catch(()=>activeAuthority.revoke());}}
         else await activeAuthority.abort(operationId).catch(()=>activeAuthority.revoke());
       }
-      if(localEntry){await localEntry.session.close();await localEntry.result.catch(()=>{});await localEntry.cleanup();}
-      else return failAfterCleanup(error, [() => session?.close(), () => launched?.transport.close()]);
-      throw error;
+      if(localEntry){
+        let failure: unknown = error;
+        await localEntry.session.close().catch(cleanup => { failure = withRetirementFailure(failure, cleanup); });
+        await localEntry.result.catch(()=>{});
+        await localEntry.cleanup().catch(cleanup => { failure = withRetirementFailure(failure, cleanup); });
+        throw failure;
+      }
+      return failAfterCleanup(error, [() => session?.close(), () => launched?.transport.close()]);
     } finally { this.cancellations.delete(workerId);this.acquiring.delete(workerId); this.pendingAcquisitions.delete(workerId); finishAcquisition(); }
   }
 

@@ -484,6 +484,43 @@ describe("hosted bootstrap public-to-private composition", () => {
   });
 });
 
+describe("hosted bootstrap fenced admission", () => {
+  it("reports a ready admission whose durable binding was fenced as sign-in required and retires it once", async () => {
+    const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-fenced-"));
+    cleanup.push(() => rm(root, { recursive: true, force: true }));
+    const runtimeDirectory = join(root, "runtime"), projectRoot = join(root, "project");
+    await mkdir(runtimeDirectory, { mode: 0o700 }); await mkdir(projectRoot);
+    const events: Array<{ level: string; event: string; fields: Record<string, unknown> }> = [];
+    const logger = {
+      warn: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "warn", event, fields }); },
+      error: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "error", event, fields }); }
+    };
+    let live = true; const retire = vi.fn(async () => {}), liveness = vi.fn(async () => live);
+    const ceremony: TrustedHostedLoginCeremony = { async start() { return { loginId: "login", authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "completed" as const, hasAccount: true }; }, async cancel() {}, async close() {} };
+    const host = await startControlledHostedBootstrapRuntimeHostForTests({ enabled: true, runtimeDirectory, daemonSocket: "runtime.sock", instructionRoot: resolve(process.cwd(), "../..") }, {
+      async createCeremony() { return ceremony; },
+      async establishAdmission() {
+        return { continuity: { canonicalRoot: projectRoot, cwd: projectRoot, accountId: "private", accountEpoch: 1, policyDigest: "private" }, authority: { supplierGeneration: "supplier", identityGeneration: "identity", snapshotDigest: "e".repeat(64) }, retire, live: liveness };
+      },
+      async materializeAdmission(input: { projectId: string }) { return { engine: engine(input.projectId, "fixture-model", []), selection: { adapterId: "codex-app-server", providerId: "openai", model: "fixture-model" } }; },
+      async signOut() {}
+    }, undefined, logger);
+    cleanup.push(() => host.stop());
+    const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
+    const registered = await client.initializeHostedBootstrapProject({ projectRoot });
+    await client.grantHostedProviderNetworkConsent(registered.projectId); await client.startHostedBootstrapLogin(registered.projectId);
+    expect(await settledHostedBootstrapStatus(client, registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
+    expect(liveness).toHaveBeenCalled(); expect(retire).not.toHaveBeenCalled();
+    live = false;
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "failed", admission: "unavailable", canStartLogin: true });
+    expect(retire).toHaveBeenCalledTimes(1);
+    expect(events).toContainEqual(expect.objectContaining({ level: "error", event: "hosted.admission.fenced", fields: expect.objectContaining({ projectId: registered.projectId }) }));
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "failed", admission: "unavailable" });
+    expect(retire).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe("hosted bootstrap login retry after a failed start", () => {
   it("detaches a failed ceremony before its close settles so the next start creates a new ceremony and records the failure", async () => {
     const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-retry-"));

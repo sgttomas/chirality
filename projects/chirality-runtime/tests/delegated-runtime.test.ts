@@ -402,6 +402,19 @@ it("leaves retirement unresolved when cleanup reports unresolved descendants", a
   await expect(f.retirement.restart("retirement-fails", f.identity)).rejects.toMatchObject({ code: "DELEGATION_POLICY_VIOLATION" });
 });
 
+it("reports the worker's own failure with a failed retirement attached as its cause", async () => {
+  const f = await fixture();
+  await f.client.grantDelegatedConsent("project", compatibility, { posture: "off", approvedBy: "fixture-owner", explicitUserAct: true });
+  const retire = f.binding.supervisor.retire.bind(f.binding.supervisor);
+  f.binding.supervisor.wait = async () => { throw new RuntimeError("ENGINE_UNAVAILABLE", "controlled primary worker failure", 503, { reason: "CODEX_PROTOCOL_FAILURE" }); };
+  f.binding.supervisor.retire = async (workerId, generation) => { await retire(workerId, generation); throw new RuntimeError("ENGINE_UNAVAILABLE", "controlled unresolved descendant observation", 503, { reason: "DESCENDANT_RECONCILIATION_REQUIRED" }); };
+  const preflight = await f.delegated.preflight("project", "turn:primary-kept");
+  const failure = await f.delegated.turn("project", { compatibility, preflight, turnId: "primary-kept", prompt: "hello" }).then(() => undefined, error => error as RuntimeError);
+  expect(failure).toMatchObject({ code: "ENGINE_UNAVAILABLE", message: "controlled primary worker failure", details: { reason: "CODEX_PROTOCOL_FAILURE" } });
+  expect(failure?.cause).toMatchObject({ message: "controlled unresolved descendant observation", details: { reason: "DESCENDANT_RECONCILIATION_REQUIRED" } });
+  expect((await f.retirement.read("primary-kept"))?.state).toBe("prepared");
+});
+
 function controlledApprovalWorker(identity: Parameters<typeof createControlledCodexSupervisorForTests>[0]["identity"]) {
   let notify: (message: unknown) => void = () => {};
   const worker = createControlledCodexSupervisorForTests({ identity, model: "fixture", commandNetworkPosture: "ask-per-destination", turnTimeoutMs: 3000,
@@ -537,7 +550,9 @@ it.each([true, false])("wait failure requires confirmed retirement before failed
   f.fail(waitError); await f.retiring.promise;
   expect((await f.retirement.read("t"))?.terminal).toBeUndefined();
   if (succeeds) f.cleanup.resolve(); else f.cleanup.reject(cleanupError);
-  await expect(turn).rejects.toBe(succeeds ? waitError : cleanupError);
+  // The transport failure stays the reported error; an unconfirmed retirement travels with it as the cause.
+  await expect(turn).rejects.toBe(waitError);
+  expect(waitError.cause).toBe(succeeds ? undefined : cleanupError);
   if (succeeds) expect(await f.retirement.read("t")).toMatchObject({ state: "committed", terminal: { outcome: "failed" } });
   else await f.assertUnresolved();
   expect(f.calls).toEqual([{ workerId: "t", generation: "controlled-generation" }]);
@@ -577,7 +592,8 @@ it.each([true, false])("late approval failure joins settled retirement after tur
   await f.pollingStarted.promise;
   f.fail(waitError); await f.retiring.promise;
   if (succeeds) f.cleanup.resolve(); else f.cleanup.reject(cleanupError);
-  await expect(turn).rejects.toBe(succeeds ? waitError : cleanupError);
+  await expect(turn).rejects.toBe(waitError);
+  expect(waitError.cause).toBe(succeeds ? undefined : cleanupError);
   const record = await f.retirement.read("t");
   expect(record?.state).toBe(succeeds ? "committed" : "prepared");
   if (succeeds) expect(record?.terminal?.outcome).toBe("failed");

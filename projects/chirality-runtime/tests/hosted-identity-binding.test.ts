@@ -72,6 +72,26 @@ describe("HostedIdentityBindingStore", () => {
     expect(rebound).toEqual({ ...first, accountEpoch: first.accountEpoch + 1 });
   });
 
+  it("observes a fence written by another store instance of the same lineage and still fences afterwards", async () => {
+    const f = await fixture(); const first = await f.store.establishLive(snapshot(), live());
+    expect(await f.store.observe()).toEqual({ state: "active", accountId: first.accountId, accountEpoch: 1, fenceReason: null });
+    const candidate = await HostedIdentityBindingStore.open({ ...f.options, runtimeAuthorityId: "candidate-1" });
+    await candidate.fence("revoke");
+    expect(await f.store.observe()).toEqual({ state: "fenced", accountId: first.accountId, accountEpoch: 2, fenceReason: "revoke" });
+    expect(await f.store.fence("sign-out")).toEqual({ ...first, accountEpoch: 2 });
+  });
+  it("treats a record outside its lineage as custody loss", async () => {
+    const f = await fixture(); await f.store.establishLive(snapshot(), live());
+    const foreign = await HostedIdentityBindingStore.open({ ...f.options, runtimeAuthorityId: "foreign", randomHandle: () => Buffer.alloc(32, 9) });
+    await foreign.establishLive(snapshot({ accountUserId: "account-z" }), live());
+    await expect(f.store.observe()).resolves.toMatchObject({ accountEpoch: 2 });
+    const { writeFile: write } = await import("node:fs/promises");
+    const path = join(f.privateDirectory, "hosted-identity-binding.json");
+    const forged = JSON.parse(await readFile(path, "utf8")); forged.accountId = "rhb_" + Buffer.alloc(32, 7).toString("base64url");
+    const { digest: _digest, ...body } = forged; forged.digest = createHash("sha256").update(JSON.stringify(body)).digest("hex");
+    await write(path, `${JSON.stringify(forged)}\n`, { mode: 0o600 });
+    await expect(f.store.observe()).rejects.toThrow("custody");
+  });
   it("allocates a distinct random handle at epoch exhaustion and never wraps", async () => {
     const f = await fixture(); await f.store.establishLive(snapshot(), live());
     const file = join(f.privateDirectory, "hosted-identity-binding.json"), record = JSON.parse(await readFile(file, "utf8"));

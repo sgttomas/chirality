@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { describeFailureDetails } from "./retirement-failure.js";
 import { readdir, readFile, realpath, stat } from "node:fs/promises";
 import { basename, join, relative, resolve } from "node:path";
 import {
@@ -317,7 +318,8 @@ export class RuntimeService {
     const failBoot = async (error: unknown): Promise<void> => {
       if (resolvedContext === undefined) return;
       const failure = error instanceof Error ? error : new Error("Boot failed");
-      await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.failed", data: { code: error instanceof RuntimeError ? error.code : "ENGINE_UNAVAILABLE", message: failure.message, boot: true } }).catch(() => undefined);
+      const details = describeFailureDetails(error);
+      await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.failed", data: { code: error instanceof RuntimeError ? error.code : "ENGINE_UNAVAILABLE", message: failure.message, boot: true, ...(details ? { details } : {}) } }).catch(() => undefined);
       const current = await this.sessions.get(projectId, sessionId);
       const adapterSession = { ...(current.adapterSession ?? {}) };
       delete adapterSession.contextSuccessor;

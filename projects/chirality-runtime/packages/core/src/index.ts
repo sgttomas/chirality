@@ -22,6 +22,7 @@ export * from "./approval-store.js";
 export * from "./role-policy.js";
 
 export * from "./descendant-tracker.js";
+export * from "./retirement-failure.js";
 
 export * from "./runtime-conformance.js";
 export * from "./runtime-conformance-v2.js";

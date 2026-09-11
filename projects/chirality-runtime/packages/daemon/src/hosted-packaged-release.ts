@@ -13,6 +13,15 @@ import { startHostedPrivateBootstrapRuntimeHost } from "./hosted-private-entry.j
 import type { RuntimeDaemonLogger } from "./runtime-daemon.js";
 import { inspectRuntimePurposeAcceptanceV2,inspectRuntimePurposeReleaseV2 } from "./runtime-conformance-v2-admission.js";
 import { inspectHostAccountSignedPeerIdentity, type VerifiedHostAccountPackagedIdentity } from "./host-account-release.js";
+
+/**
+ * Supplier request budget for the packaged release. The first `thread/start`
+ * in a fresh Codex home runs schema migrations and MCP startup; a request
+ * budget below that cost fails the session and revokes the account.
+ */
+export const PACKAGED_REQUEST_TIMEOUT_MS = 90_000;
+/** Turn budget; expiry interrupts the turn through the provider rather than failing the session. */
+export const PACKAGED_TURN_TIMEOUT_MS = 1_800_000;
 import {
   assertIssuedPrivateDirectoryChainV2,
   assertIssuedPackagedReleaseBasisV2,
@@ -185,7 +194,7 @@ async function startPackaged(input:PackagedStartInput,revalidate:(basis:Readonly
     supplierExecutablePath:input.basis.supplierExecutablePath,nativeAddonPath:input.basis.nativeAddonPath,instructionRoot:input.basis.instructionRoot,
     compatibility:{compatibilityIdentity:"root-runtime-1",contractBasisSha256:"6005a00695a96eb46e59896f01653d3504ef85b35a7d28509bba8d33171425e2"},
     commandNetworkPosture:"off",protectedPaths:[input.bootstrap.runtimeDirectory,join(input.bootstrap.runtimeDirectory,"release-authority"),join(input.bootstrap.runtimeDirectory,"release-basis")],
-    immutableReadRoots:[...input.basis.supportProfile.immutableSystemRoots],turnTimeoutMs:600_000,releaseV2:{basis:input.basis},hostAccount:{executablePath:input.executablePath,resourcesPath:input.basis.verified.resourcesRoot}}});
+    immutableReadRoots:[...input.basis.supportProfile.immutableSystemRoots],requestTimeoutMs:PACKAGED_REQUEST_TIMEOUT_MS,turnTimeoutMs:PACKAGED_TURN_TIMEOUT_MS,releaseV2:{basis:input.basis},hostAccount:{executablePath:input.executablePath,resourcesPath:input.basis.verified.resourcesRoot}}});
 }
 
 /** Packaged startup consumes only a current loader-issued basis and derives the fixed private v2 composition. */

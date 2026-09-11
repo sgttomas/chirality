@@ -13,6 +13,8 @@ import type { HostedBootstrapStatusResponse } from './hosted-bootstrap-client';
 export type HostedBootstrapContextValue = {
   snapshot: HostedBootstrapStatusResponse | null;
   loading: boolean;
+  /** Re-reads Runtime status; a failed turn may have fenced the account underneath a "ready" snapshot. */
+  refresh?: () => void;
 };
 
 /** The authenticated Codex catalog as exposed by Runtime status while admission is ready. */
@@ -23,8 +25,8 @@ export type HostedModelCatalogView = {
 
 const HostedBootstrapContext = createContext<HostedBootstrapContextValue>({ snapshot: null, loading: false });
 
-export function HostedBootstrapProvider({ snapshot, loading, children }: HostedBootstrapContextValue & { children: ReactNode }): JSX.Element {
-  const value = useMemo(() => ({ snapshot, loading }), [snapshot, loading]);
+export function HostedBootstrapProvider({ snapshot, loading, refresh, children }: HostedBootstrapContextValue & { children: ReactNode }): JSX.Element {
+  const value = useMemo(() => ({ snapshot, loading, ...(refresh ? { refresh } : {}) }), [snapshot, loading, refresh]);
   return <HostedBootstrapContext.Provider value={value}>{children}</HostedBootstrapContext.Provider>;
 }
 

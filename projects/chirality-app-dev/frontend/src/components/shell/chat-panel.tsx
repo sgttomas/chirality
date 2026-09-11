@@ -935,6 +935,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
                 errorMessage,
                 payload.details
               );
+              // An engine failure can fence the signed-in account underneath a
+              // "ready" status. Re-read status so the account row reports it.
+              if (errorType === 'ENGINE_UNAVAILABLE') hostedBootstrap.refresh?.();
             }
             return;
           }

@@ -275,3 +275,15 @@ it('maps MODEL_NOT_IN_CATALOG on boot and on the turn stream to the start-a-new-
   expect(rendered()).toContain('This chat used gpt-alt, which your Codex account no longer offers. Start a new chat.');
   expect(select('Model').props.value).toBe('gpt-alt'); expect(select('Model').props.disabled).toBe(true);
 });
+
+it('re-reads hosted status after a fatal engine failure so a fenced account stops reading as ready', async () => {
+  state.boot.mockResolvedValue(bootedRecord('gpt-default', 'high'));
+  const refresh = vi.fn();
+  state.stream.mockImplementation(async (_request: unknown, onEvent: (event: { event: string; data: unknown }) => void) => {
+    onEvent({ event: 'turn:error', data: { phase: 'mid-stream', errorType: 'ENGINE_UNAVAILABLE', message: 'Codex request timed out', status: 503, severity: 'error', fatal: true, details: { reason: 'CODEX_PROTOCOL_FAILURE' } } });
+  });
+  await act(async () => { tree = create(<HostedBootstrapProvider snapshot={snapshot()} loading={false} refresh={refresh}><ChatPanel presentation="woven" /></HostedBootstrapProvider>); });
+  await type('turn me'); await submit();
+  expect(refresh).toHaveBeenCalledTimes(1);
+  expect(rendered()).toContain('Codex request timed out');
+});

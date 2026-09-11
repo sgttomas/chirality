@@ -110,7 +110,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    }
    if(mode==='foreign-request'){send({id:99,method:'item/tool/call',params:{threadId:'child-thread',turnId:'child-turn',callId:'child-call',tool:'review',arguments:{}}});return;}
    if(mode==='approval'){send({id:99,method:'item/commandExecution/requestApproval',params:{threadId:'thread1',turnId:'turn1'}});return;}
-   if(mode==='silent'||mode==='interrupt')return;
+   if(mode==='silent'||mode==='interrupt'||mode==='deaf')return;
    if(mode==='flood'){process.stdout.write('x'.repeat(1100000));return;}
    if(mode==='unknown'){note('item/future/event',{privateContent:'must not escape'});return;}
    if(mode==='diagnostics'){note('thread/status/changed',{status:'active'});note('error',{willRetry:true,error:{message:'must not escape',codexErrorInfo:{responseStreamDisconnected:{httpStatusCode:null}}}});}
@@ -126,7 +126,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    if(mode==='late')note('item/agentMessage/delta',{threadId:'thread1',turnId:'turn1',itemId:'item1',delta:'late'});
    return;
   }
-  if(r.method==='turn/interrupt'){response(r,{});setImmediate(()=>end('interrupted'));return;}
+  if(r.method==='turn/interrupt'){if(mode==='deaf')return;response(r,{});setImmediate(()=>end('interrupted'));return;}
   process.exit(5);
  });`;
   const child = spawn(process.execPath, ["-e", code], { env: {}, stdio: "pipe", detached: process.platform !== "win32" });
@@ -397,7 +397,7 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
     try { await ready(f); const id = await f.session.startTurn(turn); expect((await f.session.waitTurn(id)).status).toBe("completed"); expect(f.session.diagnostics()).toEqual({ quarantinedNotifications: 2, retryableErrors: 1 }); expect(JSON.stringify(f.session.diagnostics())).not.toContain("must not escape"); }
     finally { await f.close(); }
     const unknown = fixture("unknown", 100);
-    try { await ready(unknown); const id = await unknown.session.startTurn(turn); await expect(unknown.session.waitTurn(id)).rejects.toThrow("timed out"); expect(unknown.session.diagnostics().quarantinedNotifications).toBe(1); }
+    try { await ready(unknown); const id = await unknown.session.startTurn(turn); expect((await unknown.session.waitTurn(id)).status).toBe("interrupted"); expect(unknown.session.diagnostics().quarantinedNotifications).toBe(1); }
     finally { await unknown.close(); }
   });
   it("never terminalizes retryable errors followed by a clean process exit", async () => {
@@ -408,9 +408,19 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
   it("refuses provider reuse of a previously terminal turn identifier", async () => {
     const f = fixture(); try { await ready(f); const id = await f.session.startTurn(turn); await f.session.waitTurn(id); await expect(f.session.startTurn(turn)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" }); } finally { await f.close(); }
   });
+  it("interrupts an expired turn through the provider and keeps the session usable", async () => {
+    const f = fixture("interrupt", 100);
+    try {
+      await ready(f); const id = await f.session.startTurn(turn);
+      expect((await f.session.waitTurn(id)).status).toBe("interrupted");
+      expect(await f.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true })).toBe("thread1");
+    } finally { await f.close(); }
+  });
   it("rejects provider errors and times out without manufacturing terminal completion", async () => {
     const rejected = fixture("reject"); try { await ready(rejected); await expect(rejected.session.startTurn(turn)).rejects.toMatchObject({ details: { reason: "CODEX_REQUEST_REJECTED" } }); await expect(rejected.session.waitTurn("turn1")).rejects.toThrow("Unknown"); } finally { await rejected.close(); }
-    const silent = fixture("silent", 100); try { await ready(silent); const id = await silent.session.startTurn(turn); await expect(silent.session.waitTurn(id)).rejects.toThrow("timed out"); } finally { await silent.close(); }
+    // An expired turn is interrupted through the provider; only a provider that ignores the interrupt is a failure.
+    const silent = fixture("silent", 100); try { await ready(silent); const id = await silent.session.startTurn(turn); expect((await silent.session.waitTurn(id)).status).toBe("interrupted"); } finally { await silent.close(); }
+    const deaf = fixture("deaf", 100); try { await ready(deaf); const id = await deaf.session.startTurn(turn); await expect(deaf.session.waitTurn(id)).rejects.toThrow("timed out"); await expect(deaf.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true })).rejects.toThrow("timed out"); } finally { await deaf.close(); }
   });
 });
 
