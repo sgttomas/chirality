@@ -103,4 +103,20 @@ describe('harness ui error mapping', () => {
     expect(mapped.title).toBe('Unexpected Harness Failure');
     expect(mapped.message).toContain('boom');
   });
+
+  it('distinguishes MODEL_NOT_IN_CATALOG at session creation from an existing session', () => {
+    const details = { reason: 'MODEL_NOT_IN_CATALOG', model: 'gpt-alt', available: ['gpt-default'] };
+    const created = toHarnessUiError(new HarnessApiClientError(400, 'INVALID_REQUEST', 'not in catalog', details), { origin: 'session-create' });
+    expect(created.title).toBe('Model No Longer Offered');
+    expect(created.message).toBe('Model gpt-alt is no longer offered by your Codex account. Refresh your account status and choose again.');
+    expect(created.nextStep).toContain('Refresh your account status');
+
+    const booted = toHarnessUiError(new HarnessApiClientError(503, 'ENGINE_UNAVAILABLE', 'not in catalog', details), { origin: 'session' });
+    expect(booted.message).toBe('This chat used gpt-alt, which your Codex account no longer offers. Start a new chat.');
+    // The default origin is the existing-session wording; the turn stream omits the model and the session names it.
+    const streamed = toHarnessUiError(new HarnessApiClientError(503, 'ENGINE_UNAVAILABLE', 'not in catalog', { reason: 'MODEL_NOT_IN_CATALOG' }), { sessionModel: 'gpt-old' });
+    expect(streamed.message).toBe('This chat used gpt-old, which your Codex account no longer offers. Start a new chat.');
+    const unnamed = toHarnessUiError(new HarnessApiClientError(400, 'INVALID_REQUEST', 'not in catalog', { reason: 'MODEL_NOT_IN_CATALOG' }), { origin: 'session-create' });
+    expect(unnamed.message).toBe('The chosen model is no longer offered by your Codex account. Refresh your account status and choose again.');
+  });
 });

@@ -14,6 +14,7 @@ import { useWorkspace } from '../workspace/workspace-provider';
 import { useRuntimeConnectivitySnapshot } from './runtime-connectivity-provider';
 import { useRuntimeBindingRefresh } from './runtime-connectivity-provider';
 import { useHostedBootstrapController } from '../settings/hosted-bootstrap-controller';
+import { HostedBootstrapProvider } from '../../lib/harness/hosted-bootstrap-context';
 import { ThemeControl } from './theme-control';
 
 export type ShellSection = 'PORTAL' | 'PIPELINE' | 'WORKBENCH' | 'CHAT';
@@ -95,8 +96,7 @@ export function ShellFrame({
   folderLocked = false,
   onFolderSelectionPending,
   renderWorkspaceContent,
-  onOpenSettings,
-  legacyHref = '/?legacy=1'
+  onOpenSettings
 }: ShellFrameProps): JSX.Element {
   const pathname = usePathname();
   const {
@@ -247,7 +247,6 @@ export function ShellFrame({
                   className={`shell-runtime-dot shell-runtime-dot--${runtimeIndicator.tone}`}
                   aria-hidden="true"
                 />
-                <span className="shell-runtime-chip-key">runtime</span>
                 <span className="shell-runtime-chip-value">{runtimeIndicator.label}</span>
               </button>
               <span
@@ -268,7 +267,7 @@ export function ShellFrame({
             <summary className="shell-root-chip" title={currentRootLabel}>
               {renderWorkspaceContent ? 'Settings' : <>
               <span className={rootDotClassName} aria-hidden="true" />
-              <span className="shell-root-chip-key">root</span>
+              <span className="shell-root-chip-key visually-hidden">Working root</span>
               <span className="shell-root-chip-value">{currentRootLabel}</span>
               </>}
             </summary>
@@ -327,7 +326,7 @@ export function ShellFrame({
             </section>
           </details>);
   if (variant === 'workspace' && renderWorkspaceContent) {
-    return <main className="shell shell--workspace shell--stone"><AccountPresentation folder={projectRoot} legacyHref={legacyHref} onOpenSettings={onOpenSettings}>
+    return <main className="shell shell--workspace shell--stone"><AccountPresentation folder={projectRoot} onOpenSettings={onOpenSettings}>
       {controls => renderWorkspaceContent({ reconnectControl, ...controls })}
     </AccountPresentation></main>;
   }
@@ -391,8 +390,8 @@ export function ShellFrame({
 }
 
 /** One runtime/account controller survives footer relocation and Settings changes. */
-function AccountPresentation({ folder, legacyHref, onOpenSettings, children }: {
-  folder: string | null; legacyHref: string; onOpenSettings?: () => void;
+function AccountPresentation({ folder, onOpenSettings, children }: {
+  folder: string | null; onOpenSettings?: () => void;
   children: (controls: { settingsControl: ReactNode; settingsView: ReactNode }) => ReactNode;
 }): JSX.Element {
   const runtime = useRuntimeSettingsController();
@@ -412,6 +411,8 @@ function AccountPresentation({ folder, legacyHref, onOpenSettings, children }: {
     window.addEventListener('keydown', shortcut);
     return () => window.removeEventListener('keydown', shortcut);
   }, [open]);
-  return <>{children({ settingsControl: <AccountRow account={account} runtime={runtime} hosted={hosted} folder={folder} legacyHref={legacyHref} onOpenSettings={open} />,
-    settingsView: <SettingsView account={account} runtime={runtime} hosted={hosted} folder={folder} target={target} /> })}</>;
+  // The chat panel's model/reasoning selectors read this same controller's
+  // snapshot through context; no second controller or status poll exists.
+  return <HostedBootstrapProvider snapshot={hosted.snapshot} loading={hosted.loading}>{children({ settingsControl: <AccountRow account={account} hosted={hosted} folder={folder} onOpenSettings={open} />,
+    settingsView: <SettingsView account={account} runtime={runtime} hosted={hosted} folder={folder} target={target} /> })}</HostedBootstrapProvider>;
 }

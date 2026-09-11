@@ -153,4 +153,28 @@ describe('operator session projection', () => {
     expect(projectOperatorSession(session('legacy'), new Set(['legacy']), { observedAt: '2026-09-09' }).continuation).toBeUndefined();
     expect(projectOperatorSession(session('task', { ...v3, sessionId: 'task', role: 'agent2', agentType: 2, roleId: 'TASK' }), new Set(['task']), { observedAt: '2026-09-09' }).continuation).toBeUndefined();
   });
+
+  it('projects the recorded session-fixed reasoning effort beside the model without inferring either', () => {
+    const recorded = session('codex', {
+      engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'gpt-alt' },
+      reasoningEffort: 'low'
+    });
+    const projected = projectOperatorSession(recorded, new Set(['codex']), { observedAt: '2026-09-09' });
+    expect(projected.model).toBe('gpt-alt');
+    expect(projected.reasoningEffort).toBe('low');
+
+    const withoutEffort = projectOperatorSession(session('legacy', {
+      engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'gpt-default' }
+    }), new Set(['legacy']), { observedAt: '2026-09-09' });
+    expect(withoutEffort.model).toBe('gpt-default');
+    expect(withoutEffort).not.toHaveProperty('reasoningEffort');
+    expect(projectOperatorSession(session('blank', { reasoningEffort: '   ' }), new Set(['blank']), { observedAt: '2026-09-09' })).not.toHaveProperty('reasoningEffort');
+    expect(projectOperatorSession(session('typed', { reasoningEffort: 3 }), new Set(['typed']), { observedAt: '2026-09-09' })).not.toHaveProperty('reasoningEffort');
+
+    // Effort changes the signature so a conflicting duplicate is detected, as for the model.
+    const conflict = buildOperatorSessionProjection([recorded, session('codex', {
+      engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'gpt-alt' }, reasoningEffort: 'high'
+    })], { observedAt: '2026-09-09' });
+    expect(conflict.sessions[0]?.currency).toBe('CONFLICTING');
+  });
 });

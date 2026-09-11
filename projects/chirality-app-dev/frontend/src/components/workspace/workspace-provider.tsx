@@ -12,8 +12,17 @@ import {
 
 const PROJECT_ROOT_STORAGE_KEY = 'chirality.projectRoot';
 
+/**
+ * The most recent project root the user chose explicitly in this session
+ * (native picker or a manually applied path). A root restored from storage on
+ * startup is never a selection. `sequence` increases on every explicit choice,
+ * including re-selecting the same folder, so consumers can act once per choice.
+ */
+export type WorkspaceSelection = { path: string; explicit: true; sequence: number };
+
 type WorkspaceContextValue = {
   projectRoot: string | null;
+  lastSelection: WorkspaceSelection | null;
   hasElectronDirectoryPicker: boolean;
   errorMessage: string | null;
   clearError: () => void;
@@ -50,6 +59,7 @@ async function validateProjectRoot(projectRoot: string): Promise<string> {
 
 export function WorkspaceProvider({ children }: { children: ReactNode }): JSX.Element {
   const [projectRoot, setProjectRoot] = useState<string | null>(null);
+  const [lastSelection, setLastSelection] = useState<WorkspaceSelection | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const hasElectronDirectoryPicker = typeof window !== 'undefined' && typeof window.chirality?.selectDirectory === 'function';
 
@@ -86,6 +96,11 @@ export function WorkspaceProvider({ children }: { children: ReactNode }): JSX.El
       try {
         const normalized = await validateProjectRoot(candidate);
         storeProjectRoot(normalized);
+        setLastSelection(current => ({
+          path: normalized,
+          explicit: true,
+          sequence: (current?.sequence ?? 0) + 1
+        }));
         setErrorMessage(null);
         return true;
       } catch (error) {
@@ -99,6 +114,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }): JSX.El
 
   const clearProjectRoot = useCallback(() => {
     storeProjectRoot(null);
+    setLastSelection(null);
     setErrorMessage(null);
   }, [storeProjectRoot]);
 
@@ -135,6 +151,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }): JSX.El
   const value = useMemo<WorkspaceContextValue>(
     () => ({
       projectRoot,
+      lastSelection,
       hasElectronDirectoryPicker,
       errorMessage,
       clearError,
@@ -144,6 +161,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }): JSX.El
     }),
     [
       projectRoot,
+      lastSelection,
       hasElectronDirectoryPicker,
       errorMessage,
       clearError,
@@ -163,4 +181,13 @@ export function useWorkspace(): WorkspaceContextValue {
   }
 
   return value;
+}
+
+/**
+ * Tolerant read of the current explicit selection. Outside a
+ * WorkspaceProvider (hosts that pass a root directly) there is no selection,
+ * so callers fall back to manual-only behaviour instead of throwing.
+ */
+export function useWorkspaceSelection(): WorkspaceSelection | null {
+  return useContext(WorkspaceContext)?.lastSelection ?? null;
 }

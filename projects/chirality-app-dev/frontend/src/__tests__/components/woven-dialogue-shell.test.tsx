@@ -183,11 +183,16 @@ describe('WovenDialogueShell composition', () => {
     expect(shellState.replayLoad).toHaveBeenCalledTimes(2);
     act(() => shellState.replayNotify?.({ status: 'READY', projection: { selectedSessionId: 'recorded' } }));
     assertPrimary();
-    click('Who is working'); assertPrimary();
+    // The right panel's "Agents" tab or breadcrumb, never the Coordination view toggle (which carries aria-pressed).
+    const agentsButton = () => tree.root.findAllByType('button').find(button => button.children.join('') === 'Agents' && button.props['aria-pressed'] === undefined)!;
+    const clickAgentsTab = () => act(() => { agentsButton().props.onClick(); });
+    expect(agentsButton()).toBeDefined();
+    expect(tree.root.findAllByType('button').some(button => button.children.join('') === 'Who is working')).toBe(false);
+    clickAgentsTab(); assertPrimary();
     act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
     expect(tree.root.findByType(CoordinationPanel).props.activeView).toBe('session');
     expect(shellState.replayLoad).toHaveBeenCalledTimes(2); assertPrimary();
-    click('Who is working'); act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded')); assertPrimary();
+    clickAgentsTab(); act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded')); assertPrimary();
     click('Close Navigator'); assertPrimary(); click('Open Navigator'); assertPrimary();
     act(() => tree.root.findByType(RightPanel).props.onView('files'));
     act(() => tree.root.findByType(RightPanel).props.onClose()); assertPrimary(); click('Open Coordination'); assertPrimary();

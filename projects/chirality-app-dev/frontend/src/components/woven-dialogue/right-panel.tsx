@@ -113,7 +113,7 @@ export function RightPanel({ settingsView, state, sessionOpen, folderLocked = fa
   return <section className="woven-right-panel" aria-label="Right panel">
     <header className={`woven-region-header woven-right-panel-header ${styles.header}`}>
       {view === 'settings' ? <nav aria-label="Settings breadcrumb"><button onClick={() => onView('files')}>‹ Files</button> › <strong tabIndex={-1} id="right-settings-title">Settings</strong></nav> : target ? <nav aria-label="Document breadcrumb"><button onClick={() => onView('files')}>Files</button> › <span>{target}</span></nav> :
-        sessionOpen && view === 'agents' ? <nav aria-label="Session breadcrumb"><button onClick={() => onView('agents')}>Who is working</button> › Session</nav> :
+        sessionOpen && view === 'agents' ? <nav aria-label="Session breadcrumb"><button onClick={() => onView('agents')}>Agents</button> › Session</nav> :
         <div ref={tabsRef} className={styles.tabs} role="tablist" aria-label="Right panel views" onKeyDown={(event) => {
           if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
           event.preventDefault();
@@ -123,7 +123,7 @@ export function RightPanel({ settingsView, state, sessionOpen, folderLocked = fa
           event.currentTarget.querySelector<HTMLButtonElement>(`[data-view="${next}"]`)?.focus();
         }}>{(['files', 'workflows', 'agents', 'activity'] as const).map(item => <button key={item} role="tab" id={`right-tab-${item}`} data-view={item}
           aria-controls="right-view-content" aria-selected={view === item} tabIndex={view === item ? 0 : -1}
-          onClick={() => onView(item)}>{item === 'files' ? 'Files' : item === 'workflows' ? 'Workflows' : item === 'agents' ? 'Who is working' : 'Activity'}</button>)}</div>}
+          onClick={() => onView(item)}>{item === 'files' ? 'Files' : item === 'workflows' ? 'Workflows' : item === 'agents' ? 'Agents' : 'Activity'}</button>)}</div>}
       <div className="woven-right-panel-controls">
         <details><summary aria-label="Panel menu" title="Panel menu">⋮</summary>
           <div className="woven-panel-menu-content">

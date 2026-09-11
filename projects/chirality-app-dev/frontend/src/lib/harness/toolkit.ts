@@ -2,8 +2,10 @@ import type { HarnessOpts } from '@chirality/runtime-contracts/types';
 
 export const TOOLKIT_STORAGE_KEY = 'chirality.toolkit.v1';
 
+// The model and reasoning effort are chosen per session from the authenticated
+// Codex catalog in the chat panel; the toolkit carries no free-text `opts.model`
+// so the session record stays the single source of truth.
 export type ToolkitValues = {
-  model: string;
   tools: string;
   maxTurns: string;
   includeSubagentGovernance: boolean;
@@ -31,7 +33,6 @@ const MAX_PRESET_COUNT = 25;
 
 export function defaultToolkitValues(): ToolkitValues {
   return {
-    model: '',
     tools: '',
     maxTurns: '',
     includeSubagentGovernance: false,
@@ -68,7 +69,6 @@ function sanitizeToolkitValues(value: unknown): ToolkitValues {
 
   const record = value as Record<string, unknown>;
   return {
-    model: readString(record.model),
     tools: readString(record.tools),
     maxTurns: readString(record.maxTurns),
     includeSubagentGovernance: readBoolean(record.includeSubagentGovernance),
@@ -135,15 +135,10 @@ function splitTools(tools: string): string[] {
 }
 
 export function buildHarnessOptsFromToolkit(values: ToolkitValues): HarnessOpts | undefined {
-  const model = values.model.trim();
   const tools = splitTools(values.tools);
   const maxTurns = Number.parseInt(values.maxTurns, 10);
 
   const opts: HarnessOpts = {};
-
-  if (model) {
-    opts.model = model;
-  }
 
   if (tools.length > 0) {
     opts.tools = tools;

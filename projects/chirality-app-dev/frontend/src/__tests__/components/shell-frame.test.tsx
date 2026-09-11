@@ -22,7 +22,8 @@ vi.mock('next/link', () => ({
     React.createElement('a', props, children)
 }));
 vi.mock('../../components/workspace/workspace-provider', () => ({
-  useWorkspace: () => workspace.value
+  useWorkspace: () => workspace.value,
+  useWorkspaceSelection: () => null
 }));
 vi.mock('../../components/settings/api-key-settings', () => ({ ApiKeySettings: () => null }));
 vi.mock('../../components/settings/runtime-settings', () => ({ RuntimeSettings: () => null, RuntimeSettingsView: () => null }));

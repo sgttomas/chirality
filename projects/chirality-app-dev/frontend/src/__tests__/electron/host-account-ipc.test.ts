@@ -57,6 +57,21 @@ describe('host account main-process IPC', () => {
     expect(account.status).toHaveBeenCalledWith(project.projectId);
   });
 
+  it('forwards a ready status with the model catalog and selection verbatim', async () => {
+    const ready = {
+      schema: 'chirality-hosted-bootstrap-status/v1', projectId: project.projectId, ceremony: 'signed-in', admission: 'ready', canStartLogin: false,
+      models: [
+        { model: 'gpt-default', isDefault: true, defaultReasoningEffort: 'high', supportedReasoningEfforts: ['low', 'medium', 'high'] },
+        { model: 'gpt-alt', isDefault: false, defaultReasoningEffort: 'medium', supportedReasoningEfforts: ['medium', 'low'] }
+      ],
+      selection: { model: 'gpt-default', reasoningEffort: 'high' }
+    };
+    account.status.mockResolvedValue(ready);
+    const runtimeClient = { listProjects: vi.fn(async () => [projectStatus()]), projectStatus: vi.fn(async () => projectStatus()) };
+    const result = await performHostAccountOperation({ operation: 'status', projectRoot: root }, { runtimeClient, accountClient: () => account });
+    expect(result).toEqual({ ok: true, value: { registration: 'registered', projectId: project.projectId, status: ready } });
+  });
+
   it('rejects malformed and noncanonical roots before registry or account effects', async () => {
     const runtimeClient = { listProjects: vi.fn(), projectStatus: vi.fn() };
     for (const request of [{ operation: 'status', projectRoot: 'relative' }, { operation: 'status', projectRoot: `${root}/..` }, { operation: 'status', projectRoot: root, projectId: 'renderer-choice' }]) {

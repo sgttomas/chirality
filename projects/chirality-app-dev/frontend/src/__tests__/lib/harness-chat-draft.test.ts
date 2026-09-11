@@ -222,6 +222,32 @@ describe('chat draft helpers', () => {
     expect(storage.setItem).not.toHaveBeenCalled();
   });
 
+  it('round-trips an explicit model/reasoning pair and drops corrupt or partial values', () => {
+    const storage = new Map<string, string>();
+    const port = {
+      getItem: (key: string) => storage.get(key) ?? null,
+      setItem: (key: string, value: string) => { storage.set(key, value); },
+      removeItem: (key: string) => { storage.delete(key); }
+    };
+    persistChatDraftSnapshotToStorage(port, 'draft-key', { draft: '', attachments: [], methods: [], model: 'gpt-alt', reasoningEffort: 'low' });
+    expect(readChatDraftSnapshotFromStorage(port, 'draft-key').snapshot).toEqual({
+      draft: '', attachments: [], methods: [], model: 'gpt-alt', reasoningEffort: 'low'
+    });
+
+    expect(sanitizeChatDraftSnapshot({ draft: 'x', model: 'gpt-alt' })).toEqual({ draft: 'x', attachments: [], methods: [] });
+    expect(sanitizeChatDraftSnapshot({ draft: 'x', reasoningEffort: 'low' })).toEqual({ draft: 'x', attachments: [], methods: [] });
+    expect(sanitizeChatDraftSnapshot({ draft: 'x', model: 'has space', reasoningEffort: 'low' })).toEqual({ draft: 'x', attachments: [], methods: [] });
+    expect(sanitizeChatDraftSnapshot({ draft: 'x', model: 'gpt-alt', reasoningEffort: '' })).toEqual({ draft: 'x', attachments: [], methods: [] });
+    expect(sanitizeChatDraftSnapshot({ draft: 'x', model: 7, reasoningEffort: 'low' })).toEqual({ draft: 'x', attachments: [], methods: [] });
+    expect(sanitizeChatDraftSnapshot({ draft: 'x', model: 'm'.repeat(129), reasoningEffort: 'low' })).toEqual({ draft: 'x', attachments: [], methods: [] });
+
+    // A pair alone is a nonempty snapshot: it is stored, not removed.
+    persistChatDraftSnapshotToStorage(port, 'pair-only', { draft: '', attachments: [], methods: [], model: 'gpt-default', reasoningEffort: 'high' });
+    expect(storage.has('pair-only')).toBe(true);
+    persistChatDraftSnapshotToStorage(port, 'pair-only', { draft: '', attachments: [], methods: [] });
+    expect(storage.has('pair-only')).toBe(false);
+  });
+
   it('marks storage unavailable when write operations fail', () => {
     const storage = {
       setItem: vi.fn(() => {

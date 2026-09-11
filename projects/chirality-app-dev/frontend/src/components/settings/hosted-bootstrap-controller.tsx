@@ -4,12 +4,14 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   cancelHostedBootstrapLogin,
   getHostedBootstrapStatus,
+  getHostedBootstrapStatusWithRetry,
   grantHostedProviderNetworkConsent,
   initializeHostedBootstrapProject,
   hydrateHostedBootstrapProject,
   signOutHostedBootstrapProject,
   startHostedBootstrapLogin
 } from '../../lib/harness/hosted-bootstrap-client';
+import { useWorkspaceSelection } from '../workspace/workspace-provider';
 
 export type HostedBootstrapStatusResult = Awaited<ReturnType<typeof getHostedBootstrapStatus>>;
 type RegisteredBootstrap = Extract<HostedBootstrapStatusResult, { registration: 'registered' }>;
@@ -45,16 +47,25 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
   const [error, setError] = useState<string | null>(null);
   const [authUrl, setAuthUrl] = useState<string | null>(null);
   const [signOutUncertain, setSignOutUncertain] = useState(false);
+  const lastSelection = useWorkspaceSelection();
   const rootRef = useRef(projectRoot);
   const snapshotRef = useRef(snapshot);
   const onBindingChangedRef = useRef(onBindingChanged);
   const publishedBindingKeys = useRef(new Set<string>());
+  const autoSetupSequence = useRef<number | null>(null);
   const operationGeneration = useRef(0);
   const actionController = useRef<AbortController | null>(null);
   const pollController = useRef<AbortController | null>(null);
   rootRef.current = projectRoot;
   snapshotRef.current = snapshot;
   onBindingChangedRef.current = onBindingChanged;
+
+  const publishBinding = useCallback((root: string, projectId: string): void => {
+    const key = `${root}:${projectId}:registered`;
+    if (publishedBindingKeys.current.has(key)) return;
+    publishedBindingKeys.current.add(key);
+    onBindingChangedRef.current();
+  }, []);
 
   const load = useCallback(async (root: string, generation: number, signal?: AbortSignal): Promise<void> => {
     const result = await hydrateHostedBootstrapProject(
@@ -65,11 +76,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
           operationGeneration.current === generation &&
           rootRef.current === root
         ) {
-          const key = `${root}:${binding.projectId}:registered`;
-          if (!publishedBindingKeys.current.has(key)) {
-            publishedBindingKeys.current.add(key);
-            onBindingChangedRef.current();
-          }
+          publishBinding(root, binding.projectId);
         }
       },
       signal
@@ -79,7 +86,20 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
       setError(null);
       setLoading(false);
     }
-  }, []);
+  }, [publishBinding]);
+
+  // Explicit setup registers and binds through Next, publishes the verified
+  // binding exactly as hydration does, then reads account status through the
+  // signed Desktop account-host bridge. The Next tier never carries status.
+  const setup = useCallback(async (root: string, signal: AbortSignal, generation: number): Promise<void> => {
+    const binding = await initializeHostedBootstrapProject(root, signal);
+    if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;
+    publishBinding(root, binding.projectId);
+    const result = await getHostedBootstrapStatusWithRetry(root, signal);
+    if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;
+    setObserved({ projectRoot: root, snapshot: result });
+    setAuthUrl(null);
+  }, [publishBinding]);
 
   useEffect(() => {
     const generation = ++operationGeneration.current;
@@ -168,14 +188,27 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
     }
   }, [busyAction]);
 
+  // A folder the user chose explicitly in this session (native picker or an
+  // applied path) that hydrates as unregistered is set up once for that
+  // selection. Roots restored from storage never auto-initialize, and a failed
+  // automatic setup leaves the manual action and its error in place.
+  useEffect(() => {
+    if (
+      !projectRoot ||
+      !lastSelection ||
+      lastSelection.path !== projectRoot ||
+      autoSetupSequence.current === lastSelection.sequence ||
+      loading ||
+      busyAction ||
+      snapshot?.registration !== 'required'
+    ) return;
+    autoSetupSequence.current = lastSelection.sequence;
+    void perform('setup', setup);
+  }, [projectRoot, lastSelection, loading, busyAction, snapshot, perform, setup]);
+
   return {
     projectRoot, snapshot, loading, busyAction, error, authUrl, signOutUncertain,
-    onSetup: () => void perform('setup', async (root, signal, generation) => {
-      const result = await initializeHostedBootstrapProject(root, signal);
-      if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;
-      setObserved({ projectRoot: root, snapshot: result });
-      setAuthUrl(null);
-    }),
+    onSetup: () => void perform('setup', setup),
     onGrantConsent: () => void perform('consent', async (root, signal, generation) => {
       const status = await grantHostedProviderNetworkConsent(root, signal);
       if (!signal.aborted && operationGeneration.current === generation && rootRef.current === root) setObserved(current => ({ projectRoot: root, snapshot: withStatus(current.projectRoot === root ? current.snapshot : null, status) }));

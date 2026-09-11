@@ -39,6 +39,24 @@ describe('hosted bootstrap API boundary', () => {
     expect(initializeProject).not.toHaveBeenCalled();
   });
 
+  it('never carries hosted account status through the Next status route', async () => {
+    const getStatus = vi.fn().mockResolvedValue({
+      registration: 'registered',
+      projectId: 'project-one'
+    });
+    installHostedBootstrapPort({ ...createFakeHostedBootstrapPort(), getStatus });
+
+    const response = await statusRoute.GET(new Request(
+      'http://localhost/api/harness/hosted-bootstrap/status?projectRoot=%2Fselected'
+    ));
+
+    expect(response.status).toBe(200);
+    const payload = await response.json();
+    expect(payload).toEqual({ registration: 'registered', projectId: 'project-one' });
+    expect(payload).not.toHaveProperty('status');
+    expect(getStatus).toHaveBeenCalledWith('/selected', { signal: expect.any(AbortSignal) });
+  });
+
   it('binds an existing registration without invoking explicit initialization', async () => {
     const bindProject = vi.fn().mockResolvedValue({
       registration: 'registered',
@@ -189,17 +207,7 @@ describe('hosted bootstrap API boundary', () => {
           { projectId: 'project-one', projectRoot },
           true
         );
-        return {
-          registration: 'registered',
-          projectId: 'project-one',
-          status: {
-            schema: 'chirality-hosted-bootstrap-status/v1',
-            projectId: 'project-one',
-            ceremony: 'consent-required',
-            admission: 'unavailable',
-            canStartLogin: false
-          }
-        };
+        return { registration: 'registered', projectId: 'project-one' };
       }
     });
 
@@ -212,6 +220,9 @@ describe('hosted bootstrap API boundary', () => {
       }
     ));
     expect(initialized.status).toBe(200);
+    const initializedPayload = await initialized.json();
+    expect(initializedPayload).toEqual({ registration: 'registered', projectId: 'project-one' });
+    expect(initializedPayload).not.toHaveProperty('status');
 
     vi.resetModules();
     const rolesRoute = await import('../../../app/api/harness/roles/route');

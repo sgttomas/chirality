@@ -8,15 +8,18 @@ import {
   createHarnessSession,
   interruptHarnessSession,
   replaySessionEvents,
-  streamHarnessTurn
+  streamHarnessTurn,
+  type HarnessModelSelection
 } from '../../lib/harness/client';
+import { isSelectionInCatalog, selectHostedModelCatalog, useHostedBootstrap } from '../../lib/harness/hosted-bootstrap-context';
 import { toHarnessUiError, type HarnessUiError } from '../../lib/harness/error-display';
 import {
   buildChatDraftStorageKey,
   persistChatDraftSnapshotToStorage,
   readChatDraftSnapshotFromStorage
 } from '../../lib/harness/chat-draft';
-import { type UiAttachment } from '../../lib/harness/ui-attachments';
+import { buildUiAttachment, type UiAttachment } from '../../lib/harness/ui-attachments';
+import { getNativeAttachmentBridge } from '../../lib/shell/native-attachments';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import { CHAT_SECTION } from '../../lib/shell/loop-first';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
@@ -67,6 +70,9 @@ type ActiveSession = {
   selectedMethods: readonly QualifiedMethodReference[];
   methodSelectionRevision: number;
   instructionBasisId: string;
+  /** Recorded `engineSelection.model` / `reasoningEffort`; fixed for the session's lifetime. */
+  model?: string;
+  reasoningEffort?: string;
 };
 
 export type ResumeConversationRequest = {
@@ -75,8 +81,9 @@ export type ResumeConversationRequest = {
 };
 
 // Operator permission modes (DESIGN §3.4), mapped to the harness's canonical
-// `opts.mode` values consumed by the permission overlay. Sent per turn so the
-// operator can switch the posture live without re-creating the session.
+// `opts.mode` values consumed by the permission overlay. Sent per turn. The
+// only supported posture is enforced project access, so no selector is shown;
+// a recorded chat carrying another stored mode must opt back in explicitly.
 type OperatorModeOption = {
   value: string;
   label: string;
@@ -87,10 +94,30 @@ const OPERATOR_MODES: readonly OperatorModeOption[] = [
 ];
 
 const DEFAULT_OPERATOR_MODE = 'workspaceWrite';
+const MODEL_SELECTOR_SIGNED_OUT_TITLE = 'Sign in to Codex to choose a model';
+const MODEL_SELECTOR_FIXED_TITLE = 'Model and reasoning are fixed for this chat. Start a new chat to change them.';
+const MODEL_SELECTOR_HELP = 'Codex model for the next chat, from your authenticated account catalog. Fixed once the chat starts.';
+const REASONING_SELECTOR_HELP = 'Reasoning effort supported by the selected model. Separate from Plan Mode and from permissions.';
 const PLAIN_MODE_LABELS: Record<string, string> = { readOnly: 'Read only', ask: 'Ask before changes', workspaceWrite: 'Project access', bypass: 'Autonomous' };
 
 function isSupportedOperatorMode(mode: string): boolean {
-  return mode === 'workspaceWrite';
+  return OPERATOR_MODES.some(option => option.value === mode);
+}
+
+/**
+ * The recorded pair from a Runtime session record: `engineSelection.model` and
+ * the additive `reasoningEffort`. Read from the booted record first, then the
+ * created one; absent fields stay absent (never inferred).
+ */
+function recordedModelSelection(...records: ReadonlyArray<Partial<RuntimeSessionRecordV3> | null | undefined>): Pick<ActiveSession, 'model' | 'reasoningEffort'> {
+  const selection: Pick<ActiveSession, 'model' | 'reasoningEffort'> = {};
+  for (const record of records) {
+    const model = record?.engineSelection?.model;
+    if (selection.model === undefined && typeof model === 'string' && model.trim()) selection.model = model;
+    const effort = record?.reasoningEffort;
+    if (selection.reasoningEffort === undefined && typeof effort === 'string' && effort.trim()) selection.reasoningEffort = effort;
+  }
+  return selection;
 }
 
 function readTextField(data: unknown): string | undefined {
@@ -299,6 +326,18 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const [pickerOpen, setPickerOpen] = useState(false);
   const [operatorMode, setOperatorMode] = useState<string>(DEFAULT_OPERATOR_MODE);
   const [interactionMode, setInteractionMode] = useState<InteractionMode>('chat');
+  // Explicit model/reasoning choice for the next session. Null means the
+  // catalog default published by Runtime status; a pair outside the current
+  // catalog is dropped rather than substituted.
+  const [modelChoice, setModelChoice] = useState<HarnessModelSelection | null>(null);
+  const hostedBootstrap = useHostedBootstrap();
+  const modelCatalog = useMemo(() => selectHostedModelCatalog(hostedBootstrap.snapshot), [hostedBootstrap.snapshot]);
+  const nextSessionSelection: HarnessModelSelection | null = modelCatalog
+    ? (isSelectionInCatalog(modelCatalog, modelChoice) ? modelChoice : modelCatalog.selection)
+    : null;
+  useEffect(() => {
+    if (modelCatalog && modelChoice && !isSelectionInCatalog(modelCatalog, modelChoice)) setModelChoice(null);
+  }, [modelCatalog, modelChoice]);
   const [planCapability, setPlanCapability] = useState<NativePlanCapabilityResponse>({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: 'Start a chat to check native Plan Mode support.' });
   const [planRevisions, setPlanRevisions] = useState<readonly NativePlanRevision[]>([]);
   const [planClarifications, setPlanClarifications] = useState<readonly NativePlanClarification[]>([]);
@@ -312,10 +351,14 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const lastInstructionSequenceRef = useRef(0);
   const [isRunning, setIsRunning] = useState(false);
   const [nativeFolderError, setNativeFolderError] = useState<string | null>(null);
+  const [attachmentPickPending, setAttachmentPickPending] = useState(false);
   const nativeSelectionActive = useRef(false);
   const [folderSyncError, setFolderSyncError] = useState<string | null>(null);
   const composerRef = useRef<HTMLTextAreaElement | null>(null);
   const bindingGeneration = useRef(0);
+  // True only while a create request is outstanding, so a MODEL_NOT_IN_CATALOG
+  // rejection can be told apart from one raised for an existing session.
+  const sessionCreateInFlight = useRef(false);
   const canonicalTransition = useRef<{ from: string; to: string; persona: string; mode: string } | null>(null);
   const previousContext = useRef<{ root: string | null; persona: string; mode: string } | null>(null);
   const newChatSeen = useRef(newChatRequest);
@@ -422,6 +465,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       setDraft('');
       setAttachments([]);
       onSelectedMethodsChange([]);
+      setModelChoice(null);
       setDraftStorageWritable(true);
       setDraftStorageWarning(null);
       return;
@@ -430,6 +474,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const result = readChatDraftSnapshotFromStorage(window.localStorage, draftStorageKey);
     setDraft(result.snapshot.draft);
     setAttachments(result.snapshot.attachments);
+    setModelChoice(result.snapshot.model && result.snapshot.reasoningEffort
+      ? { model: result.snapshot.model, reasoningEffort: result.snapshot.reasoningEffort }
+      : null);
     const hydratedMethods = isRunning && activeSession && result.snapshot.methods.length === 0
       ? selectedMethodsSnapshot.current
       : result.snapshot.methods;
@@ -450,7 +497,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       {
         draft,
         attachments,
-        methods: selectedMethods
+        methods: selectedMethods,
+        ...(modelChoice ? { model: modelChoice.model, reasoningEffort: modelChoice.reasoningEffort } : {})
       }
     );
 
@@ -461,7 +509,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if (result.warning) {
       setDraftStorageWarning((existing) => existing ?? result.warning);
     }
-  }, [draftStorageKey, loadedDraftKey, draft, attachments, selectedMethods, draftStorageWritable]);
+  }, [draftStorageKey, loadedDraftKey, draft, attachments, selectedMethods, modelChoice, draftStorageWritable]);
 
   useEffect(() => {
     if (!activeSession) {
@@ -578,7 +626,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       mode: activeMode,
       selectedMethods: continuation.selectedMethods,
       methodSelectionRevision: continuation.methodSelectionRevision,
-      instructionBasisId: continuation.instructionBasisId
+      instructionBasisId: continuation.instructionBasisId,
+      ...(projection.session?.model ? { model: projection.session.model } : {}),
+      ...(projection.session?.reasoningEffort ? { reasoningEffort: projection.session.reasoningEffort } : {})
     };
     activeSessionIdRef.current = nextSession.sessionId;
     clearNativePlanProjection();
@@ -635,6 +685,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const generation = bindingGeneration.current;
     const selectedRootAtBinding = conversationBinding?.selectedRootAtBinding ?? projectRoot;
     setRuntimeStatus('Creating session...');
+    sessionCreateInFlight.current = true;
     const session = await createHarnessSession({
       projectRoot: conversationBinding?.projectRoot ?? projectRoot,
       persona: activePersona,
@@ -642,8 +693,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       mode: activeMode,
       interactionMode,
       permissionMode: operatorMode as 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass',
-      selectedMethods
+      selectedMethods,
+      // The pair shown in the selectors is what the session is created with.
+      // Runtime validates it against the catalog and rejects rather than
+      // substitutes; boot and turn carry no opts.model.
+      ...(nextSessionSelection ? { modelSelection: nextSessionSelection } : {})
     });
+    sessionCreateInFlight.current = false;
 
     setRuntimeStatus('Booting session...');
     const boot = await bootHarnessSession(
@@ -670,7 +726,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       methodSelectionRevision: runtimeSession.schemaVersion === 'chirality.session/v3' && typeof runtimeSession.methodSelectionRevision === 'number'
         ? runtimeSession.methodSelectionRevision : 0,
       instructionBasisId: runtimeSession.schemaVersion === 'chirality.session/v3' && typeof runtimeSession.instructionBasisId === 'string'
-        ? runtimeSession.instructionBasisId : ''
+        ? runtimeSession.instructionBasisId : '',
+      ...recordedModelSelection(runtimeSession, session)
     };
     activeSessionIdRef.current = nextSession.sessionId;
     if (conversationBinding && nextSession.projectRoot !== conversationBinding.projectRoot) {
@@ -721,6 +778,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const submittedMethodsRevision = selectedMethodsRevision.current;
     const submittedDraftStorageKey = draftStorageKey;
     const submittedWithoutSession = activeSession === null;
+    const submittedModelChoice = modelChoice;
+    let bootedSession: ActiveSession | null = activeSession;
 
     setRuntimeError(null);
     setRuntimeStatus('Preparing turn...');
@@ -751,6 +810,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
     try {
       const session = await ensureSessionBooted();
+      bootedSession = session;
       const roleChanged = session.persona !== activePersona;
       let activeMethods = session.selectedMethods;
       let activeRevision = session.methodSelectionRevision;
@@ -962,7 +1022,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         persona: activePersona,
         selectedMethods: replayRuntimeSession?.selectedMethods ?? recordedBasis?.selectedMethods ?? activeMethods,
         methodSelectionRevision: replayRuntimeSession?.methodSelectionRevision ?? activeRevision,
-        instructionBasisId: replayRuntimeSession?.instructionBasisId ?? recordedBasis?.basisId ?? activeBasisId
+        instructionBasisId: replayRuntimeSession?.instructionBasisId ?? recordedBasis?.basisId ?? activeBasisId,
+        ...(replayRuntimeSession ? recordedModelSelection(replayRuntimeSession) : {})
       } : existing);
       // Composer method references apply to the submitted message. A selection
       // made while this turn was streaming belongs to the next message and must
@@ -974,9 +1035,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       // the canonical Runtime session key. Consume the exact prior entry key
       // so its submitted method references cannot reappear in a later New
       // chat. Edits made during the turn already belong to the session key.
+      // The model choice is not a per-message reference: it stays on the entry
+      // key so the next new chat offers the same pair (still re-checked
+      // against the current catalog before use).
       if (submittedWithoutSession && submittedDraftStorageKey && typeof window !== 'undefined') {
         persistChatDraftSnapshotToStorage(window.localStorage, submittedDraftStorageKey, {
-          draft: '', attachments: [], methods: []
+          draft: '', attachments: [], methods: [],
+          ...(submittedModelChoice ? { model: submittedModelChoice.model, reasoningEffort: submittedModelChoice.reasoningEffort } : {})
         });
       }
       if (interactionMode === 'native-plan') {
@@ -984,7 +1049,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           .catch(() => {});
       }
     } catch (error) {
-      const uiError = toHarnessUiError(error);
+      const origin = sessionCreateInFlight.current ? 'session-create' : 'session';
+      sessionCreateInFlight.current = false;
+      const uiError = toHarnessUiError(error, { sessionModel: bootedSession?.model, origin });
       setRuntimeError(uiError);
       setRuntimeStatus(null);
       if (requestGeneration === bindingGeneration.current) {
@@ -1066,6 +1133,23 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
   }
 
+  // Desktop builds pick attachments through the native dialog (main process
+  // canonicalises and scopes the paths); web builds keep the in-app picker.
+  const pickAttachments = async (): Promise<void> => {
+    if (!projectRoot || attachmentPickPending) return;
+    const bridge = getNativeAttachmentBridge();
+    if (!bridge) { setPickerOpen(true); return; }
+    setAttachmentPickPending(true); setNativeFolderError(null);
+    try {
+      const result = await bridge.selectFiles({ projectRoot });
+      if (result.cancelled) { if (result.error) setNativeFolderError(result.error); return; }
+      const incoming = result.paths.map(buildUiAttachment);
+      if (incoming.length) setAttachments(existing => mergeAttachments(existing, incoming));
+    } catch (error) {
+      setNativeFolderError(error instanceof Error ? error.message : 'Unable to attach files.');
+    } finally { setAttachmentPickPending(false); }
+  };
+
   return (
     <aside className={`panel panel--chat${presentation === 'woven' ? ' chat-panel--woven' : ''}`}>
       {presentation !== 'woven' ? <header className="panel-header">
@@ -1073,23 +1157,6 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <p className="chat-meta">
           Role: {activePersona} | Section: {activeMode}
         </p>
-        <label className="chat-mode-selector">
-          <span>Operator mode</span>
-          <select
-            value={operatorMode}
-            disabled={isRunning}
-            onChange={(event) => {
-              setOperatorMode(event.target.value);
-            }}
-          >
-            {!isSupportedOperatorMode(operatorMode) ? <option value={operatorMode} disabled>{PLAIN_MODE_LABELS[operatorMode] ?? operatorMode} (unsupported)</option> : null}
-            {OPERATOR_MODES.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
       </header> : null}
 
       <div className={presentation === 'woven' && (interactionMode === 'native-plan' || planRevisions.length > 0) ? 'chat-conversation-stage chat-conversation-stage--planning' : 'chat-conversation-stage'}>
@@ -1226,10 +1293,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             <p>{runtimeError.nextStep}</p>
           </div>
         ) : null}
-        {!isSupportedOperatorMode(operatorMode) ? <div className="chat-runtime-error" role="alert">
-          <p className="chat-runtime-error-title">Unsupported permission profile</p>
-          <p>This recorded chat used {PLAIN_MODE_LABELS[operatorMode] ?? operatorMode}. Select Project access before sending another message.</p>
-        </div> : null}
+        {!isSupportedOperatorMode(operatorMode) ? <p className="chat-runtime-error" role="alert">
+          This recorded chat used {PLAIN_MODE_LABELS[operatorMode] ?? operatorMode}, which is no longer supported. <button type="button" disabled={isRunning} onClick={() => setOperatorMode(DEFAULT_OPERATOR_MODE)}>Continue with Project access</button>
+        </p> : null}
       </div>
 
       <form
@@ -1294,7 +1360,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             projectRoot ? presentation === 'woven' ? `Message ${personaLabel}…` : `Send prompt as ${activePersona}...` : presentation === 'woven' ? 'Choose a folder first…' : 'Select a Working Root first...'
           }
         />)}
-        {presentation === 'woven' ? <button type="button" aria-label="Attach files" title="Attach files" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={() => setPickerOpen(true)}>⊕</button> : null}
+        {presentation === 'woven' ? <button type="button" aria-label="Attach files" title="Attach files" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady || attachmentPickPending} onClick={() => void pickAttachments()}>⊕</button> : null}
         {presentation === 'woven' ? <button type="button" className="chat-workflow-button" aria-label="Choose a workflow" title="Open workflows and skill references" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={onOpenMethods}>Workflows</button> : null}
         <button
           type="submit"
@@ -1319,14 +1385,38 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <span>{conversationBinding ? 'Working in' : 'Start in'}</span>
         <FolderSelect knownRoots={knownRoots} root={conversationBinding?.projectRoot ?? projectRoot} locked={Boolean(conversationBinding)} disabled={isRunning || folderSelectionPending} onPendingChange={onFolderSelectionPending} />
         <span aria-hidden="true">·</span><PersonaPicker compact disabled={isRunning} />
-        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Operator mode</span><select value={operatorMode} disabled={isRunning} onChange={event => setOperatorMode(event.target.value)}>
-          {!isSupportedOperatorMode(operatorMode) ? <option value={operatorMode} disabled>{PLAIN_MODE_LABELS[operatorMode] ?? operatorMode} (unsupported)</option> : null}
-          {OPERATOR_MODES.map(option => <option key={option.value} value={option.value}>{PLAIN_MODE_LABELS[option.value]}</option>)}</select></label>
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Interaction mode</span><select aria-label="Interaction mode" value={interactionMode} disabled={isRunning} onChange={event => setInteractionMode(event.target.value as InteractionMode)}>
-          <option value="chat">Chat</option><option value="native-plan" disabled={Boolean(activeSession) && !nativePlanAvailable(planCapability)}>Plan Mode</option>
+          <option value="chat">Chat</option><option value="native-plan" disabled={Boolean(activeSession) && !nativePlanAvailable(planCapability)} title={activeSession && planCapability.status === 'unavailable' ? `Plan Mode unavailable: ${planCapability.reason}` : undefined}>Plan Mode</option>
         </select></label>
-        {activeSession && planCapability.status === 'unavailable' ? <span title={planCapability.reason}>Plan Mode unavailable</span> : null}
-        {activeSession && planCapability.status === 'trial' ? <span>Human trial — empirical qualification pending</span> : null}
+        {/* Model and reasoning are session-fixed catalog choices, distinct from Plan Mode (interaction) and permissions. */}
+        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Model</span><select aria-label="Model"
+          value={activeSession ? activeSession.model ?? '' : nextSessionSelection?.model ?? ''}
+          disabled={Boolean(activeSession) || !modelCatalog || isRunning}
+          title={activeSession ? MODEL_SELECTOR_FIXED_TITLE : modelCatalog ? MODEL_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          onChange={event => {
+            const entry = modelCatalog?.models.find(model => model.model === event.target.value);
+            if (entry) setModelChoice({ model: entry.model, reasoningEffort: entry.defaultReasoningEffort });
+          }}>
+          {activeSession
+            ? <option value={activeSession.model ?? ''}>{activeSession.model ?? 'Model'}</option>
+            : modelCatalog
+              ? modelCatalog.models.map(entry => <option key={entry.model} value={entry.model}>{entry.model}</option>)
+              : <option value="">Model</option>}
+        </select></label>
+        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Reasoning</span><select aria-label="Reasoning"
+          value={activeSession ? activeSession.reasoningEffort ?? '' : nextSessionSelection?.reasoningEffort ?? ''}
+          disabled={Boolean(activeSession) || !modelCatalog || isRunning}
+          title={activeSession ? MODEL_SELECTOR_FIXED_TITLE : modelCatalog ? REASONING_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          onChange={event => {
+            const entry = nextSessionSelection && modelCatalog?.models.find(model => model.model === nextSessionSelection.model);
+            if (entry && entry.supportedReasoningEfforts.includes(event.target.value)) setModelChoice({ model: entry.model, reasoningEffort: event.target.value });
+          }}>
+          {activeSession
+            ? <option value={activeSession.reasoningEffort ?? ''}>{activeSession.reasoningEffort ?? 'Reasoning'}</option>
+            : modelCatalog && nextSessionSelection
+              ? (modelCatalog.models.find(entry => entry.model === nextSessionSelection.model)?.supportedReasoningEfforts ?? []).map(effort => <option key={effort} value={effort}>{effort}</option>)
+              : <option value="">Reasoning</option>}
+        </select></label>
         {folderSyncError ? <p role="alert">{folderSyncError}</p> : null}
         {nativeFolderError ? <p role="alert">{nativeFolderError}</p> : null}
       </div> : null}

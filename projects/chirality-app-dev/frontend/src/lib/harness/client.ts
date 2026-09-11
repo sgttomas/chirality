@@ -317,11 +317,15 @@ export async function replaySessionEvents(sessionId: string): Promise<SessionEve
   );
 }
 
+export type HarnessModelSelection = { model: string; reasoningEffort: string };
+
 export async function createHarnessSession(input: SessionCreateRequest & {
   roleId?: ChiralityRoleName;
   interactionMode?: ResolveSelectedContextRequest['interactionMode'];
   permissionMode?: ResolveSelectedContextRequest['permissionMode'];
   selectedMethods?: readonly MethodReference[];
+  /** Catalog choice fixed for the session; Runtime rejects (never substitutes) a pair outside the authenticated catalog. */
+  modelSelection?: HarnessModelSelection;
 }): Promise<SessionRecord> {
   const payload = await requestHarnessJson<{ session: SessionRecord }>(
     '/api/harness/session/create',

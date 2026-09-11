@@ -56,6 +56,8 @@ export type OperatorSessionProjection = {
   adapterId?: string;
   providerId?: string;
   model?: string;
+  /** Session-fixed reasoning effort recorded with the model (Codex catalog sessions). */
+  reasoningEffort?: string;
   residencyEpoch?: string;
   parentage: ParentageProjection;
   outputArtifactReference?: string;

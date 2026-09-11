@@ -52,7 +52,7 @@ function deferred<T>() {
 async function mount(props: Partial<React.ComponentProps<typeof ChatPanel>> = {}) { await act(async () => { tree = create(<ChatPanel presentation="woven" {...props} />); }); }
 async function type(value: string) { await act(async () => { tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value } }); }); }
 async function submit() { await act(async () => { tree!.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }); }); }
-function operatorModeSelect() { return tree!.root.findAllByType('select').find(node => node.props['aria-label'] !== 'Interaction mode')!; }
+function continueWithProjectAccess() { return tree!.root.findAllByType('button').find(node => node.children.join('') === 'Continue with Project access'); }
 function assertCanonicalUntouched() { expect(values.get(canonicalKey)).toBe(canonicalDraft); expect(writes.filter(([key]) => key === canonicalKey)).toEqual([]); }
 function resumableProjection(sessionId: string): SelectedSessionReplayProjection {
   return { selectedSessionId: sessionId, sourceReference: `session:${sessionId}/events`, observedAt: '2026-09-09T00:00:00.000Z', disclosure: 'EMPTY', currency: 'CURRENT',
@@ -219,7 +219,7 @@ it('enables genuine Plan controls for a trial admission and labels its empirical
   await submit();
   await act(async () => { await Promise.resolve(); await Promise.resolve(); });
   expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).findByProps({ value: 'native-plan' }).props.disabled).toBe(false);
-  expect(JSON.stringify(tree!.toJSON())).toContain('Human trial — empirical qualification pending');
+  expect(JSON.stringify(tree!.toJSON())).not.toContain('Human trial');
   expect(JSON.stringify(tree!.toJSON())).toContain('Trial plan');
   expect(tree!.root.findAllByType('button').find(button => button.children.includes('Execute plan'))!.props.disabled).toBe(false);
 });
@@ -335,33 +335,39 @@ it('ignores a late clarification reply failure after switching resumed chats', a
   expect(switchedView).not.toContain('Late session A failure');
 });
 
-it('preserves an unsupported legacy permission profile until the operator selects Project access', async () => {
+it('preserves an unsupported legacy permission profile until the operator continues with Project access', async () => {
   state.stream.mockResolvedValue(undefined);
   const projection = resumableProjection('legacy-permissions');
   await mount({ resumeConversation: { requestId: 1, projection } });
   await type('Continue this recorded chat');
-  const operatorMode = operatorModeSelect();
-  expect(operatorMode.props.value).toBe('ask');
-  expect(operatorMode.findAllByType('option').find(option => option.props.value === 'ask')!.children.join('')).toBe('Ask before changes (unsupported)');
-  expect(JSON.stringify(tree!.toJSON())).toContain('Unsupported permission profile');
+  // No permission selector exists; the only posture is enforced project access.
+  // Model and Reasoning are separate catalog controls, not permission postures.
+  expect(tree!.root.findAllByType('select').map(node => node.props['aria-label'])).toEqual(['Interaction mode', 'Model', 'Reasoning']);
+  const alert = tree!.root.findByProps({ role: 'alert' });
+  expect(alert.type).toBe('p');
+  const textOf = (node: { children: unknown[] }): string => node.children.map(child => typeof child === 'string' ? child : textOf(child as { children: unknown[] })).join('');
+  expect(textOf(alert)).toBe('This recorded chat used Ask before changes, which is no longer supported. Continue with Project access');
+  expect(continueWithProjectAccess()).toBeDefined();
   expect(tree!.root.findByProps({ 'aria-label': 'Send' }).props.disabled).toBe(true);
   await submit();
   expect(state.stream).not.toHaveBeenCalled();
 
-  await act(async () => operatorMode.props.onChange({ target: { value: 'workspaceWrite' } }));
+  await act(async () => continueWithProjectAccess()!.props.onClick());
+  expect(tree!.root.findAllByProps({ role: 'alert' })).toHaveLength(0);
   expect(tree!.root.findByProps({ 'aria-label': 'Send' }).props.disabled).toBe(false);
   await submit();
   expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'legacy-permissions', permissionMode: 'workspaceWrite' }), expect.any(Function));
 });
 
 it('resets a new chat to the supported Project access profile', async () => {
+  state.stream.mockResolvedValue(undefined);
   await mount({ resumeConversation: { requestId: 1, projection: resumableProjection('legacy-permissions') } });
-  expect(operatorModeSelect().props.value).toBe('ask');
+  expect(continueWithProjectAccess()).toBeDefined();
   await act(async () => tree!.update(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: resumableProjection('legacy-permissions') }} newChatRequest={1} />));
-  const operatorMode = operatorModeSelect();
-  expect(operatorMode.props.value).toBe('workspaceWrite');
-  expect(operatorMode.findAllByType('option').find(option => option.props.value === 'workspaceWrite')!.children.join('')).toBe('Project access');
-  expect(JSON.stringify(tree!.toJSON())).not.toContain('Unsupported permission profile');
+  expect(continueWithProjectAccess()).toBeUndefined();
+  expect(JSON.stringify(tree!.toJSON())).not.toContain('no longer supported');
+  await type('Fresh chat'); await submit();
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ permissionMode: 'workspaceWrite' }), expect.any(Function));
 });
 
 it('restores method references when the first method-bearing turn fails after boot', async () => {
@@ -537,7 +543,7 @@ it('continues a compatible recorded v3 conversation without creating or booting 
   expect(tree!.root.findAllByProps({ className: 'chat-speaker' }).some(node => node.children.join('') === 'Help Human')).toBe(true);
   await type('Continue here'); await submit();
   expect(state.stream).not.toHaveBeenCalled();
-  await act(async () => operatorModeSelect().props.onChange({ target: { value: 'workspaceWrite' } }));
+  await act(async () => continueWithProjectAccess()!.props.onClick());
   await submit();
   expect(state.create).not.toHaveBeenCalled();
   expect(state.boot).not.toHaveBeenCalled();

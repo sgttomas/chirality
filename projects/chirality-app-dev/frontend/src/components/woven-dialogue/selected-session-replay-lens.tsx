@@ -275,6 +275,12 @@ function ReadyReplay({
                 <dd>{attribution.model}</dd>
               </>
             ) : null}
+            {attribution.reasoningEffort ? (
+              <>
+                <dt>Reasoning</dt>
+                <dd>{attribution.reasoningEffort}</dd>
+              </>
+            ) : null}
             {attribution.residencyEpoch ? (
               <>
                 <dt>Residency epoch</dt>

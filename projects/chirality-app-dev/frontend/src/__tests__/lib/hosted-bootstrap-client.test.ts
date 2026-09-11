@@ -4,6 +4,7 @@ import {
   bindHostedBootstrapProject,
   cancelHostedBootstrapLogin,
   getHostedBootstrapStatus,
+  getHostedBootstrapStatusWithRetry,
   grantHostedProviderNetworkConsent,
   hydrateHostedBootstrapProject,
   initializeHostedBootstrapProject,
@@ -37,6 +38,29 @@ describe('hosted bootstrap renderer client', () => {
     expect(bridge.status).toHaveBeenCalledWith('/project one');
   });
 
+  it('passes a ready status carrying the model catalog and selection through untouched', async () => {
+    const result = {
+      registration: 'registered',
+      projectId: 'project-one',
+      status: {
+        schema: 'chirality-hosted-bootstrap-status/v1',
+        projectId: 'project-one',
+        ceremony: 'signed-in',
+        admission: 'ready',
+        canStartLogin: false,
+        models: [
+          { model: 'gpt-default', isDefault: true, defaultReasoningEffort: 'high', supportedReasoningEfforts: ['low', 'medium', 'high'] },
+          { model: 'gpt-alt', isDefault: false, defaultReasoningEffort: 'medium', supportedReasoningEfforts: ['medium', 'low'] }
+        ],
+        selection: { model: 'gpt-default', reasoningEffort: 'high' }
+      }
+    };
+    const bridge = installDesktopAccountBridge({ status: vi.fn().mockResolvedValue(result) });
+    await expect(getHostedBootstrapStatus('/project one')).resolves.toEqual(result);
+    await expect(getHostedBootstrapStatusWithRetry('/project one')).resolves.toEqual(result);
+    expect(bridge.status).toHaveBeenCalledWith('/project one');
+  });
+
   it('keeps initialization on Next and routes account effects through the fixed bridge', async () => {
     const status = {
       schema: 'chirality-hosted-bootstrap-status/v1',
@@ -50,7 +74,7 @@ describe('hosted bootstrap renderer client', () => {
         registration: 'registered', projectId: 'project-one'
       }), { status: 200 }))
       .mockResolvedValueOnce(new Response(JSON.stringify({
-        registration: 'registered', projectId: 'project-one', status
+        registration: 'registered', projectId: 'project-one'
       }), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock);
     const bridge = installDesktopAccountBridge();
@@ -60,7 +84,9 @@ describe('hosted bootstrap renderer client', () => {
     bridge.signOut.mockResolvedValue({ registration: 'registered', projectId: 'project-one', status: { ...status, ceremony: 'consent-required', canStartLogin: false } });
 
     await bindHostedBootstrapProject('/project');
-    await initializeHostedBootstrapProject('/project');
+    const initialized = await initializeHostedBootstrapProject('/project');
+    expect(initialized).toEqual({ registration: 'registered', projectId: 'project-one' });
+    expect(initialized).not.toHaveProperty('status');
     await grantHostedProviderNetworkConsent('/project');
     await startHostedBootstrapLogin('/project');
     await cancelHostedBootstrapLogin('/project');
@@ -83,6 +109,38 @@ describe('hosted bootstrap renderer client', () => {
     expect(bridge.startLogin).toHaveBeenCalledWith('/project');
     expect(bridge.cancelLogin).toHaveBeenCalledWith('/project');
     expect(bridge.signOut).toHaveBeenCalledWith('/project');
+  });
+
+  it('reads status after setup through the bridge with the same transient-retry ladder', async () => {
+    vi.useFakeTimers();
+    const recovered = {
+      registration: 'registered' as const,
+      projectId: 'project-one',
+      status: {
+        schema: 'chirality-hosted-bootstrap-status/v1' as const,
+        projectId: 'project-one',
+        ceremony: 'consent-required' as const,
+        admission: 'unavailable' as const,
+        canStartLogin: false
+      }
+    };
+    const unavailable = new Error('Hosted account service is unavailable.');
+    const bridge = installDesktopAccountBridge({
+      status: vi.fn().mockRejectedValueOnce(unavailable).mockResolvedValueOnce(recovered)
+    });
+    vi.stubGlobal('fetch', vi.fn());
+
+    const operation = getHostedBootstrapStatusWithRetry('/project');
+    await vi.advanceTimersByTimeAsync(250);
+
+    await expect(operation).resolves.toEqual(recovered);
+    expect(bridge.status).toHaveBeenCalledTimes(2);
+    expect(bridge.status).toHaveBeenCalledWith('/project');
+    expect(fetch).not.toHaveBeenCalled();
+
+    bridge.status.mockRejectedValueOnce(new Error('account unavailable'));
+    await expect(getHostedBootstrapStatusWithRetry('/project')).rejects.toThrow('account unavailable');
+    expect(vi.getTimerCount()).toBe(0);
   });
 
   it('settles cancellation locally without forwarding an AbortSignal through IPC', async () => {

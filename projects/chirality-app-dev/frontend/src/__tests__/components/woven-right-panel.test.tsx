@@ -26,6 +26,7 @@ it('shows document breadcrumb and current controls without deferred popout', () 
 it('keeps recorded session content under its breadcrumb', () => {
   const html = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...createDefaultWovenWorkspaceState(), rightPanelView: 'agents' }} sessionOpen />);
   expect(html).toContain('Session breadcrumb'); expect(html).toContain('Recorded agents and session content');
+  expect(html).toContain('>Agents</button> › Session'); expect(html).not.toContain('Who is working');
 });
 
 afterEach(() => vi.unstubAllGlobals());
@@ -86,6 +87,7 @@ it('keeps four-view keyboard navigation and reveals the selected tab after chang
   await act(async () => { tree = create(<RightPanel {...props} state={state} />, { createNodeMock: element => element.props.role === 'tablist' ? tabNode : null }); });
   const key = (value: string) => tree.root.findByProps({ role: 'tablist' }).props.onKeyDown({ key: value, preventDefault: vi.fn(), currentTarget: { querySelector: () => ({ focus }) } });
   expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.props['data-view'])).toEqual(['files', 'workflows', 'agents', 'activity']);
+  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.children.join(''))).toEqual(['Files', 'Workflows', 'Agents', 'Activity']);
   act(() => key('ArrowRight')); expect(onView).toHaveBeenLastCalledWith('workflows');
   act(() => key('ArrowLeft')); expect(onView).toHaveBeenLastCalledWith('activity');
   act(() => key('End')); expect(onView).toHaveBeenLastCalledWith('activity');

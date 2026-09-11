@@ -12,9 +12,8 @@ describe('toolkit helpers', () => {
     expect(payload).toBeUndefined();
   });
 
-  it('builds opts payload from explicit model/tools/maxTurns values', () => {
+  it('builds opts payload from explicit tools/maxTurns values', () => {
     const payload = buildHarnessOptsFromToolkit({
-      model: 'claude-sonnet-4-20250514',
       tools: 'bash, read_file\nwrite_file',
       maxTurns: '8',
       includeSubagentGovernance: false,
@@ -24,15 +23,23 @@ describe('toolkit helpers', () => {
     });
 
     expect(payload).toEqual({
-      model: 'claude-sonnet-4-20250514',
       tools: ['bash', 'read_file', 'write_file'],
       maxTurns: 8
     });
   });
 
+  it('never emits opts.model: the model is a session-fixed catalog choice, not a toolkit value', () => {
+    const payload = buildHarnessOptsFromToolkit({
+      ...defaultToolkitState().values,
+      ...({ model: 'stray-model' } as Record<string, unknown>),
+      maxTurns: '2'
+    });
+    expect(payload).toEqual({ maxTurns: 2 });
+    expect(payload).not.toHaveProperty('model');
+  });
+
   it('includes subagentGovernance only when explicitly enabled', () => {
     const payload = buildHarnessOptsFromToolkit({
-      model: '',
       tools: '',
       maxTurns: '',
       includeSubagentGovernance: true,
@@ -83,7 +90,8 @@ describe('toolkit helpers', () => {
     });
 
     expect(state.visible).toBe(true);
-    expect(state.values.model).toBe('claude-opus');
+    expect(state.values).not.toHaveProperty('model');
+    expect(state.presets[0].values).not.toHaveProperty('model');
     expect(state.values.approvalRef).toBe('APPROVAL');
     expect(state.presets).toHaveLength(1);
     expect(state.presets[0].name).toBe('Default');
