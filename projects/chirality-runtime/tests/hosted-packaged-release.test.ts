@@ -4,6 +4,10 @@ import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { request as httpRequest } from "node:http";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { AuthRegistry } from "@chirality/runtime-core";
+import * as packagedConformance from "@chirality/runtime-core/runtime-conformance-v2";
+import * as nativeAdmission from "@chirality/native-admission";
+import * as hostAccountRelease from "../packages/daemon/src/host-account-release.js";
 import {
   compareRuntimeUtf8V2, encodeRuntimeArtifactInventoryV2, encodeRuntimePayloadManifestV2,
   encodeRuntimePolicyParameterDeclarationV2, runtimePolicyParameterSchemaDigestV2, runtimeStageCPolicyParameterSchemaDigest,
@@ -20,7 +24,7 @@ import { validateHostedPrivateCompositionOptions } from "../packages/daemon/src/
 import { RuntimeError } from "../packages/contracts/src/errors.js";
 import { RuntimeClient } from "../packages/client/src/client.js";
 import { createFakeRuntimeAdmissionNativeAdapter } from "../packages/core/src/runtime-admission-lock.js";
-import { startControlledHostedBootstrapRuntimeHostForTests } from "../packages/daemon/src/hosted-bootstrap.js";
+import { startControlledHostedBootstrapRuntimeHostForTests, startHostedBootstrapRuntimeHost, type HostedBootstrapPrivateBindings } from "../packages/daemon/src/hosted-bootstrap.js";
 import { startControlledHostedPrivateBootstrapRuntimeHostForTests } from "../packages/daemon/src/hosted-private-entry.js";
 import { createControlledHostedBootstrapPrivateBindingsForTests, type ControlledHostedPrivateCompositionAdapters } from "../packages/daemon/src/hosted-private-composition.js";
 import { HostAccountAuthority } from "../packages/daemon/src/host-account-authority.js";
@@ -60,6 +64,78 @@ async function createFixture(nativePolicyIdentityVersion:10|11=11){
   return {resources,runtime,profile,common,workerNames,owner,inventory,anchor};
 }
 afterEach(async()=>{vi.restoreAllMocks();while(roots.length)await rm(roots.pop()!,{recursive:true,force:true});});
+
+async function productionBootstrapFixture() {
+  const fixture = await createFixture();
+  // Only host measurement is substituted: issuance, acceptance, identity and live
+  // filesystem revalidation use the actual production loader and registry.
+  vi.spyOn(packagedConformance, "observeRuntimeSupportProfileV2").mockResolvedValue(fixture.profile);
+  const result = await loadPackagedHostedReleaseBasis({ resourcesRoot: fixture.resources, runtimeDirectory: fixture.runtime,
+    embeddedRuntime: { electron: "43.2.0", node: "24.13.0", modules: "145", napi: "10", architecture: "arm64" } });
+  expect(result.status).toBe("ready");
+  if (result.status !== "ready") throw new Error(`Production fixture failed: ${result.reason}`);
+  expect(isControlledPackagedReleaseBasisForTests(result.basis)).toBe(false);
+  const bootstrap = { enabled: true as const, runtimeDirectory: fixture.runtime, daemonSocket: "daemon.sock",
+    instructionRoot: result.basis.instructionRoot, nativeAddonPath: result.basis.nativeAddonPath };
+  return { ...fixture, basis: result.basis, bootstrap };
+}
+
+describe("packaged production bootstrap admission", () => {
+  it("threads the issued v2 basis through production composition and passes the production bootstrap guard", async () => {
+    const fixture = await productionBootstrapFixture();
+    const sentinel = new Error("inert account-host boundary reached");
+    const lease = createFakeRuntimeAdmissionNativeAdapter().acquire(fixture.runtime, "production-regression.lock");
+    vi.spyOn(nativeAdmission, "loadNativeAdmissionBinding").mockReturnValue({ state: "available",
+      value: { acquire: () => ({ state: "available", value: lease }) } as nativeAdmission.NativeAdmissionBinding });
+    const ensureClient = vi.spyOn(AuthRegistry.prototype, "ensureClient").mockResolvedValue({
+      clientId: "inert-bootstrap", token: "unused", tokenFile: join(fixture.runtime, "unused-token") });
+    const createAccountHost = vi.spyOn(hostAccountRelease, "createVerifiedHostAccountAuthority").mockRejectedValue(sentinel);
+
+    await expect(startHostedPackagedPrivateBootstrapRuntimeHost({ bootstrap: fixture.bootstrap, basis: fixture.basis,
+      executablePath: appExecutable(fixture.resources) })).rejects.toBe(sentinel);
+
+    expect(createAccountHost).toHaveBeenCalledOnce();
+    expect(createAccountHost.mock.calls[0]![0].basis).toBe(fixture.basis);
+    expect(ensureClient).toHaveBeenCalledOnce();
+    expect(lease.held).toBe(false);
+    // No socket, supplier, account mechanism or credential storage was reached.
+    expect(await readdir(fixture.runtime)).toEqual(expect.arrayContaining(["release-authority", "release-basis"]));
+    expect(await readdir(fixture.runtime)).not.toContain("unused-token");
+    expect(await readdir(fixture.runtime)).not.toContain("daemon.sock");
+  });
+
+  it.each(["missing", "fabricated", "clone", "controlled", "mixed", "runtime", "instruction", "addon", "missing-addon", "stale"] as const)(
+    "rejects %s admission before auth or account-host effects", async variant => {
+      const fixture = await productionBootstrapFixture();
+      let basis: HostedBootstrapPrivateBindings["packagedReleaseBasisV2"] = fixture.basis;
+      const bootstrap: Parameters<typeof startHostedBootstrapRuntimeHost>[0] = { ...fixture.bootstrap };
+      if (variant === "missing") basis = undefined;
+      if (variant === "fabricated") basis = {} as typeof fixture.basis;
+      if (variant === "clone") basis = structuredClone(fixture.basis);
+      if (variant === "controlled") {
+        const result = await loadPackagedHostedReleaseBasisControlledForTests({ resourcesRoot: fixture.resources, runtimeDirectory: fixture.runtime,
+          embeddedRuntime: { electron: "43.2.0", node: "24.13.0", modules: "145", napi: "10", architecture: "arm64" } }, async () => fixture.profile);
+        expect(result.status).toBe("ready");
+        if (result.status !== "ready") throw new Error("Controlled fixture failed");
+        basis = result.basis;
+      }
+      if (variant === "mixed") bootstrap.artifactInventory = { kind: "source-tree", sourceRoot: fixture.resources };
+      if (variant === "runtime") bootstrap.runtimeDirectory = join(fixture.runtime, "other");
+      if (variant === "instruction") bootstrap.instructionRoot = fixture.resources;
+      if (variant === "addon") bootstrap.nativeAddonPath = join(fixture.resources, "other.node");
+      if (variant === "missing-addon") delete bootstrap.nativeAddonPath;
+      if (variant === "stale") await writeFile(join(fixture.resources, "native/chirality_native_admission.node"), "changed");
+      const ensureClient = vi.spyOn(AuthRegistry.prototype, "ensureClient");
+      const createAccountHost = vi.fn(async () => { throw new Error("account host must remain unreachable"); });
+      const bindings: HostedBootstrapPrivateBindings = { ...(basis === undefined ? {} : { packagedReleaseBasisV2: basis }),
+        createAccountHost, async createCeremony() { throw new Error("ceremony must remain unreachable"); } };
+
+      await expect(startHostedBootstrapRuntimeHost(bootstrap, bindings)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+      expect(ensureClient).not.toHaveBeenCalled();
+      expect(createAccountHost).not.toHaveBeenCalled();
+    }
+  );
+});
 
 describe("packaged hosted release basis",()=>{
   it("loads the complete accepted filesystem basis through the isolated support observer",async()=>{

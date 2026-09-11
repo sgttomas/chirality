@@ -427,6 +427,7 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
     if (failures.length) throw new AggregateError(failures, "Hosted admission retirement failed; ownership retained");
   })();
   const bindings: HostedBootstrapPrivateBindings = {
+    ...(trusted.releaseV2 ? { packagedReleaseBasisV2: trusted.releaseV2.basis } : {}),
     ...(trusted.hostAccount && trusted.releaseV2 ? {
       createAccountHost: async (auth: AuthRegistry) => {
         if (accountHost) throw unavailable("HOST_ACCOUNT_AUTHORITY_ALREADY_CREATED");

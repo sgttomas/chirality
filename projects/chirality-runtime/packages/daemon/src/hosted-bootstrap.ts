@@ -42,6 +42,11 @@ import {
 import { RuntimeDaemon } from "./runtime-daemon.js";
 import type { HostAccountAuthority } from "./host-account-authority.js";
 import { HOSTED_BOOTSTRAP_CLIENT_ID } from "./hosted-paths.js";
+import {
+  assertIssuedPackagedReleaseBasisV2,
+  revalidateIssuedPackagedReleaseBasisV2,
+  type HostedPackagedReleaseBasisV2
+} from "./hosted-packaged-release-state.js";
 
 const invalid = (message: string) => new RuntimeError("INVALID_REQUEST", message);
 const unavailable = (message: string) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503);
@@ -74,6 +79,8 @@ export interface TrustedHostedPrivateAdmission {
 }
 
 export interface HostedBootstrapPrivateBindings {
+  /** Preserve the loader-issued object; structural copies cannot authorize production bootstrap. */
+  readonly packagedReleaseBasisV2?: Readonly<HostedPackagedReleaseBasisV2>;
   /** Packaged internal factory only; receives the Runtime-owned registry after verified composition. */
   createAccountHost?(auth: AuthRegistry): Promise<HostAccountAuthority>;
   createCeremony(input: { projectId: string; manifestHash?: string; canonicalRoot: string; privateDirectory: string; codexHome: string; providerNetworkConsent: { approvedBy: string; approvalReference: string; approvedAt: string } }): Promise<TrustedHostedLoginCeremony>;
@@ -421,7 +428,19 @@ async function privateDirectoryReady(path: string): Promise<void> { await privat
 async function startBootstrap(input: Extract<HostedBootstrapRuntimeBootInput, { enabled: true }>, bindings?: HostedBootstrapPrivateBindings, controlledNativePlanQualification?: NativePlanAdapterQualification, controlled = false): Promise<HostedBootstrapRuntimeHost> {
   exactAbsolute(input.runtimeDirectory, "Runtime directory"); exactAbsolute(input.instructionRoot, "Runtime instruction root");
   if (input.nativeAddonPath !== undefined) exactAbsolute(input.nativeAddonPath, "Native admission add-on path");
-  if (bindings !== undefined && !controlled && input.artifactInventory === undefined) throw unavailable("Trusted production bootstrap requires an explicit Runtime conformance artifact inventory");
+  if (bindings !== undefined && !controlled) {
+    const basis = bindings.packagedReleaseBasisV2;
+    if (basis !== undefined) {
+      assertIssuedPackagedReleaseBasisV2(basis);
+      if (input.artifactInventory !== undefined || input.runtimeDirectory !== basis.preNativeFilesystemObservation.runtimeDirectory
+        || input.instructionRoot !== basis.instructionRoot || input.nativeAddonPath !== basis.nativeAddonPath) {
+        throw unavailable("Trusted production bootstrap does not match its packaged Runtime release basis");
+      }
+      await revalidateIssuedPackagedReleaseBasisV2(basis);
+    } else if (input.artifactInventory === undefined) {
+      throw unavailable("Trusted production bootstrap requires an explicit Runtime conformance artifact inventory");
+    }
+  }
   if (input.artifactInventory !== undefined) configureRuntimeConformanceArtifactInventory(input.artifactInventory);
   await privateDirectory(input.runtimeDirectory);
   const instruction = await lstat(input.instructionRoot);
