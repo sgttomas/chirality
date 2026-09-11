@@ -312,7 +312,8 @@ export async function writeRuntimePayloadManifestV2({
   if (entries.length > MAX_ENTRIES) throw new Error('Runtime v2 payload exceeds 50000 entries');
   const roots = entries.filter((entry) => !entry.relativePath.includes('/')).map((entry) => entry.relativePath);
   for (const required of RUNTIME_V2_REQUIRED_PAYLOAD_ROOTS) if (!roots.includes(required)) throw new Error(`Packaged Resources is missing required v2 root: ${required}`);
-  for (const required of RUNTIME_V2_REQUIRED_PAYLOAD_FILES) if (!entries.some((entry) => entry.relativePath === required && entry.type === 'file')) throw new Error(`Packaged Resources is missing required v2 file: ${required}`);
+  // New packages require Code Mode's sibling host; historical Runtime readers remain compatible.
+  for (const required of [...RUNTIME_V2_REQUIRED_PAYLOAD_FILES, 'supplier/codex-code-mode-host']) if (!entries.some((entry) => entry.relativePath === required && entry.type === 'file')) throw new Error(`Packaged Resources is missing required v2 file: ${required}`);
   const byPath = new Map(entries.filter((entry) => entry.type === 'file').map((entry) => [entry.relativePath, entry]));
   const native = byPath.get('native/chirality_native_admission.node');
   const supplier = byPath.get('supplier/codex');

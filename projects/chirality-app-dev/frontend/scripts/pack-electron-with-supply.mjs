@@ -57,9 +57,11 @@ async function inspectSupplierTree(root) {
     }
   }
   await visit(root);
-  const executable = records.find((entry) => entry.relativePath === 'codex');
-  if (!executable || executable.directory || (executable.mode & 0o111) === 0) {
-    throw new Error('Supplier source must contain an executable regular file named codex');
+  for (const name of ['codex', 'codex-code-mode-host']) {
+    const executable = records.find((entry) => entry.relativePath === name);
+    if (!executable || executable.directory || (executable.mode & 0o111) === 0) {
+      throw new Error(`Supplier source must contain an executable regular file named ${name}`);
+    }
   }
   return records;
 }

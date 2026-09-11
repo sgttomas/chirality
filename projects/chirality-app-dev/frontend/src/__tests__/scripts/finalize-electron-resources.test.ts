@@ -70,6 +70,7 @@ async function v2Inputs(
     ? runtimeStageCPolicyParameterSchemaDigest()
     : runtimePolicyParameterSchemaDigestV2()
 ) {
+  await writeFile(path.join(input.resourcesRoot, 'supplier', 'codex-code-mode-host'), 'host bytes', { mode: 0o755 });
   for (let index = 0; index < localeCount; index += 1) {
     await mkdir(path.join(input.resourcesRoot, `locale-${String(index).padStart(2, '0')}.lproj`));
   }
@@ -303,6 +304,18 @@ describe('Electron Runtime Resources inventory producer', () => {
         expectedGovernance: bound.governance.map(({ relativePath, size, sha256 }) => ({ relativePath, size, sha256 }))
       })).rejects.toThrow('governance changed after staging');
       await expect(readFile(path.join(input.resourcesRoot, 'runtime-artifact-inventory-v2.json'))).rejects.toMatchObject({ code: 'ENOENT' });
+    } finally {
+      await rm(input.root, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses a new v2 payload without the Code Mode host', async () => {
+    const input = await fixture();
+    try {
+      const release = await v2Inputs(input, 0);
+      await rm(path.join(input.resourcesRoot, 'supplier', 'codex-code-mode-host'));
+      await expect(produceV2(input, release)).rejects.toThrow('missing required v2 file: supplier/codex-code-mode-host');
+      await expect(readFile(path.join(input.resourcesRoot, 'runtime-payload-manifest.json'))).rejects.toMatchObject({ code: 'ENOENT' });
     } finally {
       await rm(input.root, { recursive: true, force: true });
     }

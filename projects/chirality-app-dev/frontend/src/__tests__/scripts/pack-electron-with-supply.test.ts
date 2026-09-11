@@ -389,6 +389,8 @@ describe('pack-electron-with-supply', () => {
     await mkdir(path.join(source, 'support'), { recursive: true });
     await writeFile(path.join(source, 'codex'), 'supplier');
     await chmod(path.join(source, 'codex'), 0o755);
+    await writeFile(path.join(source, 'codex-code-mode-host'), 'host');
+    await chmod(path.join(source, 'codex-code-mode-host'), 0o755);
     await writeFile(path.join(source, 'support', 'model.json'), '{"model":"codex"}\n');
     try {
       const prepared = await prepareSupplierResources({
@@ -397,6 +399,7 @@ describe('pack-electron-with-supply', () => {
       });
       expect(prepared.digest).toMatch(/^[a-f0-9]{64}$/);
       expect(await readFile(path.join(staging, 'codex'), 'utf8')).toBe('supplier');
+      expect(await readFile(path.join(staging, 'codex-code-mode-host'), 'utf8')).toBe('host');
       expect(await readFile(path.join(staging, 'support', 'model.json'), 'utf8')).toContain('codex');
       await expect(prepareSupplierResources({
         env: { NODE_ENV: 'test', CHIRALITY_SUPPLIER_SOURCE_ROOT: source },
@@ -428,6 +431,25 @@ describe('pack-electron-with-supply', () => {
         env: { NODE_ENV: 'test', CHIRALITY_SUPPLIER_SOURCE_ROOT: source },
         stagingRoot: staging
       })).rejects.toThrow('unsupported entry');
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  });
+
+  it.each(['missing', 'directory', 'non-executable', 'symlink'])('rejects a %s Code Mode host before staging', async (kind) => {
+    const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-host-invalid-')));
+    const source = path.join(root, 'source');
+    const stagingRoot = path.join(root, 'staged');
+    try {
+      await mkdir(source);
+      await writeFile(path.join(source, 'codex'), 'supplier', { mode: 0o755 });
+      const host = path.join(source, 'codex-code-mode-host');
+      if (kind === 'directory') await mkdir(host);
+      if (kind === 'non-executable') await writeFile(host, 'host', { mode: 0o644 });
+      if (kind === 'symlink') await symlink(path.join(source, 'codex'), host);
+      await expect(prepareSupplierResources({ env: { NODE_ENV: 'test', CHIRALITY_SUPPLIER_SOURCE_ROOT: source }, stagingRoot }))
+        .rejects.toThrow(kind === 'symlink' ? 'unsupported entry' : 'executable regular file named codex-code-mode-host');
+      await expect(readFile(path.join(stagingRoot, 'codex'))).rejects.toMatchObject({ code: 'ENOENT' });
     } finally {
       await rm(root, { recursive: true, force: true });
     }

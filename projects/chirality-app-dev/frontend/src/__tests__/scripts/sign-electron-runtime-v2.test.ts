@@ -124,6 +124,7 @@ async function governedCompletionFixture() {
   await writeFile(path.join(resourcesRoot, 'runtime-cli', 'chirality-cli.mjs.map'), '{"version":3}\n');
   await writeFile(path.join(resourcesRoot, 'supplier', 'codex'), 'supplier');
   await chmod(path.join(resourcesRoot, 'supplier', 'codex'), 0o755);
+  await writeFile(path.join(resourcesRoot, 'supplier', 'codex-code-mode-host'), 'host', { mode: 0o755 });
   await writeFile(lockPaths[0], '{"lockfileVersion":3,"packages":{}}\n');
   await writeFile(lockPaths[1], '{"lockfileVersion":3,"packages":{}}\n');
   const governanceRoot = path.join(root, 'governance');
@@ -194,6 +195,7 @@ describe('signed Runtime v2 assembly', () => {
     await mkdir(path.join(resourcesRoot, 'supplier'));
     await writeFile(path.join(resourcesRoot, 'supplier', 'codex'), 'signed supplier');
     await chmod(path.join(resourcesRoot, 'supplier', 'codex'), 0o755);
+  await writeFile(path.join(resourcesRoot, 'supplier', 'codex-code-mode-host'), 'host', { mode: 0o755 });
     await writeFile(path.join(appPath, 'Contents', 'Info.plist'), '<plist/>');
     const env = {
       NODE_ENV: 'test' as const,
@@ -324,6 +326,7 @@ describe('signed Runtime v2 assembly', () => {
     await mkdir(path.join(resourcesRoot, 'supplier'), { recursive: true });
     await writeFile(path.join(resourcesRoot, 'supplier', 'codex'), 'signed supplier');
     await chmod(path.join(resourcesRoot, 'supplier', 'codex'), 0o755);
+  await writeFile(path.join(resourcesRoot, 'supplier', 'codex-code-mode-host'), 'host', { mode: 0o755 });
     await writeFile(path.join(appPath, 'Contents', 'Info.plist'), '<plist/>');
     try {
       await expect(prepareSignedRuntimeV2({
@@ -349,6 +352,26 @@ describe('signed Runtime v2 assembly', () => {
       await expect(lstat(path.dirname(checkpointPath))).rejects.toMatchObject({ code: 'ENOENT' });
       await expect(readFile(checkpointPath)).rejects.toMatchObject({ code: 'ENOENT' });
     } finally { await rm(root, { recursive: true, force: true }); }
+  });
+
+  it('grants only JIT and only to the exact Code Mode host path', async () => {
+    const appPath = '/stage/Chirality.app';
+    const options = createRuntimeV2SignOptions({}, {
+      appPath, peerRequirement: 'requirement', entitlements: '/main.plist', inheritEntitlements: '/inherit.plist'
+    });
+    const host = `${appPath}/Contents/Resources/supplier/codex-code-mode-host`;
+    const hostOptions = options.optionsForFile(host);
+    expect(hostOptions.hardenedRuntime).toBe(true);
+    const plist = await readFile(hostOptions.entitlements, 'utf8');
+    expect([...plist.matchAll(/<key>([^<]+)<\/key>/g)].map(match => match[1]))
+      .toEqual(['com.apple.security.cs.allow-jit']);
+    for (const other of [
+      `${appPath}/Contents/Resources/supplier/codex`, `${host}-other`,
+      `${appPath}/Contents/Resources/other/codex-code-mode-host`,
+      '/another/Chirality.app/Contents/Resources/supplier/codex-code-mode-host'
+    ]) expect(options.optionsForFile(other).entitlements).toBe('/inherit.plist');
+    expect(options.optionsForFile(appPath).entitlements).toBe('/main.plist');
+    expect(options.optionsForFile(`${appPath}/Contents/Frameworks/Helper.app`).entitlements).toBe('/main.plist');
   });
 
   it('makes the resumed signing pass outer-only and prevents late provisioning or entitlement mutation', () => {

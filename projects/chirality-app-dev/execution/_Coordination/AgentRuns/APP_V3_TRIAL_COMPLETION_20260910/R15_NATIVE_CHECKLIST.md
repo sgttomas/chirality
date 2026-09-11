@@ -1,0 +1,13 @@
+# Next consolidated candidate: lead native checks
+
+Use the next reviewed Stage23-derived guarded launcher only after package PASS. Preserve R14 and its state. This is a focused native retest of the consolidated fixes, not a publishing decision. Synthetic project: `/Users/ryan/dev/chirality-trial-20260911-r6`. Record actual observations and distinguish passing, failing and blocked checks here or in RUN_LOG; do not rebuild for individual UI findings.
+
+1. Retire idle R14 through the existing Section B procedure, preserve its service registration, confirm retirement, run new guard check and launch. Confirm automatic runtime, native folder selection and account menu. Owner completes browser OAuth/2FA; lead never enters credentials or codes.
+2. New HELP_HUMAN chat: ask for a short response, then ask it to read README.md and create a uniquely named small trial note in this synthetic project. Confirm actual file contents through the viewer and an inline file reference; this must exercise real tools. Send a continuing image attachment through the native picker and confirm red-image content recognition. Confirm idle after each turn.
+3. Native Plan Mode: request a short plan, revise it, inspect both revisions, save with the native chooser (also cancel once), and execute a bounded file-producing step. Confirm readable Markdown, no false “No assistant text”, and plan/permission/reasoning separation.
+4. Save a plan as a workflow through chat, using a unique project-local workflow name. Inspect the saved instructions, refresh/find it in the library, select it alongside ordinary instructions and retain HELP_HUMAN until explicitly coordinated. Confirm no separate editor is needed.
+5. Start a bounded long response, interrupt it, wait for confirmed idle, then complete another short turn without account reset. An actual failure remains an error; do not suppress fencing or edit account state.
+6. Reopen the earlier chat directly: user prompts, assistant responses, image attachments, role/model and plans remain. Confirm links with Files panel closed; change direct-entry role while retaining a compatible model/effort. Check concise Agents, workflow/skills disclosure, Settings, appearance and About.
+7. Quit/relaunch through the same guard and continue the chat. Verify replay and a real follow-up turn. Exercise default-app PDF opening using a synthetic PDF if available; do not alter external user documents.
+
+Any failures are collected into a bounded next disposition. Do not infer native success from controlled adapters, chips, loaded workflow instructions, or a successful package. Packaging cleanup, final system-prompt discussion and owner publishing approval remain after functional trial acceptance.
