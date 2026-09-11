@@ -2,7 +2,8 @@ import { PassThrough } from "node:stream";
 import { mkdir, mkdtemp, readdir, readFile, realpath, rm, stat, writeFile } from "node:fs/promises";
 import { basename, join, resolve } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { AgentEnginePort, AgentEngineRunInput, UIEvent, WorkerContinuity } from "@chirality/runtime-contracts";
+import { randomUUID } from "node:crypto";
+import { hostedModelCatalog, type AgentEnginePort, type AgentEngineRunInput, type DelegatedTurnRequest, type UIEvent, type WorkerContinuity } from "@chirality/runtime-contracts";
 import { DelegatedRuntime, HostedConsentStore, WorkerRetirementCoordinator, type DelegatedNativePlanSink } from "@chirality/runtime-core";
 import { RuntimeClient } from "@chirality/runtime-client";
 import {
@@ -306,6 +307,84 @@ describe("hosted bootstrap public-to-private composition", () => {
     await expect(client.hostedBootstrapStatus(registered.projectId)).rejects.toMatchObject({ code: "PROJECT_MANIFEST_DRIFT" });
     expect(retire).toHaveBeenCalledTimes(1);
   });
+
+  it("exposes the authenticated catalog while admitted, fixes a validated choice per session, and refuses a model the account no longer offers", async () => {
+    const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-catalog-"));
+    cleanup.push(() => rm(root, { recursive: true, force: true }));
+    const runtimeDirectory = join(root, "runtime"), projectRoot = join(root, "project");
+    await mkdir(runtimeDirectory, { mode: 0o700 }); await mkdir(projectRoot);
+    const entries = {
+      full: [{ model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] }, { model: "gpt-alt", isDefault: false, defaultReasoningEffort: "low", supportedReasoningEfforts: ["low", "medium"] }],
+      reduced: [{ model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] }]
+    };
+    const compatibility = { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "b".repeat(64) };
+    const requests: DelegatedTurnRequest[] = [];
+    const delegated = {
+      async preflight(projectId: string, operationId: string) { return { ...compatibility, projectId, operationId, daemonId: "controlled-catalog", nonce: randomUUID() }; },
+      async turn(_projectId: string, request: DelegatedTurnRequest, _tools: unknown[], observer: { onProgress(event: unknown): void }) {
+        requests.push(structuredClone(request));
+        observer.onProgress({ type: "started", providerThreadId: "thread-catalog", providerTurnId: `turn-${requests.length}` });
+        return { event: {} as never, terminal: { turnId: request.turnId, workerId: request.turnId, generation: "g", outcome: "completed" as const, recordedAt: new Date().toISOString() }, output: `used:${request.model}:${request.reasoningEffort}`, providerThreadId: "thread-catalog", evidenceClass: "controlled-worker" as const };
+      },
+      async interruptTurn() { return { interrupted: true }; }
+    } as unknown as DelegatedRuntime;
+    let admissions = 0;
+    const ceremony: TrustedHostedLoginCeremony = { async start() { return { loginId: "login", authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "completed" as const, hasAccount: true }; }, async cancel() {}, async close() {} };
+    const bindings = {
+      async createCeremony() { return ceremony; },
+      async establishAdmission() { return { continuity: { canonicalRoot: projectRoot, cwd: projectRoot, accountId: "private-catalog", accountEpoch: 1, policyDigest: "private" }, authority: { supplierGeneration: "supplier", identityGeneration: "identity", snapshotDigest: "d".repeat(64) }, async retire() {} }; },
+      async materializeAdmission() {
+        const catalog = hostedModelCatalog(admissions++ === 0 ? entries.full : entries.reduced);
+        return { delegated, selection: { adapterId: "codex-app-server", providerId: "openai", model: catalog.default.model }, compatibility, evidenceClass: "controlled-worker" as const, catalog };
+      },
+      async signOut() {}
+    };
+    const host = await startControlledHostedBootstrapRuntimeHostForTests({ enabled: true, runtimeDirectory, daemonSocket: "runtime.sock", instructionRoot: resolve(process.cwd(), "../..") }, bindings);
+    cleanup.push(() => host.stop());
+    const bootstrap = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
+    const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
+    const projectId = registered.projectId;
+    expect(await bootstrap.hostedBootstrapStatus(projectId)).toEqual({ schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: "consent-required", admission: "unavailable", canStartLogin: false });
+    await bootstrap.grantHostedProviderNetworkConsent(projectId);
+    await bootstrap.startHostedBootstrapLogin(projectId);
+    const ready = await bootstrap.hostedBootstrapStatus(projectId);
+    expect(ready).toEqual({ schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: "signed-in", admission: "ready", canStartLogin: false, models: entries.full, selection: { model: "gpt-default", reasoningEffort: "high" } });
+    const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtimeDirectory, projectId) });
+    // A session cannot be created before admission for a model outside the catalog, nor with a partial or doubled selection.
+    await expect(client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-unknown", reasoningEffort: "low" } })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, message: "Model 'gpt-unknown' is not in the authenticated Codex catalog", details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-unknown", available: ["gpt-default", "gpt-alt"] } });
+    await expect(client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-alt", reasoningEffort: "high" } })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, message: "Reasoning effort 'high' is not supported by 'gpt-alt'", details: { reason: "REASONING_EFFORT_UNSUPPORTED", model: "gpt-alt", supported: ["low", "medium"] } });
+    await expect(client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-alt" } as never })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, details: { reason: "MODEL_SELECTION_INVALID" } });
+    await expect(client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-alt", reasoningEffort: "low", extra: true } as never })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, details: { reason: "MODEL_SELECTION_INVALID" } });
+    await expect(client.createSession(projectId, { projectId, role: "agent0", engineSelection: { adapterId: "codex-app-server", providerId: "openai", model: "gpt-alt" }, modelSelection: { model: "gpt-alt", reasoningEffort: "low" } })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, details: { reason: "MODEL_SELECTION_INVALID" } });
+    expect(await client.listSessions(projectId)).toEqual([]);
+    const chosen = await client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-alt", reasoningEffort: "medium" } });
+    expect(chosen).toMatchObject({ engineSelection: { adapterId: "codex-app-server", providerId: "openai", model: "gpt-alt" }, reasoningEffort: "medium", schemaVersion: "chirality.session/v3" });
+    expect(await client.getSession(projectId, chosen.sessionId)).toMatchObject({ engineSelection: { model: "gpt-alt" }, reasoningEffort: "medium" });
+    const defaulted = await client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite" });
+    expect(defaulted).toMatchObject({ engineSelection: { model: "gpt-default" }, reasoningEffort: "high" });
+    const chosenEvents = await drain(await client.turnSession(projectId, chosen.sessionId, { message: "Use the chosen pair." }));
+    expect(chosenEvents.find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-alt:medium" } });
+    expect(chosenEvents.find(event => event.type === "session:init")).toMatchObject({ data: { model: "gpt-alt" } });
+    expect(requests.at(-1)).toMatchObject({ model: "gpt-alt", reasoningEffort: "medium", sessionId: chosen.sessionId });
+    expect((await drain(await client.turnSession(projectId, defaulted.sessionId, { message: "Use the default pair." }))).find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-default:high" } });
+    expect(requests.at(-1)).toMatchObject({ model: "gpt-default", reasoningEffort: "high" });
+    // The turn path never lets a client-supplied opts.model override the session's fixed model.
+    const overridden = await drain(await client.turnSession(projectId, chosen.sessionId, { message: "Try to substitute.", opts: { model: "gpt-default" } }));
+    expect(overridden).toContainEqual(expect.objectContaining({ type: "turn:error", data: expect.objectContaining({ fatal: true, details: { runtimeCode: "ENGINE_UNAVAILABLE", reason: "MODEL_SELECTION_MISMATCH" } }) }));
+    expect(requests).toHaveLength(2);
+    expect(await bootstrap.signOutHostedProject(projectId)).toEqual({ schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: "consent-required", admission: "unavailable", canStartLogin: false });
+    await bootstrap.grantHostedProviderNetworkConsent(projectId);
+    await bootstrap.startHostedBootstrapLogin(projectId);
+    expect(await bootstrap.hostedBootstrapStatus(projectId)).toMatchObject({ admission: "ready", models: entries.reduced, selection: { model: "gpt-default", reasoningEffort: "high" } });
+    await expect(client.bootSession(projectId, chosen.sessionId)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-alt", available: ["gpt-default"] } });
+    const removed = await drain(await client.turnSession(projectId, chosen.sessionId, { message: "The model left the catalog." }));
+    expect(removed).toContainEqual(expect.objectContaining({ type: "turn:error", data: expect.objectContaining({ fatal: true, details: { runtimeCode: "ENGINE_UNAVAILABLE", reason: "MODEL_NOT_IN_CATALOG" } }) }));
+    expect(await client.getSession(projectId, chosen.sessionId)).toMatchObject({ engineSelection: { model: "gpt-alt" }, reasoningEffort: "medium" });
+    expect((await drain(await client.turnSession(projectId, defaulted.sessionId, { message: "Still offered." }))).find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-default:high" } });
+    expect(requests).toHaveLength(3);
+    const persisted = await persistedText(runtimeDirectory);
+    expect(persisted).toMatch(/"reasoningEffort":\s*"medium"/);
+  }, 20_000);
 
   it("cannot publish a late admission after cancellation", async () => {
     const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-cancel-"));

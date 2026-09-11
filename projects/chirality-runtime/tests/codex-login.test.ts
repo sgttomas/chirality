@@ -66,6 +66,39 @@ describe("operator-only sign-in component (controlled fixture)", () => {
     const multiple = await run({ "": { data: [{ model: "a", isDefault: true, defaultReasoningEffort: "low" }, { model: "b", isDefault: true, defaultReasoningEffort: "high" }], nextCursor: null } });
     try { await expect(multiple.login.resolveDefaultModel()).rejects.toThrow("unique usable default"); } finally { await multiple.close(); }
   });
+  it("retains the non-hidden catalog with supported efforts from the same paginated read as the default", async () => {
+    const run = async (pages: Record<string, { data: unknown[]; nextCursor: string | null }>) => {
+      const stdin = new PassThrough(), stdout = new PassThrough(), listCalls: unknown[] = [];
+      const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+      stdin.on("data", bytes => {
+        for (const line of bytes.toString().trim().split("\n")) {
+          const request = JSON.parse(line);
+          if (request.method === "initialize") send({ id: request.id, result: {} });
+          else if (request.method === "account/login/start") { send({ id: request.id, result: { type: "chatgpt", loginId: "catalog", authUrl: "https://auth.openai.com/catalog" } }); send({ method: "account/login/completed", params: { loginId: "catalog", success: true, error: null } }); }
+          else if (request.method === "account/read") send({ id: request.id, result: { account: { type: "apiKey" }, requiresOpenaiAuth: true } });
+          else if (request.method === "model/list") { listCalls.push(request.params); send({ id: request.id, result: pages[request.params.cursor ?? ""] }); }
+        }
+      });
+      const login = createControlledCodexLoginForTests({ codexHome: "/synthetic/catalog", transport: { stdin, stdout, async close() {} }, timeoutMs: 1000, retainAuthenticatedSessionForModelCatalog: true });
+      await login.startLogin(); await expect.poll(async () => (await login.status()).state).toBe("completed");
+      return { login, listCalls, close: async () => { await login.close(); stdin.destroy(); stdout.destroy(); } };
+    };
+    const entry = (model: string, isDefault: boolean, efforts: string[], defaultReasoningEffort = efforts[0]!, hidden = false) => ({ model, hidden, isDefault, defaultReasoningEffort, supportedReasoningEfforts: efforts.map(reasoningEffort => ({ reasoningEffort, description: reasoningEffort })) });
+    const valid = await run({ "": { data: [entry("gpt-fast", false, ["low", "medium"]), entry("gpt-hidden", false, ["low"], "low", true)], nextCursor: "next" }, next: { data: [entry("gpt-default", true, ["medium", "high", "xhigh"], "high")], nextCursor: null } });
+    try {
+      const catalog = await valid.login.resolveModelCatalog();
+      expect(catalog).toEqual({
+        models: [{ model: "gpt-fast", isDefault: false, defaultReasoningEffort: "low", supportedReasoningEfforts: ["low", "medium"] }, { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high", "xhigh"] }],
+        default: { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high", "xhigh"] }
+      });
+      expect(JSON.stringify(catalog)).not.toContain("gpt-hidden");
+      expect(await valid.login.resolveDefaultModel()).toEqual({ model: catalog.default.model, defaultReasoningEffort: catalog.default.defaultReasoningEffort });
+      expect(await valid.login.resolveModelCatalog()).toBe(catalog);
+      expect(valid.listCalls).toEqual([{ limit: 100 }, { limit: 100, cursor: "next" }]);
+    } finally { await valid.close(); }
+    const conflicting = await run({ "": { data: [entry("gpt-default", true, ["high"])], nextCursor: "next" }, next: { data: [entry("gpt-default", true, ["high", "low"])], nextCursor: null } });
+    try { await expect(conflicting.login.resolveModelCatalog()).rejects.toThrow("Conflicting model catalog record"); } finally { await conflicting.close(); }
+  });
 
   it("accepts only an exact account-free observed login-purpose record", () => {
     const bindings = { bindingDigest:"a".repeat(64), outerPolicyDigest:"b".repeat(64), sourceDigest:"c".repeat(64), packageDigest:"d".repeat(64), activationId:"release-1", gateIdentity:"D36", consentDigest:"e".repeat(64) };

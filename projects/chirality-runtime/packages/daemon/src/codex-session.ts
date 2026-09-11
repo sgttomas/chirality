@@ -651,7 +651,7 @@ export class CodexTurnSession {
       authority.assertSnapshotBinding({supplierGeneration:snapshot.supplierGeneration,identityGeneration:snapshot.identityGeneration,snapshotDigest:snapshot.snapshotDigest});
       return createHash("sha256").update(JSON.stringify({schema:"chirality-hosted-account-conformance/v1",accountUserId:snapshot.accountUserId,providerWorkspaceId:snapshot.providerWorkspaceId})).digest("hex");});
   }
-  async listModelsPage(cursor?: string): Promise<{ data: readonly { model: string; hidden: boolean; isDefault: boolean; defaultReasoningEffort: string }[]; nextCursor: string | null }> {
+  async listModelsPage(cursor?: string): Promise<{ data: readonly { model: string; hidden: boolean; isDefault: boolean; defaultReasoningEffort: string; supportedReasoningEfforts: readonly string[] }[]; nextCursor: string | null }> {
     this.assertReady();
     if (cursor !== undefined && (typeof cursor !== "string" || !/^[\x21-\x7e]{1,512}$/.test(cursor))) throw invalid("Invalid model catalog cursor");
     const response = await this.request("model/list", cursor === undefined ? { limit: 100 } : { limit: 100, cursor });
@@ -670,7 +670,7 @@ export class CodexTurnSession {
         return effort;
       });
       if (new Set(efforts).size !== efforts.length || !efforts.includes(item.defaultReasoningEffort)) throw protocol("Unusable default model reasoning");
-      return Object.freeze({ model: item.model, hidden: item.hidden, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort });
+      return Object.freeze({ model: item.model, hidden: item.hidden, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort, supportedReasoningEfforts: Object.freeze(efforts) });
     });
     return Object.freeze({ data: Object.freeze(data), nextCursor: response.nextCursor as string | null });
   }

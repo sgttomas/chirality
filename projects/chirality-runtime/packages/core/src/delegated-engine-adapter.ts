@@ -7,6 +7,7 @@ import {
   type DelegatedTurnResponse,
   type DelegatedAttachmentInput,
   type EngineSelection,
+  type HostedModelCatalog,
   type RuntimeCompatibilityIdentity,
   type RuntimeSessionRecord,
   type UIEvent
@@ -22,6 +23,8 @@ export interface DelegatedEngineAdapterOptions {
   delegated: DelegatedRuntime;
   selection: EngineSelection;
   compatibility: RuntimeCompatibilityIdentity;
+  /** Authenticated non-hidden catalog of this admission. Absent means only the admitted default is acceptable. */
+  catalog?: Readonly<HostedModelCatalog>;
 }
 
 /**
@@ -51,7 +54,15 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
     const session = input.session as RuntimeSessionRecord;
     if (input.projectId !== options.projectId || session.projectId !== options.projectId || session.projectRoot.trim() === "") throw new RuntimeError("FORBIDDEN", "Delegated engine session is outside its configured project", 403);
     const selected = input.session.engineSelection;
-    if (selected?.adapterId !== options.selection.adapterId || selected.providerId !== options.selection.providerId || selected.model !== options.selection.model || input.opts.model !== options.selection.model) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated engine selection differs from the trusted composition", 503);
+    if (selected?.adapterId !== options.selection.adapterId || selected.providerId !== options.selection.providerId || typeof selected.model !== "string" || !selected.model.trim()) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated engine selection differs from the trusted composition", 503);
+    const entry = options.catalog?.models.find(candidate => candidate.model === selected.model);
+    if (options.catalog === undefined ? selected.model !== options.selection.model : entry === undefined) {
+      throw new RuntimeError("ENGINE_UNAVAILABLE", `Model '${selected.model}' is no longer offered by the authenticated Codex catalog`, 503, { reason: "MODEL_NOT_IN_CATALOG", model: selected.model, ...(options.catalog ? { available: options.catalog.models.map(candidate => candidate.model) } : {}) });
+    }
+    if (input.opts.model !== selected.model) throw new RuntimeError("ENGINE_UNAVAILABLE", "Turn model differs from the session's fixed catalog selection", 503, { reason: "MODEL_SELECTION_MISMATCH", model: input.opts.model, sessionModel: selected.model });
+    if (session.reasoningEffort !== undefined && (typeof session.reasoningEffort !== "string" || (entry === undefined ? true : !entry.supportedReasoningEfforts.includes(session.reasoningEffort)))) {
+      throw new RuntimeError("ENGINE_UNAVAILABLE", `Reasoning effort '${String(session.reasoningEffort)}' is no longer supported by '${selected.model}'`, 503, { reason: "REASONING_EFFORT_UNSUPPORTED", model: selected.model, ...(entry ? { supported: [...entry.supportedReasoningEfforts] } : {}) });
+    }
     if (!(["readOnly", "ask", "workspaceWrite", "bypass"] as const).some(mode => mode === input.opts.mode)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated Codex requires an explicit supported Runtime permission mode", 503);
   }
 
@@ -152,6 +163,8 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
           ...(input.session.adapterSession?.lastRuntimeTurnId === undefined ? {} : { previousTurnId: input.session.adapterSession.lastRuntimeTurnId }),
           prompt,
           ...(prepared.attachments.length === 0 ? {} : { attachments: prepared.attachments }),
+          model: session.engineSelection.model,
+          ...(session.reasoningEffort === undefined ? {} : { reasoningEffort: session.reasoningEffort }),
           compatibility: options.compatibility,
           preflight: prepared.preflight
         }, input.runtimeTools ?? [], { onProgress(event) { progress.push(structuredClone(event)); wake(); } });
@@ -165,7 +178,7 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
           if (event.type === "started") {
             if (provider !== undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated Codex emitted duplicate provider start", 503);
             provider = { threadId: event.providerThreadId, turnId: event.providerTurnId };
-            yield { type: "session:init", data: { engineSessionId: event.providerThreadId, providerSpanId: event.providerThreadId, lastRuntimeTurnId: input.turnId, adapterId: descriptor.adapterId, providerId: descriptor.providerId, model: options.selection.model } };
+            yield { type: "session:init", data: { engineSessionId: event.providerThreadId, providerSpanId: event.providerThreadId, lastRuntimeTurnId: input.turnId, adapterId: descriptor.adapterId, providerId: descriptor.providerId, model: session.engineSelection.model } };
           } else {
             if (provider === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated Codex emitted text before provider start", 503);
             if (event.text) yield { type: "chat:delta", data: { text: event.text } };

@@ -170,10 +170,10 @@ async function fixture(input: { logoutFails?: boolean; openStoreFails?: boolean;
     prepareNativeRoles: async () => { events.push("roles-materialized"); return { digest: "9".repeat(64), configOverrides: ["agents.enabled=true", "features.multi_agent=true", "features.multi_agent_v2=false", "agents.max_depth=2"] }; },
     bindRuntimeReadRoot: async (path, artifactInventory) => ({ path, readPaths: [join(path, "agents")], contentDigest: "4".repeat(64), artifactInventory }),
     validateLoginStartup: async () => ({ bindingDigest: "8".repeat(64), evidence: "externally-accepted-native-login-purpose", recordSha256: "6".repeat(64), ownerReference: "owner-act" }),
-    createLogin: () => ({ start: async () => ({ loginId: "login-1", authUrl: "https://auth.openai.com/login" }), status: async () => ({ state: ceremonyState, hasAccount: ceremonyState === "completed" }), cancel: async () => { events.push("ceremony-cancel"); }, close: async () => { events.push("ceremony-close"); } }),
+    createLogin: () => ({ start: async () => ({ loginId: "login-1", authUrl: "https://auth.openai.com/login" }), status: async () => ({ state: ceremonyState, hasAccount: ceremonyState === "completed" }), resolveModelCatalog: async () => { events.push("catalog-read"); throw new Error("v1 path never reads the catalog"); }, cancel: async () => { events.push("ceremony-cancel"); }, close: async () => { events.push("ceremony-close"); } }),
     preparePolicy: async input => { events.push(`policy-roles-${input.nativeRoleConfiguration?.digest ?? "missing"}`); return { policyDigest: "a".repeat(64), cleanup: async () => { events.push("policy-cleanup"); } }; },
-    createLauncherFactory: launcherInput => { launcherFactoryCalls++; events.push(`launcher-roles-${launcherInput.bindings.nativeRoleConfiguration?.digest ?? "missing"}`); if (input.logoutLauncherFails && launcherFactoryCalls > 1) throw new Error("logout launcher failed"); return { create: () => { throw new Error("controlled logout adapter does not launch"); }, close: async () => { events.push("launcher-close"); } }; },
-    admitHosted: async () => ({ supervisor, continuity, authority: { supplierGeneration: "supplier-1", identityGeneration: "identity-1", snapshotDigest: "b".repeat(64) }, accountDigest: "7".repeat(64), retire: async () => { events.push("admission-retire"); } }),
+    createLauncherFactory: launcherInput => { launcherFactoryCalls++; events.push(`launcher-roles-${launcherInput.bindings.nativeRoleConfiguration?.digest ?? "missing"}`); events.push(`launcher-config-${launcherInput.bindings.configDigest}`); if (input.logoutLauncherFails && launcherFactoryCalls > 1) throw new Error("logout launcher failed"); return { create: () => { throw new Error("controlled logout adapter does not launch"); }, close: async () => { events.push("launcher-close"); } }; },
+    admitHosted: async admitOptions => { events.push(`admit-config-${admitOptions.configDigest}`); events.push(`admit-catalog-${admitOptions.modelCatalog === undefined ? "absent" : "present"}`); return { supervisor, continuity, authority: { supplierGeneration: "supplier-1", identityGeneration: "identity-1", snapshotDigest: "b".repeat(64) }, accountDigest: "7".repeat(64), retire: async () => { events.push("admission-retire"); } }; },
     logout: async (_factory, digest) => { events.push(`logout-digest-${digest}`); events.push("supplier-logout"); if (input.logoutFails) throw new Error("logout failed"); },
     openBindingStore: async () => { if (input.openStoreFails) throw new Error("store failed"); return ({ fence: async reason => { events.push(`fence-${reason}`); if (input.fenceFails) throw new Error("fence failed"); return continuity; } }) as unknown as HostedIdentityBindingStore; }
   };
@@ -226,6 +226,12 @@ describe("hosted private production composition boundary", () => {
     const materialized = await f.bindings.materializeAdmission!({ projectId: "project", canonicalRoot: f.canonicalRoot, admission,
       runtime: { projects, sessions: {} as SessionStore, nativePlanSink, attachmentStagingRoot: join(f.canonicalRoot, ".chirality", "attachments") } });
     expect("delegated" in materialized && materialized.selection).toEqual({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-test" });
+    // The v1 managed-auth path never reads a catalog, exposes none, and its configDigest recipe is byte-identical to the accepted v1 recipe.
+    expect(materialized.catalog).toBeUndefined();
+    expect(f.events).not.toContain("catalog-read");
+    expect(f.events).toContain("admit-catalog-absent");
+    expect(f.events).toContain(`launcher-config-${f.options.configDigest}`);
+    expect(f.events).toContain(`admit-config-${f.options.configDigest}`);
     expect(f.lease.held).toBe(true);
     await f.bindings.close!(); await f.bindings.close!();
     expect(f.lease.held).toBe(false);

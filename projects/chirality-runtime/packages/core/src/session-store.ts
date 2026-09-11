@@ -59,7 +59,7 @@ export class SessionStore {
     this.instructionBases = new InstructionBasisStore(runtimeDirectory, projects, instructionBasisOptions);
   }
 
-  async create(request: CreateSessionRequest): Promise<RuntimeSessionRecord> {
+  async create(request: CreateSessionRequest & { reasoningEffort?: string }): Promise<RuntimeSessionRecord> {
     if (request.role === undefined || request.engineSelection === undefined) {
       throw new RuntimeError(
         "INVALID_REQUEST",
@@ -82,6 +82,7 @@ export class SessionStore {
       agentType: request.role === "agent0" ? 0 : request.role === "agent1" ? 1 : 2,
       role: request.role,
       engineSelection: request.engineSelection,
+      ...(request.reasoningEffort === undefined ? {} : { reasoningEffort: request.reasoningEffort }),
       status: "idle",
       ...(request.parentSessionId === undefined ? {} : { parentSessionId: request.parentSessionId }),
       ...(request.approvalRef === undefined ? {} : { approvalRef: request.approvalRef }),

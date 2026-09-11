@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { RuntimeError, validateHostedManagedAuth, type HostedManagedAuth, type DelegatedAttachmentInput, type DelegatedHarnessProcessSupervisorPort, type WorkerContinuity, type WorkerHandle, type WorkerResult, type NetworkApprovalPrompt, type NetworkApprovalChoice, type HostedConsent, type NativePlanTransportEvent, type NativePlanClarificationPrompt, type NativePlanClarificationAnswers, type RuntimeToolCallbackDeclaration, type RuntimeToolCallbackMessage, type RuntimeToolCallbackResult, type DelegatedTurnProgressEvent } from "@chirality/runtime-contracts";
+import { HOSTED_MODEL_ID_PATTERN, HOSTED_REASONING_EFFORT_PATTERN, RuntimeError, validateHostedManagedAuth, validateHostedModelCatalogEntries, type HostedManagedAuth, type HostedModelCatalogEntry, type DelegatedAttachmentInput, type DelegatedHarnessProcessSupervisorPort, type WorkerContinuity, type WorkerHandle, type WorkerResult, type NetworkApprovalPrompt, type NetworkApprovalChoice, type HostedConsent, type NativePlanTransportEvent, type NativePlanClarificationPrompt, type NativePlanClarificationAnswers, type RuntimeToolCallbackDeclaration, type RuntimeToolCallbackMessage, type RuntimeToolCallbackResult, type DelegatedTurnProgressEvent } from "@chirality/runtime-contracts";
 import { assertContinuity, recordKey, verifyConfiguredRuntimeConformance, type RuntimeConformanceConfiguration, DescendantTracker, HostedConsentStore } from "@chirality/runtime-core";
 import { prepareCodexNativePolicy } from "./codex-containment.js";
 import { CodexTurnSession, type CodexSessionTransport, type CodexDynamicTool, type CodexDynamicToolResult } from "./codex-session.js";
@@ -16,6 +16,8 @@ export interface CodexSupervisorOptions {
   executablePath: string;
   model: string;
   reasoningEffort?: string;
+  /** Authenticated non-hidden catalog. Envelope model/effort outside it fail before any provider request. */
+  modelCatalog?: readonly HostedModelCatalogEntry[];
   identity: WorkerContinuity;
   codexHome: string;
   privateDirectory: string;
@@ -138,7 +140,12 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   private preadmitted?: AdmittedCandidate;
   constructor(options: CodexSupervisorOptions) {
     if (!options || typeof options.model !== "string" || !options.model.trim() || options.model.length > 128 || /[\x00-\x1f]/.test(options.model)) throw new RuntimeError("INVALID_REQUEST", "Explicit Codex model required");
-    if (options.reasoningEffort !== undefined && !/^[\x21-\x7e]{1,64}$/.test(options.reasoningEffort)) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex reasoning effort");
+    if (options.reasoningEffort !== undefined && !HOSTED_REASONING_EFFORT_PATTERN.test(options.reasoningEffort)) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex reasoning effort");
+    if (options.modelCatalog !== undefined) {
+      const catalog = validateHostedModelCatalogEntries(options.modelCatalog);
+      const admitted = catalog.find(entry => entry.model === options.model);
+      if (!admitted || (options.reasoningEffort !== undefined && !admitted.supportedReasoningEfforts.includes(options.reasoningEffort))) throw new RuntimeError("INVALID_REQUEST", "Admitted Codex model or reasoning effort is outside its catalog");
+    }
     for (const value of [options.requestTimeoutMs ?? 10_000, options.turnTimeoutMs ?? 120_000, options.maxWorkers ?? 16]) if (!Number.isSafeInteger(value) || value < 1 || value > 600_000) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex supervisor bound");
     if (options.commandNetworkPosture !== undefined && !["off", "ask-per-destination", "on"].includes(options.commandNetworkPosture)) throw new RuntimeError("INVALID_REQUEST", "Unsupported executable command-network posture");
     if (options.supportedPermissionMode !== undefined && options.supportedPermissionMode !== "workspaceWrite") throw new RuntimeError("INVALID_REQUEST", "Unsupported native permission profile");
@@ -220,14 +227,32 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     } catch (error) { return failAfterCleanup(error, [() => authority?.close(), () => session.close(), () => candidate.cleanup()]); }
   }
   /** Controlled adapter tests are structurally excluded from verifyHostedBoundary. */
-  static controlledForTests(options: { supplierAuthority?:SupplierAuthorityController; barrier?:(name:string)=>Promise<void>; commandNetworkPosture?: "off" | "ask-per-destination" | "on"; allowUnauthenticatedModel?: boolean; identity: WorkerContinuity; model: string; launch: ControlledCodexLauncher; requestTimeoutMs?: number; turnTimeoutMs?: number }): CodexSupervisor {
-    const result = new CodexSupervisor({ identity: options.identity, model: options.model, privateDirectory: options.identity.canonicalRoot, codexHome: options.identity.canonicalRoot,
+  static controlledForTests(options: { supplierAuthority?:SupplierAuthorityController; barrier?:(name:string)=>Promise<void>; commandNetworkPosture?: "off" | "ask-per-destination" | "on"; allowUnauthenticatedModel?: boolean; identity: WorkerContinuity; model: string; reasoningEffort?: string; modelCatalog?: readonly HostedModelCatalogEntry[]; launch: ControlledCodexLauncher; requestTimeoutMs?: number; turnTimeoutMs?: number }): CodexSupervisor {
+    const result = new CodexSupervisor({ identity: options.identity, model: options.model, ...(options.reasoningEffort === undefined ? {} : { reasoningEffort: options.reasoningEffort }), ...(options.modelCatalog === undefined ? {} : { modelCatalog: options.modelCatalog }), privateDirectory: options.identity.canonicalRoot, codexHome: options.identity.canonicalRoot,
       commandNetworkPosture: options.commandNetworkPosture, executablePath: "controlled-fixture-only", managedAuth: { backend: "keyring", binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" } }, providerNetworkConsent: { approvedBy: "", approvalReference: "" }, requestTimeoutMs: options.requestTimeoutMs, turnTimeoutMs: options.turnTimeoutMs });
     result.fixtureLauncher = options.launch;
     result.options.supplierAuthority=options.supplierAuthority;
     result.barrier=options.barrier;
     result.fixtureAllowUnauthenticatedModel = options.allowUnauthenticatedModel === true;
     return result;
+  }
+  /** Last line before launch: an envelope choice must be the admitted default or a member of the admitted catalog. */
+  private assertCatalogChoice(model: unknown, reasoningEffort: unknown): { model: string; reasoningEffort?: string } {
+    const invalid = (message: string) => new RuntimeError("INVALID_REQUEST", message, 400, { reason: "MODEL_NOT_IN_CATALOG" });
+    if (model !== undefined && (typeof model !== "string" || !HOSTED_MODEL_ID_PATTERN.test(model))) throw invalid("Invalid hosted turn envelope model");
+    if (reasoningEffort !== undefined && (typeof reasoningEffort !== "string" || !HOSTED_REASONING_EFFORT_PATTERN.test(reasoningEffort))) throw invalid("Invalid hosted turn envelope reasoning effort");
+    const selectedModel = model ?? this.options.model;
+    const catalog = this.options.modelCatalog;
+    if (catalog === undefined) {
+      if (selectedModel !== this.options.model) throw invalid(`Model '${selectedModel}' is not the admitted Codex model`);
+      if (reasoningEffort !== undefined && reasoningEffort !== this.options.reasoningEffort) throw new RuntimeError("INVALID_REQUEST", `Reasoning effort '${reasoningEffort}' is not the admitted Codex reasoning effort`, 400, { reason: "REASONING_EFFORT_UNSUPPORTED" });
+      return { model: selectedModel, reasoningEffort: this.options.reasoningEffort };
+    }
+    const entry = catalog.find(candidate => candidate.model === selectedModel);
+    if (!entry) throw invalid(`Model '${selectedModel}' is not in the authenticated Codex catalog`);
+    const effort = reasoningEffort ?? (selectedModel === this.options.model ? this.options.reasoningEffort : entry.defaultReasoningEffort);
+    if (effort !== undefined && !entry.supportedReasoningEfforts.includes(effort)) throw new RuntimeError("INVALID_REQUEST", `Reasoning effort '${effort}' is not supported by '${selectedModel}'`, 400, { reason: "REASONING_EFFORT_UNSUPPORTED" });
+    return { model: selectedModel, reasoningEffort: effort };
   }
   private async revalidateCurrentHost(): Promise<void> {
     const input = this.conformance?.runtimeV2?.instanceInput;
@@ -337,9 +362,10 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     id(workerId);
     if (this.closed || this.entries.has(workerId) || this.acquiring.has(workerId) || this.entries.size + this.acquiring.size >= (this.options.maxWorkers ?? 16)) throw unavailable("Codex worker is unavailable or already acquired");
     if (typeof input !== "string" || Buffer.byteLength(input) > 1048576) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted turn envelope");
-    let request: { prompt: string; attachments?: DelegatedAttachmentInput[]; resumeThreadId?: string; requestedRole?: string; roleEvidence?: { selectedRole?: string; enforcementLabel?: string; evidencePosture?: string }; interactionMode?: "chat" | "native-plan"; permissionMode?: "readOnly" | "ask" | "workspaceWrite" | "bypass"; projectId?: string; sessionId?: string; clientTurnId?: string };
+    let request: { prompt: string; attachments?: DelegatedAttachmentInput[]; resumeThreadId?: string; requestedRole?: string; roleEvidence?: { selectedRole?: string; enforcementLabel?: string; evidencePosture?: string }; interactionMode?: "chat" | "native-plan"; permissionMode?: "readOnly" | "ask" | "workspaceWrite" | "bypass"; projectId?: string; sessionId?: string; clientTurnId?: string; model?: string; reasoningEffort?: string };
     try { request = JSON.parse(input); } catch { throw new RuntimeError("INVALID_REQUEST", "Hosted worker requires the private broker JSON envelope"); }
-    if (!request || typeof request !== "object" || Array.isArray(request) || Object.keys(request).some(key => !["prompt", "attachments", "resumeThreadId", "requestedRole", "roleEvidence", "interactionMode", "permissionMode", "projectId", "sessionId", "clientTurnId"].includes(key)) || typeof request.prompt !== "string" || !request.prompt.trim()) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted turn envelope");
+    if (!request || typeof request !== "object" || Array.isArray(request) || Object.keys(request).some(key => !["prompt", "attachments", "resumeThreadId", "requestedRole", "roleEvidence", "interactionMode", "permissionMode", "projectId", "sessionId", "clientTurnId", "model", "reasoningEffort"].includes(key)) || typeof request.prompt !== "string" || !request.prompt.trim()) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted turn envelope");
+    const choice = this.assertCatalogChoice(request.model, request.reasoningEffort);
     const validAttachment = (attachment: DelegatedAttachmentInput): boolean => {
       if (!attachment || typeof attachment !== "object" || Array.isArray(attachment)) return false;
       if (attachment.type === "text") return !Object.keys(attachment).some(key => !["type", "text", "source"].includes(key)) && attachment.source === "untrusted-document" && typeof attachment.text === "string" && Buffer.byteLength(attachment.text) <= 262144;
@@ -445,9 +471,9 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
           if (!account.hasAccount && !(this.fixtureLauncher && this.fixtureAllowUnauthenticatedModel && account.authRequired === false)) throw unavailable("Codex has no root-private authenticated account");
           if (!this.fixtureLauncher) this.requireHostedIdentity();
           const threadId = request.resumeThreadId
-            ? await activeSession.resumeThread({ threadId: request.resumeThreadId, model: this.options.model, continuityChecked: true })
-            : await activeSession.startThread({ cwd: this.options.identity.canonicalRoot, model: this.options.model, continuityChecked: true });
-          const turnId = await activeSession.startTurn({ threadId, text: prompt, model: this.options.model, reasoningEffort: this.options.reasoningEffort, interactionMode, attachments: request.attachments });
+            ? await activeSession.resumeThread({ threadId: request.resumeThreadId, model: choice.model, continuityChecked: true })
+            : await activeSession.startThread({ cwd: this.options.identity.canonicalRoot, model: choice.model, continuityChecked: true });
+          const turnId = await activeSession.startTurn({ threadId, text: prompt, model: choice.model, reasoningEffort: choice.reasoningEffort, interactionMode, attachments: request.attachments });
           const terminal = await activeSession.waitTurn(turnId);
           await eventDrain;
           return { worker: { ...handle, state: "exited" }, exitCode: terminal.status === "completed" ? 0 : terminal.status === "failed" ? 1 : null,

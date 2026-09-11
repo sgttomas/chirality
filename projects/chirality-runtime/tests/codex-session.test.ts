@@ -164,8 +164,25 @@ describe("persistent known-method Codex actor (controlled provider)", () => {
     const session = new CodexTurnSession({ purpose: "login", transport: { stdin, stdout, async close() {} } });
     try {
       await session.initialize();
-      expect(await session.listModelsPage()).toEqual({ data: [{ model: "gpt-default", hidden: false, isDefault: true, defaultReasoningEffort: "high" }], nextCursor: null });
+      expect(await session.listModelsPage()).toEqual({ data: [{ model: "gpt-default", hidden: false, isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["high"] }], nextCursor: null });
       expect(requests).toContainEqual(expect.objectContaining({ method: "model/list", params: { limit: 100 } }));
+      expect(requests.filter(request => (request as { method?: string }).method === "model/list")).toHaveLength(1);
+    } finally { await session.close(); stdin.destroy(); stdout.destroy(); }
+  });
+  it("rejects a model/list page whose default reasoning effort is outside its supported list", async () => {
+    const stdin = new PassThrough(), stdout = new PassThrough();
+    const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+    stdin.on("data", bytes => {
+      for (const line of bytes.toString().trim().split("\n")) {
+        const request = JSON.parse(line);
+        if (request.method === "initialize") send({ id: request.id, result: {} });
+        else if (request.method === "model/list") send({ id: request.id, result: { data: [{ model: "gpt-default", hidden: false, isDefault: true, defaultReasoningEffort: "xhigh", supportedReasoningEfforts: [{ reasoningEffort: "low", description: "Low" }, { reasoningEffort: "high", description: "High" }] }], nextCursor: null } });
+      }
+    });
+    const session = new CodexTurnSession({ purpose: "login", transport: { stdin, stdout, async close() {} } });
+    try {
+      await session.initialize();
+      await expect(session.listModelsPage()).rejects.toThrow("Unusable default model reasoning");
     } finally { await session.close(); stdin.destroy(); stdout.destroy(); }
   });
 

@@ -1,7 +1,7 @@
 import type { RuntimeEvent } from "./events.js";
 
 export const HARNESS_V2_TERMINALS = ["turn.completed", "turn.failed", "turn.interrupted", "turn.cancelled"] as const;
-export interface EventAttributionV2 { adapterId: string; providerId: string; model: string }
+export interface EventAttributionV2 { adapterId: string; providerId: string; model: string; reasoningEffort?: string }
 interface EventPayloadsV2 {
   "session.created": { role: "untyped" | "agent0" | "agent1" | "agent2" | "task" };
   "session.resumed": { resumed: true };
@@ -59,7 +59,7 @@ export function validateHarnessEventV2(value: unknown): value is HarnessEventV2 
   if (![value.eventId, value.projectId, value.sessionId, value.turnId, value.type].every(nonempty)) return false;
   if (!str(value.timestamp) || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(value.timestamp) || !Number.isFinite(Date.parse(value.timestamp))) return false;
   if (new Date(value.timestamp).toISOString() !== value.timestamp.replace(/Z$/, value.timestamp.includes(".") ? "Z" : ".000Z")) return false;
-  if (value.attribution !== undefined && (!object(value.attribution) || !exact(value.attribution, ["adapterId", "providerId", "model"]) || !Object.values(value.attribution).every(nonempty))) return false;
+  if (value.attribution !== undefined && (!object(value.attribution) || !exact(value.attribution, Object.hasOwn(value.attribution, "reasoningEffort") ? ["adapterId", "providerId", "model", "reasoningEffort"] : ["adapterId", "providerId", "model"]) || !Object.values(value.attribution).every(nonempty))) return false;
   return object(value.data) && payload(value.type as HarnessEventTypeV2, value.data);
 }
 export type EventProjectionV2 = { kind: "event"; event: HarnessEventV2 } | { kind: "quarantined"; reason: "unsupported_event" | "invalid_payload" | "invalid_envelope" };
@@ -81,7 +81,7 @@ export function projectRuntimeEventV2(source: Omit<RuntimeEvent, "type"> & { typ
   const event = {
     schemaVersion: 2, eventId: source.id, sequence: source.sequence, timestamp: source.timestamp,
     projectId: source.projectId, sessionId: source.sessionId, turnId: source.turnId, type: source.type, data: projected,
-    ...(source.attribution ? { attribution: { adapterId: source.attribution.adapterId, providerId: source.attribution.providerId, model: source.attribution.model } } : {})
+    ...(source.attribution ? { attribution: { adapterId: source.attribution.adapterId, providerId: source.attribution.providerId, model: source.attribution.model, ...(source.attribution.reasoningEffort === undefined ? {} : { reasoningEffort: source.attribution.reasoningEffort }) } } : {})
   };
   return validateHarnessEventV2(event) ? { kind: "event", event } : { kind: "quarantined", reason: "invalid_payload" };
 }

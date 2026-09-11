@@ -416,7 +416,8 @@ export class TurnCoordinator {
             status: runtimeError.status,
             severity: "error",
             fatal: true,
-            details: { runtimeCode: runtimeError.code }
+            // A machine reason (e.g. MODEL_NOT_IN_CATALOG) lets clients map the failure without parsing text.
+            details: { runtimeCode: runtimeError.code, ...(typeof runtimeError.details?.reason === "string" ? { reason: runtimeError.details.reason } : {}) }
           }
         };
       }

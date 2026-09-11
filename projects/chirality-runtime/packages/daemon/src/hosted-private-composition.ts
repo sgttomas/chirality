@@ -7,6 +7,7 @@ import {
   RuntimeError,
   validateHostedManagedAuth,
   type HostedManagedAuth,
+  type HostedModelCatalog,
   type NativePlanAdapterAdmission,
   type NativePlanAdapterQualification,
   type RuntimeCompatibilityIdentity
@@ -343,6 +344,7 @@ const productionAdapters: ControlledHostedPrivateCompositionAdapters = Object.fr
       start: () => login.startLogin(),
       async status() { const value = await login.status(); return { state: value.state, ...(value.hasAccount === undefined ? {} : { hasAccount: value.hasAccount }) }; },
       resolveDefaultModel: () => login.resolveDefaultModel(),
+      resolveModelCatalog: () => login.resolveModelCatalog(),
       cancel: () => login.cancel(),
       close: () => login.close()
     });
@@ -358,7 +360,7 @@ const productionAdapters: ControlledHostedPrivateCompositionAdapters = Object.fr
 interface CeremonyContext {
   projectId: string; manifestHash: string; consentVersion: string; canonicalRoot: string; privateDirectory: string; codexHome: string;
   providerNetworkConsent: { approvedBy: string; approvalReference: string; approvedAt: string };
-  stagedExecutable: string; configDigest: string; model?: string; defaultReasoningEffort?: string; ceremony: TrustedHostedLoginCeremony; nativeRoles: { digest: string; configOverrides: readonly string[] }; runtimeReadRoot: TrustedRuntimeReadRootBinding;
+  stagedExecutable: string; configDigest: string; model?: string; defaultReasoningEffort?: string; catalog?: Readonly<HostedModelCatalog>; ceremony: TrustedHostedLoginCeremony; nativeRoles: { digest: string; configOverrides: readonly string[] }; runtimeReadRoot: TrustedRuntimeReadRootBinding;
   v2?: { loginRelease: RuntimePurposeReleaseAdmissionV2; loginInput: RuntimeInstanceAdmissionInputV2; loginAdmission: RuntimeInstanceAdmissionV2; runtimeReadRoot: TrustedRuntimeReadRootBindingV2 };
 }
 interface AdmissionContext extends CeremonyContext {
@@ -512,10 +514,12 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
       if (!context || context.projectId !== input.projectId || context.canonicalRoot !== input.canonicalRoot) throw unavailable("CEREMONY_BINDING_MISMATCH");
       const status = await context.ceremony.status();
       if (status.state !== "completed" || status.hasAccount !== true) throw unavailable("CEREMONY_NOT_COMPLETED");
+      // The catalog is the same authenticated model/list read; its unique default is the admitted default.
+      const catalog = context.v2 ? await context.ceremony.resolveModelCatalog?.() : undefined;
       const selected = context.v2
-        ? await context.ceremony.resolveDefaultModel?.() ?? (() => { throw unavailable("MODEL_CATALOG_UNAVAILABLE"); })()
+        ? catalog ? { model: catalog.default.model, defaultReasoningEffort: catalog.default.defaultReasoningEffort } : await context.ceremony.resolveDefaultModel?.() ?? (() => { throw unavailable("MODEL_CATALOG_UNAVAILABLE"); })()
         : { model: trusted.model!, defaultReasoningEffort: "" };
-      context.model = selected.model; context.defaultReasoningEffort = context.v2 ? selected.defaultReasoningEffort : undefined;
+      context.model = selected.model; context.defaultReasoningEffort = context.v2 ? selected.defaultReasoningEffort : undefined; context.catalog = catalog;
       if (context.v2 && trusted.releaseV2) context.configDigest = recordKey({ schema: "chirality.hosted-private-config/v2", projectId: context.projectId, manifestHash: context.manifestHash,
         model: selected.model, defaultReasoningEffort: selected.defaultReasoningEffort, accountStorage: { backend: "keyring" }, compatibility: trusted.compatibility,
         providerNetworkConsent: context.providerNetworkConsent, commandNetworkPosture: trusted.commandNetworkPosture, protectedPaths: trusted.protectedPaths,
@@ -579,7 +583,7 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
             ...(runtimeV2 ? { instanceInputV2: runtimeV2.instanceInput, instanceAdmissionV2: runtimeV2.instanceAdmission } : { instancePreparationV2: runtimeV2Preparation! }),
             nativePolicyIdentityVersion: trusted.releaseV2!.basis.supportProfile.compiler.nativePolicyIdentityVersion } : {}) }, kernelLease: lease });
         const admission = admitted = await adapters.admitHosted({ canonicalRoot: context.canonicalRoot, candidateLauncherFactory: launcherFactory,
-          ...(trusted.conformance ? { conformance: trusted.conformance } : {}), executablePath: context.stagedExecutable, model: selected.model, ...(context.v2 ? { reasoningEffort: selected.defaultReasoningEffort } : {}), codexHome: context.codexHome,
+          ...(trusted.conformance ? { conformance: trusted.conformance } : {}), executablePath: context.stagedExecutable, model: selected.model, ...(context.v2 ? { reasoningEffort: selected.defaultReasoningEffort } : {}), ...(catalog ? { modelCatalog: catalog.models } : {}), codexHome: context.codexHome,
           privateDirectory: context.privateDirectory, ...(context.v2 ? { accountStorageBackend: "keyring" as const } : { managedAuth: trusted.managedAuth! }), providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference },
           protectedPaths: [...trusted.protectedPaths], readOnlyProjectPaths: [attachmentRoot], commandNetworkPosture: trusted.commandNetworkPosture,
           configDigest: context.configDigest, consentVersion: context.consentVersion, ...(runtimeV2 ? { runtimeV2 } : {}), ...(runtimeV2Preparation ? { runtimeV2Preparation } : {}),
@@ -614,7 +618,8 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
       const delegated = new DelegatedRuntime({ daemonId: `hosted-${input.projectId}`, projects: new Map([[input.projectId, { identity: input.admission.continuity,
         compatibility: trusted.compatibility, supervisor: context.admission.supervisor, consent, retirement, approvals,
         approvalForwardingEnabled: trusted.commandNetworkPosture === "ask-per-destination", nativePlanSink: input.runtime.nativePlanSink,
-        commandNetworkPosture: trusted.commandNetworkPosture, actual: { adapterId: "codex-app-server", providerId: "openai", model: context.model! }, evidenceClass: "provider-observed" as const }]]) });
+        commandNetworkPosture: trusted.commandNetworkPosture, actual: { adapterId: "codex-app-server", providerId: "openai", model: context.model!, ...(context.defaultReasoningEffort ? { reasoningEffort: context.defaultReasoningEffort } : {}) },
+        ...(context.catalog ? { catalog: context.catalog } : {}), evidenceClass: "provider-observed" as const }]]) });
       if (context.runtimeV2) {
         await revalidateRuntimeInstanceAdmissionV2(context.runtimeV2.instanceInput, context.runtimeV2.instanceAdmission);
         const finalProject = await input.runtime.projects.requireAuthorized(input.projectId), finalRoots = await input.runtime.projects.roots(input.projectId);
@@ -624,7 +629,7 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
         if (closed || !lease.held || context.retired || context.signedOut || admissions.get(input.admission) !== context) throw unavailable("MATERIALIZATION_BINDING_INVALID");
       }
       context.materialized = delegated;
-      return { delegated, selection: { adapterId: "codex-app-server", providerId: "openai", model: context.model! }, compatibility: { ...trusted.compatibility }, evidenceClass: "provider-observed" as const };
+      return { delegated, selection: { adapterId: "codex-app-server", providerId: "openai", model: context.model! }, compatibility: { ...trusted.compatibility }, evidenceClass: "provider-observed" as const, ...(context.catalog ? { catalog: context.catalog } : {}) };
     },
     async signOut(input) {
       if (closed || !ID.test(input.projectId) || !canonical(input.canonicalRoot) || !canonical(input.privateDirectory) || !canonical(input.codexHome)) throw unavailable("SIGNOUT_BINDING_INVALID");

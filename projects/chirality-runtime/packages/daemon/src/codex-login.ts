@@ -2,7 +2,7 @@ import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { constants } from "node:fs";
 import { open, realpath } from "node:fs/promises";
 import { spawn } from "node:child_process";
-import { RuntimeError, validateHostedLoginStatus, type HostedLoginStatus } from "@chirality/runtime-contracts";
+import { RuntimeError, hostedModelCatalog, validateHostedLoginStatus, type HostedLoginStatus, type HostedModelCatalog } from "@chirality/runtime-contracts";
 import { computeRuntimeArtifactDigest, configureRuntimeConformanceArtifactInventory, isContained, privateDirectory, recordKey, revalidateExactSupply, runtimeConformanceArtifactInventory, runtimeStageCAppServerArguments, RuntimeConformanceFileAcceptancePort, verifyExactSupply, type ExactSupplyVerifier, type ExactVerifiedSupply, type RuntimeConformanceConfiguration } from "@chirality/runtime-core";
 import { assertCodexKeyringHomeHasNoPlaintextCredentials, codexLoginConfigOverridesV2, prepareCodexContainment, prepareCodexContainmentV2 } from "./codex-containment.js";
 import { CodexTurnSession, type CodexAuthorityInitialize, type CodexSessionTransport } from "./codex-session.js";
@@ -164,6 +164,7 @@ export class CodexLogin {
   private closeFailure: unknown;
   private result: CodexLoginStatus | undefined;
   private selectedModel: Readonly<{ model: string; defaultReasoningEffort: string }> | undefined;
+  private modelCatalog: Readonly<HostedModelCatalog> | undefined;
   private retainAuthenticatedSessionForModelCatalog = false;
   private authorityInitialize: CodexAuthorityInitialize | undefined;
   private controlledNativeSkills: "disabled" | undefined;
@@ -265,11 +266,18 @@ export class CodexLogin {
       return await this.actor.loginStart();
     } catch (error) { try { await this.close(); } catch (cleanup) { throw new AggregateError([error, cleanup], "Login startup and retirement failed"); } throw error; }
   }
+  /** The admitted default is the unique non-hidden default of the same catalog read `resolveModelCatalog` retains. */
   async resolveDefaultModel(): Promise<Readonly<{ model: string; defaultReasoningEffort: string }>> {
     if (this.selectedModel) return this.selectedModel;
+    const catalog = await this.resolveModelCatalog();
+    return this.selectedModel ?? Object.freeze({ model: catalog.default.model, defaultReasoningEffort: catalog.default.defaultReasoningEffort });
+  }
+  /** Same `model/list` requests, pages and bound as before; non-hidden entries are retained in catalog order. */
+  async resolveModelCatalog(): Promise<Readonly<HostedModelCatalog>> {
+    if (this.modelCatalog) return this.modelCatalog;
     if (!this.actor || this.closed) throw unavailable("Authenticated model catalog is unavailable");
     try {
-    const cursors = new Set<string>(), models = new Map<string, { hidden: boolean; isDefault: boolean; defaultReasoningEffort: string }>();
+    const cursors = new Set<string>(), models = new Map<string, { hidden: boolean; isDefault: boolean; defaultReasoningEffort: string; supportedReasoningEfforts: readonly string[] }>();
     let cursor: string | undefined;
     for (let pageIndex = 0; pageIndex < 64; pageIndex++) {
       if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
@@ -277,19 +285,25 @@ export class CodexLogin {
       const page = await this.actor.listModelsPage(cursor);
       for (const item of page.data) {
         const previous = models.get(item.model);
-        if (previous && (previous.hidden !== item.hidden || previous.isDefault !== item.isDefault || previous.defaultReasoningEffort !== item.defaultReasoningEffort)) throw unavailable("Conflicting model catalog record");
+        if (previous && (previous.hidden !== item.hidden || previous.isDefault !== item.isDefault || previous.defaultReasoningEffort !== item.defaultReasoningEffort
+          || previous.supportedReasoningEfforts.join("\0") !== item.supportedReasoningEfforts.join("\0"))) throw unavailable("Conflicting model catalog record");
         if (previous) throw unavailable("Duplicate model catalog record");
-        models.set(item.model, { hidden: item.hidden, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort });
+        models.set(item.model, { hidden: item.hidden, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort, supportedReasoningEfforts: item.supportedReasoningEfforts });
       }
       if (page.nextCursor === null) {
-        const defaults = [...models].filter(([, value]) => value.isDefault && !value.hidden);
+        const visible = [...models].filter(([, value]) => !value.hidden);
+        const defaults = visible.filter(([, value]) => value.isDefault);
         if (defaults.length !== 1) throw unavailable("Model catalog has no unique usable default");
+        if (visible.length > 64) throw unavailable("Model catalog exceeds the retained catalog bound");
         if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
         if (this.closed || this.expired) throw unavailable("Model catalog closed before selection");
-        const selected = Object.freeze({ model: defaults[0]![0], defaultReasoningEffort: defaults[0]![1].defaultReasoningEffort });
+        let catalog: Readonly<HostedModelCatalog>;
+        try { catalog = hostedModelCatalog(visible.map(([model, value]) => ({ model, isDefault: value.isDefault, defaultReasoningEffort: value.defaultReasoningEffort, supportedReasoningEfforts: value.supportedReasoningEfforts }))); }
+        catch { throw unavailable("Model catalog is not usable"); }
+        const selected = Object.freeze({ model: catalog.default.model, defaultReasoningEffort: catalog.default.defaultReasoningEffort });
         await this.close();
         if (this.expired || this.cancelled) throw unavailable("Model catalog cancelled or expired during retirement");
-        this.selectedModel = selected; return selected;
+        this.selectedModel = selected; this.modelCatalog = catalog; return catalog;
       }
       if (page.nextCursor === cursor || cursors.has(page.nextCursor)) throw unavailable("Model catalog cursor did not make progress");
       cursors.add(page.nextCursor); cursor = page.nextCursor;

@@ -4,7 +4,7 @@ import { cp, mkdir, mkdtemp, readFile, readdir, realpath, rename, rm, writeFile 
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import { AuthRegistry, HostedConsentStore, ProjectRegistry, REQUIRED_RUNTIME_CONFORMANCE_LIMBS, runtimePolicyParameterSchemaDigestV2, runtimeStageCPolicyParameterSchemaDigest } from "@chirality/runtime-core";
+import { AuthRegistry, HostedConsentStore, ProjectRegistry, recordKey, REQUIRED_RUNTIME_CONFORMANCE_LIMBS, runtimePolicyParameterSchemaDigestV2, runtimeStageCPolicyParameterSchemaDigest } from "@chirality/runtime-core";
 import { CodexLogin, validateCodexLoginStartup } from "../packages/daemon/src/codex-login.js";
 import { CodexSupervisor } from "../packages/daemon/src/codex-supervisor.js";
 import { HostedIdentityBindingStore } from "../packages/daemon/src/hosted-identity-binding.js";
@@ -64,7 +64,7 @@ const principal = { accountUserId: "account-user", providerWorkspaceId: "workspa
 const accountDigest = hash(JSON.stringify({ schema: "chirality-hosted-account-conformance/v1", ...principal }));
 const account = { accountId: `rhb_${Buffer.alloc(32, 42).toString("base64url")}`, accountEpoch: 1, accountDigest };
 const nominalHosts = new Map<object, () => Promise<boolean>>();
-let root: string, bindings: any, supervisor: CodexSupervisor, login: CodexLogin, sourceOptions: any, issuedInputs: any[], compositionAdapters: any;
+let root: string, bindings: any, supervisor: CodexSupervisor, login: CodexLogin, sourceOptions: any, issuedInputs: any[], compositionAdapters: any, launcherBindings: any[];
 let live = true, manifestHash: string, manifestPath: string, projects: ProjectRegistry, fixtureCompilerIdentity:10|11=10;
 const platform = Object.getOwnPropertyDescriptor(process, "platform")!, arch = Object.getOwnPropertyDescriptor(process, "arch")!;
 const weakGet = WeakMap.prototype.get, weakHas = WeakMap.prototype.has;
@@ -194,7 +194,7 @@ async function releaseFiles(directory: string, purpose: "login" | "worker", supp
 beforeEach(async ({ task }) => {
   io.children.clear(); io.trace = []; io.captures = []; io.releaseRead = undefined; io.requestHook = undefined; io.retireFails = false; io.pendingLogin = false; io.catalogHangs = false; io.compileHook = undefined; io.outerHook = undefined; io.directoryRead = undefined;
   io.nativeReadback.clear(); io.stageCChild = false; io.uniqueRandom = false; io.randomSequence = 0; io.trialPlan = false; io.planAnswerObserved = false;
-  live = true; issuedInputs = []; nominalHosts.clear(); bindings = undefined;
+  live = true; issuedInputs = []; launcherBindings = []; nominalHosts.clear(); bindings = undefined;
   Object.defineProperty(process, "platform", { ...platform, value: "darwin" }); Object.defineProperty(process, "arch", { ...arch, value: "arm64" });
   vi.spyOn(Date, "now").mockReturnValue(Date.parse("2026-09-10T12:00:00.000Z"));
   // Legacy controlled-adapter cases below retain their preexisting nominal
@@ -229,8 +229,8 @@ beforeEach(async ({ task }) => {
       for (const role of roles) await writeFile(join(privateDirectory, `${role}.toml`), `developer_instructions = ${JSON.stringify(`Exact ${role} child instruction.`)}\n`, { mode: 0o600 });
       return nativeRoles;
     }, bindRuntimeReadRoot: async () => { throw new Error("v1 path forbidden"); },
-    validateLoginStartup: validateCodexLoginStartup, createLogin: options => { login = new CodexLogin({ ...options, timeoutMs: 600 }); issuedInputs.push(options.instanceV2); return { start: () => login.startLogin(), status: () => login.status(), resolveDefaultModel: () => login.resolveDefaultModel(), cancel: () => login.cancel(), close: () => login.close() }; },
-    preparePolicy: async () => { throw new Error("v1 path forbidden"); }, createLauncherFactory: options => { issuedInputs.push(options.bindings.instanceInputV2); return createCodexCandidateLauncherFactory(options); },
+    validateLoginStartup: validateCodexLoginStartup, createLogin: options => { login = new CodexLogin({ ...options, timeoutMs: 600 }); issuedInputs.push(options.instanceV2); return { start: () => login.startLogin(), status: () => login.status(), resolveDefaultModel: () => login.resolveDefaultModel(), resolveModelCatalog: () => login.resolveModelCatalog(), cancel: () => login.cancel(), close: () => login.close() }; },
+    preparePolicy: async () => { throw new Error("v1 path forbidden"); }, createLauncherFactory: options => { issuedInputs.push(options.bindings.instanceInputV2); launcherBindings.push(options.bindings); return createCodexCandidateLauncherFactory(options); },
     admitHosted: async options => { const result = await CodexSupervisor.admitHosted(options); supervisor = result.supervisor; return result; },
     logout: productionLogout, openBindingStore: HostedIdentityBindingStore.open,
     hostAuthority: async input => {
@@ -264,7 +264,15 @@ async function bindingRecord() { const dir = join(root, "runtime", "private"); c
 describe("controlled connected D36 v2 source path", () => {
   it("runs real login, Supplier-shaped catalog, retained worker turn and fence-first logout with actual compiled argv", async () => {
     const admitted = await admission();
-    await materialize(admitted);
+    const materialized = await materialize(admitted);
+    // The retained catalog is the same non-hidden model/list read that picked the admitted default, and the
+    // v2 configDigest recipe is unchanged by it (regression guard: no catalog term, same key set and values).
+    expect(materialized.catalog).toEqual({ models: [{ model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["high"] }], default: { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["high"] } });
+    const readRoot = launcherBindings[0].trustedRuntimeReadRoots[0];
+    expect(launcherBindings[0].configDigest).toBe(recordKey({ schema: "chirality.hosted-private-config/v2", projectId: "project", manifestHash, model: "gpt-default", defaultReasoningEffort: "high",
+      accountStorage: { backend: "keyring" }, compatibility: sourceOptions.compatibility, providerNetworkConsent: { approvedBy: "owner", approvalReference: "act", approvedAt: "2026-09-10T12:00:00.000Z" },
+      commandNetworkPosture: "off", protectedPaths: sourceOptions.protectedPaths, immutableReadRoots: ["/usr"], instructionRoot: sourceOptions.instructionRoot, nativeRoleConfigurationDigest: hash("roles"),
+      trustedRuntimeReadRoot: { contentDigest: readRoot.contentDigest, readPaths: readRoot.readPaths }, releaseV2: { basisDigest: hash("basis") }, consentVersion: issuedInputs[0].consent.version }));
     expect(await turn()).toMatchObject({ exitCode: 0 });
     const establish = vi.spyOn(HostedIdentityBindingStore.prototype, "establishLive");
     await signOut(); expect(establish).not.toHaveBeenCalled();

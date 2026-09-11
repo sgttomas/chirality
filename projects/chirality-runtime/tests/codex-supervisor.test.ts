@@ -202,6 +202,69 @@ describe("Codex supervisor adapter without account/network use", () => {
   });
 });
 
+describe("catalog-bound per-turn model and reasoning choice", () => {
+  const catalog = [
+    { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] },
+    { model: "gpt-alt", isDefault: false, defaultReasoningEffort: "low", supportedReasoningEfforts: ["low", "medium"] }
+  ];
+  function catalogFixture(options: { modelCatalog?: typeof catalog; reasoningEffort?: string } = { modelCatalog: catalog, reasoningEffort: "high" }) {
+    const requests: { method: string; params: any }[] = []; let launches = 0;
+    const supervisor = createControlledCodexSupervisorForTests({ identity, model: "gpt-default", allowUnauthenticatedModel: true, requestTimeoutMs: 1000, turnTimeoutMs: 1000, ...options, async launch() {
+      launches++;
+      const stdin = new PassThrough(), stdout = new PassThrough(); let buffer = "";
+      const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+      stdin.on("data", chunk => {
+        buffer += String(chunk);
+        for (let newline = buffer.indexOf("\n"); newline >= 0; newline = buffer.indexOf("\n")) {
+          const request = JSON.parse(buffer.slice(0, newline)); buffer = buffer.slice(newline + 1);
+          requests.push({ method: request.method, params: request.params });
+          if (request.method === "initialize") send({ id: request.id, result: {} });
+          else if (request.method === "account/read") send({ id: request.id, result: { requiresOpenaiAuth: false, account: null } });
+          else if (request.method === "thread/start") send({ id: request.id, result: { thread: { id: "thread-catalog" }, approvalsReviewer: "auto_review", approvalPolicy: "never" } });
+          else if (request.method === "turn/start") {
+            send({ id: request.id, result: { turn: { id: "turn-catalog", status: "inProgress" } } });
+            send({ method: "item/completed", params: { threadId: "thread-catalog", turnId: "turn-catalog", item: { id: "item", type: "agentMessage", text: `used:${request.params.model}:${request.params.collaborationMode.settings.reasoning_effort}` } } });
+            send({ method: "turn/completed", params: { threadId: "thread-catalog", turn: { id: "turn-catalog", status: "completed" } } });
+          }
+        }
+      });
+      return { pid: 24680 + launches, transport: { stdin, stdout, async close() { stdin.destroy(); stdout.destroy(); } } };
+    } });
+    supervisors.push(supervisor);
+    const run = async (workerId: string, envelope: Record<string, unknown>) => { const handle = await supervisor.acquire(workerId, JSON.stringify({ prompt: "hello", ...envelope })); return supervisor.wait(handle.workerId, handle.generation); };
+    return { supervisor, requests, run, launches: () => launches };
+  }
+  it("carries an in-catalog envelope choice to thread/start and turn/start, defaulting to the admitted pair", async () => {
+    const f = catalogFixture();
+    expect((await f.run("chosen", { model: "gpt-alt", reasoningEffort: "medium" })).stdout).toBe("used:gpt-alt:medium");
+    expect(f.requests.find(r => r.method === "thread/start")?.params).toMatchObject({ model: "gpt-alt" });
+    expect(f.requests.find(r => r.method === "turn/start")?.params).toMatchObject({ model: "gpt-alt", collaborationMode: { mode: "default", settings: { model: "gpt-alt", reasoning_effort: "medium" } } });
+    f.requests.length = 0;
+    expect((await f.run("default", {})).stdout).toBe("used:gpt-default:high");
+    expect(f.requests.find(r => r.method === "turn/start")?.params).toMatchObject({ model: "gpt-default", collaborationMode: { settings: { reasoning_effort: "high" } } });
+    f.requests.length = 0;
+    expect((await f.run("model-only", { model: "gpt-alt" })).stdout).toBe("used:gpt-alt:low");
+    expect(f.launches()).toBe(3);
+  });
+  it("rejects out-of-catalog model or effort before any launch and keeps managers on the admitted model", async () => {
+    const f = catalogFixture();
+    await expect(f.run("unknown-model", { model: "gpt-unknown", reasoningEffort: "low" })).rejects.toMatchObject({ code: "INVALID_REQUEST", details: { reason: "MODEL_NOT_IN_CATALOG" } });
+    await expect(f.run("bad-effort", { model: "gpt-alt", reasoningEffort: "high" })).rejects.toMatchObject({ code: "INVALID_REQUEST", details: { reason: "REASONING_EFFORT_UNSUPPORTED" } });
+    await expect(f.run("bad-default-effort", { reasoningEffort: "xhigh" })).rejects.toMatchObject({ code: "INVALID_REQUEST", details: { reason: "REASONING_EFFORT_UNSUPPORTED" } });
+    await expect(f.run("bad-shape", { model: "gpt alt" })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+    await expect(f.supervisor.startManager("manager-alt", JSON.stringify({ canonicalRoot: root, model: "gpt-alt", prompt: "manager" }))).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+    expect(f.launches()).toBe(0);
+    expect(await f.supervisor.inventory()).toEqual([]);
+    const uncatalogued = catalogFixture({});
+    await expect(uncatalogued.run("other", { model: "gpt-alt" })).rejects.toMatchObject({ code: "INVALID_REQUEST", details: { reason: "MODEL_NOT_IN_CATALOG" } });
+    await expect(uncatalogued.run("other-effort", { reasoningEffort: "low" })).rejects.toMatchObject({ code: "INVALID_REQUEST", details: { reason: "REASONING_EFFORT_UNSUPPORTED" } });
+    expect(uncatalogued.launches()).toBe(0);
+    expect((await uncatalogued.run("same", { model: "gpt-default" })).stdout).toBe("used:gpt-default:null");
+    expect(() => createControlledCodexSupervisorForTests({ identity, model: "gpt-missing", modelCatalog: catalog, launch: async () => { throw new Error("unused"); } })).toThrow("outside its catalog");
+    expect(() => createControlledCodexSupervisorForTests({ identity, model: "gpt-default", reasoningEffort: "xhigh", modelCatalog: catalog, launch: async () => { throw new Error("unused"); } })).toThrow("outside its catalog");
+  });
+});
+
 it("custody blocks production regular and manager admission before account reads or worker launch", async () => {
   const s = new CodexSupervisor({ identity, model: "fixture-not-production", executablePath: join(root, "absent-vendor"), codexHome: join(root, "absent-account"), privateDirectory: root, managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-owner-act" } }); supervisors.push(s);
   await expect(s.acquire("missing-conformance", JSON.stringify({ prompt: "must not launch" }))).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });

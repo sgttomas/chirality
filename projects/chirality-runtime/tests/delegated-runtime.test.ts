@@ -589,3 +589,66 @@ it.each([true, false])("late approval failure joins settled retirement after tur
   expect((f.runtime as unknown as { turnRetirements: Map<string, Promise<void>> }).turnRetirements.size).toBe(0);
   expect(await f.retirement.read("t")).toEqual(record);
 });
+
+describe("per-turn catalog choice through the delegated hosted envelope", () => {
+  const catalog = {
+    models: [
+      { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] },
+      { model: "gpt-alt", isDefault: false, defaultReasoningEffort: "low", supportedReasoningEfforts: ["low", "medium"] }
+    ],
+    default: { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] }
+  };
+  async function catalogFixture(withCatalog = true) {
+    const root = await realpath(await mkdtemp(join(tmpdir(), "dr-catalog-")));
+    cleanups.push(() => rm(root, { recursive: true, force: true }));
+    const project = join(root, "project"); await mkdir(project);
+    const identity = { canonicalRoot: project, cwd: project, accountId: "controlled-account", accountEpoch: 1, policyDigest: "fixture-policy" };
+    const acquired: string[] = [];
+    const supervisor = {
+      async acquire(workerId: string, input: string): Promise<WorkerHandle> { acquired.push(input); return { workerId, generation: "g1", pid: 4242, state: "running" }; },
+      async inventory() { return []; },
+      async reconnect(workerId: string, generation: string): Promise<WorkerHandle> { return { workerId, generation, pid: 4242, state: "running" }; },
+      async wait(workerId: string, generation: string): Promise<WorkerResult> { return { worker: { workerId, generation, pid: 4242, state: "exited" }, exitCode: 0, signal: null, threadId: "thread-catalog", stdout: "done", stderr: "" }; },
+      async retire() {}
+    };
+    const consent = new HostedConsentStore({ canonicalRoot: project, codexHome: join(root, "home") });
+    await consent.grant({ identity, posture: "off", approvedBy: "fixture-owner", approvedAt: new Date(0).toISOString() });
+    const retirement = new WorkerRetirementCoordinator({ directory: join(root, "journal") });
+    const delegated = new DelegatedRuntime({ daemonId: "catalog-daemon", projects: new Map([["project", {
+      identity, compatibility, supervisor, consent, retirement, commandNetworkPosture: "off" as const, evidenceClass: "controlled-worker" as const,
+      actual: { adapterId: "codex-app-server", providerId: "openai", model: "gpt-default", reasoningEffort: "high" }, ...(withCatalog ? { catalog } : {})
+    }]]) });
+    const turn = async (turnId: string, choice: { model?: string; reasoningEffort?: string }) => delegated.turn("project", { compatibility, preflight: await delegated.preflight("project", `turn:${turnId}`), turnId, prompt: "hello", ...choice });
+    return { delegated, acquired, retirement, turn };
+  }
+  it("carries the chosen model and effort in the envelope and stamps them on the terminal attribution", async () => {
+    const f = await catalogFixture();
+    const chosen = await f.turn("chosen", { model: "gpt-alt", reasoningEffort: "medium" });
+    expect(JSON.parse(f.acquired[0]!)).toMatchObject({ prompt: "hello", model: "gpt-alt", reasoningEffort: "medium" });
+    expect(chosen.event.attribution).toEqual({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-alt", reasoningEffort: "medium" });
+    expect(chosen.roleEvidence.actual).toEqual(chosen.event.attribution);
+    expect(validateHarnessEventV2(chosen.event)).toBe(true);
+    const admitted = await f.turn("admitted", {});
+    expect(f.acquired[1]).toBe("hello");
+    expect(admitted.event.attribution).toEqual({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-default", reasoningEffort: "high" });
+    const modelOnly = await f.turn("model-only", { model: "gpt-alt" });
+    expect(JSON.parse(f.acquired[2]!)).toMatchObject({ model: "gpt-alt" });
+    expect(JSON.parse(f.acquired[2]!)).not.toHaveProperty("reasoningEffort");
+    expect(modelOnly.event.attribution).toEqual({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-alt", reasoningEffort: "low" });
+  });
+  it("refuses an unknown model or unsupported effort before any envelope is sent", async () => {
+    const f = await catalogFixture();
+    await expect(f.turn("unknown", { model: "gpt-unknown", reasoningEffort: "low" })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-unknown", available: ["gpt-default", "gpt-alt"] } });
+    await expect(f.turn("effort", { model: "gpt-alt", reasoningEffort: "high" })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "REASONING_EFFORT_UNSUPPORTED", model: "gpt-alt", supported: ["low", "medium"] } });
+    await expect(f.turn("shape", { model: "gpt alt" })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+    expect(f.acquired).toEqual([]);
+    expect(await f.retirement.read("unknown")).toBeUndefined();
+    const uncatalogued = await catalogFixture(false);
+    await expect(uncatalogued.turn("other", { model: "gpt-alt" })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-alt", available: ["gpt-default"] } });
+    await expect(uncatalogued.turn("other-effort", { reasoningEffort: "low" })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "REASONING_EFFORT_UNSUPPORTED" } });
+    expect(uncatalogued.acquired).toEqual([]);
+    const same = await uncatalogued.turn("same", { model: "gpt-default", reasoningEffort: "high" });
+    expect(JSON.parse(uncatalogued.acquired[0]!)).toMatchObject({ model: "gpt-default", reasoningEffort: "high" });
+    expect(same.event.attribution).toEqual({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-default", reasoningEffort: "high" });
+  });
+});

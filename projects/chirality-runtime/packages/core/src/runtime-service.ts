@@ -3,6 +3,8 @@ import { readdir, readFile, realpath, stat } from "node:fs/promises";
 import { basename, join, relative, resolve } from "node:path";
 import {
   HarnessError,
+  HOSTED_MODEL_ID_PATTERN,
+  HOSTED_REASONING_EFFORT_PATTERN,
   RuntimeError,
   type Agent1RunRequest,
   type AgentDefinitionSummary,
@@ -58,7 +60,22 @@ export interface DefaultSessionPolicy {
     persona: string;
     mode: string;
     agentType: 0 | 1;
-  }): Promise<{ role: "agent0" | "agent1"; engineSelection: EngineSelection }>;
+    /** Client catalog choice; a policy that honours it returns the same model and reasoningEffort. */
+    modelSelection?: { model: string; reasoningEffort: string };
+  }): Promise<{ role: "agent0" | "agent1"; engineSelection: EngineSelection; reasoningEffort?: string }>;
+}
+
+/**
+ * Pre-catalog shape gate: a request must carry exactly `model` and `reasoningEffort`
+ * before any catalog can be consulted. Catalog membership is decided only by
+ * `resolveHostedModelSelection` in the daemon's default session policy.
+ */
+function validateModelSelection(value: unknown): { model: string; reasoningEffort: string } {
+  const invalid = () => new RuntimeError("INVALID_REQUEST", "modelSelection requires exactly model and reasoningEffort", 400, { reason: "MODEL_SELECTION_INVALID" });
+  if (!value || typeof value !== "object" || Array.isArray(value) || Object.keys(value).sort().join(",") !== "model,reasoningEffort") throw invalid();
+  const { model, reasoningEffort } = value as Record<string, unknown>;
+  if (typeof model !== "string" || !HOSTED_MODEL_ID_PATTERN.test(model) || typeof reasoningEffort !== "string" || !HOSTED_REASONING_EFFORT_PATTERN.test(reasoningEffort)) throw invalid();
+  return { model, reasoningEffort };
 }
 
 export class RuntimeService {
@@ -141,11 +158,16 @@ export class RuntimeService {
     }
     let role = request.role;
     let engineSelection = request.engineSelection;
+    let reasoningEffort: string | undefined;
+    const modelSelection = request.modelSelection === undefined ? undefined : validateModelSelection(request.modelSelection);
     if ((role === undefined) !== (engineSelection === undefined)) {
       throw new RuntimeError(
         "INVALID_REQUEST",
         "Explicit role and engineSelection must be supplied together"
       );
+    }
+    if (modelSelection !== undefined && engineSelection !== undefined) {
+      throw new RuntimeError("INVALID_REQUEST", "modelSelection cannot be combined with an explicit engineSelection", 400, { reason: "MODEL_SELECTION_INVALID" });
     }
     if (role === undefined || engineSelection === undefined) {
       if (this.defaultSessionPolicy === undefined) {
@@ -159,10 +181,16 @@ export class RuntimeService {
         projectId: request.projectId,
         persona,
         mode,
-        agentType: rosterEntry.type
+        agentType: rosterEntry.type,
+        ...(modelSelection === undefined ? {} : { modelSelection })
       });
       role = resolved.role;
       engineSelection = resolved.engineSelection;
+      reasoningEffort = resolved.reasoningEffort;
+      // A policy that cannot validate the request must not quietly fall back to its default.
+      if (modelSelection !== undefined && (engineSelection.model !== modelSelection.model || reasoningEffort !== modelSelection.reasoningEffort)) {
+        throw new RuntimeError("INVALID_REQUEST", "modelSelection is not supported by this project's session policy", 400, { reason: "MODEL_SELECTION_UNSUPPORTED", model: modelSelection.model, reasoningEffort: modelSelection.reasoningEffort });
+      }
     }
     if (role === "agent2") {
       throw new RuntimeError(
@@ -190,6 +218,7 @@ export class RuntimeService {
       ...request,
       role,
       engineSelection,
+      ...(reasoningEffort === undefined ? {} : { reasoningEffort }),
       persona,
       mode
     });

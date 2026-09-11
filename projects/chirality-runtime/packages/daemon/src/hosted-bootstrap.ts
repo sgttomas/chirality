@@ -6,6 +6,8 @@ import {
   type AgentEnginePort,
   type EngineSelection,
   type HostedBootstrapStatus,
+  type HostedModelCatalog,
+  resolveHostedModelSelection,
   type NativePlanAdapterQualification,
   type NativePlanAdapterAdmission,
   type NativePlanCapabilityResponse,
@@ -67,6 +69,8 @@ export interface TrustedHostedLoginCeremony {
   start(): Promise<{ loginId: string; authUrl: string }>;
   status(): Promise<{ state: "pending" | "completed" | "failed"; hasAccount?: boolean }>;
   resolveDefaultModel?(): Promise<Readonly<{ model: string; defaultReasoningEffort: string }>>;
+  /** Same authenticated `model/list` read as `resolveDefaultModel`; non-hidden entries with their supported efforts. */
+  resolveModelCatalog?(): Promise<Readonly<HostedModelCatalog>>;
   cancel(): Promise<void>;
   close(): Promise<void>;
 }
@@ -87,8 +91,8 @@ export interface HostedBootstrapPrivateBindings {
   establishAdmission?(input: { projectId: string; canonicalRoot: string; ceremony: TrustedHostedLoginCeremony; nativeAddonPath?: string }): Promise<TrustedHostedPrivateAdmission>;
   /** Host-owned config/worker publication; receives private values and must not project them publicly. */
   materializeAdmission?(input: { projectId: string; canonicalRoot: string; admission: TrustedHostedPrivateAdmission; runtime: { projects: ProjectRegistry; sessions: SessionStore; nativePlanSink: DelegatedNativePlanSink; attachmentStagingRoot: string } }): Promise<
-    | { engine: AgentEnginePort; selection: EngineSelection; evidenceClass?: "controlled-worker" }
-    | { delegated: DelegatedRuntime; selection: EngineSelection; compatibility: RuntimeCompatibilityIdentity; evidenceClass: "provider-observed" | "controlled-worker" }
+    | { engine: AgentEnginePort; selection: EngineSelection; evidenceClass?: "controlled-worker"; catalog?: Readonly<HostedModelCatalog> }
+    | { delegated: DelegatedRuntime; selection: EngineSelection; compatibility: RuntimeCompatibilityIdentity; evidenceClass: "provider-observed" | "controlled-worker"; catalog?: Readonly<HostedModelCatalog> }
   >;
   /** Supplier-owned project-local logout after local admission retirement. */
   signOut?(input: { projectId: string; canonicalRoot: string; privateDirectory: string; codexHome: string }): Promise<void>;
@@ -107,6 +111,8 @@ interface ProjectBootstrap {
   admission?: TrustedHostedPrivateAdmission;
   engine?: AgentEnginePort;
   selection?: EngineSelection;
+  /** Authenticated non-hidden catalog; lives exactly as long as the admission. */
+  catalog?: Readonly<HostedModelCatalog>;
   establishing?: Promise<void>;
   generation: number;
 }
@@ -217,14 +223,24 @@ export class HostedBootstrapController {
   }
 
   private projection(projectId: string, state: ProjectBootstrap): HostedBootstrapStatus {
+    const catalog = state.admissionState === "ready" && state.selection && state.catalog ? state.catalog : undefined;
     return { schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: state.ceremonyState, admission: state.admissionState,
-      canStartLogin: ["ready-to-start", "failed", "cancelled"].includes(state.ceremonyState) };
+      canStartLogin: ["ready-to-start", "failed", "cancelled"].includes(state.ceremonyState),
+      ...(catalog ? { models: catalog.models.map(entry => ({ ...entry, supportedReasoningEfforts: [...entry.supportedReasoningEfforts] })),
+        selection: { model: catalog.default.model, reasoningEffort: catalog.default.defaultReasoningEffort } } : {}) };
   }
 
   selection(projectId: string): EngineSelection {
     const state = this.states.get(projectId);
     if (!state || state.admissionState !== "ready" || !state.selection) throw unavailable("Hosted admission is not ready for this project");
     return { ...state.selection };
+  }
+
+  /** Catalog of the ready admission, or undefined when the private ceremony exposed none. */
+  catalog(projectId: string): Readonly<HostedModelCatalog> | undefined {
+    const state = this.states.get(projectId);
+    if (!state || state.admissionState !== "ready" || !state.selection) throw unavailable("Hosted admission is not ready for this project");
+    return state.catalog;
   }
 
   engine(projectId: string, canonicalRoot: string): AgentEnginePort {
@@ -326,7 +342,7 @@ export class HostedBootstrapController {
     try { await state.ceremony?.close(); } catch (error) { cleanupFailure ??= error; } finally { state.ceremony = undefined; }
     await state.establishing?.catch(error => { cleanupFailure ??= error; }); state.establishing = undefined;
     const admission = state.admission;
-    state.admission = undefined; state.engine = undefined; state.selection = undefined;
+    state.admission = undefined; state.engine = undefined; state.selection = undefined; state.catalog = undefined;
     let admissionRetired = false;
     const retire = async () => { if (!admissionRetired) { admissionRetired = true; await admission?.retire(); } };
     if (!this.bindings?.signOut) {
@@ -369,8 +385,9 @@ export class HostedBootstrapController {
       await privateDirectoryReady(attachmentStagingRoot);
       const materialized = await this.bindings!.materializeAdmission!({ projectId, canonicalRoot, admission, runtime: { projects: this.projects, sessions: this.sessions, nativePlanSink: this.nativePlans, attachmentStagingRoot } });
       if (this.closed || state.generation !== generation || state.ceremony !== ceremony) { await admission.retire(); return; }
-      const selection = materialized.selection;
-      const engine = "delegated" in materialized ? createDelegatedEngineAdapter({ projectId, delegated: materialized.delegated, selection, compatibility: materialized.compatibility }) : materialized.engine;
+      const selection = materialized.selection, catalog = materialized.catalog;
+      if (catalog !== undefined && (catalog.default.model !== selection.model || !catalog.models.some(entry => entry.model === selection.model))) throw invalid("Materialized hosted catalog does not contain the admitted Codex selection");
+      const engine = "delegated" in materialized ? createDelegatedEngineAdapter({ projectId, delegated: materialized.delegated, selection, compatibility: materialized.compatibility, ...(catalog ? { catalog } : {}) }) : materialized.engine;
       if (!selection.model?.trim() || selection.adapterId !== "codex-app-server" || selection.providerId !== "openai"
         || selection.adapterId !== engine.descriptor.adapterId || selection.providerId !== engine.descriptor.providerId) throw invalid("Materialized hosted engine does not match the admitted Codex selection");
       if (admission.nativePlanQualification !== undefined) {
@@ -380,12 +397,12 @@ export class HostedBootstrapController {
         if (materialized.evidenceClass !== "controlled-worker" || !("delegated" in materialized)) throw invalid("Controlled native Plan qualification requires the actual controlled delegated transport");
         this.nativePlans.qualify(projectId, this.controlledNativePlanQualification);
       } else this.nativePlans.ensure(projectId);
-      state.admission = admission; state.engine = engine; state.selection = { ...selection }; state.admissionState = "ready";
+      state.admission = admission; state.engine = engine; state.selection = { ...selection }; state.catalog = catalog; state.admissionState = "ready";
     } catch (error) { if (state.admission === admission) await this.retireAdmission(state); else await admission.retire(); throw error; }
   }
 
   private async retireAdmission(state: ProjectBootstrap): Promise<void> {
-    const admission = state.admission; state.admission = undefined; state.engine = undefined; state.selection = undefined; state.admissionState = "unavailable";
+    const admission = state.admission; state.admission = undefined; state.engine = undefined; state.selection = undefined; state.catalog = undefined; state.admissionState = "unavailable";
     this.nativePlans.deactivate(state.projectId);
     // Keep the sink live while the admitted runtime drains and closes its last
     // turn. Capability becomes unavailable after retirement, while completed
@@ -455,7 +472,14 @@ async function startBootstrap(input: Extract<HostedBootstrapRuntimeBootInput, { 
   engines.register(projectEngineDispatcher(bootstrap));
   const auth = new AuthRegistry(input.runtimeDirectory);
   const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency, new RuntimeAttachmentResolver()), auth, { async get() { return undefined; }, async status() { return { configured: false }; }, set: offline, remove: offline }, undefined, undefined, undefined,
-    { async resolve(request) { return { role: request.agentType === 0 ? "agent0" : "agent1", engineSelection: bootstrap.selection(request.projectId) }; } }, nativePlans);
+    { async resolve(request) {
+      const role = request.agentType === 0 ? "agent0" : "agent1";
+      const selection = bootstrap.selection(request.projectId), catalog = bootstrap.catalog(request.projectId);
+      // Without a retained catalog no choice can be validated; RuntimeService rejects any unmet modelSelection.
+      if (catalog === undefined) return { role, engineSelection: selection };
+      const chosen = resolveHostedModelSelection(catalog, request.modelSelection);
+      return { role, engineSelection: { ...selection, model: chosen.model }, reasoningEffort: chosen.reasoningEffort };
+    } }, nativePlans);
   const issued = await service.auth.ensureClient(HOSTED_BOOTSTRAP_CLIENT_ID, ["runtime:read", "projects:write", "credentials:write"]);
   let accountHost: HostAccountAuthority | undefined;
   let daemon: RuntimeDaemon;
