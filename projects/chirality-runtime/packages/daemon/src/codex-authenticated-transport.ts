@@ -264,7 +264,7 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
         })
       : await adapters.prepareToolPolicy(commonPolicy);
     cleanups.push(toolPolicy.cleanup);
-    retainedPaths = [outer.environment.TMPDIR, outer.sandboxProfilePath, toolPolicy.scratchDirectory];
+    retainedPaths = [outer.environment.TMPDIR, ...(outer.sandboxProfilePath === null ? [] : [outer.sandboxProfilePath]), toolPolicy.scratchDirectory];
     if (toolPolicy.policyDigest !== input.policyDigest) throw unavailable("TOOL_POLICY_BINDING_MISMATCH");
     const compiledPolicyV2 = input.policyInstanceV2 ? (toolPolicy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).policyInstance : undefined;
     if (input.policyInstanceV2 && (!compiledPolicyV2 || recordKey(compiledPolicyV2) !== recordKey(input.policyInstanceV2))) throw unavailable("TOOL_POLICY_INSTANCE_MISMATCH");
@@ -303,7 +303,7 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
     if (input.policyInstanceV2) {
       const assertPath = adapters.assertCompiledPathV2 ?? assertOwnedCompiledPathV2;
       await assertPath(input.privateDirectory, environment.TMPDIR, "directory");
-      await assertPath(environment.TMPDIR, outer.sandboxProfilePath, "file");
+      if (outer.sandboxProfilePath !== null) await assertPath(environment.TMPDIR, outer.sandboxProfilePath, "file");
       await assertPath(input.canonicalRoot, (toolPolicy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).scratchDirectory, "directory");
     }
     const compilerArgs = toolPolicy.configOverrides.flatMap(value => ["-c", value]);
@@ -314,7 +314,8 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
     if (input.nativePolicyIdentityVersion === 11 && (stageCPolicy.nativeSkills !== "disabled"
       || JSON.stringify(appServerArguments) !== JSON.stringify(runtimeStageCAppServerArguments(toolPolicy.configOverrides)))) throw unavailable("COMPILED_INVOCATION_MISMATCH");
     if (input.policyInstanceV2) {
-      if (JSON.stringify(launchArguments) !== JSON.stringify(["-f", outer.sandboxProfilePath, supply.executablePath])
+      // The v2 worker launches the verified supplier directly: its native Seatbelt is the containment.
+      if (outer.launcher !== "direct" || outer.sandboxProfilePath !== null || JSON.stringify(launchArguments) !== JSON.stringify([supply.executablePath])
         || JSON.stringify(toolPolicy.args) !== JSON.stringify(compilerArgs)) throw unavailable("COMPILED_INVOCATION_MISMATCH");
       const expected = input.instanceInputV2 ?? input.instancePreparationV2?.input;
       if (!expected) throw unavailable("INSTANCE_ADMISSION_INVALID");
@@ -328,9 +329,11 @@ async function compose(input: AuthenticatedCodexCandidateInput, adapters: Contro
       else await revalidateHostedAccountAuthorityV2(input.instanceInputV2!.hostAuthority, { purpose: input.instanceInputV2!.purposeRelease.purpose, projectId: input.instanceInputV2!.projectId, manifestHash: input.instanceInputV2!.manifestHash, canonicalRoot: input.instanceInputV2!.canonicalRoot, account: input.instanceInputV2!.account, consentDigest: input.instanceInputV2!.consent.digest });
     }
     if (!input.kernelLease.held) throw unavailable("KERNEL_LEASE_UNAVAILABLE");
+    const [launcherExecutable, ...launcherArguments] = outer.launcher === "direct" ? launchArguments : ["/usr/bin/sandbox-exec", ...launchArguments];
+    if (typeof launcherExecutable !== "string" || (outer.launcher === "direct" && launcherExecutable !== supply.executablePath)) throw unavailable("COMPILED_INVOCATION_MISMATCH");
     const spawned = native.value.spawnGroupedSupplier(
-      "/usr/bin/sandbox-exec",
-      [...launchArguments, ...appServerArguments!],
+      launcherExecutable,
+      [...launcherArguments, ...appServerArguments!],
       authoritySecret,
       { cwd: input.canonicalRoot, environment: { HOME: environment.HOME, CODEX_HOME: environment.CODEX_HOME, TMPDIR: environment.TMPDIR, PATH: environment.PATH, LANG: environment.LANG }, processGroup: true }
     );

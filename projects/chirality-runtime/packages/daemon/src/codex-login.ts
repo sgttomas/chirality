@@ -111,6 +111,7 @@ export async function validateCodexLoginStartup(options: Omit<CodexLoginOptions,
     if (supply.sha256 !== releaseV2.supportProfile.supplier.sha256 || Number(supply.identity.size) !== releaseV2.supportProfile.supplier.size || supply.version !== releaseV2.supportProfile.supplier.version) throw unavailable("Login supply differs from v2 release profile");
     const containment = await prepareCodexContainmentV2({ ...startup, purpose: "trusted-login" });
     try {
+      if (containment.launcher !== "outer-seatbelt" || containment.sandboxProfilePath === null) throw unavailable("Login requires the outer containment profile");
       await assertOwnedCompiledPathV2(options.privateDirectory, containment.environment.TMPDIR, "directory");
       await assertOwnedCompiledPathV2(containment.environment.TMPDIR, containment.sandboxProfilePath, "file");
       const effectiveConfigDigest = codexEffectiveConfigDigestV2({ executablePath: supply.executablePath, cwd: options.canonicalRoot,
@@ -226,6 +227,7 @@ export class CodexLogin {
       const configOverrides = this.options.instanceV2 ? codexLoginConfigOverridesV2(containment.config) : CODEX_LOGIN_V1_CONFIG_OVERRIDES;
       const flags = configOverrides.flatMap(value => ["-c", value]);
       if (this.options.instanceV2) {
+        if (containment.launcher !== "outer-seatbelt" || containment.sandboxProfilePath === null) throw unavailable("Login requires the outer containment profile");
         await assertOwnedCompiledPathV2(this.options.privateDirectory, containment.environment.TMPDIR, "directory");
         await assertOwnedCompiledPathV2(containment.environment.TMPDIR, containment.sandboxProfilePath, "file");
         if (JSON.stringify(args) !== JSON.stringify(["-f", containment.sandboxProfilePath, supply.executablePath])) throw unavailable("Login outer invocation changed");

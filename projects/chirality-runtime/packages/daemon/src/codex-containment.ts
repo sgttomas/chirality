@@ -110,6 +110,14 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
   if (consent && (!consent.approvedBy.trim() || !consent.approvalReference.trim())) {
     throw new Error('Provider network requires an explicit trusted operator consent record');
   }
+  // macOS refuses to apply a second Seatbelt profile inside a process that already
+  // runs under a profile carrying any deny rule. The worker supplier applies its own
+  // compiled permission profile through sandbox-exec for every file read and command,
+  // so the trusted-supplier purpose launches the verified supplier directly and that
+  // native Seatbelt is its containment. Login and keyring-only purposes never start a
+  // thread and keep the outer profile.
+  const directLaunch = identityVersion === 2 && options.purpose === 'trusted-supplier';
+  if (directLaunch && !consent) throw new Error('Direct supplier launch requires an explicit trusted operator provider network consent');
   const trustedReads = [...(options.trustedRuntimeReadRoots ?? [])].sort((left, right) => identityVersion === 2 ? compareRuntimeUtf8V2(left.path, right.path) : left.path.localeCompare(right.path));
   for (const entry of trustedReads) {
     if (!entry || !/^[a-f0-9]{64}$/.test(entry.contentDigest) || !isAbsolute(entry.path) || resolve(entry.path) !== entry.path
@@ -139,10 +147,12 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
     ...(consent ? [] : ['(deny network*)']),
     '',
   ].join('\n');
-  try { await writeFile(sandboxProfilePath, profile, { mode: 0o600, flag: 'wx' }); }
-  catch (error) { await rm(sessionDirectory, { recursive: true, force: true }); throw error; }
+  if (!directLaunch) {
+    try { await writeFile(sandboxProfilePath, profile, { mode: 0o600, flag: 'wx' }); }
+    catch (error) { await rm(sessionDirectory, { recursive: true, force: true }); throw error; }
+  }
   const preparedDirectory = identityVersion === 2 ? await lstat(sessionDirectory, { bigint: true }) : undefined;
-  const preparedProfile = identityVersion === 2 ? await lstat(sandboxProfilePath, { bigint: true }) : undefined;
+  const preparedProfile = identityVersion === 2 && !directLaunch ? await lstat(sandboxProfilePath, { bigint: true }) : undefined;
   const config = {
     sandbox_mode: 'workspace-write',
     sandbox_workspace_write: { writable_roots: [root], network_access: false, exclude_slash_tmp: true, exclude_tmpdir_env_var: true },
@@ -157,25 +167,32 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
   } as const;
   const outerPolicyIdentity = {
     schema: `chirality-codex-outer-policy/v${identityVersion}`, purpose: options.purpose ?? 'worker', root, privateDirectory, codexHome,
-    ...(identityVersion === 2 ? { home } : {}), trustedReads, profile, config, providerNetworkEnabled: Boolean(consent)
+    ...(identityVersion === 2 ? { home } : {}), trustedReads, profile: directLaunch ? null : profile, config, providerNetworkEnabled: Boolean(consent),
+    ...(directLaunch ? { launcher: 'direct-supplier-executable' as const } : {})
   };
   const outerPolicyDigest = createHash('sha256').update(JSON.stringify(outerPolicyIdentity)).digest('hex');
   return {
-    sandboxProfilePath,
-    args: ['-f', sandboxProfilePath],
+    /** `direct`: the verified supplier is the launcher and its native Seatbelt is the containment. */
+    launcher: directLaunch ? 'direct' as const : 'outer-seatbelt' as const,
+    sandboxProfilePath: directLaunch ? null : sandboxProfilePath,
+    args: directLaunch ? [] : ['-f', sandboxProfilePath],
     /** Caller verifies the supply digest/signature before calling this path gate. */
     launchArguments: async (verifiedExecutablePath: string): Promise<string[]> => {
       if (identityVersion === 2) {
-        const directory = await lstat(sessionDirectory, { bigint: true }), profile = await lstat(sandboxProfilePath, { bigint: true });
-        if (await realpath(sessionDirectory) !== sessionDirectory || await realpath(sandboxProfilePath) !== sandboxProfilePath
-          || ['dev', 'ino', 'mode', 'uid'].some(key => directory[key as 'dev'] !== preparedDirectory![key as 'dev'])
-          || ['dev', 'ino', 'mode', 'uid', 'size', 'mtimeNs', 'ctimeNs'].some(key => profile[key as 'dev'] !== preparedProfile![key as 'dev'])) throw new Error('Prepared outer allocation changed');
+        const directory = await lstat(sessionDirectory, { bigint: true });
+        if (await realpath(sessionDirectory) !== sessionDirectory
+          || ['dev', 'ino', 'mode', 'uid'].some(key => directory[key as 'dev'] !== preparedDirectory![key as 'dev'])) throw new Error('Prepared outer allocation changed');
+        if (!directLaunch) {
+          const profile = await lstat(sandboxProfilePath, { bigint: true });
+          if (await realpath(sandboxProfilePath) !== sandboxProfilePath
+            || ['dev', 'ino', 'mode', 'uid', 'size', 'mtimeNs', 'ctimeNs'].some(key => profile[key as 'dev'] !== preparedProfile![key as 'dev'])) throw new Error('Prepared outer allocation changed');
+        }
       }
       const executable = await realpath(verifiedExecutablePath);
       if (executable !== verifiedExecutablePath || (!contained(root, executable) && !contained(privateDirectory, executable)) || !(await stat(executable)).isFile()) {
         throw new Error('Verified Codex executable must be canonical and within the project or private directory');
       }
-      return ['-f', sandboxProfilePath, executable];
+      return directLaunch ? [executable] : ['-f', sandboxProfilePath, executable];
     },
     environment: {
       HOME: home, CODEX_HOME: codexHome, TMPDIR: sessionDirectory,

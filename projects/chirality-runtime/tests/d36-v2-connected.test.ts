@@ -81,8 +81,10 @@ function parseTomlValue(text: string) {
 }
 function requestedConfig(args: string[]) {
   const config: any = {};
-  const nativeSkills = args[4] === "--chirality-disable-native-skills" ? "disabled" : undefined;
-  for (let index = nativeSkills ? 5 : 4; index < args.length; index += 2) {
+  // Login argv carries the outer wrapper ("-f", profile, executable) before "app-server"; the direct worker argv starts at "app-server".
+  const start = args.indexOf("app-server"); expect(start).toBeGreaterThanOrEqual(0);
+  const nativeSkills = args[start + 1] === "--chirality-disable-native-skills" ? "disabled" : undefined;
+  for (let index = nativeSkills ? start + 2 : start + 1; index < args.length; index += 2) {
     expect(args[index]).toBe("-c"); const raw = args[index + 1], split = raw.indexOf("="), keys = raw.slice(0, split).split(".");
     let at = config; for (const key of keys.slice(0, -1)) at = at[key] ??= {};
     at[keys.at(-1)!] = parseTomlValue(raw.slice(split + 1));
@@ -280,10 +282,10 @@ describe("controlled connected D36 v2 source path", () => {
     expect(io.captures).toHaveLength(3);
     const [loginSpawn, worker, logout] = io.captures;
     expect(loginSpawn.config).toMatchObject({ features: { shell_snapshot: false, plugins: false }, web_search: "disabled", allow_login_shell: false, cli_auth_credentials_store: "keyring" });
-    for (const capture of io.captures) {
-      expect(capture.executable).toBe("/usr/bin/sandbox-exec"); expect(capture.args.slice(0, 4)).toEqual(["-f", join(capture.options.environment.TMPDIR, "launch.sb"), join(root, "runtime", "private", "codex"), "app-server"]);
-      expect(io.trace.indexOf(`kill:${capture.pid}`)).toBeLessThan(io.trace.indexOf(`reap:${capture.pid}`));
-    }
+    // Login keeps the outer Seatbelt profile; the worker and logout suppliers launch directly so their own native Seatbelt can apply.
+    expect(loginSpawn.executable).toBe("/usr/bin/sandbox-exec"); expect(loginSpawn.args.slice(0, 4)).toEqual(["-f", join(loginSpawn.options.environment.TMPDIR, "launch.sb"), join(root, "runtime", "private", "codex"), "app-server"]);
+    for (const capture of [worker, logout]) { expect(capture.executable).toBe(join(root, "runtime", "private", "codex")); expect(capture.args[0]).toBe("app-server"); }
+    for (const capture of io.captures) expect(io.trace.indexOf(`kill:${capture.pid}`)).toBeLessThan(io.trace.indexOf(`reap:${capture.pid}`));
     expect(worker.config).toEqual(logout.config); expect(worker.options.environment.TMPDIR).not.toBe(logout.options.environment.TMPDIR);
     expect(worker.methods).toContain("turn/start"); expect(worker.turn).toMatchObject({ model: "gpt-default", collaborationMode: { settings: { model: "gpt-default", reasoning_effort: "high" } } }); expect(logout.methods).toContain("account/logout"); expect(logout.methods).not.toContain("thread/start"); expect(logout.methods).not.toContain("turn/start");
     expect(issuedInputs.at(-1).account.accountEpoch).toBe(2);
@@ -480,7 +482,8 @@ describe("controlled connected D36 v2 source path", () => {
   it("retains worker allocations and reports retirement failure while logout stays fenced", async () => {
     await admission(); io.retireFails = true;
     await expect(signOut()).rejects.toThrow("retirement"); expect(await bindingRecord()).toMatchObject({ state: "fenced", accountEpoch: 2 });
-    expect(await readdir(io.captures[1].options.environment.TMPDIR)).toContain("launch.sb"); expect(io.trace).not.toContain("account/logout");
+    // The direct worker keeps no outer profile; its private session directory is the retained allocation.
+    await expect(readdir(io.captures[1].options.environment.TMPDIR)).resolves.toEqual([]); expect(io.trace).not.toContain("account/logout");
   });
 
   it("rejects a same-byte outer profile replacement during the last release read", async () => {
@@ -497,7 +500,8 @@ describe("controlled connected D36 v2 source path", () => {
       const admitted=await admission();await materialize(admitted);expect(await turn()).toMatchObject({exitCode:0});await signOut();
       expect(io.captures).toHaveLength(3);
       const [loginSpawn,worker,logout]=io.captures;
-      for(const capture of io.captures)expect(capture.args.slice(3,5)).toEqual(["app-server","--chirality-disable-native-skills"]);
+      expect(loginSpawn.args.slice(3,5)).toEqual(["app-server","--chirality-disable-native-skills"]);
+      for(const capture of [worker,logout])expect(capture.args.slice(0,2)).toEqual(["app-server","--chirality-disable-native-skills"]);
       const loginRead=loginSpawn.events.indexOf("config/read"),loginEffect=loginSpawn.events.indexOf("account/login/start");
       expect(loginRead).toBeGreaterThanOrEqual(0);expect(loginEffect).toBeGreaterThanOrEqual(0);expect(loginRead).toBeLessThan(loginEffect);
       expect(loginSpawn.readbacks[0]).toMatchObject({chirality_runtime:{nativeSkills:"disabled"}});

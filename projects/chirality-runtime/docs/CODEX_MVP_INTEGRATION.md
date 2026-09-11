@@ -6,8 +6,13 @@ and the authenticated supervisor socket. `CodexSupervisor` owns the provider
 transport and worker lifetime. The adapter does not launch a supplier directly.
 
 Codex supplies its native file and shell capabilities inside the selected
-permission profile and outer containment. Only Chirality-specific catalog and
-context tools cross the Runtime callback bridge. Historical tool descriptors
+permission profile, which Codex applies through its own Seatbelt for every file
+read and command. The worker supplier launches directly from its verified staged
+executable: macOS refuses to apply a second Seatbelt profile inside a process
+already running under a profile with any deny rule, so an outer profile around
+the worker would break the supplier's own file sandbox. Login and keyring-only
+purposes never start a thread and keep the outer profile. Only
+Chirality-specific catalog and context tools cross the Runtime callback bridge. Historical tool descriptors
 for other adapters do not establish Codex tool availability or enforcement.
 Interaction mode (`chat` or `native-plan`) is separate from permission mode and
 command-network posture. Unsupported permission combinations must fail before
