@@ -10,7 +10,7 @@ import { RuntimeDaemon } from "../packages/daemon/src/runtime-daemon.js";
 import { SupervisorClient } from "../packages/daemon/src/supervisor-server.js";
 import { CodexLogin } from "../packages/daemon/src/codex-login.js";
 import { CodexSupervisor } from "../packages/daemon/src/codex-supervisor.js";
-import { prepareCodexContainment, prepareCodexContainmentV2, prepareCodexNativePolicy } from "../packages/daemon/src/codex-containment.js";
+import { prepareCodexContainment, prepareCodexContainmentV2, prepareCodexNativePolicy, prepareCodexTrustedSupplierContainmentV2 } from "../packages/daemon/src/codex-containment.js";
 
 // Mocks guard source-level process/filesystem effects. No supplier is invoked.
 vi.mock("node:child_process", async importOriginal => ({ ...await importOriginal<typeof import("node:child_process")>(), spawn: vi.fn(() => { throw new Error("Unexpected process launch"); }) }));
@@ -140,15 +140,27 @@ describe("custody purpose configuration and admission before effects", () => {
     expect(workerProfile).toContain('(deny mach-lookup (global-name "com.apple.securityd"))');
     expect(worker.config.cli_auth_credentials_store).toBe("file");
     expect(worker.environment.HOME).toBe(options.privateDirectory);
+    expect(workerProfile).not.toContain("Keychains");
+    expect(workerProfile).toContain('(deny file-write* (require-not (require-any (subpath "/synthetic/project-a") (subpath "/synthetic/private-a") (literal "/dev/null"))))');
     const login = await prepareCodexContainment({ ...options, purpose: "trusted-login" });
     const loginProfile = vi.mocked(fs.writeFile).mock.calls.at(-1)![1];
     expect(loginProfile).not.toContain('(deny mach-lookup (global-name "com.apple.securityd"))');
     expect(login.config.cli_auth_credentials_store).toBe("keyring");
     expect(login.environment.HOME).toBe(options.privateDirectory);
+    // The keyring backend rewrites the login keychain database in-process, so the effective home's keychain directory is readable and writable.
+    expect(loginProfile).toContain('(subpath "/Library/Keychains") (subpath "/synthetic/private-a/Library/Keychains")');
+    expect(loginProfile).toContain('(deny file-write* (require-not (require-any (subpath "/synthetic/project-a") (subpath "/synthetic/private-a") (subpath "/synthetic/private-a/Library/Keychains") (literal "/dev/null"))))');
     vi.mocked(fs.lstat).mockImplementation(async () => ({ dev: 1n, ino: 2n, mode: 0o100600n, uid: BigInt(process.getuid!()), size: 1n, mtimeNs: 1n, ctimeNs: 1n, isDirectory: () => false, isFile: () => true, isSymbolicLink: () => false }) as any);
     vi.mocked(os.userInfo).mockReturnValue({ uid: process.getuid!(), gid: process.getgid!(), username: "fixture", homedir: "/synthetic/os-user-home", shell: "/bin/zsh" });
     const loginV2 = await prepareCodexContainmentV2({ ...options, purpose: "trusted-login", trustedRuntimeReadRoots: [] });
     expect(loginV2.environment).toEqual({ HOME: "/synthetic/os-user-home", CODEX_HOME: options.codexHome, TMPDIR: expect.stringContaining("/synthetic/private-a/containment-"), PATH: "/usr/bin:/bin:/usr/sbin:/sbin", LANG: "en_US.UTF-8" });
+    const loginV2Profile = vi.mocked(fs.writeFile).mock.calls.at(-1)![1];
+    expect(loginV2Profile).toContain('(subpath "/Library/Keychains") (subpath "/synthetic/os-user-home/Library/Keychains")');
+    expect(loginV2Profile).toContain('(deny file-write* (require-not (require-any (subpath "/synthetic/project-a") (subpath "/synthetic/private-a") (subpath "/synthetic/os-user-home/Library/Keychains") (literal "/dev/null"))))');
+    const supplierV2 = await prepareCodexTrustedSupplierContainmentV2({ ...options, trustedRuntimeReadRoots: [] });
+    expect(supplierV2.config.cli_auth_credentials_store).toBe("keyring");
+    expect(supplierV2.environment.HOME).toBe("/synthetic/os-user-home");
+    expect(vi.mocked(fs.writeFile).mock.calls.at(-1)![1]).toContain('(subpath "/synthetic/os-user-home/Library/Keychains") (literal "/dev/null"))))');
     vi.mocked(os.userInfo).mockReturnValue({ uid: process.getuid!(), gid: process.getgid!(), username: "fixture", homedir: "/synthetic/other-os-user-home", shell: "/bin/zsh" });
     const otherLoginV2 = await prepareCodexContainmentV2({ ...options, purpose: "trusted-login", trustedRuntimeReadRoots: [] });
     expect(otherLoginV2.environment.HOME).toBe("/synthetic/other-os-user-home"); expect(otherLoginV2.outerPolicyDigest).not.toBe(loginV2.outerPolicyDigest);

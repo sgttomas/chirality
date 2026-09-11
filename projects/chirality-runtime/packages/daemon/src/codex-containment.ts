@@ -122,11 +122,19 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
   }
   const sessionDirectory = await mkdtemp(join(privateDirectory, 'containment-'));
   const sandboxProfilePath = join(sessionDirectory, 'launch.sb');
-  const readable = ['/System', '/usr', '/bin', '/sbin', '/Library/Apple', '/private/var/db/dyld', root, privateDirectory, ...trustedReads.flatMap(entry => entry.readPaths)];
+  // Keyring purposes persist OAuth tokens through the macOS login keychain. The
+  // Security framework reads and rewrites the keychain database inside the
+  // client process (a temporary file beside login.keychain-db), so the keychain
+  // directory of the effective home must stay readable and writable. Without it
+  // macOS reports the keychain as missing and offers a destructive reset.
+  const keychainDirectories = keyringPurpose ? [join(home, 'Library', 'Keychains')] : [];
+  const readable = ['/System', '/usr', '/bin', '/sbin', '/Library/Apple', '/private/var/db/dyld', root, privateDirectory,
+    ...(keyringPurpose ? ['/Library/Keychains', ...keychainDirectories] : []), ...trustedReads.flatMap(entry => entry.readPaths)];
+  const writable = [root, privateDirectory, ...keychainDirectories];
   const profile = [
     '(version 1)', '(allow default)',
     `(deny file-read-data (require-not (require-any (literal "/") ${readable.map(path => `(subpath ${quote(path)})`).join(' ')} (literal "/dev/null") (literal "/dev/urandom") (literal "/dev/random"))))`,
-    `(deny file-write* (require-not (require-any (subpath ${quote(root)}) (subpath ${quote(privateDirectory)}) (literal "/dev/null"))))`,
+    `(deny file-write* (require-not (require-any ${writable.map(path => `(subpath ${quote(path)})`).join(' ')} (literal "/dev/null"))))`,
     ...(keyringPurpose ? [] : ['(deny mach-lookup (global-name "com.apple.securityd"))']),
     ...(consent ? [] : ['(deny network*)']),
     '',
