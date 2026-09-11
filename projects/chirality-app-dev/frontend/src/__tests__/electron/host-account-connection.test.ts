@@ -92,6 +92,20 @@ describe('host account connection lifecycle', () => {
     await connection.close();
   });
 
+  it('does not replace an account client for repeated healthy daemon samples', async () => {
+    const candidate = client();
+    const connect = vi.fn().mockResolvedValue(candidate);
+    const connection = createHostAccountConnection({ connect, log: vi.fn() });
+
+    await connection.update(true);
+    await connection.update(true);
+
+    expect(connect).toHaveBeenCalledOnce();
+    expect(candidate.close).not.toHaveBeenCalled();
+    expect(connection.client()).toBe(candidate);
+    await connection.close();
+  });
+
   it('cancels a pending retry when the daemon disconnects', async () => {
     vi.useFakeTimers();
     const connect = vi.fn().mockRejectedValue(new Error('temporarily unavailable'));

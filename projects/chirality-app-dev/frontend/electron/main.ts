@@ -71,6 +71,7 @@ import {
   type SocketPresenceWatcher
 } from './runtime-socket-watch';
 import { shouldPreventNativeQuit } from './runtime-shutdown-policy';
+import { bindStableRendererServer } from './renderer-server-port';
 
 type RendererServer = {
   close: () => Promise<void>;
@@ -554,32 +555,35 @@ async function startPackagedRendererServer(): Promise<RendererServer> {
     }
   });
 
-  await new Promise<void>((resolve, reject) => {
-    server.once('error', reject);
-    server.listen(0, '127.0.0.1', () => {
-      server.off('error', reject);
-      resolve();
-    });
-  });
-
-  const address = server.address() as AddressInfo | null;
-  if (!address || typeof address === 'string') {
-    throw new Error('Renderer server failed to bind a TCP port');
-  }
-
-  return {
-    close: async () => {
+  const bound = await bindStableRendererServer({
+    userDataDirectory: app.getPath('userData'),
+    bind: async (port) => {
       await new Promise<void>((resolve, reject) => {
-        server.close((error) => {
-          if (error) {
-            reject(error);
-            return;
-          }
+        server.once('error', reject);
+        server.listen(port, '127.0.0.1', () => {
+          server.off('error', reject);
           resolve();
         });
       });
-    },
-    url: `http://127.0.0.1:${address.port}`
+      const address = server.address() as AddressInfo | null;
+      if (!address || typeof address === 'string') {
+        await new Promise<void>((resolve) => server.close(() => resolve()));
+        throw new Error('Renderer server failed to bind a TCP port');
+      }
+      return {
+        port: address.port,
+        close: async () => {
+          await new Promise<void>((resolve, reject) => {
+            server.close((error) => error ? reject(error) : resolve());
+          });
+        }
+      };
+    }
+  });
+
+  return {
+    close: bound.close,
+    url: `http://127.0.0.1:${bound.port}`
   };
 }
 
@@ -645,6 +649,14 @@ async function configureDesktopHarnessClient(
 ): Promise<void> {
   prepareDesktopHarnessEnvironment(process.env, control.socketPath);
 
+  // Installed Desktop is allowed to start without the development project's
+  // optional convenience registration. A folder selected in the UI obtains
+  // its own verified project binding through the bootstrap path.
+  const hasDefaultProject = (await operatorClient.listProjects()).some(
+    ({ project }) => project.projectId === DESKTOP_PROJECT_ID
+  );
+  if (!hasDefaultProject) return;
+
   const binding = await resolveDesktopProjectBinding({
     operatorClient,
     runtimeDirectory: control.runtimeDirectory,
@@ -709,11 +721,26 @@ async function initializeGui(): Promise<void> {
   // a daemon that is down at this instant, or that dies later, must not leave the
   // window permanently unable to reach the runtime. `start()` still awaits the
   // first attempt so a healthy daemon is fully bound before the window appears.
+  const observeDaemonReachability = async (): Promise<void> => {
+    try {
+      await runtimeClient.daemonStatus();
+      void hostAccountConnection?.update(true);
+    } catch (error) {
+      void hostAccountConnection?.update(false);
+      throw error;
+    }
+  };
   bindingSupervisor = createRuntimeBindingSupervisor({
-    bind: () => configureDesktopHarnessClient(runtimeClient, control),
+    bind: async () => {
+      // Account-host admission is daemon-scoped. Establish it as soon as the
+      // daemon answers, even when the fixed app-dev harness project is absent
+      // and the project binding below must keep retrying.
+      await observeDaemonReachability();
+      await configureDesktopHarnessClient(runtimeClient, control);
+    },
     probe: async () => {
       try {
-        await runtimeClient.daemonStatus();
+        await observeDaemonReachability();
         return true;
       } catch {
         return false;
@@ -722,7 +749,6 @@ async function initializeGui(): Promise<void> {
     onStateChange: (snapshot) => {
       desktopLogger.info('runtime.connectivity.state', snapshot);
       broadcastRuntimeConnectivity(snapshot);
-      void hostAccountConnection?.update(snapshot.state === 'connected');
     },
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
   });

@@ -57,6 +57,10 @@ export function createHostAccountConnection(options: {
   };
 
   const update = (runtimeConnected: boolean): Promise<void> => {
+    // Daemon reachability is sampled independently of the desktop project's
+    // binding state. Repeated healthy samples must not tear down and recreate
+    // an already usable account client.
+    if (selectedConnected === runtimeConnected) return pending;
     selectedConnected = runtimeConnected;
     const selectedGeneration = ++generation;
     clearRetry();

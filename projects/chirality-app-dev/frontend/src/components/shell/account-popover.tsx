@@ -23,6 +23,7 @@ export type AccountPopoverProps = {
 export function AccountPopover({ account, runtime, hosted, folder, legacyHref, onOpenSettings }: AccountPopoverProps): JSX.Element {
   void legacyHref;
   return <>
+    {hosted ? <section className={styles.group} aria-label="Shared runtime"><strong>Shared runtime</strong><DaemonQuickControl runtime={runtime} showLocalModelStatus={false} onSetup={() => runtime.onDaemonAction('install')} /></section> : null}
     {hosted ? <section className={styles.group}><HostedBootstrapView controller={hosted} compact /></section> : <section className={styles.group} aria-label="OpenAI account">
       <strong>{accountTitle(account)}</strong>
       <p>{account.snapshot ? 'Preview account · simulated state' : 'Account service unavailable in this build.'}</p>
