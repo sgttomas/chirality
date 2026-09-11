@@ -1,0 +1,11 @@
+# Stage24 prepared for review
+
+Frozen procedure `/private/tmp/chirality-local-human-trial-20260910-24/STAGE24_FROZEN_PROCEDURE.md`; manifest `/private/tmp/chirality-local-human-trial-20260910-24/stage24-preparation-manifest.json`, SHA256 `4192904c555e9b76b972c4a7770833fecff5cb15a0cc20eec90952ad020bc4b2`. Source193433c259cacb906337a4d10ac0373aa3a622cb.
+
+Qualified raw supplier `/private/tmp/chirality-supplier-code-mode-host-20260911-01/artifact`, digestf1ce70a7ee4e0de9332093c8d79cf42cf47f5a42bf033747d8f16c8ddac746a9. Codex unchanged eecbc73e…; official same-upstream host3eca39bb…; host-only allow-jit plist85d97186…. See R14_TOOL_HOST_PROPOSAL/RETURN.md and QUALIFICATION_RETURN.json; tightened final-signed-pair-reviewed.json is active. Public account-free tool qualification is separate from final authenticated native test.
+
+Static baseline17entries: three reviewed script changes, unchanged codex path relocation, officialhost addition, hostJITplist addition. All other identities unchanged; dependencyresolutione83a525c… and raw nativefa40fc23… retained. Current native already admitted; inputpreparation verifies without replacement. Retained509-entry cache unchanged. Wrapper checksfa40 immediately afterward, npmRebuild=false retained.
+
+Normal native/build05correspondence stays. New supplierHost comparison exhaustively compares every byte before signature except __LINKEDITvmsize/filesize and LC_CODE_SIGNATUREdatasize, with exact header/UUID/symbols and segmentbounds; signature independently verified and exactJIT-onlyentitlements required. Fresh packaging signedhost digest measured, not borrowed from qualification. Standard eight account-free limbs/support/profile/governance/seal all generated fresh from Stage24 candidate; no duplicated source suite.
+
+PhaseA checks PASS: sourcefreeze, current native/cache, actual digest computation, Python/JSsyntax, exacthost comparison using qualifiedsignedcopy, manifestfileidentities, absentR15paths. Expected R15launcherSHAfa0721bb04581bb8b20341c394de0481b6838c120ad434f927be9735f1915953. R15app/userdata/launcher new; R14retirement lead-only. No build/sign/provision/nativeexecution performed in Stage24. Next independentrecipe review and parentrelease.

@@ -1,0 +1,15 @@
+# Host acquisition and qualification return
+
+PASS for approved proposal c0187f555837477d9cfd1febe8d3222e6a8e0a56c7b3040a68722f7f2df64768, steps1–3. TASK gpt-6-astra medium; no delegation.
+
+Accepted raw two-origin supplier tree for packaging review: `/private/tmp/chirality-supplier-code-mode-host-20260911-01/artifact`; digest `f1ce70a7ee4e0de9332093c8d79cf42cf47f5a42bf033747d8f16c8ddac746a9`. Codex build05 remains eecbc73e… (761918056 bytes). Official same-upstream host SHA256 `3eca39bb7f93315fab6b0dec2334381c0f50a2ccda113ec482fb815f16072a5c`, 57150048 bytes,0755,ARM64. Exact archive20206044bytes/SHAed6a6a08… verified before single regular-file safe extraction. Vendor signature valid: OpenAI2DC432GLL2,hardened runtime; only system dylibs. Vendor raw/archive inputs remain preserved.
+
+Actual vendor host and actual build05+host pair PASS: framed stdio JavaScript,persistence,fake tool callback,second session/turn,cancellation (direct host),observed separate host process group,and complete clean exit. Pair uses ordinary public app-server protocol and four localhost fake-provider requests for two turns, with returned dynamic-tool output verified. No live model/account/auth or identity reads; fresh scratch HOME/CODEX_HOME,file credential store,requires_openai_auth=false. These are public functionality checks, not private authenticated admission.
+
+Minimal measured policy: host-only `com.apple.security.cs.allow-jit=true`. Empty hardened policy fails with SIGTRAP/V8 CodeRange reservation; approved negative experiment preserved. allow-jit alone passes; unsigned-executable-memory not required by these checks. Final signed copy uses exact integrated plist SHA256 `85d97186afc33c073b2c524f88c5f8031601c844b3e10d9c71c82f845fcc3a6f`; signed host SHA256 `30fb8ae21e8460b37957352f5f42d7a785f715624f161a3590f0fab2ea8d6a7c`. Signature verification and actual-host/actual-pair repetition PASS under that policy. Packaging must measure its own final bytes.
+
+Evidence: `/private/tmp/chirality-supplier-code-mode-host-20260911-01/evidence/QUALIFICATION_RETURN.json`, acquisition.json,vendor-static.json,final-signing.json,final-signed-host-probe.json,final-signed-pair-reviewed.json. Probes reuse pinned Rust stdio/session and app-server fake-Responses fixture semantics without compiling substitute binaries. Initial probe assertion misread externally tagged Yielded.cell_id; the failed harness and corrected probe/results remain preserved. No actual vendor/public protocol qualification failure occurred.
+
+Existing Stage22/23,old source/cache/target/App/live state untouched. No repository source edits or App build. Next: prepare Stage24/R15 exact static deltas/normal two-file correspondence; hold build for integrated frozen source,independent recipe review and lead release. Existing controlled private-composition evidence remains separate; lead owns final guarded authenticated native OAuth test.
+
+Independent probe backcheck: final reviewed pair asserts ps status/error/signal and clean exit0/no signal before PASS. Earlier evidence remains preserved.
