@@ -340,7 +340,7 @@ describe('hosted account sequence through production code against a real daemon 
     const settled = await (async () => {
       for (let attempt = 0; attempt < 100; attempt += 1) {
         const observed = await getHostedBootstrapStatusWithRetry(projectRoot);
-        if (observed.status?.admission !== 'establishing') return observed;
+        if (!('status' in observed) || observed.status.admission !== 'establishing') return observed;
         await new Promise(resolve => setTimeout(resolve, 50));
       }
       throw new Error('Hosted admission did not settle');

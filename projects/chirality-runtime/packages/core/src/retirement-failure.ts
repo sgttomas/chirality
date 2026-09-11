@@ -8,6 +8,8 @@ import { RuntimeError } from "@chirality/runtime-contracts";
 export function withRetirementFailure(primary: unknown, retirement: unknown): unknown {
   if (retirement === undefined) return primary;
   if (primary === undefined) return retirement;
+  // Idempotent cleanup can return the same rejection through several owners.
+  if (primary === retirement) return primary;
   if (primary instanceof Error) {
     if (primary.cause === undefined) { try { Object.defineProperty(primary, "cause", { value: retirement, writable: true, configurable: true, enumerable: false }); return primary; } catch { /* frozen error */ } }
     const combined = new AggregateError([primary, retirement], primary.message);

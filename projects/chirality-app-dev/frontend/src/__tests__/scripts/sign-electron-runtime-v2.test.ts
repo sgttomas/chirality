@@ -86,7 +86,7 @@ async function completionFixture() {
     resourcesRoot,
     inventoryPath: path.join(resourcesRoot, 'runtime-artifact-inventory-v2.json'),
     payloadManifestPath: path.join(resourcesRoot, 'runtime-payload-manifest.json'),
-    inventorySha256: 'b'.repeat(64), payloadDigest: 'a'.repeat(64), payload, inventory
+    inventorySha256: 'b'.repeat(64), payloadDigest: 'a'.repeat(64), identityDigest: 'd'.repeat(64), payload, inventory
   };
   await mkdir(resourcesRoot, { recursive: true });
   const checkpoint = {
@@ -515,7 +515,7 @@ describe('signed Runtime v2 assembly', () => {
             payloadManifest: { relativePath: 'runtime-payload-manifest.json' as const, size: 20, sha256: '8'.repeat(64) },
             governance
           };
-          const verified: VerifiedPackagedRuntimeBasisV2 = { resourcesRoot, inventoryPath, payloadManifestPath, inventorySha256: 'b'.repeat(64), payloadDigest: 'e'.repeat(64), payload, inventory };
+          const verified: VerifiedPackagedRuntimeBasisV2 = { resourcesRoot, inventoryPath, payloadManifestPath, inventorySha256: 'b'.repeat(64), payloadDigest: 'e'.repeat(64), identityDigest: 'd'.repeat(64), payload, inventory };
           return { inventoryPath, inventory, verified };
         }
       })).rejects.toThrow('changed during outer verification');

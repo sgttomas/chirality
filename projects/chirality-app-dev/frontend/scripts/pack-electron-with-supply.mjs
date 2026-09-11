@@ -256,6 +256,8 @@ export async function runElectronPack({
       throw new Error('Runtime v2 signed preparation requires explicit identity, team, bundle, and checkpoint inputs');
     }
     builderEnvironment[RUNTIME_MANIFEST_VERSION_ENV] = 'v2';
+    // V2 packages admitted native inputs; rebuilding here changes their basis.
+    args.push('-c.npmRebuild=false');
     builderEnvironment.CSC_NAME = env[SIGNING_IDENTITY_SHA1_ENV];
     delete builderEnvironment[RUNTIME_V2_INPUT_DIGEST_ENV];
   } else {

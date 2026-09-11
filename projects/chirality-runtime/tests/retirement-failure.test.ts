@@ -3,6 +3,14 @@ import { RuntimeError } from "@chirality/runtime-contracts";
 import { describeFailureDetails, withRetirementFailure } from "../packages/core/src/retirement-failure.js";
 
 describe("withRetirementFailure", () => {
+  it("does not attach a memoized cleanup rejection as its own cause", () => {
+    const failure = new RuntimeError("ENGINE_UNAVAILABLE", "cleanup failed", 503, { reason: "DESCENDANT_RECONCILIATION_REQUIRED" });
+    const once = withRetirementFailure(failure, failure);
+    const twice = withRetirementFailure(once, failure);
+    expect(twice).toBe(failure);
+    expect(failure.cause).toBeUndefined();
+    expect(describeFailureDetails(twice)).toEqual({ reason: "DESCENDANT_RECONCILIATION_REQUIRED" });
+  });
   it("keeps the primary failure and attaches the retirement diagnostic as its cause", () => {
     const primary = new RuntimeError("ENGINE_UNAVAILABLE", "Codex request timed out", 503, { reason: "CODEX_PROTOCOL_FAILURE" });
     const retirement = new RuntimeError("ENGINE_UNAVAILABLE", "Observed worker descendants require reconciliation", 503, { reason: "DESCENDANT_RECONCILIATION_REQUIRED", detachedCount: 1 });

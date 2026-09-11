@@ -70,7 +70,7 @@ function sealedResult(appPath: string) {
     resourcesRoot,
     inventoryPath: path.join(resourcesRoot, 'runtime-artifact-inventory-v2.json'),
     payloadManifestPath: path.join(resourcesRoot, 'runtime-payload-manifest.json'),
-    inventorySha256: 'b'.repeat(64), payloadDigest: 'c'.repeat(64), payload, inventory: inventoryDocument
+    inventorySha256: 'b'.repeat(64), payloadDigest: 'c'.repeat(64), identityDigest: 'd'.repeat(64), payload, inventory: inventoryDocument
   };
   return {
     appPath,
@@ -198,13 +198,13 @@ describe('pack-electron-with-supply', () => {
     const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-runtime-v2-pack-')));
     const inputs = await v2ReleaseInputs(root);
     const dependencyDigest = await computeDependencyResolutionDigest();
-    const calls: Array<{ options: { env?: Record<string, string> } }> = [];
+    const calls: Array<{ args: string[]; options: { env?: Record<string, string> } }> = [];
     try {
       await runElectronPack({
         runtimeManifestVersion: 'v2',
         verify: async () => '/verified/electron',
         spawnProcess: ((_command: string, _args: string[], options: { env?: Record<string, string> }) => {
-          calls.push({ options });
+          calls.push({ args: _args, options });
           const child = new EventEmitter();
           queueMicrotask(async () => {
             await writeFile(path.join(root, 'prepared.json'), '{}\n');
@@ -231,6 +231,7 @@ describe('pack-electron-with-supply', () => {
         [RUNTIME_V2_GOVERNANCE_ROOT_ENV]: inputs.governanceRoot
       });
       expect(calls[0]?.options.env?.[RUNTIME_V2_INPUT_DIGEST_ENV]).toBeUndefined();
+      expect(calls[0]?.args).toContain('-c.npmRebuild=false');
       expect(parseArgs(['--runtime-manifest', 'v2'])).toEqual({ target: 'dir', runtimeManifestVersion: 'v2' });
     } finally {
       await rm(root, { recursive: true, force: true });
@@ -320,7 +321,7 @@ describe('pack-electron-with-supply', () => {
       resourcesRoot: '/stage/Chirality.app/Contents/Resources',
       inventoryPath: '/stage/Chirality.app/Contents/Resources/runtime-artifact-inventory-v2.json',
       payloadManifestPath: '/stage/Chirality.app/Contents/Resources/runtime-payload-manifest.json',
-      inventorySha256: 'b'.repeat(64), payloadDigest: 'c'.repeat(64), payload: payloadManifest,
+      inventorySha256: 'b'.repeat(64), payloadDigest: 'c'.repeat(64), identityDigest: 'd'.repeat(64), payload: payloadManifest,
       inventory: inventoryDocument
     };
     const inventory = {
