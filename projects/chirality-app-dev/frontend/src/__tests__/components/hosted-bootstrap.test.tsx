@@ -83,6 +83,16 @@ it('keeps setup available after a binding conflict and surfaces the error withou
   expect(api.initialize).not.toHaveBeenCalled();
 });
 
+it('does not restart hydration when the caller supplies a new refresh callback', async () => {
+  await act(async () => { tree = create(<Fixture refresh={() => {}} />); });
+  await act(async () => { await Promise.resolve(); });
+  expect(api.get).toHaveBeenCalledOnce();
+
+  await act(async () => { tree.update(<Fixture refresh={() => {}} />); });
+  await act(async () => { await Promise.resolve(); });
+  expect(api.get).toHaveBeenCalledOnce();
+});
+
 it('distinguishes signed-in state from readiness and publishes the ready transition once', async () => {
   vi.useFakeTimers();
   const refresh = vi.fn();

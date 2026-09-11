@@ -47,12 +47,14 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
   const [signOutUncertain, setSignOutUncertain] = useState(false);
   const rootRef = useRef(projectRoot);
   const snapshotRef = useRef(snapshot);
+  const onBindingChangedRef = useRef(onBindingChanged);
   const publishedBindingKeys = useRef(new Set<string>());
   const operationGeneration = useRef(0);
   const actionController = useRef<AbortController | null>(null);
   const pollController = useRef<AbortController | null>(null);
   rootRef.current = projectRoot;
   snapshotRef.current = snapshot;
+  onBindingChangedRef.current = onBindingChanged;
 
   const load = useCallback(async (root: string, generation: number, signal?: AbortSignal): Promise<void> => {
     const result = await hydrateHostedBootstrapProject(
@@ -66,7 +68,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
           const key = `${root}:${binding.projectId}:registered`;
           if (!publishedBindingKeys.current.has(key)) {
             publishedBindingKeys.current.add(key);
-            onBindingChanged();
+            onBindingChangedRef.current();
           }
         }
       },
@@ -77,7 +79,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
       setError(null);
       setLoading(false);
     }
-  }, [onBindingChanged]);
+  }, []);
 
   useEffect(() => {
     const generation = ++operationGeneration.current;

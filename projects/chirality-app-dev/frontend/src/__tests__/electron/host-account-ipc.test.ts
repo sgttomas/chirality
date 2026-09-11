@@ -164,6 +164,7 @@ describe('host account main-process IPC', () => {
       }
     );
     await vi.waitFor(() => expect(first.status).toHaveBeenCalledOnce());
+    await connection.update(false);
     await connection.update(true);
     expect(connection.client()).toBe(second);
     lateStatus.reject(new Error('late failure'));
