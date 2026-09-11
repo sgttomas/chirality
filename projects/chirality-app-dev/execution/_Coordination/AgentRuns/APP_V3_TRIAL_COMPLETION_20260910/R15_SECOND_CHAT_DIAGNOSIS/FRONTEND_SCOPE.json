@@ -1,0 +1,45 @@
+{
+  "sourceHead": "a21d2a9fdc6283f94cee5636c5596f68783b5f68",
+  "sourceAndTests": [
+    {
+      "path": "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx",
+      "sha256": "8e26e8169ffaf5a28de0ecefe1f6f8190a89f19153fa39aae53825d8b210c24a"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/client.ts",
+      "sha256": "6f4ae221e97ac7504ccf94d2766abcae4a49c71a6f5d404388e41db98f6af921"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/error-display.ts",
+      "sha256": "2ff89902fc9661858c949bc24eb89157081891b011fd0e7374be85d2ee791f34"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts",
+      "sha256": "848dd04754f8a4365be77e91e926e94f5d55b28a05f20aa0686a2b423d8c9928"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/contracts.ts",
+      "sha256": "0f0dd7d01feda7b0a54aac264486c4e6b9ea6eb4152565ed23e6b3e80df8c762"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/woven-dialogue/operator-projection.ts",
+      "sha256": "e81cfb62f01a4ab49a2002d5425a141548ccf0938098085c1dc7eae11f179be4"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx",
+      "sha256": "6d602c214c67745f6aed63cf68ff0ee4bfdd7b763eb4434ddfb990bf5bc6eb1e"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/runtime-daemon-harness-port.test.ts",
+      "sha256": "d4c4945ac3cf52b42d3f7c31c4fd9dc76bd6b56696c7a0babad6645c1e082000"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-error-display.test.ts",
+      "sha256": "d5a035ab61a0dd1ac7d719e47c943a688fd4f10986b43ee50c9d8dc7911b1214"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/operator-projection.test.ts",
+      "sha256": "489ce1f0e44370f6544a6516310425439a7416d9ade0f1ac7beb18264004e1da"
+    }
+  ]
+}

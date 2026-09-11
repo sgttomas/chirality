@@ -1,0 +1,83 @@
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx
+index b6808aa1f..d879603a3 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/activity-view-local-state.test.tsx
+@@ -53,3 +53,21 @@ it('keeps matching tool IDs in different sessions distinct and reveals a later c
+   expect(state.events).toHaveLength(3); expect(state.events[2]).toBe(completion);
+   act(() => { tree.unmount(); strip.unmount(); });
+ });
++
++
++it('distinguishes absent recorded actions from filtering and clearing a recorded view', () => {
++  state.events = [];
++  const tree = create(<ActivityView />);
++  expect(JSON.stringify(tree.toJSON())).toContain('No recorded actions.');
++  act(() => tree.root.findByProps({ 'aria-label': 'Filter activity' }).props.onChange({ target: { value: 'missing' } }));
++  expect(JSON.stringify(tree.toJSON())).toContain('No matching actions.');
++  act(() => tree.root.findByProps({ 'aria-label': 'Filter activity' }).props.onChange({ target: { value: '' } }));
++  state.events = [event('recorded', 'tool.started', { toolUseId: 'tool', toolName: 'read_file' })];
++  act(() => tree.update(<ActivityView />));
++  expect(actionRows(tree)).toHaveLength(1);
++  act(() => tree.root.findAllByType('button').find(button => button.children.includes('Clear view'))!.props.onClick());
++  expect(JSON.stringify(tree.toJSON())).toContain('No actions in this view.');
++  expect(JSON.stringify(tree.toJSON())).not.toContain('No recorded actions.');
++  expect(state.events).toHaveLength(1);
++  act(() => tree.unmount());
++});
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
+index afd805479..bab8f6bde 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
+@@ -253,10 +253,15 @@ describe('WovenDialogueShell composition', () => {
+     const oldCatalogCallback = panel.props.onFileCatalog;
+     act(() => oldCatalogCallback({ root: shellState.projectRoot, paths: [`${shellState.projectRoot}/docs/SPEC.md`] }));
+     expect(tree.root.findByProps({ 'data-chat-file': 1 })).toBeTruthy();
++    act(() => panel.props.onClose());
++    expect(tree.root.findByProps({ 'aria-label': 'Open Coordination' })).toBeTruthy();
++    expect(tree.root.findAllByType(RightPanel)).toHaveLength(0);
+     act(() => tree.root.findByProps({ 'data-chat-file': 1 }).props.onClick());
++    expect(tree.root.findAllByProps({ 'aria-label': 'Open Coordination' })).toHaveLength(0);
++    expect(tree.root.findByType(RightPanel).props.state.openDocumentPath).toBe('docs/SPEC.md');
+     expect(JSON.parse(persist.mock.calls.at(-1)![1])).toMatchObject({ openDocumentPath: 'docs/SPEC.md', rightPanelView: 'files', coordinationCollapsed: false });
+ 
+-    act(() => panel.props.onOpenFile('/repo/projects/chirality-app-dev-other/docs/SPEC.md'));
++    act(() => tree.root.findByType(RightPanel).props.onOpenFile('/repo/projects/chirality-app-dev-other/docs/SPEC.md'));
+     expect(JSON.parse(persist.mock.calls.at(-1)![1]).openDocumentPath).toBe('docs/SPEC.md');
+ 
+     shellState.projectRoot = '/repo/next';
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx
+index 6ab5e1591..0cf3c8f05 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/activity-shelf.tsx
+@@ -169,8 +169,8 @@ function ActivityTime({ timestamp }: { timestamp: string }): JSX.Element {
+     : <span className="harness-stream-meta" style={{ flexShrink: 0, whiteSpace: 'nowrap' }} title={timestamp || 'No recorded timestamp'}>Time unavailable</span>;
+ }
+ 
+-function ActivityActions({ rows }: { rows: ToolActivityRow[] }): JSX.Element {
+-  return rows.length === 0 ? <p className="panel-empty">No matching actions.</p> : <ul className="harness-stream-list" aria-label="Actions">
++function ActivityActions({ rows, emptyMessage }: { rows: ToolActivityRow[]; emptyMessage: string }): JSX.Element {
++  return rows.length === 0 ? <p className="panel-empty">{emptyMessage}</p> : <ul className="harness-stream-list" aria-label="Actions">
+     {rows.map(row => <li key={row.key} className={`harness-stream-item harness-stream-item--${row.status}`}>
+       <div className="harness-stream-row">
+         <span className="harness-stream-name" title={row.toolName}>{actionSentence(row)}</span>
+@@ -235,6 +235,6 @@ export function ActivityView(): JSX.Element {
+       <input aria-label="Filter activity" placeholder="Filter activity…" value={filter} onChange={event => setFilter(event.target.value)} />
+       <button type="button" onClick={clearView}>Clear view</button>
+     </div>
+-    {tab === 'tools' ? <ActivityActions rows={projected.tools.filter(row => visible('tools', row, `${actionSentence(row)} ${actionDetail(row)} ${timeLabel(row.timestamp)}`))} /> : tab === 'events' ? <TranscriptStreamList items={projected.transcript.filter(row => visible('transcript', row))} /> : <ActivityTasks rows={projected.children.filter(row => visible('children', row, `${taskSentence(row)} ${taskDetail(row)} ${timeLabel(row.timestamp)}`))} />}
++    {tab === 'tools' ? <ActivityActions emptyMessage={query ? 'No matching actions.' : projected.tools.length ? 'No actions in this view.' : 'No recorded actions.'} rows={projected.tools.filter(row => visible('tools', row, `${actionSentence(row)} ${actionDetail(row)} ${timeLabel(row.timestamp)}`))} /> : tab === 'events' ? <TranscriptStreamList items={projected.transcript.filter(row => visible('transcript', row))} /> : <ActivityTasks rows={projected.children.filter(row => visible('children', row, `${taskSentence(row)} ${taskDetail(row)} ${timeLabel(row.timestamp)}`))} />}
+   </section>;
+ }
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+index 139ad4377..6e1e2e6ea 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+@@ -533,7 +533,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+     const prefix = `${projectRoot.replace(/\/$/, '')}/`;
+     if (!filePath.startsWith(prefix)) return;
+     restoreExpanded();
+-    updateWorkspaceState({ openDocumentPath: filePath.slice(prefix.length), rightPanelView: 'files' });
++    updateWorkspaceState({ openDocumentPath: filePath.slice(prefix.length), rightPanelView: 'files', coordinationCollapsed: false });
+   }, [projectRoot, restoreExpanded, updateWorkspaceState]);
+ 
+   return (

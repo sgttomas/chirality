@@ -1,0 +1,26 @@
+[
+  {
+    "name": "cat",
+    "returncode": 0,
+    "stdout": "controlled shell diagnostic\n",
+    "stderr": ""
+  },
+  {
+    "name": "zsh",
+    "returncode": 0,
+    "stdout": "controlled shell diagnostic\n",
+    "stderr": ""
+  },
+  {
+    "name": "denied-read",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "cat: /private/tmp/r15-shell-diagnosis/protected/sentinel: Operation not permitted\n"
+  },
+  {
+    "name": "denied-write",
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "zsh:1: operation not permitted: /private/tmp/r15-shell-diagnosis/protected/new.txt\n"
+  }
+]

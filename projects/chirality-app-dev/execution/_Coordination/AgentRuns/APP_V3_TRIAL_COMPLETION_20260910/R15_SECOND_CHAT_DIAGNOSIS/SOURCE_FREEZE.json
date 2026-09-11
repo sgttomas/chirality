@@ -1,0 +1,65 @@
+{
+  "status": "source-frozen-awaiting-independent-review",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/packages/client/src/client.ts",
+      "sha256": "112010269ed15ec420fc9d70abe42a1980e24ea28feb9d98b0a127d6b22046b5"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/src/errors.ts",
+      "sha256": "55f27ff62d13199a4a4a052671028ea41748574a2ac73dca518886f5e048a4db"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/agent-engine-port.ts",
+      "sha256": "1d4ff6ee5b0c82c0581afd172fb827f4b126b55e4cff72733ac9ba8fc6796215"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/src/harness/transcript-replay.ts",
+      "sha256": "fcbfa7586d69976180009fe0b429643ae8b7df27e4c2e844189acdd2d712f8c5"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/runtime-service.ts",
+      "sha256": "a5bc99876e9883a9c19dbe942fe90075bfe5e94e3c2c4fa9f1b516de6396da15"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/delegated-engine-adapter.ts",
+      "sha256": "6aa2804e3014fc118d2d7712ec64ff3915f2f88d625c3eadaeb41148a256dec9"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/src/delegated-runtime.ts",
+      "sha256": "167f4fc3ae8290a09b2ac75ee63254398b761edd998e52315c5a0d84e8af3219"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/runtime-daemon.ts",
+      "sha256": "349a0810afa4c1e205749a1e833f2e26bf4e3b512b247f30e7428a58325d24f3"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-session.ts",
+      "sha256": "d92785982b819bd055199967eaf740244ee06a45123c7628e35666f8f766fb5d"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-text-assembly.ts",
+      "sha256": "098a8b3f9d3be6ef4755d208eca3db438a0d126088032940bc049074b8a2e4db"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-v3-api.test.ts",
+      "sha256": "7628d5dbc7162e855d500cb2dd073d87838022cd7639fb977725e181090103fa"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/delegated-runtime.test.ts",
+      "sha256": "0936bdb4972c78212948c39503969730d3690d224f82990006788779dcb9b1a8"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-session.test.ts",
+      "sha256": "9a7217c0a66b75d617a3d48981fd23f3f64972a33ae24b7a0a5275952603bc0f"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/codex-text-assembly.test.ts",
+      "sha256": "0852b280b26729d40a0c1d834b77f4313410f417f081e731f76d81aa857c58f4"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/client/test/client.test.ts",
+      "sha256": "45958a1226278ca771f1fbdfc47bced4f4dd6ba49b7cfe7d6c094a449a5f7ae4"
+    }
+  ]
+}

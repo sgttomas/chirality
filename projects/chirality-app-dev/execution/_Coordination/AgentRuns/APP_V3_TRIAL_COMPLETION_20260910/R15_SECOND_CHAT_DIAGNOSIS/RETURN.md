@@ -1,0 +1,63 @@
+# R15 second chat diagnosis — source-bounded return
+
+Status: derivative diagnostic evidence, not a verified native root-cause closure. No product changes, builds, supplier execution, process termination, retries, or protected live reads. Upstream basis: current worktree source and lead-observed R15 UI results (built source 193433c25).
+
+## Finding
+
+The displayed daemon-unavailable message does not establish daemon absence. A concrete source defect maps a request timeout to that same message. The reported GUI/daemon PIDs remain alive; history and account status remain usable, and the new HELPS_HUMANS session df0f8b4f-7ec1-44bc-8a48-c1f28678d95c exists. These observations fit successful creation followed by an overlong synchronous boot.
+
+- frontend/src/components/shell/chat-panel.tsx:694-712 creates a session, then displays Booting session and awaits a separate boot call. The operator prompt is sent only after ensureSessionBooted succeeds. Thus the explicit no-tools short reply did not bound the hidden boot prompt.
+- packages/core/src/runtime-service.ts:248-343 boots with a real engine turn, message `bootstrap`, requested model, persisted reasoning effort through the adapter, and resolved role instructions. It consumes all engine events and requires conformant process exit/terminal completion before returning (343-440).
+- packages/core/src/delegated-engine-adapter.ts:148-167 forwards supplied role context plus the bootstrap message, requested model and persisted reasoning effort. It has no special fast boot path.
+- packages/daemon/src/runtime-daemon.ts:751-764 awaits the complete boot before writing JSON. This route supplies no request-disconnection cancellation signal to bootSession. Consequently a client timeout can leave the boot running and eventually mutate the already-created session.
+- packages/client/src/client.ts:138 defaults to 30,000ms socket inactivity timeout. Lines721-723 destroy the request with Runtime request timed out; lines687-692 wrap that cause in RuntimeTransportError. The frontend runtime-daemon-harness-port.ts:122-127 discards the cause and reports ENGINE_UNAVAILABLE / Chirality runtime daemon is unavailable for every transport error.
+- packages/daemon/src/codex-session.ts:918-919 allows a native turn 120,000ms before requesting interruption; a further request budget bounds genuine-terminal recovery. The boot HTTP client budget can expire substantially before valid provider work reaches its own deadline.
+
+All Runtime paths above are relative to projects/chirality-runtime; frontend paths are relative to projects/chirality-app-dev.
+
+## Model/role distinction
+
+Changing model/effort is intentionally carried into the new session and bootstrap; existing sol/low session is unchanged. Catalog validation is explicit in delegated-runtime.ts:213-231 and delegated-engine-adapter.ts:63-64; invalid selections produce attributed model/effort errors, not this generic transport message. A terra/high bootstrap processing HELPS_HUMANS instructions can take longer than sol/low. This is a plausible trigger, not proof of model-specific deadlock or inference latency. No source evidence justifies changing the user's model/effort or weakening catalog/account checks.
+
+The lead's approximately one-minute UI duration is not an exact match to the default 30s timer. Exact elapsed time and underlying transport cause were not available. Other transport failures also use the same presentation. Ordinary admission-log silence does not prove the handler was stuck at admission, since these sources do not emit per-boot phase logs.
+
+## Smallest bounded repair recommendation
+
+1. Preserve a sanitized transport reason (timeout versus connect/refused/closed) across RuntimeClient and frontend mapping; display boot timeout truthfully without asserting daemon death. Never expose socket/token contents or raw causes.
+2. Give synchronous boot an explicit operation budget consistent with the existing bounded provider turn/interrupt/retirement budgets, rather than the generic short JSON timeout. Pair this with request-disconnect cancellation and genuine-terminal settlement, or a resumable boot operation/status contract, so a UI failure cannot leave an untracked active bootstrap. Do not globally disable timeouts or automatically retry creation.
+3. Retain the created session ID when boot fails and reconcile its boot status before any further attempt; avoid duplicate sessions or concurrent boot. Keep model/effort, role, account identity, epochs and genuine-terminal requirements intact.
+4. Controlled regressions: delayed successful bootstrap exceeding generic JSON budget; actual unavailable socket versus timeout presentation; request disconnect during boot and genuine terminal cleanup; completed boot reattachment without another creation; selected terra/high retained throughout. Use fake timers/controlled engine, no live model required.
+
+A more substantial separate product decision could replace the real-model bootstrap with explicit initialization, but that must preserve current boot attribution/context contracts and is not proposed as an unreviewed shortcut.
+
+## Missing evidence / handoff
+
+Exact timeout cause and native boot eventual terminal remain unknown. Safest next evidence is a sanitized transport reason plus operation/elapsed phase instrumentation, or owner-provided UI boot status. Do not infer it from protected session/event files. No live retry or OAuth reset is needed to validate the source defect. Scope remains open until controlled regression and subsequent authorized native second-chat qualification pass.
+
+## Consolidated Runtime tranche recommendation
+
+Reviewed R15_UI_RESIDUALS/RETURN.md and corresponding source. Keep these three slices explicit:
+
+- **Boot lifecycle and truthful errors:** initialization does not conceptually require model inference, but today's boot contract explicitly requires a real attributed turn, persisted context basis/provider span and genuine terminal. Silently skipping it or manufacturing success would break that contract. The smallest correction within current semantics is operation-scoped bounded boot waiting plus disconnect/deadline propagation into native interruption and settlement, retaining the created ID for reconciliation. Do not change global JSON budgets. If eliminating hidden inference is preferred, introduce a distinct adapter initialization contract (thread creation/attribution without turn completion), route first real user turn through normal context preparation, and revise boot/provider-span tests. That is a larger separately reviewed design change, not required to fix the transport mismatch.
+- **Message item boundaries:** codex-session.ts581 joins native items without separators;589-591 drops item identity from streamed text. Preserve itemId through typed CodexSessionEvent → supervisor progress → DelegatedTurnProgressEvent → adapter assistant.delta projection. Use one ordered item assembler for terminal/live/replay, joining distinct nonempty items with paragraph boundaries while concatenating same-item deltas exactly. Handle completed-only text, empties, duplicate completions and interruption; do not guess commentary/final channels. If an append-only separator approach is chosen, prove interleaving cannot produce different terminal/replay order first. Focused tests at codex-session, codex-primary-chat-integration and transcript-replay seams.
+- **Boot projection:** transcript-replay.ts251 must exclude explicitly boot-marked accepted messages from ordinary user projection; test boot=true followed by real prompt and literal operator text bootstrap without the marker. Keep durable raw boot events. Frontend worker owns automatic-title derivation and must preserve existing ambiguous manual/derived stored names.
+
+Proposed ownership: Runtime client/errors + core/runtime-service + daemon boot HTTP cancellation + engine/delegated cancellation seam for boot lifecycle; Runtime codex-session/supervisor/contracts/delegated adapter/transcript projection for item identity and boot filtering. App worker owns frontend error presentation and title consumption. Before authoring cancellation, inspect exact engine interruption APIs and add a controlled request-disconnect regression; do not equate HTTP cancellation with a completed/interrupted supplier terminal or revoke a healthy account merely because a client stopped waiting. No source repairs were made by this diagnosis.
+
+## Implemented bounded Runtime tranche (source freeze)
+
+Parent authorized implementation after diagnosis. Runtime-only source changes; frontend reconciliation is owned by r14_history_repair.
+
+- Client boot JSON request has an explicit 180s socket budget; generic requests retain 30s. RuntimeTransportError exposes only typed reason timeout/transport and optional boot operation/sessionId for safe frontend mapping. Server boot gets a 150s deadline and response-disconnect AbortSignal; neither manufactures successful completion.
+- RuntimeService guards concurrent boot of the same project/session until its promise settles. It passes cancellation intent into the adapter and retains real bootstrap/context/provider-span processing. Actual interrupted boot returns BOOT_TIMEOUT or BOOT_CANCELLED with sessionId; real protocol/retirement errors retain their original semantics.
+- Native delegated adapter declares input-signal handling and forwards the signal locally to DelegatedRuntime. Cancellation before/during acquisition stays latched; once the exact worker generation exists it requests native interruption and waits the real worker result and retirement. This avoids the pre-publication no-op interrupt race. Existing unsupported-supervisor retirement fallback remains explicit. Account/identity/epoch enforcement and real failure fencing are unchanged.
+- CodexTextAssembly preserves native item ordering, exact same-item deltas, paragraph boundaries between nonempty items, completed-only text and interrupted partial output. Interleaved later items wait for earlier completion; terminal settlement flushes the remainder. The same projected bytes traverse existing progress/persisted replay paths. Identical duplicate message completions are idempotent; conflicting completions still fail. Native item IDs are consumed by the assembler rather than exposed as new public fields.
+- Ordinary transcript projection excludes events belonging to explicitly boot-marked turn identities, including orphan assistant output. Raw events remain available for inspection, and an operator message literally containing bootstrap is preserved.
+
+Changed source: packages/client/src/{client,errors}.ts; packages/contracts/src/harness/{agent-engine-port,transcript-replay}.ts; packages/core/src/{runtime-service,delegated-engine-adapter,delegated-runtime}.ts; packages/daemon/src/{runtime-daemon,codex-session,codex-text-assembly}.ts.
+
+Validation: Runtime npm run typecheck PASS; git diff --check PASS. Focused client/session/v3 API/text assembly run 127 tests PASS before the later cancellation-latching extension. Expanded six-file run passed client5, session87, v3 API32, text assembly3, primary chat integration2 and delegated-runtime47 existing tests; the new cancellation test initially failed because its fake supervisor omitted required progress capability. Corrected fixture; exact new cancellation regression then PASS (47 unrelated cases skipped). Native live/terminal assembly assertion added afterward and exact session case PASS; text assembly3 PASS again. No broad suite, native App, supplier compilation, signing or account operation performed.
+
+Key new regressions: boot exceeds generic deadline without timing out; typed transport errors retain boot ID; HTTP disconnect reaches service signal; duplicate boot refused until genuine interrupted result; pre-publication cancellation remains pending until worker publication then waits genuine terminal; split/interleaved/completed-only/empty/interrupted native text; raw boot classification versus literal operator bootstrap.
+
+Material limits: live second-chat timeout cause remains inferred, not traced; release closure needs authorized native second-chat qualification. 150/180s are operation-specific budgets around existing provider120s plus interruption/cleanup windows, not a universal bound on arbitrary third-party adapters. Legacy adapters without handlesAbortSignal use existing interrupt(sessionId); the native delegated path has the new acquisition-safe latch. No automatic retry or model/effort substitution. Frontend owns retaining/reconciling created sessions and sidebar continuation proof, with legacy undefined behavior preserved. Independent combined review and owner disposition remain pending.

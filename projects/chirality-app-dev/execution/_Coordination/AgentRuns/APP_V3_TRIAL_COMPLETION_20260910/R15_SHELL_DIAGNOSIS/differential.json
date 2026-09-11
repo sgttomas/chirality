@@ -1,0 +1,44 @@
+[
+  {
+    "name": "sandbox67",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "vnguard",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "map-executable",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "secinitd",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "random",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "root",
+    "returncode": 0,
+    "stdout": "controlled shell diagnostic\n",
+    "stderr": ""
+  },
+  {
+    "name": "device-fds",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  }
+]

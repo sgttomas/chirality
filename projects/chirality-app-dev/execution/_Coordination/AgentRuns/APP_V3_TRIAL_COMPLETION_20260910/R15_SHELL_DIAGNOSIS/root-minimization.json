@@ -1,0 +1,58 @@
+[
+  {
+    "name": "root-metadata",
+    "tool": "cat",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "root-metadata",
+    "tool": "zsh",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "root-data",
+    "tool": "cat",
+    "returncode": 0,
+    "stdout": "controlled shell diagnostic\n",
+    "stderr": ""
+  },
+  {
+    "name": "root-data",
+    "tool": "zsh",
+    "returncode": 0,
+    "stdout": "controlled shell diagnostic\n",
+    "stderr": ""
+  },
+  {
+    "name": "root-existence",
+    "tool": "cat",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "root-existence",
+    "tool": "zsh",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "root-metadata-directory",
+    "tool": "cat",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "name": "root-metadata-directory",
+    "tool": "zsh",
+    "returncode": -6,
+    "stdout": "",
+    "stderr": ""
+  }
+]
