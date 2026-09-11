@@ -6,6 +6,11 @@ import { vi } from 'vitest';
 import { ChatMarkdown, resolveCatalogFileLink } from '../../components/shell/chat-markdown';
 
 describe('chat markdown rendering', () => {
+  it('keeps inline code within its sentence and uses one pre only for fenced blocks', () => {
+    const html = renderToStaticMarkup(createElement(ChatMarkdown, { source: 'Read `README.md` first.\n\n```txt\nreport\n```' }));
+    expect(html).toContain('<p>Read <code>README.md</code> first.</p>');
+    expect(html.match(/<pre/g)).toHaveLength(1);
+  });
   it('renders core GFM structures for assistant messages', () => {
     const source = [
       '| Col A | Col B |',

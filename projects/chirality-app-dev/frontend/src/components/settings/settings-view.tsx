@@ -30,7 +30,7 @@ export function SettingsView({ account, runtime, folder, target, hosted }: {
     {!hosted && folder ? <section tabIndex={-1} data-settings-group="folder"><h2 title={folder}>This folder · {folder.split('/').filter(Boolean).pop() || folder}</h2><AccountConsentSettingsView {...account} presentation="folder" /></section> : null}
     {hosted ? <section tabIndex={-1} data-settings-group="runtime"><RuntimeSettingsView {...runtime} showLocalModels={false} /></section> : null}
     {!hosted ? <section tabIndex={-1} data-settings-group="local-model"><h2>Local model</h2><p>oMLX server status unknown.</p><RuntimeSettingsView {...runtime} /></section> : null}
-    <section data-settings-group="api-keys"><h2>API keys</h2><ApiKeySettings /></section>
+    {!hosted ? <section data-settings-group="api-keys"><h2>API keys</h2><ApiKeySettings /></section> : null}
     <section data-settings-group="appearance"><h2>Appearance</h2><ThemeControl /></section>
   </div>;
 }

@@ -1,3 +1,5 @@
+import { PLAN_EXPORT_DIALOG_CHANNEL } from './plan-export-ipc-contract';
+import { createPlanExportDialogHandler } from './plan-export-dialog';
 import { app, BrowserWindow, dialog, ipcMain, shell, Menu } from 'electron';
 import { spawn } from 'node:child_process';
 import { isAuthorizedSender } from './ipc-sender-policy';
@@ -871,6 +873,12 @@ async function initializeGui(): Promise<void> {
     return { ok: true };
   });
   registerAttachmentSelectionHandler(rendererOrigin);
+  ipcMain.removeHandler(PLAN_EXPORT_DIALOG_CHANNEL);
+  ipcMain.handle(PLAN_EXPORT_DIALOG_CHANNEL, createPlanExportDialogHandler({
+    authorized: event => isAuthorizedSender(event, rendererOrigin),
+    showSaveDialog: options => dialog.showSaveDialog(options),
+    showMessageBox: options => dialog.showMessageBox(options)
+  }));
   if (process.platform === 'darwin') {
     Menu.setApplicationMenu(Menu.buildFromTemplate([
       // The packaged bundle's app.name is the package name, so the default appMenu labels read

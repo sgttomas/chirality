@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import type {
   AgentEnginePort,
+  IAttachmentResolver,
   OmlxControlPort,
   UIEvent
 } from "@chirality/runtime-contracts";
@@ -18,7 +19,7 @@ import {
 } from "@chirality/runtime-core";
 import { createProjectFixture } from "./helpers.js";
 
-async function setup(engine: AgentEnginePort) {
+async function setup(engine: AgentEnginePort, attachments?: IAttachmentResolver) {
   const root = await mkdtemp(join(tmpdir(), "chirality-turn-hardening-"));
   const { manifestPath } = await createProjectFixture(root, "turn-hardening");
   const runtime = join(root, "runtime");
@@ -39,7 +40,7 @@ async function setup(engine: AgentEnginePort) {
   await residency.activate("qwen", "D-TEST");
   const engines = new EngineRegistry();
   engines.register(engine);
-  const turns = new TurnCoordinator(projects, sessions, engines, residency);
+  const turns = new TurnCoordinator(projects, sessions, engines, residency, attachments);
   const service = new RuntimeService(
     projects,
     sessions,
@@ -452,4 +453,18 @@ describe("turn coordinator hardening", () => {
       service.bootSession("turn-hardening", session.sessionId)
     ).rejects.toMatchObject({ type: "SDK_FAILURE" });
   });
+});
+
+
+it("persists accepted user input and attachment references before engine execution", async () => {
+  const engine = piEngine(async function* (): AsyncIterable<UIEvent> { throw new Error("not reached"); });
+  engine.preflight = async () => { throw new Error("synthetic preflight failure"); };
+  const { sessions, turns } = await setup(engine, {
+    async resolveAttachmentsToContentBlocks(message) { return { contentBlocks: [{ type: "text", text: message }], errors: [] }; }
+  });
+  const session = await sessions.create({ projectId: "turn-hardening", role: "agent2", engineSelection: { adapterId: "pi", providerId: "omlx", model: "qwen" } });
+  for await (const _ of turns.run("turn-hardening", session.sessionId, { message: "What color is the image?", attachments: ["/synthetic/red.png"] })) { /* drain */ }
+  const replay = await sessions.replay("turn-hardening", session.sessionId);
+  expect(replay[0]).toMatchObject({ type: "turn.accepted", data: { message: "What color is the image?", attachments: ["/synthetic/red.png"] } });
+  expect(replay.map(event => event.type)).toContain("turn.failed");
 });

@@ -11,3 +11,21 @@ describe("supplier private public-surface denial",()=>{
  it("rejects private outgoing supervisor responses and incoming client payloads over the actual server boundary",async()=>{const d=await realpath(await mkdtemp(join(tmpdir(),"authority-server-")));try{let calls=0;const server=await startSupervisorServer({socketPath:join(d,"socket"),supervisor:{inventory:async()=>[{leaseId:"must-not-escape"}],acquire:async()=>{calls++;return{};}} as any});try{const client=new SupervisorClient({socketPath:join(d,"socket"),credential:server.credential});await expect(client.inventory()).rejects.toThrow("rejected");await expect(client.acquire("w",JSON.stringify({supplierGeneration:"x"}))).rejects.toThrow("private");expect(calls).toBe(0);}finally{await server.close();}}finally{await rm(d,{recursive:true,force:true});}});
  it("keeps standalone absent/disabled and validates the exact explicit schema",()=>{expect(validateStandaloneSupplierAuthority(undefined,"/private/tmp")).toBeUndefined();expect(validateStandaloneSupplierAuthority({enabled:false},"/private/tmp")).toEqual({enabled:false});const enabled={schema:"chirality-standalone-supplier-authority/v1",enabled:true,authorityDirectory:"authority",supplierExecutable:"/private/supplier",supplierArgs:[],nativeBindingSha256:"a".repeat(64),exactSupplyDigest:"b".repeat(64)};expect(validateStandaloneSupplierAuthority(enabled,"/private/tmp")).toEqual(enabled);for(const value of [{...enabled,enabled:false},{...enabled,extra:true},{...enabled,authorityDirectory:"../escape"},{...enabled,supplierArgs:["x\u0000y"]},{enabled:true}])expect(()=>validateStandaloneSupplierAuthority(value,"/private/tmp")).toThrow();});
 });
+
+
+it.each([true, false])("routes bounded interruption separately when supported (native=%s)", async native => {
+  const root = await realpath(await mkdtemp(join(tmpdir(), "interrupt-server-")));
+  const calls: string[] = [];
+  const supervisor = {
+    ...(native ? { interrupt: async (workerId: string, generation: string) => { calls.push(`interrupt:${workerId}:${generation}`); } } : {}),
+    retire: async (workerId: string, generation: string) => { calls.push(`retire:${workerId}:${generation}`); }
+  };
+  const server = await startSupervisorServer({ socketPath: join(root, "socket"), supervisor: supervisor as any });
+  try {
+    const client = new SupervisorClient({ socketPath: join(root, "socket"), credential: server.credential });
+    await client.interrupt("worker", "generation");
+    expect(calls).toEqual([`${native ? "interrupt" : "retire"}:worker:generation`]);
+    await expect(client.interrupt("worker", "")).rejects.toThrow("rejected");
+    expect(calls).toHaveLength(1);
+  } finally { await server.close(); await rm(root, { recursive: true, force: true }); }
+});

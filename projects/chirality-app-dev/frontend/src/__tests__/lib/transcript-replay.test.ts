@@ -140,3 +140,27 @@ describe('deriveTranscriptView', () => {
     });
   });
 });
+
+
+describe('accepted turn conversation history', () => {
+  it('reconstructs original user text and attachments across turns without duplicating adapter user records', () => {
+    const transcript = deriveTranscriptView([
+      event('turn.accepted', { message: 'What color?', attachments: ['/project/red.png'] }, 'one'),
+      event('message.delta', { text: 'Red.' }, 'one'),
+      event('turn.completed', {}, 'one'),
+      event('turn.accepted', { message: 'Explain.', attachments: ['/project/notes.md'] }, 'two'),
+      event('message.completed', { role: 'user', text: 'Explain.' }, 'two'),
+      event('message.completed', { role: 'assistant', text: 'It is red.' }, 'two')
+    ]);
+    expect(transcript.items.filter(item => item.kind === 'message').map(item => [item.role, item.text, item.attachments ?? []])).toEqual([
+      ['user', 'What color?', ['/project/red.png']], ['assistant', 'Red.', []],
+      ['user', 'Explain.', ['/project/notes.md']], ['assistant', 'It is red.', []]
+    ]);
+  });
+  it('keeps legacy assistant-only evidence without inventing user input or attachments', () => {
+    const transcript = deriveTranscriptView([event('turn.accepted', {}), event('message.delta', { text: 'Historic reply' })]);
+    expect(transcript.items).toHaveLength(1);
+    expect(transcript.items[0]).toMatchObject({ role: 'assistant', text: 'Historic reply' });
+    expect(transcript.items[0].attachments).toBeUndefined();
+  });
+});

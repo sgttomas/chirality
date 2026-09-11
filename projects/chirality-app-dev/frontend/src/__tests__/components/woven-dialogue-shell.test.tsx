@@ -93,7 +93,8 @@ vi.mock('../../components/woven-dialogue/agents-projection', () => ({
   AgentsProjection: () => <div data-agents="mounted" />
 }));
 vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => shellState.runtimeEpoch }));
-vi.mock('../../lib/woven-dialogue/selected-session-replay', () => ({
+vi.mock('../../lib/woven-dialogue/selected-session-replay', async (importOriginal) => ({
+  ...await importOriginal<typeof import('../../lib/woven-dialogue/selected-session-replay')>(),
   createSelectedSessionReplayLoader: () => {
     let current: any = { status: 'IDLE' };
     return {
@@ -487,4 +488,20 @@ it('opens Settings from the sole footer or collapsed account control without rem
   expect(tree.root.findByProps({ 'data-activity-strip': 'mounted' }).props['data-primary-session']).toBe('primary');
   act(() => tree.unmount());
   vi.unstubAllGlobals();
+});
+
+
+it('ordinary history selection opens an eligible chat directly and pauses the old composer during loading', async () => {
+  shellState.query = 'agent=HELP_HUMAN';
+  vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+  vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
+  let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+  await act(async () => { tree.root.findByType(RightPanel).props.onOpenParent('recorded'); });
+  expect(tree.root.findByType('fieldset').props.disabled).toBe(true);
+  await act(async () => { shellState.replayNotify?.({ status: 'READY', projection: { selectedSessionId: 'recorded', disclosure: 'READY_SNAPSHOT', session: { continuation: { roleId: 'HELP_HUMAN', projectRoot: shellState.projectRoot } } } }); });
+  expect(shellState.resumedSession).toBe('recorded');
+  expect(tree.root.findByType('fieldset').props.disabled).toBe(false);
+  expect(tree.root.findAllByProps({ 'data-replay-lens': 'READY' })).toHaveLength(0);
+  act(() => tree.unmount());
 });

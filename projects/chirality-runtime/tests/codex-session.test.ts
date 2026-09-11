@@ -110,7 +110,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    }
    if(mode==='foreign-request'){send({id:99,method:'item/tool/call',params:{threadId:'child-thread',turnId:'child-turn',callId:'child-call',tool:'review',arguments:{}}});return;}
    if(mode==='approval'){send({id:99,method:'item/commandExecution/requestApproval',params:{threadId:'thread1',turnId:'turn1'}});return;}
-   if(mode==='silent'||mode==='interrupt'||mode==='deaf')return;
+   if(mode==='silent'||mode==='interrupt'||mode==='deaf'||mode==='interrupt-crash')return;
    if(mode==='flood'){process.stdout.write('x'.repeat(1100000));return;}
    if(mode==='unknown'){note('item/future/event',{privateContent:'must not escape'});return;}
    if(mode==='diagnostics'){note('thread/status/changed',{status:'active'});note('error',{willRetry:true,error:{message:'must not escape',codexErrorInfo:{responseStreamDisconnected:{httpStatusCode:null}}}});}
@@ -126,7 +126,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    if(mode==='late')note('item/agentMessage/delta',{threadId:'thread1',turnId:'turn1',itemId:'item1',delta:'late'});
    return;
   }
-  if(r.method==='turn/interrupt'){if(mode==='deaf')return;response(r,{});setImmediate(()=>end('interrupted'));return;}
+  if(r.method==='turn/interrupt'){if(mode==='interrupt-crash')process.exit(9);if(mode==='deaf')return;response(r,{});setImmediate(()=>end('interrupted'));return;}
   process.exit(5);
  });`;
   const child = spawn(process.execPath, ["-e", code], { env: {}, stdio: "pipe", detached: process.platform !== "win32" });
@@ -378,6 +378,27 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
     const f = fixture("interrupt");
     try { await ready(f); const id = await f.session.startTurn(turn); await expect(f.session.startTurn(turn)).rejects.toThrow("already active"); await f.session.interrupt(id); expect((await f.session.waitTurn(id)).status).toBe("interrupted"); }
     finally { await f.close(); }
+  });
+  it.each([false, true])("user interrupt retains genuine terminal semantics before/after turn start (early=%s)", async early => {
+    const f = fixture("interrupt");
+    try {
+      await ready(f);
+      if (early) f.session.requestInterrupt();
+      const id = await f.session.startTurn(turn);
+      if (!early) f.session.requestInterrupt();
+      expect((await f.session.waitTurn(id)).status).toBe("interrupted");
+      await expect(f.session.accountRead()).resolves.toBeDefined();
+    } finally { await f.close(); }
+  });
+  it.each(["deaf", "interrupt-crash"])("user interrupt without provider terminal leaves the session failed (%s)", async mode => {
+    const f = fixture(mode, 100);
+    try {
+      await ready(f);
+      const id = await f.session.startTurn(turn);
+      f.session.requestInterrupt();
+      await expect(f.session.waitTurn(id)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+      await expect(f.session.accountRead()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+    } finally { await f.close(); }
   });
   it("deduplicates identical terminals and retains failed terminal as provider outcome", async () => {
     for (const mode of ["duplicate", "failed"]) { const f = fixture(mode); try { await ready(f); const id = await f.session.startTurn(turn); expect((await f.session.waitTurn(id)).status).toBe(mode === "failed" ? "failed" : "completed"); expect(await f.session.accountRead()).toEqual({ authRequired: true, hasAccount: false }); } finally { await f.close(); } }

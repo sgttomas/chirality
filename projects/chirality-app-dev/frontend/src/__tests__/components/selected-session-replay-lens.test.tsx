@@ -85,7 +85,8 @@ describe('SelectedSessionReplayLens', () => {
       />
     );
 
-    expect(html).toContain('Replay — read-only');
+    expect(html).toContain('Recorded chat · read-only');
+    expect(html).toContain('<summary>Inspect recorded session</summary>');
     expect(html).toContain('recorded-session');
     expect(html).toContain('primary-live-session');
     expect(html).toContain('session:recorded-session/events');

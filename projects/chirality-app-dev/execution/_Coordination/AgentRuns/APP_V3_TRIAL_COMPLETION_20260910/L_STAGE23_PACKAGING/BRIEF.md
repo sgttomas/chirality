@@ -1,0 +1,9 @@
+# L_STAGE23_PACKAGING — bounded TASK brief
+
+Parent HELP_HUMAN authorized Phase A preparation only for Stage23/R14, current worktree owner-alignment-inspection-db4335. Model gpt-6-astra medium; no delegation. Frozen source05f11d5eb54a232b8b324e664fd59e3d500996af (lead reports independent source/tests review PASS, Runtime1117pass14skip, frontend typecheck PASS, packaging/sign/account31pass and attachment3pass; worker does not rerun suites).
+
+Derive from completed Stage22 including its preserved failed original step9 and accepted narrow recovery. Stage23 restores normal exact-admitted-native comparison: archive current ignored rebuilt native87ebae…, copy immutable preservedfa40fc23… only after release; retain admitted cache/dependency/Electron/Supplier inputs. Sole static source-input delta is pack-electron-with-supply.mjs v2 -c.npmRebuild=false. Record its old/new hash explicitly; no blanket baseline refresh. Check admitted raw identity immediately after wrapper. No native rebuild or old fixed-pair recovery waiver.
+
+Phase A writes only new /private/tmp/chirality-local-human-trial-20260910-23 create-only preparation artifacts and this BRIEF/PREPARATION. No product edits, commit, input mutation/build/sign/provision/native process. Parent later releases Phase B after packaging review. Intended durable targets only R14 app/userdata/launcher under the same Applications/Application Support naming pattern. Preserve Stage22/R13 running trial, old checkout, prior evidence. Lead owns Section B retirement and guarded GUI launch. No account/auth/binding/keychain/Codex-home access, credentials, publishing, launchctl actions, or guarded launcher execution by worker. Stop first failed execution gate; preserve results.
+
+Deliver coherent scripts/procedure, exact provenance and checks. Phase A is preparation, not packaging or native acceptance.

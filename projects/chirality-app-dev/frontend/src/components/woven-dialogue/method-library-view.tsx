@@ -11,7 +11,7 @@ import {
 import type { MethodInspectionResponse } from '@chirality/runtime-contracts/v3';
 import { useRuntimeEpoch } from '../shell/runtime-connectivity-provider';
 
-type LibraryView = 'workflows' | 'skills';
+type LibraryView = 'workflows' | 'skills' | 'legacy';
 
 function sameMethod(left: QualifiedMethodReference, right: QualifiedMethodReference): boolean {
   return left.kind === right.kind && left.name === right.name && left.source === right.source && left.sourceRootId === right.sourceRootId;
@@ -69,11 +69,10 @@ function MethodCard({ method, active, inspectionPending, onInspect, onToggle }: 
   const purpose = metadataText(method, 'purpose', 'useWhen', 'use_when');
   const applicability = metadataText(method, 'applicability', 'appliesTo', 'applies_to');
   return <li className={method.central ? 'method-card method-card--central' : 'method-card'}>
-    <div className="method-card-heading"><strong>{method.name}</strong>{method.central ? <small>Recommended</small> : null}</div>
+    <div className="method-card-heading"><strong>{method.name}</strong></div>
     <p>{purpose ?? method.description}</p>
-    {purpose && purpose !== method.description ? <p className="method-card-description">{method.description}</p> : null}
     {applicability ? <p className="method-applicability"><strong>Useful for:</strong> {applicability}</p> : null}
-    <p className="method-card-meta"><small>{sourceLabel(method)}{method.compatibility === 'legacy' ? ' · Legacy compatibility' : ''}</small></p>
+    <p className="method-card-meta"><small>{sourceLabel(method)}</small></p>
     <div className="method-card-actions">
       <button type="button" disabled={inspectionPending} onClick={onInspect}>{inspectionPending ? 'Opening…' : 'Inspect'}</button>
       {onToggle ? <button type="button" aria-pressed={active} onClick={onToggle}>{active ? 'Remove' : 'Use in message'}</button> : <small>Read-only reference</small>}
@@ -111,13 +110,14 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
   }, [projectRoot, query, refresh, runtimeEpoch]);
 
   const visible = useMemo(() => methods.filter(method => view === 'workflows'
-    ? method.kind === 'workflow'
-    : method.kind === 'skill' && method.source === 'bundled'), [methods, view]);
+    ? method.kind === 'workflow' && method.compatibility !== 'legacy'
+    : view === 'legacy' ? method.compatibility === 'legacy' && (method.kind === 'workflow' || method.source === 'bundled')
+    : method.kind === 'skill' && method.source === 'bundled' && method.compatibility !== 'legacy'), [methods, view]);
   const workflowGroups = useMemo(() => groupedWorkflows(visible), [visible]);
   const skillGroups = useMemo(() => [
     { label: 'Bundled skill reference', methods: [...visible].sort((a, b) => a.name.localeCompare(b.name)) }
   ].filter(group => group.methods.length), [visible]);
-  const groups = view === 'workflows' ? workflowGroups : skillGroups;
+  const groups = view === 'skills' ? skillGroups : view === 'legacy' ? [{ label: 'Historical methods', methods: visible }] : workflowGroups;
 
   const openInspection = (method: MethodDescriptor): void => {
     const generation = inspectionGeneration.current + 1;
@@ -131,23 +131,25 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
   };
 
   return <section className="method-library" aria-label="Method library">
-    <p className="woven-eyebrow">Workflows beside your conversation</p>
-    <h2>Choose how to work</h2>
-    <p>Workflows guide a complete undertaking. Add one to your next message, then describe the outcome you want.</p>
-    <div className="method-library-tabs" role="group" aria-label="Method type">
-      <button type="button" aria-pressed={view === 'workflows'} onClick={() => setView('workflows')}>Workflows</button>
-      <button type="button" aria-pressed={view === 'skills'} onClick={() => setView('skills')}>Skills reference</button>
-    </div>
-    <label>Search this library<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder={view === 'workflows' ? 'Search workflows' : 'Search skills'} /></label>
-    {loading ? <p role="status">Loading methods…</p> : null}
+    <h2>{view === 'workflows' ? 'Workflows' : view === 'skills' ? 'Skills' : 'Legacy methods'}</h2>
+    <details className="method-library-menu">
+      <summary>Library</summary>
+      <div role="group" aria-label="Library views">
+        <button type="button" aria-pressed={view === 'workflows'} onClick={() => setView('workflows')}>Workflows</button>
+        <button type="button" aria-pressed={view === 'skills'} onClick={() => setView('skills')}>Inspect skills</button>
+        <button type="button" aria-pressed={view === 'legacy'} onClick={() => setView('legacy')}>Legacy methods</button>
+      </div>
+    </details>
+    <label>Search<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder={view === 'skills' ? 'Search skills' : 'Search workflows'} /></label>
+    {view === 'legacy' ? <p>Historical methods for compatibility and inspection.</p> : null}
+    {loading ? <p role="status">Loading…</p> : null}
     {error ? <p role="alert">{error}</p> : null}
-    {!loading && !error && visible.length === 0 ? <p>No matching {view} are available.</p> : null}
+    {!loading && !error && visible.length === 0 ? <p>No matching methods.</p> : null}
     {!loading && !error ? groups.map(group => <section className="method-library-group" key={group.label} aria-labelledby={`method-group-${group.label.replace(/\W+/g, '-').toLowerCase()}`}>
       <h3 id={`method-group-${group.label.replace(/\W+/g, '-').toLowerCase()}`}>{group.label}</h3>
-      {view === 'skills' && group.label === 'Bundled skill reference' ? <p>Trusted bundled skills are available for background inspection. They are not ordinary composer choices.</p> : null}
       <ul className="method-library-list">{group.methods.map(method => {
         const active = selected.some(item => sameMethod(item, method));
-        const selectable = !(method.kind === 'skill' && method.source === 'bundled');
+        const selectable = method.kind === 'workflow';
         return <MethodCard key={qualifiedMethodId(method)} method={method} active={active}
           inspectionPending={inspectionPendingId === qualifiedMethodId(method)} onInspect={() => openInspection(method)}
           onToggle={selectable ? () => onSelectedChange(active
@@ -158,10 +160,10 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
     {inspection ? <article className="method-inspection" aria-label={`${inspection.method.name} method details`}>
       <h3>{inspection.method.name}</h3>
       <p>{inspection.method.description}</p>
-      <dl><dt>Source</dt><dd>{sourceLabel(inspection.method)} · {inspection.method.sourceRootId}</dd>
+      <details><summary>Technical details</summary><dl><dt>Source</dt><dd>{sourceLabel(inspection.method)} · {inspection.method.sourceRootId}</dd>
         <dt>Kind</dt><dd>{inspection.method.kind}</dd>
         <dt>Compatibility</dt><dd>{inspection.method.compatibility}</dd>
-        <dt>Eligible roles</dt><dd>{inspection.method.executionRoleIds.join(', ') || 'None recorded'}</dd></dl>
+        <dt>Eligible roles</dt><dd>{inspection.method.executionRoleIds.join(', ') || 'None recorded'}</dd></dl></details>
       <details><summary>Read instructions</summary><pre>{inspection.entrypoint.content}</pre><small>SHA-256 {inspection.entrypoint.sha256}</small></details>
       {inspection.resources.length ? <details><summary>Included resources</summary><ul>{inspection.resources.map(resource => <li key={resource.path}>{resource.path} · {resource.sha256}</li>)}</ul></details> : null}
     </article> : null}

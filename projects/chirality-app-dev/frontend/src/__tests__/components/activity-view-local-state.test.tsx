@@ -41,7 +41,7 @@ it('keeps matching tool IDs in different sessions distinct and reveals a later c
   const tree = create(<ActivityView />);
   expect(actionRows(tree)).toHaveLength(2);
   const strip = create(<ActivityStrip events={state.events} running onOpenDetails={() => {}} />);
-  expect(JSON.stringify(strip.toJSON())).toContain('Primary turn activity unavailable');
+  expect(JSON.stringify(strip.toJSON())).not.toContain('Primary turn activity unavailable');
   expect(JSON.stringify(strip.toJSON())).not.toContain('2 actions');
   act(() => tree.root.findAllByType('button').find(button => button.children.includes('Clear view'))!.props.onClick());
   expect(actionRows(tree)).toHaveLength(0);

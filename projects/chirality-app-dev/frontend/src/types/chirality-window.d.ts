@@ -33,6 +33,10 @@ type ChiralityBridge = {
    * Native attachment picker rooted at a project folder. Returns canonical
    * absolute paths inside that folder with supported extensions only.
    */
+  plans?: {
+    chooseExportTarget: (request: { projectRoot: string; revision: number }) => Promise<{ cancelled: true; error?: string } | { cancelled: false; targetRelativePath: string }>;
+    confirmOverwrite: (request: { projectRoot: string; targetRelativePath: string }) => Promise<boolean>;
+  };
   attachments?: {
     selectFiles: (request: { projectRoot: string }) => Promise<AttachmentSelectionResult>;
   };

@@ -153,6 +153,7 @@ export class CodexTurnSession {
   private authorityFailed?:()=>void;
   private initializing = false;
   private selecting = false;
+  private userInterruptRequested = false;
   private threadId: string | undefined;
   private threadNotice: string | undefined;
   private active: Turn | undefined;
@@ -927,7 +928,9 @@ export class CodexTurnSession {
         collaborationMode: { mode: mode === "native-plan" ? "plan" : "default", settings: { model: input.model, reasoning_effort: input.reasoningEffort ?? null, developer_instructions: null } }, ...this.policyParameters() });
       const id = identifier(object(result.turn).id);
       if ((turn.id && turn.id !== id) || (this.terminals.has(id) && turn.terminal?.turnId !== id)) throw protocol("Turn response identity mismatch");
-      turn.id = id; if (!turn.startedEmitted) { turn.startedEmitted = true; this.emit({ type: "started", threadId: turn.threadId, turnId: id }); } return id;
+      turn.id = id; if (!turn.startedEmitted) { turn.startedEmitted = true; this.emit({ type: "started", threadId: turn.threadId, turnId: id }); }
+      if (this.userInterruptRequested && this.active === turn) this.interruptActiveTurn();
+      return id;
     } catch (error) { clearTimeout(turn.timer); if (this.active === turn) this.active = undefined; turn.reject(error as Error); if (error instanceof RuntimeError && error.details?.reason === "CODEX_PROTOCOL_FAILURE") this.fail(error); throw error; }
   }
   /**
@@ -941,6 +944,20 @@ export class CodexTurnSession {
     const turnId = turn.id;
     turn.timer = setTimeout(() => { if (this.active === turn && !this.failure) this.fail(protocol("Codex turn timed out")); }, this.options.requestTimeoutMs ?? 10000);
     this.interrupt(turnId).catch(() => { if (this.active === turn && !this.failure) this.fail(protocol("Codex turn timed out")); });
+  }
+  /** Latches a user request made before turn/start completes. Terminal evidence stays provider-owned. */
+  requestInterrupt(): void {
+    if (this.failure) throw this.failure;
+    this.userInterruptRequested = true;
+    this.interruptActiveTurn();
+  }
+  private interruptActiveTurn(): void {
+    const turn = this.active;
+    if (!turn?.id || this.failure) return;
+    this.userInterruptRequested = false;
+    clearTimeout(turn.timer);
+    turn.timer = setTimeout(() => { if (this.active === turn && !this.failure) this.fail(protocol("Codex interrupt timed out")); }, this.options.requestTimeoutMs ?? 10000);
+    void this.interrupt(turn.id).catch(() => { if (this.active === turn && !this.failure) this.fail(protocol("Codex interrupt failed")); });
   }
   async waitTurn(turnId: string): Promise<CodexTurnTerminal> {
     const terminal = this.terminals.get(turnId); if (terminal) return { ...terminal };

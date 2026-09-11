@@ -1,5 +1,7 @@
 'use client';
 
+import { nativePlanText } from '../../lib/harness/native-plan-text';
+
 import { usePathname, useSearchParams } from 'next/navigation';
 import React, { FormEvent, useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import {
@@ -184,10 +186,6 @@ function AttachmentChips({ items }: { items: UiAttachment[] }): JSX.Element | nu
   );
 }
 
-function nativePlanText(revision: NativePlanRevision): string {
-  const plan = revision.sourceEvent.plan;
-  return typeof plan === 'string' ? plan : JSON.stringify(plan, null, 2);
-}
 
 function nativePlanAvailable(capability: NativePlanCapabilityResponse): boolean {
   return capability.status === 'qualified' || capability.status === 'trial';
@@ -280,7 +278,11 @@ function recordedRoleForTurn(
   bases: readonly FrozenInstructionBasisV3[]
 ): ChiralityRoleName | undefined {
   if (!turnId) return undefined;
-  const basisRecord = history.find(record => record.type === 'instruction-basis.resolved' && record.turnId === turnId);
+  const basisRecord = history.find(record => {
+    if (record.type !== 'instruction-basis.resolved') return false;
+    const accepted = record.acceptedTurn;
+    return record.turnId === turnId || (accepted !== null && typeof accepted === 'object' && 'turnId' in accepted && accepted.turnId === turnId);
+  });
   const basisId = basisRecord && typeof basisRecord.basisId === 'string' ? basisRecord.basisId : undefined;
   return basisId ? bases.find(basis => basis.basisId === basisId)?.roleId : undefined;
 }
@@ -459,7 +461,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     });
   }, [projectRoot, activePersona, activeMode]);
 
+  const previousDraftContext = useRef({ root: draftRoot, persona: draftPersona });
   useEffect(() => {
+    const prior = previousDraftContext.current;
+    const roleOnlyChange = !activeSession && prior.root === draftRoot && prior.persona !== draftPersona && !prior.persona.startsWith('session:');
+    previousDraftContext.current = { root: draftRoot, persona: draftPersona };
     if (!draftStorageKey || typeof window === 'undefined') {
       setLoadedDraftKey(null);
       setDraft('');
@@ -474,7 +480,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const result = readChatDraftSnapshotFromStorage(window.localStorage, draftStorageKey);
     setDraft(result.snapshot.draft);
     setAttachments(result.snapshot.attachments);
-    setModelChoice(result.snapshot.model && result.snapshot.reasoningEffort
+    if (!roleOnlyChange) setModelChoice(result.snapshot.model && result.snapshot.reasoningEffort
       ? { model: result.snapshot.model, reasoningEffort: result.snapshot.reasoningEffort }
       : null);
     const hydratedMethods = isRunning && activeSession && result.snapshot.methods.length === 0
@@ -602,12 +608,12 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     bindingGeneration.current += 1;
     lastInstructionSequenceRef.current = projection.instructionHistory.reduce((maximum, record) => Math.max(maximum, record.sequence), 0);
     const nextMessages: ChatMessage[] = projection.transcript.items.flatMap(item => {
-      if (item.kind !== 'message' || !item.role || !item.text) return [];
+      if (item.kind !== 'message' || !item.role || (!item.text && !item.attachments?.length)) return [];
       const recordedRole = item.role === 'assistant'
         ? recordedRoleForTurn(item.turnId, projection.instructionHistory, projection.instructionBases)
         : undefined;
       return [{ id: `replay-${item.key}`, role: item.role === 'user' ? 'operator' as const : 'assistant' as const,
-        ...(item.role === 'assistant' ? { ...(recordedRole ? { persona: recordedRole } : {}), projectRoot: continuation.projectRoot } : {}), text: item.text }];
+        ...(item.role === 'assistant' ? { ...(recordedRole ? { persona: recordedRole } : {}), projectRoot: continuation.projectRoot } : {}), text: item.text ?? '', ...(item.role === 'user' && item.attachments?.length ? { attachments: item.attachments.map(buildUiAttachment) } : {}) }];
     });
     const latestBasis = projection.instructionBases.at(-1);
     let lastOperatorIndex = -1;
@@ -851,6 +857,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       }
 
       let assistantText = '';
+      let nativePlanProduced = false;
       let processExitError: HarnessApiClientError | Error | null = null;
 
       setRuntimeStatus('Running turn...');
@@ -993,7 +1000,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         throw processExitError;
       }
 
-      if (!assistantText.trim()) {
+      if (!assistantText.trim() && !nativePlanProduced && interactionMode === 'native-plan') {
+        const latest = await listNativePlanRevisions(session.sessionId).catch(() => undefined);
+        nativePlanProduced = Boolean(latest?.revisions.some(revision => revision.revision > (planRevisions.at(-1)?.revision ?? 0)));
+      }
+      if (!assistantText.trim() && nativePlanProduced) {
+        setMessages(existing => existing.filter(item => item.id !== assistantId));
+      } else if (!assistantText.trim()) {
         setMessages((existing) =>
           existing.map((item) =>
             item.id === assistantId
@@ -1096,25 +1109,40 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     window.requestAnimationFrame(() => composerRef.current?.focus());
   }
 
-  function savePlanRevision(revision: NativePlanRevision): void {
+  async function savePlanRevision(revision: NativePlanRevision): Promise<void> {
     if (!activeSession) return;
-    const targetRelativePath = window.prompt(`Save this plan in ${activeSession.projectRoot} as`, `plans/native-plan-${revision.revision}.md`)?.trim();
-    if (!targetRelativePath) return;
-    setPlanExportStatus('Saving plan…');
-    const sessionId = activeSession.sessionId;
-    const request = { sessionId, revision: revision.revision, targetRelativePath };
-    void exportNativePlanRevision(request)
-      .then(result => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${activeSession.projectRoot}/${result.targetRelativePath}`); })
-      .catch(error => {
+    const { sessionId, projectRoot: root } = activeSession;
+    const bridge = window.chirality?.plans;
+    try {
+      const selection = bridge
+        ? await bridge.chooseExportTarget({ projectRoot: root, revision: revision.revision })
+        : { cancelled: false as const, targetRelativePath: window.prompt(`Save this plan in ${root} as`, `plans/native-plan-${revision.revision}.md`)?.trim() };
+      if (activeSessionIdRef.current !== sessionId) return;
+      if (selection.cancelled) {
+        setPlanExportStatus(selection.error ?? 'Save cancelled.');
+        return;
+      }
+      const targetRelativePath = selection.targetRelativePath;
+      if (!targetRelativePath) { setPlanExportStatus('Save cancelled.'); return; }
+      setPlanExportStatus('Saving plan…');
+      const request = { sessionId, revision: revision.revision, targetRelativePath };
+      let result;
+      try {
+        result = await exportNativePlanRevision(request);
+      } catch (error) {
         if (activeSessionIdRef.current !== sessionId) return;
-        if (error instanceof MethodSelectionClientError && error.status === 409 && window.confirm(`${targetRelativePath} already exists. Replace it?`)) {
-          void exportNativePlanRevision({ ...request, overwrite: true })
-            .then(result => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${activeSession.projectRoot}/${result.targetRelativePath}`); })
-            .catch(reason => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(reason instanceof Error ? reason.message : 'The plan could not be saved.'); });
-          return;
-        }
-        setPlanExportStatus(error instanceof Error ? error.message : 'The plan could not be saved.');
-      });
+        if (!(error instanceof MethodSelectionClientError && error.status === 409)) throw error;
+        const overwrite = bridge
+          ? await bridge.confirmOverwrite({ projectRoot: root, targetRelativePath })
+          : window.confirm(`${targetRelativePath} already exists. Replace it?`);
+        if (activeSessionIdRef.current !== sessionId) return;
+        if (!overwrite) { setPlanExportStatus('Save cancelled.'); return; }
+        result = await exportNativePlanRevision({ ...request, overwrite: true });
+      }
+      if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${root}/${result.targetRelativePath}`);
+    } catch (error) {
+      if (activeSessionIdRef.current === sessionId) setPlanExportStatus(error instanceof Error ? error.message : 'The plan could not be saved.');
+    }
   }
 
   async function answerPlanClarification(clarification: NativePlanClarification, answers: Record<string, { answers: string[] }>): Promise<void> {
@@ -1181,14 +1209,16 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
               <AttachmentChips items={message.attachments} />
             ) : null}
             {message.methods?.length ? <ul className="method-chip-list" aria-label="Selected methods">{message.methods.map(method => <li key={`${method.sourceRootId}:${method.kind}:${method.name}`} className="method-chip"><span>{method.name}</span><small>{method.source}</small></li>)}</ul> : null}
-            {message.instructionBasis ? <details className="chat-instruction-basis">
-              <summary>Recorded instruction basis · {message.instructionBasis.suppliedEntries.length} supplied</summary>
+            {message.instructionBasis || message.instructionHistory?.length ? <details className="chat-instruction-basis"><summary>Turn details</summary>
+            {message.instructionBasis ? <>
+
               <p><code>{message.instructionBasis.basisId}</code> · {message.instructionBasis.roleId}</p>
               <ul>{message.instructionBasis.suppliedEntries.map((entry, index) => <li key={`${entry.sha256}:${index}`}><strong>{entry.kind}</strong> · {entry.id} · <code>{entry.sha256.slice(0, 12)}</code></li>)}</ul>
-            </details> : null}
+            </> : null}
             {message.instructionHistory?.length ? <ul className="chat-instruction-events" aria-label="Recorded instruction activity">
               {message.instructionHistory.map(record => <li key={record.historyId}>{instructionActivityLabel(record)}</li>)}
             </ul> : null}
+            </details> : null}
           </article>
         ))}
         {presentation !== 'woven' ? planRevisions.map(revision => <article key={`native-plan-${revision.revision}`} className="chat-bubble chat-bubble--assistant native-plan-revision">

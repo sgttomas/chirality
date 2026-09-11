@@ -287,3 +287,15 @@ it('re-reads hosted status after a fatal engine failure so a fenced account stop
   expect(refresh).toHaveBeenCalledTimes(1);
   expect(rendered()).toContain('Codex request timed out');
 });
+
+
+it('keeps a valid chosen model and reasoning when switching the new chat role', async () => {
+  await mount(snapshot());
+  await choose('Model', 'gpt-alt'); await choose('Reasoning', 'low');
+  state.query = 'agent=HELPS_HUMANS';
+  await update(snapshot());
+  expect(select('Model').props.value).toBe('gpt-alt');
+  expect(select('Reasoning').props.value).toBe('low');
+  await update(reducedSnapshot());
+  expect(select('Model').props.value).toBe('gpt-default');
+});

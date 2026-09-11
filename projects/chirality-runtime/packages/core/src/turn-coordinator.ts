@@ -193,8 +193,8 @@ export class TurnCoordinator {
               })
       };
       const accepted = resolvedContext === undefined
-        ? await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.accepted", data: { message } })
-        : (await this.sessions.commitWithAcceptedTurn(session, { sessionId, turnId, type: "turn.accepted", data: { message } }, resolvedContext.snapshot)).event;
+        ? await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.accepted", data: { message, ...(request.attachments?.length ? { attachments: [...request.attachments] } : {}) } })
+        : (await this.sessions.commitWithAcceptedTurn(session, { sessionId, turnId, type: "turn.accepted", data: { message, ...(request.attachments?.length ? { attachments: [...request.attachments] } : {}) } }, resolvedContext.snapshot)).event;
       acceptedOwned = true;
       yield { type: "harness:event", data: accepted };
       await engine.preflight(input);

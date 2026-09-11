@@ -49,6 +49,8 @@ export interface DelegatedHarnessProcessSupervisorPort {
   inventory(): Promise<readonly WorkerHandle[]>;
   reconnect(workerId: string, generation: string): Promise<WorkerHandle>;
   wait(workerId: string, generation: string): Promise<WorkerResult>;
+  /** Requests native interruption; resolves after its genuine terminal and retirement. */
+  interrupt?(workerId: string, generation: string): Promise<void>;
   retire(workerId: string, generation: string): Promise<void>;
 }
 export interface WorkerTerminalRecord {

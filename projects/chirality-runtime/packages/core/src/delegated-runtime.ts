@@ -284,7 +284,8 @@ export class DelegatedRuntime {
     const key = `${projectId}\0${request.turnId}`;
     if (!await this.isApprovalLive(live) || this.interruptedTurns.has(key)) throw new RuntimeError("FORBIDDEN", "Turn is no longer interruptible", 403);
     this.interruptedTurns.add(key);
-    await this.retireWorker(binding, key, live.turnId, live.workerGeneration);
+    if (binding.supervisor.interrupt) await binding.supervisor.interrupt(live.turnId, live.workerGeneration);
+    else await this.retireWorker(binding, key, live.turnId, live.workerGeneration);
     return { interrupted: true as const, turnId: live.turnId, workerGeneration: live.workerGeneration };
   }
 
@@ -502,7 +503,7 @@ export class DelegatedRuntime {
         }
         // Process reconciliation must succeed before publishing any terminal.
         await retire();
-        const terminal = await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: this.interruptedTurns.has(key) ? "interrupted" : result.exitCode === 0 ? "completed" : "failed", recordedAt: new Date().toISOString() });
+        const terminal = await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: (binding.supervisor.interrupt ? result.exitCode === null && result.signal === "SIGTERM" : this.interruptedTurns.has(key)) ? "interrupted" : result.exitCode === 0 ? "completed" : "failed", recordedAt: new Date().toISOString() });
         const event = { schemaVersion: 2, eventId: randomUUID(), sequence: 0, timestamp: terminal.recordedAt, projectId, sessionId: request.sessionId ?? request.turnId, turnId: request.turnId, attribution: actual,
           type: terminal.outcome === "completed" ? "turn.completed" : terminal.outcome === "interrupted" ? "turn.interrupted" : "turn.failed",
           data: terminal.outcome === "completed" ? { outcome: "completed" } : terminal.outcome === "interrupted" ? { outcome: "interrupted" } : { code: "WORKER_FAILED", message: "Delegated worker did not complete successfully" } };
@@ -515,7 +516,7 @@ export class DelegatedRuntime {
         // diagnostic travels with it as the cause instead of replacing it.
         let retired = false, failure: unknown = error;
         try { await retire(); retired = true; } catch (cleanup) { failure = withRetirementFailure(error, cleanup); }
-        if (retired) await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: this.interruptedTurns.has(key) ? "interrupted" : "failed", recordedAt: new Date().toISOString() });
+        if (retired) await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: !binding.supervisor.interrupt && this.interruptedTurns.has(key) ? "interrupted" : "failed", recordedAt: new Date().toISOString() });
         throw failure;
       } finally {
         // The settled retirement attempt already reported its outcome above.

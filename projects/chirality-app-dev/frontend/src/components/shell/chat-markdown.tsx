@@ -75,34 +75,26 @@ function markdownComponents(
       openFile(catalogFile);
     }}>{children}</a>;
   },
+  pre: ({ children }) => <pre className="chat-code-block">{children}</pre>,
   code: (props) => {
-    const inline = 'inline' in props ? Boolean((props as { inline?: boolean }).inline) : false;
     const className = 'className' in props ? (props.className as string | undefined) : undefined;
     const rawText = trimTrailingFenceNewline(String(props.children ?? ''));
     const language = extractLanguage(className);
     const shouldUseAnsiFallback = language === 'ansi' || hasAnsiEscapeCodes(rawText);
 
-    if (inline) {
-      return <code className={className}>{rawText}</code>;
-    }
-
     if (shouldUseAnsiFallback) {
       return (
-        <pre className="chat-code-block chat-code-block--ansi">
           <code
-            className="chat-ansi"
+            className="chat-ansi chat-code-block--ansi"
             dangerouslySetInnerHTML={{
               __html: renderAnsiToHtml(rawText)
             }}
           />
-        </pre>
       );
     }
 
     return (
-      <pre className="chat-code-block">
         <code className={className}>{rawText}</code>
-      </pre>
     );
   }
   };

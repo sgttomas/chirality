@@ -10,7 +10,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
 }));
 import { MethodLibraryView } from '../../components/woven-dialogue/method-library-view';
 
-const descriptor = (name: string, sourceRootId: string, input: Partial<{ source: 'project' | 'user' | 'bundled'; kind: 'skill' | 'workflow'; central: boolean; metadata: Readonly<Record<string, unknown>> }> = {}) => ({
+const descriptor = (name: string, sourceRootId: string, input: Partial<{ source: 'project' | 'user' | 'bundled'; kind: 'skill' | 'workflow'; central: boolean; compatibility: 'canonical' | 'legacy'; metadata: Readonly<Record<string, unknown>> }> = {}) => ({
   qualifiedId: `${sourceRootId}/${input.kind ?? 'workflow'}/${name}`,
   sourceRootId,
   source: input.source ?? 'project' as const,
@@ -18,7 +18,7 @@ const descriptor = (name: string, sourceRootId: string, input: Partial<{ source:
   name,
   description: `${name} description`,
   central: input.central ?? false,
-  compatibility: 'canonical' as const,
+  compatibility: input.compatibility ?? 'canonical' as const,
   executionRoleIds: ['TASK'] as const,
   resources: [],
   ...(input.metadata ? { metadata: input.metadata } : {})
@@ -102,10 +102,32 @@ it('keeps bundled skills in a secondary read-only inspection view and hides othe
   const onSelectedChange = vi.fn();
   await act(async () => { tree = create(<MethodLibraryView projectRoot="/project" selected={[]} onSelectedChange={onSelectedChange} />); });
   await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
-  await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('Skills reference'))!.props.onClick());
+  await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('Inspect skills'))!.props.onClick());
   const text = JSON.stringify(tree.toJSON());
   expect(text).toContain('trusted-check');
   expect(text).toContain('Read-only reference');
   expect(text).not.toContain('project-skill');
   expect(tree.root.findAllByType('button').some(button => button.children.includes('Use in message'))).toBe(false);
+});
+
+
+it('keeps legacy methods out of normal workflow discovery but allows deliberate compatible selection', async () => {
+  const current = descriptor('current-flow', 'bundled', { source: 'bundled', central: true });
+  const legacy = descriptor('retired-flow', 'bundled', { source: 'bundled', compatibility: 'legacy' });
+  mocks.list.mockResolvedValue(response([current, legacy]));
+  const change = vi.fn();
+  let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<MethodLibraryView projectRoot="/project" selected={[]} onSelectedChange={change} />); });
+  await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
+  expect(JSON.stringify(tree.toJSON())).toContain('current-flow');
+  expect(JSON.stringify(tree.toJSON())).not.toContain('retired-flow');
+  const menu = tree.root.findByProps({ className: 'method-library-menu' });
+  expect(menu.type).toBe('details');
+  expect(menu.props.open).toBeUndefined();
+  await act(async () => menu.findAllByType('button').find(button => button.children.includes('Legacy methods'))!.props.onClick());
+  expect(JSON.stringify(tree.toJSON())).toContain('retired-flow');
+  expect(JSON.stringify(tree.toJSON())).not.toContain('current-flow');
+  await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('Use in message'))!.props.onClick());
+  expect(change).toHaveBeenCalledWith([{ kind: 'workflow', name: legacy.name, source: legacy.source, sourceRootId: legacy.sourceRootId }]);
+  act(() => tree.unmount());
 });

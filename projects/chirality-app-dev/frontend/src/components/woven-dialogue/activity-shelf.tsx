@@ -110,7 +110,7 @@ export function ActivityStrip({ reconnectControl, onOpenDetails, running, events
   const turn = running && observedTurn?.elapsed !== undefined ? null : observedTurn;
   return <div className="woven-activity-strip" aria-label="Activity status">
     {reconnectControl}
-    <span role="status">{running ? 'Working' : 'Idle'}{turn ? ` · ${turn.actions} actions · ${turn.children} children observed` : ' · Primary turn activity unavailable'}{!running && turn?.elapsed !== undefined ? ` · Last turn: ${(turn.elapsed / 1000).toFixed(1)} s` : ' · Turn duration unavailable'}</span>
+    <span role="status">{running ? 'Working' : 'Idle'}{turn ? ` · ${turn.actions} actions · ${turn.children} children observed` : ''}{!running && turn?.elapsed !== undefined ? ` · Last turn: ${(turn.elapsed / 1000).toFixed(1)} s` : ''}</span>
     <button type="button" onClick={onOpenDetails}>Details ›</button>
   </div>;
 }

@@ -99,7 +99,7 @@ export async function startSupervisorServer(options: { socketPath: string; super
           if(Object.keys(r).some(key=>!["owner","epoch","op","generation","workerId","input","token"].includes(key)))throw new Error("invalid request fields");
           if (!r || typeof r !== "object" || !validString(r.token, 64) || !/^[a-f0-9]{64}$/.test(r.token) || !timingSafeEqual(Buffer.from(r.token), Buffer.from(requestToken(credential.token, r))) || r.owner !== credential.owner || r.epoch !== credential.epoch) throw new Error("unauthorized supervisor request");
           const op = r.op;
-          if (!["acquire", "inventory", "reconnect", "wait", "retire", "verify-hosted", "login-start", "login-status", "login-cancel", "manager-start", "manager-next", "manager-reply", "approval-pending", "approval-reply", "approval-describe", "native-plan-events", "native-plan-questions", "native-plan-answer", "runtime-tool-start", "runtime-tool-next", "runtime-tool-reply", "turn-progress"].includes(String(op))) throw new Error("unknown operation");
+          if (!["acquire", "inventory", "reconnect", "wait", "retire", "interrupt", "verify-hosted", "login-start", "login-status", "login-cancel", "manager-start", "manager-next", "manager-reply", "approval-pending", "approval-reply", "approval-describe", "native-plan-events", "native-plan-questions", "native-plan-answer", "runtime-tool-start", "runtime-tool-next", "runtime-tool-reply", "turn-progress"].includes(String(op))) throw new Error("unknown operation");
           let result: unknown;
           if (op === "approval-describe") {
             const describe = options.supervisor as DelegatedHarnessProcessSupervisorPort & { describeApprovalScope?: (workerId?: string, generation?: string) => Promise<Omit<SupervisorApprovalDescription, "compatibility">> };
@@ -186,6 +186,7 @@ export async function startSupervisorServer(options: { socketPath: string; super
               if (!validString(r.generation)) throw new Error("invalid generation");
               if (op === "reconnect") result = await options.supervisor.reconnect(r.workerId, r.generation);
               else if (op === "wait") result = await options.supervisor.wait(r.workerId, r.generation);
+              else if (op === "interrupt" && options.supervisor.interrupt) result = await options.supervisor.interrupt(r.workerId, r.generation);
               else result = await options.supervisor.retire(r.workerId, r.generation);
             }
           }
@@ -280,5 +281,6 @@ export class SupervisorClient implements DelegatedHarnessProcessSupervisorPort {
   async inventory(): Promise<readonly WorkerHandle[]> { return await this.request("inventory") as WorkerHandle[]; }
   async reconnect(workerId: string, generation: string): Promise<WorkerHandle> { return await this.request("reconnect", { workerId, generation }) as WorkerHandle; }
   async wait(workerId: string, generation: string): Promise<WorkerResult> { return await this.request("wait", { workerId, generation }) as WorkerResult; }
+  async interrupt(workerId: string, generation: string): Promise<void> { await this.request("interrupt", { workerId, generation }); }
   async retire(workerId: string, generation: string): Promise<void> { await this.request("retire", { workerId, generation }); }
 }

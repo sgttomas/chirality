@@ -171,7 +171,7 @@ it('merges next-message methods into the active basis without sending turn-time 
 
 it('starts Plan Mode in a new Codex chat and keeps inspect, revise, save, and execute in the conversation', async () => {
   const qualification = { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const };
-  const revision = { revision: 2, sourceEvent: { qualificationState: 'qualified' as const, eventId: 'plan-2', occurredAt: '2026-09-09T00:00:00.000Z', qualification, plan: '# Approved plan\n\nKeep the exact scope.' } };
+  const revision = { revision: 2, sourceEvent: { qualificationState: 'qualified' as const, eventId: 'plan-2', occurredAt: '2026-09-09T00:00:00.000Z', qualification, plan: { id: 'native-item', type: 'plan', text: '# Approved plan\n\nKeep the exact scope.' } } };
   state.boot.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'bound', projectRoot: '/chosen/subfolder', selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis-1' } });
   state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'qualified', qualification });
   state.nativeRevisions.mockResolvedValue({ schemaVersion: 'chirality.native-plan-revisions/v3', status: 'qualified', qualification, revisions: [revision] });
@@ -203,6 +203,24 @@ it('starts Plan Mode in a new Codex chat and keeps inspect, revise, save, and ex
   expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.value).toBe('chat');
   expect(saveDraft).toContain('Limit this turn to the bounded workflow save; do not execute the plan.');
   expect(saveDraft).toContain('# Approved plan');
+  expect(saveDraft).not.toContain('native-item');
+  expect(JSON.stringify(tree!.toJSON())).not.toContain('No assistant text was returned');
+  const chooseExportTarget = vi.fn().mockResolvedValue({ cancelled: true });
+  const confirmOverwrite = vi.fn().mockResolvedValue(false);
+  window.chirality!.plans = { chooseExportTarget, confirmOverwrite };
+  const save = () => tree!.root.findAllByType('button').find(button => button.children.includes('Save plan…'))!.props.onClick();
+  await act(async () => { await save(); });
+  expect(state.exportPlan).not.toHaveBeenCalled();
+  chooseExportTarget.mockResolvedValue({ cancelled: false, targetRelativePath: 'plans/native.md' });
+  const { MethodSelectionClientError } = await import('../../lib/harness/method-selection-client');
+  state.exportPlan.mockRejectedValueOnce(new MethodSelectionClientError(409, 'exists'));
+  await act(async () => { await save(); });
+  expect(confirmOverwrite).toHaveBeenCalled();
+  expect(state.exportPlan).toHaveBeenCalledTimes(1);
+  confirmOverwrite.mockResolvedValue(true);
+  state.exportPlan.mockRejectedValueOnce(new MethodSelectionClientError(409, 'exists'));
+  await act(async () => { await save(); });
+  expect(state.exportPlan).toHaveBeenLastCalledWith({ sessionId: 'bound', revision: 2, targetRelativePath: 'plans/native.md', overwrite: true });
 });
 
 it('enables genuine Plan controls for a trial admission and labels its empirical status', async () => {
@@ -526,9 +544,10 @@ it('continues a compatible recorded v3 conversation without creating or booting 
     selectedSessionId: 'recorded-v3', sourceReference: 'session:recorded-v3/events', observedAt: '2026-09-09T00:00:00.000Z',
     disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', malformedLineCount: 0, sourceEventCount: 2, renderedItemCount: 2, diagnostics: [],
     transcript: { sessionId: 'recorded-v3', itemCount: 2, items: [
-      { key: 'old-user', kind: 'message', role: 'user', status: 'completed', title: 'You', timestamp: '2026-09-09T00:00:00.000Z', eventId: 'event-1', eventType: 'message.completed', text: 'Earlier question' },
+      { key: 'old-user', kind: 'message', role: 'user', status: 'completed', title: 'You', timestamp: '2026-09-09T00:00:00.000Z', eventId: 'event-1', eventType: 'message.completed', text: 'Earlier question', attachments: ['/chosen/subfolder/red.png'] },
+      { key: 'attachment-only', kind: 'message', role: 'user', status: 'accepted', title: 'You', timestamp: '2026-09-09T00:00:00.100Z', eventId: 'attachment-event', eventType: 'turn.accepted', attachments: ['/chosen/subfolder/notes.md'] },
       { key: 'old-answer', kind: 'message', role: 'assistant', status: 'completed', title: 'Assistant', timestamp: '2026-09-09T00:00:01.000Z', eventId: 'event-2', eventType: 'message.completed', turnId: 'turn-old', text: 'Earlier answer' }
-    ] }, instructionHistory: [{ schemaVersion: 'chirality.instruction-history/v1', historyId: 'history-old', sessionId: 'recorded-v3', sequence: 1, timestamp: '2026-09-09T00:00:00.500Z', type: 'instruction-basis.resolved', turnId: 'turn-old', basisId: 'basis-old' }], instructionBases: [{
+    ] }, instructionHistory: [{ schemaVersion: 'chirality.instruction-history/v1', historyId: 'history-old', sessionId: 'recorded-v3', sequence: 1, timestamp: '2026-09-09T00:00:00.500Z', type: 'instruction-basis.resolved', acceptedTurn: { turnId: 'turn-old', eventId: 'event-1' }, basisId: 'basis-old' }], instructionBases: [{
       schemaVersion: 'chirality.instruction-basis/v1', basisId: 'basis-old', sessionId: 'recorded-v3', createdAt: '2026-09-09T00:00:00.500Z', roleId: 'HELP_HUMAN', interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [], compatibilityInputs: [], compatibilityMappings: [], suppliedEntries: [], methodDispositions: []
     }],
     session: { projectionId: 'operator-session:recorded-v3', sourceReference: 'session:recorded-v3', sessionId: 'recorded-v3', observedAt: '2026-09-09T00:00:02.000Z', currency: 'CURRENT', runtimeStatus: 'completed', parentage: { state: 'NOT_RECORDED' }, diagnostics: [], continuation: {
@@ -540,6 +559,8 @@ it('continues a compatible recorded v3 conversation without creating or booting 
   expect(resumed).toHaveBeenCalledWith('recorded-v3');
   expect(JSON.stringify(tree!.toJSON())).toContain('Earlier question');
   expect(JSON.stringify(tree!.toJSON())).toContain('Earlier answer');
+  expect(JSON.stringify(tree!.toJSON())).toContain('red.png');
+  expect(JSON.stringify(tree!.toJSON())).toContain('notes.md');
   expect(tree!.root.findAllByProps({ className: 'chat-speaker' }).some(node => node.children.join('') === 'Help Human')).toBe(true);
   await type('Continue here'); await submit();
   expect(state.stream).not.toHaveBeenCalled();

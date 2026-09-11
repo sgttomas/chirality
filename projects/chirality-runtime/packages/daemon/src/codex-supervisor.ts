@@ -593,6 +593,11 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   }
   async reconnect(workerId: string, generation: string): Promise<WorkerHandle> { return { ...this.entry(workerId, generation).handle }; }
   async wait(workerId: string, generation: string): Promise<WorkerResult> { return this.entry(workerId, generation).result; }
+  async interrupt(workerId: string, generation: string): Promise<void> {
+    const entry = this.entry(workerId, generation);
+    if (entry.handle.state === "running") entry.session.requestInterrupt();
+    await entry.result;
+  }
   async retire(workerId: string, generation: string): Promise<void> { const entry = this.entry(workerId, generation); this.managers.get(workerId)?.finish(undefined, unavailable("Manager retired")); this.managers.delete(workerId); this.runtimeToolMailboxes.get(workerId)?.finish(unavailable("Runtime tool worker retired")); this.runtimeToolMailboxes.delete(workerId); await entry.session.close(); await entry.result.catch(() => {}); await entry.cleanup(); if (this.entries.get(workerId) === entry) this.entries.delete(workerId); }
   async close(): Promise<void> {
     this.closed = true;

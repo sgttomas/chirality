@@ -1,3 +1,4 @@
+import { PLAN_EXPORT_DIALOG_CHANNEL, type PlanExportTargetResult } from './plan-export-ipc-contract';
 import { contextBridge, ipcRenderer, webUtils } from 'electron';
 import {
   RUNTIME_CONNECTIVITY_CHANGED_CHANNEL,
@@ -61,6 +62,12 @@ contextBridge.exposeInMainWorld('chirality', {
       void ipcRenderer.invoke('chirality:folder-open-ready').catch(() => { if (active) listener({ error: 'Folder intent delivery is unavailable.' }); });
       return () => { active = false; ipcRenderer.removeListener('chirality:folder-open-intent', handler); };
     }
+  },
+  plans: {
+    chooseExportTarget: (request: { projectRoot: string; revision: number }): Promise<PlanExportTargetResult> =>
+      ipcRenderer.invoke(PLAN_EXPORT_DIALOG_CHANNEL, { operation: 'choose', projectRoot: request.projectRoot, revision: request.revision }),
+    confirmOverwrite: async (request: { projectRoot: string; targetRelativePath: string }): Promise<boolean> =>
+      (await ipcRenderer.invoke(PLAN_EXPORT_DIALOG_CHANNEL, { operation: 'confirm-overwrite', projectRoot: request.projectRoot, targetRelativePath: request.targetRelativePath })) === true
   },
   attachments: {
     /**

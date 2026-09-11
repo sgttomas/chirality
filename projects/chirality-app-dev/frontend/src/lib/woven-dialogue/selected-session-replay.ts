@@ -44,6 +44,12 @@ export type SelectedSessionReplayLoader = {
   dispose(): void;
 };
 
+export function canContinueRecordedConversation(projection: SelectedSessionReplayProjection, projectRoot: string | null, liveTurnActive: boolean): boolean {
+  return !liveTurnActive && Boolean(projection.session?.continuation) &&
+    projection.session?.continuation?.projectRoot === projectRoot &&
+    !['CONFLICTING', 'STALE', 'MALFORMED', 'BOUNDED'].includes(projection.disclosure);
+}
+
 function positiveLimit(value: number | undefined): number {
   if (value === undefined) {
     return DEFAULT_REPLAY_ITEM_LIMIT;

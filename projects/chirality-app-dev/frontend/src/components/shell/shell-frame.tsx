@@ -394,7 +394,7 @@ function AccountPresentation({ folder, onOpenSettings, children }: {
   folder: string | null; onOpenSettings?: () => void;
   children: (controls: { settingsControl: ReactNode; settingsView: ReactNode }) => ReactNode;
 }): JSX.Element {
-  const runtime = useRuntimeSettingsController();
+  const runtime = useRuntimeSettingsController({ localModels: false });
   const account = useAccountConsentController();
   const refreshBindings = useRuntimeBindingRefresh();
   const hosted = useHostedBootstrapController(folder, refreshBindings);

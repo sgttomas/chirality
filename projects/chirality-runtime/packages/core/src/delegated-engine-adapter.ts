@@ -190,6 +190,12 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
         if (result.providerThreadId === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated Codex turn did not return a provider thread identity", 503);
         if (provider === undefined || provider.threadId !== result.providerThreadId) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated Codex terminal lacks its started provider identity", 503);
         yield { type: "chat:complete", data: { text: result.output } };
+        if (result.terminal.outcome === "interrupted") {
+          if (result.event.type !== "turn.interrupted") throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated interruption lacks matching terminal evidence", 503);
+          yield { type: "harness:event", data: { schemaVersion: 1, eventId: result.event.eventId,
+            sessionId: input.session.sessionId, turnId: input.turnId, timestamp: result.event.timestamp,
+            type: "turn.interrupted", data: { ...result.event.data } } };
+        }
         yield { type: "process:exit", data: { exitCode: result.terminal.outcome === "completed" ? 0 : result.terminal.outcome === "interrupted" ? 130 : 1, interrupted: result.terminal.outcome === "interrupted" } };
       } finally {
         if (!delegatedSettled) await options.delegated.preflight(options.projectId, `interrupt:${input.turnId}`).then(preflight => options.delegated.interruptTurn(options.projectId, { turnId: input.turnId, compatibility: options.compatibility, preflight })).catch(() => undefined);
