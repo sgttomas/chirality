@@ -248,6 +248,9 @@ export function createFakeDaemonHarnessPort(): DaemonHarnessPort {
 
 export function createFakeHostedBootstrapPort(): HostedBootstrapPort {
   return {
+    async bindProject() {
+      return { registration: 'required' };
+    },
     async getStatus() {
       return { registration: 'required' };
     },

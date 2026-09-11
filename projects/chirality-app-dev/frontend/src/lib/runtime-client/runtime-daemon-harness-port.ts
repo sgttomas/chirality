@@ -26,6 +26,7 @@ import type {
   DaemonProjectBinding,
   DaemonRequestOptions,
   HostedBootstrapPort,
+  HostedProjectBindingResponse,
   HostedBootstrapStatusResponse,
   RunningDaemonHarnessTurn
 } from './daemon-harness-port';
@@ -616,41 +617,32 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
     this.installBoundPort = options.installBoundPort;
   }
 
+  async bindProject(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<HostedProjectBindingResponse> {
+    return mapped(async () => {
+      const canonicalRoot = await this.canonicalRoot(projectRoot);
+      const capturedBinding = this.binding;
+      if (capturedBinding !== undefined) {
+        this.requireSameRoot(canonicalRoot, capturedBinding);
+        await this.revalidateBinding(capturedBinding, options?.signal);
+        return { registration: 'registered', projectId: capturedBinding.projectId };
+      }
+      const binding = await this.resolveAndBind(canonicalRoot, options?.signal);
+      if (!binding) return { registration: 'required' };
+      return { registration: 'registered', projectId: binding.projectId };
+    });
+  }
+
   async getStatus(
     projectRoot: string,
     options?: DaemonRequestOptions
   ): Promise<HostedBootstrapStatusResponse> {
     return mapped(async () => {
-      const capturedBinding = this.binding;
       const canonicalRoot = await this.canonicalRoot(projectRoot);
-      if (capturedBinding !== undefined) {
-        this.requireSameRoot(canonicalRoot, capturedBinding);
-        return this.registeredStatus(capturedBinding, options?.signal);
-      }
-      const reservation = this.reserveHydration();
-
-      let registered: RegisteredProject;
-      try {
-        registered = await this.options.bootstrapClient.resolveProjectByRoot(
-          canonicalRoot,
-          options?.signal
-        );
-      } catch (error) {
-        if (error instanceof RuntimeError && error.code === 'PROJECT_NOT_FOUND') {
-          return { registration: 'required' };
-        }
-        throw error;
-      }
-      const binding = await this.verifyAndBind(
-        canonicalRoot,
-        {
-          projectId: registered.projectId,
-          manifestHash: registered.manifestHash
-        },
-        false,
-        options?.signal,
-        reservation
-      );
+      const binding = await this.resolveAndBind(canonicalRoot, options?.signal);
+      if (!binding) return { registration: 'required' };
       return this.registeredStatus(binding, options?.signal);
     });
   }
@@ -757,6 +749,40 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
       );
     }
     return canonical;
+  }
+
+  private async resolveAndBind(
+    canonicalRoot: string,
+    signal?: AbortSignal
+  ): Promise<VerifiedHostedBinding | undefined> {
+    const capturedBinding = this.binding;
+    if (capturedBinding !== undefined) {
+      this.requireSameRoot(canonicalRoot, capturedBinding);
+      return capturedBinding;
+    }
+    const reservation = this.reserveHydration();
+    let registered: RegisteredProject;
+    try {
+      registered = await this.options.bootstrapClient.resolveProjectByRoot(
+        canonicalRoot,
+        signal
+      );
+    } catch (error) {
+      if (error instanceof RuntimeError && error.code === 'PROJECT_NOT_FOUND') {
+        return undefined;
+      }
+      throw error;
+    }
+    return this.verifyAndBind(
+      canonicalRoot,
+      {
+        projectId: registered.projectId,
+        manifestHash: registered.manifestHash
+      },
+      false,
+      signal,
+      reservation
+    );
   }
 
   private requireSameRoot(canonicalRoot: string, binding = this.binding): void {

@@ -88,7 +88,15 @@ export type HostedBootstrapStatusResponse =
       status: HostedBootstrapStatus;
     };
 
+export type HostedProjectBindingResponse =
+  | { registration: 'required' }
+  | { registration: 'registered'; projectId: string };
+
 export interface HostedBootstrapPort {
+  bindProject(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<HostedProjectBindingResponse>;
   getStatus(
     projectRoot: string,
     options?: DaemonRequestOptions
@@ -270,6 +278,7 @@ const unboundDaemonHarnessPort: DaemonHarnessPort = {
 };
 
 const unboundHostedBootstrapPort: HostedBootstrapPort = {
+  bindProject: daemonClientUnavailable,
   getStatus: daemonClientUnavailable,
   initializeProject: daemonClientUnavailable,
   grantProviderNetworkConsent: daemonClientUnavailable,

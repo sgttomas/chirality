@@ -6,6 +6,7 @@ import {
   getHostedBootstrapStatus,
   grantHostedProviderNetworkConsent,
   initializeHostedBootstrapProject,
+  hydrateHostedBootstrapProject,
   signOutHostedBootstrapProject,
   startHostedBootstrapLogin
 } from '../../lib/harness/hosted-bootstrap-client';
@@ -54,13 +55,29 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
   snapshotRef.current = snapshot;
 
   const load = useCallback(async (root: string, generation: number, signal?: AbortSignal): Promise<void> => {
-    const result = await getHostedBootstrapStatus(root, signal);
+    const result = await hydrateHostedBootstrapProject(
+      root,
+      (binding) => {
+        if (
+          !signal?.aborted &&
+          operationGeneration.current === generation &&
+          rootRef.current === root
+        ) {
+          const key = `${root}:${binding.projectId}:registered`;
+          if (!publishedBindingKeys.current.has(key)) {
+            publishedBindingKeys.current.add(key);
+            onBindingChanged();
+          }
+        }
+      },
+      signal
+    );
     if (!signal?.aborted && operationGeneration.current === generation && rootRef.current === root) {
       setObserved({ projectRoot: root, snapshot: result });
       setError(null);
       setLoading(false);
     }
-  }, []);
+  }, [onBindingChanged]);
 
   useEffect(() => {
     const generation = ++operationGeneration.current;

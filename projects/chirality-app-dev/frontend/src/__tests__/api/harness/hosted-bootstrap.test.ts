@@ -11,6 +11,7 @@ import {
 } from './fake-daemon-harness-port';
 import * as statusRoute from '../../../app/api/harness/hosted-bootstrap/status/route';
 import * as initializeRoute from '../../../app/api/harness/hosted-bootstrap/project/initialize/route';
+import * as bindRoute from '../../../app/api/harness/hosted-bootstrap/project/bind/route';
 import * as consentRoute from '../../../app/api/harness/hosted-bootstrap/provider-network-consent/route';
 import * as startRoute from '../../../app/api/harness/hosted-bootstrap/login/start/route';
 import * as cancelRoute from '../../../app/api/harness/hosted-bootstrap/login/cancel/route';
@@ -35,6 +36,38 @@ describe('hosted bootstrap API boundary', () => {
 
     expect(response.status).toBe(200);
     await expect(response.json()).resolves.toEqual({ registration: 'required' });
+    expect(initializeProject).not.toHaveBeenCalled();
+  });
+
+  it('binds an existing registration without invoking explicit initialization', async () => {
+    const bindProject = vi.fn().mockResolvedValue({
+      registration: 'registered',
+      projectId: 'project-one'
+    });
+    const initializeProject = vi.fn();
+    installHostedBootstrapPort({
+      ...createFakeHostedBootstrapPort(),
+      bindProject,
+      initializeProject
+    });
+
+    const response = await bindRoute.POST(new Request(
+      'http://localhost/api/harness/hosted-bootstrap/project/bind',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ projectRoot: '/selected' })
+      }
+    ));
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({
+      registration: 'registered',
+      projectId: 'project-one'
+    });
+    expect(bindProject).toHaveBeenCalledWith('/selected', {
+      signal: expect.any(AbortSignal)
+    });
     expect(initializeProject).not.toHaveBeenCalled();
   });
 

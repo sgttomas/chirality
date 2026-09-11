@@ -388,7 +388,7 @@ describe('RuntimeDaemonHarnessPort', () => {
     expect(runtimeClient.projectStatus).toHaveBeenCalledTimes(2);
   });
 
-  it('keeps hosted status lookup read-only when the selected folder is unregistered', async () => {
+  it('keeps restart binding and hosted status read-only when the selected folder is unregistered', async () => {
     const projectRoot = await realpath(process.cwd());
     const initializeHostedBootstrapProject = vi.fn();
     const port = new RuntimeHostedBootstrapPort({
@@ -402,10 +402,86 @@ describe('RuntimeDaemonHarnessPort', () => {
       socketPath: '/runtime/control.sock'
     });
 
-    await expect(port.getStatus(projectRoot)).resolves.toEqual({
+    await expect(port.bindProject(projectRoot)).resolves.toEqual({
       registration: 'required'
     });
+    await expect(port.getStatus(projectRoot)).resolves.toEqual({ registration: 'required' });
     expect(initializeHostedBootstrapProject).not.toHaveBeenCalled();
+  });
+
+  it('rehydrates an existing project binding without consulting hosted account status', async () => {
+    const projectRoot = await realpath(process.cwd());
+    const registered = {
+      ...project,
+      projectId: 'restart-project',
+      canonicalRoot: projectRoot,
+      manifestPath: join(projectRoot, 'chirality.project.json'),
+      manifestHash: 'restart-manifest',
+      clientId: 'hosted-project-restart-project'
+    };
+    const healthy = { project: registered, manifestDrift: false, adaptersEnabled: true };
+    const hostedBootstrapStatus = vi.fn();
+    const scopedClient = client({
+      projectStatus: vi.fn().mockResolvedValue(healthy),
+      hostedBootstrapStatus
+    });
+    const installBoundPort = vi.fn();
+    const bootstrapClient = client({
+      resolveProjectByRoot: vi.fn().mockResolvedValue(registered),
+      projectStatus: vi.fn().mockResolvedValue(healthy)
+    });
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient,
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock',
+      createScopedClient: () => scopedClient,
+      installBoundPort
+    });
+
+    await expect(port.bindProject(projectRoot)).resolves.toEqual({
+      registration: 'registered',
+      projectId: registered.projectId
+    });
+    expect(bootstrapClient.resolveProjectByRoot).toHaveBeenCalledWith(projectRoot, undefined);
+    expect(installBoundPort).toHaveBeenCalledWith(
+      expect.any(RuntimeDaemonHarnessPort),
+      { projectId: registered.projectId, projectRoot },
+      false
+    );
+    expect(scopedClient.projectStatus).toHaveBeenCalledOnce();
+    expect(hostedBootstrapStatus).not.toHaveBeenCalled();
+  });
+
+  it('does not install a restart binding when the registered project has drifted', async () => {
+    const projectRoot = await realpath(process.cwd());
+    const registered = {
+      ...project,
+      projectId: 'drifted-restart-project',
+      canonicalRoot: projectRoot,
+      manifestPath: join(projectRoot, 'chirality.project.json'),
+      clientId: 'hosted-project-drifted-restart-project'
+    };
+    const installBoundPort = vi.fn();
+    const port = new RuntimeHostedBootstrapPort({
+      bootstrapClient: client({
+        resolveProjectByRoot: vi.fn().mockResolvedValue(registered),
+        projectStatus: vi.fn().mockResolvedValue({
+          project: registered,
+          manifestDrift: true,
+          adaptersEnabled: true
+        })
+      }),
+      runtimeDirectory: '/runtime',
+      socketPath: '/runtime/control.sock',
+      createScopedClient: vi.fn(),
+      installBoundPort
+    });
+
+    await expect(port.bindProject(projectRoot)).rejects.toMatchObject({
+      type: 'WORKING_ROOT_CONFLICT',
+      status: 409
+    });
+    expect(installBoundPort).not.toHaveBeenCalled();
   });
 
   it('initializes explicitly, verifies both principals, and installs an arbitrary project binding', async () => {

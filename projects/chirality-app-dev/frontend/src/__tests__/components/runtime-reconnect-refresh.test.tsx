@@ -52,6 +52,11 @@ vi.mock('../../components/workspace/workspace-provider', () => ({
   useWorkspace: () => ({ projectRoot: state.projectRoot })
 }));
 vi.mock('../../lib/harness/hosted-bootstrap-client', () => ({
+  hydrateHostedBootstrapProject: (
+    root: string,
+    _onBound: unknown,
+    signal?: AbortSignal
+  ) => state.hostedStatus(root, signal),
   getHostedBootstrapStatus: state.hostedStatus,
   initializeHostedBootstrapProject: state.hostedInitialize,
   grantHostedProviderNetworkConsent: vi.fn(),

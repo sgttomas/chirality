@@ -11,12 +11,19 @@ export type HostedBootstrapStatusResponse =
       status: HostedBootstrapStatus;
     };
 
+export type HostedProjectBindingResponse =
+  | { registration: 'required' }
+  | { registration: 'registered'; projectId: string };
+
 export class HostedBootstrapClientError extends Error {
   constructor(readonly status: number, message: string) {
     super(message);
     this.name = 'HostedBootstrapClientError';
   }
 }
+
+const HOST_ACCOUNT_RETRY_DELAYS_MS = [250, 1_000, 5_000] as const;
+const HOST_ACCOUNT_UNAVAILABLE = 'Hosted account service is unavailable.';
 
 function desktopHostedAccount() {
   const client = window.chirality?.runtime?.hostedAccount;
@@ -41,6 +48,25 @@ function withLocalAbort<T>(operation: Promise<T>, signal?: AbortSignal): Promise
     signal.addEventListener('abort', abort, { once: true });
     operation.then(resolve, reject).finally(() => signal.removeEventListener('abort', abort));
   });
+}
+
+function retryDelay(delayMs: number, signal?: AbortSignal): Promise<void> {
+  preflightSignal(signal);
+  return new Promise<void>((resolve, reject) => {
+    const timer = setTimeout(() => {
+      signal?.removeEventListener('abort', abort);
+      resolve();
+    }, delayMs);
+    const abort = (): void => {
+      clearTimeout(timer);
+      reject(signal?.reason ?? new DOMException('The operation was aborted.', 'AbortError'));
+    };
+    signal?.addEventListener('abort', abort, { once: true });
+  });
+}
+
+function isTransientHostAccountError(error: unknown): boolean {
+  return error instanceof Error && error.message === HOST_ACCOUNT_UNAVAILABLE;
 }
 
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
@@ -76,6 +102,34 @@ export function getHostedBootstrapStatus(
 ): Promise<HostedBootstrapStatusResponse> {
   preflightSignal(signal);
   return withLocalAbort(desktopHostedAccount().status(projectRoot), signal);
+}
+
+export function bindHostedBootstrapProject(
+  projectRoot: string,
+  signal?: AbortSignal
+): Promise<HostedProjectBindingResponse> {
+  return requestJson(
+    '/api/harness/hosted-bootstrap/project/bind',
+    post(projectRoot, signal)
+  );
+}
+
+export async function hydrateHostedBootstrapProject(
+  projectRoot: string,
+  onBound: (binding: Extract<HostedProjectBindingResponse, { registration: 'registered' }>) => void,
+  signal?: AbortSignal
+): Promise<HostedBootstrapStatusResponse> {
+  const binding = await bindHostedBootstrapProject(projectRoot, signal);
+  if (binding.registration === 'registered') onBound(binding);
+  for (let attempt = 0; ; attempt += 1) {
+    try {
+      return await getHostedBootstrapStatus(projectRoot, signal);
+    } catch (error) {
+      const delayMs = HOST_ACCOUNT_RETRY_DELAYS_MS[attempt];
+      if (!isTransientHostAccountError(error) || delayMs === undefined) throw error;
+      await retryDelay(delayMs, signal);
+    }
+  }
 }
 
 export function initializeHostedBootstrapProject(

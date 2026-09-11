@@ -4,6 +4,7 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 
 const api = vi.hoisted(() => ({ get: vi.fn(), initialize: vi.fn(), consent: vi.fn(), start: vi.fn(), cancel: vi.fn(), signOut: vi.fn() }));
 vi.mock('../../lib/harness/hosted-bootstrap-client', () => ({
+  hydrateHostedBootstrapProject: (root: string, _onBound: unknown, signal: AbortSignal) => api.get(root, signal),
   getHostedBootstrapStatus: api.get,
   initializeHostedBootstrapProject: api.initialize,
   grantHostedProviderNetworkConsent: api.consent,
