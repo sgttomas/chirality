@@ -873,7 +873,13 @@ async function initializeGui(): Promise<void> {
   registerAttachmentSelectionHandler(rendererOrigin);
   if (process.platform === 'darwin') {
     Menu.setApplicationMenu(Menu.buildFromTemplate([
-      { role: 'appMenu' },
+      // The packaged bundle's app.name is the package name, so the default appMenu labels read
+      // "Quit chirality-frontend". Label the product explicitly without renaming the app (which would move userData).
+      { label: 'Chirality', submenu: [
+        { role: 'about', label: 'About Chirality' }, { type: 'separator' }, { role: 'services' }, { type: 'separator' },
+        { role: 'hide', label: 'Hide Chirality' }, { role: 'hideOthers' }, { role: 'unhide' }, { type: 'separator' },
+        { role: 'quit', label: 'Quit Chirality' }
+      ] },
       { label: 'File', submenu: [
         { label: 'Open Recent', role: 'recentDocuments', submenu: [{ role: 'clearRecentDocuments' }] },
         { type: 'separator' }, { role: 'close' }
