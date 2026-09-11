@@ -15,6 +15,7 @@ import {
   startControlledHostedBootstrapRuntimeHostForTests,
   type TrustedHostedLoginCeremony
 } from "@chirality/runtime-daemon";
+import { settledHostedBootstrapStatus } from "./helpers.js";
 
 const cleanup: Array<() => Promise<void>> = [];
 afterEach(async () => { for (const close of cleanup.splice(0).reverse()) await close().catch(() => undefined); });
@@ -85,7 +86,7 @@ describe("hosted bootstrap public-to-private composition", () => {
     const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
     await bootstrap.grantHostedProviderNetworkConsent(registered.projectId);
     await bootstrap.startHostedBootstrapLogin(registered.projectId);
-    expect(await bootstrap.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
+    expect(await settledHostedBootstrapStatus(bootstrap, registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
     const retirementsBeforeSignOut = retire.mock.calls.length;
     await expect(bootstrap.signOutHostedProject(registered.projectId)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
     expect(signOut).toHaveBeenCalledTimes(1);
@@ -175,7 +176,7 @@ describe("hosted bootstrap public-to-private composition", () => {
     const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
     expect(registered.projectId).toMatch(/^[0-9a-f-]{36}$/);
     await bootstrap.grantHostedProviderNetworkConsent(registered.projectId); await bootstrap.startHostedBootstrapLogin(registered.projectId);
-    const admittedStatus = await bootstrap.hostedBootstrapStatus(registered.projectId);
+    const admittedStatus = await settledHostedBootstrapStatus(bootstrap, registered.projectId);
     if (admittedStatus.admission !== "ready" && materializationFailure !== undefined) throw new Error("Controlled native Plan materialization failed", { cause: materializationFailure });
     expect(admittedStatus).toMatchObject({ ceremony: "signed-in", admission: "ready" });
     const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtimeDirectory, registered.projectId) });
@@ -250,9 +251,10 @@ describe("hosted bootstrap public-to-private composition", () => {
       await expect(bootstrap.startHostedBootstrapLogin(project.projectId)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
     }
     for (const project of registrations) expect(ceremonyManifests.get(project.projectId)).toBe(project.manifestHash);
-    expect(await bootstrap.hostedBootstrapStatus(signedInOnly.projectId)).toMatchObject({ ceremony: "signed-in", admission: "unavailable", canStartLogin: false });
-    expect(await bootstrap.hostedBootstrapStatus(first.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready", canStartLogin: false });
-    expect(await bootstrap.hostedBootstrapStatus(second.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready", canStartLogin: false });
+    // Establishment no longer completes inside one poll: the signed-in-only project reports "establishing" first and "unavailable" once its establishment fails.
+    expect(await settledHostedBootstrapStatus(bootstrap, signedInOnly.projectId)).toMatchObject({ ceremony: "signed-in", admission: "unavailable", canStartLogin: false });
+    expect(await settledHostedBootstrapStatus(bootstrap, first.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready", canStartLogin: false });
+    expect(await settledHostedBootstrapStatus(bootstrap, second.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready", canStartLogin: false });
 
     const projectClient = (projectId: string) => new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtimeDirectory, projectId) });
     const firstClient = projectClient(first.projectId), secondClient = projectClient(second.projectId);
@@ -301,7 +303,7 @@ describe("hosted bootstrap public-to-private composition", () => {
     const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
     const registered = await client.initializeHostedBootstrapProject({ projectRoot });
     await client.grantHostedProviderNetworkConsent(registered.projectId); await client.startHostedBootstrapLogin(registered.projectId);
-    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ admission: "ready" });
+    expect(await settledHostedBootstrapStatus(client, registered.projectId)).toMatchObject({ admission: "ready" });
     const manifestPath = join(projectRoot, "chirality.project.json");
     await writeFile(manifestPath, `${(await readFile(manifestPath, "utf8")).trim()} \n`, "utf8");
     await expect(client.hostedBootstrapStatus(registered.projectId)).rejects.toMatchObject({ code: "PROJECT_MANIFEST_DRIFT" });
@@ -347,7 +349,7 @@ describe("hosted bootstrap public-to-private composition", () => {
     expect(await bootstrap.hostedBootstrapStatus(projectId)).toEqual({ schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: "consent-required", admission: "unavailable", canStartLogin: false });
     await bootstrap.grantHostedProviderNetworkConsent(projectId);
     await bootstrap.startHostedBootstrapLogin(projectId);
-    const ready = await bootstrap.hostedBootstrapStatus(projectId);
+    const ready = await settledHostedBootstrapStatus(bootstrap, projectId);
     expect(ready).toEqual({ schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: "signed-in", admission: "ready", canStartLogin: false, models: entries.full, selection: { model: "gpt-default", reasoningEffort: "high" } });
     const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtimeDirectory, projectId) });
     // A session cannot be created before admission for a model outside the catalog, nor with a partial or doubled selection.
@@ -387,7 +389,7 @@ describe("hosted bootstrap public-to-private composition", () => {
     expect(await bootstrap.signOutHostedProject(projectId)).toEqual({ schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: "consent-required", admission: "unavailable", canStartLogin: false });
     await bootstrap.grantHostedProviderNetworkConsent(projectId);
     await bootstrap.startHostedBootstrapLogin(projectId);
-    expect(await bootstrap.hostedBootstrapStatus(projectId)).toMatchObject({ admission: "ready", models: entries.reduced, selection: { model: "gpt-default", reasoningEffort: "high" } });
+    expect(await settledHostedBootstrapStatus(bootstrap, projectId)).toMatchObject({ admission: "ready", models: entries.reduced, selection: { model: "gpt-default", reasoningEffort: "high" } });
     await expect(client.bootSession(projectId, chosen.sessionId)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-alt", available: ["gpt-default"] } });
     const removed = await drain(await client.turnSession(projectId, chosen.sessionId, { message: "The model left the catalog." }));
     expect(removed).toContainEqual(expect.objectContaining({ type: "turn:error", data: expect.objectContaining({ fatal: true, details: { runtimeCode: "ENGINE_UNAVAILABLE", reason: "MODEL_NOT_IN_CATALOG" } }) }));
@@ -428,6 +430,57 @@ describe("hosted bootstrap public-to-private composition", () => {
     expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "cancelled", admission: "unavailable" });
     expect(retire).toHaveBeenCalledTimes(1);
     expect(materialize).not.toHaveBeenCalled();
+  });
+
+  it("reports establishing without blocking the poll, ready once establishment settles, and unavailable after a failed establishment", async () => {
+    const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-establishing-"));
+    cleanup.push(() => rm(root, { recursive: true, force: true }));
+    const runtimeDirectory = join(root, "runtime"), projectRoot = join(root, "project");
+    await mkdir(runtimeDirectory, { mode: 0o700 }); await mkdir(projectRoot);
+    let release!: () => void;
+    let gate = new Promise<void>(resolveGate => { release = resolveGate; });
+    let fail = false, establishments = 0;
+    const events: Array<{ level: string; event: string; fields: Record<string, unknown> }> = [];
+    const logger = {
+      warn: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "warn", event, fields }); },
+      error: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "error", event, fields }); }
+    };
+    const ceremony: TrustedHostedLoginCeremony = { async start() { return { loginId: "login", authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "completed" as const, hasAccount: true }; }, async cancel() {}, async close() {} };
+    const host = await startControlledHostedBootstrapRuntimeHostForTests({ enabled: true, runtimeDirectory, daemonSocket: "runtime.sock", instructionRoot: resolve(process.cwd(), "../..") }, {
+      async createCeremony() { return ceremony; },
+      async establishAdmission() {
+        establishments++; await gate;
+        if (fail) throw new Error("controlled establishment failure");
+        return { continuity: { canonicalRoot: projectRoot, cwd: projectRoot, accountId: "private", accountEpoch: 1, policyDigest: "private" }, authority: { supplierGeneration: "supplier", identityGeneration: "identity", snapshotDigest: "e".repeat(64) }, async retire() {} };
+      },
+      async materializeAdmission(input: { projectId: string }) { return { engine: engine(input.projectId, "fixture-model", []), selection: { adapterId: "codex-app-server", providerId: "openai", model: "fixture-model" } }; },
+      async signOut() {}
+    }, undefined, logger);
+    cleanup.push(() => host.stop());
+    const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
+    const registered = await client.initializeHostedBootstrapProject({ projectRoot });
+    await client.grantHostedProviderNetworkConsent(registered.projectId); await client.startHostedBootstrapLogin(registered.projectId);
+    expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.ceremony.started", fields: expect.objectContaining({ projectId: registered.projectId, elapsedMs: expect.any(Number) }) }));
+    // The gate is still closed: a blocking status call could never return here.
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "establishing", canStartLogin: false });
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "establishing" });
+    expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.ceremony.completed", fields: expect.objectContaining({ projectId: registered.projectId, elapsedMs: expect.any(Number) }) }));
+    expect(establishments).toBe(1);
+    release();
+    expect(await settledHostedBootstrapStatus(client, registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
+    expect(establishments).toBe(1);
+    expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.admission.established", fields: expect.objectContaining({ projectId: registered.projectId, elapsedMs: expect.any(Number), admission: "ready" }) }));
+    expect(events.filter(entry => entry.event === "hosted.admission.establish_failed")).toEqual([]);
+
+    // A later ceremony whose establishment fails surfaces as unavailable on a subsequent poll, with the failure logged.
+    await client.signOutHostedProject(registered.projectId);
+    fail = true; gate = Promise.resolve();
+    await client.grantHostedProviderNetworkConsent(registered.projectId); await client.startHostedBootstrapLogin(registered.projectId);
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "establishing" });
+    expect(await settledHostedBootstrapStatus(client, registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "unavailable" });
+    expect(establishments).toBe(2);
+    expect(events).toContainEqual(expect.objectContaining({ level: "error", event: "hosted.admission.establish_failed", fields: expect.objectContaining({ projectId: registered.projectId, elapsedMs: expect.any(Number) }) }));
+    expect(JSON.stringify(events)).not.toContain("auth.example.test");
   });
 });
 

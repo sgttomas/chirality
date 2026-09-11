@@ -109,6 +109,8 @@ interface ProjectBootstrap {
   consent?: { approvedBy: string; approvalReference: string; approvedAt: string };
   ceremonyState: HostedBootstrapStatus["ceremony"];
   ceremony?: TrustedHostedLoginCeremony;
+  /** Wall-clock start of the pending ceremony, for completion timing diagnostics only. */
+  ceremonyStartedAt?: number;
   admissionState: HostedBootstrapStatus["admission"];
   admission?: TrustedHostedPrivateAdmission;
   engine?: AgentEnginePort;
@@ -277,14 +279,20 @@ export class HostedBootstrapController {
       if (this.closed || state.ceremony !== ceremony || state.generation !== generation) return this.projection(projectId, state);
       if (observed.state === "failed") { state.ceremonyState = "failed"; await this.retireAdmission(state); }
       else if (observed.state === "completed") {
+        // This branch only runs while the ceremony is still "pending", so reaching it is the completion transition.
         state.ceremonyState = "signed-in";
+        this.note("hosted.ceremony.completed", { projectId, ...(state.ceremonyStartedAt === undefined ? {} : { elapsedMs: Date.now() - state.ceremonyStartedAt }) });
         if (observed.hasAccount && this.bindings?.establishAdmission && this.bindings.materializeAdmission && !state.establishing && !state.admission) {
           state.admissionState = "establishing";
           const startedAt = Date.now();
-          state.establishing = this.establish(projectId, canonicalRoot, state, generation, ceremony);
-          try { await state.establishing; }
-          catch (error) { state.admissionState = "unavailable"; this.log("hosted.admission.establish_failed", { projectId, elapsedMs: Date.now() - startedAt, ...describeRuntimeFailure(error) }); }
-          finally { state.establishing = undefined; }
+          // Establishment is started here but never awaited by a poll: the projection reports "establishing" until it
+          // settles, and the single-flight guard plus `state.establishing` keep sign-out, cancel and close serialized behind it.
+          const establishing = this.establish(projectId, canonicalRoot, state, generation, ceremony);
+          state.establishing = establishing;
+          void establishing.then(
+            () => { this.note("hosted.admission.established", { projectId, elapsedMs: Date.now() - startedAt, admission: state.admissionState }); },
+            error => { state.admissionState = "unavailable"; this.log("hosted.admission.establish_failed", { projectId, elapsedMs: Date.now() - startedAt, ...describeRuntimeFailure(error) }); }
+          ).finally(() => { if (state.establishing === establishing) state.establishing = undefined; });
         }
       }
       }
@@ -312,6 +320,7 @@ export class HostedBootstrapController {
   async startLogin(projectId: string, signal?: AbortSignal): Promise<{ loginId: string; authUrl: string }> {
     const { state, canonicalRoot } = await this.state(projectId);
     const operation = this.accountOperation(state, signal);
+    const startedAt = Date.now();
     try {
     await operation.check();
     if (!state.consent || !this.bindings) throw unavailable("Hosted login is unavailable until explicit consent and a trusted private ceremony adapter are configured");
@@ -327,7 +336,13 @@ export class HostedBootstrapController {
     try { await operation.check(); } catch (error) { await this.closeCeremony(projectId, ceremony, "start-login").catch(() => {}); throw error; }
     if (this.closed || state.generation !== generation) { await this.closeCeremony(projectId, ceremony, "start-login").catch(() => {}); throw unavailable("Hosted login start was superseded"); }
     state.ceremony = ceremony;
-    try { const result = await ceremony.start(); await operation.check(); if (this.closed || state.generation !== generation || state.ceremony !== ceremony) throw unavailable("Hosted login start was superseded"); state.ceremonyState = "pending"; return result; }
+    try {
+      const result = await ceremony.start(); await operation.check();
+      if (this.closed || state.generation !== generation || state.ceremony !== ceremony) throw unavailable("Hosted login start was superseded");
+      state.ceremonyState = "pending"; state.ceremonyStartedAt = Date.now();
+      this.note("hosted.ceremony.started", { projectId, elapsedMs: state.ceremonyStartedAt - startedAt });
+      return result;
+    }
     catch (error) {
       // Detach and mark failed before close settles: a rejected close is recorded but can never poison the next attempt,
       // a later invalidation, or daemon stop. The start failure remains the operation's error.
@@ -429,6 +444,10 @@ export class HostedBootstrapController {
   /** Diagnostics never change admission outcomes: a logger failure is swallowed. */
   private log(event: string, detail: Record<string, unknown>): void {
     try { this.logger.error(event, detail); } catch { /* diagnostics only */ }
+  }
+  /** Non-failure timing diagnostics (the daemon logger has no informational level below warn). */
+  private note(event: string, detail: Record<string, unknown>): void {
+    try { this.logger.warn(event, detail); } catch { /* diagnostics only */ }
   }
 
   private async retireAdmission(state: ProjectBootstrap): Promise<void> {

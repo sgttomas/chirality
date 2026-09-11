@@ -14,6 +14,7 @@ import {
   type TrustedHostedLoginCeremony
 } from "@chirality/runtime-daemon";
 import { RuntimeClient } from "@chirality/runtime-client";
+import { settledHostedBootstrapStatus } from "./helpers.js";
 
 const cleanup: Array<() => Promise<void>> = [];
 afterEach(async () => { for (const close of cleanup.splice(0).reverse()) await close().catch(() => undefined); });
@@ -270,7 +271,7 @@ describe("controlled Codex primary connecting path with a catalog choice", () =>
     const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
     const projectId = registered.projectId;
     await bootstrap.grantHostedProviderNetworkConsent(projectId); await bootstrap.startHostedBootstrapLogin(projectId);
-    expect(await bootstrap.hostedBootstrapStatus(projectId)).toMatchObject({ admission: "ready", models: entries, selection: { model: "gpt-default", reasoningEffort: "high" } });
+    expect(await settledHostedBootstrapStatus(bootstrap, projectId)).toMatchObject({ admission: "ready", models: entries, selection: { model: "gpt-default", reasoningEffort: "high" } });
     const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtime, projectId) });
     await expect(client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-elsewhere", reasoningEffort: "low" } })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-elsewhere", available: ["gpt-default", "gpt-alt"] } });
     const chosen = await client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-alt", reasoningEffort: "low" } });
