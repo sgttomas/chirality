@@ -275,6 +275,9 @@ describe("controlled connected D36 v2 source path", () => {
       accountStorage: { backend: "keyring" }, compatibility: sourceOptions.compatibility, providerNetworkConsent: { approvedBy: "owner", approvalReference: "act", approvedAt: "2026-09-10T12:00:00.000Z" },
       commandNetworkPosture: "off", protectedPaths: sourceOptions.protectedPaths, immutableReadRoots: ["/usr"], instructionRoot: sourceOptions.instructionRoot, nativeRoleConfigurationDigest: hash("roles"),
       trustedRuntimeReadRoot: { contentDigest: readRoot.contentDigest, readPaths: readRoot.readPaths }, releaseV2: { basisDigest: hash("basis") }, consentVersion: issuedInputs[0].consent.version }));
+    // Materialization itself records the consent a DelegatedRuntime turn requires, attributed to the ceremony's provider-network act.
+    await expect(new HostedConsentStore({ canonicalRoot: join(root, "project"), codexHome: join(root, "runtime", "private", "home") }).read(admitted.continuity))
+      .resolves.toEqual({ identity: admitted.continuity, posture: "off", approvedBy: "owner", approvedAt: "2026-09-10T12:00:00.000Z" });
     expect(await turn()).toMatchObject({ exitCode: 0 });
     const establish = vi.spyOn(HostedIdentityBindingStore.prototype, "establishLive");
     await signOut(); expect(establish).not.toHaveBeenCalled();
@@ -370,7 +373,7 @@ describe("controlled connected D36 v2 source path", () => {
         const projectClient = new RuntimeClient({ socketPath: bootstrapHost.socketPath, tokenFile: resolveHostedProjectTokenFile(bootstrapRuntime, registered.projectId) });
         const session = await projectClient.createSession(registered.projectId, { projectId: registered.projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", interactionMode: "native-plan" });
         await expect(projectClient.getNativePlanCapability(registered.projectId, session.sessionId)).resolves.toEqual({ schemaVersion: "chirality.native-plan-capability/v3", status: "trial", admission: admitted.nativePlanQualification });
-        await new HostedConsentStore({ canonicalRoot: join(root, "project"), codexHome: join(root, "runtime", "private", "home") }).grant({ identity: admitted.continuity, posture: "off", approvedBy: "controlled-owner", approvedAt: "2026-09-10T12:00:00.000Z" });
+        // No manual consent grant: the real v2 materialization must have recorded it, or this turn fails FORBIDDEN.
         io.trialPlan = true;
         const stream = await projectClient.turnSession(registered.projectId, session.sessionId, { turnId: "same-trial-turn", message: "Observe the accepted trial", interactionMode: "native-plan" });
         const turnEvents: unknown[] = [];
@@ -519,7 +522,6 @@ describe("controlled connected D36 v2 source path", () => {
     it("connects the exact inherited subset through real D36 admission, Supervisor association, child callback, and family settlement",async()=>{
       io.stageCChild=true;
       const admitted=await admission();const materialized=await materialize(admitted);
-      await new HostedConsentStore({canonicalRoot:join(root,"project"),codexHome:join(root,"runtime","private","home")}).grant({identity:admitted.continuity,posture:"off",approvedBy:"controlled-owner",approvedAt:"2026-09-10T12:00:00.000Z"});
       let observed:any;
       const schema={type:"object",additionalProperties:false} as const;
       const tools=[

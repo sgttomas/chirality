@@ -611,8 +611,12 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
       const project = await input.runtime.projects.requireAuthorized(input.projectId), roots = await input.runtime.projects.roots(input.projectId);
       if (project.canonicalRoot !== input.canonicalRoot || (context.v2 && project.manifestHash !== context.manifestHash) || roots.workingRoot !== input.canonicalRoot || roots.instructionRoot !== trusted.instructionRoot) throw unavailable("PROJECT_REGISTRATION_MISMATCH");
       const consent = new HostedConsentStore({ canonicalRoot: input.canonicalRoot, codexHome: context.codexHome });
-      if (!context.v2) await consent.grant({ identity: input.admission.continuity, posture: trusted.commandNetworkPosture,
-        approvedBy: trusted.commandNetworkConsent!.approvedBy, approvedAt: trusted.commandNetworkConsent!.approvedAt });
+      // Every materialized admission records the command-network consent its DelegatedRuntime turns require.
+      // v1 hosts carry it as configured `commandNetworkConsent`; a v2 host's posture is fixed "off" and the
+      // consent is the same explicit provider-network act (approvedBy/approvedAt) the ceremony was bound to.
+      await consent.grant({ identity: input.admission.continuity, posture: trusted.commandNetworkPosture,
+        ...(context.v2 ? { approvedBy: context.providerNetworkConsent.approvedBy, approvedAt: context.providerNetworkConsent.approvedAt }
+          : { approvedBy: trusted.commandNetworkConsent!.approvedBy, approvedAt: trusted.commandNetworkConsent!.approvedAt }) });
       const retirement = new WorkerRetirementCoordinator({ directory: join(context.privateDirectory, "retirements") }); await retirement.reconcile();
       const approvals = new ApprovalStore({ canonicalRoot: input.canonicalRoot, storageRoot: join(context.privateDirectory, "approvals"), consent,
         isLive: async binding => (await context.admission.supervisor.inventory()).some(worker => worker.workerId === binding.turnId && worker.generation === binding.workerGeneration && worker.state === "running") });
