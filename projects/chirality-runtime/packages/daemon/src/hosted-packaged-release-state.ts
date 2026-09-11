@@ -80,6 +80,8 @@ type StoredIssuedPackagedBasisV2 = Readonly<RetainedIssuedPackagedBasisV2 & {
   supplyVerifier: ExactSupplyVerifier;
 }>;
 const issuedPackagedBases = new WeakMap<object, StoredIssuedPackagedBasisV2>();
+/** Latest issued basis per packaged resources root, held weakly so it lives exactly as long as its issued basis. */
+const issuedByResourcesRoot = new Map<string, WeakRef<object>>();
 const issuedSupplyVerifiers = new WeakSet<object>();
 const PURPOSE_FILES: Readonly<Record<Purpose, readonly [keyof HostedPackagedPurposeBasisV2, keyof HostedPackagedPurposeBasisV2, keyof HostedPackagedPurposeBasisV2]>> = Object.freeze({
   login: ["recordPath", "acceptancePath", "ownerActPath"],
@@ -198,6 +200,24 @@ export async function registerIssuedPackagedReleaseBasisV2(basis: Readonly<Hoste
   }, closureEntries);
   issuedSupplyVerifiers.add(supplyVerifier as object);
   issuedPackagedBases.set(basis as object, Object.freeze({ ...state, directories, files: Object.freeze(files), origin, supplyVerifier }));
+  issuedByResourcesRoot.set(state.resourcesRoot, new WeakRef(basis as object));
+}
+
+/**
+ * The verified payload of the issued basis that matches a packaged policy basis (same root, manifest paths and digests),
+ * after the issued basis's identity revalidation. Payload bytes are not re-read: the basis was hashed once at issuance
+ * and drift is caught by filesystem identity. `undefined` when no basis is issued for that root, so a caller may fall
+ * back to a full byte verification.
+ */
+export async function resolveIssuedPackagedRuntimeBasisV2(inventory: Readonly<{ resourcesRoot: string; inventoryPath: string; payloadManifestPath: string; outerInventorySha256: string; payloadDigest: string }>): Promise<Readonly<VerifiedPackagedRuntimeBasisV2> | undefined> {
+  const basis = issuedByResourcesRoot.get(inventory.resourcesRoot)?.deref() as Readonly<HostedPackagedReleaseBasisV2> | undefined;
+  const state = basis ? issuedPackagedBases.get(basis as object) : undefined;
+  if (!basis || !state) return undefined;
+  const verified = basis.verified;
+  if (verified.resourcesRoot !== inventory.resourcesRoot || verified.inventoryPath !== inventory.inventoryPath || verified.payloadManifestPath !== inventory.payloadManifestPath
+    || verified.inventorySha256 !== inventory.outerInventorySha256 || verified.payloadDigest !== inventory.payloadDigest) return undefined;
+  await revalidate(basis, state.issuance);
+  return verified;
 }
 
 /**

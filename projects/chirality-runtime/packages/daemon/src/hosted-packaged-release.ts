@@ -4,7 +4,7 @@ import { link, lstat, mkdir, open, realpath, rm } from "node:fs/promises";
 import { dirname, isAbsolute, join, resolve } from "node:path";
 import { RuntimeError } from "@chirality/runtime-contracts";
 import {
-  matchRuntimeSupportProfileV2, observeRuntimeSupportProfileV2, verifyPackagedRuntimeBasisV2,
+  matchRuntimeSupportProfileV2, observePackagedRuntimeBasisIdentityV2, observeRuntimeSupportProfileV2, verifyPackagedRuntimeBasisV2,
   type EmbeddedRuntimeVersionsV2, type RuntimeArtifactEntryV2, type RuntimeSupportProfileV2,
   type VerifiedPackagedRuntimeBasisV2
 } from "@chirality/runtime-core/runtime-conformance-v2";
@@ -151,8 +151,11 @@ async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;emb
       ? (await inspectTrialSeal({path:observationPath,expectedSha256:anchor.postSealObservationSha256!,outerInventorySha256:verified.inventorySha256,payloadDigest:verified.payloadDigest,executablePath:input.executablePath??"",resourcesPath:verified.resourcesRoot},inspect)).observation
       : undefined;
     await hooks?.beforeFinalRevalidation?.();
-    const finalAnchor=await stablePrivateFile(anchorPath),finalVerified=await verifyPackagedRuntimeBasisV2({resourcesRoot:input.resourcesRoot});
-    if(finalAnchor.sha256!==anchorSource.sha256||finalVerified.inventorySha256!==verified.inventorySha256||finalVerified.payloadDigest!==verified.payloadDigest)throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
+    // The payload bytes were hashed once above. The final pass rechecks every packaged entry by filesystem identity
+    // only, the same boundary the issued-basis registry applies afterwards; the bundle's code signature carries byte integrity.
+    const finalAnchor=await stablePrivateFile(anchorPath);
+    if(finalAnchor.sha256!==anchorSource.sha256||await observePackagedRuntimeBasisIdentityV2(verified)!==verified.identityDigest)throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
+    const finalVerified=verified;
     const finalLogin=await snapshotPurpose({resourcesRoot:finalVerified.resourcesRoot,snapshotRoot,purpose:"login",anchor:anchor.login,entries:finalVerified.inventory.governance}),finalWorker=await snapshotPurpose({resourcesRoot:finalVerified.resourcesRoot,snapshotRoot,purpose:"worker",anchor:anchor.worker,entries:finalVerified.inventory.governance});
     if(JSON.stringify(finalLogin)!==JSON.stringify(login)||JSON.stringify(finalWorker)!==JSON.stringify(worker))throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
     const finalLoginRelease=await verifyPurposeAcceptance({purpose:"login",basis:finalLogin,payloadDigest:finalVerified.payloadDigest,profile:supportProfile});const finalWorkerRelease=await verifyPurposeAcceptance({purpose:"worker",basis:finalWorker,payloadDigest:finalVerified.payloadDigest,profile:supportProfile});

@@ -6,6 +6,7 @@ import { userInfo } from 'node:os';
 import { CHIRALITY_ROLE_NAMES } from '@chirality/runtime-contracts';
 import { compareRuntimeUtf8V2, runtimeConformanceInstructionBundleDigest, verifyPackagedRuntimeBasisV2, RUNTIME_STAGE_C_NATIVE_POLICY_IDENTITY_VERSION, RUNTIME_STAGE_C_NATIVE_SKILL_ARGUMENT, runtimeStageCAppServerArguments, runtimeStageCPolicyParameterSchemaDigest, type RuntimeConformanceArtifactInventorySelection } from '@chirality/runtime-core';
 import { digestCodexPolicyInstanceV2, inspectCodexPolicyInstanceV2, type CodexPolicyInstanceV2, type RuntimePackagedPolicyBasisV2 } from './runtime-conformance-v2-admission.js';
+import { resolveIssuedPackagedRuntimeBasisV2 } from './hosted-packaged-release-state.js';
 
 export interface TrustedRuntimeReadRootBinding {
   path: string;
@@ -498,7 +499,7 @@ async function assertTrustedRuntimeReadRootV2(binding: TrustedRuntimeReadRootBin
   const inventory = binding.artifactInventory;
   if (!inventory || inventory.schema !== 'chirality-runtime-packaged-basis/v2' || binding.path !== join(inventory.resourcesRoot, 'instruction-root')
     || binding.readPaths.length < 1 || binding.readPaths.length > 32 || !binding.readPaths.every(path => path === binding.path || contained(binding.path, path))) throw new Error('Trusted Runtime v2 read root is outside its packaged basis');
-  const verified = await verifyPackagedRuntimeBasisV2({ resourcesRoot: inventory.resourcesRoot });
+  const verified = await verifiedPackagedBasisV2(inventory);
   if (verified.inventoryPath !== inventory.inventoryPath || verified.payloadManifestPath !== inventory.payloadManifestPath
     || verified.inventorySha256 !== inventory.outerInventorySha256 || verified.payloadDigest !== inventory.payloadDigest) throw new Error('Trusted Runtime v2 packaged basis changed');
   const records = verified.payload.entries.filter((entry): entry is Extract<typeof entry, {type:'file'}> => entry.type === 'file' && entry.relativePath.startsWith('instruction-root/'))
@@ -506,8 +507,13 @@ async function assertTrustedRuntimeReadRootV2(binding: TrustedRuntimeReadRootBin
   const observed = createHash('sha256').update(`${JSON.stringify(records)}\n`).digest('hex');
   if (observed !== binding.contentDigest) throw new Error('Trusted Runtime v2 instruction content changed');
 }
+/** The packaged basis behind a v2 read-root binding. A daemon-issued basis is reused after its identity revalidation
+ * (its payload was hashed once at issuance); only a root without an issued basis is hashed in full here. */
+async function verifiedPackagedBasisV2(inventory: RuntimePackagedPolicyBasisV2) {
+  return await resolveIssuedPackagedRuntimeBasisV2(inventory) ?? await verifyPackagedRuntimeBasisV2({ resourcesRoot: inventory.resourcesRoot });
+}
 export async function bindTrustedRuntimeReadRootV2(path: string, artifactInventory: RuntimePackagedPolicyBasisV2): Promise<TrustedRuntimeReadRootBindingV2> {
-  const verified = await verifyPackagedRuntimeBasisV2({ resourcesRoot: artifactInventory.resourcesRoot });
+  const verified = await verifiedPackagedBasisV2(artifactInventory);
   if (path !== join(verified.resourcesRoot, 'instruction-root') || verified.inventoryPath !== artifactInventory.inventoryPath || verified.payloadManifestPath !== artifactInventory.payloadManifestPath
     || verified.inventorySha256 !== artifactInventory.outerInventorySha256 || verified.payloadDigest !== artifactInventory.payloadDigest) throw new Error('Trusted Runtime v2 packaged basis changed');
   const records = verified.payload.entries.filter((entry): entry is Extract<typeof entry, {type:'file'}> => entry.type === 'file' && entry.relativePath.startsWith('instruction-root/'))

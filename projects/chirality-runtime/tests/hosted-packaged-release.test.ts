@@ -19,6 +19,7 @@ import {
   loadPackagedHostedReleaseBasisControlledForTests, startHostedPackagedPrivateBootstrapRuntimeHost,
   startHostedPackagedPrivateBootstrapRuntimeHostControlledForTests, PACKAGED_REQUEST_TIMEOUT_MS, PACKAGED_TURN_TIMEOUT_MS } from "../packages/daemon/src/hosted-packaged-release.js";
 import { revalidateControlledPackagedReleaseBasisForTests } from "../packages/daemon/src/hosted-packaged-release-state.js";
+import { bindTrustedRuntimeReadRootV2 } from "../packages/daemon/src/codex-containment.js";
 import { validateHostedPrivateCompositionOptions } from "../packages/daemon/src/hosted-private-composition.js";
 import { RuntimeError } from "../packages/contracts/src/errors.js";
 import { RuntimeClient } from "../packages/client/src/client.js";
@@ -336,6 +337,26 @@ describe("packaged hosted release basis",()=>{
     expect(otherResult.status).toBe("ready");if(otherResult.status!=="ready")return;
     const addon=join(other.resources,"native/chirality_native_admission.node"),bytes=await readFile(addon);await writeFile(`${addon}.replacement`,bytes);await rename(`${addon}.replacement`,addon);
     await expect(revalidateControlledPackagedReleaseBasisForTests(otherResult.basis)).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE",details:{reason:"PACKAGED_RELEASE_BASIS_CHANGED"}});
+  });
+  it("hashes the payload once at issuance and lets the v2 read-root binding reuse the issued basis by identity without re-reading payload bytes",async()=>{
+    const fixture=await createFixture();
+    const fullVerification=vi.spyOn(packagedConformance,"verifyPackagedRuntimeBasisV2");
+    const result=await loadPackagedHostedReleaseBasisControlledForTests({resourcesRoot:fixture.resources,runtimeDirectory:fixture.runtime,embeddedRuntime:{electron:"43.2.0",node:"24.13.0",modules:"145",napi:"10",architecture:"arm64"}},async()=>fixture.profile);
+    expect(result.status).toBe("ready");if(result.status!=="ready")return;
+    expect(fullVerification).toHaveBeenCalledTimes(1);
+    const verified=result.basis.verified,policyBasis={schema:"chirality-runtime-packaged-basis/v2" as const,resourcesRoot:verified.resourcesRoot,inventoryPath:verified.inventoryPath,payloadManifestPath:verified.payloadManifestPath,outerInventorySha256:verified.inventorySha256,payloadDigest:verified.payloadDigest};
+    reads.opened=[];reads.recording=true;
+    let binding;try{binding=await bindTrustedRuntimeReadRootV2(join(fixture.resources,"instruction-root"),policyBasis);}finally{reads.recording=false;}
+    expect(fullVerification).toHaveBeenCalledTimes(1);
+    expect(reads.opened.filter(path=>path.startsWith(fixture.resources))).toEqual([]);
+    expect(binding.readPaths).toEqual([join(fixture.resources,"instruction-root")]);
+    // A different digest names no issued basis: the binding falls back to a full byte verification and rejects the mismatch.
+    await expect(bindTrustedRuntimeReadRootV2(join(fixture.resources,"instruction-root"),{...policyBasis,payloadDigest:"0".repeat(64)})).rejects.toThrow("Trusted Runtime v2 packaged basis changed");
+    expect(fullVerification).toHaveBeenCalledTimes(2);
+    // Same bytes rewritten in place: the issued basis's identity revalidation fails closed before any binding is produced.
+    const supplier=join(fixture.resources,"supplier/codex");await writeFile(supplier,await readFile(supplier));
+    await expect(bindTrustedRuntimeReadRootV2(join(fixture.resources,"instruction-root"),policyBasis)).rejects.toMatchObject({code:"ENGINE_UNAVAILABLE",details:{reason:"PACKAGED_RELEASE_BASIS_CHANGED"}});
+    expect(fullVerification).toHaveBeenCalledTimes(2);
   });
   it("rejects same-byte replacement of the anchor, snapshot, and packaged origin",async()=>{
     const replace=async(path:string)=>{const bytes=await readFile(path),temporary=`${path}.replacement`;await writeFile(temporary,bytes,{mode:0o600});await chmod(temporary,0o600);await rename(temporary,path);};
