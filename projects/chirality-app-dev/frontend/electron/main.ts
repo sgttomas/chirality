@@ -759,6 +759,7 @@ async function initializeGui(): Promise<void> {
       const release = await loadPackagedHostedReleaseBasis({
         resourcesRoot: process.resourcesPath,
         runtimeDirectory: control.runtimeDirectory,
+        executablePath: app.getPath('exe'),
         embeddedRuntime: {
           electron: process.versions.electron,
           node: process.versions.node,

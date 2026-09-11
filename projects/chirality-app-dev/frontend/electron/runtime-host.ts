@@ -53,6 +53,7 @@ type PackagedRuntimeHostEntry = {
   loadReleaseBasis(input: {
     resourcesRoot: string;
     runtimeDirectory: string;
+    executablePath: string;
     embeddedRuntime: EmbeddedRuntimeVersionsV2;
   }): Promise<HostedPackagedReleaseLoadResult>;
   startPackagedHost(
@@ -127,6 +128,7 @@ async function connectPackagedRuntimeHost(
   const release = await entry.loadReleaseBasis({
     resourcesRoot: input.resourcesRoot,
     runtimeDirectory: input.runtimeDirectory,
+    executablePath: input.executablePath,
     embeddedRuntime: input.embeddedRuntime
   });
   if (release.status === 'ready') {

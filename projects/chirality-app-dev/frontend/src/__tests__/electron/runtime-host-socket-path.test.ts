@@ -261,6 +261,7 @@ describe('runtime-host macOS socket-path boundary', () => {
       )
     }) as unknown as Readonly<HostedPackagedReleaseBasisV2>;
     const ready: HostedPackagedReleaseLoadResult = { status: 'ready', basis };
+    const loadReleaseBasis = vi.fn(async () => ready);
     const startPackagedHost = vi.fn(async () => host);
     const startUnboundHost = vi.fn(async () => host);
     await startControlledPackagedRuntimeHostForTests(
@@ -272,11 +273,17 @@ describe('runtime-host macOS socket-path boundary', () => {
         embeddedRuntime
       }),
       {
-        loadReleaseBasis: vi.fn(async () => ready),
+        loadReleaseBasis,
         startPackagedHost,
         startUnboundHost
       }
     );
+    expect(loadReleaseBasis).toHaveBeenCalledWith({
+      resourcesRoot: inventory.resourcesRoot,
+      runtimeDirectory: '/runtime',
+      executablePath,
+      embeddedRuntime
+    });
     expect(startPackagedHost).toHaveBeenCalledWith({
       bootstrap: {
         enabled: true,
