@@ -6,7 +6,7 @@ import { RuntimeError } from "@chirality/runtime-contracts";
 import type { AuthRegistry } from "@chirality/runtime-core";
 import { runtimePhysicalFilesystem } from "@chirality/runtime-core/physical-filesystem";
 import { loadNativeAdmissionBinding } from "@chirality/native-admission";
-import { assertIssuedPackagedReleaseBasisV2, revalidateIssuedPackagedReleaseBasisV2, type HostedPackagedReleaseBasisV2 } from "./hosted-packaged-release-state.js";
+import { assertIssuedPackagedReleaseBasisV2, issuedFilesystemIdentityV2, revalidateIssuedPackagedReleaseBasisV2, type HostedPackagedReleaseBasisV2, type IssuedPackagedFilesystemIdentityV2 } from "./hosted-packaged-release-state.js";
 import { HostAccountAuthority } from "./host-account-authority.js";
 import { createHostAccountClient, type HostAccountClient } from "./host-account-client.js";
 import {
@@ -101,6 +101,8 @@ export interface VerifiedHostAccountPackagedIdentity {
   outer: Readonly<{ path: string; cdHash: string; designatedRequirement: string; identifier: string; teamIdentifier: string }>;
   fuses: "electron-runtime-fuses-verified";
   asarIntegrity: "electron-asar-integrity-verified";
+  /** Filesystem identity of every signed-app file this inspection read (executable, framework, Info.plist, app.asar); revalidation compares identity instead of re-running codesign. */
+  observedFiles?: readonly Readonly<{ path: string; identity: IssuedPackagedFilesystemIdentityV2 }>[];
 }
 
 async function inspectSignedCode(path: string): Promise<VerifiedHostAccountPackagedIdentity["subject"]> {
@@ -141,8 +143,13 @@ export async function inspectHostAccountSignedPeerIdentity(input: {
   await run("/usr/bin/codesign", ["--verify", "--strict", `-R=${effectivePeerRequirement}`, input.executablePath]);
   await verifyFuses(paths.framework);
   await verifyAsarIntegrity(paths.plist, paths.asar);
+  const observedFiles = Object.freeze(await Promise.all([input.executablePath, paths.framework, paths.plist, paths.asar].map(async path => {
+    const info = await runtimePhysicalFilesystem().lstat(path, { bigint: true });
+    if (!info.isFile() || info.isSymbolicLink()) throw unavailable("PACKAGED_APP_PATH_INVALID");
+    return Object.freeze({ path, identity: issuedFilesystemIdentityV2(info) });
+  })));
   return Object.freeze({ schema: "chirality.host-account-signed-peer-identity-binding/v1", predicate, effectivePeerRequirement,
-    subject: identity.subject, outer: identity.outer, fuses: "electron-runtime-fuses-verified", asarIntegrity: "electron-asar-integrity-verified" });
+    subject: identity.subject, outer: identity.outer, fuses: "electron-runtime-fuses-verified", asarIntegrity: "electron-asar-integrity-verified", observedFiles });
 }
 
 /** Runtime activation wrapper: binds the static observation to a live issued payload basis. */
@@ -157,9 +164,7 @@ export async function verifyHostAccountPackagedIdentity(input: {
     || !input.basis.verified.payload.entries.some((entry) => entry.type === "file" && entry.relativePath === HOST_ACCOUNT_SIGNING_PREDICATE_RESOURCE)) {
     throw unavailable("HOST_ACCOUNT_CARRIER_NOT_ACCEPTED");
   }
-  const identity = await inspectHostAccountSignedPeerIdentity(input);
-  await revalidateIssuedPackagedReleaseBasisV2(input.basis);
-  return identity;
+  return inspectHostAccountSignedPeerIdentity(input);
 }
 
 async function verifiedInputs(input: {
@@ -168,8 +173,8 @@ async function verifiedInputs(input: {
   basis: Readonly<HostedPackagedReleaseBasisV2>;
 }) {
   const identity = await verifyHostAccountPackagedIdentity(input);
-  // Keep native loading adjacent to another live read of every accepted payload
-  // identity, including the carrier and addon.
+  // Native loading is a distinct effect: one live identity read of every accepted
+  // payload entry, including the carrier and addon, immediately precedes it.
   await revalidateIssuedPackagedReleaseBasisV2(input.basis);
   const loaded = loadNativeAdmissionBinding(true, input.basis.nativeAddonPath);
   if (loaded.state !== "available") throw unavailable("VERIFIED_NATIVE_ADMISSION_UNAVAILABLE");

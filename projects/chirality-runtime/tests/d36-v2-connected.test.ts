@@ -18,6 +18,7 @@ import { HostAccountAuthority } from "../packages/daemon/src/host-account-author
 import { createHostAccountCeremonyProof } from "../packages/daemon/src/host-account-protocol.js";
 import { RuntimeClient } from "../packages/client/src/client.js";
 import { startControlledHostedBootstrapRuntimeHostForTests } from "../packages/daemon/src/hosted-bootstrap.js";
+import { settledHostedBootstrapStatus } from "./helpers.js";
 import { resolveHostedProjectTokenFile } from "../packages/daemon/src/hosted-paths.js";
 
 // External trust and process I/O only. The production admission registries,
@@ -368,7 +369,7 @@ describe("controlled connected D36 v2 source path", () => {
         const bootstrapClient = new RuntimeClient({ socketPath: bootstrapHost.socketPath, tokenFile: bootstrapHost.bootstrapTokenFile });
         const registered = await bootstrapClient.initializeHostedBootstrapProject({ projectRoot: join(root, "project") });
         await bootstrapClient.grantHostedProviderNetworkConsent(registered.projectId); await bootstrapClient.startHostedBootstrapLogin(registered.projectId);
-        const bootstrapStatus = await bootstrapClient.hostedBootstrapStatus(registered.projectId);
+        const bootstrapStatus = await settledHostedBootstrapStatus(bootstrapClient, registered.projectId);
         if (bootstrapStatus.admission !== "ready") throw new Error(`Unexpected bootstrap status: ${JSON.stringify(bootstrapStatus)}: ${String(bootstrapMaterializationFailure)} ${JSON.stringify(bootstrapMaterializationFailure)}`);
         const projectClient = new RuntimeClient({ socketPath: bootstrapHost.socketPath, tokenFile: resolveHostedProjectTokenFile(bootstrapRuntime, registered.projectId) });
         const session = await projectClient.createSession(registered.projectId, { projectId: registered.projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", interactionMode: "native-plan" });

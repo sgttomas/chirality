@@ -313,7 +313,6 @@ export class CodexLogin {
         const defaults = visible.filter(([, value]) => value.isDefault);
         if (defaults.length !== 1) throw unavailable("Model catalog has no unique usable default");
         if (visible.length > 64) throw unavailable("Model catalog exceeds the retained catalog bound");
-        if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
         if (this.closed || this.expired) throw unavailable("Model catalog closed before selection");
         let catalog: Readonly<HostedModelCatalog>;
         try { catalog = hostedModelCatalog(visible.map(([model, value]) => ({ model, isDefault: value.isDefault, defaultReasoningEffort: value.defaultReasoningEffort, supportedReasoningEfforts: value.supportedReasoningEfforts }))); }
@@ -337,7 +336,7 @@ export class CodexLogin {
     if (this.options.instanceV2) {
       if (!this.options.instanceAdmissionV2 || admission?.instanceAdmissionV2 !== this.options.instanceAdmissionV2 || this.options.instanceV2.outerPolicyDigest !== outerPolicyDigest
         || this.options.releaseV2?.supportProfile.supplier.sha256 !== supplySha256) throw unavailable("Trusted v2 login admission is unavailable");
-      await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2); return;
+      return;
     }
     const { timeoutMs: _timeoutMs, startupAdmission: _startupAdmission, purposeAdmission: _purposeAdmission, purposeRelease: _purposeRelease, releaseV2: _releaseV2, instanceV2: _instanceV2, instanceAdmissionV2: _instanceAdmissionV2, ...binding } = this.options;
     if (!admission || !loginAdmissions.has(admission) || admission.evidence !== "externally-accepted-native-login-purpose"
@@ -360,7 +359,6 @@ export class CodexLogin {
       // Cancellation, timeout or close during account/read must not revive the ceremony.
       if (this.closed || this.expired) return this.projectStatus({ state: "failed", loginId: current.loginId });
       if (!account.hasAccount) throw unavailable("Provider completion has no account");
-      if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
       if (!this.fixture) await assertCodexKeyringHomeHasNoPlaintextCredentials(this.options.codexHome);
       this.result = this.projectStatus({ state: "completed", loginId: current.loginId, hasAccount: true });
       if (!this.options.instanceV2 && !this.retainAuthenticatedSessionForModelCatalog) clearTimeout(this.timer);

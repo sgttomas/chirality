@@ -18,6 +18,7 @@ import { hostAuthoritySubjectBindingDigestV2 } from "../packages/daemon/src/runt
 import { AuthorityTranscript, AUTHORITY_CONTRACT, initializationProof } from "../packages/daemon/src/supplier-authority-controller.js";
 import { resolveHostedProjectTokenFile } from "../packages/daemon/src/hosted-paths.js";
 import { startControlledHostedBootstrapRuntimeHostForTests } from "../packages/daemon/src/hosted-bootstrap.js";
+import { settledHostedBootstrapStatus } from "./helpers.js";
 import { startControlledHostedPrivateBootstrapRuntimeHostForTests } from "../packages/daemon/src/hosted-private-entry.js";
 import {
   createControlledHostedBootstrapPrivateBindingsForTests,
@@ -347,7 +348,7 @@ describe("hosted private production composition boundary", () => {
       const bootstrap = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
       const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
       await bootstrap.grantHostedProviderNetworkConsent(registered.projectId); await bootstrap.startHostedBootstrapLogin(registered.projectId);
-      expect(await bootstrap.hostedBootstrapStatus(registered.projectId)).toMatchObject({ admission: "ready" });
+      expect(await settledHostedBootstrapStatus(bootstrap, registered.projectId)).toMatchObject({ admission: "ready" });
       expect(generations).toEqual([{ supplier: "supplier-1", identity: "identity-1" }]);
       const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtimeDirectory, registered.projectId) });
       const session = await client.createSession(registered.projectId, { projectId: registered.projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite" });

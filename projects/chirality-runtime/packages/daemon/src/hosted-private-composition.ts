@@ -216,8 +216,9 @@ async function stageExactSupplierExecutableInternal(sourcePath: string, privateR
         if (relativePath && !contained(supplierDirectory, path)) throw unavailable("SUPPLIER_STAGING_PATH_INVALID");
         if (entry.type === "directory") await assertStagedClosureDirectory(path); else await assertStagedClosureFile(path, entry.mode === "executable");
       }
-      const staged = await supplyVerifier.verify({ executablePath: destination, custody: "private-staged" });
-      await assertPackagedSourceFile(sourcePath); await supplyVerifier.revalidate(source); await supplyVerifier.revalidate(staged);
+      // verify(staged) is the staged copy's boundary read; the source is revalidated once more because the copy read it.
+      await supplyVerifier.verify({ executablePath: destination, custody: "private-staged" });
+      await assertPackagedSourceFile(sourcePath); await supplyVerifier.revalidate(source);
       return destination;
     } catch (error) {
       const cleanupErrors: unknown[] = [];
@@ -245,7 +246,7 @@ async function stageExactSupplierExecutableInternal(sourcePath: string, privateR
       await assertStagedFile(destination);
       const existing = await verifyExactSupply({ executablePath: destination });
       if (existing.sha256 !== source.sha256 || existing.version !== source.version || existing.signatureStatus !== source.signatureStatus) throw unavailable("STAGED_SUPPLIER_CONFLICT");
-      await assertPackagedSourceFile(sourcePath); await revalidateExactSupply(source); await revalidateExactSupply(existing);
+      await assertPackagedSourceFile(sourcePath); await revalidateExactSupply(source);
       return destination;
     }
     const metadata = await output.stat();
@@ -260,7 +261,7 @@ async function stageExactSupplierExecutableInternal(sourcePath: string, privateR
     await assertStagedFile(destination);
     const staged = await verifyExactSupply({ executablePath: destination });
     if (staged.sha256 !== source.sha256 || staged.version !== source.version || staged.signatureStatus !== source.signatureStatus) throw unavailable("STAGED_SUPPLIER_MISMATCH");
-    await assertPackagedSourceFile(sourcePath); await revalidateExactSupply(source); await revalidateExactSupply(staged);
+    await assertPackagedSourceFile(sourcePath); await revalidateExactSupply(source);
     return destination;
   } catch (error) {
     if (created) await unlink(destination).catch(() => {});
