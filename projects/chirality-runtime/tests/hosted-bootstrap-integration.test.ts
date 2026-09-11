@@ -362,16 +362,28 @@ describe("hosted bootstrap public-to-private composition", () => {
     expect(await client.getSession(projectId, chosen.sessionId)).toMatchObject({ engineSelection: { model: "gpt-alt" }, reasoningEffort: "medium" });
     const defaulted = await client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite" });
     expect(defaulted).toMatchObject({ engineSelection: { model: "gpt-default" }, reasoningEffort: "high" });
+    // The App boots every new session before its first turn without an opts.mode; a v3
+    // session boots under its persisted permission mode, never the legacy chat mode.
+    await client.bootSession(projectId, chosen.sessionId);
+    expect(requests).toHaveLength(1);
+    expect(requests[0]).toMatchObject({ permissionMode: "workspaceWrite", model: "gpt-alt", reasoningEffort: "medium", sessionId: chosen.sessionId, prompt: expect.stringContaining("bootstrap") });
+    expect(await client.getSession(projectId, chosen.sessionId)).toMatchObject({ status: "idle", permissionMode: "workspaceWrite" });
     const chosenEvents = await drain(await client.turnSession(projectId, chosen.sessionId, { message: "Use the chosen pair." }));
     expect(chosenEvents.find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-alt:medium" } });
     expect(chosenEvents.find(event => event.type === "session:init")).toMatchObject({ data: { model: "gpt-alt" } });
     expect(requests.at(-1)).toMatchObject({ model: "gpt-alt", reasoningEffort: "medium", sessionId: chosen.sessionId });
     expect((await drain(await client.turnSession(projectId, defaulted.sessionId, { message: "Use the default pair." }))).find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-default:high" } });
     expect(requests.at(-1)).toMatchObject({ model: "gpt-default", reasoningEffort: "high" });
+    // A native-picker selection travels as a project-staged untrusted image input.
+    const picked = join(projectRoot, "diagram.png");
+    await writeFile(picked, Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+    const attached = await drain(await client.turnSession(projectId, defaulted.sessionId, { message: "Describe the attachment.", attachments: [picked] }));
+    expect(attached.find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-default:high" } });
+    expect(requests.at(-1)).toMatchObject({ sessionId: defaulted.sessionId, permissionMode: "workspaceWrite", attachments: [{ type: "localImage", path: expect.stringContaining(join(projectRoot, ".chirality", "attachments", defaulted.sessionId)), mimeType: "image/png", source: "untrusted-attachment" }] });
     // The turn path never lets a client-supplied opts.model override the session's fixed model.
     const overridden = await drain(await client.turnSession(projectId, chosen.sessionId, { message: "Try to substitute.", opts: { model: "gpt-default" } }));
     expect(overridden).toContainEqual(expect.objectContaining({ type: "turn:error", data: expect.objectContaining({ fatal: true, details: { runtimeCode: "ENGINE_UNAVAILABLE", reason: "MODEL_SELECTION_MISMATCH" } }) }));
-    expect(requests).toHaveLength(2);
+    expect(requests).toHaveLength(4);
     expect(await bootstrap.signOutHostedProject(projectId)).toEqual({ schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: "consent-required", admission: "unavailable", canStartLogin: false });
     await bootstrap.grantHostedProviderNetworkConsent(projectId);
     await bootstrap.startHostedBootstrapLogin(projectId);
@@ -381,7 +393,7 @@ describe("hosted bootstrap public-to-private composition", () => {
     expect(removed).toContainEqual(expect.objectContaining({ type: "turn:error", data: expect.objectContaining({ fatal: true, details: { runtimeCode: "ENGINE_UNAVAILABLE", reason: "MODEL_NOT_IN_CATALOG" } }) }));
     expect(await client.getSession(projectId, chosen.sessionId)).toMatchObject({ engineSelection: { model: "gpt-alt" }, reasoningEffort: "medium" });
     expect((await drain(await client.turnSession(projectId, defaulted.sessionId, { message: "Still offered." }))).find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-default:high" } });
-    expect(requests).toHaveLength(3);
+    expect(requests).toHaveLength(5);
     const persisted = await persistedText(runtimeDirectory);
     expect(persisted).toMatch(/"reasoningEffort":\s*"medium"/);
   }, 20_000);

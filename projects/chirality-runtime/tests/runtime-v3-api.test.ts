@@ -289,6 +289,18 @@ describe("v3 Runtime API integration", () => {
     expect(replay.instructionBases).toContainEqual(expect.objectContaining({ basisId: captured?.instructionContext?.basisPreview.id }));
   });
 
+  it("boots a v3 session under its persisted permission mode rather than the legacy chat mode", async () => {
+    let captured: AgentEngineRunInput | undefined;
+    const fixture = await setup(async function* (input) { captured = input; yield { type: "session:init", data: { engineSessionId: "boot-mode-engine", adapterId: "stub", providerId: "stub", model: "fixture" } }; yield { type: "process:exit", data: { exitCode: 0 } }; });
+    const session = await fixture.client.createSession("v3-api", { projectId: "v3-api", permissionMode: "workspaceWrite" });
+    expect(session).toMatchObject({ schemaVersion: "chirality.session/v3", permissionMode: "workspaceWrite" });
+    expect(["readOnly", "ask", "workspaceWrite", "bypass"]).not.toContain(session.mode);
+    await fixture.service.bootSession("v3-api", session.sessionId);
+    expect(captured?.message).toBe("bootstrap");
+    expect(captured?.opts.mode).toBe("workspaceWrite");
+    expect(await fixture.sessions.get("v3-api", session.sessionId)).toMatchObject({ status: "idle", permissionMode: "workspaceWrite" });
+  });
+
   it("terminalizes an accepted v3 boot when preflight fails", async () => {
     const fixture = await setup(async function* () { yield { type: "process:exit", data: { exitCode: 1 } }; }, undefined, { async preflight() { throw new Error("controlled preflight failure"); } });
     const session = await fixture.client.createSession("v3-api", { projectId: "v3-api" });

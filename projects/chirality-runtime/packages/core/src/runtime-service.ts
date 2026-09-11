@@ -266,7 +266,10 @@ export class RuntimeService {
     }
     const project = await this.projects.requireAuthorized(projectId);
     const persona = opts.persona ?? session.persona;
-    const mode = opts.mode ?? session.mode;
+    // A v3 session boots under its persisted permission mode, exactly as its
+    // turns do (TurnCoordinator). The legacy chat `mode` (PORTAL, ...) is not a
+    // permission mode and only remains the fallback for pre-v3 sessions.
+    const mode = session.permissionMode ?? opts.mode ?? session.mode;
     if (session.schemaVersion === "chirality.session/v3") {
       const role = (await this.methods.listRoles(projectId)).roles.find(value => value.id === session.roleId);
       if (role === undefined || !role.directEntry || persona !== role.id) throw new HarnessError("INVALID_REQUEST", 400, `Persona '${persona}' is not available for direct chat`);
