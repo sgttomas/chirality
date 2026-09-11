@@ -1,5 +1,5 @@
 import { PassThrough } from "node:stream";
-import { chmod, mkdir, mkdtemp, readdir, realpath, rm, stat, symlink, writeFile } from "node:fs/promises";
+import { appendFile, chmod, mkdir, mkdtemp, readdir, readFile, realpath, rm, stat, symlink, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -82,6 +82,12 @@ describe("authenticated Codex candidate transport", () => {
       const staged = await stageExactSupplierExecutableControlledForTests(source, privateRoot, verifier);
       expect((await stat(join(privateRoot, "supplier", "runtime.dat"))).mode & 0o777).toBe(0o700);
       expect((await stat(join(privateRoot, "supplier", "nested", "config.dat"))).mode & 0o777).toBe(0o600);
+      // The staged closure is an exclusive private copy (one link, exact bytes) that stays independent of its source.
+      expect((await stat(staged)).nlink).toBe(1);
+      await appendFile(source, "-mutated-after-staging");
+      expect(await readFile(staged)).toEqual(executableBytes);
+      expect(await readFile(join(privateRoot, "supplier", "runtime.dat"))).toEqual(helperBytes);
+      await writeFile(source, executableBytes, { mode: 0o700 });
       const f = fixture();
       f.input = { ...f.input, executablePath: staged, toolRuntime: { codexSelfExecutablePath: staged }, supplyVerifier: verifier };
       expect(() => new CodexLogin({ executablePath: staged, canonicalRoot: root, privateDirectory: privateRoot, codexHome: join(privateRoot, "home"),

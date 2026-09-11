@@ -344,8 +344,9 @@ describe("hosted private production composition boundary", () => {
       logout: async () => {}, openBindingStore: HostedIdentityBindingStore.open
     };
     const bootstrapInput = { enabled: true as const, runtimeDirectory, daemonSocket: "runtime.sock", instructionRoot, nativeAddonPath: privateOptions.nativeAddonPath, artifactInventory: privateOptions.conformance.artifactInventory };
+    const phases: Array<{ phase: string; projectId: string; elapsedMs: number }> = [];
     const host = await startControlledHostedPrivateBootstrapRuntimeHostForTests({ bootstrap: bootstrapInput, privateComposition: privateOptions }, {
-      createBindings: options => createControlledHostedBootstrapPrivateBindingsForTests(options, adapters),
+      createBindings: options => createControlledHostedBootstrapPrivateBindingsForTests(options, adapters, (phase, detail) => { phases.push({ phase, ...detail }); }),
       startHost: (boot, admittedBindings) => startControlledHostedBootstrapRuntimeHostForTests(boot, admittedBindings!)
     });
     try {
@@ -368,6 +369,10 @@ describe("hosted private production composition boundary", () => {
       expect(trace.filter(value => value.startsWith("initialize-"))).toEqual(["initialize-1", "initialize-2"]);
       expect(trace).toEqual(expect.arrayContaining(["snapshot-1", "snapshot-2", "chirality/admissionAcquire-1", "chirality/admissionRelease-1", "chirality/admissionAcquire-2", "chirality/admissionRelease-2", "cleanup-1", "cleanup-2"]));
       expect(secrets).toHaveLength(2); expect(secrets.every(secret => secret.every(byte => byte === 0))).toBe(true);
+      // Sign-in and admission phases are reported in order with non-negative durations, bound to the project.
+      expect(phases.map(entry => entry.phase)).toEqual(["login.host-authority", "login.stage-supplier", "login.native-roles", "login.runtime-read-root", "login.instance-admission", "login.validate-startup",
+        "admission.login-status", "admission.model-catalog", "admission.native-policy", "admission.admit-supervisor", "admission.binding-store"]);
+      expect(phases.every(entry => entry.projectId === registered.projectId && Number.isSafeInteger(entry.elapsedMs) && entry.elapsedMs >= 0)).toBe(true);
     } finally { await host.stop(); }
   });
 });

@@ -349,6 +349,7 @@ export class HostedBootstrapController {
     await privateDirectoryReady(privateDirectory); await operation.check();
     await privateDirectoryReady(codexHome); await operation.check();
     const ceremony = await this.bindings.createCeremony({ projectId, manifestHash: state.manifestHash, canonicalRoot, privateDirectory, codexHome, providerNetworkConsent: state.consent });
+    this.note("hosted.phase", { phase: "login.create-ceremony", projectId, elapsedMs: Date.now() - startedAt });
     try { await operation.check(); } catch (error) { await this.closeCeremony(projectId, ceremony, "start-login").catch(() => {}); throw error; }
     if (this.closed || state.generation !== generation) { await this.closeCeremony(projectId, ceremony, "start-login").catch(() => {}); throw unavailable("Hosted login start was superseded"); }
     state.ceremony = ceremony;
@@ -429,7 +430,9 @@ export class HostedBootstrapController {
   }
 
   private async establishExclusive(projectId: string, canonicalRoot: string, state: ProjectBootstrap, generation: number, ceremony: TrustedHostedLoginCeremony): Promise<void> {
+    const establishStartedAt = Date.now();
     const admission = await this.bindings!.establishAdmission!({ projectId, canonicalRoot, ceremony, ...(this.nativeAddonPath === undefined ? {} : { nativeAddonPath: this.nativeAddonPath }) });
+    this.note("hosted.phase", { phase: "admission.establish", projectId, elapsedMs: Date.now() - establishStartedAt });
     try {
       await assertContinuity(admission.continuity);
       if (admission.continuity.canonicalRoot !== canonicalRoot || admission.continuity.cwd !== canonicalRoot) throw invalid("Private admission continuity does not bind the registered project root");
@@ -439,7 +442,9 @@ export class HostedBootstrapController {
       // The nested read-only path must exist before a native policy is compiled;
       // an absent child cannot be treated as a proven write restriction on macOS.
       await privateDirectoryReady(attachmentStagingRoot);
+      const materializeStartedAt = Date.now();
       const materialized = await this.bindings!.materializeAdmission!({ projectId, canonicalRoot, admission, runtime: { projects: this.projects, sessions: this.sessions, nativePlanSink: this.nativePlans, attachmentStagingRoot } });
+      this.note("hosted.phase", { phase: "admission.materialize", projectId, elapsedMs: Date.now() - materializeStartedAt });
       if (this.closed || state.generation !== generation || state.ceremony !== ceremony) { await admission.retire(); return; }
       const selection = materialized.selection, catalog = materialized.catalog;
       if (catalog !== undefined && (catalog.default.model !== selection.model || !catalog.models.some(entry => entry.model === selection.model))) throw invalid("Materialized hosted catalog does not contain the admitted Codex selection");

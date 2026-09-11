@@ -471,6 +471,9 @@ describe("hosted bootstrap public-to-private composition", () => {
     expect(establishments).toBe(1);
     expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.admission.established", fields: expect.objectContaining({ projectId: registered.projectId, elapsedMs: expect.any(Number), admission: "ready" }) }));
     expect(events.filter(entry => entry.event === "hosted.admission.establish_failed")).toEqual([]);
+    for (const phase of ["login.create-ceremony", "admission.establish", "admission.materialize"]) {
+      expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.phase", fields: expect.objectContaining({ phase, projectId: registered.projectId, elapsedMs: expect.any(Number) }) }));
+    }
 
     // A later ceremony whose establishment fails surfaces as unavailable on a subsequent poll, with the failure logged.
     await client.signOutHostedProject(registered.projectId);
