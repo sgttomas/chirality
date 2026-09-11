@@ -12,6 +12,13 @@ const SKIP_DIRECTORY_NAMES = new Set([
   'dist-electron',
   'out'
 ]);
+// The admitted engine's per-candidate scratch directory lives under the project
+// root while a candidate is alive. It is runtime custody, not project content.
+const RUNTIME_SCRATCH_DIRECTORY_PATTERN = /^\.chirality-scratch-/;
+
+export function isRuntimeScratchEntryName(name: string): boolean {
+  return RUNTIME_SCRATCH_DIRECTORY_PATTERN.test(name);
+}
 
 export class WorkspaceValidationError extends Error {
   status: number;
@@ -347,7 +354,7 @@ async function buildTree(currentPath: string, remainingDepth: number): Promise<T
   }
 
   const filtered = entries
-    .filter((entry) => !SKIP_DIRECTORY_NAMES.has(entry.name))
+    .filter((entry) => !SKIP_DIRECTORY_NAMES.has(entry.name) && !isRuntimeScratchEntryName(entry.name))
     .sort(compareDirectoryEntries);
   const limited = filtered.slice(0, MAX_TREE_ENTRIES_PER_DIRECTORY);
   const children: TreeNode[] = [];

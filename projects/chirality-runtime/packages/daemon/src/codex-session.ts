@@ -48,7 +48,16 @@ export interface CodexUserInputRequest {
   questions: readonly NativePlanClarificationQuestion[]; isBlocking: boolean; autoResolutionMs: number | null;
 }
 export type CodexSessionEvent = { type: "started"; threadId: string; turnId: string } | { type: "text"; threadId: string; turnId: string; text: string } | CodexPlanEvent | { type: "terminal"; terminal: CodexTurnTerminal };
-interface Pending { resolve(value: Record<string, unknown>): void; reject(error: Error): void; timer: ReturnType<typeof setTimeout> }
+interface Pending { resolve(value: Record<string, unknown>): void; reject(error: Error): void; timer: ReturnType<typeof setTimeout>; method: string }
+/** Bounded diagnostics from a Codex JSON-RPC error object: the numeric or short string code and a control-free message of at most 256 characters. */
+export function describeCodexRejection(value: unknown): { codexCode?: number | string; codexMessage?: string } {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  const raw = value as Record<string, unknown>, result: { codexCode?: number | string; codexMessage?: string } = {};
+  if (typeof raw.code === "number" && Number.isSafeInteger(raw.code)) result.codexCode = raw.code;
+  else if (typeof raw.code === "string" && /^[\x21-\x7e]{1,64}$/.test(raw.code)) result.codexCode = raw.code;
+  if (typeof raw.message === "string") { const text = raw.message.replace(/[\x00-\x1f\x7f]/g, " ").trim(); if (text) result.codexMessage = text.length > 256 ? `${text.slice(0, 256)}…` : text; }
+  return result;
+}
 interface Turn {
   threadId: string; id?: string; terminal?: CodexTurnTerminal; startedEmitted: boolean; items: Map<string, { text: string; completed: boolean }>;
   plans: Map<string, { deltaText: string; completed: boolean; completedText?: string }>;
@@ -246,7 +255,7 @@ export class CodexTurnSession {
     const id = this.nextId++;
     return new Promise((resolveRequest, reject) => {
       const timer = setTimeout(() => this.fail(protocol("Codex request timed out")), this.options.requestTimeoutMs ?? 10000);
-      this.requests.set(id, { resolve: resolveRequest, reject, timer });
+      this.requests.set(id, { resolve: resolveRequest, reject, timer, method });
       try { this.write(params === undefined ? { id, method } : { id, method, params }); }
       catch (error) { clearTimeout(timer); this.requests.delete(id); reject(error); }
     });
@@ -267,7 +276,7 @@ export class CodexTurnSession {
           if (!pending || (("result" in message) === ("error" in message))) throw protocol("Unsolicited or duplicate Codex response");
           const result = "result" in message ? object(message.result) : undefined;
           this.requests.delete(message.id as number); clearTimeout(pending.timer);
-          if ("error" in message) pending.reject(new RuntimeError("ENGINE_UNAVAILABLE", "Codex rejected the requested operation", 503, { reason: "CODEX_REQUEST_REJECTED" }));
+          if ("error" in message) pending.reject(new RuntimeError("ENGINE_UNAVAILABLE", "Codex rejected the requested operation", 503, { reason: "CODEX_REQUEST_REJECTED", method: pending.method, ...describeCodexRejection(message.error) }));
           else pending.resolve(result!);
         } else this.notification(identifierMethod(message.method), message.params);
       } catch (error) { this.fail(error instanceof RuntimeError ? error : protocol("Malformed Codex protocol")); return; }

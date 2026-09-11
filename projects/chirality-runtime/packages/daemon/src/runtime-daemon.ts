@@ -70,6 +70,12 @@ export function describeRuntimeFailure(error: unknown): Readonly<Record<string, 
   const fields: Record<string, unknown> = error instanceof RuntimeError
     ? { code: error.code, status: error.status, ...(typeof error.details?.reason === "string" ? { reason: safeDiagnosticText(error.details.reason, 64) } : {}), message: safeDiagnosticText(error) }
     : { code: "UNEXPECTED", status: 500, message: safeDiagnosticText(error) };
+  if (error instanceof RuntimeError) {
+    // A supplier rejection names the request it refused; the message is already bounded by the session.
+    if (typeof error.details?.method === "string") fields.method = safeDiagnosticText(error.details.method, 64);
+    if (typeof error.details?.codexCode === "number" || typeof error.details?.codexCode === "string") fields.codexCode = typeof error.details.codexCode === "number" ? error.details.codexCode : safeDiagnosticText(error.details.codexCode, 64);
+    if (typeof error.details?.codexMessage === "string") fields.codexMessage = safeDiagnosticText(error.details.codexMessage, 256);
+  }
   if (error instanceof AggregateError) fields.causes = error.errors.slice(0, 5).map(cause => safeDiagnosticText(cause));
   else if (error instanceof Error && error.cause !== undefined) fields.cause = safeDiagnosticText(error.cause);
   return fields;
@@ -664,7 +670,9 @@ export class RuntimeDaemon {
       }
       throw new RuntimeError("NOT_FOUND", "Route not found", 404);
     } catch (error) {
-      this.error(response, error);
+      let path: string | undefined;
+      try { path = new URL(request.url ?? "/", "http://chirality.invalid").pathname; } catch { path = undefined; }
+      this.error(response, error, { method: request.method ?? "GET", ...(path === undefined ? {} : { path }) });
     }
   }
 
@@ -1250,7 +1258,7 @@ export class RuntimeDaemon {
     });
   }
 
-  private error(response: ServerResponse, error: unknown): void {
+  private error(response: ServerResponse, error: unknown, context?: { method: string; path?: string }): void {
     if (response.headersSent) {
       response.end();
       return;
@@ -1265,6 +1273,11 @@ export class RuntimeDaemon {
               error.status
             )
           : new RuntimeError("INTERNAL_FAILURE", "Unexpected runtime failure", 500);
+    // Diagnostics for server-side failures only: route identity plus the code/status/reason/bounded messages the
+    // client receives, and the bounded message of an unexpected error. Query strings, bodies, tokens and auth material are never part of this record.
+    if (normalized.status >= 500) {
+      try { (this.options.logger ?? NOOP_RUNTIME_DAEMON_LOGGER).warn("runtime.daemon.request.failed", { ...(context ?? {}), ...describeRuntimeFailure(normalized), ...(normalized === error ? {} : { cause: safeDiagnosticText(error) }) }); } catch {}
+    }
     const body: RuntimeErrorBody = {
       error: {
         code: normalized.code,

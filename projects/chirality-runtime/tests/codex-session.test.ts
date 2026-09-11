@@ -417,7 +417,7 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
     } finally { await f.close(); }
   });
   it("rejects provider errors and times out without manufacturing terminal completion", async () => {
-    const rejected = fixture("reject"); try { await ready(rejected); await expect(rejected.session.startTurn(turn)).rejects.toMatchObject({ details: { reason: "CODEX_REQUEST_REJECTED" } }); await expect(rejected.session.waitTurn("turn1")).rejects.toThrow("Unknown"); } finally { await rejected.close(); }
+    const rejected = fixture("reject"); try { await ready(rejected); await expect(rejected.session.startTurn(turn)).rejects.toMatchObject({ details: { reason: "CODEX_REQUEST_REJECTED", method: "turn/start", codexCode: -32600, codexMessage: "fixture" } }); await expect(rejected.session.waitTurn("turn1")).rejects.toThrow("Unknown"); } finally { await rejected.close(); }
     // An expired turn is interrupted through the provider; only a provider that ignores the interrupt is a failure.
     const silent = fixture("silent", 100); try { await ready(silent); const id = await silent.session.startTurn(turn); expect((await silent.session.waitTurn(id)).status).toBe("interrupted"); } finally { await silent.close(); }
     const deaf = fixture("deaf", 100); try { await ready(deaf); const id = await deaf.session.startTurn(turn); await expect(deaf.session.waitTurn(id)).rejects.toThrow("timed out"); await expect(deaf.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true })).rejects.toThrow("timed out"); } finally { await deaf.close(); }

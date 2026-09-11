@@ -131,6 +131,23 @@ describe('GET /api/working-root/tree', () => {
     expect(allPaths.has(path.join(linkToDir, 'secret.txt'))).toBe(false);
   });
 
+  it('hides the engine scratch directory but keeps other dot-directories', async () => {
+    const route = await importRouteModule();
+    const scratch = path.join(projectRoot, '.chirality-scratch-Q6MuOO');
+    await mkdir(scratch, { recursive: true });
+    await writeFile(path.join(scratch, '.gitignore'), '*\n');
+    await mkdir(path.join(projectRoot, '.chirality', 'attachments'), { recursive: true });
+    await writeFile(path.join(projectRoot, 'README.md'), '# trial\n');
+
+    const response = await requestTree(route, projectRoot);
+    expect(response.status).toBe(200);
+    const names = (response.body.root?.children ?? []).map((child) => child.name);
+    expect(names).toContain('.chirality');
+    expect(names).toContain('README.md');
+    expect(names).not.toContain('.chirality-scratch-Q6MuOO');
+    expect(collectPaths(response.body.root as TreeNode).has(scratch)).toBe(false);
+  });
+
   it('returns typed accessibility errors for missing roots', async () => {
     const route = await importRouteModule();
     const response = await requestTree(route, path.join(projectRoot, 'missing-root'));

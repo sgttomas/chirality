@@ -335,9 +335,19 @@ describe('hosted account sequence through production code against a real daemon 
     expect(ceremonies).toHaveLength(2);
     await expect(getHostedBootstrapStatusWithRetry(projectRoot)).resolves.toMatchObject({ status: { ceremony: 'pending' } });
     ceremonies[1]!.complete();
+    // Establishment starts on the completion poll but is never awaited by it (commit 8c68e500e):
+    // the projection reports "establishing" until the admission settles, as the App's poll loop does.
+    const settled = await (async () => {
+      for (let attempt = 0; attempt < 100; attempt += 1) {
+        const observed = await getHostedBootstrapStatusWithRetry(projectRoot);
+        if (observed.status?.admission !== 'establishing') return observed;
+        await new Promise(resolve => setTimeout(resolve, 50));
+      }
+      throw new Error('Hosted admission did not settle');
+    })();
     // The ready status carries the retained catalog and its default selection
     // across the real proof-bearing path (HostAccountClient -> account host).
-    await expect(getHostedBootstrapStatusWithRetry(projectRoot)).resolves.toEqual({
+    expect(settled).toEqual({
       registration: 'registered', projectId,
       status: {
         schema: 'chirality-hosted-bootstrap-status/v1', projectId, ceremony: 'signed-in', admission: 'ready', canStartLogin: false,
