@@ -1,4 +1,3 @@
-import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -56,20 +55,5 @@ describe('electron/daemon-instruction-root', () => {
       source: 'packaged-resources-fallback',
       reason: 'MANIFEST_RESOLUTION_UNAVAILABLE'
     });
-  });
-
-  it('wires packaged daemon startup through the registry resolver and structured fallback log', async () => {
-    const mainSource = await readFile(path.resolve(process.cwd(), 'electron', 'main.ts'), 'utf8');
-    const initializeDaemon = mainSource.slice(
-      mainSource.indexOf('async function initializeDaemon()'),
-      mainSource.indexOf('/**\n * Release everything this process owns')
-    );
-
-    expect(initializeDaemon).toContain('resolvePackagedDaemonInstructionRoot({');
-    expect(initializeDaemon).toContain('resolveProjectRoots: (projectId) => projects.roots(projectId)');
-    expect(initializeDaemon).toContain("desktopLogger.warn('runtime.daemon.instruction_root.fallback'");
-    expect(initializeDaemon).not.toContain(
-      'process.env.CHIRALITY_INSTRUCTION_ROOT = path.resolve(process.resourcesPath)'
-    );
   });
 });

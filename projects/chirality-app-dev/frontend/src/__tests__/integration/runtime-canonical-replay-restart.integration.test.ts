@@ -172,7 +172,10 @@ async function replayThroughCli(
       launchAgentsDirectory: join(root, 'LaunchAgents')
     },
     executablePath: join(root, 'chirality'),
-    readTextFile: (path) => readFile(path, 'utf8')
+    readTextFile: (path) => readFile(path, 'utf8'),
+    async measureRuntimeSupportProfile() {
+      throw new Error('Runtime support measurement is outside this replay fixture');
+    }
   };
 
   const exitCode = await runCli(

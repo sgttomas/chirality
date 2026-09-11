@@ -5,6 +5,7 @@ import React from 'react';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { AccountPopover, type AccountPopoverProps } from './account-popover';
 import { accountTitle, LocalModelStatus } from './account-settings-controls';
+import { hostedBootstrapSummary, hostedBootstrapTitle } from '../settings/hosted-bootstrap-view';
 import styles from './account-controls.module.css';
 
 export function AccountRow(props: AccountPopoverProps): JSX.Element {
@@ -41,8 +42,8 @@ export function AccountRow(props: AccountPopoverProps): JSX.Element {
     if (event.relatedTarget instanceof Node && !event.currentTarget.contains(event.relatedTarget)) setOpen(false);
   }}>
     <button ref={trigger} type="button" className={styles.row} aria-label="Account and settings" aria-expanded={open} aria-controls={id} aria-haspopup="dialog" onClick={() => setOpen(value => !value)}>
-      <span className={styles.avatar} aria-hidden="true">{props.account.snapshot?.account.status === 'loggedIn' ? 'A' : '?'}</span>
-      <span className={styles.identity}><strong>{accountTitle(props.account)}</strong><small><LocalModelStatus /></small></span><span aria-hidden="true">⌃</span>
+      <span className={styles.avatar} aria-hidden="true">{props.hosted?.snapshot?.registration === 'registered' && props.hosted.snapshot.status.ceremony === 'signed-in' ? 'A' : props.account.snapshot?.account.status === 'loggedIn' ? 'A' : '?'}</span>
+      <span className={styles.identity}><strong>{props.hosted ? hostedBootstrapTitle(props.hosted) : accountTitle(props.account)}</strong><small>{props.hosted ? hostedBootstrapSummary(props.hosted) : <LocalModelStatus />}</small></span><span aria-hidden="true">⌃</span>
     </button>
     {open ? <div ref={panel} id={id} role="dialog" aria-label="Account and settings" tabIndex={-1} className={styles.popover}>
       <AccountPopover {...props} onOpenSettings={group => { dismiss(); props.onOpenSettings(group); }} />

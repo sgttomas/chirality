@@ -18,7 +18,15 @@ export const RUNTIME_ROUTES = {
   daemonStatus: "/v1/daemon/status",
   projects: "/v1/projects",
   projectRegister: "/v1/projects/register",
+  hostedBootstrapProjectRegister: "/v3/hosted-bootstrap/projects/register",
+  hostedBootstrapProjectInitialize: "/v3/hosted-bootstrap/projects/initialize",
   projectStatus: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/status`,
+  hostedBootstrapStatus: (projectId: string) => `/v3/projects/${encodeURIComponent(projectId)}/hosted-bootstrap/status`,
+  hostedBootstrapConsent: (projectId: string) => `/v3/projects/${encodeURIComponent(projectId)}/hosted-bootstrap/provider-network-consent`,
+  hostedBootstrapLoginStart: (projectId: string) => `/v3/projects/${encodeURIComponent(projectId)}/hosted-bootstrap/login/start`,
+  hostedBootstrapLoginCancel: (projectId: string) => `/v3/projects/${encodeURIComponent(projectId)}/hosted-bootstrap/login/cancel`,
+  /** Project-local supplier sign-out; it does not assert account-wide revocation. */
+  hostedBootstrapLogout: (projectId: string) => `/v3/projects/${encodeURIComponent(projectId)}/hosted-bootstrap/logout`,
   roles: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/roles`,
   methods: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/methods`,
   method: (projectId: string, qualifiedId: string) =>
@@ -46,6 +54,10 @@ export const RUNTIME_ROUTES = {
     `${RUNTIME_ROUTES.session(projectId, sessionId)}/native-plan/revisions`,
   nativePlanExport: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.session(projectId, sessionId)}/native-plan/export`,
+  nativePlanClarifications: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.session(projectId, sessionId)}/native-plan/clarifications`,
+  nativePlanClarificationReply: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.nativePlanClarifications(projectId, sessionId)}/reply`,
   agents: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/agents`,
   scaffold: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/scaffold`,
   runs: (projectId: string) => `/v1/projects/${encodeURIComponent(projectId)}/runs`,
@@ -58,6 +70,14 @@ export interface ProjectRegistrationRequest {
   manifestPath: string;
   approvedBy: string;
   approvalReference: string;
+}
+export interface HostedBootstrapProjectRegistrationRequest { manifestPath: string }
+export interface HostedBootstrapProjectInitializationRequest { projectRoot: string }
+
+/** Safe renderer-facing binding. Project client credentials remain host-only. */
+export interface HostedBootstrapProjectRegistrationResponse {
+  projectId: string;
+  manifestHash: string;
 }
 
 export interface ProjectRegistrationResponse {

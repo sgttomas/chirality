@@ -1,5 +1,5 @@
 import { constants } from "node:fs";
-import { lstat, open, realpath } from "node:fs/promises";
+import { lstat, open, readdir, realpath } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { isAbsolute, resolve } from "node:path";
 import { RuntimeError } from "@chirality/runtime-contracts";
@@ -17,6 +17,7 @@ interface FileIdentity {
   readonly size: string;
   readonly mtimeNs: string;
   readonly ctimeNs: string;
+  readonly mode: string;
 }
 interface SupplyDescriptor {
   readonly executablePath: string;
@@ -24,21 +25,39 @@ interface SupplyDescriptor {
   readonly sha256: string;
   readonly version: string;
   readonly identity: FileIdentity;
-  readonly versionEvidence: "accepted-payload-mapping-not-executed" | "controlled-fixture-not-vendor-evidence";
+  readonly versionEvidence: "accepted-payload-mapping-not-executed" | "custom-build-exact-profile" | "controlled-fixture-not-vendor-evidence";
   readonly signatureStatus: string;
 }
 export interface VerifiedSupply extends SupplyDescriptor { readonly evidenceClass: "accepted-supply" }
+export interface VerifiedCustomSupply extends SupplyDescriptor {
+  readonly evidenceClass: "custom-supply-profile-verified";
+  readonly custody: "packaged" | "private-staged";
+  readonly closure: readonly Readonly<(ExactSupplyClosureEntry & { identity: FileIdentity })>[];
+}
+export type ExactVerifiedSupply = VerifiedSupply | VerifiedCustomSupply;
+export type ExactSupplyClosureEntry =
+  | { relativePath: string; type: "directory" }
+  | { relativePath: string; type: "file"; sha256: string; size: number; mode: "executable" | "data" };
+export interface CustomSupplyExactProfileV1 {
+  schema: "chirality-custom-supplier-exact-profile/v1";
+  executable: { relativePath: "supplier/codex"; version: string; sha256: string; size: number };
+}
+export interface ExactSupplyVerifier {
+  verify(options: { executablePath: string; custody?: "packaged" | "private-staged" }): Promise<ExactVerifiedSupply>;
+  revalidate(descriptor: ExactVerifiedSupply): Promise<ExactVerifiedSupply>;
+  readonly closureEntries: readonly Readonly<ExactSupplyClosureEntry>[];
+}
 export interface ControlledFixtureSupply extends SupplyDescriptor { readonly evidenceClass: "controlled-fixture" }
 interface SupplyOptions { executablePath: string; expectedSha256?: string; expectedVersion?: string }
 interface Profile { sha256: string; version: string; size: number }
 const denied = (message: string) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503);
 const issued = new WeakSet<VerifiedSupply>();
 
-function identity(stat: { dev: bigint; ino: bigint; size: bigint; mtimeNs: bigint; ctimeNs: bigint }): FileIdentity {
-  return Object.freeze({ dev: `${stat.dev}`, ino: `${stat.ino}`, size: `${stat.size}`, mtimeNs: `${stat.mtimeNs}`, ctimeNs: `${stat.ctimeNs}` });
+function identity(stat: { dev: bigint; ino: bigint; size: bigint; mtimeNs: bigint; ctimeNs: bigint; mode: bigint }): FileIdentity {
+  return Object.freeze({ dev: `${stat.dev}`, ino: `${stat.ino}`, size: `${stat.size}`, mtimeNs: `${stat.mtimeNs}`, ctimeNs: `${stat.ctimeNs}`, mode: `${stat.mode}` });
 }
 function sameIdentity(a: FileIdentity, b: FileIdentity): boolean {
-  return a.dev === b.dev && a.ino === b.ino && a.size === b.size && a.mtimeNs === b.mtimeNs && a.ctimeNs === b.ctimeNs;
+  return a.dev === b.dev && a.ino === b.ino && a.size === b.size && a.mtimeNs === b.mtimeNs && a.ctimeNs === b.ctimeNs && a.mode === b.mode;
 }
 async function inspect(executablePath: string, profile: Profile): Promise<{ canonicalPath: string; identity: FileIdentity; sha256: string }> {
   let handle;
@@ -90,6 +109,77 @@ export async function revalidateExactSupply(descriptor: VerifiedSupply): Promise
   const current = await verifyExactSupply({ executablePath: descriptor.executablePath });
   if (!sameIdentity(descriptor.identity, current.identity)) throw denied("Supply executable identity drifted after verification");
   return current;
+}
+
+async function inspectClosure(executablePath: string, entries: ExactSupplyVerifier["closureEntries"], custody: "packaged" | "private-staged"): Promise<VerifiedCustomSupply["closure"]> {
+  const root = resolve(executablePath, "..");
+  const observed: string[] = [];
+  async function walk(path: string, relativePath: string): Promise<void> {
+    if (observed.length >= 50_000) throw denied("Custom supply closure exceeds its bound");
+    const info = await lstat(path);
+    if (info.isSymbolicLink() || await realpath(path) !== path) throw denied("Custom supply closure path is unsafe");
+    observed.push(relativePath);
+    if (info.isDirectory()) for (const name of (await readdir(path)).sort((a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b)))) await walk(resolve(path, name), `${relativePath}/${name}`);
+  }
+  await walk(root, "supplier");
+  if (observed.length !== entries.length || observed.some((value, index) => value !== entries[index]!.relativePath)) throw denied("Custom supply closure contains an unlisted or missing path");
+  const values = [];
+  for (const expected of entries) {
+    const relativePath = expected.relativePath === "supplier" ? "" : expected.relativePath.slice("supplier/".length), path = relativePath ? resolve(root, relativePath) : root;
+    if ((relativePath && !path.startsWith(`${root}/`)) || await realpath(path) !== path) throw denied("Custom supply closure path is unsafe");
+    const info = await lstat(path, { bigint: true });
+    const permissions = info.mode & 0o777n;
+    const modeInvalid = custody === "private-staged"
+      ? permissions !== BigInt(expected.type === "directory" || expected.mode === "executable" ? 0o700 : 0o600)
+      : (permissions & 0o022n) !== 0n || (expected.type === "file" && ((permissions & 0o111n) !== 0n) !== (expected.mode === "executable"));
+    if (info.isSymbolicLink() || info.uid !== BigInt(process.getuid?.() ?? -1) || modeInvalid
+      || (expected.type === "directory" ? !info.isDirectory() : (!info.isFile() || info.nlink !== 1n || info.size !== BigInt(expected.size)))) throw denied("Custom supply closure custody is unsafe");
+    if (expected.type === "directory") { values.push(Object.freeze({ ...expected, identity: identity(info) })); continue; }
+    const handle = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
+    try {
+      const before = identity(await handle.stat({ bigint: true })), digest = createHash("sha256"), buffer = Buffer.alloc(64 * 1024); let total = 0;
+      for (;;) { const { bytesRead } = await handle.read(buffer, 0, buffer.length, null); if (!bytesRead) break; total += bytesRead; if (total > expected.size) throw denied("Custom supply closure grew during verification"); digest.update(buffer.subarray(0, bytesRead)); }
+      const after = identity(await handle.stat({ bigint: true })), current = identity(await lstat(path, { bigint: true }));
+      if (total !== expected.size || digest.digest("hex") !== expected.sha256 || !sameIdentity(before, after) || !sameIdentity(after, current)) throw denied("Custom supply closure changed or differs from its accepted profile");
+      values.push(Object.freeze({ ...expected, identity: after }));
+    } finally { await handle.close(); }
+  }
+  return Object.freeze(values);
+}
+
+/** Pure byte/custody verifier. A caller-created value is not operational; the packaged-basis registry separately issues it. */
+export function createCustomSupplyVerifier(profile: Readonly<CustomSupplyExactProfileV1>, closureEntries: readonly Readonly<ExactSupplyClosureEntry>[]): ExactSupplyVerifier {
+  const hex = (value: unknown) => typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
+  if (!profile || profile.schema !== "chirality-custom-supplier-exact-profile/v1" || profile.executable?.relativePath !== "supplier/codex"
+    || !profile.executable.version || !hex(profile.executable.sha256) || !Number.isSafeInteger(profile.executable.size) || profile.executable.size < 1
+    || !Array.isArray(closureEntries) || closureEntries.length < 2 || closureEntries.length > 50_000) throw denied("Custom supply exact profile is invalid");
+  const paths = closureEntries.map(value => value.relativePath);
+  if (new Set(paths).size !== paths.length || paths.some((path, index) => !/^supplier(?:\/[A-Za-z0-9._/-]+)?$/.test(path) || (index > 0 && Buffer.compare(Buffer.from(paths[index - 1]!), Buffer.from(path)) >= 0))
+    || paths[0] !== "supplier"
+    || closureEntries.some(value => value.type === "file" ? (!hex(value.sha256) || !Number.isSafeInteger(value.size) || value.size < 0 || !["executable", "data"].includes(value.mode)) : value.type !== "directory")) throw denied("Custom supply exact closure is invalid");
+  const types = new Map(closureEntries.map(value => [value.relativePath, value.type]));
+  if (closureEntries.some(value => value.relativePath !== "supplier" && types.get(value.relativePath.slice(0, value.relativePath.lastIndexOf("/"))) !== "directory")) throw denied("Custom supply exact closure parent is invalid");
+  const executable = closureEntries.find((value): value is Extract<ExactSupplyClosureEntry, {type:"file"}> => value.relativePath === "supplier/codex" && value.type === "file");
+  if (!executable || executable.sha256 !== profile.executable.sha256 || executable.size !== profile.executable.size) throw denied("Custom supply profile differs from its accepted closure");
+  if (executable.mode !== "executable") throw denied("Custom supply executable is not executable");
+  const frozenProfile = structuredClone(profile), frozenEntries = Object.freeze(closureEntries.map(value => Object.freeze({ ...value })));
+  const descriptors = new WeakSet<VerifiedCustomSupply>();
+  const verifier: ExactSupplyVerifier = Object.freeze({ closureEntries: frozenEntries,
+    async verify(options: { executablePath: string; custody?: "packaged" | "private-staged" }) {
+      const custody = options.custody ?? "packaged";
+      const result = await inspect(options.executablePath, { sha256: frozenProfile.executable.sha256, version: frozenProfile.executable.version, size: frozenProfile.executable.size });
+      const descriptor: VerifiedCustomSupply = Object.freeze({ executablePath: options.executablePath, ...result, version: frozenProfile.executable.version, evidenceClass: "custom-supply-profile-verified",
+        custody, versionEvidence: "custom-build-exact-profile", signatureStatus: "custom-build-signature-not-evaluated", closure: await inspectClosure(options.executablePath, frozenEntries, custody) });
+      descriptors.add(descriptor); return descriptor;
+    },
+    async revalidate(descriptor: ExactVerifiedSupply) {
+      if (!descriptor || descriptor.evidenceClass !== "custom-supply-profile-verified" || !descriptors.has(descriptor)) throw denied("Custom supply descriptor was not issued by this verifier");
+      const current = await verifier.verify({ executablePath: descriptor.executablePath, custody: descriptor.custody }) as VerifiedCustomSupply;
+      if (!sameIdentity(descriptor.identity, current.identity) || descriptor.closure.length !== current.closure.length || descriptor.closure.some((value, index) => !sameIdentity(value.identity, current.closure[index]!.identity))) throw denied("Custom supply closure identity drifted after verification");
+      return current;
+    }
+  });
+  return verifier;
 }
 
 /** Explicit fixture seam; descriptors cannot pass the production verifier's issuance seal. */

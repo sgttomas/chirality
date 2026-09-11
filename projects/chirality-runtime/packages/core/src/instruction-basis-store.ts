@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { open, readFile, rm, stat, truncate } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import {
-  assertQualifiedNativePlanEvent,
+  assertAdmittedNativePlanEvent,
   RuntimeError,
   type ChiralityRoleName,
   type MethodCompatibilityMapping,
@@ -121,7 +121,28 @@ export interface NativePlanRevisedHistoryRecord {
   revision: NativePlanRevision;
   revisionSha256?: string;
   qualificationSha256?: string;
+  admissionSha256?: string;
   provenance?: "trusted-native-plan-registry";
+}
+
+export interface NativeChildMethodLoadedHistoryRecord {
+  type: "native-child.method-loaded";
+  associationId: string;
+  supplierGeneration: string;
+  parentSessionId: string;
+  rootThreadId: string;
+  rootTurnId: string;
+  parentTurnId: string;
+  childThreadId: string;
+  childTurnId: string;
+  roleId: ChiralityRoleName;
+  roleBasisDigest: string;
+  inheritedToolsDigest: string;
+  invocationId: string;
+  selectedMethods: readonly QualifiedMethodReference[];
+  childInstructionBasisId: string;
+  instructionPolicySha256: string;
+  loadedEntries: readonly ResourceLoadedHistoryRecord[];
 }
 
 export interface ProviderSpanContinuedHistoryRecord {
@@ -176,6 +197,7 @@ export type InstructionHistoryInput =
   | MethodChangeAppliedHistoryRecord
   | MethodChangeFailedHistoryRecord
   | NativePlanRevisedHistoryRecord
+  | NativeChildMethodLoadedHistoryRecord
   | ProviderSpanContinuedHistoryRecord
   | ProviderSpanPreparedHistoryRecord
   | ProviderSpanCommittedHistoryRecord
@@ -305,12 +327,15 @@ export class InstructionBasisStore {
   }
 
   async appendTrustedNativePlanRevision(projectId: string, sessionId: string, revision: NativePlanRevision): Promise<InstructionHistoryRecord> {
-    assertQualifiedNativePlanEvent(revision.sourceEvent);
+    assertAdmittedNativePlanEvent(revision.sourceEvent);
+    const evidence = revision.sourceEvent.qualificationState === "qualified" ? revision.sourceEvent.qualification : revision.sourceEvent.admission;
     const input: NativePlanRevisedHistoryRecord = {
       type: "native-plan.revised",
       revision,
       revisionSha256: sha256(JSON.stringify(revision)),
-      qualificationSha256: sha256(JSON.stringify(revision.sourceEvent.qualification)),
+      ...(revision.sourceEvent.qualificationState === "qualified"
+        ? { qualificationSha256: sha256(JSON.stringify(evidence)) }
+        : { admissionSha256: sha256(JSON.stringify(evidence)) }),
       provenance: "trusted-native-plan-registry"
     };
     assertSafeIdentifier(sessionId, "sessionId");
@@ -454,6 +479,14 @@ export class InstructionBasisStore {
         }
         this.validateEntry({ ...input, kind: input.resourceKind });
         return;
+      case "native-child.method-loaded":
+        if (!/^[a-f0-9]{32}$/u.test(input.associationId) || !nonempty(input.supplierGeneration) || !nonempty(input.parentSessionId) || !nonempty(input.rootThreadId) || !nonempty(input.rootTurnId) || !nonempty(input.parentTurnId)
+          || !nonempty(input.childThreadId) || !nonempty(input.childTurnId) || !nonempty(input.invocationId)
+          || !/^[a-f0-9]{64}$/u.test(input.roleBasisDigest) || !/^[a-f0-9]{64}$/u.test(input.inheritedToolsDigest)
+          || !/^[a-f0-9]{64}$/u.test(input.instructionPolicySha256) || !nonempty(input.childInstructionBasisId) || !Array.isArray(input.selectedMethods) || !input.selectedMethods.every(validQualifiedMethod)
+          || !Array.isArray(input.loadedEntries)) throw invalid("Invalid native child method activation history");
+        for (const entry of input.loadedEntries) this.validateHistoryInput(entry);
+        return;
       case "instruction-basis.resolved":
         assertSafeIdentifier(input.basisId, "basisId");
         if (!nonempty(input.acceptedTurn?.turnId) || !nonempty(input.acceptedTurn?.eventId)) {
@@ -528,10 +561,13 @@ export class InstructionBasisStore {
   private validateNativePlanRevision(input: NativePlanRevisedHistoryRecord, trustedWrite: boolean, trustedRead = false): void {
     try {
       if (!Number.isSafeInteger(input.revision.revision) || input.revision.revision < 1) throw new Error("revision");
-      assertQualifiedNativePlanEvent(input.revision.sourceEvent);
+      assertAdmittedNativePlanEvent(input.revision.sourceEvent);
       if (input.provenance === "trusted-native-plan-registry") {
         if (!validHash(input.revisionSha256) || input.revisionSha256 !== sha256(JSON.stringify(input.revision))) throw new Error("revision hash");
-        if (!validHash(input.qualificationSha256) || input.qualificationSha256 !== sha256(JSON.stringify(input.revision.sourceEvent.qualification))) throw new Error("qualification hash");
+        const evidence = input.revision.sourceEvent.qualificationState === "qualified" ? input.revision.sourceEvent.qualification : input.revision.sourceEvent.admission;
+        if (input.revision.sourceEvent.qualificationState === "qualified"
+          ? (!validHash(input.qualificationSha256) || input.admissionSha256 !== undefined || input.qualificationSha256 !== sha256(JSON.stringify(evidence)))
+          : (!validHash(input.admissionSha256) || input.qualificationSha256 !== undefined || input.admissionSha256 !== sha256(JSON.stringify(evidence)))) throw new Error("admission hash");
         if (!trustedWrite && !trustedRead) throw new Error("untrusted append");
         return;
       }

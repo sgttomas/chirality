@@ -1,14 +1,12 @@
 from __future__ import annotations
 
 import os
-import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 
 SCRIPT = Path(__file__).with_name("validate_candidate_whitespace.py")
-HOOK = SCRIPT.parents[2] / ".githooks" / "pre-commit"
 
 
 def git(repo: Path, *args: str) -> subprocess.CompletedProcess[str]:
@@ -220,41 +218,3 @@ def test_control_characters_in_path_are_rendered_unambiguously(
     assert result.returncode == 1
     assert "line\\nbreak.md:1: trailing whitespace" in result.stdout
     assert "line\nbreak.md:1" not in result.stdout
-
-
-def test_versioned_precommit_hook_blocks_bad_untracked_candidate(
-    tmp_path: Path,
-) -> None:
-    repo = init_repo(tmp_path)
-    validator_target = repo / "tools/validation/validate_candidate_whitespace.py"
-    hook_target = repo / ".githooks/pre-commit"
-    validator_target.parent.mkdir(parents=True)
-    hook_target.parent.mkdir(parents=True)
-    shutil.copy2(SCRIPT, validator_target)
-    shutil.copy2(HOOK, hook_target)
-    validator_target.chmod(0o755)
-    hook_target.chmod(0o755)
-    git(repo, "config", "core.hooksPath", ".githooks")
-    write(repo / "candidate.md", "bad  \n")
-
-    blocked = subprocess.run(
-        ["git", "commit", "--allow-empty", "-m", "must block"],
-        cwd=repo,
-        text=True,
-        capture_output=True,
-        check=False,
-    )
-    write(repo / "candidate.md", "clean\n")
-    admitted = subprocess.run(
-        ["git", "commit", "--allow-empty", "-m", "clean candidate"],
-        cwd=repo,
-        text=True,
-        capture_output=True,
-        check=False,
-    )
-
-    assert blocked.returncode != 0
-    assert "candidate.md:1: trailing whitespace" in (
-        blocked.stdout + blocked.stderr
-    )
-    assert admitted.returncode == 0

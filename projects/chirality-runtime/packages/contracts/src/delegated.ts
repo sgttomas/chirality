@@ -85,11 +85,21 @@ export interface DelegatedPreflight extends RuntimeCompatibilityIdentity {
   nonce: string;
 }
 export type DelegatedRole = "untyped" | "agent0" | "agent1" | "agent2" | "task";
+export type DelegatedInteractionMode = "chat" | "native-plan";
+export type DelegatedAttachmentInput =
+  | { type: "text"; text: string; source: "untrusted-document" }
+  | { type: "localImage"; path: string; mimeType: "image/png" | "image/jpeg" | "image/gif" | "image/webp"; source: "untrusted-attachment" };
 export interface DelegatedTurnRequest {
   requestedRole?: DelegatedRole;
+  /** Runtime session identity is mandatory for native Plan turns. */
+  sessionId?: string;
+  interactionMode?: DelegatedInteractionMode;
+  permissionMode?: "readOnly" | "ask" | "workspaceWrite" | "bypass";
   turnId: string;
   previousTurnId?: string;
   prompt: string;
+  /** Resolved user attachments. They remain untrusted user input, never instruction context. */
+  attachments?: readonly DelegatedAttachmentInput[];
   compatibility: RuntimeCompatibilityIdentity;
   preflight: DelegatedPreflight;
 }
@@ -122,6 +132,7 @@ export interface DelegatedTurnResponse {
   event: HarnessEventV2;
   terminal: WorkerTerminalRecord;
   output: string;
+  providerThreadId?: string;
   evidenceClass: "controlled-worker" | "provider-observed";
 }
 
@@ -144,6 +155,26 @@ export interface HostedLoginStatus {
   evidenceClass: "exact-supply-login" | "controlled-fixture";
   binding: HostedAccountBinding;
   hostedReady: false;
+}
+export interface HostedBootstrapStatus {
+  schema: "chirality-hosted-bootstrap-status/v1";
+  projectId: string;
+  ceremony: "consent-required" | "ready-to-start" | "pending" | "signed-in" | "failed" | "cancelled";
+  admission: "unavailable" | "establishing" | "ready";
+  canStartLogin: boolean;
+}
+export interface HostedProviderNetworkConsentRequest { consent: true }
+export interface HostedBootstrapLoginStartResponse { loginId: string; authUrl: string }
+export function validateHostedBootstrapStatus(value: unknown): HostedBootstrapStatus {
+  const status = hostedRecord(value, ["schema", "projectId", "ceremony", "admission", "canStartLogin"]);
+  if (status.schema !== "chirality-hosted-bootstrap-status/v1" || typeof status.projectId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(status.projectId)
+    || !["consent-required", "ready-to-start", "pending", "signed-in", "failed", "cancelled"].includes(String(status.ceremony))
+    || !["unavailable", "establishing", "ready"].includes(String(status.admission)) || typeof status.canStartLogin !== "boolean"
+    || status.canStartLogin !== ["ready-to-start", "failed", "cancelled"].includes(String(status.ceremony))
+    || (status.admission === "ready" && status.ceremony !== "signed-in")) {
+    throw new RuntimeError("INVALID_REQUEST", "Invalid hosted bootstrap status");
+  }
+  return status as unknown as HostedBootstrapStatus;
 }
 function hostedRecord(value: unknown, allowed: readonly string[]): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)
@@ -184,6 +215,69 @@ export interface NetworkApprovalPrompt {
 export interface SupervisorNetworkApprovalPort {
   pendingNetworkApprovals(workerId: string, generation: string): Promise<readonly NetworkApprovalPrompt[]>;
   replyNetworkApproval(workerId: string, generation: string, approvalId: string, decision: NetworkApprovalChoice): Promise<{ sent: true }>;
+}
+
+/** Trusted supervisor projection of an authoritative completed Codex plan item. */
+export interface NativePlanTransportEvent {
+  projectId: string;
+  sessionId: string;
+  clientTurnId: string;
+  providerThreadId: string;
+  providerTurnId: string;
+  eventId: string;
+  occurredAt: string;
+  plan: unknown;
+}
+export interface NativePlanClarificationQuestion {
+  id: string;
+  header: string;
+  question: string;
+  options: readonly { label: string; description: string }[];
+  isOther: boolean;
+  isSecret: boolean;
+}
+export interface NativePlanClarificationPrompt {
+  projectId: string;
+  sessionId: string;
+  clientTurnId: string;
+  providerThreadId: string;
+  providerTurnId: string;
+  requestId: string | number;
+  itemId: string;
+  questions: readonly NativePlanClarificationQuestion[];
+  isBlocking: boolean;
+  autoResolutionMs: number | null;
+}
+export type NativePlanClarificationAnswers = Readonly<Record<string, { answers: readonly string[] }>>;
+export interface SupervisorNativePlanPort {
+  drainNativePlanEvents(workerId: string, generation: string): Promise<readonly NativePlanTransportEvent[]>;
+  pendingNativePlanClarifications(workerId: string, generation: string): Promise<readonly NativePlanClarificationPrompt[]>;
+  replyNativePlanClarification(workerId: string, generation: string, requestId: string | number, answers: NativePlanClarificationAnswers): Promise<{ sent: true }>;
+}
+
+export interface RuntimeToolCallbackDeclaration {
+  name: string;
+  description: string;
+  inputSchema: Readonly<Record<string, unknown>>;
+}
+export type RuntimeToolCallbackMessage =
+  | { kind: "pending" }
+  | { kind: "callback"; callId: string; threadId: string; turnId: string; name: string; args: Readonly<Record<string, unknown>>; nativeChild?: Readonly<{ associationId: string; supplierGeneration: string; rootThreadId: string; rootTurnId: string; parentThreadId: string; parentTurnId: string; selectedRole: import("./engine.js").NativeChildSelectedRole; inheritedToolsDigest: string }> };
+export interface RuntimeToolCallbackResult {
+  success: boolean;
+  contentItems: readonly { type: "inputText"; text: string }[];
+}
+/** Private daemon-to-supervisor bridge. Tool implementations never cross it. */
+export interface SupervisorRuntimeToolPort {
+  acquireWithRuntimeTools(workerId: string, input: string, tools: readonly RuntimeToolCallbackDeclaration[], inheritableTools?: readonly RuntimeToolCallbackDeclaration[]): Promise<WorkerHandle>;
+  nextRuntimeToolCallback(workerId: string, generation: string): Promise<RuntimeToolCallbackMessage>;
+  replyRuntimeToolCallback(workerId: string, generation: string, message: Extract<RuntimeToolCallbackMessage, { kind: "callback" }>, result: RuntimeToolCallbackResult): Promise<void>;
+}
+export type DelegatedTurnProgressEvent =
+  | { type: "started"; providerThreadId: string; providerTurnId: string }
+  | { type: "text"; providerThreadId: string; providerTurnId: string; text: string };
+export interface SupervisorTurnProgressPort {
+  drainTurnProgress(workerId: string, generation: string): Promise<readonly DelegatedTurnProgressEvent[]>;
 }
 
 export interface SupervisorApprovalDescription {

@@ -36,8 +36,7 @@ jobs:
           # misreport reachable SHAs as unreachable. blob:none keeps every
           # commit/tree (reachability and `git log` walks still work) while
           # skipping historical blob download; the harness never reads
-          # historical file contents, and the whitespace validator's base-ref
-          # diff lazy-fetches only the changed files' base blobs.
+          # historical file contents.
           fetch-depth: 0
           filter: blob:none
       - uses: actions/setup-python@v5
@@ -77,27 +76,14 @@ jobs:
         run: |
           python3 tools/validation/validate_agent_instructions.py --json
           python3 tools/validation/validate_workflow_metadata.py --json
-      - name: Candidate whitespace
-        id: candidate-whitespace
-        timeout-minutes: 3
+      - name: Unresolved conflict markers
         env:
-          WHITESPACE_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
+          CONFLICT_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
-          if git rev-parse --verify --quiet "${WHITESPACE_BASE_REF}^{commit}" >/dev/null; then
-            python3 tools/validation/validate_candidate_whitespace.py \
-              --base-ref "${WHITESPACE_BASE_REF}"
-          else
-            python3 tools/validation/validate_candidate_whitespace.py \
-              --base-ref HEAD^
+          if ! git rev-parse --verify --quiet "${CONFLICT_BASE_REF}^{commit}" >/dev/null; then
+            CONFLICT_BASE_REF=HEAD^
           fi
-      - name: Diagnose Candidate whitespace failure
-        if: failure() && steps.candidate-whitespace.outcome == 'failure'
-        run: >-
-          echo "::error title=Candidate whitespace failed::The check failed or
-          exceeded its 3-minute step limit. Treat reported whitespace findings
-          as candidate defects; if the preceding log stopped during a Git
-          lazy-fetch of base blobs, treat that timeout as infrastructure and
-          inspect object-serving health before rerunning."
+          python3 tools/validation/validate_conflict_markers.py --base "${CONFLICT_BASE_REF}" --head HEAD
       # The tools/ test estate. PRs run only the suites the change set
       # touches, selected deterministically by tools/run_affected_tests.py
       # from tools/tools-test-routing.json (live-tree gate suites —

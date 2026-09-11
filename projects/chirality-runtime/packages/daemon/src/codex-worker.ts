@@ -139,9 +139,9 @@ export async function runControlledCodexProbeForTests(input: CodexProbeInput & {
 }
 
 /** Private supplier source composition. This is never used by the public worker route. */
-export async function createNativeSupplierTransport(input:{executable:string;args:readonly string[];authoritySecret:Buffer}):Promise<import("./codex-session.js").CodexSessionTransport> {
+export async function createNativeSupplierTransport(input:{executable:string;args:readonly string[];authoritySecret:Buffer;nativeAddonPath:string}):Promise<import("./codex-session.js").CodexSessionTransport> {
   const {loadNativeAdmissionBinding}=await import("@chirality/native-admission");
-  const native=loadNativeAdmissionBinding(true);if(native.state!=="available")throw new Error("Supplier authority native package unavailable");
+  const native=loadNativeAdmissionBinding(true,input.nativeAddonPath);if(native.state!=="available")throw new Error("Supplier authority native package unavailable");
   const spawned=native.value.spawnSupplier(input.executable,input.args,input.authoritySecret);if(spawned.state!=="available")throw new Error("Supplier authority spawn unavailable");
   const child=spawned.value;let closing:Promise<void>|undefined;
   return {stdin:child.stdin,stdout:child.stdout,close:()=>closing??=retireNativeSupplier(child)};

@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Readable } from "node:stream";
 import * as fs from "node:fs/promises";
 import * as childProcess from "node:child_process";
+import * as os from "node:os";
 import * as core from "@chirality/runtime-core";
 import { RuntimeError, validateHostedLoginStatus, validateHostedManagedAuth } from "@chirality/runtime-contracts";
 import { RuntimeClient } from "../packages/client/src/client.js";
@@ -9,10 +10,11 @@ import { RuntimeDaemon } from "../packages/daemon/src/runtime-daemon.js";
 import { SupervisorClient } from "../packages/daemon/src/supervisor-server.js";
 import { CodexLogin } from "../packages/daemon/src/codex-login.js";
 import { CodexSupervisor } from "../packages/daemon/src/codex-supervisor.js";
-import { prepareCodexContainment, prepareCodexNativePolicy } from "../packages/daemon/src/codex-containment.js";
+import { prepareCodexContainment, prepareCodexContainmentV2, prepareCodexNativePolicy } from "../packages/daemon/src/codex-containment.js";
 
 // Mocks guard source-level process/filesystem effects. No supplier is invoked.
 vi.mock("node:child_process", async importOriginal => ({ ...await importOriginal<typeof import("node:child_process")>(), spawn: vi.fn(() => { throw new Error("Unexpected process launch"); }) }));
+vi.mock("node:os", async importOriginal => { const actual = await importOriginal<typeof import("node:os")>(); return { ...actual, userInfo: vi.fn(actual.userInfo) }; });
 vi.mock("node:fs/promises", async importOriginal => {
   const actual = await importOriginal<typeof import("node:fs/promises")>();
   return { ...actual, ...Object.fromEntries(["stat", "lstat", "realpath", "mkdtemp", "writeFile", "open", "rm", "mkdir", "readFile"].map(key => [key, vi.fn(() => { throw new Error(`Unexpected filesystem effect: ${key}`); })])) };
@@ -137,10 +139,19 @@ describe("custody purpose configuration and admission before effects", () => {
     const workerProfile = vi.mocked(fs.writeFile).mock.calls.at(-1)![1];
     expect(workerProfile).toContain('(deny mach-lookup (global-name "com.apple.securityd"))');
     expect(worker.config.cli_auth_credentials_store).toBe("file");
+    expect(worker.environment.HOME).toBe(options.privateDirectory);
     const login = await prepareCodexContainment({ ...options, purpose: "trusted-login" });
     const loginProfile = vi.mocked(fs.writeFile).mock.calls.at(-1)![1];
     expect(loginProfile).not.toContain('(deny mach-lookup (global-name "com.apple.securityd"))');
     expect(login.config.cli_auth_credentials_store).toBe("keyring");
+    expect(login.environment.HOME).toBe(options.privateDirectory);
+    vi.mocked(fs.lstat).mockImplementation(async () => ({ dev: 1n, ino: 2n, mode: 0o100600n, uid: BigInt(process.getuid!()), size: 1n, mtimeNs: 1n, ctimeNs: 1n, isDirectory: () => false, isFile: () => true, isSymbolicLink: () => false }) as any);
+    vi.mocked(os.userInfo).mockReturnValue({ uid: process.getuid!(), gid: process.getgid!(), username: "fixture", homedir: "/synthetic/os-user-home", shell: "/bin/zsh" });
+    const loginV2 = await prepareCodexContainmentV2({ ...options, purpose: "trusted-login", trustedRuntimeReadRoots: [] });
+    expect(loginV2.environment).toEqual({ HOME: "/synthetic/os-user-home", CODEX_HOME: options.codexHome, TMPDIR: expect.stringContaining("/synthetic/private-a/containment-"), PATH: "/usr/bin:/bin:/usr/sbin:/sbin", LANG: "en_US.UTF-8" });
+    vi.mocked(os.userInfo).mockReturnValue({ uid: process.getuid!(), gid: process.getgid!(), username: "fixture", homedir: "/synthetic/other-os-user-home", shell: "/bin/zsh" });
+    const otherLoginV2 = await prepareCodexContainmentV2({ ...options, purpose: "trusted-login", trustedRuntimeReadRoots: [] });
+    expect(otherLoginV2.environment.HOME).toBe("/synthetic/other-os-user-home"); expect(otherLoginV2.outerPolicyDigest).not.toBe(loginV2.outerPolicyDigest);
     const rootB = await prepareCodexContainment({ ...options, purpose: "trusted-login", canonicalRoot: "/synthetic/project-b", privateDirectory: "/synthetic/private-b", codexHome: "/synthetic/private-b/home" });
     expect(rootB.environment.CODEX_HOME).not.toBe(login.environment.CODEX_HOME);
     await expect(prepareCodexNativePolicy({ ...options, purpose: "trusted-login", immutableReadRoots: [], protectedPaths: [] })).rejects.toThrow();
@@ -152,7 +163,7 @@ describe("custody purpose configuration and admission before effects", () => {
     expect(native.expectedPermissions.filesystem[nativeOptions.privateDirectory]).toBe("deny");
     expect(native.expectedPermissions.filesystem["/synthetic/broker"]).toBe("deny");
     expect(native.enforcementEvidence).toBe("NOT_PROVEN_G_SBX");
-    await native.cleanup(); await worker.cleanup(); await login.cleanup(); await rootB.cleanup();
+    await native.cleanup(); await worker.cleanup(); await login.cleanup(); await loginV2.cleanup(); await otherLoginV2.cleanup(); await rootB.cleanup();
     expect(childProcess.spawn).not.toHaveBeenCalled(); expect(fs.open).not.toHaveBeenCalled(); expect(fs.readFile).not.toHaveBeenCalled();
   });
 });

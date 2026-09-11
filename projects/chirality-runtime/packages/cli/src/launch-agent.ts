@@ -3,6 +3,7 @@ import { chmod, mkdir, open, rename, unlink } from "node:fs/promises";
 import { basename, dirname, join, resolve } from "node:path";
 
 export const RUNTIME_LAUNCH_AGENT_LABEL = "com.chirality.runtime";
+export const RUNTIME_ACCOUNT_HOST_MACH_SERVICE = "com.chirality.app.runtime.account-host";
 
 export interface CommandResult {
   exitCode: number;
@@ -252,6 +253,11 @@ export function renderRuntimeLaunchAgent(
     <string>${xml(resolve(input.executablePath))}</string>
     <string>--runtime-daemon</string>
   </array>
+  <key>MachServices</key>
+  <dict>
+    <key>${RUNTIME_ACCOUNT_HOST_MACH_SERVICE}</key>
+    <true/>
+  </dict>
   <key>RunAtLoad</key>
   <${runAtLoad ? "true" : "false"}/>
 ${renderKeepAlive(input.keepAlive ?? DEFAULT_KEEP_ALIVE)}${renderEnvironmentVariables(

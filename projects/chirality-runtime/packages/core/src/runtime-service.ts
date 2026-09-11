@@ -211,6 +211,8 @@ export class RuntimeService {
   replaceSelectedMethods(projectId: string, sessionId: string, request: import("@chirality/runtime-contracts").ReplaceSelectedMethodsRequest) { return this.methods.replaceSelectedMethods(projectId, sessionId, request); }
   getNativePlanCapability(projectId: string, sessionId: string) { return this.methods.getNativePlanCapability(projectId, sessionId); }
   listNativePlanRevisions(projectId: string, sessionId: string) { return this.methods.listNativePlanRevisions(projectId, sessionId); }
+  listNativePlanClarifications(projectId: string, sessionId: string) { return this.methods.listNativePlanClarifications(projectId, sessionId); }
+  replyNativePlanClarification(projectId: string, sessionId: string, request: import("@chirality/runtime-contracts").ReplyNativePlanClarificationRequest) { return this.methods.replyNativePlanClarification(projectId, sessionId, request); }
   exportNativePlan(projectId: string, sessionId: string, request: import("@chirality/runtime-contracts").ExportNativePlanRequest) { return this.methods.exportNativePlan(projectId, sessionId, request); }
 
   async bootSession(
@@ -255,11 +257,13 @@ export class RuntimeService {
     const requestedTools = opts.tools ?? [];
     const admittedTools = resolvedContext === undefined ? requestedTools : await this.methods.restrictRequestedTools(projectId, resolvedContext.response.roleId, session.permissionMode, resolvedContext.response.methods, requestedTools);
     const input: AgentEngineRunInput = {
+      projectId,
       session,
       // Boot is a real adapter turn with a reserved compatibility message.
       // Production adapters use this value to distinguish an attributed boot
       // from an ordinary turn while still carrying Runtime's frozen context.
       message: "bootstrap",
+      interactionMode: session.interactionMode ?? "chat",
       opts: {
         model: opts.model ?? session.engineSelection.model,
         tools: admittedTools,

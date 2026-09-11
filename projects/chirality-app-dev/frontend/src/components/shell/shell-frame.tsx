@@ -12,6 +12,8 @@ import { SettingsView } from '../settings/settings-view';
 import { AccountRow } from './account-row';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { useRuntimeConnectivitySnapshot } from './runtime-connectivity-provider';
+import { useRuntimeBindingRefresh } from './runtime-connectivity-provider';
+import { useHostedBootstrapController } from '../settings/hosted-bootstrap-controller';
 import { ThemeControl } from './theme-control';
 
 export type ShellSection = 'PORTAL' | 'PIPELINE' | 'WORKBENCH' | 'CHAT';
@@ -338,13 +340,6 @@ export function ShellFrame({
         }
       >
         <div className="shell-brand-row">
-          <img
-            src="/chirality-app-icon.svg"
-            alt=""
-            className="shell-brand-tile"
-            width={26}
-            height={26}
-          />
           <span className="shell-wordmark">
             Chira<em>lity</em>
           </span>
@@ -402,6 +397,8 @@ function AccountPresentation({ folder, legacyHref, onOpenSettings, children }: {
 }): JSX.Element {
   const runtime = useRuntimeSettingsController();
   const account = useAccountConsentController();
+  const refreshBindings = useRuntimeBindingRefresh();
+  const hosted = useHostedBootstrapController(folder, refreshBindings);
   const [target, setTarget] = useState<{ group?: 'folder' | 'local-model'; sequence: number } | null>(null);
   const open = useCallback((group?: 'folder' | 'local-model') => {
     setTarget(current => ({ group, sequence: (current?.sequence ?? 0) + 1 }));
@@ -415,6 +412,6 @@ function AccountPresentation({ folder, legacyHref, onOpenSettings, children }: {
     window.addEventListener('keydown', shortcut);
     return () => window.removeEventListener('keydown', shortcut);
   }, [open]);
-  return <>{children({ settingsControl: <AccountRow account={account} runtime={runtime} folder={folder} legacyHref={legacyHref} onOpenSettings={open} />,
-    settingsView: <SettingsView account={account} runtime={runtime} folder={folder} target={target} /> })}</>;
+  return <>{children({ settingsControl: <AccountRow account={account} runtime={runtime} hosted={hosted} folder={folder} legacyHref={legacyHref} onOpenSettings={open} />,
+    settingsView: <SettingsView account={account} runtime={runtime} hosted={hosted} folder={folder} target={target} /> })}</>;
 }

@@ -1,4 +1,5 @@
 import { basename, isAbsolute, relative, resolve } from 'node:path';
+import { realpath } from 'node:fs/promises';
 
 import {
   RuntimeClient,
@@ -7,11 +8,13 @@ import {
 } from '@chirality/runtime-client';
 import {
   RuntimeError,
+  type HostedBootstrapProjectRegistrationResponse,
   type ProjectStatus,
   type RegisteredProject,
   type ReadableRuntimeSessionRecord
 } from '@chirality/runtime-contracts';
 import { HarnessError } from '@chirality/runtime-contracts/errors';
+import { resolveHostedProjectTokenFile } from '@chirality/runtime-daemon/hosted-paths';
 import type {
   HarnessErrorType,
   SessionRecord,
@@ -20,7 +23,11 @@ import type {
 
 import type {
   DaemonHarnessPort,
+  DaemonProjectBinding,
   DaemonRequestOptions,
+  HostedBootstrapPort,
+  HostedProjectBindingResponse,
+  HostedBootstrapStatusResponse,
   RunningDaemonHarnessTurn
 } from './daemon-harness-port';
 
@@ -38,6 +45,20 @@ export interface RuntimeDaemonHarnessEnvironment {
   CHIRALITY_RUNTIME_TOKEN_FILE?: string;
   CHIRALITY_RUNTIME_PROJECT_ID?: string;
   CHIRALITY_RUNTIME_PROJECT_ROOT?: string;
+  CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE?: string;
+  CHIRALITY_RUNTIME_DIRECTORY?: string;
+}
+
+export interface RuntimeHostedBootstrapPortOptions {
+  bootstrapClient: RuntimeClient;
+  runtimeDirectory: string;
+  socketPath: string;
+  createScopedClient?: (input: { socketPath: string; tokenFile: string }) => RuntimeClient;
+  installBoundPort?: (
+    port: DaemonHarnessPort,
+    binding: DaemonProjectBinding,
+    allowReplacement: boolean
+  ) => void;
 }
 
 function asLegacySession(
@@ -152,13 +173,6 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
     projectId = APP_DEV_PROJECT_ID,
     projectRoot?: string
   ) {
-    if (projectId !== APP_DEV_PROJECT_ID) {
-      throw new HarnessError(
-        'WORKING_ROOT_CONFLICT',
-        409,
-        'Chirality Desktop is scoped only to the app-dev project'
-      );
-    }
     this.projectId = projectId;
     this.projectRoot = projectRoot === undefined ? undefined : resolve(projectRoot);
   }
@@ -459,6 +473,37 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
     });
   }
 
+  async listNativePlanClarifications(
+    sessionId: string,
+    options?: DaemonRequestOptions
+  ): ReturnType<DaemonHarnessPort['listNativePlanClarifications']> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.listNativePlanClarifications(
+        this.projectId,
+        sessionId,
+        options?.signal
+      );
+    });
+  }
+
+  async replyNativePlanClarification(
+    sessionId: string,
+    requestId: string | number,
+    answers: Parameters<DaemonHarnessPort['replyNativePlanClarification']>[2],
+    options?: DaemonRequestOptions
+  ): ReturnType<DaemonHarnessPort['replyNativePlanClarification']> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.replyNativePlanClarification(
+        this.projectId,
+        sessionId,
+        { requestId, answers },
+        options?.signal
+      );
+    });
+  }
+
   async exportNativePlan(
     sessionId: string,
     request: Parameters<DaemonHarnessPort['exportNativePlan']>[1],
@@ -514,7 +559,7 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
   private async requireConfiguredProject(signal?: AbortSignal): Promise<RegisteredProject> {
     const project = authorizedProject(await this.client.projectStatus(this.projectId, signal));
     if (
-      project.projectId !== APP_DEV_PROJECT_ID ||
+      project.projectId !== this.projectId ||
       (this.projectRoot !== undefined &&
         resolve(project.canonicalRoot) !== this.projectRoot)
     ) {
@@ -544,6 +589,361 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
   }
 }
 
+type VerifiedHostedBinding = {
+  projectId: string;
+  projectRoot: string;
+  manifestHash: string;
+  client: RuntimeClient;
+};
+
+type HostedBindingReservation =
+  | { kind: 'explicit'; selectionGeneration: number }
+  | { kind: 'hydration'; selectionGeneration: number; hydrationGeneration: number };
+
+export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
+  private binding?: VerifiedHostedBinding;
+  private bindingSelectionGeneration = 0;
+  private hydrationGeneration = 0;
+  private pendingExplicitSelection?: number;
+  private readonly createScopedClient: NonNullable<
+    RuntimeHostedBootstrapPortOptions['createScopedClient']
+  >;
+  private readonly installBoundPort?: RuntimeHostedBootstrapPortOptions['installBoundPort'];
+
+  constructor(private readonly options: RuntimeHostedBootstrapPortOptions) {
+    this.createScopedClient = options.createScopedClient ?? (
+      (input) => new RuntimeClient(input)
+    );
+    this.installBoundPort = options.installBoundPort;
+  }
+
+  async bindProject(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<HostedProjectBindingResponse> {
+    return mapped(async () => {
+      const canonicalRoot = await this.canonicalRoot(projectRoot);
+      const capturedBinding = this.binding;
+      if (capturedBinding !== undefined) {
+        this.requireSameRoot(canonicalRoot, capturedBinding);
+        await this.revalidateBinding(capturedBinding, options?.signal);
+        return { registration: 'registered', projectId: capturedBinding.projectId };
+      }
+      const binding = await this.resolveAndBind(canonicalRoot, options?.signal);
+      if (!binding) return { registration: 'required' };
+      return { registration: 'registered', projectId: binding.projectId };
+    });
+  }
+
+  async getStatus(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<HostedBootstrapStatusResponse> {
+    return mapped(async () => {
+      const canonicalRoot = await this.canonicalRoot(projectRoot);
+      const binding = await this.resolveAndBind(canonicalRoot, options?.signal);
+      if (!binding) return { registration: 'required' };
+      return this.registeredStatus(binding, options?.signal);
+    });
+  }
+
+  async initializeProject(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): ReturnType<HostedBootstrapPort['initializeProject']> {
+    return mapped(async () => {
+      const reservation = this.reserveExplicitSelection();
+      try {
+        const canonicalRoot = await this.canonicalRoot(projectRoot);
+        const registration = await this.options.bootstrapClient.initializeHostedBootstrapProject(
+          { projectRoot: canonicalRoot },
+          options?.signal
+        );
+        const binding = await this.verifyAndBind(
+          canonicalRoot,
+          registration,
+          true,
+          options?.signal,
+          reservation
+        );
+        return this.registeredStatus(binding, options?.signal);
+      } finally {
+        if (this.pendingExplicitSelection === reservation.selectionGeneration) {
+          this.pendingExplicitSelection = undefined;
+        }
+      }
+    });
+  }
+
+  async grantProviderNetworkConsent(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): ReturnType<HostedBootstrapPort['grantProviderNetworkConsent']> {
+    return mapped(async () => {
+      const binding = await this.requireBinding(projectRoot, options?.signal, this.binding);
+      return binding.client.grantHostedProviderNetworkConsent(
+        binding.projectId,
+        options?.signal
+      );
+    });
+  }
+
+  async startLogin(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): ReturnType<HostedBootstrapPort['startLogin']> {
+    return mapped(async () => {
+      const binding = await this.requireBinding(projectRoot, options?.signal, this.binding);
+      return binding.client.startHostedBootstrapLogin(binding.projectId, options?.signal);
+    });
+  }
+
+  async cancelLogin(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): ReturnType<HostedBootstrapPort['cancelLogin']> {
+    return mapped(async () => {
+      const binding = await this.requireBinding(projectRoot, options?.signal, this.binding);
+      return binding.client.cancelHostedBootstrapLogin(binding.projectId, options?.signal);
+    });
+  }
+
+  async signOut(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): ReturnType<HostedBootstrapPort['signOut']> {
+    return mapped(async () => {
+      const capturedBinding = this.binding;
+      const binding = await this.requireBinding(projectRoot, options?.signal, capturedBinding);
+      if (this.binding !== binding) {
+        throw new RuntimeError(
+          'PROJECT_MANIFEST_DRIFT',
+          'A newer project binding operation superseded this request',
+          409
+        );
+      }
+      return binding.client.signOutHostedProject(binding.projectId, options?.signal);
+    });
+  }
+
+  private async canonicalRoot(projectRoot: string): Promise<string> {
+    const requested = resolve(projectRoot);
+    if (projectRoot !== requested) {
+      throw new RuntimeError(
+        'INVALID_REQUEST',
+        'The selected project folder must be a normalized absolute path',
+        400
+      );
+    }
+    let canonical: string;
+    try {
+      canonical = await realpath(requested);
+    } catch {
+      throw new RuntimeError('PROJECT_NOT_FOUND', 'The selected project folder is inaccessible', 404);
+    }
+    if (canonical !== requested) {
+      throw new RuntimeError(
+        'INVALID_REQUEST',
+        'The selected project folder must be a canonical non-symlink path',
+        400
+      );
+    }
+    return canonical;
+  }
+
+  private async resolveAndBind(
+    canonicalRoot: string,
+    signal?: AbortSignal
+  ): Promise<VerifiedHostedBinding | undefined> {
+    const capturedBinding = this.binding;
+    if (capturedBinding !== undefined) {
+      this.requireSameRoot(canonicalRoot, capturedBinding);
+      return capturedBinding;
+    }
+    const reservation = this.reserveHydration();
+    let registered: RegisteredProject;
+    try {
+      registered = await this.options.bootstrapClient.resolveProjectByRoot(
+        canonicalRoot,
+        signal
+      );
+    } catch (error) {
+      if (error instanceof RuntimeError && error.code === 'PROJECT_NOT_FOUND') {
+        return undefined;
+      }
+      throw error;
+    }
+    return this.verifyAndBind(
+      canonicalRoot,
+      {
+        projectId: registered.projectId,
+        manifestHash: registered.manifestHash
+      },
+      false,
+      signal,
+      reservation
+    );
+  }
+
+  private requireSameRoot(canonicalRoot: string, binding = this.binding): void {
+    if (binding?.projectRoot !== canonicalRoot) {
+      throw new RuntimeError(
+        'PROJECT_MANIFEST_DRIFT',
+        'A different project is already bound to the Desktop runtime client',
+        409
+      );
+    }
+  }
+
+  private async requireBinding(
+    projectRoot: string,
+    signal?: AbortSignal,
+    capturedBinding = this.binding
+  ): Promise<VerifiedHostedBinding> {
+    const canonicalRoot = await this.canonicalRoot(projectRoot);
+    if (capturedBinding !== undefined) {
+      this.requireSameRoot(canonicalRoot, capturedBinding);
+      return this.revalidateBinding(capturedBinding, signal);
+    }
+    const reservation = this.reserveHydration();
+    const registered = await this.options.bootstrapClient.resolveProjectByRoot(
+      canonicalRoot,
+      signal
+    );
+    return this.verifyAndBind(
+      canonicalRoot,
+      { projectId: registered.projectId, manifestHash: registered.manifestHash },
+      false,
+      signal,
+      reservation
+    );
+  }
+
+  private async verifyAndBind(
+    canonicalRoot: string,
+    registration: HostedBootstrapProjectRegistrationResponse,
+    allowReplacement: boolean,
+    signal?: AbortSignal,
+    reservation: HostedBindingReservation = this.reserveHydration()
+  ): Promise<VerifiedHostedBinding> {
+    const trustedStatus = await this.options.bootstrapClient.projectStatus(
+      registration.projectId,
+      signal
+    );
+    const trustedProject = authorizedProject(trustedStatus);
+    this.assertRegistration(canonicalRoot, registration, trustedProject);
+
+    const tokenFile = resolveHostedProjectTokenFile(
+      this.options.runtimeDirectory,
+      registration.projectId
+    );
+    const client = this.createScopedClient({
+      socketPath: this.options.socketPath,
+      tokenFile
+    });
+    const scopedProject = authorizedProject(
+      await client.projectStatus(registration.projectId, signal)
+    );
+    this.assertRegistration(canonicalRoot, registration, scopedProject);
+
+    const binding = {
+      projectId: registration.projectId,
+      projectRoot: canonicalRoot,
+      manifestHash: registration.manifestHash,
+      client
+    };
+    if (!this.reservationIsCurrent(reservation)) {
+      throw new RuntimeError(
+        'PROJECT_MANIFEST_DRIFT',
+        'A newer project binding operation superseded this request',
+        409
+      );
+    }
+    this.installBoundPort?.(
+      new RuntimeDaemonHarnessPort(client, binding.projectId, binding.projectRoot),
+      { projectId: binding.projectId, projectRoot: binding.projectRoot },
+      allowReplacement
+    );
+    this.binding = binding;
+    return binding;
+  }
+
+  private reserveExplicitSelection(): Extract<HostedBindingReservation, { kind: 'explicit' }> {
+    const selectionGeneration = ++this.bindingSelectionGeneration;
+    this.pendingExplicitSelection = selectionGeneration;
+    this.hydrationGeneration += 1;
+    return { kind: 'explicit', selectionGeneration };
+  }
+
+  private reserveHydration(): Extract<HostedBindingReservation, { kind: 'hydration' }> {
+    if (this.pendingExplicitSelection !== undefined) {
+      throw new RuntimeError(
+        'PROJECT_MANIFEST_DRIFT',
+        'An explicit project binding is still in progress',
+        409
+      );
+    }
+    return {
+      kind: 'hydration',
+      selectionGeneration: this.bindingSelectionGeneration,
+      hydrationGeneration: ++this.hydrationGeneration
+    };
+  }
+
+  private reservationIsCurrent(reservation: HostedBindingReservation): boolean {
+    if (reservation.selectionGeneration !== this.bindingSelectionGeneration) return false;
+    if (reservation.kind === 'explicit') return this.pendingExplicitSelection === reservation.selectionGeneration;
+    return this.pendingExplicitSelection === undefined && reservation.hydrationGeneration === this.hydrationGeneration;
+  }
+
+  private assertRegistration(
+    canonicalRoot: string,
+    registration: HostedBootstrapProjectRegistrationResponse,
+    project: RegisteredProject
+  ): void {
+    if (
+      project.projectId !== registration.projectId ||
+      resolve(project.canonicalRoot) !== canonicalRoot ||
+      project.manifestHash !== registration.manifestHash
+    ) {
+      throw new RuntimeError(
+        'PROJECT_MANIFEST_DRIFT',
+        'Hosted project registration does not match the selected folder',
+        409,
+        { projectId: registration.projectId }
+      );
+    }
+  }
+
+  private async registeredStatus(
+    binding: VerifiedHostedBinding,
+    signal?: AbortSignal
+  ): Promise<Extract<HostedBootstrapStatusResponse, { registration: 'registered' }>> {
+    const current = await this.revalidateBinding(binding, signal);
+    const status = await current.client.hostedBootstrapStatus(current.projectId, signal);
+    return { registration: 'registered', projectId: binding.projectId, status };
+  }
+
+  private async revalidateBinding(
+    binding: VerifiedHostedBinding,
+    signal?: AbortSignal
+  ): Promise<VerifiedHostedBinding> {
+    const registration = {
+      projectId: binding.projectId,
+      manifestHash: binding.manifestHash
+    };
+    const trustedProject = authorizedProject(
+      await this.options.bootstrapClient.projectStatus(binding.projectId, signal)
+    );
+    this.assertRegistration(binding.projectRoot, registration, trustedProject);
+    const scopedProject = authorizedProject(
+      await binding.client.projectStatus(binding.projectId, signal)
+    );
+    this.assertRegistration(binding.projectRoot, registration, scopedProject);
+    return binding;
+  }
+}
+
 export function createRuntimeDaemonHarnessPort(
   options: RuntimeDaemonHarnessPortOptions
 ): DaemonHarnessPort {
@@ -552,6 +952,12 @@ export function createRuntimeDaemonHarnessPort(
     options.projectId,
     options.projectRoot
   );
+}
+
+export function createRuntimeHostedBootstrapPort(
+  options: RuntimeHostedBootstrapPortOptions
+): HostedBootstrapPort {
+  return new RuntimeHostedBootstrapPort(options);
 }
 
 /**
@@ -587,4 +993,36 @@ export function createRuntimeDaemonHarnessPortFromEnvironment(
     APP_DEV_PROJECT_ID,
     resolve(projectRoot)
   );
+}
+
+export function createRuntimeHostedBootstrapPortFromEnvironment(
+  environment: RuntimeDaemonHarnessEnvironment = process.env,
+  installBoundPort?: RuntimeHostedBootstrapPortOptions['installBoundPort']
+): HostedBootstrapPort {
+  const socketPath = environment.CHIRALITY_RUNTIME_SOCKET_PATH?.trim();
+  const bootstrapTokenFile = environment.CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE?.trim();
+  const runtimeDirectory = environment.CHIRALITY_RUNTIME_DIRECTORY?.trim();
+  if (
+    !socketPath ||
+    !bootstrapTokenFile ||
+    !runtimeDirectory ||
+    !isAbsolute(socketPath) ||
+    !isAbsolute(bootstrapTokenFile) ||
+    !isAbsolute(runtimeDirectory) ||
+    resolve(socketPath) !== socketPath ||
+    resolve(bootstrapTokenFile) !== bootstrapTokenFile ||
+    resolve(runtimeDirectory) !== runtimeDirectory
+  ) {
+    throw new HarnessError(
+      'ENGINE_UNAVAILABLE',
+      503,
+      'Chirality hosted bootstrap client is not configured'
+    );
+  }
+  return new RuntimeHostedBootstrapPort({
+    bootstrapClient: new RuntimeClient({ socketPath, tokenFile: bootstrapTokenFile }),
+    runtimeDirectory,
+    socketPath,
+    installBoundPort
+  });
 }

@@ -60,6 +60,7 @@ export interface MethodCatalog {
 export type MethodResolution =
   | { index: number; requested: MethodReference; status: "resolved"; method: CatalogMethodEntry }
   | { index: number; requested: MethodReference; status: "not-found" }
+  | { index: number; requested: MethodReference; status: "forbidden"; method: QualifiedMethodReference }
   | { index: number; requested: MethodReference; status: "malformed"; issues: readonly MethodCatalogIssue[] }
   | { index: number; requested: MethodReference; status: "ambiguous"; candidates: readonly QualifiedMethodReference[] };
 
@@ -316,7 +317,7 @@ export async function discoverMethodCatalog(sourceRoots: readonly MethodSourceRo
       issues.push(issue(root, "malformed-execution-metadata", (error as Error).message));
       continue;
     }
-    await scanKind(root, canonicalRoot, "skill", root.skillDirectory ?? ".agents/skills", index, entries, issues);
+    if (root.source === "bundled") await scanKind(root, canonicalRoot, "skill", root.skillDirectory ?? ".agents/skills", index, entries, issues);
     await scanKind(root, canonicalRoot, "workflow", root.workflowDirectory ?? "workflows", index, entries, issues);
   }
   const unique: CatalogMethodEntry[] = [];
@@ -433,6 +434,7 @@ function qualifiedReference(catalog: MethodCatalog, reference: MethodReference):
   }
   if (resolution?.status === "ambiguous") throw new MethodCatalogError("AMBIGUOUS_METHOD_REFERENCE", "Compatibility method reference is ambiguous");
   if (resolution?.status === "malformed") throw new MethodCatalogError("MALFORMED_METHOD_REFERENCE", "Compatibility method reference is blocked by malformed metadata");
+  if (resolution?.status === "forbidden") throw new MethodCatalogError("UNSUPPORTED_METHOD_ORIGIN", `Skills may be loaded only from a trusted bundled source: ${qualifiedId(resolution.method)}`);
   if ("sourceRootId" in reference) throw new MethodCatalogError("UNSUPPORTED_METHOD_ORIGIN", `Qualified method origin is outside the declared Root catalog: ${reference.sourceRootId}`);
   throw new MethodCatalogError("UNKNOWN_METHOD", `Compatibility method is unavailable: ${reference.kind}:${reference.name}`);
 }
@@ -459,6 +461,9 @@ function issueMatch(value: MethodCatalogIssue, reference: MethodReference): bool
 export function resolveMethodReferences(catalog: MethodCatalog, requested: readonly MethodReference[]): readonly MethodResolution[] {
   return requested.map((reference, index): MethodResolution => {
     if ("sourceRootId" in reference) {
+      if (reference.kind === "skill" && reference.source !== "bundled") {
+        return { index, requested: reference, status: "forbidden", method: reference };
+      }
       const malformed = catalog.blocked.filter(value => issueMatch(value, reference));
       if (malformed.length) return { index, requested: reference, status: "malformed", issues: malformed };
       const found = catalog.entries.find(entry => referenceMatch(entry, reference));
@@ -543,12 +548,10 @@ function expectedRole(id: ChiralityRoleName): RoleDescriptor {
   return CHIRALITY_ROLES.find(role => role.id === id)!;
 }
 
-export async function loadRoles(instructionRoot: string): Promise<RolesResponse> {
-  if (!isAbsolute(instructionRoot)) throw new MethodCatalogError("INVALID_ROLE_REGISTRY", "Instruction root must be an absolute host path");
-  const root = await realpath(instructionRoot);
-  const registryPath = await realpath(join(root, "agents", "registry.json"));
-  if (!contained(root, registryPath)) throw new MethodCatalogError("INVALID_ROLE_REGISTRY", "Role registry escapes the instruction root");
-  const raw: unknown = JSON.parse(await readFile(registryPath, "utf8"));
+async function rolesFromRegistryBytes(root: string, content: string): Promise<RolesResponse> {
+  let raw: unknown;
+  try { raw = JSON.parse(content); }
+  catch { throw new MethodCatalogError("INVALID_ROLE_REGISTRY", "Role registry must be valid JSON"); }
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw new MethodCatalogError("INVALID_ROLE_REGISTRY", "Role registry must be an object");
   const registry = raw as Record<string, unknown>;
   if (registry.schema_version !== 1 || !registry.roles || typeof registry.roles !== "object" || Array.isArray(registry.roles)) {
@@ -577,4 +580,19 @@ export async function loadRoles(instructionRoot: string): Promise<RolesResponse>
     roles.push({ ...expected, instruction: role.instruction, delegatesTo: delegates as ChiralityRoleName[], tools });
   }
   return { schemaVersion: "chirality.roles/v3", defaultRole: "HELP_HUMAN", roles };
+}
+
+/** Validates already-held registry bytes without reopening a replaceable path. */
+export async function loadRolesFromCapturedRegistry(instructionRoot: string, content: string): Promise<RolesResponse> {
+  if (!isAbsolute(instructionRoot)) throw new MethodCatalogError("INVALID_ROLE_REGISTRY", "Instruction root must be an absolute host path");
+  const root = await realpath(instructionRoot);
+  return await rolesFromRegistryBytes(root, content);
+}
+
+export async function loadRoles(instructionRoot: string): Promise<RolesResponse> {
+  if (!isAbsolute(instructionRoot)) throw new MethodCatalogError("INVALID_ROLE_REGISTRY", "Instruction root must be an absolute host path");
+  const root = await realpath(instructionRoot);
+  const registryPath = await realpath(join(root, "agents", "registry.json"));
+  if (!contained(root, registryPath)) throw new MethodCatalogError("INVALID_ROLE_REGISTRY", "Role registry escapes the instruction root");
+  return await rolesFromRegistryBytes(root, await readFile(registryPath, "utf8"));
 }

@@ -8,6 +8,14 @@
 **Public release snapshot path:** `chirality-app/frontend`, maintained as a release operation rather than the active vNext development source  
 **Primary audience:** product owner, engineering, agent-instruction maintainers, reviewers, release operators, and future harness-runtime implementers
 
+## Current Codex-only MVP release basis
+
+For the current MVP release, Codex is the sole model engine. Claude/Anthropic and Pi/oMLX descriptions, default-provider rules and engine-specific proof records below describe compatibility history; they do not require shipping or enabling those engines, and their historical qualification does not establish Codex qualification. Existing conversation history remains readable without reactivating unavailable providers or inheriting their authority.
+
+Codex account sign-in and native Plan Mode are required. This scope direction is not supplier admission or account-interoperability acceptance: the actual adapter must satisfy accepted identity/currentness, per-root consent, credential custody, containment and endpoint restrictions, and native evidence must establish its supported behavior. K-NET-1, K-PACKAGE-1 and K-RELEASE-1 remain unchanged. Source tests, controlled adapters and package generation do not substitute for required actual packaged provider and native lifecycle evidence. Publication remains separately human-authorized.
+
+Release artifact identity is the explicitly recorded candidate version in frontend/package.json and both root version fields of frontend/package-lock.json. `Chirality-<candidate-version>-arm64.dmg`, the actual App Info.plist identity and the candidate evidence must agree. This amendment selects no version.
+
 ---
 
 ## 1. Source Basis
@@ -557,7 +565,7 @@ Acceptance:
 
 Acceptance:
 
-- `frontend/dist/Chirality-0.1.0-arm64.dmg` is produced for macOS arm64.
+- `frontend/dist/Chirality-<candidate-version>-arm64.dmg` is produced for macOS arm64.
 - App bundle includes expected instruction-root resources.
 - App minimum macOS target is `15.0.0` or later.
 - Build is unsigned/adhoc by design.
@@ -617,7 +625,7 @@ Priority:
 | FR-024 | P0 | Unknown option keys shall be ignored with warnings. | Unknown fields do not break turns or silently mutate behavior. |
 | FR-025 | P0 | Persona names shall resolve to `agents/AGENT_*.md`. | Missing personas return `PERSONA_NOT_FOUND`. |
 | FR-026 | P0 | Persona aliases shall map UI labels to canonical agents. | `HELP -> HELP_HUMAN`, `ORCHESTRATE -> PROJECT_SETUP`, `AGENTS -> HELPS_HUMANS`, `DEPENDENCIES -> EVALUATION`; re-pointed `REVIEW` and `RESEARCH` cells use canonical personas directly. |
-| FR-027 | P0 | Production provider mode shall support the Claude Agent SDK-hosted Anthropic path. | With no explicit `CHIRALITY_HARNESS_PROVIDER`, the runtime selects `agentSdk` when an Anthropic API key is configured and falls back to `stub` when no key is configured; explicit `stub`, `anthropic`, and `agentSdk` overrides remain available within the approved Anthropic/stub scope. |
+| FR-027 | P0 | The current MVP production provider shall be the admitted Codex engine. | A new conversation uses the explicitly selected Codex model through the shared Runtime. Missing supplier/account admission remains unavailable; it does not select Claude, Pi, or a stub as a silent fallback. Actual account sign-in, native planning and turn/delegation behavior require their accepted qualification evidence. |
 | FR-028 | P0 | The runtime shall compose real agent instruction context into SDK turns. | SDK requests include selected agent instruction content, global instruction context, working-root boundaries, mode, and the configured permitted tool surface. |
 | FR-029 | P1 | Boot fingerprints shall reflect actual prompt and SDK-policy inputs. | Fingerprint includes persona content hash, governance preface hash, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version. |
 
@@ -1179,7 +1187,7 @@ Protected domain-engine paths must not be directly mutated by agents. Any accept
 | NFR-007 | P0 | Deny-first permission policy shall be enforced by runtime code. | Deny rules override all allow decisions. |
 | NFR-028 | P0 | SDK settings isolation shall be enforced. | Shipped runtime does not load `user` or `local` Claude Code settings; tests assert default `settingSources: []`. |
 | NFR-029 | P0 | SDK transcript placement shall be explicit and non-authoritative. | Chirality audit JSONL remains canonical; SDK transcript paths/store keys are recorded and preferably live under project-controlled runtime folders. |
-| NFR-030 | P0 | SDK subprocess packaging shall be verified. | Packaged DMG can locate and execute the SDK-bundled Claude Code subprocess without leaking secrets or broadening network policy. |
+| NFR-030 | P0 | Codex supplier subprocess packaging shall be verified for the current MVP. | The actual packaged deployment can locate and execute the admitted Codex supplier subprocess from its accepted package layout, with required native admission resources, without leaking secrets, relaxing containment or broadening accepted network policy. Controlled tests and historical Claude SDK proofs do not satisfy actual packaged execution evidence. |
 
 ### 11.2 Reliability
 
@@ -1267,7 +1275,7 @@ npm run desktop:dist
 
 Expected packaging outputs:
 
-- `frontend/dist/Chirality-0.1.0-arm64.dmg`
+- `frontend/dist/Chirality-<candidate-version>-arm64.dmg`
 - `frontend/dist/mac-arm64/Chirality.app`
 - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
 
@@ -1375,7 +1383,7 @@ For macOS DMG:
 - Codesign reports no developer TeamIdentifier and adhoc signature.
 - App resources contain required instruction-root assets.
 - App launches and working-root selector is available.
-- Current loopback plus Anthropic network guardrails remain in force.
+- Accepted Codex supplier endpoint and per-root command-network safeguards under K-NET-1 remain in force.
 - First-adapter harness turn can start in packaged app.
 - SDK subprocess/bundled binary is not trapped inside `app.asar` without execution access.
 - SDK transcript storage/mirroring follows the accepted R1 storage decision.

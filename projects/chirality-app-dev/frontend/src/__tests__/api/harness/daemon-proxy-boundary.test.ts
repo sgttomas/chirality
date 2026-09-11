@@ -35,6 +35,8 @@ function daemonPort(
     replaceSelectedMethods: unimplemented,
     getNativePlanCapability: unimplemented,
     listNativePlanRevisions: unimplemented,
+    listNativePlanClarifications: unimplemented,
+    replyNativePlanClarification: unimplemented,
     exportNativePlan: unimplemented,
     scaffold: unimplemented,
     ...overrides

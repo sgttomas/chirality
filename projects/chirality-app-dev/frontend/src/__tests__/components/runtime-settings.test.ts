@@ -74,6 +74,23 @@ describe('RuntimeSettings rendering', () => {
     expect(html).not.toContain('embedding-helper');
   });
 
+  it('keeps daemon setup available without exposing local-model controls', () => {
+    const html = renderToStaticMarkup(
+      createElement(RuntimeSettingsView, {
+        ...baseProps,
+        showLocalModels: false
+      })
+    );
+
+    expect(html).toContain('Shared Runtime');
+    expect(html).toContain('Running (PID 4242)');
+    expect(html).toContain('Stop');
+    expect(html).toContain('Uninstall');
+    expect(html).not.toContain('Residency:');
+    expect(html).not.toContain('Qwen-local-exact');
+    expect(html).not.toContain('Activate Explicitly');
+  });
+
   it('shows install when the LaunchAgent is absent', () => {
     const html = renderView({
       daemonStatus: {

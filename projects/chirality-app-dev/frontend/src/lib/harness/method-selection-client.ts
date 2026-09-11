@@ -6,10 +6,13 @@ import type {
   MethodReference,
   MethodsResponse,
   NativePlanCapabilityResponse,
+  NativePlanClarificationsResponse,
   NativePlanRevisionsResponse,
   ReplaceSelectedMethodsRequest,
   ReplaceSelectedMethodsResponse,
   ResolveSelectedContextResponse,
+  ReplyNativePlanClarificationRequest,
+  ReplyNativePlanClarificationResponse,
   RoleDescriptor,
   RolesResponse,
   QualifiedMethodReference
@@ -86,6 +89,31 @@ export async function getNativePlanCapability(sessionId: string, signal?: AbortS
 
 export async function listNativePlanRevisions(sessionId: string, signal?: AbortSignal): Promise<NativePlanRevisionsResponse> {
   return requestJson(`/api/harness/session/${encodeURIComponent(sessionId)}/native-plan/revisions`, { signal });
+}
+
+export async function listNativePlanClarifications(
+  sessionId: string,
+  signal?: AbortSignal
+): Promise<NativePlanClarificationsResponse> {
+  return requestJson(
+    `/api/harness/session/${encodeURIComponent(sessionId)}/native-plan/clarifications`,
+    { signal }
+  );
+}
+
+export async function replyNativePlanClarification(input: {
+  sessionId: string;
+  requestId: string | number;
+  answers: ReplyNativePlanClarificationRequest['answers'];
+}): Promise<ReplyNativePlanClarificationResponse> {
+  return requestJson(
+    `/api/harness/session/${encodeURIComponent(input.sessionId)}/native-plan/clarifications/reply`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ requestId: input.requestId, answers: input.answers })
+    }
+  );
 }
 
 /** App file handoff only. Runtime plan evidence remains in conversation history. */

@@ -38,7 +38,7 @@ export class ProjectRegistry {
   async register(
     manifestPath: string,
     approval: RegisteredProject["approval"],
-    clientId = `project-${randomUUID()}`
+    clientId: string | ((projectId: string) => string) = `project-${randomUUID()}`
   ): Promise<RegisteredProject> {
     const canonicalManifest = await realpath(manifestPath);
     const source = await readFile(canonicalManifest, "utf8");
@@ -57,7 +57,7 @@ export class ProjectRegistry {
       manifestHash: sha256(source),
       registeredAt: new Date().toISOString(),
       approval,
-      clientId,
+      clientId: typeof clientId === "function" ? clientId(manifest.projectId) : clientId,
       enabledAdapterIds: [...manifest.enabledAdapterIds],
       legacySessionRoots: [...(manifest.legacySessionRoots ?? [])]
     };

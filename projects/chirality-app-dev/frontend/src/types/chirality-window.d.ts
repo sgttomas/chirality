@@ -11,6 +11,12 @@ type RuntimeConnectivitySnapshotPayload = {
   changedAt: string;
 };
 
+type HostedAccountStatusPayload = import('@chirality/runtime-contracts').HostedBootstrapStatus;
+type HostedAccountLoginPayload = import('@chirality/runtime-contracts').HostedBootstrapLoginStartResponse;
+type HostedAccountStatusResponsePayload =
+  | { registration: 'required' }
+  | { registration: 'registered'; projectId: string; status: HostedAccountStatusPayload };
+
 type ChiralityBridge = {
   platform?: string;
   versions?: {
@@ -21,8 +27,9 @@ type ChiralityBridge = {
   selectDirectory?: () => Promise<DirectorySelectionResult>;
   /**
    * Partial by design. `apiKey`/`providerApiKey`/`runtime.daemon`/`runtime.models`
-   * are still narrowed locally by their own consumers; only the connectivity
-   * surface is declared here, because the shell reads it directly.
+   * remain narrowed locally by their own consumers. Connectivity and the
+   * project-root-only hosted account bridge are declared because renderer
+   * clients consume them directly.
    */
   runtime?: {
     connectivity?: {
@@ -30,6 +37,13 @@ type ChiralityBridge = {
       subscribe: (
         listener: (snapshot: RuntimeConnectivitySnapshotPayload) => void
       ) => () => void;
+    };
+    hostedAccount?: {
+      status: (projectRoot: string) => Promise<HostedAccountStatusResponsePayload>;
+      grantProviderNetworkConsent: (projectRoot: string) => Promise<HostedAccountStatusResponsePayload>;
+      startLogin: (projectRoot: string) => Promise<HostedAccountLoginPayload>;
+      cancelLogin: (projectRoot: string) => Promise<HostedAccountStatusResponsePayload>;
+      signOut: (projectRoot: string) => Promise<HostedAccountStatusResponsePayload>;
     };
   };
 };

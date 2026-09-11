@@ -20,13 +20,14 @@ export function LocalModelStatus(): JSX.Element {
   </span>;
 }
 
-export function DaemonQuickControl({ runtime, onSetup }: {
+export function DaemonQuickControl({ runtime, onSetup, showLocalModelStatus = true }: {
   runtime: RuntimeSettingsViewProps; onSetup: () => void;
+  showLocalModelStatus?: boolean;
 }): JSX.Element {
   const status = runtime.daemonStatus;
   const available = runtime.bridgeAvailable && status !== null;
   return <>
-    <p>oMLX server status unknown.</p>
+    {showLocalModelStatus ? <p>oMLX server status unknown.</p> : null}
     {!available ? <p className="api-key-hint">{runtime.bridgeAvailable ? 'Runtime daemon status unavailable.' : 'Runtime controls are available only in Chirality Desktop.'}</p> :
       !status.launchAgent.installed ? <button type="button" onClick={onSetup}>Set up runtime…</button> :
         <button type="button" role="switch" aria-label="Chirality runtime daemon" aria-checked={status.launchAgent.loaded}

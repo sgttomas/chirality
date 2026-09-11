@@ -1,9 +1,34 @@
 import { describe, expect, it } from 'vitest';
 import { mkdtemp, mkdir, realpath, readFile, writeFile, rm, access, symlink, chmod } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { prepareCodexContainment, prepareCodexNativePolicy } from '../packages/daemon/src/codex-containment.js';
+import { createHash } from 'node:crypto';
+import { assertCodexKeyringHomeHasNoPlaintextCredentials, assertTrustedRuntimeReadRoot, bindTrustedRuntimeReadRoot, prepareCodexContainment, prepareCodexNativePolicy, prepareCodexTrustedSupplierContainment } from '../packages/daemon/src/codex-containment.js';
+
+describe('trusted Runtime bundle binding',()=>{
+  it('rejects source-tree instruction reads without a reviewed packaged bundle',async()=>{
+    const base=await realpath(await mkdtemp(join(await realpath(tmpdir()),'split-runtime-bundle-'))),sourceRoot=join(base,'projects/runtime'),instructionRoot=join(base,'instructions');try{
+      await mkdir(join(sourceRoot,'packages/runtime/dist'),{recursive:true});await mkdir(instructionRoot,{recursive:true});
+      await writeFile(join(sourceRoot,'package.json'),JSON.stringify({name:'runtime',version:'1.0.0'}));await writeFile(join(sourceRoot,'package-lock.json'),JSON.stringify({lockfileVersion:3}));await writeFile(join(sourceRoot,'packages/runtime/package.json'),JSON.stringify({name:'@test/runtime',version:'1.0.0'}));await writeFile(join(sourceRoot,'packages/runtime/dist/runtime.js'),'export const runtime=true;');
+      await writeFile(join(instructionRoot,'AGENTS.md'),'task');
+      await expect(bindTrustedRuntimeReadRoot(instructionRoot,{kind:'source-tree',sourceRoot})).rejects.toThrow('require a reviewed packaged artifact inventory');
+    }finally{await rm(base,{recursive:true,force:true});}
+  });
+  it('requires the selected instruction-root inventory member and detects tool byte drift',async()=>{
+    const resources=await realpath(await mkdtemp(join(await realpath(tmpdir()),'runtime-bundle-')));try{
+      const files:Record<string,string>={'app.asar':'asar','instruction-root/instruction-bundle-manifest.json':'{}','instruction-root/tools/helper.sh':'echo safe','native/chirality_native_admission.node':'native','runtime-cli/chirality-cli.mjs':'cli','runtime-cli/chirality-cli.mjs.map':'map'};
+      for(const [relative,bytes] of Object.entries(files)){const path=join(resources,relative);await mkdir(join(path,'..'),{recursive:true});await writeFile(path,bytes,{mode:0o600});}
+      const entries=Object.entries(files).sort(([a],[b])=>a.localeCompare(b)).map(([relativePath,bytes])=>({relativePath,sha256:createHash('sha256').update(bytes).digest('hex'),size:Buffer.byteLength(bytes)}));
+      const manifestPath=join(resources,'runtime-artifact-inventory.json');await writeFile(manifestPath,JSON.stringify({schema:'chirality-runtime-artifact-inventory/v1',sourceIdentityDigest:'a'.repeat(64),dependencyResolutionDigest:'b'.repeat(64),closureRoots:['app.asar','instruction-root','native','runtime-cli'],entries}),{mode:0o600});
+      const inventory={kind:'packaged-resources' as const,resourcesRoot:resources,manifestPath},toolRoot=join(resources,'instruction-root');
+      const binding=await bindTrustedRuntimeReadRoot(toolRoot,inventory);expect(binding.contentDigest).toMatch(/^[a-f0-9]{64}$/);await expect(assertTrustedRuntimeReadRoot(binding)).resolves.toBeUndefined();
+      await expect(bindTrustedRuntimeReadRoot(join(resources,'runtime-cli'),inventory)).rejects.toThrow('outside the selected artifact inventory');
+      await writeFile(join(toolRoot,'tools/helper.sh'),'echo changed',{mode:0o600});
+      await expect(assertTrustedRuntimeReadRoot(binding)).rejects.toThrow();
+    }finally{await rm(resources,{recursive:true,force:true});}
+  });
+});
 
 describe.skipIf(process.platform !== 'darwin')('actual macOS Codex containment', () => {
   it('contains shell and subprocess access offline and preserves supplied account files', async () => {
@@ -59,6 +84,21 @@ describe.skipIf(process.platform !== 'darwin')('actual macOS Codex containment',
       await expect(prepareCodexContainment({ canonicalRoot: root, privateDirectory: priv, codexHome: home })).rejects.toThrow('inaccessible');
     } finally { await rm(base, { recursive: true, force: true }); }
   });
+
+  it('keeps the trusted supplier keyring home plaintext-free', async () => {
+    const base = await mkdtemp(join(await realpath(tmpdir()), 'supplier-home-'));
+    const root = join(base, 'root'); const priv = join(base, 'private'); const home = join(priv, 'codex');
+    await mkdir(root); await mkdir(priv, { mode: 0o700 }); await mkdir(home, { mode: 0o700 });
+    try {
+      await expect(assertCodexKeyringHomeHasNoPlaintextCredentials(home)).resolves.toBeUndefined();
+      const containment = await prepareCodexTrustedSupplierContainment({ canonicalRoot: root, privateDirectory: priv, codexHome: home, providerNetworkConsent: { approvedBy: 'owner', approvalReference: 'consent' } });
+      expect(containment.config.cli_auth_credentials_store).toBe('keyring');
+      expect(await readFile(containment.sandboxProfilePath, 'utf8')).not.toContain('com.apple.securityd');
+      await containment.cleanup();
+      await writeFile(join(home, 'auth.json.pending'), 'secret');
+      await expect(assertCodexKeyringHomeHasNoPlaintextCredentials(home)).rejects.toThrow('Plaintext Codex credential');
+    } finally { await rm(base, { recursive: true, force: true }); }
+  });
 });
 
 
@@ -69,7 +109,8 @@ describe.skipIf(process.platform !== 'darwin')('native policy compiler only', ()
     await mkdir(root); await mkdir(control, { mode: 0o700 }); await mkdir(priv, { mode: 0o700 }); await mkdir(home, { mode: 0o700 });
     await writeFile(join(home, 'sentinel'), 'preserve');
     const protectedFile = join(root, 'protected.txt'); await writeFile(protectedFile, 'do-not-touch');
-    const options = { canonicalRoot: root, privateDirectory: priv, codexHome: home, immutableReadRoots: ['/System', '/usr/bin'], protectedPaths: [control, protectedFile] };
+    const stagedAttachments = join(root, '.chirality', 'attachments');
+    const options = { canonicalRoot: root, privateDirectory: priv, codexHome: home, immutableReadRoots: ['/System', '/usr/bin'], readOnlyProjectPaths: [stagedAttachments], protectedPaths: [control, protectedFile] };
     try {
       const first = await prepareCodexNativePolicy(options);
       const second = await prepareCodexNativePolicy({ ...options, immutableReadRoots: ['/usr/bin', '/System', '/System'] });
@@ -116,6 +157,8 @@ describe.skipIf(process.platform !== 'darwin')('native policy compiler only', ()
       expect(first.policyDigest).toBe(second.policyDigest); expect(first.scratchDirectory).not.toBe(second.scratchDirectory);
       expect(first.permissionProfile).toBe(second.permissionProfile);
       expect(first.configToml).toContain(`${JSON.stringify(control)}="deny"`);
+      expect(first.expectedPermissions.filesystem[stagedAttachments]).toBe('read');
+      expect(first.configToml).toContain(`${JSON.stringify(stagedAttachments)}="read"`);
       expect(first.expectedPermissions.filesystem[protectedFile]).toBe('deny');
       expect(first.expectedPermissions.filesystem[join(root, '.codex')]).toBe('deny');
       await expect(access(join(root, '.codex'))).rejects.toThrow();
@@ -139,6 +182,7 @@ describe.skipIf(process.platform !== 'darwin')('native policy compiler only', ()
       await expect(access(first.scratchDirectory)).rejects.toThrow();
       await expect(prepareCodexNativePolicy({ ...options, immutableReadRoots: ['/private/tmp'] })).rejects.toThrow('system-code');
       await expect(prepareCodexNativePolicy({ ...options, protectedPaths: [root] })).rejects.toThrow();
+      await expect(prepareCodexNativePolicy({ ...options, protectedPaths: [control, stagedAttachments] })).rejects.toThrow('overlap protected');
       const alias = join(base, 'alias'); await symlink(root, alias);
       await expect(prepareCodexNativePolicy({ ...options, canonicalRoot: alias })).rejects.toThrow('canonical');
     } finally { await rm(base, { recursive: true, force: true }); }

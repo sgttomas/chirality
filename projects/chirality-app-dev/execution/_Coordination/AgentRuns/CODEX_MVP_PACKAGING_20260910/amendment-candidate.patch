@@ -1,0 +1,302 @@
+--- a/projects/chirality-app-dev/docs/CONTRACT.md
++++ b/projects/chirality-app-dev/docs/CONTRACT.md
+@@ -8,6 +8,14 @@
+ This document is the authoritative catalog of binding invariants for Chirality App. Invariants listed here are enforceable constraints that agents, tooling, implementation code, governance documents, human processes, and release operations must respect. Enforcement may occur in code, tests, release checks, instructions, human gates, or the reliance-boundary register. Prompt text alone is not sufficient enforcement for P0 safety, audit, filesystem, or human-gate boundaries.
+ 
+ Invariant IDs (`K-*`) are stable and never reused. Retired invariants move to §4 with retirement rationale.
++
++## Current Codex-only MVP release basis
++
++For the current MVP release, Codex is the sole model engine. Claude/Anthropic and Pi/oMLX descriptions, default-provider rules and engine-specific proof records below describe compatibility history; they do not require shipping or enabling those engines, and their historical qualification does not establish Codex qualification. Existing conversation history remains readable without reactivating unavailable providers or inheriting their authority.
++
++Codex account sign-in and native Plan Mode are required. This scope direction is not supplier admission or account-interoperability acceptance: the actual adapter must satisfy accepted identity/currentness, per-root consent, credential custody, containment and endpoint restrictions, and native evidence must establish its supported behavior. K-NET-1, K-PACKAGE-1 and K-RELEASE-1 remain unchanged. Source tests, controlled adapters and package generation do not substitute for required actual packaged provider and native lifecycle evidence. Publication remains separately human-authorized.
++
++Release artifact identity is the explicitly recorded candidate version in frontend/package.json and both root version fields of frontend/package-lock.json. `Chirality-<candidate-version>-arm64.dmg`, the actual App Info.plist identity and the candidate evidence must agree. This amendment selects no version.
+ 
+ ---
+ 
+@@ -51,7 +59,7 @@
+ | **K-CORE-1** | Core runtime APIs, events, tests, and records use Chirality terms. Provider/SDK-specific terms are translated at adapter boundaries. | `EngineAdapter`; event-schema tests; API review. |
+ | **K-ENGINE-1** | Chirality owns `AgentEnginePort` / `RuntimeEngineContract`; provider and SDK APIs do not define public harness semantics. | Runtime contract docs; engine conformance tests; adapter boundary. |
+ | **K-ENGINE-2** | Any provider/SDK-backed adapter must pass engine conformance tests before becoming the default production path. | `EngineConformanceSuite`; Section 9 validation; CI. |
+-| **K-ENGINE-3** | External SDKs and providers are implementation substrates behind Chirality adapters, not product identity or governance authority. Claude Agent SDK / Anthropic is the first concrete adapter and the key-aware default provider; the default-provider cutover was human-gated and ruled by D-APP-18 (Option A), and further provider expansion remains human-gated — now expressed as an explicit owner provider/residency configuration (D-T0-04 / D-APP-44, OPEN RESIDENCY): the app does not enforce privacy/residency and does not auto-egress, and absent an owner configuration the Anthropic key-aware loopback default stands. | DIRECTIVE; PRD; product copy review; adapter implementation. |
++| **K-ENGINE-3** | External SDKs and providers are implementation substrates behind Chirality adapters, not product identity or governance authority. Codex is the sole current MVP engine under the owner release direction. Actual supplier/account admission and per-root consent remain required; no ambient fallback or automatic egress is permitted. Earlier Claude/Anthropic key-aware default and Pi/oMLX paths remain compatibility history, not current engine selections. | Current release basis; accepted Runtime supplier/account contracts; adapter implementation and actual qualification. |
+ | **K-ENGINE-4** | Public APIs, `UIEvent`, `HarnessEvent`, session storage, permission decisions, and governance records must not become provider/SDK-shaped except as adapter metadata. | Type tests; mapper tests; event-schema review. |
+ | **K-ENGINE-5** | A governed fallback/custom-runtime path must remain available if a product-critical boundary cannot be satisfied or verified through the current adapter. | R0/R1 adapter probe; reliance-boundary register; plan updates. |
+ | **K-ENGINE-6** | Chirality builds a governance, UI, audit, lifecycle, and adapter layer **over** provider harness mechanics — not a standalone general agent harness, and not feature parity with Claude Code, Pi, or Codex. Generic harness primitives are reused only behind Chirality-owned contracts. D-APP-72 / SCA-APP-002 authorizes one bounded exception to the historical Pi-reference-only posture: Pi `0.80.10` may run in-process as an opt-in second adapter over authenticated loopback oMLX for a governed read-only Agent 2 child after the Electron `43.2.0` prerequisite passes (D-APP-98 successor authority; D-APP-72's `43.1.1` is historical). Every other provider/harness expansion requires a fresh governed tranche. | DIRECTIVE 2.8; PLAN §11 fences; D-APP-01/02/03 historical rulings; D-APP-72; decision register; product copy review. |
+--- a/projects/chirality-app-dev/docs/SPEC.md
++++ b/projects/chirality-app-dev/docs/SPEC.md
+@@ -8,6 +8,14 @@
+ This document is the authoritative specification for Chirality App physical structures, file formats, schemas, runtime mechanics, session storage, validation surfaces, and layout conventions.
+ 
+ Normative keywords `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, and `MAY` are used in their ordinary specification sense.
++
++## Current Codex-only MVP release basis
++
++For the current MVP release, Codex is the sole model engine. Claude/Anthropic and Pi/oMLX descriptions, default-provider rules and engine-specific proof records below describe compatibility history; they do not require shipping or enabling those engines, and their historical qualification does not establish Codex qualification. Existing conversation history remains readable without reactivating unavailable providers or inheriting their authority.
++
++Codex account sign-in and native Plan Mode are required. This scope direction is not supplier admission or account-interoperability acceptance: the actual adapter must satisfy accepted identity/currentness, per-root consent, credential custody, containment and endpoint restrictions, and native evidence must establish its supported behavior. K-NET-1, K-PACKAGE-1 and K-RELEASE-1 remain unchanged. Source tests, controlled adapters and package generation do not substitute for required actual packaged provider and native lifecycle evidence. Publication remains separately human-authorized.
++
++Release artifact identity is the explicitly recorded candidate version in frontend/package.json and both root version fields of frontend/package-lock.json. `Chirality-<candidate-version>-arm64.dmg`, the actual App Info.plist identity and the candidate evidence must agree. This amendment selects no version.
+ 
+ ---
+ 
+@@ -1115,7 +1123,7 @@
+ 
+ Expected packaging outputs:
+ 
+-- `frontend/dist/Chirality-0.1.0-arm64.dmg`
++- `frontend/dist/Chirality-<candidate-version>-arm64.dmg`
+ - `frontend/dist/mac-arm64/Chirality.app`
+ - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
+ 
+@@ -1162,7 +1170,7 @@
+ - signing posture is unsigned/adhoc as scoped;
+ - app resources contain required instruction-root assets;
+ - working-root selector is available;
+-- current loopback plus Anthropic network guardrails remain in force;
++- accepted Codex supplier endpoint and per-root command-network safeguards under K-NET-1 remain in force;
+ - no-live first-adapter SDK resolver/HOME proof passes from package layout and mounted DMG;
+ - SDK subprocess/binary is executable from package layout;
+ - live packaged provider turn and transcript creation remain unapproved until a later ruling.
+--- a/projects/chirality-app-dev/docs/PRD.md
++++ b/projects/chirality-app-dev/docs/PRD.md
+@@ -7,6 +7,14 @@
+ **Development source path:** `chirality/projects/chirality-app-dev/frontend` in the complete source tree; `frontend/` in the reviewed archive snapshot  
+ **Public release snapshot path:** `chirality-app/frontend`, maintained as a release operation rather than the active vNext development source  
+ **Primary audience:** product owner, engineering, agent-instruction maintainers, reviewers, release operators, and future harness-runtime implementers
++
++## Current Codex-only MVP release basis
++
++For the current MVP release, Codex is the sole model engine. Claude/Anthropic and Pi/oMLX descriptions, default-provider rules and engine-specific proof records below describe compatibility history; they do not require shipping or enabling those engines, and their historical qualification does not establish Codex qualification. Existing conversation history remains readable without reactivating unavailable providers or inheriting their authority.
++
++Codex account sign-in and native Plan Mode are required. This scope direction is not supplier admission or account-interoperability acceptance: the actual adapter must satisfy accepted identity/currentness, per-root consent, credential custody, containment and endpoint restrictions, and native evidence must establish its supported behavior. K-NET-1, K-PACKAGE-1 and K-RELEASE-1 remain unchanged. Source tests, controlled adapters and package generation do not substitute for required actual packaged provider and native lifecycle evidence. Publication remains separately human-authorized.
++
++Release artifact identity is the explicitly recorded candidate version in frontend/package.json and both root version fields of frontend/package-lock.json. `Chirality-<candidate-version>-arm64.dmg`, the actual App Info.plist identity and the candidate evidence must agree. This amendment selects no version.
+ 
+ ---
+ 
+@@ -557,7 +565,7 @@
+ 
+ Acceptance:
+ 
+-- `frontend/dist/Chirality-0.1.0-arm64.dmg` is produced for macOS arm64.
++- `frontend/dist/Chirality-<candidate-version>-arm64.dmg` is produced for macOS arm64.
+ - App bundle includes expected instruction-root resources.
+ - App minimum macOS target is `15.0.0` or later.
+ - Build is unsigned/adhoc by design.
+@@ -617,7 +625,7 @@
+ | FR-024 | P0 | Unknown option keys shall be ignored with warnings. | Unknown fields do not break turns or silently mutate behavior. |
+ | FR-025 | P0 | Persona names shall resolve to `agents/AGENT_*.md`. | Missing personas return `PERSONA_NOT_FOUND`. |
+ | FR-026 | P0 | Persona aliases shall map UI labels to canonical agents. | `HELP -> HELP_HUMAN`, `ORCHESTRATE -> PROJECT_SETUP`, `AGENTS -> HELPS_HUMANS`, `DEPENDENCIES -> EVALUATION`; re-pointed `REVIEW` and `RESEARCH` cells use canonical personas directly. |
+-| FR-027 | P0 | Production provider mode shall support the Claude Agent SDK-hosted Anthropic path. | With no explicit `CHIRALITY_HARNESS_PROVIDER`, the runtime selects `agentSdk` when an Anthropic API key is configured and falls back to `stub` when no key is configured; explicit `stub`, `anthropic`, and `agentSdk` overrides remain available within the approved Anthropic/stub scope. |
++| FR-027 | P0 | The current MVP production provider shall be the admitted Codex engine. | A new conversation uses the explicitly selected Codex model through the shared Runtime. Missing supplier/account admission remains unavailable; it does not select Claude, Pi, or a stub as a silent fallback. Actual account sign-in, native planning and turn/delegation behavior require their accepted qualification evidence. |
+ | FR-028 | P0 | The runtime shall compose real agent instruction context into SDK turns. | SDK requests include selected agent instruction content, global instruction context, working-root boundaries, mode, and the configured permitted tool surface. |
+ | FR-029 | P1 | Boot fingerprints shall reflect actual prompt and SDK-policy inputs. | Fingerprint includes persona content hash, governance preface hash, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version. |
+ 
+@@ -1179,7 +1187,7 @@
+ | NFR-007 | P0 | Deny-first permission policy shall be enforced by runtime code. | Deny rules override all allow decisions. |
+ | NFR-028 | P0 | SDK settings isolation shall be enforced. | Shipped runtime does not load `user` or `local` Claude Code settings; tests assert default `settingSources: []`. |
+ | NFR-029 | P0 | SDK transcript placement shall be explicit and non-authoritative. | Chirality audit JSONL remains canonical; SDK transcript paths/store keys are recorded and preferably live under project-controlled runtime folders. |
+-| NFR-030 | P0 | SDK subprocess packaging shall be verified. | Packaged DMG can locate and execute the SDK-bundled Claude Code subprocess without leaking secrets or broadening network policy. |
++| NFR-030 | P0 | Codex supplier subprocess packaging shall be verified for the current MVP. | The actual packaged deployment can locate and execute the admitted Codex supplier subprocess from its accepted package layout, with required native admission resources, without leaking secrets, relaxing containment or broadening accepted network policy. Controlled tests and historical Claude SDK proofs do not satisfy actual packaged execution evidence. |
+ 
+ ### 11.2 Reliability
+ 
+@@ -1267,7 +1275,7 @@
+ 
+ Expected packaging outputs:
+ 
+-- `frontend/dist/Chirality-0.1.0-arm64.dmg`
++- `frontend/dist/Chirality-<candidate-version>-arm64.dmg`
+ - `frontend/dist/mac-arm64/Chirality.app`
+ - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
+ 
+@@ -1375,7 +1383,7 @@
+ - Codesign reports no developer TeamIdentifier and adhoc signature.
+ - App resources contain required instruction-root assets.
+ - App launches and working-root selector is available.
+-- Current loopback plus Anthropic network guardrails remain in force.
++- Accepted Codex supplier endpoint and per-root command-network safeguards under K-NET-1 remain in force.
+ - First-adapter harness turn can start in packaged app.
+ - SDK subprocess/bundled binary is not trapped inside `app.asar` without execution access.
+ - SDK transcript storage/mirroring follows the accepted R1 storage decision.
+--- a/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/ScopeOfWork.md
++++ b/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/ScopeOfWork.md
+@@ -9,11 +9,17 @@
+ 
+ # Scope of Work — DEL-09-04
+ 
++## Codex MVP packaging basis
++
++The MVP release engine is solely Codex. Current acceptance requires the admitted Codex supplier subprocess and its accepted network, credential, account-identity/currentness, filesystem and process containment safeguards. Historical Anthropic/Claude SDK-specific wording below does not require shipping or qualifying an unused engine. Generic subprocess executability, package-layout and secret-protection requirements remain mandatory and apply to Codex. This amendment does not admit a supplier, accept account interoperability, waive native evidence, revive an exhausted campaign, or authorize publication.
++
++Artifact version is the explicitly recorded candidate version in frontend/package.json and both root version fields in frontend/package-lock.json. The required DMG name is `Chirality-<candidate-version>-arm64.dmg`; inspect the actual DMG name and App Info.plist identity against that same recorded version. No version is selected by this amendment.
++
+ ## Purpose and Objective Traceability
+ 
+ This Scope of Work defines `DEL-09-04` in service of project scope [SOW-030, SOW-072, SOW-073, SOW-078] and package objectives [OBJ-008].
+ 
+-- **OUT-001** — A macOS 15+ Apple Silicon arm64 unsigned or adhoc local-builder DMG and app-bundle packaging evidence bundle that identifies the required artifacts, proves instruction-root resource integrity and SDK subprocess package-layout executability, preserves current shipped Anthropic network guardrails, and records residual blockers.
++- **OUT-001** — A macOS 15+ Apple Silicon arm64 unsigned or adhoc local-builder DMG and app-bundle packaging evidence bundle that identifies the required artifacts, proves instruction-root resource integrity and admitted Codex supplier subprocess package-layout executability, preserves accepted Codex supplier network guardrails, and records residual blockers.
+ 
+ **D-APP-80 concordance note (2026-07-28):** SOW-078 is recorded as an OUT
+ boundary-only trace. Windows and Linux packaging remain outside the current
+@@ -53,7 +59,7 @@
+ > |---|---|---|
+ > | Release target | macOS 15+ Apple Silicon (`arm64`) unsigned/unnotarized local-builder DMG | `docs/PRD.md` Section 6.2; `docs/CONTRACT.md` Section 1.9; `docs/SPEC.md` Section 19.4 |
+ > | Packaging command | `npm run desktop:dist` from `frontend/` | `docs/SPEC.md` Section 19.1; `docs/PLAN.md` release validation commands |
+-> | Required packaging outputs | `frontend/dist/Chirality-0.1.0-arm64.dmg`; `frontend/dist/mac-arm64/Chirality.app`; `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 12.2 |
++> | Required packaging outputs | `frontend/dist/Chirality-<candidate-version>-arm64.dmg`; `frontend/dist/mac-arm64/Chirality.app`; `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 12.2 |
+ > | Instruction-root integrity command | `npm run instruction-root:integrity` | `docs/SPEC.md` Section 19.1; `docs/TYPES.md` Section 12 |
+ > | Instruction-root packaged resource requirement | Packaged builds must contain required instruction-root resources and verify integrity before distribution. | `docs/CONTRACT.md` Section 1.3; `docs/SPEC.md` Section 1.1 |
+ > | SDK subprocess packaging posture | Packaged Electron builds must verify that the SDK subprocess/binary can be found and executed from the app bundle. | `docs/PRD.md` NFR-030 and Section 12.8; `docs/SPEC.md` Section 19.4 |
+@@ -70,7 +76,7 @@
+ > | Build platform prerequisites | Node.js `>=20`; dependencies installed in `frontend/` with `npm ci` before validation/package sequence. | `docs/PRD.md` Section 6.2 and CI sequence near Section 12.2 |
+ > | Release scope exclusions | Windows/Linux packaging is out of current release scope unless amended. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` SOW-078; `docs/PRD.md` KG-014 |
+ > | Signing posture | Unsigned/adhoc as scoped; no notarization requirement in current target. | `docs/PRD.md` Sections 6.2 and 7.12; `docs/SPEC.md` Section 19.4 |
+-> | Network/security posture during packaged validation | current shipped Anthropic network guardrails remain in force. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 |
++> | Network/security posture during packaged validation | accepted Codex supplier network guardrails remain in force. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 |
+ >
+ 
+ ### CLM-005 — Construction
+@@ -136,13 +142,13 @@
+ > |---|---|---|---|
+ > | DEL-09-04-REQ-001 | The release target must remain macOS 15+ Apple Silicon (`arm64`) unsigned/unnotarized local-builder DMG unless amended. | `docs/PRD.md` Section 6.2; `docs/CONTRACT.md` K-RELEASE-1; `docs/SPEC.md` Section 19.4 | Inspect app bundle architecture, `LSMinimumSystemVersion`, and signing posture. |
+ > | DEL-09-04-REQ-002 | The desktop distribution build must be produced through `npm run desktop:dist` from `frontend/`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` FR-067 | Run or review build evidence for `npm run desktop:dist`. |
+-> | DEL-09-04-REQ-003 | The expected DMG output must include `frontend/dist/Chirality-0.1.0-arm64.dmg`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 7.12 | Confirm file exists after packaging. |
++> | DEL-09-04-REQ-003 | The expected DMG output must include `frontend/dist/Chirality-<candidate-version>-arm64.dmg`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 7.12 | Confirm file exists after packaging. |
+ > | DEL-09-04-REQ-004 | The expected app bundle output must include `frontend/dist/mac-arm64/Chirality.app`. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 12.2 | Confirm app bundle exists after packaging. |
+ > | DEL-09-04-REQ-005 | The build/integrity flow must produce or preserve `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`, and packaging evidence must state either a passing integrity verdict or enumerated blockers. | `docs/SPEC.md` Section 19.1; `docs/PRD.md` Section 12.2 | Confirm summary JSON exists and records a passing integrity result, or record blocker. |
+ > | DEL-09-04-REQ-006 | Packaged builds must contain required instruction-root resources and verify integrity before distribution. | `docs/CONTRACT.md` K-PACKAGE-1; `docs/SPEC.md` Section 1.1 | Run/review `npm run instruction-root:integrity` and bundle resource inspection. |
+ > | DEL-09-04-REQ-007 | Missing required instruction-root assets are a P0 packaging and runtime-readiness blocker. | `docs/SPEC.md` Section 1.1; `docs/PRD.md` Section 10.1; decomposition OI-004 | Fail packaging readiness if required assets are absent, or document accepted amendment. |
+ > | DEL-09-04-REQ-008 | The package-layout evidence must verify that the SDK subprocess/binary can be found and executed from the app bundle/package layout without secret leakage or broader network policy. | `docs/PRD.md` NFR-030; `docs/PRD.md` KG-025; `docs/SPEC.md` Section 19.4 | Execute SDK subprocess packaging probe in packaged layout; record command, package path, expected result, observed result, and blocker state. |
+-> | DEL-09-04-REQ-009 | The packaged validation must preserve current shipped Anthropic network guardrails. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 | Run/review network guardrail checks or document blocker. |
++> | DEL-09-04-REQ-009 | The packaged validation must preserve accepted Codex supplier network guardrails. | `docs/PRD.md` Section 12.8; `docs/SPEC.md` Section 19.4 | Run/review network guardrail checks or document blocker. |
+ > | DEL-09-04-REQ-010 | Windows/Linux packaging must not be introduced by this deliverable without explicit scope amendment. | Decomposition SOW-078; `docs/PRD.md` KG-014 | Review package scripts/config changes for target creep. |
+ > | DEL-09-04-REQ-011 | App-directory packaging used by packaged probes must be produced through `npm run desktop:pack` from `frontend/`. | D-APP-18; D-APP-56 R4-P03; `docs/BUILD_AND_RELEASE.md` | Run or review the app-directory packaging proof. |
+ >
+@@ -166,14 +172,14 @@
+ > | Verification Item | Expected Evidence | Requirement Coverage |
+ > |---|---|---|
+ > | Local build command evidence | command transcript or CI/local run record for `npm run desktop:dist` | DEL-09-04-REQ-002 |
+-> | DMG artifact check | file listing or checksum for `frontend/dist/Chirality-0.1.0-arm64.dmg` | DEL-09-04-REQ-001, DEL-09-04-REQ-003 |
++> | DMG artifact check | file listing or checksum for `frontend/dist/Chirality-<candidate-version>-arm64.dmg` | DEL-09-04-REQ-001, DEL-09-04-REQ-003 |
+ > | App bundle check | file listing for `frontend/dist/mac-arm64/Chirality.app` | DEL-09-04-REQ-004 |
+ > | Minimum macOS version check | inspected `LSMinimumSystemVersion` value `15.0.0` or later | DEL-09-04-REQ-001 |
+ > | Architecture check | inspected arm64 binary architecture | DEL-09-04-REQ-001 |
+ > | Signing posture check | evidence that signing is unsigned/adhoc as scoped | DEL-09-04-REQ-001 |
+ > | Instruction-root integrity summary | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` with explicit pass verdict or enumerated blockers | DEL-09-04-REQ-005, DEL-09-04-REQ-006, DEL-09-04-REQ-007 |
+ > | SDK subprocess packaging probe | package-layout probe command, package path, expected result, observed result, and failure/blocker recording rule for SDK subprocess/binary | DEL-09-04-REQ-008 |
+-> | Network guardrail check | evidence current shipped Anthropic network policy remains active | DEL-09-04-REQ-009 |
++> | Network guardrail check | evidence accepted Codex supplier network policy remains active | DEL-09-04-REQ-009 |
+ >
+ > Packaging evidence is not acceptable when instruction-root assets are absent, the integrity summary reports failure, or the SDK subprocess package-layout probe fails. Those cases remain blockers unless a governed amendment accepts a different release target or integrity policy.
+ >
+@@ -192,7 +198,7 @@
+ > - `TBD` residual-blocker list for incomplete instruction-root assets, SDK package-layout failures, or unresolved packaged-app runtime guardrail scope.
+ > - `ASSUMPTION` or `PROPOSAL` entries for any packaging config interpretation not directly supported by source evidence.
+ 
+-- **AC-001** — The desktop distribution and app-directory packaging evidence identifies the expected DMG and app bundle, verifies arm64 architecture, minimum macOS 15.0.0, unsigned or adhoc posture, required instruction-root assets and passing integrity summary, an executable SDK subprocess in package layout, and preserved current shipped Anthropic network guardrails; missing assets, failed integrity, failed subprocess execution, or unresolved required evidence remain explicit blockers.
++- **AC-001** — The desktop distribution and app-directory packaging evidence identifies the expected DMG and app bundle, verifies arm64 architecture, minimum macOS 15.0.0, unsigned or adhoc posture, required instruction-root assets and passing integrity summary, an executable admitted Codex supplier subprocess in package layout, and preserved accepted Codex supplier network guardrails; missing assets, failed integrity, failed subprocess execution, or unresolved required evidence remain explicit blockers.
+ 
+ ## Production and Verification Method — Praxeology
+ 
+@@ -237,7 +243,7 @@
+ > 3. If `instruction-root:integrity` reports missing required assets, stop packaging-evidence acceptance and record the missing assets as P0 blockers.
+ > 4. From `frontend/`, run `npm run desktop:dist`.
+ > 5. Confirm expected packaging outputs:
+->    - `frontend/dist/Chirality-0.1.0-arm64.dmg`
++>    - `frontend/dist/Chirality-<candidate-version>-arm64.dmg`
+ >    - `frontend/dist/mac-arm64/Chirality.app`
+ >    - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
+ > 6. Inspect the packaged app for macOS release posture:
+@@ -252,7 +258,7 @@
+ >    - verify execution does not require secret leakage or broader network policy.
+ > 9. Confirm packaged app preserves packaging-relevant runtime guardrails:
+ >    - working-root selector is available;
+->    - current shipped Anthropic network guardrails remain in force;
++>    - accepted Codex supplier network guardrails remain in force;
+ >    - `TBD`: human/source ruling must decide whether SDK-backed turn start after R1 blocks DEL-09-04 closure or is deferred to a broader packaged-app validation workflow.
+ > 10. Record all command outputs, artifact paths, summary JSON, probe output, checksums or deterministic artifact identifiers, and residual blockers in the integrity/package evidence bundle.
+ >
+@@ -264,13 +270,13 @@
+ > | Check | Pass Criteria | Requirement Link |
+ > |---|---|---|
+ > | Local checks | Required commands exit zero or accepted evidence explains non-run state. | DEL-09-04-REQ-002, DEL-09-04-REQ-006 |
+-> | DMG artifact | `frontend/dist/Chirality-0.1.0-arm64.dmg` exists after `desktop:dist`. | DEL-09-04-REQ-003 |
++> | DMG artifact | `frontend/dist/Chirality-<candidate-version>-arm64.dmg` exists after `desktop:dist`. | DEL-09-04-REQ-003 |
+ > | App bundle artifact | `frontend/dist/mac-arm64/Chirality.app` exists after `desktop:dist`. | DEL-09-04-REQ-004 |
+ > | Integrity summary | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` exists and states a pass verdict, or all failed/missing assets are enumerated as blockers. | DEL-09-04-REQ-005, DEL-09-04-REQ-007 |
+ > | macOS target | Binary architecture is arm64 and minimum macOS target is `15.0.0` or later. | DEL-09-04-REQ-001 |
+ > | Signing posture | Codesign evidence matches unsigned/adhoc local-builder scope. | DEL-09-04-REQ-001 |
+ > | SDK subprocess | Packaged SDK subprocess/binary probe records command, package path, expected result, observed result, and shows the binary is locatable and executable from app bundle/package layout. | DEL-09-04-REQ-008 |
+-> | Network guardrails | Packaged validation preserves current shipped Anthropic network policy. | DEL-09-04-REQ-009 |
++> | Network guardrails | Packaged validation preserves accepted Codex supplier network policy. | DEL-09-04-REQ-009 |
+ >
+ 
+ ### CLM-018 — Records
+@@ -283,7 +289,7 @@
+ > |---|---|
+ > | Pre-packaging command transcript | Command, cwd, timestamp/version, exit status, and accepted non-run evidence basis if substituted. |
+ > | `desktop:dist` evidence | Command transcript or build run record plus output paths. |
+-> | DMG artifact identity | `frontend/dist/Chirality-0.1.0-arm64.dmg` listing plus checksum or deterministic artifact identifier. |
++> | DMG artifact identity | `frontend/dist/Chirality-<candidate-version>-arm64.dmg` listing plus checksum or deterministic artifact identifier. |
+ > | App bundle artifact identity | `frontend/dist/mac-arm64/Chirality.app` listing and inspected release posture. |
+ > | Instruction-root integrity summary | `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json` with pass verdict or blocker list. |
+ > | SDK subprocess packaging probe | Probe command, package path, expected result, observed result, output path, and blocker state if failed. |
+@@ -316,7 +322,7 @@
+ > - Treat `desktop:dist` as release-significant. `docs/CONTRACT.md` K-VALIDATE-1 includes `desktop:dist` among checks required before release-significant changes are accepted.
+ > - Keep the release target narrow. `docs/PRD.md` KG-014 and decomposition SOW-078 make Windows/Linux packaging out of scope without amendment.
+ > - Treat instruction-root resources as package blockers. `docs/SPEC.md` Section 1.1 says missing required instruction-root assets are a P0 packaging and runtime-readiness blocker.
+-> - Preserve Chirality-owned boundaries in packaged form. Packaged validation should still exercise instruction-root integrity, working-root availability, current shipped Anthropic network guardrails, and SDK package execution.
++> - Preserve Chirality-owned boundaries in packaged form. Packaged validation should still exercise instruction-root integrity, working-root availability, accepted Codex supplier network guardrails, and SDK package execution.
+ > - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+ >
+ 
+--- a/projects/chirality-app-dev/loop/LOOP_INIT.md
++++ b/projects/chirality-app-dev/loop/LOOP_INIT.md
+@@ -62,10 +62,13 @@
+ 
+ ## 3. Standing constraints — hard fences (all iterations; always stop for a human ruling)
+ 
+-- **F-APP-1 (provider/network):** no provider or network expansion beyond
+-  the Anthropic path; no remote MCP, plugin, or broad tool-search enablement
+-  without a fresh ruling (F1 as amended by D-APP-44: owner-permitted,
+-  default-closed provider/residency configuration).
++- **F-APP-1 (provider/network):** Codex is the sole current MVP engine under
++  the recorded owner release direction. Its supplier/account admission,
++  per-root consent, credential custody and exact accepted endpoint/command-
++  network safeguards remain required under K-NET-1 and Runtime-owned
++  contracts. No other provider expansion, remote MCP, plugin or broad
++  tool-search enablement is authorized by this direction. Historical
++  Anthropic/Pi provider rules do not require enabling those engines.
+ - **F-APP-2 (release/distribution):** no signing, notarization, publication,
+   external distribution, or release-readiness / professional / certification
+   claims.
+@@ -81,8 +84,8 @@
+   plan, queue, register, or status surface is created without an owner
+   ruling. `plans/` is a historical archive; never select work from it.
+ - **Fresh-ruling stops** (carried from the pre-consolidation coordination
+-  record): Pi-backed execution (unapproved after D-APP-01/02); concrete
+-  non-Anthropic provider implementation or routing; write/edit/bash/
++  record): provider execution outside the current Codex MVP direction and
++  its accepted supplier/account/containment scope; write/edit/bash/
+   tool-execution exposure beyond the current approved item; changes to the
+   project-truth model for sessions, transcripts, chats, runtime logs, or
+   completion logs; professional-boundary or release-readiness posture.
+--- a/projects/chirality-app-dev/docs/PLAN.md
++++ b/projects/chirality-app-dev/docs/PLAN.md
+@@ -411,9 +411,9 @@
+ npm run desktop:dist
+ ```
+ 
+-Expected package artifacts:
+-
+-- `frontend/dist/Chirality-0.1.0-arm64.dmg`
++Expected package artifacts (candidate-version is the explicitly recorded, consistent package.json/package-lock.json and actual App bundle identity; no version is selected by this plan):
++
++- `frontend/dist/Chirality-<candidate-version>-arm64.dmg`
+ - `frontend/dist/mac-arm64/Chirality.app`
+ - `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`
+ 

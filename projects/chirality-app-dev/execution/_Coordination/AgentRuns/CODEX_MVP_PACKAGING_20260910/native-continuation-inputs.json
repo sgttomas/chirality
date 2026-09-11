@@ -1,0 +1,195 @@
+{
+  "status": "AUTHOR_FROZEN_NATIVE_INPUTS_PENDING_INDEPENDENT_CONTINUATION_REVIEW",
+  "sourceFiles": [
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/src/addon.cc",
+      "size": 17066,
+      "sha256": "5671fc4540c97b3a418386bd654acc9be002597031987ff1bcb273f3859335d1"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/src/index.ts",
+      "size": 9690,
+      "sha256": "fa6d41e687249f7c98781303ef756967fb40fc6ad0999af61c1dc3fbb84131a0"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/binding.gyp",
+      "size": 389,
+      "sha256": "24cc5ef00e611b9b1a8d33d1c1a8ee54ea0fcbbab4d8302f71f0270e3928755a"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/native-admission/package.json",
+      "size": 530,
+      "sha256": "527cd7cdb42ffa7022c6ada5f059a590a39e696c9340fcde7d5df9e3ba851d47"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/core/package.json",
+      "size": 407,
+      "sha256": "0d87c535ae0ea8e1e936136d0c432fd06e80ec78c670069fd594fc709b7ec497"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/contracts/package.json",
+      "size": 2020,
+      "sha256": "0a092759f3729bb8026c2c790b8ce126c800a355285fc83ccb38d8457f32ca32"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/package.json",
+      "size": 773,
+      "sha256": "faa7172be614abc6fd310085d5639e893405905eadb8a4c47497a2f743a8c651"
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "size": 489,
+      "sha256": "a8052992a83f9390d68f015776cd81e27ed8b13a77847fcd468177758d3b7ede"
+    },
+    {
+      "path": "projects/chirality-runtime/package-lock.json",
+      "size": 214666,
+      "sha256": "5e0c8c0dfc93cf3a1535a2ad71a1571691aa2e6164ff88fea8fdec9d0bb7d181"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "size": 6367,
+      "sha256": "d569ed8d1e89c38859272a7b481394b7d5de74fe36b67b41799fe986b21bee29"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package-lock.json",
+      "size": 432996,
+      "sha256": "606fe023fea60bea8955da80b3b197c3fbfd3849b9c8c40058bd245781abf397"
+    }
+  ],
+  "headers": [
+    {
+      "path": "/Users/ryan/.local/share/mise/installs/node/24.18.0/include/node/node_api.h",
+      "size": 10370,
+      "sha256": "2d4560831e525b47b060ec8a0864ab73993df9e20215ce9f0fe7b24cd31af32a"
+    },
+    {
+      "path": "/Users/ryan/.local/share/mise/installs/node/24.18.0/include/node/node_api_types.h",
+      "size": 1930,
+      "sha256": "a25356630d3058f0a0c8937d9f297e9471e037fda58c2696d8a505c2bd99cb00"
+    },
+    {
+      "path": "/Users/ryan/.local/share/mise/installs/node/24.18.0/include/node/js_native_api.h",
+      "size": 33158,
+      "sha256": "8808ef8899a1691411928ef5dd7dae0537aedc93d3a34e223b2d89692e79c788"
+    },
+    {
+      "path": "/Users/ryan/.local/share/mise/installs/node/24.18.0/include/node/js_native_api_types.h",
+      "size": 7871,
+      "sha256": "4f19cb90d240765cc0961d92a1ee20f65fdc50db7de1ab0a5cb6bc227224e1a0"
+    },
+    {
+      "path": "/Users/ryan/.local/share/mise/installs/node/24.18.0/include/node/node_version.h",
+      "size": 4247,
+      "sha256": "ff277a53d85a4ab9a5f1a731229e7e4aa8c834813de1e6007d810582c0f7b628"
+    },
+    {
+      "path": "/Users/ryan/.local/share/mise/installs/node/24.18.0/include/node/common.gypi",
+      "size": 29174,
+      "sha256": "1e29e212d58d89d65da98c594abe8178bb21a7e21eb02a43a5944d92a4d7cfdc"
+    },
+    {
+      "path": "/Users/ryan/.local/share/mise/installs/node/24.18.0/include/node/config.gypi",
+      "size": 19469,
+      "sha256": "40a58beecb09c2f394fc544c88dc2f9fa9f2ab07ebab8b0370466ec0d30532a5"
+    }
+  ],
+  "toolchain": {
+    "node": "/Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node",
+    "nodeVersion": "24.18.0",
+    "nodeNapi": 10,
+    "nodeModules": 137,
+    "arch": "arm64",
+    "clang": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+    "clangVersion": "21.0.0 clang-2100.1.1.101",
+    "xcode": "26.6 17F113",
+    "sdk": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+    "sdkVersion": "26.5",
+    "python": "/usr/bin/python3",
+    "pythonVersion": "3.9.6",
+    "nodeGypVersion": "11.4.2",
+    "nodeGypRealpath": "/private/tmp/chirality-v3-adoption-20260909/projects/chirality-runtime/node_modules/node-gyp/package.json",
+    "sdkSettingsSha256": "f8d005f09381389167f9e0aeaa169bc9e7dff162ef22ca2fd8e98df7ff1acafe"
+  },
+  "notExecuted": [
+    "compile",
+    "addon load",
+    "Electron launch",
+    "supplier launch",
+    "dependency acquisition"
+  ],
+  "nativeSourceFreeze": {
+    "addon": "5671fc4540c97b3a418386bd654acc9be002597031987ff1bcb273f3859335d1",
+    "wrapper": "fa6d41e687249f7c98781303ef756967fb40fc6ad0999af61c1dc3fbb84131a0",
+    "gyp": "24cc5ef00e611b9b1a8d33d1c1a8ee54ea0fcbbab4d8302f71f0270e3928755a"
+  },
+  "probes": [
+    {
+      "path": "projects/chirality-runtime/tools/native-admission/native-load-probe.cjs",
+      "size": 4180,
+      "sha256": "4f1700d1a91fbd6b483d1eb251cdfca32e198cd9025cedbc603b455af49bfaf3"
+    },
+    {
+      "path": "projects/chirality-runtime/tools/native-admission/native-behavior-probe.cjs",
+      "size": 20780,
+      "sha256": "d3e6427022821939488f343e852231c19b7a812810ee4ce3e10eb09b45b59665"
+    },
+    {
+      "path": "projects/chirality-runtime/tools/native-admission/native-fixture.c",
+      "size": 4448,
+      "sha256": "ef6bebd313169de35d8754cc8ddac5e9738c781dc54b5cba54dc9a2ff454cdd3"
+    },
+    {
+      "path": "projects/chirality-runtime/tools/native-admission/README.md",
+      "size": 4212,
+      "sha256": "4045dd0d74ea5179b76631cb4c867626ccf30f35e0e4caf0835aea18f2e21e95"
+    }
+  ],
+  "selectedRecipe": {
+    "kind": "direct-clang-source-validation-only",
+    "output": "/private/tmp/chirality-native-continuation-20260910-01/chirality_native_admission.node",
+    "argv": [
+      "-std=c++20",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=15.0",
+      "-isysroot",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-I",
+      "/Users/ryan/.local/share/mise/installs/node/24.18.0/include/node",
+      "-DNAPI_VERSION=6",
+      "-DNODE_GYP_MODULE_NAME=chirality_native_admission",
+      "-DCHIRALITY_DARWIN_ONLY=1",
+      "-fPIC",
+      "-bundle",
+      "-undefined",
+      "dynamic_lookup",
+      "/private/tmp/chirality-native-continuation-20260910-01/src/addon.cc",
+      "-o",
+      "/private/tmp/chirality-native-continuation-20260910-01/chirality_native_admission.node"
+    ]
+  },
+  "fixtureRecipe": {
+    "compiler": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+    "kind": "compile-only-no-execution",
+    "argv": [
+      "-std=c17",
+      "-arch",
+      "arm64",
+      "-mmacosx-version-min=15.0",
+      "-isysroot",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "/private/tmp/chirality-native-continuation-20260910-01/native-fixture.c",
+      "-o",
+      "/private/tmp/chirality-native-continuation-20260910-01/native-fixture"
+    ]
+  },
+  "independentNativeSourceReview": {
+    "path": "/private/tmp/chirality-release-runtime-20260910/native-admission-source-review.md",
+    "sha256": "714a9d31f3b9e75c49254c01717c3f19c48f0de37950af67a3cd4d76a6c00d66",
+    "verdict": "PASS_COMPILE_ONLY_SOURCE_READINESS"
+  }
+}

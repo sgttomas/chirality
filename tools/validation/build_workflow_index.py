@@ -64,6 +64,8 @@ def _descriptor(entry: dict, library: dict, central: bool) -> dict:
     }
     if entry.get("execution") is not None:
         descriptor["execution"] = entry["execution"]
+    if entry.get("metadata") is not None:
+        descriptor["metadata"] = entry["metadata"]
     return descriptor
 
 
@@ -187,6 +189,11 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
             "executionRoleIds": execution["compatibleRoles"] if execution is not None else list(ROLES),
             "resources": resources,
         }
+        package_metadata = metadata.get("metadata")
+        if package_metadata is not None:
+            if not isinstance(package_metadata, dict):
+                raise ValueError(f"frontmatter metadata must be a mapping: {folder.name}")
+            entry["metadata"] = package_metadata
         if execution is not None:
             entry["execution"] = execution
         name = entry["name"]

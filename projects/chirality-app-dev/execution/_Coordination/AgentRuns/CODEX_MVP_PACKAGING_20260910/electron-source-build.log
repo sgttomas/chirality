@@ -1,0 +1,15 @@
+
+  dist-electron/main.js      896.9kb
+  dist-electron/main.js.map    2.0mb
+
+⚡ Done in 118ms
+
+  dist-electron/preload.js       4.6kb
+  dist-electron/preload.js.map  16.2kb
+
+⚡ Done in 1ms
+
+  dist-runtime/chirality-cli.mjs       94.8kb
+  dist-runtime/chirality-cli.mjs.map  245.9kb
+
+⚡ Done in 4ms

@@ -198,6 +198,8 @@ it('anchors the woven account popover outside its trigger and dismisses with Esc
     await act(async () => { tree = renderer.create(<ShellFrame section="CHAT" title="Chat" subtitle="" variant="workspace" renderWorkspaceContent={({ settingsControl }) => settingsControl} />, { createNodeMock: element => element.type === 'button' && element.props['aria-haspopup'] === 'dialog' ? trigger : element.props.role === 'dialog' ? panel : root }); });
     const toggle = () => tree.root.findByProps({ 'aria-haspopup': 'dialog' });
     act(() => toggle().props.onClick());
+    expect(textOf(tree.root.findByProps({ role: 'dialog' }))).toContain('Choose a folder to get started');
+    expect(textOf(tree.root.findByProps({ role: 'dialog' }))).not.toMatch(/Preview account|Local model|oMLX/);
     expect(panel.style.bottom).toBe('108px');
     expect(panel.style.maxHeight).toBe('684px');
     expect(panel.focus).toHaveBeenCalledTimes(1);
@@ -236,13 +238,13 @@ it('focuses mounted Settings on every generic, group and keyboard invocation', a
     focus.mockClear();
     invoke('Settings…'); expect(focus).toHaveBeenCalledTimes(1);
     invoke('Settings…'); expect(focus).toHaveBeenCalledTimes(2);
-    invoke('This folder…'); expect(folderFocus).toHaveBeenCalledTimes(1);
-    invoke('This folder…'); expect(folderFocus).toHaveBeenCalledTimes(2);
     invoke('Settings…'); expect(focus).toHaveBeenCalledTimes(3);
+    invoke('Settings…'); expect(focus).toHaveBeenCalledTimes(4);
+    invoke('Settings…'); expect(focus).toHaveBeenCalledTimes(5);
     act(() => handlers.get('keydown')?.({ key: ',', metaKey: true, preventDefault: vi.fn() }));
-    expect(focus).toHaveBeenCalledTimes(4);
+    expect(focus).toHaveBeenCalledTimes(6);
     act(() => handlers.get('keydown')?.({ key: ',', ctrlKey: true, preventDefault: vi.fn() }));
-    expect(focus).toHaveBeenCalledTimes(5);
+    expect(focus).toHaveBeenCalledTimes(7);
     expect(opened).toHaveBeenCalledTimes(7);
   } finally { act(() => tree?.unmount()); vi.unstubAllGlobals(); }
 });

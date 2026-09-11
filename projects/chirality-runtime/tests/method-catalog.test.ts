@@ -68,7 +68,7 @@ describe("v3 role and method catalog", () => {
   });
 
   it("accepts canonical YAML metadata maps and multiline descriptions while reporting duplicate and malformed YAML", async () => {
-    const project = await root("project", "project-library");
+    const project = await root("bundled", "bundled-library");
     await put(join(project.rootPath, ".agents", "skills", "rich", "SKILL.md"), `---\nname: rich\ndescription: >-\n  A multiline\n  description.\nmetadata:\n  owner: project\n  tags: [one, two]\n---\n# rich\n`);
     await put(join(project.rootPath, ".agents", "skills", "duplicate", "SKILL.md"), `---\nname: duplicate\nname: duplicate\ndescription: invalid\n---\n`);
     await put(join(project.rootPath, ".agents", "skills", "broken", "SKILL.md"), `---\nname: [broken\ndescription: invalid\n---\n`);
@@ -170,7 +170,7 @@ describe("v3 role and method catalog", () => {
     }
   });
 
-  it("preserves ordered methods and deduplicates compatibility only by resolved qualified identity", async () => {
+  it("loads only bundled skills while explicit non-bundled historical identities remain forbidden", async () => {
     const project = await root("project", "project-library");
     const bundled = await root("bundled", "chirality-root");
     await put(join(project.rootPath, ".agents", "skills", "converted-skill", "SKILL.md"), frontmatter("converted-skill"));
@@ -181,18 +181,40 @@ describe("v3 role and method catalog", () => {
       legacyWorkflowNames: [], historicalOnly: [], unknownLegacyBehavior: "error"
     }));
     const catalog = await discoverMethodCatalog([project, bundled]);
+    expect(catalog.response.methods).not.toContainEqual(expect.objectContaining({ source: "project", kind: "skill", name: "converted-skill" }));
     const bundledReference = { sourceRootId: "chirality-root", source: "bundled" as const, kind: "skill" as const, name: "converted-skill" };
     const inputMethods = [bundledReference, bundledReference];
-    const normalized = normalizeMethodSelection(catalog, { methods: inputMethods, taskSkill: "converted-skill" });
-    expect(normalized.methods).toEqual([...inputMethods, { kind: "skill", name: "converted-skill" }]);
+    expect(normalizeMethodSelection(catalog, { methods: inputMethods, taskSkill: "converted-skill" }).methods).toEqual(inputMethods);
     expect(inputMethods).toEqual([bundledReference, bundledReference]);
 
     const projectReference = { sourceRootId: "project-library", source: "project" as const, kind: "skill" as const, name: "converted-skill" };
-    expect(normalizeMethodSelection(catalog, { methods: [projectReference], taskSkill: "converted-skill" }).methods).toEqual([projectReference]);
+    expect(resolveMethodReferences(catalog, [projectReference, { kind: "skill", name: "converted-skill" }]).map(value => value.status))
+      .toEqual(["forbidden", "resolved"]);
+    expect(() => normalizeMethodSelection(catalog, { methods: [projectReference] }))
+      .toThrow(expect.objectContaining({ code: "UNSUPPORTED_METHOD_ORIGIN" }));
+  });
+
+  it("keeps project and user workflows discoverable and source-qualified while excluding their skills", async () => {
+    const project = await root("project", "project-library");
+    const user = await root("user", "user-library");
+    const bundled = await root("bundled", "trusted-bundle");
+    for (const source of [project, user, bundled]) {
+      await put(join(source.rootPath, ".agents", "skills", `${source.source}-skill`, "SKILL.md"), frontmatter(`${source.source}-skill`));
+      await put(join(source.rootPath, "workflows", `${source.source}-workflow`, "WORKFLOW.md"), frontmatter(`${source.source}-workflow`));
+    }
+    const catalog = await discoverMethodCatalog([bundled, user, project]);
+    expect(catalog.response.methods.filter(value => value.kind === "skill").map(value => value.qualifiedId))
+      .toEqual(["trusted-bundle:bundled:skill:bundled-skill"]);
+    expect(catalog.response.methods.filter(value => value.kind === "workflow").map(value => value.qualifiedId))
+      .toEqual([
+        "project-library:project:workflow:project-workflow",
+        "user-library:user:workflow:user-workflow",
+        "trusted-bundle:bundled:workflow:bundled-workflow"
+      ]);
   });
 
   it("rejects resource symlinks that escape a method package", async () => {
-    const project = await root("project", "project-library");
+    const project = await root("bundled", "bundled-library");
     const packageRoot = join(project.rootPath, "workflows", "contained");
     await put(join(packageRoot, "WORKFLOW.md"), frontmatter("contained"));
     const outside = join(project.rootPath, "outside.txt");
@@ -204,7 +226,7 @@ describe("v3 role and method catalog", () => {
   });
 
   it("rejects escaped skill packages and resource directory cycles", async () => {
-    const project = await root("project", "project-library");
+    const project = await root("bundled", "bundled-library");
     const outsidePackage = join(project.rootPath, "outside-skill");
     await put(join(outsidePackage, "SKILL.md"), frontmatter("escaped"));
     await mkdir(join(project.rootPath, ".agents", "skills"), { recursive: true });
@@ -220,7 +242,7 @@ describe("v3 role and method catalog", () => {
   });
 
   it("rejects a skill collection whose canonical directory escapes its source root", async () => {
-    const project = await root("project", "project-library");
+    const project = await root("bundled", "bundled-library");
     const outsideCollection = await mkdtemp(join(tmpdir(), "chirality-outside-skills-"));
     await put(join(outsideCollection, "outside", "SKILL.md"), frontmatter("outside"));
     await mkdir(join(project.rootPath, ".agents"), { recursive: true });
@@ -234,7 +256,10 @@ describe("v3 role and method catalog", () => {
     const qualified = "root:bundled:workflow:alpha";
     expect(RUNTIME_ROUTES.method("p / 1", qualified)).toBe("/v1/projects/p%20%2F%201/methods/root%3Abundled%3Aworkflow%3Aalpha");
     expect(RUNTIME_ROUTES.sessionContextResolve("p", "s")).toBe("/v1/projects/p/sessions/s/context/resolve");
+    const admitted: NativePlanAdapterEvent = { qualificationState: "trial", eventId: "event-0", occurredAt: "2026-09-10T00:00:00.000Z",
+      admission: { evidenceClass: "native-adapter-local-human-trial", adapterId: "codex-app-server", providerId: "openai", dispositionId: "trial-1", admissionSha256: "a".repeat(64) } };
+    expect(nativePlanRevisionFromAdapterEvent(1, admitted)).toEqual({ revision: 1, sourceEvent: admitted });
     const unavailable: NativePlanAdapterEvent = { qualificationState: "unavailable", eventId: "event-1", reason: "adapter unavailable" };
-    expect(() => nativePlanRevisionFromAdapterEvent(1, unavailable)).toThrowError(/qualified native adapter event/);
+    expect(() => nativePlanRevisionFromAdapterEvent(1, unavailable)).toThrow(Error);
   });
 });

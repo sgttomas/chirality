@@ -40,12 +40,13 @@ The registry never grants a filesystem path or bypasses host permission checks.
 
 ## Method libraries and catalogs
 
-Skills and workflows are independently discoverable methods:
+Skills and workflows are independently modeled methods, with different ordinary
+App discovery policies:
 
-| Library | Project | User | Bundled |
-|---|---|---|---|
-| Skills | `.agents/skills/<name>/SKILL.md` | `~/.agents/skills/<name>/SKILL.md` | App-supplied reviewed skill library |
-| Workflows | `.chirality/workflows/<name>/WORKFLOW.md` | `~/.chirality/workflows/<name>/WORKFLOW.md` | App-supplied reviewed workflow library; Root source packages currently live under `workflows/` |
+| Library | Project | User | Bundled | Ordinary App policy |
+|---|---|---|---|---|
+| Skills | `.agents/skills/<name>/SKILL.md` | `~/.agents/skills/<name>/SKILL.md` | App-supplied reviewed skill library | Resolve only bundled skills into ordinary agent context |
+| Workflows | `.chirality/workflows/<name>/WORKFLOW.md` | `~/.chirality/workflows/<name>/WORKFLOW.md` | App-supplied reviewed workflow library; Root source packages currently live under `workflows/` | Discover all three sources |
 
 A skill is reusable bounded contextual instruction with a canonical `SKILL.md`.
 A workflow is reusable coordination or method guidance with a canonical
@@ -59,13 +60,26 @@ collision status without loading bodies. `inspect` returns one explicitly named
 definition and its metadata. `selected-context` returns only explicitly selected
 method bodies and requested resources, with fingerprints and selection order.
 
-Unqualified lookup precedence is project, then user, then bundled. Selection
-retains source-qualified identity; a result is never reduced to its basename in
-run history. Every collision exposes all origins. Discovery after selection may
-report a higher-precedence collision, but it must not silently replace the
-selected method. Explicit source qualification resolves a collision. Project
-instructions and methods may specialize the shared suite but cannot weaken Root
-governance or escape the active working root.
+For workflows, unqualified lookup precedence is project, then user, then
+bundled. Selection retains source-qualified identity; a result is never reduced
+to its basename in run history. Every workflow collision exposes all origins.
+Discovery after selection may report a higher-precedence collision, but it must
+not silently replace the selected workflow. Explicit source qualification
+resolves a collision. Project instructions and workflows may specialize the
+shared suite but cannot weaken Root governance or escape the active working
+root.
+
+Ordinary App skill listing, inspection, and context resolution operate only
+over the trusted bundled library. Project and user `SKILL.md` inspection
+remains available to Root reference and standalone compatibility interfaces,
+and their original
+identities remain valid historical evidence; file presence never makes them
+eligible ordinary App context. Read-only replay may render the exact preserved
+bytes and origin of an earlier selection, or report historical bytes
+unavailable, without activating that skill for a new model turn. Continuing an
+ordinary App conversation from such a selection requires an explicit drop or
+change to an eligible bundled skill. The adapter never substitutes a same-named
+bundled skill or silently re-admits the old selection.
 
 Context-supplied skills that do not originate at a readable filesystem library
 are labeled `context-supplied` with the provider origin and available
@@ -121,11 +135,19 @@ remain ordinary documents and are not reinterpreted as canonical workflow
 packages. Project workflow discovery recognizes only
 `.chirality/workflows/<name>/WORKFLOW.md` packages.
 
+Workflow authoring is chat-driven. On a user's request, an authorized agent may
+create, save, or revise a canonical project or user workflow package with the
+available file tools, subject to the active permission policy, real-path
+containment, and the package metadata rules above. The agent validates the
+entrypoint and requested resources, then requests or performs catalog refresh so
+the source-qualified package becomes discoverable. The MVP has no separate
+workflow-editor surface or alternate workflow document format.
+
 ## Context selection and execution
 
-Ordinary selective context contains Root `AGENTS.md`, applicable project
-instructions, the active role instruction, and available skill names and
-descriptions. It excludes other full role instructions, broad governance
+Ordinary selective App context contains Root `AGENTS.md`, applicable project
+instructions, the active role instruction, and available bundled-skill names
+and descriptions. It excludes other full role instructions, broad governance
 documents, and unselected method bodies. Selected skill/workflow bodies and
 only the resources needed for the current stage load on demand. A selected
 resource must exist and remain within its source package after real-path
@@ -169,6 +191,14 @@ from mechanically recorded loading. Amendments name changed basis and scope;
 new role instructions take effect between runs.
 
 ## Interaction, permissions, plans, and replacement
+
+The App MVP uses Codex as its sole engine qualification and release target.
+Model selection within Codex is recorded as model configuration and does not
+constitute engine replacement. The App-facing Runtime engine registry contains
+Codex only for the MVP. Generic provider-succession fields below and
+retained compatibility surfaces preserve historical and standalone behavior;
+they do not establish qualified MVP support for another engine, permit one to
+substitute for required Codex capability, or authorize its release.
 
 `interactionMode` distinguishes ordinary conversation from qualified native
 Plan Mode. Native Plan Mode is selectable only when the active adapter

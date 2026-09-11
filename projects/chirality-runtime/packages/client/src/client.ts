@@ -5,9 +5,12 @@ import {
   RUNTIME_ROUTES,
   RuntimeError,
   validateHostedLoginStatus,
+  validateHostedBootstrapStatus,
   type Agent1RunRequest,
   type DelegatedPreflight,
   type HostedLoginStatus,
+  type HostedBootstrapStatus,
+  type HostedBootstrapLoginStartResponse,
   type DelegatedCapabilities, type DelegatedApprovalDecisionRequest, type DelegatedTurnRequest,
   type DelegatedTurnResponse,
   type RuntimeCompatibilityIdentity,
@@ -23,6 +26,9 @@ import {
   type PermissionDecisionRequest,
   type PermissionDecisionResponse,
   type ProjectRegistrationRequest,
+  type HostedBootstrapProjectRegistrationRequest,
+  type HostedBootstrapProjectInitializationRequest,
+  type HostedBootstrapProjectRegistrationResponse,
   type ProjectRegistrationResponse,
   type ProjectStatus,
   type ProjectsResponse,
@@ -47,9 +53,12 @@ import {
   , type ReplaceSelectedMethodsRequest
   , type ReplaceSelectedMethodsResponse
   , type NativePlanCapabilityResponse
+  , type NativePlanClarificationsResponse
   , type NativePlanRevisionsResponse
   , type ExportNativePlanRequest
   , type ExportNativePlanResponse
+  , type ReplyNativePlanClarificationRequest
+  , type ReplyNativePlanClarificationResponse
 } from "@chirality/runtime-contracts";
 import { RuntimeTransportError, runtimeErrorFromResponse } from "./errors.js";
 import { parseSse, parseUiEvent, type SseFrame } from "./sse.js";
@@ -251,6 +260,21 @@ export class RuntimeClient {
     });
   }
 
+  async registerHostedBootstrapProject(request: HostedBootstrapProjectRegistrationRequest, signal?: AbortSignal): Promise<HostedBootstrapProjectRegistrationResponse> {
+    return this.safeHostedProjectRegistration(await this.requestJson(RUNTIME_ROUTES.hostedBootstrapProjectRegister, { method: "POST", body: request, signal }));
+  }
+
+  async initializeHostedBootstrapProject(request: HostedBootstrapProjectInitializationRequest, signal?: AbortSignal): Promise<HostedBootstrapProjectRegistrationResponse> {
+    return this.safeHostedProjectRegistration(await this.requestJson(RUNTIME_ROUTES.hostedBootstrapProjectInitialize, { method: "POST", body: request, signal }));
+  }
+
+  private safeHostedProjectRegistration(value: unknown): HostedBootstrapProjectRegistrationResponse {
+    if (!value || typeof value !== "object" || Array.isArray(value) || Object.keys(value).sort().join(",") !== "manifestHash,projectId") throw new RuntimeError("INVALID_REQUEST", "Invalid hosted project registration response");
+    const result = value as Record<string, unknown>;
+    if (typeof result.projectId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/u.test(result.projectId) || typeof result.manifestHash !== "string" || !/^[a-f0-9]{64}$/u.test(result.manifestHash)) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted project registration response");
+    return { projectId: result.projectId, manifestHash: result.manifestHash };
+  }
+
   projectStatus(projectId: string, signal?: AbortSignal): Promise<ProjectStatus> {
     return this.requestJson(RUNTIME_ROUTES.projectStatus(projectId), { signal });
   }
@@ -411,6 +435,14 @@ export class RuntimeClient {
     return this.requestJson(RUNTIME_ROUTES.nativePlanRevisions(projectId, sessionId), { signal });
   }
 
+  listNativePlanClarifications(projectId: string, sessionId: string, signal?: AbortSignal): Promise<NativePlanClarificationsResponse> {
+    return this.requestJson(RUNTIME_ROUTES.nativePlanClarifications(projectId, sessionId), { signal });
+  }
+
+  replyNativePlanClarification(projectId: string, sessionId: string, request: ReplyNativePlanClarificationRequest, signal?: AbortSignal): Promise<ReplyNativePlanClarificationResponse> {
+    return this.requestJson(RUNTIME_ROUTES.nativePlanClarificationReply(projectId, sessionId), { method: "POST", body: request, signal });
+  }
+
   exportNativePlan(projectId: string, sessionId: string, request: ExportNativePlanRequest, signal?: AbortSignal): Promise<ExportNativePlanResponse> {
     return this.requestJson(RUNTIME_ROUTES.nativePlanExport(projectId, sessionId), { method: "POST", body: request, signal });
   }
@@ -541,6 +573,32 @@ export class RuntimeClient {
     try { url = new URL(result.authUrl); } catch { throw new RuntimeError("INVALID_REQUEST", "Invalid hosted login URL"); }
     if (url.protocol !== "https:" || url.username || url.password || result.authUrl.length > 8192) throw new RuntimeError("INVALID_REQUEST", "Unsafe hosted login URL");
     return result;
+  }
+
+  async hostedBootstrapStatus(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus> {
+    return validateHostedBootstrapStatus(await this.requestJson(RUNTIME_ROUTES.hostedBootstrapStatus(projectId), { method: "GET", signal }));
+  }
+
+  async grantHostedProviderNetworkConsent(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus> {
+    return validateHostedBootstrapStatus(await this.requestJson(RUNTIME_ROUTES.hostedBootstrapConsent(projectId), { method: "POST", body: { consent: true }, signal }));
+  }
+
+  async startHostedBootstrapLogin(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapLoginStartResponse> {
+    const result = await this.requestJson<HostedBootstrapLoginStartResponse>(RUNTIME_ROUTES.hostedBootstrapLoginStart(projectId), { method: "POST", body: {}, signal });
+    if (!result || typeof result !== "object" || Array.isArray(result) || Object.keys(result).sort().join(",") !== "authUrl,loginId") throw new RuntimeError("INVALID_REQUEST", "Unsafe hosted login response");
+    let url: URL;
+    try { url = new URL(result.authUrl); } catch { throw new RuntimeError("INVALID_REQUEST", "Invalid hosted login URL"); }
+    if (url.protocol !== "https:" || url.username || url.password || result.authUrl.length > 8192 || typeof result.loginId !== "string" || !result.loginId || result.loginId.length > 512) throw new RuntimeError("INVALID_REQUEST", "Unsafe hosted login response");
+    return result;
+  }
+
+  async cancelHostedBootstrapLogin(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus> {
+    return validateHostedBootstrapStatus(await this.requestJson(RUNTIME_ROUTES.hostedBootstrapLoginCancel(projectId), { method: "POST", body: {}, signal }));
+  }
+
+  /** Signs out this hosted project after the Runtime has fenced its admission. */
+  async signOutHostedProject(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus> {
+    return validateHostedBootstrapStatus(await this.requestJson(RUNTIME_ROUTES.hostedBootstrapLogout(projectId), { method: "POST", body: {}, signal }));
   }
 
   async hostedLoginStatus(projectId: string): Promise<HostedLoginStatus> {

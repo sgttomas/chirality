@@ -130,7 +130,7 @@ describe('ChatPanel failed-send retry state', () => {
       roleId: 'HELP_HUMAN',
       mode: 'CHAT',
       interactionMode: 'chat',
-      permissionMode: 'ask',
+      permissionMode: 'workspaceWrite',
       selectedMethods: []
     });
     expect(mocks.bootHarnessSession).not.toHaveBeenCalled();

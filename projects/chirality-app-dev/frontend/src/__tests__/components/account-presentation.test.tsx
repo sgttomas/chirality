@@ -6,19 +6,34 @@ import { WOVEN_WORKSPACE_STORAGE_KEY } from '../../lib/woven-dialogue/woven-work
 import { ThemeControl } from '../../components/shell/theme-control';
 import { AccountRow } from '../../components/shell/account-row';
 import { AccountPopover } from '../../components/shell/account-popover';
+import { DaemonQuickControl } from '../../components/shell/account-settings-controls';
 import { SettingsView } from '../../components/settings/settings-view';
 import { useAccountConsentController, type AccountConsentSettingsViewProps } from '../../components/settings/account-consent-settings';
 import { useRuntimeSettingsController, type RuntimeSettingsViewProps } from '../../components/settings/runtime-settings-controller';
 import { createFakeHostedEngineConsentPort } from '../../lib/consent/fake-hosted-engine-consent-port';
 import { CONSENT_UX_FIXTURE_NAMES, consentUxFixture } from '../../lib/consent/consent-ux-fixtures';
 import type { HostedEngineConsentPort } from '../../lib/consent/hosted-engine-consent-port';
+import type { HostedBootstrapController } from '../../components/settings/hosted-bootstrap-controller';
 
 vi.mock('../../components/settings/api-key-settings', () => ({ ApiKeySettings: () => <p>Existing API key controls</p> }));
 vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => 0 }));
 const noop = () => {};
 const accountBase: AccountConsentSettingsViewProps = { snapshot: null, busy: false, error: null, onLogin: noop, onLogout: noop, onGrantConsent: noop, onRevokeConsent: noop, onSelectNetworkPosture: noop, onResolveNetworkPrompt: noop, onSelectRole: noop };
 const runtimeBase: RuntimeSettingsViewProps = { bridgeAvailable: false, daemonStatus: null, residency: null, selectedModel: '', busyAction: null, error: null, onDaemonAction: noop, onRefresh: noop, onSelectedModelChange: noop, onActivateModel: noop };
+const hostedBase: HostedBootstrapController = { projectRoot: '/folder', snapshot: { registration: 'required' }, loading: false, busyAction: null, error: null, signOutUncertain: false, authUrl: null, onSetup: noop, onGrantConsent: noop, onStartLogin: noop, onCancelLogin: noop, onSignOut: noop };
 const text = (node: { children: unknown[] }): string => node.children.map(child => typeof child === 'string' ? child : child && typeof child === 'object' && 'children' in child ? text(child as {children: unknown[]}) : '').join('');
+function findElement(node: React.ReactNode, predicate: (element: React.ReactElement<Record<string, unknown>>) => boolean): React.ReactElement<Record<string, unknown>> | null {
+  if (Array.isArray(node)) {
+    for (const child of node) {
+      const match = findElement(child, predicate);
+      if (match) return match;
+    }
+    return null;
+  }
+  if (!React.isValidElement<Record<string, unknown>>(node)) return null;
+  if (predicate(node)) return node;
+  return findElement(node.props.children as React.ReactNode, predicate);
+}
 const trees: ReactTestRenderer[] = [];
 afterEach(() => { act(() => trees.splice(0).forEach(tree => tree.unmount())); vi.unstubAllGlobals(); });
 function createTree(element: React.ReactElement): ReactTestRenderer { let tree!: ReactTestRenderer; act(() => { tree = create(element); }); trees.push(tree); return tree; }
@@ -47,6 +62,34 @@ describe('D122 account presentation', () => {
     const html = renderToStaticMarkup(<><AccountRow account={accountBase} runtime={runtimeBase} folder={null} legacyHref="/?legacy=1" onOpenSettings={noop} /><SettingsView account={accountBase} runtime={runtimeBase} folder={null} /></>);
     expect(html).toContain('Account service unavailable'); expect(html).not.toContain('Not signed in');
     expect(html).not.toContain('data-settings-group="folder"');
+  });
+
+  it('exposes explicit daemon installation in hosted Codex settings without local-model controls', () => {
+    const runtime = { ...runtimeBase, bridgeAvailable: true, daemonStatus: { launchAgent: { installed: false, loaded: false }, daemon: { running: false } } };
+    const html = renderToStaticMarkup(<SettingsView account={accountBase} runtime={runtime} hosted={hostedBase} folder="/folder" />);
+
+    expect(html).toContain('data-settings-group="runtime"');
+    expect(html).toContain('Shared Runtime');
+    expect(html).toContain('Not installed');
+    expect(html).toContain('Install');
+    expect(html).not.toContain('Local model');
+    expect(html).not.toContain('Activate Explicitly');
+  });
+
+  it('offers hosted runtime setup before project bootstrap and sends the explicit install action', () => {
+    const action = vi.fn();
+    const runtime = { ...runtimeBase, bridgeAvailable: true, daemonStatus: { launchAgent: { installed: false, loaded: false }, daemon: { running: false } }, onDaemonAction: action };
+    const popover = AccountPopover({ account: accountBase, runtime, hosted: hostedBase, folder: '/folder', legacyHref: '/?legacy=1', onOpenSettings: noop });
+    const groups = React.Children.toArray(popover.props.children) as React.ReactElement<Record<string, unknown>>[];
+    expect(groups[0]?.props['aria-label']).toBe('Shared runtime');
+    const quickControl = findElement(groups[0], element => element.type === DaemonQuickControl);
+    expect(quickControl).not.toBeNull();
+    const controls = DaemonQuickControl(quickControl!.props as React.ComponentProps<typeof DaemonQuickControl>);
+    const setup = findElement(controls, element => element.type === 'button' && element.props.children === 'Set up runtime…');
+    expect(setup).not.toBeNull();
+
+    (setup!.props.onClick as () => void)();
+    expect(action).toHaveBeenCalledExactlyOnceWith('install');
   });
 
   it('uses explicit login/logout/consent actions and does not carry identity across fake roots', async () => {

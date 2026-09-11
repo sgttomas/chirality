@@ -777,6 +777,10 @@
         "compatibleRoles": [
           "WORKING_ITEMS"
         ]
+      },
+      "metadata": {
+        "category": "Documents and drawings",
+        "applicability": "Develop and publish one Design Basis Memorandum from accepted domain state."
       }
     },
     {
@@ -1121,6 +1125,10 @@
         "compatibleRoles": [
           "WORKING_ITEMS"
         ]
+      },
+      "metadata": {
+        "category": "Documents and drawings",
+        "applicability": "Extract target-specific structured evidence from engineering drawing sets."
       }
     },
     {
@@ -1728,6 +1736,10 @@
         "compatibleRoles": [
           "WORKING_ITEMS"
         ]
+      },
+      "metadata": {
+        "category": "Documents and drawings",
+        "applicability": "Convert a PDF into recoverable Markdown and referenced assets through page-bounded work."
       }
     },
     {
@@ -1976,6 +1988,10 @@
             "ack_agent_update"
           ]
         }
+      },
+      "metadata": {
+        "category": "Review and validation",
+        "applicability": "Reconcile claims, evidence, lifecycle, and remaining work across a deliverable corpus."
       }
     },
     {
@@ -2073,6 +2089,10 @@
         "compatibleRoles": [
           "WORKING_ITEMS"
         ]
+      },
+      "metadata": {
+        "category": "Review and validation",
+        "applicability": "Review evidence and obtain human disposition for a deliverable lifecycle transition."
       }
     },
     {

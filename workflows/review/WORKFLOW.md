@@ -1,6 +1,9 @@
 ---
 name: review
 description: Guide evidence review and human disposition for a deliverable lifecycle transition.
+metadata:
+  category: Review and validation
+  applicability: Review evidence and obtain human disposition for a deliverable lifecycle transition.
 ---
 
 # review

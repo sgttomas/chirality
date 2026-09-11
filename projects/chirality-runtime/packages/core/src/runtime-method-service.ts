@@ -3,13 +3,15 @@ import { homedir } from "node:os";
 import { isAbsolute, join, relative, resolve, sep } from "node:path";
 import { lstat, mkdir, open, readFile, realpath } from "node:fs/promises";
 import {
-  assertQualifiedNativePlanEvent,
+  assertAdmittedNativePlanEvent,
+  CHIRALITY_ROLE_NAMES,
   RuntimeError,
   type ChiralityRoleName,
   type MethodInspectionResponse,
   type MethodReference,
   type MethodsResponse,
   type NativePlanCapabilityResponse,
+  type NativePlanClarificationsResponse,
   type NativePlanRevision,
   type NativePlanRevisionsResponse,
   type QualifiedMethodReference,
@@ -24,6 +26,8 @@ import {
   type PreparedContextSuccessor,
   type ExportNativePlanRequest,
   type ExportNativePlanResponse,
+  type ReplyNativePlanClarificationRequest,
+  type ReplyNativePlanClarificationResponse,
   type SelectedMethodDisposition,
   type SuppliedContextEntry
 } from "@chirality/runtime-contracts";
@@ -51,6 +55,8 @@ import { evaluateMethodTransition } from "./method-transition.js";
 export interface TrustedNativePlanAdapterRegistry {
   capability(session: RuntimeSessionRecord): Promise<NativePlanCapabilityResponse>;
   revisions(projectId: string, sessionId: string): Promise<NativePlanRevisionsResponse>;
+  clarifications?(projectId: string, sessionId: string): Promise<NativePlanClarificationsResponse>;
+  replyClarification?(projectId: string, sessionId: string, request: ReplyNativePlanClarificationRequest): Promise<{ sent: true }>;
 }
 
 interface ResolvedInternal {
@@ -60,8 +66,12 @@ interface ResolvedInternal {
 }
 
 const READ_TOOL = /^(?:read|read_file|search|find|list|inspect|catalog|chirality_)/u;
+const responseAdmission = (value: Exclude<NativePlanCapabilityResponse | NativePlanRevisionsResponse | NativePlanClarificationsResponse, { status: "unavailable" }>) =>
+  value.status === "qualified" ? value.qualification : value.admission;
+const eventAdmission = (event: NativePlanRevision["sourceEvent"]) => event.qualificationState === "qualified" ? event.qualification : event.admission;
 
 export class RuntimeMethodService {
+  private readonly nativeChildActivationLocks = new Map<string, Promise<void>>();
   constructor(
     private readonly projects: ProjectRegistry,
     private readonly sessions: SessionStore,
@@ -76,6 +86,16 @@ export class RuntimeMethodService {
 
   async listMethods(projectId: string): Promise<MethodsResponse> {
     return (await this.catalog(projectId)).response;
+  }
+
+  private async withNativeChildActivationLock<T>(identity: string, action: () => Promise<T>): Promise<T> {
+    const previous = this.nativeChildActivationLocks.get(identity) ?? Promise.resolve();
+    let release!: () => void;
+    const current = previous.then(() => new Promise<void>(resolve => { release = resolve; }));
+    this.nativeChildActivationLocks.set(identity, current);
+    await previous;
+    try { return await action(); }
+    finally { release(); if (this.nativeChildActivationLocks.get(identity) === current) this.nativeChildActivationLocks.delete(identity); }
   }
 
   async inspectMethod(projectId: string, qualifiedId: string): Promise<MethodInspectionResponse> {
@@ -277,19 +297,19 @@ export class RuntimeMethodService {
       try {
         const [capability, live] = await Promise.all([this.nativePlan.capability(session), this.nativePlan.revisions(projectId, sessionId)]);
         unavailableReason = capability.status === "unavailable" ? capability.reason : live.status === "unavailable" ? live.reason : unavailableReason;
-        if (capability.status === "qualified" && live.status === "qualified") {
-          if (JSON.stringify(capability.qualification) !== JSON.stringify(live.qualification)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry qualification changed while reading revisions", 503);
+        if (capability.status !== "unavailable" && live.status !== "unavailable") {
+          if (capability.status !== live.status || JSON.stringify(responseAdmission(capability)) !== JSON.stringify(responseAdmission(live))) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry admission changed while reading revisions", 503);
           let priorRevision = 0;
           const eventIds = new Set<string>();
           for (const revision of live.revisions) {
-            try { assertQualifiedNativePlanEvent(revision.sourceEvent); } catch { throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry returned an unqualified revision", 503); }
+            try { assertAdmittedNativePlanEvent(revision.sourceEvent); } catch { throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry returned an unadmitted revision", 503); }
             if (!Number.isSafeInteger(revision.revision) || revision.revision <= priorRevision || eventIds.has(revision.sourceEvent.eventId)) {
               throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry returned conflicting or unordered revisions", 503);
             }
             const sameRevision = revisions.find(recorded => recorded.revision === revision.revision);
             const sameEvent = revisions.find(recorded => recorded.sourceEvent.eventId === revision.sourceEvent.eventId);
             if ((sameRevision !== undefined || sameEvent !== undefined) && JSON.stringify(sameRevision) !== JSON.stringify(revision)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry conflicts with durable revision history", 503);
-            if (sameRevision === undefined && JSON.stringify(revision.sourceEvent.qualification) !== JSON.stringify(capability.qualification)) throw new RuntimeError("ENGINE_UNAVAILABLE", "New Native Plan revision does not match the current trusted qualification", 503);
+            if (sameRevision === undefined && JSON.stringify(eventAdmission(revision.sourceEvent)) !== JSON.stringify(responseAdmission(capability))) throw new RuntimeError("ENGINE_UNAVAILABLE", "New Native Plan revision does not match the current trusted admission", 503);
             priorRevision = revision.revision;
             eventIds.add(revision.sourceEvent.eventId);
           }
@@ -303,7 +323,35 @@ export class RuntimeMethodService {
       }
     }
     if (revisions.length === 0) return { schemaVersion: "chirality.native-plan-revisions/v3", status: "unavailable", reason: unavailableReason, revisions: [] };
-    return { schemaVersion: "chirality.native-plan-revisions/v3", status: "qualified", qualification: revisions.at(-1)!.sourceEvent.qualification, revisions };
+    const latest = revisions.at(-1)!.sourceEvent;
+    return latest.qualificationState === "qualified"
+      ? { schemaVersion: "chirality.native-plan-revisions/v3", status: "qualified", qualification: latest.qualification, revisions }
+      : { schemaVersion: "chirality.native-plan-revisions/v3", status: "trial", admission: latest.admission, revisions };
+  }
+
+  async listNativePlanClarifications(projectId: string, sessionId: string): Promise<NativePlanClarificationsResponse> {
+    const session = await this.sessions.get(projectId, sessionId);
+    if (this.nativePlan?.clarifications === undefined) return { schemaVersion: "chirality.native-plan-clarifications/v3", status: "unavailable", reason: "No trusted admitted native Plan clarification bridge is registered", clarifications: [] };
+    const [capability, pending] = await Promise.all([this.nativePlan.capability(session), this.nativePlan.clarifications(projectId, sessionId)]);
+    if (capability.status === "unavailable") return { schemaVersion: "chirality.native-plan-clarifications/v3", status: "unavailable", reason: capability.reason, clarifications: [] };
+    if (pending.status === "unavailable") return pending;
+    if (capability.status !== pending.status || JSON.stringify(responseAdmission(capability)) !== JSON.stringify(responseAdmission(pending))) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan registry admission changed while reading clarifications", 503);
+    return pending;
+  }
+
+  async replyNativePlanClarification(projectId: string, sessionId: string, request: ReplyNativePlanClarificationRequest): Promise<ReplyNativePlanClarificationResponse> {
+    const session = await this.sessions.get(projectId, sessionId);
+    if (this.nativePlan?.replyClarification === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "No trusted admitted native Plan clarification bridge is registered", 503);
+    const capability = await this.nativePlan.capability(session);
+    if (capability.status === "unavailable") throw new RuntimeError("ENGINE_UNAVAILABLE", capability.reason, 503);
+    if ((typeof request.requestId !== "string" && typeof request.requestId !== "number") || (typeof request.requestId === "string" && request.requestId.length === 0) || (typeof request.requestId === "number" && !Number.isSafeInteger(request.requestId))) throw new RuntimeError("INVALID_REQUEST", "Native Plan clarification reply requires an exact request identity");
+    if (!request.answers || typeof request.answers !== "object" || Array.isArray(request.answers) || Object.keys(request.answers).length === 0) throw new RuntimeError("INVALID_REQUEST", "Native Plan clarification reply requires question answers");
+    for (const [questionId, answer] of Object.entries(request.answers)) {
+      if (!questionId || !answer || typeof answer !== "object" || !Array.isArray(answer.answers) || answer.answers.some(value => typeof value !== "string")) throw new RuntimeError("INVALID_REQUEST", "Native Plan clarification answers must preserve question IDs and answer arrays");
+    }
+    const delivered = await this.nativePlan.replyClarification(projectId, sessionId, request);
+    if (delivered.sent !== true) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native Plan clarification reply was not written to the provider transport", 503);
+    return { schemaVersion: "chirality.native-plan-clarification-reply/v3", sessionId, requestId: request.requestId, sent: true };
   }
 
   async exportNativePlan(projectId: string, sessionId: string, request: ExportNativePlanRequest): Promise<ExportNativePlanResponse> {
@@ -315,7 +363,7 @@ export class RuntimeMethodService {
     const [revisions, project] = await Promise.all([this.persistedNativePlanRevisions(projectId, sessionId), this.projects.requireAuthorized(projectId)]);
     const revision = revisions.find(value => value.revision === request.revision);
     if (revision === undefined) {
-      throw new RuntimeError("NOT_FOUND", `Unknown qualified native Plan revision: ${request.revision}`, 404);
+      throw new RuntimeError("NOT_FOUND", `Unknown admitted native Plan revision: ${request.revision}`, 404);
     }
     const target = resolve(project.canonicalRoot, ...targetParts);
     if (!this.contained(project.canonicalRoot, target)) throw new RuntimeError("FORBIDDEN", "Native Plan export target escapes the project", 403);
@@ -334,7 +382,12 @@ export class RuntimeMethodService {
     if (existing?.isSymbolicLink()) throw new RuntimeError("FORBIDDEN", "Native Plan export refuses symlink targets", 403);
     if (existing && request.overwrite !== true) throw new RuntimeError("RUNTIME_COMPATIBILITY_MISMATCH", "Native Plan export target already exists", 409);
     if (existing && !existing.isFile()) throw new RuntimeError("INVALID_REQUEST", "Native Plan export target must be a file");
-    const content = `${JSON.stringify(revision.sourceEvent.plan, null, 2)}\n`;
+    const plan = revision.sourceEvent.plan;
+    const content = typeof plan === "string"
+      ? (plan.endsWith("\n") ? plan : `${plan}\n`)
+      : plan !== null && typeof plan === "object" && !Array.isArray(plan) && (plan as { type?: unknown }).type === "plan" && typeof (plan as { text?: unknown }).text === "string"
+      ? ((plan as { text: string }).text.endsWith("\n") ? (plan as { text: string }).text : `${(plan as { text: string }).text}\n`)
+      : `${JSON.stringify(plan, null, 2)}\n`;
     const handle = await open(target, request.overwrite === true ? "w" : "wx", 0o600);
     try { await handle.writeFile(content, "utf8"); await handle.sync(); } finally { await handle.close(); }
     return { schemaVersion: "chirality.native-plan-export/v3", sessionId, revision: request.revision, targetRelativePath: request.targetRelativePath, sha256: sha256(content) };
@@ -351,18 +404,13 @@ export class RuntimeMethodService {
           methods: { type: "array", items: { type: "object", properties: { kind: { type: "string", enum: ["skill", "workflow"] }, name: { type: "string" }, sourceRootId: { type: "string" }, source: { type: "string", enum: ["project", "user", "bundled"] } }, required: ["kind", "name"], additionalProperties: false } },
           resources: { type: "array", items: { type: "object", properties: { method: { type: "object", properties: { kind: { type: "string", enum: ["skill", "workflow"] }, name: { type: "string" }, sourceRootId: { type: "string" }, source: { type: "string", enum: ["project", "user", "bundled"] } }, required: ["sourceRootId", "source", "kind", "name"], additionalProperties: false }, paths: { type: "array", items: { type: "string" } } }, required: ["method", "paths"], additionalProperties: false } }
         }, required: ["methods"], additionalProperties: false }, permission: read,
-        execute: async input => {
+        execute: async (input, _signal, executionContext) => {
           if (!input || typeof input !== "object" || Array.isArray(input)) throw new RuntimeError("INVALID_REQUEST", "Method load input must be an object");
           const value = input as Partial<ResolveSelectedContextRequest>;
           if (!Array.isArray(value.methods)) throw new RuntimeError("INVALID_REQUEST", "Method load requires a methods array");
           const invocationId = randomUUID();
           let exactResult: { documents: ResolveSelectedContextResponse["documents"]; dispositions: ResolveSelectedContextResponse["dispositions"] } | undefined;
-          await this.sessions.activateLoadedMethods(projectId, sessionId, {
-            turnId,
-            invocationId,
-            methods: [],
-            loadedEntries: [],
-            prepare: async current => {
+          const prepare = async (current: RuntimeSessionRecord, activationTurnId = turnId) => {
               const catalog = await this.catalog(projectId);
               let normalized: ReturnType<typeof normalizeMethodSelection>;
               try { normalized = normalizeMethodSelection(catalog, { methods: value.methods! }); }
@@ -376,19 +424,44 @@ export class RuntimeMethodService {
               if (dynamicallyRestricted.length) throw new RuntimeError("ENGINE_UNAVAILABLE", `Dynamically loaded method cannot admit the active read callback: ${dynamicallyRestricted.map(method => method.qualifiedId).join(", ")}`, 422, { unavailableOperation: "read", methods: dynamicallyRestricted.map(method => method.qualifiedId) });
               const loadedMethods = requestedMethods.map(method => this.reference(method));
               const unionReferences = [...new Map([...(current.selectedMethods ?? []), ...loadedMethods].map(reference => [formatQualifiedMethodId(reference), reference])).values()];
-              const union = await this.resolveInternal(projectId, current, { roleId: this.roleId(current), interactionMode: current.interactionMode ?? "chat", permissionMode: current.permissionMode ?? "ask", methods: unionReferences, ...(value.resources === undefined ? {} : { resources: value.resources }) }, catalog);
+              const union = await this.resolveInternal(projectId, { ...current, selectedMethods: unionReferences }, { roleId: this.roleId(current), interactionMode: current.interactionMode ?? "chat", permissionMode: current.permissionMode ?? "ask", methods: unionReferences, ...(value.resources === undefined ? {} : { resources: value.resources }) }, catalog);
               const loadedIds = new Set(loadedMethods.map(formatQualifiedMethodId));
               const documents = union.response.documents.filter(document => loadedIds.has(formatQualifiedMethodId(document.method)));
               const dispositions = union.response.dispositions.filter(disposition => loadedIds.has(formatQualifiedMethodId(disposition.method)));
               const loadedEntries: import("./instruction-basis-store.js").ResourceLoadedHistoryRecord[] = union.snapshot.suppliedEntries
                 .filter(entry => entry.method !== undefined && loadedIds.has(formatQualifiedMethodId(entry.method)) && (entry.kind === "method-body" || entry.kind === "resource"))
-                .map(entry => ({ type: "resource.loaded", resourceKind: entry.kind === "resource" ? "resource" : "method-body", id: entry.id, method: entry.method!, origin: entry.origin, path: entry.path, sha256: entry.sha256, content: entry.content, turnId, invocationId }));
+                .map(entry => ({ type: "resource.loaded", resourceKind: entry.kind === "resource" ? "resource" : "method-body", id: entry.id, method: entry.method!, origin: entry.origin, path: entry.path, sha256: entry.sha256, content: entry.content, turnId: activationTurnId, invocationId }));
               exactResult = { documents, dispositions };
-              return { methods: loadedMethods, instructionPolicySha256: union.activeInstructionPolicySha256, loadedEntries };
-            }
-          });
+              return { methods: loadedMethods, cumulativeMethods: union.response.methods.map(method => this.reference(method)), childInstructionBasisId: union.response.basisPreview.id, instructionPolicySha256: union.activeInstructionPolicySha256, loadedEntries };
+          };
+          if (executionContext?.nativeChild) {
+            const child = executionContext.nativeChild;
+            if (child.selectedRole.kind !== "configured" || !CHIRALITY_ROLE_NAMES.includes(child.selectedRole.name as ChiralityRoleName)) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native child method loading requires an exact configured Runtime role", 422);
+            const selectedRole = child.selectedRole as Extract<typeof child.selectedRole, { kind: "configured" }>;
+            const parent = await this.sessions.get(projectId, sessionId);
+            if (executionContext.threadId === child.parentThreadId || executionContext.turnId === child.parentTurnId) throw new RuntimeError("ENGINE_UNAVAILABLE", "Native child activation cannot use the parent turn identity", 503);
+            const childHistoryId = `native-${sha256(JSON.stringify({ schema: "chirality-native-child-history/v1", parentSessionId: sessionId, supplierGeneration: child.supplierGeneration, rootThreadId: child.rootThreadId, rootTurnId: child.rootTurnId, associationId: child.associationId, childThreadId: executionContext.threadId, childTurnId: executionContext.turnId }))}`;
+            await this.withNativeChildActivationLock(childHistoryId, async () => {
+              const history = await this.sessions.instructionBases.history(projectId, childHistoryId);
+              const prior = [...history].reverse().find(record => record.type === "native-child.method-loaded");
+              const scoped = { ...parent, sessionId: childHistoryId, schemaVersion: "chirality.session/v3" as const, roleId: selectedRole.name as ChiralityRoleName, persona: selectedRole.name,
+                selectedMethods: prior?.type === "native-child.method-loaded" ? prior.selectedMethods : [], methodSelectionRevision: history.length,
+                instructionBasisId: prior?.type === "native-child.method-loaded" ? prior.childInstructionBasisId : undefined };
+              const activation = await prepare(scoped, executionContext.turnId);
+              await this.sessions.instructionBases.appendHistory(projectId, childHistoryId, {
+                type: "native-child.method-loaded", associationId: child.associationId, supplierGeneration: child.supplierGeneration, parentSessionId: sessionId,
+                rootThreadId: child.rootThreadId, rootTurnId: child.rootTurnId, parentTurnId: child.parentTurnId,
+                childThreadId: executionContext.threadId, childTurnId: executionContext.turnId, roleId: scoped.roleId,
+                roleBasisDigest: selectedRole.basisDigest, inheritedToolsDigest: child.inheritedToolsDigest, invocationId,
+                selectedMethods: activation.cumulativeMethods, childInstructionBasisId: activation.childInstructionBasisId,
+                instructionPolicySha256: activation.instructionPolicySha256, loadedEntries: activation.loadedEntries
+              });
+            });
+          } else {
+            await this.sessions.activateLoadedMethods(projectId, sessionId, { turnId, invocationId, methods: [], loadedEntries: [], prepare });
+          }
           if (exactResult === undefined) throw new RuntimeError("INTERNAL_FAILURE", "Method activation produced no frozen result", 500);
-          return { schemaVersion: "chirality.method-load/v3", turnId, invocationId, documents: exactResult.documents, dispositions: exactResult.dispositions };
+          return { schemaVersion: "chirality.method-load/v3", turnId: executionContext?.turnId ?? turnId, invocationId, documents: exactResult.documents, dispositions: exactResult.dispositions };
         } },
       { name: "chirality_request_method_change", description: "Request an ordered method merge or replacement at the current turn's terminal boundary.", inputSchema: { type: "object", properties: {
           mode: { type: "string", enum: ["merge", "replace"] },
@@ -441,6 +514,15 @@ export class RuntimeMethodService {
 
   private async resolveInternal(projectId: string, session: RuntimeSessionRecord, request: ResolveSelectedContextRequest, catalogOverride?: MethodCatalog): Promise<ResolvedInternal> {
     const roots = await this.projects.roots(projectId);
+    const rootBinding = async <T extends "registered-project-root" | "trusted-runtime-instruction-root">(path: string, origin: T) => {
+      const metadata = await lstat(path, { bigint: true });
+      if (!metadata.isDirectory() || metadata.isSymbolicLink() || await realpath(path) !== path) throw new RuntimeError("ENGINE_UNAVAILABLE", `Execution root is no longer a canonical directory: ${origin}`, 503);
+      return Object.freeze({ path, origin, identitySha256: sha256(JSON.stringify({ schema: "chirality.execution-root/v1", path, origin, dev: `${metadata.dev}`, ino: `${metadata.ino}` })) });
+    };
+    const executionRoots = Object.freeze({
+      workingRoot: await rootBinding(roots.workingRoot, "registered-project-root"),
+      toolRoot: await rootBinding(roots.instructionRoot, "trusted-runtime-instruction-root")
+    });
     const catalog = catalogOverride ?? await this.catalog(projectId);
     let normalized: ReturnType<typeof normalizeMethodSelection>;
     try { normalized = normalizeMethodSelection(catalog, request); }
@@ -495,14 +577,14 @@ export class RuntimeMethodService {
         declaredContext: { present: (session as RuntimeSessionRecord & { declaredContext?: readonly string[] }).declaredContext !== undefined, value: (session as RuntimeSessionRecord & { declaredContext?: readonly string[] }).declaredContext ?? null }
       }
     };
-    add("selection-metadata", "selection:dispositions", "runtime", "selection/dispositions.json", JSON.stringify({ selectedMethods: selected.map(value => this.reference(value.descriptor)), dispositions, compatibilityInputs: normalized.compatibilityInputs, compatibilityMappings: normalized.compatibilityMappings, effectivePolicy, sources }));
-    const instructionPolicyMaterial = { roleId: request.roleId, methods: selected.map(value => value.descriptor.qualifiedId), dispositions, effectivePolicy, sources };
+    add("selection-metadata", "selection:dispositions", "runtime", "selection/dispositions.json", JSON.stringify({ selectedMethods: selected.map(value => this.reference(value.descriptor)), dispositions, compatibilityInputs: normalized.compatibilityInputs, compatibilityMappings: normalized.compatibilityMappings, effectivePolicy, sources, executionRoots }));
+    const instructionPolicyMaterial = { roleId: request.roleId, methods: selected.map(value => value.descriptor.qualifiedId), dispositions, effectivePolicy, sources, executionRoots };
     const instructionPolicySha256 = sha256(JSON.stringify({ ...instructionPolicyMaterial, supplied: supplied.map(value => ({ kind: value.kind, id: value.id, sha256: value.sha256 })) }));
     const activeInstructionPolicySha256 = sha256(JSON.stringify({ ...instructionPolicyMaterial, supplied: supplied.filter(value => value.kind !== "resource").map(value => ({ kind: value.kind, id: value.id, sha256: value.sha256 })) }));
     const basisMaterial = JSON.stringify({ instructionPolicySha256, interactionMode: request.interactionMode, permissionMode: request.permissionMode, compatibilityInputs: normalized.compatibilityInputs, compatibilityMappings: normalized.compatibilityMappings });
     const basisSha = sha256(basisMaterial);
     const basisId = `basis-${basisSha}`;
-    const response: ResolveSelectedContextResponse = { schemaVersion: "chirality.selected-context/v3", roleId: request.roleId, methods: selected.map(value => value.descriptor), documents, dispositions, supplied, basisPreview: { id: basisId, sha256: basisSha, instructionPolicySha256, sources, persisted: false }, compatibilityInputs: normalized.compatibilityInputs, compatibilityMappings: normalized.compatibilityMappings };
+    const response: ResolveSelectedContextResponse = { schemaVersion: "chirality.selected-context/v3", roleId: request.roleId, methods: selected.map(value => value.descriptor), documents, dispositions, supplied, executionRoots, basisPreview: { id: basisId, sha256: basisSha, instructionPolicySha256, sources, persisted: false }, compatibilityInputs: normalized.compatibilityInputs, compatibilityMappings: normalized.compatibilityMappings };
     return { response, activeInstructionPolicySha256, snapshot: { schemaVersion: "chirality.instruction-basis/v1", basisId, sessionId: session.sessionId, createdAt: session.createdAt, roleId: request.roleId, interactionMode: request.interactionMode, permissionMode: request.permissionMode, selectedMethods: selected.map(value => this.reference(value.descriptor)), instructionPolicySha256, compatibilityInputs: normalized.compatibilityInputs, compatibilityMappings: normalized.compatibilityMappings, suppliedEntries: frozen, methodDispositions: dispositions } };
   }
 
@@ -550,7 +632,14 @@ export class RuntimeMethodService {
     if (!this.contained(canonicalOrigin, canonicalPath)) throw new RuntimeError("FORBIDDEN", `Instruction context escapes its declared origin: ${id}`, 403);
     add(kind, id, canonicalOrigin, canonicalPath, await readFile(canonicalPath, "utf8"));
   }
-  private throwResolution(resolution: ReturnType<typeof resolveMethodReferences>[number] | undefined, label: string): never { if (resolution?.status === "malformed") throw new RuntimeError("INVALID_REQUEST", `Malformed method shadow blocks resolution: ${label}`, 422, { issues: resolution.issues }); if (resolution?.status === "ambiguous") throw new RuntimeError("INVALID_REQUEST", `Method reference is ambiguous: ${label}`, 409, { candidates: resolution.candidates }); throw new RuntimeError("NOT_FOUND", `Unknown method: ${label}`, 404); }
-  private runtimeError(error: unknown): RuntimeError { return error instanceof MethodCatalogError ? new RuntimeError("INVALID_REQUEST", error.message, 400, { methodCode: error.code }) : error instanceof RuntimeError ? error : new RuntimeError("INTERNAL_FAILURE", (error as Error).message, 500); }
+  private throwResolution(resolution: ReturnType<typeof resolveMethodReferences>[number] | undefined, label: string): never { if (resolution?.status === "forbidden") throw new RuntimeError("FORBIDDEN", `Skill origin is not trusted for loading: ${label}`, 403, { method: resolution.method }); if (resolution?.status === "malformed") throw new RuntimeError("INVALID_REQUEST", `Malformed method shadow blocks resolution: ${label}`, 422, { issues: resolution.issues }); if (resolution?.status === "ambiguous") throw new RuntimeError("INVALID_REQUEST", `Method reference is ambiguous: ${label}`, 409, { candidates: resolution.candidates }); throw new RuntimeError("NOT_FOUND", `Unknown method: ${label}`, 404); }
+  private runtimeError(error: unknown): RuntimeError {
+    if (error instanceof MethodCatalogError) {
+      return error.code === "UNSUPPORTED_METHOD_ORIGIN"
+        ? new RuntimeError("FORBIDDEN", error.message, 403, { methodCode: error.code })
+        : new RuntimeError("INVALID_REQUEST", error.message, 400, { methodCode: error.code });
+    }
+    return error instanceof RuntimeError ? error : new RuntimeError("INTERNAL_FAILURE", (error as Error).message, 500);
+  }
   private async mapError<T>(operation: () => Promise<T>): Promise<T> { try { return await operation(); } catch (error) { throw this.runtimeError(error); } }
 }

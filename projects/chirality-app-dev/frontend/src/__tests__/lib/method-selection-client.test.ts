@@ -2,7 +2,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   getNativePlanCapability,
   exportNativePlanRevision,
+  listNativePlanClarifications,
   listMethods,
+  replyNativePlanClarification,
   replaceSelectedMethods,
   resolveSelectedContext
 } from '../../lib/harness/method-selection-client';
@@ -51,6 +53,47 @@ describe('Runtime method selection client', () => {
     const unavailable = { schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: 'No qualified adapter' };
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify(unavailable), { status: 200 })));
     await expect(getNativePlanCapability('sess-1')).resolves.toEqual(unavailable);
+  });
+
+  it('reads pending native Plan clarifications and preserves numeric reply request IDs', async () => {
+    const clarificationResponse = {
+      schemaVersion: 'chirality.native-plan-clarifications/v3',
+      status: 'unavailable',
+      reason: 'No qualified adapter',
+      clarifications: []
+    };
+    const replyResponse = {
+      schemaVersion: 'chirality.native-plan-clarification-reply/v3',
+      sessionId: 'sess/1',
+      requestId: 29,
+      sent: true
+    };
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(new Response(JSON.stringify(clarificationResponse), { status: 200 }))
+      .mockResolvedValueOnce(new Response(JSON.stringify(replyResponse), { status: 200 }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(listNativePlanClarifications('sess/1')).resolves.toEqual(clarificationResponse);
+    expect(fetchMock).toHaveBeenNthCalledWith(
+      1,
+      '/api/harness/session/sess%2F1/native-plan/clarifications',
+      { signal: undefined }
+    );
+
+    const answers = { scope: { answers: ['Current', 'Other detail'] } };
+    await expect(replyNativePlanClarification({
+      sessionId: 'sess/1',
+      requestId: 29,
+      answers
+    })).resolves.toEqual(replyResponse);
+    expect(fetchMock).toHaveBeenNthCalledWith(
+      2,
+      '/api/harness/session/sess%2F1/native-plan/clarifications/reply',
+      expect.objectContaining({
+        method: 'POST',
+        body: JSON.stringify({ requestId: 29, answers })
+      })
+    );
   });
 
   it('exports a stored plan revision only to an explicit project-relative target', async () => {

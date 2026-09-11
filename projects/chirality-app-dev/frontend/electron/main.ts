@@ -8,10 +8,22 @@ import { createServer, type IncomingMessage, type ServerResponse } from 'node:ht
 import type { AddressInfo } from 'node:net';
 import path from 'node:path';
 import { RuntimeClient } from '@chirality/runtime-client';
-import { ProjectRegistry } from '@chirality/runtime-core';
 import { installRuntimeDaemonSignalShutdown } from '@chirality/runtime-daemon';
+import {
+  createVerifiedHostAccountClient,
+  loadPackagedHostedReleaseBasis,
+  type HostAccountClient
+} from '@chirality/runtime-daemon/hosted';
+import { resolveHostedBootstrapTokenFile } from '@chirality/runtime-daemon/hosted-paths';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
 import { installBundledCliLauncher } from './cli-launcher';
+import { resolveDesktopEntryMode } from './desktop-entry-mode';
+import { runProtectedRuntimeCli } from './protected-runtime-cli';
+import {
+  createHostAccountConnection,
+  type HostAccountConnection
+} from './host-account-connection';
+import { registerHostAccountHandler, unregisterHostAccountHandler } from './host-account-ipc';
 import {
   createDesktopLogger,
   createNoopDesktopLogger,
@@ -29,7 +41,6 @@ import {
   prepareDesktopHarnessEnvironment,
   resolveDesktopProjectBinding
 } from './desktop-project-client';
-import { resolvePackagedDaemonInstructionRoot } from './daemon-instruction-root';
 import {
   applyPackagedRendererRequestPolicy,
   buildRendererContentSecurityPolicy,
@@ -38,7 +49,11 @@ import {
   runEgressLayerProbe,
   runRendererSecurityProbe
 } from './renderer-window-policy';
-import { startRuntimeHost, type RuntimeHost } from './runtime-host';
+import {
+  packagedRuntimeBootInput,
+  startRuntimeHost,
+  type RuntimeHost
+} from './runtime-host';
 import {
   createRuntimeBindingSupervisor,
   RUNTIME_CONNECTIVITY_CHANGED_CHANNEL,
@@ -56,6 +71,7 @@ import {
   type SocketPresenceWatcher
 } from './runtime-socket-watch';
 import { shouldPreventNativeQuit } from './runtime-shutdown-policy';
+import { bindStableRendererServer } from './renderer-server-port';
 
 type RendererServer = {
   close: () => Promise<void>;
@@ -120,10 +136,13 @@ let shutdownStarted = false;
 let shutdownCompleted = false;
 let bindingSupervisor: RuntimeBindingSupervisor | undefined;
 let socketWatcher: SocketPresenceWatcher | undefined;
+let hostAccountConnection: HostAccountConnection | undefined;
 /** Monotonic timestamp of the last GUI spawned from daemon mode; see `activate`. */
 let lastGuiSpawnAt = 0;
 let desktopLogger: DesktopLogger = createNoopDesktopLogger();
-const runtimeDaemonMode = process.argv.includes('--runtime-daemon');
+const desktopEntryMode = resolveDesktopEntryMode(process.argv, app.isPackaged);
+const runtimeDaemonMode = desktopEntryMode.mode === 'runtime-daemon';
+const guiMode = desktopEntryMode.mode === 'gui';
 
 /**
  * Honor `CHIRALITY_USER_DATA` for the app itself.
@@ -536,32 +555,35 @@ async function startPackagedRendererServer(): Promise<RendererServer> {
     }
   });
 
-  await new Promise<void>((resolve, reject) => {
-    server.once('error', reject);
-    server.listen(0, '127.0.0.1', () => {
-      server.off('error', reject);
-      resolve();
-    });
-  });
-
-  const address = server.address() as AddressInfo | null;
-  if (!address || typeof address === 'string') {
-    throw new Error('Renderer server failed to bind a TCP port');
-  }
-
-  return {
-    close: async () => {
+  const bound = await bindStableRendererServer({
+    userDataDirectory: app.getPath('userData'),
+    bind: async (port) => {
       await new Promise<void>((resolve, reject) => {
-        server.close((error) => {
-          if (error) {
-            reject(error);
-            return;
-          }
+        server.once('error', reject);
+        server.listen(port, '127.0.0.1', () => {
+          server.off('error', reject);
           resolve();
         });
       });
-    },
-    url: `http://127.0.0.1:${address.port}`
+      const address = server.address() as AddressInfo | null;
+      if (!address || typeof address === 'string') {
+        await new Promise<void>((resolve) => server.close(() => resolve()));
+        throw new Error('Renderer server failed to bind a TCP port');
+      }
+      return {
+        port: address.port,
+        close: async () => {
+          await new Promise<void>((resolve, reject) => {
+            server.close((error) => error ? reject(error) : resolve());
+          });
+        }
+      };
+    }
+  });
+
+  return {
+    close: bound.close,
+    url: `http://127.0.0.1:${bound.port}`
   };
 }
 
@@ -609,7 +631,7 @@ function createMainWindow(rendererUrl: string, route = '/'): BrowserWindow {
 function runtimeControlPaths(): {
   runtimeDirectory: string;
   socketPath: string;
-  operatorTokenFile: string;
+  bootstrapTokenFile: string;
 } {
   const runtimeDirectory = path.join(app.getPath('userData'), 'runtime');
   return {
@@ -617,9 +639,7 @@ function runtimeControlPaths(): {
     socketPath:
       process.env.CHIRALITY_RUNTIME_SOCKET_PATH?.trim() ||
       path.join(runtimeDirectory, 'control.sock'),
-    operatorTokenFile:
-      process.env.CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE?.trim() ||
-      path.join(runtimeDirectory, 'auth', 'tokens', 'operator.token')
+    bootstrapTokenFile: resolveHostedBootstrapTokenFile(runtimeDirectory)
   };
 }
 
@@ -628,6 +648,14 @@ async function configureDesktopHarnessClient(
   control: ReturnType<typeof runtimeControlPaths>
 ): Promise<void> {
   prepareDesktopHarnessEnvironment(process.env, control.socketPath);
+
+  // Installed Desktop is allowed to start without the development project's
+  // optional convenience registration. A folder selected in the UI obtains
+  // its own verified project binding through the bootstrap path.
+  const hasDefaultProject = (await operatorClient.listProjects()).some(
+    ({ project }) => project.projectId === DESKTOP_PROJECT_ID
+  );
+  if (!hasDefaultProject) return;
 
   const binding = await resolveDesktopProjectBinding({
     operatorClient,
@@ -658,12 +686,15 @@ async function registerRuntimeConnectivityHandler(): Promise<void> {
 
 async function initializeGui(): Promise<void> {
   const control = runtimeControlPaths();
+  process.env.CHIRALITY_RUNTIME_DIRECTORY = control.runtimeDirectory;
+  process.env.CHIRALITY_RUNTIME_SOCKET_PATH = control.socketPath;
+  process.env.CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE = control.bootstrapTokenFile;
   desktopLogger = createDesktopLogger({
     directory: path.join(app.getPath('userData'), 'logs')
   });
   const runtimeClient = new RuntimeClient({
     socketPath: control.socketPath,
-    tokenFile: control.operatorTokenFile
+    tokenFile: control.bootstrapTokenFile
   });
   await registerDirectorySelectionHandler();
   await registerRuntimeConnectivityHandler();
@@ -690,11 +721,26 @@ async function initializeGui(): Promise<void> {
   // a daemon that is down at this instant, or that dies later, must not leave the
   // window permanently unable to reach the runtime. `start()` still awaits the
   // first attempt so a healthy daemon is fully bound before the window appears.
+  const observeDaemonReachability = async (): Promise<void> => {
+    try {
+      await runtimeClient.daemonStatus();
+      void hostAccountConnection?.update(true);
+    } catch (error) {
+      void hostAccountConnection?.update(false);
+      throw error;
+    }
+  };
   bindingSupervisor = createRuntimeBindingSupervisor({
-    bind: () => configureDesktopHarnessClient(runtimeClient, control),
+    bind: async () => {
+      // Account-host admission is daemon-scoped. Establish it as soon as the
+      // daemon answers, even when the fixed app-dev harness project is absent
+      // and the project binding below must keep retrying.
+      await observeDaemonReachability();
+      await configureDesktopHarnessClient(runtimeClient, control);
+    },
     probe: async () => {
       try {
-        await runtimeClient.daemonStatus();
+        await observeDaemonReachability();
         return true;
       } catch {
         return false;
@@ -705,6 +751,39 @@ async function initializeGui(): Promise<void> {
       broadcastRuntimeConnectivity(snapshot);
     },
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
+  });
+
+  hostAccountConnection = createHostAccountConnection({
+    connect: async (): Promise<HostAccountClient> => {
+      if (!app.isPackaged) throw new Error('packaged-account-client-unavailable');
+      const release = await loadPackagedHostedReleaseBasis({
+        resourcesRoot: process.resourcesPath,
+        runtimeDirectory: control.runtimeDirectory,
+        executablePath: app.getPath('exe'),
+        embeddedRuntime: {
+          electron: process.versions.electron,
+          node: process.versions.node,
+          modules: process.versions.modules,
+          napi: process.versions.napi ?? '',
+          architecture: process.arch
+        }
+      });
+      if (release.status !== 'ready') throw new Error('packaged-account-client-unavailable');
+      const client = await createVerifiedHostAccountClient({
+        socketPath: control.socketPath,
+        executablePath: app.getPath('exe'),
+        resourcesPath: process.resourcesPath,
+        basis: release.basis
+      });
+      try {
+        await client.start();
+        return client;
+      } catch (error) {
+        await client.close().catch(() => undefined);
+        throw error;
+      }
+    },
+    log: (event) => desktopLogger.info(`runtime.account_host.${event}`)
   });
 
   // The supervisor's timers alone make a daemon bounce cost up to a probe
@@ -776,6 +855,14 @@ async function initializeGui(): Promise<void> {
     rendererOrigin,
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
   });
+  registerHostAccountHandler({
+    runtimeClient,
+    accountClient: () => hostAccountConnection?.client(),
+    invalidateAccountClient: (client) => {
+      void hostAccountConnection?.invalidate(client);
+    },
+    rendererOrigin
+  });
 
   registerRuntimeControlHandlers({
     client: runtimeClient,
@@ -815,37 +902,46 @@ async function initializeDaemon(): Promise<void> {
     directory: path.join(app.getPath('userData'), 'logs'),
     fileName: 'desktop-daemon.log'
   });
-  if (app.isPackaged) {
-    const control = runtimeControlPaths();
-    const projects = new ProjectRegistry(control.runtimeDirectory);
-    const resolution = await resolvePackagedDaemonInstructionRoot({
-      projectId: DESKTOP_PROJECT_ID,
-      packagedResourcesPath: process.resourcesPath,
-      resolveProjectRoots: (projectId) => projects.roots(projectId)
-    });
-    process.env.CHIRALITY_INSTRUCTION_ROOT = resolution.instructionRoot;
-    if (resolution.source === 'packaged-resources-fallback') {
-      desktopLogger.warn('runtime.daemon.instruction_root.fallback', {
-        instructionRoot: resolution.instructionRoot,
-        reason: resolution.reason
-      });
-    } else {
-      desktopLogger.info('runtime.daemon.instruction_root.resolved', {
-        instructionRoot: resolution.instructionRoot,
-        projectId: DESKTOP_PROJECT_ID,
-        source: resolution.source
-      });
-    }
-  } else {
-    process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
-  }
   desktopLogger.info('runtime.daemon.starting', {
     activationPolicy: resolveDaemonActivationPolicy(process.env),
     packaged: app.isPackaged,
     userData: app.getPath('userData'),
     pid: process.pid
   });
-  runtimeHost = await startRuntimeHost();
+  const control = runtimeControlPaths();
+  const instructionRoot = app.isPackaged
+    ? path.join(process.resourcesPath, 'instruction-root')
+    : resolveInstructionRootForProcess();
+  const runtimeBootInput =
+    app.isPackaged
+      ? packagedRuntimeBootInput({
+          runtimeDirectory: control.runtimeDirectory,
+          daemonSocket: 'control.sock',
+          resourcesRoot: process.resourcesPath,
+          executablePath: app.getPath('exe'),
+          embeddedRuntime: {
+            electron: process.versions.electron,
+            node: process.versions.node,
+            modules: process.versions.modules,
+            napi: process.versions.napi ?? '',
+            architecture: process.arch
+          }
+        })
+      : {
+          runtimeDirectory: control.runtimeDirectory,
+          daemonSocket: 'control.sock' as const,
+          instructionRoot
+        };
+  if (!app.isPackaged && process.env.CHIRALITY_HOSTED_PRIVATE_CONFIG_FILE !== undefined) {
+    throw new Error(
+      'Hosted private configuration is unavailable in development until a reviewed source-tree artifact basis is provided.'
+    );
+  }
+  process.env.CHIRALITY_INSTRUCTION_ROOT = instructionRoot;
+  runtimeHost = await startRuntimeHost(runtimeBootInput);
+  process.env.CHIRALITY_RUNTIME_DIRECTORY = runtimeHost.runtimeDirectory;
+  process.env.CHIRALITY_RUNTIME_SOCKET_PATH = runtimeHost.socketPath;
+  process.env.CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE = runtimeHost.bootstrapTokenFile;
   installRuntimeDaemonSignalShutdown({
     // Keep signal-driven shutdown inside the same Electron funnel as
     // before-quit, initialization failure, and daemon retirement. The facade
@@ -889,7 +985,13 @@ async function teardown(exitCode: number, reason: string): Promise<number> {
   ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
   ipcMain.removeHandler(RUNTIME_CONNECTIVITY_QUERY_CHANNEL);
   unregisterApiKeyHandlers();
+  unregisterHostAccountHandler();
   unregisterRuntimeControlHandlers();
+
+  if (hostAccountConnection) {
+    await hostAccountConnection.close();
+    hostAccountConnection = undefined;
+  }
 
   if (runtimeHost) {
     try {
@@ -926,6 +1028,18 @@ async function shutdown(exitCode = 0, reason = 'unspecified'): Promise<void> {
 app
   .whenReady()
   .then(async () => {
+    if (desktopEntryMode.mode === 'invalid') {
+      throw new Error(desktopEntryMode.reason);
+    }
+    if (desktopEntryMode.mode === 'runtime-cli') {
+      const exitCode = await runProtectedRuntimeCli(
+        desktopEntryMode.arguments,
+        app.getPath('exe'),
+        app.isPackaged
+      );
+      app.exit(exitCode);
+      return;
+    }
     if (runtimeDaemonMode) {
       await initializeDaemon();
       return;
@@ -934,14 +1048,18 @@ app
   })
   .catch((error) => {
     desktopLogger.error(
-      runtimeDaemonMode ? 'runtime.daemon.initialize_failed' : 'desktop.gui.initialize_failed',
+      runtimeDaemonMode
+        ? 'runtime.daemon.initialize_failed'
+        : desktopEntryMode.mode === 'runtime-cli'
+          ? 'runtime.cli.failed'
+          : 'desktop.gui.initialize_failed',
       error instanceof Error ? error.message : String(error)
     );
     void shutdown(1, 'initialize-failed');
   });
 
 app.on('window-all-closed', () => {
-  if (!runtimeDaemonMode && process.platform !== 'darwin') {
+  if (guiMode && process.platform !== 'darwin') {
     app.quit();
   }
 });
@@ -1034,7 +1152,7 @@ function spawnGuiFromDaemon(): void {
   void shutdown(0, 'retire-after-gui-spawn');
 }
 
-if (!runtimeDaemonMode) {
+if (guiMode) {
   app.on('open-file', (event, filePath) => {
     event.preventDefault();
     // One latest unhandled intent is retained during renderer startup. This is
@@ -1067,7 +1185,7 @@ if (runtimeDaemonMode) {
 // GUI mode retains its direct Node signal path. Daemon mode instead installs
 // the shared one-shot binder after the active RuntimeHost exists, so these
 // listeners cannot race or duplicate its stop operation.
-if (!runtimeDaemonMode) {
+if (guiMode) {
   for (const signal of ['SIGINT', 'SIGTERM'] as const) {
     process.once(signal, () => {
       void shutdown(signal === 'SIGINT' ? 130 : 0, `signal:${signal}`);

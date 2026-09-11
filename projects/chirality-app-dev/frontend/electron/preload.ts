@@ -4,6 +4,12 @@ import {
   RUNTIME_CONNECTIVITY_QUERY_CHANNEL,
   type RuntimeConnectivitySnapshot
 } from './runtime-connectivity';
+import {
+  HOST_ACCOUNT_CHANNEL,
+  type HostAccountDesktopOperation,
+  type HostAccountDesktopResult,
+  type HostAccountDesktopValue
+} from './host-account-ipc-contract';
 
 const SELECT_DIRECTORY_CHANNEL = 'chirality:select-directory';
 const API_KEY_STORE_CHANNEL = 'chirality:api-key-store';
@@ -15,6 +21,20 @@ const PROVIDER_API_KEY_STATUS_CHANNEL = 'chirality:provider-api-key-status';
 const RUNTIME_DAEMON_CONTROL_CHANNEL = 'chirality:runtime-daemon-control';
 const RUNTIME_MODEL_STATUS_CHANNEL = 'chirality:runtime-model-status';
 const RUNTIME_MODEL_ACTIVATE_CHANNEL = 'chirality:runtime-model-activate';
+
+async function invokeHostAccount(
+  operation: HostAccountDesktopOperation,
+  projectRoot: string
+): Promise<HostAccountDesktopValue> {
+  const result = (await ipcRenderer.invoke(HOST_ACCOUNT_CHANNEL, {
+    operation,
+    projectRoot
+  })) as HostAccountDesktopResult;
+  if (!result.ok) {
+    throw new Error(result.error);
+  }
+  return result.value;
+}
 
 contextBridge.exposeInMainWorld('chirality', {
   platform: process.platform,
@@ -89,6 +109,14 @@ contextBridge.exposeInMainWorld('chirality', {
       status: () => ipcRenderer.invoke(RUNTIME_MODEL_STATUS_CHANNEL),
       activate: (modelId: string) =>
         ipcRenderer.invoke(RUNTIME_MODEL_ACTIVATE_CHANNEL, modelId)
+    },
+    hostedAccount: {
+      status: (projectRoot: string) => invokeHostAccount('status', projectRoot),
+      grantProviderNetworkConsent: (projectRoot: string) =>
+        invokeHostAccount('grant-provider-network-consent', projectRoot),
+      startLogin: (projectRoot: string) => invokeHostAccount('start-login', projectRoot),
+      cancelLogin: (projectRoot: string) => invokeHostAccount('cancel-login', projectRoot),
+      signOut: (projectRoot: string) => invokeHostAccount('sign-out', projectRoot)
     }
   }
 });

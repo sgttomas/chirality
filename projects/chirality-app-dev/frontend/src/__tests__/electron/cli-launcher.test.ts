@@ -25,27 +25,24 @@ import {
 } from '../../../electron/cli-launcher';
 
 const DESKTOP_EXECUTABLE = '/Applications/Chirality.app/Contents/MacOS/Chirality';
-const CLI_ENTRY = '/Applications/Chirality.app/Contents/Resources/runtime-cli/chirality-cli.mjs';
 const USER_DATA = '/Users/example/Library/Application Support/chirality-frontend';
 
 describe('electron/cli-launcher renderCliLauncher', () => {
-  it('uses Electron embedded Node and pins daemon install to the desktop executable', () => {
+  it('invokes only the protected fixed CLI mode of the desktop executable', () => {
     const source = renderCliLauncher({
       desktopExecutable: "/Applications/Chirality O'Brien.app/Contents/MacOS/Chirality",
-      cliEntry: CLI_ENTRY,
       pinnedEnvironment: { CHIRALITY_USER_DATA: USER_DATA }
     });
 
-    expect(source).toContain('export ELECTRON_RUN_AS_NODE=1');
-    expect(source).toContain('--executable "$desktop_executable"');
-    expect(source).toContain('exec "$desktop_executable" "$cli_entry" "$@"');
+    expect(source).not.toContain('ELECTRON_RUN_AS_NODE');
+    expect(source).not.toContain('cli_entry');
+    expect(source).toContain('exec "$desktop_executable" --runtime-cli "$@"');
     expect(source).toContain(`O'"'"'Brien`);
   });
 
   it('exports every pinned value conditionally so an explicit value still wins', () => {
     const source = renderCliLauncher({
       desktopExecutable: DESKTOP_EXECUTABLE,
-      cliEntry: CLI_ENTRY,
       pinnedEnvironment: {
         CHIRALITY_USER_DATA: USER_DATA,
         CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: 'com.chirality.runtime',
@@ -70,13 +67,11 @@ describe('electron/cli-launcher renderCliLauncher', () => {
     };
     const first = renderCliLauncher({
       desktopExecutable: DESKTOP_EXECUTABLE,
-      cliEntry: CLI_ENTRY,
       pinnedEnvironment
     });
     // Same values, different insertion order.
     const second = renderCliLauncher({
       desktopExecutable: DESKTOP_EXECUTABLE,
-      cliEntry: CLI_ENTRY,
       pinnedEnvironment: {
         CHIRALITY_RUNTIME_KEEP_ALIVE: 'always',
         CHIRALITY_USER_DATA: USER_DATA,
@@ -90,7 +85,6 @@ describe('electron/cli-launcher renderCliLauncher', () => {
   it('shell-quotes a userData directory containing a single quote', () => {
     const source = renderCliLauncher({
       desktopExecutable: DESKTOP_EXECUTABLE,
-      cliEntry: CLI_ENTRY,
       pinnedEnvironment: {
         CHIRALITY_USER_DATA: "/Users/o'brien/Library/Application Support/chirality-frontend"
       }
@@ -130,7 +124,7 @@ describe('electron/cli-launcher installBundledCliLauncher', () => {
 
     expect(result).toEqual({ status: 'written', path: destination });
     const contents = await readFile(destination, 'utf8');
-    expect(contents).toContain('export ELECTRON_RUN_AS_NODE=1');
+    expect(contents).toContain('exec "$desktop_executable" --runtime-cli "$@"');
     expect(contents).toContain('CHIRALITY_RUNTIME_KEEP_ALIVE');
     expect((await stat(destination)).mode & 0o777).toBe(0o700);
   });
@@ -180,6 +174,6 @@ describe('electron/cli-launcher installBundledCliLauncher', () => {
     const result = await installBundledCliLauncher(destination, {});
 
     expect(result).toEqual({ status: 'written', path: destination });
-    expect(await readFile(destination, 'utf8')).toContain('export ELECTRON_RUN_AS_NODE=1');
+    expect(await readFile(destination, 'utf8')).toContain('--runtime-cli "$@"');
   });
 });

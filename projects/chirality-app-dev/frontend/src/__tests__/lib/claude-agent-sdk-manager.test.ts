@@ -46,6 +46,11 @@ const opts: ResolvedOpts = {
   mode: 'direct'
 };
 
+const executionRoots = {
+  workingRoot: { path: session.projectRoot, origin: 'registered-project-root' as const, identitySha256: '1'.repeat(64) },
+  toolRoot: { path: '/tmp/trusted-instruction-root', origin: 'trusted-runtime-instruction-root' as const, identitySha256: '2'.repeat(64) }
+};
+
 let tmpDir = '';
 const GLOBAL_API_KEY = '__CHIRALITY_UI_API_KEY__';
 const apiKeyGlobal = globalThis as typeof globalThis & Record<typeof GLOBAL_API_KEY, string | undefined>;
@@ -165,6 +170,7 @@ describe('ClaudeAgentSdkManager', () => {
           { kind: 'role', id: 'HELP_HUMAN', content: 'active helper body', sha256: 'b'.repeat(64) },
           { kind: 'method-body', id: 'workflow:central', content: 'selected workflow body', sha256: 'c'.repeat(64) }
         ],
+        executionRoots,
         basisPreview: { id: 'basis-1', sha256: 'd'.repeat(64), instructionPolicySha256: '9'.repeat(64), sources: [], persisted: false },
         compatibilityInputs: [], compatibilityMappings: []
       },

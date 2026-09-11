@@ -8,6 +8,22 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./hosted-paths": {
+      "types": "./dist/hosted-paths.d.ts",
+      "import": "./dist/hosted-paths.js"
+    },
+    "./hosted": {
+      "types": "./dist/hosted.d.ts",
+      "import": "./dist/hosted.js"
+    },
+    "./hosted-release-provisioner": {
+      "types": "./dist/hosted-release-provisioner.d.ts",
+      "import": "./dist/hosted-release-provisioner.js"
+    },
+    "./account-free-login-observation": {
+      "types": "./dist/account-free-login-observation.d.ts",
+      "import": "./dist/account-free-login-observation.js"
     }
   },
   "files": [
@@ -16,7 +32,9 @@
   "dependencies": {
     "@chirality/runtime-contracts": "*",
     "@chirality/runtime-core": "*",
-    "@chirality/native-admission": "*",
+    "@chirality/native-admission": "*"
+  },
+  "devDependencies": {
     "@chirality/engine-pi-omlx": "*"
   },
   "bin": {

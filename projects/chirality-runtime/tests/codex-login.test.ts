@@ -4,7 +4,8 @@ import { mkdtemp, readdir, realpath, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { PassThrough } from "node:stream";
-import { CodexLogin, createControlledCodexLoginForTests } from "../packages/daemon/src/codex-login.js";
+import { CodexLogin, createControlledCodexLoginForTests, inspectCodexLoginPurposeReleaseRecord } from "../packages/daemon/src/codex-login.js";
+import { AUTHORITY_CONTRACT, initializationProof } from "../packages/daemon/src/supplier-authority-controller.js";
 async function fixture(mode = "success", authUrl = "https://auth.openai.com/authorize?state=fixture", timeoutMs = 1000) {
   const codexHome = await mkdtemp(join(await realpath(tmpdir()), "login-fixture-"));
   const code = `
@@ -34,6 +35,50 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
   return { login, codexHome, child, async close() { await login.close(); expect(child.exitCode !== null || child.signalCode !== null).toBe(true); await rm(codexHome, { recursive: true, force: true }); } };
 }
 describe("operator-only sign-in component (controlled fixture)", () => {
+  it("authenticates the private transport and reads the compiler-owned skill selection before login",async()=>{
+    const stdin=new PassThrough(),stdout=new PassThrough(),calls:string[]=[],requests:any[]=[],secret=Buffer.alloc(32,9),descriptor={capability:"chirality.local-admission-authority",contract:AUTHORITY_CONTRACT,major:1,minor:0},v4Descriptor={capability:"account.identity-snapshot",contract:"chirality-supplier-account-identity/1",major:1,minor:0,method:"account/identitySnapshot"};
+    const authority={runtimeProcessIncarnationId:"22222222-2222-4222-8222-222222222222",supplierGeneration:"login-generation",runtimeChallenge:Buffer.alloc(32,2).toString("base64url"),exactSupplyDigest:"a".repeat(64),authoritySecret:secret,descriptor,v4Descriptor};
+    const send=(value:unknown)=>stdout.write(`${JSON.stringify(value)}\n`);stdin.on("data",bytes=>{for(const line of bytes.toString().trim().split("\n")){const r=JSON.parse(line);calls.push(r.method);requests.push(r);if(r.method==="initialize"){expect(r.params.chiralityAdmissionAuthority).toEqual({contract:AUTHORITY_CONTRACT,runtimeProcessIncarnationId:authority.runtimeProcessIncarnationId,supplierGeneration:"login-generation",runtimeChallenge:authority.runtimeChallenge});expect(JSON.stringify(r.params)).not.toContain(secret.toString("hex"));const result={contract:AUTHORITY_CONTRACT,runtimeProcessIncarnationId:authority.runtimeProcessIncarnationId,supplierGeneration:authority.supplierGeneration,supplierChallenge:Buffer.alloc(32,4).toString("base64url"),descriptor,v4Descriptor,proof:""};result.proof=initializationProof(secret,{...authority,...result});send({id:r.id,result:{chiralityAdmissionAuthority:result}});}else if(r.method==="config/read")send({id:r.id,result:{config:{chirality_runtime:{nativeSkills:"disabled"}}}});else if(r.method==="account/login/start")send({id:r.id,result:{type:"chatgpt",loginId:"private-login",authUrl:"https://auth.openai.com/private"}});}});
+    const login=createControlledCodexLoginForTests({transport:{stdin,stdout,async close(){}},codexHome:"/synthetic/private",canonicalRoot:"/private/tmp",nativeSkills:"disabled",authorityInitialize:authority});
+    try{expect(await login.startLogin()).toMatchObject({loginId:"private-login"});expect(calls).toEqual(["initialize","initialized","config/read","account/login/start"]);expect(requests.find(request=>request.method==="config/read")?.params).toEqual({includeLayers:true,cwd:"/private/tmp"});expect(calls).not.toContain("account/identitySnapshot");expect(secret.every(byte=>byte===0)).toBe(true);}finally{await login.close();stdin.destroy();stdout.destroy();}
+  });
+  it("selects one complete paginated default and rejects repeated cursors or multiple defaults", async () => {
+    const run = async (pages: Record<string, { data: unknown[]; nextCursor: string | null }>) => {
+      const stdin = new PassThrough(), stdout = new PassThrough();
+      const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+      stdin.on("data", bytes => {
+        for (const line of bytes.toString().trim().split("\n")) {
+          const request = JSON.parse(line);
+          if (request.method === "initialize") send({ id: request.id, result: {} });
+          else if (request.method === "account/login/start") { send({ id: request.id, result: { type: "chatgpt", loginId: "catalog", authUrl: "https://auth.openai.com/catalog" } }); send({ method: "account/login/completed", params: { loginId: "catalog", success: true, error: null } }); }
+          else if (request.method === "account/read") send({ id: request.id, result: { account: { type: "apiKey" }, requiresOpenaiAuth: true } });
+          else if (request.method === "model/list") send({ id: request.id, result: { ...pages[request.params.cursor ?? ""], data: pages[request.params.cursor ?? ""].data.map((item: any) => ({ hidden: false, supportedReasoningEfforts: [{ reasoningEffort: item.defaultReasoningEffort, description: "Supplier reasoning option" }], ...item })) } });
+        }
+      });
+      const login = createControlledCodexLoginForTests({ codexHome: "/synthetic/catalog", transport: { stdin, stdout, async close() {} }, timeoutMs: 1000, retainAuthenticatedSessionForModelCatalog: true });
+      await login.startLogin(); await expect.poll(async () => (await login.status()).state).toBe("completed");
+      return { login, close: async () => { await login.close(); stdin.destroy(); stdout.destroy(); } };
+    };
+    const valid = await run({ "": { data: [{ model: "other", isDefault: false, defaultReasoningEffort: "medium" }], nextCursor: "next" }, next: { data: [{ model: "gpt-default", isDefault: true, defaultReasoningEffort: "high" }], nextCursor: null } });
+    try { expect(await valid.login.resolveDefaultModel()).toEqual({ model: "gpt-default", defaultReasoningEffort: "high" }); } finally { await valid.close(); }
+    const repeated = await run({ "": { data: [], nextCursor: "same" }, same: { data: [], nextCursor: "same" } });
+    try { await expect(repeated.login.resolveDefaultModel()).rejects.toThrow("cursor"); } finally { await repeated.close(); }
+    const multiple = await run({ "": { data: [{ model: "a", isDefault: true, defaultReasoningEffort: "low" }, { model: "b", isDefault: true, defaultReasoningEffort: "high" }], nextCursor: null } });
+    try { await expect(multiple.login.resolveDefaultModel()).rejects.toThrow("unique usable default"); } finally { await multiple.close(); }
+  });
+
+  it("accepts only an exact account-free observed login-purpose record", () => {
+    const bindings = { bindingDigest:"a".repeat(64), outerPolicyDigest:"b".repeat(64), sourceDigest:"c".repeat(64), packageDigest:"d".repeat(64), activationId:"release-1", gateIdentity:"D36", consentDigest:"e".repeat(64) };
+    const supply = { sha256:"f".repeat(64), size:123, version:"0.149.0" };
+    const limbs = Object.fromEntries(["exact-supplier","keyring-backend","plaintext-fallback-absent","process-containment","storage-isolation","provider-network","bounded-protocol-purpose","retirement"].map(name=>[name,{attempted:true,passed:true,evidenceSha256:"1".repeat(64)}]));
+    const record = { schema:"chirality-codex-login-purpose-release/v1", evidenceClass:"exact-login-purpose-observed", bindings, supply,
+      backend:{credentialStore:"keyring",plaintextFallback:false},purpose:{modelExecution:false,methods:["account/login/start","account/login/cancel","account/read"]},issuedAt:"2026-01-01T00:00:00.000Z",expiresAt:"2027-01-01T00:00:00.000Z",limbs };
+    expect(inspectCodexLoginPurposeReleaseRecord(record,{...bindings,supply},Date.parse("2026-06-01T00:00:00.000Z"))).toMatchObject({evidenceClass:"exact-login-purpose-observed",backend:{credentialStore:"keyring",plaintextFallback:false}});
+    expect(()=>inspectCodexLoginPurposeReleaseRecord({...record,backend:{credentialStore:"auto",plaintextFallback:false}},{...bindings,supply},Date.parse("2026-06-01T00:00:00.000Z"))).toThrow("backend");
+    expect(()=>inspectCodexLoginPurposeReleaseRecord({...record,purpose:{...record.purpose,modelExecution:true}},{...bindings,supply},Date.parse("2026-06-01T00:00:00.000Z"))).toThrow("protocol");
+    expect(()=>inspectCodexLoginPurposeReleaseRecord({...record,limbs:{...limbs,retirement:{attempted:true,passed:false,evidenceSha256:"1".repeat(64)}}},{...bindings,supply},Date.parse("2026-06-01T00:00:00.000Z"))).toThrow("incomplete");
+    expect(()=>inspectCodexLoginPurposeReleaseRecord({...record,bindings:{...bindings,gateIdentity:"other"}},{...bindings,gateIdentity:"other",supply},Date.parse("2026-06-01T00:00:00.000Z"))).toThrow("gate");
+  });
   it("reports completed ceremony with unavailable identity and never creates credential files", async () => {
     const f = await fixture();
     try {

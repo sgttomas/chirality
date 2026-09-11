@@ -62,10 +62,13 @@ authorize work; sources govern on any disagreement.
 
 ## 3. Standing constraints — hard fences (all iterations; always stop for a human ruling)
 
-- **F-APP-1 (provider/network):** no provider or network expansion beyond
-  the Anthropic path; no remote MCP, plugin, or broad tool-search enablement
-  without a fresh ruling (F1 as amended by D-APP-44: owner-permitted,
-  default-closed provider/residency configuration).
+- **F-APP-1 (provider/network):** Codex is the sole current MVP engine under
+  the recorded owner release direction. Its supplier/account admission,
+  per-root consent, credential custody and exact accepted endpoint/command-
+  network safeguards remain required under K-NET-1 and Runtime-owned
+  contracts. No other provider expansion, remote MCP, plugin or broad
+  tool-search enablement is authorized by this direction. Historical
+  Anthropic/Pi provider rules do not require enabling those engines.
 - **F-APP-2 (release/distribution):** no signing, notarization, publication,
   external distribution, or release-readiness / professional / certification
   claims.
@@ -81,8 +84,8 @@ authorize work; sources govern on any disagreement.
   plan, queue, register, or status surface is created without an owner
   ruling. `plans/` is a historical archive; never select work from it.
 - **Fresh-ruling stops** (carried from the pre-consolidation coordination
-  record): Pi-backed execution (unapproved after D-APP-01/02); concrete
-  non-Anthropic provider implementation or routing; write/edit/bash/
+  record): provider execution outside the current Codex MVP direction and
+  its accepted supplier/account/containment scope; write/edit/bash/
   tool-execution exposure beyond the current approved item; changes to the
   project-truth model for sessions, transcripts, chats, runtime logs, or
   completion logs; professional-boundary or release-readiness posture.
@@ -239,7 +242,7 @@ If the loop is parked pending owner direction, stop there.
 
 | Work type | Required before push | Notes |
 |---|---|---|
-| Any tranche | repo-wide `self-check` exit 0; practitioner-harness pytest at closeout; receipt validator pass before and after appending; `git diff --check` | Always. |
+| Any tranche | repo-wide `self-check` exit 0; practitioner-harness pytest at closeout; receipt validator pass before and after appending | Cosmetic whitespace is not a commit or merge gate. |
 | Product source (`frontend/src/**` outside `__tests__/**`, `frontend/electron/**`, `frontend/packages/**`, `frontend/scripts/**`, build/packaging config) | typecheck + vitest + build/premerge gates (`docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, `docs/BUILD_AND_RELEASE.md`); independent review per `AGENTS.md`; A1 re-stage declaration | Stop the dev server before build/package/premerge commands; build, premerge, and render-bar runs need host escalation per `AGENTS.md` where the sandbox denies them. |
 | UI work | the above plus the D-APP-36 render bar (`docs/ISSUE_READINESS_PROFILES.md` §4) | Evidence per `docs/ui/UI_POLISH_EXECUTION_PLAN.md`. |
 | Authority docs (`docs/DIRECTIVE.md`, `CONTRACT.md`, `SPEC.md`, `TYPES.md`) | D-APP-38 corpus reconciliation (`execution/_Reconciliation/References/reconcile_authority_corpus.py`) | Drift is repair-first. |

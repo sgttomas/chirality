@@ -1,8 +1,7 @@
 import { constants } from "node:fs";
 import { lstat, open, realpath, readdir } from "node:fs/promises";
 import { createHash, randomUUID } from "node:crypto";
-import { dirname, isAbsolute, resolve, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { dirname, isAbsolute, resolve, join, relative, sep } from "node:path";
 import { RuntimeError } from "@chirality/runtime-contracts";
 import { inventoryRuntimeDependencies } from "./runtime-dependencies.js";
 import { ACCEPTED_SUPPLY, verifyExactSupply } from "./exact-supply.js";
@@ -84,7 +83,7 @@ export function inspectRuntimeConformanceRecord(value: unknown, expected: Runtim
   Object.freeze(frozen.limbs); return Object.freeze(frozen);
 }
 const artifactCache = new Map<string, { sha256: string; size: number; statDigest: string }>();
-async function readArtifact(path: string, privateRecord = false, signal?: AbortSignal): Promise<{ sha256: string; size: number; statDigest: string; bytes?: Buffer }> {
+async function readArtifact(path: string, privateRecord = false, signal?: AbortSignal, captureBytes = privateRecord): Promise<{ sha256: string; size: number; statDigest: string; bytes?: Buffer }> {
   signal?.throwIfAborted();
   canonical(path);
   if (await realpath(path) !== path) throw deny();
@@ -95,7 +94,7 @@ async function readArtifact(path: string, privateRecord = false, signal?: AbortS
     const before = await file.stat({ bigint: true });
     if (!before.isFile() || before.size > BigInt(privateRecord ? 1_048_576 : 536_870_912) || (privateRecord && (before.uid !== BigInt(process.getuid?.() ?? -1) || (before.mode & 0o777n) !== 0o600n))) throw deny();
     const statDigest = hash(JSON.stringify([before.dev, before.ino, before.size, before.mtimeNs, before.ctimeNs, before.mode, before.uid].map(String)));
-    const cached = privateRecord ? undefined : artifactCache.get(path);
+    const cached = privateRecord || captureBytes ? undefined : artifactCache.get(path);
     if (cached?.statDigest === statDigest) {
       const current = await lstat(path, { bigint: true });
       for (const key of ["dev", "ino", "size", "mtimeNs", "ctimeNs", "mode", "uid"] as const) if (before[key] !== current[key]) throw deny();
@@ -104,12 +103,12 @@ async function readArtifact(path: string, privateRecord = false, signal?: AbortS
     }
     const sha = createHash("sha256"), parts: Buffer[] = []; let total = 0;
     const buffer = Buffer.alloc(65536);
-    for (;;) { signal?.throwIfAborted(); const { bytesRead } = await file.read(buffer, 0, buffer.length, null); if (!bytesRead) break; total += bytesRead; if (total > Number(before.size)) throw deny(); sha.update(buffer.subarray(0, bytesRead)); if (privateRecord) parts.push(Buffer.from(buffer.subarray(0, bytesRead))); }
+    for (;;) { signal?.throwIfAborted(); const { bytesRead } = await file.read(buffer, 0, buffer.length, null); if (!bytesRead) break; total += bytesRead; if (total > Number(before.size)) throw deny(); sha.update(buffer.subarray(0, bytesRead)); if (captureBytes) parts.push(Buffer.from(buffer.subarray(0, bytesRead))); }
     const after = await file.stat({ bigint: true }), current = await lstat(path, { bigint: true });
     for (const key of ["dev", "ino", "size", "mtimeNs", "ctimeNs", "mode", "uid"] as const) if (before[key] !== after[key] || before[key] !== current[key]) throw deny();
     if (total !== Number(before.size) || await realpath(path) !== path) throw deny();
-    const result = { sha256: sha.digest("hex"), size: total, statDigest, ...(privateRecord ? { bytes: Buffer.concat(parts) } : {}) };
-    if (!privateRecord && artifactCache.size < 50_000) artifactCache.set(path, result);
+    const result = { sha256: sha.digest("hex"), size: total, statDigest, ...(captureBytes ? { bytes: Buffer.concat(parts) } : {}) };
+    if (!privateRecord && !captureBytes && artifactCache.size < 50_000) artifactCache.set(path, result);
     return result;
   } finally { await file.close(); }
 }
@@ -138,7 +137,7 @@ export class RuntimeConformanceVerifier {
   /** Reconsult acceptance and revalidate byte-cache identities on EVERY admission; returned objects are never portable launch tokens. */
   async verify(input: { recordPath: string; basis: RuntimeConformanceBasis }): Promise<RuntimeConformanceAdmission> {
     try {
-      const generation = await processArtifactGeneration.check();
+      const generationController = configuredArtifactGeneration(), generation = await generationController.check();
       const basis = structuredClone(input.basis);
       keys(basis, [...bindingKeys.filter(key => key !== "sourceDigest" && key !== "packageDigest"), "sourceFiles", "packageFiles", ...(basis.dependencyResolutionDigest === undefined ? [] : ["dependencyResolutionDigest"])]);
       const { sourceFiles, packageFiles, dependencyResolutionDigest, ...identity } = basis;
@@ -156,9 +155,9 @@ export class RuntimeConformanceVerifier {
       inspectRuntimeConformanceRecord(JSON.parse(source.bytes!.toString("utf8")), bindings);
       const currentAcceptance = await this.options.acceptance.lookup({ recordSha256: source.sha256, sourceDigest: bindings.sourceDigest, activationId: bindings.activationId, gateIdentity: bindings.gateIdentity });
       if (currentAcceptance?.status !== "accepted" || currentAcceptance.ownerReference !== acceptance.ownerReference) throw deny();
-      await processArtifactGeneration.check();
+      await generationController.check();
       const result = Object.freeze({ recordSha256: source.sha256, ownerReference: acceptance.ownerReference, evidence: "mechanically-verified-with-external-acceptance" as const, checkedAt: new Date().toISOString() });
-      processArtifactGeneration.assertActive();
+      generationController.assertActive();
       issued.add(result); return result;
     } catch { throw deny(); }
   }
@@ -169,6 +168,7 @@ export function isRuntimeConformanceAdmission(value: unknown): value is RuntimeC
 export interface RuntimeConformanceConfiguration {
   recordPath: string; acceptancePath: string; ownerActPath: string; ownerActSha256: string;
   activationId: string; gateIdentity: string;
+  artifactInventory: RuntimeConformanceArtifactInventorySelection;
 }
 /** Host-selected owner act pin is external asserted acceptance, not machine interpretation of human intent. */
 export class RuntimeConformanceFileAcceptancePort implements RuntimeConformanceAcceptancePort {
@@ -187,42 +187,136 @@ export class RuntimeConformanceFileAcceptancePort implements RuntimeConformanceA
     } catch { return { status: "unknown" }; }
   }
 }
-/** First-party disk artifacts and declared deployed production dependency resolution; not loaded-module proof. */
-export async function runtimeConformanceArtifactInventory(signal?: AbortSignal): Promise<ArtifactInventory> {
+export type RuntimeConformanceArtifactInventorySelection =
+  | { kind: "source-tree"; sourceRoot: string }
+  | { kind: "packaged-resources"; resourcesRoot: string; manifestPath: string };
+export interface RuntimeArtifactInventoryManifest {
+  schema: "chirality-runtime-artifact-inventory/v1";
+  sourceIdentityDigest: string;
+  dependencyResolutionDigest: string;
+  closureRoots: readonly string[];
+  entries: readonly { relativePath: string; sha256: string; size: number }[];
+}
+const requiredPackagedRoots = Object.freeze(["app.asar", "instruction-root", "native", "runtime-cli"] as const);
+const requiredPackagedFiles = Object.freeze(["app.asar", "instruction-root/instruction-bundle-manifest.json", "native/chirality_native_admission.node", "runtime-cli/chirality-cli.mjs", "runtime-cli/chirality-cli.mjs.map"] as const);
+function cleanRelativePath(value: unknown): value is string {
+  return text(value) && !isAbsolute(value) && !value.includes("\\") && value !== "." && !value.startsWith("../") && !value.includes("/../") && resolve("/", value) === join("/", value);
+}
+function validateSelection(value: RuntimeConformanceArtifactInventorySelection): void {
+  if (value?.kind === "source-tree") {
+    keys(value, ["kind", "sourceRoot"]); canonical(value.sourceRoot);
+    return;
+  }
+  if (value?.kind === "packaged-resources") {
+    keys(value, ["kind", "resourcesRoot", "manifestPath"]); canonical(value.resourcesRoot); canonical(value.manifestPath);
+    if (value.manifestPath !== join(value.resourcesRoot, "runtime-artifact-inventory.json")) throw deny();
+    return;
+  }
+  throw deny();
+}
+async function walkRegularFiles(root: string, signal: AbortSignal | undefined, output: string[]): Promise<void> {
   signal?.throwIfAborted();
-  const runtimeRoot = resolve(dirname(fileURLToPath(import.meta.url)), "../../..");
+  if (await realpath(root) !== root) throw deny();
+  const info = await lstat(root);
+  if (info.isFile()) { output.push(root); return; }
+  if (!info.isDirectory()) throw deny();
+  for (const entry of (await readdir(root)).sort()) await walkRegularFiles(join(root, entry), signal, output);
+}
+/** Host-selected complete disk inventory; packaged mode verifies a Packaging-produced closure manifest. */
+async function buildRuntimeConformanceArtifactInventory(selection: RuntimeConformanceArtifactInventorySelection, signal?: AbortSignal): Promise<ArtifactInventory> {
+  signal?.throwIfAborted();
+  validateSelection(selection);
+  if (selection.kind === "packaged-resources") {
+    if (await realpath(selection.resourcesRoot) !== selection.resourcesRoot || !(await lstat(selection.resourcesRoot)).isDirectory()) throw deny();
+    const manifestArtifact = await readArtifact(selection.manifestPath, false, signal, true);
+    if (manifestArtifact.size > 16_777_216) throw deny();
+    const manifest = JSON.parse(manifestArtifact.bytes!.toString("utf8")) as unknown;
+    keys(manifest, ["schema", "sourceIdentityDigest", "dependencyResolutionDigest", "closureRoots", "entries"]);
+    const value = manifest as unknown as RuntimeArtifactInventoryManifest;
+    if (value.schema !== "chirality-runtime-artifact-inventory/v1" || !digest(value.sourceIdentityDigest) || !digest(value.dependencyResolutionDigest)
+      || !Array.isArray(value.closureRoots) || !Array.isArray(value.entries)) throw deny();
+    const roots = [...value.closureRoots];
+    if (roots.length < requiredPackagedRoots.length || roots.length > 32 || new Set(roots).size !== roots.length
+      || roots.some(root => !cleanRelativePath(root) || root === "runtime-artifact-inventory.json") || !requiredPackagedRoots.every(root => roots.includes(root))) throw deny();
+    for (let index = 1; index < roots.length; index++) if (roots[index - 1]! >= roots[index]!) throw deny();
+    for (let left = 0; left < roots.length; left++) for (let right = left + 1; right < roots.length; right++) {
+      if (roots[right]!.startsWith(`${roots[left]!}/`)) throw deny();
+    }
+    const actual: string[] = [];
+    for (const root of roots) {
+      const path = join(selection.resourcesRoot, root);
+      if (relative(selection.resourcesRoot, path).startsWith(`..${sep}`)) throw deny();
+      // Prove every mandatory semantic root exists and is canonical before the complete Resources walk.
+      if (await realpath(path) !== path) throw deny();
+    }
+    await walkRegularFiles(selection.resourcesRoot, signal, actual);
+    const deployedFiles = actual.filter(path => path !== selection.manifestPath);
+    const entries = [...value.entries];
+    if (entries.length < requiredPackagedFiles.length || entries.length > 50_000) throw deny();
+    const paths: string[] = [], expectedArtifacts = new Map<string, { sha256: string; size: number }>([[selection.manifestPath, { sha256: manifestArtifact.sha256, size: manifestArtifact.size }]]);
+    for (let index = 0; index < entries.length; index++) {
+      const raw: unknown = entries[index]!;
+      keys(raw, ["relativePath", "sha256", "size"]);
+      const entry = raw as unknown as RuntimeArtifactInventoryManifest["entries"][number];
+      if (!cleanRelativePath(entry.relativePath) || !digest(entry.sha256) || !Number.isSafeInteger(entry.size) || entry.size < 0
+        || (index > 0 && entries[index - 1]!.relativePath >= entry.relativePath)
+        || !roots.some(root => entry.relativePath === root || entry.relativePath.startsWith(`${root}/`))) throw deny();
+      const path = join(selection.resourcesRoot, entry.relativePath), artifact = await readArtifact(path, false, signal);
+      if (artifact.sha256 !== entry.sha256 || artifact.size !== entry.size) throw deny();
+      paths.push(path); expectedArtifacts.set(path, { sha256: entry.sha256, size: entry.size });
+    }
+    if (!requiredPackagedFiles.every(path => entries.some(entry => entry.relativePath === path))) throw deny();
+    const actualRelative = deployedFiles.map(path => relative(selection.resourcesRoot, path).split(sep).join("/")).sort();
+    if (actualRelative.length !== entries.length || actualRelative.some((path, index) => path !== entries[index]!.relativePath)) throw deny();
+    // The manifest is included in both digests: its asserted source identity cannot float free of verified deployed bytes.
+    const files = Object.freeze([selection.manifestPath, ...paths]);
+    return { sourceFiles: files, packageFiles: files, dependencyResolutionDigest: value.dependencyResolutionDigest, expectedArtifacts };
+  }
+  const runtimeRoot = selection.sourceRoot;
+  if (await realpath(runtimeRoot) !== runtimeRoot || !(await lstat(runtimeRoot)).isDirectory()) throw deny();
   const packages = join(runtimeRoot, "packages"), sourceFiles: string[] = [], packageFiles = [join(runtimeRoot, "package-lock.json"), join(runtimeRoot, "package.json")], workspaceRoots: string[] = [];
-  const walk = async (path: string): Promise<void> => {
-    signal?.throwIfAborted();
-    if (await realpath(path) !== path) throw deny();
-    const info = await lstat(path);
-    if (info.isFile()) { sourceFiles.push(path); return; }
-    if (!info.isDirectory()) throw deny();
-    for (const entry of (await readdir(path)).sort()) await walk(join(path, entry));
-  };
   for (const name of (await readdir(packages)).sort()) {
     const path = join(packages, name);
     if (!(await lstat(path)).isDirectory() || await realpath(path) !== path) throw deny();
-    workspaceRoots.push(path); packageFiles.push(join(path, "package.json")); await walk(join(path, "dist"));
+    workspaceRoots.push(path); packageFiles.push(join(path, "package.json")); await walkRegularFiles(join(path, "dist"), signal, sourceFiles);
   }
   if (sourceFiles.length === 0) throw deny();
   const dependencies = await inventoryRuntimeDependencies(runtimeRoot, [runtimeRoot, ...workspaceRoots], signal);
   return { sourceFiles: Object.freeze(sourceFiles), packageFiles: Object.freeze([...packageFiles, ...dependencies.files]), dependencyResolutionDigest: dependencies.resolutionDigest };
 }
+export async function runtimeConformanceArtifactInventory(selection: RuntimeConformanceArtifactInventorySelection, signal?: AbortSignal): Promise<ArtifactInventory> {
+  try { return await buildRuntimeConformanceArtifactInventory(selection, signal); } catch { throw deny(); }
+}
+/** Exact reviewed instruction-bundle identity from the verified packaged closure. Source-tree mode has no native instruction-read basis. */
+export async function runtimeConformanceInstructionBundleDigest(selection: RuntimeConformanceArtifactInventorySelection, signal?: AbortSignal): Promise<string> {
+  try {
+    if (selection.kind !== "packaged-resources") throw deny();
+    const inventory = await buildRuntimeConformanceArtifactInventory(selection, signal), root = join(selection.resourcesRoot, "instruction-root");
+    const records = inventory.sourceFiles.filter(path => path.startsWith(`${root}${sep}`)).map(path => {
+      const expected = inventory.expectedArtifacts?.get(path);
+      if (!expected) throw deny();
+      return { path: relative(root, path).split(sep).join("/"), sha256: expected.sha256, size: expected.size };
+    });
+    if (records.length < 2 || records[0]?.path !== "instruction-bundle-manifest.json") throw deny();
+    return hash(JSON.stringify(records));
+  } catch { throw deny(); }
+}
 /** Supervisor-only integration: identities are actual bound configuration/account/consent, not public requests. */
 export async function verifyConfiguredRuntimeConformance(config: RuntimeConformanceConfiguration | undefined, actual: Omit<RuntimeConformanceIdentity, "activationId" | "gateIdentity"> & { executablePath: string }): Promise<RuntimeConformanceAdmission> {
   try {
   if (config === undefined) throw deny();
-  keys(config, ["recordPath", "acceptancePath", "ownerActPath", "ownerActSha256", "activationId", "gateIdentity"]);
+  keys(config, ["recordPath", "acceptancePath", "ownerActPath", "ownerActSha256", "activationId", "gateIdentity", "artifactInventory"]);
   for (const path of [config.recordPath, config.acceptancePath, config.ownerActPath]) canonical(path);
   if (!digest(config.ownerActSha256) || !text(config.activationId) || !text(config.gateIdentity)) throw deny();
-  const inventory = await runtimeConformanceArtifactInventory();
+  const selection = structuredClone(config.artifactInventory);
+  configureRuntimeConformanceArtifactInventory(selection);
+  const inventory = await runtimeConformanceArtifactInventory(selection);
   return await new RuntimeConformanceVerifier({ acceptance: new RuntimeConformanceFileAcceptancePort(config) }).verify({ recordPath: config.recordPath,
     basis: { ...actual, ...inventory, activationId: config.activationId, gateIdentity: config.gateIdentity } });
   } catch { throw deny(); }
 }
 
-interface ArtifactInventory { sourceFiles: readonly string[]; packageFiles: readonly string[]; dependencyResolutionDigest?: string }
+interface ArtifactInventory { sourceFiles: readonly string[]; packageFiles: readonly string[]; dependencyResolutionDigest?: string; expectedArtifacts?: ReadonlyMap<string, { sha256: string; size: number }> }
 interface ArtifactSnapshot { sourceDigest: string; packageDigest: string; fingerprint: string }
 async function artifactSnapshot(inventory: ArtifactInventory, signal?: AbortSignal): Promise<ArtifactSnapshot> {
   const metadata: { path: string; sha256: string; statDigest: string }[] = [];
@@ -230,6 +324,8 @@ async function artifactSnapshot(inventory: ArtifactInventory, signal?: AbortSign
     if (paths.length === 0 || new Set(paths).size !== paths.length) throw deny();
     const records = await mapArtifacts(paths, async path => {
       const file = await readArtifact(path, false, signal);
+      const expected = inventory.expectedArtifacts?.get(path);
+      if (expected !== undefined && (file.sha256 !== expected.sha256 || file.size !== expected.size)) throw deny();
       return { artifact: { path, size: file.size, sha256: file.sha256 }, metadata: { path, sha256: file.sha256, statDigest: file.statDigest } };
     }, signal);
     const values = records.map(record => record.artifact); metadata.push(...records.map(record => record.metadata));
@@ -276,12 +372,38 @@ class ArtifactGeneration {
 }
 // Exactly one irreversible baseline per loaded core module/process generation.
 // This is an on-disk startup observation, not proof of bytes already in Node's module cache.
-const processArtifactGeneration = new ArtifactGeneration(runtimeConformanceArtifactInventory);
+let processArtifactGeneration: ArtifactGeneration | undefined;
+let processArtifactSelection: string | undefined;
+let processArtifactSelectionPoisoned = false;
+/** Must be called by the trusted host before runtime startup work. A changed selection permanently poisons this module generation. */
+export function configureRuntimeConformanceArtifactInventory(selection: RuntimeConformanceArtifactInventorySelection): void {
+  try {
+    validateSelection(selection);
+    const frozen: RuntimeConformanceArtifactInventorySelection = selection.kind === "source-tree"
+      ? { kind: "source-tree", sourceRoot: selection.sourceRoot }
+      : { kind: "packaged-resources", resourcesRoot: selection.resourcesRoot, manifestPath: selection.manifestPath };
+    const identity = JSON.stringify(frozen);
+    if (processArtifactSelectionPoisoned || (processArtifactSelection !== undefined && processArtifactSelection !== identity)) {
+      processArtifactSelectionPoisoned = true; void processArtifactGeneration?.retire(); throw deny();
+    }
+    if (processArtifactGeneration === undefined) {
+      Object.freeze(frozen); processArtifactSelection = identity;
+      processArtifactGeneration = new ArtifactGeneration(signal => runtimeConformanceArtifactInventory(frozen, signal));
+    }
+  } catch { processArtifactSelectionPoisoned = true; void processArtifactGeneration?.retire(); throw deny(); }
+}
+function configuredArtifactGeneration(): ArtifactGeneration {
+  if (processArtifactSelectionPoisoned || processArtifactGeneration === undefined) throw deny();
+  return processArtifactGeneration;
+}
 /** Full process shutdown only: poison admission and join managed inventory/hash work; never a daemon restart API. */
-export async function retireRuntimeConformanceGeneration(): Promise<void> { await processArtifactGeneration.retire(); }
+export async function retireRuntimeConformanceGeneration(): Promise<void> {
+  processArtifactSelectionPoisoned = true;
+  if (processArtifactGeneration !== undefined) await processArtifactGeneration.retire();
+}
 export async function captureRuntimeConformanceGeneration(): Promise<Readonly<{ generationId: string; sourceDigest: string; packageDigest: string; evidence: "startup-disk-inventory-not-loaded-module-proof" }>> {
-  const baseline = await processArtifactGeneration.check();
-  return Object.freeze({ generationId: processArtifactGeneration.id, sourceDigest: baseline.sourceDigest, packageDigest: baseline.packageDigest, evidence: "startup-disk-inventory-not-loaded-module-proof" });
+  const generation = configuredArtifactGeneration(), baseline = await generation.check();
+  return Object.freeze({ generationId: generation.id, sourceDigest: baseline.sourceDigest, packageDigest: baseline.packageDigest, evidence: "startup-disk-inventory-not-loaded-module-proof" });
 }
 /** Controlled temporary-artifact test seam; cannot reset, replace or authorize the production singleton. */
 export function createControlledArtifactGenerationForTests(inventory: () => Promise<ArtifactInventory>): { createVerifier(): { verify(): Promise<Readonly<ArtifactSnapshot>> } } {

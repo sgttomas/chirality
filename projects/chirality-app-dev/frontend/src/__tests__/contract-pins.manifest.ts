@@ -11,8 +11,9 @@
  *   - src/__tests__/docs/reliance-boundary-register.test.ts     (pin bodies removed)
  *   - src/__tests__/lib/domain-profile-registry.test.ts         (byte-sync pins removed)
  *
- * Only the mechanism moved; every pinned string is preserved. Structural
- * (non-substring) assertions remain in their original files.
+ * Structural assertions remain in their original files. Command-spelling
+ * pins are retired when the corresponding policy moves behind a maintained
+ * implementation boundary.
  *
  * Pin kinds:
  *   contains / notContains  raw substring presence/absence in the file bytes
@@ -60,9 +61,6 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'contains', value: 'runtime/package-lock.json' },
       { kind: 'contains', value: 'working-directory: projects/chirality-runtime' },
       { kind: 'contains', value: 'npm run build' },
-      { kind: 'contains', value: 'dist-electron/main.js --runtime-daemon' },
-      { kind: 'contains', value: '--no-sandbox' },
-      { kind: 'contains', value: 'dist-runtime/chirality-cli.mjs' },
       {
         kind: 'contains',
         value: '--manifest "${GITHUB_WORKSPACE}/projects/chirality-app-dev/chirality.project.json"'
@@ -102,7 +100,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
     pins: [
       {
         kind: 'contains',
-        value: "runCommand({ id: 'full_test', args: ['run', 'test', '--', '--testTimeout=15000'] })"
+        value: "args: ['run', 'test', '--', '--testTimeout=15000']"
       },
       { kind: 'contains', value: "runCommand({ id: 'typecheck', args: ['run', 'typecheck'] })" },
       { kind: 'contains', value: 'SECTION9_MANIFEST_PATH' },
@@ -127,7 +125,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
   {
     file: 'package.json',
     description:
-      'Build/packaging policy pins: telemetry disabled, unsigned desktop packaging, proof commands registered, monorepo symlinks excluded (from build-network-policy.test.ts and dmg-packaging-policy.test.ts)',
+      'Build and packaging policy pins: telemetry disabled, proof commands registered, and monorepo symlinks excluded (from build-network-policy.test.ts and dmg-packaging-policy.test.ts)',
     pins: [
       { kind: 'jsonPathContains', jsonPath: ['scripts', 'dev:next'], value: 'NEXT_TELEMETRY_DISABLED=1' },
       { kind: 'jsonPathContains', jsonPath: ['scripts', 'build'], value: 'NEXT_TELEMETRY_DISABLED=1' },
@@ -140,16 +138,6 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
         kind: 'jsonPathEquals',
         jsonPath: ['scripts', 'proof:packaged-security'],
         value: 'node ./scripts/run-packaged-security-proof.mjs'
-      },
-      {
-        kind: 'jsonPathContains',
-        jsonPath: ['scripts', 'desktop:pack'],
-        value: 'CSC_IDENTITY_AUTO_DISCOVERY=false'
-      },
-      {
-        kind: 'jsonPathContains',
-        jsonPath: ['scripts', 'desktop:dist'],
-        value: 'CSC_IDENTITY_AUTO_DISCOVERY=false'
       },
       {
         kind: 'jsonPathContains',

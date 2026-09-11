@@ -50,6 +50,11 @@ const opts = {
   mode: 'chat'
 };
 
+const executionRoots = {
+  workingRoot: { path: v3Session.projectRoot, origin: 'registered-project-root' as const, identitySha256: '3'.repeat(64) },
+  toolRoot: { path: '/tmp/trusted-instruction-root', origin: 'trusted-runtime-instruction-root' as const, identitySha256: '4'.repeat(64) }
+};
+
 let tmpDir = '';
 // D-APP-25 parity adds lifecycle persistence (appendHarnessEvent) to the
 // Anthropic manager. Isolate the session-events root to a per-test tmpdir so
@@ -119,6 +124,7 @@ describe('AnthropicAgentSdkManager', () => {
       instructionContext: {
         schemaVersion: 'chirality.selected-context/v3', roleId: 'WORKING_ITEMS', methods: [], documents: [], dispositions: [],
         supplied: [{ kind: 'role', id: 'WORKING_ITEMS', content: 'new current body', sha256: 'd'.repeat(64) }],
+        executionRoots,
         basisPreview: { id: 'basis-new', sha256: 'e'.repeat(64), instructionPolicySha256: '9'.repeat(64), sources: [], persisted: false }, compatibilityInputs: [], compatibilityMappings: []
       }, runtimeTools: []
     }));
@@ -134,6 +140,7 @@ describe('AnthropicAgentSdkManager', () => {
       message: 'third turn', opts, turnId: 'third-turn', instructionContext: {
         schemaVersion: 'chirality.selected-context/v3', roleId: 'WORKING_ITEMS', methods: [], documents: [], dispositions: [],
         supplied: [{ kind: 'role', id: 'WORKING_ITEMS', content: 'new current body', sha256: 'd'.repeat(64) }],
+        executionRoots,
         basisPreview: { id: 'basis-new', sha256: 'e'.repeat(64), instructionPolicySha256: '9'.repeat(64), sources: [], persisted: false }, compatibilityInputs: [], compatibilityMappings: []
       }, runtimeTools: []
     }));
@@ -161,6 +168,7 @@ describe('AnthropicAgentSdkManager', () => {
       instructionContext: {
         schemaVersion: 'chirality.selected-context/v3', roleId: 'HELP_HUMAN', methods: [], documents: [], dispositions: [],
         supplied: [{ kind: 'role', id: 'HELP_HUMAN', content: 'frozen helper body', sha256: 'a'.repeat(64) }],
+        executionRoots,
         basisPreview: { id: 'basis-v3', sha256: 'b'.repeat(64), instructionPolicySha256: '9'.repeat(64), sources: [], persisted: false }, compatibilityInputs: [], compatibilityMappings: []
       },
       runtimeTools: []

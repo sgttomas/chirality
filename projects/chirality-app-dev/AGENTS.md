@@ -52,12 +52,22 @@ list, inspection, selection, context-resolution, and replay results; App code
 does not maintain a second Markdown parser or infer method completion from a
 loaded instruction body.
 
-Project skills live under `.agents/skills`, and project workflows under
-`.chirality/workflows/<name>/WORKFLOW.md`. User libraries use the corresponding
-home-directory roots. Reviewed bundled methods are a third source. Unqualified
-lookup prefers project, then user, then bundled definitions, while an actual
-selection retains its source-qualified identity. Old flat project workflow
-Markdown files remain ordinary documents and historical navigation targets.
+Ordinary App skill discovery and context use only the reviewed bundled skill
+library.
+Project `.agents/skills` and user `~/.agents/skills` definitions remain
+standalone compatibility inputs and historical origins; the App does not load
+or activate them in ordinary agent context even when their files exist.
+Read-only replay may render preserved historical bytes and source-qualified
+identity without activating the skill for a new turn. Continuation requires an
+explicit drop or change to an eligible bundled skill; Runtime never silently
+binds a same-named bundled definition.
+
+Project workflows live under `.chirality/workflows/<name>/WORKFLOW.md`, user
+workflows under `~/.chirality/workflows/<name>/WORKFLOW.md`, and reviewed
+bundled workflows are the third source. Unqualified workflow lookup prefers
+project, then user, then bundled definitions, while an actual selection retains
+its source-qualified identity. Old flat project workflow Markdown files remain
+ordinary documents and historical navigation targets.
 
 The central workflows are project setup, project decomposition, software
 decomposition, domain decomposition, research orchestration, and scope change.
@@ -66,8 +76,13 @@ useful; their presence never makes them compulsory. Skills and workflows can
 be combined, stopped, and replaced within one conversation. Selection does not
 change a role, launch a manager, expand tools, or grant permissions.
 
+Users create, save, and revise workflows through the active chat. An authorized
+agent writes a valid canonical project or user workflow package with ordinary
+file tools, validates its metadata and contained resources, and refreshes the
+Runtime catalog. The App has no separate workflow editor.
+
 New conversation context contains Root `AGENTS.md`, applicable project
-instructions, the full active-role instructions, and skill descriptions.
+instructions, the full active-role instructions, and bundled-skill descriptions.
 Selected or needed method bodies and contained resources load through Runtime.
 The recorded basis preserves each supplied item's origin and hash for replay.
 Interaction mode and permission mode are independent. Native Plan Mode is
@@ -76,6 +91,14 @@ remain in conversation history and are exported to a project file only through
 an explicit user-selected save action.
 
 ## Execution attribution
+
+Codex is the sole App MVP engine qualification and release target. Runtime
+registers Codex as the only MVP engine, new chats default to it, and the UI
+exposes only supported release engines. Selecting a Codex model changes model
+configuration within that engine. Historical sessions, standalone compatibility
+records, and retained compatibility surfaces preserve their original engine and
+provider attribution without establishing qualified MVP support or substituting
+for required Codex capability.
 
 - Capability and model direction is supplied per-session by the owner's
   steering (D-GOV-17 M1-D, ruled 2026-07-18,

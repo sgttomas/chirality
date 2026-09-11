@@ -20,16 +20,38 @@ export function resolveRuntimeContractsSource(subpath = '') {
   );
 }
 
+export function resolveNativeAdmissionSource() {
+  return path.join(runtimeRoot, 'packages', 'native-admission', 'src', 'index.ts');
+}
+
+export function resolveHostedRuntimePathsSource() {
+  return path.join(runtimeRoot, 'packages', 'daemon', 'src', 'hosted-paths.ts');
+}
+
+export function resolveHostedRuntimeSource() {
+  return path.join(runtimeRoot, 'packages', 'daemon', 'src', 'hosted.ts');
+}
+
+export function resolveRuntimeConformanceV2Source() {
+  return path.join(runtimeRoot, 'packages', 'core', 'src', 'runtime-conformance-v2.ts');
+}
+
+export function resolveRuntimePhysicalFilesystemSource() {
+  return path.join(runtimeRoot, 'packages', 'core', 'src', 'physical-filesystem.ts');
+}
+
+export function resolveProtectedRuntimeCliSource() {
+  return path.join(runtimeRoot, 'packages', 'cli', 'src', 'cli.ts');
+}
+
 const runtimeEntries = {
-  '@chirality/engine-claude': path.join(
-    runtimeRoot,
-    'packages',
-    'engine-claude',
-    'src',
-    'index.ts'
-  ),
+  '@chirality/runtime-daemon/hosted': resolveHostedRuntimeSource(),
+  '@chirality/runtime-daemon/hosted-paths': resolveHostedRuntimePathsSource(),
+  '@chirality/native-admission': resolveNativeAdmissionSource(),
   '@chirality/runtime-contracts': resolveRuntimeContractsSource(),
   '@chirality/runtime-core': path.join(runtimeRoot, 'packages', 'core', 'src', 'index.ts'),
+  '@chirality/runtime-core/runtime-conformance-v2': resolveRuntimeConformanceV2Source(),
+  '@chirality/runtime-core/physical-filesystem': resolveRuntimePhysicalFilesystemSource(),
   '@chirality/runtime-daemon': path.join(
     runtimeRoot,
     'packages',
@@ -44,17 +66,11 @@ const runtimeEntries = {
     'src',
     'index.ts'
   ),
-  '@chirality/runtime-cli': path.join(runtimeRoot, 'packages', 'cli', 'src', 'index.ts'),
-  '@chirality/engine-pi-omlx': path.join(
-    runtimeRoot,
-    'packages',
-    'engine-pi-omlx',
-    'src',
-    'index.ts'
-  )
+  '@chirality/runtime-cli/dist/src/cli.js': resolveProtectedRuntimeCliSource(),
+  '@chirality/runtime-cli': path.join(runtimeRoot, 'packages', 'cli', 'src', 'index.ts')
 };
 
-const runtimePackagePlugin = {
+export const runtimePackagePlugin = {
   name: 'chirality-runtime-workspace',
   setup(buildApi) {
     buildApi.onResolve(
@@ -89,16 +105,7 @@ export async function buildElectron() {
     format: 'cjs',
     sourcemap: true,
     plugins: [runtimePackagePlugin],
-    external: [
-      'electron',
-      'next',
-      '@anthropic-ai/claude-agent-sdk',
-      '@anthropic-ai/claude-agent-sdk/*',
-      '@anthropic-ai/sdk',
-      '@anthropic-ai/sdk/*',
-      '@earendil-works/pi-coding-agent',
-      '@earendil-works/pi-coding-agent/*'
-    ],
+    external: ['electron', 'next'],
     logLevel: 'info'
   });
 

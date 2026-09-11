@@ -1,6 +1,6 @@
 {
   "name": "chirality-frontend",
-  "version": "2.0.0",
+  "version": "3.0.0-rc.1",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -35,27 +35,23 @@
     "pi:lock-integrity": "node ./scripts/normalize-pi-lock-integrity.mjs",
     "pi:supply-chain": "node ./scripts/verify-pi-supply-chain.mjs",
     "electron:supply-chain": "node ./scripts/verify-electron-dist.mjs",
+    "runtime:build-core": "npm --prefix ../../chirality-runtime run build --workspace @chirality/runtime-core",
     "desktop:verify-dependencies": "node ./scripts/verify-packaged-dependency-boundary.mjs",
-    "desktop:pack": "npm run instruction-root:prepare && npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false node ./scripts/pack-electron-with-supply.mjs && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
-    "desktop:dist": "npm run instruction-root:prepare && npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg --arm64 --publish never && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
+    "desktop:prepare": "npm run instruction-root:prepare && npm run runtime:build-core && npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false node ./scripts/pack-electron-with-supply.mjs --runtime-manifest v2",
+    "desktop:bind-payload": "node ./scripts/pack-electron-with-supply.mjs --runtime-manifest v2 --runtime-v2-phase payload",
+    "desktop:pack": "node ./scripts/pack-electron-with-supply.mjs --runtime-manifest v2 --runtime-v2-phase seal && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
+    "desktop:dist": "node ./scripts/pack-electron-with-supply.mjs --target dmg --runtime-manifest v2 --runtime-v2-phase seal && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
     "sbom:generate": "node ./scripts/generate-sbom.mjs",
     "notices:generate": "node ./scripts/generate-third-party-notices.mjs",
     "verify:version-identity": "node ./scripts/verify-version-identity.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/claude-agent-sdk": "0.3.150",
-    "@anthropic-ai/sdk": "0.93.0",
-    "@chirality/engine-claude": "file:../../chirality-runtime/packages/engine-claude",
-    "@chirality/engine-pi-omlx": "file:../../chirality-runtime/packages/engine-pi-omlx",
+    "@chirality/native-admission": "file:../../chirality-runtime/packages/native-admission",
     "@chirality/runtime-cli": "file:../../chirality-runtime/packages/cli",
     "@chirality/runtime-client": "file:../../chirality-runtime/packages/client",
     "@chirality/runtime-contracts": "file:../../chirality-runtime/packages/contracts",
     "@chirality/runtime-core": "file:../../chirality-runtime/packages/core",
     "@chirality/runtime-daemon": "file:../../chirality-runtime/packages/daemon",
-    "@earendil-works/pi-agent-core": "0.82.0",
-    "@earendil-works/pi-ai": "0.82.0",
-    "@earendil-works/pi-coding-agent": "0.82.0",
-    "@earendil-works/pi-tui": "0.82.0",
     "ansi_up": "^6.0.6",
     "next": "15.5.21",
     "react": "^18.2.0",
@@ -64,6 +60,14 @@
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
+    "@anthropic-ai/claude-agent-sdk": "0.3.150",
+    "@anthropic-ai/sdk": "0.93.0",
+    "@chirality/engine-claude": "file:../../chirality-runtime/packages/engine-claude",
+    "@chirality/engine-pi-omlx": "file:../../chirality-runtime/packages/engine-pi-omlx",
+    "@earendil-works/pi-agent-core": "0.82.0",
+    "@earendil-works/pi-ai": "0.82.0",
+    "@earendil-works/pi-coding-agent": "0.82.0",
+    "@earendil-works/pi-tui": "0.82.0",
     "@types/node": "24.12.4",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
@@ -95,15 +99,14 @@
     "appId": "com.chirality.app",
     "productName": "Chirality",
     "asar": true,
-    "asarUnpack": [
-      "node_modules/@anthropic-ai/claude-agent-sdk/**",
-      "node_modules/@anthropic-ai/claude-agent-sdk-*/**",
-      "node_modules/@earendil-works/pi-coding-agent/node_modules/**/*.node",
-      "node_modules/@earendil-works/pi-coding-agent/node_modules/**/*.wasm",
-      "node_modules/@earendil-works/pi-tui/**/*.node",
-      "node_modules/@mariozechner/clipboard-*/**/*.node",
-      "node_modules/@silvia-odwyer/photon-node/**/*.wasm"
-    ],
+    "electronFuses": {
+      "runAsNode": false,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "enableEmbeddedAsarIntegrityValidation": true,
+      "onlyLoadAppFromAsar": true
+    },
+    "afterPack": "./scripts/finalize-electron-resources.mjs",
     "directories": {
       "output": "dist"
     },
@@ -111,15 +114,21 @@
       "dist-electron/**/*",
       ".next/**/*",
       "public/**/*",
-      "node_modules/**/*",
       "!node_modules/@chirality/**",
       "package.json",
       "next.config.mjs"
     ],
     "extraResources": [
       {
-        "from": "THIRD_PARTY_NOTICES_PI.md",
-        "to": "THIRD_PARTY_NOTICES_PI.md"
+        "from": "node_modules/.cache/chirality-supplier",
+        "to": "supplier",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "../../chirality-runtime/packages/native-admission/build/Release/chirality_native_admission.node",
+        "to": "native/chirality_native_admission.node"
       },
       {
         "from": "dist-runtime",
@@ -138,6 +147,10 @@
     ],
     "mac": {
       "icon": "build/icon.icns",
+      "sign": "./scripts/sign-electron-runtime-v2.mjs",
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.inherit.plist",
+      "hardenedRuntime": true,
       "minimumSystemVersion": "15.0.0",
       "target": [
         {

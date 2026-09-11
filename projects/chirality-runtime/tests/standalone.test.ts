@@ -172,7 +172,7 @@ describe("actual two-job standalone runtime", () => {
       await writeFile(f.configPath, JSON.stringify(invalid), { mode: 0o600 });
       await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
     }
-    const conformance = { recordPath: "conformance/record.json", acceptancePath: "conformance/acceptance.json", ownerActPath: f.configPath, ownerActSha256: "a".repeat(64), activationId: "mechanical-fixture", gateIdentity: "fixture-G4" };
+    const conformance = { recordPath: "conformance/record.json", acceptancePath: "conformance/acceptance.json", ownerActPath: f.configPath, ownerActSha256: "a".repeat(64), activationId: "mechanical-fixture", gateIdentity: "fixture-G4", artifactInventory: { kind: "source-tree" as const, sourceRoot: await realpath(resolve(process.cwd(), "../..")) } };
     await writeFile(f.configPath, JSON.stringify({ ...hosted, worker: { ...hosted.worker, conformance } }));
     expect((await readStandaloneConfig(f.configPath)).mode).toBe("hosted-validation");
     await writeFile(f.configPath, JSON.stringify({ ...hosted, worker: { ...hosted.worker, conformance: { ...conformance, recordPath: "worker/forbidden-record.json" } } }));

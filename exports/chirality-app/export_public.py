@@ -28,10 +28,6 @@ ROOT_FILES = [
 
 PUBLIC_ROOT_FILES = {
     "README.md": PROFILE_DIR / "PUBLIC_README.md",
-    "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json": (
-        REPO_ROOT
-        / "execution/_Coordination/AgentRuns/CHIRALITY_V3_ADOPTION_20260909/skill-execution-provenance.json"
-    ),
 }
 
 ROOT_DIRS = [

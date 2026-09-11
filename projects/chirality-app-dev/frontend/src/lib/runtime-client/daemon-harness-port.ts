@@ -1,3 +1,5 @@
+import { resolve } from 'node:path';
+
 import { HarnessError } from '@chirality/runtime-contracts/errors';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type {
@@ -21,7 +23,10 @@ import type {
   MethodInspectionResponse,
   MethodsResponse,
   NativePlanCapabilityResponse,
+  NativePlanClarificationsResponse,
   NativePlanRevisionsResponse,
+  ReplyNativePlanClarificationRequest,
+  ReplyNativePlanClarificationResponse,
   ReplaceSelectedMethodsRequest,
   ReplaceSelectedMethodsResponse,
   ResolveSelectedContextRequest,
@@ -29,7 +34,14 @@ import type {
   RolesResponse
 } from '@chirality/runtime-contracts/v3';
 import type { ReadableRuntimeSessionRecord } from '@chirality/runtime-contracts';
-import { createRuntimeDaemonHarnessPortFromEnvironment } from './runtime-daemon-harness-port';
+import type {
+  HostedBootstrapLoginStartResponse,
+  HostedBootstrapStatus
+} from '@chirality/runtime-contracts';
+import {
+  createRuntimeDaemonHarnessPortFromEnvironment,
+  createRuntimeHostedBootstrapPortFromEnvironment
+} from './runtime-daemon-harness-port';
 
 export type AgentRosterEntry = {
   name: string;
@@ -66,6 +78,54 @@ export type RunningDaemonHarnessTurn = {
 
 export type DaemonRequestOptions = {
   signal?: AbortSignal;
+};
+
+export type HostedBootstrapStatusResponse =
+  | { registration: 'required' }
+  | {
+      registration: 'registered';
+      projectId: string;
+      status: HostedBootstrapStatus;
+    };
+
+export type HostedProjectBindingResponse =
+  | { registration: 'required' }
+  | { registration: 'registered'; projectId: string };
+
+export interface HostedBootstrapPort {
+  bindProject(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<HostedProjectBindingResponse>;
+  getStatus(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<HostedBootstrapStatusResponse>;
+  initializeProject(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<Extract<HostedBootstrapStatusResponse, { registration: 'registered' }>>;
+  grantProviderNetworkConsent(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<HostedBootstrapStatus>;
+  startLogin(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<HostedBootstrapLoginStartResponse>;
+  cancelLogin(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<HostedBootstrapStatus>;
+  signOut(
+    projectRoot: string,
+    options?: DaemonRequestOptions
+  ): Promise<HostedBootstrapStatus>;
+}
+
+export type DaemonProjectBinding = {
+  projectId: string;
+  projectRoot: string;
 };
 
 export type V3SessionCreateRequest = SessionCreateRequest & {
@@ -164,6 +224,16 @@ export interface DaemonHarnessPort {
     sessionId: string,
     options?: DaemonRequestOptions
   ): Promise<NativePlanRevisionsResponse>;
+  listNativePlanClarifications(
+    sessionId: string,
+    options?: DaemonRequestOptions
+  ): Promise<NativePlanClarificationsResponse>;
+  replyNativePlanClarification(
+    sessionId: string,
+    requestId: string | number,
+    answers: ReplyNativePlanClarificationRequest['answers'],
+    options?: DaemonRequestOptions
+  ): Promise<ReplyNativePlanClarificationResponse>;
   exportNativePlan(
     sessionId: string,
     request: ExportNativePlanRequest,
@@ -201,21 +271,68 @@ const unboundDaemonHarnessPort: DaemonHarnessPort = {
   replaceSelectedMethods: daemonClientUnavailable,
   getNativePlanCapability: daemonClientUnavailable,
   listNativePlanRevisions: daemonClientUnavailable,
+  listNativePlanClarifications: daemonClientUnavailable,
+  replyNativePlanClarification: daemonClientUnavailable,
   exportNativePlan: daemonClientUnavailable,
   scaffold: daemonClientUnavailable
 };
 
-let daemonHarnessPort: DaemonHarnessPort = unboundDaemonHarnessPort;
-let environmentPortInitialized = false;
+const unboundHostedBootstrapPort: HostedBootstrapPort = {
+  bindProject: daemonClientUnavailable,
+  getStatus: daemonClientUnavailable,
+  initializeProject: daemonClientUnavailable,
+  grantProviderNetworkConsent: daemonClientUnavailable,
+  startLogin: daemonClientUnavailable,
+  cancelLogin: daemonClientUnavailable,
+  signOut: daemonClientUnavailable
+};
+
+type HarnessPortRegistry = {
+  daemonPort?: DaemonHarnessPort;
+  daemonBinding?: DaemonProjectBinding;
+  daemonEnvironmentInitialized?: boolean;
+  hostedBootstrapPort?: HostedBootstrapPort;
+  hostedBootstrapEnvironmentInitialized?: boolean;
+};
+
+const HARNESS_PORT_REGISTRY = Symbol.for('chirality.app.harness-port-registry/v1');
+
+function portRegistry(): HarnessPortRegistry {
+  const target = globalThis as typeof globalThis & {
+    [HARNESS_PORT_REGISTRY]?: HarnessPortRegistry;
+  };
+  return target[HARNESS_PORT_REGISTRY] ??= {};
+}
 
 export function getDaemonHarnessPort(): DaemonHarnessPort {
-  if (daemonHarnessPort === unboundDaemonHarnessPort && !environmentPortInitialized) {
+  const registry = portRegistry();
+  if (registry.daemonPort === undefined && !registry.daemonEnvironmentInitialized) {
     // Loading is intentionally lazy: tests and alternate hosts may inject a
     // port, while production route evaluation never constructs an engine.
-    daemonHarnessPort = createRuntimeDaemonHarnessPortFromEnvironment();
-    environmentPortInitialized = true;
+    registry.daemonPort = createRuntimeDaemonHarnessPortFromEnvironment();
+    registry.daemonEnvironmentInitialized = true;
+    const projectId = process.env.CHIRALITY_RUNTIME_PROJECT_ID?.trim();
+    const projectRoot = process.env.CHIRALITY_RUNTIME_PROJECT_ROOT?.trim();
+    if (projectId && projectRoot) {
+      registry.daemonBinding = { projectId, projectRoot: resolve(projectRoot) };
+    }
   }
-  return daemonHarnessPort;
+  return registry.daemonPort ?? unboundDaemonHarnessPort;
+}
+
+export function getHostedBootstrapPort(): HostedBootstrapPort {
+  const registry = portRegistry();
+  if (
+    registry.hostedBootstrapPort === undefined &&
+    !registry.hostedBootstrapEnvironmentInitialized
+  ) {
+    registry.hostedBootstrapPort = createRuntimeHostedBootstrapPortFromEnvironment(
+      process.env,
+      installBoundDaemonHarnessPort
+    );
+    registry.hostedBootstrapEnvironmentInitialized = true;
+  }
+  return registry.hostedBootstrapPort ?? unboundHostedBootstrapPort;
 }
 
 /**
@@ -224,11 +341,48 @@ export function getDaemonHarnessPort(): DaemonHarnessPort {
  * route module, which prevents Next from owning a second runtime singleton.
  */
 export function installDaemonHarnessPort(port: DaemonHarnessPort): void {
-  environmentPortInitialized = true;
-  daemonHarnessPort = port;
+  const registry = portRegistry();
+  registry.daemonEnvironmentInitialized = true;
+  registry.daemonPort = port;
+  registry.daemonBinding = undefined;
+}
+
+export function installBoundDaemonHarnessPort(
+  port: DaemonHarnessPort,
+  binding: DaemonProjectBinding,
+  allowReplacement = false
+): void {
+  const registry = portRegistry();
+  const current = registry.daemonBinding;
+  if (
+    registry.daemonPort !== undefined &&
+    !allowReplacement &&
+    (current === undefined ||
+      current.projectId !== binding.projectId ||
+      current.projectRoot !== binding.projectRoot)
+  ) {
+    throw new HarnessError(
+      'WORKING_ROOT_CONFLICT',
+      409,
+      'A different project is already bound to the Desktop runtime client'
+    );
+  }
+  registry.daemonEnvironmentInitialized = true;
+  registry.daemonPort = port;
+  registry.daemonBinding = binding;
+}
+
+export function installHostedBootstrapPort(port: HostedBootstrapPort): void {
+  const registry = portRegistry();
+  registry.hostedBootstrapEnvironmentInitialized = true;
+  registry.hostedBootstrapPort = port;
 }
 
 export function resetDaemonHarnessPortForTests(): void {
-  environmentPortInitialized = false;
-  daemonHarnessPort = unboundDaemonHarnessPort;
+  const registry = portRegistry();
+  registry.daemonEnvironmentInitialized = false;
+  registry.daemonPort = undefined;
+  registry.daemonBinding = undefined;
+  registry.hostedBootstrapEnvironmentInitialized = false;
+  registry.hostedBootstrapPort = undefined;
 }

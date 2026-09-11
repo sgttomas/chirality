@@ -23,8 +23,9 @@ export function RuntimeSettingsView({
   onDaemonAction,
   onRefresh,
   onSelectedModelChange,
-  onActivateModel
-}: RuntimeSettingsViewProps): JSX.Element {
+  onActivateModel,
+  showLocalModels = true
+}: RuntimeSettingsViewProps & { showLocalModels?: boolean }): JSX.Element {
   const selectableModels = useMemo(
     () =>
       residency?.models.filter(
@@ -110,7 +111,7 @@ export function RuntimeSettingsView({
             ) : null}
           </div>
 
-          {daemonStatus?.daemon.running ? (
+          {showLocalModels && daemonStatus?.daemon.running ? (
             <div className="runtime-model-controls">
               <p className="runtime-model-status">
                 Residency: <strong>{residency?.phase ?? 'Checking'}</strong>

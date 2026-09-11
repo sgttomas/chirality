@@ -1,6 +1,9 @@
 import { randomUUID } from 'node:crypto';
 import { HarnessError } from '@chirality/runtime-contracts/errors';
-import type { DaemonHarnessPort } from '../../../lib/runtime-client/daemon-harness-port';
+import type {
+  DaemonHarnessPort,
+  HostedBootstrapPort
+} from '../../../lib/runtime-client/daemon-harness-port';
 import { listAgentRoster, selectDirectChatPersonas, assertDirectChatPersona } from '../../../lib/harness/agent-roster';
 import { getPermissionBroker } from '../../../lib/harness/permission-broker';
 import { resolveRuntimeOptions } from '../../../lib/harness/options';
@@ -220,12 +223,71 @@ export function createFakeDaemonHarnessPort(): DaemonHarnessPort {
       };
     },
 
+    async listNativePlanClarifications() {
+      return {
+        schemaVersion: 'chirality.native-plan-clarifications/v3',
+        status: 'unavailable',
+        reason: 'Fake daemon has no qualified native Plan adapter',
+        clarifications: []
+      };
+    },
+
+    async replyNativePlanClarification() {
+      throw new HarnessError('ENGINE_UNAVAILABLE', 503, 'Native Plan clarification reply is not configured in fake daemon');
+    },
+
     async exportNativePlan() {
       throw new HarnessError('ENGINE_UNAVAILABLE', 503, 'Native Plan export is not configured in fake daemon');
     },
 
     async scaffold(request) {
       return scaffoldExecutionRoot(request);
+    }
+  };
+}
+
+export function createFakeHostedBootstrapPort(): HostedBootstrapPort {
+  return {
+    async bindProject() {
+      return { registration: 'required' };
+    },
+    async getStatus() {
+      return { registration: 'required' };
+    },
+    async initializeProject() {
+      throw new HarnessError(
+        'ENGINE_UNAVAILABLE',
+        503,
+        'Hosted project initialization is not configured in fake daemon'
+      );
+    },
+    async grantProviderNetworkConsent() {
+      throw new HarnessError(
+        'ENGINE_UNAVAILABLE',
+        503,
+        'Hosted provider consent is not configured in fake daemon'
+      );
+    },
+    async startLogin() {
+      throw new HarnessError(
+        'ENGINE_UNAVAILABLE',
+        503,
+        'Hosted login is not configured in fake daemon'
+      );
+    },
+    async cancelLogin() {
+      throw new HarnessError(
+        'ENGINE_UNAVAILABLE',
+        503,
+        'Hosted login cancellation is not configured in fake daemon'
+      );
+    },
+    async signOut() {
+      throw new HarnessError(
+        'ENGINE_UNAVAILABLE',
+        503,
+        'Hosted project sign-out is not configured in fake daemon'
+      );
     }
   };
 }
