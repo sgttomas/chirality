@@ -972,7 +972,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
               );
             }
 
-            if (exitCode !== 0) {
+            // Runtime normalizes a confirmed operator interruption to 130 plus
+            // interrupted:true. A bare 130 or any other nonzero exit still fails.
+            if (exitCode !== 0 && !(exitCode === 130 && interrupted)) {
               const errorMessage =
                 typeof payload.error === 'string' && payload.error.trim().length > 0
                   ? payload.error

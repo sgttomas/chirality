@@ -1,0 +1,13 @@
+# V3 independent proposal backcheck
+
+**PASS for the final bounded proposal.** Final reviewed proposal SHA256 `c0187f555837477d9cfd1febe8d3222e6a8e0a56c7b3040a68722f7f2df64768`. TASK / Type 2, gpt-6-astra medium, separate from author; no delegation. Execution and supplier qualification remain pending.
+
+The official same-commit host route resolves the prior proposal's unavailable sandbox V8 archive and missing bindings blockers without substituting incompatible inputs or requiring a new V8 build. Acquisition is bounded to the named release asset with exact archive size/digest; safe extraction, executable identity, signature, dependencies and actual paired qualification remain explicit gates. The proposal distinguishes upstream metadata provenance from measured executable identity and from local build05 provenance.
+
+Independent local backcheck confirms no patch hunk in the named code-mode/install-context crates, the shared `Op` addition is in-process and Debug-only, and host framing uses serde_json with a little-endian length prefix. This supports the proposed compatibility investigation; it does not prove binary equivalence or successful execution. Release metadata and peeled-tag findings are consumed from the lead/author's read-only checks; this reviewer did not download the asset.
+
+The initial V3 (`2ee6331016d8cc14caf561871862a9d0c2fe6c0b0863d8ecffe0a8b6afa44cc9`) incorrectly required account-free actual paired execution through real private admission. Final step 2 resolves this: actual-host and actual-pair public-protocol/fake-provider checks are distinct from existing controlled private-composition evidence; the real authenticated private path remains the lead's final guarded native test after the consolidated build. The amendment explicitly prohibits fake-account scaffolding and authentication weakening, retains failure stops for actual public-protocol/host failures, and does not treat direct-host tests as paired qualification. Finding closed.
+
+The pinned upstream entitlement file does contain both JIT and unsigned-executable-memory permissions; the proposal appropriately tests the narrowest host-specific policy first and keeps authentication, containment and other executables unchanged. Both packaged and private runtime staging must preserve the two-file closure. Existing build05 and Stage22/23 evidence remain preserved.
+
+No remaining blocking findings in the final proposal. No download, build, signing, supplier execution, product edit or live-state access performed. Prior review remains intact. This return approves neither an unmeasured payload nor publishing. Pause pending the separately frozen repair diff and qualification return.

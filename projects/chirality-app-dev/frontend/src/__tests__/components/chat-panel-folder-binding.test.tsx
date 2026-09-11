@@ -716,3 +716,44 @@ it('keeps retained assistant Markdown bound to the root that produced it', async
   await mount({ fileCatalog: ['/other/docs/SPEC.md'], onOpenFile: vi.fn() });
   expect(state.markdownProps.at(-1)?.projectRoot).toBeUndefined();
 });
+
+
+it('accepts Runtime interrupted exit 130 without a request failure and permits a follow-up turn', async () => {
+  state.stream.mockImplementationOnce(async (_input, onEvent) => {
+    onEvent({ event: 'harness:event', data: { type: 'turn.interrupted', sessionId: 'bound', turnId: 'interrupted-turn' } });
+    onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
+  });
+  await mount(); await type('Interrupt this turn'); await submit();
+  const output = JSON.stringify(tree!.toJSON());
+  expect(output).toContain('Turn interrupted by operator.');
+  expect(tree!.root.findAllByProps({ className: 'chat-runtime-error' })).toHaveLength(0);
+  expect(output).not.toContain('Harness Request Failed');
+  expect(output).not.toContain('Turn failed with exit code');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+  state.stream.mockImplementationOnce(async (_input, onEvent) => {
+    onEvent({ event: 'chat:complete', data: { text: 'Follow-up completed.' } });
+    onEvent({ event: 'process:exit', data: { exitCode: 0 } });
+  });
+  await type('Continue normally'); await submit();
+  expect(JSON.stringify(tree!.toJSON())).toContain('Follow-up completed.');
+  expect(state.create).toHaveBeenCalledTimes(1);
+});
+
+it.each([{ exitCode: 130 }, { exitCode: 1, interrupted: true }, { exitCode: 1 }])('retains failure handling for unconfirmed or other nonzero exits: %j', async payload => {
+  state.stream.mockImplementationOnce(async (_input, onEvent) => {
+    onEvent({ event: 'process:exit', data: payload });
+  });
+  await mount(); await type('Keep this failed draft'); await submit();
+  expect(JSON.stringify(tree!.toJSON())).toContain(`Turn failed with exit code ${payload.exitCode}.`);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this failed draft');
+});
+
+it('does not erase an earlier fatal turn error when a later exit is marked interrupted', async () => {
+  state.stream.mockImplementationOnce(async (_input, onEvent) => {
+    onEvent({ event: 'turn:error', data: { fatal: true, message: 'Underlying fatal failure', errorType: 'SDK_FAILURE' } });
+    onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
+  });
+  await mount(); await type('Preserve failure evidence'); await submit();
+  expect(JSON.stringify(tree!.toJSON())).toContain('SDK_FAILURE');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Preserve failure evidence');
+});
