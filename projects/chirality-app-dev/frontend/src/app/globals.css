@@ -273,16 +273,6 @@ h6 {
   flex: 0 0 auto;
 }
 
-.shell-brand-tile {
-  width: 26px;
-  height: 26px;
-  border: 0;
-  border-radius: 7px;
-  background: transparent;
-  box-shadow: none;
-  flex: 0 0 auto;
-}
-
 .shell-wordmark {
   font-family: var(--font-display);
   font-size: 1.19rem;

@@ -340,13 +340,6 @@ export function ShellFrame({
         }
       >
         <div className="shell-brand-row">
-          <img
-            src="/chirality-app-icon.svg"
-            alt=""
-            className="shell-brand-tile"
-            width={26}
-            height={26}
-          />
           <span className="shell-wordmark">
             Chira<em>lity</em>
           </span>
