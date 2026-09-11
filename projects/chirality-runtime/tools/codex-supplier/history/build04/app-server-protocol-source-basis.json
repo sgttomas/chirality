@@ -312,9 +312,9 @@
       "sha256": "62f817f8907bb3decaac5f66059876bc80c1c7048f548425b7da9aedeb643f4c"
     },
     {
-      "bytes": 113485,
+      "bytes": 111413,
       "path": "codex-rs/app-server/src/message_processor.rs",
-      "sha256": "84744d916f672c56d140f98e7b65cb75f08dc1daa6cae668e7451e167cbe0ab5"
+      "sha256": "6ca66b1958414164095069ecb716e800a23cfb3402f547daa1e848c461f448e9"
     },
     {
       "bytes": 69573,

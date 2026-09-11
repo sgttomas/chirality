@@ -41,7 +41,7 @@ import {
   type RuntimeConformanceArtifactInventorySelection,
   type TrustedNativePlanAdapterRegistry
 } from "@chirality/runtime-core";
-import { RuntimeDaemon } from "./runtime-daemon.js";
+import { RuntimeDaemon, NOOP_RUNTIME_DAEMON_LOGGER, describeRuntimeFailure, type RuntimeDaemonLogger } from "./runtime-daemon.js";
 import type { HostAccountAuthority } from "./host-account-authority.js";
 import { HOSTED_BOOTSTRAP_CLIENT_ID } from "./hosted-paths.js";
 import {
@@ -73,6 +73,8 @@ export interface TrustedHostedLoginCeremony {
   resolveModelCatalog?(): Promise<Readonly<HostedModelCatalog>>;
   cancel(): Promise<void>;
   close(): Promise<void>;
+  /** Sanitized retirement diagnostics of a settled close; never secrets or URLs. */
+  closeDiagnostics?(): readonly { readonly phase: string; readonly message: string }[];
 }
 
 export interface TrustedHostedPrivateAdmission {
@@ -166,7 +168,20 @@ export class HostedBootstrapController {
   private readonly states = new Map<string, ProjectBootstrap>();
   private closed = false;
   private admissionGuard: Promise<void> = Promise.resolve();
-  constructor(private readonly projects: ProjectRegistry, private readonly sessions: SessionStore, private readonly nativePlans: BootstrapNativePlanRegistry, private readonly runtimeDirectory: string, private readonly bindings?: HostedBootstrapPrivateBindings, private readonly nativeAddonPath?: string, private readonly controlledNativePlanQualification?: NativePlanAdapterQualification) {}
+  private readonly diagnosedCeremonies = new WeakSet<TrustedHostedLoginCeremony>();
+  constructor(private readonly projects: ProjectRegistry, private readonly sessions: SessionStore, private readonly nativePlans: BootstrapNativePlanRegistry, private readonly runtimeDirectory: string, private readonly bindings?: HostedBootstrapPrivateBindings, private readonly nativeAddonPath?: string, private readonly controlledNativePlanQualification?: NativePlanAdapterQualification, private readonly logger: RuntimeDaemonLogger = NOOP_RUNTIME_DAEMON_LOGGER) {}
+
+  /** Closes a ceremony the caller has already detached from its state, recording failure and retirement diagnostics without secrets. */
+  private async closeCeremony(projectId: string, ceremony: TrustedHostedLoginCeremony, operation: string): Promise<void> {
+    try { await ceremony.close(); }
+    catch (error) { try { this.logger.error("hosted.ceremony.close_failed", { operation, projectId, ...describeRuntimeFailure(error) }); } catch {} throw error; }
+    finally {
+      try {
+        const diagnostics = ceremony.closeDiagnostics?.() ?? [];
+        if (diagnostics.length && !this.diagnosedCeremonies.has(ceremony)) { this.diagnosedCeremonies.add(ceremony); this.logger.warn("hosted.ceremony.close_diagnostics", { operation, projectId, diagnostics: diagnostics.map(value => ({ phase: String(value.phase), message: String(value.message).slice(0, 200) })) }); }
+      } catch {}
+    }
+  }
 
   private accountOperation(state: ProjectBootstrap, signal?: AbortSignal): { check(): Promise<void>; close(): void } {
     let cancelled = signal?.aborted === true;
@@ -192,9 +207,10 @@ export class HostedBootstrapController {
 
   private async invalidateState(state: ProjectBootstrap, cancelCeremony = true): Promise<void> {
     let failure: unknown;
+    // Detach first: a rejected (memoized) close can then never be re-encountered by a later operation.
     const ceremony = state.ceremony; state.ceremony = undefined;
     if (cancelCeremony) try { await ceremony?.cancel(); } catch (error) { failure ??= error; }
-    try { await ceremony?.close(); } catch (error) { failure ??= error; }
+    if (ceremony) try { await this.closeCeremony(state.projectId, ceremony, cancelCeremony ? "cancel" : "invalidate"); } catch (error) { failure ??= error; }
     await state.establishing?.catch(error => { failure ??= error; }); state.establishing = undefined;
     try { await this.retireAdmission(state); } catch (error) { failure ??= error; }
     if (failure !== undefined) throw failure;
@@ -306,11 +322,17 @@ export class HostedBootstrapController {
     await privateDirectoryReady(privateDirectory); await operation.check();
     await privateDirectoryReady(codexHome); await operation.check();
     const ceremony = await this.bindings.createCeremony({ projectId, manifestHash: state.manifestHash, canonicalRoot, privateDirectory, codexHome, providerNetworkConsent: state.consent });
-    try { await operation.check(); } catch (error) { await ceremony.close().catch(() => {}); throw error; }
-    if (this.closed || state.generation !== generation) { await ceremony.close(); throw unavailable("Hosted login start was superseded"); }
+    try { await operation.check(); } catch (error) { await this.closeCeremony(projectId, ceremony, "start-login").catch(() => {}); throw error; }
+    if (this.closed || state.generation !== generation) { await this.closeCeremony(projectId, ceremony, "start-login").catch(() => {}); throw unavailable("Hosted login start was superseded"); }
     state.ceremony = ceremony;
-    try { const result = await ceremony.start(); await operation.check(); if (this.closed || state.generation !== generation || state.ceremony !== ceremony) { await ceremony.close(); throw unavailable("Hosted login start was superseded"); } state.ceremonyState = "pending"; return result; }
-    catch (error) { state.ceremonyState = "failed"; await ceremony.close(); state.ceremony = undefined; throw error; }
+    try { const result = await ceremony.start(); await operation.check(); if (this.closed || state.generation !== generation || state.ceremony !== ceremony) throw unavailable("Hosted login start was superseded"); state.ceremonyState = "pending"; return result; }
+    catch (error) {
+      // Detach and mark failed before close settles: a rejected close is recorded but can never poison the next attempt,
+      // a later invalidation, or daemon stop. The start failure remains the operation's error.
+      if (state.ceremony === ceremony) { state.ceremony = undefined; state.ceremonyState = "failed"; }
+      await this.closeCeremony(projectId, ceremony, "start-login").catch(() => {});
+      throw error;
+    }
     } finally { operation.close(); }
   }
 
@@ -338,8 +360,9 @@ export class HostedBootstrapController {
     state.admissionState = "unavailable";
     this.nativePlans.deactivate(projectId);
     let cleanupFailure: unknown;
-    try { await state.ceremony?.cancel(); } catch (error) { cleanupFailure ??= error; }
-    try { await state.ceremony?.close(); } catch (error) { cleanupFailure ??= error; } finally { state.ceremony = undefined; }
+    const ceremony = state.ceremony; state.ceremony = undefined;
+    try { await ceremony?.cancel(); } catch (error) { cleanupFailure ??= error; }
+    if (ceremony) try { await this.closeCeremony(projectId, ceremony, "sign-out"); } catch (error) { cleanupFailure ??= error; }
     await state.establishing?.catch(error => { cleanupFailure ??= error; }); state.establishing = undefined;
     const admission = state.admission;
     state.admission = undefined; state.engine = undefined; state.selection = undefined; state.catalog = undefined;
@@ -415,8 +438,9 @@ export class HostedBootstrapController {
     for (const state of this.states.values()) state.generation++;
     let failure: unknown;
     for (const state of this.states.values()) {
-      try { await state.ceremony?.cancel(); } catch {}
-      try { await state.ceremony?.close(); } catch (error) { failure ??= error; }
+      const ceremony = state.ceremony; state.ceremony = undefined;
+      try { await ceremony?.cancel(); } catch {}
+      if (ceremony) try { await this.closeCeremony(state.projectId, ceremony, "close"); } catch (error) { failure ??= error; }
       await state.establishing?.catch(error => { failure ??= error; });
       try { await this.retireAdmission(state); } catch (error) { failure ??= error; }
     }
@@ -442,7 +466,7 @@ function projectEngineDispatcher(controller: HostedBootstrapController): AgentEn
 
 async function privateDirectoryReady(path: string): Promise<void> { await privateDirectory(path); }
 
-async function startBootstrap(input: Extract<HostedBootstrapRuntimeBootInput, { enabled: true }>, bindings?: HostedBootstrapPrivateBindings, controlledNativePlanQualification?: NativePlanAdapterQualification, controlled = false): Promise<HostedBootstrapRuntimeHost> {
+async function startBootstrap(input: Extract<HostedBootstrapRuntimeBootInput, { enabled: true }>, bindings?: HostedBootstrapPrivateBindings, controlledNativePlanQualification?: NativePlanAdapterQualification, controlled = false, logger: RuntimeDaemonLogger = NOOP_RUNTIME_DAEMON_LOGGER): Promise<HostedBootstrapRuntimeHost> {
   exactAbsolute(input.runtimeDirectory, "Runtime directory"); exactAbsolute(input.instructionRoot, "Runtime instruction root");
   if (input.nativeAddonPath !== undefined) exactAbsolute(input.nativeAddonPath, "Native admission add-on path");
   if (bindings !== undefined && !controlled) {
@@ -468,7 +492,7 @@ async function startBootstrap(input: Extract<HostedBootstrapRuntimeBootInput, { 
   const nativePlans = new BootstrapNativePlanRegistry(sessions);
   const offline = async (): Promise<never> => { throw unavailable("No admitted hosted worker is available during bootstrap"); };
   const residency = new ResidencyCoordinator({ async listStatus() { return []; }, load: offline, unload: offline }, input.runtimeDirectory);
-  const bootstrap = new HostedBootstrapController(projects, sessions, nativePlans, input.runtimeDirectory, bindings, input.nativeAddonPath, controlledNativePlanQualification);
+  const bootstrap = new HostedBootstrapController(projects, sessions, nativePlans, input.runtimeDirectory, bindings, input.nativeAddonPath, controlledNativePlanQualification, logger);
   engines.register(projectEngineDispatcher(bootstrap));
   const auth = new AuthRegistry(input.runtimeDirectory);
   const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency, new RuntimeAttachmentResolver()), auth, { async get() { return undefined; }, async status() { return { configured: false }; }, set: offline, remove: offline }, undefined, undefined, undefined,
@@ -485,7 +509,7 @@ async function startBootstrap(input: Extract<HostedBootstrapRuntimeBootInput, { 
   let daemon: RuntimeDaemon;
   try {
     accountHost = await bindings?.createAccountHost?.(auth);
-    daemon = new RuntimeDaemon({ socketPath, runtimeDirectory: input.runtimeDirectory, service, hostedBootstrap: bootstrap, ...(accountHost ? { accountHost } : {}) });
+    daemon = new RuntimeDaemon({ socketPath, runtimeDirectory: input.runtimeDirectory, service, hostedBootstrap: bootstrap, logger, ...(accountHost ? { accountHost } : {}) });
     await daemon.start();
   } catch (error) { await accountHost?.close().catch(() => undefined); await bootstrap.close(); throw error; }
   let stopping: Promise<void> | undefined;
@@ -493,12 +517,12 @@ async function startBootstrap(input: Extract<HostedBootstrapRuntimeBootInput, { 
 }
 
 /** Default-off unbound host entry. It creates no account identity or worker binding. */
-export function startHostedBootstrapRuntimeHost(input?: HostedBootstrapRuntimeBootInput, trustedBindings?: HostedBootstrapPrivateBindings): Promise<HostedBootstrapRuntimeHost> {
+export function startHostedBootstrapRuntimeHost(input?: HostedBootstrapRuntimeBootInput, trustedBindings?: HostedBootstrapPrivateBindings, logger?: RuntimeDaemonLogger): Promise<HostedBootstrapRuntimeHost> {
   if (input?.enabled !== true) return Promise.reject(unavailable("Hosted bootstrap is disabled until the host supplies trusted runtime paths"));
-  return startBootstrap(input, trustedBindings);
+  return startBootstrap(input, trustedBindings, undefined, false, logger);
 }
 
 /** Controlled private adapter seam for end-to-end tests; production boot never receives these callbacks. */
-export function startControlledHostedBootstrapRuntimeHostForTests(input: Extract<HostedBootstrapRuntimeBootInput, { enabled: true }>, bindings: HostedBootstrapPrivateBindings, controlledNativePlanQualification?: NativePlanAdapterQualification): Promise<HostedBootstrapRuntimeHost> {
-  return startBootstrap(input, bindings, controlledNativePlanQualification, true);
+export function startControlledHostedBootstrapRuntimeHostForTests(input: Extract<HostedBootstrapRuntimeBootInput, { enabled: true }>, bindings: HostedBootstrapPrivateBindings, controlledNativePlanQualification?: NativePlanAdapterQualification, logger?: RuntimeDaemonLogger): Promise<HostedBootstrapRuntimeHost> {
+  return startBootstrap(input, bindings, controlledNativePlanQualification, true, logger);
 }

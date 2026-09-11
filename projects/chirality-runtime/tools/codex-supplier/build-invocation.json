@@ -3,12 +3,12 @@
   "argv": [
     "/usr/bin/sandbox-exec",
     "-f",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/stageA-author/resume-target-metadata/execution.sb",
+    "/private/tmp/chirality-supplier-login-fix-20260911/build-enclosure.sb",
     "/usr/bin/env",
     "-i",
     "PATH=/Users/ryan/.rustup/toolchains/1.97.1-aarch64-apple-darwin/bin:/usr/bin:/bin:/usr/sbin:/sbin",
-    "HOME=/private/tmp/chirality-supplier-release-20260910-02/tmp",
-    "TMPDIR=/private/tmp/chirality-supplier-release-20260910-02/tmp",
+    "HOME=/private/tmp/chirality-supplier-login-fix-20260911/tmp",
+    "TMPDIR=/private/tmp/chirality-supplier-login-fix-20260911/tmp",
     "CARGO_HOME=/private/tmp/chirality-supplier-release-20260910-02/cargo-exec-diagnostic-01",
     "CARGO_TARGET_DIR=/private/tmp/chirality-supplier-release-20260910-02/target",
     "LANG=C",
@@ -24,7 +24,7 @@
     "cargo",
     "build",
     "--manifest-path",
-    "/private/tmp/chirality-supplier-release-20260910-02/source/codex-rs/cli/Cargo.toml",
+    "/private/tmp/chirality-supplier-login-fix-20260911/source/codex-rs/cli/Cargo.toml",
     "--bin",
     "codex",
     "--locked",
@@ -32,19 +32,27 @@
     "--target",
     "aarch64-apple-darwin"
   ],
-  "cwd": "/private/tmp/chirality-supplier-release-20260910-02/source",
+  "cwd": "/private/tmp/chirality-supplier-login-fix-20260911/source",
   "previousExecutable": {
-    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/artifact/codex",
-    "sha256": "0489a897c482dd03c79ee18055d796be5935c48c93a257f30c53141fec985100",
-    "size": 761944360
+    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/artifact/codex",
+    "sha256": "871623860ef18212fabef851f24ad5f384d140395d50c41f6a63677fd42768fa",
+    "size": 761932488
   },
-  "sourceBeforeSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
-  "productionCut": "bef8889cefd0ecb64d18adc376d0c5f501f7bcb8cc63d00d8ee194fba19edf86",
-  "status": "completed exit0",
-  "sourceDelta": "final retained test-only source plus exact sha2 dev package override",
-  "changesSinceBuild03": [
-    "codex-rs/Cargo.toml",
-    "codex-rs/core/src/tools/handlers/multi_agents_tests.rs"
+  "sourceBeforeSha256": "4e5250720d8a947e815602fb38352726b9e2c7f16d5d219ef5d450d2ea129d16",
+  "status": "succeeded; exit 0 in 20.5 s (incremental in the retained target directory: codex-app-server and its five dependents recompiled)",
+  "sourceDelta": "message_processor.rs: exempt the recorded login-purpose method set (account/login/start, account/login/cancel, account/read, model/list) from the private admission-lease requirement; extend the private initialize/config-read unit test",
+  "changesSinceBuild04": [
+    "codex-rs/app-server/src/message_processor.rs"
   ],
-  "prebuildReviewSha256": "f912cf487e145c149e13d5174c0f90dd0a5924d66fb77a7777c39df30468c07b"
+  "enclosure": {
+    "path": "/private/tmp/chirality-supplier-login-fix-20260911/build-enclosure.sb",
+    "sha256": "cd262b7785e0d8e20a45cd81c5af4c6f79aa5f2776611a406dfad4a62b3f6fd2",
+    "derivedFrom": "tools/codex-supplier/build-enclosure.sb with source/tmp roots remapped to this workspace"
+  },
+  "forcedRecompile": "utime bump on codex-rs/app-server/src/message_processor.rs so cargo recompiles codex-app-server and dependents inside the enclosure",
+  "validation": {
+    "harnessLogSha256": "efe07dad5a548f7e3b16f3725702d8642f547099d54ae5f17e9c2fb4f42674ec",
+    "unitTestsTargetedLogSha256": "f0c9cd6f8310864a7facbf59a3b2c48e57120eb6ec92d8cce5617bb15c99a552",
+    "unitTestsFullLogSha256": "55391a3d23d80258c7aac34e90637b911251576f8f4b9fca5730fda50d2e1ad0"
+  }
 }

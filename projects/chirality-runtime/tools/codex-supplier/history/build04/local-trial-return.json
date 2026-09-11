@@ -1,0 +1,37 @@
+{
+  "schema": "chirality-supplier-local-trial-source-return/v1",
+  "manager": "WORKING_ITEMS /root/release_supplier_manager",
+  "verdict": "ACCEPTED source and bounded test return for initial local DEV trial; actual artifact built",
+  "upstreamUnit1Gate": "84727f366f73274629b00981a315e926cfed84478ba8d9d7d8c2eb82315e8d4d",
+  "productionRoutingReview": "8b2338c3505feb5ec5643d6f84eb55fa0f81108528b54e1124ea246d64d37b1c",
+  "allocationControlsReview": "38e8a5fe1fa8d8973764398f57b68d0e9d9660a4a8de519b2d43c7557375a28a",
+  "residualReview": {
+    "path": "/private/tmp/chirality-release-runtime-20260910/stagec-residual-evidence-backcheck.md",
+    "sha256": "ce650800b89eb6a518d0bc102190e10bfea560909c86b8eec4a26acdb0a4ff67"
+  },
+  "buildArtifactSha256": "871623860ef18212fabef851f24ad5f384d140395d50c41f6a63677fd42768fa",
+  "compiledPatchSha256": "5045e334a1efa02e84a5b7a1b88dd33c9ea126a7de3ee25df56bcaeda9f9df29",
+  "sourceBuildManifestSha256": "88cd85037a6d657a5e0fd94ba969da5179996e209a1e269e81969248bf6381d1",
+  "postBuildTestsPatchSha256": "2a3cc381f0af89467cd53c24413d1020199e69311534d82dd6796eb6587d4b93",
+  "productionCorrespondence": "Build04 includes exact retained final cfg(test) source plus the sole sha2:0.10.9 opt-level3 dev override; all6444 entries unchanged during build.",
+  "actualEvidence": [
+    "confined locked/offline dev build04 exit0 (164.68s); previous build03 preserved",
+    "confined actual executable --version: codex-cli 0.149.0",
+    "CHECK_CONNECTED_04 initial/idle actual lifecycle exactly1 PASS",
+    "CHECK_CONNECTED_06 current delivery, caller cancellation, NextTurn/coalesced B exactly1 PASS",
+    "CHECK_REVOCATION_02 integrated authority-loss rejection/no observed B exactly1 PASS"
+  ],
+  "limits": [
+    "revocation case does not isolate consumption-time guard from terminal retirement; exact guard semantics supported by independent source review",
+    "combined06 passed before final driver rejection reporting addition; no final combined rerun claimed",
+    "broader combined fork/resume empty-history and queue-only durable-sleep/no-wake connections deferred and unqualified",
+    "dev with only sha2:0.10.9 opt-level3, otherwise unoptimized+debuginfo; no full optimized/public-release or vendor-signature claim",
+    "packaging must measure nested-signed final bytes; account/model end-to-end trial remains human-owned"
+  ],
+  "quiescent": true,
+  "noFurtherSupplierCasePlanned": "absent actual new finding",
+  "maintainedDirectory": "/Users/ryan/.codex/worktrees/chirality-change-lessons-20260910/chirality/projects/chirality-runtime/tools/codex-supplier",
+  "derivativeStatus": "source/build handoff derived from accepted source/review snapshots; not operational supplier acceptance",
+  "startupMeasurement": "Pending new signed artifact under ordinary10s initialize deadline.",
+  "profileReviewSha256": "f912cf487e145c149e13d5174c0f90dd0a5924d66fb77a7777c39df30468c07b"
+}

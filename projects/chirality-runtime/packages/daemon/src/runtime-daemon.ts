@@ -54,6 +54,27 @@ const JSON_LIMIT_BYTES = 1024 * 1024;
 const STOP_GRACE_MS = 2_000;
 const STOP_FORCE_SETTLE_MS = 500;
 
+/** Optional host-supplied diagnostic sink; the default discards every event. Fields never carry auth URLs, bearers, proofs, counters, or other secrets. */
+export interface RuntimeDaemonLogger {
+  warn(event: string, fields?: Readonly<Record<string, unknown>>): void;
+  error(event: string, fields?: Readonly<Record<string, unknown>>): void;
+}
+export const NOOP_RUNTIME_DAEMON_LOGGER: RuntimeDaemonLogger = Object.freeze({ warn() {}, error() {} });
+/** Bounded, control-character-free projection of an error message for diagnostics. */
+export function safeDiagnosticText(value: unknown, limit = 200): string {
+  const text = value instanceof Error ? value.message : typeof value === "string" ? value : String(value ?? "");
+  return text.replace(/[\x00-\x1f\x7f]/g, " ").slice(0, limit);
+}
+/** Code, status, reason and bounded messages only; details are never copied wholesale. */
+export function describeRuntimeFailure(error: unknown): Readonly<Record<string, unknown>> {
+  const fields: Record<string, unknown> = error instanceof RuntimeError
+    ? { code: error.code, status: error.status, ...(typeof error.details?.reason === "string" ? { reason: safeDiagnosticText(error.details.reason, 64) } : {}), message: safeDiagnosticText(error) }
+    : { code: "UNEXPECTED", status: 500, message: safeDiagnosticText(error) };
+  if (error instanceof AggregateError) fields.causes = error.errors.slice(0, 5).map(cause => safeDiagnosticText(cause));
+  else if (error instanceof Error && error.cause !== undefined) fields.cause = safeDiagnosticText(error.cause);
+  return fields;
+}
+
 type DaemonLifecycle =
   | "INITIAL"
   | "STARTING"
@@ -113,6 +134,7 @@ export interface RuntimeDaemonOptions {
     cancelLogin(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus>;
     signOut(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus>;
   };
+  logger?: RuntimeDaemonLogger;
 }
 
 export class RuntimeDaemon {
@@ -805,15 +827,21 @@ export class RuntimeDaemon {
   ): Promise<T> {
     const proof = request.headers["x-chirality-account-proof"];
     const authority = this.options.accountHost;
-    if (authority === undefined) return effect(await this.authorize(request, legacyScope, projectId), new AbortController().signal);
-    if (proof === undefined) throw new RuntimeError("UNAUTHORIZED", "Complete App account host proof is required", 401);
-    return authority.runAuthorizedRequest({
-      authorization: request.headers.authorization,
-      counter: request.headers["x-chirality-account-counter"],
-      generation: request.headers["x-chirality-account-generation"],
-      proof,
-      descriptor: hostAccountRequest(operation, projectId)
-    }, effect);
+    try {
+      if (authority === undefined) return await effect(await this.authorize(request, legacyScope, projectId), new AbortController().signal);
+      if (proof === undefined) throw new RuntimeError("UNAUTHORIZED", "Complete App account host proof is required", 401);
+      return await authority.runAuthorizedRequest({
+        authorization: request.headers.authorization,
+        counter: request.headers["x-chirality-account-counter"],
+        generation: request.headers["x-chirality-account-generation"],
+        proof,
+        descriptor: hostAccountRequest(operation, projectId)
+      }, effect);
+    } catch (error) {
+      // Diagnostics only: operation identity plus code/status/reason/message. Never the auth URL, bearer, proof or counters.
+      try { (this.options.logger ?? NOOP_RUNTIME_DAEMON_LOGGER).error("runtime.daemon.hosted_account.failed", { operation, projectId, ...describeRuntimeFailure(error) }); } catch {}
+      throw error;
+    }
   }
 
   private bootstrapProvenance(clientId: string, generation: DaemonGeneration): { approvedBy: string; approvalReference: string } {

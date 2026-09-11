@@ -6090,7 +6090,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
          )
          .await
      }
-@@ -876,9 +1192,65 @@
+@@ -876,9 +1192,53 @@
          codex_request: ClientRequest,
          session: Arc<ConnectionSessionState>,
          request_context: RequestContext,
@@ -6112,20 +6112,8 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
 +        if private_identity_snapshot && session.private_mode() != 2 {
 +            return Err(invalid_request("Private identity snapshot unavailable"));
 +        }
-+        // Login-purpose methods run on the private connection before any
-+        // account identity exists, so no admission lease can bind them yet.
-+        // This is the exact bounded method set the runtime's login-purpose
-+        // release records; every other private request still needs a lease.
-+        let login_purpose_request = matches!(
-+            &codex_request,
-+            ClientRequest::LoginAccount { .. }
-+                | ClientRequest::CancelLoginAccount { .. }
-+                | ClientRequest::GetAccount { .. }
-+                | ClientRequest::ModelList { .. }
-+        );
 +        let private_operation_required = session.private_mode() == 2
 +            && !private_identity_snapshot
-+            && !login_purpose_request
 +            && !matches!(&codex_request, ClientRequest::ConfigRead { .. });
 +        if private_operation_required {
 +            let supplier_generation = self
@@ -6156,7 +6144,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
          }
  
          if let Some(reason) = codex_request.experimental_reason()
-@@ -913,6 +1285,9 @@
+@@ -913,6 +1273,9 @@
                          app_server_client_name,
                          client_version,
                          client_mcp_extensions,
@@ -6166,7 +6154,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
                      )
                      .await;
                  if let Err(error) = result {
-@@ -943,6 +1318,9 @@
+@@ -943,6 +1306,9 @@
          app_server_client_name: Option<String>,
          client_version: Option<String>,
          client_mcp_extensions: ClientMcpExtensions,
@@ -6176,7 +6164,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
      ) -> Result<(), JSONRPCErrorError> {
          let connection_id = connection_request_id.connection_id;
          let request_id = ConnectionRequestId {
-@@ -955,11 +1333,19 @@
+@@ -955,11 +1321,19 @@
                  panic!("Initialize should be handled before initialized request dispatch");
              }
              ClientRequest::ServerDiagnostics { .. } => Ok(Some(read_server_diagnostics().into())),
@@ -6201,7 +6189,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
              ClientRequest::WindowsSandboxReadiness { .. } => self
                  .windows_sandbox_processor
                  .windows_sandbox_readiness()
-@@ -986,10 +1372,14 @@
+@@ -986,10 +1360,14 @@
                  .await
                  .map(|response| Some(response.into())),
              ClientRequest::ConfigValueWrite { params, .. } => {
@@ -6218,7 +6206,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
              }
              ClientRequest::ExperimentalFeatureEnablementSet { params, .. } => {
                  self.config_processor
-@@ -1109,6 +1499,7 @@
+@@ -1109,6 +1487,7 @@
                          client_version.clone(),
                          client_mcp_extensions.clone(),
                          request_context,
@@ -6226,7 +6214,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
                      )
                      .await
              }
-@@ -1125,6 +1516,7 @@
+@@ -1125,6 +1504,7 @@
                          app_server_client_name.clone(),
                          client_version.clone(),
                          client_mcp_extensions.clone(),
@@ -6234,7 +6222,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
                      )
                      .await
              }
-@@ -1515,6 +1907,18 @@
+@@ -1515,6 +1895,18 @@
              ClientRequest::GetAccount { params, .. } => {
                  self.account_processor.get_account(params).await
              }
@@ -6253,7 +6241,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
              ClientRequest::GetAuthStatus { params, .. } => {
                  self.account_processor.get_auth_status(params).await
              }
-@@ -1605,6 +2009,30 @@
+@@ -1605,6 +1997,30 @@
              }
          };
  
@@ -6284,7 +6272,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
          match result {
              Ok(Some(response)) => {
                  self.outgoing
-@@ -1623,3 +2051,686 @@
+@@ -1623,3 +2039,650 @@
  #[cfg(test)]
  #[path = "message_processor_tracing_tests.rs"]
  mod message_processor_tracing_tests;
@@ -6855,7 +6843,7 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
 +                ConnectionId(30),
 +                rpc_request(31, "config/read", serde_json::json!({"includeLayers": false})),
 +                &AppServerTransport::Stdio,
-+                Arc::clone(&private_session),
++                private_session,
 +                true,
 +            )
 +            .await;
@@ -6864,42 +6852,6 @@ diff --git a/codex-rs/app-server/src/message_processor.rs b/codex-rs/app-server/
 +        assert_eq!(
 +            private_config["config"]["chirality_runtime"],
 +            serde_json::json!({"nativeSkills": "disabled"})
-+        );
-+
-+        // Login-purpose methods are admitted on the private connection before
-+        // any identity snapshot or lease exists; other private requests are not.
-+        processor
-+            .process_request(
-+                ConnectionId(30),
-+                rpc_request(32, "account/read", serde_json::json!({"refreshToken": false})),
-+                &AppServerTransport::Stdio,
-+                Arc::clone(&private_session),
-+                true,
-+            )
-+            .await;
-+        let (private_account, _, private_account_error) = receive_rpc_output(&mut rx, 32).await;
-+        assert!(
-+            !private_account_error,
-+            "login-purpose account/read must not require a lease: {private_account}"
-+        );
-+        assert!(private_account["account"].is_null());
-+        assert_eq!(private_session.private_mode(), 2);
-+
-+        processor
-+            .process_request(
-+                ConnectionId(30),
-+                rpc_request(33, "thread/list", serde_json::json!({})),
-+                &AppServerTransport::Stdio,
-+                private_session,
-+                true,
-+            )
-+            .await;
-+        let (private_thread_list, _, private_thread_list_error) =
-+            receive_rpc_output(&mut rx, 33).await;
-+        assert!(private_thread_list_error);
-+        assert_eq!(
-+            private_thread_list["message"],
-+            serde_json::json!("Private authority unavailable")
 +        );
 +    }
 +

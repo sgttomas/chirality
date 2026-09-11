@@ -10,6 +10,7 @@ import {
 } from "@chirality/runtime-core/runtime-conformance-v2";
 import { type HostedBootstrapRuntimeBootInput, type HostedBootstrapRuntimeHost } from "./hosted-bootstrap.js";
 import { startHostedPrivateBootstrapRuntimeHost } from "./hosted-private-entry.js";
+import type { RuntimeDaemonLogger } from "./runtime-daemon.js";
 import { inspectRuntimePurposeAcceptanceV2,inspectRuntimePurposeReleaseV2 } from "./runtime-conformance-v2-admission.js";
 import { inspectHostAccountSignedPeerIdentity, type VerifiedHostAccountPackagedIdentity } from "./host-account-release.js";
 import {
@@ -164,7 +165,7 @@ async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;emb
 /** Pure filesystem/support verification. It must complete before any native addon or XPC authority mechanism is loaded. */
 export function loadPackagedHostedReleaseBasis(input:{resourcesRoot:string;runtimeDirectory:string;embeddedRuntime:EmbeddedRuntimeVersionsV2;executablePath?:string}):Promise<HostedPackagedReleaseLoadResult>{return loadBasis(input,observeRuntimeSupportProfileV2,"production");}
 
-type PackagedStartInput={bootstrap:BootstrapEnabled;basis:Readonly<HostedPackagedReleaseBasisV2>;executablePath:string};
+type PackagedStartInput={bootstrap:BootstrapEnabled;basis:Readonly<HostedPackagedReleaseBasisV2>;executablePath:string;/** Host diagnostic sink forwarded unchanged to the private entry; absent means discarded. */logger?:RuntimeDaemonLogger};
 type PrivateStarter=(input:Parameters<typeof startHostedPrivateBootstrapRuntimeHost>[0])=>Promise<HostedBootstrapRuntimeHost>;
 async function startPackaged(input:PackagedStartInput,revalidate:(basis:Readonly<HostedPackagedReleaseBasisV2>)=>Promise<void>|void,start:PrivateStarter):Promise<HostedBootstrapRuntimeHost>{
   if(!input||input.bootstrap?.enabled!==true||!input.basis||typeof input.basis!=="object")throw unavailable("PACKAGED_BOOTSTRAP_BASIS_MISMATCH");
@@ -172,7 +173,7 @@ async function startPackaged(input:PackagedStartInput,revalidate:(basis:Readonly
   await revalidate(input.basis);
   if(input.basis.supportProfile.compiler.nativePolicyIdentityVersion!==11)throw unavailable("STAGE_C_COMPILER_UNAVAILABLE");
   if(input.bootstrap.runtimeDirectory!==dirname(dirname(dirname(input.basis.login.recordPath)))||input.bootstrap.instructionRoot!==input.basis.instructionRoot||input.bootstrap.nativeAddonPath!==input.basis.nativeAddonPath)throw unavailable("PACKAGED_BOOTSTRAP_BASIS_MISMATCH");
-  return start({bootstrap:{...input.bootstrap,artifactInventory:undefined},privateComposition:{runtimeDirectory:input.bootstrap.runtimeDirectory,
+  return start({bootstrap:{...input.bootstrap,artifactInventory:undefined},...(input.logger===undefined?{}:{logger:input.logger}),privateComposition:{runtimeDirectory:input.bootstrap.runtimeDirectory,
     supplierExecutablePath:input.basis.supplierExecutablePath,nativeAddonPath:input.basis.nativeAddonPath,instructionRoot:input.basis.instructionRoot,
     compatibility:{compatibilityIdentity:"root-runtime-1",contractBasisSha256:"6005a00695a96eb46e59896f01653d3504ef85b35a7d28509bba8d33171425e2"},
     commandNetworkPosture:"off",protectedPaths:[input.bootstrap.runtimeDirectory,join(input.bootstrap.runtimeDirectory,"release-authority"),join(input.bootstrap.runtimeDirectory,"release-basis")],

@@ -1,4 +1,5 @@
 import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { createServer } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -19,6 +20,7 @@ import {
 } from "../packages/daemon/src/host-account-protocol.js";
 import {
   MainHostAccountClient,
+  hostAccountOperationRejection,
   type HostAccountClientNativeAdmission
 } from "../packages/daemon/src/host-account-client.js";
 import {
@@ -192,5 +194,60 @@ describe("P2 host account protocol", () => {
     await expect(running).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
     expect(published).toBe(false);
     await authority.close();
+  });
+});
+
+describe("host account client rejection details", () => {
+  it("projects only sanitized daemon rejection fields", () => {
+    expect(hostAccountOperationRejection("start-login", 503, Buffer.from(JSON.stringify({ error: { code: "ENGINE_UNAVAILABLE", message: "Hosted login failed\n", details: { reason: "LOGIN_RETIREMENT_UNVERIFIED", retainedResources: ["/x"] } } }))))
+      .toEqual({ kind: "operation-rejected", operation: "start-login", status: 503, daemonCode: "ENGINE_UNAVAILABLE", reason: "LOGIN_RETIREMENT_UNVERIFIED", daemonMessage: "Hosted login failed" });
+    expect(hostAccountOperationRejection("status", 500, Buffer.from(JSON.stringify({ error: { code: "bad code", message: "x".repeat(300), details: { reason: "lower-case" } } }))))
+      .toEqual({ kind: "operation-rejected", operation: "status", status: 500, daemonMessage: "x".repeat(200) });
+    for (const body of [Buffer.from("not json"), Buffer.from("[]"), Buffer.from("{\"error\":{\"code\":5,\"message\":\"m\"}}"), Buffer.alloc(16 * 1024 + 1, 0x20), undefined]) {
+      expect(hostAccountOperationRejection("status", 500, body)).toEqual({ kind: "operation-rejected", operation: "status", status: 500 });
+    }
+  });
+
+  it("attaches operation-rejected details to daemon rejections but not to transport failures", async () => {
+    const root = await mkdtemp("/tmp/chirality-hac-"); roots.push(root);
+    const socketPath = join(root, "runtime.sock");
+    const responses: Array<{ status: number; body: string | Buffer }> = [];
+    const seen: string[] = [];
+    const server = createServer((request, response) => {
+      seen.push(`${request.method} ${request.url}`);
+      const next = responses.shift() ?? { status: 500, body: "" };
+      request.resume(); request.on("end", () => { response.writeHead(next.status, { "content-type": "application/json" }); response.end(next.body); });
+    });
+    await new Promise<void>((resolve, reject) => { server.once("error", reject); server.listen(socketPath, () => resolve()); });
+    const generation = "8c318d76-f220-4e5d-a1c2-3099bf295b7c";
+    const nativeAdmission: HostAccountClientNativeAdmission = {
+      createHostXpcClient() {
+        return {
+          async provision(request) { await request.onChallenge({ requestId: request.requestId, challenge: Buffer.alloc(32, 17), generation }); return { requestId: request.requestId, bearer: Buffer.alloc(32, 23), generation, scopes: HOST_ACCOUNT_SCOPES }; },
+          async close() {}
+        };
+      }
+    };
+    const client = new MainHostAccountClient({ socketPath, signingPredicate: predicate, expectedEuid: 501, nativeAdmission });
+    await client.start();
+    try {
+      responses.push({ status: 503, body: JSON.stringify({ error: { code: "ENGINE_UNAVAILABLE", message: "Hosted login failed", details: { reason: "LOGIN_RETIREMENT_UNVERIFIED" } } }) });
+      await expect(client.startLogin("project-one")).rejects.toMatchObject({ name: "RuntimeError", code: "ENGINE_UNAVAILABLE", message: "Account operation was rejected", status: 503,
+        details: { kind: "operation-rejected", operation: "start-login", status: 503, daemonCode: "ENGINE_UNAVAILABLE", reason: "LOGIN_RETIREMENT_UNVERIFIED", daemonMessage: "Hosted login failed" } });
+      responses.push({ status: 500, body: Buffer.alloc(20 * 1024, 0x7b) });
+      const oversized = await client.status("project-one").catch(error => error);
+      expect(oversized).toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 500 });
+      expect(oversized.details).toEqual({ kind: "operation-rejected", operation: "status", status: 500 });
+      responses.push({ status: 400, body: "not json" });
+      const invalid = await client.cancelLogin("project-one").catch(error => error);
+      expect(invalid.details).toEqual({ kind: "operation-rejected", operation: "cancel-login", status: 400 });
+      responses.push({ status: 200, body: JSON.stringify({ schema: "chirality-hosted-bootstrap-status/v1", projectId: "project-one", ceremony: "consent-required", admission: "unavailable", canStartLogin: false }) });
+      await expect(client.status("project-one")).resolves.toMatchObject({ ceremony: "consent-required" });
+      expect(seen).toHaveLength(4);
+    } finally { await client.close(); await new Promise<void>(resolve => server.close(() => resolve())); }
+    const transport = new MainHostAccountClient({ socketPath: join(root, "absent.sock"), signingPredicate: predicate, expectedEuid: 501, nativeAdmission });
+    await transport.start();
+    try { const failure = await transport.status("project-one").catch(error => error); expect(failure).toMatchObject({ code: "ENOENT" }); expect(failure.details).toBeUndefined(); }
+    finally { await transport.close(); }
   });
 });

@@ -15,5 +15,5 @@
   "classification": "Historical build03-only post-build test delta, now included in build04 compiled source inputs. Not a post-build04 delta.",
   "testPatchSha256": "2a3cc381f0af89467cd53c24413d1020199e69311534d82dd6796eb6587d4b93",
   "finalTestManifestSha256": "39b971cd55a37c06c15be12b17fa5004e6bc986e07656a80b4c1f0421bc95fa7",
-  "currentBuildSourceSnapshotSha256": "4e5250720d8a947e815602fb38352726b9e2c7f16d5d219ef5d450d2ea129d16"
+  "currentBuildSourceSnapshotSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b"
 }

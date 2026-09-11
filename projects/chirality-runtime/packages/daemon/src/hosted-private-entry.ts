@@ -9,6 +9,7 @@ import {
   type HostedBootstrapRuntimeHost,
   type HostedBootstrapPrivateBindings
 } from "./hosted-bootstrap.js";
+import type { RuntimeDaemonLogger } from "./runtime-daemon.js";
 import { createHostedBootstrapPrivateBindings, validateHostedPrivateCompositionOptions, type HostedPrivateCompositionOptions } from "./hosted-private-composition.js";
 
 type BootstrapEnabled = Extract<HostedBootstrapRuntimeBootInput, { enabled: true }>;
@@ -17,6 +18,8 @@ export type HostedPrivateBootstrapHostInput = {
   bootstrap: BootstrapEnabled;
   /** Absence deliberately starts the usable, unbound bootstrap surface. */
   privateComposition?: HostedPrivateCompositionOptions;
+  /** Host diagnostic sink for hosted-account failures and ceremony retirement diagnostics; absent means discarded. */
+  logger?: RuntimeDaemonLogger;
 };
 
 export interface HostedPrivateBootstrapConfigurationReadInput {
@@ -32,7 +35,7 @@ export interface HostedPrivateBootstrapConfigurationReadInput {
 
 interface HostedPrivateEntryAdapters {
   createBindings(options: HostedPrivateCompositionOptions): Promise<HostedBootstrapPrivateBindings>;
-  startHost(input: BootstrapEnabled, bindings?: HostedBootstrapPrivateBindings): Promise<HostedBootstrapRuntimeHost>;
+  startHost(input: BootstrapEnabled, bindings?: HostedBootstrapPrivateBindings, logger?: RuntimeDaemonLogger): Promise<HostedBootstrapRuntimeHost>;
 }
 
 const productionAdapters: HostedPrivateEntryAdapters = Object.freeze({
@@ -118,7 +121,9 @@ export async function readHostedPrivateBootstrapConfiguration(input: HostedPriva
 async function compose(input: HostedPrivateBootstrapHostInput, adapters: HostedPrivateEntryAdapters): Promise<HostedBootstrapRuntimeHost> {
   if (!input || input.bootstrap?.enabled !== true) throw unavailable("BOOTSTRAP_CONFIGURATION_MISSING");
   const trusted = input.privateComposition;
-  if (trusted === undefined) return adapters.startHost(input.bootstrap);
+  // The logger argument is only passed when supplied so adapters keep their historical call shape otherwise.
+  const logger = input.logger;
+  if (trusted === undefined) return logger === undefined ? adapters.startHost(input.bootstrap) : adapters.startHost(input.bootstrap, undefined, logger);
   if (input.bootstrap.runtimeDirectory !== trusted.runtimeDirectory || input.bootstrap.instructionRoot !== trusted.instructionRoot
     || input.bootstrap.nativeAddonPath !== trusted.nativeAddonPath) throw unavailable("BOOTSTRAP_PRIVATE_CONFIGURATION_MISMATCH");
   if (trusted.releaseV2 === undefined) {
@@ -128,7 +133,7 @@ async function compose(input: HostedPrivateBootstrapHostInput, adapters: HostedP
     throw unavailable("BOOTSTRAP_PRIVATE_CONFIGURATION_MISMATCH");
   }
   const bindings = await adapters.createBindings(trusted);
-  try { return await adapters.startHost(input.bootstrap, bindings); }
+  try { return logger === undefined ? await adapters.startHost(input.bootstrap, bindings) : await adapters.startHost(input.bootstrap, bindings, logger); }
   catch (error) {
     try { await bindings.close?.(); }
     catch (cleanupError) { throw new AggregateError([error, cleanupError], "Hosted private bootstrap startup and cleanup failed"); }

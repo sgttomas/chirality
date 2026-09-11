@@ -346,7 +346,8 @@ const productionAdapters: ControlledHostedPrivateCompositionAdapters = Object.fr
       resolveDefaultModel: () => login.resolveDefaultModel(),
       resolveModelCatalog: () => login.resolveModelCatalog(),
       cancel: () => login.cancel(),
-      close: () => login.close()
+      close: () => login.close(),
+      closeDiagnostics: () => login.closeDiagnostics()
     });
   },
   preparePolicy: prepareCodexNativePolicy,

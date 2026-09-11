@@ -13,6 +13,12 @@ vi.mock('../../lib/harness/hosted-bootstrap-client', () => ({
   cancelHostedBootstrapLogin: api.cancel,
   signOutHostedBootstrapProject: api.signOut
 }));
+// The controller reads the shared connectivity snapshot to re-read status on a
+// reconnect. `null` is the no-bridge case every other test here runs under.
+const connectivity = vi.hoisted(() => ({ current: null as null | { state: 'connecting' | 'connected' | 'disconnected'; failedAttempts: number; lastError: string | null; changedAt: string } }));
+vi.mock('../../components/shell/runtime-connectivity-provider', () => ({
+  useRuntimeConnectivitySnapshot: () => connectivity.current
+}));
 
 import { useHostedBootstrapController, type HostedBootstrapController } from '../../components/settings/hosted-bootstrap-controller';
 import { HostedBootstrapView, hostedBootstrapSummary } from '../../components/settings/hosted-bootstrap-view';
@@ -294,11 +300,13 @@ it('does not let an in-flight pending poll overwrite a completed cancellation', 
 it('resumes pending status polling after cancellation fails', async () => {
   vi.useFakeTimers();
   const refresh = vi.fn();
-  api.get.mockResolvedValueOnce(registered('pending', 'establishing')).mockResolvedValue(registered('signed-in', 'ready'));
+  // Hydrate, the re-read after the failed cancel (still pending), then the poll.
+  api.get.mockResolvedValueOnce(registered('pending', 'establishing')).mockResolvedValueOnce(registered('pending', 'establishing')).mockResolvedValue(registered('signed-in', 'ready'));
   api.cancel.mockRejectedValue(new Error('Cancellation transport failed'));
   await act(async () => { tree = create(<Fixture refresh={refresh} />); });
   await act(async () => { await Promise.resolve(); });
-  await act(async () => { button('Cancel sign-in').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
+  await act(async () => { button('Cancel sign-in').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
+  expect(api.get).toHaveBeenCalledTimes(2);
   expect(text()).toContain('Cancellation transport failed');
   expect(text()).toContain('Sign-in pending');
   await act(async () => { await vi.advanceTimersByTimeAsync(1000); });
@@ -415,4 +423,103 @@ it('does not let an in-flight readiness poll restore ready after sign-out starts
   expect(text()).not.toContain('Ready to work');
   await act(async () => { logout.resolve(status('consent-required')); await Promise.resolve(); await Promise.resolve(); });
   expect(text()).toContain('Allow provider network');
+});
+
+it('re-reads status after a rejected sign-in and shows the reason on the existing error line', async () => {
+  api.get.mockResolvedValueOnce(registered('ready-to-start')).mockResolvedValue(registered('failed'));
+  api.start.mockRejectedValue(new Error('Sign-in could not start (CODEX_REQUEST_REJECTED).'));
+  await act(async () => { tree = create(<Fixture />); });
+  await act(async () => { await Promise.resolve(); });
+  expect(api.get).toHaveBeenCalledTimes(1);
+  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
+  expect(api.get).toHaveBeenCalledTimes(2);
+  expect(api.get).toHaveBeenLastCalledWith(root, expect.any(AbortSignal));
+  expect(text()).toContain('Sign-in could not start (CODEX_REQUEST_REJECTED).');
+  expect(text()).toContain('Sign-in failed. You can start a new sign-in attempt.');
+  expect(tree.root.findAllByType('a')).toHaveLength(0);
+  expect(button('Sign in').props.disabled).toBe(false);
+  // Exactly one inline reason line, no new surface.
+  expect(tree.root.findAllByProps({ role: 'alert' }).filter(node => node.type === 'p')).toHaveLength(2);
+});
+
+it('reflects consent-required from the re-read after a rejected action, as after a daemon restart', async () => {
+  api.get.mockResolvedValueOnce(registered('ready-to-start')).mockResolvedValue(registered('consent-required'));
+  api.start.mockRejectedValue(new Error('Sign-in could not start (PROVIDER_NETWORK_CONSENT_REQUIRED).'));
+  await act(async () => { tree = create(<Fixture />); });
+  await act(async () => { await Promise.resolve(); });
+  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
+  expect(text()).toContain('Allow provider network');
+  expect(text()).toContain('Sign-in could not start (PROVIDER_NETWORK_CONSENT_REQUIRED).');
+  expect(hostedBootstrapSummary(latest)).toBe('Provider network consent required');
+});
+
+it('keeps the action error when the re-read after a rejected consent fails too', async () => {
+  api.get.mockResolvedValueOnce(registered('consent-required')).mockRejectedValueOnce(new Error('Hosted account service is unavailable.'));
+  api.consent.mockRejectedValue(new Error('Provider network consent could not be recorded (INVALID_REQUEST).'));
+  await act(async () => { tree = create(<Fixture />); });
+  await act(async () => { await Promise.resolve(); });
+  await act(async () => { button('Allow provider network').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
+  expect(api.get).toHaveBeenCalledTimes(2);
+  expect(text()).toContain('Provider network consent could not be recorded (INVALID_REQUEST).');
+  expect(text()).toContain('Allow provider network');
+});
+
+it('re-reads status when the surface reopens and drops a stale error, but not while busy or polling', async () => {
+  api.get.mockResolvedValueOnce(registered('ready-to-start'));
+  api.start.mockRejectedValueOnce(new Error('Sign-in could not start (CODEX_REQUEST_REJECTED).'));
+  await act(async () => { tree = create(<Fixture />); });
+  await act(async () => { await Promise.resolve(); });
+  api.get.mockResolvedValueOnce(registered('failed'));
+  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
+  expect(text()).toContain('CODEX_REQUEST_REJECTED');
+
+  // The daemon was restarted in between: reopening shows its real state.
+  api.get.mockResolvedValue(registered('consent-required'));
+  await act(async () => { latest.onRefresh(); await Promise.resolve(); await Promise.resolve(); });
+  expect(api.get).toHaveBeenCalledTimes(3);
+  expect(text()).toContain('Allow provider network');
+  expect(text()).not.toContain('CODEX_REQUEST_REJECTED');
+
+  const consent = deferred<ReturnType<typeof status>>();
+  api.consent.mockReturnValue(consent.promise);
+  await act(async () => button('Allow provider network').props.onClick());
+  await act(async () => { latest.onRefresh(); await Promise.resolve(); });
+  expect(api.get).toHaveBeenCalledTimes(3);
+  await act(async () => { consent.resolve(status('ready-to-start')); await Promise.resolve(); await Promise.resolve(); });
+  expect(text()).toContain('Sign in');
+
+  vi.useFakeTimers();
+  api.start.mockResolvedValue({ loginId: 'login-2', authUrl: 'https://auth.openai.example/login-2' });
+  api.get.mockResolvedValue(registered('pending', 'establishing'));
+  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
+  const pollingReads = api.get.mock.calls.length;
+  await act(async () => { latest.onRefresh(); await Promise.resolve(); });
+  expect(api.get).toHaveBeenCalledTimes(pollingReads);
+});
+
+it('re-reads status once when the runtime reconnects and not on repeated connected reports', async () => {
+  const snapshot = (state: 'connected' | 'disconnected', changedAt: string) => ({ state, failedAttempts: 0, lastError: null, changedAt });
+  connectivity.current = snapshot('disconnected', '2026-09-11T00:00:00.000Z');
+  try {
+    api.get.mockResolvedValue(registered('ready-to-start'));
+    await act(async () => { tree = create(<Fixture />); });
+    await act(async () => { await Promise.resolve(); });
+    expect(api.get).toHaveBeenCalledTimes(1);
+
+    api.get.mockResolvedValue(registered('consent-required'));
+    connectivity.current = snapshot('connected', '2026-09-11T00:00:05.000Z');
+    await act(async () => { tree.update(<Fixture />); await Promise.resolve(); await Promise.resolve(); });
+    expect(api.get).toHaveBeenCalledTimes(2);
+    expect(text()).toContain('Allow provider network');
+
+    connectivity.current = snapshot('connected', '2026-09-11T00:00:15.000Z');
+    await act(async () => { tree.update(<Fixture />); await Promise.resolve(); await Promise.resolve(); });
+    expect(api.get).toHaveBeenCalledTimes(2);
+
+    connectivity.current = snapshot('disconnected', '2026-09-11T00:00:20.000Z');
+    await act(async () => { tree.update(<Fixture />); await Promise.resolve(); await Promise.resolve(); });
+    expect(api.get).toHaveBeenCalledTimes(2);
+  } finally {
+    connectivity.current = null;
+  }
 });

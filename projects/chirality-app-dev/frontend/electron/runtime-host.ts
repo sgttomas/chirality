@@ -10,7 +10,8 @@ import {
   type HostedBootstrapRuntimeHost,
   type HostedPackagedReleaseLoadResult,
   type HostedPrivateBootstrapConfigurationReadInput,
-  type HostedPrivateBootstrapHostInput
+  type HostedPrivateBootstrapHostInput,
+  type RuntimeDaemonLogger
 } from '@chirality/runtime-daemon/hosted';
 
 export const MACOS_UNIX_SOCKET_PATH_MAX_BYTES = 103;
@@ -60,7 +61,9 @@ type PackagedRuntimeHostEntry = {
     input: Parameters<typeof startHostedPackagedPrivateBootstrapRuntimeHost>[0]
   ): Promise<RuntimeHost>;
   startUnboundHost(
-    input: Parameters<typeof startHostedBootstrapRuntimeHost>[0]
+    input: Parameters<typeof startHostedBootstrapRuntimeHost>[0],
+    trustedBindings?: Parameters<typeof startHostedBootstrapRuntimeHost>[1],
+    logger?: RuntimeDaemonLogger
   ): Promise<RuntimeHost>;
 };
 
@@ -90,7 +93,8 @@ export function assertRuntimeSocketPathSupported(
 
 async function connectRuntimeHost(
   input: DesktopRuntimeBootstrap | DesktopHostedPrivateBootInput,
-  entry: RuntimeHostEntry
+  entry: RuntimeHostEntry,
+  logger?: RuntimeDaemonLogger
 ): Promise<RuntimeHost> {
   assertRuntimeSocketPathSupported(path.join(input.runtimeDirectory, input.daemonSocket));
   const bootstrap = {
@@ -100,7 +104,7 @@ async function connectRuntimeHost(
     instructionRoot: input.instructionRoot
   };
   if (!('hostedPrivateConfigFile' in input)) {
-    return entry.startHost({ bootstrap });
+    return entry.startHost({ bootstrap, ...(logger ? { logger } : {}) });
   }
   const configuredBootstrap = {
     ...bootstrap,
@@ -117,12 +121,13 @@ async function connectRuntimeHost(
       artifactInventory: input.artifactInventory
     }
   });
-  return entry.startHost(configuration);
+  return entry.startHost({ ...configuration, ...(logger ? { logger } : {}) });
 }
 
 async function connectPackagedRuntimeHost(
   input: DesktopPackagedRuntimeBootInput,
-  entry: PackagedRuntimeHostEntry
+  entry: PackagedRuntimeHostEntry,
+  logger?: RuntimeDaemonLogger
 ): Promise<RuntimeHost> {
   assertRuntimeSocketPathSupported(path.join(input.runtimeDirectory, input.daemonSocket));
   const release = await entry.loadReleaseBasis({
@@ -141,18 +146,21 @@ async function connectPackagedRuntimeHost(
         nativeAddonPath: release.basis.nativeAddonPath
       },
       basis: release.basis,
-      executablePath: input.executablePath
+      executablePath: input.executablePath,
+      ...(logger ? { logger } : {})
     });
   }
   // All loader failures have the same Desktop behavior and disclosure: the
   // setup/bootstrap daemon remains usable, while private hosted work remains
   // unavailable. Runtime owns the detailed reason and never supplies a basis.
-  return entry.startUnboundHost({
-    enabled: true,
+  const unbound = {
+    enabled: true as const,
     runtimeDirectory: input.runtimeDirectory,
     daemonSocket: input.daemonSocket,
     instructionRoot: path.join(input.resourcesRoot, 'instruction-root')
-  });
+  };
+  // The logger is only passed when supplied so the entry keeps its historical call shape otherwise.
+  return logger ? entry.startUnboundHost(unbound, undefined, logger) : entry.startUnboundHost(unbound);
 }
 
 export function packagedRuntimeBootInput(input: {
@@ -192,27 +200,33 @@ export function configuredPackagedRuntimeBootInput(input: DesktopRuntimeBootstra
   };
 }
 
-/** Read the owner-private carrier, then start Runtime's hosted bootstrap composition. */
-export function startRuntimeHost(input: DesktopRuntimeBootInput): Promise<RuntimeHost> {
+/**
+ * Read the owner-private carrier, then start Runtime's hosted bootstrap composition.
+ * `logger` receives the daemon's hosted-account failure and ceremony retirement
+ * diagnostics (never the auth URL, bearer, proof, or counters); absent means discarded.
+ */
+export function startRuntimeHost(input: DesktopRuntimeBootInput, logger?: RuntimeDaemonLogger): Promise<RuntimeHost> {
   if ('embeddedRuntime' in input) {
-    return connectPackagedRuntimeHost(input, packagedProductionEntry);
+    return connectPackagedRuntimeHost(input, packagedProductionEntry, logger);
   }
-  return connectRuntimeHost(input, productionEntry);
+  return connectRuntimeHost(input, productionEntry, logger);
 }
 
 /** Native-free seam for checking the App-to-Runtime production input mapping. */
 export function startControlledRuntimeHostForTests(
   input: DesktopRuntimeBootstrap | DesktopHostedPrivateBootInput,
-  entry: RuntimeHostEntry
+  entry: RuntimeHostEntry,
+  logger?: RuntimeDaemonLogger
 ): Promise<RuntimeHost> {
-  return connectRuntimeHost(input, entry);
+  return connectRuntimeHost(input, entry, logger);
 }
 
 
 /** Native-free adapter seam for checking Desktop's packaged input and fallback mapping. */
 export function startControlledPackagedRuntimeHostForTests(
   input: DesktopPackagedRuntimeBootInput,
-  entry: PackagedRuntimeHostEntry
+  entry: PackagedRuntimeHostEntry,
+  logger?: RuntimeDaemonLogger
 ): Promise<RuntimeHost> {
-  return connectPackagedRuntimeHost(input, entry);
+  return connectPackagedRuntimeHost(input, entry, logger);
 }

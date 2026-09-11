@@ -41,7 +41,12 @@ export function AccountRow(props: AccountPopoverProps): JSX.Element {
   return <div ref={root} className={styles.root} onBlur={event => {
     if (event.relatedTarget instanceof Node && !event.currentTarget.contains(event.relatedTarget)) setOpen(false);
   }}>
-    <button ref={trigger} type="button" className={styles.row} aria-label="Account and settings" aria-expanded={open} aria-controls={id} aria-haspopup="dialog" onClick={() => setOpen(value => !value)}>
+    <button ref={trigger} type="button" className={styles.row} aria-label="Account and settings" aria-expanded={open} aria-controls={id} aria-haspopup="dialog" onClick={() => {
+      // Opening is the moment the operator looks at account state: ask the
+      // daemon again rather than show what was last written optimistically.
+      if (!open) props.hosted?.onRefresh();
+      setOpen(!open);
+    }}>
       <span className={styles.avatar} aria-hidden="true">{props.hosted?.snapshot?.registration === 'registered' && props.hosted.snapshot.status.ceremony === 'signed-in' ? 'A' : props.account.snapshot?.account.status === 'loggedIn' ? 'A' : '?'}</span>
       <span className={styles.identity}><strong>{props.hosted ? hostedBootstrapTitle(props.hosted) : accountTitle(props.account)}</strong><small>{props.hosted ? hostedBootstrapSummary(props.hosted) : <LocalModelStatus />}</small></span><span aria-hidden="true">⌃</span>
     </button>

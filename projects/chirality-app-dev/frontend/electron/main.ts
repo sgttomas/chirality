@@ -18,6 +18,7 @@ import { resolveHostedBootstrapTokenFile } from '@chirality/runtime-daemon/hoste
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
 import { ATTACHMENT_SELECT_FILES_CHANNEL } from './attachment-ipc-contract';
 import { createAttachmentSelectionHandler } from './attachment-picker';
+import { decideDaemonActivate, observeRendererPortEvidence } from './daemon-activate-policy';
 import { ensureRuntimeDaemonAutostart } from './runtime-autostart';
 import { installBundledCliLauncher } from './cli-launcher';
 import { resolveDesktopEntryMode } from './desktop-entry-mode';
@@ -905,6 +906,7 @@ async function initializeGui(): Promise<void> {
     invalidateAccountClient: (client) => {
       void hostAccountConnection?.invalidate(client);
     },
+    log: (level, event, detail) => desktopLogger.log(level, event, detail),
     rendererOrigin
   });
 
@@ -982,7 +984,10 @@ async function initializeDaemon(): Promise<void> {
     );
   }
   process.env.CHIRALITY_INSTRUCTION_ROOT = instructionRoot;
-  runtimeHost = await startRuntimeHost(runtimeBootInput);
+  runtimeHost = await startRuntimeHost(runtimeBootInput, {
+    warn: (event, fields) => desktopLogger.warn(event, fields),
+    error: (event, fields) => desktopLogger.error(event, fields)
+  });
   process.env.CHIRALITY_RUNTIME_DIRECTORY = runtimeHost.runtimeDirectory;
   process.env.CHIRALITY_RUNTIME_SOCKET_PATH = runtimeHost.socketPath;
   process.env.CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE = runtimeHost.bootstrapTokenFile;
@@ -1169,11 +1174,23 @@ app.on('before-quit', (event) => {
  * identity so Finder never resolves to it at all — a packaging change, out of
  * scope here and escalated.
  */
-function spawnGuiFromDaemon(): void {
+async function spawnGuiFromDaemon(): Promise<void> {
   if (!isDaemonGuiSpawnEnabled(process.env)) {
     desktopLogger.info('runtime.daemon.gui_spawn_disabled');
     return;
   }
+  // A GUI that is already running must be left alone: spawning a second one
+  // only makes it die on the occupied renderer port, and retiring this daemon
+  // would cost the live GUI its runtime and its in-memory hosted consent. See
+  // `daemon-activate-policy.ts` for what counts as evidence.
+  const decision = decideDaemonActivate(
+    await observeRendererPortEvidence({ userDataDirectory: app.getPath('userData') })
+  );
+  if (decision.action === 'ignore') {
+    desktopLogger.info('runtime.daemon.activate_ignored_gui_running', { port: decision.port });
+    return;
+  }
+  desktopLogger.info('runtime.daemon.gui_liveness', decision.evidence);
   const now = Date.now();
   if (now - lastGuiSpawnAt < GUI_SPAWN_MIN_INTERVAL_MS) {
     desktopLogger.info('runtime.daemon.gui_spawn_throttled', {
@@ -1214,7 +1231,7 @@ if (runtimeDaemonMode) {
   // of the app bundle against this headless instance instead of starting the GUI.
   app.on('activate', () => {
     desktopLogger.warn('runtime.daemon.activate_received', { pid: process.pid });
-    spawnGuiFromDaemon();
+    void spawnGuiFromDaemon();
   });
   app.on('open-file', (_event, filePath) => {
     desktopLogger.warn('runtime.daemon.open_file_received', { filePath });

@@ -19,7 +19,7 @@ vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRunt
 const noop = () => {};
 const accountBase: AccountConsentSettingsViewProps = { snapshot: null, busy: false, error: null, onLogin: noop, onLogout: noop, onGrantConsent: noop, onRevokeConsent: noop, onSelectNetworkPosture: noop, onResolveNetworkPrompt: noop, onSelectRole: noop };
 const runtimeBase: RuntimeSettingsViewProps = { bridgeAvailable: false, daemonStatus: null, residency: null, selectedModel: '', busyAction: null, error: null, onDaemonAction: noop, onRefresh: noop, onSelectedModelChange: noop, onActivateModel: noop };
-const hostedBase: HostedBootstrapController = { projectRoot: '/folder', snapshot: { registration: 'required' }, loading: false, busyAction: null, error: null, signOutUncertain: false, authUrl: null, onSetup: noop, onGrantConsent: noop, onStartLogin: noop, onCancelLogin: noop, onSignOut: noop };
+const hostedBase: HostedBootstrapController = { projectRoot: '/folder', snapshot: { registration: 'required' }, loading: false, busyAction: null, error: null, signOutUncertain: false, authUrl: null, onSetup: noop, onGrantConsent: noop, onStartLogin: noop, onCancelLogin: noop, onSignOut: noop, onRefresh: noop };
 const text = (node: { children: unknown[] }): string => node.children.map(child => typeof child === 'string' ? child : child && typeof child === 'object' && 'children' in child ? text(child as {children: unknown[]}) : '').join('');
 const trees: ReactTestRenderer[] = [];
 afterEach(() => { act(() => trees.splice(0).forEach(tree => tree.unmount())); vi.unstubAllGlobals(); });
@@ -90,6 +90,20 @@ describe('D122 account presentation', () => {
     expect(first.getSnapshot().account.status).toBe('loggedOut');
     act(() => tree.update(<Preview port={second} />));
     expect(second.getSnapshot().account.status).toBe('loggedOut'); expect(text(tree.root)).not.toContain('Signed in as');
+  });
+
+  it('asks the hosted controller to re-read status each time the popover opens, never on close', () => {
+    const onRefresh = vi.fn();
+    const tree = createTree(<AccountRow account={accountBase} hosted={{ ...hostedBase, onRefresh }} folder="/folder" onOpenSettings={noop} />);
+    const trigger = () => tree.root.findByProps({ 'aria-label': 'Account and settings', type: 'button' });
+    act(() => trigger().props.onClick());
+    expect(onRefresh).toHaveBeenCalledTimes(1);
+    expect(tree.root.findAllByProps({ role: 'dialog' })).toHaveLength(1);
+    act(() => trigger().props.onClick());
+    expect(onRefresh).toHaveBeenCalledTimes(1);
+    expect(tree.root.findAllByProps({ role: 'dialog' })).toHaveLength(0);
+    act(() => trigger().props.onClick());
+    expect(onRefresh).toHaveBeenCalledTimes(2);
   });
 
   it('keeps daemon start/stop out of the non-hosted popover; the popover takes no runtime controller', () => {

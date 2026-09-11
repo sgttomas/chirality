@@ -4,7 +4,7 @@ import { mkdtemp, readdir, realpath, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { PassThrough } from "node:stream";
-import { CodexLogin, createControlledCodexLoginForTests, inspectCodexLoginPurposeReleaseRecord } from "../packages/daemon/src/codex-login.js";
+import { CodexLogin, createControlledCodexLoginForTests, createGroupedLoginRetirement, inspectCodexLoginPurposeReleaseRecord } from "../packages/daemon/src/codex-login.js";
 import { AUTHORITY_CONTRACT, initializationProof } from "../packages/daemon/src/supplier-authority-controller.js";
 async function fixture(mode = "success", authUrl = "https://auth.openai.com/authorize?state=fixture", timeoutMs = 1000) {
   const codexHome = await mkdtemp(join(await realpath(tmpdir()), "login-fixture-"));
@@ -183,4 +183,31 @@ it.each(["close", "cancel"] as const)("custody %s during account projection cann
     expect(await projection).toMatchObject({ state: "failed", binding: { state: "unavailable" }, hostedReady: false });
     expect(await login.status()).toMatchObject({ state: "failed", hostedReady: false });
   } finally { await login.close(); stdin.destroy(); stdout.destroy(); }
+});
+
+describe("grouped login retirement diagnostics", () => {
+  const outcome = (signalFailures: Array<{ phase: "term" | "kill"; cause: unknown }>) => ({ leader: { exitCode: 0, signal: null }, groupRetired: true as const, signalFailures });
+  it("resolves a verified retirement with signal failures and exposes sanitized diagnostics through the login", async () => {
+    let cleaned = 0;
+    const retirement = createGroupedLoginRetirement({ retire: async () => outcome([{ phase: "term", cause: new Error("wait-unavailable\u0007") }, { phase: "kill", cause: "ESRCH" }]), cleanup: async () => { cleaned++; }, retainedResources: ["/private/tmp/login"], pid: 42 });
+    const stdin = new PassThrough(), stdout = new PassThrough();
+    const login = createControlledCodexLoginForTests({ codexHome: "/synthetic/retirement", transport: { stdin, stdout, close: retirement.close, diagnostics: retirement.diagnostics } });
+    try {
+      expect(login.closeDiagnostics()).toEqual([]);
+      await expect(login.close()).resolves.toBeUndefined();
+      await expect(login.close()).resolves.toBeUndefined();
+      expect(cleaned).toBe(1);
+      expect(login.closeDiagnostics()).toEqual([{ phase: "term", message: "wait-unavailable " }, { phase: "kill", message: "ESRCH" }]);
+    } finally { stdin.destroy(); stdout.destroy(); }
+  });
+  it("still rejects an unproven retirement or a failed containment cleanup while retaining diagnostics", async () => {
+    const unverified = createGroupedLoginRetirement({ retire: async () => { throw new Error("SUPPLIER_LEADER_RETIREMENT_UNVERIFIED"); }, cleanup: async () => { throw new Error("must not run"); }, retainedResources: ["/private/tmp/a"] });
+    await expect(unverified.close()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", details: { reason: "LOGIN_RETIREMENT_UNVERIFIED", retainedResources: ["/private/tmp/a"] } });
+    expect(unverified.diagnostics()).toEqual([]);
+    const cleanupFailed = createGroupedLoginRetirement({ retire: async () => outcome([{ phase: "kill", cause: new Error("wait-unavailable") }]), cleanup: async () => { throw new Error("EACCES"); }, retainedResources: ["/private/tmp/b"], pid: 7 });
+    const first = await cleanupFailed.close().catch(error => error);
+    expect(first).toMatchObject({ code: "ENGINE_UNAVAILABLE", details: { reason: "LOGIN_CLEANUP_FAILED", retainedResources: ["/private/tmp/b"], pid: 7, signalFailures: ["kill"] } });
+    await expect(cleanupFailed.close()).rejects.toBe(first);
+    expect(cleanupFailed.diagnostics()).toEqual([{ phase: "kill", message: "wait-unavailable" }]);
+  });
 });

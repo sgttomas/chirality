@@ -9,18 +9,18 @@
 (deny file-read* (subpath "/Users/ryan") (subpath "/private/tmp"))
 (allow file-read*
   (subpath "/Users/ryan/.rustup/toolchains/1.97.1-aarch64-apple-darwin")
-  (subpath "/private/tmp/chirality-supplier-login-fix-20260911/source")
+  (subpath "/private/tmp/chirality-supplier-release-20260910-02/source")
   (subpath "/private/tmp/chirality-supplier-release-20260910-02/cargo-home/registry")
   (subpath "/private/tmp/chirality-supplier-release-20260910-02/cargo-exec-diagnostic-01")
   (subpath "/private/tmp/chirality-supplier-release-20260910-02/target")
-  (subpath "/private/tmp/chirality-supplier-login-fix-20260911/tmp"))
+  (subpath "/private/tmp/chirality-supplier-release-20260910-02/tmp"))
 (allow file-write*
   (literal "/dev/null")
   (literal "/private/tmp/chirality-supplier-release-20260910-02/cargo-exec-diagnostic-01/.global-cache")
   (literal "/private/tmp/chirality-supplier-release-20260910-02/cargo-exec-diagnostic-01/.package-cache")
   (literal "/private/tmp/chirality-supplier-release-20260910-02/cargo-exec-diagnostic-01/.package-cache-mutate")
   (subpath "/private/tmp/chirality-supplier-release-20260910-02/target")
-  (subpath "/private/tmp/chirality-supplier-login-fix-20260911/tmp"))
+  (subpath "/private/tmp/chirality-supplier-release-20260910-02/tmp"))
 (deny file-write*
   (subpath "/private/tmp/chirality-supplier-release-20260910-02/cargo-exec-diagnostic-01/git")
   (subpath "/private/tmp/chirality-supplier-release-20260910-02/cargo-exec-diagnostic-01/registry"))
@@ -29,7 +29,6 @@
 (allow file-read-metadata
   (literal "/private/tmp")
   (literal "/private/tmp/chirality-supplier-release-20260910-02")
-  (literal "/private/tmp/chirality-supplier-login-fix-20260911")
   (literal "/private/tmp/chirality-supplier-release-20260910-02/cargo-home")
   (literal "/Users/ryan")
   (literal "/Users/ryan/.rustup")

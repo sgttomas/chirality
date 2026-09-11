@@ -2,22 +2,22 @@
   "schema": "chirality-codex-local-trial-source/v1",
   "upstreamCommit": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
   "upstreamTree": "0f7a27df60e01dccf918f3203235266a0d6e3258",
-  "patchSha256": "91df1f91bd16ee72b24be89d2bb777a9bfc6eb90b8f764821619331e33613fe1",
+  "patchSha256": "5045e334a1efa02e84a5b7a1b88dd33c9ea126a7de3ee25df56bcaeda9f9df29",
   "patchAppliesToUpstream": true,
-  "sourceSnapshotSha256": "4e5250720d8a947e815602fb38352726b9e2c7f16d5d219ef5d450d2ea129d16",
+  "sourceSnapshotSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
   "buildProfile": "dev; sha2:0.10.9 opt-level=3 only",
   "artifact": {
-    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/artifact/codex",
-    "sha256": "eecbc73eea2d472cfefb285dcee6d7ca46024668c2e8d907a1452053c7745189",
-    "size": 761918056,
-    "sourceCount": 6443,
+    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/artifact/codex",
+    "sha256": "871623860ef18212fabef851f24ad5f384d140395d50c41f6a63677fd42768fa",
+    "size": 761932488,
+    "sourceCount": 6444,
     "sourceUnchanged": true,
-    "sourceBeforeSha256": "4e5250720d8a947e815602fb38352726b9e2c7f16d5d219ef5d450d2ea129d16",
+    "sourceBeforeSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
     "lockSha256": "598546764c876b93c6a59edcd5879b8c1b17cdf7c8df023fb051bcfb755a81f4",
     "profile": "dev; sha2:0.10.9 opt-level=3 only",
     "buildExit": {
       "exit": 0,
-      "seconds": 20.5136239528656
+      "seconds": 164.67973518371582
     },
     "dependenciesExit": 0,
     "signatureExit": 0,
@@ -183,7 +183,7 @@
     {
       "path": "codex-rs/app-server/src/message_processor.rs",
       "upstreamSha256": "fcde1d673c5b6c96fb2a4ca1c75e688299b0a0b1206f927f4a53a11baa7d66d4",
-      "buildSha256": "84744d916f672c56d140f98e7b65cb75f08dc1daa6cae668e7451e167cbe0ab5"
+      "buildSha256": "6ca66b1958414164095069ecb716e800a23cfb3402f547daa1e848c461f448e9"
     },
     {
       "path": "codex-rs/app-server/src/message_processor_tracing_tests.rs",
@@ -491,40 +491,32 @@
       "buildSha256": "5bb3ee41b40a8b1c30649e665b8fd90da56be7dcd9b229079a19c4fb00383fcc"
     }
   ],
-  "qualification": "Build05 repairs the private-connection screening so the recorded login-purpose method set (account/login/start, account/login/cancel, account/read, model/list) is admitted before an identity snapshot; every other private request still requires a live admission lease. Validated by the daemon-driven replay harness against the build05 artifact (login start returns an auth.openai.com URL; thread/list still rejected) and by the extended app-server unit test (317 passed). Prior independently accepted bounded routing evidence is retained but was not rerun on build05; the change awaits the independent reviewer and the owner's end-to-end account trial. Broader fork/resume and durable-sleep cases remain unqualified.",
+  "qualification": "Prior independently accepted bounded routing evidence retained. Profile-only production change separately reviewed and built offline. New signed-artifact startup latency remains pending actual measurement; broader fork/resume and durable-sleep cases remain unqualified.",
   "reportedVersion": "codex-cli 0.149.0",
   "payload": {
-    "root": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/artifact",
+    "root": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/artifact",
     "files": [
       {
         "path": "codex",
-        "sha256": "eecbc73eea2d472cfefb285dcee6d7ca46024668c2e8d907a1452053c7745189",
-        "size": 761918056
+        "sha256": "871623860ef18212fabef851f24ad5f384d140395d50c41f6a63677fd42768fa",
+        "size": 761932488
       }
     ],
     "nonSystemDylibSidecars": [],
     "signature": "linker ad-hoc; no team identifier"
   },
   "evidence": {
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/PLAN.json": "c1ba291bb8e818857321743081c0071381fc54363c4b107b8677c38fa4520a49",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/RESULT.json": "b16cef48c506bb736fecb0d2a008bd993a54494ed5887f3bfae22cfc53198d04",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/stderr.log": "c9906777ab3f1a2ec31caea6ae79cfedc43f1a5816eb873ea95d0594f1c0da75",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/ARTIFACT.json": "7632903e4385b300500c693824efefdf1980f7ef8e56cb7429487b8f55f5118c",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/SOURCE_BEFORE.json": "4e5250720d8a947e815602fb38352726b9e2c7f16d5d219ef5d450d2ea129d16",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/SOURCE_AFTER.json": "4e5250720d8a947e815602fb38352726b9e2c7f16d5d219ef5d450d2ea129d16",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/dependencies.stdout": "1a73af2550498b63cad350a1f35e85c5d762d9549f0a72eb0c43e1fa7303cfdf",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/signature.stderr": "d3e2dcb56f05a8997dbffb191875d13fb995c6d3b77eacdc4c1fb71cace6c9db",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/version.stdout": "26247c5af0a85b5e7bd1d7064e175fa566b8c14624b9a6e08ab85fa0edd41f2d",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/version.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/build-enclosure.sb": "cd262b7785e0d8e20a45cd81c5af4c6f79aa5f2776611a406dfad4a62b3f6fd2",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/source-delta.diff": "fd8d119740d1da99038280a7daaef9b666ae26fafb2f7e0b24c6a0d9cc4b3020",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/harness-login-sequence.mjs": "92b937f760cc5a37ff7c295a7886ecbbabf3afb52dd0c13cc3815913edc827ac",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/harness-login-sequence.log": "efe07dad5a548f7e3b16f3725702d8642f547099d54ae5f17e9c2fb4f42674ec",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/unit-tests-targeted.log": "f0c9cd6f8310864a7facbf59a3b2c48e57120eb6ec92d8cce5617bb15c99a552",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-05/unit-tests-full.log": "55391a3d23d80258c7aac34e90637b911251576f8f4b9fca5730fda50d2e1ad0"
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/RESULT.json": "d5d4d4cba25c21fb7c4cdfe274544a51c1a9a66a404da694c36bdf5f5b8b48af",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/stderr.log": "b36c59411d54a869d506e9415e546768a4b4ebca1a9ef9bc0a27b3cd4f03b691",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/ARTIFACT.json": "63377beeb8d77948f8c8fdae1ed0b7148ed5a8b592b0aa2e9bd34c47f135e192",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/SOURCE_BEFORE.json": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/dependencies.stdout": "e2058b51735d80a7bbdd4abb7ae4d6f182ab16d6c757b6efb33faab91cb43602",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/signature.stderr": "19645c8b1a2e3953df4c22f98859f9ab453065f5178d6eb8866f479565e92c38",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/version.stdout": "26247c5af0a85b5e7bd1d7064e175fa566b8c14624b9a6e08ab85fa0edd41f2d",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/version.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/sha2-optimized-fingerprint.json": "1823446bafb972ba0bf73124244d65d5b10a4167f5fda0b6916485e7e60cb48a",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/profile-author/PREBUILD_REVIEW.md": "f912cf487e145c149e13d5174c0f90dd0a5924d66fb77a7777c39df30468c07b"
   },
   "historicalBuild03": "history/build03/source-build.json",
-  "testSourceCorrespondence": "Build05 source = build04 source + one production file (message_processor.rs, screening exemption and its extended cfg(test) assertions). The app-server lib test suite was rerun on this exact source with RUST_MIN_STACK=33554432; prior test claims for other crates are not rerun.",
-  "historicalBuild04": "history/build04/source-build.json",
-  "sourceTreeNote": "Snapshot has 6443 entries: the build04 snapshot listed codex-rs/vendor/bubblewrap/LICENSE, which is no longer present in the retained source tree (non-compiled vendor license text; all 93 changed-file digests otherwise match)."
+  "testSourceCorrespondence": "Final formerly post-build03 cfg(test) patch is now included in the exact build04 input patch; prior executed tests are not claimed rerun."
 }

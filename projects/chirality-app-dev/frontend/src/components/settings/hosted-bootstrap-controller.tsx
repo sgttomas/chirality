@@ -11,6 +11,8 @@ import {
   signOutHostedBootstrapProject,
   startHostedBootstrapLogin
 } from '../../lib/harness/hosted-bootstrap-client';
+import { isRuntimeReconnect } from '../../lib/shell/runtime-connectivity';
+import { useRuntimeConnectivitySnapshot } from '../shell/runtime-connectivity-provider';
 import { useWorkspaceSelection } from '../workspace/workspace-provider';
 
 export type HostedBootstrapStatusResult = Awaited<ReturnType<typeof getHostedBootstrapStatus>>;
@@ -29,6 +31,8 @@ export type HostedBootstrapController = {
   onStartLogin: () => void;
   onCancelLogin: () => void;
   onSignOut: () => void;
+  /** Re-read account status from the daemon when the surface is (re)opened. */
+  onRefresh: () => void;
 };
 
 function messageFrom(error: unknown): string {
@@ -100,6 +104,52 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
     setObserved({ projectRoot: root, snapshot: result });
     setAuthUrl(null);
   }, [publishBinding]);
+
+  // Re-read status through the signed bridge and adopt it if still current.
+  // Used after a rejected action, on reconnect, and when the surface reopens,
+  // so the popover shows the daemon's real state (for example `consent-required`
+  // after a daemon restart) rather than the last optimistic write. A failed
+  // re-read is swallowed: the caller's own error, if any, stays in place.
+  const reconcile = useCallback(async (root: string, generation: number, signal: AbortSignal, clearError = false): Promise<void> => {
+    try {
+      const result = await getHostedBootstrapStatusWithRetry(root, signal);
+      if (!signal.aborted && operationGeneration.current === generation && rootRef.current === root) {
+        setObserved({ projectRoot: root, snapshot: result });
+        if (clearError) setError(null);
+      }
+    } catch {}
+  }, []);
+
+  const withReconcile = useCallback(async <T,>(
+    root: string, signal: AbortSignal, generation: number, request: () => Promise<T>
+  ): Promise<T> => {
+    try { return await request(); }
+    catch (reason) {
+      if (!signal.aborted && operationGeneration.current === generation && rootRef.current === root) await reconcile(root, generation, signal);
+      throw reason;
+    }
+  }, [reconcile]);
+
+  const busyRef = useRef(busyAction);
+  const loadingRef = useRef(loading);
+  busyRef.current = busyAction;
+  loadingRef.current = loading;
+  const refresh = useCallback((): void => {
+    const root = rootRef.current;
+    // Hydration, an action, and the pending/establishing poll each already own
+    // a status read; a refresh alongside them would only race their result.
+    if (!root || loadingRef.current || busyRef.current) return;
+    if (pollController.current && !pollController.current.signal.aborted) return;
+    void reconcile(root, operationGeneration.current, new AbortController().signal, true);
+  }, [reconcile]);
+
+  const connectivity = useRuntimeConnectivitySnapshot();
+  const previousConnectivity = useRef(connectivity);
+  useEffect(() => {
+    const previous = previousConnectivity.current;
+    previousConnectivity.current = connectivity;
+    if (connectivity !== null && isRuntimeReconnect(previous, connectivity)) refresh();
+  }, [connectivity, refresh]);
 
   useEffect(() => {
     const generation = ++operationGeneration.current;
@@ -209,12 +259,13 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
   return {
     projectRoot, snapshot, loading, busyAction, error, authUrl, signOutUncertain,
     onSetup: () => void perform('setup', setup),
+    onRefresh: refresh,
     onGrantConsent: () => void perform('consent', async (root, signal, generation) => {
-      const status = await grantHostedProviderNetworkConsent(root, signal);
+      const status = await withReconcile(root, signal, generation, () => grantHostedProviderNetworkConsent(root, signal));
       if (!signal.aborted && operationGeneration.current === generation && rootRef.current === root) setObserved(current => ({ projectRoot: root, snapshot: withStatus(current.projectRoot === root ? current.snapshot : null, status) }));
     }),
     onStartLogin: () => void perform('login', async (root, signal, generation) => {
-      const result = await startHostedBootstrapLogin(root, signal);
+      const result = await withReconcile(root, signal, generation, () => startHostedBootstrapLogin(root, signal));
       if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;
       setAuthUrl(result.authUrl);
       setObserved(current => ({
@@ -226,7 +277,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
       await load(root, generation, signal);
     }),
     onCancelLogin: () => void perform('cancel', async (root, signal, generation) => {
-      const status = await cancelHostedBootstrapLogin(root, signal);
+      const status = await withReconcile(root, signal, generation, () => cancelHostedBootstrapLogin(root, signal));
       if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;
       setAuthUrl(null);
       setObserved(current => ({ projectRoot: root, snapshot: withStatus(current.projectRoot === root ? current.snapshot : null, status) }));
@@ -251,7 +302,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
         if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;
         setSignOutUncertain(true);
         try {
-          const reconciled = await getHostedBootstrapStatus(root, signal);
+          const reconciled = await getHostedBootstrapStatusWithRetry(root, signal);
           if (!signal.aborted && operationGeneration.current === generation && rootRef.current === root) {
             setObserved({
               projectRoot: root,

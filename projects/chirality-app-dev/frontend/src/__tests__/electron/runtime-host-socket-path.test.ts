@@ -298,6 +298,51 @@ describe('runtime-host macOS socket-path boundary', () => {
     expect(startUnboundHost).not.toHaveBeenCalled();
   });
 
+  it('forwards the daemon diagnostic logger to the packaged host and to the unbound fallback only when supplied', async () => {
+    const basis = Object.freeze({
+      instructionRoot: path.join(inventory.resourcesRoot, 'instruction-root'),
+      nativeAddonPath: path.join(inventory.resourcesRoot, 'native', 'chirality_native_admission.node')
+    }) as unknown as Readonly<HostedPackagedReleaseBasisV2>;
+    const logger = { warn: vi.fn(), error: vi.fn() };
+    const bootInput = packagedRuntimeBootInput({
+      runtimeDirectory: '/runtime',
+      daemonSocket: 'control.sock',
+      resourcesRoot: inventory.resourcesRoot,
+      executablePath,
+      embeddedRuntime
+    });
+    const startPackagedHost = vi.fn(async () => host);
+    const startUnboundHost = vi.fn(async () => host);
+    await startControlledPackagedRuntimeHostForTests(
+      bootInput,
+      { loadReleaseBasis: vi.fn(async () => ({ status: 'ready', basis }) as HostedPackagedReleaseLoadResult), startPackagedHost, startUnboundHost },
+      logger
+    );
+    expect(startPackagedHost).toHaveBeenCalledTimes(1);
+    expect(startPackagedHost).toHaveBeenCalledWith(expect.objectContaining({ basis, executablePath, logger }));
+    expect(startUnboundHost).not.toHaveBeenCalled();
+
+    const unavailable: HostedPackagedReleaseLoadResult = { status: 'unavailable', reason: 'missing-release-basis' };
+    await startControlledPackagedRuntimeHostForTests(
+      bootInput,
+      { loadReleaseBasis: vi.fn(async () => unavailable), startPackagedHost, startUnboundHost },
+      logger
+    );
+    expect(startUnboundHost).toHaveBeenCalledTimes(1);
+    expect(startUnboundHost).toHaveBeenCalledWith(
+      {
+        enabled: true,
+        runtimeDirectory: '/runtime',
+        daemonSocket: 'control.sock',
+        instructionRoot: path.join(inventory.resourcesRoot, 'instruction-root')
+      },
+      undefined,
+      logger
+    );
+    expect(logger.warn).not.toHaveBeenCalled();
+    expect(logger.error).not.toHaveBeenCalled();
+  });
+
   it('cannot pass a structurally fabricated basis into the real packaged starter', async () => {
     const basis = Object.freeze({
       instructionRoot: path.join(inventory.resourcesRoot, 'instruction-root'),

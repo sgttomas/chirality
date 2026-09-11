@@ -3,7 +3,7 @@ import { mkdir, mkdtemp, readdir, readFile, realpath, rm, stat, writeFile } from
 import { basename, join, resolve } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { randomUUID } from "node:crypto";
-import { hostedModelCatalog, type AgentEnginePort, type AgentEngineRunInput, type DelegatedTurnRequest, type UIEvent, type WorkerContinuity } from "@chirality/runtime-contracts";
+import { hostedModelCatalog, RuntimeError, type AgentEnginePort, type AgentEngineRunInput, type DelegatedTurnRequest, type UIEvent, type WorkerContinuity } from "@chirality/runtime-contracts";
 import { DelegatedRuntime, HostedConsentStore, WorkerRetirementCoordinator, type DelegatedNativePlanSink } from "@chirality/runtime-core";
 import { RuntimeClient } from "@chirality/runtime-client";
 import {
@@ -416,5 +416,48 @@ describe("hosted bootstrap public-to-private composition", () => {
     expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "cancelled", admission: "unavailable" });
     expect(retire).toHaveBeenCalledTimes(1);
     expect(materialize).not.toHaveBeenCalled();
+  });
+});
+
+describe("hosted bootstrap login retry after a failed start", () => {
+  it("detaches a failed ceremony before its close settles so the next start creates a new ceremony and records the failure", async () => {
+    const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-retry-"));
+    cleanup.push(() => rm(root, { recursive: true, force: true }));
+    const runtimeDirectory = join(root, "runtime"), projectRoot = join(root, "project");
+    await mkdir(runtimeDirectory, { mode: 0o700 }); await mkdir(projectRoot);
+    const events: Array<{ level: string; event: string; fields: Record<string, unknown> }> = [];
+    const logger = {
+      warn: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "warn", event, fields }); },
+      error: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "error", event, fields }); }
+    };
+    const created: TrustedHostedLoginCeremony[] = [];
+    const bindings = {
+      async createCeremony() {
+        const index = created.length;
+        const ceremony: TrustedHostedLoginCeremony = index === 0
+          ? { async start() { throw new RuntimeError("ENGINE_UNAVAILABLE", "controlled start failure", 503, { reason: "CONTROLLED_START" }); }, async status() { return { state: "failed" as const }; }, async cancel() {},
+              async close() { throw new Error("controlled close failure"); }, closeDiagnostics: () => [{ phase: "term", message: "wait-unavailable" }] }
+          : { async start() { return { loginId: `login-${index}`, authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "pending" as const }; }, async cancel() {}, async close() {} };
+        created.push(ceremony); return ceremony;
+      }
+    };
+    const host = await startControlledHostedBootstrapRuntimeHostForTests({ enabled: true, runtimeDirectory, daemonSocket: "runtime.sock", instructionRoot: resolve(process.cwd(), "../..") }, bindings, undefined, logger);
+    cleanup.push(() => host.stop());
+    const bootstrap = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
+    const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
+    await bootstrap.grantHostedProviderNetworkConsent(registered.projectId);
+    await expect(bootstrap.startHostedBootstrapLogin(registered.projectId)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", message: "controlled start failure" });
+    expect(await bootstrap.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "failed", canStartLogin: true });
+    // The retry must not fail fast on the previous ceremony's memoized close rejection.
+    await expect(bootstrap.startHostedBootstrapLogin(registered.projectId)).resolves.toMatchObject({ loginId: "login-1" });
+    expect(created).toHaveLength(2);
+    expect(await bootstrap.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "pending" });
+    expect(events).toContainEqual(expect.objectContaining({ level: "error", event: "runtime.daemon.hosted_account.failed",
+      fields: expect.objectContaining({ operation: "start-login", projectId: registered.projectId, code: "ENGINE_UNAVAILABLE", status: 503, reason: "CONTROLLED_START", message: "controlled start failure" }) }));
+    expect(events).toContainEqual(expect.objectContaining({ level: "error", event: "hosted.ceremony.close_failed", fields: expect.objectContaining({ operation: "start-login", projectId: registered.projectId, message: "controlled close failure" }) }));
+    expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.ceremony.close_diagnostics", fields: expect.objectContaining({ operation: "start-login", diagnostics: [{ phase: "term", message: "wait-unavailable" }] }) }));
+    expect(JSON.stringify(events)).not.toContain("auth.example.test");
+    // The earlier close rejection cannot poison daemon stop either.
+    await expect(host.stop()).resolves.toBeUndefined();
   });
 });
