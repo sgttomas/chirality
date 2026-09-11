@@ -280,8 +280,10 @@ export class HostedBootstrapController {
         state.ceremonyState = "signed-in";
         if (observed.hasAccount && this.bindings?.establishAdmission && this.bindings.materializeAdmission && !state.establishing && !state.admission) {
           state.admissionState = "establishing";
+          const startedAt = Date.now();
           state.establishing = this.establish(projectId, canonicalRoot, state, generation, ceremony);
-          try { await state.establishing; } catch { state.admissionState = "unavailable"; }
+          try { await state.establishing; }
+          catch (error) { state.admissionState = "unavailable"; this.log("hosted.admission.establish_failed", { projectId, elapsedMs: Date.now() - startedAt, ...describeRuntimeFailure(error) }); }
           finally { state.establishing = undefined; }
         }
       }
@@ -422,6 +424,11 @@ export class HostedBootstrapController {
       } else this.nativePlans.ensure(projectId);
       state.admission = admission; state.engine = engine; state.selection = { ...selection }; state.catalog = catalog; state.admissionState = "ready";
     } catch (error) { if (state.admission === admission) await this.retireAdmission(state); else await admission.retire(); throw error; }
+  }
+
+  /** Diagnostics never change admission outcomes: a logger failure is swallowed. */
+  private log(event: string, detail: Record<string, unknown>): void {
+    try { this.logger.error(event, detail); } catch { /* diagnostics only */ }
   }
 
   private async retireAdmission(state: ProjectBootstrap): Promise<void> {

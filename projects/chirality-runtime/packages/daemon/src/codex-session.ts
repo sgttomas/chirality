@@ -786,7 +786,7 @@ export class CodexTurnSession {
         if (features.multi_agent !== true || features.multi_agent_v2 !== false || agents.enabled !== true || agents.max_depth !== 2) throw protocol("Effective native role pins differ from the trusted configuration");
         for (const roleId of CHIRALITY_ROLE_NAMES) {
           const expectedRole = this.expectedNativeRoles.roles[roleId]!;
-          if (!sameTable(agents[roleId], { description: expectedRole.description, config_file: expectedRole.config_file })) throw protocol("Effective native role entry differs from the trusted configuration");
+          if (!sameTable(normalizeObservedRole(agents[roleId]), { description: expectedRole.description, config_file: expectedRole.config_file })) throw protocol("Effective native role entry differs from the trusted configuration");
         }
         const safeDefaults = new Set(["enabled", "max_depth", "max_concurrent_threads_per_session", "default_subagent_model", "default_subagent_reasoning_effort", "interrupt_message", ...CHIRALITY_ROLE_NAMES]);
         if (Object.entries(agents).some(([key, value]) => !safeDefaults.has(key) && value !== null && value !== undefined)) throw protocol("Unexpected effective native role configuration");
@@ -971,6 +971,17 @@ function normalizeObservedProfile(value: Record<string, unknown>, expectedNetwor
   profile.filesystem = stripNulls(object(profile.filesystem), ["glob_scan_max_depth"]);
   profile.network = stripNulls(object(profile.network), ["proxy_url", "enable_socks5", "socks_url", "enable_socks5_udp", "allow_upstream_proxy", "dangerously_allow_non_loopback_proxy", "dangerously_allow_all_unix_sockets", "mode", "domains", "unix_sockets", "allow_local_binding", "mitm"].filter(field => !Object.hasOwn(expectedNetwork, field)));
   return profile;
+}
+
+/** Only the inert null nickname default observed from the pinned 0.149.0 typed role readback. */
+function normalizeObservedRole(value: unknown): unknown {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return value;
+  const role = { ...(value as Record<string, unknown>) };
+  if (Object.hasOwn(role, "nickname_candidates")) {
+    if (role.nickname_candidates !== null) throw protocol("Non-inert native role metadata is unsupported");
+    delete role.nickname_candidates;
+  }
+  return role;
 }
 
 function freezeTree<T>(value: T): T {

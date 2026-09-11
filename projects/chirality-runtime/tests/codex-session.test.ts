@@ -29,7 +29,8 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    const selected={filesystem:{'/usr':'read','/private/tmp':'write','/private/protected':'deny'},network:{enabled:posture!=="off"}};
    const config={permissions:{'bound-profile':selected},approvals_reviewer:'user',approval_policy:posture==='ask-per-destination'?'on-request':'never',allow_login_shell:false,features:{plugins:false,remote_plugin:false,shell_snapshot:false,network_proxy:posture!=='off'},hooks:null,mcp_servers:{},notify:null,plugins:{},profiles:{},profile:null,projects:{'/private/tmp':{trust_level:'trusted'}}};
    if(mode.startsWith('named-stage-c'))config.chirality_runtime={nativeSkills:(mode==='named-stage-c-start-drift'&&configReads>=2)||(mode==='named-stage-c-turn-drift'&&configReads>=3)||(mode==='named-stage-c-resume-drift'&&configReads>=4)?'upstream':'disabled'};
-   if(mode.startsWith('named-roles')){config.features.multi_agent=true;config.features.multi_agent_v2=false;config.agents={enabled:true,max_depth:(mode==='named-roles-drift'&&configReads>=3)?1:2,HELP_HUMAN:{description:'Help',config_file:'/private/roles/HELP_HUMAN.toml'},HELPS_HUMANS:{description:'Manage',config_file:'/private/roles/HELPS_HUMANS.toml'},WORKING_ITEMS:{description:'Work',config_file:'/private/roles/WORKING_ITEMS.toml'},TASK:{description:'Task',config_file:'/private/roles/TASK.toml'}};}
+   if(mode.startsWith('named-roles')){config.features.multi_agent=true;config.features.multi_agent_v2=false;config.agents={enabled:true,max_depth:(mode==='named-roles-drift'&&configReads>=3)?1:2,HELP_HUMAN:{description:'Help',config_file:'/private/roles/HELP_HUMAN.toml'},HELPS_HUMANS:{description:'Manage',config_file:'/private/roles/HELPS_HUMANS.toml'},WORKING_ITEMS:{description:'Work',config_file:'/private/roles/WORKING_ITEMS.toml'},TASK:{description:'Task',config_file:'/private/roles/TASK.toml'}};
+    if(mode==='named-roles-nickname-null'||mode==='named-roles-nickname-set')for(const role of ['HELP_HUMAN','HELPS_HUMANS','WORKING_ITEMS','TASK'])config.agents[role].nickname_candidates=mode==='named-roles-nickname-set'?['Nick']:null;}
    if(mode==='named-null-defaults'||mode==='named-nonnull-default'||mode==='named-unknown-default'){
     selected.description=null;selected.extends=null;selected.workspace_roots=null;selected.filesystem.glob_scan_max_depth=null;
     for(const field of ['proxy_url','enable_socks5','socks_url','enable_socks5_udp','allow_upstream_proxy','dangerously_allow_non_loopback_proxy','dangerously_allow_all_unix_sockets','mode','domains','unix_sockets','allow_local_binding','mitm'])selected.network[field]=null;
@@ -238,6 +239,14 @@ describe("persistent known-method Codex actor (controlled provider)", () => {
     const drift = fixture("named-roles-drift");
     try { await drift.session.initialize(); await drift.session.verifyNativePolicy(expectedPolicy, expectedNativeRoles); await drift.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true }); await expect(drift.session.startTurn(turn)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" }); }
     finally { await drift.close(); }
+  });
+  it("accepts only the inert null nickname default on native role entries from the pinned typed readback", async () => {
+    const inert = fixture("named-roles-nickname-null");
+    try { await inert.session.initialize(); await inert.session.verifyNativePolicy(expectedPolicy, expectedNativeRoles); await inert.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true }); const turnId = await inert.session.startTurn(turn); expect((await inert.session.waitTurn(turnId)).status).toBe("completed"); }
+    finally { await inert.close(); }
+    const named = fixture("named-roles-nickname-set");
+    try { await named.session.initialize(); await expect(named.session.verifyNativePolicy(expectedPolicy, expectedNativeRoles)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", message: "Non-inert native role metadata is unsupported" }); }
+    finally { await named.close(); }
   });
   it("rejects merged grants, missing denies, network changes and host-side overrides on readback", async () => {
     for (const mode of ["named-extra", "named-missing", "named-network", "named-preset", "named-hook", "named-mcp", "named-notify", "named-project", "named-nonnull-default", "named-unknown-default", "named-remote-plugin"]) {
