@@ -5,7 +5,8 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { prepareCodexNativePolicy } from "../packages/daemon/src/codex-containment.js";
 import { DescendantTracker } from "../packages/core/src/descendant-tracker.js";
-import { CodexSupervisor, codexRuntimeConformanceConfigDigest, createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
+import { CodexSupervisor, CODEX_SUPERVISOR_BOUNDS, assertCodexSupervisorBounds, codexRuntimeConformanceConfigDigest, createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
+import { PACKAGED_REQUEST_TIMEOUT_MS, PACKAGED_TURN_TIMEOUT_MS } from "../packages/daemon/src/hosted-packaged-release.js";
 import { admitHostedControlledForTests } from "../packages/daemon/src/codex-supervisor-test-support.js";
 import * as daemonPublicSurface from "../packages/daemon/src/index.js";
 import { recordKey } from "@chirality/runtime-core";
@@ -219,6 +220,27 @@ describe("Codex supervisor adapter without account/network use", () => {
     supervisors.push(s);
     await expect(s.verifyHostedBoundary(identity)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
     expect(await s.inventory()).toEqual([]);
+  });
+});
+
+describe("supervisor budget bounds", () => {
+  const construct = (budgets: { requestTimeoutMs?: number; turnTimeoutMs?: number; maxWorkers?: number }) => () =>
+    createControlledCodexSupervisorForTests({ identity, model: "fixture-model", commandNetworkPosture: "off", ...budgets, async launch() { throw new Error("must not launch"); } });
+
+  it("admits the packaged release budgets and a turn budget up to one hour", () => {
+    expect(construct({ requestTimeoutMs: PACKAGED_REQUEST_TIMEOUT_MS, turnTimeoutMs: PACKAGED_TURN_TIMEOUT_MS })).not.toThrow();
+    expect(construct({ requestTimeoutMs: CODEX_SUPERVISOR_BOUNDS.requestTimeoutMs.max, turnTimeoutMs: CODEX_SUPERVISOR_BOUNDS.turnTimeoutMs.max })).not.toThrow();
+    expect(PACKAGED_TURN_TIMEOUT_MS).toBeGreaterThan(CODEX_SUPERVISOR_BOUNDS.requestTimeoutMs.max);
+  });
+
+  it("rejects each budget outside its own ceiling", () => {
+    const rejected = { code: "INVALID_REQUEST", message: "Invalid Codex supervisor bound" };
+    expect(construct({ turnTimeoutMs: CODEX_SUPERVISOR_BOUNDS.turnTimeoutMs.max + 1 })).toThrow(expect.objectContaining(rejected));
+    expect(construct({ requestTimeoutMs: CODEX_SUPERVISOR_BOUNDS.requestTimeoutMs.max + 1 })).toThrow(expect.objectContaining(rejected));
+    expect(() => assertCodexSupervisorBounds({ maxWorkers: CODEX_SUPERVISOR_BOUNDS.maxWorkers.max + 1 })).toThrow(expect.objectContaining(rejected));
+    expect(() => assertCodexSupervisorBounds({ maxWorkers: CODEX_SUPERVISOR_BOUNDS.maxWorkers.max })).not.toThrow();
+    expect(construct({ turnTimeoutMs: 0 })).toThrow(expect.objectContaining(rejected));
+    expect(construct({ requestTimeoutMs: 1.5 })).toThrow(expect.objectContaining(rejected));
   });
 });
 

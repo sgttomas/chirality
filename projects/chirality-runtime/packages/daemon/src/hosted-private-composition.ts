@@ -35,7 +35,7 @@ import { codexEffectiveConfigDigestV2 } from "./codex-authenticated-transport.js
 import { bindTrustedRuntimeReadRoot, bindTrustedRuntimeReadRootV2, prepareCodexContainmentV2, prepareCodexNativePolicy, prepareCodexNativePolicyV2, prepareCodexTrustedSupplierContainmentV2, type TrustedRuntimeReadRootBinding, type TrustedRuntimeReadRootBindingV2 } from "./codex-containment.js";
 import { CodexLogin, validateCodexLoginStartup, type CodexLoginStartupAdmission } from "./codex-login.js";
 import { CodexTurnSession } from "./codex-session.js";
-import { CodexSupervisor, type HostedCodexSupervisorAdmission, type HostedCodexSupervisorOptions } from "./codex-supervisor.js";
+import { CodexSupervisor, assertCodexSupervisorBounds, type HostedCodexSupervisorAdmission, type HostedCodexSupervisorOptions } from "./codex-supervisor.js";
 import { HostedIdentityBindingStore } from "./hosted-identity-binding.js";
 import type { HostedBootstrapPrivateBindings, TrustedHostedLoginCeremony, TrustedHostedPrivateAdmission } from "./hosted-bootstrap.js";
 import {
@@ -395,6 +395,9 @@ export function validateHostedPrivateCompositionOptions(value: unknown): Readonl
     || !exactKeys(options.commandNetworkConsent, ["approvedBy", "approvedAt", "explicitUserAct"]) || !options.commandNetworkConsent!.approvedBy.trim()
     || !Number.isFinite(Date.parse(options.commandNetworkConsent!.approvedAt)) || options.commandNetworkConsent!.explicitUserAct !== true)) throw unavailable("HOST_CONFIGURATION_INVALID");
   if (options.managedAuth) validateHostedManagedAuth(options.managedAuth);
+  // Budgets are admitted here, at host start, so a misconfigured budget is a
+  // configuration failure instead of an admission failure after sign-in.
+  try { assertCodexSupervisorBounds(options); } catch (cause) { throw unavailable("HOST_CONFIGURATION_INVALID", cause); }
   const { releaseV2, ...plain } = options;
   const clone = structuredClone(plain) as HostedPrivateCompositionOptions;
   if (options.releaseV2) clone.releaseV2 = Object.freeze({ basis: options.releaseV2.basis });

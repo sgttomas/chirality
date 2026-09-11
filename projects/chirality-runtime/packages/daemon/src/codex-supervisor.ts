@@ -76,6 +76,24 @@ interface NativePlanBinding { projectId: string; sessionId: string; clientTurnId
 interface Entry { handle: WorkerHandle; session: CodexTurnSession; result: Promise<WorkerResult>; cleanup: () => Promise<void>; nativePlanBinding?: NativePlanBinding; nativePlanEvents: NativePlanTransportEvent[]; turnProgress: DelegatedTurnProgressEvent[] }
 interface AdmittedCandidate { candidate: AuthenticatedCodexCandidate; session: CodexTurnSession; authority: SupplierAuthorityController; continuity: WorkerContinuity; evidence: HostedCodexSupervisorAdmission["authority"]; accountDigest: string; runtimeV2?: NonNullable<HostedCodexSupervisorOptions["runtimeV2"]> }
 const unavailable = (message: string) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503);
+/**
+ * Per-field ceilings for the supervisor's operational budgets. A request
+ * budget covers one app-server exchange; a turn budget covers a whole
+ * agentic turn and may legitimately run for many minutes, but never beyond
+ * the descendant tracker's one-hour lifetime.
+ */
+export const CODEX_SUPERVISOR_BOUNDS = Object.freeze({
+  requestTimeoutMs: Object.freeze({ min: 1, max: 600_000 }),
+  turnTimeoutMs: Object.freeze({ min: 1, max: 3_600_000 }),
+  maxWorkers: Object.freeze({ min: 1, max: 1_024 })
+});
+export function assertCodexSupervisorBounds(options: { requestTimeoutMs?: number; turnTimeoutMs?: number; maxWorkers?: number }): void {
+  const values = { requestTimeoutMs: options.requestTimeoutMs ?? 10_000, turnTimeoutMs: options.turnTimeoutMs ?? 120_000, maxWorkers: options.maxWorkers ?? 16 };
+  for (const key of ["requestTimeoutMs", "turnTimeoutMs", "maxWorkers"] as const) {
+    const value = values[key], bound = CODEX_SUPERVISOR_BOUNDS[key];
+    if (!Number.isSafeInteger(value) || value < bound.min || value > bound.max) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex supervisor bound");
+  }
+}
 function id(value: string): void { if (typeof value !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(value)) throw new RuntimeError("INVALID_REQUEST", "Invalid worker identity"); }
 
 class RuntimeToolMailbox {
@@ -150,7 +168,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       const admitted = catalog.find(entry => entry.model === options.model);
       if (!admitted || (options.reasoningEffort !== undefined && !admitted.supportedReasoningEfforts.includes(options.reasoningEffort))) throw new RuntimeError("INVALID_REQUEST", "Admitted Codex model or reasoning effort is outside its catalog");
     }
-    for (const value of [options.requestTimeoutMs ?? 10_000, options.turnTimeoutMs ?? 120_000, options.maxWorkers ?? 16]) if (!Number.isSafeInteger(value) || value < 1 || value > 600_000) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex supervisor bound");
+    assertCodexSupervisorBounds(options);
     if (options.commandNetworkPosture !== undefined && !["off", "ask-per-destination", "on"].includes(options.commandNetworkPosture)) throw new RuntimeError("INVALID_REQUEST", "Unsupported executable command-network posture");
     if (options.supportedPermissionMode !== undefined && options.supportedPermissionMode !== "workspaceWrite") throw new RuntimeError("INVALID_REQUEST", "Unsupported native permission profile");
     if ((options.accountStorageBackend === "keyring") === (options.managedAuth !== undefined)) throw new RuntimeError("INVALID_REQUEST", "Codex account storage policy must use exactly one Runtime generation");

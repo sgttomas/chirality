@@ -10,6 +10,7 @@ import type { DelegatedNativePlanSink } from "@chirality/runtime-core";
 import type { UIEvent, WorkerHandle } from "@chirality/runtime-contracts";
 import { RuntimeClient } from "@chirality/runtime-client";
 import { CodexSupervisor } from "../packages/daemon/src/codex-supervisor.js";
+import { PACKAGED_REQUEST_TIMEOUT_MS, PACKAGED_TURN_TIMEOUT_MS } from "../packages/daemon/src/hosted-packaged-release.js";
 import { admitHostedControlledForTests } from "../packages/daemon/src/codex-supervisor-test-support.js";
 import { createControlledCodexCandidateLauncherFactoryForTests } from "../packages/daemon/src/codex-admitted-launcher.js";
 import type { AuthenticatedCodexCandidate } from "../packages/daemon/src/codex-authenticated-transport.js";
@@ -208,6 +209,9 @@ describe("hosted private production composition boundary", () => {
     expect(() => validateHostedPrivateCompositionOptions({ ...options, commandNetworkPosture: "on" })).toThrow();
     expect(() => validateHostedPrivateCompositionOptions({ ...options, configDigest: "a".repeat(64) })).toThrow();
     expect(() => validateHostedPrivateCompositionOptions({ ...options, managedAuth: f.options.managedAuth })).toThrow();
+    expect(() => validateHostedPrivateCompositionOptions({ ...options, turnTimeoutMs: 3_600_001 })).toThrow(expect.objectContaining({ code: "ENGINE_UNAVAILABLE", details: { reason: "HOST_CONFIGURATION_INVALID" } }));
+    expect(() => validateHostedPrivateCompositionOptions({ ...options, requestTimeoutMs: 600_001 })).toThrow(expect.objectContaining({ code: "ENGINE_UNAVAILABLE", details: { reason: "HOST_CONFIGURATION_INVALID" } }));
+    expect(validateHostedPrivateCompositionOptions({ ...options, requestTimeoutMs: 90_000, turnTimeoutMs: 1_800_000 })).toMatchObject({ requestTimeoutMs: 90_000, turnTimeoutMs: 1_800_000 });
     expect(validateHostedPrivateCompositionOptions(options)).not.toHaveProperty("managedAuth");
     const bindings = await createControlledHostedBootstrapPrivateBindingsForTests(options, adapters);
     await expect(bindings.createCeremony({ projectId: "project", manifestHash: "9".repeat(64), canonicalRoot: f.canonicalRoot, privateDirectory: f.privateRoot, codexHome: f.codexHome,
@@ -318,7 +322,7 @@ describe("hosted private production composition boundary", () => {
       managedAuth: { backend: "keyring", binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" } }, compatibility,
       conformance: { recordPath: join(root, "record"), acceptancePath: join(root, "acceptance"), ownerActPath: join(root, "owner"), ownerActSha256: "d".repeat(64), activationId: "activation", gateIdentity: "G4", artifactInventory: packaged.selection },
       loginPurposeRelease: { recordPath: join(root, "login-record"), acceptancePath: join(root, "login-acceptance"), ownerActPath: join(root, "login-owner"), ownerActSha256: "5".repeat(64), activationId: "login-activation", gateIdentity: "D36", artifactInventory: packaged.selection },
-      configDigest: "0".repeat(64), consentVersion: "consent-v1", commandNetworkPosture: "off", commandNetworkConsent: { approvedBy: "owner", approvedAt: "2026-09-10T00:00:00.000Z", explicitUserAct: true }, protectedPaths: [runtimeDirectory], immutableReadRoots: ["/usr"]
+      configDigest: "0".repeat(64), consentVersion: "consent-v1", commandNetworkPosture: "off", requestTimeoutMs: PACKAGED_REQUEST_TIMEOUT_MS, turnTimeoutMs: PACKAGED_TURN_TIMEOUT_MS, commandNetworkConsent: { approvedBy: "owner", approvedAt: "2026-09-10T00:00:00.000Z", explicitUserAct: true }, protectedPaths: [runtimeDirectory], immutableReadRoots: ["/usr"]
     };
     privateOptions.configDigest = recordKey({ schema: "chirality.hosted-private-config/v1", model: privateOptions.model, managedAuth: privateOptions.managedAuth, compatibility,
       commandNetworkPosture: "off", commandNetworkConsent: privateOptions.commandNetworkConsent, protectedPaths: privateOptions.protectedPaths, immutableReadRoots: privateOptions.immutableReadRoots, instructionRoot, nativeRoleConfigurationDigest: roleDigest, trustedRuntimeReadRoot: { contentDigest: runtimeReadRoot.contentDigest, readPaths: runtimeReadRoot.readPaths }, loginPurposeRelease: privateOptions.loginPurposeRelease, consentVersion: privateOptions.consentVersion });
