@@ -128,7 +128,10 @@ async function daemonSnapshot(
  * (V-D4), the child inherits the label and addresses the same job — which is what
  * keeps an isolated verification run from reaching the operator's real one.
  */
-export function createDesktopDaemonLifecycle(): RuntimeDaemonLifecycle {
+export function createDesktopDaemonLifecycle(): RuntimeDaemonLifecycle & {
+  /** Where the managed job's plist lives; read by autostart to verify ownership. */
+  readonly plistPath: string;
+} {
   const userData = app.getPath('userData');
   const posture = resolveDesktopDaemonPosture(process.env, userData);
   return new LaunchAgentManager(

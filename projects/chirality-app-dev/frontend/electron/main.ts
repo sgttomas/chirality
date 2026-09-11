@@ -3,7 +3,7 @@ import { spawn } from 'node:child_process';
 import { isAuthorizedSender } from './ipc-sender-policy';
 import { createDocumentHandoffHandler, validateRevealRoot, FilePolicyError } from '../src/app/api/working-root/file/file-policy';
 import { existsSync, mkdirSync } from 'node:fs';
-import { stat } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import path from 'node:path';
@@ -16,6 +16,9 @@ import {
 } from '@chirality/runtime-daemon/hosted';
 import { resolveHostedBootstrapTokenFile } from '@chirality/runtime-daemon/hosted-paths';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
+import { ATTACHMENT_SELECT_FILES_CHANNEL } from './attachment-ipc-contract';
+import { createAttachmentSelectionHandler } from './attachment-picker';
+import { ensureRuntimeDaemonAutostart } from './runtime-autostart';
 import { installBundledCliLauncher } from './cli-launcher';
 import { resolveDesktopEntryMode } from './desktop-entry-mode';
 import { runProtectedRuntimeCli } from './protected-runtime-cli';
@@ -481,9 +484,13 @@ function resolveInstructionRootForProcess(): string {
 async function registerDirectorySelectionHandler(): Promise<void> {
   ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
   ipcMain.handle(SELECT_DIRECTORY_CHANNEL, async () => {
+    // The folder picker is the project-preparation moment: choosing a folder is
+    // the whole of "creating a project" for the operator.
     const dialogResult = await dialog.showOpenDialog({
-      title: 'Select Working Root',
-      properties: ['openDirectory']
+      title: 'Choose a project folder',
+      buttonLabel: 'Use this folder',
+      message: 'Chirality will work in this folder and add a chirality.project.json file if one is missing.',
+      properties: ['openDirectory', 'createDirectory']
     });
 
     if (dialogResult.canceled || dialogResult.filePaths.length === 0) {
@@ -512,6 +519,22 @@ async function registerDirectorySelectionHandler(): Promise<void> {
       path: selectedPath
     };
   });
+}
+
+/**
+ * Native multi-file attachment picker, scoped to the renderer origin like every
+ * other privileged channel. Validation lives in `attachment-picker.ts`; only the
+ * dialog and the sender policy are bound here.
+ */
+function registerAttachmentSelectionHandler(rendererOrigin: string): void {
+  ipcMain.removeHandler(ATTACHMENT_SELECT_FILES_CHANNEL);
+  ipcMain.handle(
+    ATTACHMENT_SELECT_FILES_CHANNEL,
+    createAttachmentSelectionHandler({
+      authorized: (event) => isAuthorizedSender(event, rendererOrigin),
+      showOpenDialog: (options) => dialog.showOpenDialog(options)
+    })
+  );
 }
 
 async function startPackagedRendererServer(): Promise<RendererServer> {
@@ -595,6 +618,7 @@ function createMainWindow(rendererUrl: string, route = '/'): BrowserWindow {
   // Web preferences come from the hardening policy and are asserted there:
   // creation fails closed rather than producing a weaker window.
   const window = new BrowserWindow({
+    title: 'Chirality',
     width: 1280,
     height: 840,
     show: false,
@@ -805,6 +829,25 @@ async function initializeGui(): Promise<void> {
 
   await bindingSupervisor.start();
 
+  // One lifecycle instance serves both autostart and the manual controls, so
+  // both address the same job with the same posture (label, userData pin).
+  const daemonLifecycle = createDesktopDaemonLifecycle();
+  // Ordinary use must never require the operator to install or start the
+  // daemon. Reconcile the LaunchAgent now; the outcome is logged, never thrown,
+  // and the supervisor is nudged so a freshly started daemon binds without
+  // waiting out the retry ladder.
+  const autostart = await ensureRuntimeDaemonAutostart({
+    lifecycle: daemonLifecycle,
+    desktopExecutable: app.getPath('exe'),
+    packaged: app.isPackaged,
+    readInstalledPlist: () => readFile(daemonLifecycle.plistPath, 'utf8').catch(() => undefined),
+    log: (level, event, detail) => desktopLogger.log(level, event, detail)
+  });
+  desktopLogger.info('runtime.autostart.outcome', autostart);
+  if (autostart.action === 'installed-and-started' || autostart.action === 'started') {
+    void bindingSupervisor.refreshNow();
+  }
+
   const rendererUrl = app.isPackaged
     ? (rendererServer = await startPackagedRendererServer()).url
     : process.env.ELECTRON_RENDERER_URL ?? 'http://localhost:3000';
@@ -826,6 +869,7 @@ async function initializeGui(): Promise<void> {
     void deliverFolderIntent();
     return { ok: true };
   });
+  registerAttachmentSelectionHandler(rendererOrigin);
   if (process.platform === 'darwin') {
     Menu.setApplicationMenu(Menu.buildFromTemplate([
       { role: 'appMenu' },
@@ -866,7 +910,7 @@ async function initializeGui(): Promise<void> {
 
   registerRuntimeControlHandlers({
     client: runtimeClient,
-    lifecycle: createDesktopDaemonLifecycle(),
+    lifecycle: daemonLifecycle,
     desktopExecutable: app.getPath('exe'),
     packaged: app.isPackaged,
     rendererOrigin,
@@ -983,6 +1027,7 @@ async function teardown(exitCode: number, reason: string): Promise<number> {
   bindingSupervisor = undefined;
   ipcMain.removeHandler('chirality:document-handoff');
   ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
+  ipcMain.removeHandler(ATTACHMENT_SELECT_FILES_CHANNEL);
   ipcMain.removeHandler(RUNTIME_CONNECTIVITY_QUERY_CHANNEL);
   unregisterApiKeyHandlers();
   unregisterHostAccountHandler();
