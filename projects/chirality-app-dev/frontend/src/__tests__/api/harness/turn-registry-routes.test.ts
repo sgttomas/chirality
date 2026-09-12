@@ -6,6 +6,7 @@ import * as streamRoute from '../../../app/api/harness/session/[id]/turn/stream/
 import * as stateRoute from '../../../app/api/harness/session/[id]/turn/state/route';
 import * as requestsRoute from '../../../app/api/harness/session/[id]/requests/route';
 import * as answerRoute from '../../../app/api/harness/session/[id]/requests/[requestId]/answer/route';
+import { requireServerRequestAnswer } from '../../../lib/harness/server-request-answer';
 import { createFakeDaemonHarnessPort } from './fake-daemon-harness-port';
 
 /**
@@ -128,8 +129,8 @@ describe('session turn state and request routes', () => {
   });
 
   it('requireServerRequestAnswer accepts every documented kind', () => {
-    expect(answerRoute.requireServerRequestAnswer({ kind: 'approval', verdict: 'allowForSession' })).toEqual({ kind: 'approval', verdict: 'allowForSession' });
-    expect(answerRoute.requireServerRequestAnswer({ kind: 'elicitation', action: 'decline' })).toEqual({ kind: 'elicitation', action: 'decline' });
-    expect(() => answerRoute.requireServerRequestAnswer(null)).toThrow(HarnessError);
+    expect(requireServerRequestAnswer({ kind: 'approval', verdict: 'allowForSession' })).toEqual({ kind: 'approval', verdict: 'allowForSession' });
+    expect(requireServerRequestAnswer({ kind: 'elicitation', action: 'decline' })).toEqual({ kind: 'elicitation', action: 'decline' });
+    expect(() => requireServerRequestAnswer(null)).toThrow(HarnessError);
   });
 });

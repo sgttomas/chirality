@@ -121,3 +121,29 @@ blocking findings covering the actual candidate revision.
   excerpts in `spike/EVIDENCE.md` notes). Service child ready 0.5 s after spawn; pinned
   Codex 0.154.0 child running; effective home carries no `auth.json`; status route answers
   over the client token. Waiting on the owner to bind a folder and complete OAuth.
+
+## 2026-09-12T15:40:00Z — acceptance run from source: findings fixed on the live path
+- Owner bound `projects/chirality-app-dev` and signed in (OAuth in the browser, 15 s;
+  `auth.json` lands only in the App's effective home; `~/.codex/auth.json` untouched).
+- Live-path defects found by the checks and fixed as bounded commits: (1) sign-in used the
+  project-scoped token, which lacks the credential scope (df748c5cd: account actions travel
+  over the App-host client); (2) session creation refused the sole engine for folders whose
+  manifest predates D-GOV-43 (fca60696d: Codex is not gated by `enabledAdapterIds`);
+  (3) the App proxy emitted no keepalive during silent tool runs (36f269d62); (4) changing a
+  selected workflow or editing its body mid-session hit the retired context-successor
+  machinery (`RUNTIME_COMPATIBILITY_MISMATCH`, "cannot prepare a reversible context
+  successor"): method transitions are now additive for engines without successor
+  preparation and changed instruction bytes re-freeze with the accepting turn; (5) the
+  renderer's legacy boot turn ("bootstrap" as a real model turn) never completed on the
+  Codex path and timed out after 150 s ("Chat took too long to start"): the Codex adapter
+  declares `boot: "none"` and boot records readiness without a turn (258 ms measured).
+  Also: `requireServerRequestAnswer` moved out of a Next route module (a non-handler export
+  fails `next build`), and the SIGKILL escalation test no longer depends on wall-clock.
+- Development-only: from source the instruction root resolved to the repository root, so
+  no folder inside the repo could be a project; the source run now uses the staged copy
+  produced by `instruction-root:prepare`, as the packaged App does.
+- Checks S-1..S-7 and the transport-level disconnect check PASS (`spike/EVIDENCE.md`);
+  S-8 sign-out and the window-level disconnect check pending with the owner.
+- Observation for review: after `turn/interrupt` the sandboxed `sleep 120` child of the
+  interrupted command kept running to its natural end (stock Codex behaviour; the turn
+  itself was interrupted within 1.1 s and the session continued).

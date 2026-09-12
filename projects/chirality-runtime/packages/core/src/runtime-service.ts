@@ -322,6 +322,27 @@ export class RuntimeService {
       }
     }
     const engine = this.engines.resolve(session.engineSelection);
+    if (engine.descriptor.boot === "none") {
+      // No boot turn: the engine keeps a durable provider thread per session
+      // and starts it with the first real turn. Readiness is recorded now.
+      const bootedAt = new Date().toISOString();
+      const fingerprint = this.runtimeFingerprint(engine, session.engineSelection);
+      const bootFingerprint = sha256(JSON.stringify([project.manifestHash, session.persona, session.mode, fingerprint]));
+      const updated = { ...session, bootFingerprint, runtimeFingerprint: fingerprint, bootedAt };
+      await this.sessions.update(updated);
+      return {
+        session: updated,
+        boot: {
+          ...(session.engineSessionId === undefined ? {} : { engineSessionId: session.engineSessionId }),
+          adapterId: session.engineSelection.adapterId,
+          providerId: session.engineSelection.providerId,
+          model: session.engineSelection.model,
+          bootFingerprint,
+          runtimeFingerprint: fingerprint,
+          bootedAt
+        }
+      };
+    }
     const turnId = randomUUID();
     const resolvedContext = session.schemaVersion === "chirality.session/v3" ? await this.methods.resolveForTurn(projectId, session) : undefined;
     const requestedTools = opts.tools ?? [];
@@ -488,29 +509,7 @@ export class RuntimeService {
       await this.sessions.persistEvent(projectId, event);
     }
     const bootedAt = new Date().toISOString();
-    const fingerprint = {
-      schemaVersion: "chirality.runtime-fingerprint/v2",
-      personaComposerVersion: "shared-runtime/v1",
-      permissionPolicyVersion: "shared-runtime/v1",
-      managedDelegationPolicyVersion: "shared-runtime/v1",
-      subagentPolicyVersion: "shared-runtime/v1",
-      toolRegistryVersion: "shared-runtime/v1",
-      sdkPackageVersion: engine.descriptor.packageVersion ?? "embedded",
-      engineAdapter: {
-        adapterId,
-        providerId,
-        model,
-        ...(engine.descriptor.packageName === undefined
-          ? {}
-          : { packageName: engine.descriptor.packageName }),
-        ...(engine.descriptor.packageVersion === undefined
-          ? {}
-          : { packageVersion: engine.descriptor.packageVersion })
-      },
-      mcpServers: [],
-      fingerprintSha256: ""
-    };
-    fingerprint.fingerprintSha256 = sha256(JSON.stringify(fingerprint));
+    const fingerprint = this.runtimeFingerprint(engine, { adapterId, providerId, model });
     const bootFingerprint = sha256(
       JSON.stringify([project.manifestHash, session.persona, session.mode, fingerprint])
     );
@@ -554,6 +553,34 @@ export class RuntimeService {
           : { claudeSessionId: updated.claudeSessionId })
       }
     };
+  }
+
+  private runtimeFingerprint(engine: ReturnType<EngineRegistry["resolve"]>, attribution: { adapterId: string; providerId: string; model: string }): SessionBootResponse["boot"]["runtimeFingerprint"] {
+    const { adapterId, providerId, model } = attribution;
+    const fingerprint = {
+      schemaVersion: "chirality.runtime-fingerprint/v2",
+      personaComposerVersion: "shared-runtime/v1",
+      permissionPolicyVersion: "shared-runtime/v1",
+      managedDelegationPolicyVersion: "shared-runtime/v1",
+      subagentPolicyVersion: "shared-runtime/v1",
+      toolRegistryVersion: "shared-runtime/v1",
+      sdkPackageVersion: engine.descriptor.packageVersion ?? "embedded",
+      engineAdapter: {
+        adapterId,
+        providerId,
+        model,
+        ...(engine.descriptor.packageName === undefined
+          ? {}
+          : { packageName: engine.descriptor.packageName }),
+        ...(engine.descriptor.packageVersion === undefined
+          ? {}
+          : { packageVersion: engine.descriptor.packageVersion })
+      },
+      mcpServers: [],
+      fingerprintSha256: ""
+    };
+    fingerprint.fingerprintSha256 = sha256(JSON.stringify(fingerprint));
+    return fingerprint;
   }
 
   async listAgents(

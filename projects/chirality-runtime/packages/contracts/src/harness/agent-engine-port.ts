@@ -21,6 +21,13 @@ export type EngineDescriptor = {
   packageName?: string;
   packageVersion?: string;
   capabilities: EngineCapabilities;
+  /**
+   * `turn` (default): session boot runs a reserved boot turn and requires
+   * `session:init`. `none`: the engine keeps a durable provider thread per
+   * session and boot only records readiness; the thread starts with the
+   * first real turn (the Codex app-server path).
+   */
+  boot?: "turn" | "none";
 };
 
 export type AgentEngineRunInput = {

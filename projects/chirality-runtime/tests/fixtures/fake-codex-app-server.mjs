@@ -19,7 +19,9 @@ export function createFakeCodexServer(options = {}) {
   ];
 
   async function runTurn(thread, turn, input) {
-    const text = input.filter(item => item.type === "text").map(item => item.text).join("\n");
+    // Scripted behaviour keys off the user prompt, which is the last text item; an
+    // additive "Chirality context update:" item may precede it.
+    const text = input.filter(item => item.type === "text").at(-1)?.text ?? "";
     const live = { interrupted: false, resolveInterrupt: undefined };
     liveTurns.set(turn.id, live);
     notify("turn/started", { threadId: thread.id, turn: { ...turn, status: "inProgress" } });

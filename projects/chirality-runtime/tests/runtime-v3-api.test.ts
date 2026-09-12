@@ -97,7 +97,9 @@ describe("v3 Runtime API integration", () => {
     expect(replay.instructionBases[0]?.selectedMethods).toEqual([expect.objectContaining({ name: "fixture-method" })]);
     expect(replay.instructionBases[0]?.compatibilityInputs).toEqual([]);
     expect(replay.instructionBases[0]?.compatibilityMappings).toEqual([]);
-    await expect(fixture.client.replaceSelectedMethods("v3-api", session.sessionId, { methods: [] })).rejects.toMatchObject({ code: "RUNTIME_COMPATIBILITY_MISMATCH", details: { successorAvailable: false } });
+    // An engine without successor preparation transitions additively: the
+    // selection changes durably and the next turn carries a context update.
+    await expect(fixture.client.replaceSelectedMethods("v3-api", session.sessionId, { methods: [] })).resolves.toMatchObject({ transition: { status: "additive", successorAvailable: false } });
     await fixture.daemon.stop();
     daemons.splice(daemons.indexOf(fixture.daemon), 1);
     const restarted = new RuntimeDaemon({ runtimeDirectory: fixture.runtime, socketPath: join(fixture.directory, "restart.sock"), service: fixture.service });

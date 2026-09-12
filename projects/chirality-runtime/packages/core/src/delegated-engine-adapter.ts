@@ -94,6 +94,7 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
   const descriptor = {
     adapterId: options.selection.adapterId,
     providerId: options.selection.providerId,
+    boot: "none" as const,
     packageName: "@chirality/runtime-core",
     capabilities: {
       credentials: false,

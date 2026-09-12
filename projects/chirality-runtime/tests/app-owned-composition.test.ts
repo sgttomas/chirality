@@ -183,6 +183,38 @@ describe("App-owned Codex composition", () => {
     expect(APP_HOST_CLIENT_ID).toBe("app-host");
   });
 
+  it("boots a session without a Codex turn: readiness is recorded and the thread starts with the first message", async () => {
+    const f = await start();
+    const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
+    const booted = await f.project.bootSession(f.projectId, session.sessionId);
+    expect(booted.boot).toMatchObject({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-5-codex" });
+    expect(booted.boot.engineSessionId).toBeUndefined();
+    expect(typeof booted.boot.bootedAt).toBe("string");
+    expect(booted.session.bootFingerprint).toBe(booted.boot.bootFingerprint);
+    expect(f.fake().server.state.requests.filter(request => request.method === "thread/start" || request.method === "turn/start")).toHaveLength(0);
+    const events = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "after boot" }), event => event.type === "process:exit");
+    expect(harness(events).map(event => event.type)).toContain("turn.completed");
+    expect(f.fake().server.state.requests.filter(request => request.method === "thread/start")).toHaveLength(1);
+  });
+
+  it("changes selected methods additively after a turn: the thread stays and the next turn carries a context update", async () => {
+    const f = await start();
+    const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
+    await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "first" }), event => event.type === "process:exit");
+    const firstStarts = f.fake().server.state.requests.filter(request => request.method === "turn/start").length;
+    const replacement = await f.project.replaceSelectedMethods(f.projectId, session.sessionId, { boundaryConfirmed: true, methods: [{ kind: "workflow", name: "project-setup" }] });
+    expect(replacement.transition).toEqual({ status: "additive", successorAvailable: false });
+    expect(replacement.methods).toEqual([expect.objectContaining({ kind: "workflow", name: "project-setup" })]);
+    await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "second" }), event => event.type === "process:exit");
+    const starts = f.fake().server.state.requests.filter(request => request.method === "turn/start");
+    expect(starts).toHaveLength(firstStarts + 1);
+    const input = (starts.at(-1)!.params as { input: { type: string; text?: string }[] }).input;
+    expect(input.some(item => item.type === "text" && item.text?.startsWith("Chirality context update:"))).toBe(true);
+    expect(input.some(item => item.type === "text" && item.text === "second")).toBe(true);
+    // One provider thread throughout: no successor, no second thread/start.
+    expect(f.fake().server.state.requests.filter(request => request.method === "thread/start")).toHaveLength(1);
+  });
+
   it("creates sessions for a project whose pre-replatform manifest never listed the Codex adapter", async () => {
     const f = await start();
     // A manifest whose enabledAdapterIds name only pre-D-GOV-43 adapters.
