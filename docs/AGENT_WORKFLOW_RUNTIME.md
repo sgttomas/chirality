@@ -45,7 +45,7 @@ App discovery policies:
 
 | Library | Project | User | Bundled | Ordinary App policy |
 |---|---|---|---|---|
-| Skills | `.agents/skills/<name>/SKILL.md` | `~/.agents/skills/<name>/SKILL.md` | App-supplied reviewed skill library | Resolve only bundled skills into ordinary agent context |
+| Skills | `.agents/skills/<name>/SKILL.md` | `~/.agents/skills/<name>/SKILL.md` | App-supplied reviewed skill library | Follow Codex's native discovery of all three sources; display each skill's origin |
 | Workflows | `.chirality/workflows/<name>/WORKFLOW.md` | `~/.chirality/workflows/<name>/WORKFLOW.md` | App-supplied reviewed workflow library; Root source packages currently live under `workflows/` | Discover all three sources |
 
 A skill is reusable bounded contextual instruction with a canonical `SKILL.md`.
@@ -69,17 +69,17 @@ resolves a collision. Project instructions and workflows may specialize the
 shared suite but cannot weaken Root governance or escape the active working
 root.
 
-Ordinary App skill listing, inspection, and context resolution operate only
-over the trusted bundled library. Project and user `SKILL.md` inspection
-remains available to Root reference and standalone compatibility interfaces,
-and their original
-identities remain valid historical evidence; file presence never makes them
-eligible ordinary App context. Read-only replay may render the exact preserved
-bytes and origin of an earlier selection, or report historical bytes
-unavailable, without activating that skill for a new model turn. Continuing an
-ordinary App conversation from such a selection requires an explicit drop or
-change to an eligible bundled skill. The adapter never substitutes a same-named
-bundled skill or silently re-admits the old selection.
+Ordinary App skill availability follows Codex's native discovery
+(`skills/list` over project, user, and bundled skills) under D-GOV-43 item 10.
+The App offers read-only, less prominent skill inspection that shows each
+skill's origin; the former bundled-only trust restriction on ordinary App
+skill resolution is superseded. Project and user `SKILL.md` inspection remains
+available to Root reference and standalone compatibility interfaces, and
+original identities remain valid historical evidence. Read-only replay may
+render the exact preserved bytes and origin of an earlier selection, or report
+historical bytes unavailable, without activating that skill for a new model
+turn. A historical selection is never silently rebound to a same-named
+definition from another origin.
 
 Context-supplied skills that do not originate at a readable filesystem library
 are labeled `context-supplied` with the provider origin and available
@@ -146,9 +146,9 @@ workflow-editor surface or alternate workflow document format.
 ## Context selection and execution
 
 Ordinary selective App context contains Root `AGENTS.md`, applicable project
-instructions, the active role instruction, and available bundled-skill names
-and descriptions. It excludes other full role instructions, broad governance
-documents, and unselected method bodies. Selected skill/workflow bodies and
+instructions, the active role instruction, and the names and descriptions of
+the skills Codex reports as available. It excludes other full role
+instructions, broad governance documents, and unselected method bodies. Selected skill/workflow bodies and
 only the resources needed for the current stage load on demand. A selected
 resource must exist and remain within its source package after real-path
 resolution. Deliberate wider-index consultation is a recorded catalog
@@ -209,9 +209,11 @@ default plan is stored with that conversation; export to a project file occurs
 only when the user explicitly selects it. Ordinary native Plan Mode creates no
 decomposition checkpoint by itself.
 
-`permissionMode` describes the host permission or approval policy and is
-orthogonal to `interactionMode`: changing modes grants no permission, and
-changing a permission mode does not add a semantic human checkpoint. A native
+`permissionMode` maps onto the user's chosen Codex approval policy and
+sandbox mode, selected per project with per-turn override from Codex's own
+options (D-GOV-43 item 4), and is orthogonal to `interactionMode`: changing
+modes grants no permission beyond what the host enforces, and changing a
+permission mode does not add a semantic human checkpoint. A native
 host plan is an ad hoc plan representation unless a source-qualified workflow
 explicitly adopts it; adapters preserve this qualification and do not relabel
 it as an accepted repository workflow. Plans remain optional and may compose

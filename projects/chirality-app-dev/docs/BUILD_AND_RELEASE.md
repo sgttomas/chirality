@@ -4,6 +4,7 @@
 **Date:** 2026-06-13
 **Product:** Chirality desktop harness and bundled agent operating system
 **Applies to:** local build evidence, Electron packaging evidence, instruction-root integrity, and future release-candidate review
+**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: the short packaging procedure in §8 supersedes the Stage 9 to 13 spine; the shared-runtime packaging addendum is revised to the application-owned Runtime service
 
 ## 1. Purpose
 
@@ -39,7 +40,7 @@ The current app-dev implementation is a Next.js plus Electron desktop workspace 
 - network-policy proof;
 - unsigned local macOS arm64 package and DMG commands using `electron-builder`.
 
-The current release target remains the `docs/CONTRACT.md` K-RELEASE-1 target: macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless a governed amendment changes it.
+Ordinary local output remains the `docs/CONTRACT.md` K-RELEASE-1 target: macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG. The D-GOV-43 (A2) trial candidate is one consolidated signed and notarized build produced by the short procedure in §8 after independent source review; the bundle carries the stock, lockfile-pinned `@openai/codex` dependency and the Runtime service the App spawns as a child process. Publication remains separately human-authorized.
 
 ## 4. Local Command Map
 
@@ -123,7 +124,44 @@ These profiles are documentation labels, not new scripts.
 | Packaging review | `npm run build`; `npm run instruction-root:integrity`; `npm run desktop:pack` or `npm run desktop:dist` as applicable; `npm run harness:validate:agentsdk-packaged-proof` when SDK subprocess resolver or transcript/HOME posture is in scope. | Instruction-root, packaging, app metadata, SDK resolver posture, or distribution artifact changes. |
 | Release-candidate dry run | Runtime premerge plus packaging review, with known limitations and human-gate state recorded. | Future release-candidate evidence only after human authorization. |
 
-## 8. Packaging Skeleton
+## 8. Packaging Procedure
+
+### 8.1 D-GOV-43 short procedure (current)
+
+Under D-GOV-43 (A2) the consolidated trial candidate is produced once, after
+independent source review of the actual candidate revision, by this
+procedure:
+
+1. Build from the reviewed source revision (`npm run build`, then the
+   `electron-builder` output); the Runtime service is bundled and spawned by
+   Electron main as a child process, so no LaunchAgent, installer, supplier
+   staging or admission step exists.
+2. Sign the bundle.
+3. Notarize the bundle.
+4. Verify the signature and the Codex pin: the bundled `@openai/codex`
+   version equals the lockfile pin, and the signature covers the bundled
+   binary.
+5. Run the distinct packaged checks: S-6 (quit and relaunch with continuation
+   of the same chat), S-8 (sign-in and sign-out scoped to Chirality with
+   another Codex client's state unchanged), and the signature and pin
+   verification of step 4. These are the expected minimum, not a ceiling:
+   repeat any affected check when a source, configuration or packaging change
+   invalidates its earlier evidence (for example packaged instruction roots
+   resolving differently from development files; `npm run
+   instruction-root:integrity` is the relevant script). Do not repeat
+   unaffected tests because another stage has begun.
+6. Record the source revision, the artifact paths, the signing and
+   notarization state, the pin verification, and known limitations. Native
+   verification of the packaged App is by the owner's designated direct
+   tester; publishing is a separate owner act.
+
+The Stage 9 to 13 twenty-five-step spine (steps 0a to 25) of the
+`APP_V3_DIRECT_TRIAL_20260910` and `APP_V3_TRIAL_COMPLETION_20260910`
+records, with its observer, payload-bind, governance, seal and supplier
+signing steps, no longer applies; its executed records are preserved
+unchanged as history.
+
+### 8.2 Ordinary packaging review (unchanged)
 
 A packaging review should:
 
@@ -157,12 +195,15 @@ Hosted workflows must not receive private project data, API keys, protected prof
 
 ## 11. Shared Runtime Packaging Addendum
 
-D-APP-73 requires the packaged Electron executable to support both ordinary
-GUI startup and headless `--runtime-daemon` mode without duplicate runtime
-construction. Packaging evidence MUST cover LaunchAgent invocation, daemon
-startup/shutdown, socket placement and permissions, packaged CLI execution
-without global Node, and one offline scripted packaged turn.
+Revised under D-GOV-43 (A2), 2026-09-12. The packaged App spawns the
+Runtime service from its own bundle as a child process (ready line on stdout,
+per-launch client token under `userData`, restart with backoff on crash,
+stopped in teardown on quit) and the service owns the stock, lockfile-pinned
+`codex app-server` child. The headless `--runtime-daemon` mode, the
+LaunchAgent `com.chirality.runtime`, its installer and the two-job design are
+retired. Packaging evidence covers child spawn and shutdown from the packaged
+bundle, socket placement and permissions, and the checks in §8.1.
 
-The bundled `chirality` launcher is installed to `~/.local/bin` only through
-the governed daemon-install workflow and executes with Electron’s embedded
-Node runtime. Installation is opt-in and is not a release/publication act.
+The bundled `chirality` CLI remains a socket-API client; its compatibility
+with the service is unverified and not an MVP prerequisite, and no
+`~/.local/bin` installation is part of the procedure.

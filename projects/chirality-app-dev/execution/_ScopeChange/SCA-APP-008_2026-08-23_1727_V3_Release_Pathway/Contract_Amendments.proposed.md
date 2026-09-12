@@ -1,5 +1,10 @@
 # Proposed App Contract Amendments — SCA-APP-008
 
+> **Revision 2026-09-12 (D-GOV-43, topology A2).** Parts of this file are
+> `SUPERSEDED_BEFORE_ACCEPTANCE`; see `REVISION_2026-09-12_D-GOV-43_A2.md` in
+> this packet for the exact rows and their replacements. The original text
+> below is preserved unchanged.
+
 **Status:** `PROPOSED_NOT_APPLIED`
 **Target if later owner-approved:** `projects/chirality-app-dev/docs/CONTRACT.md`
 **Current target SHA-256:** `6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7`

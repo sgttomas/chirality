@@ -865,54 +865,57 @@ The prior root SPEC carried desktop-frontend UI navigation and `/api/project/del
 ## 14. Shared Runtime Product and Governance Boundary
 
 The `projects/chirality-runtime/` project owns versioned contracts, provider-neutral
-orchestration, a daemon, a Unix-socket client, a CLI, and safe engine/provider
-adapters. It is an independent Node workspace with its own lockfile. Project
-applications consume its public packages; private project adapters do not
-become generic runtime dependencies.
+orchestration, the Runtime service, a Unix-socket client, a CLI, and safe
+engine/provider adapters. It is an independent Node workspace with its own
+lockfile. Project applications consume its public packages; private project
+adapters do not become generic runtime dependencies. The service composition
+stays independent of Electron and Next so a later Chirality application can
+run it as its own sidecar (D-GOV-43 A2 supplement).
 
-### 14.1 Local control plane
+### 14.1 Application-owned Runtime service and Codex child
 
-The packaged Chirality application may run in `--runtime-daemon` mode without
-a window. Its only control listener is
-`{userData}/runtime/control.sock`. The parent directory is mode `0700`; the
-socket and owner/auth records are mode `0600`. Stale-socket recovery verifies
-current-user ownership and absence of a live recorded process before removal.
+The Chirality App starts one Runtime service as a child process at launch,
+owns it for the life of the App instance, and stops it deliberately on quit.
+There is no per-user LaunchAgent, installer, or headless daemon mode. The
+service reports readiness with one ready line on its standard output; the App
+waits for that line before routing any request. If the service exits
+unexpectedly the App restarts it with bounded backoff and shows the outage;
+it never presents unexpected termination as completion.
 
-Installation is opt-in through the bundled CLI. The installed macOS
-LaunchAgent has label `com.chirality.runtime`, starts at login, restarts after
-failure, writes logs and mutable state beneath Chirality user data, and does
-not load any local model automatically.
+The service's only control listener is one Unix-domain socket beneath the
+application user-data directory, with a `0700` parent directory and a `0600`
+socket. Stale-socket recovery verifies current-user ownership and absence of a
+live recorded process before removal. The App issues a per-launch client
+token, stored under user data and private to the application, and presents it
+on every request; the token is not exposed to the renderer. No second socket
+and no TCP listener exist under any configuration. The service's HTTP/1.1
+JSON and SSE routes cover health, project registration and status, thread
+create, list, resume, turn, interrupt, and server-request answers, and
+Codex-managed login and logout.
 
-HTTP/1.1 JSON requests and canonical SSE responses cover health, project
-registration/status, session create/list/boot/replay/turn/interrupt,
-high-level Agent 1 runs, provider credentials, and explicit oMLX model
-status/activation. Tokens are hashed at rest, scoped to a client and optional
-project, and compared in constant time. Browser code never receives a runtime
-credential.
+The service owns the stock, version-pinned `codex app-server` child from the
+official `@openai/codex` distribution, launched over stdio against Chirality's
+effective Codex home, which shares the user's configuration, skills, plugins,
+MCP definitions, instruction caches, and sessions store by reference and
+keeps `auth.json` and the models cache private. The service forwards the
+complete notification and server-request stream; every server request
+receives an answer, and an unfamiliar request receives an explicit error
+response rather than silence.
 
-Daemon shutdown is generation-bound and fail-closed. The first stop closes
-listener admission, then immediately requests the canonical, idempotent
-interrupt for every active SSE turn whose session identity is known; an Agent
-1 stream whose identity has not yet appeared keeps that request latched only
-until force. The exact graceful interval is 2,000 ms. If listener close is
-still incomplete at that deadline, the daemon calls `closeAllConnections()`
-and destroys every residual socket tracked for that generation. A pre-identity
-latch expires at force with `INTERRUPTION_IDENTITY_UNAVAILABLE`, and no later
-event may issue the interrupt. Transport or interrupt acknowledgement cannot
-extend shutdown after force: Node close and tracked-socket settlement receive
-at most a further 500 ms before control-socket unlink and identity-guarded
-owner cleanup are attempted.
+Execution, observation, interruption, and shutdown are distinct. The Runtime
+owns the active turn. The renderer observes it through loopback HTTP and SSE
+served by the in-process Next server; a renderer subscription that drops does
+not stop the turn, and reopening recovers current state, missed activity, and
+outstanding decisions without re-sending the prompt or executing twice.
+Explicit Stop is the interrupt. Quit stops the owned Runtime and Codex
+processes deliberately and leaves an accurate continuation record; no
+unattended execution after quit is promised.
 
-Concurrent stops share one in-flight operation; a stopped stop is a no-op.
-Concurrent starts and start during stop are rejected. Teardown attempts all
-owned cleanup before reporting collected failures. Clean transport and
-metadata with interruption failure or timeout is `STOPPED_DEGRADED` and blocks
-instance reuse; incomplete transport or owned metadata is
-`STOP_FAILED_CLEANUP`, where a later stop retries only incomplete cleanup.
-Successful stop permits the same instance to start a new generation, and late
-events from an earlier generation cannot close, interrupt, unlink, or mutate
-the new listener or owner generation. Forced transport disconnection does not
-promise a final HTTP/SSE frame; EOF versus reset is platform-dependent.
+The App keeps a thread index keyed by Codex thread id in its operational
+user-data state (title, project, role, plan revisions, workflow selections,
+evidence pointers). On relaunch the App resumes an indexed thread through
+`thread/resume`; the sidebar shows the App's index, not every thread in the
+shared store.
 
 ### 14.2 Project manifests and sessions
 
@@ -927,50 +930,25 @@ adapter IDs, and an embedded-UI declaration. Registration containment-checks
 the resolved paths and records the manifest hash and approval outside the
 checkout. Privileged execution stops on manifest drift until re-registration.
 
-Canonical runtime sessions live beneath
-`{userData}/runtime/projects/<projectId>/sessions`. A legacy project-local
-session may be copied and validated lazily on access, with migration evidence;
-the source remains untouched for the migration cycle. JSON/JSONL stays the
-runtime evidence format.
+Threads are ordinary Codex threads in the shared Codex sessions store of
+Chirality's effective home; the App keeps its own index and metadata keyed by
+Codex thread id under user data (§14.1). Both are operational,
+non-authoritative state. Daemon-era session records beneath
+`{userData}/runtime/projects/<projectId>/sessions` are preserved unchanged in
+place as a readable archive; no import is a release prerequisite, and their
+continuation as Codex threads is not promised. Chirality evidence required by
+a governing workflow is written to checkout-contained project evidence in
+JSON/JSONL.
 
-### 14.3 Local-model residency
+### 14.3 Local-model residency (retired)
 
-The first managed provider is authenticated literal-loopback oMLX. Discovery
-uses `GET /v1/models/status`; explicit transitions use the exact model ID with
-`POST /v1/models/{id}/unload` and `POST /v1/models/{id}/load`. Redirects,
-embedded URL credentials, remote hosts, and aliases are rejected.
+Retired by D-GOV-43 item 13. Local models, when taken up, are Codex model
+providers. The prior text is preserved in git history.
 
-One primary local LLM may be managed at a time. Activation rejects new local
-turns, drains active Pi turns for at most ten minutes, and completes the whole
-transition within twenty minutes. Drain timeout retains the current model.
-Load failure after unload enters `NO_MODEL`. Unknown helper, embedding, and
-reranking models are never automatically unloaded. Redacted transition
-evidence assigns an epoch referenced by local sessions and AgentRuns.
+### 14.4 Initial governed run (retired)
 
-### 14.4 Initial governed run
-
-`chirality run --project <id> --agent <Agent1Role> --brief-file <path>
---local-model <exact-id>` creates a real Agent 1 session. The exact local model
-must already be resident. The run authorizes at most one Pi/oMLX Agent 2 child
-with one declared read-only Chirality tool and requires the Agent 1 to review
-its return. Missing compliant delegation terminates with
-`REQUIRED_DELEGATION_MISSING`. Agent 2 cannot delegate.
-
-The complete initial CLI surface is:
-
-```text
-chirality daemon install|start|stop|status|uninstall
-chirality project register|list|status
-chirality models list|activate
-chirality session create|list|replay|turn|interrupt
-chirality run --project <id> --agent <role> --brief-file <path>
-              [--local-model <exact-id>] [--json]
-```
-
-Run requests may also arrive through standard input or a request file. Human
-output is the default; `--json` emits newline-delimited canonical events.
-Credential values remain Desktop-managed and are neither accepted nor
-displayed by this initial CLI.
+Retired to history with the daemon CLI it described (D-GOV-43 items 7 and
+13, as applied by the A2 tranche). The prior text is preserved in git history.
 
 ## Prospective Root execution registration successor
 

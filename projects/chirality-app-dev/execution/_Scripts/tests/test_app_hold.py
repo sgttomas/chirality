@@ -58,6 +58,8 @@ TOOL = Path(LAYOUT["tool"])
 REPO_ROOT = Path(LAYOUT["repo_root"])
 SOW_ROOT = Path(LAYOUT["sow_root"])
 REGISTER = Path(LAYOUT["register"])
+# Commit that introduced the (since retired) SOW_INITIALIZATION register row.
+INIT_ROW_COMMIT = "e079cbc397e4208c4c82d6a55a6dffacf67165e4"
 
 TOOL_SPEC = importlib.util.spec_from_file_location("app_hold_candidate", TOOL)
 assert TOOL_SPEC and TOOL_SPEC.loader
@@ -676,7 +678,18 @@ class SowInitializationTests(unittest.TestCase):
         self.temporary = tempfile.TemporaryDirectory(prefix="app-hold-init-test-")
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name).resolve()
-        self.row = TOOL_MODULE.load_register(REGISTER)[0]
+        # The live SOW_INITIALIZATION row was retired under D-APP-127
+        # (D-GOV-43 application, 2026-09-12). These transition tests exercise
+        # the retained tool logic against the historical row bytes from the
+        # commit that introduced it, not the live register.
+        self.register_bytes = subprocess.check_output([
+            "git", "-C", str(REPO_ROOT), "show",
+            f"{INIT_ROW_COMMIT}:{REGISTER.relative_to(REPO_ROOT).as_posix()}",
+        ])
+        historical = self.root / "historical-register.csv"
+        historical.write_bytes(self.register_bytes)
+        self.row = TOOL_MODULE.load_register(historical)[0]
+        historical.unlink()
         self.folder = self.root / TOOL_MODULE.BOOTSTRAP_TARGET_FOLDER
         self.folder.mkdir(parents=True)
         for relative in (
@@ -689,7 +702,7 @@ class SowInitializationTests(unittest.TestCase):
             target = self.root / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             if relative == REGISTER.relative_to(REPO_ROOT).as_posix():
-                target.write_bytes(REGISTER.read_bytes())
+                target.write_bytes(self.register_bytes)
             else:
                 # Keep transition tests independent of later accepted source
                 # or scaffold changes after the real contract is initialized.

@@ -4,6 +4,7 @@
 **Date:** 2026-05-20
 **Product:** Chirality desktop harness and bundled agent operating system
 **Applies to:** Chirality App vNext development and release planning
+**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: the D-APP-73 shared-runtime order and SCA-APP-003 effects are read with the application-owned Runtime service; residency steps retired
 
 This document captures the strategic development roadmap for Chirality App. It summarizes the accepted baseline, records the controlling runtime direction, identifies sequencing rationale, and defines the near-term implementation path.
 
@@ -116,9 +117,10 @@ parentage, isolated read-only replay, current browser-facing SSE behavior,
 public route/API/query shapes, provider composition, security boundaries, and
 the loop-first UI through the compatibility period.
 
-The historical R0/R1 sequence below remains strategic history. The accepted
-D-APP-73 shared-runtime execution order in §13.1 remains controlling and is
-not reordered by this frontend information-architecture tranche.
+The historical R0/R1 sequence below remains strategic history. The D-APP-73
+shared-runtime execution order in §13.1 is read with D-GOV-43 (A2): the App
+owns the Runtime service as a child process, and the daemon, CLI and
+residency steps are superseded as noted there.
 
 ---
 
@@ -500,7 +502,7 @@ This plan remains acceptable only if:
 |---|---|---|
 | `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. D-APP-12 later clarified that `agentSdk` remains opt-in pending further proof/ruling. |
 | `SCA-APP-002` | 2026-07-21 | Authorizes the bounded Pi `0.80.10` / authenticated loopback oMLX second-engine tranche, subject to Electron `43.1.1` prerequisite proof (Electron authority since superseded by D-APP-98: `43.2.0`), provider-neutral contracts, fail-closed conformance/security validation, and a governed read-only Agent 2 child milestone. |
-| `SCA-APP-003` | 2026-07-22 | Promotes the executable harness to root `runtime/`, then adds one shared daemon, authenticated Unix-socket client/CLI, explicit local-model residency, the app-dev Agent 1 → local Agent 2 pilot, PEC client migration, and public generic-runtime export. |
+| `SCA-APP-003` | 2026-07-22 | Promotes the executable harness to root `runtime/`, then adds one shared daemon, authenticated Unix-socket client/CLI, explicit local-model residency, the app-dev Agent 1 → local Agent 2 pilot, PEC client migration, and public generic-runtime export. Read with D-GOV-43 (A2, 2026-09-12): the shared daemon becomes the App-owned Runtime service child; residency and the Pi/oMLX pilot are retired; CLI and PEC compatibility with the socket API is unverified. |
 | `SCA-APP-004` | 2026-07-23 | Selects Woven Dialogue with a Work/Agents Coordination Panel; preserves runtime/API/SSE/security/history and compatibility while adding provenance-labelled informational projection, explicit context/artifact anchors, and strict primary-dialogue/read-only-replay separation. |
 
 ### 13.1 D-APP-73 execution order
@@ -508,10 +510,17 @@ This plan remains acceptable only if:
 1. Close and commit D-APP-72/SCA-APP-002 after validation.
 2. Reconcile root, app-dev, tier-0 domain, and PEC governance.
 3. Promote provider-neutral packages without behavior change.
-4. Introduce the daemon and convert Desktop into a client.
+4. Introduce the daemon and convert Desktop into a client. Superseded by
+   D-GOV-43 (A2): the App starts, owns and stops the Runtime service as a
+   child process; no LaunchAgent or per-user daemon.
 5. Add the bundled CLI and explicit one-primary-model residency control.
+   Superseded: residency is retired (D-GOV-43 item 13); the CLI remains a
+   socket-API client with unverified compatibility.
 6. Prove the app-dev Agent 1 → read-only local Agent 2 vertical slice.
-7. Migrate PEC’s agent path without a dual execution loop.
+   Superseded by the S-1 to S-8 checks of D-GOV-43 item 12, including S-5
+   delegation through Codex native sub-agents.
+7. Migrate PEC’s agent path without a dual execution loop. Deferred; PEC
+   compatibility is unverified and not an MVP prerequisite.
 8. Export the generic runtime after both pilots pass.
 
 Piping, automatic scheduling, local Agent 1, multiple simultaneous primary

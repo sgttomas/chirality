@@ -1,5 +1,6 @@
 # Root notice — App method trust and MVP engine policy
 
+**Revision note 2026-09-12 (D-GOV-43 application, `execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`).** The Codex-only ruling in this notice stands: Codex is the sole App MVP engine qualification and release target. The bundled-only skill restriction is superseded by D-GOV-43 item 10 (Codex native skill discovery with displayed origins; read-only, less prominent inspection). The controlled-Runtime CI clause in the final paragraph is revised: the isolated controlled Runtime entry used by `.github/workflows/harness-premerge.yml` remains a test fixture for source integration checks; it is not an admission, a supplier qualification or a release obligation, and "existing accepted supplier and release obligations" are those of D-GOV-43 (lockfile pin, signing, notarization, pin verification), not the retired supplier admission. The text below is preserved unchanged.
 Root's prospective App profile now limits ordinary skill context to the
 reviewed bundled skill library. Project and user skill origins remain available
 only for standalone compatibility and read-only historical replay; their files

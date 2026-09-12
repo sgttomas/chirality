@@ -152,3 +152,21 @@ The durable entry for the implementing session is
 owner's ruling record in `docs/governance_harness/_DECISIONS/` before work
 starts. R17 GUI 31613 and daemon 27838 were still running and signed in at
 this checkpoint; the R17 installation and all evidence remain preserved.
+
+## Successor: D-GOV-43 ruled, topology A2 selected, application tranche (2026-09-12)
+
+The text above is preserved unchanged. D-GOV-43 was ruled on 2026-09-11 and
+its topology supplement recorded on 2026-09-12 (publication SHA
+`d2878462be59a43b4afc175a8cce85abca9cf696`, PR #767). The selected topology
+is A2: the App starts, owns and stops a simplified Runtime service child that
+speaks its existing socket API and owns the stock, pinned `codex app-server`
+child; the LaunchAgent, hosted admission, restart admission, the native
+admission addon and the supplier machinery are retired. The durable entry
+for the implementing session remains
+`../APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md`; the App-loop
+application record is
+`../../_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`.
+The new short packaging procedure and native checklist in that run directory
+supersede the applicability of the Stage 16 to 26 records and the R15 to R17
+checklists here; those records are unchanged history. The R17 installation,
+userData and Codex home stay preserved and are not reused by the spike.

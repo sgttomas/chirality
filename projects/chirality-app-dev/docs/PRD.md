@@ -8,11 +8,13 @@
 **Public release snapshot path:** `chirality-app/frontend`, maintained as a release operation rather than the active vNext development source  
 **Primary audience:** product owner, engineering, agent-instruction maintainers, reviewers, release operators, and future harness-runtime implementers
 
+**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: daemon, admission, supplier, harness-port and SSE clauses revised to the application-owned Runtime service; Section 17 re-expressed; residency pilot retired
+
 ## Current Codex-only MVP release basis
 
 For the current MVP release, Codex is the sole model engine. Claude/Anthropic and Pi/oMLX descriptions, default-provider rules and engine-specific proof records below describe compatibility history; they do not require shipping or enabling those engines, and their historical qualification does not establish Codex qualification. Existing conversation history remains readable without reactivating unavailable providers or inheriting their authority.
 
-Codex account sign-in and native Plan Mode are required. This scope direction is not supplier admission or account-interoperability acceptance: the actual adapter must satisfy accepted identity/currentness, per-root consent, credential custody, containment and endpoint restrictions, and native evidence must establish its supported behavior. K-NET-1, K-PACKAGE-1 and K-RELEASE-1 remain unchanged. Source tests, controlled adapters and package generation do not substitute for required actual packaged provider and native lifecycle evidence. Publication remains separately human-authorized.
+Codex account sign-in and native Plan Mode are required. Under D-GOV-43 (A2, 2026-09-12) the App hosts the stock, lockfile-pinned `codex app-server` inside a Runtime service that it starts, owns and stops as a child process; supplier admission, identity binding and the effective-configuration veto are retired; ordinary software integrity applies; the user signs in through Codex's own flow within Chirality's effective Codex home; the eight checks S-1 to S-8 of D-GOV-43 item 12 are the acceptance set. K-PACKAGE-1 remains unchanged; K-NET-1 and K-RELEASE-1 are read with D-GOV-43 items 1 and 4. Source tests, controlled adapters and package generation do not substitute for required actual packaged provider and native lifecycle evidence. Publication remains separately human-authorized.
 
 Release artifact identity is the explicitly recorded candidate version in frontend/package.json and both root version fields of frontend/package-lock.json. `Chirality-<candidate-version>-arm64.dmg`, the actual App Info.plist identity and the candidate evidence must agree. This amendment selects no version.
 
@@ -58,7 +60,8 @@ the primary dialogue.
 Runtime implementation direction:
 
 - The App should consume a provider-adapter architecture through the Root-owned
-  generic runtime and per-user daemon. External provider SDKs and APIs remain
+  Runtime service, which under D-GOV-43 (A2) the App starts, owns and stops as a
+  child process (no per-user daemon). External provider SDKs and APIs remain
   implementation substrates behind Root-owned generic runtime contracts, while
   App-facing compatibility and project-policy contracts remain App-owned.
 - Claude Agent SDK / Anthropic remains the first concrete adapter and is the key-aware
@@ -90,8 +93,8 @@ Runtime implementation direction:
   policy, App-side redaction and provenance presentation, UI transport compatibility,
   local packaging, accepted project artifacts, and App/client conformance evidence.
 - Therefore vNext is **a Root-runtime client with App-owned governance and
-  integration obligations**: the Root daemon supplies provider-neutral generic
-  runtime machinery; the App defines and presents project reliance boundaries,
+  integration obligations**: the App-owned Runtime service supplies provider-neutral
+  generic runtime machinery over the stock Codex App Server; the App defines and presents project reliance boundaries,
   supplies policy inputs, verifies conformance, and preserves governed exit paths.
 
 Current implementation assessment:
@@ -119,8 +122,8 @@ Revised product direction:
   Root-owned provider-neutral runtime without becoming a thin Claude Code wrapper, Pi
   wrapper, or generic-runtime implementation.
 - App runtime work must keep Desktop/HTTP surfaces thin, preserve browser-facing SSE/API
-  compatibility, supply project and policy inputs, and verify the Root daemon's generic
-  contracts through App-side conformance evidence. Generic `TurnEngine`, engine,
+  compatibility, supply project and policy inputs, and verify the Runtime service's
+  generic contracts through App-side conformance evidence. Generic `TurnEngine`, engine,
   credential, session, lock, interruption, persistence, and provider-message semantics
   remain Root-owned.
 - Local tool exposure should begin by configuring first-adapter SDK built-ins and in-process Chirality MCP tools behind capability-forward policy with explicit hard-deny precedence, not by building a custom model/tool loop from scratch.
@@ -251,7 +254,8 @@ A future accountable reviewer who examines domain-engine proposals, deterministi
    transcript paths, permission modes, and tool names are translated inside the Root
    adapter boundary; App clients consume the provider-neutral contract.
 13. **Routes stay thin.** App HTTP/Desktop surfaces parse and forward requests and
-   transport events; the Root daemon owns generic session locks and runtime behavior.
+   transport events; the App-owned Runtime service owns the active turn, session locks
+   and runtime behavior; a browser subscription observes the turn and never ends it.
 14. **Persist accepted user input early.** A killed or interrupted process must leave a recoverable accepted-turn record.
 15. **Separate UI events from runtime events.** App-owned browser `UIEvent`
    compatibility remains stable and compact; Root-owned persisted runtime events may be
@@ -568,7 +572,7 @@ Acceptance:
 - `frontend/dist/Chirality-<candidate-version>-arm64.dmg` is produced for macOS arm64.
 - App bundle includes expected instruction-root resources.
 - App minimum macOS target is `15.0.0` or later.
-- Build is unsigned/adhoc by design.
+- Ordinary local output is unsigned/adhoc; the D-GOV-43 consolidated candidate is signed and notarized with the signature and Codex pin verified (`docs/BUILD_AND_RELEASE.md` §8.1).
 
 ---
 
@@ -610,9 +614,9 @@ Priority:
 | FR-014 | P0 | The app shall create, list, resume, save, and delete harness sessions. | Session records are stored under `.chirality/sessions` or `CHIRALITY_SESSION_ROOT`; sessions are filtered by normalized project root. |
 | FR-015 | P0 | Session creation shall bind `projectRoot`, `persona`, and `mode`. | Missing persona/mode use defaults; invalid project root is rejected. |
 | FR-016 | P0 | Session boot shall accept runtime options. | `POST /api/harness/session/boot` accepts `opts` and records boot metadata. |
-| FR-017 | P0 | Turn execution shall stream Server-Sent Events. | `POST /api/harness/turn` returns `text/event-stream`; browser-facing events remain backward-compatible. |
+| FR-017 | P0 | Turn execution shall stream Server-Sent Events. | `POST /api/harness/turn` returns `text/event-stream` over loopback through the in-process Next server, with SSE comment keepalives and no idle timeout that ends a turn; the stream carries the D-GOV-43 event representation (Section 9.3); a closed connection never interrupts the turn, and the route's stream cancel unsubscribes without interrupting. |
 | FR-018 | P0 | Only one active turn may run per session. | Concurrent turn attempts return `TURN_IN_PROGRESS`. |
-| FR-019 | P0 | Users shall be able to interrupt active turns. | `POST /api/harness/interrupt` aborts the active provider request and yields interrupted `process:exit`. |
+| FR-019 | P0 | Users shall be able to interrupt active turns. | Explicit Stop through `POST /api/harness/interrupt` is the only interrupt; it interrupts the Codex turn owned by the Runtime service and yields an interrupted terminal outcome. Reopening after a renderer disconnect recovers current state, missed activity and outstanding decisions without re-sending the prompt. |
 | FR-020 | P1 | Runtime errors shall be typed and actionable in UI. | UI maps harness errors to title/message/next-step text and preserves drafts for retry. |
 | FR-021 | P0 | The runtime shall persist accepted user input before model/provider execution. | A killed or interrupted turn leaves a recoverable `turn.accepted` event. |
 | FR-022 | P0 | The runtime shall persist terminal turn outcomes. | Success, failure, and cancellation each produce a terminal runtime event. |
@@ -625,7 +629,7 @@ Priority:
 | FR-024 | P0 | Unknown option keys shall be ignored with warnings. | Unknown fields do not break turns or silently mutate behavior. |
 | FR-025 | P0 | Persona names shall resolve to `agents/AGENT_*.md`. | Missing personas return `PERSONA_NOT_FOUND`. |
 | FR-026 | P0 | Persona aliases shall map UI labels to canonical agents. | `HELP -> HELP_HUMAN`, `ORCHESTRATE -> PROJECT_SETUP`, `AGENTS -> HELPS_HUMANS`, `DEPENDENCIES -> EVALUATION`; re-pointed `REVIEW` and `RESEARCH` cells use canonical personas directly. |
-| FR-027 | P0 | The current MVP production provider shall be the admitted Codex engine. | A new conversation uses the explicitly selected Codex model through the shared Runtime. Missing supplier/account admission remains unavailable; it does not select Claude, Pi, or a stub as a silent fallback. Actual account sign-in, native planning and turn/delegation behavior require their accepted qualification evidence. |
+| FR-027 | P0 | The current MVP production provider shall be the stock Codex engine. | A new conversation uses the selected Codex model, with per-turn model and reasoning-effort choice, through the App-owned Runtime service and its stock, lockfile-pinned `codex app-server` child; the user's approval policy and sandbox mode are chosen per project with per-turn override and shown in the composer. A signed-out state is unavailable; it does not select Claude, Pi, or a stub as a silent fallback. Sign-in, native planning and turn/delegation behavior are evidenced by S-1 to S-8. |
 | FR-028 | P0 | The runtime shall compose real agent instruction context into SDK turns. | SDK requests include selected agent instruction content, global instruction context, working-root boundaries, mode, and the configured permitted tool surface. |
 | FR-029 | P1 | Boot fingerprints shall reflect actual prompt and SDK-policy inputs. | Fingerprint includes persona content hash, governance preface hash, mode, SDK tool names/versions, permission-policy version, settings-source posture, MCP server versions, and subagent policy version. |
 
@@ -861,8 +865,8 @@ The thesis and bigger-picture documents describe domain-engine integration, incl
 
 Compatibility requirement:
 
-- Existing `/api/harness/*` route shapes remain stable during adapter adoption and TurnEngine extraction.
-- Runtime implementation moves behind route boundaries; public SSE event names remain compatible while internal persisted events expand.
+- Existing `/api/harness/*` route shapes remain stable; under D-GOV-43 (A2) the routes are thin loopback adapters over the Runtime service's socket API.
+- Runtime implementation stays behind route boundaries; the browser stream carries the D-GOV-43 event representation of Section 9.3 while persisted events expand.
 
 ### 9.2 Workspace APIs
 
@@ -878,30 +882,38 @@ Compatibility requirement:
 
 ### 9.3 SSE Event Contract
 
-The browser-facing turn stream shall emit named SSE events with JSON payloads:
+Revised under D-GOV-43 (A2), 2026-09-12. The browser-facing turn stream is
+loopback SSE through the in-process Next server observing a turn the Runtime
+service owns. It carries an extensible representation that preserves upstream
+App Server method names, identifiers and payloads, with normalized views for
+known items: tool activity, file changes, reasoning summaries, plan,
+sub-agents, usage, approvals and questions. Unfamiliar notifications are
+rendered for generic inspection and kept in the event log, never dropped.
+Every server request receives a response: familiar requests (command,
+file-change and permission approvals, user input, dynamic tool calls, MCP
+elicitation) through their cards or the user's recorded policy; an unfamiliar
+request receives a JSON-RPC error and a visible "unsupported request"
+outcome, never an implied approval.
 
-- `session:init`
-- `chat:delta`
-- `chat:complete`
-- `tool:result`
-- `session:complete`
-- `turn:error`
-- `process:exit`
-- `harness:event`
+The former fixed eight-name set (`session:init`, `chat:delta`,
+`chat:complete`, `tool:result`, `session:complete`, `turn:error`,
+`process:exit`, `harness:event`) is superseded and retained only as
+compatibility history.
 
-Additional tool progress events may be introduced only with UI compatibility handling.
-
-The stream must always terminate with a process-level completion/error signal unless the client disconnects and cancel cleanup runs. Client disconnect cleanup must record cancellation in the persisted runtime log once the event log exists.
-
-Adapter adoption requirement:
-
-- Provider/SDK messages are not the browser contract. The first-adapter `sdk-message-mapper.ts` translates SDK stream messages into this stable UI contract and into richer product-owned `HarnessEvent`s.
+The server sends SSE comment keepalives; no idle timeout ends a turn. A
+client disconnect unsubscribes and never interrupts or cancels the turn;
+explicit Stop is the interrupt. The stream terminates with the turn's
+terminal outcome; unexpected termination of the Runtime or Codex child is
+never presented as completion. AgentRuns evidence is written from the same
+event stream, including the active policy and approvals.
 
 ### 9.4 Internal Runtime Interfaces
 
 Target internal interfaces are not public API contracts, but they are
 product-significant implementation boundaries. D-GOV-20, D-APP-73,
-SCA-APP-003, and the accepted decomposition split ownership as follows.
+SCA-APP-003, and the accepted decomposition split ownership as follows, read
+with D-GOV-43 (A2): the Root-owned interfaces are supplied by the Runtime
+service the App owns as a child process, over the stock Codex App Server.
 
 Root-owned generic runtime interfaces consumed by the App:
 
@@ -1187,7 +1199,7 @@ Protected domain-engine paths must not be directly mutated by agents. Any accept
 | NFR-007 | P0 | Deny-first permission policy shall be enforced by runtime code. | Deny rules override all allow decisions. |
 | NFR-028 | P0 | SDK settings isolation shall be enforced. | Shipped runtime does not load `user` or `local` Claude Code settings; tests assert default `settingSources: []`. |
 | NFR-029 | P0 | SDK transcript placement shall be explicit and non-authoritative. | Chirality audit JSONL remains canonical; SDK transcript paths/store keys are recorded and preferably live under project-controlled runtime folders. |
-| NFR-030 | P0 | Codex supplier subprocess packaging shall be verified for the current MVP. | The actual packaged deployment can locate and execute the admitted Codex supplier subprocess from its accepted package layout, with required native admission resources, without leaking secrets, relaxing containment or broadening accepted network policy. Controlled tests and historical Claude SDK proofs do not satisfy actual packaged execution evidence. |
+| NFR-030 | P0 | Stock Codex packaging shall be verified for the current MVP. | The packaged App spawns its Runtime service from the bundle, and the service locates and executes the stock, lockfile-pinned `codex app-server` (`@openai/codex`) whose bundled version equals the pin, under the bundle's signature and notarization, without leaking secrets or broadening network policy. Supplier admission and native admission resources are retired (D-GOV-43 item 1). Controlled tests and historical Claude SDK proofs do not satisfy packaged execution evidence; S-6 and S-8 are repeated on the packaged App. |
 
 ### 11.2 Reliability
 
@@ -1380,11 +1392,12 @@ For macOS DMG:
 
 - Binary is arm64.
 - `LSMinimumSystemVersion` is `15.0.0` or later.
-- Codesign reports no developer TeamIdentifier and adhoc signature.
+- Signing posture is recorded: ordinary local output is adhoc-signed; the D-GOV-43 consolidated candidate is signed and notarized, with the signature and the Codex pin verified.
 - App resources contain required instruction-root assets.
 - App launches and working-root selector is available.
-- Accepted Codex supplier endpoint and per-root command-network safeguards under K-NET-1 remain in force.
-- First-adapter harness turn can start in packaged app.
+- The bundled `@openai/codex` version equals the lockfile pin; the user's chosen approval policy and sandbox mode are shown and recorded (D-GOV-43 items 1 and 4).
+- S-6 (quit, relaunch, continue the same chat) and S-8 (sign-in and sign-out scoped to Chirality) pass on the packaged App.
+- First-adapter harness turn can start in packaged app (compatibility history).
 - SDK subprocess/bundled binary is not trapped inside `app.asar` without execution access.
 - SDK transcript storage/mirroring follows the accepted R1 storage decision.
 
@@ -1394,7 +1407,8 @@ The current execution decomposition is issued, but the harness runtime needs a f
 
 Current ownership note: this roadmap preserves sequencing history, not the former
 App-local generic-runtime ownership model. Section 17 and the accepted decomposition
-control: Root owns the generic runtime/daemon and operational semantics; the App owns
+control: Root owns the generic Runtime service and operational semantics, and under
+D-GOV-43 (A2) the App starts, owns and stops that service as a child process; the App owns
 client integration, project policy/governance, packaging participation, and conformance
 evidence.
 
@@ -1722,8 +1736,8 @@ The active decomposition partitions scope into these 10 flat work-domain package
 |---|---|---|
 | PKG-01 Product Governance and Reliance Boundaries | Product intent, invariants, professional boundary, reliance-boundary ownership, out-of-scope discipline | Goals 6, 9-11, 18, 21-22; PRD Sections 3.2, 5, 6.4, 8.16, 12.1, 15 |
 | PKG-02 Woven Dialogue Shell, Navigation, and Operator State | Primary dialogue, inline/focused artifacts, Navigator, Work/Agents Coordination Panel, Activity Shelf, re-hosted WORKBENCH/PIPELINE/toolkit/settings, compatibility navigation, local UI state | Goals 4 and 23-25; FR-001 through FR-013, FR-041 through FR-044, FR-076; Journeys 7.2, 7.4, 7.5 |
-| PKG-03 Runtime Engine Contract and Turn Lifecycle | App-side daemon-client integration, request binding, route/SSE compatibility, interrupt/cancel presentation, and Root-runtime conformance evidence | FR-014 through FR-035, FR-070 through FR-077, FR-116, FR-122 through FR-128 |
-| PKG-04 SDK Adapter, Prompt, Provider, and Settings | App project-input composition, packaged-daemon credential-boundary participation, provider/settings compatibility, and conformance evidence | FR-021 through FR-035, FR-070 through FR-083, FR-116 through FR-121, NFR-028 through NFR-031 |
+| PKG-03 Runtime Engine Contract and Turn Lifecycle | App-side Runtime service child ownership and client integration, request binding, route/SSE transport per Section 9.3, interrupt/cancel presentation, and Root-runtime conformance evidence | FR-014 through FR-035, FR-070 through FR-077, FR-116, FR-122 through FR-128 |
+| PKG-04 SDK Adapter, Prompt, Provider, and Settings | App project-input composition, effective Codex home and Codex-custodied sign-in participation, provider/settings compatibility, and conformance evidence | FR-021 through FR-035, FR-070 through FR-083, FR-116 through FR-121, NFR-028 through NFR-031 |
 | PKG-05 Session Audit, Replay, and Tool Result Records | App consumption/replay/projection of Root-owned canonical sessions/events, App-side redaction, accepted project artifacts, and conformance evidence | FR-071 through FR-077, FR-083, FR-098 through FR-100, data/session requirements |
 | PKG-06 Permissioned Tools, MCP, and Hooks | App/project permission policy, human approvals, project-specific deterministic tools/hooks, client presentation, and Root-runtime conformance | FR-078 through FR-100, FR-119 through FR-121 |
 | PKG-07 Filesystem Execution, Lifecycle, and Dependencies | Working-root truth, execution-root scaffolding, deliverable files, `_STATUS.md`, `Dependencies.csv`, snapshots | FR-045 through FR-057, filesystem/data requirements, Chirality MCP filesystem tools |
@@ -1749,12 +1763,21 @@ Runtime roadmap traceability:
 ## 17. Shared Runtime and Local-Agent Pilot Amendment
 
 D-GOV-20, D-APP-73, and SCA-APP-003 make the provider-neutral runtime a
-root-owned product subsystem rather than a frontend-owned singleton. A
-per-user daemon, invoked through the packaged Electron application without a
-window, exclusively owns engines, encrypted credentials, sessions, tools,
-delegation, turn locks, interruption, and local-model residency. Desktop,
-CLI, and project integrations use one authenticated Unix-socket API and one
-canonical SSE event protocol.
+root-owned product subsystem rather than a frontend-owned singleton. Under
+D-GOV-43 (A2, 2026-09-12), which supersedes D-GOV-20 items 2 to 4 on the App
+path, that subsystem is a simplified Runtime service the App starts, owns and
+stops as a child process (spawned from the packaged bundle, ready line on
+stdout, per-launch client token under `userData`, restart with backoff on
+crash, stopped in teardown on quit). The service owns the stock,
+lockfile-pinned `codex app-server` child, the sessions, tools, delegation,
+the active turn and interruption; credentials are custodied by Codex in
+Chirality's effective Codex home; local-model residency is retired (item 13).
+The renderer uses loopback HTTP and SSE through the in-process Next server;
+the service's public face is its Unix-socket API, which the CLI and PEC may
+also use with unverified compatibility. No LaunchAgent, admission, supplier
+staging or second socket exists. Closing or hiding a window differs from
+quitting; quit stops the owned processes deliberately with an accurate
+continuation record.
 
 Tracked project manifests register stable identity and relative authority
 references. Machine-resolved paths, project client credentials, and
@@ -1766,11 +1789,15 @@ Central sessions remain JSON/JSONL and lazily consume legacy project-local
 records without bulk rewrite or destructive move. D-APP-41 remains historical
 while this cross-store migration becomes prospective behavior.
 
-The initial acceptance path is a direct Agent 1 run that must delegate one
-read-only task to an explicitly resident Pi/oMLX Agent 2, review the return,
-and emit parentage, permissions, canonical events, residency epoch, and actual
-engine/provider/model attribution. Missing required delegation terminates with
-`REQUIRED_DELEGATION_MISSING`.
+The Pi/oMLX required-delegation pilot is retired with residency under
+D-GOV-43 item 13. The acceptance set is the eight checks S-1 to S-8 of
+D-GOV-43 item 12 on the production path, including S-5, one real delegated
+task through Codex native sub-agents whose child demonstrably receives the
+intended role instructions, with parentage, the active policy, approvals and
+actual model attribution recorded in AgentRuns evidence from the same event
+stream. Daemon-era trial chats are preserved in place, viewable if the
+existing reader renders them, otherwise an accessible archive; no import
+feature is a prerequisite.
 
 The generic runtime, CLI, contracts, and safe adapters are public-export
 eligible after validation. Credentials, machine state, and private PEC or
@@ -1791,7 +1818,7 @@ This PRD is a product requirements artifact. It does not supersede:
 This PRD **does** establish product direction for App integration with the shared runtime.
 The historical `R0/R1` sequence in Section 13 is retained as sequencing context only;
 current work is selected from the accepted decomposition and governed work surfaces, with
-generic runtime/daemon ownership fixed by Section 17 and App obligations limited to
+Runtime service ownership fixed by Section 17 as amended under D-GOV-43 (A2) and App obligations limited to
 client integration, project policy/governance, packaging participation, and conformance.
 
 Changes to this PRD that alter scope, release targets, safety posture, data contracts, professional responsibility boundaries, or retired/active execution scope should be handled as governed product changes and traced back to stable SOW/OBJ/DEL identifiers or a new approved decomposition amendment.

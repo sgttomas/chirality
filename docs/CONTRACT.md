@@ -51,7 +51,7 @@ All K-* identifiers defined in this section are listed below with their definiti
 | K-CONTROL-1 | 1.13 | Shared Runtime |
 | K-PROJECT-1 | 1.13 | Shared Runtime |
 | K-STORE-2 | 1.13 | Shared Runtime |
-| K-RESIDENCY-1 | 1.13 | Shared Runtime |
+| K-RESIDENCY-1 | 1.13 | Shared Runtime (retired by D-GOV-43 item 13) |
 | K-ROLE-2 | 1.13 | Shared Runtime |
 | K-EXPORT-1 | 1.13 | Shared Runtime |
 | K-TM-1 | 1.14 | Task Management |
@@ -165,20 +165,21 @@ or recurring owner confirmation is required.
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-RUNTIME-1** | One opt-in per-user daemon is the exclusive production owner of engines, credentials, sessions, delegation, tools, turn locks, interruption, and local-model residency. Desktop, CLI, and project proxies MUST NOT construct a competing runtime. | Runtime daemon singleton; client conformance; packaged-process inspection |
-| **K-CONTROL-1** | Runtime control uses authenticated, project-scoped HTTP/1.1 over `{userData}/runtime/control.sock` beneath a `0700` directory with a `0600` socket. The accepted design adds exactly one private Unix-domain socket between the daemon and the Delegated-Harness Process Supervisor, never renderer- or CLI-callable, with a `0700` parent directory and a `0600` socket, as accepted by R7-A through the DEL-02-07 scope contract (record SHA-256 `dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53`). The supervisor socket is accepted design, not yet implemented: exactly one control socket is live today, and the second socket becomes live only through the separately gated DEL-02-07/WP-03 implementation pathway. No third socket and no TCP control listener are permitted under any configuration. | Socket-mode, authorization, stale-owner, and listener tests; design-gated supervisor-socket tests activating with DEL-02-07 implementation |
+| **K-RUNTIME-1** | The Chirality App starts, owns, and stops one simplified Runtime service as a child process, and that service is the exclusive owner of the stock, version-pinned `codex app-server` child together with sessions, delegation, tools, turn locks, and interruption for that App instance. There is no per-user LaunchAgent and no exclusive per-user daemon. Credentials are custodied by Codex within Chirality's effective Codex home; the App never reads, copies, or relays credential material. Desktop, CLI, and project proxies MUST NOT construct a competing runtime (D-GOV-43 items 1, 6 and 7 as re-expressed by the A2 supplement). | Child-process ownership, relaunch, and quit tests; client conformance; packaged-process inspection |
+| **K-CONTROL-1** | Runtime control uses authenticated, project-scoped HTTP/1.1 over one Unix-domain socket beneath the application user-data directory, with a `0700` parent directory and a `0600` socket, and per-launch client tokens private to the application. Stale-socket recovery verifies current-user ownership and absence of a live recorded process before removal. The accepted supervisor-socket design (R7-A through DEL-02-07) is retired with the daemon under D-GOV-43 item 7 as re-expressed by the A2 supplement. No second socket and no TCP control listener are permitted under any configuration. | Socket-mode, authorization, stale-owner, and listener tests |
 | **K-PROJECT-1** | A tracked `chirality.project.json` contains stable identity and relative authority references only. Secrets, resolved machine paths, client tokens, and approval metadata remain user-data state. Authority-affecting manifest drift disables adapters until explicit re-registration. | Manifest schema/hash/containment tests; secret scan |
 | **K-STORE-2** | Central runtime sessions remain JSON/JSONL and import legacy project-local sessions lazily and non-destructively. Runtime state never replaces checkout-contained governance truth. | Migration, replay, restart, and source-preservation tests |
-| **K-RESIDENCY-1** | The daemon manages at most one primary local LLM. Activation is explicit, drains rather than interrupts active Pi work, never unloads unknown helper models, records a residency epoch, and fails closed without fallback. | Fake-oMLX and opt-in live proofs |
+| **K-RESIDENCY-1** | Retired from the live contract by D-GOV-43 item 13 (local models deferred; residency requirements retired with the daemon). The prior text is preserved in git history and in §3. | Retired |
 | **K-ROLE-2** | Agent 0/1/2 names authority and responsibility, not a durable model assignment. Every governed run records actual adapter/provider/model and substitutions. | AgentRun/session attribution; governance scan |
 | **K-EXPORT-1** | The public export may include generic runtime packages, CLI, contracts, and safe adapters. Credentials, machine state, and private project adapters are excluded. | Export allowlist/boundary checks |
 
 K-WRITE-2 continues to govern agent and tool writes to project truth. The
-daemon’s socket, encrypted credentials, client tokens, logs, residency
-evidence, and central runtime session mirrors may live beneath the application
-user-data directory because they are explicitly non-authoritative operational
-state; they do not grant an agent permission to write outside its checkout
-scope.
+Runtime service's socket, per-launch client tokens, logs, the App's thread
+index, and Chirality's effective Codex home (including the shared Codex
+sessions store and the Codex-custodied `auth.json`) may live beneath the
+application user-data directory because they are explicitly non-authoritative
+operational state; they do not grant an agent permission to write outside its
+checkout scope.
 
 ### 1.14 Task Management
 
@@ -212,11 +213,13 @@ the "candidate" label in the PRD's §10 heading ends here.
 | **TASK with audit-governance / audit-agents** | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4, K-TM-1, K-TM-2, K-TM-6 |
 | **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2, K-TM-1, K-TM-2, K-TM-5, K-TM-6 |
 | **WORKING_ITEMS with decomposition workflows** | K-HIER-1, K-ID-1 |
-| **Shared runtime daemon and clients** (runtime) | K-RUNTIME-1, K-CONTROL-1, K-PROJECT-1, K-STORE-2, K-RESIDENCY-1, K-ROLE-2 |
+| **Application-owned Runtime service and Codex child** (runtime) | K-RUNTIME-1, K-CONTROL-1, K-PROJECT-1, K-STORE-2, K-ROLE-2 |
 | **Public export builder** (publication boundary) | K-EXPORT-1 |
 
 ---
 
 ## 3. Retired Invariants
 
-No invariants have been retired.
+| ID | Retired by | Prior invariant (preserved, not live) |
+|---|---|---|
+| **K-RESIDENCY-1** | D-GOV-43 item 13 (ruled 2026-09-11; applied by the A2 application tranche) | The daemon manages at most one primary local LLM. Activation is explicit, drains rather than interrupts active Pi work, never unloads unknown helper models, records a residency epoch, and fails closed without fallback. Enforcement was fake-oMLX and opt-in live proofs. Local models, when taken up, are Codex model providers. |
