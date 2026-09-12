@@ -233,7 +233,7 @@ def test_note_on_over_declared_non_instruction_path(tmp_path):
     assert any("over-declaration" in line for line in lines)
 
 
-def test_block_on_non_human_gated_merge(tmp_path):
+def test_block_on_unknown_merge_policy(tmp_path):
     data = _manifest()
     data["m2_gate"]["merge_gate"] = "auto-merge"
     _write_manifest(tmp_path, data)
@@ -707,3 +707,39 @@ def test_live_repo_lane_b_manifest_exists_and_passes():
     code, lines = g4.check(root)
     assert code == 0, lines
     assert any("ROOT-LANE-B-20260725" in line for line in lines)
+
+
+def test_standing_owner_authorization_needs_no_per_merge_sha(tmp_path):
+    data = _manifest()
+    data["m2_gate"].update(merge_gate="owner-authorized-pr", self_merge=True)
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 0, lines
+    assert "owner_direction" not in data["m2_gate"]
+
+
+def test_standing_authorization_still_requires_recorded_scope_authority(tmp_path):
+    data = _manifest()
+    data["m2_gate"].update(merge_gate="owner-authorized-pr", self_merge=True, authorization="")
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 1
+    assert any("m2_gate.authorization must be a non-empty string" in line for line in lines)
+
+
+def test_standing_authorization_rejects_non_boolean_self_merge(tmp_path):
+    data = _manifest()
+    data["m2_gate"].update(merge_gate="owner-authorized-pr", self_merge="yes")
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 1
+
+
+def test_malformed_merge_policy_returns_block_instead_of_crashing(tmp_path):
+    for value in (["owner-authorized-pr"], {"mode": "owner-authorized-pr"}):
+        data = _manifest()
+        data["m2_gate"]["merge_gate"] = value
+        _write_manifest(tmp_path, data)
+        code, lines = g4.check(tmp_path)
+        assert code == 1
+        assert any("m2_gate.merge_gate" in line for line in lines)

@@ -118,7 +118,14 @@ All K-* identifiers defined in this section are listed below with their definiti
 
 | ID | Invariant | Enforcement |
 |---|---|---|
-| **K-MERGE-1** | Merge to main allowed only when **branch HEAD == approved SHA** for the relevant run. | Human review; future CI check |
+| **K-MERGE-1** | Merge to main is permitted within owner-authorized scope when required CI passes and independent review has no unresolved blocking findings, covering the actual candidate revision. Reassess affected checks after candidate changes and verify the source HEAD at merge. The standing Git grant in `PRD_ROOT.md` §5.3.1 supplies merge-execution authority without per-merge owner approval; explicit holds and later owner directions prevail. | Independent review; required CI; source-HEAD verification |
+
+Owner amendment of 2026-09-12: standing authorization for Git integration is
+not human acceptance of future content. K-AUTH-1/2 still govern acceptance for
+reliance; merging does not approve a deliverable, change its lifecycle, or
+publish a product release. Ordinary PR history records the reviewed source,
+checks, independent review, and resulting merge; no separate approval registry
+or recurring owner confirmation is required.
 
 ### 1.9 Provenance and Epistemic Integrity
 

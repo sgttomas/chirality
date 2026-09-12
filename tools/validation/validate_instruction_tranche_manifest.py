@@ -36,11 +36,10 @@ paths or globs. Shape::
       authorized_by: <human actor of record>
       authorization_date: 2026-07-25
       integration_owner: <the single serialized integration owner>
-      merge_gate: human-gated-pr   # the only accepted value
-      self_merge: false            # the default; may be true ONLY when a
-                                   # complete owner_direction block is
-                                   # recorded (PRD annex 5.3.1, D-GOV-31 as
-                                   # simplified by owner direction 2026-07-29)
+      merge_gate: owner-authorized-pr  # standing Git grant; human-gated-pr remains valid for historical/exact-action records
+      self_merge: true             # permitted by owner-authorized-pr; legacy
+                                   # human-gated-pr requires owner_direction
+                                   # for self_merge true (PRD annex 5.3.1)
       owner_direction:             # optional owner direction of record
         directed_by: <owner of record>
         direction_date: 2026-07-29
@@ -64,19 +63,18 @@ missing local routed notice PASSes only when an exact, well-formed relocation
 record exists; the guard reports the external route as INFO. The guard checks
 recorded provenance and syntax, not remote availability.
 
-`m2_gate.self_merge: false` remains the schema default and the unconditional
-requirement absent an owner direction. Under the D-GOV-31 merge-gate policy
-as simplified by owner direction of 2026-07-29 (PRD annex §5.3.1),
-`self_merge: true` is lawful ONLY when the manifest records a complete
-`m2_gate.owner_direction` block naming the directing owner, the direction
-date, and the full 40-hex `approved_source_sha` pre-merge pin. The direction
-itself lives in the loop's ordinary closeout evidence — receipts, plus the
-PR and merge SHAs Git already keeps. `self_merge: true` without a complete
-owner_direction block is BLOCK — the preserved failing mode; an incomplete
-or malformed block is BLOCK; a complete block with `self_merge: true` PASSes
-with an INFO line naming the directing owner and date. The block is recorded
-provenance: this guard verifies it is named and well-formed, never that the
-direction itself was lawful (K-AUTH-1).
+`merge_gate: owner-authorized-pr` records use of the standing Git grant in
+PRD annex §5.3.1 (owner direction 2026-09-12). It permits `self_merge: true`
+without a per-merge approval SHA. This guard checks declaration shape, not
+whether the assignment is authorized or whether the actual PR has passed
+required CI and independent review. Those conditions and owner holds must
+still be checked before merging.
+
+Historical `human-gated-pr` manifests remain supported. In that mode,
+`self_merge: true` requires a complete `owner_direction` block naming the
+owner, direction date, and full 40-hex `approved_source_sha`. A supplied
+block must be well formed in either mode. Neither mode mechanically proves
+human authority (K-AUTH-1).
 
 The instruction surface is `docs/SPEC.md` §0.2.1's enumeration as amended by
 D-GOV-26: `AGENTS.md`, `CLAUDE.md`, `agents/`, `.agents/skills/`, legacy
@@ -160,8 +158,8 @@ REQUIRED_M2_KEYS = (
 REQUIRED_M6_KEYS = ("disposition", "routed_to", "rationale")
 # Optional m2_gate.owner_direction block (PRD annex 5.3.1, D-GOV-31 as
 # simplified by owner direction 2026-07-29): when present it must be
-# complete; only a complete, well-formed block makes `self_merge: true`
-# lawful.
+# complete. The legacy human-gated-pr mode requires this block for
+# self_merge true; owner-authorized-pr does not.
 REQUIRED_OWNER_DIRECTION_KEYS = (
     "directed_by",
     "direction_date",
@@ -346,10 +344,10 @@ def validate_manifest(
                 f"manifest {rel}: m2_gate.authorization_date "
                 f"{m2.get('authorization_date')!r} is not YYYY-MM-DD"
             )
-        if "merge_gate" in m2 and m2.get("merge_gate") != "human-gated-pr":
+        if "merge_gate" in m2 and m2.get("merge_gate") not in ("human-gated-pr", "owner-authorized-pr"):
             failures.append(
                 f"manifest {rel}: m2_gate.merge_gate is {m2.get('merge_gate')!r}; M2 "
-                "requires 'human-gated-pr'"
+                "requires 'human-gated-pr' or 'owner-authorized-pr'"
             )
         direction = m2.get("owner_direction")
         direction_complete = False
@@ -359,7 +357,13 @@ def validate_manifest(
             )
             failures.extend(direction_failures)
         if "self_merge" in m2 and m2.get("self_merge") is not False:
-            if m2.get("self_merge") is True and direction_complete:
+            if m2.get("self_merge") is True and m2.get("merge_gate") == "owner-authorized-pr":
+                notes.append(
+                    f"manifest {rel}: self-merge declared under the standing owner "
+                    "Git grant (PRD annex 5.3.1); actual candidate review, required "
+                    "CI and owner holds must still be checked at the PR"
+                )
+            elif m2.get("self_merge") is True and direction_complete:
                 notes.append(
                     f"manifest {rel}: m2_gate.self_merge is true under recorded "
                     f"owner direction by {direction.get('directed_by')!r} on "
@@ -498,7 +502,8 @@ def validate_owner_direction(rel: str, direction: object) -> tuple[list[str], bo
 
     Returns (failures, complete). `complete` is True only when every required
     key is present and well-formed — the only state in which
-    `self_merge: true` is lawful.
+    `self_merge: true` is lawful for the legacy human-gated-pr mode.
+    Standing owner-authorized-pr uses ordinary PR evidence instead of this pin.
     """
     failures: list[str] = []
     prefix = f"manifest {rel}: m2_gate.owner_direction"

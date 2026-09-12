@@ -23,7 +23,7 @@ The first three are control-plane discovery surfaces, not automatic work grants;
 
 ## 2. Limits
 
-Owner adoption, rulings, acceptance, pointer moves and merge remain owner acts (K-AUTH-1/2).
+Owner adoption, rulings, acceptance and governed pointer moves remain owner acts (K-AUTH-1/2). Git integration may be executed by agents under the standing owner authorization in `docs/PRD_ROOT.md` §5.3.1; it is not semantic acceptance.
 Stop at unresolved scope, lifecycle, Stage-2, ownership, shared-write or consequential-authority gates; preserve historical and ratified bytes through their owning amendment paths.
 Root records grant no foreign working-root writes; project pilots need their owning loop's accepted variance and activation. Instruction changes require independent M2 authorization and a G4 tranche manifest (D-GOV-21).
 Owner acts and routed notices used to release work must be observable on fetched `origin/main`. Current chat direction permits its explicitly bounded candidate preparation, not presumed satisfaction of a merged-act gate.
@@ -79,7 +79,7 @@ State branch, worktree, clean/dirty state, divergence and inspected main SHA; ne
 
 Select the widest authorized compatible tranche from §1; verify product scope, lifecycle, named dependencies/gates, write locus, checks and return contract. Never infer scope from a notice, register status or plan. Preserve R17's deliverable engineering and evidence bar by pointer for v3 work; a blocked node holds its dependants, not independent lawful work.
 Use the declared delegation mechanism and sealed scopes in `AGENTS.md`; record actual parentage, briefs and returns. Never represent an unexecuted brief as a child run.
-One branch per run from `origin/main`; one receipt and commit per iteration, pushed after each closeout. Independent nodes may run concurrently with disjoint writes; dependent nodes may run in later iterations under §2. Open one PR at terminus, or when the next lawful step needs a merged act. Never self-merge.
+One branch per run from `origin/main`; one receipt and commit per iteration, pushed after each closeout. Independent nodes may run concurrently with disjoint writes; dependent nodes may run in later iterations under §2. Open one PR at terminus, or when the next lawful step needs a merged act. Merge under the standing owner authorization in `docs/PRD_ROOT.md` §5.3.1 when required CI and independent review cover the actual candidate and no blocking findings or explicit holds remain.
 Before closeout run Step 0 guards, affected-profile checks, `python3 tools/validation/validate_instruction_entrypoints.py`, `python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main`, `python3 tools/run_affected_tests.py --base origin/main`, and `git diff --check`; repair within authority and rerun failed checks. On committed instruction changes also run `python3 tools/validation/validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only` before push.
 Append one minimal receipt using the existing ledger form; cite authority, artifacts, gates, checks and blockers. No Root receipt validator exists: inspection is manual, not a machine-enforced grammar.
 Emit handoff with accepted upstream snapshots, derivative status, closure verdict, reruns and blockers; attribute model truthfully and state role-enforcement limits. Use WORKING_ITEMS with the change workflow for scoped commit/push. Continue until only owner decisions remain, then return one PR and a decision slate.

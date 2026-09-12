@@ -195,9 +195,11 @@ one commit and one receipt per iteration, the branch pushed after every
 closeout. Within an iteration, independent nodes run concurrently under one
 recorded work graph with disjoint write loci (`AGENTS.md`); dependent nodes
 run in later iterations of the same run. Open one PR when the run reaches
-terminus (§7) or when the next lawful step needs a merged act; never
-self-merge; the owner merges or rejects by commit, and a rejected commit's
-item returns to Step 0 on the next run. Write scope stays inside
+terminus (§7) or when the next lawful step needs a merged act. Agents may merge
+under Root `docs/PRD_ROOT.md` §5.3.1's standing owner authorization after required
+CI and independent review cover the actual candidate with no blocking findings.
+Explicit holds and later owner directions prevail; a rejected commit's item
+returns to Step 0 on the next run. Write scope stays inside
 `projects/chirality-app-dev/**` unless the owner grants wider scope. An
 adopted-but-unexecuted brief is live authority. Run the checks for the work
 type (§8) and, for evidence items, meet the §9 bar. The independent-review

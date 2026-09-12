@@ -123,6 +123,23 @@ methods are candidates for HELPS_HUMANS to develop into a workflow.
 
 ## Execution and governance
 
+For `sgttomas/chirality`, the owner's standing Git authorization of 2026-09-12
+permits current and subsequent agents to commit, push, open/update PRs, and merge
+within authorized work without a separate approval for each Git operation.
+Merge when required CI passes and independent review has no unresolved blocking
+findings, with review and validation covering the actual candidate revision.
+Reassess affected checks after changes; a passing rerun does not establish that
+a known defect was repaired. Use the owner's configured Git/GitHub identity
+(SSH for pushes where configured; authenticated GitHub CLI/API for PR merges),
+preserve truthful authorship and agent attribution, and never imply personal
+owner review. This grants no scope expansion, protection bypass, account or
+repository permission changes, governed acceptance, or product release.
+Explicit holds and later owner directions take precedence. The grant replaces
+earlier per-merge approval defaults across this repository's project loops;
+see [the merge policy](docs/PRD_ROOT.md#531-merge-gate-policy--the-d-8-successor)
+and `.agents/skills/chirality-change/SKILL.md` for application and ordinary PR
+records. Historical instructions and accepted evidence remain historical.
+
 Executable delegation uses either Chirality-managed `delegate_agent` sessions
 or delegated-harness-native descendants under D-GOV-35. Record the actual
 mechanism, parentage, supplied basis, scopes, enforcement limits, and returns.
