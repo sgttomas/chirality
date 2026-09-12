@@ -137,7 +137,7 @@ describe('operator session projection', () => {
     );
   });
 
-  it('offers continuation only for a complete, non-running canonical v3 session record', () => {
+  it('offers continuation only for a complete canonical v3 session record, running ones included so a reopened chat re-attaches to its turn', () => {
     const selectedMethod = { kind: 'workflow', name: 'project-setup', source: 'bundled', sourceRootId: 'chirality-root' };
     const v3 = session('v3', {
       schemaVersion: 'chirality.session/v3', role: 'agent1', agentType: 1, roleId: 'WORKING_ITEMS', status: 'completed',
@@ -151,7 +151,7 @@ describe('operator session projection', () => {
       interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [selectedMethod], methodSelectionRevision: 3,
       instructionBasisId: 'basis-3'
     });
-    expect(projectOperatorSession(session('running', { ...v3, sessionId: 'running', status: 'running' }), new Set(['running']), { observedAt: '2026-09-09' }).continuation).toBeUndefined();
+    expect(projectOperatorSession(session('running', { ...v3, sessionId: 'running', status: 'running' }), new Set(['running']), { observedAt: '2026-09-09' }).continuation).toMatchObject({ roleId: 'WORKING_ITEMS', instructionBasisId: 'basis-3' });
     expect(projectOperatorSession(session('legacy'), new Set(['legacy']), { observedAt: '2026-09-09' }).continuation).toBeUndefined();
     expect(projectOperatorSession(session('task', { ...v3, sessionId: 'task', role: 'agent2', agentType: 2, roleId: 'TASK' }), new Set(['task']), { observedAt: '2026-09-09' }).continuation).toBeUndefined();
   });
