@@ -60,18 +60,17 @@ regression checks.
 Git integration: the owner's standing authorization of 2026-09-12 lets you
 commit, push, open and update pull requests, and merge within the
 authorized scope without asking for each operation, using the configured
-Git and GitHub credentials and the SSH remote. Its exact text is being
-recorded in the repository by a parallel session; locate it before your
-first merge. Merge only when the required CI passes and independent review
-has no unresolved blocking findings; review must cover the actual candidate
-revision, and changes after review reassess the affected checks. A passing
-rerun does not show that a previously identified defect was repaired. Keep
-truthful authorship and agent attribution, and never describe an agent's
-review as the owner's personal approval. It does not permit expanding
-scope, changing repository protections, accepting governed deliverables for
-the owner, or publishing a release; the owner's holds and later directions
-take precedence. Tranche manifests you author record this direction in
-their `owner_direction` block as the validator requires.
+Git and GitHub credentials and the SSH remote. Merge only when the required
+CI passes and independent review has no unresolved blocking findings;
+review must cover the actual candidate revision, and changes after review
+reassess the affected checks. A passing rerun does not show that a
+previously identified defect was repaired. Keep truthful authorship and
+agent attribution, and never describe an agent's review as the owner's
+personal approval. It does not permit expanding scope, changing repository
+protections, accepting governed deliverables for the owner, or publishing a
+release; the owner's holds and later directions take precedence. Tranche
+manifests you author record this direction in their `owner_direction` block
+as the validator requires.
 
 Boundaries are in sections 5 and 6: a separate independent source reviewer
 before the one consolidated signed build; escalate only material scope or
