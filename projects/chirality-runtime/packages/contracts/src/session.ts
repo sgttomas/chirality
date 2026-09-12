@@ -24,6 +24,10 @@ export interface RuntimeSessionRecord extends SessionRecord {
   engineSelection: EngineSelection;
   /** Session-fixed reasoning effort chosen from the authenticated catalog; additive, no schema bump. */
   reasoningEffort?: string;
+  /** Model actually used by the most recent turn (a per-turn override does not change `engineSelection`). */
+  lastUsedModel?: string;
+  /** Reasoning effort actually used by the most recent turn. */
+  lastUsedReasoningEffort?: string;
   engineSessionId?: string;
   residencyEpoch?: string;
   status: "idle" | "running" | "completed" | "failed" | "interrupted";
@@ -73,6 +77,10 @@ export interface SessionTurnRequest {
   turnId?: string;
   interactionMode?: "chat" | "native-plan";
   permissionMode?: "readOnly" | "ask" | "workspaceWrite" | "bypass";
+  /** Per-turn model override; the session's engine selection remains the default. */
+  model?: string;
+  /** Per-turn reasoning effort override. */
+  reasoningEffort?: string;
   methods?: readonly MethodReference[];
   /** Compatibility selector normalized through the legacy method adapter. */
   workflow?: string;

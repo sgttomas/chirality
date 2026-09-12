@@ -49,6 +49,30 @@ export interface PermissionDecisionPort {
   ): Promise<void>;
 }
 
+/** Narrow view of the delegated runtime's approval answer; declared here so the broker compiles against the method name only. */
+export interface DelegatedApprovalAnswerPort {
+  answerApprovalByToolUseId(projectId: string, sessionId: string, toolUseId: string, verdict: "allow" | "deny" | "allowForSession"): Promise<unknown>;
+}
+
+/**
+ * Permission broker for the stock Codex composition: a `PermissionDecisionRequest`
+ * names the tool-use id (the Codex item id carried by `tool.permission`) and the
+ * broker forwards the verdict to the delegated runtime's approval answer.
+ */
+export function createDelegatedPermissionBroker(port: DelegatedApprovalAnswerPort): PermissionDecisionPort {
+  return {
+    async submit(projectId, sessionId, request) {
+      if (typeof request.requestId !== "string" || request.requestId.trim() === "") {
+        throw new RuntimeError("INVALID_REQUEST", "Permission decision requires the tool-use id as requestId", 400, { reason: "PERMISSION_REQUEST_ID_INVALID" });
+      }
+      if (request.decision !== "allow" && request.decision !== "deny") {
+        throw new RuntimeError("INVALID_REQUEST", "Permission decision must be allow or deny", 400, { reason: "PERMISSION_DECISION_INVALID" });
+      }
+      await port.answerApprovalByToolUseId(projectId, sessionId, request.requestId, request.decision);
+    }
+  };
+}
+
 export interface Agent1RunPort {
   run(projectId: string, request: Agent1RunRequest): AsyncIterable<UIEvent>;
   interrupt?(projectId: string, sessionId: string): Promise<void>;
@@ -584,9 +608,9 @@ export class RuntimeService {
     await this.permissions.submit(projectId, sessionId, request);
   }
 
-  async interruptSession(projectId: string, sessionId: string): Promise<void> {
+  async interruptSession(projectId: string, sessionId: string, reason?: string): Promise<void> {
     await Promise.all([
-      this.turns.interrupt(projectId, sessionId),
+      this.turns.interrupt(projectId, sessionId, reason),
       this.agent1Runs?.interrupt?.(projectId, sessionId) ?? Promise.resolve()
     ]);
   }

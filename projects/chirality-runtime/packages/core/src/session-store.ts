@@ -145,6 +145,19 @@ export class SessionStore {
     throw new RuntimeError("SESSION_NOT_FOUND", `Unknown session: ${sessionId}`, 404);
   }
 
+  /**
+   * Service shutdown settlement for a turn that did not reach its own terminal in
+   * time: records `turn.interrupted` with the reason and moves a still-running
+   * session to `interrupted`. A session that already settled is left unchanged.
+   */
+  async markInterruptedOnShutdown(projectId: string, sessionId: string, turnId: string, reason = "service-shutdown"): Promise<boolean> {
+    const current = await this.get(projectId, sessionId);
+    if (current.status !== "running") return false;
+    await this.appendEvent(projectId, { sessionId, turnId, type: "turn.interrupted", data: { reason } });
+    await this.update({ ...current, status: "interrupted" });
+    return true;
+  }
+
   async update(record: RuntimeSessionRecord): Promise<void> {
     await withSessionLock(`${record.projectId}\0${record.sessionId}`, async () => {
       await this.projects.requireAuthorized(record.projectId);

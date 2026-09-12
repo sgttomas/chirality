@@ -2,7 +2,8 @@ import { mkdir, mkdtemp, readFile, realpath, rm, writeFile } from "node:fs/promi
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { AgentEngineRunInput, DelegatedTurnRequest } from "@chirality/runtime-contracts";
+import type { AgentEngineRunInput } from "@chirality/runtime-contracts";
+import type { DelegatedTurnInput } from "@chirality/runtime-core";
 import { createDelegatedEngineAdapter, EngineRegistry, ProjectRegistry, ResidencyCoordinator, RuntimeAttachmentResolver, SessionStore, TurnCoordinator } from "@chirality/runtime-core";
 
 const roots: string[] = [];
@@ -13,18 +14,16 @@ async function fixture() {
   roots.push(root);
   const projectRoot = join(root, "project");
   await mkdir(projectRoot);
-  const requests: DelegatedTurnRequest[] = [];
-  const compatibility = { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) };
+  const requests: DelegatedTurnInput[] = [];
   const delegated = {
-    async preflight(projectId: string, operationId: string) { return { ...compatibility, projectId, operationId, daemonId: "daemon", nonce: "nonce" }; },
-    async turn(_projectId: string, request: DelegatedTurnRequest, _tools: unknown[], observer: { onProgress(event: unknown): void }) {
+    async turn(_projectId: string, request: DelegatedTurnInput, _tools: unknown[], observer: { onProgress(event: unknown): void }) {
       requests.push(request);
       observer.onProgress({ type: "started", providerThreadId: "thread-1", providerTurnId: "turn-1" });
       return { event: {} as never, terminal: { turnId: request.turnId, workerId: "worker", generation: "generation", outcome: "completed", recordedAt: new Date().toISOString() }, output: "ok", providerThreadId: "thread-1", evidenceClass: "controlled-worker" as const };
     },
     async interruptTurn() { return { interrupted: true }; }
   };
-  const adapter = createDelegatedEngineAdapter({ projectId: "project", delegated: delegated as never, compatibility, selection: { adapterId: "codex-app-server", providerId: "openai", model: "trusted-codex" } });
+  const adapter = createDelegatedEngineAdapter({ projectId: "project", delegated: delegated as never, selection: { adapterId: "codex-app-server", providerId: "openai", model: "trusted-codex" }, catalog: () => ({ models: [{ model: "trusted-codex", isDefault: true, defaultReasoningEffort: "medium", supportedReasoningEfforts: ["medium"] }], default: { model: "trusted-codex", isDefault: true, defaultReasoningEffort: "medium", supportedReasoningEfforts: ["medium"] } }) });
   const input = (contentBlocks?: AgentEngineRunInput["contentBlocks"]): AgentEngineRunInput => ({
     projectId: "project",
     session: { projectId: "project", projectRoot, sessionId: `session-${Math.random()}`, role: "untyped", persona: "HELP_HUMAN", engineSelection: { adapterId: "codex-app-server", providerId: "openai", model: "trusted-codex" } } as never,

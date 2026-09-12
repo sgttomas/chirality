@@ -18,6 +18,7 @@ interface Entry { child: ChildProcessWithoutNullStreams; handle: WorkerHandle; d
 /** Commands are installed by trusted broker configuration, never selected by callers. */
 export class ProcessSupervisor implements DelegatedHarnessProcessSupervisorPort {
   private readonly entries = new Map<string, Entry>();
+  private readonly retirements = new Map<string, Promise<void>>();
   private closed = false;
   constructor(private readonly options: ProcessSupervisorOptions) {
     if (!options.command || [options.shutdownTimeoutMs ?? 500, options.maxRunMs ?? 30000, options.maxOutputBytes ?? 65536, options.maxWorkers ?? 64].some(n => !Number.isSafeInteger(n) || n < 1 || n > 2147483647)) throw new Error("invalid supervisor configuration");
@@ -71,10 +72,33 @@ export class ProcessSupervisor implements DelegatedHarnessProcessSupervisorPort 
     if (!entry || entry.handle.generation !== generation) throw new Error("unknown or stale worker generation");
     return entry;
   }
+  private static readonly RETIREMENT_MEMO_LIMIT = 1024;
   async reconnect(workerId: string, generation: string): Promise<WorkerHandle> { return { ...this.entry(workerId, generation).handle }; }
   async wait(workerId: string, generation: string): Promise<WorkerResult> { return this.entry(workerId, generation).done; }
-  async retire(workerId: string, generation: string): Promise<void> {
-    const entry = this.entry(workerId, generation);
+  /**
+   * Retirement is idempotent per exact generation: the first call performs it
+   * and every later call for the same (workerId, generation) joins the same
+   * memoized result, including its rejection. A foreign or stale generation is
+   * still rejected. Interruption is a separate concern; this supervisor has no
+   * native interrupt, so its callers take the retire branch deliberately.
+   */
+  retire(workerId: string, generation: string): Promise<void> {
+    const key = `${workerId}\0${generation}`;
+    const memo = this.retirements.get(key);
+    if (memo !== undefined) return memo;
+    let entry: Entry;
+    try { entry = this.entry(workerId, generation); }
+    catch (error) { return Promise.reject(error); }
+    const attempt = this.performRetirement(workerId, entry);
+    this.retirements.set(key, attempt);
+    void attempt.catch(() => undefined);
+    if (this.retirements.size > ProcessSupervisor.RETIREMENT_MEMO_LIMIT) {
+      const oldest = this.retirements.keys().next().value;
+      if (oldest !== undefined && oldest !== key) this.retirements.delete(oldest);
+    }
+    return attempt;
+  }
+  private async performRetirement(workerId: string, entry: Entry): Promise<void> {
     const signal = (value: NodeJS.Signals) => {
       if (!entry.child.pid) return;
       try { process.kill(process.platform === "win32" ? entry.child.pid : -entry.child.pid, value); }

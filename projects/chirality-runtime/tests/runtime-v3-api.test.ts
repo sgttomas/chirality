@@ -5,7 +5,7 @@ import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import type { AgentEnginePort, AgentEngineRunInput, ContextSuccessorRequest, OmlxControlPort, PreparedContextSuccessor, UIEvent } from "@chirality/runtime-contracts";
 import { AuthRegistry, EngineRegistry, ProjectRegistry, ResidencyCoordinator, RuntimeService, SessionStore, TurnCoordinator } from "@chirality/runtime-core";
-import { RuntimeDaemon } from "@chirality/runtime-daemon";
+import { RuntimeDaemon } from "../packages/daemon/src/runtime-daemon.js";
 import { RuntimeClient } from "@chirality/runtime-client";
 
 const daemons: RuntimeDaemon[] = [];
@@ -797,5 +797,40 @@ describe("v3 Runtime API integration", () => {
     await writeFile(historyPath, `${lines.join("\n")}\n`, "utf8");
     await expect(fixture.client.listNativePlanRevisions("v3-api", session.sessionId)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
     await expect(fixture.client.exportNativePlan("v3-api", session.sessionId, { revision: 1, targetRelativePath: "plans/tampered.json" })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+  });
+
+  it("passes per-turn model and effort through the client and recovers a disconnected turn by attaching", async () => {
+    const captured: AgentEngineRunInput[] = [];
+    let release!: () => void;
+    const gate = new Promise<void>(resolveGate => { release = resolveGate; });
+    const fixture = await setup(async function* (input) {
+      captured.push(input);
+      yield { type: "session:init", data: { engineSessionId: `engine-${captured.length}`, adapterId: "stub", providerId: "stub", model: input.opts.model } };
+      if (captured.length === 2) { yield { type: "chat:delta", data: { text: "before" } }; await gate; yield { type: "chat:delta", data: { text: "missed" } }; }
+      yield { type: "harness:event", data: { schemaVersion: 1, eventId: `completed-${captured.length}`, sessionId: input.session.sessionId, turnId: input.turnId, timestamp: new Date().toISOString(), type: "turn.completed", data: {} } };
+      yield { type: "process:exit", data: { exitCode: 0 } };
+    });
+    const session = await fixture.client.createSession("v3-api", { projectId: "v3-api" });
+    const first = await drain(await fixture.client.turnSession("v3-api", session.sessionId, { message: "override", model: "fixture-alt", reasoningEffort: "low" }));
+    expect(first.map(event => event.seq)).toEqual([1, 2, 3, 4]);
+    expect(captured[0]).toMatchObject({ reasoningEffort: "low", opts: { model: "fixture-alt" }, session: { engineSelection: { model: "fixture-alt" } } });
+    expect(await fixture.client.getSession("v3-api", session.sessionId)).toMatchObject({ status: "completed", engineSelection: { model: "fixture" }, lastUsedModel: "fixture-alt", lastUsedReasoningEffort: "low" });
+
+    const stream = await fixture.client.turnSession("v3-api", session.sessionId, { message: "disconnect mid-turn" });
+    const iterator = stream[Symbol.asyncIterator]();
+    expect((await iterator.next()).value).toMatchObject({ seq: 1, type: "harness:event" });
+    expect((await iterator.next()).value).toMatchObject({ seq: 2, type: "session:init" });
+    stream.cancel();
+    let state = await fixture.client.sessionTurnState("v3-api", session.sessionId);
+    for (let attempt = 0; attempt < 100 && state.lastSeq < 3; attempt += 1) { await new Promise(resolve => setTimeout(resolve, 10)); state = await fixture.client.sessionTurnState("v3-api", session.sessionId); }
+    expect(state).toMatchObject({ active: true, lastSeq: 3 });
+    const attached = await fixture.client.attachSessionTurn("v3-api", session.sessionId, { after: 2 });
+    release();
+    const recovered = await drain(attached);
+    expect(recovered.map(event => [event.seq, event.type])).toEqual([[3, "chat:delta"], [4, "chat:delta"], [5, "harness:event"], [6, "process:exit"]]);
+    expect(recovered[1]).toMatchObject({ data: { text: "missed" } });
+    expect(await fixture.client.sessionTurnState("v3-api", session.sessionId)).toMatchObject({ active: false, lastSeq: 6 });
+    expect(await fixture.client.getSession("v3-api", session.sessionId)).toMatchObject({ status: "completed", lastUsedModel: "fixture" });
+    expect((await fixture.sessions.replay("v3-api", session.sessionId)).filter(event => event.type === "turn.interrupted")).toHaveLength(0);
   });
 });

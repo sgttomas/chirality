@@ -58,4 +58,15 @@ describe("closed additive v2 wire schema", () => {
     expect(projectRuntimeEventV2(runtime("message.delta", { delta: "vendor-shaped" }))).toEqual({ kind: "quarantined", reason: "invalid_payload" });
     expect(projectRuntimeEventV2({ ...runtime("turn.completed", {}), schemaVersion: "vendor/v1" } as unknown as RuntimeEvent)).toEqual({ kind: "quarantined", reason: "invalid_envelope" });
   });
+  it("accepts the stock Codex passthrough types by their identifying fields and rejects unidentified ones", () => {
+    expect(validateHarnessEventV2({ ...envelope, type: "codex.notification", data: { method: "turn/plan/updated", params: { plan: [] }, providerThreadId: "thr" } })).toBe(true);
+    expect(validateHarnessEventV2({ ...envelope, type: "codex.notification", data: { params: {} } })).toBe(false);
+    expect(validateHarnessEventV2({ ...envelope, type: "codex.notification", data: { method: "" } })).toBe(false);
+    expect(validateHarnessEventV2({ ...envelope, type: "codex.request", data: { method: "item/tool/requestUserInput", requestId: "9", kind: "userInput", request: {} } })).toBe(true);
+    expect(validateHarnessEventV2({ ...envelope, type: "codex.request", data: { method: "item/tool/requestUserInput", requestId: "" } })).toBe(false);
+    expect(validateHarnessEventV2({ ...envelope, type: "codex.request.resolved", data: { outcome: "cancelled", requestId: "9", method: "item/tool/requestUserInput", decidedBy: "runtime" } })).toBe(true);
+    expect(validateHarnessEventV2({ ...envelope, type: "codex.request.resolved", data: { outcome: "approved" } })).toBe(false);
+    expect(validateHarnessEventV2({ ...envelope, type: "codex.request.resolved", data: { outcome: "answered", decidedBy: "vendor" } })).toBe(false);
+    expect(validateHarnessEventV2({ ...envelope, type: "codex.request.resolved", data: {} })).toBe(false);
+  });
 });

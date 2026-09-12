@@ -35,6 +35,8 @@ export type AgentEngineRunInput = {
   turnId: string;
   /** Effective interaction mode for this turn, including an explicit per-turn override. */
   interactionMode?: "chat" | "native-plan";
+  /** Effective reasoning effort for this turn (per-turn override or the session's value); `opts.model` carries the effective model. */
+  reasoningEffort?: string;
   /** Exact runtime-resolved instructions supplied for this turn. */
   instructionContext?: ResolveSelectedContextResponse;
   /** Runtime-owned tools; adapters must expose only definitions admitted by their own tool bridge. */

@@ -19,6 +19,12 @@ interface EventPayloadsV2 {
   "turn.failed": { code: string; message: string };
   "turn.interrupted": { outcome: "interrupted" };
   "turn.cancelled": { outcome: "cancelled" };
+  /** Stock Codex notification passthrough: the upstream method name and its raw params. */
+  "codex.notification": { method: string; params?: unknown; [key: string]: unknown };
+  /** Stock Codex server request awaiting a decision. */
+  "codex.request": { method: string; requestId?: string; [key: string]: unknown };
+  /** Resolution of a Codex server request; an unanswered request never implies approval. */
+  "codex.request.resolved": { outcome: "answered" | "cancelled" | "unsupported" | "failed"; method?: string; requestId?: string; decidedBy?: "user" | "policy" | "runtime"; [key: string]: unknown };
 }
 export type HarnessEventTypeV2 = keyof EventPayloadsV2;
 export type HarnessEventV2 = { [K in HarnessEventTypeV2]: {
@@ -47,6 +53,11 @@ function payload(type: HarnessEventTypeV2, data: Record<string, unknown>): boole
     case "approval.decided": return exact(data, ["approvalId", "actorId", "decision", "explicitUserAct"]) && nonempty(data.approvalId) && nonempty(data.actorId) && str(data.decision) && ["accept", "decline", "acceptForSession"].includes(data.decision) && data.explicitUserAct === true;
     case "turn.failed": return fields("code", "message") && nonempty(data.code);
     case "turn.completed": case "turn.interrupted": case "turn.cancelled": return exact(data, ["outcome"]) && data.outcome === type.slice(5);
+    // Codex passthrough carries the raw upstream payload, so only the identifying fields are checked.
+    case "codex.notification": case "codex.request": return nonempty(data.method) && (data.requestId === undefined || nonempty(data.requestId));
+    case "codex.request.resolved": return str(data.outcome) && ["answered", "cancelled", "unsupported", "failed"].includes(data.outcome)
+      && (data.method === undefined || nonempty(data.method)) && (data.requestId === undefined || nonempty(data.requestId))
+      && (data.decidedBy === undefined || (str(data.decidedBy) && ["user", "policy", "runtime"].includes(data.decidedBy)));
     default: return false;
   }
 }

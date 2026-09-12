@@ -8,25 +8,6 @@ export interface WorkerContinuity {
   policyDigest: string;
   cwd: string;
 }
-export type CommandNetworkPosture = "off" | "ask-per-destination" | "on";
-export interface HostedConsent {
-  identity: WorkerContinuity;
-  posture: CommandNetworkPosture;
-  approvedBy: string;
-  approvedAt: string;
-}
-export interface DestinationApproval {
-  host: string;
-  protocol: string;
-  acceptForSession: boolean;
-  explicitUserAct: boolean;
-  approvedBy: string;
-}
-export interface HostedEngineConsentPort {
-  read(identity: WorkerContinuity): Promise<HostedConsent | undefined>;
-  grant(consent: HostedConsent): Promise<void>;
-  authorizeDestination(identity: WorkerContinuity, approval: DestinationApproval): Promise<void>;
-}
 export interface WorkerHandle {
   workerId: string;
   generation: string;
@@ -76,16 +57,6 @@ export interface WorkerRetirementCoordinatorPort {
   reconcile(): Promise<readonly RetirementRecord[]>;
   restart(turnId: string, identity: WorkerContinuity, expectedRolePolicyDigest?: string): Promise<{ method: "thread/resume" | "thread/start"; threadId?: string }>;
 }
-export interface RuntimeCompatibilityIdentity {
-  compatibilityIdentity: string;
-  contractBasisSha256: string;
-}
-export interface DelegatedPreflight extends RuntimeCompatibilityIdentity {
-  operationId: string;
-  projectId: string;
-  daemonId: string;
-  nonce: string;
-}
 export type DelegatedRole = "untyped" | "agent0" | "agent1" | "agent2" | "task";
 export type DelegatedInteractionMode = "chat" | "native-plan";
 export type DelegatedAttachmentInput =
@@ -105,8 +76,10 @@ export interface DelegatedTurnRequest {
   /** Session-fixed catalog choice. Absent means the admitted default; never substituted. */
   model?: string;
   reasoningEffort?: string;
-  compatibility: RuntimeCompatibilityIdentity;
-  preflight: DelegatedPreflight;
+  /** Rendered role and method instructions for `thread/start` or `thread/resume` (`developerInstructions`); never a user message. */
+  developerInstructions?: string;
+  /** Instruction delta sent as an extra input item when the developer instructions changed between turns of one thread. */
+  contextUpdate?: string;
 }
 export interface DelegatedRoleEvidence {
   selectedRole: DelegatedRole;
@@ -115,22 +88,6 @@ export interface DelegatedRoleEvidence {
   evidencePosture: "instruction-asserted";
   policyDigest: string;
   actual: EventAttributionV2;
-}
-export interface DelegatedCapabilities {
-  offeredRoles: DelegatedRole[];
-  configuredPosture: CommandNetworkPosture;
-  commandNetwork: { posture: CommandNetworkPosture; configured: boolean; executionSupported: boolean; label: string }[];
-  approvalRecordsAvailable: boolean;
-  approvalForwardingSupported: boolean;
-}
-export interface DelegatedApprovalDecisionRequest {
-  turnId: string;
-  workerGeneration: string;
-  decision: "allow" | "deny" | "acceptForSession";
-  approvedBy: string;
-  explicitUserAct: true;
-  compatibility: RuntimeCompatibilityIdentity;
-  preflight: DelegatedPreflight;
 }
 export interface DelegatedTurnResponse {
   roleEvidence: DelegatedRoleEvidence;
@@ -141,26 +98,6 @@ export interface DelegatedTurnResponse {
   evidenceClass: "controlled-worker" | "provider-observed";
 }
 
-/** Unavailable is the only qualified binding state in this increment. */
-export interface HostedAccountBinding {
-  schema: "chirality-hosted-account-binding/v1";
-  state: "unavailable";
-  reason: "canonical-identity-producer-unavailable";
-}
-export interface HostedManagedAuth {
-  backend: "keyring";
-  binding: HostedAccountBinding;
-}
-export interface HostedLoginStatus {
-  schema: "chirality-hosted-login-status/v2";
-  state: "pending" | "completed" | "failed";
-  loginId?: string;
-  /** Supplier presence only; never a principal or a readiness signal. */
-  hasAccount?: boolean;
-  evidenceClass: "exact-supply-login" | "controlled-fixture";
-  binding: HostedAccountBinding;
-  hostedReady: false;
-}
 /** One non-hidden entry of the authenticated Codex model catalog (`model/list`). */
 export interface HostedModelCatalogEntry {
   model: string;
@@ -260,42 +197,6 @@ function hostedRecord(value: unknown, allowed: readonly string[]): Record<string
     || Object.keys(value).some(key => !allowed.includes(key))) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted status/configuration fields");
   return value as Record<string, unknown>;
 }
-export function validateHostedAccountBinding(value: unknown): HostedAccountBinding {
-  const binding = hostedRecord(value, ["schema", "state", "reason"]);
-  if (binding.schema !== "chirality-hosted-account-binding/v1" || binding.state !== "unavailable"
-    || binding.reason !== "canonical-identity-producer-unavailable") throw new RuntimeError("INVALID_REQUEST", "Invalid unavailable hosted account binding");
-  return { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" };
-}
-export function validateHostedManagedAuth(value: unknown): HostedManagedAuth {
-  const auth = hostedRecord(value, ["backend", "binding"]);
-  if (auth.backend !== "keyring") throw new RuntimeError("INVALID_REQUEST", "Hosted managed authentication requires explicit keyring configuration");
-  return { backend: "keyring", binding: validateHostedAccountBinding(auth.binding) };
-}
-export function validateHostedLoginStatus(value: unknown): HostedLoginStatus {
-  const status = hostedRecord(value, ["schema", "state", "loginId", "hasAccount", "evidenceClass", "binding", "hostedReady"]);
-  if (status.schema !== "chirality-hosted-login-status/v2" || !["pending", "completed", "failed"].includes(status.state as string)
-    || !["exact-supply-login", "controlled-fixture"].includes(status.evidenceClass as string) || status.hostedReady !== false
-    || ("loginId" in status && (typeof status.loginId !== "string" || status.loginId.length > 512))
-    || ("hasAccount" in status && typeof status.hasAccount !== "boolean")) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted login status");
-  return { schema: "chirality-hosted-login-status/v2", state: status.state as HostedLoginStatus["state"],
-    evidenceClass: status.evidenceClass as HostedLoginStatus["evidenceClass"], binding: validateHostedAccountBinding(status.binding), hostedReady: false,
-    ...("loginId" in status ? { loginId: status.loginId as string } : {}), ...("hasAccount" in status ? { hasAccount: status.hasAccount as boolean } : {}) };
-}
-
-/** Private daemon/supervisor approval capability, never a public request-mint API. */
-export type NetworkApprovalChoice = "allow" | "deny" | "acceptForSession";
-export interface NetworkApprovalPrompt {
-  approvalId: string;
-  threadId: string;
-  turnId: string;
-  networkApprovalContext: { host: string; protocol: string };
-  availableDecisions: NetworkApprovalChoice[];
-}
-export interface SupervisorNetworkApprovalPort {
-  pendingNetworkApprovals(workerId: string, generation: string): Promise<readonly NetworkApprovalPrompt[]>;
-  replyNetworkApproval(workerId: string, generation: string, approvalId: string, decision: NetworkApprovalChoice): Promise<{ sent: true }>;
-}
-
 /** Trusted supervisor projection of an authoritative completed Codex plan item. */
 export interface NativePlanTransportEvent {
   projectId: string;
@@ -352,20 +253,65 @@ export interface SupervisorRuntimeToolPort {
   nextRuntimeToolCallback(workerId: string, generation: string): Promise<RuntimeToolCallbackMessage>;
   replyRuntimeToolCallback(workerId: string, generation: string, message: Extract<RuntimeToolCallbackMessage, { kind: "callback" }>, result: RuntimeToolCallbackResult): Promise<void>;
 }
+/**
+ * Supervisor-observed progress of one delegated turn. Under D-GOV-43 (A2) the
+ * stock Codex App Server's notifications and server requests pass through
+ * unchanged: `method` and `params` are the upstream names and payloads.
+ */
 export type DelegatedTurnProgressEvent =
   | { type: "started"; providerThreadId: string; providerTurnId: string }
-  | { type: "text"; providerThreadId: string; providerTurnId: string; text: string };
+  | { type: "text"; providerThreadId: string; providerTurnId: string; text: string }
+  | { type: "notification"; providerThreadId: string; providerTurnId?: string; method: string; params: unknown; occurredAt: string }
+  | { type: "request"; providerThreadId: string; providerTurnId?: string; requestId: string; method: string; params: unknown; occurredAt: string }
+  | {
+      type: "request-resolved";
+      providerThreadId: string;
+      providerTurnId?: string;
+      requestId: string;
+      method: string;
+      outcome: ServerRequestOutcome;
+      decision?: unknown;
+      decidedBy?: ServerRequestDecider;
+      occurredAt: string;
+    };
 export interface SupervisorTurnProgressPort {
   drainTurnProgress(workerId: string, generation: string): Promise<readonly DelegatedTurnProgressEvent[]>;
 }
 
-export interface SupervisorApprovalDescription {
-  identity: WorkerContinuity;
-  model: string;
-  commandNetworkPosture: CommandNetworkPosture;
-  compatibility: RuntimeCompatibilityIdentity;
-  consent?: HostedConsent;
+export type ServerRequestOutcome = "answered" | "cancelled" | "unsupported" | "failed";
+export type ServerRequestDecider = "user" | "policy" | "runtime";
+/** One unanswered Codex server request held by the supervisor for a live turn. */
+export interface PendingServerRequest {
+  requestId: string;
+  method: string;
+  params: unknown;
+  /** Codex item id (`itemId` or legacy `callId`) when the request concerns an item. */
+  itemId?: string;
+  receivedAt: string;
 }
-export interface SupervisorApprovalDescriptionPort {
-  describeApprovalScope(workerId?: string, generation?: string): Promise<SupervisorApprovalDescription>;
+export type ServerRequestAnswer =
+  | { kind: "approval"; verdict: "allow" | "deny" | "allowForSession" }
+  | { kind: "userInput"; answers: Record<string, { answers: string[] }> }
+  | { kind: "elicitation"; action: "accept" | "decline" | "cancel"; content?: unknown };
+export interface SupervisorRequestPort {
+  pendingRequests(workerId: string, generation: string): Promise<readonly PendingServerRequest[]>;
+  answerRequest(workerId: string, generation: string, requestId: string, answer: ServerRequestAnswer): Promise<{ sent: true }>;
+}
+
+/** The user's chosen Codex approval policy and sandbox mode (TYPES §12 `PolicySelection`). */
+export interface PolicySelection {
+  approvalPolicy: "untrusted" | "on-request" | "never";
+  sandbox: "read-only" | "workspace-write" | "danger-full-access";
+}
+export type DelegatedPermissionMode = "readOnly" | "ask" | "workspaceWrite" | "bypass";
+/** Fixed mapping from the App's permission mode to the Codex policy; grants nothing by itself. */
+export function policySelectionFromPermissionMode(mode: DelegatedPermissionMode | undefined): PolicySelection {
+  switch (mode) {
+    case "readOnly": return { approvalPolicy: "on-request", sandbox: "read-only" };
+    case "workspaceWrite": return { approvalPolicy: "never", sandbox: "workspace-write" };
+    case "bypass": return { approvalPolicy: "never", sandbox: "danger-full-access" };
+    case "ask":
+    case undefined:
+      return { approvalPolicy: "on-request", sandbox: "workspace-write" };
+  }
 }
