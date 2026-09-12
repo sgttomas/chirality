@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { AppUpdateControls } from './app-update-summary';
 import { useAppUpdate } from './app-update-provider';
+import { UPDATE_PATH_DESCRIPTION, UPDATE_PRESERVATION_NOTE } from '../../lib/shell/user-data-inventory';
 import { version } from '../../../package.json';
 
 /**
@@ -29,6 +30,7 @@ export function AboutPanel({ open, onClose }: { open: boolean; onClose: () => vo
       <p className="about-version">Version <code data-installed-version={installed}>{installed}</code></p>
       <AppUpdateControls />
       {update.state && !update.state.releaseSource.configured ? <p className="about-note">Updates are distributed by the owner. This build has no release source to check against.</p> : null}
+      {update.state?.status === 'update-available' ? null : <p className="about-note" data-update-note="path">{UPDATE_PATH_DESCRIPTION} {UPDATE_PRESERVATION_NOTE}</p>}
       <div className="about-actions"><button ref={closeRef} type="button" onClick={onClose}>Close</button></div>
     </section>
   </div>;

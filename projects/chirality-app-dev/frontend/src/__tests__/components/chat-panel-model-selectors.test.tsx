@@ -123,11 +123,12 @@ it('disables both selectors with the sign-in title when no hosted status is avai
     expect(select(label).props.value).toBe('');
     expect(optionValues(label)).toEqual(['']);
   }
-  // Signed out, and signed in without a retained catalog, are both "no catalog".
+  // Signed out, and signed in without a retained catalog, are both "no catalog",
+  // but only the first is a sign-in problem and only it says so.
   await update(snapshot({ ceremony: 'ready-to-start', admission: 'unavailable' }));
   expect(select('Model').props.disabled).toBe(true); expect(select('Model').props.title).toBe(SIGNED_OUT_TITLE);
   await update(snapshot({ withCatalog: false }));
-  expect(select('Model').props.disabled).toBe(true); expect(select('Reasoning').props.title).toBe(SIGNED_OUT_TITLE);
+  expect(select('Model').props.disabled).toBe(true); expect(select('Reasoning').props.title).toBe('Codex reported no model catalog for this folder yet.');
   // A session created while signed out carries no modelSelection: nothing is invented.
   await type('hello'); await submit();
   expect(state.create).toHaveBeenCalledTimes(1);
@@ -320,4 +321,34 @@ it('keeps a valid chosen model and reasoning when switching the new chat role', 
   expect(select('Reasoning').props.value).toBe('low');
   await update(reducedSnapshot());
   expect(select('Model').props.value).toBe('gpt-default');
+});
+
+// Item 14: while a folder is being switched or cannot be bound, the account's
+// last reported catalog keeps the selectors usable, and a disabled selector
+// names the folder problem rather than demanding sign-in.
+it('keeps the account catalog while the selected folder is in conflict and names a folder problem in the disabled title', async () => {
+  const registered = snapshot();
+  if (registered.registration !== 'registered') throw new Error('fixture');
+  const account = registered.status;
+  await act(async () => {
+    tree = create(<HostedBootstrapProvider snapshot={null} loading={false} account={account} project={{ state: 'conflict', message: 'bound elsewhere' }}><ChatPanel presentation="woven" /></HostedBootstrapProvider>);
+  });
+  expect(select('Model').props.disabled).toBe(false);
+  expect(optionValues('Model')).toEqual(['gpt-default', 'gpt-alt']);
+
+  await act(async () => {
+    tree!.update(<HostedBootstrapProvider snapshot={null} loading={false} account={{ ...account, admission: 'establishing', models: undefined, selection: undefined }} project={{ state: 'conflict', message: 'bound elsewhere' }}><ChatPanel presentation="woven" /></HostedBootstrapProvider>);
+  });
+  expect(select('Model').props.disabled).toBe(true);
+  expect(select('Model').props.title).toBe('This folder is not available to Codex yet. Set it up from the account menu to choose a model.');
+
+  await act(async () => {
+    tree!.update(<HostedBootstrapProvider snapshot={null} loading={true} account={{ ...account, admission: 'establishing', models: undefined, selection: undefined }} project={{ state: 'checking', message: null }}><ChatPanel presentation="woven" /></HostedBootstrapProvider>);
+  });
+  expect(select('Model').props.title).toBe('Checking this folder. Models load once it is ready.');
+
+  await act(async () => {
+    tree!.update(<HostedBootstrapProvider snapshot={null} loading={false} account={{ ...account, ceremony: 'ready-to-start', admission: 'unavailable', models: undefined, selection: undefined }} project={{ state: 'conflict', message: 'bound elsewhere' }}><ChatPanel presentation="woven" /></HostedBootstrapProvider>);
+  });
+  expect(select('Model').props.title).toBe(SIGNED_OUT_TITLE);
 });

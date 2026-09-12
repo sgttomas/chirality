@@ -16,10 +16,29 @@ import { useWorkspaceSelection } from '../workspace/workspace-provider';
 
 export type HostedBootstrapStatusResult = Awaited<ReturnType<typeof getHostedBootstrapStatus>>;
 type RegisteredBootstrap = Extract<HostedBootstrapStatusResult, { registration: 'registered' }>;
+export type HostedAccountStatus = RegisteredBootstrap['status'];
+
+/**
+ * The selected folder's standing with the Runtime, kept apart from the
+ * account. Sign-in belongs to the Codex host and survives folder changes; a
+ * folder can be unregistered, bound behind another folder in this Runtime
+ * session (`conflict`), or unreadable (`unavailable`) while the account stays
+ * signed in.
+ */
+export type HostedProjectState =
+  | { state: 'none' | 'checking' | 'registered' | 'setup-required'; message: null }
+  | { state: 'conflict' | 'unavailable'; message: string };
 
 export type HostedBootstrapController = {
   projectRoot: string | null;
   snapshot: HostedBootstrapStatusResult | null;
+  /**
+   * The last account status the Runtime reported for any folder in this
+   * session. It outlives folder changes and project failures, so the account
+   * row and the model selectors never read a folder problem as signed out.
+   */
+  account: HostedAccountStatus | null;
+  project: HostedProjectState;
   loading: boolean;
   busyAction: 'setup' | 'login' | 'cancel' | 'logout' | null;
   error: string | null;
@@ -54,9 +73,42 @@ function withStatus(current: HostedBootstrapStatusResult | null, status: Registe
   return current?.registration === 'registered' ? { ...current, status } : current;
 }
 
+type LoadFailure = { status: number | null; message: string };
+
+function loadFailureFrom(error: unknown): LoadFailure {
+  // HostedBootstrapClientError carries the route status; read it by shape so a
+  // substituted client module still classifies its failures.
+  const candidate = error instanceof Error ? (error as Error & { status?: unknown }).status : undefined;
+  const status = typeof candidate === 'number' ? candidate : null;
+  return { status, message: messageFrom(error) };
+}
+
+/** A 409 from the bind or status route: another folder is bound in this Runtime session, and explicit setup rebinds. */
+function isBindingConflict(failure: LoadFailure | null): boolean {
+  return failure?.status === 409;
+}
+
+export function hostedProjectState(input: {
+  projectRoot: string | null; loading: boolean; snapshot: HostedBootstrapStatusResult | null; loadFailure: LoadFailure | null;
+}): HostedProjectState {
+  if (!input.projectRoot) return { state: 'none', message: null };
+  if (input.snapshot?.registration === 'registered') return { state: 'registered', message: null };
+  if (input.snapshot?.registration === 'required') return { state: 'setup-required', message: null };
+  if (input.loadFailure) {
+    return isBindingConflict(input.loadFailure)
+      ? { state: 'conflict', message: input.loadFailure.message }
+      : { state: 'unavailable', message: input.loadFailure.message };
+  }
+  return { state: input.loading ? 'checking' : 'setup-required', message: null };
+}
+
 export function useHostedBootstrapController(projectRoot: string | null, onBindingChanged: () => void): HostedBootstrapController {
   const [observed, setObserved] = useState<{ projectRoot: string | null; snapshot: HostedBootstrapStatusResult | null }>({ projectRoot, snapshot: null });
   const snapshot = observed.projectRoot === projectRoot ? observed.snapshot : null;
+  // Account status is global to the Codex host: every registered snapshot,
+  // for whichever folder, refreshes it, and a folder change does not clear it.
+  const [account, setAccount] = useState<HostedAccountStatus | null>(null);
+  const [loadFailure, setLoadFailure] = useState<{ projectRoot: string | null; failure: LoadFailure } | null>(null);
   const [loading, setLoading] = useState(Boolean(projectRoot));
   const [busyAction, setBusyAction] = useState<HostedBootstrapController['busyAction']>(null);
   const [error, setError] = useState<string | null>(null);
@@ -74,6 +126,10 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
   rootRef.current = projectRoot;
   snapshotRef.current = snapshot;
   onBindingChangedRef.current = onBindingChanged;
+
+  useEffect(() => {
+    if (observed.snapshot?.registration === 'registered') setAccount(observed.snapshot.status);
+  }, [observed]);
 
   const publishBinding = useCallback((root: string, projectId: string): void => {
     const key = `${root}:${projectId}:registered`;
@@ -98,6 +154,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
     );
     if (!signal?.aborted && operationGeneration.current === generation && rootRef.current === root) {
       setObserved({ projectRoot: root, snapshot: result });
+      setLoadFailure(null);
       setError(null);
       setLoading(false);
     }
@@ -113,6 +170,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
     const result = await getHostedBootstrapStatusWithRetry(root, signal);
     if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;
     setObserved({ projectRoot: root, snapshot: result });
+    setLoadFailure(null);
     setAuthUrl(null);
   }, [publishBinding]);
 
@@ -168,6 +226,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
     pollController.current?.abort();
     publishedBindingKeys.current.clear();
     setObserved({ projectRoot, snapshot: null });
+    setLoadFailure(null);
     setAuthUrl(null);
     setError(null);
     setSignOutUncertain(false);
@@ -177,6 +236,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
     const controller = new AbortController();
     void load(projectRoot, generation, controller.signal).catch(reason => {
       if (!controller.signal.aborted && operationGeneration.current === generation && rootRef.current === projectRoot) {
+        setLoadFailure({ projectRoot, failure: loadFailureFrom(reason) });
         setError(messageFrom(reason));
         setLoading(false);
       }
@@ -249,10 +309,15 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
     }
   }, [busyAction]);
 
+  const currentFailure = loadFailure && loadFailure.projectRoot === projectRoot ? loadFailure.failure : null;
+  const project = hostedProjectState({ projectRoot, loading, snapshot, loadFailure: currentFailure });
+
   // A folder the user chose explicitly in this session (native picker or an
-  // applied path) that hydrates as unregistered is set up once for that
-  // selection. Roots restored from storage never auto-initialize, and a failed
-  // automatic setup leaves the manual action and its error in place.
+  // applied path) that hydrates as unregistered, or as bound behind another
+  // folder in this Runtime session, is set up once for that selection: explicit
+  // setup is the supported way to move the Runtime to the chosen folder. Roots
+  // restored from storage never auto-initialize, and a failed automatic setup
+  // leaves the manual action and its error in place.
   useEffect(() => {
     if (
       !projectRoot ||
@@ -261,14 +326,14 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
       autoSetupSequence.current === lastSelection.sequence ||
       loading ||
       busyAction ||
-      snapshot?.registration !== 'required'
+      (snapshot?.registration !== 'required' && !isBindingConflict(currentFailure))
     ) return;
     autoSetupSequence.current = lastSelection.sequence;
     void perform('setup', setup);
-  }, [projectRoot, lastSelection, loading, busyAction, snapshot, perform, setup]);
+  }, [projectRoot, lastSelection, loading, busyAction, snapshot, currentFailure, perform, setup]);
 
   return {
-    projectRoot, snapshot, loading, busyAction, error, authUrl, signOutUncertain,
+    projectRoot, snapshot, account, project, loading, busyAction, error, authUrl, signOutUncertain,
     onSetup: () => void perform('setup', setup),
     onRefresh: refresh,
     onStartLogin: () => void perform('login', async (root, signal, generation) => {

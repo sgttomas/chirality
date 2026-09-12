@@ -400,6 +400,6 @@ function AccountPresentation({ folder, onOpenSettings, children }: {
   }, [open]);
   // The chat panel's model/reasoning selectors read this same controller's
   // snapshot through context; no second controller or status poll exists.
-  return <HostedBootstrapProvider snapshot={hosted.snapshot} loading={hosted.loading} refresh={hosted.onRefresh}>{children({ settingsControl: <AccountRow account={account} hosted={hosted} folder={folder} onOpenSettings={open} onOpenAbout={openAbout} />,
+  return <HostedBootstrapProvider snapshot={hosted.snapshot} loading={hosted.loading} account={hosted.account} project={hosted.project} refresh={hosted.onRefresh}>{children({ settingsControl: <AccountRow account={account} hosted={hosted} folder={folder} onOpenSettings={open} onOpenAbout={openAbout} />,
     settingsView: <SettingsView account={account} runtime={runtime} hosted={hosted} folder={folder} target={target} /> })}<AboutPanel open={aboutOpen} onClose={closeAbout} /></HostedBootstrapProvider>;
 }

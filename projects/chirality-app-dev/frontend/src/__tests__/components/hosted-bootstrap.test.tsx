@@ -531,3 +531,71 @@ it('re-reads status once when the runtime reconnects and not on repeated connect
     connectivity.current = null;
   }
 });
+
+// Item 14: account authentication is a fact of the Codex host, not of the
+// selected folder. Switching to a folder the Runtime cannot bind yet must keep
+// the signed-in account visible and name the folder problem as such.
+function conflictError(): Error & { status: number } {
+  return Object.assign(new Error('A different project is already bound to the Desktop runtime client'), { status: 409 });
+}
+
+it('keeps the signed-in account across a folder switch whose binding conflicts, and names the folder problem rather than sign-in', async () => {
+  api.get.mockResolvedValue(registered('signed-in', 'ready'));
+  await act(async () => { tree = create(<Fixture projectRoot="/projects/a" />); });
+  await settle();
+  expect(hostedBootstrapSummary(latest)).toBe('Signed in · Ready to work');
+  expect(latest.project.state).toBe('registered');
+
+  api.get.mockRejectedValue(conflictError());
+  await act(async () => tree.update(<Fixture projectRoot="/projects/b" />));
+  await settle();
+  expect(latest.account?.ceremony).toBe('signed-in');
+  expect(latest.project).toEqual({ state: 'conflict', message: 'A different project is already bound to the Desktop runtime client' });
+  expect(hostedBootstrapSummary(latest)).toBe('Signed in · Another folder is active');
+  expect(text()).not.toContain('Sign in required');
+  expect(text()).not.toContain('Sign in with your ChatGPT account');
+  expect(text()).toContain('Use this folder');
+  expect(text()).toContain('moves it here; your sign-in is not affected');
+  // A restored (not explicitly selected) root never rebinds on its own.
+  expect(api.initialize).not.toHaveBeenCalled();
+
+  api.get.mockRejectedValue(Object.assign(new Error('The selected project folder is inaccessible'), { status: 404 }));
+  await act(async () => tree.update(<Fixture projectRoot="/projects/missing" />));
+  await settle();
+  expect(latest.project.state).toBe('unavailable');
+  expect(hostedBootstrapSummary(latest)).toBe('Signed in · Folder unavailable');
+  expect(text()).toContain('could not be read or registered');
+});
+
+it('rebinds an explicitly selected folder once when hydration reports a binding conflict', async () => {
+  installWorkspaceHost('/projects/a');
+  const refresh = vi.fn();
+  api.get.mockResolvedValue(registered('signed-in', 'ready'));
+  await act(async () => { tree = create(<WorkspaceProvider><WorkspaceFixture refresh={refresh} /></WorkspaceProvider>); });
+  await settle();
+  expect(hostedBootstrapSummary(latest)).toBe('Signed in · Ready to work');
+
+  api.get.mockRejectedValueOnce(conflictError()).mockResolvedValue({ registration: 'registered', projectId: 'project-b', status: { ...status('signed-in', 'ready'), projectId: 'project-b' } });
+  api.initialize.mockResolvedValue({ registration: 'registered', projectId: 'project-b' });
+  await act(async () => { await workspace.applyProjectRoot('/projects/b'); });
+  await settle();
+  expect(api.initialize).toHaveBeenCalledTimes(1);
+  expect(api.initialize).toHaveBeenCalledWith('/projects/b', expect.any(AbortSignal));
+  expect(latest.project.state).toBe('registered');
+  expect(latest.snapshot).toMatchObject({ registration: 'registered', projectId: 'project-b' });
+  expect(hostedBootstrapSummary(latest)).toBe('Signed in · Ready to work');
+  expect(refresh).toHaveBeenCalled();
+  await settle();
+  expect(api.initialize).toHaveBeenCalledTimes(1);
+});
+
+it('reports a signed-out account with the folder standing instead of a bare sign-in demand', async () => {
+  api.get.mockResolvedValue(registered('ready-to-start'));
+  await act(async () => { tree = create(<Fixture projectRoot="/projects/a" />); });
+  await settle();
+  expect(hostedBootstrapSummary(latest)).toBe('Sign in required');
+  api.get.mockRejectedValue(conflictError());
+  await act(async () => tree.update(<Fixture projectRoot="/projects/b" />));
+  await settle();
+  expect(hostedBootstrapSummary(latest)).toBe('Not signed in · Another folder is active');
+});

@@ -7,7 +7,7 @@ import { AccountIcon } from './account-icon';
 import { AccountPopover, type AccountPopoverProps } from './account-popover';
 import { accountTitle, LocalModelStatus } from './account-settings-controls';
 import { useAppUpdate } from './app-update-provider';
-import { hostedBootstrapSummary, hostedBootstrapTitle } from '../settings/hosted-bootstrap-view';
+import { hostedBootstrapStates, hostedBootstrapSummary, hostedBootstrapTitle } from '../settings/hosted-bootstrap-view';
 import styles from './account-controls.module.css';
 
 export function AccountRow(props: AccountPopoverProps): JSX.Element {
@@ -52,7 +52,9 @@ export function AccountRow(props: AccountPopoverProps): JSX.Element {
     previousCeremony.current = ceremony;
     if (previous === 'pending' && ceremony === 'signed-in') setOpen(false);
   }, [ceremony]);
-  const signedIn = props.hosted ? ceremony === 'signed-in' : props.account.snapshot?.account.status === 'loggedIn';
+  // Sign-in is an account fact: it holds across folder changes and folder
+  // failures, so the avatar does not flicker to signed-out while a folder loads.
+  const signedIn = props.hosted ? hostedBootstrapStates(props.hosted).auth === 'signed-in' : props.account.snapshot?.account.status === 'loggedIn';
   return <div ref={root} className={styles.root} onBlur={event => {
     if (event.relatedTarget instanceof Node && !event.currentTarget.contains(event.relatedTarget)) setOpen(false);
   }}>

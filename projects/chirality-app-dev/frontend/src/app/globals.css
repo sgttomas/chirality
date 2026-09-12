@@ -4609,6 +4609,9 @@ button:disabled {
 .hosted-bootstrap-states dd[data-auth-state="pending"] { color: var(--accent-ink); }
 .hosted-bootstrap-states dd[data-auth-state="failed"] { color: var(--danger); }
 .hosted-bootstrap-states dd[data-readiness-state="ready"] { color: var(--sage-ink); }
+.hosted-bootstrap-states dd[data-project-state="conflict"],
+.hosted-bootstrap-states dd[data-project-state="unavailable"] { color: var(--accent-ink); }
+.hosted-bootstrap-project { color: var(--ink-soft); font-size: 12px; }
 .hosted-bootstrap-pending { color: var(--ink-soft); }
 .hosted-bootstrap-actions { display: flex; flex-wrap: wrap; gap: 6px; }
 .app-update-controls { display: grid; gap: 6px; }
@@ -4617,6 +4620,8 @@ button:disabled {
 .app-update-status--compact { font-size: 11.5px; }
 .app-update-controls[data-update-status="update-available"] .app-update-status { color: var(--accent-ink); }
 .app-update-controls[data-update-status="failed"] .app-update-status { color: var(--ink-soft); }
+.app-update-note { margin: 0; color: var(--ink-faint); font-size: 12px; line-height: 1.45; }
+.app-update-note--live { color: var(--accent-ink); }
 .about-backdrop { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; background: var(--overlay); }
 .about-panel { width: min(360px, calc(100vw - 32px)); padding: 20px 22px; border: 1px solid var(--rule-strong); border-radius: 12px; background: var(--surface); color: var(--ink); box-shadow: 0 12px 40px var(--shadow-strong); display: grid; gap: 10px; }
 .about-panel h2 { margin: 0; font: 500 22px var(--font-display); }

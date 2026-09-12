@@ -33,6 +33,7 @@ import {
   type WovenWorkspaceState
 } from '../../lib/woven-dialogue/woven-workspace-state';
 import type { TurnPhase } from '../../lib/shell/turn-phase';
+import { publishLiveTurnPhase } from '../../lib/shell/live-work-store';
 import { useHarnessStreaming, useHarnessEvents } from '../workspace/harness-events-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { ChatPanel, type ResumeConversationRequest } from '../shell/chat-panel';
@@ -98,6 +99,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [planPanel, setPlanPanel] = useState<NativePlanPanelModel | null>(null);
   const [planFocusRevision, setPlanFocusRevision] = useState<{ revision: number; sequence: number } | undefined>(undefined);
   const [turnPhase, setTurnPhase] = useState<TurnPhase>('idle');
+  // Surfaces outside the shell (the update controls) read whether work is live here.
+  useEffect(() => { publishLiveTurnPhase(turnPhase); return () => publishLiveTurnPhase('idle'); }, [turnPhase]);
   // Chats recorded in other folders are opened by switching to that folder
   // first and resuming once its sessions are listed. `expectedRoot` null means
   // "whichever folder the human locates".

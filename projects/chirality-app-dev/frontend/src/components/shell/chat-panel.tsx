@@ -17,7 +17,7 @@ import {
   type HarnessModelSelection,
   type HarnessTurnStreamEvent
 } from '../../lib/harness/client';
-import { isSelectionInCatalog, selectHostedModelCatalog, useHostedBootstrap } from '../../lib/harness/hosted-bootstrap-context';
+import { isSelectionInCatalog, modelSelectorUnavailableTitle, selectAccountModelCatalog, selectHostedModelCatalog, useHostedBootstrap } from '../../lib/harness/hosted-bootstrap-context';
 import { toHarnessUiError, type HarnessUiError } from '../../lib/harness/error-display';
 import {
   buildChatDraftStorageKey,
@@ -124,7 +124,6 @@ export const OPERATOR_MODES: readonly OperatorModeOption[] = [
 ];
 
 const DEFAULT_OPERATOR_MODE = 'workspaceWrite';
-const MODEL_SELECTOR_SIGNED_OUT_TITLE = 'Sign in to Codex to choose a model';
 const MODEL_SELECTOR_HELP = 'Codex model for the next turn, from your authenticated account catalog. Changeable between turns.';
 const REASONING_SELECTOR_HELP = 'Reasoning effort supported by the selected model, sent with the next turn. Separate from Plan Mode and from permissions.';
 const PERMISSION_SELECTOR_HELP = 'Codex approval policy and sandbox for this chat. Applied at the next turn.';
@@ -321,7 +320,14 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   // catalog is dropped rather than substituted.
   const [modelChoice, setModelChoice] = useState<HarnessModelSelection | null>(null);
   const hostedBootstrap = useHostedBootstrap();
-  const modelCatalog = useMemo(() => selectHostedModelCatalog(hostedBootstrap.snapshot), [hostedBootstrap.snapshot]);
+  // The catalog belongs to the signed-in account. While the selected folder
+  // is still being checked or set up, the last reported account catalog keeps
+  // the selectors meaningful; a folder problem never reads as signed out.
+  const modelCatalog = useMemo(
+    () => selectHostedModelCatalog(hostedBootstrap.snapshot) ?? (hostedBootstrap.snapshot?.registration === 'registered' ? null : selectAccountModelCatalog(hostedBootstrap.account)),
+    [hostedBootstrap.snapshot, hostedBootstrap.account]
+  );
+  const modelSelectorTitle = useMemo(() => modelSelectorUnavailableTitle(hostedBootstrap), [hostedBootstrap]);
   useEffect(() => {
     if (modelCatalog && modelChoice && !isSelectionInCatalog(modelCatalog, modelChoice)) setModelChoice(null);
   }, [modelCatalog, modelChoice]);
@@ -1914,7 +1920,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Model</span><select aria-label="Model"
           value={nextTurnSelection?.model ?? recordedSelection?.model ?? ''}
           disabled={!modelCatalog || isRunning}
-          title={modelCatalog ? MODEL_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          title={modelCatalog ? MODEL_SELECTOR_HELP : modelSelectorTitle}
           onChange={event => {
             const entry = modelCatalog?.models.find(model => model.model === event.target.value);
             if (entry) setModelChoice({ model: entry.model, reasoningEffort: entry.defaultReasoningEffort });
@@ -1926,7 +1932,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Reasoning</span><select aria-label="Reasoning"
           value={nextTurnSelection?.reasoningEffort ?? recordedSelection?.reasoningEffort ?? ''}
           disabled={!modelCatalog || isRunning}
-          title={modelCatalog ? REASONING_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          title={modelCatalog ? REASONING_SELECTOR_HELP : modelSelectorTitle}
           onChange={event => {
             const entry = nextTurnSelection && modelCatalog?.models.find(model => model.model === nextTurnSelection.model);
             if (entry && entry.supportedReasoningEfforts.includes(event.target.value)) setModelChoice({ model: entry.model, reasoningEffort: event.target.value });
