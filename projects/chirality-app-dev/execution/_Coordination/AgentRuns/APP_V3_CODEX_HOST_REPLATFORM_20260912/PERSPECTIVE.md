@@ -46,3 +46,33 @@ process, speaking its existing socket API, with stock Codex inside it. The
 host stays independent of Electron and Next so later Chirality applications
 can run it as a sidecar; only the Chirality App is implemented and
 qualified in this tranche.
+
+---
+
+## Statement of intent (independent reviewer, relayed by the owner 2026-09-12)
+
+Reproduced verbatim. It restates the purpose and the settled direction for
+the implementing session; where it and the governing records differ in
+detail, the D-GOV-43 record, its A2 supplement and `HANDOFF.md` govern.
+
+Our purpose is to make directing and validating demanding knowledge work feel natural, and to make what people learn through that work reusable.
+
+The experience we are delivering is: plan → execute → save → reuse → iterate. A person can begin with an uncertain intention, develop an approach with an agent, carry it out, inspect and correct the results, and preserve a useful workflow for another assignment. Judge the implementation by whether that whole experience works.
+
+The four Chirality roles provide the human relationships and coordination structure. Codex supplies the underlying agent capabilities. Preserve Codex's base instructions and add the appropriate Chirality context. Give agents room to investigate, use tools, delegate, reconsider assumptions, and adapt their approach within the human's directions and actual permissions.
+
+Workflows are reusable, adaptable ways to coordinate work. Keep them prominent, understandable, and created or revised through conversation. Skills work primarily in the background, with less prominent, read-only inspection. Preserve one continuing conversational interface, inspectable native plans, and truthful history.
+
+A2 is the settled hosting direction: a simplified Runtime service automatically owned and managed by the application. Keep its composition independent of Electron and Next. Reuse services according to their useful behavior, removing the private supplier, admission, certification, and fixed-policy machinery through the accepted amendments. Preserve ordinary application security, separated Codex authentication, and reliable process ownership. Future applications should be able to consume this service, but Piping integration and local models remain deferred.
+
+Faithful Codex integration and its presentation are central implementation work. Users must be able to understand tool activity, answer questions and approvals, inspect plans and results, and see meaningful delegation activity. Refine the existing UI wherever that helps. Keep primary surfaces concise and put technical detail behind deliberate inspection. Minimal presentation must still expose the capabilities needed to direct the work.
+
+Treat execution, observation, interruption, and shutdown as distinct. Losing a renderer connection must not silently stop work. Reconnection must recover actual state and outstanding decisions without repeating the original request. Shutdown and unexpected termination must leave an honest continuation state.
+
+Read the CI diagnosis in PR #767. It records a reproduced interruption/retirement defect; the logging-only green rerun was not evidence of a repair. Account for that behavior in the new composition and its regression checks.
+
+Governance simplification is part of delivery. Retain checks that establish useful, distinct facts. Remove obsolete requirements and duplicated work rather than preserving them under new names. Keep historical evidence intact and make current status clear.
+
+Use the accepted A2 supplement and current handoff for exact scope and operational restrictions. Resolve routine implementation choices directly; bring material changes or consequential findings to the owner. Complete the eight functional checks on the production path, obtain independent review, and deliver a consolidated trial candidate.
+
+The next milestone is a reliable App the owner can use for real work. The final system-prompt discussion and explicit publishing approval follow that trial.

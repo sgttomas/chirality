@@ -1004,3 +1004,13 @@ the green run is intermittency, not repair. Handoff and launch prompt
 updated to the merged basis. No live surface, installation, evidence or
 credential changed; nothing published. R17 GUI 31613 and daemon 27838
 still running.
+
+Addendum 2026-09-12T07:05Z: PR #768 merged as 230be0ca9 on the owner's
+instruction (pre-merge check red on the same intermittent interrupt tests;
+docs-only change). Owner relayed the reviewer's statement of intent for the
+implementing session; preserved verbatim as a second section of
+PERSPECTIVE.md and its distinct points (purpose sentence, the uncertain-
+intention framing of the loop, execution/observation/interruption/shutdown
+as distinct, current status kept clear) folded into a rewritten
+pointer-style LAUNCH_PROMPT.md that names main at or after 230be0ca9 as the
+basis. Nothing else changed; nothing published.
