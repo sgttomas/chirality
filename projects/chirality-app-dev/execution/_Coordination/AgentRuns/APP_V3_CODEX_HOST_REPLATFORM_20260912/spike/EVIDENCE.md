@@ -56,4 +56,3 @@ The owner performs OAuth; no credential is entered by the agent.
 - Fix: the Codex adapter declares `boot: "none"`; boot records readiness and the
   fingerprint without a turn. Verified after relaunch at 15:37Z: boot 258 ms through the
   App route, first turn answered `booted`. No user prompt named "bootstrap" is ever sent.
-
