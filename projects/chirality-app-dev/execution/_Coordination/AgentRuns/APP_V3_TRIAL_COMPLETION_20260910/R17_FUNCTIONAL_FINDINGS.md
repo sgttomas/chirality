@@ -108,10 +108,95 @@ R16. Pid and display-name addressing are refused by the grant model;
 osascript lacks assistive access and no settings were changed. Owner
 observation was used, as the checklist prescribes.
 
+## Plan, execute, and save-as-workflow demonstration (owner request, 03:05Z-03:34Z)
+
+Owner asked for a new chat that plans a report about the Chirality App,
+iterates once, accepts and executes the plan, then generalizes it into a
+report-writing workflow. Performed by full-screen Computer Use (owner
+approved `request_full_control` after the per-app grant could not attach).
+
+- New chat, Plan Mode selected from the mode picker: PASS. Revision 1
+  "Chirality App Technical Report" rendered in the plan pane.
+- One iteration via "Revise in chat" (pre-fills "Revise plan revision 1"):
+  PASS. Revision 2 "Chirality App Report - Revision 1" with eight
+  implementation steps, a Sources section and a claim-by-claim check.
+- "Execute plan" (pre-fills the accepted revision 2 and switches the mode
+  to Chat): PASS as a UI flow. The two full execution turns FAILED: each
+  streamed a one-paragraph preamble, went silent while the agent read the
+  source files, and ended about 90-100 s in with status Idle. Reopening the
+  chat showed "Assistant - Interrupted" after each preamble; no report on
+  disk; Activity -> Actions "No recorded actions"; no daemon or main log
+  lines. See R17-F2.
+- Bounded retry: a turn told to skip reads and create the report in one
+  write succeeded. `chirality-app-report.md` (85 lines, six sections plus
+  Sources) appeared 03:29:42Z, sha256 `ae77b89a...`. The final one-line
+  reply did not render live (R17-F1 pattern).
+- "Save as workflow in chat" (pre-fills "Save native Plan Mode revision 2
+  below as a reusable project workflow at .chirality/workflows/<suitable-
+  name>/WORKFLOW.md ...", full plan embedded) plus a generalizing
+  instruction: FAILED the same way, this time rendering "Turn interrupted
+  by operator" live (so R17-F1 is intermittent, not absolute).
+- Bounded retry with the target metadata spelled out and no reads:
+  `.chirality/workflows/report-writing/WORKFLOW.md` written 03:33Z, sha256
+  `ee428532...`, frontmatter name/description/purpose/applicability, six
+  generic steps with `{{subject}}`, `{{audience}}`, `{{sources}}`,
+  `{{output_path}}` placeholders, Assumptions section. Reply rendered
+  live. Workflows -> Library -> search "report" lists it under "For this
+  project" next to `r15-trial-report`; Inspect shows description,
+  Technical details and Read instructions.
+
+Outcome: every UI step of the owner's sequence is functional (plan, revise,
+accept/execute pre-fill, save-as-workflow pre-fill, catalog refresh and
+Library listing). What is not functional is any execution turn whose agent
+works silently for more than about 30 s.
+
+### R17-F2 (high, Runtime/client): turns interrupted after ~30 s of stream silence
+
+Source-established chain (frozen source `fb529591d`, unchanged at HEAD):
+
+1. `packages/client/src/client.ts` `request()` applies
+   `request.setTimeout(input.timeoutMs ?? this.timeoutMs)` with the default
+   `this.timeoutMs = options.timeoutMs ?? 30_000`. The SSE `stream()` path
+   (accept `text/event-stream`) passes no `timeoutMs`; the frontend
+   constructs `RuntimeClient` without an override
+   (`runtime-daemon-harness-port.ts` ~994). `PACKAGED_REQUEST_TIMEOUT_MS`
+   and `PACKAGED_TURN_TIMEOUT_MS` govern the daemon side only.
+2. Node's socket idle timeout fires after 30 s without bytes; the client
+   destroys the request with `RuntimeTransportError("Runtime request timed
+   out", ..., "timeout")`.
+3. The daemon SSE writer (`runtime-daemon.ts` ~948-1004) emits no keepalive
+   frames, and its `response.once("close", close)` handler calls
+   `cancelSse` -> `trySseInterrupt` -> `control.interrupt()`, so a client
+   disconnect interrupts the Codex turn.
+4. `codex-session.ts` only emits `agentMessage` text deltas and `plan`
+   items; command execution and file-change items are quarantined
+   (`item/started`/`item/completed` for other types). Tool work therefore
+   produces no stream bytes, and any reasoning-plus-tool stretch over 30 s
+   is fatal. High reasoning effort makes this common.
+5. The Next route `api/harness/turn/route.ts` closes the browser stream
+   cleanly in `finally`, so the chat panel ends with `setIsRunning(false)`
+   (Idle) while the daemon records the turn as interrupted. Whether the
+   interruption text renders live depends on ordering (R17-F1).
+
+Not the cause: the daemon `turnTimeoutMs` (packaged 1 800 000 ms), the
+packaged request timeout (90 000 ms), authentication or admission. No log
+line is written for the client-side timeout. Likely also explains the R15
+and R16 "timeout-retry" history and R17-F1's blank live view.
+
+Repair candidates (not started; no rebuild authorized): pass a long or
+disabled `timeoutMs` on the client `stream()` path, and/or emit SSE comment
+keepalives from the daemon writer, and/or forward tool activity as stream
+events. Any fix belongs in the next consolidated batch with R17-F1.
+
 ## Findings summary
 
-- R17-F1 (medium, UI): interrupted turn not rendered live; correct after
-  reopen. Repair candidate for the next batch; no rebuild now.
+- R17-F1 (medium, UI): interrupted turn not rendered live (intermittent);
+  correct after reopen. Repair candidate for the next batch; no rebuild now.
+- R17-F2 (high, Runtime/client): execution turns are interrupted after
+  ~30 s without stream bytes (client SSE socket idle timeout -> daemon
+  close handler -> interrupt; tool work emits nothing). Plan execution and
+  save-as-workflow succeed only as short, read-free turns. Repair candidate
+  for the next consolidated batch; no rebuild now.
 - No functional, authentication or admission failure observed. Packaging
   PASS plus this native pass do not by themselves constitute trial
   acceptance or publishing approval; those remain the owner's decisions.

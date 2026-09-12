@@ -791,3 +791,23 @@ Records: R17_FUNCTIONAL_FINDINGS.md, R16_RESTART_ADMISSION/HANDOFF.md
 "Native verification", FINAL_SOURCE_HASHES.json status,
 NEXT_AGENT_HANDOFF.md successor checkpoint. R17 GUI 31613 and daemon 27838
 left running and signed in; nothing published.
+
+## Plan/execute/workflow demonstration and R17-F2 — 2026-09-12T03:40Z
+
+Owner asked for a new-chat plan about the Chirality App, one revision,
+acceptance and execution, then a generic report-writing workflow. Done by
+full-screen Computer Use (owner approved). Plan Mode revision 1, "Revise in
+chat" to revision 2, "Execute plan" and "Save as workflow in chat" pre-fills
+all PASS as UI flows. The two full execution turns and the first
+save-as-workflow turn were interrupted about 90-100 s in with status Idle
+and no file written; reopen shows "Interrupted" (one rendered "Turn
+interrupted by operator" live). Bounded read-free retries succeeded:
+`chirality-app-report.md` written 03:29:42Z (85 lines, sha256 ae77b89a...)
+and `.chirality/workflows/report-writing/WORKFLOW.md` 03:33Z (sha256
+ee428532...), the latter listed by Workflows -> Library for this project and
+inspectable. Recorded R17-F2 (high, Runtime/client) with the
+source-established chain: client `stream()` inherits the 30 s socket idle
+timeout, the daemon SSE writer has no keepalives and interrupts the turn on
+close, and tool activity emits no stream bytes. No log line for it; no
+rebuild; nothing published. R17 GUI 31613 and daemon 27838 still running
+and signed in; trial project files preserved (no deletions).
