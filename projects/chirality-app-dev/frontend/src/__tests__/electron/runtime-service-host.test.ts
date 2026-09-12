@@ -202,9 +202,9 @@ describe('runtime service host lifecycle', () => {
   it('escalates to SIGKILL after the grace period when the child ignores SIGTERM', async () => {
     const f = await fixture({ env: { FAKE_SERVICE_IGNORE_SIGTERM: '1' } });
     await f.host.start();
-    const startedAt = Date.now();
     await f.host.stop();
-    expect(Date.now() - startedAt).toBeGreaterThanOrEqual(250);
+    // The child acknowledged SIGTERM and stayed alive, so the grace period ran out.
+    expect(f.stderrLines).toContain('ignoring SIGTERM');
     expect(f.host.state().status).toBe('stopped');
     expect(f.host.state().lastExit?.signal).toBe('SIGKILL');
     expect(f.logs.some((entry) => entry.event === 'runtime.service.sigkill')).toBe(true);

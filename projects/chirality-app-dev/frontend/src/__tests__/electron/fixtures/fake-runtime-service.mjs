@@ -16,6 +16,17 @@ if (role !== 'daemon' || flag !== '--config' || !configPath) {
 const config = JSON.parse(readFileSync(configPath, 'utf8'));
 const mode = process.env.FAKE_SERVICE_MODE ?? 'ready';
 
+// Installed before any output so a SIGTERM that follows the ready line can never
+// find the default handler (which would exit at once and look like a clean stop).
+process.on('SIGTERM', () => {
+  if (process.env.FAKE_SERVICE_IGNORE_SIGTERM === '1') {
+    process.stderr.write('ignoring SIGTERM\n');
+    return;
+  }
+  process.stderr.write('stopping on SIGTERM\n');
+  process.exit(0);
+});
+
 if (process.env.FAKE_SERVICE_STDERR) {
   process.stderr.write(`${process.env.FAKE_SERVICE_STDERR}\n`);
 }
@@ -40,11 +51,3 @@ if (mode === 'never-ready') {
   setInterval(() => {}, 1000);
 }
 
-process.on('SIGTERM', () => {
-  if (process.env.FAKE_SERVICE_IGNORE_SIGTERM === '1') {
-    process.stderr.write('ignoring SIGTERM\n');
-    return;
-  }
-  process.stderr.write('stopping on SIGTERM\n');
-  process.exit(0);
-});
