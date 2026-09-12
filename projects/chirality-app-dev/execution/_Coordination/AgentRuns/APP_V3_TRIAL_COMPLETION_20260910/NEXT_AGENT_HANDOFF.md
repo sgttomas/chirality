@@ -4,8 +4,9 @@ Frozen successor checkpoint; read the final checkpoint below before editing.
 
 ## Implementation basis
 
-The owner directed integration of this unfinished work through a PR. After that
-PR merges, use an integration checkout updated from `origin/main` containing this
+The owner directed integration of this unfinished work through
+[PR #766](https://github.com/sgttomas/chirality/pull/766). After that PR merges,
+use an integration checkout updated from `origin/main` containing this
 handoff and the repair files. Read that checkout's AGENTS.md and HELP_HUMAN role;
 run source commands there. The merge is source integration, not trial or release
 acceptance. The PR and Git history identify the integrated source revision.
