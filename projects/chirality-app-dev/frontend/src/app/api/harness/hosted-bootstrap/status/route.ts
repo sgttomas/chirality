@@ -3,9 +3,10 @@ import { errorResponse, requireNonEmptyString } from '../../../../../lib/harness
 import { getHostedBootstrapPort } from '../../../../../lib/runtime-client/daemon-harness-port';
 
 /**
- * Read-only registration probe. This route never returns hosted account
- * status: the daemon requires the Desktop account-host proof for account
- * reads, which only the main-process IPC path can supply.
+ * Registration probe plus hosted account status for a registered folder. The
+ * App-owned Runtime has no account-host admission step (D-GOV-43), so this
+ * route is the renderer's only status path; the retired `runtime.hostedAccount`
+ * IPC bridge no longer exists.
  */
 export async function GET(request: Request): Promise<Response> {
   try {

@@ -278,7 +278,7 @@ describe('RuntimeDaemonHarnessPort', () => {
     );
   });
 
-  it('preserves canonical UI events and interrupts the owned session on cancel', async () => {
+  it('preserves canonical UI events and forwards the per-turn model pair; cancel only unsubscribes', async () => {
     const event: UIEvent = {
       type: 'chat:delta',
       data: { text: 'local evidence' }
@@ -298,7 +298,9 @@ describe('RuntimeDaemonHarnessPort', () => {
       sessionId: session.sessionId,
       message: 'inspect',
       opts: { tools: ['read_file'] },
-      attachments: ['/repo/fixture.txt']
+      attachments: ['/repo/fixture.txt'],
+      model: 'gpt-alt',
+      reasoningEffort: 'low'
     });
 
     const received: UIEvent[] = [];
@@ -310,17 +312,74 @@ describe('RuntimeDaemonHarnessPort', () => {
       {
         message: 'inspect',
         opts: { tools: ['read_file'] },
-        attachments: ['/repo/fixture.txt']
+        attachments: ['/repo/fixture.txt'],
+        model: 'gpt-alt',
+        reasoningEffort: 'low'
       },
       undefined
     );
 
+    // Runtime owns the turn (D-GOV-43): dropping the observer must not
+    // interrupt Codex. Stop is a separate, explicit interrupt call.
     await running.cancel();
     expect(cancel).toHaveBeenCalledOnce();
+    expect(runtimeClient.interruptSession).not.toHaveBeenCalled();
+
+    await port.interrupt({ sessionId: session.sessionId });
     expect(runtimeClient.interruptSession).toHaveBeenCalledWith(
       project.projectId,
-      session.sessionId
+      session.sessionId,
+      undefined
     );
+  });
+
+  it('attaches to the Runtime turn registry and proxies turn state, requests and answers', async () => {
+    const frames = [
+      { type: 'harness:event', data: { type: 'message.delta', text: 'partial' }, seq: 3 },
+      { type: 'harness:event', data: { type: 'turn.completed' }, seq: 4 }
+    ];
+    const attachCancel = vi.fn();
+    const attachSessionTurn = vi.fn().mockResolvedValue({
+      async *[Symbol.asyncIterator]() {
+        for (const frame of frames) yield frame;
+      },
+      cancel: attachCancel
+    });
+    const turnState = { active: true, turnId: 'turn-1', lastSeq: 4, startedAt: '2026-09-12T00:00:00.000Z' };
+    const requests = { requests: [{ requestId: 'req-1', method: 'item/tool/requestUserInput', kind: 'userInput', request: {}, receivedAt: '2026-09-12T00:00:01.000Z' }] };
+    const answered = { accepted: true, requestId: 'req-1' };
+    const runtimeClient = client({
+      attachSessionTurn,
+      sessionTurnState: vi.fn().mockResolvedValue(turnState),
+      listSessionRequests: vi.fn().mockResolvedValue(requests),
+      answerSessionRequest: vi.fn().mockResolvedValue(answered)
+    });
+    const port = new RuntimeDaemonHarnessPort(runtimeClient);
+    const controller = new AbortController();
+
+    const subscription = await port.attachTurn(session.sessionId, 2, { signal: controller.signal });
+    const received: unknown[] = [];
+    for await (const item of subscription.events) received.push(item);
+    expect(received).toEqual(frames);
+    expect(attachSessionTurn).toHaveBeenCalledWith(project.projectId, session.sessionId, { after: 2 }, controller.signal);
+    await subscription.cancel();
+    await subscription.cancel();
+    expect(attachCancel).toHaveBeenCalledOnce();
+    expect(runtimeClient.interruptSession).not.toHaveBeenCalled();
+
+    await expect(port.turnState(session.sessionId)).resolves.toEqual(turnState);
+    await expect(port.listRequests(session.sessionId)).resolves.toEqual(requests);
+    const answer = { kind: 'userInput' as const, answers: { q1: { answers: ['yes'] } } };
+    await expect(port.answerRequest(session.sessionId, 'req-1', answer)).resolves.toEqual(answered);
+    expect(runtimeClient.answerSessionRequest).toHaveBeenCalledWith(project.projectId, session.sessionId, 'req-1', answer, undefined);
+  });
+
+  it('maps a Runtime TURN_NOT_ACTIVE rejection on attach into the route error vocabulary', async () => {
+    const attachSessionTurn = vi.fn().mockRejectedValue(
+      new RuntimeError('NOT_FOUND', 'No active or retained turn', 404, { reason: 'TURN_NOT_ACTIVE' })
+    );
+    const port = new RuntimeDaemonHarnessPort(client({ attachSessionTurn }));
+    await expect(port.attachTurn(session.sessionId, 0)).rejects.toMatchObject({ status: 404 });
   });
 
   it('maps permission IDs and filters Type-2 agents from direct chat', async () => {
@@ -450,7 +509,7 @@ describe('RuntimeDaemonHarnessPort', () => {
     expect(initializeHostedBootstrapProject).not.toHaveBeenCalled();
   });
 
-  it('rehydrates an existing project binding without consulting hosted account status', async () => {
+  it('rehydrates an existing project binding on bind without reading hosted account status', async () => {
     const projectRoot = await realpath(process.cwd());
     const registered = {
       ...project,
@@ -539,12 +598,16 @@ describe('RuntimeDaemonHarnessPort', () => {
       projectId: registered.projectId,
       manifestHash: registered.manifestHash
     };
-    // The ordinary scoped client carries no account-host proof; a real daemon
-    // with an account host rejects this read with 401. The port must never
-    // reach it on any App path.
-    const hostedBootstrapStatus = vi.fn().mockRejectedValue(
-      new RuntimeError('UNAUTHORIZED', 'Complete App account host proof is required', 401)
-    );
+    // The App-owned Runtime has no account-host admission step: the scoped
+    // project client reads hosted status directly, and only after binding.
+    const accountStatus = {
+      schema: 'chirality-hosted-bootstrap-status/v1' as const,
+      projectId: registered.projectId,
+      ceremony: 'ready-to-start' as const,
+      admission: 'unavailable' as const,
+      canStartLogin: true
+    };
+    const hostedBootstrapStatus = vi.fn().mockResolvedValue(accountStatus);
     const bootstrapClient = client({
       initializeHostedBootstrapProject: vi.fn().mockResolvedValue(registration),
       hostedBootstrapStatus,
@@ -578,15 +641,18 @@ describe('RuntimeDaemonHarnessPort', () => {
       projectId: registered.projectId
     });
     expect(initialized).not.toHaveProperty('status');
+    expect(hostedBootstrapStatus).not.toHaveBeenCalled();
     await expect(port.getStatus(projectRoot)).resolves.toEqual({
       registration: 'registered',
-      projectId: registered.projectId
+      projectId: registered.projectId,
+      status: accountStatus
     });
+    expect(hostedBootstrapStatus).toHaveBeenCalledWith(registered.projectId, undefined);
     await expect(port.bindProject(projectRoot)).resolves.toEqual({
       registration: 'registered',
       projectId: registered.projectId
     });
-    expect(hostedBootstrapStatus).not.toHaveBeenCalled();
+    expect(hostedBootstrapStatus).toHaveBeenCalledTimes(1);
     expect(bootstrapClient.initializeHostedBootstrapProject).toHaveBeenCalledWith(
       { projectRoot },
       undefined
@@ -625,9 +691,10 @@ describe('RuntimeDaemonHarnessPort', () => {
       initializeHostedBootstrapProject: vi.fn().mockImplementation(({ projectRoot }: { projectRoot: string }) => projectRoot === rootA ? initializationA : initializationB),
       projectStatus: vi.fn().mockImplementation((projectId: string) => Promise.resolve({ project: projects.get(projectId)!, manifestDrift: false, adaptersEnabled: true }))
     });
+    const statusFor = (projectId: string) => ({ schema: 'chirality-hosted-bootstrap-status/v1' as const, projectId, ceremony: 'ready-to-start' as const, admission: 'unavailable' as const, canStartLogin: true });
     const scopedClients = new Map([...projects].map(([projectId, registered]) => [projectId, client({
       projectStatus: vi.fn().mockResolvedValue({ project: registered, manifestDrift: false, adaptersEnabled: true }),
-      hostedBootstrapStatus: vi.fn()
+      hostedBootstrapStatus: vi.fn().mockResolvedValue(statusFor(projectId))
     })]));
     const installBoundPort = vi.fn();
     const port = new RuntimeHostedBootstrapPort({
@@ -647,8 +714,9 @@ describe('RuntimeDaemonHarnessPort', () => {
       await expect(requestA).rejects.toMatchObject({ type: 'WORKING_ROOT_CONFLICT', status: 409 });
       expect(installBoundPort).toHaveBeenCalledTimes(1);
       expect(installBoundPort).toHaveBeenCalledWith(expect.any(RuntimeDaemonHarnessPort), { projectId: 'project-b', projectRoot: rootB }, true);
-      await expect(port.getStatus(rootB)).resolves.toEqual({ registration: 'registered', projectId: 'project-b' });
-      for (const scoped of scopedClients.values()) expect(scoped.hostedBootstrapStatus).not.toHaveBeenCalled();
+      await expect(port.getStatus(rootB)).resolves.toEqual({ registration: 'registered', projectId: 'project-b', status: statusFor('project-b') });
+      expect(scopedClients.get('project-a')!.hostedBootstrapStatus).not.toHaveBeenCalled();
+      expect(scopedClients.get('project-b')!.hostedBootstrapStatus).toHaveBeenCalledTimes(1);
     } finally {
       await rm(temporaryA, { recursive: true, force: true });
       await rm(temporaryB, { recursive: true, force: true });
@@ -671,14 +739,15 @@ describe('RuntimeDaemonHarnessPort', () => {
       initializeHostedBootstrapProject: vi.fn().mockImplementation(({ projectRoot }: { projectRoot: string }) => projectRoot === rootA ? Promise.resolve(registrationA) : pendingB),
       projectStatus: vi.fn().mockImplementation((projectId: string) => Promise.resolve({ project: projectId === 'selected-a' ? registeredA : registeredB, manifestDrift: false, adaptersEnabled: true }))
     });
+    const statusB = { ...consentA, projectId: 'selected-b' };
     const scopedA = client({
       projectStatus: vi.fn().mockResolvedValue({ project: registeredA, manifestDrift: false, adaptersEnabled: true }),
-      hostedBootstrapStatus: vi.fn(),
-      grantHostedProviderNetworkConsent: vi.fn().mockResolvedValue(consentA)
+      hostedBootstrapStatus: vi.fn().mockResolvedValue(consentA),
+      grantHostedProviderNetworkConsent: vi.fn()
     });
     const scopedB = client({
       projectStatus: vi.fn().mockResolvedValue({ project: registeredB, manifestDrift: false, adaptersEnabled: true }),
-      hostedBootstrapStatus: vi.fn()
+      hostedBootstrapStatus: vi.fn().mockResolvedValue(statusB)
     });
     const installBoundPort = vi.fn();
     const port = new RuntimeHostedBootstrapPort({
@@ -694,16 +763,18 @@ describe('RuntimeDaemonHarnessPort', () => {
       const selectionB = port.initializeProject(rootB);
       const lateBindingA = port.getStatus(rootA);
       const lateConsentA = port.grantProviderNetworkConsent(rootA);
-      await expect(lateBindingA).resolves.toEqual({ registration: 'registered', projectId: 'selected-a' });
+      await expect(lateBindingA).resolves.toEqual({ registration: 'registered', projectId: 'selected-a', status: consentA });
       await expect(lateConsentA).resolves.toEqual(consentA);
       resolveB(registrationB);
       await expect(selectionB).resolves.toEqual({ registration: 'registered', projectId: 'selected-b' });
-      await expect(port.getStatus(rootB)).resolves.toEqual({ registration: 'registered', projectId: 'selected-b' });
+      await expect(port.getStatus(rootB)).resolves.toEqual({ registration: 'registered', projectId: 'selected-b', status: statusB });
       await expect(port.getStatus(rootA)).rejects.toMatchObject({ type: 'WORKING_ROOT_CONFLICT', status: 409 });
       expect(installBoundPort).toHaveBeenCalledTimes(2);
       expect(installBoundPort).toHaveBeenLastCalledWith(expect.any(RuntimeDaemonHarnessPort), { projectId: 'selected-b', projectRoot: rootB }, true);
-      expect(scopedA.hostedBootstrapStatus).not.toHaveBeenCalled();
-      expect(scopedB.hostedBootstrapStatus).not.toHaveBeenCalled();
+      // The retained consent path reads status too; no consent is ever recorded.
+      expect(scopedA.hostedBootstrapStatus).toHaveBeenCalledTimes(2);
+      expect(scopedA.grantHostedProviderNetworkConsent).not.toHaveBeenCalled();
+      expect(scopedB.hostedBootstrapStatus).toHaveBeenCalledTimes(1);
     } finally {
       await rm(temporaryA, { recursive: true, force: true });
       await rm(temporaryB, { recursive: true, force: true });
@@ -758,7 +829,7 @@ describe('RuntimeDaemonHarnessPort', () => {
     const scopedProjectStatus = vi.fn().mockResolvedValue(healthy);
     const scopedClient = client({
       projectStatus: scopedProjectStatus,
-      hostedBootstrapStatus: vi.fn(),
+      hostedBootstrapStatus: vi.fn().mockResolvedValue({ schema: 'chirality-hosted-bootstrap-status/v1', projectId: registered.projectId, ceremony: 'ready-to-start', admission: 'unavailable', canStartLogin: true }),
       grantHostedProviderNetworkConsent: vi.fn()
     });
     const port = new RuntimeHostedBootstrapPort({
@@ -771,6 +842,7 @@ describe('RuntimeDaemonHarnessPort', () => {
       createScopedClient: () => scopedClient
     });
     await port.getStatus(projectRoot);
+    expect(scopedClient.hostedBootstrapStatus).toHaveBeenCalledTimes(1);
     bootstrapProjectStatus.mockResolvedValueOnce({
       ...healthy,
       project: { ...registered, manifestHash: 'after' }
@@ -780,7 +852,7 @@ describe('RuntimeDaemonHarnessPort', () => {
       port.grantProviderNetworkConsent(projectRoot)
     ).rejects.toMatchObject({ type: 'WORKING_ROOT_CONFLICT', status: 409 });
     expect(scopedClient.grantHostedProviderNetworkConsent).not.toHaveBeenCalled();
-    expect(scopedClient.hostedBootstrapStatus).not.toHaveBeenCalled();
+    expect(scopedClient.hostedBootstrapStatus).toHaveBeenCalledTimes(1);
   });
 
   it('revalidates and preserves the selected binding for project-local sign-out', async () => {
@@ -796,14 +868,14 @@ describe('RuntimeDaemonHarnessPort', () => {
     const signedOut = {
       schema: 'chirality-hosted-bootstrap-status/v1' as const,
       projectId: registered.projectId,
-      ceremony: 'consent-required' as const,
+      ceremony: 'ready-to-start' as const,
       admission: 'unavailable' as const,
       canStartLogin: false
     };
     const signOutHostedProject = vi.fn().mockResolvedValue(signedOut);
     const scopedClient = client({
       projectStatus: vi.fn().mockResolvedValue(healthy),
-      hostedBootstrapStatus: vi.fn(),
+      hostedBootstrapStatus: vi.fn().mockResolvedValue({ ...signedOut, ceremony: 'signed-in', admission: 'ready' }),
       signOutHostedProject
     });
     const port = new RuntimeHostedBootstrapPort({
@@ -816,10 +888,11 @@ describe('RuntimeDaemonHarnessPort', () => {
       createScopedClient: () => scopedClient
     });
     await port.getStatus(projectRoot);
+    expect(scopedClient.hostedBootstrapStatus).toHaveBeenCalledTimes(1);
     const controller = new AbortController();
     await expect(port.signOut(projectRoot, { signal: controller.signal })).resolves.toEqual(signedOut);
     expect(signOutHostedProject).toHaveBeenCalledWith(registered.projectId, controller.signal);
-    expect(scopedClient.hostedBootstrapStatus).not.toHaveBeenCalled();
+    expect(scopedClient.hostedBootstrapStatus).toHaveBeenCalledTimes(1);
   });
 
   it('rejects a symlink alias before explicit hosted project initialization', async () => {

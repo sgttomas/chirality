@@ -7,6 +7,7 @@
 `frontend/src/lib/harness/mcp/tool-names.ts`,
 `frontend/src/lib/harness/mcp/read-tools.ts`, and
 `frontend/docs/harness/runtime_engine_contract.md`
+**Amended:** D-GOV-43 (A2), 2026-09-12: Codex is the only engine and the adapter boundary is the Runtime service's socket API. Tool activity shown in the App comes from Codex's own tools and the user's MCP configuration (shared by reference through the effective Codex home) and is rendered through the normalized tool-activity view of the pass-through event representation. The Claude Agent SDK built-in path and `buildSdkOptions` sequence below are compatibility history; whether and how Chirality MCP tools are exposed to Codex is not established by this guide.
 
 This guide describes how to add or change a governed tool without bypassing Chirality's
 permission, hook, path, redaction, event, and human-gate policy. It does not approve a new

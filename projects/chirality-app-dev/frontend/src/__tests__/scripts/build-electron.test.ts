@@ -3,13 +3,11 @@ import { build } from 'esbuild';
 import { describe, expect, it } from 'vitest';
 
 import {
-  resolveNativeAdmissionSource,
-  resolveHostedRuntimeSource,
-  resolveHostedRuntimePathsSource,
-  resolveProtectedRuntimeCliSource,
+  RUNTIME_BUNDLE_OUTPUTS,
+  resolveRuntimeCliEntrySource,
   resolveRuntimeContractsSource,
-  resolveRuntimeConformanceV2Source,
   resolveRuntimePhysicalFilesystemSource,
+  resolveRuntimeServiceEntrySource,
   runtimePackagePlugin
 } from '../../../scripts/build-electron.mjs';
 
@@ -26,28 +24,17 @@ describe('build Electron Runtime contract aliases', () => {
     );
   });
 
-  it('resolves native admission from the Runtime package source', () => {
-    expect(resolveNativeAdmissionSource()).toBe(
-      path.resolve(process.cwd(), '../../chirality-runtime/packages/native-admission/src/index.ts')
+  it('bundles the Runtime service from the standalone entry and the CLI from its bin', () => {
+    expect(resolveRuntimeServiceEntrySource()).toBe(
+      path.resolve(process.cwd(), '../../chirality-runtime/packages/daemon/src/standalone-bin.ts')
     );
-  });
-
-  it('resolves hosted path helpers without importing the daemon barrel', () => {
-    expect(resolveHostedRuntimePathsSource()).toBe(
-      path.resolve(process.cwd(), '../../chirality-runtime/packages/daemon/src/hosted-paths.ts')
+    expect(resolveRuntimeCliEntrySource()).toBe(
+      path.resolve(process.cwd(), '../../chirality-runtime/packages/cli/src/bin.ts')
     );
-  });
-
-  it('resolves the dedicated hosted daemon entry for Electron private bootstrap wiring', () => {
-    expect(resolveHostedRuntimeSource()).toBe(
-      path.resolve(process.cwd(), '../../chirality-runtime/packages/daemon/src/hosted.ts')
-    );
-  });
-
-  it('resolves the v2 conformance subpath from the same Runtime source graph', () => {
-    expect(resolveRuntimeConformanceV2Source()).toBe(
-      path.resolve(process.cwd(), '../../chirality-runtime/packages/core/src/runtime-conformance-v2.ts')
-    );
+    expect(RUNTIME_BUNDLE_OUTPUTS).toEqual({
+      service: path.join('dist-runtime', 'runtime-service', 'standalone-bin.mjs'),
+      cli: path.join('dist-runtime', 'runtime-cli', 'chirality-cli.mjs')
+    });
   });
 
   it('bundles the physical filesystem adapter in CJS and ESM while retaining Electron original-fs as a runtime lookup', async () => {
@@ -77,11 +64,5 @@ describe('build Electron Runtime contract aliases', () => {
       expect(output).not.toContain('require("original-fs")');
       expect(output).not.toContain('from "original-fs"');
     }
-  });
-
-  it('pins the protected in-ASAR CLI closure to Runtime CLI source', () => {
-    expect(resolveProtectedRuntimeCliSource()).toBe(
-      path.resolve(process.cwd(), '../../chirality-runtime/packages/cli/src/cli.ts')
-    );
   });
 });

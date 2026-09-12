@@ -18,20 +18,39 @@ admission addon, no LaunchAgent.
 ## Steps
 
 1. **Build.** From `frontend/`: `npm run instruction-root:prepare`,
-   `npm run build` (Next and Electron), then the packaging entry. The
-   current entry is `npm run desktop:dist`; its supply-model phases
-   (`pack-electron-with-supply.mjs --runtime-manifest v2`) are re-authored
-   for the bundled stock dependency in the spike and the script name may
-   change with it. `npm run desktop:verify-dependencies` and
-   `npm run electron:supply-chain` remain the dependency-boundary checks.
+   `npm run runtime:build` (the Runtime workspace, so the service and CLI
+   sources bundle from built packages), `npm run build` (Next and Electron;
+   `build:electron` also writes `dist-runtime/runtime-service/standalone-bin.mjs`
+   and `dist-runtime/runtime-cli/chirality-cli.mjs`), then the packaging
+   entry. The entry is `npm run desktop:dist`, which runs the plain
+   `scripts/pack-electron.mjs --target dmg` (electron-builder with the
+   verified Electron distribution, no supply phases, no runtime manifest,
+   no payload bind) followed by `desktop:verify-dependencies`,
+   `desktop:verify-codex-pin -- --after-signing` and
+   `instruction-root:integrity`. `npm run desktop:pack` is the unsigned
+   directory build with the same checks and the pre-signing digest
+   comparison. `npm run electron:supply-chain` remains the Electron
+   distribution check. Revised by W3 on 2026-09-12: the supply-model
+   phases and `pack-electron-with-supply.mjs` are retired with the
+   supplier, the admission addon and the LaunchAgent.
 2. **Sign.** Developer ID signing with hardened runtime over the whole
-   bundle, including the bundled Codex binary and the Runtime service. Owner
-   act or owner-supplied identity.
+   bundle, including the two bundled Codex binaries (`codex` and
+   `codex-code-mode-host`, the latter with the JIT entitlement) and the
+   Runtime service bundle inside `app.asar`'s sibling resources. The
+   identity is selected only through `CHIRALITY_SIGNING_IDENTITY_SHA1`;
+   without it the pack script disables keychain discovery and produces an
+   unsigned candidate. Owner act or owner-supplied identity. The Runtime
+   service child is started through Electron's `utilityProcess`, so the
+   `runAsNode: false` fuse stays set and no Node CLI surface is enabled in
+   the packaged App.
 3. **Notarize** and staple. Owner act.
 4. **Verify the bundle signature and the Codex pin.** `codesign --verify
-   --deep --strict` and `spctl --assess` on the stapled bundle; confirm the
-   bundled `@openai/codex` version equals the lockfile pin and the binary
-   inside the bundle is the one the lockfile resolved. Record both results.
+   --deep --strict` and `spctl --assess` on the stapled bundle;
+   `npm run desktop:verify-codex-pin -- --after-signing` runs the packaged
+   `codex --version` and compares it to the lockfile-resolved version and
+   to the staged `codex-package.json` (the pre-signing sha256 comparison
+   against the installed platform package is recorded by `desktop:pack`,
+   since signing rewrites the binaries). Record both results.
    `npm run verify:version-identity` checks the App's own version identity.
 5. **Packaged checks.** Only the checks that exercise a distinct packaged
    or native condition, on the packaged App with a fresh `userData` and its

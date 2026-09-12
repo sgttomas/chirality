@@ -77,7 +77,6 @@ jobs:
           echo "CHIRALITY_RUNTIME_USER_DATA=${RUNTIME_USER_DATA}" >> "${GITHUB_ENV}"
           echo "CHIRALITY_RUNTIME_DIRECTORY=${RUNTIME_USER_DATA}/runtime" >> "${GITHUB_ENV}"
           echo "CHIRALITY_RUNTIME_SOCKET_PATH=${RUNTIME_USER_DATA}/runtime/control.sock" >> "${GITHUB_ENV}"
-          echo "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE=${RUNTIME_USER_DATA}/runtime/auth/tokens/operator.token" >> "${GITHUB_ENV}"
           echo "CHIRALITY_INSTRUCTION_ROOT=${GITHUB_WORKSPACE}" >> "${GITHUB_ENV}"
 
       - name: Setup Node.js
@@ -142,56 +141,68 @@ jobs:
         run: node ./scripts/build-controlled-ci-runtime.mjs
         working-directory: projects/chirality-app-dev/frontend
 
-      - name: Start shared runtime daemon
+      # The controlled CI runtime is a stub-engine Runtime daemon (no Codex,
+      # no sign-in). It registers app-dev from the manifest named by
+      # --manifest itself and prints one ready line:
+      #   {"status":"ready","purpose":"chirality-controlled-ci-runtime/v1",
+      #    "socketPath":...,"tokenFile":...,"projectId":...,"projectRoot":...}
+      # tokenFile is the project client token, so no operator token and no CLI
+      # registration step are needed (D-GOV-43, A2).
+      - name: Start controlled CI runtime
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p "${CHIRALITY_RUNTIME_DIRECTORY}"
+          : >/tmp/chirality-runtime-daemon.log
           nohup env \
             CHIRALITY_CONTROLLED_CI_RUNTIME=chirality-controlled-ci-runtime/v1 \
             node out/controlled-ci/controlled-runtime.mjs \
+              --manifest "${GITHUB_WORKSPACE}/projects/chirality-app-dev/chirality.project.json" \
             >/tmp/chirality-runtime-daemon.log 2>&1 &
           echo $! >/tmp/chirality-runtime-daemon.pid
-        working-directory: projects/chirality-app-dev/frontend
 
-      - name: Register app-dev with shared runtime
-        shell: bash
-        run: |
-          set -euo pipefail
+          ready=""
           for attempt in $(seq 1 90); do
-            if [ -S "${CHIRALITY_RUNTIME_SOCKET_PATH}" ] \
-              && [ -f "${CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE}" ]; then
+            ready="$(grep -m1 '"status":"ready"' /tmp/chirality-runtime-daemon.log || true)"
+            if [ -n "${ready}" ]; then
+              break
+            fi
+            if ! kill -0 "$(cat /tmp/chirality-runtime-daemon.pid)" 2>/dev/null; then
               break
             fi
             sleep 1
           done
 
-          if [ ! -S "${CHIRALITY_RUNTIME_SOCKET_PATH}" ] \
-            || [ ! -f "${CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE}" ]; then
-            echo "Shared runtime daemon did not become ready." >&2
+          if [ -z "${ready}" ]; then
+            echo "Controlled CI runtime did not print its ready line." >&2
             tail -n 200 /tmp/chirality-runtime-daemon.log || true
             exit 1
           fi
+          printf '%s\n' "${ready}" >/tmp/chirality-runtime-ready.json
 
-          registration="$(
-            CHIRALITY_RUNTIME_TOKEN_FILE="${CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE}" \
-              node projects/chirality-app-dev/frontend/out/controlled-ci/chirality-cli.mjs \
-                project register \
-                --manifest "${GITHUB_WORKSPACE}/projects/chirality-app-dev/chirality.project.json" \
-                --approved-by github-actions \
-                --approval-reference harness-premerge-ci \
-                --json
-          )"
-          printf '%s\n' "${registration}" >/tmp/chirality-runtime-registration.json
+          # The ready line must describe the app-dev project on the declared
+          # socket; the project token file is the App's runtime credential.
           project_token="$(
-            node -e 'const fs=require("fs"); const v=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); if (!v.tokenFile) process.exit(1); process.stdout.write(v.tokenFile)' \
-              /tmp/chirality-runtime-registration.json
+            node -e '
+              const fs = require("node:fs");
+              const ready = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+              if (ready.status !== "ready" || ready.purpose !== "chirality-controlled-ci-runtime/v1") throw new Error("unexpected runtime purpose");
+              for (const field of ["socketPath", "tokenFile", "projectId", "projectRoot"]) {
+                if (typeof ready[field] !== "string" || ready[field].length === 0) throw new Error(`ready line is missing ${field}`);
+              }
+              if (ready.socketPath !== process.env.CHIRALITY_RUNTIME_SOCKET_PATH) throw new Error("ready socketPath differs from CHIRALITY_RUNTIME_SOCKET_PATH");
+              if (ready.projectId !== "chirality-app-dev") throw new Error(`unexpected projectId ${ready.projectId}`);
+              const expectedRoot = fs.realpathSync(`${process.env.GITHUB_WORKSPACE}/projects/chirality-app-dev`);
+              if (ready.projectRoot !== expectedRoot) throw new Error(`unexpected projectRoot ${ready.projectRoot}`);
+              process.stdout.write(ready.tokenFile);
+            ' /tmp/chirality-runtime-ready.json
           )"
 
           echo "CHIRALITY_RUNTIME_TOKEN_FILE=${project_token}" >> "${GITHUB_ENV}"
           echo "CHIRALITY_RUNTIME_PROJECT_ID=chirality-app-dev" >> "${GITHUB_ENV}"
           echo "CHIRALITY_RUNTIME_PROJECT_ROOT=${GITHUB_WORKSPACE}/projects/chirality-app-dev" >> "${GITHUB_ENV}"
           echo "HARNESS_PROJECT_ROOT=${GITHUB_WORKSPACE}/projects/chirality-app-dev" >> "${GITHUB_ENV}"
+        working-directory: projects/chirality-app-dev/frontend
 
       - name: Start frontend server
         run: |

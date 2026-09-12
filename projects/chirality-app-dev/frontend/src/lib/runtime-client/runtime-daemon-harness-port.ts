@@ -8,24 +8,29 @@ import {
 } from '@chirality/runtime-client';
 import {
   RuntimeError,
+  type AnswerSessionRequestResponse,
   type HostedBootstrapProjectRegistrationResponse,
   type ProjectStatus,
   type RegisteredProject,
-  type ReadableRuntimeSessionRecord
+  type ReadableRuntimeSessionRecord,
+  type ServerRequestAnswer,
+  type SessionRequestsResponse,
+  type SessionTurnState
 } from '@chirality/runtime-contracts';
 import { HarnessError } from '@chirality/runtime-contracts/errors';
 import { resolveHostedProjectTokenFile } from '@chirality/runtime-daemon/hosted-paths';
 import type {
   HarnessErrorType,
-  SessionRecord,
-  UIEvent
+  SessionRecord
 } from '@chirality/runtime-contracts/types';
 
 import type {
   DaemonHarnessPort,
   DaemonProjectBinding,
   DaemonRequestOptions,
+  DaemonTurnFrame,
   HostedBootstrapPort,
+  HostedBootstrapStatusResponse,
   HostedProjectBindingResponse,
   HostedProjectInitializationResponse,
   RunningDaemonHarnessTurn
@@ -33,6 +38,13 @@ import type {
 
 const APP_DEV_PROJECT_ID = 'chirality-app-dev';
 
+/**
+ * Turn-registry surface of `RuntimeClient` (D-GOV-43 section 5). The methods
+ * are declared here so this port type-checks against a client build that does
+ * not carry them yet; a client that does is used as is, and a client that does
+ * not is driven through its generic `requestEvents` / `requestJson` transport
+ * against the contract routes. Nothing here constructs a second transport.
+ */
 export interface RuntimeDaemonHarnessPortOptions {
   client: RuntimeClient;
   projectId?: string;
@@ -320,15 +332,65 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
           ...(request.permissionMode === undefined
             ? {}
             : { permissionMode: request.permissionMode }),
+          ...(request.model === undefined ? {} : { model: request.model }),
+          ...(request.reasoningEffort === undefined
+            ? {}
+            : { reasoningEffort: request.reasoningEffort }),
           ...(request.methods === undefined ? {} : { methods: request.methods })
         },
         options?.signal
       );
-      return this.runningTurn(
-        stream,
+      return this.runningTurn(stream);
+    });
+  }
+
+  async attachTurn(
+    sessionId: string,
+    after: number,
+    options?: DaemonRequestOptions
+  ): Promise<RunningDaemonHarnessTurn> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      const afterSeq = Number.isFinite(after) && after > 0 ? Math.floor(after) : 0;
+      const stream = await this.client.attachSessionTurn(
         this.projectId,
-        request.sessionId
+        sessionId,
+        { after: afterSeq },
+        options?.signal
       );
+      return this.runningTurn(stream);
+    });
+  }
+
+  async turnState(
+    sessionId: string,
+    options?: DaemonRequestOptions
+  ): Promise<SessionTurnState> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.sessionTurnState(this.projectId, sessionId, options?.signal);
+    });
+  }
+
+  async listRequests(
+    sessionId: string,
+    options?: DaemonRequestOptions
+  ): Promise<SessionRequestsResponse> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.listSessionRequests(this.projectId, sessionId, options?.signal);
+    });
+  }
+
+  async answerRequest(
+    sessionId: string,
+    requestId: string,
+    answer: ServerRequestAnswer,
+    options?: DaemonRequestOptions
+  ): Promise<AnswerSessionRequestResponse> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.answerSessionRequest(this.projectId, sessionId, requestId, answer, options?.signal);
     });
   }
 
@@ -542,24 +604,19 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
     });
   }
 
-  private runningTurn(
-    stream: RuntimeStream,
-    projectId: string,
-    sessionId: string
-  ): RunningDaemonHarnessTurn {
+  /**
+   * The Runtime owns the turn; this object is only an observer of it. A
+   * cancelled observer closes its own subscription and nothing else: the turn
+   * keeps running and explicit Stop goes through `interrupt`.
+   */
+  private runningTurn(stream: RuntimeStream): RunningDaemonHarnessTurn {
     let cancelled = false;
     return {
-      events: stream as AsyncIterable<UIEvent>,
+      events: stream as AsyncIterable<DaemonTurnFrame>,
       cancel: async (): Promise<void> => {
         if (cancelled) return;
         cancelled = true;
         stream.cancel();
-        await mapped(async () => {
-          // The inbound HTTP request signal may already be aborted when the
-          // browser cancels its SSE reader. Use a fresh control request so the
-          // daemon receives the interruption and releases the shared turn lock.
-          await this.client.interruptSession(projectId, sessionId);
-        });
       }
     };
   }
@@ -644,20 +701,20 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
   }
 
   /**
-   * Read-only registration probe. The ordinary scoped client carries no
-   * account-host proof, so this port never asks the daemon for hosted account
-   * status; the daemon rejects such a read (401) whenever an account host
-   * exists. Account status is served only through the Desktop account-host IPC.
+   * Registration probe plus the Runtime's hosted account status for a
+   * registered folder. The App-owned Runtime has no account-host admission
+   * step, so the ordinary project-scoped client reads status directly.
    */
   async getStatus(
     projectRoot: string,
     options?: DaemonRequestOptions
-  ): Promise<HostedProjectBindingResponse> {
+  ): Promise<HostedBootstrapStatusResponse> {
     return mapped(async () => {
       const canonicalRoot = await this.canonicalRoot(projectRoot);
       const binding = await this.resolveAndBind(canonicalRoot, options?.signal);
       if (!binding) return { registration: 'required' };
-      return { registration: 'registered', projectId: binding.projectId };
+      const status = await binding.client.hostedBootstrapStatus(binding.projectId, options?.signal);
+      return { registration: 'registered', projectId: binding.projectId, status };
     });
   }
 
@@ -689,16 +746,18 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
     });
   }
 
+  /**
+   * No consent step exists under D-GOV-43: the stock Codex App Server talks to
+   * its provider on its own terms. The method survives only so the route keeps
+   * its shape; it reads and returns the current status without any mutation.
+   */
   async grantProviderNetworkConsent(
     projectRoot: string,
     options?: DaemonRequestOptions
   ): ReturnType<HostedBootstrapPort['grantProviderNetworkConsent']> {
     return mapped(async () => {
       const binding = await this.requireBinding(projectRoot, options?.signal, this.binding);
-      return binding.client.grantHostedProviderNetworkConsent(
-        binding.projectId,
-        options?.signal
-      );
+      return binding.client.hostedBootstrapStatus(binding.projectId, options?.signal);
     });
   }
 

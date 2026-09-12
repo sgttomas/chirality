@@ -5,7 +5,6 @@ import {
   cancelHostedBootstrapLogin,
   getHostedBootstrapStatus,
   getHostedBootstrapStatusWithRetry,
-  grantHostedProviderNetworkConsent,
   initializeHostedBootstrapProject,
   hydrateHostedBootstrapProject,
   signOutHostedBootstrapProject,
@@ -22,12 +21,11 @@ export type HostedBootstrapController = {
   projectRoot: string | null;
   snapshot: HostedBootstrapStatusResult | null;
   loading: boolean;
-  busyAction: 'setup' | 'consent' | 'login' | 'cancel' | 'logout' | null;
+  busyAction: 'setup' | 'login' | 'cancel' | 'logout' | null;
   error: string | null;
   signOutUncertain: boolean;
   authUrl: string | null;
   onSetup: () => void;
-  onGrantConsent: () => void;
   onStartLogin: () => void;
   onCancelLogin: () => void;
   onSignOut: () => void;
@@ -92,9 +90,9 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
     }
   }, [publishBinding]);
 
-  // Explicit setup registers and binds through Next, publishes the verified
-  // binding exactly as hydration does, then reads account status through the
-  // signed Desktop account-host bridge. The Next tier never carries status.
+  // Explicit setup registers and binds through the App tier, publishes the
+  // verified binding exactly as hydration does, then reads account status
+  // through the App status route.
   const setup = useCallback(async (root: string, signal: AbortSignal, generation: number): Promise<void> => {
     const binding = await initializeHostedBootstrapProject(root, signal);
     if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;
@@ -105,11 +103,11 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
     setAuthUrl(null);
   }, [publishBinding]);
 
-  // Re-read status through the signed bridge and adopt it if still current.
+  // Re-read status through the App status route and adopt it if still current.
   // Used after a rejected action, on reconnect, and when the surface reopens,
-  // so the popover shows the daemon's real state (for example `consent-required`
-  // after a daemon restart) rather than the last optimistic write. A failed
-  // re-read is swallowed: the caller's own error, if any, stays in place.
+  // so the popover shows the Runtime's real state (for example signed out after
+  // a service restart) rather than the last optimistic write. A failed re-read
+  // is swallowed: the caller's own error, if any, stays in place.
   const reconcile = useCallback(async (root: string, generation: number, signal: AbortSignal, clearError = false): Promise<void> => {
     try {
       const result = await getHostedBootstrapStatusWithRetry(root, signal);
@@ -260,10 +258,6 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
     projectRoot, snapshot, loading, busyAction, error, authUrl, signOutUncertain,
     onSetup: () => void perform('setup', setup),
     onRefresh: refresh,
-    onGrantConsent: () => void perform('consent', async (root, signal, generation) => {
-      const status = await withReconcile(root, signal, generation, () => grantHostedProviderNetworkConsent(root, signal));
-      if (!signal.aborted && operationGeneration.current === generation && rootRef.current === root) setObserved(current => ({ projectRoot: root, snapshot: withStatus(current.projectRoot === root ? current.snapshot : null, status) }));
-    }),
     onStartLogin: () => void perform('login', async (root, signal, generation) => {
       const result = await withReconcile(root, signal, generation, () => startHostedBootstrapLogin(root, signal));
       if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;

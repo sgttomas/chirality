@@ -2,7 +2,7 @@
 
 import React, { useMemo, type ChangeEvent } from 'react';
 import { useRuntimeSettingsController, type RuntimeSettingsViewProps } from './runtime-settings-controller';
-export type { RuntimeSettingsViewProps, RuntimeDaemonStatus, RuntimeModel, RuntimeResidencyStatus } from './runtime-settings-controller';
+export type { RuntimeSettingsViewProps, RuntimeModel, RuntimeResidencyStatus } from './runtime-settings-controller';
 
 export function RuntimeSettings({ controller }: { controller?: RuntimeSettingsViewProps } = {}): JSX.Element {
   return controller ? <RuntimeSettingsView {...controller} /> : <StandaloneRuntimeSettings />;
@@ -13,14 +13,17 @@ function StandaloneRuntimeSettings(): JSX.Element {
   return <RuntimeSettingsView {...controller} />;
 }
 
+/**
+ * Local-model (oMLX) residency controls for the compatibility shell. The
+ * Runtime service itself is App-owned and has no install, start, stop or
+ * uninstall controls (D-GOV-43); its state is shown by `RuntimeStatus`.
+ */
 export function RuntimeSettingsView({
   bridgeAvailable,
-  daemonStatus,
   residency,
   selectedModel,
   busyAction,
   error,
-  onDaemonAction,
   onRefresh,
   onSelectedModelChange,
   onActivateModel,
@@ -39,31 +42,6 @@ export function RuntimeSettingsView({
     residency?.phase === 'DRAINING' ||
     residency?.phase === 'UNLOADING' ||
     residency?.phase === 'LOADING';
-  const daemonLabel = !daemonStatus
-    ? 'Checking...'
-    : daemonStatus.daemon.running
-      ? 'Running'
-      : daemonStatus.launchAgent.loaded
-        ? 'LaunchAgent loaded; daemon unavailable'
-        : daemonStatus.launchAgent.installed
-          ? 'Installed and stopped'
-          : 'Not installed';
-  // Routine process metadata is hover-only; the visible label carries state.
-  const daemonDetail = daemonStatus?.daemon.running
-    ? [
-        daemonStatus.daemon.pid ? `PID ${daemonStatus.daemon.pid}` : null,
-        daemonStatus.daemon.startedAt ? `started ${daemonStatus.daemon.startedAt}` : null
-      ].filter(Boolean).join(' · ') || undefined
-    : undefined;
-  const daemonStatusLine = (
-    <span
-      className="runtime-status"
-      data-running={daemonStatus?.daemon.running ? 'true' : 'false'}
-      title={daemonDetail}
-    >
-      {daemonLabel}
-    </span>
-  );
 
   return (
     <section className="runtime-settings" aria-labelledby="runtime-settings-title">
@@ -73,58 +51,7 @@ export function RuntimeSettingsView({
 
       {bridgeAvailable ? (
         <>
-          <details className="runtime-service">
-            <summary>Runtime service · {daemonStatusLine}</summary>
-            <div className="runtime-control-row">
-            {!daemonStatus?.launchAgent.installed ? (
-              <button
-                type="button"
-                onClick={() => onDaemonAction('install')}
-                disabled={busyAction !== null}
-              >
-                {busyAction === 'install' ? 'Installing...' : 'Install'}
-              </button>
-            ) : null}
-            {daemonStatus?.launchAgent.installed && !daemonStatus.launchAgent.loaded ? (
-              <button
-                type="button"
-                onClick={() => onDaemonAction('start')}
-                disabled={busyAction !== null}
-              >
-                {busyAction === 'start' ? 'Starting...' : 'Start'}
-              </button>
-            ) : null}
-            {daemonStatus?.launchAgent.loaded ? (
-              <button
-                type="button"
-                onClick={() => onDaemonAction('stop')}
-                disabled={busyAction !== null}
-              >
-                {busyAction === 'stop' ? 'Stopping...' : 'Stop'}
-              </button>
-            ) : null}
-            <button
-              type="button"
-              className="button-muted"
-              onClick={onRefresh}
-              disabled={busyAction !== null}
-            >
-              Refresh
-            </button>
-            {daemonStatus?.launchAgent.installed ? (
-              <button
-                type="button"
-                className="button-muted runtime-uninstall"
-                onClick={() => onDaemonAction('uninstall')}
-                disabled={busyAction !== null}
-              >
-                {busyAction === 'uninstall' ? 'Uninstalling...' : 'Uninstall'}
-              </button>
-            ) : null}
-            </div>
-          </details>
-
-          {showLocalModels && daemonStatus?.daemon.running ? (
+          {showLocalModels ? (
             <div className="runtime-model-controls">
               <p className="runtime-model-status">
                 Residency: <strong>{residency?.phase ?? 'Checking'}</strong>
@@ -163,21 +90,28 @@ export function RuntimeSettingsView({
                 >
                   {busyAction === 'models' ? 'Activating...' : 'Activate Explicitly'}
                 </button>
+                <button
+                  type="button"
+                  className="button-muted"
+                  onClick={onRefresh}
+                  disabled={busyAction !== null}
+                >
+                  Refresh
+                </button>
               </div>
               <p className="api-key-hint">
                 Activation never occurs automatically. A switch drains active local turns before
                 unloading the managed model.
               </p>
             </div>
-          ) : null}
+          ) : (
+            <p className="api-key-hint">The Runtime service is managed by Chirality Desktop.</p>
+          )}
         </>
       ) : (
-        <>
-          <p>{daemonStatusLine}</p>
-          <p className="api-key-hint">
-            Runtime controls are available only in Chirality Desktop.
-          </p>
-        </>
+        <p className="api-key-hint">
+          Runtime controls are available only in Chirality Desktop.
+        </p>
       )}
 
       {error ? <p className="api-key-error">{error}</p> : null}

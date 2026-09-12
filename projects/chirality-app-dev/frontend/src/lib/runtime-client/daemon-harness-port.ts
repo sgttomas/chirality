@@ -33,7 +33,13 @@ import type {
   ResolveSelectedContextResponse,
   RolesResponse
 } from '@chirality/runtime-contracts/v3';
-import type { ReadableRuntimeSessionRecord } from '@chirality/runtime-contracts';
+import type {
+  AnswerSessionRequestResponse,
+  ReadableRuntimeSessionRecord,
+  ServerRequestAnswer,
+  SessionRequestsResponse,
+  SessionTurnState
+} from '@chirality/runtime-contracts';
 import type {
   HostedBootstrapLoginStartResponse,
   HostedBootstrapStatus
@@ -71,10 +77,23 @@ export type HarnessReplayResponse = {
   instructionBases: readonly FrozenInstructionBasisV3[];
 };
 
+/**
+ * One frame of a Runtime-owned turn stream. `seq` is the Runtime turn
+ * registry's frame sequence (D-GOV-43 section 5); it is absent only on frames
+ * produced by a Runtime that does not number its frames yet.
+ */
+export type DaemonTurnFrame = UIEvent & { seq?: number };
+
+/**
+ * A subscription to a turn the Runtime owns. `cancel()` only unsubscribes the
+ * observer; it never interrupts the turn (the interrupt route does that).
+ */
 export type RunningDaemonHarnessTurn = {
-  events: AsyncIterable<UIEvent>;
+  events: AsyncIterable<DaemonTurnFrame>;
   cancel(): Promise<void>;
 };
+
+export type { SessionTurnState, SessionRequestsResponse, ServerRequestAnswer };
 
 export type DaemonRequestOptions = {
   signal?: AbortSignal;
@@ -85,11 +104,18 @@ export type HostedProjectBindingResponse =
   | { registration: 'registered'; projectId: string };
 
 /**
- * Explicit initialization returns only the verified registration and binding.
- * Hosted account status is never produced by the Next tier: the daemon
- * requires the Desktop account-host proof for every account read, so the
- * renderer obtains status through the signed main-process IPC path after this
- * binding is established.
+ * Registration plus the Runtime's hosted account status. Under D-GOV-43 the
+ * Runtime is App-owned and there is no account-host admission proof, so the
+ * App tier reads status directly over the Runtime socket; the renderer no
+ * longer needs a separate main-process IPC path for it.
+ */
+export type HostedBootstrapStatusResponse =
+  | { registration: 'required' }
+  | { registration: 'registered'; projectId: string; status: HostedBootstrapStatus };
+
+/**
+ * Explicit initialization returns only the verified registration and binding;
+ * the caller reads status afterwards through {@link HostedBootstrapPort.getStatus}.
  */
 export type HostedProjectInitializationResponse = Extract<
   HostedProjectBindingResponse,
@@ -102,18 +128,21 @@ export interface HostedBootstrapPort {
     options?: DaemonRequestOptions
   ): Promise<HostedProjectBindingResponse>;
   /**
-   * Read-only registration probe. It resolves and verifies the binding for the
-   * selected folder but never carries hosted account status (see
-   * {@link HostedProjectInitializationResponse}).
+   * Resolves and verifies the binding for the selected folder and, when the
+   * folder is registered, reads the hosted account status from the Runtime.
    */
   getStatus(
     projectRoot: string,
     options?: DaemonRequestOptions
-  ): Promise<HostedProjectBindingResponse>;
+  ): Promise<HostedBootstrapStatusResponse>;
   initializeProject(
     projectRoot: string,
     options?: DaemonRequestOptions
   ): Promise<HostedProjectInitializationResponse>;
+  /**
+   * Retained for wire compatibility only. Under D-GOV-43 no provider-network
+   * consent step exists; the port reports the current status without changing it.
+   */
   grantProviderNetworkConsent(
     projectRoot: string,
     options?: DaemonRequestOptions
@@ -152,6 +181,10 @@ export type V3TurnRequest = TurnRequest & {
   interactionMode?: ResolveSelectedContextRequest['interactionMode'];
   permissionMode?: ResolveSelectedContextRequest['permissionMode'];
   methods?: ResolveSelectedContextRequest['methods'];
+  /** Per-turn model override (Codex `turn/start.model`); the session default otherwise. */
+  model?: string;
+  /** Per-turn reasoning effort override (Codex `turn/start.effort`). */
+  reasoningEffort?: string;
 };
 
 /**
@@ -193,6 +226,30 @@ export interface DaemonHarnessPort {
     request: V3TurnRequest,
     options?: DaemonRequestOptions
   ): Promise<RunningDaemonHarnessTurn>;
+  /**
+   * Attach to the active (or recently finished) turn of a session, replaying
+   * buffered frames with `seq > after` first. Closing the subscription never
+   * affects the turn.
+   */
+  attachTurn(
+    sessionId: string,
+    after: number,
+    options?: DaemonRequestOptions
+  ): Promise<RunningDaemonHarnessTurn>;
+  turnState(
+    sessionId: string,
+    options?: DaemonRequestOptions
+  ): Promise<SessionTurnState>;
+  listRequests(
+    sessionId: string,
+    options?: DaemonRequestOptions
+  ): Promise<SessionRequestsResponse>;
+  answerRequest(
+    sessionId: string,
+    requestId: string,
+    answer: ServerRequestAnswer,
+    options?: DaemonRequestOptions
+  ): Promise<AnswerSessionRequestResponse>;
   interrupt(
     request: InterruptRequest,
     options?: DaemonRequestOptions
@@ -272,6 +329,10 @@ const unboundDaemonHarnessPort: DaemonHarnessPort = {
   bootSession: daemonClientUnavailable,
   replaySession: daemonClientUnavailable,
   turn: daemonClientUnavailable,
+  attachTurn: daemonClientUnavailable,
+  turnState: daemonClientUnavailable,
+  listRequests: daemonClientUnavailable,
+  answerRequest: daemonClientUnavailable,
   interrupt: daemonClientUnavailable,
   decidePermission: daemonClientUnavailable,
   listAgents: daemonClientUnavailable,

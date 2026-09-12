@@ -15,8 +15,12 @@ FAIL with what was observed, in this run directory.
    Runtime service child and the Codex child; Activity shows the service
    ready. No second socket, no launchd job, no admission prompt.
 2. **Signature and Codex pin verification.** `codesign --verify --deep
-   --strict` and `spctl --assess` pass on the bundle; the bundled
-   `@openai/codex` version equals the lockfile pin.
+   --strict` and `spctl --assess` pass on the bundle;
+   `npm run desktop:verify-codex-pin -- --after-signing` (from `frontend/`,
+   with `CHIRALITY_ELECTRON_OUTPUT_DIRECTORY` naming the candidate output
+   when it is not `frontend/dist`) reports PASS, which establishes that the
+   bundled `@openai/codex` version equals the lockfile pin. Revised by W3
+   on 2026-09-12 to name the script that performs the comparison.
 3. **Sign in through Codex's own flow.** From the account row, start
    sign-in; the tester completes OAuth in the browser. The App shows the
    signed-in account without reading, copying or relaying credential

@@ -6,7 +6,7 @@ import type { QualifiedMethodReference } from '../../lib/harness/method-selectio
 import type { SelectedSessionReplayProjection } from '../../lib/woven-dialogue/contracts';
 
 const state = vi.hoisted(() => ({ root: '/chosen/subfolder', query: '', listeners: new Set<() => void>(),
-  create: vi.fn(), boot: vi.fn(), getSession: vi.fn(), replay: vi.fn(), stream: vi.fn(), apply: vi.fn(), append: vi.fn(), clear: vi.fn(), streaming: vi.fn(),
+  create: vi.fn(), boot: vi.fn(), getSession: vi.fn(), replay: vi.fn(), stream: vi.fn(), apply: vi.fn(), append: vi.fn(), clear: vi.fn(), hydrate: vi.fn(), streaming: vi.fn(),
   replaceMethods: vi.fn(), resolveContext: vi.fn(),
   nativeCapability: vi.fn(), nativeRevisions: vi.fn(), nativeClarifications: vi.fn(), replyClarification: vi.fn(), exportPlan: vi.fn(),
   markdownProps: [] as Array<{ source: string; projectRoot?: string | null; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void }>,
@@ -18,7 +18,7 @@ vi.mock('../../components/workspace/workspace-provider', () => ({ useWorkspace: 
   applyProjectRoot: state.apply, chooseProjectRoot: vi.fn(async () => false), hasElectronDirectoryPicker: false, errorMessage: null
 }) }));
 vi.mock('../../components/workspace/toolkit-provider', () => ({ useToolkit: () => ({ optsPayload: undefined }) }));
-vi.mock('../../components/workspace/harness-events-provider', () => ({ useHarnessEventActions: () => ({ appendEvent: state.append, clearEvents: state.clear, setStreaming: state.streaming }) }));
+vi.mock('../../components/workspace/harness-events-provider', () => ({ useHarnessEventActions: () => ({ appendEvent: state.append, clearEvents: state.clear, hydrateEvents: state.hydrate, setStreaming: state.streaming }), useHarnessEvents: () => ({ events: [], streaming: false }) }));
 vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => 0 }));
 vi.mock('../../components/shell/persona-picker', () => ({ PersonaPicker: () => <span>Working Items</span> }));
 vi.mock('../../components/shell/file-picker', () => ({ FilePicker: ({ onAddAttachments }: { onAddAttachments: (items: Array<{ path: string; displayName: string; clientType: 'text' }>) => void }) => <button data-add-attachment onClick={() => onAddAttachments([{ path: '/chosen/subfolder/docs/input.txt', displayName: 'input.txt', clientType: 'text' }])}>add fixture attachment</button> }));
@@ -34,7 +34,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
   replyNativePlanClarification: state.replyClarification,
   exportNativePlanRevision: state.exportPlan
 }));
-vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, getHarnessSession: state.getSession, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn() }));
+vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, getHarnessSession: state.getSession, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn(), getHarnessTurnState: vi.fn(async () => ({ active: false, lastSeq: 0 })), attachHarnessTurn: vi.fn(async () => undefined) }));
 import { ChatPanel } from '../../components/shell/chat-panel';
 
 let tree: ReactTestRenderer | undefined;
@@ -52,13 +52,13 @@ function deferred<T>() {
 async function mount(props: Partial<React.ComponentProps<typeof ChatPanel>> = {}) { await act(async () => { tree = create(<ChatPanel presentation="woven" {...props} />); }); }
 async function type(value: string) { await act(async () => { tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value } }); }); }
 async function submit() { await act(async () => { tree!.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }); }); }
-function continueWithProjectAccess() { return tree!.root.findAllByType('button').find(node => node.children.join('') === 'Continue with Project access'); }
+function continueWithProjectAccess() { return tree!.root.findAllByType('button').find(node => node.children.join('') === 'Continue with Write in workspace'); }
 function assertCanonicalUntouched() { expect(values.get(canonicalKey)).toBe(canonicalDraft); expect(writes.filter(([key]) => key === canonicalKey)).toEqual([]); }
 function resumableProjection(sessionId: string): SelectedSessionReplayProjection {
   return { selectedSessionId: sessionId, sourceReference: `session:${sessionId}/events`, observedAt: '2026-09-09T00:00:00.000Z', disclosure: 'EMPTY', currency: 'CURRENT',
     transcript: { sessionId, itemCount: 0, items: [] }, instructionHistory: [], instructionBases: [], malformedLineCount: 0, sourceEventCount: 0, renderedItemCount: 0, diagnostics: [],
     session: { projectionId: `operator-session:${sessionId}`, sourceReference: `session:${sessionId}`, sessionId, observedAt: '2026-09-09T00:00:00.000Z', currency: 'CURRENT', runtimeStatus: 'idle', parentage: { state: 'NOT_RECORDED' }, diagnostics: [],
-      continuation: { schemaVersion: 'chirality.session/v3', projectRoot: '/chosen/subfolder', roleId: 'WORKING_ITEMS', mode: 'CHAT', interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [], methodSelectionRevision: 1, instructionBasisId: `basis-${sessionId}` } }
+      continuation: { schemaVersion: 'chirality.session/v3', projectRoot: '/chosen/subfolder', roleId: 'WORKING_ITEMS', mode: 'CHAT', interactionMode: 'chat', permissionMode: (sessionId === 'legacy-permissions' ? 'dontAsk' : 'ask') as 'ask', selectedMethods: [], methodSelectionRevision: 1, instructionBasisId: `basis-${sessionId}` } }
   };
 }
 beforeEach(() => {
@@ -157,14 +157,14 @@ it('merges next-message methods into the active basis without sending turn-time 
   }
   await act(async () => { tree = create(<Fixture />); });
   await type('First selected message'); await submit();
-  expect(state.stream).toHaveBeenLastCalledWith(expect.objectContaining({ interactionMode: 'chat', permissionMode: 'workspaceWrite' }), expect.any(Function));
+  expect(state.stream).toHaveBeenLastCalledWith(expect.objectContaining({ interactionMode: 'chat', permissionMode: 'workspaceWrite' }), expect.any(Function), expect.any(AbortSignal));
   expect(state.stream.mock.calls.at(-1)?.[0]).not.toHaveProperty('methods');
   expect(state.replaceMethods).toHaveBeenLastCalledWith('bound', [method], { boundaryConfirmed: true, selectionMode: 'merge' });
   expect(tree!.root.findAllByProps({ 'aria-label': 'Methods for next turn' })).toHaveLength(0);
 
   await act(async () => tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.onChange({ target: { value: 'native-plan' } }));
   await type('Second message'); await submit();
-  expect(state.stream).toHaveBeenLastCalledWith(expect.objectContaining({ interactionMode: 'native-plan', permissionMode: 'workspaceWrite' }), expect.any(Function));
+  expect(state.stream).toHaveBeenLastCalledWith(expect.objectContaining({ interactionMode: 'native-plan', permissionMode: 'workspaceWrite' }), expect.any(Function), expect.any(AbortSignal));
   expect(state.stream.mock.calls.at(-1)?.[0]).not.toHaveProperty('methods');
   expect(state.replaceMethods).toHaveBeenCalledTimes(1);
 });
@@ -358,13 +358,14 @@ it('preserves an unsupported legacy permission profile until the operator contin
   const projection = resumableProjection('legacy-permissions');
   await mount({ resumeConversation: { requestId: 1, projection } });
   await type('Continue this recorded chat');
-  // No permission selector exists; the only posture is enforced project access.
+  // The permission selector offers the four Codex postures; a retired legacy
+  // profile on a recorded chat is named and must be replaced before sending.
   // Model and Reasoning are separate catalog controls, not permission postures.
-  expect(tree!.root.findAllByType('select').map(node => node.props['aria-label'])).toEqual(['Interaction mode', 'Model', 'Reasoning']);
+  expect(tree!.root.findAllByType('select').map(node => node.props['aria-label'])).toEqual(['Interaction mode', 'Permissions', 'Model', 'Reasoning']);
   const alert = tree!.root.findByProps({ role: 'alert' });
   expect(alert.type).toBe('p');
   const textOf = (node: { children: unknown[] }): string => node.children.map(child => typeof child === 'string' ? child : textOf(child as { children: unknown[] })).join('');
-  expect(textOf(alert)).toBe('This recorded chat used Ask before changes, which is no longer supported. Continue with Project access');
+  expect(textOf(alert)).toBe('This recorded chat used an unknown permission mode (dontAsk). Continue with Write in workspace');
   expect(continueWithProjectAccess()).toBeDefined();
   expect(tree!.root.findByProps({ 'aria-label': 'Send' }).props.disabled).toBe(true);
   await submit();
@@ -374,7 +375,7 @@ it('preserves an unsupported legacy permission profile until the operator contin
   expect(tree!.root.findAllByProps({ role: 'alert' })).toHaveLength(0);
   expect(tree!.root.findByProps({ 'aria-label': 'Send' }).props.disabled).toBe(false);
   await submit();
-  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'legacy-permissions', permissionMode: 'workspaceWrite' }), expect.any(Function));
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'legacy-permissions', permissionMode: 'workspaceWrite' }), expect.any(Function), expect.any(AbortSignal));
 });
 
 it('resets a new chat to the supported Project access profile', async () => {
@@ -385,7 +386,7 @@ it('resets a new chat to the supported Project access profile', async () => {
   expect(continueWithProjectAccess()).toBeUndefined();
   expect(JSON.stringify(tree!.toJSON())).not.toContain('no longer supported');
   await type('Fresh chat'); await submit();
-  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ permissionMode: 'workspaceWrite' }), expect.any(Function));
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ permissionMode: 'workspaceWrite' }), expect.any(Function), expect.any(AbortSignal));
 });
 
 it('restores method references when the first method-bearing turn fails after boot', async () => {
@@ -562,15 +563,15 @@ it('continues a compatible recorded v3 conversation without creating or booting 
   expect(JSON.stringify(tree!.toJSON())).toContain('red.png');
   expect(JSON.stringify(tree!.toJSON())).toContain('notes.md');
   expect(tree!.root.findAllByProps({ className: 'chat-speaker' }).some(node => node.children.join('') === 'Help Human')).toBe(true);
+  // The recorded "ask" posture is a supported Codex posture: no interstitial.
+  expect(continueWithProjectAccess()).toBeUndefined();
+  expect(tree!.root.findByProps({ 'aria-label': 'Permissions' }).props.value).toBe('ask');
   await type('Continue here'); await submit();
-  expect(state.stream).not.toHaveBeenCalled();
-  await act(async () => continueWithProjectAccess()!.props.onClick());
-  await submit();
   expect(state.create).not.toHaveBeenCalled();
   expect(state.boot).not.toHaveBeenCalled();
   expect(state.replaceMethods).not.toHaveBeenCalled();
   expect(state.resolveContext).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'recorded-v3', methods: [activeMethod] }));
-  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'recorded-v3', message: 'Continue here' }), expect.any(Function));
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'recorded-v3', message: 'Continue here', permissionMode: 'ask' }), expect.any(Function), expect.any(AbortSignal));
   expect(state.stream.mock.calls.at(-1)?.[0]).not.toHaveProperty('methods');
 });
 
@@ -696,7 +697,7 @@ it('threads file navigation only to assistant Markdown and preserves attachment 
   expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({
     message: 'Keep attachment',
     attachments: ['/chosen/subfolder/docs/input.txt']
-  }), expect.any(Function));
+  }), expect.any(Function), expect.any(AbortSignal));
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep attachment');
   expect(tree!.root.findAllByProps({ className: 'attachment-chip' }).some(node => node.props.title === '/chosen/subfolder/docs/input.txt')).toBe(true);
   expect(state.markdownProps.every(props => props.fileCatalog === catalog && props.onOpenFile === open)).toBe(true);
@@ -810,7 +811,7 @@ it('reconciles known unbooted history sessions before sending and resets for an 
   state.stream.mockResolvedValue(undefined);
   await type('A deliberately new request'); await submit();
   expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
-  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'fresh', message: 'A deliberately new request' }), expect.any(Function));
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'fresh', message: 'A deliberately new request' }), expect.any(Function), expect.any(AbortSignal));
 });
 
 

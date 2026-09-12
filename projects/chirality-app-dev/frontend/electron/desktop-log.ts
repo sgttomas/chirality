@@ -48,6 +48,22 @@ export type DesktopLoggerOptions = {
 const DEFAULT_FILE_NAME = 'desktop-main.log';
 const DEFAULT_MAX_BYTES = 2 * 1024 * 1024;
 
+/**
+ * Account e-mail redaction, applied at the writer so no caller can forget it.
+ *
+ * The Runtime service's stderr and Codex's own diagnostics can carry the
+ * signed-in account address; the desktop log must stay shareable with a plain
+ * `grep -v '@'`, so every line is scrubbed before it reaches the file or the
+ * console. Scoped package names (`@chirality/runtime-core`) have no local part
+ * and are left alone.
+ */
+const EMAIL_PATTERN = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/gu;
+export const REDACTED_EMAIL_PLACEHOLDER = '[redacted-email]';
+
+export function redactAccountEmails(text: string): string {
+  return text.replaceAll(EMAIL_PATTERN, REDACTED_EMAIL_PLACEHOLDER);
+}
+
 /** Render a detail payload without ever throwing on cycles or exotic values. */
 function formatDetail(detail: unknown): string {
   if (detail === undefined) {
@@ -84,7 +100,9 @@ export function createDesktopLogger(options: DesktopLoggerOptions): DesktopLogge
   };
 
   const log = (level: DesktopLogLevel, event: string, detail?: unknown): void => {
-    const line = `${now().toISOString()} [${level}] ${event}${formatDetail(detail)}\n`;
+    const line = redactAccountEmails(
+      `${now().toISOString()} [${level}] ${event}${formatDetail(detail)}`
+    ) + '\n';
 
     if (mirrorToConsole) {
       const mirror =

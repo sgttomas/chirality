@@ -15,6 +15,8 @@ instruction_surface_paths:
   - docs/PRD_ROOT.md
   - docs/governance_harness/_DECISIONS/_REGISTER.md
   - tools/validation/validate_candidate_whitespace.py
+  - .github/workflows/harness-premerge.yml
+  - .github/workflows/desktop-release-template.yml
   - docs/governance_harness/tranche_manifests/ROOT-DGOV43-APPLICATION-20260912.yaml
 
 m2_gate:

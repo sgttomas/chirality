@@ -15,11 +15,27 @@ type RuntimeConnectivitySnapshotPayload = {
   changedAt: string;
 };
 
-type HostedAccountStatusPayload = import('@chirality/runtime-contracts').HostedBootstrapStatus;
-type HostedAccountLoginPayload = import('@chirality/runtime-contracts').HostedBootstrapLoginStartResponse;
-type HostedAccountStatusResponsePayload =
-  | { registration: 'required' }
-  | { registration: 'registered'; projectId: string; status: HostedAccountStatusPayload };
+/**
+ * `runtime.service.restart()` result, as `electron/runtime-control-ipc-contract.ts`
+ * defines it: the service child's state after the relaunch settled, or the
+ * redacted reason the main process refused or failed.
+ */
+type RuntimeServiceStatePayload = {
+  status: 'idle' | 'starting' | 'ready' | 'restarting' | 'stopping' | 'stopped' | 'failed';
+  pid: number | null;
+  socketPath: string;
+  clientTokenFile: string;
+  restarts: number;
+  recentFailures: number;
+  lastExit: { code: number | null; signal: string | null; at: string } | null;
+  lastError: string | null;
+  nextRestartAt: string | null;
+  changedAt: string;
+};
+
+type RuntimeServiceControlResultPayload =
+  | { ok: true; service: RuntimeServiceStatePayload }
+  | { ok: false; error: string };
 
 type ChiralityBridge = {
   platform?: string;
@@ -41,10 +57,12 @@ type ChiralityBridge = {
     selectFiles: (request: { projectRoot: string }) => Promise<AttachmentSelectionResult>;
   };
   /**
-   * Partial by design. `apiKey`/`providerApiKey`/`runtime.daemon`/`runtime.models`
-   * remain narrowed locally by their own consumers. Connectivity and the
-   * project-root-only hosted account bridge are declared because renderer
-   * clients consume them directly.
+   * Partial by design. `apiKey`/`providerApiKey` remain narrowed locally by
+   * their own consumers. Connectivity is declared because renderer clients
+   * consume it directly. The retired `runtime.daemon`, `runtime.models` and
+   * `runtime.hostedAccount` bridges are gone (D-GOV-43, A2); the preload now
+   * exposes `runtime.service.restart()` for the retry after the App-owned
+   * Runtime service gave up.
    */
   runtime?: {
     connectivity?: {
@@ -53,12 +71,9 @@ type ChiralityBridge = {
         listener: (snapshot: RuntimeConnectivitySnapshotPayload) => void
       ) => () => void;
     };
-    hostedAccount?: {
-      status: (projectRoot: string) => Promise<HostedAccountStatusResponsePayload>;
-      grantProviderNetworkConsent: (projectRoot: string) => Promise<HostedAccountStatusResponsePayload>;
-      startLogin: (projectRoot: string) => Promise<HostedAccountLoginPayload>;
-      cancelLogin: (projectRoot: string) => Promise<HostedAccountStatusResponsePayload>;
-      signOut: (projectRoot: string) => Promise<HostedAccountStatusResponsePayload>;
+    service?: {
+      /** Operator retry after the main process gave up restarting the service. */
+      restart: () => Promise<RuntimeServiceControlResultPayload>;
     };
   };
 };

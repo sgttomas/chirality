@@ -260,7 +260,7 @@ describe('persona roster refresh on runtime reconnect', () => {
     state.listRoles.mockRejectedValueOnce(engineUnavailable()).mockResolvedValue([{ id: 'HELP_HUMAN', agentType: 0, directEntry: true, defaultForNewChat: true, description: '', instruction: '' }]);
     state.hostedInitialize.mockResolvedValue({
       registration: 'registered', projectId: 'fixture-project', status: {
-        schema: 'chirality-hosted-bootstrap-status/v1', projectId: 'fixture-project', ceremony: 'consent-required', admission: 'unavailable', canStartLogin: false
+        schema: 'chirality-hosted-bootstrap-status/v1', projectId: 'fixture-project', ceremony: 'ready-to-start', admission: 'unavailable', canStartLogin: true
       }
     });
     const tree = await render(

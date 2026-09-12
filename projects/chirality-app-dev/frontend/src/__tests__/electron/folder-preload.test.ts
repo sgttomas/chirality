@@ -5,19 +5,19 @@ import '../../../electron/preload';
 type Bridge = {
   folders: { registerRecent: (path: string) => Promise<unknown>; pathForFile: (file: File) => string; subscribeOpen: (listener: (intent: unknown) => void) => () => void };
   document: { inlinePdfPreview: boolean };
-  runtime: { hostedAccount: { status: (root: string) => Promise<unknown>; startLogin: (root: string) => Promise<unknown> } };
+  runtime: { service: { restart: () => Promise<unknown> }; hostedAccount?: unknown; daemon?: unknown; models?: unknown };
 };
 beforeEach(() => vi.clearAllMocks());
 it('exposes inline PDF preview as unavailable for the desktop MVP fallback', () => {
   expect((mocks.exposed as Bridge).document.inlinePdfPreview).toBe(false);
 });
-it('exposes only project-root account operations and unwraps the fixed IPC result', async () => {
-  const status = { registration: 'required' };
-  mocks.invoke.mockResolvedValueOnce({ ok: true, value: status });
-  await expect((mocks.exposed as Bridge).runtime.hostedAccount.status('/project')).resolves.toBe(status);
-  expect(mocks.invoke).toHaveBeenLastCalledWith('chirality:host-account', { operation: 'status', projectRoot: '/project' });
-  mocks.invoke.mockResolvedValueOnce({ ok: false, error: 'Hosted account service is unavailable.' });
-  await expect((mocks.exposed as Bridge).runtime.hostedAccount.startLogin('/project')).rejects.toThrow('Hosted account service is unavailable.');
+it('exposes the owned-service restart and none of the retired daemon, model or hosted-account bridges', async () => {
+  const runtime = (mocks.exposed as Bridge).runtime;
+  expect(runtime.hostedAccount).toBeUndefined(); expect(runtime.daemon).toBeUndefined(); expect(runtime.models).toBeUndefined();
+  const result = { ok: true, service: { status: 'ready' } };
+  mocks.invoke.mockResolvedValueOnce(result);
+  await expect(runtime.service.restart()).resolves.toBe(result);
+  expect(mocks.invoke).toHaveBeenLastCalledWith('chirality:runtime-service-restart');
 });
 it('forwards only the folder path for registration and uses Electron file extraction without inventing paths', async () => {
   const bridge = (mocks.exposed as Bridge).folders;

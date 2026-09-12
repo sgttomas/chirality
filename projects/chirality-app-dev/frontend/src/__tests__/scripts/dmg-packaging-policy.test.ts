@@ -13,6 +13,7 @@ type ExtraResource = {
 };
 
 type FrontendPackageJson = {
+  dependencies?: Record<string, string>;
   devDependencies?: Record<string, string>;
   engines?: {
     node?: string;
@@ -96,35 +97,40 @@ describe('dmg packaging policy', () => {
       'prepare-packaged-instruction-root.mjs'
     );
     expect(pkg.scripts?.['desktop:prepare']).toContain('npm run instruction-root:prepare');
+    expect(pkg.scripts?.['desktop:prepare']).toContain('npm run runtime:build');
     expect(pkg.scripts?.['desktop:dist']).toContain(
-      'node ./scripts/pack-electron-with-supply.mjs --target dmg'
+      'node ./scripts/pack-electron.mjs --target dmg'
     );
+    expect(pkg.scripts?.['desktop:pack']).toContain('node ./scripts/pack-electron.mjs');
+    expect(pkg.scripts?.['desktop:pack']).toContain('desktop:verify-codex-pin');
+    expect(pkg.scripts?.['desktop:dist']).toContain('desktop:verify-codex-pin -- --after-signing');
+    expect(pkg.scripts?.['desktop:verify-codex-pin']).toBe('node ./scripts/verify-codex-pin.mjs');
+    for (const retired of ['desktop:bind-payload', 'runtime:build-core']) {
+      expect(pkg.scripts?.[retired]).toBeUndefined();
+    }
   });
 
-  it('ships the Runtime native-admission addon at its trusted packaged path', async () => {
+  it('ships the lockfile-pinned stock Codex platform tree, the Runtime service and CLI bundles (D-GOV-43, A2)', async () => {
     const pkg = await readPackageJson();
-    expect(pkg.build?.extraResources).toEqual(
-      expect.arrayContaining([
-        {
-          from: '../../chirality-runtime/packages/native-admission/build/Release/chirality_native_admission.node',
-          to: 'native/chirality_native_admission.node'
-        }
-      ])
-    );
-  });
-
-  it('requires the staged supplier tree and final Runtime inventory hook', async () => {
-    const pkg = await readPackageJson();
+    expect(pkg.dependencies?.['@openai/codex']).toBe('0.154.0');
+    expect(pkg.dependencies?.['@chirality/native-admission']).toBeUndefined();
     expect(pkg.build?.afterPack).toBe('./scripts/finalize-electron-resources.mjs');
-    expect(pkg.build?.extraResources).toEqual(
-      expect.arrayContaining([
-        {
-          from: 'node_modules/.cache/chirality-supplier',
-          to: 'supplier',
-          filter: ['**/*']
-        }
-      ])
-    );
+    expect(pkg.build?.extraResources).toEqual([
+      {
+        from: 'node_modules/@openai/codex-darwin-arm64/vendor/aarch64-apple-darwin',
+        to: 'codex',
+        filter: ['**/*']
+      },
+      { from: 'dist-runtime/runtime-service', to: 'runtime-service', filter: ['**/*'] },
+      { from: 'dist-runtime/runtime-cli', to: 'runtime-cli', filter: ['**/*'] },
+      { from: 'node_modules/.cache/chirality-instruction-root', to: 'instruction-root', filter: ['**/*'] }
+    ]);
+    // The binary travels as a resource; the package must not also land in app.asar.
+    expect(pkg.build?.files).toContain('!node_modules/@openai/**');
+    const json = JSON.stringify(pkg);
+    for (const retired of ['chirality-supplier', 'native-admission', 'pack-electron-with-supply', 'runtime-manifest v2']) {
+      expect(json).not.toContain(retired);
+    }
   });
 
   it('keeps application source in the asar archive', async () => {
@@ -139,7 +145,7 @@ describe('dmg packaging policy', () => {
     });
     expect(pkg.build?.extraResources).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ from: 'dist-runtime', to: 'runtime-cli' })
+        expect.objectContaining({ from: 'dist-runtime/runtime-cli', to: 'runtime-cli' })
       ])
     );
   });

@@ -65,7 +65,7 @@ const project = {
   clientId: 'desktop', enabledAdapterIds: ['controlled-fixture'], legacySessionRoots: []
 };
 let projectRegistered = false;
-let hostedStatus = { schema: 'chirality-hosted-bootstrap-status/v1', projectId, ceremony: 'consent-required', admission: 'unavailable', canStartLogin: false };
+let hostedStatus = { schema: 'chirality-hosted-bootstrap-status/v1', projectId, ceremony: 'ready-to-start', admission: 'unavailable', canStartLogin: true };
 const sessions = new Map();
 const histories = new Map();
 const bases = new Map();

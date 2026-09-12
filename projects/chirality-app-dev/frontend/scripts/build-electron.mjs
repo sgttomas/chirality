@@ -20,53 +20,31 @@ export function resolveRuntimeContractsSource(subpath = '') {
   );
 }
 
-export function resolveNativeAdmissionSource() {
-  return path.join(runtimeRoot, 'packages', 'native-admission', 'src', 'index.ts');
-}
-
-export function resolveHostedRuntimePathsSource() {
-  return path.join(runtimeRoot, 'packages', 'daemon', 'src', 'hosted-paths.ts');
-}
-
-export function resolveHostedRuntimeSource() {
-  return path.join(runtimeRoot, 'packages', 'daemon', 'src', 'hosted.ts');
-}
-
-export function resolveRuntimeConformanceV2Source() {
-  return path.join(runtimeRoot, 'packages', 'core', 'src', 'runtime-conformance-v2.ts');
-}
-
 export function resolveRuntimePhysicalFilesystemSource() {
   return path.join(runtimeRoot, 'packages', 'core', 'src', 'physical-filesystem.ts');
 }
 
-export function resolveProtectedRuntimeCliSource() {
-  return path.join(runtimeRoot, 'packages', 'cli', 'src', 'cli.ts');
+/** The App-owned Runtime service entry (`chirality-runtime-service daemon --config`). */
+export function resolveRuntimeServiceEntrySource() {
+  return path.join(runtimeRoot, 'packages', 'daemon', 'src', 'standalone-bin.ts');
 }
 
+export function resolveRuntimeCliEntrySource() {
+  return path.join(runtimeRoot, 'packages', 'cli', 'src', 'bin.ts');
+}
+
+/** Output layout consumed by `package.json` `build.extraResources`. */
+export const RUNTIME_BUNDLE_OUTPUTS = Object.freeze({
+  service: path.join('dist-runtime', 'runtime-service', 'standalone-bin.mjs'),
+  cli: path.join('dist-runtime', 'runtime-cli', 'chirality-cli.mjs')
+});
+
 const runtimeEntries = {
-  '@chirality/runtime-daemon/hosted': resolveHostedRuntimeSource(),
-  '@chirality/runtime-daemon/hosted-paths': resolveHostedRuntimePathsSource(),
-  '@chirality/native-admission': resolveNativeAdmissionSource(),
   '@chirality/runtime-contracts': resolveRuntimeContractsSource(),
   '@chirality/runtime-core': path.join(runtimeRoot, 'packages', 'core', 'src', 'index.ts'),
-  '@chirality/runtime-core/runtime-conformance-v2': resolveRuntimeConformanceV2Source(),
   '@chirality/runtime-core/physical-filesystem': resolveRuntimePhysicalFilesystemSource(),
-  '@chirality/runtime-daemon': path.join(
-    runtimeRoot,
-    'packages',
-    'daemon',
-    'src',
-    'index.ts'
-  ),
-  '@chirality/runtime-client': path.join(
-    runtimeRoot,
-    'packages',
-    'client',
-    'src',
-    'index.ts'
-  ),
-  '@chirality/runtime-cli/dist/src/cli.js': resolveProtectedRuntimeCliSource(),
+  '@chirality/runtime-daemon': path.join(runtimeRoot, 'packages', 'daemon', 'src', 'index.ts'),
+  '@chirality/runtime-client': path.join(runtimeRoot, 'packages', 'client', 'src', 'index.ts'),
   '@chirality/runtime-cli': path.join(runtimeRoot, 'packages', 'cli', 'src', 'index.ts')
 };
 
@@ -90,6 +68,14 @@ export const runtimePackagePlugin = {
       );
     }
   }
+};
+
+/**
+ * ESM bundles of the Runtime workspace still reach a few CommonJS-only
+ * dependencies through `require`; give them a real one.
+ */
+const esmRequireBanner = {
+  js: "import { createRequire as __chiralityCreateRequire } from 'node:module'; const require = __chiralityCreateRequire(import.meta.url);"
 };
 
 export async function buildElectron() {
@@ -121,14 +107,30 @@ export async function buildElectron() {
     logLevel: 'info'
   });
 
+  // The Runtime service bundle is what the packaged App launches as its owned
+  // child (`Contents/Resources/runtime-service/standalone-bin.mjs`).
   await build({
-    entryPoints: [path.join(runtimeRoot, 'packages', 'cli', 'src', 'bin.ts')],
-    outfile: path.join(frontendRoot, 'dist-runtime', 'chirality-cli.mjs'),
+    entryPoints: [resolveRuntimeServiceEntrySource()],
+    outfile: path.join(frontendRoot, RUNTIME_BUNDLE_OUTPUTS.service),
     bundle: true,
     platform: 'node',
     target: 'node24',
     format: 'esm',
     sourcemap: true,
+    banner: esmRequireBanner,
+    plugins: [runtimePackagePlugin],
+    logLevel: 'info'
+  });
+
+  await build({
+    entryPoints: [resolveRuntimeCliEntrySource()],
+    outfile: path.join(frontendRoot, RUNTIME_BUNDLE_OUTPUTS.cli),
+    bundle: true,
+    platform: 'node',
+    target: 'node24',
+    format: 'esm',
+    sourcemap: true,
+    banner: esmRequireBanner,
     plugins: [runtimePackagePlugin],
     logLevel: 'info'
   });

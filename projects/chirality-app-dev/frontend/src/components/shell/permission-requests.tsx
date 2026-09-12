@@ -99,6 +99,7 @@ export function PermissionDecisionCards({
               <span className="permission-card-badge">approval required</span>
             </header>
             {row.reason ? <p className="permission-card-reason">{row.reason}</p> : null}
+            {row.method ? <p className="harness-stream-meta">{row.method}{row.requestId ? ` · request ${row.requestId}` : ''}</p> : null}
             {pathEntries.length > 0 ? (
               <ul className="permission-card-paths">
                 {pathEntries.map(([field, value]) => (
@@ -141,16 +142,15 @@ export function PermissionDecisionCards({
 
 /**
  * Live wrapper: reads the bridged harness-event stream and surfaces only the
- * gated tool calls awaiting an operator decision (DESIGN §3.1 approval cards).
+ * Codex approvals (`tool.permission` with behavior `ask`) awaiting a decision.
  * Isolated from the chat transcript so its per-event re-renders stay cheap.
  *
- * `active` reflects whether a turn is still streaming. Once the turn ends (normal
- * completion, error, or interrupt) the broker has auto-denied every still-pending
- * request, so a leftover `pending` row is no longer actionable — surfacing it
- * would be misleading and lets it linger until the next turn clears the stream
- * (DESIGN §5.3 item a). Gating on the turn being live removes the card the moment
- * the turn ends, regardless of whether the deny resolution won the publish/close
- * race against channel teardown.
+ * `active` is the Runtime's own turn state (turn/state, or the live stream the
+ * panel observes), not a local guess. When a turn ends the Runtime answers every
+ * still-pending request as cancelled, so a leftover `pending` row is no longer
+ * actionable and is hidden the moment the turn is reported over. Pending
+ * approvals survive renderer disconnects: reopening the chat replays them from
+ * the persisted events while the Runtime still reports the turn active.
  */
 export function PermissionRequests({
   sessionId,

@@ -15,11 +15,11 @@ import type { HostedEngineConsentPort } from '../../lib/consent/hosted-engine-co
 import type { HostedBootstrapController } from '../../components/settings/hosted-bootstrap-controller';
 
 vi.mock('../../components/settings/api-key-settings', () => ({ ApiKeySettings: () => <p>Existing API key controls</p> }));
-vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => 0 }));
+vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => 0, useRuntimeConnectivitySnapshot: () => ({ state: 'connected', failedAttempts: 0, lastError: null, changedAt: '2026-09-12T00:00:00.000Z' }) }));
 const noop = () => {};
 const accountBase: AccountConsentSettingsViewProps = { snapshot: null, busy: false, error: null, onLogin: noop, onLogout: noop, onGrantConsent: noop, onRevokeConsent: noop, onSelectNetworkPosture: noop, onResolveNetworkPrompt: noop, onSelectRole: noop };
-const runtimeBase: RuntimeSettingsViewProps = { bridgeAvailable: false, daemonStatus: null, residency: null, selectedModel: '', busyAction: null, error: null, onDaemonAction: noop, onRefresh: noop, onSelectedModelChange: noop, onActivateModel: noop };
-const hostedBase: HostedBootstrapController = { projectRoot: '/folder', snapshot: { registration: 'required' }, loading: false, busyAction: null, error: null, signOutUncertain: false, authUrl: null, onSetup: noop, onGrantConsent: noop, onStartLogin: noop, onCancelLogin: noop, onSignOut: noop, onRefresh: noop };
+const runtimeBase: RuntimeSettingsViewProps = { bridgeAvailable: false, residency: null, selectedModel: '', busyAction: null, error: null, onRefresh: noop, onSelectedModelChange: noop, onActivateModel: noop };
+const hostedBase: HostedBootstrapController = { projectRoot: '/folder', snapshot: { registration: 'required' }, loading: false, busyAction: null, error: null, signOutUncertain: false, authUrl: null, onSetup: noop, onStartLogin: noop, onCancelLogin: noop, onSignOut: noop, onRefresh: noop };
 const text = (node: { children: unknown[] }): string => node.children.map(child => typeof child === 'string' ? child : child && typeof child === 'object' && 'children' in child ? text(child as {children: unknown[]}) : '').join('');
 const trees: ReactTestRenderer[] = [];
 afterEach(() => { act(() => trees.splice(0).forEach(tree => tree.unmount())); vi.unstubAllGlobals(); });
@@ -51,15 +51,17 @@ describe('D122 account presentation', () => {
     expect(html).not.toContain('data-settings-group="folder"');
   });
 
-  it('exposes explicit daemon installation in hosted Codex settings without local-model controls', () => {
-    const runtime = { ...runtimeBase, bridgeAvailable: true, daemonStatus: { launchAgent: { installed: false, loaded: false }, daemon: { running: false } } };
+  it('reports the App-owned Runtime service in hosted Codex settings without lifecycle or local-model controls', () => {
+    const runtime = { ...runtimeBase, bridgeAvailable: true };
     const html = renderToStaticMarkup(<SettingsView account={accountBase} runtime={runtime} hosted={hostedBase} folder="/folder" />);
 
     expect(html).toContain('data-settings-group="runtime"');
     expect(html).toContain('>Runtime</h3>');
-    expect(html).toContain('Runtime service');
-    expect(html).toContain('Not installed');
-    expect(html).toContain('Install');
+    expect(html).toContain('Running');
+    expect(html).toContain('started and stopped by Chirality');
+    expect(html).not.toContain('Install');
+    expect(html).not.toContain('Uninstall');
+    expect(html).not.toContain('LaunchAgent');
     expect(html).not.toContain('Shared Runtime');
     expect(html).not.toContain('Local model');
     expect(html).not.toContain('Activate Explicitly');
@@ -123,18 +125,17 @@ describe('D122 account presentation', () => {
   });
 
   it('shares one controller across the popover and Settings with no extra query when either presentation changes', async () => {
-    const status = vi.fn(async () => ({ ok: true, launchAgent: { installed: true, loaded: true }, daemon: { running: true } }));
     const models = vi.fn(async () => ({ ok: true, residency: { phase: 'READY', models: [], activeTurns: 0, acceptingLocalTurns: true } }));
-    vi.stubGlobal('window', { chirality: { runtime: { daemon: { status }, models: { status: models } } } });
+    vi.stubGlobal('window', { chirality: { runtime: { models: { status: models } } } });
     function Host({ settings }: { settings: boolean }): JSX.Element {
       const runtime = useRuntimeSettingsController();
       return <><AccountPopover account={accountBase} folder={null} onOpenSettings={noop} />{settings ? <SettingsView account={accountBase} runtime={runtime} folder={null} /> : null}</>;
     }
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<Host settings={false} />); }); trees.push(tree);
-    expect(status).toHaveBeenCalledTimes(1); expect(models).toHaveBeenCalledTimes(1);
+    expect(models).toHaveBeenCalledTimes(1);
     await act(async () => tree.update(<Host settings />));
-    expect(status).toHaveBeenCalledTimes(1); expect(models).toHaveBeenCalledTimes(1);
+    expect(models).toHaveBeenCalledTimes(1);
     // Non-hosted Settings keeps its local-model group; the popover no longer repeats it.
     expect(text(tree.root)).toContain('oMLX server status unknown.');
     expect(text(tree.root.findByProps({ 'aria-label': 'App controls' }))).not.toContain('oMLX');

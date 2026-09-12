@@ -13,8 +13,11 @@ export type ToolActivityStatus = 'queued' | 'permission' | 'running' | 'complete
 export type ToolActivityRow = {
   /** Stable grouping key for the tool invocation. */
   key: string;
+  /** For Codex items this is the item type (`commandExecution`, `fileChange`, `mcpToolCall`, ...). */
   toolName: string;
   status: ToolActivityStatus;
+  /** Short human summary carried by the Codex adapter (command line, file list, tool name). */
+  summary?: string;
   source?: string;
   surface?: string;
   /** Redacted safe path fields surfaced from the tool input metadata. */
@@ -54,7 +57,52 @@ export type PermissionRequestRow = {
   reason: string;
   status: PermissionRequestStatus;
   mode?: string;
+  /** Codex server request id and method when the approval came from the App Server. */
+  requestId?: string;
+  method?: string;
+  /** Who resolved it: the user, the recorded policy, or the Runtime (turn ended). */
+  decidedBy?: string;
   pathFields: Record<string, string>;
+  timestamp: string;
+};
+
+export type ServerRequestStatus = 'pending' | 'answered' | 'cancelled' | 'unsupported' | 'failed';
+
+/** One Codex server request that is not an approval (`codex.request`), with its resolution. */
+export type ServerRequestRow = {
+  key: string;
+  sessionId: string;
+  requestId: string;
+  method: string;
+  /** Adapter classification: `userInput`, `elicitation`, `dynamicToolCall`, or another method. */
+  kind: string;
+  /** Raw upstream `params`, preserved for faithful rendering and inspection. */
+  request: unknown;
+  status: ServerRequestStatus;
+  decision?: unknown;
+  decidedBy?: string;
+  timestamp: string;
+};
+
+export type UserInputQuestion = {
+  id: string;
+  header: string;
+  question: string;
+  options: readonly { label: string; description: string }[];
+  isOther: boolean;
+  isSecret: boolean;
+};
+
+export type CodexNotificationRow = {
+  key: string;
+  sessionId: string;
+  method: string;
+  /** Raw upstream `params`, shown collapsed. */
+  params: unknown;
+  /** `thinking` for a completed reasoning item; `notification` otherwise. */
+  kind: 'thinking' | 'notification';
+  /** Reasoning text for a thinking row. */
+  text?: string;
   timestamp: string;
 };
 
@@ -172,6 +220,7 @@ export function deriveToolActivity(events: readonly HarnessEvent[]): ToolActivit
         existing?.toolName ??
         'tool',
       status,
+      summary: readString(data.summary) ?? existing?.summary,
       source: readString(data.source) ?? existing?.source,
       surface: readString(data.surface) ?? existing?.surface,
       pathFields: {
@@ -249,6 +298,9 @@ export function derivePermissionRequests(events: readonly HarnessEvent[]): Permi
       reason: readString(data.reason) ?? existing?.reason ?? '',
       status,
       mode: readString(data.mode) ?? existing?.mode,
+      requestId: readString(data.requestId) ?? existing?.requestId,
+      method: readString(data.method) ?? existing?.method,
+      decidedBy: readString(data.decidedBy) ?? existing?.decidedBy,
       pathFields:
         Object.keys(pathFields).length > 0 ? pathFields : (existing?.pathFields ?? {}),
       timestamp: event.timestamp
@@ -256,6 +308,152 @@ export function derivePermissionRequests(events: readonly HarnessEvent[]): Permi
   }
 
   return [...rows.values()];
+}
+
+const SERVER_REQUEST_OUTCOMES: Record<string, ServerRequestStatus> = {
+  answered: 'answered',
+  cancelled: 'cancelled',
+  unsupported: 'unsupported',
+  failed: 'failed'
+};
+
+function readRecord(value: unknown): Record<string, unknown> | undefined {
+  return value && typeof value === 'object' && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : undefined;
+}
+
+/** Best-effort classification when the adapter did not label the request. */
+export function classifyServerRequestMethod(method: string): string {
+  if (method === 'item/tool/requestUserInput') return 'userInput';
+  if (method === 'mcpServer/elicitation/request') return 'elicitation';
+  if (method === 'item/tool/call') return 'dynamicToolCall';
+  return method;
+}
+
+/**
+ * Collapse `codex.request` and `codex.request.resolved` events into one row per
+ * Codex server request, in first-seen order. Approval requests are carried by
+ * `tool.permission` instead and never appear here.
+ */
+export function deriveServerRequests(events: readonly HarnessEvent[]): ServerRequestRow[] {
+  const rows = new Map<string, ServerRequestRow>();
+  for (const event of events) {
+    if (event.type !== 'codex.request' && event.type !== 'codex.request.resolved') continue;
+    const data = event.data ?? {};
+    const requestId = readString(data.requestId);
+    if (!requestId) continue;
+    const method = readString(data.method) ?? '';
+    const existing = rows.get(requestId);
+    if (event.type === 'codex.request') {
+      rows.set(requestId, {
+        key: requestId,
+        sessionId: event.sessionId,
+        requestId,
+        method: method || existing?.method || '',
+        kind: readString(data.kind) ?? existing?.kind ?? classifyServerRequestMethod(method),
+        request: data.request ?? existing?.request,
+        status: existing?.status ?? 'pending',
+        ...(existing?.decision !== undefined ? { decision: existing.decision } : {}),
+        ...(existing?.decidedBy ? { decidedBy: existing.decidedBy } : {}),
+        timestamp: existing?.timestamp ?? event.timestamp
+      });
+      continue;
+    }
+    const outcome = readString(data.outcome);
+    const status: ServerRequestStatus = (outcome ? SERVER_REQUEST_OUTCOMES[outcome] : undefined) ?? 'answered';
+    if (!existing) {
+      // A resolution for an approval (carried by tool.permission) or for a request
+      // whose `codex.request` was never persisted: nothing to surface as a card.
+      continue;
+    }
+    rows.set(requestId, {
+      ...existing,
+      status,
+      ...(data.decision !== undefined ? { decision: data.decision } : {}),
+      ...(readString(data.decidedBy) ? { decidedBy: readString(data.decidedBy) } : {}),
+      timestamp: event.timestamp
+    });
+  }
+  return [...rows.values()];
+}
+
+/** Requests the user can still answer: pending, of an answerable kind, and only while the turn is live. */
+export function selectPendingServerRequests(events: readonly HarnessEvent[], active: boolean): ServerRequestRow[] {
+  if (!active) return [];
+  return deriveServerRequests(events).filter(
+    (row) => row.status === 'pending' && (row.kind === 'userInput' || row.kind === 'elicitation')
+  );
+}
+
+/** Questions of an `item/tool/requestUserInput` request, read from its raw params. */
+export function readUserInputQuestions(request: unknown): UserInputQuestion[] {
+  const params = readRecord(request);
+  const questions = Array.isArray(params?.questions) ? params.questions : [];
+  return questions.flatMap((entry): UserInputQuestion[] => {
+    const question = readRecord(entry);
+    const id = readString(question?.id);
+    if (!question || !id) return [];
+    const options = Array.isArray(question.options)
+      ? question.options.flatMap((option): { label: string; description: string }[] => {
+          const record = readRecord(option);
+          const label = readString(record?.label);
+          return label ? [{ label, description: readString(record?.description) ?? '' }] : [];
+        })
+      : [];
+    return [{
+      id,
+      header: readString(question.header) ?? id,
+      question: readString(question.question) ?? '',
+      options,
+      isOther: question.isOther === true,
+      isSecret: question.isSecret === true
+    }];
+  });
+}
+
+/** Message text of an `mcpServer/elicitation/request`, read from its raw params. */
+export function readElicitationMessage(request: unknown): string {
+  const params = readRecord(request);
+  return readString(params?.message) ?? '';
+}
+
+function reasoningText(item: Record<string, unknown>): string | undefined {
+  const direct = readString(item.text) ?? readString(item.summary);
+  if (direct) return direct;
+  for (const field of ['summary', 'content']) {
+    const value = item[field];
+    if (Array.isArray(value)) {
+      const parts = value.flatMap((part) => {
+        const text = readString(part) ?? readString(readRecord(part)?.text);
+        return text ? [text] : [];
+      });
+      if (parts.length > 0) return parts.join('\n');
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Every `codex.notification` in order: a completed reasoning item becomes a
+ * "Thinking" row carrying its text; anything else becomes a generic card with
+ * the upstream method and its raw params for inspection.
+ */
+export function deriveCodexNotifications(events: readonly HarnessEvent[]): CodexNotificationRow[] {
+  const rows: CodexNotificationRow[] = [];
+  for (const event of events) {
+    if (event.type !== 'codex.notification') continue;
+    const data = event.data ?? {};
+    const method = readString(data.method) ?? 'notification';
+    const params = data.params ?? data.codex;
+    const item = readRecord(readRecord(params)?.item);
+    if (method === 'item/completed' && item && item.type === 'reasoning') {
+      rows.push({ key: event.eventId, sessionId: event.sessionId, method, params, kind: 'thinking', text: reasoningText(item) ?? '', timestamp: event.timestamp });
+      continue;
+    }
+    rows.push({ key: event.eventId, sessionId: event.sessionId, method, params, kind: 'notification', timestamp: event.timestamp });
+  }
+  return rows;
 }
 
 /**

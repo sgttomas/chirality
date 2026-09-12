@@ -2,14 +2,14 @@
 
 import React, { useMemo, useState } from 'react';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
-import { deriveToolActivity, deriveSubagentActivity, type ToolActivityRow, type SubagentActivityRow } from '../../lib/shell/harness-event-views';
+import { deriveCodexNotifications, deriveToolActivity, deriveSubagentActivity, type CodexNotificationRow, type ToolActivityRow, type SubagentActivityRow } from '../../lib/shell/harness-event-views';
 import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import { useHarnessEvents } from '../workspace/harness-events-provider';
 import { SubagentStreamView } from '../shell/subagent-stream-view';
 import { ToolStreamView } from '../shell/tool-stream-view';
 import { TranscriptStreamView, TranscriptStreamList } from '../shell/transcript-stream-view';
 
-type ActivityTab = 'tools' | 'events' | 'children';
+type ActivityTab = 'tools' | 'events' | 'children' | 'codex';
 
 type ActivityShelfProps = {
   collapsed: boolean;
@@ -19,7 +19,8 @@ type ActivityShelfProps = {
 const TABS: ReadonlyArray<{ id: ActivityTab; label: string }> = [
   { id: 'tools', label: 'Tools' },
   { id: 'events', label: 'Events' },
-  { id: 'children', label: 'Children' }
+  { id: 'children', label: 'Children' },
+  { id: 'codex', label: 'Codex' }
 ];
 
 export function ActivityShelf({
@@ -68,6 +69,7 @@ export function ActivityShelf({
           {activeTab === 'tools' ? <ToolStreamView /> : null}
           {activeTab === 'events' ? <TranscriptStreamView /> : null}
           {activeTab === 'children' ? <SubagentStreamView /> : null}
+          {activeTab === 'codex' ? <CodexNotificationsView /> : null}
         </div>
       ) : null}
     </section>
@@ -117,7 +119,20 @@ export function ActivityStrip({ reconnectControl, onOpenDetails, running, events
 
 // Presentation belongs to the mounted Activity view; the legacy shelf above
 // retains its existing stream components and labels.
+// Codex item types (the adapter sets `toolName` to the upstream item type).
+const CODEX_ITEM_SENTENCES: Record<string, Record<ToolActivityRow['status'], string>> = {
+  commandExecution: { queued: 'Command queued', permission: 'Command awaiting approval', running: 'Running command', completed: 'Command finished', failed: 'Command failed or declined' },
+  fileChange: { queued: 'File change queued', permission: 'File change awaiting approval', running: 'Changing files', completed: 'File change applied', failed: 'File change failed or declined' },
+  mcpToolCall: { queued: 'Tool call queued', permission: 'Tool call awaiting approval', running: 'Calling a tool', completed: 'Tool call finished', failed: 'Tool call failed' },
+  dynamicToolCall: { queued: 'Tool call queued', permission: 'Tool call awaiting approval', running: 'Calling a tool', completed: 'Tool call finished', failed: 'Tool call failed' },
+  webSearch: { queued: 'Web search queued', permission: 'Web search awaiting approval', running: 'Searching the web', completed: 'Web search finished', failed: 'Web search failed' },
+  imageView: { queued: 'Image view queued', permission: 'Image view awaiting approval', running: 'Viewing an image', completed: 'Image viewed', failed: 'Image view failed' },
+  imageGeneration: { queued: 'Image generation queued', permission: 'Image generation awaiting approval', running: 'Generating an image', completed: 'Image generated', failed: 'Image generation failed' }
+};
+
 function actionSentence(row: ToolActivityRow): string {
+  const codex = CODEX_ITEM_SENTENCES[row.toolName];
+  if (codex) return codex[row.status];
   // These two operations are defined by the registered tool descriptors. Do not
   // infer a purpose or result from an unfamiliar name or from arbitrary inputs.
   const operation = row.toolName === 'read_file' ? { verb: 'read', ongoing: 'Reading', name: 'Read' }
@@ -156,6 +171,40 @@ function actionDetail(row: ToolActivityRow): string {
     `${row.eventCount} event${row.eventCount === 1 ? '' : 's'}`, row.lastEventType].filter(Boolean).join(' · ');
 }
 
+function notificationText(row: CodexNotificationRow): string {
+  return `${row.kind === 'thinking' ? 'Thinking' : row.method} ${row.text ?? ''} ${JSON.stringify(row.params ?? null)}`;
+}
+
+/**
+ * Generic Codex notification cards: completed reasoning items read as a
+ * "Thinking" line; every other upstream notification shows its method with the
+ * raw params collapsed, so unfamiliar events stay inspectable.
+ */
+export function CodexNotificationList({ rows, emptyMessage = 'No Codex notifications recorded.' }: { rows: CodexNotificationRow[]; emptyMessage?: string }): JSX.Element {
+  return rows.length === 0 ? <p className="panel-empty">{emptyMessage}</p> : <ul className="harness-stream-list" aria-label="Codex notifications">
+    {rows.map(row => <li key={row.key} className={`harness-stream-item harness-stream-item--${row.kind === 'thinking' ? 'completed' : 'queued'}`}>
+      <div className="harness-stream-row">
+        <span className="harness-stream-name" title={row.method}>{row.kind === 'thinking' ? 'Thinking' : row.method}</span>
+        <ActivityTime timestamp={row.timestamp} />
+      </div>
+      {row.kind === 'thinking' ? <p className="harness-stream-description transcript-text">{row.text || 'Reasoning completed without a summary.'}</p> : null}
+      <details className="harness-stream-meta">
+        <summary>{row.kind === 'thinking' ? row.method : 'params'}</summary>
+        <pre className="transcript-text">{JSON.stringify(row.params ?? null, null, 2)}</pre>
+      </details>
+    </li>)}
+  </ul>;
+}
+
+function CodexNotificationsView(): JSX.Element {
+  const { events } = useHarnessEvents();
+  const rows = useMemo(() => deriveCodexNotifications(events), [events]);
+  return <aside className="panel panel--stream panel--codex">
+    <header className="panel-header"><h2>Codex</h2><p className="chat-meta">Reasoning summaries and every other App Server notification.</p></header>
+    <div className="panel-body"><CodexNotificationList rows={rows} /></div>
+  </aside>;
+}
+
 function taskDetail(row: SubagentActivityRow): string {
   return [row.agentName === 'subagent' ? 'Agent name unavailable' : row.agentName,
     row.lastToolName ? `Last action: ${row.lastToolName}` : '', row.outputArtifactPath ? 'Recorded output path' : '',
@@ -177,6 +226,7 @@ function ActivityActions({ rows, emptyMessage }: { rows: ToolActivityRow[]; empt
         <ActivityTime timestamp={row.timestamp} />
       </div>
       <span className={`harness-status-badge harness-status-badge--${row.status}`}>{row.status === 'permission' ? 'Permission check' : row.status}</span>
+      {row.summary ? <p className="harness-stream-summary">{row.summary}</p> : null}
       {Object.keys(row.pathFields).length > 0 ? <ul className="harness-stream-paths">
         {Object.entries(row.pathFields).map(([field, value]) => <li key={field} title={`${field}: ${value}`}>
           <span className="harness-stream-path-field">{field}</span>
@@ -216,7 +266,8 @@ export function ActivityView(): JSX.Element {
     return {
       tools: [...sessions].flatMap(([session, source]) => deriveToolActivity(source).map(row => ({ ...row, key: `${session}:${row.key}` }))),
       children: [...sessions].flatMap(([session, source]) => deriveSubagentActivity(source).map(row => ({ ...row, key: `${session}:${row.key}` }))),
-      transcript: [...sessions].flatMap(([session, source]) => deriveTranscriptView(source).items.map(row => ({ ...row, key: `${session}:${row.key}` })))
+      transcript: [...sessions].flatMap(([session, source]) => deriveTranscriptView(source).items.map(row => ({ ...row, key: `${session}:${row.key}` }))),
+      codex: [...sessions].flatMap(([session, source]) => deriveCodexNotifications(source).map(row => ({ ...row, key: `${session}:${row.key}` })))
     };
   }, [events]);
   const query = filter.trim().toLocaleLowerCase();
@@ -224,7 +275,8 @@ export function ActivityView(): JSX.Element {
   const clearView = () => setClearedVersions(new Map([
     ...projected.tools.map(row => [`tools:${row.key}`, JSON.stringify(row)] as const),
     ...projected.children.map(row => [`children:${row.key}`, JSON.stringify(row)] as const),
-    ...projected.transcript.map(row => [`transcript:${row.key}`, JSON.stringify(row)] as const)
+    ...projected.transcript.map(row => [`transcript:${row.key}`, JSON.stringify(row)] as const),
+    ...projected.codex.map(row => [`codex:${row.key}`, JSON.stringify(row)] as const)
   ]));
   return <section className="woven-activity-view" aria-label="Activity details">
     <div className="woven-activity-tabs" aria-label="Activity views">
@@ -235,6 +287,9 @@ export function ActivityView(): JSX.Element {
       <input aria-label="Filter activity" placeholder="Filter activity…" value={filter} onChange={event => setFilter(event.target.value)} />
       <button type="button" onClick={clearView}>Clear view</button>
     </div>
-    {tab === 'tools' ? <ActivityActions emptyMessage={query ? 'No matching actions.' : projected.tools.length ? 'No actions in this view.' : 'No recorded actions.'} rows={projected.tools.filter(row => visible('tools', row, `${actionSentence(row)} ${actionDetail(row)} ${timeLabel(row.timestamp)}`))} /> : tab === 'events' ? <TranscriptStreamList items={projected.transcript.filter(row => visible('transcript', row))} /> : <ActivityTasks rows={projected.children.filter(row => visible('children', row, `${taskSentence(row)} ${taskDetail(row)} ${timeLabel(row.timestamp)}`))} />}
+    {tab === 'tools' ? <ActivityActions emptyMessage={query ? 'No matching actions.' : projected.tools.length ? 'No actions in this view.' : 'No recorded actions.'} rows={projected.tools.filter(row => visible('tools', row, `${actionSentence(row)} ${actionDetail(row)} ${timeLabel(row.timestamp)}`))} />
+      : tab === 'events' ? <TranscriptStreamList items={projected.transcript.filter(row => visible('transcript', row))} />
+      : tab === 'codex' ? <CodexNotificationList emptyMessage={query ? 'No matching notifications.' : projected.codex.length ? 'No notifications in this view.' : 'No Codex notifications recorded.'} rows={projected.codex.filter(row => visible('codex', row, `${notificationText(row)} ${timeLabel(row.timestamp)}`))} />
+      : <ActivityTasks rows={projected.children.filter(row => visible('children', row, `${taskSentence(row)} ${taskDetail(row)} ${timeLabel(row.timestamp)}`))} />}
   </section>;
 }

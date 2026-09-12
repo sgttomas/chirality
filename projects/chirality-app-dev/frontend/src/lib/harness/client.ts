@@ -30,7 +30,12 @@ import type {
   ResolveSelectedContextResponse,
   RolesResponse
 } from '@chirality/runtime-contracts/v3';
-import type { ReadableRuntimeSessionRecord } from '@chirality/runtime-contracts';
+import type {
+  ReadableRuntimeSessionRecord,
+  ServerRequestAnswer,
+  SessionRequestsResponse,
+  SessionTurnState
+} from '@chirality/runtime-contracts';
 
 export type HarnessReadableSessionRecord = SessionRecord | ReadableRuntimeSessionRecord;
 
@@ -49,6 +54,8 @@ type JsonLike = Record<string, unknown>;
 export type HarnessTurnStreamEvent = {
   event: string;
   data: unknown;
+  /** Runtime turn-registry frame sequence (`id:` line); absent on unnumbered frames. */
+  seq?: number;
 };
 
 export class HarnessApiClientError extends Error {
@@ -106,17 +113,27 @@ async function requestHarnessJson<T>(
   return payload;
 }
 
-function parseSseFrame(frame: string): HarnessTurnStreamEvent | null {
+export function parseSseFrame(frame: string): HarnessTurnStreamEvent | null {
   const lines = frame.split('\n');
   let event = '';
+  let seq: number | undefined;
   const dataLines: string[] = [];
 
-  for (const line of lines) {
+  for (const rawLine of lines) {
+    const line = rawLine.endsWith('\r') ? rawLine.slice(0, -1) : rawLine;
+    if (line.startsWith(':')) {
+      // Comment line (Runtime keepalive); it carries no frame.
+      continue;
+    }
     if (line.startsWith('event:')) {
       event = line.slice('event:'.length).trim();
       continue;
     }
-
+    if (line.startsWith('id:')) {
+      const value = Number(line.slice('id:'.length).trim());
+      if (Number.isInteger(value) && value >= 0) seq = value;
+      continue;
+    }
     if (line.startsWith('data:')) {
       dataLines.push(line.slice('data:'.length).trimStart());
     }
@@ -127,17 +144,12 @@ function parseSseFrame(frame: string): HarnessTurnStreamEvent | null {
   }
 
   const rawData = dataLines.join('\n');
+  const withSeq = (data: unknown): HarnessTurnStreamEvent => (seq === undefined ? { event, data } : { event, data, seq });
 
   try {
-    return {
-      event,
-      data: JSON.parse(rawData) as JsonLike
-    };
+    return withSeq(JSON.parse(rawData) as JsonLike);
   } catch {
-    return {
-      event,
-      data: rawData
-    };
+    return withSeq(rawData);
   }
 }
 
@@ -145,15 +157,20 @@ export type V3TurnRequest = TurnRequest & {
   interactionMode?: ResolveSelectedContextRequest['interactionMode'];
   permissionMode?: ResolveSelectedContextRequest['permissionMode'];
   methods?: readonly MethodReference[];
+  /** Per-turn model override; the session's recorded model otherwise. */
+  model?: string;
+  /** Per-turn reasoning effort override. */
+  reasoningEffort?: string;
 };
 
-async function openTurnStream(input: V3TurnRequest): Promise<Response> {
+async function openTurnStream(input: V3TurnRequest, signal?: AbortSignal): Promise<Response> {
   const response = await fetch('/api/harness/turn', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(input)
+    body: JSON.stringify(input),
+    ...(signal ? { signal } : {})
   });
 
   if (response.ok) {
@@ -162,6 +179,18 @@ async function openTurnStream(input: V3TurnRequest): Promise<Response> {
 
   const payload = await readJson<HarnessErrorResponse>(response);
   throw fromHarnessErrorPayload(response.status, payload, 'Unable to start harness turn');
+}
+
+async function openAttachStream(sessionId: string, after: number, signal?: AbortSignal): Promise<Response> {
+  const response = await fetch(
+    `/api/harness/session/${encodeURIComponent(sessionId)}/turn/stream?after=${Math.max(0, Math.floor(after))}`,
+    { method: 'GET', ...(signal ? { signal } : {}) }
+  );
+  if (response.ok) {
+    return response;
+  }
+  const payload = await readJson<HarnessErrorResponse>(response);
+  throw fromHarnessErrorPayload(response.status, payload, 'Unable to attach to the running turn');
 }
 
 export function harnessApiErrorMessage(error: unknown): string {
@@ -415,17 +444,70 @@ export async function scaffoldHarnessExecutionRoot(input: {
   );
 }
 
+/** Runtime-owned turn state for a session (D-GOV-43 disconnection rule). */
+export async function getHarnessTurnState(sessionId: string, signal?: AbortSignal): Promise<SessionTurnState> {
+  return requestHarnessJson<SessionTurnState>(
+    `/api/harness/session/${encodeURIComponent(sessionId)}/turn/state`,
+    { method: 'GET', ...(signal ? { signal } : {}) },
+    'Unable to read the turn state'
+  );
+}
+
+export async function listHarnessSessionRequests(sessionId: string, signal?: AbortSignal): Promise<SessionRequestsResponse> {
+  return requestHarnessJson<SessionRequestsResponse>(
+    `/api/harness/session/${encodeURIComponent(sessionId)}/requests`,
+    { method: 'GET', ...(signal ? { signal } : {}) },
+    'Unable to list pending requests'
+  );
+}
+
+export async function answerHarnessSessionRequest(input: {
+  sessionId: string;
+  requestId: string;
+  answer: ServerRequestAnswer;
+}): Promise<{ sent: true }> {
+  return requestHarnessJson<{ sent: true }>(
+    `/api/harness/session/${encodeURIComponent(input.sessionId)}/requests/${encodeURIComponent(input.requestId)}/answer`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ answer: input.answer })
+    },
+    'Unable to answer the request'
+  );
+}
+
+/**
+ * Attach to the session's active (or recently finished) Runtime-owned turn,
+ * replaying buffered frames after `after`. Resolves when the Runtime closes
+ * the subscription; the caller decides from the frames whether the turn ended.
+ */
+export async function attachHarnessTurn(
+  sessionId: string,
+  after: number,
+  onEvent: (event: HarnessTurnStreamEvent) => void,
+  signal?: AbortSignal
+): Promise<void> {
+  const response = await openAttachStream(sessionId, after, signal);
+  await readTurnStream(response, onEvent, 'Attach response did not include a stream body');
+}
+
 export async function streamHarnessTurn(
   input: V3TurnRequest,
-  onEvent: (event: HarnessTurnStreamEvent) => void
+  onEvent: (event: HarnessTurnStreamEvent) => void,
+  signal?: AbortSignal
 ): Promise<void> {
-  const response = await openTurnStream(input);
+  const response = await openTurnStream(input, signal);
+  await readTurnStream(response, onEvent, 'Harness turn response did not include a stream body');
+}
+
+async function readTurnStream(
+  response: Response,
+  onEvent: (event: HarnessTurnStreamEvent) => void,
+  missingBodyMessage: string
+): Promise<void> {
   if (!response.body) {
-    throw new HarnessApiClientError(
-      response.status,
-      'INVALID_RESPONSE',
-      'Harness turn response did not include a stream body'
-    );
+    throw new HarnessApiClientError(response.status, 'INVALID_RESPONSE', missingBodyMessage);
   }
 
   const reader = response.body.getReader();

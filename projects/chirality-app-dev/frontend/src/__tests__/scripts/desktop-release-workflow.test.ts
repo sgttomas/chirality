@@ -15,6 +15,10 @@ async function readWorkflow(): Promise<string> {
   return readFile(ACTIVE_WORKFLOW, 'utf8');
 }
 
+// The LaunchAgent RunAtLoad proof steps this workflow still carries belong to
+// the retired daemon model (D-GOV-43, A2); their script is gone and the
+// workflow needs the corresponding edit. The assertions here no longer pin
+// them so that edit does not also have to touch this file.
 describe('desktop unsigned artifact workflow', () => {
   it('reactivates only the bounded PR/manual proof surface', async () => {
     const workflow = await readWorkflow();
@@ -180,9 +184,6 @@ describe('desktop unsigned artifact workflow', () => {
       workflow.indexOf('npm test --'),
       workflow.indexOf('- name: Build unsigned macOS DMG'),
       workflow.indexOf('run: npm run desktop:dist'),
-      workflow.indexOf('- name: Prove packaged LaunchAgent RunAtLoad'),
-      workflow.indexOf('node ./scripts/run-packaged-launchagent-runatload-proof.mjs'),
-      workflow.indexOf('- name: Upload packaged LaunchAgent RunAtLoad proof evidence'),
       workflow.indexOf('- name: Verify unsigned artifact'),
       workflow.indexOf('node ./scripts/verify-packaged-dependency-boundary.mjs'),
       workflow.indexOf('hdiutil verify "${dmg_path}"'),
@@ -199,46 +200,11 @@ describe('desktop unsigned artifact workflow', () => {
     }
   });
 
-  it('proves packaged RunAtLoad in the disposable macOS account without a manual start', async () => {
-    const workflow = await readWorkflow();
-
-    expect(workflow).toContain('Prove packaged LaunchAgent RunAtLoad');
-    expect(workflow).toContain(
-      'node ./scripts/run-packaged-launchagent-runatload-proof.mjs'
-    );
-    expect(workflow).toContain('--app-path dist/mac-arm64/Chirality.app');
-    expect(workflow).toContain(
-      '--output-root artifacts/release-verification/launchagent-runatload'
-    );
-    expect(workflow).toContain(
-      '--label com.chirality.ci.runatload.${GITHUB_RUN_ID}.${GITHUB_RUN_ATTEMPT}'
-    );
-    expect(workflow).not.toContain('launchctl kickstart');
-
-    const buildIndex = workflow.indexOf('run: npm run desktop:dist');
-    const proofIndex = workflow.indexOf(
-      'node ./scripts/run-packaged-launchagent-runatload-proof.mjs'
-    );
-    const uploadIndex = workflow.indexOf('uses: actions/upload-artifact@v4');
-    expect(proofIndex).toBeGreaterThan(buildIndex);
-    expect(uploadIndex).toBeGreaterThan(proofIndex);
-    expect(workflow).toContain(
-      'projects/chirality-app-dev/frontend/artifacts/release-verification/**'
-    );
-    expect(workflow).toContain('Upload packaged LaunchAgent RunAtLoad proof evidence');
-    expect(workflow).not.toContain('if: always()');
-    expect(workflow).toContain(
-      'projects/chirality-app-dev/frontend/artifacts/release-verification/launchagent-runatload/summary.json'
-    );
-    expect(workflow).toContain('if-no-files-found: warn');
-  });
-
   it('uploads CI artifacts without a release-publication path', async () => {
     const workflow = await readWorkflow();
 
     expect(workflow).toContain('uses: actions/upload-artifact@v4');
     expect(workflow).toContain('chirality-desktop-macos-arm64-unsigned');
-    expect(workflow).toContain('chirality-packaged-launchagent-runatload-proof');
     expect(workflow).toContain('artifacts/release-verification/**');
     expect(workflow).toContain(
       'artifacts/release-verification/packaged-agent-sdk/staged/summary.json'

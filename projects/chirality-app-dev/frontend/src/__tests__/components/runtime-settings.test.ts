@@ -6,13 +6,10 @@ import {
   RuntimeSettingsView,
   type RuntimeSettingsViewProps
 } from '../../components/settings/runtime-settings';
+import { RuntimeStatusView } from '../../components/settings/runtime-status';
 
 const baseProps: RuntimeSettingsViewProps = {
   bridgeAvailable: true,
-  daemonStatus: {
-    launchAgent: { installed: true, loaded: true },
-    daemon: { running: true, pid: 4242 }
-  },
   residency: {
     phase: 'READY',
     managedModelId: 'Qwen-local-exact',
@@ -24,24 +21,13 @@ const baseProps: RuntimeSettingsViewProps = {
     activeTurns: 0,
     acceptingLocalTurns: true,
     models: [
-      {
-        id: 'Qwen-local-exact',
-        kind: 'llm',
-        loaded: true,
-        loading: false
-      },
-      {
-        id: 'embedding-helper',
-        kind: 'embedding',
-        loaded: true,
-        loading: false
-      }
+      { id: 'Qwen-local-exact', kind: 'llm', loaded: true, loading: false },
+      { id: 'embedding-helper', kind: 'embedding', loaded: true, loading: false }
     ]
   },
   selectedModel: 'Qwen-local-exact',
   busyAction: null,
   error: null,
-  onDaemonAction: () => undefined,
   onRefresh: () => undefined,
   onSelectedModelChange: () => undefined,
   onActivateModel: () => undefined
@@ -58,72 +44,36 @@ describe('RuntimeSettings rendering', () => {
     const html = renderToStaticMarkup(createElement(RuntimeSettings));
 
     expect(html).toContain('>Runtime</h3>');
-    expect(html).toContain('Checking...');
     expect(html).toContain('available only in Chirality Desktop');
     expect(html).not.toContain('<details');
   });
 
-  it('shows daemon lifecycle controls and exact managed-model attribution', () => {
+  it('shows exact managed-model attribution and no service lifecycle controls', () => {
     const html = renderView();
 
-    expect(html).not.toContain('PID 4242)');
-    expect(html).toMatch(/<span class="runtime-status" data-running="true" title="PID 4242">Running<\/span>/);
-    expect(html).toMatch(/<details class="runtime-service"><summary>Runtime service · <span/);
-    expect(html).not.toContain('<details class="runtime-service" open');
-    expect(html).toContain('Stop');
-    expect(html).toContain('Uninstall');
     expect(html).toContain('Residency:');
     expect(html).toContain('Qwen-local-exact');
     expect(html).toContain('Activate Explicitly');
     expect(html).not.toContain('embedding-helper');
+    for (const retired of ['Install', 'Uninstall', 'LaunchAgent', 'Start', 'Stop']) {
+      expect(html).not.toMatch(new RegExp(`>${retired}<`));
+    }
   });
 
-  it('keeps daemon setup available without exposing local-model controls', () => {
+  it('keeps the section without local-model controls for the hosted shell', () => {
     const html = renderToStaticMarkup(
-      createElement(RuntimeSettingsView, {
-        ...baseProps,
-        showLocalModels: false
-      })
+      createElement(RuntimeSettingsView, { ...baseProps, showLocalModels: false })
     );
 
     expect(html).toContain('>Runtime</h3>');
-    expect(html).not.toContain('PID 4242)');
-    expect(html).toContain('title="PID 4242">Running</span>');
-    expect(html).toContain('Stop');
-    expect(html).toContain('Uninstall');
+    expect(html).toContain('managed by Chirality Desktop');
     expect(html).not.toContain('Residency:');
-    expect(html).not.toContain('Qwen-local-exact');
     expect(html).not.toContain('Activate Explicitly');
   });
 
-  it('shows install when the LaunchAgent is absent', () => {
-    const html = renderView({
-      daemonStatus: {
-        launchAgent: { installed: false, loaded: false },
-        daemon: { running: false }
-      },
-      residency: null
-    });
-
-    expect(html).toContain('Not installed');
-    expect(html).toContain('Install');
-    expect(html).not.toContain('Uninstall');
-    expect(html).not.toContain('Activate Explicitly');
-  });
-
-  it('shows start for an installed stopped daemon and renders errors', () => {
-    const html = renderView({
-      daemonStatus: {
-        launchAgent: { installed: true, loaded: false },
-        daemon: { running: false }
-      },
-      residency: null,
-      error: 'Daemon failed closed'
-    });
-
-    expect(html).toContain('Installed and stopped');
-    expect(html).toContain('Start');
-    expect(html).toContain('Daemon failed closed');
+  it('renders errors', () => {
+    const html = renderView({ residency: null, error: 'Runtime failed closed' });
+    expect(html).toContain('Runtime failed closed');
   });
 
   it('disables explicit activation for the already managed model', () => {
@@ -134,5 +84,23 @@ describe('RuntimeSettings rendering', () => {
 
     expect(activationButton).not.toBeNull();
     expect(html).toContain('Activation never occurs automatically');
+  });
+});
+
+describe('RuntimeStatusView rendering (App-owned service)', () => {
+  it('reports the connectivity snapshot without any install, start, stop or uninstall control', () => {
+    const running = renderToStaticMarkup(createElement(RuntimeStatusView, { snapshot: { state: 'connected', failedAttempts: 0, lastError: null, changedAt: '2026-09-12T00:00:00.000Z' } }));
+    expect(running).toMatch(/<span class="runtime-status" data-running="true"[^>]*>Running<\/span>/);
+    expect(running).toContain('started and stopped by Chirality');
+    expect(running).not.toContain('<button');
+
+    const stopped = renderToStaticMarkup(createElement(RuntimeStatusView, { snapshot: { state: 'disconnected', failedAttempts: 6, lastError: 'socket refused', changedAt: '2026-09-12T00:00:00.000Z' } }));
+    expect(stopped).toContain('data-running="false"');
+    expect(stopped).toContain('Stopped');
+    expect(stopped).toContain('socket refused');
+    expect(stopped).toContain('quit and reopen the App');
+
+    const web = renderToStaticMarkup(createElement(RuntimeStatusView, { snapshot: null }));
+    expect(web).toContain('Unavailable outside Chirality Desktop');
   });
 });

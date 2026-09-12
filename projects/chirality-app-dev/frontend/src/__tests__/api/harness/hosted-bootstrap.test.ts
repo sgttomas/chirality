@@ -39,10 +39,18 @@ describe('hosted bootstrap API boundary', () => {
     expect(initializeProject).not.toHaveBeenCalled();
   });
 
-  it('never carries hosted account status through the Next status route', async () => {
+  it('carries hosted account status for a registered folder through the App status route', async () => {
+    const status = {
+      schema: 'chirality-hosted-bootstrap-status/v1',
+      projectId: 'project-one',
+      ceremony: 'signed-in',
+      admission: 'ready',
+      canStartLogin: false
+    };
     const getStatus = vi.fn().mockResolvedValue({
       registration: 'registered',
-      projectId: 'project-one'
+      projectId: 'project-one',
+      status
     });
     installHostedBootstrapPort({ ...createFakeHostedBootstrapPort(), getStatus });
 
@@ -52,8 +60,7 @@ describe('hosted bootstrap API boundary', () => {
 
     expect(response.status).toBe(200);
     const payload = await response.json();
-    expect(payload).toEqual({ registration: 'registered', projectId: 'project-one' });
-    expect(payload).not.toHaveProperty('status');
+    expect(payload).toEqual({ registration: 'registered', projectId: 'project-one', status });
     expect(getStatus).toHaveBeenCalledWith('/selected', { signal: expect.any(AbortSignal) });
   });
 
@@ -89,7 +96,7 @@ describe('hosted bootstrap API boundary', () => {
     expect(initializeProject).not.toHaveBeenCalled();
   });
 
-  it('requires explicit consent and forwards login actions through the bootstrap port', async () => {
+  it('answers the retained consent path with the current status and forwards login actions through the bootstrap port', async () => {
     const grantProviderNetworkConsent = vi.fn().mockResolvedValue({
       schema: 'chirality-hosted-bootstrap-status/v1',
       projectId: 'project-one',
@@ -115,7 +122,9 @@ describe('hosted bootstrap API boundary', () => {
       cancelLogin
     });
 
-    const rejected = await consentRoute.POST(new Request(
+    // No consent step exists under D-GOV-43: the route only reports status,
+    // whatever the body says about consent.
+    const consented = await consentRoute.POST(new Request(
       'http://localhost/api/harness/hosted-bootstrap/provider-network-consent',
       {
         method: 'POST',
@@ -123,18 +132,8 @@ describe('hosted bootstrap API boundary', () => {
         body: JSON.stringify({ projectRoot: '/selected', consent: false })
       }
     ));
-    expect(rejected.status).toBe(400);
-    expect(grantProviderNetworkConsent).not.toHaveBeenCalled();
-
-    const consented = await consentRoute.POST(new Request(
-      'http://localhost/api/harness/hosted-bootstrap/provider-network-consent',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ projectRoot: '/selected', consent: true })
-      }
-    ));
     expect(consented.status).toBe(200);
+    await expect(consented.json()).resolves.toEqual(expect.objectContaining({ ceremony: 'ready-to-start' }));
     expect(grantProviderNetworkConsent).toHaveBeenCalledWith(
       '/selected',
       { signal: expect.any(AbortSignal) }
@@ -173,9 +172,9 @@ describe('hosted bootstrap API boundary', () => {
     const signOut = vi.fn().mockResolvedValue({
       schema: 'chirality-hosted-bootstrap-status/v1',
       projectId: 'project-one',
-      ceremony: 'consent-required',
+      ceremony: 'ready-to-start',
       admission: 'unavailable',
-      canStartLogin: false
+      canStartLogin: true
     });
     installHostedBootstrapPort({ ...createFakeHostedBootstrapPort(), signOut });
     const response = await logoutRoute.POST(new Request(
@@ -184,7 +183,7 @@ describe('hosted bootstrap API boundary', () => {
     ));
     expect(response.status).toBe(200);
     const payload = await response.json();
-    expect(payload).toEqual(expect.objectContaining({ ceremony: 'consent-required', admission: 'unavailable' }));
+    expect(payload).toEqual(expect.objectContaining({ ceremony: 'ready-to-start', admission: 'unavailable' }));
     expect(JSON.stringify(payload)).not.toMatch(/token|credential|identity|path/i);
     expect(signOut).toHaveBeenCalledWith('/selected', { signal: expect.any(AbortSignal) });
   });

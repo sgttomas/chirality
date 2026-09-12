@@ -1,29 +1,36 @@
 import { execFile, spawn, type ChildProcess } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
+import readline from 'node:readline';
 import { promisify } from 'node:util';
 import { afterEach, describe, expect, it } from 'vitest';
 import { RuntimeClient } from '@chirality/runtime-client';
 import type { UIEvent } from '@chirality/runtime-contracts';
-import { CONTROLLED_CI_PURPOSE } from '../../../scripts/controlled-ci-runtime';
+import {
+  CONTROLLED_CI_APPROVED_BY,
+  CONTROLLED_CI_PURPOSE,
+  parseControlledCiReadyLine
+} from '../../../scripts/controlled-ci-runtime';
 
 const execFileAsync = promisify(execFile);
 const roots: string[] = [];
 const stops: Array<() => Promise<void>> = [];
 
-async function waitForFile(filePath: string): Promise<void> {
-  for (let attempt = 0; attempt < 100; attempt += 1) {
-    if (await stat(filePath).then(() => true, () => false)) return;
-    await new Promise((resolve) => setTimeout(resolve, 20));
-  }
-  throw new Error(`Timed out waiting for ${filePath}`);
-}
-
 async function stopChild(child: ChildProcess): Promise<void> {
   if (child.exitCode !== null) return;
   child.kill('SIGTERM');
   await new Promise<void>((resolve) => child.once('exit', () => resolve()));
+}
+
+async function readReadyLine(child: ChildProcess): Promise<string> {
+  const stderr: string[] = [];
+  child.stderr?.on('data', (chunk: Buffer) => stderr.push(chunk.toString('utf8')));
+  return new Promise<string>((resolve, reject) => {
+    const lines = readline.createInterface({ input: child.stdout! });
+    lines.once('line', (line) => resolve(line));
+    child.once('exit', (code) => reject(new Error(`controlled runtime exited with ${code} before its ready line: ${stderr.join('')}`)));
+  });
 }
 
 afterEach(async () => {
@@ -38,7 +45,7 @@ async function drain(source: Awaited<ReturnType<RuntimeClient['turnSession']>>):
 }
 
 describe('controlled CI runtime', () => {
-  it('builds an isolated graph and serves registered project turns over the real daemon socket', async () => {
+  it('builds an isolated graph, registers the manifest itself and serves project turns over the real daemon socket', async () => {
     const frontendRoot = path.resolve(process.cwd());
     const repositoryRoot = path.resolve(frontendRoot, '..', '..', '..');
     await execFileAsync(process.execPath, [path.join(frontendRoot, 'scripts', 'build-controlled-ci-runtime.mjs')], {
@@ -51,7 +58,8 @@ describe('controlled CI runtime', () => {
     const sources = Object.keys(metadata.inputs).join('\n');
     expect(sources).toContain('scripts/controlled-ci-runtime.ts');
     expect(sources).toContain('packages/daemon/src/runtime-daemon.ts');
-    expect(sources).not.toMatch(/electron\/main\.ts|runtime-host|engine-pi-omlx|engine-claude|hosted-private-|native-admission|codex-/u);
+    expect(sources).toContain('packages/core/src/project-registry.ts');
+    expect(sources).not.toMatch(/electron\/main\.ts|runtime-service-host|engine-pi-omlx|engine-claude|app-owned-composition|hosted-private-|native-admission|codex-|packages\/cli\//u);
 
     const pkg = JSON.parse(await readFile(path.join(frontendRoot, 'package.json'), 'utf8')) as {
       build: { files: string[]; extraResources: Array<{ from: string }> };
@@ -81,47 +89,45 @@ describe('controlled CI runtime', () => {
     })}\n`);
 
     const controlledEntry = path.join(frontendRoot, 'out', 'controlled-ci', 'controlled-runtime.mjs');
-    const rejected = await execFileAsync(process.execPath, [controlledEntry], {
+    const environment = {
+      ...process.env,
+      CHIRALITY_RUNTIME_DIRECTORY: runtimeDirectory,
+      CHIRALITY_RUNTIME_SOCKET_PATH: socketPath,
+      CHIRALITY_INSTRUCTION_ROOT: repositoryRoot,
+      CHIRALITY_STUB_CHUNK_DELAY_MS: '0'
+    };
+    const rejected = await execFileAsync(process.execPath, [controlledEntry, '--manifest', manifestPath], {
       cwd: frontendRoot,
-      env: {
-        ...process.env,
-        CHIRALITY_CONTROLLED_CI_RUNTIME: 'ordinary-runtime',
-        CHIRALITY_RUNTIME_DIRECTORY: runtimeDirectory,
-        CHIRALITY_RUNTIME_SOCKET_PATH: socketPath,
-        CHIRALITY_INSTRUCTION_ROOT: repositoryRoot
-      }
+      env: { ...environment, CHIRALITY_CONTROLLED_CI_RUNTIME: 'ordinary-runtime' }
     }).then(() => undefined, (error: unknown) => error);
     expect(String(rejected)).toContain(`CHIRALITY_CONTROLLED_CI_RUNTIME must equal ${CONTROLLED_CI_PURPOSE}`);
-
-    const child = spawn(process.execPath, [controlledEntry], {
+    const noManifest = await execFileAsync(process.execPath, [controlledEntry], {
       cwd: frontendRoot,
-      env: {
-        ...process.env,
-        CHIRALITY_CONTROLLED_CI_RUNTIME: CONTROLLED_CI_PURPOSE,
-        CHIRALITY_RUNTIME_DIRECTORY: runtimeDirectory,
-        CHIRALITY_RUNTIME_SOCKET_PATH: socketPath,
-        CHIRALITY_INSTRUCTION_ROOT: repositoryRoot,
-        CHIRALITY_STUB_CHUNK_DELAY_MS: '0'
-      },
+      env: { ...environment, CHIRALITY_CONTROLLED_CI_RUNTIME: CONTROLLED_CI_PURPOSE }
+    }).then(() => undefined, (error: unknown) => error);
+    expect(String(noManifest)).toContain('--manifest <absolute path to chirality.project.json>');
+
+    const child = spawn(process.execPath, [controlledEntry, '--manifest', manifestPath], {
+      cwd: frontendRoot,
+      env: { ...environment, CHIRALITY_CONTROLLED_CI_RUNTIME: CONTROLLED_CI_PURPOSE },
       stdio: ['ignore', 'pipe', 'pipe']
     });
     stops.push(() => stopChild(child));
-    const operatorTokenFile = path.join(runtimeDirectory, 'auth', 'tokens', 'operator.token');
-    await waitForFile(operatorTokenFile);
-    const registrationResult = await execFileAsync(process.execPath, [
-      path.join(frontendRoot, 'out', 'controlled-ci', 'chirality-cli.mjs'),
-      'project', 'register', '--manifest', manifestPath,
-      '--approved-by', 'controlled-ci-test', '--approval-reference', CONTROLLED_CI_PURPOSE, '--json'
-    ], {
-      cwd: repositoryRoot,
-      env: {
-        ...process.env,
-        CHIRALITY_RUNTIME_SOCKET_PATH: socketPath,
-        CHIRALITY_RUNTIME_TOKEN_FILE: operatorTokenFile
-      }
+    const ready = parseControlledCiReadyLine(await readReadyLine(child));
+    expect(ready).toMatchObject({ status: 'ready', purpose: CONTROLLED_CI_PURPOSE, socketPath, projectId });
+    expect(path.basename(ready.tokenFile)).toMatch(/^project-[A-Za-z0-9_-]+\.token$/u);
+    expect(path.dirname(ready.tokenFile)).toBe(path.join(runtimeDirectory, 'auth', 'tokens'));
+    expect(ready.projectRoot).toBe(await realpath(projectRoot));
+
+    const registry = JSON.parse(await readFile(path.join(runtimeDirectory, 'projects', 'registry.json'), 'utf8')) as {
+      projects: Array<{ projectId: string; approval: { approvedBy: string; approvalReference: string } }>;
+    };
+    expect(registry.projects.find((item) => item.projectId === projectId)).toMatchObject({
+      projectId,
+      approval: { approvedBy: CONTROLLED_CI_APPROVED_BY }
     });
-    const registration = JSON.parse(registrationResult.stdout) as { tokenFile: string };
-    const project = new RuntimeClient({ socketPath, tokenFile: registration.tokenFile });
+
+    const project = new RuntimeClient({ socketPath, tokenFile: ready.tokenFile });
     expect((await project.listProjects()).map((item) => item.project.projectId)).toContain(projectId);
     const session = await project.createSession(projectId, { projectId });
     const events = await drain(await project.turnSession(projectId, session.sessionId, {
@@ -131,7 +137,10 @@ describe('controlled CI runtime', () => {
       type: 'session:init',
       data: expect.objectContaining({ adapterId: 'stub', providerId: 'stub', model: 'controlled-ci' })
     }));
-    expect(events).toContainEqual({ type: 'chat:complete', data: { text: 'CONTROLLED_CI_SOCKET_TURN' } });
-    expect(events.at(-1)).toEqual({ type: 'process:exit', data: { exitCode: 0 } });
+    // Frames carry the turn registry's `seq` (SPIKE_DESIGN section 5) next to
+    // the UIEvent fields; the fixture asserts the event content only.
+    expect(events).toContainEqual(expect.objectContaining({ type: 'chat:complete', data: { text: 'CONTROLLED_CI_SOCKET_TURN' } }));
+    expect(events.at(-1)).toEqual(expect.objectContaining({ type: 'process:exit', data: { exitCode: 0 } }));
+    expect(events.map((event) => (event as { seq?: number }).seq)).toEqual(events.map((_event, index) => index + 1));
   }, 30_000);
 });

@@ -24,38 +24,15 @@ type NavigationItem = {
   label: string;
 };
 
-type RuntimeStatusResult =
-  | {
-      ok: true;
-      launchAgent: {
-        installed: boolean;
-        loaded: boolean;
-      };
-      daemon: {
-        running: boolean;
-        pid?: number;
-        startedAt?: string;
-      };
-    }
-  | { ok: false; error: string };
-
-type RuntimeStatusBridge = {
-  status: () => Promise<RuntimeStatusResult>;
-};
-
-type RuntimeStatusWindow = typeof window & {
-  chirality?: {
-    runtime?: {
-      daemon?: RuntimeStatusBridge;
-    };
-  };
-};
-
-function getRuntimeStatusBridge(): RuntimeStatusBridge | undefined {
+/**
+ * The App-owned Runtime service reports through the connectivity bridge only;
+ * the retired `runtime.daemon` control IPC is never consulted.
+ */
+function getRuntimeConnectivityBridge(): { get: () => Promise<{ state: string; lastError: string | null } | null> } | undefined {
   if (typeof window === 'undefined') {
     return undefined;
   }
-  return (window as RuntimeStatusWindow).chirality?.runtime?.daemon;
+  return window.chirality?.runtime?.connectivity;
 }
 
 // The loop-first pivot keeps route entry points for deep links, but Workbench
@@ -194,17 +171,17 @@ export function ShellFrame({
     setRuntimeCheckPending(true);
     setRuntimeCheckError(null);
     try {
-      const bridge = getRuntimeStatusBridge();
+      const bridge = getRuntimeConnectivityBridge();
       if (!bridge) {
         setRuntimeCheckError('Runtime control is unavailable');
         return;
       }
 
-      const result = await bridge.status();
-      if (!result.ok) {
-        setRuntimeCheckError(result.error);
-      } else if (!result.daemon.running) {
-        setRuntimeCheckError('Runtime daemon is unreachable');
+      const result = await bridge.get();
+      if (!result) {
+        setRuntimeCheckError('Runtime status is not reported yet');
+      } else if (result.state !== 'connected') {
+        setRuntimeCheckError(result.lastError ? `Runtime service is unreachable: ${result.lastError}` : 'Runtime service is unreachable');
       }
     } catch {
       setRuntimeCheckError('Unable to contact the Chirality runtime');

@@ -29,8 +29,10 @@ vi.mock('../../components/workspace/harness-events-provider', () => ({
   useHarnessEventActions: () => ({
     appendEvent: mocks.appendEvent,
     clearEvents: mocks.clearEvents,
+    hydrateEvents: vi.fn(),
     setStreaming: mocks.setStreaming
-  })
+  }),
+  useHarnessEvents: () => ({ events: [], streaming: false })
 }));
 
 vi.mock('../../lib/harness/client', async (importOriginal) => {
@@ -40,7 +42,9 @@ vi.mock('../../lib/harness/client', async (importOriginal) => {
     bootHarnessSession: mocks.bootHarnessSession,
     createHarnessSession: mocks.createHarnessSession,
     interruptHarnessSession: mocks.interruptHarnessSession,
-    streamHarnessTurn: mocks.streamHarnessTurn
+    streamHarnessTurn: mocks.streamHarnessTurn,
+    getHarnessTurnState: vi.fn(async () => ({ active: false, lastSeq: 0 })),
+    attachHarnessTurn: vi.fn(async () => undefined)
   };
 });
 

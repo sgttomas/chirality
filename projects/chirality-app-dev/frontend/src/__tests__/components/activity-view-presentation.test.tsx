@@ -34,7 +34,7 @@ function names(tree: ReactTestRenderer) {
 
 it('uses Actions, Events, and Tasks while preserving the existing Events renderer', () => {
   const tree = mount([event('action', 'tool.started', { toolName: 'read_file' }), event('task', 'subagent.started', { agentName: 'RESEARCHER' })]);
-  expect(tree.root.findAllByType('button').map(button => button.children.join(''))).toEqual(['Actions', 'Events', 'Tasks', 'Clear view']);
+  expect(tree.root.findAllByType('button').map(button => button.children.join(''))).toEqual(['Actions', 'Events', 'Tasks', 'Codex', 'Clear view']);
   expect(names(tree)).toEqual(['Reading file']);
   expect(tree.root.findAllByType('h2')).toHaveLength(0);
   click(tree, 'Events');
