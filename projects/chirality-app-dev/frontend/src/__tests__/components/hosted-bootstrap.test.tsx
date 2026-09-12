@@ -3,6 +3,7 @@ import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 
 const api = vi.hoisted(() => ({ get: vi.fn(), initialize: vi.fn(), start: vi.fn(), cancel: vi.fn(), signOut: vi.fn() }));
+const openWindow = vi.hoisted(() => vi.fn());
 vi.mock('../../lib/harness/hosted-bootstrap-client', () => ({
   hydrateHostedBootstrapProject: (root: string, _onBound: unknown, signal: AbortSignal) => api.get(root, signal),
   getHostedBootstrapStatus: api.get,
@@ -71,7 +72,7 @@ async function settle(): Promise<void> {
 
 beforeEach(() => {
   vi.clearAllMocks();
-  vi.stubGlobal('window', { setInterval: (...args: Parameters<typeof globalThis.setInterval>) => globalThis.setInterval(...args), clearInterval: (timer: ReturnType<typeof globalThis.setInterval>) => globalThis.clearInterval(timer) });
+  vi.stubGlobal('window', { setInterval: (...args: Parameters<typeof globalThis.setInterval>) => globalThis.setInterval(...args), clearInterval: (timer: ReturnType<typeof globalThis.setInterval>) => globalThis.clearInterval(timer), open: openWindow });
   api.get.mockResolvedValue({ registration: 'required' });
 });
 afterEach(() => { tree?.unmount(); vi.useRealTimers(); vi.unstubAllGlobals(); });
@@ -98,16 +99,21 @@ it('requires an explicit project setup and sign-in before exposing the validated
   expect(text()).toContain('Sign in');
   api.start.mockResolvedValue({ loginId: 'login-1', authUrl: 'https://auth.openai.example/login-1' });
   api.get.mockResolvedValue(registered('pending', 'establishing'));
-  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
-  const link = tree.root.findByType('a');
-  expect(link.props).toMatchObject({ href: 'https://auth.openai.example/login-1', target: '_blank', rel: 'noreferrer' });
-  expect(text()).toContain('Cancel sign-in');
-  expect(button('Cancel sign-in').props.title).toContain('Complete sign-in with OpenAI');
-  expect(tree.root.findAllByType('p').filter(node => node.props.className !== 'api-key-status')).toHaveLength(0);
+  await act(async () => { button('Sign in with your ChatGPT account').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
+  // One action: the browser opens on the validated URL as soon as Codex returns it.
+  expect(openWindow).toHaveBeenCalledExactlyOnceWith('https://auth.openai.example/login-1', '_blank', 'noopener,noreferrer');
+  expect(tree.root.findAllByType('a')).toHaveLength(0);
+  expect(text()).toContain('Waiting for sign-in');
+  expect(button('Open sign-in page again')).toBeDefined();
+  expect(button('Cancel')).toBeDefined();
+  expect(tree.root.findByProps({ role: 'status' }).children.join('')).toContain('Finish signing in with your ChatGPT account');
+  expect(tree.root.findAllByType('p').filter(node => node.props.className !== 'api-key-status' && node.props.role !== 'status')).toHaveLength(0);
+  await act(async () => { button('Open sign-in page again').props.onClick(); });
+  expect(openWindow).toHaveBeenCalledTimes(2);
 
   api.cancel.mockResolvedValue(status('cancelled'));
-  await act(async () => { button('Cancel sign-in').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
-  expect(tree.root.findAllByType('a')).toHaveLength(0);
+  await act(async () => { button('Cancel').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
+  expect(tree.root.findAllByType('button').some(node => node.children.join('') === 'Open sign-in page again')).toBe(false);
   expect(text()).toContain('previous sign-in was cancelled');
 });
 
@@ -287,12 +293,12 @@ it('does not let an in-flight pending poll overwrite a completed cancellation', 
   await act(async () => { tree = create(<Fixture />); });
   await act(async () => { await Promise.resolve(); });
   await act(async () => { vi.advanceTimersByTime(1000); await Promise.resolve(); });
-  await act(async () => { button('Cancel sign-in').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
+  await act(async () => { button('Cancel').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
   expect(pollSignal.aborted).toBe(true);
   expect(text()).toContain('previous sign-in was cancelled');
   await act(async () => { poll.resolve(registered('pending', 'establishing')); await Promise.resolve(); await Promise.resolve(); });
   expect(text()).toContain('previous sign-in was cancelled');
-  expect(text()).not.toContain('Sign-in pending');
+  expect(text()).not.toContain('Waiting for sign-in');
 });
 
 it('resumes pending status polling after cancellation fails', async () => {
@@ -303,10 +309,10 @@ it('resumes pending status polling after cancellation fails', async () => {
   api.cancel.mockRejectedValue(new Error('Cancellation transport failed'));
   await act(async () => { tree = create(<Fixture refresh={refresh} />); });
   await act(async () => { await Promise.resolve(); });
-  await act(async () => { button('Cancel sign-in').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
+  await act(async () => { button('Cancel').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
   expect(api.get).toHaveBeenCalledTimes(2);
   expect(text()).toContain('Cancellation transport failed');
-  expect(text()).toContain('Sign-in pending');
+  expect(text()).toContain('Waiting for sign-in');
   await act(async () => { await vi.advanceTimersByTimeAsync(1000); });
   expect(text()).toContain('Signed in · Ready to work');
   expect(text()).not.toContain('Cancellation transport failed');
@@ -322,18 +328,19 @@ it('keeps the login link, cancellation, and polling when status reconciliation f
   api.start.mockResolvedValue({ loginId: 'login-recovery', authUrl: 'https://auth.openai.example/login-recovery' });
   await act(async () => { tree = create(<Fixture />); });
   await act(async () => { await Promise.resolve(); });
-  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
-  expect(text()).toContain('Sign-in pending');
+  await act(async () => { button('Sign in with your ChatGPT account').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
+  expect(text()).toContain('Waiting for sign-in');
   expect(text()).toContain('Status reconciliation failed');
   expect(latest.snapshot?.registration === 'registered' ? latest.snapshot.status.admission : null).toBe('unavailable');
-  expect(button('Cancel sign-in')).toBeDefined();
-  expect(tree.root.findByType('a').props.href).toBe('https://auth.openai.example/login-recovery');
-  expect(tree.root.findAllByType('button').some(node => node.children.join('') === 'Sign in')).toBe(false);
+  expect(button('Cancel')).toBeDefined();
+  expect(openWindow).toHaveBeenLastCalledWith('https://auth.openai.example/login-recovery', '_blank', 'noopener,noreferrer');
+  expect(button('Open sign-in page again')).toBeDefined();
+  expect(tree.root.findAllByType('button').some(node => node.children.join('') === 'Sign in with your ChatGPT account')).toBe(false);
 
   await act(async () => { await vi.advanceTimersByTimeAsync(1000); });
   expect(text()).toContain('Signed in · Ready to work');
   expect(text()).not.toContain('Status reconciliation failed');
-  expect(tree.root.findAllByType('a')).toHaveLength(0);
+  expect(tree.root.findAllByType('button').some(node => node.children.join('') === 'Open sign-in page again')).toBe(false);
 });
 
 it('signs out Chirality only and republishes readiness after a new sign-in', async () => {
@@ -357,7 +364,7 @@ it('signs out Chirality only and republishes readiness after a new sign-in', asy
 
   api.start.mockResolvedValue({ loginId: 'again', authUrl: 'https://auth.openai.example/again' });
   api.get.mockResolvedValue(registered('signed-in', 'ready'));
-  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
+  await act(async () => { button('Sign in with your ChatGPT account').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
   expect(text()).toContain('Signed in · Ready to work');
   expect(refresh).toHaveBeenCalledTimes(3);
 });
@@ -429,13 +436,13 @@ it('re-reads status after a rejected sign-in and shows the reason on the existin
   await act(async () => { tree = create(<Fixture />); });
   await act(async () => { await Promise.resolve(); });
   expect(api.get).toHaveBeenCalledTimes(1);
-  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
+  await act(async () => { button('Sign in with your ChatGPT account').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
   expect(api.get).toHaveBeenCalledTimes(2);
   expect(api.get).toHaveBeenLastCalledWith(root, expect.any(AbortSignal));
   expect(text()).toContain('Sign-in could not start (CODEX_REQUEST_REJECTED).');
   expect(text()).toContain('Sign-in failed. You can start a new sign-in attempt.');
   expect(tree.root.findAllByType('a')).toHaveLength(0);
-  expect(button('Sign in').props.disabled).toBe(false);
+  expect(button('Sign in with your ChatGPT account').props.disabled).toBe(false);
   // Exactly one inline reason line, no new surface.
   expect(tree.root.findAllByProps({ role: 'alert' }).filter(node => node.type === 'p')).toHaveLength(2);
 });
@@ -456,7 +463,7 @@ it('keeps the action error when the re-read after a rejected sign-in fails too',
   api.start.mockRejectedValue(new Error('Sign-in could not start (CODEX_REQUEST_REJECTED).'));
   await act(async () => { tree = create(<Fixture />); });
   await act(async () => { await Promise.resolve(); });
-  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
+  await act(async () => { button('Sign in with your ChatGPT account').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
   expect(api.get).toHaveBeenCalledTimes(2);
   expect(text()).toContain('Sign-in could not start (CODEX_REQUEST_REJECTED).');
   expect(text()).toContain('Sign in');
@@ -468,7 +475,7 @@ it('re-reads status when the surface reopens and drops a stale error, but not wh
   await act(async () => { tree = create(<Fixture />); });
   await act(async () => { await Promise.resolve(); });
   api.get.mockResolvedValueOnce(registered('failed'));
-  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
+  await act(async () => { button('Sign in with your ChatGPT account').props.onClick(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); });
   expect(text()).toContain('CODEX_REQUEST_REJECTED');
 
   // The service was restarted in between: reopening shows its real state.
@@ -481,7 +488,7 @@ it('re-reads status when the surface reopens and drops a stale error, but not wh
   // A refresh while an action is in flight does not race the action's own read.
   const started = deferred<{ loginId: string; authUrl: string }>();
   api.start.mockReturnValue(started.promise);
-  await act(async () => button('Sign in').props.onClick());
+  await act(async () => button('Sign in with your ChatGPT account').props.onClick());
   await act(async () => { latest.onRefresh(); await Promise.resolve(); });
   expect(api.get).toHaveBeenCalledTimes(3);
   api.get.mockResolvedValue(registered('cancelled'));
@@ -491,7 +498,7 @@ it('re-reads status when the surface reopens and drops a stale error, but not wh
   vi.useFakeTimers();
   api.start.mockResolvedValue({ loginId: 'login-2', authUrl: 'https://auth.openai.example/login-2' });
   api.get.mockResolvedValue(registered('pending', 'establishing'));
-  await act(async () => { button('Sign in').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
+  await act(async () => { button('Sign in with your ChatGPT account').props.onClick(); await Promise.resolve(); await Promise.resolve(); });
   const pollingReads = api.get.mock.calls.length;
   await act(async () => { latest.onRefresh(); await Promise.resolve(); });
   expect(api.get).toHaveBeenCalledTimes(pollingReads);
@@ -523,4 +530,72 @@ it('re-reads status once when the runtime reconnects and not on repeated connect
   } finally {
     connectivity.current = null;
   }
+});
+
+// Item 14: account authentication is a fact of the Codex host, not of the
+// selected folder. Switching to a folder the Runtime cannot bind yet must keep
+// the signed-in account visible and name the folder problem as such.
+function conflictError(): Error & { status: number } {
+  return Object.assign(new Error('A different project is already bound to the Desktop runtime client'), { status: 409 });
+}
+
+it('keeps the signed-in account across a folder switch whose binding conflicts, and names the folder problem rather than sign-in', async () => {
+  api.get.mockResolvedValue(registered('signed-in', 'ready'));
+  await act(async () => { tree = create(<Fixture projectRoot="/projects/a" />); });
+  await settle();
+  expect(hostedBootstrapSummary(latest)).toBe('Signed in · Ready to work');
+  expect(latest.project.state).toBe('registered');
+
+  api.get.mockRejectedValue(conflictError());
+  await act(async () => tree.update(<Fixture projectRoot="/projects/b" />));
+  await settle();
+  expect(latest.account?.ceremony).toBe('signed-in');
+  expect(latest.project).toEqual({ state: 'conflict', message: 'A different project is already bound to the Desktop runtime client' });
+  expect(hostedBootstrapSummary(latest)).toBe('Signed in · Another folder is active');
+  expect(text()).not.toContain('Sign in required');
+  expect(text()).not.toContain('Sign in with your ChatGPT account');
+  expect(text()).toContain('Use this folder');
+  expect(text()).toContain('moves it here; your sign-in is not affected');
+  // A restored (not explicitly selected) root never rebinds on its own.
+  expect(api.initialize).not.toHaveBeenCalled();
+
+  api.get.mockRejectedValue(Object.assign(new Error('The selected project folder is inaccessible'), { status: 404 }));
+  await act(async () => tree.update(<Fixture projectRoot="/projects/missing" />));
+  await settle();
+  expect(latest.project.state).toBe('unavailable');
+  expect(hostedBootstrapSummary(latest)).toBe('Signed in · Folder unavailable');
+  expect(text()).toContain('could not be read or registered');
+});
+
+it('rebinds an explicitly selected folder once when hydration reports a binding conflict', async () => {
+  installWorkspaceHost('/projects/a');
+  const refresh = vi.fn();
+  api.get.mockResolvedValue(registered('signed-in', 'ready'));
+  await act(async () => { tree = create(<WorkspaceProvider><WorkspaceFixture refresh={refresh} /></WorkspaceProvider>); });
+  await settle();
+  expect(hostedBootstrapSummary(latest)).toBe('Signed in · Ready to work');
+
+  api.get.mockRejectedValueOnce(conflictError()).mockResolvedValue({ registration: 'registered', projectId: 'project-b', status: { ...status('signed-in', 'ready'), projectId: 'project-b' } });
+  api.initialize.mockResolvedValue({ registration: 'registered', projectId: 'project-b' });
+  await act(async () => { await workspace.applyProjectRoot('/projects/b'); });
+  await settle();
+  expect(api.initialize).toHaveBeenCalledTimes(1);
+  expect(api.initialize).toHaveBeenCalledWith('/projects/b', expect.any(AbortSignal));
+  expect(latest.project.state).toBe('registered');
+  expect(latest.snapshot).toMatchObject({ registration: 'registered', projectId: 'project-b' });
+  expect(hostedBootstrapSummary(latest)).toBe('Signed in · Ready to work');
+  expect(refresh).toHaveBeenCalled();
+  await settle();
+  expect(api.initialize).toHaveBeenCalledTimes(1);
+});
+
+it('reports a signed-out account with the folder standing instead of a bare sign-in demand', async () => {
+  api.get.mockResolvedValue(registered('ready-to-start'));
+  await act(async () => { tree = create(<Fixture projectRoot="/projects/a" />); });
+  await settle();
+  expect(hostedBootstrapSummary(latest)).toBe('Sign in required');
+  api.get.mockRejectedValue(conflictError());
+  await act(async () => tree.update(<Fixture projectRoot="/projects/b" />));
+  await settle();
+  expect(hostedBootstrapSummary(latest)).toBe('Not signed in · Another folder is active');
 });

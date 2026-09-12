@@ -117,6 +117,18 @@ it('rejects a stale synchronization completion after a different folder transiti
   expect(state.stream).not.toHaveBeenCalled();
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).not.toBe('Old context prompt'); assertCanonicalUntouched();
 });
+it('reports whether a New chat request went ahead, keeping the draft when the confirmation is declined', async () => {
+  const settled = vi.fn();
+  await mount({ onNewChatSettled: settled }); await type('Unsent words');
+  (window.confirm as ReturnType<typeof vi.fn>).mockReturnValueOnce(false);
+  await act(async () => tree!.update(<ChatPanel presentation="woven" onNewChatSettled={settled} newChatRequest={1} />));
+  expect(settled).toHaveBeenLastCalledWith(false);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Unsent words');
+  await act(async () => tree!.update(<ChatPanel presentation="woven" onNewChatSettled={settled} newChatRequest={2} />));
+  expect(settled).toHaveBeenLastCalledWith(true);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+});
+
 it('blocks native folder intent while bound or pending and blocks Send during pending selection', async () => {
   await mount({ folderSelectionPending: true }); await type('Pending'); await submit();
   expect(state.create).not.toHaveBeenCalled();
@@ -840,7 +852,7 @@ it('shows a confirmed interruption alongside partial commentary and after reopen
     onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
   });
   await mount(); await type('Begin work'); await submit();
-  expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
+  expect(tree!.root.findByProps({ 'data-turn-outcome': 'interrupted' }).children).toEqual(['Stopped']);
   expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
   expect(tree!.root.findAllByProps({ className: 'chat-runtime-error' })).toHaveLength(0);
   const projection = resumableProjection('interrupted-history');
@@ -849,6 +861,50 @@ it('shows a confirmed interruption alongside partial commentary and after reopen
     { key: 'stop', kind: 'terminal', status: 'interrupted', title: 'Turn interrupted', timestamp: '2026-09-09T00:00:02Z', eventId: 'stop', eventType: 'turn.interrupted', turnId: 'cancelled' }
   ];
   await act(async () => tree!.update(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection }} />));
-  expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
+  expect(tree!.root.findByProps({ 'data-turn-outcome': 'interrupted' }).children).toEqual(['Stopped']);
   expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
+});
+
+it('hands the Plan tab model to its host, keeps every plan action working from there, and links revisions from the conversation', async () => {
+  const { NativePlanPanel } = await import('../../components/shell/native-plan-panel');
+  const qualification = { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const };
+  const revisions = [1, 2].map(revision => ({ revision, sourceEvent: { qualificationState: 'qualified' as const, eventId: `plan-${revision}`, occurredAt: '2026-09-09T00:00:00.000Z', qualification, plan: { id: `item-${revision}`, type: 'plan', text: `# Plan ${revision}\n\nStep.` } } }));
+  state.boot.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'bound', projectRoot: '/chosen/subfolder', selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis-1' } });
+  state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'qualified', qualification });
+  state.nativeRevisions.mockResolvedValue({ schemaVersion: 'chirality.native-plan-revisions/v3', status: 'qualified', qualification, revisions });
+  state.stream.mockResolvedValue(undefined);
+  const onOpenPlan = vi.fn();
+  function Host(): JSX.Element {
+    const [model, setModel] = React.useState<import('../../components/shell/native-plan-panel').NativePlanPanelModel | null>(null);
+    return <><ChatPanel presentation="woven" onPlanPanelChange={setModel} onOpenPlan={onOpenPlan} /><aside data-plan-host>{model ? <NativePlanPanel model={model} /> : <p>no plan model</p>}</aside></>;
+  }
+  await act(async () => { tree = create(<Host />); });
+  expect(JSON.stringify(tree!.toJSON())).toContain('no plan model');
+  await act(async () => tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.onChange({ target: { value: 'native-plan' } }));
+  await type('Plan this change'); await submit();
+  await act(async () => { await Promise.resolve(); });
+  const stage = tree!.root.findByProps({ className: 'chat-conversation-stage' });
+  // The large plan block is gone from the conversation; compact links remain.
+  expect(stage.findAllByProps({ 'aria-label': 'Plan' })).toHaveLength(0);
+  expect(stage.findAllByProps({ className: 'chat-plan-link' }).map(node => node.children.join(''))).toEqual(['Plan · Revision 1', 'Plan · Revision 2']);
+  await act(async () => stage.findAllByProps({ className: 'chat-plan-link' })[0].props.onClick());
+  expect(onOpenPlan).toHaveBeenCalledWith(1);
+  const host = tree!.root.findByProps({ 'data-plan-host': true });
+  const textOf = (node: { children: unknown[] }): string => node.children.map(child => typeof child === 'string' ? child : textOf(child as { children: unknown[] })).join('');
+  const hostText = () => textOf(tree!.root.findByProps({ 'data-plan-host': true }));
+  expect(hostText()).not.toContain('no plan model');
+  expect(hostText()).toContain('Plan 2');
+  const button = (label: string) => host.findAllByType('button').find(node => node.children.includes(label))!;
+  await act(async () => button('Revise in chat').props.onClick());
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('Revise plan revision 2');
+  await act(async () => button('Execute plan').props.onClick());
+  expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.value).toBe('chat');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('Execute the accepted native Plan Mode revision 2');
+  await act(async () => button('Save as workflow in chat').props.onClick());
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('do not execute the plan');
+  window.chirality!.plans = { chooseExportTarget: vi.fn().mockResolvedValue({ cancelled: false, targetRelativePath: 'plans/native.md' }), confirmOverwrite: vi.fn().mockResolvedValue(false) };
+  await act(async () => { await button('Save plan…').props.onClick(); });
+  expect(state.exportPlan).toHaveBeenLastCalledWith({ sessionId: 'bound', revision: 2, targetRelativePath: 'plans/native.md' });
+  expect(hostText()).toContain('Plan saved to');
+  expect(host.findByProps({ className: 'native-plan-history' })).toBeDefined();
 });

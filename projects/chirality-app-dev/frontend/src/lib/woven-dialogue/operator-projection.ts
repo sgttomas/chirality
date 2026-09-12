@@ -154,8 +154,12 @@ function projectOne(
   const methodSelectionRevision = typeof source.methodSelectionRevision === 'number' && Number.isSafeInteger(source.methodSelectionRevision) && source.methodSelectionRevision >= 0
     ? source.methodSelectionRevision : undefined;
   const expectedRole = roleId === 'HELP_HUMAN' ? 'agent0' : roleId === 'TASK' ? 'agent2' : roleId ? 'agent1' : undefined;
+  // A running session is continuable too: the Runtime owns its turn, and the
+  // chat panel re-attaches to it on resume (Working, Stop available) instead of
+  // sending anything. Refusing it would strand a chat reopened during work in
+  // the read-only lens.
   const continuation = source.schemaVersion === 'chirality.session/v3' && roleId && DIRECT_ENTRY_ROLE_IDS.has(roleId) && interactionMode && permissionMode && selectedMethods &&
-    instructionBasisId && methodSelectionRevision !== undefined && status && status !== 'running' && role === expectedRole
+    instructionBasisId && methodSelectionRevision !== undefined && status && role === expectedRole
     ? { schemaVersion: 'chirality.session/v3' as const, projectRoot: session.projectRoot, roleId,
         mode: session.mode, interactionMode, permissionMode, selectedMethods, methodSelectionRevision, instructionBasisId }
     : undefined;

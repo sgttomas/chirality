@@ -1,6 +1,9 @@
 .root { width: 100%; min-width: 0; }
 .row { width: 100%; min-height: 56px; display: flex; align-items: center; gap: 9px; border: 0; border-top: 1px solid var(--hairline, #cfccc4); border-radius: 0; background: transparent; color: var(--ink); padding: 8px 4px; text-align: left; }
-.avatar { width: 30px; height: 30px; flex: 0 0 30px; border: 1px dashed var(--ink-soft, #5c5a55); border-radius: 50%; display: grid; place-items: center; }
+.avatar { position: relative; width: 30px; height: 30px; flex: 0 0 30px; border: 1px solid var(--rule-strong, #d0c8b5); border-radius: 50%; display: grid; place-items: center; color: var(--ink-soft, #5c5a55); }
+.avatarSignedIn { color: var(--ink); border-color: var(--ink-soft, #5c5a55); }
+.updateDot { position: absolute; top: -1px; right: -1px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 2px var(--ground); }
+.updateNote { color: var(--accent-ink, var(--accent)); }
 .identity { min-width: 0; flex: 1; }
 .identity strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
 .identity small { display: block; margin-top: 4px; font-size: 10px; color: var(--ink-soft, #5c5a55); }

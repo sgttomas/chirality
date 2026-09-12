@@ -7,6 +7,15 @@ import {
 } from './runtime-connectivity';
 import { RUNTIME_SERVICE_RESTART_CHANNEL } from './runtime-control-ipc-contract';
 import {
+  APP_ABOUT_SHOW_CHANNEL,
+  APP_UPDATE_CHANGED_CHANNEL,
+  APP_UPDATE_CHECK_CHANNEL,
+  APP_UPDATE_GET_CHANNEL,
+  APP_UPDATE_OPEN_DOWNLOAD_CHANNEL,
+  type AppUpdateOpenDownloadResult,
+  type AppUpdateState
+} from './app-update-ipc-contract';
+import {
   ATTACHMENT_SELECT_FILES_CHANNEL,
   type AttachmentSelectFilesRequest,
   type AttachmentSelectFilesResult
@@ -104,6 +113,39 @@ contextBridge.exposeInMainWorld('chirality', {
        * service. Resolves with the service state once the relaunch settled.
        */
       restart: () => ipcRenderer.invoke(RUNTIME_SERVICE_RESTART_CHANNEL)
+    }
+  },
+  /**
+   * App-update checking as the main process owns it: `get()` hydrates on mount,
+   * `check()` runs (or joins) a check and resolves with the settled state,
+   * `openDownload()` hands the reported https download to the system browser,
+   * `subscribe()` receives every later transition, and `onShowAbout()` fires
+   * when the application menu asks for the About dialog. Unsubscribe on
+   * unmount: the listeners are held by `ipcRenderer`, which outlives any React
+   * tree. Nothing here downloads, installs or restarts.
+   */
+  appUpdate: {
+    get: (): Promise<AppUpdateState> => ipcRenderer.invoke(APP_UPDATE_GET_CHANNEL),
+    check: (): Promise<AppUpdateState> => ipcRenderer.invoke(APP_UPDATE_CHECK_CHANNEL),
+    openDownload: (): Promise<AppUpdateOpenDownloadResult> =>
+      ipcRenderer.invoke(APP_UPDATE_OPEN_DOWNLOAD_CHANNEL),
+    subscribe: (listener: (state: AppUpdateState) => void): (() => void) => {
+      const handler = (_event: unknown, state: AppUpdateState): void => {
+        listener(state);
+      };
+      ipcRenderer.on(APP_UPDATE_CHANGED_CHANNEL, handler);
+      return () => {
+        ipcRenderer.removeListener(APP_UPDATE_CHANGED_CHANNEL, handler);
+      };
+    },
+    onShowAbout: (listener: () => void): (() => void) => {
+      const handler = (): void => {
+        listener();
+      };
+      ipcRenderer.on(APP_ABOUT_SHOW_CHANNEL, handler);
+      return () => {
+        ipcRenderer.removeListener(APP_ABOUT_SHOW_CHANNEL, handler);
+      };
     }
   }
 });

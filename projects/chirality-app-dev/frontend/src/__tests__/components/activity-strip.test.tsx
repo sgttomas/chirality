@@ -80,3 +80,17 @@ describe('primary ActivityStrip projection', () => {
     act(() => tree.unmount());
   });
 });
+
+describe('ActivityStrip turn phase', () => {
+  it.each([
+    ['preparing', 'Preparing'], ['working', 'Working'], ['waiting', 'Waiting for you'], ['reconnecting', 'Reconnecting'], ['stopping', 'Stopping']
+  ] as const)('labels the %s phase from the chat panel rather than the streaming flag alone', (phase, label) => {
+    const html = renderToStaticMarkup(<ActivityStrip primarySessionId="primary" events={[]} running phase={phase} onOpenDetails={() => {}} />);
+    expect(html).toContain(`data-turn-phase="${phase}"`);
+    expect(html).toContain(`<span role="status">${label}`);
+  });
+  it('falls back to Working and Idle from the streaming flag without a phase', () => {
+    expect(renderToStaticMarkup(<ActivityStrip primarySessionId="primary" events={[]} running onOpenDetails={() => {}} />)).toContain('data-turn-phase="working"');
+    expect(renderToStaticMarkup(<ActivityStrip primarySessionId="primary" events={[]} running={false} onOpenDetails={() => {}} />)).toContain('data-turn-phase="idle"');
+  });
+});

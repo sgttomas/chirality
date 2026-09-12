@@ -71,6 +71,23 @@ export interface WorkflowExecutionMetadata {
   tools?: WorkflowToolRestrictions;
 }
 
+export type MethodNavigationCategory = "core" | "specialist" | "superseded";
+
+/** Authoritative App navigation placement from the bundled catalog. Index-only; project and user packages never carry one. */
+export type MethodNavigation = {
+  category: MethodNavigationCategory;
+  /** primary: shown at first glance; supporting: a bounded step of a primary workflow, shown under a disclosure. */
+  tier: "primary" | "supporting";
+  /** Position within its category (core) or group (specialist); 0-based. */
+  order: number;
+  /** Product display name when it differs from the identifier (Core only today). */
+  displayName?: string;
+  /** Specialist group; label as authored; order is the group's 0-based position among specialist groups. */
+  group?: { key: string; label: string; order: number };
+  /** Superseded only: the current replacement workflow name. */
+  supersededBy?: string;
+};
+
 export interface MethodDescriptor extends QualifiedMethodReference {
   qualifiedId: string;
   description: string;
@@ -81,6 +98,7 @@ export interface MethodDescriptor extends QualifiedMethodReference {
   /** Standard package metadata preserved from entrypoint frontmatter when present. */
   metadata?: Readonly<Record<string, unknown>>;
   execution?: WorkflowExecutionMetadata;
+  navigation?: MethodNavigation;
 }
 
 export type MethodCatalogIssueCode =

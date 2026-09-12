@@ -17,7 +17,7 @@ import {
   type HarnessModelSelection,
   type HarnessTurnStreamEvent
 } from '../../lib/harness/client';
-import { isSelectionInCatalog, selectHostedModelCatalog, useHostedBootstrap } from '../../lib/harness/hosted-bootstrap-context';
+import { isSelectionInCatalog, modelSelectorUnavailableTitle, selectAccountModelCatalog, selectHostedModelCatalog, useHostedBootstrap } from '../../lib/harness/hosted-bootstrap-context';
 import { toHarnessUiError, type HarnessUiError } from '../../lib/harness/error-display';
 import {
   buildChatDraftStorageKey,
@@ -29,12 +29,22 @@ import { getNativeAttachmentBridge } from '../../lib/shell/native-attachments';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import { CHAT_SECTION } from '../../lib/shell/loop-first';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
-import { useHarnessEventActions } from '../workspace/harness-events-provider';
+import { useHarnessEventActions, useHarnessEvents } from '../workspace/harness-events-provider';
+import { deriveTurnActivityFromEvents, deriveTurnActivityFromTranscript, type TurnActivity } from '../../lib/shell/turn-activity';
+import { selectPendingPermissionRequests, selectPendingServerRequests } from '../../lib/shell/harness-event-views';
+import { TURN_CONTINUATION_NOTE, turnOutcomeDescription, turnOutcomeLabel, turnPhaseStatusLine, type TurnOutcome, type TurnPhase } from '../../lib/shell/turn-phase';
+import {
+  attachPlanExecutionTurn, beginPlanExecution, detectPlanExecution, planExecutionMarker, readPlanExecutionRecords, runningPlanExecution,
+  settlePlanExecution, writePlanExecutionRecords, type PlanExecutionRecord
+} from '../../lib/harness/plan-executions';
+import { NativePlanPanel, type NativePlanPanelModel } from './native-plan-panel';
+import { TurnActivityDisclosure } from './turn-activity';
 import { useToolkit } from '../workspace/toolkit-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { FolderSelect, getNativeFolderBridge } from './folder-select';
 import { PersonaPicker } from './persona-picker';
 import { ChatMarkdown } from './chat-markdown';
+import { ConversationMessage } from './conversation-message';
 import { FilePicker } from './file-picker';
 import { PermissionRequests } from './permission-requests';
 import { ServerRequests } from './request-card';
@@ -60,6 +70,8 @@ type ChatMessage = {
   id: string;
   role: 'operator' | 'assistant';
   interrupted?: boolean;
+  /** How the Runtime-owned turn behind this reply ended, once known. */
+  outcome?: TurnOutcome;
   persona?: string;
   projectRoot?: string;
   text: string;
@@ -67,6 +79,10 @@ type ChatMessage = {
   methods?: QualifiedMethodReference[];
   instructionBasis?: FrozenInstructionBasisV3;
   instructionHistory?: readonly InstructionHistoryRecordV3[];
+  /** Runtime turn identity once known; scopes the live activity shown under the reply. */
+  turnId?: string;
+  /** Activity recorded for a resumed turn (from the transcript projection). */
+  recordedActivity?: TurnActivity;
 };
 
 type ActiveSession = {
@@ -108,12 +124,19 @@ export const OPERATOR_MODES: readonly OperatorModeOption[] = [
 ];
 
 const DEFAULT_OPERATOR_MODE = 'workspaceWrite';
-const MODEL_SELECTOR_SIGNED_OUT_TITLE = 'Sign in to Codex to choose a model';
 const MODEL_SELECTOR_HELP = 'Codex model for the next turn, from your authenticated account catalog. Changeable between turns.';
 const REASONING_SELECTOR_HELP = 'Reasoning effort supported by the selected model, sent with the next turn. Separate from Plan Mode and from permissions.';
 const PERMISSION_SELECTOR_HELP = 'Codex approval policy and sandbox for this chat. Applied at the next turn.';
 const TERMINAL_HARNESS_EVENTS = new Set(['turn.completed', 'turn.failed', 'turn.interrupted', 'turn.cancelled']);
 const RECONNECT_DELAYS_MS = [1_000, 2_000, 4_000, 8_000, 15_000, 30_000] as const;
+/** Follow re-arms only within this band above the bottom, so reading history is never yanked back down. */
+const FOLLOW_REARM_THRESHOLD_PX = 40;
+// Stable defaults: the Plan panel model is memoised over these props, and a
+// fresh array per render would re-publish the model to its host on every render.
+const NO_KNOWN_ROOTS: readonly { path: string; lastUsedAt: string }[] = [];
+const NO_FILE_CATALOG: readonly string[] = [];
+const NO_SELECTED_METHODS: QualifiedMethodReference[] = [];
+const IGNORE_SELECTED_METHODS = (): void => {};
 
 function isSupportedOperatorMode(mode: string): mode is OperatorModeOption['value'] {
   return OPERATOR_MODES.some(option => option.value === mode);
@@ -219,76 +242,6 @@ function nativePlanAvailable(capability: NativePlanCapabilityResponse): boolean 
   return capability.status === 'qualified' || capability.status === 'trial';
 }
 
-function NativePlanClarificationCard({ clarification, pending, onReply }: {
-  clarification: NativePlanClarification;
-  pending: boolean;
-  onReply: (clarification: NativePlanClarification, answers: Record<string, { answers: string[] }>) => void;
-}): JSX.Element {
-  const [values, setValues] = useState<Record<string, string>>({});
-  const complete = clarification.questions.every(question => Boolean(values[question.id]?.trim()));
-  return <form className="native-plan-clarification" onSubmit={event => {
-    event.preventDefault();
-    if (!complete || pending) return;
-    onReply(clarification, Object.fromEntries(clarification.questions.map(question => [question.id, { answers: [values[question.id]!.trim()] }])));
-  }}>
-    <p className="native-plan-sidebar-meta">Planning needs your input{clarification.isBlocking ? ' before it can continue' : ''}.</p>
-    {clarification.questions.map(question => <fieldset key={question.id}>
-      <legend>{question.header}</legend>
-      <p>{question.question}</p>
-      {question.options.map(option => <label key={option.label}><input type="radio" name={`${String(clarification.requestId)}:${question.id}`} value={option.label}
-        checked={values[question.id] === option.label} disabled={pending}
-        onChange={() => setValues(current => ({ ...current, [question.id]: option.label }))} />
-        <span><strong>{option.label}</strong>{option.description ? <small>{option.description}</small> : null}</span></label>)}
-      {question.isOther ? <label className="native-plan-clarification-other"><span>Other answer</span><input type={question.isSecret ? 'password' : 'text'} value={values[question.id] && !question.options.some(option => option.label === values[question.id]) ? values[question.id] : ''}
-        disabled={pending} autoComplete="off" onChange={event => setValues(current => ({ ...current, [question.id]: event.target.value }))} /></label> : null}
-    </fieldset>)}
-    <button type="submit" disabled={!complete || pending}>{pending ? 'Sending answers…' : 'Continue planning'}</button>
-  </form>;
-}
-
-function NativePlanSidebar({ revisions, clarifications, active, refreshing, clarificationPendingId, clarificationError, projectRoot, fileCatalog, onOpenFile, onRefresh, onRevise, onSave, onExecute, onSaveAsWorkflow, onReplyClarification, actionsDisabled = false }: {
-  revisions: readonly NativePlanRevision[];
-  clarifications: readonly NativePlanClarification[];
-  active: boolean;
-  refreshing: boolean;
-  projectRoot?: string;
-  fileCatalog: readonly string[];
-  onOpenFile?: (path: string) => void;
-  onRefresh: () => void;
-  onRevise: (revision: number | undefined) => void;
-  onSave: (revision: NativePlanRevision) => void;
-  onExecute?: (revision: NativePlanRevision) => void;
-  onSaveAsWorkflow?: (revision: NativePlanRevision) => void;
-  clarificationPendingId?: string | number;
-  clarificationError?: string | null;
-  onReplyClarification: (clarification: NativePlanClarification, answers: Record<string, { answers: string[] }>) => void;
-  actionsDisabled?: boolean;
-}): JSX.Element {
-  const current = revisions.at(-1);
-  return <aside className="native-plan-sidebar" aria-label="Plan Mode">
-    <header>
-      <div><p className="woven-eyebrow">Plan Mode</p><h2>Current plan</h2></div>
-      <button type="button" className="button-muted" disabled={refreshing} onClick={onRefresh}>{refreshing ? 'Refreshing…' : 'Refresh'}</button>
-    </header>
-    {clarifications.map(clarification => <NativePlanClarificationCard key={String(clarification.requestId)} clarification={clarification}
-      pending={clarificationPendingId === clarification.requestId} onReply={onReplyClarification} />)}
-    {clarificationError ? <p className="panel-error" role="alert">{clarificationError}</p> : null}
-    {!current ? <p>{active ? 'Describe what you want to plan in the conversation. The first revision will appear here.' : 'Switch to Plan Mode to inspect and revise a plan in this conversation.'}</p> : <>
-      <p className="native-plan-sidebar-meta">Revision {current.revision} · read-only</p>
-      <div className="native-plan-sidebar-body"><ChatMarkdown source={nativePlanText(current)} projectRoot={projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} /></div>
-      <div className="native-plan-sidebar-actions">
-        <button type="button" disabled={actionsDisabled} onClick={() => onRevise(current.revision)}>Revise in chat</button>
-        <button type="button" disabled={actionsDisabled} onClick={() => onExecute?.(current)}>Execute plan</button>
-        <button type="button" disabled={actionsDisabled} className="button-muted" onClick={() => onSaveAsWorkflow?.(current)}>Save as workflow in chat</button>
-        <button type="button" className="button-muted" onClick={() => onSave(current)}>Save plan…</button>
-      </div>
-      {revisions.length > 1 ? <details className="native-plan-history"><summary>Earlier revisions ({revisions.length - 1})</summary>
-        <ol>{revisions.slice(0, -1).reverse().map(revision => <li key={revision.revision}><details><summary>Revision {revision.revision}</summary><div><ChatMarkdown source={nativePlanText(revision)} projectRoot={projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} /></div><button type="button" className="button-muted" onClick={() => onSave(revision)}>Save this revision…</button></details></li>)}</ol>
-      </details> : null}
-    </>}
-  </aside>;
-}
-
 function instructionActivityLabel(record: InstructionHistoryRecordV3): string {
   switch (record.type) {
     case 'selection.changed': return 'Role or method selection updated';
@@ -330,6 +283,8 @@ type ChatPanelProps = {
   folderSelectionPending?: boolean;
   onFolderSelectionPending?: (pending: boolean) => void;
   onBindingChange?: (binding: { root: string | null; locked: boolean }) => void;
+  /** Reports whether a New chat request went ahead (false when the unsent-draft confirmation was declined or a turn was running). */
+  onNewChatSettled?: (started: boolean) => void;
   onDraftCaptured?: () => void;
   onActiveSessionChange?: (sessionId: string | undefined) => void;
   onSessionBootedPrompt?: (input: { sessionId: string; prompt: string; persona: string }) => void;
@@ -338,11 +293,17 @@ type ChatPanelProps = {
   selectedMethods?: QualifiedMethodReference[];
   onSelectedMethodsChange?: (methods: QualifiedMethodReference[]) => void;
   onOpenMethods?: () => void;
+  /** The Plan tab model, or null when this chat has no plan state to show. */
+  onPlanPanelChange?: (model: NativePlanPanelModel | null) => void;
+  /** A "Plan · Revision N" link in the conversation asks the host to open that revision. */
+  onOpenPlan?: (revision: number) => void;
+  /** What the agent is doing now (working, waiting for an answer, reconnecting, stopping, idle). */
+  onTurnPhaseChange?: (phase: TurnPhase) => void;
   resumeConversation?: ResumeConversationRequest;
   onConversationResumed?: (sessionId: string) => void;
 };
 
-export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBootedPrompt, presentation, knownRoots = [], newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange, fileCatalog = [], onOpenFile, selectedMethods = [], onSelectedMethodsChange = () => {}, onOpenMethods, resumeConversation, onConversationResumed }: ChatPanelProps = {}): JSX.Element {
+export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBootedPrompt, presentation, knownRoots = NO_KNOWN_ROOTS, newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange, onNewChatSettled, fileCatalog = NO_FILE_CATALOG, onOpenFile, selectedMethods = NO_SELECTED_METHODS, onSelectedMethodsChange = IGNORE_SELECTED_METHODS, onOpenMethods, onPlanPanelChange, onOpenPlan, onTurnPhaseChange, resumeConversation, onConversationResumed }: ChatPanelProps = {}): JSX.Element {
   const { projectRoot, applyProjectRoot } = useWorkspace();
   const { optsPayload } = useToolkit();
   const { appendEvent, clearEvents, hydrateEvents, setStreaming } = useHarnessEventActions();
@@ -361,7 +322,14 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   // catalog is dropped rather than substituted.
   const [modelChoice, setModelChoice] = useState<HarnessModelSelection | null>(null);
   const hostedBootstrap = useHostedBootstrap();
-  const modelCatalog = useMemo(() => selectHostedModelCatalog(hostedBootstrap.snapshot), [hostedBootstrap.snapshot]);
+  // The catalog belongs to the signed-in account. While the selected folder
+  // is still being checked or set up, the last reported account catalog keeps
+  // the selectors meaningful; a folder problem never reads as signed out.
+  const modelCatalog = useMemo(
+    () => selectHostedModelCatalog(hostedBootstrap.snapshot) ?? (hostedBootstrap.snapshot?.registration === 'registered' ? null : selectAccountModelCatalog(hostedBootstrap.account)),
+    [hostedBootstrap.snapshot, hostedBootstrap.account]
+  );
+  const modelSelectorTitle = useMemo(() => modelSelectorUnavailableTitle(hostedBootstrap), [hostedBootstrap]);
   useEffect(() => {
     if (modelCatalog && modelChoice && !isSelectionInCatalog(modelCatalog, modelChoice)) setModelChoice(null);
   }, [modelCatalog, modelChoice]);
@@ -377,6 +345,16 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const activeSessionIdRef = useRef<string>();
   const lastInstructionSequenceRef = useRef(0);
   const [isRunning, setIsRunning] = useState(false);
+  // Live turn facts behind the phase shown to the reader: whether the stream is
+  // open yet, whether the panel is re-attaching after a dropped connection
+  // (attempt count), and whether Stop was pressed and is awaiting the Runtime.
+  const [turnStage, setTurnStage] = useState<'preparing' | 'streaming' | null>(null);
+  const [reconnectAttempt, setReconnectAttempt] = useState<number | null>(null);
+  const [stopRequested, setStopRequested] = useState(false);
+  // Plan executions for the active session: which revision each execution
+  // turn ran and how it ended (local record; the Runtime keeps the turns).
+  const [planExecutions, setPlanExecutions] = useState<readonly PlanExecutionRecord[]>([]);
+  const [preparedExecution, setPreparedExecution] = useState<{ revision: number } | null>(null);
   // Runtime owns the turn; this panel only observes it. The abort controller
   // closes the current observation (start or attach) without touching the turn.
   const turnObservation = useRef<AbortController | null>(null);
@@ -534,6 +512,12 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if (!roleOnlyChange) setModelChoice(result.snapshot.model && result.snapshot.reasoningEffort
       ? { model: result.snapshot.model, reasoningEffort: result.snapshot.reasoningEffort }
       : null);
+    // A chat's unsent permission or interaction choice belongs to that chat:
+    // it comes back with the chat and never with a new chat's entry key.
+    if (draftPersona.startsWith('session:')) {
+      if (result.snapshot.permissionMode && isSupportedOperatorMode(result.snapshot.permissionMode)) setOperatorMode(result.snapshot.permissionMode);
+      if (result.snapshot.interactionMode) setInteractionMode(result.snapshot.interactionMode);
+    }
     const hydratedMethods = isRunning && activeSession && result.snapshot.methods.length === 0
       ? selectedMethodsSnapshot.current
       : result.snapshot.methods;
@@ -555,7 +539,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         draft,
         attachments,
         methods: selectedMethods,
-        ...(modelChoice ? { model: modelChoice.model, reasoningEffort: modelChoice.reasoningEffort } : {})
+        ...(modelChoice ? { model: modelChoice.model, reasoningEffort: modelChoice.reasoningEffort } : {}),
+        ...(draftPersona.startsWith('session:') && isSupportedOperatorMode(operatorMode) ? { permissionMode: operatorMode, interactionMode } : {})
       }
     );
 
@@ -566,7 +551,24 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if (result.warning) {
       setDraftStorageWarning((existing) => existing ?? result.warning);
     }
-  }, [draftStorageKey, loadedDraftKey, draft, attachments, selectedMethods, modelChoice, draftStorageWritable]);
+  }, [draftStorageKey, loadedDraftKey, draft, attachments, selectedMethods, modelChoice, draftStorageWritable, draftPersona, operatorMode, interactionMode]);
+
+  // Plan execution records follow the session. A record left "running" by a
+  // closed window is settled from the Runtime's own turn state and log below
+  // (recoverActiveTurn); it is never assumed complete.
+  useEffect(() => {
+    const sessionId = activeSession?.sessionId;
+    setPreparedExecution(null);
+    if (!sessionId || typeof window === 'undefined') { setPlanExecutions([]); return; }
+    setPlanExecutions(readPlanExecutionRecords(window.localStorage, sessionId));
+  }, [activeSession?.sessionId]);
+  const planExecutionsLoadedFor = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    const sessionId = activeSession?.sessionId;
+    if (!sessionId || typeof window === 'undefined') { planExecutionsLoadedFor.current = undefined; return; }
+    if (planExecutionsLoadedFor.current !== sessionId) { planExecutionsLoadedFor.current = sessionId; return; }
+    writePlanExecutionRecords(window.localStorage, sessionId, planExecutions);
+  }, [planExecutions, activeSession?.sessionId]);
 
   useEffect(() => {
     if (!activeSession) {
@@ -634,11 +636,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     field.style.height = `${Math.min(field.scrollHeight, 132)}px`;
   }, [draft]);
 
-  useEffect(() => {
-    if (newChatSeen.current === newChatRequest) return;
-    newChatSeen.current = newChatRequest;
-    if (isRunning || folderSelectionPending) return;
-    if ((draft.trim() || attachments.length || selectedMethods.length) && !window.confirm('Start a new chat and discard the unsent draft, attachments, and methods?')) return;
+  // Closes the open chat in this panel (New chat). This clears only the
+  // current local view; no runtime record is deleted.
+  const resetConversationRef = useRef<() => void>(() => {});
+  resetConversationRef.current = () => {
     bindingGeneration.current++;
     turnObservation.current?.abort();
     activeSessionIdRef.current = undefined;
@@ -648,9 +649,17 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     setActiveSession(null); setConversationBinding(null); setDraft(''); setAttachments([]); onSelectedMethodsChange([]); setMessages([]);
     setOperatorMode(DEFAULT_OPERATOR_MODE);
     setRuntimeError(null); setRuntimeStatus(null); setFolderSyncError(null);
-    // This clears only the current local view; no runtime record is deleted.
     clearEvents();
-  }, [newChatRequest, isRunning, folderSelectionPending, draft, attachments, selectedMethods, clearEvents, onSelectedMethodsChange, clearNativePlanProjection]);
+  };
+
+  useEffect(() => {
+    if (newChatSeen.current === newChatRequest) return;
+    newChatSeen.current = newChatRequest;
+    if (isRunning || folderSelectionPending) { onNewChatSettled?.(false); return; }
+    if ((draft.trim() || attachments.length || selectedMethods.length) && !window.confirm('Start a new chat and discard the unsent draft, attachments, and methods?')) { onNewChatSettled?.(false); return; }
+    resetConversationRef.current();
+    onNewChatSettled?.(true);
+  }, [newChatRequest, isRunning, folderSelectionPending, draft, attachments, selectedMethods, onNewChatSettled]);
 
   useEffect(() => {
     if (!resumeConversation || resumeConversation.requestId === resumeRequestSeen.current || isRunning) return;
@@ -668,7 +677,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         ? recordedRoleForTurn(item.turnId, projection.instructionHistory, projection.instructionBases)
         : undefined;
       return [{ id: `replay-${item.key}`, role: item.role === 'user' ? 'operator' as const : 'assistant' as const,
-        ...(item.role === 'assistant' ? { ...(recordedRole ? { persona: recordedRole } : {}), projectRoot: continuation.projectRoot } : {}), text: item.text ?? '', ...(item.role === 'user' && item.attachments?.length ? { attachments: item.attachments.map(buildUiAttachment) } : {}) }];
+        ...(item.role === 'assistant' ? { ...(recordedRole ? { persona: recordedRole } : {}), projectRoot: continuation.projectRoot,
+          ...(item.turnId ? { turnId: item.turnId, recordedActivity: deriveTurnActivityFromTranscript(projection.transcript.items, item.turnId) } : {}) } : {}),
+        text: item.text ?? '', ...(item.role === 'user' && item.attachments?.length ? { attachments: item.attachments.map(buildUiAttachment) } : {}) }];
     });
     const latestBasis = projection.instructionBases.at(-1);
     let lastOperatorIndex = -1;
@@ -843,7 +854,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     return nextSession;
   }
 
-  type TurnOutcome = { assistantText: string; error: HarnessApiClientError | Error | null; terminal: boolean };
+  type TurnObservationOutcome = { assistantText: string; error: HarnessApiClientError | Error | null; terminal: boolean; outcome: TurnOutcome | null; turnId?: string };
 
   /**
    * Observe one Runtime-owned turn to its end. `start` opens the first stream
@@ -861,7 +872,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     resetTextOnStart?: boolean;
     /** Event ids already in the bridged log (hydrated from replay); never appended again. */
     seenEventIds?: Iterable<string>;
-  }): Promise<TurnOutcome> {
+  }): Promise<TurnObservationOutcome> {
     const { session, assistantId, signal } = input;
     const seen = new Set<string>(input.seenEventIds ?? []);
     // Text deltas are assembled from the observed stream even when the log
@@ -872,6 +883,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     let assistantText = '';
     let textSource: 'chat:delta' | 'message.delta' | null = null;
     let terminal = false;
+    let turnIdSeen = false;
+    let turnId: string | undefined;
+    let interrupted = false;
+    // Set only when the turn ended without a terminal fact for it: the stream
+    // dropped, the Runtime no longer holds the turn, and the log for this turn
+    // shows no end. Never inferred from silence alone.
+    let outcomeUnknown = false;
     let error: HarnessApiClientError | Error | null = null;
 
     const setAssistant = (patch: Partial<ChatMessage>): void => {
@@ -896,6 +914,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         const duplicate = seen.has(harnessEvent.eventId);
         seen.add(harnessEvent.eventId);
         if (!duplicate) appendEvent(harnessEvent);
+        if (!turnIdSeen && typeof harnessEvent.turnId === 'string' && harnessEvent.turnId) {
+          turnIdSeen = true;
+          turnId = harnessEvent.turnId;
+          setAssistant({ turnId: harnessEvent.turnId });
+        }
         if (harnessEvent.type === 'message.delta') {
           if (!textSeen.has(harnessEvent.eventId)) {
             textSeen.add(harnessEvent.eventId);
@@ -906,6 +929,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         if (harnessEvent.type === 'turn.interrupted') {
           // Rendered the moment it arrives, not after the stream closes (R17-F1).
           terminal = true;
+          interrupted = true;
           setAssistant({ interrupted: true, ...(assistantText ? {} : { text: 'Turn interrupted by operator.' }) });
           if (!assistantText) assistantText = 'Turn interrupted by operator.';
           return;
@@ -956,14 +980,15 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         terminal = true;
         const payload = streamEvent.data as Record<string, unknown>;
         const exitCode = typeof payload.exitCode === 'number' ? payload.exitCode : 0;
-        const interrupted = payload.interrupted === true;
-        if (interrupted) {
+        const exitInterrupted = payload.interrupted === true;
+        if (exitInterrupted) {
+          interrupted = true;
           setAssistant({ interrupted: true, ...(assistantText ? {} : { text: 'Turn interrupted by operator.' }) });
           if (!assistantText) assistantText = 'Turn interrupted by operator.';
         }
         // Runtime normalizes a confirmed operator interruption to 130 plus
         // interrupted:true. A bare 130 or any other nonzero exit still fails.
-        if (exitCode !== 0 && !(exitCode === 130 && interrupted) && !error) {
+        if (exitCode !== 0 && !(exitCode === 130 && exitInterrupted) && !error) {
           const errorMessage = typeof payload.error === 'string' && payload.error.trim().length > 0 ? payload.error : `Turn failed with exit code ${exitCode}.`;
           const errorType = typeof payload.errorType === 'string' && payload.errorType.trim().length > 0 ? payload.errorType : null;
           const errorStatus = typeof payload.status === 'number' ? payload.status : 500;
@@ -974,6 +999,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
     let attempt = 0;
     let open = input.start;
+    // Set once the connection to the Runtime was actually lost (a dropped
+    // stream, or a Runtime that could not be asked). Only then can a missing
+    // record leave the outcome unknown; a clean close settles as before.
+    let lostConnection = false;
     while (!signal.aborted) {
       let dropped = false;
       const framesBefore = receivedFrames;
@@ -983,7 +1012,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         if (signal.aborted) break;
         if (attempt === 0 && open === input.start && receivedFrames === framesBefore) {
           // The first stream never opened: report it as today.
-          return { assistantText, error: caught instanceof Error ? caught : new Error(String(caught)), terminal: false };
+          return { assistantText, error: caught instanceof Error ? caught : new Error(String(caught)), terminal: false, outcome: null };
         }
         if (isTurnNotActive(caught)) {
           // Nothing left to attach to: the turn ended while we were away, or
@@ -992,6 +1021,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           break;
         }
         dropped = true;
+        lostConnection = true;
       }
       if (terminal || signal.aborted) break;
       // The stream closed without a terminal frame. Ask the Runtime whether
@@ -1008,8 +1038,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         break;
       }
       if (!state || state.active) {
+        if (!state) lostConnection = true;
         // The connection dropped while the turn continues. Never show Idle.
         setRuntimeStatus(attempt === 0 ? 'Reconnecting to the running turn...' : `Reconnecting to the running turn (attempt ${attempt + 1})...`);
+        setReconnectAttempt(attempt + 1);
         await wait(RECONNECT_DELAYS_MS[Math.min(attempt, RECONNECT_DELAYS_MS.length - 1)], signal);
         attempt += 1;
         if (signal.aborted) break;
@@ -1019,33 +1051,56 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       const after = lastSeq;
       open = (handler) => attachHarnessTurn(session.sessionId, after, handler, signal);
     }
+    if (terminal) setReconnectAttempt(null);
 
     async function settleFromReplay(): Promise<void> {
       terminal = true;
+      setReconnectAttempt(null);
       try {
         const replay = await replaySessionEvents(session.sessionId);
         const events = replay.events.filter(event => !seen.has(event.eventId));
-        for (const event of events) { seen.add(event.eventId); appendEvent(event); }
-        const last = [...replay.events].reverse().find(event => TERMINAL_HARNESS_EVENTS.has(event.type));
-        if (last?.type === 'turn.interrupted') {
+        // Text the Runtime recorded after the connection dropped belongs to
+        // this reply: append what was missed rather than showing a torn message.
+        for (const event of events) {
+          seen.add(event.eventId); appendEvent(event);
+          if (assistantText && event.type === 'message.delta' && (!turnId || event.turnId === turnId) && !textSeen.has(event.eventId)) {
+            textSeen.add(event.eventId);
+            appendText(readTextField(event.data) ?? '', 'message.delta');
+          }
+        }
+        // Settle from this turn's own record. With the turn id known, only its
+        // events count; an older turn's ending is never read as this one's.
+        const scoped = turnId ? replay.events.filter(event => event.turnId === turnId) : replay.events;
+        const last = [...scoped].reverse().find(event => TERMINAL_HARNESS_EVENTS.has(event.type));
+        if (!last) {
+          // No recorded ending. After a lost connection that leaves the
+          // outcome unknown; a failure already reported on the stream, or a
+          // clean close the Runtime settled itself, is a known ending.
+          if (!error && lostConnection) outcomeUnknown = true;
+        } else if (last.type === 'turn.interrupted') {
+          interrupted = true;
           setAssistant({ interrupted: true, ...(assistantText ? {} : { text: 'Turn interrupted by operator.' }) });
           if (!assistantText) assistantText = 'Turn interrupted by operator.';
-        } else if (last?.type === 'turn.failed' && !error) {
+        } else if (last.type === 'turn.failed' && !error) {
           const payload = last.data ?? {};
           error = new HarnessApiClientError(500, typeof payload.code === 'string' ? payload.code : 'SDK_FAILURE', typeof payload.message === 'string' ? payload.message : 'Turn failed.', payload.details);
         }
         if (!assistantText) {
-          const turnId = last?.turnId;
-          const text = replay.events.filter(event => event.type === 'message.delta' && (!turnId || event.turnId === turnId)).map(event => readTextField(event.data) ?? '').join('');
+          const textTurnId = turnId ?? last?.turnId;
+          const text = replay.events.filter(event => event.type === 'message.delta' && (!textTurnId || event.turnId === textTurnId)).map(event => readTextField(event.data) ?? '').join('');
           if (text) { assistantText = text; setAssistant({ text }); }
         }
       } catch {
-        // The log could not be read right now. The turn is over either way;
-        // what was streamed stays on screen and reopening the chat replays it.
+        // The log could not be read right now. After a lost connection the
+        // turn's ending is unknown, not assumed; what was streamed stays on
+        // screen and reopening replays it.
+        if (!error && lostConnection) outcomeUnknown = true;
       }
     }
 
-    return { assistantText, error, terminal };
+    const outcome: TurnOutcome | null = !terminal ? null : outcomeUnknown ? 'unknown' : interrupted ? 'interrupted' : error ? 'failed' : 'completed';
+    if (outcome) setAssistant({ outcome });
+    return { assistantText, error, terminal, outcome, ...(turnId ? { turnId } : {}) };
   }
 
   /**
@@ -1066,13 +1121,16 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     setIsRunning(true);
     setStreaming(true);
     setRuntimeError(null);
+    setStopRequested(false);
+    setTurnStage('streaming');
+    setReconnectAttempt(1);
     setRuntimeStatus('Reconnecting to the running turn...');
     setMessages((existing) => {
       const last = existing.at(-1);
       // The resumed transcript already ends with this turn's user message; the
       // assistant reply streams into a fresh bubble.
       const withoutPartial = last?.role === 'assistant' && !last.text && !last.interrupted && last.id.startsWith('replay-') ? existing.slice(0, -1) : existing;
-      return [...withoutPartial, { id: assistantId, role: 'assistant', persona: session.persona, projectRoot: session.projectRoot, text: '' }];
+      return [...withoutPartial, { id: assistantId, role: 'assistant', persona: session.persona, projectRoot: session.projectRoot, text: '', ...(state.turnId ? { turnId: state.turnId } : {}) }];
     });
     try {
       const hydratedIds: string[] = [];
@@ -1087,12 +1145,18 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       }
       if (observation.signal.aborted) return;
       setRuntimeStatus('Running turn...');
+      setReconnectAttempt(null);
       const outcome = await observeTurn({
         session, assistantId, signal: observation.signal, seenEventIds: hydratedIds,
         start: (onEvent) => attachHarnessTurn(session.sessionId, 0, onEvent, observation.signal)
       });
       if (observation.signal.aborted) return;
       if (outcome.error) setRuntimeError(toHarnessUiError(outcome.error, { sessionModel: session.model, origin: 'session' }));
+      if (outcome.outcome === 'unknown') setRuntimeError({ title: 'Turn outcome unknown', message: 'The connection to the Runtime was lost and its record does not show how this turn ended.', nextStep: 'Reopen the chat to check the recorded result. Nothing was re-sent.' });
+      // Only an observed ending settles the record. When the attach never
+      // opened the Runtime still owns the turn; the record stays running and
+      // the no-live-turn effect settles it from the log later.
+      if (outcome.terminal) settleRecoveredExecution(state.turnId, outcome.outcome ?? 'unknown');
       if (!outcome.assistantText.trim() && !outcome.error) {
         setMessages((existing) => existing.map((item) => item.id === assistantId ? { ...item, text: 'No assistant text was returned for this turn.' } : item));
       }
@@ -1109,9 +1173,56 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         setRuntimeStatus(null);
         setIsRunning(false);
         setStreaming(false);
+        setTurnStage(null);
+        setReconnectAttempt(null);
+        setStopRequested(false);
       }
     }
   }
+
+  /**
+   * A plan execution left "running" by an earlier window is settled from the
+   * Runtime: the live turn we just observed, or the log for its turn id. A
+   * record whose turn the log cannot settle ends as unknown, never completed.
+   */
+  function settleRecoveredExecution(turnId: string | undefined, outcome: TurnOutcome): void {
+    setPlanExecutions(current => {
+      const running = runningPlanExecution(current);
+      if (!running) return current;
+      if (running.turnId && turnId && running.turnId !== turnId) return current;
+      return settlePlanExecution(current, running, { status: outcome, endedAt: new Date().toISOString(), ...(turnId ? { turnId } : {}) });
+    });
+  }
+
+  // Opening a chat with no live turn: any execution still marked running is
+  // settled from the log (by its turn id) or reported as unknown.
+  useEffect(() => {
+    const sessionId = activeSession?.sessionId;
+    if (!sessionId || isRunning) return;
+    const running = runningPlanExecution(planExecutions);
+    if (!running) return;
+    let cancelled = false;
+    void (async () => {
+      let outcome: TurnOutcome = 'unknown';
+      try {
+        const state = await getHarnessTurnState(sessionId);
+        if (state.active) return;
+        if (running.turnId) {
+          const replay = await replaySessionEvents(sessionId);
+          const last = [...replay.events].reverse().find(event => event.turnId === running.turnId && TERMINAL_HARNESS_EVENTS.has(event.type));
+          if (last?.type === 'turn.completed') outcome = 'completed';
+          else if (last?.type === 'turn.interrupted' || last?.type === 'turn.cancelled') outcome = 'interrupted';
+          else if (last?.type === 'turn.failed') outcome = 'failed';
+        }
+      } catch {
+        // The Runtime could not be asked: leave the record running for now.
+        return;
+      }
+      if (cancelled || activeSessionIdRef.current !== sessionId) return;
+      setPlanExecutions(current => settlePlanExecution(current, running, { status: outcome, endedAt: new Date().toISOString() }));
+    })();
+    return () => { cancelled = true; };
+  }, [activeSession?.sessionId, isRunning, planExecutions]);
 
   async function interruptTurn(): Promise<void> {
     if (!activeSession || !isRunning) {
@@ -1119,10 +1230,12 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
 
     try {
+      setStopRequested(true);
       setRuntimeStatus('Interrupt requested...');
       setRuntimeError(null);
       await interruptHarnessSession({ sessionId: activeSession.sessionId });
     } catch (error) {
+      setStopRequested(false);
       setRuntimeError(toHarnessUiError(error));
       setRuntimeStatus(null);
     }
@@ -1146,9 +1259,23 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const submittedWithoutSession = activeSession === null;
     const submittedModelChoice = modelChoice;
     let bootedSession: ActiveSession | null = activeSession;
+    // Sending the prepared "Execute plan" request is that revision's execution
+    // attempt; an edited message without the marker is an ordinary turn.
+    const executedRevision = detectPlanExecution(text, preparedExecution);
+    let executionAttempt: { revision: number; attempt: number } | null = null;
+    if (executedRevision !== null) {
+      const startedAt = new Date().toISOString();
+      const next = beginPlanExecution(planExecutions, executedRevision, startedAt);
+      executionAttempt = { revision: executedRevision, attempt: next.at(-1)!.attempt };
+      setPlanExecutions(next);
+    }
+    setPreparedExecution(null);
 
     setRuntimeError(null);
     setRuntimeStatus('Preparing turn...');
+    setTurnStage('preparing');
+    setReconnectAttempt(null);
+    setStopRequested(false);
     setDraft('');
     setAttachments([]);
     setIsRunning(true);
@@ -1219,6 +1346,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       let nativePlanProduced = false;
 
       setRuntimeStatus('Running turn...');
+      setTurnStage('streaming');
 
       const observation = new AbortController();
       turnObservation.current?.abort();
@@ -1245,7 +1373,19 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       if (turnObservation.current === observation) turnObservation.current = null;
       if (observation.signal.aborted) return;
       const assistantText = outcome.assistantText;
-      if (outcome.error) {
+      if (executionAttempt) {
+        const target = executionAttempt;
+        setPlanExecutions(current => settlePlanExecution(
+          outcome.turnId ? attachPlanExecutionTurn(current, target, outcome.turnId) : current,
+          target, { status: outcome.outcome ?? (outcome.error ? 'failed' : 'unknown'), endedAt: new Date().toISOString() }));
+      }
+      const outcomeUnknown = outcome.outcome === 'unknown';
+      if (outcomeUnknown) {
+        // The request reached the Runtime and may have run to completion; the
+        // message stays in the conversation (not back in the composer) so it
+        // cannot be re-sent by accident. Session bookkeeping below still runs.
+        setRuntimeError({ title: 'Turn outcome unknown', message: 'The connection to the Runtime was lost and its record does not show how this turn ended.', nextStep: 'Reopen the chat to check the recorded result. Nothing was re-sent.' });
+      } else if (outcome.error) {
         throw outcome.error;
       }
 
@@ -1261,7 +1401,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             item.id === assistantId
               ? {
                   ...item,
-                  text: 'No assistant text was returned for this turn.'
+                  text: outcomeUnknown ? 'No reply was received before the connection was lost.' : 'No assistant text was returned for this turn.'
                 }
               : item
           )
@@ -1319,6 +1459,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       const uiError = toHarnessUiError(error, { sessionModel: bootedSession?.model, origin, bootBeforePrompt: Boolean(pendingBootstrap.current) && !bootedSession });
       setRuntimeError(uiError);
       setRuntimeStatus(null);
+      if (executionAttempt) {
+        const target = executionAttempt;
+        setPlanExecutions(current => runningPlanExecution(current)?.revision === target.revision ? settlePlanExecution(current, target, { status: 'failed', endedAt: new Date().toISOString() }) : current);
+      }
       if (requestGeneration === bindingGeneration.current) {
         setDraft(preservedDraft);
         setAttachments(preservedAttachments);
@@ -1336,8 +1480,29 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     } finally {
       setIsRunning(false);
       setStreaming(false);
+      setTurnStage(null);
+      setReconnectAttempt(null);
+      setStopRequested(false);
     }
   }
+
+  // What the agent is doing, for the status line, the activity strip and the
+  // host. Waiting means the Runtime holds a request (approval or user input)
+  // that the turn cannot proceed without; reconnecting means the stream
+  // dropped while the Runtime still owns the turn.
+  const { events: phaseEvents } = useHarnessEvents();
+  const pendingRequestCount = useMemo(() => isRunning
+    ? selectPendingServerRequests(phaseEvents, true).length + selectPendingPermissionRequests(phaseEvents, true).length
+    : 0, [phaseEvents, isRunning]);
+  const turnPhase: TurnPhase = !isRunning ? 'idle'
+    : stopRequested ? 'stopping'
+    : reconnectAttempt !== null ? 'reconnecting'
+    : pendingRequestCount > 0 ? 'waiting'
+    : turnStage === 'preparing' ? 'preparing'
+    : 'working';
+  useEffect(() => { onTurnPhaseChange?.(turnPhase); }, [turnPhase, onTurnPhaseChange]);
+  useEffect(() => () => { onTurnPhaseChange?.('idle'); }, [onTurnPhaseChange]);
+  const phaseStatusLine = turnPhaseStatusLine(turnPhase, { detail: turnPhase === 'preparing' || turnPhase === 'working' ? runtimeStatus : null, reconnectAttempt: reconnectAttempt ?? undefined, pendingRequests: pendingRequestCount });
 
   function beginPlanRevision(revision: number | undefined): void {
     setInteractionMode('native-plan');
@@ -1351,9 +1516,12 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   function beginPlanFollowUp(revision: NativePlanRevision, intent: 'execute' | 'workflow'): void {
     setInteractionMode('chat');
     const recordedPlan = nativePlanText(revision);
+    // Execute prepares the request in the composer; the reader reviews and
+    // sends it. Sending it is recorded as this revision's execution attempt.
+    setPreparedExecution(intent === 'execute' ? { revision: revision.revision } : null);
     setDraft(intent === 'execute'
-      ? `Execute the accepted native Plan Mode revision ${revision.revision} below. Preserve its recorded constraints.\n\n--- plan revision ${revision.revision} ---\n${recordedPlan}`
-      : `Save native Plan Mode revision ${revision.revision} below as a reusable project workflow at .chirality/workflows/<suitable-name>/WORKFLOW.md. Limit this turn to the bounded workflow save; do not execute the plan. Preserve its constraints and add valid purpose and applicability metadata.\n\n--- plan revision ${revision.revision} ---\n${recordedPlan}`);
+      ? `Execute the accepted native Plan Mode revision ${revision.revision} below. Preserve its recorded constraints.\n\n${planExecutionMarker(revision.revision)}\n${recordedPlan}`
+      : `Save native Plan Mode revision ${revision.revision} below as a reusable project workflow at .chirality/workflows/<suitable-name>/WORKFLOW.md. Limit this turn to the bounded workflow save; do not execute the plan. Preserve its constraints and add valid purpose and applicability metadata.\n\n${planExecutionMarker(revision.revision)}\n${recordedPlan}`);
     onDraftCaptured?.();
     window.requestAnimationFrame(() => composerRef.current?.focus());
   }
@@ -1417,6 +1585,90 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   // request as a generic user-input card; the plan sidebar presents it once.
   const clarificationRequestIds = useMemo(() => new Set(planClarifications.map(item => String(item.requestId))), [planClarifications]);
 
+  // The Plan tab renders the plan; this panel owns its state and the composer
+  // the actions write into. Handlers read the latest closure through a ref so
+  // the model only changes when the plan does.
+  const planHandlers = useRef({ beginPlanRevision, beginPlanFollowUp, savePlanRevision, answerPlanClarification, refreshNativePlan });
+  planHandlers.current = { beginPlanRevision, beginPlanFollowUp, savePlanRevision, answerPlanClarification, refreshNativePlan };
+  const activeSessionForPlan = activeSession?.sessionId;
+  const stablePlanHandlers = useMemo(() => ({
+    onRefresh: () => { const id = activeSessionIdRef.current; if (id) void planHandlers.current.refreshNativePlan(id).catch(() => {}); },
+    onRevise: (revision: number | undefined) => planHandlers.current.beginPlanRevision(revision),
+    onExecute: (revision: NativePlanRevision) => planHandlers.current.beginPlanFollowUp(revision, 'execute'),
+    onSaveAsWorkflow: (revision: NativePlanRevision) => planHandlers.current.beginPlanFollowUp(revision, 'workflow'),
+    onSave: (revision: NativePlanRevision) => { void planHandlers.current.savePlanRevision(revision); },
+    onReplyClarification: (clarification: NativePlanClarification, answers: Record<string, { answers: string[] }>) => { void planHandlers.current.answerPlanClarification(clarification, answers); }
+  }), []);
+  const planPanelModel = useMemo<NativePlanPanelModel | null>(() => {
+    if (presentation !== 'woven' || (interactionMode !== 'native-plan' && planRevisions.length === 0 && planClarifications.length === 0)) return null;
+    return {
+      sessionId: activeSessionForPlan, revisions: planRevisions, clarifications: planClarifications, active: interactionMode === 'native-plan', refreshing: planRefreshing,
+      projectRoot: activeSession?.projectRoot, fileCatalog, clarificationPendingId, clarificationError: planClarificationError, exportStatus: planExportStatus,
+      executions: planExecutions, preparedRevision: preparedExecution?.revision,
+      actionsDisabled: isRunning || !nativePlanAvailable(planCapability), onOpenFile, ...stablePlanHandlers
+    };
+  }, [presentation, interactionMode, planRevisions, planClarifications, planRefreshing, activeSessionForPlan, activeSession?.projectRoot, fileCatalog, clarificationPendingId, planClarificationError, planExportStatus, planExecutions, preparedExecution, isRunning, planCapability, onOpenFile, stablePlanHandlers]);
+  useEffect(() => { onPlanPanelChange?.(planPanelModel); }, [planPanelModel, onPlanPanelChange]);
+  useEffect(() => () => { onPlanPanelChange?.(null); }, [onPlanPanelChange]);
+
+  // Live activity for the turn under observation: the buffer holds this turn's
+  // events (it is cleared at send) or, after a reconnect, the whole session's,
+  // scoped by turn id once the Runtime has named it.
+  const liveEvents = phaseEvents;
+  const liveActivity = useMemo(() => {
+    const live = messages.find(message => message.role === 'assistant' && !message.recordedActivity && (isRunning ? true : Boolean(message.turnId)));
+    const streaming = [...messages].reverse().find(message => message.role === 'assistant' && !message.recordedActivity);
+    const target = isRunning ? streaming : live;
+    if (!target || liveEvents.length === 0) return new Map<string, TurnActivity>();
+    const result = new Map<string, TurnActivity>();
+    for (const message of messages) {
+      if (message.role !== 'assistant' || message.recordedActivity) continue;
+      if (message.turnId) result.set(message.id, deriveTurnActivityFromEvents(liveEvents, message.turnId));
+      else if (message === target && isRunning) result.set(message.id, deriveTurnActivityFromEvents(liveEvents));
+    }
+    return result;
+  }, [messages, liveEvents, isRunning]);
+
+  // Follow new content while the reader is at (or within a short band of) the
+  // bottom; a deliberate scroll up preserves their place and offers a way back.
+  const transcriptRef = useRef<HTMLDivElement | null>(null);
+  const [following, setFollowing] = useState(true);
+  const suppressFollowUntil = useRef(0);
+  const scrollToLatest = useCallback((behavior: ScrollBehavior = 'auto') => {
+    const node = transcriptRef.current;
+    if (!node) return;
+    node.scrollTo?.({ top: node.scrollHeight, behavior });
+    if (!node.scrollTo) node.scrollTop = node.scrollHeight;
+  }, []);
+  const onTranscriptScroll = useCallback(() => {
+    const node = transcriptRef.current;
+    if (!node) return;
+    const gap = node.scrollHeight - node.scrollTop - node.clientHeight;
+    setFollowing(gap <= FOLLOW_REARM_THRESHOLD_PX);
+  }, []);
+  const messageCount = messages.length;
+  const lastMessageId = messages.at(-1)?.id;
+  useEffect(() => {
+    // A new message (send, reply, resume) always lands in view; the reader can
+    // scroll up afterwards to keep reading history.
+    setFollowing(true);
+    if (typeof window !== 'undefined' && typeof window.requestAnimationFrame === 'function') window.requestAnimationFrame(() => scrollToLatest());
+    else scrollToLatest();
+  }, [messageCount, lastMessageId, activeSession?.sessionId, scrollToLatest]);
+  useEffect(() => {
+    const node = transcriptRef.current;
+    if (!node || typeof ResizeObserver === 'undefined') return;
+    const content = node.firstElementChild;
+    if (!content) return;
+    const observer = new ResizeObserver(() => {
+      if (!following || !isRunning || Date.now() < suppressFollowUntil.current) return;
+      scrollToLatest();
+    });
+    observer.observe(content);
+    return () => observer.disconnect();
+  }, [following, isRunning, scrollToLatest]);
+  const onTranscriptToggle = useCallback(() => { suppressFollowUntil.current = Date.now() + 400; }, []);
+
   // Desktop builds pick attachments through the native dialog (main process
   // canonicalises and scopes the paths); web builds keep the in-app picker.
   const pickAttachments = async (): Promise<void> => {
@@ -1443,27 +1695,30 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         </p>
       </header> : null}
 
-      <div className={presentation === 'woven' && (interactionMode === 'native-plan' || planRevisions.length > 0) ? 'chat-conversation-stage chat-conversation-stage--planning' : 'chat-conversation-stage'}>
-      <div className="panel-body chat-transcript">
+      <div className="chat-conversation-stage">
+      <div ref={transcriptRef} className={following ? 'panel-body chat-transcript' : 'panel-body chat-transcript chat-transcript--detached'} onScroll={onTranscriptScroll} onToggle={onTranscriptToggle}>
+      <div className="chat-transcript-content">
         {!projectRoot ? (
           <p className="panel-empty">{presentation === 'woven' ? 'Choose a folder below to start a chat.' : 'Select a Working Root before starting a harness turn.'}</p>
         ) : null}
-        {messages.map((message) => (
-          <article key={message.id} className={`chat-bubble chat-bubble--${message.role}`}>
-            {presentation === 'woven' ? <p className="chat-speaker" title={message.role === 'assistant' ? message.persona : undefined}>{message.role === 'operator' ? 'You' : (message.persona ?? 'Assistant').toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}</p> : null}
-            {message.text ? (
-              message.role === 'assistant' ? (
-                <ChatMarkdown source={message.text} projectRoot={message.projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} />
-              ) : (
-                <p>{message.text}</p>
-              )
-            ) : null}
+        {messages.map((message, index) => {
+          const isStreaming = isRunning && message.role === 'assistant' && index === messages.length - 1;
+          const activity = message.recordedActivity ?? liveActivity.get(message.id);
+          return <ConversationMessage key={message.id} id={message.id} role={message.role} presentation={presentation}
+            speaker={message.role === 'operator' ? 'You' : (message.persona ?? 'Assistant').toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}
+            persona={message.persona} streaming={isStreaming}
+            body={message.text ? (message.role === 'assistant'
+              ? <ChatMarkdown source={message.text} projectRoot={message.projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} />
+              : message.text) : null}
+            activity={activity && message.role === 'assistant' ? <TurnActivityDisclosure activity={activity} running={isStreaming} /> : null}>
             {message.attachments && message.attachments.length > 0 ? (
               <AttachmentChips items={message.attachments} />
             ) : null}
-            {message.interrupted ? <p className="chat-turn-status" role="status">Interrupted</p> : null}
+            {message.role === 'assistant' && message.outcome && (message.outcome !== 'completed' || index === messages.length - 1)
+              ? <p className={`chat-turn-status chat-turn-status--${message.outcome}`} role="status" data-turn-outcome={message.outcome} title={turnOutcomeDescription(message.outcome)}>{turnOutcomeLabel(message.outcome)}</p>
+              : message.interrupted ? <p className="chat-turn-status chat-turn-status--interrupted" role="status" data-turn-outcome="interrupted" title={turnOutcomeDescription('interrupted')}>{turnOutcomeLabel('interrupted')}</p> : null}
             {message.methods?.length ? <ul className="method-chip-list" aria-label="Selected methods">{message.methods.map(method => <li key={`${method.sourceRootId}:${method.kind}:${method.name}`} className="method-chip"><span>{method.name}</span><small>{method.source}</small></li>)}</ul> : null}
-            {message.instructionBasis || message.instructionHistory?.length ? <details className="chat-instruction-basis"><summary>Turn details</summary>
+            {message.instructionBasis || message.instructionHistory?.length ? <details className="chat-instruction-basis"><summary>Instruction basis</summary>
             {message.instructionBasis ? <>
 
               <p><code>{message.instructionBasis.basisId}</code> · {message.instructionBasis.roleId}</p>
@@ -1473,26 +1728,23 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
               {message.instructionHistory.map(record => <li key={record.historyId}>{instructionActivityLabel(record)}</li>)}
             </ul> : null}
             </details> : null}
-          </article>
-        ))}
+          </ConversationMessage>;
+        })}
         {presentation !== 'woven' ? planRevisions.map(revision => <article key={`native-plan-${revision.revision}`} className="chat-bubble chat-bubble--assistant native-plan-revision">
           <p className="chat-speaker">Native plan · revision {revision.revision}</p>
           <ChatMarkdown source={nativePlanText(revision)} projectRoot={activeSession?.projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} />
           <button type="button" className="button-muted" onClick={() => savePlanRevision(revision)}>Export plan…</button>
         </article>) : null}
-        {planExportStatus ? <p role="status">{planExportStatus}</p> : null}
+        {presentation !== 'woven' && planExportStatus ? <p role="status">{planExportStatus}</p> : null}
+        {presentation === 'woven' && planRevisions.length ? <ul className="chat-plan-links" aria-label="Plan revisions">
+          {planRevisions.map(revision => <li key={`plan-link-${revision.revision}`}><button type="button" className="chat-plan-link" title="Open this plan revision in the Plan tab" onClick={() => onOpenPlan?.(revision.revision)}>Plan · Revision {revision.revision}</button></li>)}
+        </ul> : null}
+        {presentation === 'woven' && !onPlanPanelChange && planPanelModel ? <NativePlanPanel model={planPanelModel} /> : null}
         <PermissionRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} />
         <ServerRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} suppressedRequestIds={clarificationRequestIds} />
       </div>
-      {presentation === 'woven' && (interactionMode === 'native-plan' || planRevisions.length > 0) ? <NativePlanSidebar
-        revisions={planRevisions} clarifications={planClarifications} active={interactionMode === 'native-plan'} refreshing={planRefreshing}
-        clarificationPendingId={clarificationPendingId} clarificationError={planClarificationError}
-        projectRoot={activeSession?.projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile}
-        onRefresh={() => { if (activeSession) void refreshNativePlan(activeSession.sessionId).catch(() => {}); }}
-        onRevise={beginPlanRevision} onExecute={revision => beginPlanFollowUp(revision, 'execute')}
-        onSaveAsWorkflow={revision => beginPlanFollowUp(revision, 'workflow')}
-        onReplyClarification={(clarification, answers) => { void answerPlanClarification(clarification, answers); }}
-        onSave={savePlanRevision} actionsDisabled={isRunning || !nativePlanAvailable(planCapability)} /> : null}
+      </div>
+      {!following ? <button type="button" className="chat-jump-to-latest" onClick={() => { setFollowing(true); scrollToLatest('smooth'); }}>Jump to latest ↓</button> : null}
       </div>
 
       {/* Composer dock: every notice that sits between the transcript and the
@@ -1569,7 +1821,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           )}
         </div>) : null}
 
-        {runtimeStatus ? <p className="chat-runtime-status">{runtimeStatus}</p> : null}
+        {phaseStatusLine ? <p className="chat-runtime-status" data-turn-phase={turnPhase} role="status">{phaseStatusLine}{turnPhase !== 'idle' ? <span className="chat-runtime-status-note"> {TURN_CONTINUATION_NOTE}</span> : null}</p> : runtimeStatus ? <p className="chat-runtime-status">{runtimeStatus}</p> : null}
 
         {runtimeError ? (
           <div className="chat-runtime-error">
@@ -1688,7 +1940,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Model</span><select aria-label="Model"
           value={nextTurnSelection?.model ?? recordedSelection?.model ?? ''}
           disabled={!modelCatalog || isRunning}
-          title={modelCatalog ? MODEL_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          title={modelCatalog ? MODEL_SELECTOR_HELP : modelSelectorTitle}
           onChange={event => {
             const entry = modelCatalog?.models.find(model => model.model === event.target.value);
             if (entry) setModelChoice({ model: entry.model, reasoningEffort: entry.defaultReasoningEffort });
@@ -1700,7 +1952,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Reasoning</span><select aria-label="Reasoning"
           value={nextTurnSelection?.reasoningEffort ?? recordedSelection?.reasoningEffort ?? ''}
           disabled={!modelCatalog || isRunning}
-          title={modelCatalog ? REASONING_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          title={modelCatalog ? REASONING_SELECTOR_HELP : modelSelectorTitle}
           onChange={event => {
             const entry = nextTurnSelection && modelCatalog?.models.find(model => model.model === nextTurnSelection.model);
             if (entry && entry.supportedReasoningEfforts.includes(event.target.value)) setModelChoice({ model: entry.model, reasoningEffort: event.target.value });

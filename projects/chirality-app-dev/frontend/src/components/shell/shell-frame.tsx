@@ -10,6 +10,8 @@ import { useRuntimeSettingsController } from '../settings/runtime-settings-contr
 import { useAccountConsentController } from '../settings/account-consent-settings';
 import { SettingsView } from '../settings/settings-view';
 import { AccountRow } from './account-row';
+import { AboutPanel } from './about-panel';
+import { useAppUpdate } from './app-update-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { useRuntimeConnectivitySnapshot } from './runtime-connectivity-provider';
 import { useRuntimeBindingRefresh } from './runtime-connectivity-provider';
@@ -376,6 +378,14 @@ function AccountPresentation({ folder, onOpenSettings, children }: {
   const refreshBindings = useRuntimeBindingRefresh();
   const hosted = useHostedBootstrapController(folder, refreshBindings);
   const [target, setTarget] = useState<{ group?: 'folder' | 'local-model'; sequence: number } | null>(null);
+  // About opens from the account menu or the application menu (main process
+  // signal relayed by the update provider); both land in the same panel.
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const { aboutRequests } = useAppUpdate();
+  const aboutRequestsSeen = useRef(aboutRequests);
+  useEffect(() => { if (aboutRequests !== aboutRequestsSeen.current) { aboutRequestsSeen.current = aboutRequests; setAboutOpen(true); } }, [aboutRequests]);
+  const closeAbout = useCallback(() => setAboutOpen(false), []);
+  const openAbout = useCallback(() => setAboutOpen(true), []);
   const open = useCallback((group?: 'folder' | 'local-model') => {
     setTarget(current => ({ group, sequence: (current?.sequence ?? 0) + 1 }));
     onOpenSettings?.();
@@ -390,6 +400,6 @@ function AccountPresentation({ folder, onOpenSettings, children }: {
   }, [open]);
   // The chat panel's model/reasoning selectors read this same controller's
   // snapshot through context; no second controller or status poll exists.
-  return <HostedBootstrapProvider snapshot={hosted.snapshot} loading={hosted.loading} refresh={hosted.onRefresh}>{children({ settingsControl: <AccountRow account={account} hosted={hosted} folder={folder} onOpenSettings={open} />,
-    settingsView: <SettingsView account={account} runtime={runtime} hosted={hosted} folder={folder} target={target} /> })}</HostedBootstrapProvider>;
+  return <HostedBootstrapProvider snapshot={hosted.snapshot} loading={hosted.loading} account={hosted.account} project={hosted.project} refresh={hosted.onRefresh}>{children({ settingsControl: <AccountRow account={account} hosted={hosted} folder={folder} onOpenSettings={open} onOpenAbout={openAbout} />,
+    settingsView: <SettingsView account={account} runtime={runtime} hosted={hosted} folder={folder} target={target} /> })}<AboutPanel open={aboutOpen} onClose={closeAbout} /></HostedBootstrapProvider>;
 }

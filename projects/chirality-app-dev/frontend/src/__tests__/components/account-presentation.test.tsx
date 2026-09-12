@@ -19,7 +19,7 @@ vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRunt
 const noop = () => {};
 const accountBase: AccountConsentSettingsViewProps = { snapshot: null, busy: false, error: null, onLogin: noop, onLogout: noop, onGrantConsent: noop, onRevokeConsent: noop, onSelectNetworkPosture: noop, onResolveNetworkPrompt: noop, onSelectRole: noop };
 const runtimeBase: RuntimeSettingsViewProps = { bridgeAvailable: false, residency: null, selectedModel: '', busyAction: null, error: null, onRefresh: noop, onSelectedModelChange: noop, onActivateModel: noop };
-const hostedBase: HostedBootstrapController = { projectRoot: '/folder', snapshot: { registration: 'required' }, loading: false, busyAction: null, error: null, signOutUncertain: false, authUrl: null, onSetup: noop, onStartLogin: noop, onCancelLogin: noop, onSignOut: noop, onRefresh: noop };
+const hostedBase: HostedBootstrapController = { projectRoot: '/folder', snapshot: { registration: 'required' }, account: null, project: { state: 'setup-required', message: null }, loading: false, busyAction: null, error: null, signOutUncertain: false, authUrl: null, onSetup: noop, onStartLogin: noop, onReopenLogin: noop, onCancelLogin: noop, onSignOut: noop, onRefresh: noop };
 const text = (node: { children: unknown[] }): string => node.children.map(child => typeof child === 'string' ? child : child && typeof child === 'object' && 'children' in child ? text(child as {children: unknown[]}) : '').join('');
 const trees: ReactTestRenderer[] = [];
 afterEach(() => { act(() => trees.splice(0).forEach(tree => tree.unmount())); vi.unstubAllGlobals(); });
@@ -69,11 +69,15 @@ describe('D122 account presentation', () => {
     expect(html).not.toContain('apply to the selected project');
   });
 
-  it('keeps the hosted popover to account, Settings, Appearance, and About with runtime controls only in Settings', () => {
+  it('keeps the hosted popover to account, Settings, Appearance, Check for Updates, and About with runtime controls only in Settings', () => {
     const tree = createTree(<AccountPopover account={accountBase} hosted={hostedBase} folder="/folder" onOpenSettings={noop} />);
-    expect(tree.root.findAllByType('section').map(node => node.props['aria-label']).filter(Boolean)).toEqual(['OpenAI account', 'App controls']);
+    expect(tree.root.findAllByType('section').map(node => node.props['aria-label']).filter(Boolean)).toEqual(['Account', 'App controls']);
     expect(tree.root.findAllByType('summary').map(text)).toEqual(['Appearance', 'About Chirality']);
-    expect(tree.root.findAllByType('button').map(text)).toEqual(['Use this folder', 'Settings…', 'Light', 'Dark', 'System']);
+    expect(tree.root.findAllByType('button').map(text)).toEqual(['Use this folder', 'Settings…', 'Light', 'Dark', 'System', 'Check for Updates…']);
+    // Without the desktop bridge the update check is disabled and says so; it never claims availability.
+    expect(tree.root.findAllByType('button').find(node => text(node) === 'Check for Updates…')!.props.disabled).toBe(true);
+    expect(text(tree.root)).toContain('Update checks are available in Chirality Desktop.');
+    expect(text(tree.root)).not.toContain('OpenAI');
     const body = text(tree.root);
     expect(body).not.toMatch(/Shared runtime|Set up runtime|runtime daemon|Local model|oMLX|Opt-in Preview/);
     expect(body).toMatch(/Chirality \d+\.\d+/);
@@ -208,4 +212,38 @@ it('observes an external theme write with zero mounted controls and retains it o
   values.set(WOVEN_WORKSPACE_STORAGE_KEY, JSON.stringify({ ...saved, theme: 'light' }));
   act(() => { events.dispatchEvent(Object.assign(new Event('storage'), { key: 'other-key' })); });
   expect(tree.root.findAllByProps({ 'data-theme-option': 'dark' }).every(node => node.props['aria-pressed'])).toBe(true);
+});
+
+describe('account menu lifecycle', () => {
+  it('closes the open menu when a pending sign-in completes, and keeps it open when the sign-in fails', () => {
+    const pending: HostedBootstrapController = { ...hostedBase, snapshot: { registration: 'registered', projectId: 'p', status: { schema: 'chirality-hosted-bootstrap-status/v1', projectId: 'p', ceremony: 'pending', admission: 'unavailable', canStartLogin: false } } };
+    const tree = createTree(<AccountRow account={accountBase} hosted={pending} folder="/folder" onOpenSettings={noop} />);
+    const trigger = () => tree.root.findByProps({ 'aria-label': 'Account and settings', type: 'button' });
+    act(() => trigger().props.onClick());
+    expect(tree.root.findAllByProps({ role: 'dialog' })).toHaveLength(1);
+    expect(text(tree.root.findByProps({ role: 'dialog' }))).toContain('Waiting for sign-in');
+    const failed: HostedBootstrapController = { ...pending, snapshot: { registration: 'registered', projectId: 'p', status: { schema: 'chirality-hosted-bootstrap-status/v1', projectId: 'p', ceremony: 'failed', admission: 'unavailable', canStartLogin: true } } };
+    act(() => tree.update(<AccountRow account={accountBase} hosted={failed} folder="/folder" onOpenSettings={noop} />));
+    expect(tree.root.findAllByProps({ role: 'dialog' })).toHaveLength(1);
+    expect(text(tree.root.findByProps({ role: 'dialog' }))).toContain('Sign-in failed');
+    act(() => tree.update(<AccountRow account={accountBase} hosted={pending} folder="/folder" onOpenSettings={noop} />));
+    const signedIn: HostedBootstrapController = { ...pending, snapshot: { registration: 'registered', projectId: 'p', status: { schema: 'chirality-hosted-bootstrap-status/v1', projectId: 'p', ceremony: 'signed-in', admission: 'ready', canStartLogin: false } } };
+    act(() => tree.update(<AccountRow account={accountBase} hosted={signedIn} folder="/folder" onOpenSettings={noop} />));
+    expect(tree.root.findAllByProps({ role: 'dialog' })).toHaveLength(0);
+    expect(text(trigger())).toContain('Signed in · Ready to work');
+    expect(text(trigger())).toContain('Account');
+    expect(trigger().findByType('svg').props['aria-hidden']).toBe('true');
+    expect(text(trigger())).not.toContain('OpenAI');
+  });
+
+  it('separates authentication from runtime readiness in the popover and routes About to the host', () => {
+    const establishing: HostedBootstrapController = { ...hostedBase, snapshot: { registration: 'registered', projectId: 'p', status: { schema: 'chirality-hosted-bootstrap-status/v1', projectId: 'p', ceremony: 'signed-in', admission: 'establishing', canStartLogin: false } } };
+    const onOpenAbout = vi.fn();
+    const tree = createTree(<AccountPopover account={accountBase} hosted={establishing} folder="/folder" onOpenSettings={noop} onOpenAbout={onOpenAbout} />);
+    const states = tree.root.findAllByType('dd').map(node => [node.props['data-auth-state'] ?? node.props['data-readiness-state'], text(node)]);
+    expect(states).toEqual([['signed-in', 'Signed in'], ['establishing', 'Preparing engine']]);
+    expect(tree.root.findAllByType('summary').map(text)).toEqual(['Appearance']);
+    act(() => tree.root.findAllByType('button').find(node => text(node) === 'About Chirality')!.props.onClick());
+    expect(onOpenAbout).toHaveBeenCalledTimes(1);
+  });
 });

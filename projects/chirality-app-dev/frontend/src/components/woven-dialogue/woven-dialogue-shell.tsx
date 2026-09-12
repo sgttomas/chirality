@@ -26,11 +26,14 @@ import {
 import {
   clearProjectScopedWovenWorkspaceState,
   createDefaultWovenWorkspaceState,
+  indexWovenChats,
   readWovenWorkspaceStateFromStorage,
   recordWovenSessionSurface,
   writeWovenWorkspaceStateToStorage,
   type WovenWorkspaceState
 } from '../../lib/woven-dialogue/woven-workspace-state';
+import type { TurnPhase } from '../../lib/shell/turn-phase';
+import { publishLiveTurnPhase } from '../../lib/shell/live-work-store';
 import { useHarnessStreaming, useHarnessEvents } from '../workspace/harness-events-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { ChatPanel, type ResumeConversationRequest } from '../shell/chat-panel';
@@ -41,9 +44,11 @@ import { CoordinationPanel } from './coordination-panel';
 import { RightPanel } from './right-panel';
 import { useConversationFileCatalog } from '../../lib/workspace/use-conversation-file-catalog';
 import { DialogueViewport } from './dialogue-viewport';
-import { Navigator, type WovenSurface } from './navigator';
+import { Navigator, type NavigatorFolderNotice, type WovenSurface } from './navigator';
 import { SelectedSessionReplayLens } from './selected-session-replay-lens';
 import type { QualifiedMethodReference } from '../../lib/harness/method-selection-client';
+import type { NativePlanPanelModel } from '../shell/native-plan-panel';
+import { resolveRightPanelView } from '../../lib/woven-dialogue/woven-workspace-state';
 
 type WovenDialogueShellProps = {
   defaultSurface: WovenSurface;
@@ -69,7 +74,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { projectRoot } = useWorkspace();
+  const workspace = useWorkspace();
+  const { projectRoot } = workspace;
   const streaming = useHarnessStreaming();
   const { events } = useHarnessEvents();
   const [binding, setBinding] = useState<{ root: string | null; locked: boolean }>({ root: null, locked: false });
@@ -89,7 +95,20 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [availableWidth, setAvailableWidth] = useState(1440);
   const workspaceRef = useRef<HTMLElement | null>(null);
   const [coordinationView, setCoordinationView] = useState<'session' | 'agents'>('agents');
-  const rightView = workspaceState.rightPanelView === 'workflows' || workspaceState.rightPanelView === 'agents' || workspaceState.rightPanelView === 'activity' || workspaceState.rightPanelView === 'settings' ? workspaceState.rightPanelView : 'files';
+  const rightView = resolveRightPanelView(workspaceState.rightPanelView);
+  const [planPanel, setPlanPanel] = useState<NativePlanPanelModel | null>(null);
+  const [planFocusRevision, setPlanFocusRevision] = useState<{ revision: number; sequence: number } | undefined>(undefined);
+  const [turnPhase, setTurnPhase] = useState<TurnPhase>('idle');
+  // Surfaces outside the shell (the update controls) read whether work is live here.
+  useEffect(() => { publishLiveTurnPhase(turnPhase); return () => publishLiveTurnPhase('idle'); }, [turnPhase]);
+  // Chats recorded in other folders are opened by switching to that folder
+  // first and resuming once its sessions are listed. `expectedRoot` null means
+  // "whichever folder the human locates".
+  const pendingFolderChat = useRef<{ sessionId: string; expectedRoot: string | null; awaitingNewChat?: boolean } | null>(null);
+  const [folderNotices, setFolderNotices] = useState<Record<string, NavigatorFolderNotice>>({});
+  const [failedFolder, setFailedFolder] = useState<string | null>(null);
+  const restoredLastChat = useRef(false);
+  const lastPrimaryRef = useRef<string | undefined>(undefined);
   const widthKey = rightView === 'files' && workspaceState.openDocumentPath ? 'document' : rightView === 'agents' && coordinationView === 'session' ? 'session' : rightView;
   const rightWidth = workspaceState.rightPanelWidths?.[widthKey] ?? (widthKey === 'files' ? 300 : widthKey === 'agents' ? 360 : 480);
   const maximumRightWidth = Math.max(280, Math.min(Math.round(availableWidth * 0.6 / 8) * 8, availableWidth - (workspaceState.navigatorCollapsed ? 56 : clamp(workspaceState.navigatorWidth, 220, 360)) - 444));
@@ -104,6 +123,9 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [sessions, setSessions] = useState<SessionRecord[]>([]);
   const [referenceDay, setReferenceDay] = useState('1970-01-01');
   const [sessionsLoading, setSessionsLoading] = useState(false);
+  // The folder the current `sessions` list was read for; a folder change
+  // leaves the previous list on screen until the new one arrives.
+  const [sessionsRoot, setSessionsRoot] = useState<string | null>(null);
   const [sessionsError, setSessionsError] = useState<string | null>(null);
   const [sessionRefreshToken, setSessionRefreshToken] = useState(0);
   const directHistorySelection = useRef<string>();
@@ -216,6 +238,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   useEffect(() => {
     if (!projectRoot) {
       setSessions([]);
+      setSessionsRoot(null);
       setSessionsLoading(false);
       return;
     }
@@ -227,6 +250,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       .then((records) => {
         if (!cancelled) {
           setSessions(records);
+          setSessionsRoot(projectRoot);
+          setWorkspaceState(current => indexWovenChats(current, projectRoot, records));
         }
       })
       .catch((error) => {
@@ -381,8 +406,95 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     }
   }, [replayState, projectRoot, streaming, continueRecordedConversation, restoreExpanded, updateWorkspaceState]);
 
+  // Chats recorded in other folders come from the local index so every folder's
+  // chats share one navigator; the live listing replaces the index for the
+  // selected folder as soon as it arrives.
+  const navigatorSessions = useMemo<SessionRecord[]>(() => {
+    const live = new Set(sessions.map(session => session.sessionId));
+    const indexed = Object.entries(workspaceState.chatIndex ?? {})
+      .filter(([sessionId, entry]) => !live.has(sessionId) && entry.projectRoot !== projectRoot)
+      .map(([sessionId, entry]) => ({ sessionId, projectRoot: entry.projectRoot, persona: entry.persona ?? '', mode: '', createdAt: entry.createdAt, updatedAt: entry.updatedAt }));
+    return [...sessions, ...indexed];
+  }, [sessions, workspaceState.chatIndex, projectRoot]);
+  const knownRootPaths = useMemo(() => (workspaceState.knownRoots ?? []).map(root => root.path), [workspaceState.knownRoots]);
+
+  const switchToFolderChat = useCallback(async (sessionId: string, folderPath: string): Promise<void> => {
+    if (typeof workspace.applyProjectRoot !== 'function') return;
+    pendingFolderChat.current = { sessionId, expectedRoot: folderPath };
+    setFailedFolder(null);
+    setFolderNotices(current => ({ ...current, [folderPath]: { kind: 'indexed', message: 'Opening this chat: switching to its folder…' } }));
+    setFolderSelectionPending(true);
+    let applied = false;
+    try { applied = await workspace.applyProjectRoot(folderPath); }
+    finally { setFolderSelectionPending(false); }
+    if (applied) return;
+    pendingFolderChat.current = null;
+    setFailedFolder(folderPath);
+    setFolderNotices(current => ({ ...current, [folderPath]: { kind: 'unavailable', message: 'This folder could not be opened. Its chats stay recorded and are never moved to another folder. Locate the folder if it moved, or forget it.' } }));
+  }, [workspace]);
+
+  // Opening a chat from another folder first closes the chat open in the
+  // panel, through the same New chat path (its unsent-draft confirmation
+  // included), so the folder never switches under a bound chat. The switch
+  // proceeds once the panel reports the chat closed; a declined confirmation
+  // leaves everything as it was.
+  const openChatInFolder = useCallback(async (sessionId: string, folderPath: string): Promise<void> => {
+    if (streaming || folderSelectionPending || typeof workspace.applyProjectRoot !== 'function') return;
+    if (!binding.locked) { await switchToFolderChat(sessionId, folderPath); return; }
+    pendingFolderChat.current = { sessionId, expectedRoot: folderPath, awaitingNewChat: true };
+    setFolderNotices(current => ({ ...current, [folderPath]: { kind: 'indexed', message: 'Opening this chat: closing the current chat first…' } }));
+    setNewChatRequest(value => value + 1);
+  }, [streaming, folderSelectionPending, workspace, binding.locked, switchToFolderChat]);
+  const handleNewChatSettled = useCallback((started: boolean): void => {
+    const pending = pendingFolderChat.current;
+    if (!pending?.awaitingNewChat) return;
+    const folderPath = pending.expectedRoot ?? '';
+    pendingFolderChat.current = null;
+    if (!started) { setFolderNotices(current => { const next = { ...current }; delete next[folderPath]; return next; }); return; }
+    void switchToFolderChat(pending.sessionId, folderPath);
+  }, [switchToFolderChat]);
+
+  // The workspace reports why a folder failed after the failed apply; attach
+  // that reason to the notice so the human sees the actual problem.
+  useEffect(() => {
+    if (!failedFolder || !workspace.errorMessage) return;
+    const reason = workspace.errorMessage;
+    setFolderNotices(current => current[failedFolder]?.kind === 'unavailable' && !current[failedFolder].message.includes(reason)
+      ? { ...current, [failedFolder]: { kind: 'unavailable', message: `This folder could not be opened (${reason}). Its chats stay recorded and are never moved to another folder. Locate the folder if it moved, or forget it.` } }
+      : current);
+  }, [failedFolder, workspace.errorMessage]);
+
+  const locateFolder = useCallback(async (folderPath: string): Promise<void> => {
+    if (streaming || folderSelectionPending || typeof workspace.chooseProjectRoot !== 'function') return;
+    const pending = pendingFolderChat.current;
+    if (pending) pendingFolderChat.current = { sessionId: pending.sessionId, expectedRoot: null };
+    setFolderSelectionPending(true);
+    let applied = false;
+    try { applied = await workspace.chooseProjectRoot(); }
+    finally { setFolderSelectionPending(false); }
+    if (applied) setFolderNotices(current => { const next = { ...current }; delete next[folderPath]; return next; });
+  }, [streaming, folderSelectionPending, workspace]);
+
+  const forgetFolder = useCallback((folderPath: string): void => {
+    if (pendingFolderChat.current && (workspaceState.chatIndex ?? {})[pendingFolderChat.current.sessionId]?.projectRoot === folderPath) pendingFolderChat.current = null;
+    setFolderNotices(current => { const next = { ...current }; delete next[folderPath]; return next; });
+    setFailedFolder(current => current === folderPath ? null : current);
+    setWorkspaceState(current => ({ ...current,
+      knownRoots: (current.knownRoots ?? []).filter(root => root.path !== folderPath),
+      chatIndex: Object.fromEntries(Object.entries(current.chatIndex ?? {}).filter(([, entry]) => entry.projectRoot !== folderPath)),
+      foldersCollapsed: (current.foldersCollapsed ?? []).filter(path => path !== folderPath)
+    }));
+  }, [workspaceState.chatIndex]);
+
   const loadReplay = useCallback(
     (sessionId: string, inspect = false): void => {
+      const indexed = (workspaceState.chatIndex ?? {})[sessionId];
+      const listed = sessions.some(session => session.sessionId === sessionId);
+      if (!listed && indexed && indexed.projectRoot !== projectRoot) {
+        // Recorded in another folder: restore that folder, then open the chat there.
+        if (!inspect) void openChatInFolder(sessionId, indexed.projectRoot);
+        return;
+      }
       const decision = guardRecordedSessionSelection({
         currentState: replayState,
         requestedSessionId: sessionId,
@@ -426,9 +538,97 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       restoreExpanded,
       sessions,
       streaming,
-      updateWorkspaceState
+      updateWorkspaceState,
+      workspaceState.chatIndex,
+      projectRoot,
+      openChatInFolder
     ]
   );
+
+  // Once the folder switch lands and its sessions are listed, resume the chat
+  // that asked for it; a chat the folder does not list is reported, not guessed.
+  useEffect(() => {
+    const pending = pendingFolderChat.current;
+    if (!pending || pending.awaitingNewChat || sessionsLoading || !projectRoot || sessionsRoot !== projectRoot) return;
+    if (pending.expectedRoot !== null && pending.expectedRoot !== projectRoot) return;
+    pendingFolderChat.current = null;
+    const recordedRoot = (workspaceState.chatIndex ?? {})[pending.sessionId]?.projectRoot ?? pending.expectedRoot ?? projectRoot;
+    setFolderNotices(current => { const next = { ...current }; delete next[recordedRoot]; return next; });
+    if (sessions.some(session => session.sessionId === pending.sessionId)) {
+      loadReplay(pending.sessionId);
+    } else if (!sessionsError) {
+      setFolderNotices(current => ({ ...current, [recordedRoot]: { kind: 'unavailable', message: `The chat was not found in ${projectRoot}. It stays listed under its recorded folder; locate that folder or forget it.` } }));
+    }
+    // loadReplay is intentionally read at the time the listing settles.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessions, sessionsRoot, sessionsLoading, sessionsError, projectRoot]);
+
+  // The chat open when the window was last used comes back on the next launch,
+  // once its folder's sessions confirm it still exists; never while a turn runs.
+  useEffect(() => {
+    if (!stateHydrated || restoredLastChat.current || streaming) return;
+    // A chat already open takes precedence: there is nothing to restore over
+    // it, and recording may begin (otherwise the gate would never lift).
+    if (primarySessionId) { restoredLastChat.current = true; return; }
+    if (sessionsLoading || !projectRoot || sessionsRoot !== projectRoot) return;
+    const last = workspaceState.lastActiveChat;
+    if (!last) { restoredLastChat.current = true; return; }
+    // A last chat from another folder is left alone: the folder for new chats
+    // is the one the user chose, and that chat stays reachable in the navigator.
+    if (last.projectRoot !== projectRoot) { restoredLastChat.current = true; return; }
+    restoredLastChat.current = true;
+    if (sessions.some(session => session.sessionId === last.sessionId)) loadReplay(last.sessionId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stateHydrated, sessions, sessionsRoot, sessionsLoading, projectRoot, streaming, primarySessionId]);
+
+  useEffect(() => {
+    // Nothing is recorded until the launch-time restore has had its chance,
+    // so an empty panel at startup never erases the remembered chat.
+    if (!stateHydrated || !restoredLastChat.current) return;
+    // Only a chat this window actually had open can be forgotten: an empty
+    // panel while a restore is still in flight leaves the record alone.
+    const hadPrimary = lastPrimaryRef.current !== undefined;
+    lastPrimaryRef.current = primarySessionId;
+    if (!primarySessionId && !hadPrimary) return;
+    setWorkspaceState(current => {
+      const next = primarySessionId && projectRoot ? { sessionId: primarySessionId, projectRoot } : null;
+      const previous = current.lastActiveChat ?? null;
+      if ((previous === null && next === null) || (previous && next && previous.sessionId === next.sessionId && previous.projectRoot === next.projectRoot)) return current;
+      return { ...current, lastActiveChat: next };
+    });
+  }, [primarySessionId, projectRoot, stateHydrated]);
+
+  // Document context follows the chat: opening a chat restores the document it
+  // had open; a document opened while a chat is active is remembered for it.
+  const documentSessionRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    if (!stateHydrated) return;
+    const previous = documentSessionRef.current;
+    documentSessionRef.current = primarySessionId;
+    if (!primarySessionId || previous === primarySessionId) return;
+    const remembered = (workspaceState.chatDocuments ?? {})[primarySessionId];
+    if (remembered && remembered !== workspaceState.openDocumentPath) setWorkspaceState(current => ({ ...current, openDocumentPath: remembered, rightPanelView: 'files' }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [primarySessionId, stateHydrated]);
+  // Only a document opened or closed while this chat is active is recorded for
+  // it: a chat without a remembered document does not inherit whatever was on
+  // screen when it was opened (review F-2).
+  const documentRecordSessionRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    if (!stateHydrated) return;
+    // The ref follows the chat through "no chat" too: a document opened while
+    // no chat was active is not attributed to the chat resumed afterwards.
+    const sessionChanged = documentRecordSessionRef.current !== primarySessionId;
+    documentRecordSessionRef.current = primarySessionId;
+    if (sessionChanged || !primarySessionId) return;
+    const path = workspaceState.openDocumentPath;
+    setWorkspaceState(current => {
+      const documents = { ...(current.chatDocuments ?? {}) };
+      if (path) { if (documents[primarySessionId] === path) return current; documents[primarySessionId] = path; }
+      else { if (!(primarySessionId in documents)) return current; delete documents[primarySessionId]; }
+      return { ...current, chatDocuments: Object.fromEntries(Object.entries(documents).slice(-500)) };
+    });
+  }, [workspaceState.openDocumentPath, primarySessionId, stateHydrated]);
 
   const beginResize = useCallback(
     (event: PointerEvent<HTMLDivElement>, target: ResizeTarget): void => {
@@ -589,12 +789,15 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
                   <ChatPanel presentation="woven" onDraftCaptured={restoreExpanded} onActiveSessionChange={setPrimarySessionId}
                     selectedMethods={selectedMethods} onSelectedMethodsChange={setSelectedMethods}
                     onOpenMethods={() => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'workflows', coordinationCollapsed: false }); }}
+                    onPlanPanelChange={setPlanPanel}
+                    onTurnPhaseChange={setTurnPhase}
+                    onOpenPlan={revision => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'plan', coordinationCollapsed: false }); setPlanFocusRevision(current => ({ revision, sequence: (current?.sequence ?? 0) + 1 })); }}
                     fileCatalog={currentFileCatalog} onOpenFile={openContainedFile}
                     onSessionBootedPrompt={({ sessionId, prompt, persona }) => setWorkspaceState(current => Object.hasOwn(current.chatTitles ?? {}, sessionId) ? current : { ...current, chatTitles: { ...(current.chatTitles ?? {}), [sessionId]: deriveChatTitle({ firstOperatorMessage: prompt, persona, sessionId }) } })}
                     resumeConversation={pendingResume?.projection.session?.continuation?.roleId === searchParams.get('agent') &&
                       pendingResume.projection.session.continuation.projectRoot === projectRoot ? pendingResume : undefined}
                     onConversationResumed={() => { setPendingResume(undefined); returnToPrimaryDialogue(); }}
-                    knownRoots={workspaceState.knownRoots ?? []} onBindingChange={setBinding} newChatRequest={newChatRequest} folderSelectionPending={folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} />
+                    knownRoots={workspaceState.knownRoots ?? []} onBindingChange={setBinding} onNewChatSettled={handleNewChatSettled} newChatRequest={newChatRequest} folderSelectionPending={folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} />
                 </Suspense>
                 </fieldset>
               </>
@@ -627,7 +830,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               onNewChat={() => { if (!streaming && !folderSelectionPending) setNewChatRequest(value => value + 1); }}
               activeSurface="dialogue"
               legacyHref={legacyHref}
-              sessions={sessions}
+              sessions={navigatorSessions}
               sessionSurfaces={workspaceState.sessionSurfaces}
               liveSessionId={primarySessionId}
               selectedSessionId={selectedReplayId(replayState)}
@@ -640,6 +843,12 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               chatDeleted={workspaceState.chatDeleted ?? []}
               chatGroups={workspaceState.chatGroups ?? []}
               groupsCollapsed={workspaceState.groupsCollapsed ?? []}
+              currentRoot={projectRoot}
+              folderOrder={knownRootPaths}
+              foldersCollapsed={workspaceState.foldersCollapsed ?? []}
+              folderNotices={folderNotices}
+              onLocateFolder={path => { void locateFolder(path); }}
+              onForgetFolder={forgetFolder}
               referenceDay={referenceDay}
               searchEpoch={`${projectRoot ?? ''}:${runtimeEpoch}`}
               focusSearchRequest={focusNavigatorSearchRequest}
@@ -721,6 +930,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               onOpenFile={openContainedFile}
               selectedMethods={selectedMethods}
               onSelectedMethodsChange={setSelectedMethods}
+              planPanel={planPanel}
+              planFocusRevision={planFocusRevision}
               onFileCatalog={handleFileCatalog}
               onExpand={toggleExpanded}
               onRefreshSessions={() => setSessionRefreshToken(token => token + 1)}
@@ -770,7 +981,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           )}
         </aside>
 
-        <ActivityStrip primarySessionId={primarySessionId} reconnectControl={reconnectControl} running={streaming} events={events}
+        <ActivityStrip primarySessionId={primarySessionId} reconnectControl={reconnectControl} running={streaming} phase={turnPhase} events={events}
           onOpenDetails={() => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'activity', coordinationCollapsed: false }); }} />
       </section>
       )}

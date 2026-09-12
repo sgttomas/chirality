@@ -23,6 +23,16 @@ CENTRAL = (
     "research-orchestration",
     "scope-change",
 )
+# Ordered core navigation set: the six selector-attention workflows plus the
+# three everyday project workflows the App shows at first glance.
+CORE = CENTRAL + ("task-management", "review", "reconciliation")
+CORE_DISPLAY_NAMES = {
+    "task-management": "Manage tasks",
+    "review": "Review results",
+    "reconciliation": "Check project status",
+}
+NAVIGATION_CATEGORIES = ("core", "specialist", "superseded")
+NAVIGATION_TIERS = ("primary", "supporting")
 
 
 def _contained_file(root: Path, relative: str) -> Path:
@@ -50,7 +60,7 @@ def _load_catalog(path: Path) -> dict:
     return value
 
 
-def _descriptor(entry: dict, library: dict, central: bool) -> dict:
+def _descriptor(entry: dict, library: dict, central: bool, navigation: dict | None) -> dict:
     descriptor = {
         "kind": entry["kind"],
         "name": entry["name"],
@@ -62,11 +72,95 @@ def _descriptor(entry: dict, library: dict, central: bool) -> dict:
         "executionRoleIds": entry["executionRoleIds"],
         "resources": entry["resources"],
     }
+    if navigation is not None:
+        descriptor["navigation"] = navigation
     if entry.get("execution") is not None:
         descriptor["execution"] = entry["execution"]
     if entry.get("metadata") is not None:
         descriptor["metadata"] = entry["metadata"]
     return descriptor
+
+
+def _navigation_name(value: object, where: str) -> str:
+    if not isinstance(value, str) or not NAME_RE.fullmatch(value):
+        raise ValueError(f"navigation {where}: invalid workflow name {value!r}")
+    return value
+
+
+def parse_navigation(navigation: object) -> dict[str, dict]:
+    """Validate the catalog navigation partition and return per-workflow descriptors.
+
+    Every bundled workflow must appear exactly once across core, the specialist
+    groups, and superseded. The caller compares the returned names against the
+    discovered packages so missing and extra names are reported precisely.
+    """
+    if not isinstance(navigation, dict) or set(navigation) != set(NAVIGATION_CATEGORIES):
+        raise ValueError("navigation must contain exactly core, specialist and superseded")
+    core, specialist, superseded = (navigation[key] for key in NAVIGATION_CATEGORIES)
+    if not isinstance(core, list) or not isinstance(specialist, list) or not isinstance(superseded, list):
+        raise ValueError("navigation categories must be lists")
+    placements: dict[str, dict] = {}
+
+    def place(name: str, descriptor: dict) -> None:
+        if name in placements:
+            raise ValueError(f"navigation places workflow more than once: {name}")
+        placements[name] = descriptor
+
+    core_names = []
+    for order, item in enumerate(core):
+        if not isinstance(item, dict) or not {"name"} <= set(item) <= {"name", "displayName"}:
+            raise ValueError("navigation core entries must contain name and optional displayName only")
+        name = _navigation_name(item.get("name"), "core")
+        core_names.append(name)
+        expected_display = CORE_DISPLAY_NAMES.get(name)
+        if item.get("displayName") != expected_display:
+            raise ValueError(f"navigation core displayName for {name} must be {expected_display!r}")
+        descriptor = {"category": "core", "tier": "primary", "order": order}
+        if expected_display is not None:
+            descriptor["displayName"] = expected_display
+        place(name, descriptor)
+    if tuple(core_names) != CORE:
+        raise ValueError(f"navigation core must be exactly {list(CORE)} in order; got {core_names}")
+
+    group_keys = set()
+    for group_order, group in enumerate(specialist):
+        if not isinstance(group, dict) or set(group) != {"key", "label", "workflows"}:
+            raise ValueError("navigation specialist groups must contain key, label and workflows only")
+        key = _navigation_name(group.get("key"), "specialist group key")
+        if key in group_keys:
+            raise ValueError(f"navigation specialist group key is not unique: {key}")
+        group_keys.add(key)
+        label = group.get("label")
+        if not isinstance(label, str) or not label.strip():
+            raise ValueError(f"navigation specialist group {key} requires a non-empty label")
+        workflows = group.get("workflows")
+        if not isinstance(workflows, list) or not workflows:
+            raise ValueError(f"navigation specialist group {key} requires a non-empty workflow list")
+        for order, item in enumerate(workflows):
+            if not isinstance(item, dict) or not {"name"} <= set(item) <= {"name", "tier"}:
+                raise ValueError(f"navigation specialist group {key} entries must contain name and optional tier only")
+            name = _navigation_name(item.get("name"), f"specialist group {key}")
+            tier = item.get("tier", "primary")
+            if tier not in NAVIGATION_TIERS:
+                raise ValueError(f"navigation tier for {name} must be one of {list(NAVIGATION_TIERS)}")
+            place(name, {
+                "category": "specialist", "tier": tier, "order": order,
+                "group": {"key": key, "label": label, "order": group_order},
+            })
+
+    superseded_names = []
+    for order, item in enumerate(superseded):
+        if not isinstance(item, dict) or set(item) != {"name", "replacedBy"}:
+            raise ValueError("navigation superseded entries must contain name and replacedBy only")
+        name = _navigation_name(item.get("name"), "superseded")
+        replaced_by = _navigation_name(item.get("replacedBy"), f"superseded {name} replacedBy")
+        superseded_names.append((name, replaced_by))
+        place(name, {"category": "superseded", "tier": "primary", "order": order, "supersededBy": replaced_by})
+    for name, replaced_by in superseded_names:
+        target = placements.get(replaced_by)
+        if target is None or target["category"] == "superseded":
+            raise ValueError(f"navigation superseded {name} replacedBy must name an existing non-superseded workflow: {replaced_by}")
+    return placements
 
 
 class _UniqueKeyLoader(yaml.SafeLoader):
@@ -156,7 +250,7 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
     catalog = _load_catalog(workflows / "catalog.yaml")
     if catalog.get("schema") != CATALOG_SCHEMA:
         raise ValueError(f"catalog schema must be {CATALOG_SCHEMA}")
-    if set(catalog) != {"schema", "library", "centralWorkflowNames"}:
+    if set(catalog) != {"schema", "library", "centralWorkflowNames", "navigation"}:
         raise ValueError("catalog has missing or unknown top-level fields")
     library = catalog["library"]
     if not isinstance(library, dict) or set(library) != {"source", "sourceRootId"}:
@@ -166,6 +260,7 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
     central_names = catalog["centralWorkflowNames"]
     if not isinstance(central_names, list) or tuple(central_names) != CENTRAL:
         raise ValueError("centralWorkflowNames must equal the ordered six selector-attention workflows")
+    navigation = parse_navigation(catalog["navigation"])
     methods = _load_json(workflows / "legacy-methods.json")
     required_method_keys = {"schema", "convertedWorkflowAliases", "historicalOnly", "unknownLegacyBehavior"}
     if methods.get("schema") != LEGACY_SCHEMA or set(methods) != required_method_keys:
@@ -181,11 +276,12 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
         metadata = _frontmatter(folder / "WORKFLOW.md")
         execution = parse_execution(folder, root, required=False)
         resources = sorted(path.relative_to(folder).as_posix() for path in folder.rglob("*") if path.is_file())
+        placement = navigation.get(folder.name)
         entry = {
             "kind": "workflow",
             "name": metadata["name"],
             "description": metadata["description"],
-            "compatibility": "canonical" if folder.name in central_names else "legacy",
+            "compatibility": "legacy" if placement is not None and placement["category"] == "superseded" else "canonical",
             "executionRoleIds": execution["compatibleRoles"] if execution is not None else list(ROLES),
             "resources": resources,
         }
@@ -220,14 +316,22 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
             raise ValueError(f"missing or escaping workflow package: {name}")
         for resource in resources:
             _contained_file(package_root, resource)
-        descriptors.append(_descriptor(entry, library, name in central_names))
+        descriptors.append(_descriptor(entry, library, name in central_names, placement))
     folders = {p.name for p in workflows.iterdir() if p.is_dir() and (p / "WORKFLOW.md").is_file() and p.name != "chirality-change"}
     names = {item["name"] for item in descriptors}
     if names != folders:
         raise ValueError(f"catalog/folder disagreement: missing={sorted(folders-names)}, extra={sorted(names-folders)}")
+    if set(navigation) != names:
+        raise ValueError(
+            "navigation/package disagreement: "
+            f"missing={sorted(names - set(navigation))}, extra={sorted(set(navigation) - names)}"
+        )
     actual_central = {item["name"] for item in descriptors if item["central"]}
     if actual_central != set(CENTRAL):
         raise ValueError("central workflow set must match the six selector-attention workflows")
+    actual_legacy = {item["name"] for item in descriptors if item["compatibility"] == "legacy"}
+    if actual_legacy != {name for name, placement in navigation.items() if placement["category"] == "superseded"}:
+        raise ValueError("legacy compatibility must be reserved for superseded workflows")
 
     skills_root = root / ".agents" / "skills"
     skill_names = set()
@@ -320,7 +424,26 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
 
 def bootstrap(root: Path) -> None:
     workflows = root.resolve() / "workflows"
-    value = {"schema": CATALOG_SCHEMA, "library": {"source": "bundled", "sourceRootId": "chirality-root"}, "centralWorkflowNames": list(CENTRAL)}
+    existing = workflows / "catalog.yaml"
+    navigation = None
+    if existing.is_file():
+        try:
+            navigation = _load_catalog(existing).get("navigation")
+        except (OSError, ValueError, json.JSONDecodeError):
+            navigation = None
+    value = {
+        "schema": CATALOG_SCHEMA,
+        "library": {"source": "bundled", "sourceRootId": "chirality-root"},
+        "centralWorkflowNames": list(CENTRAL),
+        "navigation": navigation if isinstance(navigation, dict) else {
+            "core": [
+                {"name": name, **({"displayName": CORE_DISPLAY_NAMES[name]} if name in CORE_DISPLAY_NAMES else {})}
+                for name in CORE
+            ],
+            "specialist": [],
+            "superseded": [],
+        },
+    }
     (workflows / "catalog.yaml").write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
 
 

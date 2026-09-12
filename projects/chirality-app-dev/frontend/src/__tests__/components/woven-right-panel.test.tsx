@@ -6,6 +6,7 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { RightPanel } from '../../components/woven-dialogue/right-panel';
 import { createDefaultWovenWorkspaceState } from '../../lib/woven-dialogue/woven-workspace-state';
 vi.mock('../../components/woven-dialogue/activity-shelf', () => ({ ActivityView: () => <p>Activity details</p> }));
+vi.mock('../../components/woven-dialogue/method-library-view', () => ({ MethodLibraryView: ({ view }: { view: string }) => <p>Library view {view}</p> }));
 vi.mock('../../components/workspace/workspace-provider', () => ({ useWorkspace: () => ({ projectRoot: '/root' }) }));
 vi.mock('../../components/shell/file-tree-panel', () => ({ FileTreePanel: () => <p>Existing file contents</p> }));
 const handoff = vi.hoisted(() => vi.fn(async (_input: unknown) => {}));
@@ -78,7 +79,7 @@ it('reveals the root and the selected file through distinct bounded actions', as
   act(() => tree.unmount());
 });
 
-it('keeps four-view keyboard navigation and reveals the selected tab after changes', async () => {
+it('keeps six-view keyboard navigation and reveals the selected tab after changes', async () => {
   const onView = vi.fn(); const focus = vi.fn(); const scrollIntoView = vi.fn(); const selectors: string[] = [];
   const tabNode = { querySelector: (selector: string) => { selectors.push(selector); return { scrollIntoView }; } };
   let tree!: ReactTestRenderer;
@@ -86,9 +87,9 @@ it('keeps four-view keyboard navigation and reveals the selected tab after chang
   const state = createDefaultWovenWorkspaceState();
   await act(async () => { tree = create(<RightPanel {...props} state={state} />, { createNodeMock: element => element.props.role === 'tablist' ? tabNode : null }); });
   const key = (value: string) => tree.root.findByProps({ role: 'tablist' }).props.onKeyDown({ key: value, preventDefault: vi.fn(), currentTarget: { querySelector: () => ({ focus }) } });
-  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.props['data-view'])).toEqual(['files', 'workflows', 'agents', 'activity']);
-  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.children.join(''))).toEqual(['Files', 'Workflows', 'Agents', 'Activity']);
-  act(() => key('ArrowRight')); expect(onView).toHaveBeenLastCalledWith('workflows');
+  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.props['data-view'])).toEqual(['files', 'plan', 'workflows', 'skills', 'agents', 'activity']);
+  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.children.join(''))).toEqual(['Files', 'Plan', 'Workflows', 'Skills', 'Agents', 'Activity']);
+  act(() => key('ArrowRight')); expect(onView).toHaveBeenLastCalledWith('plan');
   act(() => key('ArrowLeft')); expect(onView).toHaveBeenLastCalledWith('activity');
   act(() => key('End')); expect(onView).toHaveBeenLastCalledWith('activity');
   await act(async () => tree.update(<RightPanel {...props} state={{ ...state, rightPanelView: 'activity' }} />));
@@ -97,4 +98,20 @@ it('keeps four-view keyboard navigation and reveals the selected tab after chang
   expect(focus).toHaveBeenCalledTimes(5); expect(selectors).toEqual(['[aria-selected="true"]', '[aria-selected="true"]']);
   expect(scrollIntoView).toHaveBeenLastCalledWith({ block: 'nearest', inline: 'nearest' });
   act(() => tree.unmount());
+});
+
+it('renders the Plan tab from the host-supplied model and the Skills tab as its own read-only library view', () => {
+  const state = createDefaultWovenWorkspaceState();
+  const empty = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'plan' }} sessionOpen={false} />);
+  expect(empty).toContain('No plan in this chat yet');
+  const model = { revisions: [{ revision: 1, sourceEvent: { qualificationState: 'qualified' as const, eventId: 'plan-1', occurredAt: '2026-09-12T00:00:00.000Z', qualification: { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const }, plan: '# Plan one\n\nStep.' } }],
+    clarifications: [], active: true, refreshing: false, fileCatalog: [], actionsDisabled: false, onRefresh: vi.fn(), onRevise: vi.fn(), onSave: vi.fn(), onExecute: vi.fn(), onSaveAsWorkflow: vi.fn(), onReplyClarification: vi.fn() };
+  const plan = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'plan' }} sessionOpen={false} planPanel={model} />);
+  for (const label of ['Revise in chat', 'Execute plan', 'Save as workflow in chat', 'Save plan…']) expect(plan).toContain(label);
+  expect(plan).toContain('Plan one');
+  expect(plan).toContain('aria-label="1 revisions"');
+  const skills = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'skills' }} sessionOpen={false} />);
+  expect(skills).toContain('Library view skills');
+  const workflows = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'workflows' }} sessionOpen={false} />);
+  expect(workflows).toContain('Library view workflows');
 });

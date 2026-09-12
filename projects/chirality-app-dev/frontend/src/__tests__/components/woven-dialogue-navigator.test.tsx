@@ -32,9 +32,11 @@ beforeEach(() => {
 afterEach(() => { if (tree) act(() => tree!.unmount()); tree = undefined; vi.unstubAllGlobals(); vi.useRealTimers(); });
 
 describe('Woven Dialogue Navigator', () => {
-  it('renders date sections, derived title/time, folder basename/no-folder, and unchanged live/selected/streaming guards', () => {
-    const html = renderToStaticMarkup(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={vi.fn()} sessions={SESSIONS} referenceDay="2026-09-07" firstOperatorMessages={{ today: 'First operator request' }} liveSessionId="today" selectedSessionId="week" selectionDisabled />);
-    expect(html).toContain('Today'); expect(html).toContain('Yesterday'); expect(html).toContain('Earlier this week');
+  it('renders folder sections, derived title/time, folder basename/no-folder, and unchanged live/selected/streaming guards', () => {
+    const html = renderToStaticMarkup(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={vi.fn()} sessions={SESSIONS} referenceDay="2026-09-07" firstOperatorMessages={{ today: 'First operator request' }} liveSessionId="today" selectedSessionId="week" selectionDisabled currentRoot="/two/folder" />);
+    expect(html).toContain('data-chat-folder="/one/project"'); expect(html).toContain('data-chat-folder="/two/folder"'); expect(html).toContain('No folder chats');
+    expect(html.indexOf('data-chat-folder="/two/folder"')).toBeLessThan(html.indexOf('data-chat-folder="/one/project"'));
+    expect(html).toContain('Folder for new chats'); expect(html).not.toContain('Today');
     expect(html).toContain('First operator request'); expect(html).toContain('10:15'); expect(html).toContain('project'); expect(html).toContain('No folder');
     expect(html).toContain('title="/one/project"'); expect(html).toContain('aria-label="Live session"'); expect(html).toMatch(/data-session-id="week"[^>]*aria-pressed="true"/);
     expect(html).toContain('Paused while a turn is running.'); expect(html).toContain('Reveal folder for First operator request (today)');
@@ -197,5 +199,27 @@ describe('legacy session projection compatibility', () => {
     const projected = buildNavigatorSessionGroups(SESSIONS, { week: 'workbench' });
     expect(projected.all.map(entry => entry.sessionId)).toEqual(['today', 'yesterday', 'week']);
     expect(projected.bySurface.workbench.map(entry => entry.sessionId)).toEqual(['week']);
+  });
+});
+
+describe('Navigator folder sections', () => {
+  it('collapses folder sections through the organisation patch and shows recovery actions for an unavailable folder', () => {
+    const locate = vi.fn(); const forget = vi.fn(); const change = vi.fn();
+    act(() => { tree = create(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1" onOpenSurface={vi.fn()} sessions={SESSIONS} referenceDay="2026-09-07" onSelectSession={vi.fn()} onOrganizationChange={change}
+      folderNotices={{ '/two/folder': { kind: 'unavailable', message: 'This folder is missing or inaccessible.' }, '/one/project': { kind: 'indexed', message: 'Listed from this App’s index.' } }} onLocateFolder={locate} onForgetFolder={forget} foldersCollapsed={['/one/project']} />); });
+    const headings = tree!.root.findAll(node => node.type === 'button' && typeof node.props['data-chat-folder'] === 'string');
+    expect(headings.map(node => [node.props['data-chat-folder'], node.props['aria-expanded']])).toEqual([['/one/project', false], ['/two/folder', true]]);
+    act(() => headings[1].props.onClick());
+    expect(change).toHaveBeenCalledWith({ foldersCollapsed: ['/one/project', '/two/folder'] });
+    act(() => headings[0].props.onClick());
+    expect(change).toHaveBeenCalledWith({ foldersCollapsed: [] });
+    const alert = tree!.root.findByProps({ role: 'alert' });
+    expect(alert.findByType('p').children.join('')).toContain('missing or inaccessible');
+    act(() => alert.findAllByType('button').find(button => button.children.join('') === 'Locate folder…')!.props.onClick());
+    act(() => alert.findAllByType('button').find(button => button.children.join('') === 'Forget folder')!.props.onClick());
+    expect(locate).toHaveBeenCalledWith('/two/folder'); expect(forget).toHaveBeenCalledWith('/two/folder');
+    // A collapsed folder hides its rows and its note.
+    expect(tree!.root.findAllByProps({ 'data-session-id': 'today' })).toHaveLength(0);
+    expect(tree!.root.findAllByProps({ role: 'note' })).toHaveLength(0);
   });
 });

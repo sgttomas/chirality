@@ -3,7 +3,7 @@ import { createPlanExportDialogHandler } from './plan-export-dialog';
 import { app, BrowserWindow, dialog, ipcMain, shell, Menu } from 'electron';
 import { isAuthorizedSender } from './ipc-sender-policy';
 import { createDocumentHandoffHandler, validateRevealRoot, FilePolicyError } from '../src/app/api/working-root/file/file-policy';
-import { existsSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import type { AddressInfo } from 'node:net';
@@ -11,6 +11,21 @@ import os from 'node:os';
 import path from 'node:path';
 import { RuntimeClient } from '@chirality/runtime-client';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
+import { buildApplicationMenuTemplate } from './application-menu';
+import {
+  createAppUpdateController,
+  createPolicyGuardedFetch,
+  type AppUpdateController
+} from './app-update';
+import {
+  APP_ABOUT_SHOW_CHANNEL,
+  APP_UPDATE_CHANGED_CHANNEL,
+  APP_UPDATE_CHECK_CHANNEL,
+  APP_UPDATE_GET_CHANNEL,
+  APP_UPDATE_OPEN_DOWNLOAD_CHANNEL,
+  type AppUpdateState
+} from './app-update-ipc-contract';
+import { APP_UPDATE_ALLOWED_FEED_HOSTS, resolveAppUpdateSource } from './app-update-source';
 import { ATTACHMENT_SELECT_FILES_CHANNEL } from './attachment-ipc-contract';
 import { createAttachmentSelectionHandler } from './attachment-picker';
 import { CODEX_PINNED_VERSION, resolveCodexExecutable } from './codex-executable';
@@ -123,6 +138,8 @@ let shutdownCompleted = false;
 let bindingSupervisor: RuntimeBindingSupervisor | undefined;
 let socketWatcher: SocketPresenceWatcher | undefined;
 let desktopLogger: DesktopLogger = createNoopDesktopLogger();
+let appUpdateController: AppUpdateController | undefined;
+let unsubscribeAppUpdate: (() => void) | undefined;
 
 /**
  * Honor `CHIRALITY_USER_DATA` for the app itself.
@@ -188,6 +205,20 @@ function summarizeRendererRequestDestination(rawUrl: string): RendererRequestDes
   } catch {
     return null;
   }
+}
+
+function resolveAppVersion(): string {
+  if (app.isPackaged) return app.getVersion();
+  // `electron dist-electron/main.js` makes dist-electron the app path; the
+  // frontend package.json sits one level up.
+  const appPath = app.getAppPath();
+  for (const directory of [appPath, path.dirname(appPath)]) {
+    try {
+      const parsed = JSON.parse(readFileSync(path.join(directory, 'package.json'), 'utf8')) as { name?: unknown; version?: unknown };
+      if (parsed.name === 'chirality-frontend' && typeof parsed.version === 'string' && parsed.version.length > 0) return parsed.version;
+    } catch { /* try the next candidate, then fall back to the Electron-reported version */ }
+  }
+  return app.getVersion();
 }
 
 function parsePositiveInteger(raw: string | undefined, fallback: number): number {
@@ -634,6 +665,46 @@ function broadcastRuntimeConnectivity(report: RuntimeConnectivityReport): void {
   }
 }
 
+/** Push an app-update transition to every live renderer. */
+function broadcastAppUpdateState(state: AppUpdateState): void {
+  for (const window of BrowserWindow.getAllWindows()) {
+    if (window.isDestroyed()) {
+      continue;
+    }
+    window.webContents.send(APP_UPDATE_CHANGED_CHANNEL, state);
+  }
+}
+
+/**
+ * The window a menu action should land in: the focused one, else any live
+ * one, else a new one. Main-to-renderer sends go only to a receiver whose
+ * loaded URL has the renderer origin, as the folder-intent path does.
+ */
+function focusOrCreateMainWindow(rendererUrl: string): BrowserWindow {
+  const existing = BrowserWindow.getFocusedWindow() ?? BrowserWindow.getAllWindows().find((window) => !window.isDestroyed());
+  if (existing) {
+    if (existing.isMinimized()) existing.restore();
+    existing.focus();
+    return existing;
+  }
+  return createMainWindow(rendererUrl);
+}
+
+function sendAboutShowSignal(rendererUrl: string): void {
+  const rendererOrigin = new URL(rendererUrl).origin;
+  const window = focusOrCreateMainWindow(rendererUrl);
+  const deliver = (): void => {
+    if (window.isDestroyed()) return;
+    if (!isAuthorizedSender({ senderFrame: { url: window.webContents.getURL() } }, rendererOrigin)) return;
+    window.webContents.send(APP_ABOUT_SHOW_CHANNEL);
+  };
+  if (window.webContents.isLoading()) {
+    window.webContents.once('did-finish-load', deliver);
+  } else {
+    deliver();
+  }
+}
+
 function currentConnectivityReport(): RuntimeConnectivityReport | null {
   const snapshot = bindingSupervisor?.snapshot();
   if (!snapshot) return null;
@@ -673,6 +744,24 @@ async function initializeGui(): Promise<void> {
   desktopLogger = createDesktopLogger({
     directory: path.join(app.getPath('userData'), 'logs')
   });
+  // The bundle's product name is set by electron-builder, but app.name is the
+  // package name; any native panel must read Chirality with the real version.
+  // Unpackaged (npm run dev) app.getVersion() reports Electron's own version,
+  // so the source checkout's package version is used there instead.
+  const appVersion = resolveAppVersion();
+  app.setAboutPanelOptions({ applicationName: 'Chirality', applicationVersion: appVersion, version: appVersion });
+  const appUpdateSource = resolveAppUpdateSource();
+  const appUpdate = createAppUpdateController({
+    appVersion,
+    source: appUpdateSource,
+    // Refuses every request unless a source is configured and allowlisted;
+    // with no source shipped, this build never fetches (K-NET-1).
+    fetchImpl: createPolicyGuardedFetch({ source: appUpdateSource, allowedHosts: APP_UPDATE_ALLOWED_FEED_HOSTS }),
+    openExternal: (url) => shell.openExternal(url),
+    log: (level, event, detail) => desktopLogger.log(level, event, detail)
+  });
+  appUpdateController = appUpdate;
+  unsubscribeAppUpdate = appUpdate.subscribe(broadcastAppUpdateState);
   const runtimeClient = new RuntimeClient({
     socketPath: servicePaths.socketPath,
     tokenFile: servicePaths.clientTokenFile
@@ -801,21 +890,30 @@ async function initializeGui(): Promise<void> {
     showSaveDialog: options => dialog.showSaveDialog(options),
     showMessageBox: options => dialog.showMessageBox(options)
   }));
+  ipcMain.removeHandler(APP_UPDATE_GET_CHANNEL);
+  ipcMain.handle(APP_UPDATE_GET_CHANNEL, (event): AppUpdateState | null => {
+    if (!isAuthorizedSender(event, rendererOrigin)) return null;
+    return appUpdate.getState();
+  });
+  ipcMain.removeHandler(APP_UPDATE_CHECK_CHANNEL);
+  ipcMain.handle(APP_UPDATE_CHECK_CHANNEL, async (event): Promise<AppUpdateState | null> => {
+    if (!isAuthorizedSender(event, rendererOrigin)) return null;
+    return appUpdate.check();
+  });
+  ipcMain.removeHandler(APP_UPDATE_OPEN_DOWNLOAD_CHANNEL);
+  ipcMain.handle(APP_UPDATE_OPEN_DOWNLOAD_CHANNEL, async (event) => {
+    if (!isAuthorizedSender(event, rendererOrigin)) return { ok: false, error: 'App update request was denied.' };
+    return appUpdate.openDownload();
+  });
   if (process.platform === 'darwin') {
-    Menu.setApplicationMenu(Menu.buildFromTemplate([
-      // The packaged bundle's app.name is the package name, so the default appMenu labels read
-      // "Quit chirality-frontend". Label the product explicitly without renaming the app (which would move userData).
-      { label: 'Chirality', submenu: [
-        { role: 'about', label: 'About Chirality' }, { type: 'separator' }, { role: 'services' }, { type: 'separator' },
-        { role: 'hide', label: 'Hide Chirality' }, { role: 'hideOthers' }, { role: 'unhide' }, { type: 'separator' },
-        { role: 'quit', label: 'Quit Chirality' }
-      ] },
-      { label: 'File', submenu: [
-        { label: 'Open Recent', role: 'recentDocuments', submenu: [{ role: 'clearRecentDocuments' }] },
-        { type: 'separator' }, { role: 'close' }
-      ] },
-      { role: 'editMenu' }, { role: 'viewMenu' }, { role: 'windowMenu' }
-    ]));
+    Menu.setApplicationMenu(Menu.buildFromTemplate(buildApplicationMenuTemplate({
+      onCheckForUpdates: () => {
+        // The result is broadcast to renderers, so make sure one is there to show it.
+        focusOrCreateMainWindow(rendererUrl);
+        void appUpdate.check();
+      },
+      onShowAbout: () => sendAboutShowSignal(rendererUrl)
+    })));
   }
 
   ipcMain.removeHandler('chirality:document-handoff');
@@ -890,6 +988,12 @@ async function teardown(exitCode: number, reason: string): Promise<number> {
   ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
   ipcMain.removeHandler(ATTACHMENT_SELECT_FILES_CHANNEL);
   ipcMain.removeHandler(RUNTIME_CONNECTIVITY_QUERY_CHANNEL);
+  ipcMain.removeHandler(APP_UPDATE_GET_CHANNEL);
+  ipcMain.removeHandler(APP_UPDATE_CHECK_CHANNEL);
+  ipcMain.removeHandler(APP_UPDATE_OPEN_DOWNLOAD_CHANNEL);
+  unsubscribeAppUpdate?.();
+  unsubscribeAppUpdate = undefined;
+  appUpdateController = undefined;
   unregisterApiKeyHandlers();
   unregisterRuntimeControlHandlers();
 

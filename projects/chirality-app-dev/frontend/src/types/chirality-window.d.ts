@@ -37,6 +37,19 @@ type RuntimeServiceControlResultPayload =
   | { ok: true; service: RuntimeServiceStatePayload }
   | { ok: false; error: string };
 
+/**
+ * `appUpdate` state as `electron/app-update-ipc-contract.ts` defines it.
+ * Checking and access to the download only; nothing downloads or installs.
+ */
+type AppUpdateStatePayload = {
+  currentVersion: string;
+  status: 'idle' | 'checking' | 'up-to-date' | 'update-available' | 'failed';
+  checkedAt?: string;
+  failure?: { code: 'no-release-source' | 'policy' | 'network' | 'invalid-feed'; message: string };
+  available?: { version: string; downloadUrl: string; releaseNotesUrl?: string; publishedAt?: string };
+  releaseSource: { configured: boolean; description: string };
+};
+
 type ChiralityBridge = {
   platform?: string;
   versions?: {
@@ -75,6 +88,13 @@ type ChiralityBridge = {
       /** Operator retry after the main process gave up restarting the service. */
       restart: () => Promise<RuntimeServiceControlResultPayload>;
     };
+  };
+  appUpdate?: {
+    get: () => Promise<AppUpdateStatePayload>;
+    check: () => Promise<AppUpdateStatePayload>;
+    openDownload: () => Promise<{ ok: boolean; error?: string }>;
+    subscribe: (listener: (state: AppUpdateStatePayload) => void) => () => void;
+    onShowAbout: (listener: () => void) => () => void;
   };
 };
 

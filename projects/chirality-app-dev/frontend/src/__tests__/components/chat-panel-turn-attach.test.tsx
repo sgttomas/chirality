@@ -171,7 +171,7 @@ it('treats a 404 TURN_NOT_ACTIVE on re-attach as the turn having ended and reads
   expect(state.attach).toHaveBeenCalledTimes(2);
   expect(state.attach.mock.calls[1][1]).toBe(3);
   expect(rendered()).toContain('before drop');
-  expect(rendered()).toContain('Interrupted');
+  expect(rendered()).toContain('"data-turn-outcome":"interrupted"');
   expect(stopButtons()).toHaveLength(0);
 });
 
@@ -191,4 +191,86 @@ it('renders turn.interrupted the moment it arrives and Stop calls the interrupt 
   await flush();
   expect(stopButtons()).toHaveLength(0);
   expect(rendered()).not.toContain('Reconnecting');
+});
+
+// Item 15: the phases a live turn passes through are reported to the host, a
+// lost connection never reads as completion, and Stop is its own phase until
+// the Runtime confirms the interruption.
+it('leaves a recovered plan execution running when the attach never opens, instead of settling it as unknown', async () => {
+  const key = 'chirality.planExecutions.v1:resumed';
+  const writes: string[] = [];
+  const running = [{ revision: 1, attempt: 1, startedAt: '2026-09-12T00:00:00.000Z', status: 'running', turnId: 'turn-1' }];
+  (globalThis as unknown as { window: { localStorage: Storage } }).window.localStorage = {
+    getItem: (name: string) => name === key ? JSON.stringify(running) : null,
+    setItem: (name: string, value: string) => { if (name === key) writes.push(value); }, removeItem: () => undefined
+  } as unknown as Storage;
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1, startedAt: '2026-09-12T00:00:00.000Z' });
+  state.attach.mockRejectedValue(new Error('stream refused'));
+  await mountResumed();
+  await flush();
+  const settled = writes.map(value => JSON.parse(value) as Array<{ status: string }>);
+  expect(settled.flat().every(record => record.status === 'running')).toBe(true);
+  expect(rendered()).not.toContain('Turn outcome unknown');
+});
+
+it('reports Reconnecting then Outcome unknown when the connection is lost and the log records no ending, keeping the message', async () => {
+  vi.useFakeTimers();
+  const phases: string[] = [];
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 3 });
+  state.attach
+    .mockImplementationOnce(async (_s: string, _a: number, onEvent: (frame: Frame) => void) => { onEvent(harness(3, 'e3', 'message.delta', { text: 'before drop' })); throw new TypeError('network dropped'); })
+    .mockRejectedValueOnce(new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'No active turn', { reason: 'TURN_NOT_ACTIVE' }));
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [persisted('e3', 'message.delta', { text: 'before drop' })] });
+  await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: projection('resumed') }} onTurnPhaseChange={phase => phases.push(phase)} />); });
+  await flush();
+  expect(phases.at(-1)).toBe('reconnecting');
+  expect(tree!.root.findByProps({ className: 'chat-runtime-status' }).props['data-turn-phase']).toBe('reconnecting');
+  expect(rendered()).toContain('Closing this window keeps it running; quitting Chirality stops it.');
+  await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+  await flush();
+  expect(rendered()).toContain('before drop');
+  expect(rendered()).toContain('"data-turn-outcome":"unknown"');
+  expect(rendered()).toContain('Outcome unknown');
+  expect(rendered()).not.toContain('"data-turn-outcome":"completed"');
+  expect(rendered()).toContain('Turn outcome unknown');
+  expect(rendered()).toContain('Nothing was re-sent.');
+  expect(phases.at(-1)).toBe('idle');
+  expect(stopButtons()).toHaveLength(0);
+});
+
+it('settles a lost connection as Completed only when the log records the ending', async () => {
+  vi.useFakeTimers();
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 3 });
+  state.attach
+    .mockImplementationOnce(async (_s: string, _a: number, onEvent: (frame: Frame) => void) => { onEvent(harness(3, 'e3', 'message.delta', { text: 'before drop' })); throw new TypeError('network dropped'); })
+    .mockRejectedValueOnce(new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'No active turn', { reason: 'TURN_NOT_ACTIVE' }));
+  // The log grows while detached: empty at mount, the full record when the turn is settled.
+  state.replay
+    .mockResolvedValueOnce({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [] })
+    .mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [persisted('e3', 'message.delta', { text: 'before drop' }), persisted('e4', 'message.delta', { text: ' and after' }), persisted('e5', 'turn.completed')] });
+  await mountResumed();
+  await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+  await flush();
+  expect(rendered()).toContain('before drop and after');
+  expect(rendered()).toContain('"data-turn-outcome":"completed"');
+  expect(rendered()).not.toContain('Outcome unknown');
+});
+
+it('moves to Stopping on Stop and to Stopped once the Runtime confirms, reporting each phase to the host', async () => {
+  const phases: string[] = [];
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  let deliver!: (frame: Frame) => void;
+  let finish!: () => void;
+  state.attach.mockImplementation((_s: string, _a: number, onEvent: (frame: Frame) => void) => new Promise<void>(resolve => { deliver = onEvent; finish = resolve; }));
+  await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: projection('resumed') }} onTurnPhaseChange={phase => phases.push(phase)} />); });
+  await flush();
+  expect(phases.at(-1)).toBe('working');
+  await act(async () => stopButtons()[0].props.onClick());
+  expect(phases.at(-1)).toBe('stopping');
+  expect(status()).toContain('Stopping');
+  await act(async () => { deliver(harness(1, 'e1', 'turn.interrupted')); finish(); });
+  await flush();
+  expect(rendered()).toContain('"data-turn-outcome":"interrupted"');
+  expect(rendered()).toContain('Stopped');
+  expect(phases.at(-1)).toBe('idle');
 });

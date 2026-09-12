@@ -16,7 +16,9 @@ import type { WovenSessionSurfaceMap, WovenWorkspaceState, WovenWorkspaceSurface
 export type WovenSurface = WovenWorkspaceSurface;
 export type NavigatorSessionEntry = { sessionId: string; label: string; persona: string | undefined; projectRoot: string | undefined; when: string; surface: WovenSurface | null };
 export type NavigatorSessionGroups = { bySurface: Record<WovenSurface, NavigatorSessionEntry[]>; all: NavigatorSessionEntry[] };
-type OrganizationPatch = Pick<WovenWorkspaceState, 'chatTitles' | 'chatPins' | 'chatArchived' | 'chatDeleted' | 'chatGroups' | 'groupsCollapsed'>;
+type OrganizationPatch = Pick<WovenWorkspaceState, 'chatTitles' | 'chatPins' | 'chatArchived' | 'chatDeleted' | 'chatGroups' | 'groupsCollapsed' | 'foldersCollapsed'>;
+/** A folder whose chats are listed from the local index only, or which could not be opened. */
+export type NavigatorFolderNotice = { kind: 'indexed' | 'unavailable'; message: string };
 
 type NavigatorProps = {
   footerSlot?: React.ReactNode; onNewChat?: () => void; activeSurface: WovenSurface; legacyHref: string;
@@ -32,6 +34,16 @@ type NavigatorProps = {
   onModalStateChange?: (open: boolean) => void;
   onOrganizationChange?: (patch: Partial<OrganizationPatch>) => void;
   searchMessages?: (query: string, sessions: readonly SessionRecord[]) => Promise<string[]>;
+  /** The folder selected for new chats; its section is listed first. */
+  currentRoot?: string | null;
+  /** Known folders, most recently used first. */
+  folderOrder?: readonly string[];
+  foldersCollapsed?: readonly string[];
+  folderNotices?: Readonly<Record<string, NavigatorFolderNotice>>;
+  /** Recovery for a folder that is missing or inaccessible: choose where it is now. */
+  onLocateFolder?: (folderPath: string) => void;
+  /** Stop listing a folder that no longer exists; the Runtime records are untouched. */
+  onForgetFolder?: (folderPath: string) => void;
 };
 
 export const NAVIGATOR_RECENT_SESSION_LIMIT = 4;
@@ -97,7 +109,9 @@ function SessionRow({ entry, live, selected, disabled, onSelectSession, onOpenMe
   </li>;
 }
 
-export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, onOpenSurface, sessions = EMPTY_SESSIONS, sessionSurfaces = EMPTY_SESSION_SURFACES, liveSessionId, selectedSessionId, selectionDisabled = false, sessionsLoading = false, sessionsError = null, onSelectSession, chatTitles = EMPTY_CHAT_TITLES, chatPins = EMPTY_CHAT_IDS, chatArchived = EMPTY_CHAT_IDS, chatDeleted = EMPTY_CHAT_IDS, chatGroups = EMPTY_CHAT_GROUPS, groupsCollapsed = EMPTY_CHAT_IDS, firstOperatorMessages = EMPTY_CHAT_TITLES, referenceDay = '1970-01-01', searchEpoch = '', focusSearchRequest = 0, onModalStateChange, onOrganizationChange, searchMessages }: NavigatorProps): JSX.Element {
+const EMPTY_FOLDER_NOTICES: Readonly<Record<string, NavigatorFolderNotice>> = {};
+
+export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, onOpenSurface, sessions = EMPTY_SESSIONS, sessionSurfaces = EMPTY_SESSION_SURFACES, liveSessionId, selectedSessionId, selectionDisabled = false, sessionsLoading = false, sessionsError = null, onSelectSession, chatTitles = EMPTY_CHAT_TITLES, chatPins = EMPTY_CHAT_IDS, chatArchived = EMPTY_CHAT_IDS, chatDeleted = EMPTY_CHAT_IDS, chatGroups = EMPTY_CHAT_GROUPS, groupsCollapsed = EMPTY_CHAT_IDS, firstOperatorMessages = EMPTY_CHAT_TITLES, referenceDay = '1970-01-01', searchEpoch = '', focusSearchRequest = 0, onModalStateChange, onOrganizationChange, searchMessages, currentRoot = null, folderOrder = EMPTY_CHAT_IDS, foldersCollapsed = EMPTY_CHAT_IDS, folderNotices = EMPTY_FOLDER_NOTICES, onLocateFolder, onForgetFolder }: NavigatorProps): JSX.Element {
   void sessionSurfaces;
   void legacyHref;
   const [query, setQuery] = React.useState(''); const [messageMatchIds, setMessageMatchIds] = React.useState<string[]>([]); const [messageSearchPending, setMessageSearchPending] = React.useState(false);
@@ -108,7 +122,7 @@ export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, on
   const sessionControlRefs = React.useRef(new Map<string, HTMLButtonElement>()); const groupHeaderRefs = React.useRef(new Map<string, HTMLButtonElement>());
   const normalizedGroups = React.useMemo(() => chatGroups.map(group => ({ ...group, sessionIds: [...group.sessionIds] })), [chatGroups]);
   const organization = React.useMemo(() => ({ chatTitles: { ...chatTitles }, chatPins: [...chatPins], chatArchived: [...chatArchived], chatDeleted: [...chatDeleted], chatGroups: normalizedGroups }), [chatTitles, chatPins, chatArchived, chatDeleted, normalizedGroups]);
-  const sections = React.useMemo(() => projectChatSections({ sessions, state: organization, firstOperatorMessages, referenceDay, visibility }), [sessions, organization, firstOperatorMessages, referenceDay, visibility]);
+  const sections = React.useMemo(() => projectChatSections({ sessions, state: organization, firstOperatorMessages, referenceDay, visibility, currentRoot, folderOrder }), [sessions, organization, firstOperatorMessages, referenceDay, visibility, currentRoot, folderOrder]);
   const entries = React.useMemo(() => sections.flatMap(section => section.entries), [sections]); const entryById = React.useMemo(() => new Map(entries.map(entry => [entry.sessionId, entry])), [entries]);
   const normalizedQuery = query.trim().toLocaleLowerCase(); const titleMatches = normalizedQuery ? entries.filter(entry => entry.title.toLocaleLowerCase().includes(normalizedQuery)) : [];
   const messageMatches = messageMatchIds.flatMap(id => entryById.get(id) ? [entryById.get(id)!] : []);
@@ -169,8 +183,16 @@ export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, on
   }
   function renderRow(entry: ChatOrganizationEntry): JSX.Element { return <SessionRow key={entry.sessionId} entry={entry} live={entry.sessionId === liveSessionId} selected={entry.sessionId === selectedSessionId} disabled={selectionDisabled} onSelectSession={onSelectSession} onOpenMenu={openMenu} controlRef={node => { if (node) sessionControlRefs.current.set(entry.sessionId, node); else sessionControlRefs.current.delete(entry.sessionId); }} />; }
   function renderSection(section: ChatSection): JSX.Element {
-    const collapsed = section.kind === 'group' && groupsCollapsed.includes(section.id);
-    const heading = section.kind === 'group'
+    const folderPath = section.folderPath ?? '';
+    const notice = section.kind === 'folder' && folderPath ? folderNotices[folderPath] : undefined;
+    const collapsed = (section.kind === 'group' && groupsCollapsed.includes(section.id)) || (section.kind === 'folder' && folderPath !== '' && foldersCollapsed.includes(folderPath));
+    const heading = section.kind === 'folder'
+      ? <button ref={node => { if (node) groupHeaderRefs.current.set(section.id, node); else groupHeaderRefs.current.delete(section.id); }} data-chat-folder={folderPath || undefined} type="button" className={`woven-chat-section-heading woven-chat-section-heading--folder${section.current ? ' is-current' : ''}`} aria-expanded={!collapsed}
+          title={folderPath ? `${folderPath}${section.current ? ' · folder for new chats' : ''}` : 'Chats without a recorded folder'}
+          onClick={() => { if (!folderPath) return; onOrganizationChange?.({ foldersCollapsed: collapsed ? foldersCollapsed.filter(path => path !== folderPath) : [...foldersCollapsed, folderPath] }); }}>
+          <span><span aria-hidden="true">▱ </span>{section.label}{section.current ? <span className="woven-chat-section-current" aria-label="Folder for new chats"> · current</span> : null}</span><span>{section.entries.length}</span>
+        </button>
+      : section.kind === 'group'
       ? <button ref={node => { if (node) groupHeaderRefs.current.set(section.id, node); else groupHeaderRefs.current.delete(section.id); }} data-chat-group-id={section.id} type="button" className="woven-chat-section-heading" aria-expanded={!collapsed}
           onDragOver={event => event.preventDefault()}
           onDrop={event => { event.preventDefault(); const id = event.dataTransfer.getData('text/chirality-session-id'); if (id) moveToGroup(id, section.id); }}
@@ -178,13 +200,21 @@ export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, on
           <span>{section.label}</span><span>{section.entries.length}</span>
         </button>
       : <h2 className="woven-chat-section-label">{section.label}</h2>;
-    return <section className="woven-chat-section" key={section.id}>{heading}{!collapsed ? <ul className="woven-navigator-session-list" aria-label={`${section.label} chats`}>{section.entries.map(renderRow)}</ul> : null}</section>;
+    return <section className={section.kind === 'folder' ? 'woven-chat-section woven-chat-section--folder' : 'woven-chat-section'} key={section.id} data-folder-notice={notice?.kind}>{heading}
+      {notice && !collapsed ? <div className={notice.kind === 'unavailable' ? 'woven-folder-notice woven-folder-notice--unavailable' : 'woven-folder-notice'} role={notice.kind === 'unavailable' ? 'alert' : 'note'}>
+        <p>{notice.message}</p>
+        {notice.kind === 'unavailable' ? <div className="woven-folder-notice-actions">
+          {onLocateFolder ? <button type="button" disabled={selectionDisabled} onClick={() => onLocateFolder(folderPath)}>Locate folder…</button> : null}
+          {onForgetFolder ? <button type="button" className="button-muted" onClick={() => onForgetFolder(folderPath)}>Forget folder</button> : null}
+        </div> : null}
+      </div> : null}
+      {!collapsed ? <ul className="woven-navigator-session-list" aria-label={`${section.label} chats`}>{section.entries.map(renderRow)}</ul> : null}</section>;
   }
   const activeEntry = menuSessionId ? entryById.get(menuSessionId) : undefined; const pinned = menuSessionId ? chatPins.includes(menuSessionId) : false;
   return <nav className="woven-navigator" aria-label="Workspace Navigator">
     <header className="woven-navigator-brand">Chirality</header>
     <div className="woven-navigator-sections" aria-label="Workspace chats">
-      <label className="woven-chat-search"><span className="sr-only">Search chats</span><input ref={searchRef} type="search" value={query} placeholder="Search chats" aria-label="Search chats" onChange={event => setQuery(event.target.value)} onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); setQuery(''); } }} /></label>
+      <div className="woven-chat-search"><input ref={searchRef} type="search" value={query} placeholder="Search chats" aria-label="Search chats" title="Search chat titles and messages" onChange={event => setQuery(event.target.value)} onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); setQuery(''); } }} /></div>
       <div className="woven-chat-visibility" aria-label="Chat visibility">
         <button type="button" aria-pressed={visibility === 'active'} onClick={() => setVisibility('active')}>Chats</button>
         <button type="button" aria-pressed={visibility === 'archived'} onClick={() => setVisibility('archived')}>Archived ({chatArchived.length})</button>

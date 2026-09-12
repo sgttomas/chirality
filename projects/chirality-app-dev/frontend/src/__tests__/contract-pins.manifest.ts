@@ -46,6 +46,29 @@ export type ContractPinTarget = {
 
 export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
   {
+    file: 'electron/app-update.ts',
+    description:
+      'App update path is check-and-download only: the checker owns no Electron, filesystem, installer or relaunch surface, so an update can never replace, migrate or clear user data (chats, drafts, per-chat folders and settings, workflows, preferences)',
+    pins: [
+      { kind: 'notMatches', pattern: '\\bautoUpdater\\b' },
+      { kind: 'notMatches', pattern: '\\bquitAndInstall\\b' },
+      { kind: 'notMatches', pattern: '\\brelaunch\\b' },
+      { kind: 'notMatches', pattern: "from '(node:)?(fs|fs/promises|child_process)'" },
+      { kind: 'notMatches', pattern: "from 'electron'" },
+      { kind: 'notContains', value: 'userData' },
+      { kind: 'contains', value: 'Nothing downloads, installs or restarts.' }
+    ]
+  },
+  {
+    file: 'electron/main.ts',
+    description:
+      'Application update never installs or relaunches from the main process: the download is handed to the system browser and the user installs it',
+    pins: [
+      { kind: 'notMatches', pattern: '\\bquitAndInstall\\b' },
+      { kind: 'notMatches', pattern: 'app\\.relaunch\\(' }
+    ]
+  },
+  {
     file: '../../../.github/workflows/harness-premerge.yml',
     description:
       'ORN-01 gate set: repo-root harness premerge workflow runs on pull requests without provider secrets (from harness-premerge-workflow.test.ts)',

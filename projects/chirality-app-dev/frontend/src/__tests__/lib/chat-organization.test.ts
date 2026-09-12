@@ -54,7 +54,7 @@ it('keeps the additive v1 schema string unchanged', () => {
 });
 
 describe('chat section projection', () => {
-  it('applies pin/group/date precedence, alphabetical groups, and deterministic ordering', () => {
+  it('applies pin/group/folder precedence, alphabetical groups, and deterministic ordering', () => {
     const sessions = [
       session('today-b', '2026-09-07T09:00:00Z'), session('today-a', '2026-09-07T09:00:00Z'),
       session('yesterday', '2026-09-06T12:00:00Z'), session('week', '2026-09-03T12:00:00Z'),
@@ -66,13 +66,30 @@ describe('chat section projection', () => {
         { id: 'a', name: 'Alpha', sessionIds: ['yesterday', 'week'] }
       ]
     } });
-    expect(sections.map(section => section.label)).toEqual(['Pinned', 'Alpha', 'Zulu', 'Today']);
+    expect(sections.map(section => section.label)).toEqual(['Pinned', 'Alpha', 'Zulu', 'today-a']);
     expect(sections[0].entries.map(entry => entry.sessionId)).toEqual(['pinned', 'today-b']);
     expect(sections[1].entries.map(entry => entry.sessionId)).toEqual(['yesterday', 'week']);
     expect(sections[2].entries).toEqual([]);
+    expect(sections[3]).toMatchObject({ kind: 'folder', folderPath: '/roots/today-a', current: false });
     expect(sections[3].entries.map(entry => entry.sessionId)).toEqual(['today-a']);
     expect(sections.flatMap(section => section.entries).map(entry => entry.sessionId)).toEqual(['pinned', 'today-b', 'yesterday', 'week', 'today-a']);
     expect(sections[3].entries[0]).toMatchObject({ when: '09:00', folderLabel: 'today-a' });
+  });
+
+  it('groups chats by recorded folder: the new-chat folder first, then known folders by use, with disambiguated labels', () => {
+    const at = (day: number) => `2026-09-0${day}T00:00:00Z`;
+    const sessions = [
+      { ...session('a1', at(7)), projectRoot: '/work/alpha' }, { ...session('a2', at(1)), projectRoot: '/work/alpha/' },
+      { ...session('b1', at(6)), projectRoot: '/other/alpha' }, { ...session('c1', at(5)), projectRoot: '/work/gamma' },
+      { ...session('n1', at(4)), projectRoot: '' }
+    ];
+    const state = { chatTitles: {}, chatPins: [], chatArchived: [], chatDeleted: [], chatGroups: [] };
+    const sections = projectChatSections({ sessions, state, referenceDay: '2026-09-07', currentRoot: '/work/gamma', folderOrder: ['/other/alpha', '/work/gamma', '/work/alpha'] });
+    expect(sections.map(section => [section.label, section.current, section.entries.map(entry => entry.sessionId)])).toEqual([
+      ['gamma', true, ['c1']], ['other/alpha', false, ['b1']], ['work/alpha', false, ['a1', 'a2']], ['No folder', false, ['n1']]
+    ]);
+    // Without a known order, folders follow the recency of their newest chat; the trailing slash does not split a folder.
+    expect(projectChatSections({ sessions, state, referenceDay: '2026-09-07' }).map(section => section.label)).toEqual(['work/alpha', 'other/alpha', 'gamma', 'No folder']);
   });
 
   it('keeps archived and locally deleted sessions distinct and hides both from active chats', () => {

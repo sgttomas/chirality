@@ -248,6 +248,20 @@ describe('chat draft helpers', () => {
     expect(storage.has('pair-only')).toBe(false);
   });
 
+  it('round-trips unsent per-chat permission and interaction settings and drops unknown values', () => {
+    const storage = new Map<string, string>();
+    const port = {
+      getItem: (key: string) => storage.get(key) ?? null,
+      setItem: (key: string, value: string) => { storage.set(key, value); },
+      removeItem: (key: string) => { storage.delete(key); }
+    };
+    persistChatDraftSnapshotToStorage(port, 'session-key', { draft: '', attachments: [], methods: [], permissionMode: 'readOnly', interactionMode: 'native-plan' });
+    expect(storage.has('session-key')).toBe(true);
+    expect(readChatDraftSnapshotFromStorage(port, 'session-key').snapshot).toEqual({ draft: '', attachments: [], methods: [], permissionMode: 'readOnly', interactionMode: 'native-plan' });
+    expect(sanitizeChatDraftSnapshot({ draft: 'x', permissionMode: 'sudo', interactionMode: 'plan' })).toEqual({ draft: 'x', attachments: [], methods: [] });
+    expect(sanitizeChatDraftSnapshot({ draft: '', permissionMode: 'ask' })).toEqual({ draft: '', attachments: [], methods: [], permissionMode: 'ask' });
+  });
+
   it('marks storage unavailable when write operations fail', () => {
     const storage = {
       setItem: vi.fn(() => {
