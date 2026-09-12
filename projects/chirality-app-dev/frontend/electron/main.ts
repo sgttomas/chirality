@@ -209,10 +209,15 @@ function summarizeRendererRequestDestination(rawUrl: string): RendererRequestDes
 
 function resolveAppVersion(): string {
   if (app.isPackaged) return app.getVersion();
-  try {
-    const parsed = JSON.parse(readFileSync(path.join(app.getAppPath(), 'package.json'), 'utf8')) as { version?: unknown };
-    if (typeof parsed.version === 'string' && parsed.version.length > 0) return parsed.version;
-  } catch { /* fall through to the Electron-reported version */ }
+  // `electron dist-electron/main.js` makes dist-electron the app path; the
+  // frontend package.json sits one level up.
+  const appPath = app.getAppPath();
+  for (const directory of [appPath, path.dirname(appPath)]) {
+    try {
+      const parsed = JSON.parse(readFileSync(path.join(directory, 'package.json'), 'utf8')) as { name?: unknown; version?: unknown };
+      if (parsed.name === 'chirality-frontend' && typeof parsed.version === 'string' && parsed.version.length > 0) return parsed.version;
+    } catch { /* try the next candidate, then fall back to the Electron-reported version */ }
+  }
   return app.getVersion();
 }
 
