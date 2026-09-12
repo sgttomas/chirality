@@ -160,7 +160,8 @@ function factory(options: CodexCandidateLauncherOptions, adapters: ControlledCod
   let refreshing = false;
   return Object.freeze({
     create(): CodexCandidateLauncher {
-      if (closed || refreshing || !kernelLease.held) throw unavailable("LAUNCHER_FACTORY_CLOSED");
+      if (closed || !kernelLease.held) throw unavailable("LAUNCHER_FACTORY_CLOSED");
+      if (refreshing) throw unavailable("LAUNCHER_FACTORY_RENEWING");
       let launcher!: CodexCandidateLauncher;
       launcher = compose({ bindings, kernelLease }, adapters, () => { launchers.delete(launcher); });
       launchers.add(launcher);

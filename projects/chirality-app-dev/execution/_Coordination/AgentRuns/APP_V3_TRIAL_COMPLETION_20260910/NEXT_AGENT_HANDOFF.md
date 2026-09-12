@@ -117,3 +117,38 @@ Finish this bounded Runtime repair, review and commit the final source, then
 prepare the next consolidated package. Do not treat the partial source as
 accepted or revert the reviewed UI fixes. Do not resume outgoing workers without
 assigning a fresh bounded brief; their work is frozen for your takeover.
+
+## Successor checkpoint — Stage26/R17 native pass (2026-09-12T03:00Z)
+
+The Runtime restart-admission repair was finished, independently reviewed
+PASS with backcheck (R16_RESTART_ADMISSION/INDEPENDENT_REVIEW.md), committed
+(5045178d4, 6e2b631ec) and built once into Stage26/R17 (L_STAGE26_PACKAGING/
+RETURN.md, PASS). R16 was retired (plist preserved in the Stage26 root) and R17
+launched through its guarded launcher. R17_FUNCTIONAL_FINDINGS.md records the
+native pass including the restart-admission target: quit, daemon retained,
+guarded relaunch, real turns in both chats with no sign-in or fence. One new
+finding R17-F1 (interrupted turn not rendered live until reopen) awaits source
+inspection; no rebuild requested. R17 GUI pid 31613 and daemon pid 27838 remain
+running, signed in. Computer Use cannot attach to the GUI after a restart
+because the bundle id resolves to the daemon's lower pid; owner observation is
+the fallback. Packaging cleanup, system-prompt discussion and any publishing
+remain owner decisions; none is authorized.
+
+## Successor — Codex host re-platform (2026-09-12T05:20Z)
+
+The text above is the daemon-era checkpoint and is preserved unchanged. After
+the R17 pass, the owner's plan/execute/save-as-workflow demonstration exposed
+R17-F2 (turns interrupted after ~30 s of stream silence, a transport defect
+by construction; see R17_FUNCTIONAL_FINDINGS.md). The owner approved
+re-platforming the App onto a stock, pinned `codex app-server` child owned by
+the Electron main process (D-GOV-43, proposal revision 3 at commit
+3ef2ef524956498f8923323dc6cf9d672dbeb50b, three independent review rounds
+recorded in the packet). The restart-admission repair, the daemon and its
+supplier-admission machinery are retired by that decision once ruled; the
+next consolidated build is the re-platformed App, not a daemon batch.
+
+The durable entry for the implementing session is
+`../APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md`. It requires the
+owner's ruling record in `docs/governance_harness/_DECISIONS/` before work
+starts. R17 GUI 31613 and daemon 27838 were still running and signed in at
+this checkpoint; the R17 installation and all evidence remain preserved.

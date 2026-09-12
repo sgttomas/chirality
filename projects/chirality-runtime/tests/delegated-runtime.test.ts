@@ -45,7 +45,9 @@ async function fixture(slow = false, login?: RuntimeDaemonOptions["login"], host
   const residency = new ResidencyCoordinator({ async listStatus() { return []; }, async load() {}, async unload() {} }, runtime);
   const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency), new AuthRegistry(runtime), { async get() { return undefined; }, async status() { return { configured: false }; }, async set() {}, async remove() {} });
   const registered = await service.registerProject(manifestPath, "fixture-owner", "fixture-only");
-  const daemon = new RuntimeDaemon({ socketPath: join(root, "d.sock"), runtimeDirectory: runtime, service, delegated, ...(login ? { login, loginProjectId: "project" } : {}) });
+  // Server-side failure diagnostics reach the test output; the daemon records only bounded, token-free fields.
+  const logger = { warn: (event: string, fields?: Readonly<Record<string, unknown>>) => process.stderr.write(`[daemon] ${event} ${JSON.stringify(fields ?? {})}\n`), error: (event: string, fields?: Readonly<Record<string, unknown>>) => process.stderr.write(`[daemon] ${event} ${JSON.stringify(fields ?? {})}\n`) };
+  const daemon = new RuntimeDaemon({ socketPath: join(root, "d.sock"), runtimeDirectory: runtime, service, delegated, logger, ...(login ? { login, loginProjectId: "project" } : {}) });
   const started = await daemon.start();
   cleanups.push(() => daemon.stop());
   const client = new RuntimeClient({ socketPath: join(root, "d.sock"), tokenFile: registered.tokenFile });

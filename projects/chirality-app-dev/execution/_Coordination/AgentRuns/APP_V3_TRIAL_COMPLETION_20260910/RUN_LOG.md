@@ -628,3 +628,357 @@ APP-HOLD reliance ALLOW/CLEAR/NOT_HELD; scan720ca10a948967478e5a539ea1759656d0ce
 NEXT_AGENT_HANDOFF.md now instructs successors to use main containing the PR,
 while preserving original worktree and local-only Apps/packaging evidence.
 PR metadata records final source/merge SHA and CI disposition. No new build.
+
+### Successor takeover: restart-admission repair completed — 2026-09-12T01:35Z to 02:05Z
+
+HELP_HUMAN successor (Claude Fable 5.1) resumed on the integration checkout,
+fast-forwarded to `a75adecf1` (PR #766). The four partial-file hashes in
+R16_RESTART_ADMISSION/PARTIAL_SOURCE_HASHES.json matched before any edit.
+
+Cause established from source, without live state: the App main process
+re-runs the P2 host ceremony on every launch (`electron/main.ts`
+`createHostAccountConnection` → `createVerifiedHostAccountClient`), and the
+daemon's `completeCeremony` revokes the previous host as `host-replaced`. The
+retained supervisor's worker instance admission and the launcher factory's
+preparation were both bound to the replaced lease, so every revalidation
+returned `HOST_AUTHORITY_NOT_LIVE` and the owner saw the generic
+`Runtime v2 admission is missing, invalid, stale or no longer live`. The Stage25
+worker release expires 2026-10-10, so expiry is excluded. R16 daemon logs carry
+warn-level phase lines only and recorded nothing for the failed turn.
+
+Repair (final, replacing the partial diff): supervisor renewal happens only
+for `HOST_AUTHORITY_NOT_LIVE`, only at an idle boundary, with distinct refusals
+(after retirement, while work is active, renewal unavailable); a queued
+candidate is fully retired before renewal and a retirement failure blocks
+renewal; the renewed admission must carry the identical release, subject,
+policy and account (host authority excluded) and the supervisor's current
+admission must be unchanged across the await; `acquire` rechecks
+cancellation/close after the renewal await; `close()` waits for an in-flight
+renewal; the launcher factory reports `LAUNCHER_FACTORY_RENEWING` instead of
+"closed" during renewal. Composition `live()` keeps the durable account binding
+as the liveness signal and renews opportunistically; a renewal that cannot
+complete now never fences the account (a relaunch must not force OAuth), and
+the next launch renews or reports its own failure. Superseded admissions and
+preparations remain invalid; no authentication, seal or payload policy change.
+
+Tests: `tests/runtime-conformance-v2-admission.test.ts` gained five renewal
+tests through the real release verifier, P2 issuers, launcher factory and
+supervisor against a synthetic in-memory lease carrier: fresh-host renewal
+with old admission/preparation rejected and queued-candidate retirement;
+refusals while active/retired/outstanding launcher plus joined concurrent
+renewals; subject (account epoch) and policy (consent) mismatch rejection with
+the superseded admission left unrenewed; disconnect during renewal; expired
+release. `tsc -b` clean. Focused suites (admission, launcher, supervisor,
+composition, bootstrap integration) 81/81. Full Runtime suite run concurrently
+with the frontend suite: 1134 pass, 14 skipped, 3 fail — composition connect
+and pi-packaging cjs consumer timed out at 5 s under load and pass alone
+(26/26); `custody-config-status` asserts a stale exact request key set from
+before commit `364796528` added `timeoutMs`, corrected in a separate test-only
+commit. Frontend suite: 2278 pass, 4 skipped, 5 fail, all 5 s timeouts or
+temp-dir `ENOTEMPTY` under the same load; the three files pass alone (22/22).
+
+Live state observation: at 2026-09-12T01:41:00Z the R16 daemon 10666 logged
+`desktop.shutdown.started` (before-quit) and daemon 17185 started under launchd;
+no GUI process was present afterwards. This lead ran no launch, quit, attach
+or protected-state read; the owner is asked to confirm who relaunched. Existing
+Apps, userdata and stage evidence untouched. Independent review dispatched
+next; no build, signing or publishing.
+
+### Repair committed; review and Stage26 Phase A dispatched — 2026-09-12T02:10Z
+
+Commits `15a07bdef` (renewal repair + records) and `5045178d4` (custody test
+expectation) on the integration checkout. Frontend typecheck against the
+rebuilt Runtime dist: exit 0. launchd confirms `com.chirality.runtime` names
+the R16 executable with daemon pid 17185 running and no GUI, consistent with
+launchd restarting the agent after the 01:41Z before-quit; R16 is otherwise
+untouched. Independent source review (Claude Fable 5.1 medium, read-only,
+R16_RESTART_ADMISSION/REVIEW_BRIEF.md → INDEPENDENT_REVIEW.md) and Stage26/R17
+packaging Phase A (separate instance, L_STAGE26_PACKAGING/BRIEF.md, recipe
+derivation only, no freeze/build) run concurrently. Phase B is held for review
+PASS, recipe review and explicit lead release. Section B (R16 retirement),
+guarded launch and native tests remain lead-only. No publishing.
+
+### Independent review PASS; three non-blocking findings fixed — 2026-09-12T02:25Z
+
+R16_RESTART_ADMISSION/INDEPENDENT_REVIEW.md: PASS, no blocking findings; tsc
+clean, 121/121 across the six named files; no authentication, seal, payload
+or supplier policy relaxation; no path launches on a stale preparation. Three
+non-blocking findings were fixed in the same source: the duplicate-id and
+capacity guard is repeated after the renewal await together with a check that
+this acquisition's own cancellation record survived, and a refusal there
+removes that record (medium and low); a failed queued-candidate retirement
+step is retained and retried before any later renewal, and `close()` runs the
+retained steps (low). New test: retirement failure blocks renewal, the failed
+step is retried first, and the factory is never reached before retirement
+completes. tsc clean; eight focused suites 187/187. FINAL_SOURCE_HASHES.json
+updated; the reviewer is asked to backcheck this delta before source release.
+
+### Stage26/R17 Phase A returned; source released for freeze — 2026-09-12T02:45Z
+
+Reviewer backcheck of `6e2b631ec`: PASS, 56/56, no new finding; recorded in
+INDEPENDENT_REVIEW.md (commit `b74b6616a`). Packager Phase A
+(L_STAGE26_PACKAGING/PREPARATION.md): stage root
+`/private/tmp/chirality-local-human-trial-20260910-26` created 0700; pending
+manifest `stage26-preparation-manifest.json` SHA-256
+`07418d684f8e53313c0a2332225942002b7a608bee03aa6a50d07009851b3d8c`; all 17
+static inputs byte-identical to Stage25 (delta = source commit only); R17
+launcher derivation frozen (expected SHA-256 `150d3437…`); R17 durable paths
+absent; Stage25 and the running R16 untouched. Lead releases the commit that
+records this section as the frozen source; the packager runs only the
+create-only source-candidate, source-freeze and manifest-freeze tools next,
+then stops for recipe review. Phase B (build) is held until that review
+passes and the lead releases it. No commits will be made while Phase B runs.
+
+### Stage26 frozen, recipe reviewed, Phase B released — 2026-09-12T03:20Z
+
+Packager froze the source at `fb529591d` (source-freeze.json SHA-256
+`aecb0b90e79ab5ba3757c284f94fecedc4d4aea3cc19682cf3927a353c9d9f15`) and the
+manifest (`stage26-frozen-preparation-manifest.json` SHA-256
+`6e962726f931cabf8415db2999902064197c98219d9cc2dec28af8480759202f`);
+verify-preparation and prepare-current-inputs --check PASS; run-build --check
+correctly refused before the Phase B preflight receipt. Independent recipe
+review (same reviewer instance, L_STAGE26_PACKAGING/PACKAGING_REVIEW.md):
+PASS, all 66 manifest entries recomputed, delta = source commit only, R17
+launcher derivation `150d3437…` reproduced, no seal/signing/auth weakening,
+Stage25 and the running R16 untouched; three prose-only notes in the
+procedure. Lead released Phase B (steps 0a–25, one consolidated build) to the
+packager; Section B, guarded launch and native tests remain lead-only. HEAD
+stays at the frozen commit until Phase B completes; these records are
+committed afterwards.
+
+### Stage26/R17 Phase B returned PASS — 2026-09-12T02:40Z
+
+Packager return (L_STAGE26_PACKAGING/RETURN.md): PASS through steps 0a–25,
+one consolidated build and signing sequence, no failed gate, no retry, HEAD
+unchanged at `fb529591d`. Completion record
+`/private/tmp/chirality-local-human-trial-20260910-26/phase-b-completion.json`
+SHA-256 `b6e5209f59b23ef8d4a65b429e4e2bf73f703552f511769129d551996b85dccd`;
+root evidence inventory SHA-256 `e5c44772…` (117 files). Durable outputs:
+`/Users/ryan/Applications/Chirality Trial 20260910 R17.app`, userdata
+`/Users/ryan/Library/Application Support/Chirality Trial 20260910 R17` (0700,
+anchor disposition `created`), launcher
+`/Users/ryan/Applications/Launch Chirality Trial 20260910 R17.command`
+(SHA-256 `150d3437…` verified by the lead, 0700, not yet executed).
+Measured identities: outer inventory `34709cd3…`, payload manifest
+`855d90ca…`, support profile `e534c3a2…`, release input digest
+`dcec9ada…`, trial observation `6459050b…`; signed supplier `9a59fcec…`,
+host `d820df9d…`, native `a926a0b9…` with raw inputs unchanged from Stage25.
+Lead checked RETURN.md for addresses: none (the one `@` is the quoted log
+filter phrase). R16 App, userdata, LaunchAgent and daemon (pid 17185) were
+untouched during the build. Packaging PASS is not native acceptance. Next,
+lead-only: Section B R16 retirement, R17 `--check-only`, guarded launch and
+R17_NATIVE_CHECKLIST.md.
+
+### Section B, R17 guarded launch and native pass — 2026-09-12T03:00Z
+
+(The previous section's header time should read 02:34Z.) R16 retired
+02:35:51Z (bootout exit 0, plist `mv -n` to the Stage26 root, `launchctl
+print` exit 113); R17 `--check-only` `Launch guard PASS`; guarded launch
+02:36:06Z (GUI 27808, daemon 27838). Folder bound via `Enter a path…`;
+provider consent and `Sign in` pressed under the standing warrant 02:39:20Z;
+owner OAuth; admission `ready` 02:40:48Z; account Ready. First turn PASS,
+long-chat scroll PASS, second-chat real file read PASS, sidebar PASS.
+Interrupted turn: correct concise `Interrupted` status after reopen, but not
+rendered live (finding R17-F1, medium UI, no rebuild). Restart admission
+target PASS: menu Quit 02:51:30Z with daemon retained (same pid), guard PASS,
+guarded relaunch 02:51:58Z, account host reconnected 02:52:03Z, no
+`hosted.admission.fenced`; owner observed a real follow-up in the retained
+chat and a real `r16-shell-report.md` read in the other chat, both Idle,
+account Ready, no sign-in or admission text. Computer Use could not attach to
+the relaunched GUI (bundle id resolves to the daemon's lower pid; pid/name
+addressing refused; osascript lacks assistive access; no settings changed).
+Records: R17_FUNCTIONAL_FINDINGS.md, R16_RESTART_ADMISSION/HANDOFF.md
+"Native verification", FINAL_SOURCE_HASHES.json status,
+NEXT_AGENT_HANDOFF.md successor checkpoint. R17 GUI 31613 and daemon 27838
+left running and signed in; nothing published.
+
+## Plan/execute/workflow demonstration and R17-F2 — 2026-09-12T03:40Z
+
+Owner asked for a new-chat plan about the Chirality App, one revision,
+acceptance and execution, then a generic report-writing workflow. Done by
+full-screen Computer Use (owner approved). Plan Mode revision 1, "Revise in
+chat" to revision 2, "Execute plan" and "Save as workflow in chat" pre-fills
+all PASS as UI flows. The two full execution turns and the first
+save-as-workflow turn were interrupted about 90-100 s in with status Idle
+and no file written; reopen shows "Interrupted" (one rendered "Turn
+interrupted by operator" live). Bounded read-free retries succeeded:
+`chirality-app-report.md` written 03:29:42Z (85 lines, sha256 ae77b89a...)
+and `.chirality/workflows/report-writing/WORKFLOW.md` 03:33Z (sha256
+ee428532...), the latter listed by Workflows -> Library for this project and
+inspectable. Recorded R17-F2 (high, Runtime/client) with the
+source-established chain: client `stream()` inherits the 30 s socket idle
+timeout, the daemon SSE writer has no keepalives and interrupts the turn on
+close, and tool activity emits no stream bytes. No log line for it; no
+rebuild; nothing published. R17 GUI 31613 and daemon 27838 still running
+and signed in; trial project files preserved (no deletions).
+
+## Owner direction: Codex host re-platform; D-GOV-43 proposal packet — 2026-09-12T05:10Z
+
+After the demonstration and R17-F2, the lead assessed that the Runtime fences
+Codex (eight-notification whitelist with quarantine, effective-config veto,
+private Codex home, patched 0.149.0 supplier with private protocol
+extensions, generic multi-engine UI vocabulary, four-hop turn transport) and
+offered two routes. Owner approved the second, re-platform route (Electron
+main process owns a stock `codex app-server` child over one channel; Next
+turn route and daemon dropped; Codex thread store for resume) and directed
+that governance comes first and impacted deliverables and scopes be revised.
+Verified upstream: Codex `rust-v0.154.0` (2026-09-09), npm 0.154.0, schema
+with 101 client methods, 10 server requests, 82 notifications, none
+Chirality-specific; T3 Code (MIT, Electron, schema-generated client, auth-
+overlay home layout) and Pi (MIT, own agent loop) checked as references.
+Prepared and committed (8f97859ee) the proposal packet
+`docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/`
+(decision with twelve ruling items, inactive AGENTS patch verified with
+`git apply --check`, impact assessment enumerating Root, Runtime, App and PEC
+surfaces, README with hashes), proposal manifest
+`ROOT-DGOV43-PROPOSAL-20260911.yaml`, and the owner-direction transcription
+under `plans/steers/`. Validators: G4 candidate-range and CI, agent
+instructions, instruction entrypoints, candidate whitespace all pass. No
+ruling recorded; no live surface, installation, evidence or credential
+changed; nothing published. Next: owner ruling on D-GOV-43, then the
+application tranche, loop notices and the spike against ruling item 11.
+
+## D-GOV-43 revisions 2 and 3 after independent review — 2026-09-12T05:05Z
+
+Owner relayed two rounds of feedback from an independent reviewing agent
+("Let's iterate to get the best proposal"; then "Once more consider the
+other agent's feedback... update your proposal for my direction"). Revision
+2 (commit a0698bf9c): Chirality effective Codex home with separated
+authentication instead of the user's own home; role and workflow context
+through supported additive inputs; governance simplification as a primary
+deliverable with a purpose test; eight-check measure of done S-1 to S-8;
+`collaborationMode` as a declared experimental augmentation; three owner
+choices surfaced (coordinated tranche, read-only trial chats, residency
+retirement). Revision 3 (this entry): AGENTS patch regenerated to describe
+shared configuration, Chirality-separated Codex-custodied authentication,
+additive role instructions and every server request answered (`git apply
+--check` ok); IMPACT retires residency requirements and the nine held
+bindings outright, regroups the purpose test into six families with whole
+families retired and ordinary software integrity retained, supersedes the
+Stage 9-13 packaging procedure with a new short one, and preserves executed
+records and daemon-era chats unchanged without an import prerequisite;
+ruling item 2 distinguishes unfamiliar notifications (generic inspection)
+from server requests (always answered, explicit unsupported outcome);
+coordinated authority made explicit and bounded with independent review as
+an engineering responsibility; shared-authentication opt-in deferred; the
+eight checks bounded to the production path with only S-6, S-8 and
+signature/pin verification repeated after packaging; the three choices
+folded into the ruling with alternatives noted. Feedback recorded verbatim in
+REVIEW_FEEDBACK_R1.md and REVIEW_FEEDBACK_R2.md. No ruling recorded; no live
+surface, installation, evidence or credential changed; nothing published.
+R17 GUI 31613 and daemon 27838 still running. Next: owner ruling, then the
+coordinated application tranche and the spike against ruling item 12.
+
+## Round-3 review, ruling candidate and implementation handoff — 2026-09-12T05:20Z
+
+Owner relayed the reviewer's round-3 refinements ("Yes—you can go forward on
+this basis... I do not recommend another broad proposal round") and asked
+that the guidance be made durable for a third agent's own session. No
+revision 4: the proposal text stays at revision 3 (3ef2ef524). Added to the
+packet: REVIEW_FEEDBACK_R3.md (verbatim plus dispositions) and
+RULING_CANDIDATE.md (prepared _DECISIONS record with the post-build
+"expected minimum, not a ceiling" clarification, blanks for the owner's
+verbatim ruling and date, and the register row). Wrote the implementation
+handoff APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md (basis commit and
+branch, ruling-record precondition, working priority, application tranche
+list, source-established spike starting points, acceptance and post-build
+rule, review boundary, live state and safety boundaries) and appended a
+successor pointer to NEXT_AGENT_HANDOFF.md without editing earlier text.
+Manifest, README and steer transcription updated. Still no ruling recorded;
+the owner's verbatim ruling is the remaining input. No live surface,
+installation, evidence or credential changed; nothing published. R17 GUI
+31613 and daemon 27838 still running.
+
+## D-GOV-43 ruled; push, pull request and merge authorized — 2026-09-12T05:40Z
+
+Owner ruled, verbatim: "I rule D-GOV-43 accepted as revision 3 at commit
+3ef2ef524, with the post-build minimum-not-ceiling clarification. The three
+folded choices stand." and directed: "You may push changes and open a PR and
+merge once the CI goes green." Transcribed the ruling into
+docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md (RULED
+2026-09-11, verbatim ruling, clarification, application boundary) with the
+_REGISTER.md row; recorded the ruling and merge direction in the new manifest
+ROOT-DGOV43-RULING-20260911.yaml (self_merge true under the recorded owner
+direction) and aligned the proposal manifest; marked the packet README and
+RULING_CANDIDATE.md as transcribed; updated HANDOFF.md preconditions to the
+merged basis and added its transport-record section; steer transcription
+extended. Next: validators, commit, push, open the pull request, record its
+number below, merge when CI is green. No live surface, installation,
+evidence or credential changed; nothing published. R17 GUI 31613 and daemon
+27838 still running.
+
+Pull request opened 2026-09-12T05:50Z: https://github.com/sgttomas/chirality/pull/767
+(branch claude/chirality-v3-mvp-trial-ab05cb into main, HEAD 78974d0ba before
+this entry). Merge follows CI green per the owner's direction; merge SHA
+appended when known.
+
+## PR #767 CI result and merge hold — 2026-09-12T06:05Z
+
+CI at head eb9688556: governance-harness PASS, pec PASS, unsigned-artifact
+check skipped, Harness pre-merge FAIL in "Test shared runtime"
+(projects/chirality-runtime, `npm test -- --maxWorkers=1`, Node 24 on
+ubuntu): two tests in tests/delegated-runtime.test.ts, "interrupts an active
+exact worker once and records the closed interrupted terminal" and "allows
+exact live-turn interruption after hosted launch verification becomes
+unavailable", each with a 500 INTERNAL_FAILURE from the daemon on the
+interrupt request; 1126 other tests passed. The same workflow already failed
+on main's merged PR #766 head 09a0b75c7 (three files, including the second
+of these tests); the unmerged restart-admission commits fixed the other two
+files. Locally (macOS, Node 24.18.0) the full Runtime suite passes with
+--maxWorkers=1 (84 files, 1138 tests) and the two tests passed in six
+repeated runs, so the failure is CI-environment specific and lies in the
+daemon path that D-GOV-43 retires. Owner held the merge ("Let's not merge
+this PR just yet. I might revise it further.") and will reconsider using the
+failed CI. No merge; PR left open; nothing published.
+
+## Topology choice reopened; source comparison prepared — 2026-09-12T06:50Z
+
+Owner relayed the reviewer's counter-proposal reopening D-GOV-43 items 1
+and 7 (hosting, daemon retirement) and, after the lead's assessment,
+directed "Start the comparison." Three read-only source sweeps (daemon and
+Codex modules; contracts, core, client, CLI, PEC, native addon; App Electron,
+ports, routes, harness library, components, packaging) plus spot checks; no
+builds, tests or experiments. Written to
+APP_V3_CODEX_HOST_REPLATFORM_20260912/TOPOLOGY_COMPARISON.md: twelve
+source facts (the daemon is the App executable in --runtime-daemon mode
+hosting the Runtime in Electron main; a legacy in-process host exists; the
+turn path crosses three processes and two sockets; ~700 of 1,064
+codex-session lines are generic; ~4,400 daemon lines are the private
+admission family; the v2 event contract is orphaned; the App is the only
+production socket consumer), the common work C1-C6, the small timeout
+repair kept separate, three topologies (A1 launchd daemon, A2 App-owned
+child, B in-process host behind the existing port), governance by purpose,
+established versus uncertain, and a recommendation (B narrowly over A2;
+not A1). HANDOFF.md gained a "Reopened" section. PR #767 remains unmerged.
+No live surface, installation, evidence or credential changed; nothing
+published. R17 GUI 31613 and daemon 27838 still running.
+
+Addendum 2026-09-12T07:10Z: owner added that the agent host is intended
+for embedding in later Chirality applications (Chirality Piping, a Tauri
+app with a Rust core; checked: no Runtime dependency today) with local
+models. TOPOLOGY_COMPARISON.md section 8 records the consequence: the
+recommendation moves from B to A2 (host as an application-owned child
+speaking the existing socket API, packaged as a spawnable service); not
+A1; common work and retirements unchanged; local models refine item 13
+(shared model server, not a shared Codex host). PR #767 still unmerged.
+
+## A2 selected and recorded; handoff package completed — 2026-09-12T07:40Z
+
+Owner: "We are all in agreement this is the path forward. You will be
+handing this off so a third agent can begin implementation." Recorded the
+supplement docs/governance_harness/_DECISIONS/D-GOV-43_supplement_topology_A2.md
+(items 1, 7, 2 and 13 re-expressed; cross-product constraint; three
+implementation clarifications from the reviewer; reuse by behaviour; PEC
+compatibility unverified) with its register row, and extended the ruling
+manifest and steer transcription. Rewrote
+APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md to A2 (settled
+composition and disconnection rule, four-site transport repair, extensible
+event representation, shutdown behaviour, Codex-only, sequencing, review
+boundary, live state); added PERSPECTIVE.md (owner's note verbatim with an
+orientation preamble) and LAUNCH_PROMPT.md; appended corrections to
+TOPOLOGY_COMPARISON.md. Owner then directed: "merge the PR once the CI goes
+green, on this approval." Next: validators, commit, push; resolve the two
+Linux-only Runtime interrupt test failures so the pre-merge check is green;
+merge PR #767 on that approval and record the merge SHA in the PR closeout
+comment. No live surface, installation, evidence or credential changed;
+nothing published. R17 GUI 31613 and daemon 27838 still running.

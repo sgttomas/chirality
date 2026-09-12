@@ -159,6 +159,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   private candidateLauncherFactory?: CodexCandidateLauncherFactory;
   private controlledVerifyConformance?: ControlledHostedConformanceVerifier;
   private hostAdmissionRefresh?: Promise<void>;
+  private queuedRetirement?: Array<() => Promise<unknown>>;
   private conformance?: Pick<HostedCodexSupervisorOptions, "conformance" | "configDigest" | "consentVersion" | "runtimeV2"> & { accountDigest: string };
   private preadmitted?: AdmittedCandidate;
   constructor(options: CodexSupervisorOptions) {
@@ -277,7 +278,14 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     if (effort !== undefined && !entry.supportedReasoningEfforts.includes(effort)) throw new RuntimeError("INVALID_REQUEST", `Reasoning effort '${effort}' is not supported by '${selectedModel}'`, 400, { reason: "REASONING_EFFORT_UNSUPPORTED" });
     return { model: selectedModel, reasoningEffort: effort };
   }
-  /** Renew only at an idle boundary; old lease-bound admissions remain invalid. */
+  /**
+   * A desktop relaunch replaces the daemon's live host lease, so the v2 instance
+   * admission issued against the previous host is no longer live. Only that
+   * condition is renewable, only at an idle boundary, and only by re-issuing the
+   * admission for the same release, subject, policy and account against the
+   * currently verified host. Superseded admissions stay invalid; every other
+   * failure propagates unchanged.
+   */
   async refreshHostAdmission(): Promise<NonNullable<HostedCodexSupervisorOptions["runtimeV2"]> | undefined> {
     if (this.hostAdmissionRefresh) { await this.hostAdmissionRefresh; return this.conformance?.runtimeV2; }
     const operation = this.refreshHostAdmissionIdle();
@@ -290,16 +298,29 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     if (!current) return;
     try { await revalidateRuntimeInstanceAdmissionV2(current.instanceInput, current.instanceAdmission); return; }
     catch (error) { if (!(error instanceof RuntimeError) || error.details?.reason !== "HOST_AUTHORITY_NOT_LIVE") throw error; }
-    if (this.closed || this.entries.size || this.acquiring.size || !this.candidateLauncherFactory?.refreshHostAdmission || !current.instanceInput.account) throw unavailable("Host admission cannot renew while work is active");
+    if (this.closed) throw unavailable("Host admission cannot renew after retirement");
+    if (this.entries.size || this.acquiring.size) throw unavailable("Host admission cannot renew while work is active");
+    if (!this.candidateLauncherFactory?.refreshHostAdmission || !current.instanceInput.account) throw unavailable("Host admission renewal is unavailable for this admission");
     if (this.preadmitted) {
+      // The queued candidate was launched under the superseded preparation. Retire
+      // every part of it before any renewal. A failed step is retained and retried
+      // before any later renewal, so a failure blocks renewal until it succeeds.
       const pending = this.preadmitted; this.preadmitted = undefined;
-      await pending.authority.close(); await pending.session.close(); await pending.candidate.cleanup();
+      this.queuedRetirement = [...(this.queuedRetirement ?? []), () => pending.authority.close(), () => pending.session.close(), () => pending.candidate.cleanup()];
+    }
+    if (this.queuedRetirement) {
+      const remaining: Array<() => Promise<unknown>> = [], failures: unknown[] = [];
+      for (const close of this.queuedRetirement) try { await close(); } catch (error) { failures.push(error); remaining.push(close); }
+      this.queuedRetirement = remaining.length ? remaining : undefined;
+      if (failures.length === 1) throw failures[0];
+      if (failures.length > 1) throw new AggregateError(failures, "Queued candidate retirement failed before host admission renewal");
     }
     const next = await this.candidateLauncherFactory.refreshHostAdmission(current.instanceInput.account);
     if (this.closed || this.entries.size || this.acquiring.size) throw unavailable("Host admission changed during renewal");
     if (JSON.stringify({ ...next.instanceInput, hostAuthority: null }) !== JSON.stringify({ ...current.instanceInput, hostAuthority: null })) throw unavailable("Host admission renewal changed its subject or policy");
     await revalidateRuntimeInstanceAdmissionV2(next.instanceInput, next.instanceAdmission);
-    this.conformance!.runtimeV2 = { ...current, ...next };
+    if (this.conformance?.runtimeV2 !== current) throw unavailable("Host admission changed during renewal");
+    this.conformance.runtimeV2 = { ...current, ...next };
   }
   private async revalidateCurrentHost(): Promise<void> {
     const input = this.conformance?.runtimeV2?.instanceInput;
@@ -441,7 +462,15 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     const cancelled=()=>{if(cancellation.cancelled||this.closed)throw unavailable("Admission cancelled");};
     const kind=dynamicTools?"manager":"regular";
     let localEntry:Entry|undefined;let begin:(()=>void)|undefined;let finishAdmissionLifecycle:((graceful:boolean)=>void)|undefined;
-    await this.refreshHostAdmission();
+    // Renewal precedes registration so an idle supervisor can renew. The await
+    // reopens the synchronous guard above, so cancellation, close, duplicate id,
+    // capacity and this acquisition's own cancellation record are rechecked
+    // before it registers; a refusal here leaves no cancellation record behind.
+    try {
+      await this.refreshHostAdmission();
+      cancelled();
+      if (this.cancellations.get(workerId) !== cancellation || this.entries.has(workerId) || this.acquiring.has(workerId) || this.entries.size + this.acquiring.size >= (this.options.maxWorkers ?? 16)) throw unavailable("Codex worker is unavailable or already acquired");
+    } catch (error) { if (this.cancellations.get(workerId) === cancellation) this.cancellations.delete(workerId); throw error; }
     this.acquiring.add(workerId);
     let finishAcquisition!: () => void;
     this.pendingAcquisitions.set(workerId, new Promise<void>(resolve => { finishAcquisition = resolve; }));
@@ -629,10 +658,11 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     this.closed = true;
     for (const id of this.cancellations.keys()) this.cancelAdmission(id);
     await Promise.all([...this.pendingAcquisitions.values()]);
+    await this.hostAdmissionRefresh?.catch(() => undefined);
     const failures: unknown[] = [];
     for (const close of [
       ...[...this.entries.values()].map(entry => () => this.retire(entry.handle.workerId, entry.handle.generation)),
-      () => this.preadmitted?.authority.close(), () => this.candidateLauncherFactory?.close?.(), () => this.options.supplierAuthority?.close()
+      () => this.preadmitted?.authority.close(), ...(this.queuedRetirement ?? []), () => this.candidateLauncherFactory?.close?.(), () => this.options.supplierAuthority?.close()
     ]) try { await close(); } catch (error) { failures.push(error); }
     if (failures.length === 1) throw failures[0];
     if (failures.length > 1) throw new AggregateError(failures, "Supervisor retirement failed; candidate ownership retained");

@@ -87,7 +87,7 @@ describe("custody versioned unavailable status and compatibility", () => {
     expect(await updated.client.hostedLoginStatus("project")).toEqual(status);
     expect(old.request.mock.calls).toEqual(updated.request.mock.calls);
     expect(old.request.mock.calls[0]).toEqual(["/v2/projects/project/login/status", expect.objectContaining({ method: "GET", accept: "application/json", body: undefined, token: "synthetic-control-token" })]);
-    expect(Object.keys(old.request.mock.calls[0]![1] as object).sort()).toEqual(["accept", "body", "method", "signal", "token"]);
+    expect(Object.keys(old.request.mock.calls[0]![1] as object).sort()).toEqual(["accept", "body", "method", "signal", "timeoutMs", "token"]);
   });
   it("keeps authorization rejection separate from status-version compatibility", async () => {
     const f = daemonFixture(status, false);

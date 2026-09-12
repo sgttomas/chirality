@@ -1,6 +1,6 @@
 # Incomplete repair handoff — stopped at parent boundary
 
-Status: INCOMPLETE / UNREVIEWED. Parent explicitly stopped further product/test edits and new tests/builds for owner handoff. Preserve partial diff; do not interpret it as qualified source. No supplier/native/live account operation, payload rehash, packaging/signing or commit performed.
+Status: COMPLETED by successor, see "Successor completion" below; historical status was INCOMPLETE / UNREVIEWED. Parent explicitly stopped further product/test edits and new tests/builds for owner handoff. Preserve partial diff; do not interpret it as qualified source. No supplier/native/live account operation, payload rehash, packaging/signing or commit performed.
 
 ## Accepted basis and diagnosis
 
@@ -30,3 +30,30 @@ New test command: npx vitest run tests/runtime-conformance-v2-admission.test.ts 
 5. Runtime rebuild/typecheck output will need regeneration after final source corrections; final frontend typecheck against current Runtime dist also remains. No release packaging authorized by this partial handoff. Subsequent signed native GUI quit/relaunch with retained daemon, fresh same-account admission and real follow-up is required for closure; owner live failure cause still unconfirmed.
 
 Write scope authorization extended by lead to these production targets and focused tests, superseding initial diagnosis-only brief. Current changes are not a new permission exception; stopping is the parent's explicit handoff boundary. No authoritative snapshot/pointer advanced.
+
+## Successor completion (2026-09-12)
+
+Completed by HELP_HUMAN successor on the integration checkout after PR #766.
+Cause, final repair, tests and validation are recorded in RUN_LOG.md under
+"Successor takeover: restart-admission repair completed". Final file hashes:
+FINAL_SOURCE_HASHES.json. Required successor work items 1–4 above are done;
+item 5 (native quit/relaunch verification with retained daemon) remains for the
+next consolidated candidate. Independent review: INDEPENDENT_REVIEW.md.
+
+Design decisions beyond the partial diff: renewal refusals are distinct
+(retired / work active / unavailable); queued candidate retirement failures
+block renewal; the supervisor rejects a renewal if its current admission
+changed across the await; `acquire` rechecks cancellation after the renewal
+await; `close()` awaits an in-flight renewal; composition `live()` no longer
+throws or fences on a renewal failure because a relaunch that races the host
+ceremony or a running turn must not retire the account binding — the durable
+binding check is unchanged and the next launch either renews or fails closed.
+
+## Native verification (Stage26/R17, 2026-09-12)
+
+Item 5 closed. On the signed R17 App (source fb529591d) the lead quit the GUI
+with both chats idle, retained daemon pid 27838, relaunched through the guarded
+launcher, and the owner observed a real follow-up in the retained chat and a
+real file read in the second chat complete without sign-in, account edits or
+any admission fence (daemon log has no `hosted.admission.fenced`). See
+../R17_FUNCTIONAL_FINDINGS.md. FINAL_SOURCE_HASHES.json status updated.
