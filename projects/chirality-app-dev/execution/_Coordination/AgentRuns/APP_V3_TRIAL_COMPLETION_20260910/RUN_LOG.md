@@ -454,3 +454,71 @@ Implemented: boot-specific bounded wait and honest errors; cancellation latched 
 Concrete supplier BUILD_RECIPE manifestcf52b048015cfab86f377760f657191ac94ca4912bb08defebe1cc839c09d8f0 includes isolated offline invocation/enclosure, exact one-file policy delta, preserved old inputs and optional verified COW copies. Reviewer identified fixture-only setup corrections before execution: nested synthetic CODEX_HOME, explicit file-store override instead of generated keyring setting, and actual thread/turn profile selection with verified response/config evidence. No real account configuration changes. Candidate/source/build execution still awaits owner approval; final recipe backcheck pending at this record. Routine consolidated packaging after accepted supplier qualification is covered by standing scope, subject to lead review/release; it does not create another owner prompt merely at a phase boundary. Publishing remains explicitly reserved.
 
 Final BUILD_RECIPE/REVIEW.md backcheck PASS on manifestcf52b048...c09d8f0. All dispatched workers complete. Next required owner decision: accept the literal-root DIRECTORY capability and one isolated offline supplier build/account-free qualification. Then implement/review the bounded shell fixture, qualify actual new supplier+existing host, adopt exact provenance, and issue one reviewed consolidated candidate for the remaining native shell, second-chat and restart checks. No supplier execution before that decision.
+
+### Approved supplier shell correction execution
+
+Owner replied “approved” to the reviewed supplier correction and isolated offline build/qualification. Approved recipe manifestcf52b048015cfab86f377760f657191ac94ca4912bb08defebe1cc839c09d8f0; candidate patch1eb61c814c8dbc320cf87dbfbb3fc9329697a119048872267d6b312c589acfc8. Lead released exact isolated preparation and one enclosed offline build to separate gpt-6-astra medium Type2 r13_packaging. Shell qualification fixture must be reviewed before execution; all original source/cache/target/apps/userdata/evidence remain preserved. No downloads, actual account state access or auth weakening. Routine next consolidated App packaging follows successful reviewed supplier qualification under standing scope; no publishing.
+
+Lead APP-HOLD reliance preflight at798507c47: ALLOW/CLEAR/NOT_HELD for HELP_HUMAN:TRIAL:REPAIR / DEL-09-04, registerc08a2948...c5cafc, scan90977c1f29801afd65cbea54079e2ec291612d8d2c2514a62a6427db356cf008. Lead owns maintained supplier correspondence adoption and subsequent package/native review; no unrelated work released. Coordination returns through parent under project rules.
+
+Isolated preparation PASS after preserving an initial inventory-helper mismatch
+that stopped before copying or building. Reviewed helper v2 matched all6443
+retained regular source entries, excluded24 Git administrative entries explicitly,
+and preserved contained symlinks separately. Verified independent COW copies of
+530056 source/cache/target files. One offline build PASS,371.4seconds; candidate
+source6419regular entries unchanged. Raw codex d93489389a5de4d7b6579314948ea6a07a440f20799cf3ad65e8adabfb3ed233,
+762253256bytes. Full preserved-input poststate comparison remains pending.
+
+Qualification fixture v3 passed independent review after output-attribution,
+denial, bounded-cleanup and final error-latch repairs. First actual direct run
+stopped in production prepareCodexNativePolicy before any supplier command:
+synthetic protected paths omitted the required enclosing broker control root.
+Failure retained; no pair run, test-filter execution or rebuild. Lead authorized
+fixture-only layout correction preparation with fresh run destinations and no
+production-policy change. Because repeated setup omissions survived review,
+invoked the standing rare exception: fresh read-only Type2 r16_fixture_review,
+gpt-6-astra high, to inspect the complete corrected compiler/config/protocol basis.
+Author remains r13_packaging, gpt-6-astra medium; all returns through parent.
+Corrected fixture execution requires reviewer PASS and lead release. Stage25
+brief and R16 focused native checklist prepared, packaging not dispatched.
+
+V6 actual qualification: six direct generated-policy probes PASS and six actual
+Codex+official-host shell turns PASS (read/write/denials). Earlier fixture-only
+failures and reviewer corrections remain preserved: broker-root layout,
+structured code-mode output and obsolete `sandbox macos` CLI syntax. V6 then
+reported FAIL because a background sleep remained listed after raw turn/interrupt;
+it had not closed App Server before requiring child retirement. Fixture-owned
+process cleanup ran; no after-interrupt read or Rust filters ran.
+
+Independent evidence review and separate source diagnosis agree this assertion
+exceeds raw Codex semantics: unified-exec explicitly retains background processes
+across turn interruption. Supplier EOF shuts down threads, unified-exec and
+code-mode; Runtime additionally retires and checks descendants before reporting
+its own terminal. V6 FAIL remains, not relabelled PASS. Lead authorized preparation
+of a narrow reviewed EOF-retirement/fresh-worker/thread-resume/read continuation,
+carrying the twelve passing shell probes forward. No new supplier source change
+or rebuild indicated; authenticated Runtime retirement remains later native
+qualification. Full original source/cache/target preservation comparison PASS.
+
+Final bounded supplier qualification and maintained correspondence review PASS.
+Actual separate lifecycle continuation retired both workers cleanly under1000ms
+(full observed retirement68.20ms and55.85ms), resumed the exact stored thread in
+a fresh worker and read README. Both exits0/no signal; no emergency cleanup.
+An UnknownProcessId diagnostic during interrupted shutdown is retained without
+claiming error-free stderr. Five selected existing Rust filters passed14 tests;
+source and raw binaries remained unchanged. Final indexed return72fa893eb961e0063e3a5030a5d8f0bc40e582621cd7b1b7acf5c4580acd016b.
+
+Lead applied exact reviewed five-file supplier correspondence candidate
+af5d1e3f20f7cfb55fc7a5d5dc972aa9d3f6aabcf86361ac7ee780518ac94df2;
+all postimages match. Full maintained patchce64b7d498dfa7122cffac0df1ad1a96697e64e580c19f97a6fd3ef11b63e20a
+contains the original93-file delta plus only the root-directory policy rule;
+all94 compiled-source identities match. Prior build05 remains preserved by Git
+commit798507c47 and original external evidence; older histories remain unchanged.
+Independent QUALIFICATION_REVIEW.md and SOURCE_ADOPTION_REVIEW.md record scope and
+limits. No authenticated Runtime or signed-App qualification inferred.
+
+Stage25/R16 separate packager released for PhaseA draft preparation only. Final
+source commit and input freeze follow this accepted adoption. Recipe review and
+lead release still precede the single consolidated build/sign operation; SectionB
+retirement, guarded launch and native checklist remain lead/owner steps. No
+publishing approval.

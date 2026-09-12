@@ -19540,3 +19540,18 @@ diff --git a/codex-rs/tui/src/chatwidget/protocol.rs b/codex-rs/tui/src/chatwidg
              ServerNotification::ContextCompacted(_) => {}
          }
          self.thread_usage.replaying_turn_completion = was_replaying_turn_completion;
+
+--- a/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl
++++ b/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl
+@@ -6,6 +6,11 @@
+ 
+ ; start with closed-by-default
+ (deny default)
++
++; macOS process startup needs data access to the root directory vnode.
++; This literal DIRECTORY grant does not permit reading descendant files.
++(allow file-read-data
++  (require-all (literal "/") (vnode-type DIRECTORY)))
+ 
+ ; child processes inherit the policy of their parent
+ (allow process-exec)

@@ -1,0 +1,19 @@
+# Independent shell qualification fixture review
+
+**NEEDS_REPAIR before execution.** Frozen fixture SHA256 `1e414b6eec46557aeaeb0c0a4ce7197fa0e9fdbef31c8915cad54c5b396dda94`, `/private/tmp/chirality-supplier-root-directory-fix-20260911-01/qualification/shell-fixture.mjs`. Read-only TASK / Type 2, independent of author, no delegation. Only permitted `node --check` executed (PASS); no fixture/supplier execution or source edits. Findings routed through parent.
+
+## Blocking findings
+
+1. **P1 — Bind output and completion evidence to each current call/turn.** Lines 19,23,30,33 use the whole `j.input` conversation history as current.output, extract its first exit-code text, accept any queued turn/completed, and accept a README substring after interruption without checking that command's exit. Earlier output can satisfy later checks or make negative cases fail on an earlier exit0. Record each issued call_id and select exactly its unique custom_tool_call_output from the next provider request. Decode only that output; require complete exit0 and expected content for the fresh after-interrupt call too. Match terminal threadId/turnId to each accepted turn/start response. The pinned protocol's CustomToolCallOutput carries call_id and output; output is a string OR structured content-item array (`codex-rs/protocol/src/models.rs:1072` and `core/tests/suite/code_mode.rs:121–129`). Preserve partial/error output and fail missing/duplicate/wrong-type correspondence; no assumed string-only payload.
+
+2. **P2 — Bound the actual process and evidence shutdown path.** Lines 17,19,21–26,34 leave HTTP bodies, stdout/stderr, RPC/provider/event arrays unbounded; ps has no timeout; finally waits indefinitely for server.close, and failure sends SIGTERM only to the parent with no bounded retirement check/cleanup. Add modest byte/item caps and ps timeout, stop on overflow, close/destroy fixture sockets within a deadline, and perform bounded cleanup of positively identified fixture-owned processes. Forced cleanup remains FAIL. Always retain bounded failure evidence. This prevents a failing real local process from hanging or flooding this supposedly bounded qualification.
+
+3. **P2 — Distinguish ordinary denial from abnormal child exit.** Lines 12,30 accept any nonzero tool exit with marker/denial text. A command that reaches denial then crashes can satisfy this. For these exact cat/zsh denial commands require the ordinary expected denial exit or explicitly reject signal/timeout/abnormal-exit evidence; do not count supplier/host failure as a passing protected-path case.
+
+## Verified scope and limits
+
+The fixture uses the actual supplier and sibling host through a loopback fake provider; it rejects callback/approval requests instead of fabricating shell results. Positive/direct cases, protected/read-only disk checks, sleep observation and interruption-follow-up intent are present. Its synthetic private home is nested and mode0700. It replaces exactly the generated keyring override with file, reads back file auth and normalized named permissions, and selects the profile at thread/turn entry. Those scope constraints are consistent with the approved recipe.
+
+Compiler source is unchanged versus `364796528`; inspected source SHA256 `e0f55576e84d5610ed488449b58d535b7235e365dfca7b26f3be3c19b2194d66`, existing dist SHA256 `ad2a6c81858537bef77d6147d1395a28caf88a425ef765a596a239ef1ec3c866`. Parent supplies the prior compilation evidence; recording source/dist hashes alone is not fresh compilation proof. No build repetition requested.
+
+This is derivative fixture-review evidence under the existing owner-approved scope, not a new owner approval gate. Repair and independent backcheck are needed before fixture execution; actual shell, containment and retirement qualification remain unexecuted here.

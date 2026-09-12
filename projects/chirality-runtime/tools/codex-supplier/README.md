@@ -1,29 +1,56 @@
 # Codex local trial supplier
 
-This directory maintains the exact source patch and build correspondence for the ARM64 macOS local trial supplier. The executable uses Cargo's **dev profile with only sha2 0.10.9 optimized at level 3**. It is not an optimized public release or a vendor-signed OpenAI distribution.
+This directory maintains the source patch and build correspondence for the
+ARM64 macOS trial supplier. It uses Cargo's **dev profile with only sha2 0.10.9
+optimized at level 3**. It is not an optimized public release or an OpenAI-signed
+Codex distribution.
 
-`source-build.json` pins upstream commit, the complete 93-file upstream delta, patch hash, compiled source snapshot digest, and original executable identity. `codex-local-trial.patch` applies to the pinned upstream commit; an isolated-index `git apply --cached --check` passed. It includes the accepted dependency lockfile adjustment; builds must use that exact lockfile. Build05 adds the login-purpose screening repair on top of build04. The prior build03 and build04 patches and provenance remain under `history/build03/` and `history/build04/`.
+`source-build.json` pins upstream commit, the complete 94-file upstream delta,
+compiled source snapshot and original executable identity. The latest change
+adds only a literal-root DIRECTORY read-data rule to `seatbelt_base_policy.sbpl`.
+It permits root-directory data, including immediate entry enumeration, so macOS
+shell processes can start. It grants no recursive descendant-file access and
+changes no account, lease, epoch or protocol behavior.
 
 ## Reproduction
 
-Use an isolated checkout of the pinned upstream commit and apply `codex-local-trial.patch`. Verify every changed-file SHA256 against `source-build.json` before building. Provision the already-approved immutable Cargo dependency cache separately; this recipe grants no network fetch or dependency acquisition.
+Apply `codex-local-trial.patch` to the pinned upstream commit and verify its
+changed-file identities against `source-build.json`. An isolated-index apply
+check passed. Preserve the exact lockfile and use the recorded Rust 1.97.1
+ARM64 toolchain. The successful command is the locked, offline Cargo build in
+`build-invocation.json`; `build-enclosure.sb` records its actual compiler sandbox.
+Map their isolated paths consistently when reproducing the process. This grants
+no dependency acquisition, network access or unenclosed build fallback.
 
-`build-invocation.json` preserves the exact successful argv, sanitized environment, source location, target, and profile. `build-enclosure.sb` preserves the actual macOS compiler enclosure. Its absolute isolated-workspace paths must be mapped consistently for another local workspace, while retaining network denial, protected source/dependency payloads and the limited target/cache bookkeeping write scope. Use the pinned Rust 1.97.1 aarch64-apple-darwin toolchain and the command:
+The recorded build used independently verified APFS clones of existing source,
+dependency cache and target files. Original inputs remain unchanged. The source
+snapshot excludes Git administration and records contained source symlinks
+separately. Reproduction means source and process correspondence; debug paths and
+platform inputs can affect executable bytes, so bit-for-bit rebuilding is not
+asserted.
 
-```sh
-cargo build --manifest-path codex-rs/cli/Cargo.toml --bin codex --locked --offline --target aarch64-apple-darwin
-```
+## Payload and qualification
 
-Run only inside the recorded enclosure and sanitized environment. The command deliberately omits `--release`. Reproduction means source and process correspondence; debug absolute paths and toolchain/platform inputs may affect binary bytes, so bit-for-bit rebuilding is not asserted.
+The raw payload contains custom-built `codex` and an unchanged official
+`codex-code-mode-host` from the matching OpenAI release. The patch and compiled
+source claim apply to `codex`; the host has its own origin and measured identity.
+Both binaries have only macOS system-library dependencies. Packaging owns nested
+signing, the host-only JIT entitlement and measurement of resulting bytes.
 
-## Payload and evidence
+Six direct restricted-policy shell probes and six actual supplier/host shell
+turns passed. They cover reads, an allowed write, and protected/read-only denials.
+The original pair test's overall FAIL remains preserved: raw turn interruption
+intentionally leaves unified-exec background sessions alive. A separate reviewed
+continuation established clean EOF retirement, a fresh worker resuming the exact
+thread and reading README, then clean retirement again. Both retirements completed
+within one second without signals or emergency cleanup. Five targeted existing
+Rust filters passed 14 tests. Exact results and limitations are in
+`source-build.json`; these checks do not qualify authenticated Runtime retirement
+or the next signed App. Those remain native trial obligations.
 
-The declared original payload root contains only `codex`. Mach-O dependencies resolve exclusively to macOS system frameworks and libraries; no non-system dylib sidecar was identified. Other external tools used by optional Codex functionality are outside this payload statement. The linker supplies an ad-hoc signature with no team identity. Packaging owns any subsequent nested signing and must measure its resulting bytes separately.
-
-The source has independent lifecycle/authority review and an actual no-model initial/idle V2 lifecycle pass at the default test stack after the targeted turn-context allocation repair. CHECK_CONNECTED_06 and CHECK_REVOCATION_02 passed their two bounded routing cases, and the final independent backcheck accepted that evidence. The revocation case demonstrates integrated rejection with no observed next turn, not isolation of the consumption-time guard. Broader combined fork/resume-history and queue-only durable-sleep scenarios remain unqualified. The historical build03 test-only changes remain in `post-build-tests.patch`; they are now included in build04 inputs and are not claimed as newly rerun tests. The human owns the first account/model end-to-end trial. See `source-build.json` for preserved build evidence and original artifact location.
-
-The successful link emitted a large `__eh_frame` compact-unwind performance warning. It did not prevent the dev artifact build.
-
-Build04 changes only the sha2 0.10.9 package optimization relative to the retained final source. It uses the existing pure-Rust backend, unchanged features and lockfile. Its offline build passed; startup improvement remains subject to measurement on the new signed artifact. The earlier 32.103-second diagnostic measured total initialization, not isolated hashing.
-
-Build05 changes one production file relative to build04: `codex-rs/app-server/src/message_processor.rs`. The private-connection screening previously refused every request except `config/read` before an identity snapshot existed, so a fresh hosted connection could never run `account/login/start` and the native sign-in failed with "Private authority unavailable". Build05 admits only the recorded login-purpose method set (`account/login/start`, `account/login/cancel`, `account/read`, `model/list`) before an identity snapshot; every other private request still requires a live admission lease, and the extended `private_initialize_then_config_read_body` unit test asserts both sides. Validation: the daemon-driven replay harness (`harness-login-sequence.mjs` in the build05 evidence) obtained an `auth.openai.com` login URL from the build05 artifact and confirmed `thread/list` is still rejected; the app-server lib suite passed (317 tests; `RUST_MIN_STACK=33554432` was required for an unrelated `mcp_refresh` test that overflows the default thread stack). The build was incremental in the retained target directory inside the remapped enclosure. This build awaits the independent reviewer and the owner's end-to-end account trial; the build04 routing evidence was not rerun on build05.
+Build05 source, patch and correspondence remain preserved in Git at
+`798507c4712819f77fa868813d11adb799af9726` and in the referenced external evidence.
+Older build03/build04 records remain under `history/`. Historical qualification
+is not asserted to have been rerun. Broader fork/resume-history and durable-sleep
+scenarios remain unqualified. This source-control update grants no publishing
+approval.

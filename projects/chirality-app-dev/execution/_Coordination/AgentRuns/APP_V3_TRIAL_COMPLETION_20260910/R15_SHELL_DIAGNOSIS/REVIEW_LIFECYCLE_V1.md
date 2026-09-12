@@ -1,0 +1,22 @@
+# Independent lifecycle fixture v1 review
+
+**NEEDS_REPAIR — two narrow failure/evidence issues.** Reviewed full frozen fixture `0f5007377f2fb161286c2c5b09b7261c109d1c4b64442bca9aa5c0935ad61fe8` and coupled manifest `453147eeca5a798fe740d6656e690ef8795300506b9bf25b29bd0d514d97c80d`; all manifest member hashes match. Node 24.18.0 syntax check passed. No fixture, supplier, compiler or native execution.
+
+1. **P2 — Establish a live worker at the EOF boundary.** `lifecycle-fixture-v1.mjs:35–39` accepts an already-exited worker: if cpExit is already exit0 and cpClosed is true, it skips the wait and can pass an empty census while recording negative eofToExitMs/eofToCloseMs. Require no observed exit/close and the exact current worker in the before census immediately before sending EOF; require nonnegative elapsed exit/close times. This makes the result support the claimed EOF shutdown rather than crediting a prior unexpected exit.
+2. **P2 — Install spawn-error handling before PID assertions.** Lines 28–29 assert child.pid before attaching the error handler. If spawn fails with no PID, the assertion enters finally, then the unhandled asynchronous child error can terminate Node during the cleanup wait before result.json is saved. Attach child error/exit/close listeners immediately after spawn and before the PID/reuse assertions so the existing failure latch and bounded finally path retain failure evidence.
+
+Evidence-label correction: each retirement outcome initializes forcedCleanup:false and never updates it, even when a failed EOF phase is followed by emergency signaling. Remove that field or update it for the affected outcome. Overall FAIL already remains FAIL; this correction prevents a conflicting per-phase statement.
+
+## Verified integration and calibration
+
+The full new fixture has one sleep and one resumed README read, with no repetition of the six earlier cases. Exact artifact byte pins are streamed before fresh state; broker/private/home, protected and read-only rules, compiler invocation, one exact keyring-to-file fixture override, loopback provider, no command network, bounded IO/evidence, current-call decoding, disk invariants, cleanup and final error latch remain as previously reviewed. Exclusive lifecycle-run-v1 is absent at review time. Supplier argv stays generated global -c pairs followed by bare app-server, validated in REVIEW_FIXTURE_V6.md.
+
+Generation-scoped child handlers, RPC pending entries, increasing RPC/provider IDs, previous child close before restart, parser/event reset, provider case/generation capture and exact current output binding prevent old evidence from satisfying the new worker. No response schema is invented. Pinned `app-server-protocol/src/protocol/v2/thread.rs:834–954` supports the exact thread/resume fields and response profile/approval/cwd/thread assertions; history/path are omitted. Both processes use the same synthetic home/project/config/profile, and the second PID must differ. Actual README bytes must come through the native tool decoder.
+
+Pinned EOF path is source-supported: stdio ConnectionClosed exits single-client processing (`app-server/src/lib.rs:1061–1081`), drains and shuts down threads (1240–1248), and session shutdown explicitly terminates unified-exec processes and code mode (`core/src/session/handlers.rs:399–417`). The fixture's 1000ms includes leader exit0, stream close and final empty observed-process census; timeout or any signal cannot pass. This is at least as strict as the EOF-grace duration in Runtime `codex-authenticated-transport.ts:155–167`, which then escalates through separately owned groups. It does not emulate authenticated transport custody, group identity or Runtime census mechanisms. The fixture scope correctly keeps those claims separate and preserves v6 FAIL.
+
+## Handoff
+
+Independent TASK/Type2, gpt-6-astra high under the continuing parent-recorded exception; no delegation and same actual instruction/worktree basis as REVIEW_FIXTURE_V4.md. Additional read basis: DIAGNOSIS_INTERRUPTION.md SHA256 `2ba9de65408802c415018c2c3df491e1701a3eef6ee391a770ce27625c313111`; Runtime authenticated transport `7e6b5008a9a4d9333a20153ca75541d1b9abea36815ed12d02ccdb8d4359fb4e`; pinned thread protocol `ee9df984a41d20859d8ca3e203dd8b533f46098d06e99807d52cf2a1453f5447`.
+
+Derivative review: repair and independent backcheck required before lead release. No source edit, retry, account/Keychain/real Codex-home operation or protected actual-trial read. No qualification or acceptance pointer changed; no new owner approval gate.
