@@ -11,6 +11,13 @@ import { DocumentView, handoffDocument } from '../shell/document-view';
 import type { WovenWorkspaceState } from '../../lib/woven-dialogue/woven-workspace-state';
 import type { QualifiedMethodReference } from '../../lib/harness/method-selection-client';
 import { MethodLibraryView } from './method-library-view';
+import { NativePlanPanel, type NativePlanPanelModel } from '../shell/native-plan-panel';
+import { resolveRightPanelView, type WovenRightPanelView } from '../../lib/woven-dialogue/woven-workspace-state';
+
+/** Tab order and labels. Settings is reached from the account menu, not a tab. */
+const TABS: readonly { view: Exclude<WovenRightPanelView, 'settings'>; label: string }[] = [
+  { view: 'files', label: 'Files' }, { view: 'plan', label: 'Plan' }, { view: 'workflows', label: 'Workflows' }, { view: 'skills', label: 'Skills' }, { view: 'agents', label: 'Agents' }, { view: 'activity', label: 'Activity' }
+];
 
 /** Deterministic projection of recorded metadata; never a generated purpose/result narrative. */
 export function deriveSessionMenu(
@@ -64,7 +71,9 @@ type Props = {
   onFolderSelectionPending?: (pending: boolean) => void;
   folderMismatch?: boolean;
   settingsView?: React.ReactNode;
-  onView: (view: 'files' | 'workflows' | 'agents' | 'activity' | 'settings') => void;
+  onView: (view: WovenRightPanelView) => void;
+  planPanel?: NativePlanPanelModel | null;
+  planFocusRevision?: { revision: number; sequence: number };
   onOpenFile: (path: string) => void;
   onFileCatalog?: (catalog: FileCatalog | null) => void;
   onClose: () => void;
@@ -79,7 +88,7 @@ type Props = {
   selectedMethods?: readonly QualifiedMethodReference[];
   onSelectedMethodsChange?: (methods: QualifiedMethodReference[]) => void;
 };
-export function RightPanel({ settingsView, state, sessionOpen, folderLocked = false, onFolderSelectionPending, folderMismatch = false, onView, onOpenFile, onFileCatalog, onClose, onExpand, coordination, onRefreshSessions, replayState = { status: 'IDLE' }, recordedSessionIds = [], primarySessionId, liveTurnActive = false, onOpenParent, selectedMethods = [], onSelectedMethodsChange = () => {} }: Props): JSX.Element {
+export function RightPanel({ settingsView, state, sessionOpen, folderLocked = false, onFolderSelectionPending, folderMismatch = false, onView, onOpenFile, onFileCatalog, onClose, onExpand, coordination, onRefreshSessions, replayState = { status: 'IDLE' }, recordedSessionIds = [], primarySessionId, liveTurnActive = false, onOpenParent, selectedMethods = [], onSelectedMethodsChange = () => {}, planPanel = null, planFocusRevision }: Props): JSX.Element {
   const { projectRoot } = useWorkspace();
   const [refresh, setRefresh] = useState(0);
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -88,7 +97,7 @@ export function RightPanel({ settingsView, state, sessionOpen, folderLocked = fa
   const sessionMenu = deriveSessionMenu(replayState, recordedSessionIds, primarySessionId, liveTurnActive);
   const [menuError, setMenuError] = useState<string | null>(null);
   // Future stored views must leave existing content reachable, never blank it.
-  const view = state.rightPanelView === 'workflows' || state.rightPanelView === 'agents' || state.rightPanelView === 'activity' || state.rightPanelView === 'settings' ? state.rightPanelView : 'files';
+  const view = resolveRightPanelView(state.rightPanelView);
   const target = view === 'files' ? state.openDocumentPath : null;
   const detailOpen = Boolean(target || (sessionOpen && view === 'agents'));
   const sessionDetail = sessionOpen && view === 'agents';
@@ -117,13 +126,14 @@ export function RightPanel({ settingsView, state, sessionOpen, folderLocked = fa
         <div ref={tabsRef} className={styles.tabs} role="tablist" aria-label="Right panel views" onKeyDown={(event) => {
           if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
           event.preventDefault();
-          const views = ['files', 'workflows', 'agents', 'activity'] as const;
-          const next = event.key === 'Home' ? 'files' : event.key === 'End' ? 'activity' : views[(views.indexOf(view) + (event.key === 'ArrowRight' ? 1 : views.length - 1)) % views.length];
+          const views = TABS.map(tab => tab.view);
+          const index = Math.max(0, views.indexOf(view as (typeof views)[number]));
+          const next = event.key === 'Home' ? views[0] : event.key === 'End' ? views[views.length - 1] : views[(index + (event.key === 'ArrowRight' ? 1 : views.length - 1)) % views.length];
           onView(next);
           event.currentTarget.querySelector<HTMLButtonElement>(`[data-view="${next}"]`)?.focus();
-        }}>{(['files', 'workflows', 'agents', 'activity'] as const).map(item => <button key={item} role="tab" id={`right-tab-${item}`} data-view={item}
-          aria-controls="right-view-content" aria-selected={view === item} tabIndex={view === item ? 0 : -1}
-          onClick={() => onView(item)}>{item === 'files' ? 'Files' : item === 'workflows' ? 'Workflows' : item === 'agents' ? 'Agents' : 'Activity'}</button>)}</div>}
+        }}>{TABS.map(tab => <button key={tab.view} role="tab" id={`right-tab-${tab.view}`} data-view={tab.view}
+          aria-controls="right-view-content" aria-selected={view === tab.view} tabIndex={view === tab.view ? 0 : -1}
+          onClick={() => onView(tab.view)}>{tab.label}{tab.view === 'plan' && planPanel?.revisions.length ? <span className="woven-tab-count" aria-label={`${planPanel.revisions.length} revisions`}>{planPanel.revisions.length}</span> : null}</button>)}</div>}
       <div className="woven-right-panel-controls">
         <details><summary aria-label="Panel menu" title="Panel menu">⋮</summary>
           <div className="woven-panel-menu-content">
@@ -154,7 +164,10 @@ export function RightPanel({ settingsView, state, sessionOpen, folderLocked = fa
     {copyStatus ? <p role="status">{copyStatus}</p> : null}
     {menuError ? <p role="alert">{menuError}</p> : null}
     <div id="right-view-content" role={detailOpen ? undefined : 'tabpanel'} aria-labelledby={view === 'settings' ? 'right-settings-title' : detailOpen ? undefined : `right-tab-${view}`} style={{ minHeight: 0, flex: 1, overflow: 'auto' }}>
-      {view === 'settings' ? settingsView ?? <p>Settings are unavailable.</p> : view === 'workflows' ? folderMismatch ? <p role="alert">The chat is bound to a different folder. The workflow library is unavailable until that folder is synchronized.</p> : projectRoot ? <MethodLibraryView projectRoot={projectRoot} selected={selectedMethods} onSelectedChange={onSelectedMethodsChange} refresh={refresh} /> : <p>Choose a folder to see its workflow library.</p> : view === 'activity' ? <ActivityView /> : view === 'files' && folderMismatch ? <p role="alert">The chat is bound to a different folder. File browsing is unavailable until that folder is synchronized.</p> : view === 'files' ? target ? <DocumentView presentation="woven" key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel presentation="woven" folderLocked={folderLocked} onFolderSelectionPending={onFolderSelectionPending} key={refresh} onOpenFile={onOpenFile} onFileCatalog={onFileCatalog} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
+      {view === 'settings' ? settingsView ?? <p>Settings are unavailable.</p>
+        : view === 'plan' ? <NativePlanPanel model={planPanel} focusRevision={planFocusRevision} />
+        : view === 'workflows' || view === 'skills' ? folderMismatch ? <p role="alert">The chat is bound to a different folder. The {view === 'skills' ? 'skill' : 'workflow'} library is unavailable until that folder is synchronized.</p> : projectRoot ? <MethodLibraryView view={view} projectRoot={projectRoot} selected={selectedMethods} onSelectedChange={onSelectedMethodsChange} refresh={refresh} /> : <p>Choose a folder to see its {view === 'skills' ? 'skills' : 'workflow library'}.</p>
+        : view === 'activity' ? <ActivityView /> : view === 'files' && folderMismatch ? <p role="alert">The chat is bound to a different folder. File browsing is unavailable until that folder is synchronized.</p> : view === 'files' ? target ? <DocumentView presentation="woven" key={refresh} target={target} expanded={state.rightPanelExpanded} onOpenDocument={relative => { if (projectRoot) onOpenFile(`${projectRoot.replace(/\/$/, '')}/${relative}`); }} /> : <FileTreePanel presentation="woven" folderLocked={folderLocked} onFolderSelectionPending={onFolderSelectionPending} key={refresh} onOpenFile={onOpenFile} onFileCatalog={onFileCatalog} selectedPath={state.openDocumentPath && projectRoot ? `${projectRoot.replace(/\/$/, '')}/${state.openDocumentPath}` : null} /> : coordination}
     </div>
   </section>;
 }

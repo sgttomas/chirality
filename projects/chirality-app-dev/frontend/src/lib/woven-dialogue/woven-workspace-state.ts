@@ -59,7 +59,12 @@ export type WovenSessionSurfaceMap = Readonly<
   Record<string, WovenWorkspaceSurface>
 >;
 
-export type WovenRightPanelView = 'files' | 'workflows' | 'agents' | 'activity' | 'settings';
+export type WovenRightPanelView = 'files' | 'plan' | 'workflows' | 'skills' | 'agents' | 'activity' | 'settings';
+export const RIGHT_PANEL_VIEWS: readonly WovenRightPanelView[] = ['files', 'plan', 'workflows', 'skills', 'agents', 'activity', 'settings'];
+/** Future stored views must leave existing content reachable, never blank it. */
+export function resolveRightPanelView(view: WovenRightPanelView | undefined): WovenRightPanelView {
+  return view !== undefined && RIGHT_PANEL_VIEWS.includes(view) ? view : 'files';
+}
 export type WovenRightPanelWidthKey = WovenRightPanelView | 'document' | 'session';
 export type WovenChatRung = { kind: 'plain' | 'spec' | 'workflow'; ref?: string; declined?: string[] };
 export type WovenWorkspaceAdditions = {
@@ -232,7 +237,7 @@ function readKnownRoots(value: unknown): WovenWorkspaceAdditions['knownRoots'] {
 }
 
 function readAdditions(value: Record<string, unknown>): WovenWorkspaceAdditions {
-  const views: WovenRightPanelView[] = ['files', 'workflows', 'agents', 'activity', 'settings'];
+  const views: readonly WovenRightPanelView[] = RIGHT_PANEL_VIEWS;
   const widths: WovenWorkspaceAdditions['rightPanelWidths'] = {};
   const rawWidths = isRecord(value.rightPanelWidths) ? value.rightPanelWidths : {};
   for (const key of [...views, 'document', 'session'] as WovenRightPanelWidthKey[]) {

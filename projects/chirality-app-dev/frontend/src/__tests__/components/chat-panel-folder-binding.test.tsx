@@ -852,3 +852,47 @@ it('shows a confirmed interruption alongside partial commentary and after reopen
   expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
   expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
 });
+
+it('hands the Plan tab model to its host, keeps every plan action working from there, and links revisions from the conversation', async () => {
+  const { NativePlanPanel } = await import('../../components/shell/native-plan-panel');
+  const qualification = { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const };
+  const revisions = [1, 2].map(revision => ({ revision, sourceEvent: { qualificationState: 'qualified' as const, eventId: `plan-${revision}`, occurredAt: '2026-09-09T00:00:00.000Z', qualification, plan: { id: `item-${revision}`, type: 'plan', text: `# Plan ${revision}\n\nStep.` } } }));
+  state.boot.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'bound', projectRoot: '/chosen/subfolder', selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis-1' } });
+  state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'qualified', qualification });
+  state.nativeRevisions.mockResolvedValue({ schemaVersion: 'chirality.native-plan-revisions/v3', status: 'qualified', qualification, revisions });
+  state.stream.mockResolvedValue(undefined);
+  const onOpenPlan = vi.fn();
+  function Host(): JSX.Element {
+    const [model, setModel] = React.useState<import('../../components/shell/native-plan-panel').NativePlanPanelModel | null>(null);
+    return <><ChatPanel presentation="woven" onPlanPanelChange={setModel} onOpenPlan={onOpenPlan} /><aside data-plan-host>{model ? <NativePlanPanel model={model} /> : <p>no plan model</p>}</aside></>;
+  }
+  await act(async () => { tree = create(<Host />); });
+  expect(JSON.stringify(tree!.toJSON())).toContain('no plan model');
+  await act(async () => tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.onChange({ target: { value: 'native-plan' } }));
+  await type('Plan this change'); await submit();
+  await act(async () => { await Promise.resolve(); });
+  const stage = tree!.root.findByProps({ className: 'chat-conversation-stage' });
+  // The large plan block is gone from the conversation; compact links remain.
+  expect(stage.findAllByProps({ 'aria-label': 'Plan' })).toHaveLength(0);
+  expect(stage.findAllByProps({ className: 'chat-plan-link' }).map(node => node.children.join(''))).toEqual(['Plan · Revision 1', 'Plan · Revision 2']);
+  await act(async () => stage.findAllByProps({ className: 'chat-plan-link' })[0].props.onClick());
+  expect(onOpenPlan).toHaveBeenCalledWith(1);
+  const host = tree!.root.findByProps({ 'data-plan-host': true });
+  const textOf = (node: { children: unknown[] }): string => node.children.map(child => typeof child === 'string' ? child : textOf(child as { children: unknown[] })).join('');
+  const hostText = () => textOf(tree!.root.findByProps({ 'data-plan-host': true }));
+  expect(hostText()).not.toContain('no plan model');
+  expect(hostText()).toContain('Plan 2');
+  const button = (label: string) => host.findAllByType('button').find(node => node.children.includes(label))!;
+  await act(async () => button('Revise in chat').props.onClick());
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('Revise plan revision 2');
+  await act(async () => button('Execute plan').props.onClick());
+  expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.value).toBe('chat');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('Execute the accepted native Plan Mode revision 2');
+  await act(async () => button('Save as workflow in chat').props.onClick());
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('do not execute the plan');
+  window.chirality!.plans = { chooseExportTarget: vi.fn().mockResolvedValue({ cancelled: false, targetRelativePath: 'plans/native.md' }), confirmOverwrite: vi.fn().mockResolvedValue(false) };
+  await act(async () => { await button('Save plan…').props.onClick(); });
+  expect(state.exportPlan).toHaveBeenLastCalledWith({ sessionId: 'bound', revision: 2, targetRelativePath: 'plans/native.md' });
+  expect(hostText()).toContain('Plan saved to');
+  expect(host.findByProps({ className: 'native-plan-history' })).toBeDefined();
+});

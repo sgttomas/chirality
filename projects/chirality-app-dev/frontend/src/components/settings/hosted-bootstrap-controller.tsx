@@ -27,11 +27,24 @@ export type HostedBootstrapController = {
   authUrl: string | null;
   onSetup: () => void;
   onStartLogin: () => void;
+  /** Open the pending sign-in page again in the browser (the URL is retained for this session only). */
+  onReopenLogin: () => void;
   onCancelLogin: () => void;
   onSignOut: () => void;
   /** Re-read account status from the daemon when the surface is (re)opened. */
   onRefresh: () => void;
 };
+
+/**
+ * Sign-in is one action: the OpenAI page opens in the system browser as soon
+ * as Codex returns it. The desktop window policy routes every http(s)
+ * `window.open` to `shell.openExternal` and denies the child window, so no
+ * preload surface is needed; in a plain browser this opens a tab.
+ */
+export function openSignInPage(url: string): boolean {
+  if (typeof window === 'undefined' || typeof window.open !== 'function' || !/^https:\/\//.test(url)) return false;
+  try { window.open(url, '_blank', 'noopener,noreferrer'); return true; } catch { return false; }
+}
 
 function messageFrom(error: unknown): string {
   return error instanceof Error ? error.message : 'The OpenAI account request could not be completed.';
@@ -262,6 +275,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
       const result = await withReconcile(root, signal, generation, () => startHostedBootstrapLogin(root, signal));
       if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;
       setAuthUrl(result.authUrl);
+      openSignInPage(result.authUrl);
       setObserved(current => ({
         projectRoot: root,
         snapshot: current.projectRoot === root && current.snapshot?.registration === 'registered'
@@ -270,6 +284,7 @@ export function useHostedBootstrapController(projectRoot: string | null, onBindi
       }));
       await load(root, generation, signal);
     }),
+    onReopenLogin: () => { if (authUrl) openSignInPage(authUrl); },
     onCancelLogin: () => void perform('cancel', async (root, signal, generation) => {
       const status = await withReconcile(root, signal, generation, () => cancelHostedBootstrapLogin(root, signal));
       if (signal.aborted || operationGeneration.current !== generation || rootRef.current !== root) return;

@@ -7,6 +7,7 @@ import { ToolkitProvider } from '../components/workspace/toolkit-provider';
 import { DeliverablesProvider } from '../components/workspace/deliverables-provider';
 import { HarnessEventsProvider } from '../components/workspace/harness-events-provider';
 import { RuntimeConnectivityProvider } from '../components/shell/runtime-connectivity-provider';
+import { AppUpdateProvider } from '../components/shell/app-update-provider';
 import { WOVEN_WORKSPACE_STORAGE_KEY } from '../lib/woven-dialogue/woven-workspace-state';
 
 // IBM Plex ships with the app: the woff2 files under `src/fonts/` are bundled
@@ -98,6 +99,7 @@ export default async function RootLayout({
             shared connectivity snapshot rather than two subscriptions that
             could disagree. */}
         <RuntimeConnectivityProvider>
+          <AppUpdateProvider>
           <WorkspaceProvider>
             <DeliverablesProvider>
               <ToolkitProvider>
@@ -105,6 +107,7 @@ export default async function RootLayout({
               </ToolkitProvider>
             </DeliverablesProvider>
           </WorkspaceProvider>
+          </AppUpdateProvider>
         </RuntimeConnectivityProvider>
       </body>
     </html>

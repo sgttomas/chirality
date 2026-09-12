@@ -9,9 +9,10 @@ import {
   type QualifiedMethodReference
 } from '../../lib/harness/method-selection-client';
 import type { MethodInspectionResponse } from '@chirality/runtime-contracts/v3';
+import { groupWorkflowLibrary, methodMatchesQuery, workflowDisplayName } from '../../lib/shell/workflow-library';
 import { useRuntimeEpoch } from '../shell/runtime-connectivity-provider';
 
-type LibraryView = 'workflows' | 'skills' | 'legacy';
+export type LibraryView = 'workflows' | 'skills';
 
 function sameMethod(left: QualifiedMethodReference, right: QualifiedMethodReference): boolean {
   return left.kind === right.kind && left.name === right.name && left.source === right.source && left.sourceRootId === right.sourceRootId;
@@ -35,30 +36,6 @@ function sourceLabel(method: MethodDescriptor): string {
   return 'Chirality library';
 }
 
-function workflowGroup(method: MethodDescriptor): string {
-  if (method.central) return 'Start here';
-  if (method.source === 'project') return 'For this project';
-  if (method.source === 'user') return 'Your workflows';
-  return metadataText(method, 'category', 'group', 'purpose') ?? 'More workflows';
-}
-
-function groupedWorkflows(methods: readonly MethodDescriptor[]): Array<{ label: string; methods: MethodDescriptor[] }> {
-  const order = ['Start here', 'For this project', 'Your workflows'];
-  const groups = new Map<string, MethodDescriptor[]>();
-  for (const method of methods) {
-    const label = workflowGroup(method);
-    groups.set(label, [...(groups.get(label) ?? []), method]);
-  }
-  return [...groups].sort(([left], [right]) => {
-    const leftIndex = order.indexOf(left); const rightIndex = order.indexOf(right);
-    if (leftIndex >= 0 || rightIndex >= 0) return (leftIndex < 0 ? order.length : leftIndex) - (rightIndex < 0 ? order.length : rightIndex);
-    return left.localeCompare(right);
-  }).map(([label, entries]) => ({
-    label,
-    methods: entries.sort((a, b) => Number(b.central) - Number(a.central) || a.name.localeCompare(b.name))
-  }));
-}
-
 function MethodCard({ method, active, inspectionPending, onInspect, onToggle }: {
   method: MethodDescriptor;
   active: boolean;
@@ -68,10 +45,13 @@ function MethodCard({ method, active, inspectionPending, onInspect, onToggle }: 
 }): JSX.Element {
   const purpose = metadataText(method, 'purpose', 'useWhen', 'use_when');
   const applicability = metadataText(method, 'applicability', 'appliesTo', 'applies_to');
-  return <li className={method.central ? 'method-card method-card--central' : 'method-card'}>
-    <div className="method-card-heading"><strong>{method.name}</strong></div>
+  const displayName = workflowDisplayName(method);
+  const superseded = method.navigation?.category === 'superseded';
+  return <li className={method.central ? 'method-card method-card--central' : 'method-card'} data-method-source={method.source} data-method-kind={method.kind}>
+    <div className="method-card-heading"><strong>{displayName}</strong>{displayName !== method.name ? <code className="method-card-identifier" title="Workflow identifier">{method.name}</code> : null}</div>
     <p>{purpose ?? method.description}</p>
     {applicability ? <p className="method-applicability"><strong>Useful for:</strong> {applicability}</p> : null}
+    {superseded ? <p className="method-card-meta method-card-superseded">Superseded{method.navigation?.supersededBy ? <> · replaced by <code>{method.navigation.supersededBy}</code></> : null}</p> : null}
     <p className="method-card-meta"><small>{sourceLabel(method)}</small></p>
     <div className="method-card-actions">
       <button type="button" disabled={inspectionPending} onClick={onInspect}>{inspectionPending ? 'Opening…' : 'Inspect'}</button>
@@ -80,14 +60,18 @@ function MethodCard({ method, active, inspectionPending, onInspect, onToggle }: 
   </li>;
 }
 
-export function MethodLibraryView({ projectRoot, selected, onSelectedChange, refresh = 0 }: {
+function groupId(label: string): string {
+  return `method-group-${label.replace(/\W+/g, '-').toLowerCase()}`;
+}
+
+export function MethodLibraryView({ projectRoot, selected, onSelectedChange, refresh = 0, view = 'workflows' }: {
   projectRoot: string;
   selected: readonly QualifiedMethodReference[];
   onSelectedChange: (methods: QualifiedMethodReference[]) => void;
   refresh?: number;
+  view?: LibraryView;
 }): JSX.Element {
   const [query, setQuery] = useState('');
-  const [view, setView] = useState<LibraryView>('workflows');
   const [methods, setMethods] = useState<MethodDescriptor[]>([]);
   const [inspection, setInspection] = useState<MethodInspectionResponse | null>(null);
   const [inspectionPendingId, setInspectionPendingId] = useState<string | null>(null);
@@ -109,15 +93,11 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
     return () => { clearTimeout(timer); controller.abort(); };
   }, [projectRoot, query, refresh, runtimeEpoch]);
 
-  const visible = useMemo(() => methods.filter(method => view === 'workflows'
-    ? method.kind === 'workflow' && method.compatibility !== 'legacy'
-    : view === 'legacy' ? method.compatibility === 'legacy' && (method.kind === 'workflow' || method.source === 'bundled')
-    : method.kind === 'skill' && method.source === 'bundled' && method.compatibility !== 'legacy'), [methods, view]);
-  const workflowGroups = useMemo(() => groupedWorkflows(visible), [visible]);
-  const skillGroups = useMemo(() => [
-    { label: 'Bundled skill reference', methods: [...visible].sort((a, b) => a.name.localeCompare(b.name)) }
-  ].filter(group => group.methods.length), [visible]);
-  const groups = view === 'skills' ? skillGroups : view === 'legacy' ? [{ label: 'Historical methods', methods: visible }] : workflowGroups;
+  const visible = useMemo(() => methods.filter(method => (view === 'workflows'
+    ? method.kind === 'workflow'
+    : method.kind === 'skill' && method.source === 'bundled' && method.compatibility !== 'legacy') && methodMatchesQuery(method, query)), [methods, view, query]);
+  const library = useMemo(() => groupWorkflowLibrary(visible), [visible]);
+  const skills = useMemo(() => [...visible].sort((a, b) => a.name.localeCompare(b.name)), [visible]);
 
   const openInspection = (method: MethodDescriptor): void => {
     const generation = inspectionGeneration.current + 1;
@@ -130,37 +110,52 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
       .finally(() => { if (inspectionGeneration.current === generation) setInspectionPendingId(null); });
   };
 
-  return <section className="method-library" aria-label="Method library">
-    <h2>{view === 'workflows' ? 'Workflows' : view === 'skills' ? 'Skills' : 'Legacy methods'}</h2>
-    <details className="method-library-menu">
-      <summary>Library</summary>
-      <div role="group" aria-label="Library views">
-        <button type="button" aria-pressed={view === 'workflows'} onClick={() => setView('workflows')}>Workflows</button>
-        <button type="button" aria-pressed={view === 'skills'} onClick={() => setView('skills')}>Inspect skills</button>
-        <button type="button" aria-pressed={view === 'legacy'} onClick={() => setView('legacy')}>Legacy methods</button>
-      </div>
-    </details>
-    <label>Search<input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder={view === 'skills' ? 'Search skills' : 'Search workflows'} /></label>
-    {view === 'legacy' ? <p>Historical methods for compatibility and inspection.</p> : null}
+  const card = (method: MethodDescriptor): JSX.Element => {
+    const active = selected.some(item => sameMethod(item, method));
+    const selectable = method.kind === 'workflow';
+    return <MethodCard key={qualifiedMethodId(method)} method={method} active={active}
+      inspectionPending={inspectionPendingId === qualifiedMethodId(method)} onInspect={() => openInspection(method)}
+      onToggle={selectable ? () => onSelectedChange(active
+        ? selected.filter(item => !sameMethod(item, method))
+        : [...selected, { kind: method.kind, name: method.name, source: method.source, sourceRootId: method.sourceRootId }]) : undefined} />;
+  };
+  const section = (label: string, entries: readonly MethodDescriptor[], extra?: React.ReactNode, note?: string): JSX.Element | null => entries.length === 0 && !extra ? null
+    : <section className="method-library-group" key={label} aria-labelledby={groupId(label)}>
+      <h3 id={groupId(label)}>{label}</h3>
+      {note ? <p className="method-library-note">{note}</p> : null}
+      {entries.length ? <ul className="method-library-list">{entries.map(card)}</ul> : null}
+      {extra}
+    </section>;
+
+  const searchLabel = view === 'skills' ? 'Search skills' : 'Search workflows';
+  const empty = !loading && !error && visible.length === 0;
+  return <section className="method-library" aria-label={view === 'skills' ? 'Skills' : 'Workflows'} data-library-view={view}>
+    <input type="search" className="method-library-search" value={query} onChange={event => setQuery(event.target.value)} placeholder={searchLabel} aria-label={searchLabel} title={searchLabel} />
+    {view === 'skills' ? <p className="method-library-note">Reviewed skills bundled with this release. Read-only; updated through App releases.</p> : null}
     {loading ? <p role="status">Loading…</p> : null}
     {error ? <p role="alert">{error}</p> : null}
-    {!loading && !error && visible.length === 0 ? <p>No matching methods.</p> : null}
-    {!loading && !error ? groups.map(group => <section className="method-library-group" key={group.label} aria-labelledby={`method-group-${group.label.replace(/\W+/g, '-').toLowerCase()}`}>
-      <h3 id={`method-group-${group.label.replace(/\W+/g, '-').toLowerCase()}`}>{group.label}</h3>
-      <ul className="method-library-list">{group.methods.map(method => {
-        const active = selected.some(item => sameMethod(item, method));
-        const selectable = method.kind === 'workflow';
-        return <MethodCard key={qualifiedMethodId(method)} method={method} active={active}
-          inspectionPending={inspectionPendingId === qualifiedMethodId(method)} onInspect={() => openInspection(method)}
-          onToggle={selectable ? () => onSelectedChange(active
-            ? selected.filter(item => !sameMethod(item, method))
-            : [...selected, { kind: method.kind, name: method.name, source: method.source, sourceRootId: method.sourceRootId }]) : undefined} />;
-      })}</ul>
-    </section>) : null}
+    {empty ? <p>{query ? 'No matches.' : view === 'skills' ? 'No bundled skills are available.' : 'No workflows are available.'}</p> : null}
+    {!loading && !error && view === 'skills' && skills.length ? <ul className="method-library-list">{skills.map(card)}</ul> : null}
+    {!loading && !error && view === 'workflows' ? <>
+      {section('Core', library.core)}
+      {library.specialist.length ? <section className="method-library-group" aria-labelledby={groupId('Specialist')}>
+        <h3 id={groupId('Specialist')}>Specialist</h3>
+        {library.specialist.map(group => <section className="method-library-subgroup" key={group.key} aria-labelledby={groupId(`specialist-${group.key}`)}>
+          <h4 id={groupId(`specialist-${group.key}`)}>{group.label}</h4>
+          {group.primary.length ? <ul className="method-library-list">{group.primary.map(card)}</ul> : null}
+          {group.supporting.length ? <details className="method-library-supporting"><summary>Supporting steps ({group.supporting.length})</summary><ul className="method-library-list">{group.supporting.map(card)}</ul></details> : null}
+        </section>)}
+      </section> : null}
+      {section('Project Specific', library.projectSpecific, undefined, library.projectSpecific.length ? undefined : 'Workflows saved in this project appear here, including plans saved as workflows.')}
+      {section('Your workflows', library.personal)}
+      {section('Other bundled workflows', library.unplaced)}
+      {library.superseded.length ? <details className="method-library-superseded"><summary>Superseded ({library.superseded.length})</summary><ul className="method-library-list">{library.superseded.map(card)}</ul></details> : null}
+    </> : null}
     {inspection ? <article className="method-inspection" aria-label={`${inspection.method.name} method details`}>
-      <h3>{inspection.method.name}</h3>
+      <h3>{workflowDisplayName(inspection.method)}</h3>
       <p>{inspection.method.description}</p>
-      <details><summary>Technical details</summary><dl><dt>Source</dt><dd>{sourceLabel(inspection.method)} · {inspection.method.sourceRootId}</dd>
+      <details><summary>Technical details</summary><dl><dt>Identifier</dt><dd><code>{inspection.method.name}</code></dd>
+        <dt>Source</dt><dd>{sourceLabel(inspection.method)} · {inspection.method.sourceRootId}</dd>
         <dt>Kind</dt><dd>{inspection.method.kind}</dd>
         <dt>Compatibility</dt><dd>{inspection.method.compatibility}</dd>
         <dt>Eligible roles</dt><dd>{inspection.method.executionRoleIds.join(', ') || 'None recorded'}</dd></dl></details>

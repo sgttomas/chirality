@@ -199,7 +199,7 @@ it('anchors the woven account popover outside its trigger and dismisses with Esc
     await act(async () => { tree = renderer.create(<ShellFrame section="CHAT" title="Chat" subtitle="" variant="workspace" renderWorkspaceContent={({ settingsControl }) => settingsControl} />, { createNodeMock: element => element.type === 'button' && element.props['aria-haspopup'] === 'dialog' ? trigger : element.props.role === 'dialog' ? panel : root }); });
     const toggle = () => tree.root.findByProps({ 'aria-haspopup': 'dialog' });
     act(() => toggle().props.onClick());
-    expect(textOf(tree.root.findByProps({ role: 'dialog' }))).toContain('Choose a folder to get started');
+    expect(textOf(tree.root.findByProps({ role: 'dialog' }))).toContain('No folder chosen');
     expect(textOf(tree.root.findByProps({ role: 'dialog' }))).not.toMatch(/Preview account|Local model|oMLX/);
     expect(panel.style.bottom).toBe('108px');
     expect(panel.style.maxHeight).toBe('684px');

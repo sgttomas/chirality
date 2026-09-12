@@ -19,6 +19,23 @@ it('exposes the owned-service restart and none of the retired daemon, model or h
   await expect(runtime.service.restart()).resolves.toBe(result);
   expect(mocks.invoke).toHaveBeenLastCalledWith('chirality:runtime-service-restart');
 });
+it('exposes the app-update bridge shape: invoke channels, a changed-state subscription and the About signal', async () => {
+  const bridge = (mocks.exposed as Bridge & { appUpdate: { get: () => Promise<unknown>; check: () => Promise<unknown>; openDownload: () => Promise<unknown>; subscribe: (listener: (state: unknown) => void) => () => void; onShowAbout: (listener: () => void) => () => void } }).appUpdate;
+  const state = { currentVersion: '3.0.0-rc.1', status: 'idle', releaseSource: { configured: false, description: 'No release source is configured for this build.' } };
+  mocks.invoke.mockResolvedValueOnce(state); await expect(bridge.get()).resolves.toBe(state); expect(mocks.invoke).toHaveBeenLastCalledWith('chirality:app-update-get');
+  mocks.invoke.mockResolvedValueOnce(state); await expect(bridge.check()).resolves.toBe(state); expect(mocks.invoke).toHaveBeenLastCalledWith('chirality:app-update-check');
+  const opened = { ok: false, error: 'No update download is available to open.' };
+  mocks.invoke.mockResolvedValueOnce(opened); await expect(bridge.openDownload()).resolves.toBe(opened); expect(mocks.invoke).toHaveBeenLastCalledWith('chirality:app-update-open-download');
+  const listener = vi.fn(); const stop = bridge.subscribe(listener);
+  expect(mocks.on).toHaveBeenCalledWith('chirality:app-update-changed', expect.any(Function));
+  const handler = mocks.on.mock.calls.find(([channel]) => channel === 'chirality:app-update-changed')![1];
+  handler({ sender: 'privileged' }, state); expect(listener).toHaveBeenCalledWith(state); expect(listener.mock.calls[0]).toHaveLength(1);
+  stop(); expect(mocks.removeListener).toHaveBeenCalledWith('chirality:app-update-changed', handler);
+  const about = vi.fn(); const stopAbout = bridge.onShowAbout(about);
+  const aboutHandler = mocks.on.mock.calls.find(([channel]) => channel === 'chirality:app-about-show')![1];
+  aboutHandler({ sender: 'privileged' }); expect(about).toHaveBeenCalledTimes(1); expect(about.mock.calls[0]).toHaveLength(0);
+  stopAbout(); expect(mocks.removeListener).toHaveBeenCalledWith('chirality:app-about-show', aboutHandler);
+});
 it('forwards only the folder path for registration and uses Electron file extraction without inventing paths', async () => {
   const bridge = (mocks.exposed as Bridge).folders;
   await bridge.registerRecent('/chosen'); expect(mocks.invoke).toHaveBeenCalledWith('chirality:folder-register-recent', '/chosen');

@@ -44,6 +44,8 @@ import { DialogueViewport } from './dialogue-viewport';
 import { Navigator, type WovenSurface } from './navigator';
 import { SelectedSessionReplayLens } from './selected-session-replay-lens';
 import type { QualifiedMethodReference } from '../../lib/harness/method-selection-client';
+import type { NativePlanPanelModel } from '../shell/native-plan-panel';
+import { resolveRightPanelView } from '../../lib/woven-dialogue/woven-workspace-state';
 
 type WovenDialogueShellProps = {
   defaultSurface: WovenSurface;
@@ -89,7 +91,9 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [availableWidth, setAvailableWidth] = useState(1440);
   const workspaceRef = useRef<HTMLElement | null>(null);
   const [coordinationView, setCoordinationView] = useState<'session' | 'agents'>('agents');
-  const rightView = workspaceState.rightPanelView === 'workflows' || workspaceState.rightPanelView === 'agents' || workspaceState.rightPanelView === 'activity' || workspaceState.rightPanelView === 'settings' ? workspaceState.rightPanelView : 'files';
+  const rightView = resolveRightPanelView(workspaceState.rightPanelView);
+  const [planPanel, setPlanPanel] = useState<NativePlanPanelModel | null>(null);
+  const [planFocusRevision, setPlanFocusRevision] = useState<{ revision: number; sequence: number } | undefined>(undefined);
   const widthKey = rightView === 'files' && workspaceState.openDocumentPath ? 'document' : rightView === 'agents' && coordinationView === 'session' ? 'session' : rightView;
   const rightWidth = workspaceState.rightPanelWidths?.[widthKey] ?? (widthKey === 'files' ? 300 : widthKey === 'agents' ? 360 : 480);
   const maximumRightWidth = Math.max(280, Math.min(Math.round(availableWidth * 0.6 / 8) * 8, availableWidth - (workspaceState.navigatorCollapsed ? 56 : clamp(workspaceState.navigatorWidth, 220, 360)) - 444));
@@ -589,6 +593,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
                   <ChatPanel presentation="woven" onDraftCaptured={restoreExpanded} onActiveSessionChange={setPrimarySessionId}
                     selectedMethods={selectedMethods} onSelectedMethodsChange={setSelectedMethods}
                     onOpenMethods={() => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'workflows', coordinationCollapsed: false }); }}
+                    onPlanPanelChange={setPlanPanel}
+                    onOpenPlan={revision => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'plan', coordinationCollapsed: false }); setPlanFocusRevision(current => ({ revision, sequence: (current?.sequence ?? 0) + 1 })); }}
                     fileCatalog={currentFileCatalog} onOpenFile={openContainedFile}
                     onSessionBootedPrompt={({ sessionId, prompt, persona }) => setWorkspaceState(current => Object.hasOwn(current.chatTitles ?? {}, sessionId) ? current : { ...current, chatTitles: { ...(current.chatTitles ?? {}), [sessionId]: deriveChatTitle({ firstOperatorMessage: prompt, persona, sessionId }) } })}
                     resumeConversation={pendingResume?.projection.session?.continuation?.roleId === searchParams.get('agent') &&
@@ -721,6 +727,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               onOpenFile={openContainedFile}
               selectedMethods={selectedMethods}
               onSelectedMethodsChange={setSelectedMethods}
+              planPanel={planPanel}
+              planFocusRevision={planFocusRevision}
               onFileCatalog={handleFileCatalog}
               onExpand={toggleExpanded}
               onRefreshSessions={() => setSessionRefreshToken(token => token + 1)}

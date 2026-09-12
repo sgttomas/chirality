@@ -5,6 +5,7 @@ import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import { deriveCodexNotifications, deriveToolActivity, deriveSubagentActivity, type CodexNotificationRow, type ToolActivityRow, type SubagentActivityRow } from '../../lib/shell/harness-event-views';
 import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import { useHarnessEvents } from '../workspace/harness-events-provider';
+import { actionDetail, actionSentence, taskSentence } from '../../lib/shell/activity-sentences';
 import { SubagentStreamView } from '../shell/subagent-stream-view';
 import { ToolStreamView } from '../shell/tool-stream-view';
 import { TranscriptStreamView, TranscriptStreamList } from '../shell/transcript-stream-view';
@@ -118,57 +119,14 @@ export function ActivityStrip({ reconnectControl, onOpenDetails, running, events
 }
 
 // Presentation belongs to the mounted Activity view; the legacy shelf above
-// retains its existing stream components and labels.
-// Codex item types (the adapter sets `toolName` to the upstream item type).
-const CODEX_ITEM_SENTENCES: Record<string, Record<ToolActivityRow['status'], string>> = {
-  commandExecution: { queued: 'Command queued', permission: 'Command awaiting approval', running: 'Running command', completed: 'Command finished', failed: 'Command failed or declined' },
-  fileChange: { queued: 'File change queued', permission: 'File change awaiting approval', running: 'Changing files', completed: 'File change applied', failed: 'File change failed or declined' },
-  mcpToolCall: { queued: 'Tool call queued', permission: 'Tool call awaiting approval', running: 'Calling a tool', completed: 'Tool call finished', failed: 'Tool call failed' },
-  dynamicToolCall: { queued: 'Tool call queued', permission: 'Tool call awaiting approval', running: 'Calling a tool', completed: 'Tool call finished', failed: 'Tool call failed' },
-  webSearch: { queued: 'Web search queued', permission: 'Web search awaiting approval', running: 'Searching the web', completed: 'Web search finished', failed: 'Web search failed' },
-  imageView: { queued: 'Image view queued', permission: 'Image view awaiting approval', running: 'Viewing an image', completed: 'Image viewed', failed: 'Image view failed' },
-  imageGeneration: { queued: 'Image generation queued', permission: 'Image generation awaiting approval', running: 'Generating an image', completed: 'Image generated', failed: 'Image generation failed' }
-};
-
-function actionSentence(row: ToolActivityRow): string {
-  const codex = CODEX_ITEM_SENTENCES[row.toolName];
-  if (codex) return codex[row.status];
-  // These two operations are defined by the registered tool descriptors. Do not
-  // infer a purpose or result from an unfamiliar name or from arbitrary inputs.
-  const operation = row.toolName === 'read_file' ? { verb: 'read', ongoing: 'Reading', name: 'Read' }
-    : row.toolName === 'write_file' ? { verb: 'write', ongoing: 'Writing', name: 'Write' } : undefined;
-  if (!operation) return {
-    queued: 'Action queued', permission: 'Action permission check', running: 'Action running',
-    completed: 'Action completed', failed: 'Action failed'
-  }[row.status];
-  return {
-    queued: `Queued to ${operation.verb} file`,
-    permission: `Permission check to ${operation.verb} file`,
-    running: `${operation.ongoing} file`,
-    // A summary can finish an invocation without establishing a file effect.
-    completed: `${operation.name} action finished`,
-    failed: `Failed to ${operation.verb} file`
-  }[row.status];
-}
-
-function taskSentence(row: SubagentActivityRow): string {
-  const name = row.agentName === 'subagent' ? '' : row.agentName === 'HELP_HUMAN' ? 'Assistant'
-    : /^[A-Z][A-Z0-9_]*$/.test(row.agentName)
-      ? row.agentName.toLowerCase().split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
-      : row.agentName;
-  return `Task ${row.status}${name ? `: ${name}` : ''}`;
-}
+// retains its existing stream components and labels. Sentences are shared
+// with the conversation's per-turn disclosure (src/lib/shell/activity-sentences.ts).
 
 function timeLabel(timestamp: string): string {
   const date = new Date(timestamp);
   return Number.isFinite(date.getTime())
     ? date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
     : 'Time unavailable';
-}
-
-function actionDetail(row: ToolActivityRow): string {
-  return [row.toolName === 'tool' ? 'Tool name unavailable' : row.toolName, row.source, row.surface,
-    `${row.eventCount} event${row.eventCount === 1 ? '' : 's'}`, row.lastEventType].filter(Boolean).join(' · ');
 }
 
 function notificationText(row: CodexNotificationRow): string {

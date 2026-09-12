@@ -9,6 +9,7 @@ import type {
   MethodInspectionResponse,
   MethodKind,
   MethodCompatibilityMapping,
+  MethodNavigation,
   MethodReference,
   MethodResourceDescriptor,
   MethodSource,
@@ -163,6 +164,48 @@ interface IndexEntry {
   compatibility: "canonical" | "legacy";
   executionRoleIds: ChiralityRoleName[];
   resources: string[];
+  navigation?: MethodNavigation;
+}
+
+const NAVIGATION_CATEGORIES = new Set<string>(["core", "specialist", "superseded"]);
+const NAVIGATION_TIERS = new Set<string>(["primary", "supporting"]);
+const NAVIGATION_FIELDS = new Set<string>(["category", "tier", "order", "displayName", "group", "supersededBy"]);
+
+function parseNavigation(value: unknown): MethodNavigation {
+  if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("method index navigation must be an object");
+  const raw = value as Record<string, unknown>;
+  if (Object.keys(raw).some(key => !NAVIGATION_FIELDS.has(key))) throw new Error("method index navigation contains unknown fields");
+  const { category, tier, order, displayName, group, supersededBy } = raw;
+  if (typeof category !== "string" || !NAVIGATION_CATEGORIES.has(category)) throw new Error("method index navigation category is invalid");
+  if (typeof tier !== "string" || !NAVIGATION_TIERS.has(tier)) throw new Error("method index navigation tier is invalid");
+  if (typeof order !== "number" || !Number.isInteger(order) || order < 0) throw new Error("method index navigation order must be a non-negative integer");
+  if (displayName !== undefined && (typeof displayName !== "string" || displayName.trim() === "")) throw new Error("method index navigation displayName must be a non-empty string");
+  let parsedGroup: MethodNavigation["group"];
+  if (group !== undefined) {
+    if (!group || typeof group !== "object" || Array.isArray(group)) throw new Error("method index navigation group must be an object");
+    const rawGroup = group as Record<string, unknown>;
+    if (Object.keys(rawGroup).some(key => key !== "key" && key !== "label" && key !== "order") || typeof rawGroup.key !== "string" || !METHOD_NAME.test(rawGroup.key)
+      || typeof rawGroup.label !== "string" || rawGroup.label.trim() === "") throw new Error("method index navigation group requires a kebab-case key and a non-empty label");
+    if (typeof rawGroup.order !== "number" || !Number.isInteger(rawGroup.order) || rawGroup.order < 0) throw new Error("method index navigation group order must be a non-negative integer");
+    if (category !== "specialist") throw new Error("method index navigation group is only valid for specialist workflows");
+    parsedGroup = { key: rawGroup.key, label: rawGroup.label, order: rawGroup.order };
+  } else if (category === "specialist") {
+    throw new Error("method index navigation specialist workflows require a group");
+  }
+  if (supersededBy !== undefined) {
+    if (typeof supersededBy !== "string" || !METHOD_NAME.test(supersededBy)) throw new Error("method index navigation supersededBy must be a workflow name");
+    if (category !== "superseded") throw new Error("method index navigation supersededBy is only valid for superseded workflows");
+  } else if (category === "superseded") {
+    throw new Error("method index navigation superseded workflows require supersededBy");
+  }
+  return {
+    category: category as MethodNavigation["category"],
+    tier: tier as MethodNavigation["tier"],
+    order,
+    ...(displayName === undefined ? {} : { displayName }),
+    ...(parsedGroup === undefined ? {} : { group: parsedGroup }),
+    ...(supersededBy === undefined ? {} : { supersededBy })
+  };
 }
 
 async function readMethodIndex(root: string, source: MethodSource, sourceRootId: string): Promise<Map<string, IndexEntry>> {
@@ -191,6 +234,12 @@ async function readMethodIndex(root: string, source: MethodSource, sourceRootId:
     const resources = stringArray(entry.resources, "resources");
     const parsed: IndexEntry = { kind: entry.kind as MethodKind, name: entry.name, description: entry.description,
       central: entry.central, compatibility: entry.compatibility === "legacy" ? "legacy" : "canonical", executionRoleIds: roles as ChiralityRoleName[], resources };
+    if (entry.navigation !== undefined) {
+      if (parsed.kind !== "workflow") throw new Error("method index navigation is only valid for workflows");
+      const navigation = parseNavigation(entry.navigation);
+      if ((navigation.category === "superseded") !== (parsed.compatibility === "legacy")) throw new Error("method index navigation category disagrees with compatibility");
+      parsed.navigation = navigation;
+    }
     const key = `${parsed.kind}\0${parsed.name}`;
     if (result.has(key)) throw new Error("method index contains a duplicate identity");
     result.set(key, parsed);
@@ -287,7 +336,8 @@ async function scanKind(root: MethodSourceRoot, canonicalRoot: string, kind: Met
       executionRoleIds,
       resources: central?.resources ?? [],
       ...(metadata.metadata === undefined ? {} : { metadata: metadata.metadata }),
-      ...(execution ? { execution } : {})
+      ...(execution ? { execution } : {}),
+      ...(central?.navigation === undefined ? {} : { navigation: central.navigation })
     };
     entries.push({ descriptor, packageRoot, entrypointPath: canonicalEntrypoint, sourceRootPath: canonicalRoot, sourceRootVersion: root.version ?? "unversioned" });
   }

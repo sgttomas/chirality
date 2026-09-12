@@ -67,6 +67,90 @@ describe("v3 role and method catalog", () => {
     });
   });
 
+  it("carries catalog navigation from the bundled index onto workflow descriptors only", async () => {
+    const bundled = await root("bundled", "chirality-root");
+    const project = await root("project", "project-library");
+    for (const name of ["core-flow", "step-flow", "old-flow"]) {
+      await put(join(bundled.rootPath, "workflows", name, "WORKFLOW.md"), frontmatter(name, `${name} workflow`));
+    }
+    await put(join(bundled.rootPath, ".agents", "skills", "helper", "SKILL.md"), frontmatter("helper", "Helper skill"));
+    await put(join(project.rootPath, "workflows", "core-flow", "WORKFLOW.md"), frontmatter("core-flow", "Project core-flow"));
+    const entry = (name: string, extra: Record<string, unknown>) => ({
+      kind: "workflow", name, source: "bundled", sourceRootId: "chirality-root", description: `${name} workflow`,
+      central: false, compatibility: "canonical", executionRoleIds: ["HELP_HUMAN", "HELPS_HUMANS", "WORKING_ITEMS", "TASK"], resources: ["WORKFLOW.md"], ...extra
+    });
+    const index = {
+      schema: "chirality-method-index/v1",
+      library: { source: "bundled", sourceRootId: "chirality-root" },
+      precedence: ["project", "user", "bundled"],
+      centralWorkflowNames: ["core-flow"],
+      methods: [
+        entry("core-flow", { central: true, navigation: { category: "core", tier: "primary", order: 6, displayName: "Manage flow" } }),
+        entry("step-flow", { navigation: { category: "specialist", tier: "supporting", order: 2, group: { key: "plan-organize", label: "Plan & organize", order: 3 } } }),
+        entry("old-flow", { compatibility: "legacy", navigation: { category: "superseded", tier: "primary", order: 0, supersededBy: "step-flow" } }),
+        { kind: "skill", name: "helper", source: "bundled", sourceRootId: "chirality-root", description: "Helper skill", central: false, compatibility: "canonical", executionRoleIds: ["HELP_HUMAN", "HELPS_HUMANS", "WORKING_ITEMS", "TASK"], resources: ["SKILL.md"] }
+      ]
+    };
+    await put(join(bundled.rootPath, "workflows", "index.json"), JSON.stringify(index));
+    const catalog = await discoverMethodCatalog([bundled, project]);
+    expect(catalog.response.malformedPackages).toEqual([]);
+    const byId = new Map(catalog.response.methods.map(method => [method.qualifiedId, method]));
+    expect(byId.get("chirality-root:bundled:workflow:core-flow")).toMatchObject({
+      central: true, compatibility: "canonical", navigation: { category: "core", tier: "primary", order: 6, displayName: "Manage flow" }
+    });
+    expect(byId.get("chirality-root:bundled:workflow:step-flow")?.navigation).toEqual({
+      category: "specialist", tier: "supporting", order: 2, group: { key: "plan-organize", label: "Plan & organize", order: 3 }
+    });
+    expect(byId.get("chirality-root:bundled:workflow:old-flow")).toMatchObject({
+      compatibility: "legacy", navigation: { category: "superseded", tier: "primary", order: 0, supersededBy: "step-flow" }
+    });
+    expect(byId.get("chirality-root:bundled:skill:helper")).not.toHaveProperty("navigation");
+    expect(byId.get("project-library:project:workflow:core-flow")).toMatchObject({ central: false, compatibility: "canonical" });
+    expect(byId.get("project-library:project:workflow:core-flow")).not.toHaveProperty("navigation");
+  });
+
+  it("rejects malformed navigation index entries as an invalid bundled index", async () => {
+    const invalidNavigations: readonly Record<string, unknown>[] = [
+      { category: "featured", tier: "primary", order: 0 },
+      { category: "core", tier: "optional", order: 0 },
+      { category: "core", tier: "primary", order: 1.5 },
+      { category: "core", tier: "primary", order: "0" },
+      { category: "core", tier: "primary", order: 0, displayName: 7 },
+      { category: "specialist", tier: "primary", order: 0 },
+      { category: "specialist", tier: "primary", order: 0, group: { key: "plan-organize", label: 3, order: 0 } },
+      { category: "specialist", tier: "primary", order: 0, group: { key: "Plan Organize", label: "Plan", order: 0 } },
+      { category: "specialist", tier: "primary", order: 0, group: { key: "plan-organize", label: "Plan" } },
+      { category: "specialist", tier: "primary", order: 0, group: { key: "plan-organize", label: "Plan", order: "0" } },
+      { category: "specialist", tier: "primary", order: 0, group: { key: "plan-organize", label: "Plan", order: -1 } },
+      { category: "core", tier: "primary", order: 0, group: { key: "plan-organize", label: "Plan", order: 0 } },
+      { category: "core", tier: "primary", order: 0, supersededBy: "other-flow" },
+      { category: "specialist", tier: "primary", order: 0, group: { key: "plan", label: "Plan", order: 0 }, supersededBy: "other-flow" },
+      { category: "superseded", tier: "primary", order: 0 },
+      { category: "core", tier: "primary", order: 0, extra: true }
+    ];
+    for (const navigation of invalidNavigations) {
+      const bundled = await root("bundled", "chirality-root");
+      await put(join(bundled.rootPath, "workflows", "flow", "WORKFLOW.md"), frontmatter("flow", "Flow workflow"));
+      const compatibility = navigation.category === "superseded" ? "legacy" : "canonical";
+      await put(join(bundled.rootPath, "workflows", "index.json"), JSON.stringify({
+        schema: "chirality-method-index/v1", library: { source: "bundled", sourceRootId: "chirality-root" }, precedence: ["project", "user", "bundled"], centralWorkflowNames: [],
+        methods: [{ kind: "workflow", name: "flow", source: "bundled", sourceRootId: "chirality-root", description: "Flow workflow", central: false, compatibility, executionRoleIds: ["TASK"], resources: ["WORKFLOW.md"], navigation }]
+      }));
+      const catalog = await discoverMethodCatalog([bundled]);
+      expect(catalog.response.methods, JSON.stringify(navigation)).toEqual([]);
+      expect(catalog.response.malformedPackages.map(issue => issue.code), JSON.stringify(navigation)).toEqual(["malformed-execution-metadata"]);
+      expect(catalog.response.malformedPackages[0]?.message, JSON.stringify(navigation)).toMatch(/navigation/);
+    }
+    const mismatched = await root("bundled", "chirality-root");
+    await put(join(mismatched.rootPath, "workflows", "flow", "WORKFLOW.md"), frontmatter("flow", "Flow workflow"));
+    await put(join(mismatched.rootPath, "workflows", "index.json"), JSON.stringify({
+      schema: "chirality-method-index/v1", library: { source: "bundled", sourceRootId: "chirality-root" }, precedence: ["project", "user", "bundled"], centralWorkflowNames: [],
+      methods: [{ kind: "workflow", name: "flow", source: "bundled", sourceRootId: "chirality-root", description: "Flow workflow", central: false, compatibility: "legacy", executionRoleIds: ["TASK"], resources: ["WORKFLOW.md"], navigation: { category: "core", tier: "primary", order: 0 } }]
+    }));
+    const catalog = await discoverMethodCatalog([mismatched]);
+    expect(catalog.response.malformedPackages.map(issue => [issue.code, issue.message])).toEqual([["malformed-execution-metadata", "method index navigation category disagrees with compatibility"]]);
+  });
+
   it("accepts canonical YAML metadata maps and multiline descriptions while reporting duplicate and malformed YAML", async () => {
     const project = await root("bundled", "bundled-library");
     await put(join(project.rootPath, ".agents", "skills", "rich", "SKILL.md"), `---\nname: rich\ndescription: >-\n  A multiline\n  description.\nmetadata:\n  owner: project\n  tags: [one, two]\n---\n# rich\n`);

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useWorkspace } from '../workspace/workspace-provider';
 
 export type NativeFolderBridge = {
@@ -20,19 +20,34 @@ export function FolderSelect({ locked, root, disabled, knownRoots = [], onPendin
   const [path, setPath] = useState(root ?? '');
   const [pending, setPending] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDetailsElement>(null);
   useEffect(() => { setMounted(true); }, []);
   useEffect(() => { setPath(root ?? ''); }, [root]);
+  // The menu is controlled so a successful selection can close it while a
+  // failed one keeps the alert and the retry actions in view. Outside click and
+  // Escape dismiss it like every other menu in the shell.
+  useEffect(() => {
+    if (!open || typeof document === 'undefined') return;
+    const outside = (event: PointerEvent) => { if (event.target instanceof Node && !menuRef.current?.contains(event.target)) setOpen(false); };
+    const key = (event: KeyboardEvent) => { if (event.key === 'Escape') { event.preventDefault(); setOpen(false); menuRef.current?.querySelector<HTMLElement>('summary')?.focus(); } };
+    document.addEventListener('pointerdown', outside);
+    document.addEventListener('keydown', key);
+    return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', key); };
+  }, [open]);
   const choose = async (native: boolean, candidate = path) => {
     if (locked || disabled || pending) return;
     setPending(true); onPendingChange?.(true);
-    try { if (native) await chooseProjectRoot(); else if (candidate.trim()) await applyProjectRoot(candidate.trim()); }
+    let ok = false;
+    try { if (native) ok = await chooseProjectRoot(); else if (candidate.trim()) ok = await applyProjectRoot(candidate.trim()); }
     finally { setPending(false); onPendingChange?.(false); }
+    if (ok) setOpen(false);
   };
   const label = root ? root.split('/').filter(Boolean).at(-1) ?? '/' : 'Choose folder';
   if (locked) return <span className="chat-folder-fixed" title={root ?? undefined}>▱ {label}</span>;
   // The native picker is the primary action; the typed path is a fallback kept
   // behind a disclosure so the menu reads as one decision, not a form.
-  return <details className="chat-folder-select">
+  return <details ref={menuRef} className="chat-folder-select" open={open} onToggle={event => setOpen((event.currentTarget as HTMLDetailsElement).open)}>
     <summary aria-label="Chat folder" title={root ?? 'Choose a folder before sending'}>▱ {label}⌄</summary>
     <div className="chat-folder-menu">
       <button type="button" disabled={disabled || pending || !mounted || !hasElectronDirectoryPicker} title={mounted && !hasElectronDirectoryPicker ? 'The native folder picker is available only in Chirality Desktop.' : undefined} onClick={() => void choose(true)}>Choose folder…</button>

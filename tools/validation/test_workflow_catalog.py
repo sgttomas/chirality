@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from build_workflow_index import CENTRAL, parse_yaml_mapping, validate_and_build
+from build_workflow_index import CENTRAL, CORE, CORE_DISPLAY_NAMES, parse_navigation, parse_yaml_mapping, validate_and_build
 from validate_skill_metadata import validate_skill_dir
 from validate_workflow_metadata import validate_workflow_dir
 
@@ -11,25 +11,60 @@ from validate_workflow_metadata import validate_workflow_dir
 ROOT = Path(__file__).resolve().parents[2]
 
 
-def _fixture_root(tmp_path: Path) -> Path:
-    workflows = tmp_path / "workflows"
-    workflows.mkdir()
-    (workflows / "catalog.yaml").write_text(json.dumps({
+def _core_navigation() -> list:
+    return [
+        {"name": name, **({"displayName": CORE_DISPLAY_NAMES[name]} if name in CORE_DISPLAY_NAMES else {})}
+        for name in CORE
+    ]
+
+
+def _write_catalog(root: Path, specialist=None, superseded=None) -> None:
+    (root / "workflows" / "catalog.yaml").write_text(json.dumps({
         "schema": "chirality-workflow-catalog/v1",
         "library": {"source": "bundled", "sourceRootId": "fixture-bundle"},
         "centralWorkflowNames": list(CENTRAL),
+        "navigation": {"core": _core_navigation(), "specialist": specialist or [], "superseded": superseded or []},
     }))
+
+
+def _write_package(workflows: Path, name: str) -> None:
+    package = workflows / name
+    package.mkdir()
+    (package / "WORKFLOW.md").write_text(f"---\nname: {name}\ndescription: Fixture {name}\n---\n\n# {name}\n")
+
+
+def _fixture_root(tmp_path: Path) -> Path:
+    workflows = tmp_path / "workflows"
+    workflows.mkdir()
+    _write_catalog(tmp_path)
     (workflows / "legacy-agents.json").write_text(json.dumps({"schema_version": 1, "aliases": {}}))
     (workflows / "legacy-methods.json").write_text(json.dumps({
         "schema": "chirality-legacy-methods/v1", "convertedWorkflowAliases": {},
         "historicalOnly": [], "unknownLegacyBehavior": "error",
     }))
-    for name in CENTRAL:
-        package = workflows / name
-        package.mkdir()
-        (package / "WORKFLOW.md").write_text(f"---\nname: {name}\ndescription: Fixture {name}\n---\n\n# {name}\n")
-        (package / "execution.json").write_text(json.dumps({"schema_version": 1, "compatible_roles": ["WORKING_ITEMS"]}))
+    for name in CORE:
+        _write_package(workflows, name)
+        (workflows / name / "execution.json").write_text(json.dumps({"schema_version": 1, "compatible_roles": ["WORKING_ITEMS"]}))
     return tmp_path
+
+
+SUPERSEDED = {
+    "pandid-valve-tile": "pandid-valve-symbol-instance",
+    "pdf2md-page": "pdf2md-page-full",
+    "pdf2md-page-assets": "pdf2md-page-full",
+}
+# Group order follows catalog.yaml navigation.specialist authoring order.
+SPECIALIST_GROUPS = [
+    ("plan-organize", "Plan & organize", 6),
+    ("research-understand", "Research & understand", 8),
+    ("extract-documents", "Extract from documents", 15),
+    ("create-publish-documents", "Create & publish documents", 8),
+    ("build-maintain-software", "Build & maintain software", 4),
+    ("estimate-cost", "Estimate & cost", 3),
+    ("review-check", "Review & check", 10),
+    ("manage-changes", "Manage changes", 5),
+]
+SPECIALIST_GROUP_SIZES = {key: size for key, _, size in SPECIALIST_GROUPS}
 
 
 def test_root_index_is_fresh_and_classification_is_bounded():
@@ -37,10 +72,121 @@ def test_root_index_is_fresh_and_classification_is_bounded():
     assert (ROOT / "workflows/index.json").read_text() == json.dumps(index, indent=2, sort_keys=False) + "\n"
     workflows = [item for item in index["methods"] if item["kind"] == "workflow"]
     skills = [item for item in index["methods"] if item["kind"] == "skill"]
-    assert {item["name"] for item in workflows if item["compatibility"] == "canonical"} == set(CENTRAL)
+    assert {item["name"] for item in workflows if item["central"]} == set(CENTRAL)
+    assert {item["name"] for item in workflows if item["compatibility"] == "legacy"} == set(SUPERSEDED)
+    assert all(item["compatibility"] == "canonical" for item in workflows if item["name"] not in SUPERSEDED)
     assert len(skills) == 8 and {item["compatibility"] for item in skills} == {"canonical"}
-    assert all(item["compatibility"] == "legacy" for item in workflows if item["name"] not in CENTRAL)
+    assert not any("navigation" in item for item in skills)
     assert index["legacy"]["convertedWorkflowAliases"]["deliverable-consistency"] == {"kind": "skill", "name": "deliverable-consistency"}
+
+
+def test_root_navigation_partition_is_complete_and_ordered():
+    index = validate_and_build(ROOT)
+    workflows = {item["name"]: item for item in index["methods"] if item["kind"] == "workflow"}
+    assert len(workflows) == 71
+    assert all("navigation" in item for item in workflows.values())
+    core = sorted((item for item in workflows.values() if item["navigation"]["category"] == "core"), key=lambda item: item["navigation"]["order"])
+    assert [item["name"] for item in core] == list(CORE)
+    assert [item["navigation"]["order"] for item in core] == list(range(9))
+    assert {item["name"]: item["navigation"].get("displayName") for item in core if "displayName" in item["navigation"]} == CORE_DISPLAY_NAMES
+    assert all(item["navigation"]["tier"] == "primary" and "group" not in item["navigation"] for item in core)
+    specialist = [item for item in workflows.values() if item["navigation"]["category"] == "specialist"]
+    assert len(specialist) == 59
+    groups = {}
+    group_identity = {}
+    for item in specialist:
+        navigation = item["navigation"]
+        assert set(navigation) == {"category", "tier", "order", "group"}
+        assert navigation["tier"] in ("primary", "supporting")
+        assert set(navigation["group"]) == {"key", "label", "order"} and navigation["group"]["label"].strip()
+        groups.setdefault(navigation["group"]["key"], []).append(navigation["order"])
+        group_identity.setdefault(navigation["group"]["key"], set()).add((navigation["group"]["label"], navigation["group"]["order"]))
+    assert {key: len(orders) for key, orders in groups.items()} == SPECIALIST_GROUP_SIZES
+    assert all(sorted(orders) == list(range(len(orders))) for orders in groups.values())
+    assert group_identity == {key: {(label, order)} for order, (key, label, _) in enumerate(SPECIALIST_GROUPS)}
+    assert workflows["semantic-matrix-build"]["navigation"]["tier"] == "supporting"
+    assert workflows["researcher"]["navigation"]["tier"] == "primary"
+    superseded = {item["name"]: item for item in workflows.values() if item["navigation"]["category"] == "superseded"}
+    assert {name: item["navigation"]["supersededBy"] for name, item in superseded.items()} == SUPERSEDED
+    assert sorted(item["navigation"]["order"] for item in superseded.values()) == [0, 1, 2]
+    assert all(item["compatibility"] == "legacy" for item in superseded.values())
+    for replacement in SUPERSEDED.values():
+        assert workflows[replacement]["navigation"]["category"] != "superseded"
+    assert len(core) + len(specialist) + len(superseded) == 71
+
+
+def test_navigation_partition_rejects_missing_extra_and_malformed_entries(tmp_path):
+    root = _fixture_root(tmp_path)
+    workflows = root / "workflows"
+    _write_package(workflows, "helper")
+    with pytest.raises(ValueError, match=r"missing=\['helper'\], extra=\[\]"):
+        validate_and_build(root)
+    _write_catalog(root, specialist=[{"key": "tools", "label": "Tools", "workflows": [{"name": "helper"}, {"name": "ghost", "tier": "supporting"}]}])
+    with pytest.raises(ValueError, match=r"missing=\[\], extra=\['ghost'\]"):
+        validate_and_build(root)
+    _write_catalog(root, specialist=[{"key": "tools", "label": "Tools", "workflows": [{"name": "helper", "tier": "optional"}]}])
+    with pytest.raises(ValueError, match="tier"):
+        validate_and_build(root)
+    _write_catalog(root, specialist=[{"key": "tools", "label": " ", "workflows": [{"name": "helper"}]}])
+    with pytest.raises(ValueError, match="non-empty label"):
+        validate_and_build(root)
+    _write_catalog(root, specialist=[
+        {"key": "tools", "label": "Tools", "workflows": [{"name": "helper"}]},
+        {"key": "tools", "label": "Again", "workflows": [{"name": "helper"}]},
+    ])
+    with pytest.raises(ValueError, match="more than once|not unique"):
+        validate_and_build(root)
+    _write_catalog(root, specialist=[{"key": "tools", "label": "Tools", "workflows": [{"name": "helper"}]}])
+    descriptor = next(item for item in validate_and_build(root)["methods"] if item["name"] == "helper")
+    assert descriptor["compatibility"] == "canonical"
+    assert descriptor["navigation"] == {"category": "specialist", "tier": "primary", "order": 0, "group": {"key": "tools", "label": "Tools", "order": 0}}
+    _write_package(workflows, "second")
+    _write_catalog(root, specialist=[
+        {"key": "tools", "label": "Tools", "workflows": [{"name": "helper"}]},
+        {"key": "more", "label": "More", "workflows": [{"name": "second", "tier": "supporting"}]},
+    ])
+    by_name = {item["name"]: item for item in validate_and_build(root)["methods"]}
+    assert by_name["second"]["navigation"] == {"category": "specialist", "tier": "supporting", "order": 0, "group": {"key": "more", "label": "More", "order": 1}}
+    assert by_name["helper"]["navigation"]["group"]["order"] == 0
+
+
+def test_navigation_superseded_requires_current_replacement(tmp_path):
+    root = _fixture_root(tmp_path)
+    workflows = root / "workflows"
+    _write_package(workflows, "old-helper")
+    _write_package(workflows, "helper")
+    _write_catalog(root, specialist=[{"key": "tools", "label": "Tools", "workflows": [{"name": "helper"}]}],
+                   superseded=[{"name": "old-helper", "replacedBy": "vanished"}])
+    with pytest.raises(ValueError, match="replacedBy must name an existing non-superseded workflow"):
+        validate_and_build(root)
+    _write_catalog(root, specialist=[{"key": "tools", "label": "Tools", "workflows": [{"name": "helper"}]}],
+                   superseded=[{"name": "old-helper", "replacedBy": "old-helper"}])
+    with pytest.raises(ValueError, match="replacedBy must name an existing non-superseded workflow"):
+        validate_and_build(root)
+    _write_catalog(root, specialist=[{"key": "tools", "label": "Tools", "workflows": [{"name": "helper"}]}],
+                   superseded=[{"name": "old-helper", "replacedBy": "helper"}])
+    by_name = {item["name"]: item for item in validate_and_build(root)["methods"]}
+    assert by_name["old-helper"]["compatibility"] == "legacy"
+    assert by_name["old-helper"]["navigation"] == {"category": "superseded", "tier": "primary", "order": 0, "supersededBy": "helper"}
+    assert by_name["helper"]["compatibility"] == "canonical"
+    assert all(by_name[name]["compatibility"] == "canonical" for name in CORE)
+
+
+def test_navigation_core_is_fixed_and_display_names_are_bounded():
+    with pytest.raises(ValueError, match="core must be exactly"):
+        parse_navigation({"core": _core_navigation()[:6], "specialist": [], "superseded": []})
+    reordered = list(reversed(_core_navigation()))
+    with pytest.raises(ValueError, match="core must be exactly"):
+        parse_navigation({"core": reordered, "specialist": [], "superseded": []})
+    renamed = [dict(item) for item in _core_navigation()]
+    renamed[0]["displayName"] = "Set up"
+    with pytest.raises(ValueError, match="displayName"):
+        parse_navigation({"core": renamed, "specialist": [], "superseded": []})
+    with pytest.raises(ValueError, match="exactly core, specialist and superseded"):
+        parse_navigation({"core": _core_navigation(), "specialist": []})
+    placements = parse_navigation({"core": _core_navigation(), "specialist": [], "superseded": []})
+    assert placements["project-setup"] == {"category": "core", "tier": "primary", "order": 0}
+    assert placements["reconciliation"] == {"category": "core", "tier": "primary", "order": 8, "displayName": "Check project status"}
 
 
 def test_workflow_purpose_metadata_reaches_descriptors(tmp_path):

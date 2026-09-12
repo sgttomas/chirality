@@ -37,3 +37,40 @@ it('explains a disabled native picker on hover and keeps errors as alerts', asyn
   expect(native.props.disabled).toBe(true); expect(native.props.title).toContain('Chirality Desktop');
   expect(tree!.root.findByProps({ role: 'alert' }).children.join('')).toBe('Path is not readable');
 });
+
+it('closes after a successful selection, stays open after a failed one, and dismisses on Escape or an outside pointer', async () => {
+  class FakeNode { constructor(public readonly name: string) {} }
+  const listeners = new Map<string, (event: unknown) => void>();
+  const focus = vi.fn();
+  vi.stubGlobal('Node', FakeNode);
+  vi.stubGlobal('document', { addEventListener: (name: string, handler: (event: unknown) => void) => listeners.set(name, handler), removeEventListener: (name: string) => listeners.delete(name) });
+  const inside = new FakeNode('inside'), outside = new FakeNode('outside');
+  const menuNode = { contains: (node: unknown) => node === inside, querySelector: () => ({ focus }) };
+  try {
+    await act(async () => { tree = create(<FolderSelect locked={false} root={null} disabled={false} />, { createNodeMock: element => element.props.className === 'chat-folder-select' ? menuNode : null }); });
+    const menu = () => tree!.root.findByProps({ className: 'chat-folder-select' });
+    const chooseButton = () => tree!.root.findAllByType('button').find(node => text(node) === 'Choose folder…')!;
+    expect(menu().props.open).toBe(false);
+    await act(async () => menu().props.onToggle({ currentTarget: { open: true } }));
+    expect(menu().props.open).toBe(true);
+    // A failed native pick keeps the menu, and its alert, in view.
+    workspace.chooseProjectRoot.mockResolvedValueOnce(false);
+    await act(async () => chooseButton().props.onClick());
+    expect(menu().props.open).toBe(true);
+    // Escape closes and returns focus to the summary.
+    act(() => listeners.get('keydown')!({ key: 'Escape', preventDefault: vi.fn() }));
+    expect(menu().props.open).toBe(false);
+    expect(focus).toHaveBeenCalledTimes(1);
+    expect(listeners.has('pointerdown')).toBe(false);
+    // An inside pointer keeps it open; an outside one closes it.
+    await act(async () => menu().props.onToggle({ currentTarget: { open: true } }));
+    act(() => listeners.get('pointerdown')!({ target: inside }));
+    expect(menu().props.open).toBe(true);
+    act(() => listeners.get('pointerdown')!({ target: outside }));
+    expect(menu().props.open).toBe(false);
+    // A successful pick closes it.
+    await act(async () => menu().props.onToggle({ currentTarget: { open: true } }));
+    await act(async () => chooseButton().props.onClick());
+    expect(menu().props.open).toBe(false);
+  } finally { vi.unstubAllGlobals(); }
+});

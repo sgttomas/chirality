@@ -184,7 +184,7 @@ export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, on
   return <nav className="woven-navigator" aria-label="Workspace Navigator">
     <header className="woven-navigator-brand">Chirality</header>
     <div className="woven-navigator-sections" aria-label="Workspace chats">
-      <label className="woven-chat-search"><span className="sr-only">Search chats</span><input ref={searchRef} type="search" value={query} placeholder="Search chats" aria-label="Search chats" onChange={event => setQuery(event.target.value)} onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); setQuery(''); } }} /></label>
+      <div className="woven-chat-search"><input ref={searchRef} type="search" value={query} placeholder="Search chats" aria-label="Search chats" title="Search chat titles and messages" onChange={event => setQuery(event.target.value)} onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); setQuery(''); } }} /></div>
       <div className="woven-chat-visibility" aria-label="Chat visibility">
         <button type="button" aria-pressed={visibility === 'active'} onClick={() => setVisibility('active')}>Chats</button>
         <button type="button" aria-pressed={visibility === 'archived'} onClick={() => setVisibility('archived')}>Archived ({chatArchived.length})</button>

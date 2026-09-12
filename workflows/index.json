@@ -280,7 +280,7 @@
       "sourceRootId": "chirality-root",
       "description": "Combine selected records into a traceable cross-scope view, including estimate collation.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -290,6 +290,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 4,
+        "group": {
+          "key": "plan-organize",
+          "label": "Plan & organize",
+          "order": 0
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -313,7 +323,7 @@
       "sourceRootId": "chirality-root",
       "description": "Assess role instructions against a named design basis and propose evidence-linked repairs.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -323,6 +333,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 0,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -346,7 +366,7 @@
       "sourceRootId": "chirality-root",
       "description": "Reconcile accepted decomposition with materialized scope and current derivative evidence.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -356,6 +376,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 1,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -379,7 +409,7 @@
       "sourceRootId": "chirality-root",
       "description": "Explain dependency closure, missing targets, cycles, and coordination concentrations.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -389,6 +419,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 2,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -412,7 +452,7 @@
       "sourceRootId": "chirality-root",
       "description": "Inspect what claims assert, what warrants them, and what uncertainty or conflict affects reliance.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -422,6 +462,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 3,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -445,7 +495,7 @@
       "sourceRootId": "chirality-root",
       "description": "Compare governance rules, references, terminology, and authority claims with their evidence.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -455,6 +505,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 4,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -478,7 +538,7 @@
       "sourceRootId": "chirality-root",
       "description": "Assess whether a graph snapshot\u2019s structure and coverage match its declared source basis.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -488,6 +548,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 5,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -511,7 +581,7 @@
       "sourceRootId": "chirality-root",
       "description": "Follow an accepted amendment through implementation, reruns, and remaining closure obligations.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -521,6 +591,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 4,
+        "group": {
+          "key": "manage-changes",
+          "label": "Manage changes",
+          "order": 7
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -544,7 +624,7 @@
       "sourceRootId": "chirality-root",
       "description": "Prepare and close a coherent Git change with inspectable evidence and existing human decision rights.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "WORKING_ITEMS"
       ],
@@ -554,6 +634,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 0,
+        "group": {
+          "key": "manage-changes",
+          "label": "Manage changes",
+          "order": 7
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -568,7 +658,7 @@
       "sourceRootId": "chirality-root",
       "description": "Read one deliverable folder and produce a structured 7-section content digest summarizing identity, scope, document kit, dependencies, references, semantic framework, and quality observations.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -579,6 +669,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 6,
+        "group": {
+          "key": "research-understand",
+          "label": "Research & understand",
+          "order": 1
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -598,7 +698,7 @@
       "sourceRootId": "chirality-root",
       "description": "Transform raw concordance evidence atoms and risk inventory rows into typed publication concordance candidates for register freeze review.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -609,6 +709,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 5,
+        "group": {
+          "key": "create-publish-documents",
+          "label": "Create & publish documents",
+          "order": 3
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -628,7 +738,7 @@
       "sourceRootId": "chirality-root",
       "description": "Post-synthesis cross-section semantic concordance verification for rewritten DBM package outputs.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -639,6 +749,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 6,
+        "group": {
+          "key": "create-publish-documents",
+          "label": "Create & publish documents",
+          "order": 3
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -658,7 +778,7 @@
       "sourceRootId": "chirality-root",
       "description": "Review a human-prepared draft DBM against the governed knowledge base \u2014 build review substrate, prepare candidate findings for human disposition.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -669,6 +789,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 2,
+        "group": {
+          "key": "create-publish-documents",
+          "label": "Create & publish documents",
+          "order": 3
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -693,7 +823,7 @@
       "sourceRootId": "chirality-root",
       "description": "Post-authoring evidence bundle and review for pipeline-produced DBM sections \u2014 build review substrate, prepare candidate findings for human readiness judgment.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -704,6 +834,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 7,
+        "group": {
+          "key": "create-publish-documents",
+          "label": "Create & publish documents",
+          "order": 3
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -728,7 +868,7 @@
       "sourceRootId": "chirality-root",
       "description": "Assemble the full rewritten DBM package from approved section outputs and produce package QA artifacts.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -739,6 +879,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 3,
+        "group": {
+          "key": "create-publish-documents",
+          "label": "Create & publish documents",
+          "order": 3
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -761,7 +911,7 @@
       "sourceRootId": "chirality-root",
       "description": "Develop and publish one engineering Design Basis Memorandum from accepted domain state, with frozen planning, section production, post-authoring review, and human acceptance.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "WORKING_ITEMS"
       ],
@@ -772,6 +922,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 0,
+        "group": {
+          "key": "create-publish-documents",
+          "label": "Create & publish documents",
+          "order": 3
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -790,7 +950,7 @@
       "sourceRootId": "chirality-root",
       "description": "Publish exactly one rewritten DBM section from approved mapped DOMAIN inputs and emit fixed QA artifacts.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -801,6 +961,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 4,
+        "group": {
+          "key": "create-publish-documents",
+          "label": "Create & publish documents",
+          "order": 3
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -820,7 +990,7 @@
       "sourceRootId": "chirality-root",
       "description": "Review one DOMAIN decomposition package as a closed system for derivative parity, active snapshot completeness, and handoff-state readiness. Use when a root-level remediation or scope-change run needs package-level closure evidence before downstream work or phase advancement.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -833,6 +1003,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 7,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -849,7 +1029,7 @@
       "sourceRootId": "chirality-root",
       "description": "Run a deliverable-local consistency sweep across production documents in one deliverable. Use when checking for unresolved markers, missing core artifacts, identity-label mismatches, or candidate unsourced numeric statements.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -862,6 +1042,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 6,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -883,7 +1073,7 @@
       "sourceRootId": "chirality-root",
       "description": "Extract dependency register (Dependencies.csv v3.1) from deliverable source documents using Anchor x Execution edge typing with evidence-first provenance. Setup-pipeline workflow dispatched by WORKING_ITEMS (workflow: project-setup) during project setup.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -896,6 +1086,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 10,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -928,6 +1128,11 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 3
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -953,7 +1158,7 @@
       "sourceRootId": "chirality-root",
       "description": "Draft knowledge-artifact document set for a DOMAIN Knowledge Type deliverable. Produces KA-* files per the variable artifact schema. DOMAIN pipeline only.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -966,6 +1171,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 1,
+        "group": {
+          "key": "create-publish-documents",
+          "label": "Create & publish documents",
+          "order": 3
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -982,7 +1197,7 @@
       "sourceRootId": "chirality-root",
       "description": "Integrate a deterministic domain engine with explicit computational coverage and human judgment.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "WORKING_ITEMS"
       ],
@@ -992,6 +1207,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 2,
+        "group": {
+          "key": "research-understand",
+          "label": "Research & understand",
+          "order": 1
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1017,7 +1242,7 @@
       "sourceRootId": "chirality-root",
       "description": "Discover source-backed domain entities and build a traceable graph projection.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -1027,6 +1252,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 1,
+        "group": {
+          "key": "research-understand",
+          "label": "Research & understand",
+          "order": 1
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1050,7 +1285,7 @@
       "sourceRootId": "chirality-root",
       "description": "Independently re-extract one rasterized PDF page's prose, equations, and asset placeholders for downstream extraction-reproducibility comparison (Gate 1.5-P Stage 1).",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1063,6 +1298,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 13,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1079,7 +1324,7 @@
       "sourceRootId": "chirality-root",
       "description": "Per-dispatch-unit bounded atomization of one slice of one DOMAIN source markdown into IN/OUT/TBD atomic units with dual SourceRefs, content hashes, and vocabulary seeds. Invoked by the WORKING_ITEMS (workflow: domain-decomp) orchestrator for per-skeleton-dispatch-unit fanout in Phase 2.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1092,6 +1337,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 12,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1108,7 +1363,7 @@
       "sourceRootId": "chirality-root",
       "description": "Extract target-specific evidence from engineering drawings through coverage design, bounded visual extraction, deterministic QA, assembly, and recovery.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "WORKING_ITEMS"
       ],
@@ -1120,6 +1375,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 4,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1138,7 +1403,7 @@
       "sourceRootId": "chirality-root",
       "description": "Per-page bounded extraction of structured data from a single engineering drawing page image, using crop-first multiblock VLM reasoning. Drawing-type-aware (PFD implemented; P_AND_ID, ISOMETRIC, GA stubbed). Invoked by the drawing-extract orchestrator for per-page fanout.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1149,6 +1414,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 5,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1168,7 +1443,7 @@
       "sourceRootId": "chirality-root",
       "description": "Per-page titleblock extraction from drawing sheets using four corner crops and a full-page thumbnail; emits a governed sheet-inventory stub.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1179,6 +1454,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 6,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1198,7 +1483,7 @@
       "sourceRootId": "chirality-root",
       "description": "Review extracted display equations with the human, interpret correction notes, apply validated fixes, backcheck changes, and close an immutable audit snapshot.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "WORKING_ITEMS"
       ],
@@ -1209,6 +1494,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 7,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1223,7 +1518,7 @@
       "sourceRootId": "chirality-root",
       "description": "Detect display-equation bounding boxes on one rasterized page PNG using multimodal vision and emit normalized coordinates for downstream cropping. Per-page bounded dispatch invoked by equation-audit during Phase 1 when per-equation crops are enabled.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1234,6 +1529,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 8,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1253,7 +1558,7 @@
       "sourceRootId": "chirality-root",
       "description": "Convert one human-written natural-language correction note about one display equation into a corrected LaTeX expression. Per-flag bounded dispatch invoked by equation-audit during Phase 3a, one TASK per flagged entry whose `description` is prose rather than LaTeX.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1264,6 +1569,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 9,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1283,7 +1598,7 @@
       "sourceRootId": "chirality-root",
       "description": "Extract costing-relevant design basis parameters for equipment matching a target module type list from KA files in a single KTY folder. Use when building equipment costing registers for cost estimation.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1294,6 +1609,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 2,
+        "group": {
+          "key": "estimate-cost",
+          "label": "Estimate & cost",
+          "order": 5
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1313,7 +1638,7 @@
       "sourceRootId": "chirality-root",
       "description": "Extract discrete physical equipment items from Knowledge Artifact files within a single DOMAIN Knowledge Type folder. Use when building per-KTY equipment registers from KA production documents.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1324,6 +1649,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 11,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1343,7 +1678,7 @@
       "sourceRootId": "chirality-root",
       "description": "Generates estimation input package (pricing library, LOE, project parameters, BOE) via two-phase run with PHASE=SCAFFOLD|BOE modes and a human gate between invocations.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1359,6 +1694,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 0,
+        "group": {
+          "key": "estimate-cost",
+          "label": "Estimate & cost",
+          "order": 5
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1375,7 +1720,7 @@
       "sourceRootId": "chirality-root",
       "description": "Generate an immutable, provenance-first estimate snapshot for a bounded scope of deliverables and/or packages, writing quarantined artifacts under the estimating tool root. Use for automated estimate runs driven by a validated BASIS_OF_ESTIMATE enum and local pricing sources.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1388,6 +1733,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 1,
+        "group": {
+          "key": "estimate-cost",
+          "label": "Estimate & cost",
+          "order": 5
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1411,7 +1766,7 @@
       "sourceRootId": "chirality-root",
       "description": "Coordinate evidence-grounded evaluation, bounded audits, optional scoring, and remediation handoffs.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "WORKING_ITEMS"
       ],
@@ -1424,6 +1779,16 @@
         "resources/method.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 8,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1449,7 +1814,7 @@
       "sourceRootId": "chirality-root",
       "description": "Evaluate one dimension against an accepted rubric and return a supported score.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -1459,6 +1824,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 9,
+        "group": {
+          "key": "review-check",
+          "label": "Review & check",
+          "order": 6
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1482,7 +1857,7 @@
       "sourceRootId": "chirality-root",
       "description": "Maintain and enrich an existing transitional LEGACY_FOUR_DOC kit for a PROJECT or SOFTWARE deliverable through rollback. Never initialize a new production contract.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1495,6 +1870,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 2,
+        "group": {
+          "key": "plan-organize",
+          "label": "Plan & organize",
+          "order": 0
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1511,7 +1896,7 @@
       "sourceRootId": "chirality-root",
       "description": "Archive, tombstone, verify, and emit disposition evidence for DOMAIN KTY content after an approved scope change without rewriting active Knowledge Artifact content.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1524,6 +1909,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 3,
+        "group": {
+          "key": "manage-changes",
+          "label": "Manage changes",
+          "order": 7
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1540,7 +1935,7 @@
       "sourceRootId": "chirality-root",
       "description": "Review and optionally align one DOMAIN Knowledge Type folder's metadata surfaces to approved decomposition truth without rewriting Scoping.md or KA content. Use after regeneration or scope change when `_CONTEXT.md`, `_STATUS.md`, or `_REFERENCES.md` may have drifted.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1553,6 +1948,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 3,
+        "group": {
+          "key": "plan-organize",
+          "label": "Plan & organize",
+          "order": 0
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1569,7 +1974,7 @@
       "sourceRootId": "chirality-root",
       "description": "Generate a matrix-organized, coverage-complete semantic lensing register (_SEMANTIC_LENSING.md) from _SEMANTIC.md + production documents. Setup-pipeline companion to the interactive semantic-lensing workflow.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1582,6 +1987,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 3,
+        "group": {
+          "key": "research-understand",
+          "label": "Research & understand",
+          "order": 1
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1598,7 +2013,7 @@
       "sourceRootId": "chirality-root",
       "description": "Extract pixel-anchored P&ID valve symbol instances from prepared tiles using isolated-crop classification before any row may count.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1609,6 +2024,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 14,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1636,6 +2061,12 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "superseded",
+        "tier": "primary",
+        "order": 0,
+        "supersededBy": "pandid-valve-symbol-instance"
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1655,7 +2086,7 @@
       "sourceRootId": "chirality-root",
       "description": "Convert a bounded PDF to Markdown in one TASK assignment, using vision and deterministic cleanup and assembly tools.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1666,6 +2097,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 0,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1690,7 +2131,7 @@
       "sourceRootId": "chirality-root",
       "description": "Read one rasterized PDF page and emit the visible printed folio label (page number as it appears on the page itself \u2014 \"47\", \"xiv\", \"B-3\", or null when no folio is printed).",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1701,6 +2142,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 3,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1720,7 +2171,7 @@
       "sourceRootId": "chirality-root",
       "description": "Coordinate recoverable PDF conversion through page-bounded vision, deterministic cleanup and asset materialization, assembly, and explicit degraded-output review.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "WORKING_ITEMS"
       ],
@@ -1731,6 +2182,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 1,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1760,6 +2221,12 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "superseded",
+        "tier": "primary",
+        "order": 1,
+        "supersededBy": "pdf2md-page-full"
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1790,6 +2257,12 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "superseded",
+        "tier": "primary",
+        "order": 2,
+        "supersededBy": "pdf2md-page-full"
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1809,7 +2282,7 @@
       "sourceRootId": "chirality-root",
       "description": "Single-page merged VLM pass that produces BOTH the raw Markdown transcription and the bbox-normalized asset JSON from one vision read of the page image. Replaces the prior two-workflow split (pdf2md-page + pdf2md-page-assets) for new dispatches.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1820,6 +2293,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 2,
+        "group": {
+          "key": "extract-documents",
+          "label": "Extract from documents",
+          "order": 2
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1839,7 +2322,7 @@
       "sourceRootId": "chirality-root",
       "description": "Materialize accepted scope as predictable folders and source-faithful metadata.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -1849,6 +2332,16 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 0,
+        "group": {
+          "key": "plan-organize",
+          "label": "Plan & organize",
+          "order": 0
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1882,6 +2375,11 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 1
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1907,6 +2405,11 @@
         "resources/method.md",
         "resources/package-activation.md"
       ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 0
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1932,7 +2435,7 @@
       "sourceRootId": "chirality-root",
       "description": "Structured recommendation output using PROPOSAL blocks with evidence, change, risk, and status fields. Use for any deliverable-local task that surfaces actionable findings.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -1943,6 +2446,16 @@
         "WORKFLOW.md",
         "execution.json"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 5,
+        "group": {
+          "key": "plan-organize",
+          "label": "Plan & organize",
+          "order": 0
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -1962,7 +2475,7 @@
       "sourceRootId": "chirality-root",
       "description": "Reconcile claims, artifacts, implementation, evidence, lifecycle, and remaining work with accepted project truth.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "WORKING_ITEMS"
       ],
@@ -1972,6 +2485,12 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 8,
+        "displayName": "Check project status"
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2014,6 +2533,11 @@
         "resources/method.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 4
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2039,7 +2563,7 @@
       "sourceRootId": "chirality-root",
       "description": "Investigate one bounded question through independently verified and recoverable evidence.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK"
       ],
@@ -2051,6 +2575,16 @@
         "resources/inquiry.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 0,
+        "group": {
+          "key": "research-understand",
+          "label": "Research & understand",
+          "order": 1
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2074,7 +2608,7 @@
       "sourceRootId": "chirality-root",
       "description": "Guide evidence review and human disposition for a deliverable lifecycle transition.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "WORKING_ITEMS"
       ],
@@ -2084,6 +2618,12 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 7,
+        "displayName": "Review results"
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2102,7 +2642,7 @@
       "sourceRootId": "chirality-root",
       "description": "Create or update a PKG-00 SCC resolution case that accumulates bounded TASK findings, evidence, human rulings, candidate remedies, and owner-workflow handoffs until DepClosure can verify closure.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -2115,6 +2655,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 2,
+        "group": {
+          "key": "manage-changes",
+          "label": "Manage changes",
+          "order": 7
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2141,6 +2691,11 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 5
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2166,7 +2721,7 @@
       "sourceRootId": "chirality-root",
       "description": "Produce a bounded PKG-00 Scope Change Consumable Packet for later human-initiated WORKING_ITEMS (workflow: scope-change) intake; use scc-resolution-case for active SCC resolution receptacles.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -2179,6 +2734,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 1,
+        "group": {
+          "key": "manage-changes",
+          "label": "Manage changes",
+          "order": 7
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2195,7 +2760,7 @@
       "sourceRootId": "chirality-root",
       "description": "Initialize, convert, validate, and independently verify one objective-anchored PROJECT/SOFTWARE ScopeOfWork.md under the active SOW_V1 transition contract. Do not use for DOMAIN/KTY or independent schemas, lifecycle changes, or unauthorized corpus conversion.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -2209,6 +2774,16 @@
         "resources/representation-migration.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 1,
+        "group": {
+          "key": "plan-organize",
+          "label": "Plan & organize",
+          "order": 0
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2237,7 +2812,7 @@
       "sourceRootId": "chirality-root",
       "description": "Apply semantic lensing analysis to deliverable documents using _SEMANTIC.md matrices. Treats lensing entries as a candidate worklist, tags proposals with matrix coordinates, and optionally updates lens artifacts.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -2250,6 +2825,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 4,
+        "group": {
+          "key": "research-understand",
+          "label": "Research & understand",
+          "order": 1
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2266,7 +2851,7 @@
       "sourceRootId": "chirality-root",
       "description": "Generate one deliverable-local semantic lens (_SEMANTIC.md) by adopting canonical matrices A and B and deriving C, F, D, K, G, X, T, and E with explicit semantic-algebra working.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -2279,6 +2864,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "supporting",
+        "order": 5,
+        "group": {
+          "key": "research-understand",
+          "label": "Research & understand",
+          "order": 1
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2295,7 +2890,7 @@
       "sourceRootId": "chirality-root",
       "description": "Implement one sealed software change within explicit write targets and acceptance criteria, then produce normalized verification evidence. Use for bounded features, repairs, refactors, migrations, or documentation changes after the owning manager freezes scope.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -2309,6 +2904,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 0,
+        "group": {
+          "key": "build-maintain-software",
+          "label": "Build & maintain software",
+          "order": 4
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2334,7 +2939,7 @@
       "sourceRootId": "chirality-root",
       "description": "Review a bounded software diff for correctness, regressions, scope compliance, contracts, security, maintainability, and verification evidence. Use at staged or terminal fan-in before a manager accepts an implementation return.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -2347,6 +2952,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 1,
+        "group": {
+          "key": "build-maintain-software",
+          "label": "Build & maintain software",
+          "order": 4
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2381,6 +2996,11 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 2
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2395,7 +3015,7 @@
       "sourceRootId": "chirality-root",
       "description": "Reproduce, isolate, and explain a software defect using bounded evidence without assuming repair authority. Use for failing tests, regressions, runtime errors, performance anomalies, or conflicting reports that require a causal diagnosis before implementation.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -2408,6 +3028,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 2,
+        "group": {
+          "key": "build-maintain-software",
+          "label": "Build & maintain software",
+          "order": 4
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2431,7 +3061,7 @@
       "sourceRootId": "chirality-root",
       "description": "Map a software repository's manifests, architecture, test surfaces, commands, ownership boundaries, and risks before planning or implementation. Use for unfamiliar repositories, novel stacks, package activation, or before sealing a software work brief.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -2444,6 +3074,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 7,
+        "group": {
+          "key": "research-understand",
+          "label": "Research & understand",
+          "order": 1
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2466,7 +3106,7 @@
       "sourceRootId": "chirality-root",
       "description": "Derive a risk-based verification plan and affected registered checks for a bounded software change. Use before implementation, at fan-in, or after a defect when test selection, evidence sufficiency, negative cases, or acceptance gates must be made explicit.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "TASK",
         "WORKING_ITEMS",
@@ -2479,6 +3119,16 @@
         "resources/checks.md",
         "resources/tools.md"
       ],
+      "navigation": {
+        "category": "specialist",
+        "tier": "primary",
+        "order": 3,
+        "group": {
+          "key": "build-maintain-software",
+          "label": "Build & maintain software",
+          "order": 4
+        }
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
@@ -2501,7 +3151,7 @@
       "sourceRootId": "chirality-root",
       "description": "Make unresolved project obligations visible and carry human dispositions to the owning instruments.",
       "central": false,
-      "compatibility": "legacy",
+      "compatibility": "canonical",
       "executionRoleIds": [
         "WORKING_ITEMS"
       ],
@@ -2511,6 +3161,12 @@
         "resources/contract.md",
         "resources/method.md"
       ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 6,
+        "displayName": "Manage tasks"
+      },
       "execution": {
         "schemaVersion": 1,
         "compatibleRoles": [
