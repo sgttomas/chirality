@@ -10,7 +10,8 @@ import type { UIEvent } from '@chirality/runtime-contracts/types';
 import {
   RuntimeDaemonHarnessPort,
   RuntimeHostedBootstrapPort,
-  createRuntimeDaemonHarnessPortFromEnvironment
+  createRuntimeDaemonHarnessPortFromEnvironment,
+  createRuntimeHostedBootstrapPortFromEnvironment
 } from '../../lib/runtime-client/runtime-daemon-harness-port';
 
 const project = {
@@ -142,6 +143,25 @@ describe('RuntimeDaemonHarnessPort', () => {
         CHIRALITY_RUNTIME_PROJECT_ROOT: project.canonicalRoot
       })
     ).not.toThrow();
+  });
+
+  it('builds the hosted bootstrap port from the App-owned service paths', () => {
+    // The App exports the per-launch client token as CHIRALITY_RUNTIME_TOKEN_FILE;
+    // the retired bootstrap-token variable is not read.
+    expect(() =>
+      createRuntimeHostedBootstrapPortFromEnvironment({
+        CHIRALITY_RUNTIME_SOCKET_PATH: '/runtime/control.sock',
+        CHIRALITY_RUNTIME_TOKEN_FILE: '/runtime/client-token',
+        CHIRALITY_RUNTIME_DIRECTORY: '/runtime'
+      })
+    ).not.toThrow();
+    expect(() =>
+      createRuntimeHostedBootstrapPortFromEnvironment({
+        CHIRALITY_RUNTIME_SOCKET_PATH: '/runtime/control.sock',
+        CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE: '/runtime/client-token',
+        CHIRALITY_RUNTIME_DIRECTORY: '/runtime'
+      })
+    ).toThrowError(expect.objectContaining({ type: 'ENGINE_UNAVAILABLE', status: 503 }));
   });
 
   it('resolves the registered project and leaves engine defaults to the daemon', async () => {

@@ -57,7 +57,6 @@ export interface RuntimeDaemonHarnessEnvironment {
   CHIRALITY_RUNTIME_TOKEN_FILE?: string;
   CHIRALITY_RUNTIME_PROJECT_ID?: string;
   CHIRALITY_RUNTIME_PROJECT_ROOT?: string;
-  CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE?: string;
   CHIRALITY_RUNTIME_DIRECTORY?: string;
 }
 
@@ -1064,17 +1063,17 @@ export function createRuntimeHostedBootstrapPortFromEnvironment(
   installBoundPort?: RuntimeHostedBootstrapPortOptions['installBoundPort']
 ): HostedBootstrapPort {
   const socketPath = environment.CHIRALITY_RUNTIME_SOCKET_PATH?.trim();
-  const bootstrapTokenFile = environment.CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE?.trim();
+  const clientTokenFile = environment.CHIRALITY_RUNTIME_TOKEN_FILE?.trim();
   const runtimeDirectory = environment.CHIRALITY_RUNTIME_DIRECTORY?.trim();
   if (
     !socketPath ||
-    !bootstrapTokenFile ||
+    !clientTokenFile ||
     !runtimeDirectory ||
     !isAbsolute(socketPath) ||
-    !isAbsolute(bootstrapTokenFile) ||
+    !isAbsolute(clientTokenFile) ||
     !isAbsolute(runtimeDirectory) ||
     resolve(socketPath) !== socketPath ||
-    resolve(bootstrapTokenFile) !== bootstrapTokenFile ||
+    resolve(clientTokenFile) !== clientTokenFile ||
     resolve(runtimeDirectory) !== runtimeDirectory
   ) {
     throw new HarnessError(
@@ -1084,7 +1083,7 @@ export function createRuntimeHostedBootstrapPortFromEnvironment(
     );
   }
   return new RuntimeHostedBootstrapPort({
-    bootstrapClient: new RuntimeClient({ socketPath, tokenFile: bootstrapTokenFile }),
+    bootstrapClient: new RuntimeClient({ socketPath, tokenFile: clientTokenFile }),
     runtimeDirectory,
     socketPath,
     installBoundPort
