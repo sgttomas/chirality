@@ -49,3 +49,18 @@ materially different design is needed, return the issue before changing it.
 ## Independent-review repair, 2026-09-12T21:21:14Z
 
 Review of 9eb92d33b found one P1: an ambiguous fresh POST could attach to an old retained turn or select an old replay terminal before learning the new turn identity. Parent authorizes a generated submission turnId through the App to the existing Runtime SessionTurnRequest.turnId, plus an optional expected identity on the App/client/Runtime attach path checked atomically in TurnRegistry.subscribe. Legacy omitted-identity calls retain their existing behavior. Supplier protocol is unchanged. Extend only the related request/port/client/route/registry types and maintained tests. Replay must use the same expected identity. Test old retained completion, old replay, matching recovery, preserved known-rejection restoration and no automatic second POST. See returns/REVIEW_LIVE_RECOVERY_1.md.
+
+## Plan-attempt identity continuation at 2026-09-12T21:39:56Z
+
+The fresh independent reviewer confirmed a remaining P1 in cf3b1338b: the
+submitted UUID reaches the persisted plan attempt only after observation ends,
+and an idless running attempt can inherit another live turn on reload. Repair
+only this continuation boundary: persist the preallocated identity on the
+execution attempt before the POST can be dispatched; require exact identity
+for recovered plan settlement; legacy idless or mismatched attempts must not
+inherit another turn's terminal. Add meaningful reload/ambiguous-POST and
+matching-plan regressions, preserving ordinary plan execution, explicit Stop,
+unknown outcomes and send-once behavior. Scope is ChatPanel and its existing
+plan execution store/tests if needed. No new feature, supplier or packaging
+change. Return the frozen diff and check results without committing. Parent
+records and validates; the separate reviewer reassesses the final candidate.

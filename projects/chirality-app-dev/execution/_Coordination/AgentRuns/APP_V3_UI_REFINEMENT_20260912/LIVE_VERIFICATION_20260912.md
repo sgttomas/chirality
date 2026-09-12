@@ -76,7 +76,42 @@ the author's combined focused run with STOPPED_DEGRADED and passed alone; it
 also passed in the parent's final full suite. That intermittent observation is
 retained as a residual, not declared fixed.
 
-## Owner update test
+## Submission-identity verification
+
+Candidate `cf3b1338b38c855bd2e92bf790076d6982f15678` preallocates the
+Runtime turn identity before POST, attaches only to the matching retained turn,
+and scopes replay to that identity. Regressions cover an old retained turn,
+expired old history, a matching active stream, and matching completed replay.
+These are controlled tests, not live network fault injection.
+
+Parent Runtime build and full one-worker Runtime suite passed, 321 tests.
+Frontend and Electron typechecks passed. The default-concurrency frontend run
+had 2178 passes, four skips and one failure in the retained Pi/oMLX compatibility
+fixture's 200 ms provider deadline. This source is outside the repair and Codex
+package. A full one-worker run passed 2179 tests, four skipped. The load-sensitive
+failure remains recorded, not declared fixed. Logs are
+`runtime-build-identity-final.log`, `runtime-full-identity-final.log`,
+`frontend-typecheck-identity-final.log`, `frontend-full-identity-final.log`, and
+`frontend-full-identity-serial.log` in the evidence directory.
+
+The same isolated dev launcher ran source cf3b1338b with wrapper 61091,
+concurrently 61116, Electron 61237 and Runtime 61241, verified by ancestry and
+the spike-a2 socket. Account remained Signed in / Ready. A new sleep-70 turn
+started the IDENTITY-RELOAD-20260912 command at 21:37:34Z. After renderer reload,
+the running turn reattached with one Stop control and Send disabled. The command
+finished at 21:38:44Z; direct UI inspection at 21:39:06Z showed Completed, the
+correct marker, one action and 77.3 seconds. No second POST or command was
+observed. Partial commentary is still shown twice after reload, as previously
+recorded. The owned concurrently process was stopped at 21:40:20Z after a fresh
+working-directory check. Its recorder exited 0. Filtered dev log:
+`dev-identity-reload-filtered.log`.
+
+The independent full-diff review still found a plan-attempt persistence gap,
+recorded verbatim in `returns/REVIEW_LIVE_RECOVERY_2.md`. The ordinary live
+reload pass does not establish that this plan-specific failure is resolved.
+That bounded repair and its review precede integration and replacement packaging.
+
+## Owner update test status
 
 The install-over acceptance remains unperformed. `OWNER_HANDOFF_20260912.md`
 will carry the six manual steps and both complete installer paths. A source

@@ -34,7 +34,7 @@ import { deriveTurnActivityFromEvents, deriveTurnActivityFromTranscript, type Tu
 import { selectPendingPermissionRequests, selectPendingServerRequests } from '../../lib/shell/harness-event-views';
 import { TURN_CONTINUATION_NOTE, interruptedTurnPresentation, turnOutcomeDescription, turnOutcomeLabel, turnPhaseStatusLine, type TurnOutcome, type TurnPhase } from '../../lib/shell/turn-phase';
 import {
-  attachPlanExecutionTurn, beginPlanExecution, detectPlanExecution, planExecutionMarker, readPlanExecutionRecords, runningPlanExecution,
+  beginPlanExecution, detectPlanExecution, planExecutionMarker, readPlanExecutionRecords, runningPlanExecution,
   settlePlanExecution, writePlanExecutionRecords, type PlanExecutionRecord
 } from '../../lib/harness/plan-executions';
 import { NativePlanPanel, type NativePlanPanelModel } from './native-plan-panel';
@@ -1213,8 +1213,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     setPlanExecutions(current => {
       const running = runningPlanExecution(current);
       if (!running) return current;
-      if (running.turnId && turnId && running.turnId !== turnId) return current;
-      return settlePlanExecution(current, running, { status: outcome, endedAt: new Date().toISOString(), ...(turnId ? { turnId } : {}) });
+      const matches = Boolean(running.turnId && turnId === running.turnId);
+      // Never assign an observed turn to an idless or differently bound plan
+      // attempt. Its own ending remains unproved, even if this turn completed.
+      return settlePlanExecution(current, running, { status: matches ? outcome : 'unknown', endedAt: new Date().toISOString() });
     });
   }
 
@@ -1286,11 +1288,14 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     let bootedSession: ActiveSession | null = activeSession;
     // Sending the prepared "Execute plan" request is that revision's execution
     // attempt; an edited message without the marker is an ordinary turn.
+    const submittedTurnId = crypto.randomUUID();
     const executedRevision = detectPlanExecution(text, preparedExecution);
+    let submittedExecutions: readonly PlanExecutionRecord[] | undefined;
     let executionAttempt: { revision: number; attempt: number } | null = null;
     if (executedRevision !== null) {
       const startedAt = new Date().toISOString();
-      const next = beginPlanExecution(planExecutions, executedRevision, startedAt);
+      const next = beginPlanExecution(planExecutions, executedRevision, startedAt, submittedTurnId);
+      submittedExecutions = next;
       executionAttempt = { revision: executedRevision, attempt: next.at(-1)!.attempt };
       setPlanExecutions(next);
     }
@@ -1376,7 +1381,12 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       const observation = new AbortController();
       turnObservation.current?.abort();
       turnObservation.current = observation;
-      const submittedTurnId = crypto.randomUUID();
+      if (submittedExecutions) {
+        // Do not wait for a React effect or for observation to finish: reload
+        // after an ambiguous POST must retain this attempt's exact identity.
+        setPlanExecutions(submittedExecutions);
+        if (typeof window !== 'undefined') writePlanExecutionRecords(window.localStorage, session.sessionId, submittedExecutions);
+      }
       const outcome = await observeTurn({
         session,
         assistantId,
@@ -1403,8 +1413,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       const assistantText = outcome.assistantText;
       if (executionAttempt) {
         const target = executionAttempt;
-        setPlanExecutions(current => settlePlanExecution(
-          outcome.turnId ? attachPlanExecutionTurn(current, target, outcome.turnId) : current,
+        setPlanExecutions(current => settlePlanExecution(current,
           target, { status: outcome.outcome ?? (outcome.error ? 'failed' : 'unknown'), endedAt: new Date().toISOString() }));
       }
       const outcomeUnknown = outcome.outcome === 'unknown';

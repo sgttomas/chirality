@@ -19,7 +19,7 @@ export type PlanExecutionRecord = {
   attempt: number;
   startedAt: string;
   status: PlanExecutionStatus;
-  /** Runtime turn identity once the turn named itself; used to settle a running record from the log. */
+  /** Identity allocated before submission; absent only on legacy local records. */
   turnId?: string;
   endedAt?: string;
 };
@@ -69,9 +69,9 @@ export function writePlanExecutionRecords(storage: Pick<Storage, 'setItem' | 're
 }
 
 /** Start attempt N for a revision: one more than the attempts already recorded for it. */
-export function beginPlanExecution(records: readonly PlanExecutionRecord[], revision: number, startedAt: string): PlanExecutionRecord[] {
+export function beginPlanExecution(records: readonly PlanExecutionRecord[], revision: number, startedAt: string, turnId?: string): PlanExecutionRecord[] {
   const attempt = records.filter(record => record.revision === revision).length + 1;
-  return [...records, { revision, attempt, startedAt, status: 'running' }];
+  return [...records, { revision, attempt, startedAt, status: 'running', ...(turnId ? { turnId } : {}) }];
 }
 
 /** The most recent running record (at most one turn runs per session). */

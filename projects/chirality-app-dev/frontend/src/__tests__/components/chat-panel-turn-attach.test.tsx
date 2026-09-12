@@ -429,3 +429,64 @@ it.each(['retained-old', 'expired-old', 'matching', 'matching-replay'])('correla
   }
   expect(state.interrupt).not.toHaveBeenCalled();
 });
+
+it.each(['matching', 'different'])('persists an Execute attempt identity before dispatch and retains it across ambiguous response plus reload: %s', async recovery => {
+  vi.useFakeTimers();
+  const key = 'chirality.planExecutions.v1:resumed';
+  const store = new Map<string, string>();
+  Object.assign(window, { localStorage: { getItem: (name: string) => store.get(name) ?? null, setItem: (name: string, value: string) => { store.set(name, value); }, removeItem: (name: string) => { store.delete(name); } } });
+  const records = () => JSON.parse(store.get(key) ?? '[]') as Array<{ turnId?: string; status: string; revision: number; attempt: number }>;
+  const qualification = { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const };
+  const revision = { revision: 1, sourceEvent: { qualificationState: 'qualified' as const, eventId: 'plan-1', occurredAt: '2026-09-12T00:00:00Z', qualification, plan: { id: 'plan-item', type: 'plan', text: 'Perform the planned work.' } } };
+  state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'qualified', qualification });
+  state.nativeRevisions.mockResolvedValue({ schemaVersion: 'chirality.native-plan-revisions/v3', status: 'qualified', qualification, revisions: [revision] });
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [], instructionBases: [], instructionHistory: [] });
+  const selected = projection('resumed');
+  selected.session!.continuation!.interactionMode = 'native-plan';
+  let model: import('../../components/shell/native-plan-panel').NativePlanPanelModel | null = null;
+  await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: selected }} onPlanPanelChange={value => { model = value; }} />); });
+  await flush();
+  await act(async () => { model!.onExecute(revision); });
+  let submitted!: string;
+  let persistedAtDispatch: ReturnType<typeof records> = [];
+  state.stream.mockImplementation(async (input: { turnId: string }) => {
+    submitted = input.turnId;
+    // Capture at dispatch, before any response, frame, or later effect. Assert
+    // outside the handler so the observer cannot swallow an assertion failure.
+    persistedAtDispatch = records();
+    throw new TypeError('Execute POST response lost');
+  });
+  await act(async () => { tree!.root.findByProps({ className: 'chat-input-row' }).props.onSubmit({ preventDefault: vi.fn() }); });
+  await flush();
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(status()).toContain('Reconnecting');
+  expect(persistedAtDispatch).toEqual([expect.objectContaining({ revision: 1, attempt: 1, status: 'running', turnId: submitted })]);
+  expect(records()[0]).toMatchObject({ status: 'running', turnId: submitted });
+  // Reload before the observer's first retry/settlement. Keep only persisted state.
+  await act(async () => { tree!.unmount(); });
+  tree = undefined;
+  await flush();
+  expect(records()[0]).toMatchObject({ status: 'running', turnId: submitted });
+  const observed = recovery === 'matching' ? submitted : 'prior-active-turn';
+  state.turnState.mockResolvedValue({ active: true, turnId: observed, lastSeq: 1 });
+  state.attach.mockImplementation(async (_s: string, _after: number, deliver: (frame: Frame) => void) => {
+    const ended = harness(1, 'reloaded-end', 'turn.completed');
+    deliver({ ...ended, data: { ...ended.data, turnId: observed } });
+  });
+  await mountResumed();
+  expect(records()[0]).toMatchObject({ turnId: submitted, status: recovery === 'matching' ? 'completed' : 'unknown' });
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+});
+
+it('never adopts a recovered live turn identity or completion for a legacy idless plan attempt', async () => {
+  const key = 'chirality.planExecutions.v1:resumed';
+  let saved = JSON.stringify([{ revision: 1, attempt: 1, startedAt: '2026-09-12T00:00:00Z', status: 'running' }]);
+  Object.assign(window, { localStorage: { getItem: (name: string) => name === key ? saved : null, setItem: (name: string, value: string) => { if (name === key) saved = value; }, removeItem: () => undefined } });
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1 });
+  state.attach.mockImplementation(async (_s: string, _after: number, deliver: (frame: Frame) => void) => { deliver(harness(1, 'other-end', 'turn.completed')); });
+  await mountResumed();
+  expect(JSON.parse(saved)).toEqual([expect.objectContaining({ status: 'unknown' })]);
+  expect(JSON.parse(saved)[0].turnId).toBeUndefined();
+  expect(state.stream).not.toHaveBeenCalled();
+});
