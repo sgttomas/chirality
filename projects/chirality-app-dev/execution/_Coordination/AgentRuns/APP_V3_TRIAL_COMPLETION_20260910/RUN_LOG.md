@@ -712,3 +712,19 @@ retained steps (low). New test: retirement failure blocks renewal, the failed
 step is retried first, and the factory is never reached before retirement
 completes. tsc clean; eight focused suites 187/187. FINAL_SOURCE_HASHES.json
 updated; the reviewer is asked to backcheck this delta before source release.
+
+### Stage26/R17 Phase A returned; source released for freeze — 2026-09-12T02:45Z
+
+Reviewer backcheck of `6e2b631ec`: PASS, 56/56, no new finding; recorded in
+INDEPENDENT_REVIEW.md (commit `b74b6616a`). Packager Phase A
+(L_STAGE26_PACKAGING/PREPARATION.md): stage root
+`/private/tmp/chirality-local-human-trial-20260910-26` created 0700; pending
+manifest `stage26-preparation-manifest.json` SHA-256
+`07418d684f8e53313c0a2332225942002b7a608bee03aa6a50d07009851b3d8c`; all 17
+static inputs byte-identical to Stage25 (delta = source commit only); R17
+launcher derivation frozen (expected SHA-256 `150d3437…`); R17 durable paths
+absent; Stage25 and the running R16 untouched. Lead releases the commit that
+records this section as the frozen source; the packager runs only the
+create-only source-candidate, source-freeze and manifest-freeze tools next,
+then stops for recipe review. Phase B (build) is held until that review
+passes and the lead releases it. No commits will be made while Phase B runs.
