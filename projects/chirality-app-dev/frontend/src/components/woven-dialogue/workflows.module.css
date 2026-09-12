@@ -22,5 +22,7 @@
 .provenance dt { margin-top: 8px; }
 .provenance dd { margin: 0; overflow-wrap: anywhere; }
 
-.header .tabs[role="tablist"] { flex: 1 1 0; min-width: 0; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }
+/* Six views: the strip wraps in a narrow panel instead of scrolling, so a tab
+   never shifts under the pointer as the strip scrolls it into view. */
+.header .tabs[role="tablist"] { flex: 1 1 0; min-width: 0; flex-wrap: wrap; row-gap: 2px; }
 .header .tabs [role="tab"] { flex: 0 0 auto; white-space: nowrap; }

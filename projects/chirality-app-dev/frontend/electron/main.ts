@@ -3,7 +3,7 @@ import { createPlanExportDialogHandler } from './plan-export-dialog';
 import { app, BrowserWindow, dialog, ipcMain, shell, Menu } from 'electron';
 import { isAuthorizedSender } from './ipc-sender-policy';
 import { createDocumentHandoffHandler, validateRevealRoot, FilePolicyError } from '../src/app/api/working-root/file/file-policy';
-import { existsSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import type { AddressInfo } from 'node:net';
@@ -205,6 +205,15 @@ function summarizeRendererRequestDestination(rawUrl: string): RendererRequestDes
   } catch {
     return null;
   }
+}
+
+function resolveAppVersion(): string {
+  if (app.isPackaged) return app.getVersion();
+  try {
+    const parsed = JSON.parse(readFileSync(path.join(app.getAppPath(), 'package.json'), 'utf8')) as { version?: unknown };
+    if (typeof parsed.version === 'string' && parsed.version.length > 0) return parsed.version;
+  } catch { /* fall through to the Electron-reported version */ }
+  return app.getVersion();
 }
 
 function parsePositiveInteger(raw: string | undefined, fallback: number): number {
@@ -732,7 +741,9 @@ async function initializeGui(): Promise<void> {
   });
   // The bundle's product name is set by electron-builder, but app.name is the
   // package name; any native panel must read Chirality with the real version.
-  const appVersion = app.getVersion();
+  // Unpackaged (npm run dev) app.getVersion() reports Electron's own version,
+  // so the source checkout's package version is used there instead.
+  const appVersion = resolveAppVersion();
   app.setAboutPanelOptions({ applicationName: 'Chirality', applicationVersion: appVersion, version: appVersion });
   const appUpdateSource = resolveAppUpdateSource();
   const appUpdate = createAppUpdateController({
