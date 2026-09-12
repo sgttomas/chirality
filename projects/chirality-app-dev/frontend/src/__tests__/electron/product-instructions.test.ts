@@ -2,7 +2,7 @@ import { mkdtemp, mkdir, readdir, readFile, realpath, rm, symlink, writeFile } f
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { createProductInstructionsHandler, createProductInstructionsStore } from '../../../electron/product-instructions';
+import { createProductInstructionsHandler, createProductInstructionsStore, resolveProductInstructionsDefault } from '../../../electron/product-instructions';
 
 let directory: string;
 let defaultInstructionsPath: string;
@@ -17,6 +17,38 @@ afterEach(async () => { await rm(directory, { recursive: true, force: true }); }
 const store = () => createProductInstructionsStore({ userDataDirectory, defaultInstructionsPath });
 
 describe('editable product instructions', () => {
+  it.each(['development', 'source override', 'staged override', 'packaged'] as const)(
+    'initializes and restores the product default in %s launches', async (launch) => {
+      const repositoryRoot = path.join(directory, 'source');
+      const frontendRoot = path.join(repositoryRoot, 'projects', 'chirality-app-dev', 'frontend');
+      const productDirectory = path.join(frontendRoot, '..', 'instructions');
+      const resourcesPath = path.join(directory, 'Resources');
+      const stagedRoot = path.join(resourcesPath, 'instruction-root');
+      await mkdir(productDirectory, { recursive: true });
+      await mkdir(stagedRoot, { recursive: true });
+      await writeFile(path.join(repositoryRoot, 'AGENTS.md'), '# Repository development rules\n');
+      await writeFile(path.join(productDirectory, 'AGENTS.md'), '# Source product default\n');
+      await writeFile(path.join(stagedRoot, 'AGENTS.md'), '# Packaged product default\n');
+      const override = launch === 'source override' ? repositoryRoot
+        : launch === 'staged override' ? stagedRoot : undefined;
+      const value = createProductInstructionsStore({
+        userDataDirectory,
+        defaultInstructionsPath: resolveProductInstructionsDefault({
+          packaged: launch === 'packaged', resourcesPath, frontendRoot,
+          instructionRootOverride: override
+        })
+      });
+      const expected = launch === 'development' || launch === 'source override'
+        ? '# Source product default\n' : '# Packaged product default\n';
+      await value.initialize();
+      expect(await readFile(value.instructionsPath, 'utf8')).toBe(expected);
+      await writeFile(value.instructionsPath, '# Custom\n');
+      await value.restore();
+      expect(await readFile(value.instructionsPath, 'utf8')).toBe(expected);
+      expect(await readFile(path.join(repositoryRoot, 'AGENTS.md'), 'utf8')).toBe('# Repository development rules\n');
+    }
+  );
+
   it('seeds once and preserves customizations across a new bundled version', async () => {
     const first = store();
     expect(await first.initialize()).toEqual({ path: first.instructionsPath, modified: false });

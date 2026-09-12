@@ -27,7 +27,7 @@ import {
 } from './app-update-ipc-contract';
 import { APP_UPDATE_ALLOWED_FEED_HOSTS, resolveAppUpdateSource } from './app-update-source';
 import { PRODUCT_INSTRUCTIONS_CHANNEL } from './product-instructions-ipc-contract';
-import { createProductInstructionsHandler, createProductInstructionsStore } from './product-instructions';
+import { createProductInstructionsHandler, createProductInstructionsStore, resolveProductInstructionsDefault } from './product-instructions';
 import { ATTACHMENT_SELECT_FILES_CHANNEL } from './attachment-ipc-contract';
 import { createAttachmentSelectionHandler } from './attachment-picker';
 import { CODEX_PINNED_VERSION, resolveCodexExecutable } from './codex-executable';
@@ -770,6 +770,12 @@ async function initializeGui(): Promise<void> {
   });
   await registerDirectorySelectionHandler();
   await registerRuntimeConnectivityHandler();
+  const productInstructionsDefault = resolveProductInstructionsDefault({
+    packaged: app.isPackaged,
+    resourcesPath: process.resourcesPath,
+    frontendRoot: resolveFrontendRoot(),
+    instructionRootOverride: process.env.CHIRALITY_INSTRUCTION_ROOT
+  });
   process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
   desktopLogger.info('desktop.gui.starting', {
     packaged: app.isPackaged,
@@ -785,7 +791,7 @@ async function initializeGui(): Promise<void> {
   });
   const productInstructions = createProductInstructionsStore({
     userDataDirectory: app.getPath('userData'),
-    defaultInstructionsPath: path.join(resolveServiceInstructionRoot(), 'AGENTS.md')
+    defaultInstructionsPath: productInstructionsDefault
   });
   await productInstructions.initialize();
   const serviceConfig = buildRuntimeServiceConfig({

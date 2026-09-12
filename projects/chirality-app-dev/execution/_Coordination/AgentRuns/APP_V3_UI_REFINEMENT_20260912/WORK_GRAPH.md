@@ -87,3 +87,16 @@ observation. The parent records specialist fan-in in
 `PRODUCT_GUIDANCE_AND_UPDATES.md`. Fresh independent Astra/high review follows
 `briefs/REVIEW_PRODUCT_GUIDANCE.md`, under the standing exception for this
 consequential instruction-delivery boundary. The packaging child still waits.
+
+The first guidance review found an ordinary development-launch default-path
+defect, repaired by the parent with explicit source/package resolution. A native
+edit still returned old guidance; the read-only auditor traced Codex's restored
+reference context omitting changed general developer text. The Runtime author
+now pairs cold-resume configuration with a supported developer-item injection
+before the next user turn. Failure or uncertain acknowledgment must leave that
+turn unstarted. Direct native edit checks and independent review follow.
+
+The owner added Report issue before building. The existing Astra/medium update
+author implements the fixed GitHub link in the main footer under
+`briefs/REPORT_ISSUE.md`, with no user-data attachment. Parent tests native
+navigation, and the final independent review includes the addition.

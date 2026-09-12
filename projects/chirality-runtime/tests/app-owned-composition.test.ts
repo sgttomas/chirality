@@ -316,6 +316,20 @@ it("captures editable product guidance, isolates native roles, and preserves pri
   expect(await readFile(resumed.config["agents.TASK.config_file"]!, "utf8")).toContain("SECOND CUSTOM GUIDANCE");
   expect(await f.runtime.service.sessions.instructionBases.get(f.projectId, session.sessionId, firstBasisId)).toEqual(firstBasis);
   expect((f.fake().server.state.threads.get("thread-1") as unknown as { developerInstructions: string }).developerInstructions).toBe(resumed.developerInstructions);
+  const injection = f.fake().server.state.requests.find(request => request.method === "thread/inject_items")!.params as { threadId: string; items: { type: string; role: string; content: { type: string; text: string }[] }[] };
+  expect(injection).toMatchObject({ threadId: "thread-1", items: [{ type: "message", role: "developer", content: [{ type: "input_text" }] }] });
+  const injectedText = injection.items[0]!.content[0]!.text;
+  expect(injectedText).toContain("supersedes earlier Chirality-provided");
+  expect(injectedText.endsWith(resumed.developerInstructions)).toBe(true);
+  const historyViews = f.fake().server.state.notes.filter((note: any) => note.modelHistory) as { modelHistory: { content: { text: string }[] }[] }[];
+  expect(historyViews[0]!.modelHistory[0]!.content[0]!.text).toBe(first.developerInstructions);
+  expect(historyViews[1]!.modelHistory[0]!.content[0]!.text).toBe(first.developerInstructions);
+  expect(historyViews[1]!.modelHistory.at(-1)!.content[0]!.text).toBe(injectedText);
+  const secondAcceptance = harness(events).find(event => event.type === "adapter.initialized")!;
+  expect(secondAcceptance.data.instructionHistoryInjection).toMatchObject({ method: "thread/inject_items", text: injectedText, sha256: expect.stringMatching(/^[a-f0-9]{64}$/) });
+  const methods = f.fake().server.state.requests.map(request => request.method);
+  expect(methods.indexOf("thread/resume")).toBeLessThan(methods.indexOf("thread/inject_items"));
+  expect(methods.indexOf("thread/inject_items")).toBeLessThan(methods.lastIndexOf("turn/start"));
 });
 
 
@@ -342,4 +356,29 @@ it("records resolved edits without provider acceptance while a native child keep
   const retry = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "retry" }));
   expect(harness(retry).find(event => event.type === "adapter.initialized")?.data.instructionAcceptance).toBe("provider-accepted");
   expect(f.fake().server.state.requests.filter(request => request.method === "turn/start")).toHaveLength(2);
+});
+
+
+it("does not report adoption or dispatch a user turn after an uncertain injection, then retries the full current basis", async () => {
+  const f = await start({ productText: "OLD AMBER" });
+  const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
+  await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "first" }));
+  await writeFile(f.config.productInstructionsPath!, "NEW COPPER");
+  f.fake().server.state.injectionOutcome = "applied-error";
+  const failed = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "second" }));
+  expect(harness(failed).some(event => event.type === "adapter.initialized")).toBe(false);
+  expect(failed.some(event => event.type === "session:init")).toBe(false);
+  expect(failed.find(event => event.type === "turn:error")).toMatchObject({ data: { errorType: "INSTRUCTION_ADOPTION_PENDING" } });
+  expect(f.fake().server.state.requests.filter(request => request.method === "turn/start")).toHaveLength(1);
+  const retry = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "retry" }));
+  expect(retry.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 0 } });
+  expect(f.fake().server.state.requests.filter(request => request.method === "thread/inject_items")).toHaveLength(2);
+  expect(f.fake().server.state.requests.filter(request => request.method === "thread/resume")).toHaveLength(2);
+  const accepted = harness(retry).find(event => event.type === "adapter.initialized")!;
+  expect(accepted.data.instructionHistoryInjection).toMatchObject({ text: expect.stringContaining("NEW COPPER") });
+  const views = f.fake().server.state.notes.filter((note: any) => note.modelHistory) as { modelHistory: { content: { text: string }[] }[] }[];
+  expect(views).toHaveLength(2);
+  expect(views[1]!.modelHistory).toHaveLength(3);
+  expect(views[1]!.modelHistory.at(-1)!.content[0]!.text).toContain("NEW COPPER");
+  expect(views[1]!.modelHistory[0]!.content[0]!.text).toContain("OLD AMBER");
 });

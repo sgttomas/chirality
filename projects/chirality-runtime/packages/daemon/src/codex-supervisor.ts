@@ -3,6 +3,7 @@ import {
   RuntimeError,
   type DelegatedHarnessProcessSupervisorPort,
   type DelegatedTurnProgressEvent,
+  type InstructionHistoryInjection,
   type NativePlanClarificationAnswers,
   type NativePlanClarificationPrompt,
   type NativePlanTransportEvent,
@@ -55,6 +56,7 @@ interface PendingRequestEntry {
 interface Entry {
   handle: WorkerHandle;
   envelope: CodexTurnEnvelope;
+  instructionHistoryInjection?: InstructionHistoryInjection;
   threadId: string;
   /** Unknown until the turn/start response; notifications that arrive first are deferred behind the started event. */
   turnId: string | undefined;
@@ -72,7 +74,7 @@ interface Entry {
   settle(result: WorkerResult): void;
   settled: boolean;
 }
-interface ThreadState { instructionDigest: string; lastPolicy?: PolicySelection; lastMode?: "plan" | "default"; model?: string; hostGeneration: number }
+interface ThreadState { instructionDigest: string; instructionHistoryInjection?: InstructionHistoryInjection; lastPolicy?: PolicySelection; lastMode?: "plan" | "default"; model?: string; hostGeneration: number }
 
 const id = (value: unknown): value is string => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(value);
 const unavailable = (message: string, details?: Record<string, unknown>) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503, details);
@@ -146,11 +148,31 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       }
       signal?.throwIfAborted();
       if (envelope.resumeThreadId !== undefined && state === undefined) {
-        const resumed = await host.request<{ thread: { id: string }; model: string }>("thread/resume", { threadId: envelope.resumeThreadId, cwd: envelope.cwd, developerInstructions: envelope.developerInstructions ?? null, ...(envelope.nativeRoleConfig === undefined ? {} : { config: envelope.nativeRoleConfig }), approvalPolicy: envelope.policy.approvalPolicy, sandbox: envelope.policy.sandbox, ...(model === undefined ? {} : { model }) });
+        const resumed = await host.request<{ thread: { id: string; status: { type: string } }; model: string }>("thread/resume", { threadId: envelope.resumeThreadId, cwd: envelope.cwd, developerInstructions: envelope.developerInstructions ?? null, ...(envelope.nativeRoleConfig === undefined ? {} : { config: envelope.nativeRoleConfig }), approvalPolicy: envelope.policy.approvalPolicy, sandbox: envelope.policy.sandbox, ...(model === undefined ? {} : { model }) });
         if (resumed.thread.id !== envelope.resumeThreadId || host.generation !== hostGeneration) throw unavailable("Provider changed during instruction adoption; retry the turn");
+        if (resumed.thread.status?.type !== "idle") throw new RuntimeError("INSTRUCTION_ADOPTION_PENDING", "Instruction update pending: resumed thread is not confirmed idle; no developer item or user turn was sent.", 503, { reason: "INSTRUCTION_ADOPTION_PENDING", stage: "resume", threadId: envelope.resumeThreadId });
         threadId = resumed.thread.id; threadModel = resumed.model;
         this.closedThreads.delete(threadId); this.pendingUnloads.delete(threadId);
-        state = { instructionDigest, lastPolicy: { ...envelope.policy }, model: threadModel, hostGeneration };
+        // Cold resume restores reference context and history independently of
+        // config.developer_instructions in stock 0.154. Explicitly supersede the
+        // prior Chirality guidance in developer-level model-visible history.
+        const text = "The following is the current Chirality guidance. It supersedes earlier Chirality-provided product, active-role, catalog, and selected-method instructions in this conversation. Earlier versions remain historical context, not current instructions. This update does not replace Codex base instructions or change tools, permissions, applicable project guidance, or conversation history.\n\nCurrent Chirality developer instructions:\n\n" + (envelope.developerInstructions ?? "");
+        const instructionHistoryInjection: InstructionHistoryInjection = { method: "thread/inject_items", text, sha256: createHash("sha256").update(text).digest("hex") };
+        try {
+          signal?.throwIfAborted();
+          const acknowledged = await host.request<unknown>("thread/inject_items", { threadId, items: [{ type: "message", role: "developer", content: [{ type: "input_text", text }] }] });
+          if (!acknowledged || typeof acknowledged !== "object" || Array.isArray(acknowledged) || Object.keys(acknowledged).length !== 0 || host.generation !== hostGeneration || this.closed) throw unavailable("Developer history injection was not acknowledged");
+          signal?.throwIfAborted();
+        } catch (error) {
+          // A lost acknowledgement may have persisted the item. A retry must
+          // re-establish the cold boundary and supersede it again, never infer
+          // exactly-once delivery or reuse a config-only accepted digest.
+          this.threads.delete(threadId); this.pendingUnloads.add(threadId);
+          signal?.throwIfAborted();
+          throw new RuntimeError("INSTRUCTION_ADOPTION_PENDING", "Instruction update pending: developer history injection was not confirmed. Retry in this conversation; no new user turn was sent.", 503, { reason: "INSTRUCTION_ADOPTION_PENDING", stage: "developer-history-injection", threadId });
+        }
+        state = { instructionDigest, instructionHistoryInjection, lastPolicy: { ...envelope.policy }, model: threadModel, hostGeneration };
+
         this.threads.set(threadId, state);
         this.logger.warn("codex.thread.resumed", { threadId, workerId });
       } else if (state === undefined) {
@@ -188,7 +210,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       const result = new Promise<WorkerResult>(resolve => { settle = resolve; });
       let adopt!: (turnId: string | undefined) => void;
       const turnIdReady = new Promise<string | undefined>(resolve => { adopt = resolve; });
-      const entry: Entry = { handle, envelope, threadId, turnId: undefined, turnIdReady, adopt, deferred: [], hostGeneration, progress: [], nativePlanEvents: [], pending: new Map(), text: "", emittedByItem: new Map(), result, settle: value => { if (entry.settled) return; entry.settled = true; entry.handle.state = "exited"; entry.adopt(undefined); settle(value); }, settled: false };
+      const entry: Entry = { handle, envelope, ...(state.instructionHistoryInjection === undefined ? {} : { instructionHistoryInjection: state.instructionHistoryInjection }), threadId, turnId: undefined, turnIdReady, adopt, deferred: [], hostGeneration, progress: [], nativePlanEvents: [], pending: new Map(), text: "", emittedByItem: new Map(), result, settle: value => { if (entry.settled) return; entry.settled = true; entry.handle.state = "exited"; entry.adopt(undefined); settle(value); }, settled: false };
       this.entries.set(workerId, entry);
       this.byThread.set(threadId, entry);
       let started: { turn: { id: string; status: string } };
@@ -338,7 +360,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
     entry.turnId = turnId;
     entry.adopt(turnId);
     const deferred = entry.deferred.splice(0);
-    this.push(entry, { type: "started", providerThreadId: entry.threadId, providerTurnId: turnId });
+    this.push(entry, { type: "started", providerThreadId: entry.threadId, providerTurnId: turnId, ...(entry.instructionHistoryInjection === undefined ? {} : { instructionHistoryInjection: entry.instructionHistoryInjection }) });
     for (const event of deferred) this.push(entry, { ...event, providerTurnId: turnId } as DelegatedTurnProgressEvent);
   }
 

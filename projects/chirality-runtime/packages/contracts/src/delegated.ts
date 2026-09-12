@@ -260,8 +260,15 @@ export interface SupervisorRuntimeToolPort {
  * stock Codex App Server's notifications and server requests pass through
  * unchanged: `method` and `params` are the upstream names and payloads.
  */
+/** Exact developer history item whose injection was acknowledged by the supplier. */
+export interface InstructionHistoryInjection {
+  method: "thread/inject_items";
+  text: string;
+  sha256: string;
+}
+
 export type DelegatedTurnProgressEvent =
-  | { type: "started"; providerThreadId: string; providerTurnId: string }
+  | { type: "started"; providerThreadId: string; providerTurnId: string; instructionHistoryInjection?: InstructionHistoryInjection }
   | { type: "text"; providerThreadId: string; providerTurnId: string; text: string }
   | { type: "notification"; providerThreadId: string; providerTurnId?: string; method: string; params: unknown; occurredAt: string }
   | { type: "request"; providerThreadId: string; providerTurnId?: string; requestId: string; method: string; params: unknown; occurredAt: string }

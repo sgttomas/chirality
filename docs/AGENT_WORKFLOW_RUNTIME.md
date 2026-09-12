@@ -171,7 +171,10 @@ bounded brief and fresh child context; arbitrary full-history forks do not
 establish role replacement. User native feature, model and depth settings are
 preserved. At Codex 0.154.0, a loaded thread can ignore instruction overrides;
 changed persistent guidance therefore requires confirmed idle unload followed
-by cold resume before another turn. Failed or deferred adoption remains
+by cold resume and acknowledged developer-level history injection before
+another turn. Configuration alone does not establish that restored history
+received new guidance. Record the actual supplied update text and hash; an
+uncertain acknowledgment leaves the user turn unstarted. Failed or deferred adoption remains
 explicit and must not be represented as successful application through a
 user-message append. Historical instruction basis and the visible conversation
 remain intact.

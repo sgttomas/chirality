@@ -1,11 +1,32 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { constants } from 'node:fs';
+import { constants, existsSync } from 'node:fs';
 import { lstat, mkdir, open, realpath, rename, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { ProductInstructionsResult, ProductInstructionsState } from './product-instructions-ipc-contract';
 
 const MAX_INSTRUCTION_BYTES = 1024 * 1024;
 const digest = (bytes: Buffer): string => createHash('sha256').update(bytes).digest('hex');
+
+/** Product defaults have different source and packaged layouts. */
+export function resolveProductInstructionsDefault(options: {
+  packaged: boolean;
+  resourcesPath: string;
+  frontendRoot: string;
+  instructionRootOverride?: string;
+}): string {
+  if (options.packaged) return path.join(options.resourcesPath, 'instruction-root', 'AGENTS.md');
+  const override = options.instructionRootOverride?.trim();
+  if (override) {
+    const root = path.resolve(override);
+    const sourceProject = path.join(root, 'projects', 'chirality-app-dev');
+    // An explicit source-root override still uses that checkout's product
+    // default. A staged/custom instruction root already has the product layout.
+    return existsSync(sourceProject)
+      ? path.join(sourceProject, 'instructions', 'AGENTS.md')
+      : path.join(root, 'AGENTS.md');
+  }
+  return path.resolve(options.frontendRoot, '..', 'instructions', 'AGENTS.md');
+}
 
 /** Fixed App-owned path, never a renderer-supplied destination or Codex-home file. */
 export function createProductInstructionsStore(options: {

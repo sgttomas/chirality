@@ -14,8 +14,9 @@ function fakeHost() {
   let handler: CodexServerRequestHandler = async () => ({ error: { code: -32601, message: "none" } });
   const answers: Record<string, (params: any) => unknown> = {
     "thread/start": params => ({ thread: { id: `thread-${nextThread++}` }, model: params.model ?? "gpt-5-codex" }),
-    "thread/resume": params => ({ thread: { id: params.threadId }, model: params.model ?? "gpt-5-codex" }),
+    "thread/resume": params => ({ thread: { id: params.threadId, status: { type: "idle" } }, model: params.model ?? "gpt-5-codex" }),
     "thread/settings/update": () => ({}),
+    "thread/inject_items": () => ({}),
     "thread/loaded/list": () => ({ data: [], nextCursor: null }),
     "turn/start": () => ({ turn: { id: `turn-${nextTurn++}`, status: "inProgress" } }),
     "turn/interrupt": () => ({})
@@ -104,7 +105,7 @@ describe("Codex supervisor over the shared app-server", () => {
     await supervisor.retire(first.workerId, first.generation);
     host.restart();
     await supervisor.acquire("w2", envelope({ resumeThreadId: "thread-1", clientTurnId: "turn-b" }));
-    expect(host.calls.slice(3).map(call => call.method)).toEqual(["thread/loaded/list", "thread/resume", "thread/settings/update", "turn/start"]);
+    expect(host.calls.slice(3).map(call => call.method)).toEqual(["thread/loaded/list", "thread/resume", "thread/inject_items", "thread/settings/update", "turn/start"]);
     expect(host.calls[4]!.params).toMatchObject({ threadId: "thread-1", cwd: "/tmp/project", approvalPolicy: "on-request", sandbox: "workspace-write" });
     await supervisor.close();
   });
@@ -283,7 +284,7 @@ describe("safe developer instruction adoption", () => {
     host.respond("thread/loaded/list", () => ({ data: ["thread-1", "child", "grandchild"], nextCursor: null }));
     host.respond("thread/read", params => ({ thread: { parentThreadId: params.threadId === "child" ? "thread-1" : params.threadId === "grandchild" ? "child" : null, status: { type: params.threadId === "grandchild" ? "active" : "idle" } } }));
     await expect(supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }))).rejects.toThrow(/descendant is active/);
-    expect(host.calls.some(call => ["thread/unsubscribe", "thread/resume", "turn/interrupt"].includes(call.method))).toBe(false);
+    expect(host.calls.some(call => ["thread/unsubscribe", "thread/resume", "thread/inject_items", "turn/interrupt"].includes(call.method))).toBe(false);
     await supervisor.close();
   });
   it.each([false, true])("checks every loaded-list page after a missed closed notification (still loaded: %s)", async stillLoaded => {
@@ -308,7 +309,7 @@ describe("safe developer instruction adoption", () => {
     const { host, supervisor } = await prepared();
     host.respond("thread/read", () => ({ thread: { parentThreadId: null, status: { type: "active" } } }));
     await expect(supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }))).rejects.toMatchObject({ code: "INSTRUCTION_ADOPTION_PENDING" });
-    expect(host.calls.some(call => ["thread/unsubscribe", "thread/resume", "turn/interrupt"].includes(call.method))).toBe(false);
+    expect(host.calls.some(call => ["thread/unsubscribe", "thread/resume", "thread/inject_items", "turn/interrupt"].includes(call.method))).toBe(false);
     await supervisor.close();
   });
   it("waits through the supplier ten-second shutdown allowance plus scheduling margin", async () => {
@@ -327,6 +328,68 @@ describe("safe developer instruction adoption", () => {
       expect(host.calls.some(call => call.method === "thread/resume")).toBe(true);
       await supervisor.close();
     } finally { vi.useRealTimers(); }
+  });
+  it.each(["failed", "lost-ack", "invalid-ack"])("does not latch config-only adoption after %s injection, then safely retries and reuses unchanged guidance", async failure => {
+    const { host, supervisor } = await prepared();
+    const history = ["OLD AMBER"];
+    let configured = "OLD AMBER";
+    host.respond("thread/unsubscribe", () => { host.notify("thread/closed", { threadId: "thread-1" }); return { status: "unsubscribed" }; });
+    host.respond("thread/resume", params => { configured = params.developerInstructions; return { thread: { id: params.threadId, status: { type: "idle" } }, model: "gpt-5-codex" }; });
+    const append = (params: any) => { expect(params.items).toHaveLength(1); expect(params.items[0]).toMatchObject({ type: "message", role: "developer", content: [{ type: "input_text" }] }); history.push(params.items[0].content[0].text); };
+    host.respond("thread/inject_items", params => {
+      if (failure !== "failed") append(params);
+      if (failure === "invalid-ack") return null;
+      throw new Error(failure);
+    });
+    await expect(supervisor.acquire("failed", envelope({ resumeThreadId: "thread-1", developerInstructions: "NEW COPPER" }))).rejects.toMatchObject({ code: "INSTRUCTION_ADOPTION_PENDING", details: { stage: "developer-history-injection" } });
+    expect(configured).toBe("NEW COPPER");
+    expect(history[0]).toBe("OLD AMBER");
+    expect(host.calls.filter(call => call.method === "turn/start")).toHaveLength(1);
+    expect(await supervisor.inventory()).toEqual([]);
+    host.respond("thread/inject_items", params => { append(params); return {}; });
+    const retry = await supervisor.acquire("retry", envelope({ resumeThreadId: "thread-1", developerInstructions: "NEW COPPER" }));
+    expect(host.calls.filter(call => call.method === "thread/resume")).toHaveLength(2);
+    expect(host.calls.filter(call => call.method === "thread/inject_items")).toHaveLength(2);
+    expect(history.at(-1)).toContain("supersedes earlier Chirality-provided");
+    expect(history.at(-1)).toMatch(/NEW COPPER$/);
+    const progress = await supervisor.drainTurnProgress(retry.workerId, retry.generation);
+    expect(progress[0]).toMatchObject({ type: "started", instructionHistoryInjection: { method: "thread/inject_items", text: history.at(-1), sha256: expect.stringMatching(/^[a-f0-9]{64}$/) } });
+    host.notify("turn/completed", { threadId: "thread-1", turn: { id: "turn-2", status: "completed" } });
+    await supervisor.retire(retry.workerId, retry.generation);
+    const unchanged = await supervisor.acquire("unchanged", envelope({ resumeThreadId: "thread-1", developerInstructions: "NEW COPPER" }));
+    expect(host.calls.filter(call => call.method === "thread/inject_items")).toHaveLength(2);
+    host.notify("turn/completed", { threadId: "thread-1", turn: { id: "turn-3", status: "completed" } });
+    await supervisor.retire(unchanged.workerId, unchanged.generation);
+    host.restart();
+    await supervisor.acquire("restarted", envelope({ resumeThreadId: "thread-1", developerInstructions: "NEW COPPER" }));
+    expect(host.calls.filter(call => call.method === "thread/inject_items")).toHaveLength(3);
+    expect(history.at(-1)).toMatch(/NEW COPPER$/);
+    await supervisor.close();
+  });
+  it("holds the user turn and competing acquisition until injection is acknowledged", async () => {
+    const { host, supervisor } = await prepared();
+    host.respond("thread/unsubscribe", () => { host.notify("thread/closed", { threadId: "thread-1" }); return { status: "unsubscribed" }; });
+    let acknowledge!: (value: unknown) => void;
+    host.respond("thread/inject_items", () => new Promise(resolve => { acknowledge = resolve; }));
+    const next = supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }));
+    await new Promise(resolve => setTimeout(resolve, 1));
+    expect(host.calls.filter(call => call.method === "turn/start")).toHaveLength(1);
+    await expect(supervisor.acquire("racer", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }))).rejects.toThrow(/adoption/);
+    acknowledge({});
+    await next;
+    const methods = host.calls.map(call => call.method);
+    expect(methods.lastIndexOf("thread/resume")).toBeLessThan(methods.lastIndexOf("thread/inject_items"));
+    expect(methods.lastIndexOf("thread/inject_items")).toBeLessThan(methods.lastIndexOf("turn/start"));
+    await supervisor.close();
+  });
+  it("never injects into a resume whose returned status is active", async () => {
+    const { host, supervisor } = await prepared();
+    host.respond("thread/unsubscribe", () => { host.notify("thread/closed", { threadId: "thread-1" }); return { status: "unsubscribed" }; });
+    host.respond("thread/resume", () => ({ thread: { id: "thread-1", status: { type: "active" } }, model: "gpt-5-codex" }));
+    await expect(supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }))).rejects.toMatchObject({ code: "INSTRUCTION_ADOPTION_PENDING" });
+    expect(host.calls.some(call => call.method === "thread/inject_items")).toBe(false);
+    expect(host.calls.filter(call => call.method === "turn/start")).toHaveLength(1);
+    await supervisor.close();
   });
   it("honors Stop while waiting for unload without starting another turn", async () => {
     const { host, supervisor } = await prepared(1000);

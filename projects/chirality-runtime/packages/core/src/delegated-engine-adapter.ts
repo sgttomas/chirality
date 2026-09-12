@@ -243,6 +243,7 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
               adapterId: descriptor.adapterId, providerId: descriptor.providerId,
               providerThreadId: event.providerThreadId, providerTurnId: event.providerTurnId,
               instructionAcceptance: "provider-accepted",
+              ...(event.instructionHistoryInjection === undefined ? {} : { instructionHistoryInjection: event.instructionHistoryInjection }),
               instructionBasisId: input.instructionContext.basisPreview.id,
               instructionBasisSha256: input.instructionContext.basisPreview.sha256,
               developerInstructionsSha256: createHash("sha256").update(developerInstructions ?? "").digest("hex")

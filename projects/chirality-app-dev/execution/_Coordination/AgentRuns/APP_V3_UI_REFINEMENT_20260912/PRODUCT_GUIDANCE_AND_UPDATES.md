@@ -38,6 +38,17 @@ thread caches are affected. Closure confirmation allows the supplier's shutdown
 period and checks complete loaded-thread inventory if the notification is lost.
 Failure remains `INSTRUCTION_ADOPTION_PENDING`, with retry-in-this-chat guidance.
 
+After that timing repair, the existing chat still returned old guidance. Its
+recorded root hash matched the edited file, so resolution was correct but did
+not establish delivery. The stock supplier restores a reference context on
+resume and only renders general developer instructions during full initial
+context construction. Normal history diffs can therefore omit an edited
+general developer message. The repair pairs the cold-resume configuration with
+the supported `thread/inject_items` method, supplying an explicit developer
+message before admitting the user's next turn. Acknowledged delivery and
+resolved content are recorded separately; an uncertain acknowledgment leaves
+the user turn unstarted. Native requalification passed as recorded below.
+
 Public updates use an unauthenticated manual GET to
 `https://api.github.com/repos/sgttomas/chirality-app/releases/latest`. The checker
 rejects redirects and credentials, validates stable release identity and exact
@@ -52,6 +63,8 @@ installation, restart, or publishing is added.
 - [Stock idle-delay default](https://github.com/openai/codex/blob/rust-v0.154.0/codex-rs/core/src/config/mod.rs#L3828).
 - [Fresh-context role application](https://github.com/openai/codex/blob/rust-v0.154.0/codex-rs/core/src/tools/handlers/multi_agents/spawn.rs#L92).
 - [Role developer-instruction replacement](https://github.com/openai/codex/blob/rust-v0.154.0/codex-rs/core/src/agent/role.rs#L183).
+- [Restored reference context](https://github.com/openai/codex/blob/rust-v0.154.0/codex-rs/core/src/session/mod.rs#L1599) and [normal context diffs](https://github.com/openai/codex/blob/rust-v0.154.0/codex-rs/core/src/session/mod.rs#L4294).
+- [Supported model-visible item injection](https://github.com/openai/codex/blob/rust-v0.154.0/codex-rs/app-server/src/request_processors/turn_processor.rs#L956) and [rollout flush before acknowledgment](https://github.com/openai/codex/blob/rust-v0.154.0/codex-rs/core/src/codex_thread.rs#L608).
 - [GitHub latest release API](https://docs.github.com/en/rest/releases/releases#get-the-latest-release).
 
 ## Parent verification so far
@@ -67,7 +80,21 @@ not access R17 or any identity/auth/Codex-home file. Logs exclude lines with `@`
   The model requested and displayed was gpt-6-astra/medium. Controlled tests
   separately inspect exact role config and primary/child supplied bytes.
 - Initial edited-chat check failed after 2.23 seconds, prompting the stock
-  unload-delay correction above. Qualification after that correction is pending.
+  unload-delay correction above. A second check after restart completed but
+  returned old `AMBER-LARK-42` instead of edited `COPPER-WREN-54`. The recorded
+  root SHA matched the controlled edit
+  (`2488143634b8edff08664f0ccebdb81e1281e4f5dcd3adf7790ae64d09f4f4ca`).
+  This was a failed qualification, leading to the history-delivery repair.
+- With the history repair and rebuilt Runtime, the same chat answered
+  `COPPER-WREN-54` correctly. A second controlled edit without restart supplied
+  a new ALBATROSS-PROBE rule (root SHA
+  `fb4d40795fa568763ca06507104bc5507e8aff56ed38e0a79bee685c1402b45a`);
+  the primary returned `NAVY-FINCH-88`. One fresh native TASK child, with the
+  expected answer excluded from its brief, also returned `NAVY-FINCH-88`.
+  Native task activity and Completed were observed. Prior messages remained.
+- Native Settings Restore default then removed the temporary rule, retained a
+  backup, and disabled Restore. Parent compared only the newly authorized App
+  instructions file with the source default and verified identical bytes.
 - Native Settings displayed Open AGENTS.md and Restore default. Open returned
   without an App error. Restore required its ordinary confirmation, restored
   exact bundled bytes, disabled the restore button, and retained the test edit
@@ -75,6 +102,15 @@ not access R17 or any identity/auth/Codex-home file. Logs exclude lines with `@`
 - Native Check for Updates completed as up to date. The actual public stable
   release is v2.0.0, older than 3.0.0-rc.1. No download was attempted.
 - Native Plan panel displayed `Turn into workflow` with the existing action.
+- Owner added Report issue while the instruction repair continued. The link
+  appears beside Details in the main footer. Native click opened Chrome at
+  GitHub sign-in. After the owner completed sign-in, that same tab displayed
+  Create new issue at `https://github.com/sgttomas/chirality-app/issues/new`,
+  with empty title and description fields. The return destination worked.
+  No report was submitted and no logs, account or conversation data were sent.
+  At 760 px the existing stacked layout scrolls to its footer; the link and
+  Details remain legible there, and Tab from the link focuses Details. The
+  temporary viewport was reset afterward.
 
 First full Runtime run: 331 passed, one old teardown failure. Its fixture used
 raw daemon shutdown while claiming to emulate SIGKILL, which actually races
@@ -90,6 +126,21 @@ to satisfy it. Existing installer/filesystem prohibitions remain, and the
 behavioral test now asserts checking never opens a browser until requested.
 Those two test files passed all 32 tests. Final complete candidate checks and
 independent review follow; historical failed results remain recorded here.
+
+Complete candidate `95b342519`: Runtime 336 tests passed; frontend 2180 passed,
+four skipped; both typechecks passed. Independent review of all 98 paths
+returned one P2 for ordinary unpackaged launches selecting repository guidance
+as the default; the native timing/history limit was separately disclosed.
+The parent repaired explicit development, source-override, staged-override and
+packaged default resolution. Nine store/wiring tests pass, including initial
+seed and Restore default with distinct repository/product fixtures.
+
+After the history repair and Report issue addition: Runtime TypeScript and all
+342 Runtime tests pass; frontend/Electron typechecks and all 2185 frontend
+tests pass, four skipped. Tests use the existing CI one-worker setting. The
+history regressions separately model configuration and restored model-visible
+history, acknowledgment ordering, failure/lost acknowledgment, retry, restart,
+unchanged reuse and active-work exclusion. Prior failed evidence remains above.
 
 No replacement build, owner install-over acceptance, notarization, or publishing
 is established by this record.
@@ -109,3 +160,14 @@ tests, 332 full tests after the fixture correction, and 42 distinct targeted
 tests plus Runtime TypeScript after the delay/error repair. HELP_HUMAN read
 the source returns and performed the direct checks above. Fresh independent
 whole-diff review remains a separate instance and record.
+
+The Report issue continuation returned three changed files and 158 focused
+tests plus frontend/Electron typechecks passing. Parent inspected the complete
+delta and performed the native navigation described above. No new IPC or
+external-navigation permission was introduced.
+
+The Runtime history repair returned seven files and 50 focused tests plus
+TypeScript passing. Parent inspected all seven diffs and ran the complete
+connecting suites above. The same read-only source auditor verified the pinned
+history omission and supported injection/flush path. No agent tested a mock and
+claimed native adoption; the live primary and fresh-child checks are separate.

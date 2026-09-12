@@ -44,3 +44,11 @@ file/line, trigger, impact, evidence, and minimal repair. List exact review rang
 coverage, tests inspected/performed, residual risks, and native/packaging limits.
 Parent records the return verbatim and validates fan-in. Review is not owner or
 publishing approval.
+
+Final reassessment includes the explicit source/package default resolver,
+supported developer-history injection after cold resume, acknowledgment and
+retry/restart behavior, actual captured injection text/hash, and the Report
+issue footer link. Native post-repair primary and fresh-child checks, restored
+default, and the GitHub form are in PRODUCT_GUIDANCE_AND_UPDATES.md. Keep the
+first failed review and failed native checks historical. Read the complete new
+candidate range; inspect the frozen delta against the first review's findings.
