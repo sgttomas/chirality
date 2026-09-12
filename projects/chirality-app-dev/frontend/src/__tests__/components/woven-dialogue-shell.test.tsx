@@ -738,6 +738,8 @@ describe('WovenDialogueShell per-chat folders', () => {
     expect(shellState.resumedSession).toBe('primary');
     expect(documents()).toEqual({ primary: 'docs/SPEC.md' });
     expect(JSON.parse(persist.mock.calls.at(-1)![1]).openDocumentPath).toBe('docs/SPEC.md');
+    // Not even transiently: before the fix the resume render recorded TYPES.md for the chat and the restore overwrote it a render later.
+    expect(persist.mock.calls.every(call => (JSON.parse(call[1]).chatDocuments ?? {}).primary !== 'docs/TYPES.md')).toBe(true);
     act(() => tree.unmount());
   });
 
