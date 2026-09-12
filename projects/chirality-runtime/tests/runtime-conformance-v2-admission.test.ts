@@ -324,4 +324,30 @@ describe("D36 v2 host lease renewal", () => {
       await expect(revalidateRuntimeInstanceAdmissionV2(current.instanceInput, current.instanceAdmission)).rejects.toMatchObject(notLive);
     } finally { await f.cleanup(); }
   });
+
+  it("blocks renewal while a queued-candidate retirement step fails, retries that step first, and never calls the factory before retirement completes", async () => {
+    const f = await fixture();
+    try {
+      const current = f.supervisor.conformance.runtimeV2, realFactory = f.supervisor.candidateLauncherFactory;
+      let factoryCalls = 0;
+      f.supervisor.candidateLauncherFactory = { async refreshHostAdmission(account: any) { factoryCalls += 1; return realFactory.refreshHostAdmission!(account); } };
+      f.connect("B");
+      const retired: string[] = [];
+      let authorityFailures = 1;
+      f.supervisor.preadmitted = { authority: { close: async () => { retired.push("authority"); if (authorityFailures-- > 0) throw new Error("authority-close-failed"); } },
+        session: { close: async () => { retired.push("session"); } }, candidate: { cleanup: async () => { retired.push("candidate"); } } };
+      await expect(f.supervisor.refreshHostAdmission()).rejects.toThrow("authority-close-failed");
+      expect(retired).toEqual(["authority", "session", "candidate"]);
+      expect(f.supervisor.preadmitted).toBeUndefined();
+      expect(f.supervisor.queuedRetirement).toHaveLength(1);
+      expect(factoryCalls).toBe(0);
+      expect(f.supervisor.conformance.runtimeV2).toBe(current);
+      const renewed = await f.supervisor.refreshHostAdmission();
+      expect(retired).toEqual(["authority", "session", "candidate", "authority"]);
+      expect(f.supervisor.queuedRetirement).toBeUndefined();
+      expect(factoryCalls).toBe(1);
+      expect(renewed).not.toBe(current);
+      await revalidateRuntimeInstanceAdmissionV2(renewed.instanceInput, renewed.instanceAdmission);
+    } finally { await f.cleanup(); }
+  });
 });

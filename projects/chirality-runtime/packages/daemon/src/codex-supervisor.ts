@@ -159,6 +159,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   private candidateLauncherFactory?: CodexCandidateLauncherFactory;
   private controlledVerifyConformance?: ControlledHostedConformanceVerifier;
   private hostAdmissionRefresh?: Promise<void>;
+  private queuedRetirement?: Array<() => Promise<unknown>>;
   private conformance?: Pick<HostedCodexSupervisorOptions, "conformance" | "configDigest" | "consentVersion" | "runtimeV2"> & { accountDigest: string };
   private preadmitted?: AdmittedCandidate;
   constructor(options: CodexSupervisorOptions) {
@@ -302,10 +303,15 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     if (!this.candidateLauncherFactory?.refreshHostAdmission || !current.instanceInput.account) throw unavailable("Host admission renewal is unavailable for this admission");
     if (this.preadmitted) {
       // The queued candidate was launched under the superseded preparation. Retire
-      // every part of it before any renewal; a retirement failure blocks renewal.
+      // every part of it before any renewal. A failed step is retained and retried
+      // before any later renewal, so a failure blocks renewal until it succeeds.
       const pending = this.preadmitted; this.preadmitted = undefined;
-      const failures: unknown[] = [];
-      for (const close of [() => pending.authority.close(), () => pending.session.close(), () => pending.candidate.cleanup()]) try { await close(); } catch (error) { failures.push(error); }
+      this.queuedRetirement = [...(this.queuedRetirement ?? []), () => pending.authority.close(), () => pending.session.close(), () => pending.candidate.cleanup()];
+    }
+    if (this.queuedRetirement) {
+      const remaining: Array<() => Promise<unknown>> = [], failures: unknown[] = [];
+      for (const close of this.queuedRetirement) try { await close(); } catch (error) { failures.push(error); remaining.push(close); }
+      this.queuedRetirement = remaining.length ? remaining : undefined;
       if (failures.length === 1) throw failures[0];
       if (failures.length > 1) throw new AggregateError(failures, "Queued candidate retirement failed before host admission renewal");
     }
@@ -456,10 +462,15 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     const cancelled=()=>{if(cancellation.cancelled||this.closed)throw unavailable("Admission cancelled");};
     const kind=dynamicTools?"manager":"regular";
     let localEntry:Entry|undefined;let begin:(()=>void)|undefined;let finishAdmissionLifecycle:((graceful:boolean)=>void)|undefined;
-    // Renewal precedes registration so an idle supervisor can renew; the
-    // cancellation/close recheck covers the await before this acquisition registers.
-    await this.refreshHostAdmission();
-    cancelled();
+    // Renewal precedes registration so an idle supervisor can renew. The await
+    // reopens the synchronous guard above, so cancellation, close, duplicate id,
+    // capacity and this acquisition's own cancellation record are rechecked
+    // before it registers; a refusal here leaves no cancellation record behind.
+    try {
+      await this.refreshHostAdmission();
+      cancelled();
+      if (this.cancellations.get(workerId) !== cancellation || this.entries.has(workerId) || this.acquiring.has(workerId) || this.entries.size + this.acquiring.size >= (this.options.maxWorkers ?? 16)) throw unavailable("Codex worker is unavailable or already acquired");
+    } catch (error) { if (this.cancellations.get(workerId) === cancellation) this.cancellations.delete(workerId); throw error; }
     this.acquiring.add(workerId);
     let finishAcquisition!: () => void;
     this.pendingAcquisitions.set(workerId, new Promise<void>(resolve => { finishAcquisition = resolve; }));
@@ -651,7 +662,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     const failures: unknown[] = [];
     for (const close of [
       ...[...this.entries.values()].map(entry => () => this.retire(entry.handle.workerId, entry.handle.generation)),
-      () => this.preadmitted?.authority.close(), () => this.candidateLauncherFactory?.close?.(), () => this.options.supplierAuthority?.close()
+      () => this.preadmitted?.authority.close(), ...(this.queuedRetirement ?? []), () => this.candidateLauncherFactory?.close?.(), () => this.options.supplierAuthority?.close()
     ]) try { await close(); } catch (error) { failures.push(error); }
     if (failures.length === 1) throw failures[0];
     if (failures.length > 1) throw new AggregateError(failures, "Supervisor retirement failed; candidate ownership retained");

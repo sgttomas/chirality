@@ -1,9 +1,10 @@
 {
-  "status": "complete-pending-independent-review",
+  "status": "complete-independently-reviewed-pass-with-backcheck-pending",
   "files": [
     { "path": "projects/chirality-runtime/packages/daemon/src/codex-admitted-launcher.ts", "sha256": "29d4d19d4d796e3f4438b325429b90486706d0db2c8dc6ea48035e9c0bb2cade" },
-    { "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts", "sha256": "d0f825cb560540bb98eba4e3b7123f538c578106182aa10a08a3a2e42299b847" },
+    { "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts", "sha256": "af7d2222573ca4ca4fc385da09b77498e465d8d54a64f33d16dd0b435470bf3b" },
     { "path": "projects/chirality-runtime/packages/daemon/src/hosted-private-composition.ts", "sha256": "440e78aed7c4a410cb535c5b2b26c4798faa70618bfd94f46fd4eed645a0c159" },
-    { "path": "projects/chirality-runtime/tests/runtime-conformance-v2-admission.test.ts", "sha256": "fe0f74f91805a843b3bd0d4fca82dcc40db6bca3880022a3f5a6945302fd8c9c" }
+    { "path": "projects/chirality-runtime/tests/runtime-conformance-v2-admission.test.ts", "sha256": "1d7fd8c6da098f31d362f90fcdcbce3dfcbbfe0fd3eac9ef5b6a51203013fce2" },
+    { "path": "projects/chirality-runtime/tests/custody-config-status.test.ts", "sha256": "73ddd97fd16470d60a68eabee6ca95159f84578b649d4e1950be4447d3a5bc5e" }
   ]
 }

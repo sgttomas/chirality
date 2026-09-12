@@ -697,3 +697,18 @@ packaging Phase A (separate instance, L_STAGE26_PACKAGING/BRIEF.md, recipe
 derivation only, no freeze/build) run concurrently. Phase B is held for review
 PASS, recipe review and explicit lead release. Section B (R16 retirement),
 guarded launch and native tests remain lead-only. No publishing.
+
+### Independent review PASS; three non-blocking findings fixed — 2026-09-12T02:25Z
+
+R16_RESTART_ADMISSION/INDEPENDENT_REVIEW.md: PASS, no blocking findings; tsc
+clean, 121/121 across the six named files; no authentication, seal, payload
+or supplier policy relaxation; no path launches on a stale preparation. Three
+non-blocking findings were fixed in the same source: the duplicate-id and
+capacity guard is repeated after the renewal await together with a check that
+this acquisition's own cancellation record survived, and a refusal there
+removes that record (medium and low); a failed queued-candidate retirement
+step is retained and retried before any later renewal, and `close()` runs the
+retained steps (low). New test: retirement failure blocks renewal, the failed
+step is retried first, and the factory is never reached before retirement
+completes. tsc clean; eight focused suites 187/187. FINAL_SOURCE_HASHES.json
+updated; the reviewer is asked to backcheck this delta before source release.
