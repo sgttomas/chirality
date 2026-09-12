@@ -162,7 +162,7 @@ export function resolveHostedModelSelection(catalog: HostedModelCatalog, request
 export interface HostedBootstrapStatus {
   schema: "chirality-hosted-bootstrap-status/v1";
   projectId: string;
-  ceremony: "consent-required" | "ready-to-start" | "pending" | "signed-in" | "failed" | "cancelled";
+  ceremony: "ready-to-start" | "pending" | "signed-in" | "failed" | "cancelled";
   admission: "unavailable" | "establishing" | "ready";
   canStartLogin: boolean;
   /** Non-hidden authenticated catalog; present only while `admission === "ready"` and always together with `selection`. */
@@ -175,7 +175,7 @@ export interface HostedBootstrapLoginStartResponse { loginId: string; authUrl: s
 export function validateHostedBootstrapStatus(value: unknown): HostedBootstrapStatus {
   const status = hostedRecord(value, ["schema", "projectId", "ceremony", "admission", "canStartLogin", "models", "selection"]);
   if (status.schema !== "chirality-hosted-bootstrap-status/v1" || typeof status.projectId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(status.projectId)
-    || !["consent-required", "ready-to-start", "pending", "signed-in", "failed", "cancelled"].includes(String(status.ceremony))
+    || !["ready-to-start", "pending", "signed-in", "failed", "cancelled"].includes(String(status.ceremony))
     || !["unavailable", "establishing", "ready"].includes(String(status.admission)) || typeof status.canStartLogin !== "boolean"
     || status.canStartLogin !== ["ready-to-start", "failed", "cancelled"].includes(String(status.ceremony))
     || (status.admission === "ready" && status.ceremony !== "signed-in")) {

@@ -69,3 +69,39 @@ blocking findings covering the actual candidate revision.
 - Dispatched W1 (Runtime core), W2 (daemon transport), W3 (Electron lifecycle and
   packaging), W4 (App renderer) as bounded Type 2 assignments, Fable 5.1 medium, disjoint
   write scopes, no git operations; returns expected under `spike/`.
+
+## 2026-09-12T08:37:00Z — W1-W4 returned; integration dispatched
+- W1-W4 returned (`spike/W1_RETURN.md` .. `spike/W4_RETURN.md`) with their scoped tests
+  passing. Cross-scope blockers identified by the lead: the CLI's import of the retired
+  conformance module and its LaunchAgent, hosted-login, delegated and approvals command
+  groups; the frontend controlled CI runtime fixture and the `harness-premerge.yml` daemon
+  start and registration steps; three frontend integration tests that import retired
+  modules; `desktop-release-template.yml` RunAtLoad proof steps; contract dead surface
+  (`DelegatedTurnRequest.compatibility`/`preflight`, `consent-required`); unused daemon
+  login option; `runtime.service.restart()` not surfaced.
+- Dispatched I1 (Runtime workspace cleanup: CLI, contracts, client, daemon routes and
+  exports, runtime tests) and I2 (frontend CI fixture, workflows, integration tests,
+  packaging boundary scripts, Restart Runtime action) as bounded Type 2 assignments, Fable
+  5.1, disjoint write scopes, no git operations.
+- Manifest `instruction_surface_paths` extended with `.github/workflows/harness-premerge.yml`
+  and `.github/workflows/desktop-release-template.yml` ahead of I2's edits (the validator's
+  instruction surface includes `.github/workflows/`).
+
+## 2026-09-12T09:15:00Z — integration committed: Runtime and App workspaces green
+- I1 returned (`spike/I1_RETURN.md`): CLI reduced to the v1 surface, contracts and client
+  dead v2 surface removed, daemon v2 routes and login option removed. Lead follow-up:
+  the historical admission fields (`compatibility`, `preflight`, and their identity types)
+  dropped from `DelegatedTurnRequest`; `consent-required` dropped from
+  `HostedBootstrapStatus` and the four test fixtures that emitted it now emit the daemon's
+  real signed-out state (`ready-to-start`, `canStartLogin: true`).
+- I2 returned (`spike/I2_RETURN.md`): controlled CI runtime fixture registers the App
+  project itself and prints one ready line; `harness-premerge.yml` reads it (operator-token
+  registration step removed); `desktop-release-template.yml` RunAtLoad proof removed;
+  shared-daemon integration test retired; boundary script cleaned; Restart Runtime action.
+- Verification by the lead on the candidate tree: Runtime `tsc -b` clean, `npm test
+  --maxWorkers=1` 34 files / 309 tests passed; App `tsc --noEmit` 0 errors,
+  `build:electron` exit 0, `npm test` 202 files passed (1 opt-in skip), 2066 tests passed
+  (4 skipped).
+- Commits 95364569a (Runtime) and 39c0bb6ab (App) pushed to PR #774; contract cleanup and
+  this log follow as their own commit. Governance validators rerun locally after the
+  manifest and workflow edits (results in the next entry).

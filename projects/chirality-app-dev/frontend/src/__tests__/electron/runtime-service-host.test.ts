@@ -322,4 +322,3 @@ describe('runtime service host lifecycle', () => {
     expect(contents.split('\n').filter((line) => line.includes('@'))).toEqual([]);
   });
 });
-
