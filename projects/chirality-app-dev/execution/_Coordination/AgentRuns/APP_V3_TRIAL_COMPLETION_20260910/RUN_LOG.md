@@ -683,3 +683,17 @@ no GUI process was present afterwards. This lead ran no launch, quit, attach
 or protected-state read; the owner is asked to confirm who relaunched. Existing
 Apps, userdata and stage evidence untouched. Independent review dispatched
 next; no build, signing or publishing.
+
+### Repair committed; review and Stage26 Phase A dispatched — 2026-09-12T02:10Z
+
+Commits `15a07bdef` (renewal repair + records) and `5045178d4` (custody test
+expectation) on the integration checkout. Frontend typecheck against the
+rebuilt Runtime dist: exit 0. launchd confirms `com.chirality.runtime` names
+the R16 executable with daemon pid 17185 running and no GUI, consistent with
+launchd restarting the agent after the 01:41Z before-quit; R16 is otherwise
+untouched. Independent source review (Claude Fable 5.1 medium, read-only,
+R16_RESTART_ADMISSION/REVIEW_BRIEF.md → INDEPENDENT_REVIEW.md) and Stage26/R17
+packaging Phase A (separate instance, L_STAGE26_PACKAGING/BRIEF.md, recipe
+derivation only, no freeze/build) run concurrently. Phase B is held for review
+PASS, recipe review and explicit lead release. Section B (R16 retirement),
+guarded launch and native tests remain lead-only. No publishing.
