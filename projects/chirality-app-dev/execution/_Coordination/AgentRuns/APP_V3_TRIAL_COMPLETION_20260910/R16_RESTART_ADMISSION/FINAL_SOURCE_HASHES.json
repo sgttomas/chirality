@@ -1,5 +1,5 @@
 {
-  "status": "complete-independently-reviewed-pass-with-backcheck-pending",
+  "status": "complete-independently-reviewed-pass-backcheck-pass-natively-verified-on-r17",
   "files": [
     { "path": "projects/chirality-runtime/packages/daemon/src/codex-admitted-launcher.ts", "sha256": "29d4d19d4d796e3f4438b325429b90486706d0db2c8dc6ea48035e9c0bb2cade" },
     { "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts", "sha256": "af7d2222573ca4ca4fc385da09b77498e465d8d54a64f33d16dd0b435470bf3b" },

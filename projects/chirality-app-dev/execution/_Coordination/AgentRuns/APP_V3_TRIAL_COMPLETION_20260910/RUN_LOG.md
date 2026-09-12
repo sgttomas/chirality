@@ -768,3 +768,26 @@ filter phrase). R16 App, userdata, LaunchAgent and daemon (pid 17185) were
 untouched during the build. Packaging PASS is not native acceptance. Next,
 lead-only: Section B R16 retirement, R17 `--check-only`, guarded launch and
 R17_NATIVE_CHECKLIST.md.
+
+### Section B, R17 guarded launch and native pass — 2026-09-12T03:00Z
+
+(The previous section's header time should read 02:34Z.) R16 retired
+02:35:51Z (bootout exit 0, plist `mv -n` to the Stage26 root, `launchctl
+print` exit 113); R17 `--check-only` `Launch guard PASS`; guarded launch
+02:36:06Z (GUI 27808, daemon 27838). Folder bound via `Enter a path…`;
+provider consent and `Sign in` pressed under the standing warrant 02:39:20Z;
+owner OAuth; admission `ready` 02:40:48Z; account Ready. First turn PASS,
+long-chat scroll PASS, second-chat real file read PASS, sidebar PASS.
+Interrupted turn: correct concise `Interrupted` status after reopen, but not
+rendered live (finding R17-F1, medium UI, no rebuild). Restart admission
+target PASS: menu Quit 02:51:30Z with daemon retained (same pid), guard PASS,
+guarded relaunch 02:51:58Z, account host reconnected 02:52:03Z, no
+`hosted.admission.fenced`; owner observed a real follow-up in the retained
+chat and a real `r16-shell-report.md` read in the other chat, both Idle,
+account Ready, no sign-in or admission text. Computer Use could not attach to
+the relaunched GUI (bundle id resolves to the daemon's lower pid; pid/name
+addressing refused; osascript lacks assistive access; no settings changed).
+Records: R17_FUNCTIONAL_FINDINGS.md, R16_RESTART_ADMISSION/HANDOFF.md
+"Native verification", FINAL_SOURCE_HASHES.json status,
+NEXT_AGENT_HANDOFF.md successor checkpoint. R17 GUI 31613 and daemon 27838
+left running and signed in; nothing published.

@@ -48,3 +48,12 @@ await; `close()` awaits an in-flight renewal; composition `live()` no longer
 throws or fences on a renewal failure because a relaunch that races the host
 ceremony or a running turn must not retire the account binding — the durable
 binding check is unchanged and the next launch either renews or fails closed.
+
+## Native verification (Stage26/R17, 2026-09-12)
+
+Item 5 closed. On the signed R17 App (source fb529591d) the lead quit the GUI
+with both chats idle, retained daemon pid 27838, relaunched through the guarded
+launcher, and the owner observed a real follow-up in the retained chat and a
+real file read in the second chat complete without sign-in, account edits or
+any admission fence (daemon log has no `hosted.admission.fenced`). See
+../R17_FUNCTIONAL_FINDINGS.md. FINAL_SOURCE_HASHES.json status updated.
