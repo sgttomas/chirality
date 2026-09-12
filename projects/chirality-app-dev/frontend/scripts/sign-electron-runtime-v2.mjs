@@ -77,12 +77,22 @@ export async function verifySignedBundle(appPath, { execFile: run = execFileAsyn
   return { appPath, binaries: results };
 }
 
-export default async function customMacSign(options, { sign = signAsync, verify = verifySignedBundle } = {}) {
-  const appPath = await realpath(options.app);
-  const entitlements = options.optionsForFile?.(appPath)?.entitlements ?? DEFAULT_ENTITLEMENTS;
-  const inheritEntitlements =
-    options.optionsForFile?.(path.join(appPath, 'Contents', 'Frameworks', 'nested'))?.entitlements
-    ?? DEFAULT_INHERIT_ENTITLEMENTS;
-  await sign(createSignOptions(options, { appPath, entitlements, inheritEntitlements }));
-  return verify(appPath);
+/**
+ * Builds the `mac.sign` hook. electron-builder calls the hook as
+ * `sign(options, packager)`, so the injectable signer and verifier are bound
+ * here rather than taken from the hook's second argument (which is the packager,
+ * whose own `sign` method would otherwise be picked up unbound).
+ */
+export function createCustomMacSign({ sign = signAsync, verify = verifySignedBundle } = {}) {
+  return async function customMacSign(options) {
+    const appPath = await realpath(options.app);
+    const entitlements = options.optionsForFile?.(appPath)?.entitlements ?? DEFAULT_ENTITLEMENTS;
+    const inheritEntitlements =
+      options.optionsForFile?.(path.join(appPath, 'Contents', 'Frameworks', 'nested'))?.entitlements
+      ?? DEFAULT_INHERIT_ENTITLEMENTS;
+    await sign(createSignOptions(options, { appPath, entitlements, inheritEntitlements }));
+    return verify(appPath);
+  };
 }
+
+export default createCustomMacSign();

@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import customMacSign, {
   CODEX_JIT_BINARY,
+  createCustomMacSign,
   CODEX_SIGNED_BINARIES,
   CODE_MODE_HOST_ENTITLEMENTS,
   DEFAULT_ENTITLEMENTS,
@@ -45,12 +46,24 @@ describe('App and stock Codex signing policy', () => {
     cleanup.push(root);
     const sign = vi.fn(async (_options: unknown) => undefined);
     const verify = vi.fn(async (appPath: string) => ({ appPath, binaries: [] }));
-    const result = await customMacSign({ app: root, identity: 'X', optionsForFile: () => ({ entitlements: '/e.plist' }) }, { sign, verify });
+    const result = await createCustomMacSign({ sign, verify })({ app: root, identity: 'X', optionsForFile: () => ({ entitlements: '/e.plist' }) });
     expect(sign).toHaveBeenCalledTimes(1);
     const passed = sign.mock.calls[0][0] as { optionsForFile: (filePath: string) => { entitlements: string } };
     expect(passed.optionsForFile(root).entitlements).toBe('/e.plist');
     expect(verify).toHaveBeenCalledWith(root);
     expect(result).toEqual({ appPath: root, binaries: [] });
+  });
+
+  it('ignores the packager electron-builder passes as the second argument', async () => {
+    const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-sign-')));
+    cleanup.push(root);
+    const sign = vi.fn(async (_options: unknown) => undefined);
+    const verify = vi.fn(async (appPath: string) => ({ appPath, binaries: [] }));
+    const packager = { sign: vi.fn(async () => { throw new Error('packager.sign must not be used'); }) };
+    const hook = createCustomMacSign({ sign, verify }) as unknown as (options: unknown, packager: unknown) => Promise<unknown>;
+    await expect(hook({ app: root, identity: 'X' }, packager)).resolves.toEqual({ appPath: root, binaries: [] });
+    expect(packager.sign).not.toHaveBeenCalled();
+    expect(typeof customMacSign).toBe('function');
   });
 
   it('fails verification when a Codex binary lacks the hardened runtime flag', async () => {
