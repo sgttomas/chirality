@@ -117,10 +117,10 @@ describe("delegated runtime over the shared Codex supervisor", () => {
     expect(record).toMatchObject({ state: "committed", threadId: "thread-turn-1", terminal: result.terminal });
     expect(await f.supervisor.inventory()).toEqual([]);
     expect(f.supervisor.log).toEqual(["acquire:turn-1", "retire:turn-1"]);
-    // The follow-up turn under the same role policy resumes the durable thread and carries the context update.
-    const next = f.delegated.turn("project", { turnId: "turn-2", previousTurnId: "turn-1", prompt: "again", sessionId: "s1", requestedRole: "agent1", permissionMode: "readOnly", contextUpdate: "Chirality context update:\nnew" });
+    // The follow-up turn under the same role policy resumes the durable thread and carries the current developer instructions and role configuration.
+    const next = f.delegated.turn("project", { turnId: "turn-2", previousTurnId: "turn-1", prompt: "again", sessionId: "s1", requestedRole: "agent1", permissionMode: "readOnly", developerInstructions: "new", nativeRoleConfig: { "agents.TASK.config_file": "/tmp/role.toml" } });
     await f.acquired("turn-2");
-    expect(JSON.parse(f.supervisor.workers.get("turn-2")!.input)).toMatchObject({ resumeThreadId: "thread-turn-1", contextUpdate: "Chirality context update:\nnew" });
+    expect(JSON.parse(f.supervisor.workers.get("turn-2")!.input)).toMatchObject({ resumeThreadId: "thread-turn-1", developerInstructions: "new", nativeRoleConfig: { "agents.TASK.config_file": "/tmp/role.toml" } });
     f.supervisor.fail("turn-2", "scripted failure");
     const failed = await next;
     expect(failed.terminal.outcome).toBe("failed");

@@ -66,8 +66,8 @@ export interface DelegatedRuntimeOptions {
   resolveProject?(projectId: string): Promise<DelegatedProjectBinding | undefined>;
 }
 /**
- * Turn input accepted by the runtime; the developer instructions and additive
- * context update travel to the supervisor envelope.
+ * Turn input accepted by the runtime; developer instructions and additive
+ * native role configuration travel to the private supervisor envelope.
  */
 export type DelegatedTurnInput = DelegatedTurnRequest;
 
@@ -78,7 +78,9 @@ export interface CodexTurnEnvelope {
   attachments?: readonly DelegatedAttachmentInput[];
   cwd: string;
   developerInstructions?: string;
-  /** Additive `Chirality context update:` input item for a changed method selection. */
+  /** Additive supported per-thread native role configuration; no feature or depth overrides. */
+  nativeRoleConfig?: Readonly<Record<string, string>>;
+  /** @deprecated Rejected by the stock supervisor. */
   contextUpdate?: string;
   policy: PolicySelection;
   model?: string;
@@ -95,7 +97,7 @@ export function parseCodexTurnEnvelope(input: string): CodexTurnEnvelope {
   try { value = JSON.parse(input); } catch { throw new RuntimeError("INVALID_REQUEST", "Codex worker requires the private broker JSON envelope"); }
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex turn envelope");
   const envelope = value as Record<string, unknown>;
-  const allowed = ["schema", "prompt", "attachments", "cwd", "developerInstructions", "contextUpdate", "policy", "model", "reasoningEffort", "interactionMode", "requestedRole", "resumeThreadId", "projectId", "sessionId", "clientTurnId"];
+  const allowed = ["schema", "prompt", "attachments", "cwd", "developerInstructions", "nativeRoleConfig", "contextUpdate", "policy", "model", "reasoningEffort", "interactionMode", "requestedRole", "resumeThreadId", "projectId", "sessionId", "clientTurnId"];
   if (envelope.schema !== "chirality-codex-turn/v1" || Object.keys(envelope).some(key => !allowed.includes(key)) || typeof envelope.prompt !== "string" || !envelope.prompt.trim()
     || typeof envelope.cwd !== "string" || !envelope.cwd || typeof envelope.clientTurnId !== "string" || typeof envelope.projectId !== "string"
     || !["chat", "native-plan"].includes(String(envelope.interactionMode)) || !RUNTIME_ROLES.includes(envelope.requestedRole as DelegatedRole)
@@ -104,6 +106,10 @@ export function parseCodexTurnEnvelope(input: string): CodexTurnEnvelope {
   if (!["untrusted", "on-request", "never"].includes(policy.approvalPolicy) || !["read-only", "workspace-write", "danger-full-access"].includes(policy.sandbox)) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex policy selection");
   for (const key of ["developerInstructions", "contextUpdate", "model", "reasoningEffort", "resumeThreadId", "sessionId"]) {
     if (envelope[key] !== undefined && typeof envelope[key] !== "string") throw new RuntimeError("INVALID_REQUEST", "Invalid Codex turn envelope");
+  }
+  if (envelope.nativeRoleConfig !== undefined) {
+    const config = envelope.nativeRoleConfig;
+    if (!config || typeof config !== "object" || Array.isArray(config) || Object.entries(config).some(([key, value]) => !/^agents\.(HELP_HUMAN|HELPS_HUMANS|WORKING_ITEMS|TASK)\.(description|config_file)$/.test(key) || typeof value !== "string")) throw new RuntimeError("INVALID_REQUEST", "Invalid native role configuration");
   }
   if (envelope.attachments !== undefined && !Array.isArray(envelope.attachments)) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex attachment envelope");
   return envelope as unknown as CodexTurnEnvelope;
@@ -313,10 +319,11 @@ export class DelegatedRuntime {
       const envelope: CodexTurnEnvelope = { schema: "chirality-codex-turn/v1", prompt: request.prompt, cwd: identity.canonicalRoot, policy, interactionMode, requestedRole, projectId, clientTurnId: request.turnId,
         ...(request.attachments?.length ? { attachments: structuredClone(request.attachments) } : {}),
         ...(request.developerInstructions === undefined ? {} : { developerInstructions: request.developerInstructions }),
+        ...(request.nativeRoleConfig === undefined ? {} : { nativeRoleConfig: request.nativeRoleConfig }),
         ...(request.contextUpdate === undefined ? {} : { contextUpdate: request.contextUpdate }),
         ...(request.model === undefined ? {} : { model: request.model }), ...(request.reasoningEffort === undefined ? {} : { reasoningEffort: request.reasoningEffort }),
         ...(request.sessionId === undefined ? {} : { sessionId: request.sessionId }), ...(restart.threadId ? { resumeThreadId: restart.threadId } : {}) };
-      const worker = await binding.supervisor.acquire(request.turnId, JSON.stringify(envelope));
+      const worker = await binding.supervisor.acquire(request.turnId, JSON.stringify(envelope), observer?.signal);
       this.liveTurns.set(key, { turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, ...(request.sessionId === undefined ? {} : { sessionId: request.sessionId }) });
       if (sessionKey !== undefined) this.sessionTurns.set(sessionKey, key);
       const nativePlanBinding = interactionMode === "native-plan" ? { projectId, sessionId: request.sessionId!, clientTurnId: request.turnId, workerId: worker.workerId, generation: worker.generation } : undefined;

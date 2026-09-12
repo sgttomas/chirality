@@ -36,7 +36,9 @@ export interface SpawnCodexAppServerOptions {
   /** Receives one stderr line at a time, already redacted of e-mail-like tokens. */
   onStderr?: (line: string) => void;
 }
-export const CODEX_APP_SERVER_ARGUMENTS = Object.freeze(["-c", 'cli_auth_credentials_store="file"', "app-server"] as const);
+// Release unsubscribed idle thread caches promptly so a cold resume can adopt
+// updated developer guidance. Stock Codex still waits for active work to finish.
+export const CODEX_APP_SERVER_ARGUMENTS = Object.freeze(["-c", 'cli_auth_credentials_store="file"', "-c", "thread_unload_delay_secs=0", "app-server"] as const);
 
 /** Replaces e-mail-like tokens so account identifiers never reach a log. */
 export function redactAccountText(value: string): string {

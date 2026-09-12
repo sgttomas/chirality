@@ -96,6 +96,11 @@ type ChiralityBridge = {
     subscribe: (listener: (state: AppUpdateStatePayload) => void) => () => void;
     onShowAbout: (listener: () => void) => () => void;
   };
+  instructions?: {
+    get: () => Promise<import('../../electron/product-instructions-ipc-contract').ProductInstructionsResult>;
+    open: () => Promise<import('../../electron/product-instructions-ipc-contract').ProductInstructionsResult>;
+    restore: () => Promise<import('../../electron/product-instructions-ipc-contract').ProductInstructionsResult>;
+  };
 };
 
 declare global {

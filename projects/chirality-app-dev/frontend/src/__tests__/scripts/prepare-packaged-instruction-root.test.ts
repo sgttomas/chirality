@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   BUNDLE_MANIFEST,
   DOC_FILES,
+  PRODUCT_AGENTS_SOURCE,
   ROLE_IDS,
   preparePackagedInstructionRoot
 } from '../../../scripts/prepare-packaged-instruction-root.mjs';
@@ -31,6 +32,9 @@ describe('prepare packaged instruction root', () => {
     });
 
     const registry = JSON.parse(await readFile(path.join(outputRoot, 'agents/registry.json'), 'utf8'));
+    const productGuidance = await readFile(path.join(REPO_ROOT, PRODUCT_AGENTS_SOURCE), 'utf8');
+    expect(await readFile(path.join(outputRoot, 'AGENTS.md'), 'utf8')).toBe(productGuidance);
+    expect(productGuidance).not.toBe(await readFile(path.join(REPO_ROOT, 'AGENTS.md'), 'utf8'));
     expect(Object.keys(registry.roles).sort()).toEqual([...ROLE_IDS].sort());
     for (const roleId of ROLE_IDS) {
       expect(await readFile(path.join(outputRoot, `agents/AGENT_${roleId}.md`), 'utf8')).toBe(
@@ -141,7 +145,10 @@ describe('prepare packaged instruction root', () => {
       recursive: true,
       filter: (source) => {
         const relative = path.relative(REPO_ROOT, source);
-        return !relative || ['AGENTS.md', 'CLAUDE.md', 'README.md', 'agents', 'docs', 'workflows', '.agents', 'tools'].includes(relative.split(path.sep)[0]);
+        return !relative || ['AGENTS.md', 'CLAUDE.md', 'README.md', 'agents', 'docs', 'workflows', '.agents', 'tools'].includes(relative.split(path.sep)[0])
+          || relative === 'projects' || relative === path.join('projects', 'chirality-app-dev')
+          || relative === path.join('projects', 'chirality-app-dev', 'instructions')
+          || relative.startsWith(path.join('projects', 'chirality-app-dev', 'instructions') + path.sep);
       }
     });
     for (const protectedDirectory of ['agents', 'workflows']) {

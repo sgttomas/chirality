@@ -12,6 +12,7 @@ import { ThemeControl } from '../shell/theme-control';
 import styles from './settings-view.module.css';
 import type { HostedBootstrapController } from './hosted-bootstrap-controller';
 import { HostedBootstrapView } from './hosted-bootstrap-view';
+import { ProductInstructionsSettings } from './product-instructions-settings';
 
 /** Groups: Account, (This folder, non-hosted), Runtime, API keys, Appearance. */
 export function SettingsView({ account, runtime, folder, target, hosted }: {
@@ -33,5 +34,6 @@ export function SettingsView({ account, runtime, folder, target, hosted }: {
     {!hosted ? <section tabIndex={-1} data-settings-group="local-model"><h2>Local model</h2><p>oMLX server status unknown.</p><RuntimeSettingsView {...runtime} /></section> : null}
     {!hosted ? <section data-settings-group="api-keys"><h2>API keys</h2><ApiKeySettings /></section> : null}
     <section data-settings-group="appearance"><h2>Appearance</h2><ThemeControl /></section>
+    <ProductInstructionsSettings />
   </div>;
 }

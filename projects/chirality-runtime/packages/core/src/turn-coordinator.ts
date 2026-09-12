@@ -76,6 +76,8 @@ function normalizeEngineFailure(error: unknown, local: boolean): RuntimeError {
         harness.message,
         harness.status
       );
+    case "INSTRUCTION_ADOPTION_PENDING":
+      return new RuntimeError("INSTRUCTION_ADOPTION_PENDING", harness.message, harness.status);
     case "ENGINE_UNAVAILABLE":
     case "CONTEXT_EXHAUSTED":
     case "SDK_FAILURE":
@@ -450,7 +452,7 @@ export class TurnCoordinator {
           type: "turn:error",
           data: {
             phase: "mid-stream",
-            errorType: "SDK_FAILURE",
+            errorType: runtimeError.code === "INSTRUCTION_ADOPTION_PENDING" ? "INSTRUCTION_ADOPTION_PENDING" : "SDK_FAILURE",
             message: runtimeError.message,
             status: runtimeError.status,
             severity: "error",

@@ -17,10 +17,12 @@ import { createHash, randomUUID } from "node:crypto";
 import { basename, isAbsolute } from "node:path";
 import type { DelegatedRuntime } from "./delegated-runtime.js";
 import { isContained } from "./fs.js";
+import { materializeProductNativeRoles } from "./product-native-role-config.js";
 
 export interface DelegatedEngineAdapterOptions {
   /** Bound project; omitted for a service-wide adapter that serves every registered project. */
   projectId?: string;
+  nativeRoleDirectory?: string;
   delegated: DelegatedRuntime;
   selection: EngineSelection;
   /** Non-hidden catalog of the signed-in account, when known; absent means no catalog check here. */
@@ -34,7 +36,7 @@ const DROPPED_NOTIFICATIONS = new Set(["item/agentMessage/delta", "item/reasonin
 /** Renders the runtime-resolved instruction context as plain developer instructions. */
 export function renderDeveloperInstructions(context: ResolveSelectedContextResponse | undefined): string | undefined {
   if (context === undefined || context.supplied.length === 0) return undefined;
-  return context.supplied.map(entry => {
+  return context.supplied.filter(entry => !entry.id.startsWith("native-role:")).map(entry => {
     const reference = entry.method ? ` (${entry.method.source}:${entry.method.kind}:${entry.method.name}${entry.resourcePath ? `/${entry.resourcePath}` : ""})` : "";
     return `# Chirality ${entry.kind}: ${entry.id}${reference}\n\n${entry.content.trim()}`;
   }).join("\n\n");
@@ -90,7 +92,6 @@ function allowed(decision: unknown): boolean {
 export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOptions): AgentEnginePort {
   const pending = new Map<string, { input: AgentEngineRunInput; attachments: readonly DelegatedAttachmentInput[] }>();
   const active = new Map<string, { projectId: string; turnId: string }>();
-  const sentInstructions = new Map<string, string>();
   const descriptor = {
     adapterId: options.selection.adapterId,
     providerId: options.selection.providerId,
@@ -202,9 +203,6 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
       const permissionMode = input.opts.mode as "readOnly" | "ask" | "workspaceWrite" | "bypass";
       const previousTurnId = input.session.adapterSession?.lastRuntimeTurnId;
       const developerInstructions = renderDeveloperInstructions(input.instructionContext);
-      const instructionDigest = developerInstructions === undefined ? undefined : createHash("sha256").update(developerInstructions).digest("hex");
-      const lastDigest = sentInstructions.get(sessionId);
-      const contextUpdate = previousTurnId !== undefined && developerInstructions !== undefined && lastDigest !== undefined && lastDigest !== instructionDigest ? `Chirality context update:\n${developerInstructions}` : undefined;
       const turnModel = input.opts.model;
       const reasoningEffort = (input.opts as { reasoningEffort?: string }).reasoningEffort ?? session.reasoningEffort;
       const now = () => new Date().toISOString();
@@ -212,6 +210,7 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
       const requests = new Map<string, { method: string; toolUseId?: string }>();
       let delegatedSettled = true;
       try {
+        const nativeRoleConfig = options.nativeRoleDirectory === undefined ? undefined : await materializeProductNativeRoles(input.instructionContext, options.nativeRoleDirectory);
         const progress: DelegatedTurnProgressEvent[] = [];
         let wake = (): void => undefined;
         let outcome: { result: DelegatedTurnResponse } | { error: unknown } | undefined;
@@ -228,7 +227,7 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
           model: turnModel,
           ...(reasoningEffort === undefined ? {} : { reasoningEffort }),
           ...(developerInstructions === undefined ? {} : { developerInstructions }),
-          ...(contextUpdate === undefined ? {} : { contextUpdate })
+          ...(nativeRoleConfig === undefined ? {} : { nativeRoleConfig })
         }, [], { signal: input.signal, onProgress(event) { progress.push(structuredClone(event)); wake(); } });
         void running.then(result => { delegatedSettled = true; outcome = { result }; wake(); }, error => { delegatedSettled = true; outcome = { error }; wake(); });
         let provider: { threadId: string; turnId: string } | undefined;
@@ -239,8 +238,15 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
           if (event.type === "started") {
             if (provider !== undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated Codex emitted duplicate provider start", 503);
             provider = { threadId: event.providerThreadId, turnId: event.providerTurnId };
-            if (instructionDigest !== undefined) sentInstructions.set(sessionId, instructionDigest);
             yield { type: "session:init", data: { engineSessionId: event.providerThreadId, providerSpanId: event.providerThreadId, lastRuntimeTurnId: input.turnId, adapterId: descriptor.adapterId, providerId: descriptor.providerId, model: turnModel } };
+            if (input.instructionContext !== undefined) yield harness("adapter.initialized", {
+              adapterId: descriptor.adapterId, providerId: descriptor.providerId,
+              providerThreadId: event.providerThreadId, providerTurnId: event.providerTurnId,
+              instructionAcceptance: "provider-accepted",
+              instructionBasisId: input.instructionContext.basisPreview.id,
+              instructionBasisSha256: input.instructionContext.basisPreview.sha256,
+              developerInstructionsSha256: createHash("sha256").update(developerInstructions ?? "").digest("hex")
+            });
             continue;
           }
           if (provider === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated Codex emitted progress before provider start", 503);

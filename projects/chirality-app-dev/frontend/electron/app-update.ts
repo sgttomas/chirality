@@ -1,23 +1,7 @@
-/**
- * App-update checking: a pure feed checker plus the main-process state owner
- * the IPC handlers and the application menu drive.
- *
- * Scope is deliberately narrow. A check reads one JSON feed, compares its
- * version with the running one, and reports; opening the download hands an
- * https URL to the system browser. Nothing downloads, installs or restarts.
- *
- * Fail-closed by construction (CONTRACT.md K-NET-1): with no configured
- * source the check reports `no-release-source` without touching the network;
- * with a source whose host is not allowlisted it reports `policy`, again
- * without a request. Only a configured and allowlisted https source is ever
- * fetched, and today none exists (`app-update-source.ts`).
- *
- * Kept free of `electron` imports so it can be unit-tested under plain Node,
- * mirroring `runtime-connectivity.ts`.
- */
-
 import {
   APP_UPDATE_ALLOWED_FEED_HOSTS,
+  APP_UPDATE_FEED_URL,
+  APP_UPDATE_RELEASE_ROOT,
   describeAppUpdateSource,
   isAllowlistedFeedHost,
   type AppUpdateSource
@@ -34,11 +18,13 @@ export type AppUpdateFetchResponse = {
   ok: boolean;
   status: number;
   text: () => Promise<string>;
+  redirected?: boolean;
+  url?: string;
 };
 
-export type AppUpdateFetch = (url: string) => Promise<AppUpdateFetchResponse>;
+export type AppUpdateFetch = (url: string, init?: RequestInit) => Promise<AppUpdateFetchResponse>;
 
-/** Published feed shape. Only `version` and an https `downloadUrl` are required. */
+/** Validated release information derived from the public GitHub response. */
 export type AppUpdateFeed = {
   version: string;
   downloadUrl: string;
@@ -56,6 +42,9 @@ export type AppUpdateCheckOptions = {
   currentVersion: string;
   fetchImpl: AppUpdateFetch;
   allowedHosts?: readonly string[];
+  platform?: string;
+  arch?: string;
+  timeoutMs?: number;
   now?: () => Date;
 };
 
@@ -64,10 +53,10 @@ export type AppUpdateCheckOptions = {
 // ---------------------------------------------------------------------------
 
 export type ParsedSemver = {
-  major: number;
-  minor: number;
-  patch: number;
-  prerelease: Array<string | number>;
+  major: number | bigint;
+  minor: number | bigint;
+  patch: number | bigint;
+  prerelease: Array<string | number | bigint>;
 };
 
 const SEMVER_PATTERN =
@@ -76,23 +65,25 @@ const SEMVER_PATTERN =
 export function parseSemver(value: string): ParsedSemver | null {
   const match = SEMVER_PATTERN.exec(value.trim());
   if (!match) return null;
+  if ((match[4] ?? '').split('.').some((part) => /^0\d+$/u.test(part))) return null;
+  const numeric = (part: string): number | bigint => Number.isSafeInteger(Number(part)) ? Number(part) : BigInt(part);
   const prerelease = (match[4] ?? '')
     .split('.')
     .filter((part) => part.length > 0)
-    .map((part) => (/^(0|[1-9]\d*)$/u.test(part) ? Number(part) : part));
+    .map((part) => (/^(0|[1-9]\d*)$/u.test(part) ? numeric(part) : part));
   return {
-    major: Number(match[1]),
-    minor: Number(match[2]),
-    patch: Number(match[3]),
+    major: numeric(match[1]),
+    minor: numeric(match[2]),
+    patch: numeric(match[3]),
     prerelease
   };
 }
 
-function comparePrereleaseIdentifier(a: string | number, b: string | number): number {
-  if (typeof a === 'number' && typeof b === 'number') return a === b ? 0 : a < b ? -1 : 1;
+function comparePrereleaseIdentifier(a: string | number | bigint, b: string | number | bigint): number {
+  if (typeof a !== 'string' && typeof b !== 'string') return a === b ? 0 : a < b ? -1 : 1;
   // Numeric identifiers always have lower precedence than alphanumeric ones.
-  if (typeof a === 'number') return -1;
-  if (typeof b === 'number') return 1;
+  if (typeof a !== 'string') return -1;
+  if (typeof b !== 'string') return 1;
   return a === b ? 0 : a < b ? -1 : 1;
 }
 
@@ -122,48 +113,56 @@ export function compareSemver(a: ParsedSemver, b: ParsedSemver): number {
 // Feed validation
 // ---------------------------------------------------------------------------
 
-function isHttpsUrl(value: unknown): value is string {
-  if (typeof value !== 'string' || value.trim().length === 0) return false;
+/** Exact release page or asset within the owner-authorized repository and tag. */
+function isReleaseUrl(value: unknown, tag: string, asset?: string): value is string {
+  if (typeof value !== 'string') return false;
+  const expected = asset === undefined
+    ? `${APP_UPDATE_RELEASE_ROOT}/tag/${encodeURIComponent(tag)}`
+    : `${APP_UPDATE_RELEASE_ROOT}/download/${encodeURIComponent(tag)}/${encodeURIComponent(asset)}`;
   try {
-    return new URL(value).protocol === 'https:';
+    const url = new URL(value);
+    return value === expected && url.toString() === expected && !url.username && !url.password && !url.search && !url.hash;
   } catch {
     return false;
   }
 }
 
-/** Parse the feed body. Returns the reason when the shape is not the published one. */
 export function parseAppUpdateFeed(
-  body: string
+  body: string,
+  platform: string = process.platform,
+  arch: string = process.arch
 ): { ok: true; feed: AppUpdateFeed } | { ok: false; reason: string } {
   let parsed: unknown;
-  try {
-    parsed = JSON.parse(body);
-  } catch {
-    return { ok: false, reason: 'The release feed is not valid JSON.' };
+  try { parsed = JSON.parse(body); } catch {
+    return { ok: false, reason: 'The release response is not valid JSON.' };
   }
-  if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
-    return { ok: false, reason: 'The release feed is not a JSON object.' };
+  const invalid = (): { ok: false; reason: string } => ({ ok: false, reason: 'The public release response is malformed or contains an unapproved destination.' });
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return invalid();
+  const release = parsed as Record<string, unknown>;
+  const tag = release.tag_name;
+  if (typeof tag !== 'string' || tag !== tag.trim()) return invalid();
+  const version = parseSemver(tag);
+  if (!version || version.prerelease.length || release.draft !== false || release.prerelease !== false) return invalid();
+  if (!isReleaseUrl(release.html_url, tag) || !Array.isArray(release.assets)) return invalid();
+  if (typeof release.published_at !== 'string' || !Number.isFinite(Date.parse(release.published_at))) return invalid();
+  let downloadUrl = release.html_url;
+  // Only a clearly named build for this host can be selected. Other hosts use
+  // the release page, where the user can inspect actual published support.
+  const assetName = platform === 'darwin' && ['arm64', 'x64'].includes(arch)
+    ? `Chirality-${tag.replace(/^v/u, '')}-${arch}.dmg` : undefined;
+  let selected = false;
+  for (const value of release.assets) {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return invalid();
+    const asset = value as Record<string, unknown>;
+    if (typeof asset.name !== 'string' || !asset.name || /[/\\]/u.test(asset.name) ||
+        !isReleaseUrl(asset.browser_download_url, tag, asset.name)) return invalid();
+    if (asset.name === assetName && asset.state === 'uploaded') {
+      if (selected) return invalid();
+      selected = true;
+      downloadUrl = asset.browser_download_url;
+    }
   }
-  const candidate = parsed as Record<string, unknown>;
-  if (typeof candidate.version !== 'string' || parseSemver(candidate.version) === null) {
-    return { ok: false, reason: 'The release feed has no valid semantic version.' };
-  }
-  if (!isHttpsUrl(candidate.downloadUrl)) {
-    return { ok: false, reason: 'The release feed download URL is missing or is not https.' };
-  }
-  if (candidate.releaseNotesUrl !== undefined && !isHttpsUrl(candidate.releaseNotesUrl)) {
-    return { ok: false, reason: 'The release feed notes URL is not https.' };
-  }
-  if (candidate.publishedAt !== undefined && typeof candidate.publishedAt !== 'string') {
-    return { ok: false, reason: 'The release feed publication date is not a string.' };
-  }
-  const feed: AppUpdateFeed = {
-    version: candidate.version,
-    downloadUrl: candidate.downloadUrl
-  };
-  if (candidate.releaseNotesUrl !== undefined) feed.releaseNotesUrl = candidate.releaseNotesUrl;
-  if (candidate.publishedAt !== undefined) feed.publishedAt = candidate.publishedAt;
-  return { ok: true, feed };
+  return { ok: true, feed: { version: tag.replace(/^v/u, ''), downloadUrl, releaseNotesUrl: release.html_url, publishedAt: release.published_at } };
 }
 
 // ---------------------------------------------------------------------------
@@ -197,10 +196,10 @@ export function evaluateAppUpdateSourcePolicy(
       failure: { code: 'policy', message: 'The configured release feed URL is not valid.' }
     };
   }
-  if (parsed.protocol !== 'https:') {
+  if (source.feedUrl !== APP_UPDATE_FEED_URL || parsed.username || parsed.password || parsed.search || parsed.hash) {
     return {
       allowed: false,
-      failure: { code: 'policy', message: 'The configured release feed is not an https URL.' }
+      failure: { code: 'policy', message: 'The configured release source is not the approved public GitHub endpoint.' }
     };
   }
   if (!isAllowlistedFeedHost(parsed.hostname, allowedHosts)) {
@@ -215,30 +214,21 @@ export function evaluateAppUpdateSourcePolicy(
   return { allowed: true, feedUrl: parsed.toString(), hostname: parsed.hostname };
 }
 
-/**
- * Production fetch for the controller: refuses (rejects, which the checker
- * reports as `network`) unless a source is configured and allowlisted, and
- * only then delegates to the real fetch. With `app-update-source.ts`
- * unconfigured this never issues a request. Redirects are refused so a feed
- * cannot bounce a check to a host outside the allowlist.
- */
+/** Enforce the source again at the production network boundary. */
 export function createPolicyGuardedFetch(options: {
   source: AppUpdateSource | null;
   allowedHosts?: readonly string[];
   fetchImpl?: AppUpdateFetch;
 }): AppUpdateFetch {
-  const delegate: AppUpdateFetch =
-    options.fetchImpl ??
-    ((url) => globalThis.fetch(url, { redirect: 'error', cache: 'no-store' }));
-  return async (url) => {
+  const delegate: AppUpdateFetch = options.fetchImpl ?? ((url, init) => globalThis.fetch(url, init));
+  return async (url, init) => {
     const policy = evaluateAppUpdateSourcePolicy(options.source, options.allowedHosts);
-    if (!policy.allowed) {
-      throw new Error('Release feed fetch refused: no configured, allowlisted release source.');
-    }
-    if (url !== policy.feedUrl) {
-      throw new Error('Release feed fetch refused: URL is not the configured feed.');
-    }
-    return delegate(url);
+    if (!policy.allowed) throw new Error('Release fetch refused: unapproved source.');
+    if (url !== policy.feedUrl) throw new Error('Release fetch refused: URL is not the configured feed.');
+    return delegate(url, {
+      signal: init?.signal, redirect: 'error', cache: 'no-store', credentials: 'omit',
+      headers: { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }
+    });
   };
 }
 
@@ -266,24 +256,36 @@ export async function checkForAppUpdate(options: AppUpdateCheckOptions): Promise
     });
   }
 
+  const abort = new AbortController();
+  let timer: ReturnType<typeof setTimeout> | undefined;
   let body: string;
   try {
-    const response = await options.fetchImpl(policy.feedUrl);
-    if (!response.ok) {
-      return fail({
-        code: 'network',
-        message: `The release feed request failed with HTTP ${response.status}.`
+    const request = async (): Promise<string> => {
+      const response = await options.fetchImpl(policy.feedUrl, {
+        signal: abort.signal, redirect: 'error', credentials: 'omit', cache: 'no-store',
+        headers: { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' }
       });
-    }
-    body = await response.text();
+      if (response.redirected || (response.url && response.url !== policy.feedUrl)) throw new Error('The release request was redirected and was refused.');
+      if (!response.ok) {
+        if (response.status === 404) throw new Error('No published stable release is available from the public repository.');
+        if (response.status === 403 || response.status === 429) throw new Error('GitHub refused or rate-limited the release check. Try again later.');
+        throw new Error(`The release request failed with HTTP ${response.status}.`);
+      }
+      return response.text();
+    };
+    body = await Promise.race([
+      request(),
+      new Promise<never>((_, reject) => {
+        timer = setTimeout(() => { abort.abort(); reject(new Error('The release check timed out. Try again later.')); }, options.timeoutMs ?? 10_000);
+      })
+    ]);
   } catch (error) {
-    return fail({
-      code: 'network',
-      message: describeError(error, 'The release feed could not be reached.')
-    });
+    return fail({ code: 'network', message: describeError(error, 'The public release could not be checked.') });
+  } finally {
+    if (timer !== undefined) clearTimeout(timer);
   }
 
-  const feed = parseAppUpdateFeed(body);
+  const feed = parseAppUpdateFeed(body, options.platform, options.arch);
   if (!feed.ok) return fail({ code: 'invalid-feed', message: feed.reason });
 
   const published = parseSemver(feed.feed.version);
@@ -307,6 +309,9 @@ export type AppUpdateControllerOptions = {
   fetchImpl: AppUpdateFetch;
   openExternal: (url: string) => Promise<void>;
   allowedHosts?: readonly string[];
+  platform?: string;
+  arch?: string;
+  timeoutMs?: number;
   now?: () => Date;
   log?: (level: AppUpdateLogLevel, event: string, detail?: unknown) => void;
 };
@@ -331,7 +336,7 @@ const URL_PATTERN = /\bhttps?:\/\/\S+/giu;
 function describeError(error: unknown, fallback: string): string {
   const message =
     error instanceof Error && error.message.trim() ? error.message.trim() : fallback;
-  return message.replaceAll(CREDENTIALISH_PATTERN, '[redacted]').replaceAll(URL_PATTERN, '[url]');
+  return message.replaceAll(CREDENTIALISH_PATTERN, '[redacted]').replaceAll(URL_PATTERN, '[url]').replaceAll(/\S*@\S*/gu, '[redacted]');
 }
 
 export function createAppUpdateController(options: AppUpdateControllerOptions): AppUpdateController {
@@ -376,6 +381,9 @@ export function createAppUpdateController(options: AppUpdateControllerOptions): 
       currentVersion: appVersion,
       fetchImpl: options.fetchImpl,
       allowedHosts: options.allowedHosts,
+      platform: options.platform,
+      arch: options.arch,
+      timeoutMs: options.timeoutMs,
       now
     });
     const next: AppUpdateState = {
@@ -409,9 +417,17 @@ export function createAppUpdateController(options: AppUpdateControllerOptions): 
       if (!available) {
         return { ok: false, error: 'No update download is available to open.' };
       }
-      if (!isHttpsUrl(available.downloadUrl)) {
-        log('warn', 'app_update.open_download.refused', { reason: 'not-https' });
-        return { ok: false, error: 'The update download URL is not https, so it was not opened.' };
+      const tag = available.releaseNotesUrl?.slice(`${APP_UPDATE_RELEASE_ROOT}/tag/`.length);
+      const asset = available.downloadUrl.split('/').at(-1);
+      let approved = false;
+      try {
+        approved = !!tag && parseSemver(decodeURIComponent(tag)) !== null &&
+          isReleaseUrl(available.releaseNotesUrl, decodeURIComponent(tag)) && (isReleaseUrl(available.downloadUrl, decodeURIComponent(tag)) ||
+          (!!asset && isReleaseUrl(available.downloadUrl, decodeURIComponent(tag), decodeURIComponent(asset))));
+      } catch { /* Invalid escaping is refused. */ }
+      if (!approved) {
+        log('warn', 'app_update.open_download.refused', { reason: 'unapproved-destination' });
+        return { ok: false, error: 'The update destination is not an approved public release URL.' };
       }
       try {
         await options.openExternal(available.downloadUrl);

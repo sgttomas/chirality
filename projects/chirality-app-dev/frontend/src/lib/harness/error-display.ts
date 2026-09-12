@@ -24,6 +24,11 @@ const ERROR_COPY: Partial<Record<HarnessErrorType, Omit<HarnessUiError, 'code'>>
     message: 'Required instruction files are missing or unreadable.',
     nextStep: 'Reinstall or rebuild the app bundle and verify instruction resources.'
   },
+  INSTRUCTION_ADOPTION_PENDING: {
+    title: 'Instruction update pending',
+    message: 'The updated instructions could not be applied yet. Your next turn has not started.',
+    nextStep: 'Let active work finish, then retry in this chat. If this persists, reopen Chirality after the work finishes.'
+  },
   PERSONA_NOT_FOUND: {
     title: 'Persona Not Found',
     message: 'The selected agent persona could not be resolved from instruction root.',

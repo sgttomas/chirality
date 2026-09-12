@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import type { DelegatedTurnProgressEvent } from "@chirality/runtime-contracts";
 import type { CodexTurnEnvelope } from "@chirality/runtime-core";
-import { CodexSupervisor, type CodexSupervisorHost } from "../packages/daemon/src/codex-supervisor.js";
+import { CodexSupervisor, INSTRUCTION_UNLOAD_TIMEOUT_MS, type CodexSupervisorHost } from "../packages/daemon/src/codex-supervisor.js";
 import type { CodexAppServerExit, CodexNotification, CodexServerRequest, CodexServerRequestHandler, CodexServerRequestOutcome } from "../packages/daemon/src/codex-app-server-client.js";
 
 /** Scripted host: records requests, answers from a table, and lets the test raise notifications and server requests. */
@@ -16,10 +16,11 @@ function fakeHost() {
     "thread/start": params => ({ thread: { id: `thread-${nextThread++}` }, model: params.model ?? "gpt-5-codex" }),
     "thread/resume": params => ({ thread: { id: params.threadId }, model: params.model ?? "gpt-5-codex" }),
     "thread/settings/update": () => ({}),
+    "thread/loaded/list": () => ({ data: [], nextCursor: null }),
     "turn/start": () => ({ turn: { id: `turn-${nextTurn++}`, status: "inProgress" } }),
     "turn/interrupt": () => ({})
   };
-  const host: CodexSupervisorHost & { calls: typeof calls; notify(method: string, params: unknown): void; exit(exit: CodexAppServerExit): void; ask(request: CodexServerRequest): Promise<CodexServerRequestOutcome>; restart(): void; fail(method: string, error: Error): void } = {
+  const host: CodexSupervisorHost & { calls: typeof calls; notify(method: string, params: unknown): void; exit(exit: CodexAppServerExit): void; ask(request: CodexServerRequest): Promise<CodexServerRequestOutcome>; restart(): void; respond(method: string, answer: (params: any) => unknown): void; fail(method: string, error: Error): void } = {
     get generation() { return generation; },
     calls,
     async request<T>(method: string, params: unknown): Promise<T> {
@@ -38,6 +39,7 @@ function fakeHost() {
     exit(exit) { const current = generation; for (const listener of exits) listener(exit, current); },
     ask(request) { return handler(request); },
     restart() { generation += 1; },
+    respond(method, answer) { answers[method] = answer; },
     fail(method, error) { failures.set(method, error); }
   };
   const failures = new Map<string, Error>();
@@ -73,15 +75,15 @@ describe("Codex supervisor over the shared app-server", () => {
     expect(await supervisor.inventory()).toEqual([]);
 
     // The same thread, same mode and same policy: no settings update and no policy resend.
-    const second = await supervisor.acquire("w2", envelope({ resumeThreadId: "thread-1", clientTurnId: "turn-b", contextUpdate: "Chirality context update:\nnew method" }));
+    const second = await supervisor.acquire("w2", envelope({ resumeThreadId: "thread-1", clientTurnId: "turn-b", developerInstructions: "# Chirality role: agent1" }));
     expect(host.calls.slice(3).map(call => call.method)).toEqual(["turn/start"]);
-    expect(host.calls[3]!.params).toEqual({ threadId: "thread-1", input: [{ type: "text", text: "Chirality context update:\nnew method" }, { type: "text", text: "hello" }] });
+    expect(host.calls[3]!.params).toEqual({ threadId: "thread-1", input: [{ type: "text", text: "hello" }] });
     host.notify("turn/completed", { threadId: "thread-1", turn: { id: "turn-2", status: "completed" } });
     await supervisor.wait(second.workerId, second.generation);
     await supervisor.retire(second.workerId, second.generation);
 
     // A policy change travels on turn/start; a mode change updates the thread settings.
-    const third = await supervisor.acquire("w3", envelope({ resumeThreadId: "thread-1", clientTurnId: "turn-c", interactionMode: "native-plan", policy: { approvalPolicy: "never", sandbox: "read-only" } }));
+    const third = await supervisor.acquire("w3", envelope({ resumeThreadId: "thread-1", clientTurnId: "turn-c", developerInstructions: "# Chirality role: agent1", interactionMode: "native-plan", policy: { approvalPolicy: "never", sandbox: "read-only" } }));
     expect(host.calls.slice(4).map(call => call.method)).toEqual(["thread/settings/update", "turn/start"]);
     expect(host.calls[4]!.params).toMatchObject({ collaborationMode: { mode: "plan" } });
     expect(host.calls[5]!.params).toMatchObject({ approvalPolicy: "never", sandboxPolicy: { type: "readOnly", networkAccess: false } });
@@ -102,8 +104,8 @@ describe("Codex supervisor over the shared app-server", () => {
     await supervisor.retire(first.workerId, first.generation);
     host.restart();
     await supervisor.acquire("w2", envelope({ resumeThreadId: "thread-1", clientTurnId: "turn-b" }));
-    expect(host.calls.slice(3).map(call => call.method)).toEqual(["thread/resume", "thread/settings/update", "turn/start"]);
-    expect(host.calls[3]!.params).toMatchObject({ threadId: "thread-1", cwd: "/tmp/project", approvalPolicy: "on-request", sandbox: "workspace-write" });
+    expect(host.calls.slice(3).map(call => call.method)).toEqual(["thread/loaded/list", "thread/resume", "thread/settings/update", "turn/start"]);
+    expect(host.calls[4]!.params).toMatchObject({ threadId: "thread-1", cwd: "/tmp/project", approvalPolicy: "on-request", sandbox: "workspace-write" });
     await supervisor.close();
   });
 
@@ -229,6 +231,118 @@ describe("Codex supervisor over the shared app-server", () => {
     await supervisor.replyNativePlanClarification(worker.workerId, worker.generation, "5", { q1: { answers: ["A"] } });
     await expect(clarification).resolves.toEqual({ result: { answers: { q1: { answers: ["A"] } } } });
     expect(await supervisor.pendingNativePlanClarifications(worker.workerId, worker.generation)).toEqual([]);
+    await supervisor.close();
+  });
+});
+
+
+describe("safe developer instruction adoption", () => {
+  async function prepared(timeout = 10) {
+    const host = fakeHost();
+    const supervisor = new CodexSupervisor({ host, instructionUnloadTimeoutMs: timeout });
+    const worker = await supervisor.acquire("first", envelope({ developerInstructions: "old" }));
+    host.notify("turn/completed", { threadId: "thread-1", turn: { id: "turn-1", status: "completed" } });
+    await supervisor.retire(worker.workerId, worker.generation);
+    host.respond("thread/loaded/list", () => ({ data: ["thread-1"], nextCursor: null }));
+    host.respond("thread/read", () => ({ thread: { parentThreadId: null, status: { type: "idle" } } }));
+    host.respond("thread/unsubscribe", () => ({ status: "unsubscribed" }));
+    return { host, supervisor };
+  }
+  it("waits for actual closure, holds thread ownership, and resumes with new guidance and additive role config", async () => {
+    const { host, supervisor } = await prepared(1000);
+    const config = { "agents.TASK.config_file": "/tmp/TASK-abc.toml", "agents.TASK.description": "Task" };
+    const next = supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new", nativeRoleConfig: config, interactionMode: "native-plan" }));
+    await new Promise(resolve => setTimeout(resolve, 1));
+    expect(host.calls.filter(call => call.method === "turn/start")).toHaveLength(1);
+    expect(host.calls.some(call => call.method === "thread/resume")).toBe(false);
+    await expect(supervisor.acquire("racer", envelope({ resumeThreadId: "thread-1", developerInstructions: "old" }))).rejects.toThrow(/adoption/);
+    host.notify("thread/closed", { threadId: "thread-1" });
+    const worker = await next;
+    const resume = host.calls.find(call => call.method === "thread/resume")!;
+    expect(resume.params).toMatchObject({ threadId: "thread-1", developerInstructions: "new", config });
+    expect(resume.params).not.toHaveProperty("baseInstructions");
+    expect(host.calls.at(-1)!.params.input).toEqual([{ type: "text", text: "hello" }]);
+    expect(host.calls.at(-2)!.params.collaborationMode.mode).toBe("plan");
+    host.notify("turn/completed", { threadId: "thread-1", turn: { id: "turn-2", status: "completed" } });
+    await supervisor.retire(worker.workerId, worker.generation);
+    await supervisor.close();
+  });
+  it.each(["delayed", "failed", "notSubscribed"])("leaves %s unload pending without a hot resume or new turn", async mode => {
+    const { host, supervisor } = await prepared();
+    if (mode === "failed") host.fail("thread/unsubscribe", new Error("unload failed"));
+    if (mode === "notSubscribed") host.respond("thread/unsubscribe", () => ({ status: "notSubscribed" }));
+    await expect(supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }))).rejects.toMatchObject({ details: { reason: "INSTRUCTION_ADOPTION_PENDING" } });
+    expect(host.calls.filter(call => call.method === "turn/start")).toHaveLength(1);
+    expect(host.calls.some(call => call.method === "thread/resume")).toBe(false);
+    // Reverting the prose cannot silently reuse an unsubscribed cached thread.
+    await expect(supervisor.acquire("retry", envelope({ resumeThreadId: "thread-1", developerInstructions: "old" }))).rejects.toThrow(/pending/);
+    await supervisor.close();
+  });
+  it("defers for an active grandchild after the primary retires without interrupting it", async () => {
+    const { host, supervisor } = await prepared();
+    host.respond("thread/loaded/list", () => ({ data: ["thread-1", "child", "grandchild"], nextCursor: null }));
+    host.respond("thread/read", params => ({ thread: { parentThreadId: params.threadId === "child" ? "thread-1" : params.threadId === "grandchild" ? "child" : null, status: { type: params.threadId === "grandchild" ? "active" : "idle" } } }));
+    await expect(supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }))).rejects.toThrow(/descendant is active/);
+    expect(host.calls.some(call => ["thread/unsubscribe", "thread/resume", "turn/interrupt"].includes(call.method))).toBe(false);
+    await supervisor.close();
+  });
+  it.each([false, true])("checks every loaded-list page after a missed closed notification (still loaded: %s)", async stillLoaded => {
+    const { host, supervisor } = await prepared();
+    host.respond("thread/unsubscribe", () => {
+      host.respond("thread/loaded/list", params => params.cursor === "next" ? { data: stillLoaded ? ["thread-1"] : [], nextCursor: null } : { data: ["other"], nextCursor: "next" });
+      return { status: "unsubscribed" };
+    });
+    const next = supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }));
+    if (stillLoaded) {
+      await expect(next).rejects.toMatchObject({ code: "INSTRUCTION_ADOPTION_PENDING" });
+      expect(host.calls.some(call => call.method === "thread/resume")).toBe(false);
+      expect(host.calls.filter(call => call.method === "turn/start")).toHaveLength(1);
+    } else {
+      await next;
+      expect(host.calls.find(call => call.method === "thread/resume")?.params).toMatchObject({ threadId: "thread-1", developerInstructions: "new" });
+    }
+    expect(host.calls.some(call => call.method === "thread/loaded/list" && call.params.cursor === "next")).toBe(true);
+    await supervisor.close();
+  });
+  it("retains an active primary without unsubscribing or interrupting it", async () => {
+    const { host, supervisor } = await prepared();
+    host.respond("thread/read", () => ({ thread: { parentThreadId: null, status: { type: "active" } } }));
+    await expect(supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }))).rejects.toMatchObject({ code: "INSTRUCTION_ADOPTION_PENDING" });
+    expect(host.calls.some(call => ["thread/unsubscribe", "thread/resume", "turn/interrupt"].includes(call.method))).toBe(false);
+    await supervisor.close();
+  });
+  it("waits through the supplier ten-second shutdown allowance plus scheduling margin", async () => {
+    vi.useFakeTimers();
+    try {
+      expect(INSTRUCTION_UNLOAD_TIMEOUT_MS).toBe(12_000);
+      const { host, supervisor: previous } = await prepared();
+      await previous.close();
+      const supervisor = new CodexSupervisor({ host });
+      const next = supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }));
+      await vi.advanceTimersByTimeAsync(11_000);
+      expect(host.calls.some(call => call.method === "thread/resume")).toBe(false);
+      expect(host.calls.filter(call => call.method === "thread/loaded/list")).toHaveLength(1);
+      host.notify("thread/closed", { threadId: "thread-1" });
+      await next;
+      expect(host.calls.some(call => call.method === "thread/resume")).toBe(true);
+      await supervisor.close();
+    } finally { vi.useRealTimers(); }
+  });
+  it("honors Stop while waiting for unload without starting another turn", async () => {
+    const { host, supervisor } = await prepared(1000);
+    const controller = new AbortController();
+    const next = supervisor.acquire("next", envelope({ resumeThreadId: "thread-1", developerInstructions: "new" }), controller.signal);
+    await new Promise(resolve => setTimeout(resolve, 1));
+    controller.abort(new Error("user stopped"));
+    await expect(next).rejects.toThrow("user stopped");
+    host.notify("thread/closed", { threadId: "thread-1" });
+    expect(host.calls.filter(call => call.method === "turn/start")).toHaveLength(1);
+    expect(host.calls.some(call => call.method === "thread/resume")).toBe(false);
+    await supervisor.close();
+  });
+  it("rejects the retired user-text instruction shortcut", async () => {
+    const supervisor = new CodexSupervisor({ host: fakeHost() });
+    await expect(supervisor.acquire("next", envelope({ contextUpdate: "new instructions" }))).rejects.toThrow(/retired/);
     await supervisor.close();
   });
 });

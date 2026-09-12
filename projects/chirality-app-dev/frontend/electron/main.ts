@@ -26,6 +26,8 @@ import {
   type AppUpdateState
 } from './app-update-ipc-contract';
 import { APP_UPDATE_ALLOWED_FEED_HOSTS, resolveAppUpdateSource } from './app-update-source';
+import { PRODUCT_INSTRUCTIONS_CHANNEL } from './product-instructions-ipc-contract';
+import { createProductInstructionsHandler, createProductInstructionsStore } from './product-instructions';
 import { ATTACHMENT_SELECT_FILES_CHANNEL } from './attachment-ipc-contract';
 import { createAttachmentSelectionHandler } from './attachment-picker';
 import { CODEX_PINNED_VERSION, resolveCodexExecutable } from './codex-executable';
@@ -754,8 +756,8 @@ async function initializeGui(): Promise<void> {
   const appUpdate = createAppUpdateController({
     appVersion,
     source: appUpdateSource,
-    // Refuses every request unless a source is configured and allowlisted;
-    // with no source shipped, this build never fetches (K-NET-1).
+    // Public GitHub release metadata only, without credentials or redirects.
+    // Downloads remain an explicit handoff to the system browser.
     fetchImpl: createPolicyGuardedFetch({ source: appUpdateSource, allowedHosts: APP_UPDATE_ALLOWED_FEED_HOSTS }),
     openExternal: (url) => shell.openExternal(url),
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
@@ -781,9 +783,15 @@ async function initializeGui(): Promise<void> {
     resourcesPath: process.resourcesPath,
     nodeModulesRoot: path.join(resolveFrontendRoot(), 'node_modules')
   });
+  const productInstructions = createProductInstructionsStore({
+    userDataDirectory: app.getPath('userData'),
+    defaultInstructionsPath: path.join(resolveServiceInstructionRoot(), 'AGENTS.md')
+  });
+  await productInstructions.initialize();
   const serviceConfig = buildRuntimeServiceConfig({
     paths: servicePaths,
     instructionRoot: resolveServiceInstructionRoot(),
+    productInstructionsPath: productInstructions.instructionsPath,
     codexExecutablePath: codex.executablePath,
     userCodexHome: resolveUserCodexHome(),
     expectedCodexVersion: CODEX_PINNED_VERSION
@@ -884,6 +892,20 @@ async function initializeGui(): Promise<void> {
     return { ok: true };
   });
   registerAttachmentSelectionHandler(rendererOrigin);
+  ipcMain.removeHandler(PRODUCT_INSTRUCTIONS_CHANNEL);
+  ipcMain.handle(PRODUCT_INSTRUCTIONS_CHANNEL, createProductInstructionsHandler({
+    authorized: event => isAuthorizedSender(event as import('electron').IpcMainInvokeEvent, rendererOrigin),
+    store: productInstructions,
+    open: file => shell.openPath(file),
+    confirmRestore: async () => (await dialog.showMessageBox({
+      type: 'question',
+      message: 'Restore the default agent instructions?',
+      detail: 'A backup of your edits will remain in the instructions folder. Running agents keep their current instructions.',
+      buttons: ['Cancel', 'Restore default'],
+      defaultId: 0,
+      cancelId: 0
+    })).response === 1
+  }));
   ipcMain.removeHandler(PLAN_EXPORT_DIALOG_CHANNEL);
   ipcMain.handle(PLAN_EXPORT_DIALOG_CHANNEL, createPlanExportDialogHandler({
     authorized: event => isAuthorizedSender(event, rendererOrigin),

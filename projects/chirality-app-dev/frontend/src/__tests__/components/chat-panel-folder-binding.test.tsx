@@ -212,7 +212,7 @@ it('starts Plan Mode in a new Codex chat and keeps inspect, revise, save, and ex
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('Execute the accepted native Plan Mode revision 2');
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('# Approved plan');
 
-  await act(async () => tree!.root.findAllByType('button').find(button => button.children.includes('Save as workflow in chat'))!.props.onClick());
+  await act(async () => tree!.root.findAllByType('button').find(button => button.children.includes('Turn into workflow'))!.props.onClick());
   const saveDraft = tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value;
   expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.value).toBe('chat');
   expect(saveDraft).toContain('Limit this turn to the bounded workflow save; do not execute the plan.');
@@ -326,7 +326,7 @@ it('clears native plan actions while a different resumed chat is still loading i
   const loadingView = JSON.stringify(tree!.toJSON());
   expect(loadingView).not.toContain('Plan A');
   expect(tree!.root.findAllByType('button').some(button => button.children.includes('Execute plan'))).toBe(false);
-  expect(tree!.root.findAllByType('button').some(button => button.children.includes('Save as workflow in chat'))).toBe(false);
+  expect(tree!.root.findAllByType('button').some(button => button.children.includes('Turn into workflow'))).toBe(false);
 
   await act(async () => {
     capabilityB.resolve(capability);
@@ -902,7 +902,7 @@ it('hands the Plan tab model to its host, keeps every plan action working from t
   await act(async () => button('Execute plan').props.onClick());
   expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.value).toBe('chat');
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('Execute the accepted native Plan Mode revision 2');
-  await act(async () => button('Save as workflow in chat').props.onClick());
+  await act(async () => button('Turn into workflow').props.onClick());
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('do not execute the plan');
   window.chirality!.plans = { chooseExportTarget: vi.fn().mockResolvedValue({ cancelled: false, targetRelativePath: 'plans/native.md' }), confirmOverwrite: vi.fn().mockResolvedValue(false) };
   await act(async () => { await button('Save plan…').props.onClick(); });

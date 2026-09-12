@@ -55,3 +55,35 @@ standing exception because the boundary determines truthful completion. A
 separate gpt-6-astra/medium packaging child is prepared under
 `briefs/REPLACEMENT_PACKAGE.md` and waits for the reviewed merge revision before
 any setup or build. No source author serves as independent reviewer.
+
+## Product guidance and release-source continuation
+
+The owner's latest request adds automatic shared/role instruction delivery,
+the saved product AGENTS.md direction, updates from the public chirality-app
+release repository, and the `Turn into workflow` label. The package remains
+held to include these changes once. A fresh Astra/medium TASK audits the
+instruction path read-only under `briefs/PRODUCT_INSTRUCTION_AUDIT.md` while
+HELP_HUMAN studies the product draft and release-source integration. Bounded
+authors follow the settled path, with disjoint writes, then a fresh independent
+review covers the complete new candidate. The prior recovery source review
+and live evidence remain valid for that unchanged source.
+
+A separate Astra/medium TASK owns the bounded release-checker and button-label
+files under `briefs/PUBLIC_RELEASE_UPDATES.md`. It does not edit Electron main,
+instruction delivery, product text or governing records, leaving those writes
+available to the parent and instruction author after the audit returns.
+
+The instruction audit found native role wiring absent and hot resume overrides
+ignored by Codex 0.154.0. A bounded Astra/medium Runtime author implements the
+explicit product source, per-thread named role configuration and verified idle
+refresh under `briefs/PRODUCT_INSTRUCTION_RUNTIME.md`. HELP_HUMAN owns the
+product text, App-owned editable file/settings, packaging and governing
+alignment. Source qualification and native child/edit checks precede the fresh
+independent review and consolidated package.
+
+Native instruction editing exposed the stock idle-cache delay; the existing
+Runtime author corrected that bounded integration and retained the failed
+observation. The parent records specialist fan-in in
+`PRODUCT_GUIDANCE_AND_UPDATES.md`. Fresh independent Astra/high review follows
+`briefs/REVIEW_PRODUCT_GUIDANCE.md`, under the standing exception for this
+consequential instruction-delivery boundary. The packaging child still waits.

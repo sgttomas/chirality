@@ -126,7 +126,7 @@ export function NativePlanPanel({ model, focusRevision }: { model: NativePlanPan
       <div className="native-plan-sidebar-actions">
         <button type="button" disabled={actionsDisabled} title="Ask for changes to this plan in the conversation; the result is a new revision." onClick={() => model.onRevise(current.revision)}>Revise in chat</button>
         <button type="button" disabled={actionsDisabled || currentRunning} title={currentExecuted ? 'Prepare a new execution request for this same revision in the composer; you send it.' : 'Prepare the execution request in the composer; you send it.'} onClick={() => model.onExecute(current)}>{currentExecuted ? 'Run again' : 'Execute plan'}</button>
-        <button type="button" disabled={actionsDisabled} className="button-muted" onClick={() => model.onSaveAsWorkflow(current)}>Save as workflow in chat</button>
+        <button type="button" disabled={actionsDisabled} className="button-muted" onClick={() => model.onSaveAsWorkflow(current)}>Turn into workflow</button>
         <button type="button" className="button-muted" onClick={() => model.onSave(current)}>Save plan…</button>
       </div>
       {exportStatus ? <p role="status" className="native-plan-sidebar-meta">{exportStatus}</p> : null}

@@ -26,7 +26,7 @@ export interface WorkerResult {
 export interface DelegatedHarnessProcessSupervisorPort {
   /** Host-only concrete adapter check, never a client-supplied containment assertion. */
   verifyHostedBoundary?(identity: WorkerContinuity): Promise<void>;
-  acquire(workerId: string, input: string): Promise<WorkerHandle>;
+  acquire(workerId: string, input: string, signal?: AbortSignal): Promise<WorkerHandle>;
   inventory(): Promise<readonly WorkerHandle[]>;
   reconnect(workerId: string, generation: string): Promise<WorkerHandle>;
   wait(workerId: string, generation: string): Promise<WorkerResult>;
@@ -78,7 +78,9 @@ export interface DelegatedTurnRequest {
   reasoningEffort?: string;
   /** Rendered role and method instructions for `thread/start` or `thread/resume` (`developerInstructions`); never a user message. */
   developerInstructions?: string;
-  /** Instruction delta sent as an extra input item when the developer instructions changed between turns of one thread. */
+  /** Additive supported per-thread native role configuration; no feature or depth overrides. */
+  nativeRoleConfig?: Readonly<Record<string, string>>;
+  /** @deprecated Rejected by the stock supervisor; send persistent developerInstructions instead. */
   contextUpdate?: string;
 }
 export interface DelegatedRoleEvidence {
