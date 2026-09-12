@@ -54,3 +54,18 @@ blocking findings covering the actual candidate revision.
   candidate HEAD before merge.
 - Concurrently dispatched W1-W4 (spike implementation) against `SPIKE_DESIGN.md`; their
   product-source edits are not part of this commit.
+
+## 2026-09-12T08:20:00Z — tranche committed; spike dispatched; draft PR opened
+- Commit 23b3879b3 (application tranche, 181 files) and 555ae90b9 (SPIKE_DESIGN.md) pushed to
+  origin; draft PR #774 opened against main. Governance harness signal expected green;
+  Harness pre-merge expected red until the spike retires the two Runtime tests that import
+  the deleted supplier tooling (W1 scope).
+- Contract seam authored in `packages/contracts` (progress events, request port,
+  PolicySelection, codex.* event types, turn-state and request routes); W2 is extending it
+  and it will be committed with the transport step.
+- Protocol facts for the pinned 0.154.0 app-server established by a scratch-home probe:
+  Plan Mode is `thread/settings/update` with `collaborationMode`; `collaborationMode/list`
+  exists; `turn/start` carries no collaborationMode; `model/list` answers signed-out.
+- Dispatched W1 (Runtime core), W2 (daemon transport), W3 (Electron lifecycle and
+  packaging), W4 (App renderer) as bounded Type 2 assignments, Fable 5.1 medium, disjoint
+  write scopes, no git operations; returns expected under `spike/`.
