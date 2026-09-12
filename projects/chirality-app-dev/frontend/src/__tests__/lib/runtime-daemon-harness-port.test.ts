@@ -317,6 +317,7 @@ describe('RuntimeDaemonHarnessPort', () => {
     const running = await port.turn({
       sessionId: session.sessionId,
       message: 'inspect',
+      turnId: 'submitted-turn',
       opts: { tools: ['read_file'] },
       attachments: ['/repo/fixture.txt'],
       model: 'gpt-alt',
@@ -331,6 +332,7 @@ describe('RuntimeDaemonHarnessPort', () => {
       session.sessionId,
       {
         message: 'inspect',
+        turnId: 'submitted-turn',
         opts: { tools: ['read_file'] },
         attachments: ['/repo/fixture.txt'],
         model: 'gpt-alt',
@@ -377,11 +379,11 @@ describe('RuntimeDaemonHarnessPort', () => {
     const port = new RuntimeDaemonHarnessPort(runtimeClient);
     const controller = new AbortController();
 
-    const subscription = await port.attachTurn(session.sessionId, 2, { signal: controller.signal });
+    const subscription = await port.attachTurn(session.sessionId, 2, { signal: controller.signal, turnId: 'turn-1' });
     const received: unknown[] = [];
     for await (const item of subscription.events) received.push(item);
     expect(received).toEqual(frames);
-    expect(attachSessionTurn).toHaveBeenCalledWith(project.projectId, session.sessionId, { after: 2 }, controller.signal);
+    expect(attachSessionTurn).toHaveBeenCalledWith(project.projectId, session.sessionId, { after: 2, turnId: 'turn-1' }, controller.signal);
     await subscription.cancel();
     await subscription.cancel();
     expect(attachCancel).toHaveBeenCalledOnce();

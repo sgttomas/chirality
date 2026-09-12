@@ -287,7 +287,7 @@ describe("RuntimeClient turn ownership transport (D-GOV-43)", () => {
     const seen: string[] = [];
     const server = await fixture(async (request, response) => {
       seen.push(`${request.method} ${request.url}`);
-      if (request.url === "/v1/projects/project-a/sessions/sess-a/turn/stream?after=3") {
+      if (request.url === "/v1/projects/project-a/sessions/sess-a/turn/stream?after=3&turnId=turn%2F1") {
         request.once("close", () => closedResolve?.());
         // Silence longer than the client's JSON idle timeout must not end a turn subscription.
         await new Promise((resolve) => setTimeout(resolve, 40));
@@ -299,12 +299,12 @@ describe("RuntimeClient turn ownership transport (D-GOV-43)", () => {
       return json(response, 404, { error: { code: "NOT_FOUND", message: "not found" } });
     });
     const client = new RuntimeClient({ socketPath: join(server.root, "control.sock"), tokenFile: join(server.root, "operator.token"), timeoutMs: 10 });
-    const stream = await client.attachSessionTurn("project-a", "sess-a", { after: 3 });
+    const stream = await client.attachSessionTurn("project-a", "sess-a", { after: 3, turnId: "turn/1" });
     const iterator = stream[Symbol.asyncIterator]();
     await expect(iterator.next()).resolves.toEqual({ done: false, value: { type: "chat:delta", data: { text: "late" }, seq: 4 } });
     stream.cancel();
     await closed;
-    expect(seen).toEqual(["GET /v1/projects/project-a/sessions/sess-a/turn/stream?after=3"]);
+    expect(seen).toEqual(["GET /v1/projects/project-a/sessions/sess-a/turn/stream?after=3&turnId=turn%2F1"]);
     expect(() => client.attachSessionTurn("project-a", "sess-a", { after: -1 })).toThrow(expect.objectContaining({ code: "INVALID_REQUEST" }));
     await server.close();
   });
@@ -338,4 +338,37 @@ describe("RuntimeClient turn ownership transport (D-GOV-43)", () => {
       expect(bodies.find((entry) => entry.url === "POST /v1/projects/project-a/sessions/sess-a/turn")?.body).toEqual({ message: "go", model: "gpt-alt", reasoningEffort: "high" });
     } finally { await server.close(); }
   });
+});
+
+it("bounds stream opening separately from JSON timeout without sending an interrupt", async () => {
+  const server = await fixture(() => {});
+  const client = new RuntimeClient({ socketPath: join(server.root, "control.sock"), tokenFile: join(server.root, "operator.token"), streamTransportTimeoutMs: 80 });
+  try {
+    await expect(client.attachSessionTurn("project-a", "sess-a", { after: 4 })).rejects.toMatchObject({ reason: "timeout" });
+    expect(server.requests.map(request => request.url)).toEqual(["/v1/projects/project-a/sessions/sess-a/turn/stream?after=4"]);
+  } finally { await server.close(); }
+});
+
+it("keeps heartbeat-only observations healthy, then expires missing bytes without interrupting", async () => {
+  let stopHeartbeat!: () => void;
+  const server = await fixture((_request, response) => {
+    response.writeHead(200, { "content-type": "text/event-stream" });
+    response.flushHeaders();
+    const timer = setInterval(() => response.write(": keepalive\n\n"), 25);
+    stopHeartbeat = () => clearInterval(timer);
+    response.once("close", stopHeartbeat);
+  });
+  const client = new RuntimeClient({ socketPath: join(server.root, "control.sock"), tokenFile: join(server.root, "operator.token"), timeoutMs: 10, streamTransportTimeoutMs: 150 });
+  try {
+    const stream = await client.attachSessionTurn("project-a", "sess-a", { after: 4 });
+    let ended = false;
+    const pending = stream[Symbol.asyncIterator]().next();
+    const rejected = expect(pending).rejects.toBeInstanceOf(Error);
+    void pending.then(() => { ended = true; }, () => { ended = true; });
+    await new Promise(resolve => setTimeout(resolve, 400));
+    expect(ended).toBe(false);
+    stopHeartbeat();
+    await rejected;
+    expect(server.requests.map(request => request.method)).toEqual(["GET"]);
+  } finally { stopHeartbeat?.(); await server.close(); }
 });

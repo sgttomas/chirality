@@ -118,7 +118,10 @@ export function ActivityStrip({ reconnectControl, onOpenDetails, running, phase,
   return <div className="woven-activity-strip" aria-label="Activity status" data-turn-phase={phase ?? (running ? 'working' : 'idle')}>
     {reconnectControl}
     <span role="status">{label}{turn ? ` · ${turn.actions} actions · ${turn.children} children observed` : ''}{!running && turn?.elapsed !== undefined ? ` · Last turn: ${(turn.elapsed / 1000).toFixed(1)} s` : ''}</span>
-    <button type="button" onClick={onOpenDetails}>Details ›</button>
+    <div className="woven-activity-actions">
+      <a href="https://github.com/sgttomas/chirality-app/issues/new/choose" target="_blank" rel="noopener noreferrer" title="Report an issue on GitHub (opens in your browser)">Report issue</a>
+      <button type="button" onClick={onOpenDetails}>Details ›</button>
+    </div>
   </div>;
 }
 

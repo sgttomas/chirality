@@ -19,3 +19,84 @@ Contracts fixed before dispatch (so A, B and C proceed in parallel):
    `{ category: 'core' | 'specialist' | 'superseded'; tier: 'primary' | 'supporting'; order: number; displayName?: string; group?: { key: string; label: string }; supersededBy?: string }`.
    Emitted by the Root index generator from `workflows/catalog.yaml` `navigation`; read through by the Runtime catalog; project and user workflows carry no navigation and are categorised by source in the App.
 2. `window.chirality.appUpdate` bridge: `get(): Promise<AppUpdateState>`, `check(): Promise<AppUpdateState>`, `openDownload(): Promise<{ ok: boolean; error?: string }>`, `subscribe(listener): () => void`, `onShowAbout(listener): () => void`; `AppUpdateState` as defined in `frontend/electron/app-update-ipc-contract.ts` (status `idle | checking | up-to-date | update-available | failed`, `failure.code` in `no-release-source | policy | network | invalid-feed`).
+
+## Packaged hand-off continuation after PR #775
+
+The original source graph is complete and merged at `85f19f019`. This continuation
+has no product-source write target. HELP_HUMAN performs the single build and
+checks, prepares the owner notes, and validates the independent return. A fresh
+read-only Type 2 reviewer checks the frozen record diff and its supporting build
+evidence. Git closeout follows the standing grant. Owner native verification
+precedes deletion of the old build checkout; notarization and publishing remain
+separate owner acts. The review brief and return are recorded beside the earlier
+ones in `briefs/` and `returns/`.
+
+The reviewer uses `gpt-6-astra`, medium, under the owner's prior explicit model
+direction for this session. The handoff's Fable models are unavailable here;
+this does not change the attribution of the earlier Fable work or reviews.
+
+Owner-added live checks: parent directly exercises stall/hard-loss/reload and panel controls; one bounded Type 2 maps the observed reconnect mismatch read-only in parallel. Parent validates diagnosis against direct observations, then assigns any bounded repair and a fresh independent source review before new source is merged or rebuilt. The install-over comparison remains the owner's packaged check.
+
+The later owner request supersedes the source-free scope above. Two bounded
+Astra/medium Type 2 authors completed recovery/cause propagation and the
+constrained panel-width correction in distinct files. Parent validated their
+returns, integrated the actual App/Runtime path through direct UI checks, and
+ran the full suites. A fresh Astra/medium TASK using software-code-review reviews
+the complete frozen diff under `briefs/REVIEW_LIVE_RECOVERY.md`. Only then does
+Git integration proceed, followed by one replacement package from the merge.
+Existing packages remain preserved; the owner performs install-over acceptance.
+
+The first recovery review found an ambiguous-submission identity defect. The
+same bounded recovery author repaired the request, attachment and replay path;
+the parent validates its return with the full suites and a direct reload check.
+A fresh gpt-6-astra/high Type 2 reviews the complete new frozen candidate under
+`briefs/REVIEW_LIVE_RECOVERY_FINAL.md`. This bounded escalation uses the owner's
+standing exception because the boundary determines truthful completion. A
+separate gpt-6-astra/medium packaging child is prepared under
+`briefs/REPLACEMENT_PACKAGE.md` and waits for the reviewed merge revision before
+any setup or build. No source author serves as independent reviewer.
+
+## Product guidance and release-source continuation
+
+The owner's latest request adds automatic shared/role instruction delivery,
+the saved product AGENTS.md direction, updates from the public chirality-app
+release repository, and the `Turn into workflow` label. The package remains
+held to include these changes once. A fresh Astra/medium TASK audits the
+instruction path read-only under `briefs/PRODUCT_INSTRUCTION_AUDIT.md` while
+HELP_HUMAN studies the product draft and release-source integration. Bounded
+authors follow the settled path, with disjoint writes, then a fresh independent
+review covers the complete new candidate. The prior recovery source review
+and live evidence remain valid for that unchanged source.
+
+A separate Astra/medium TASK owns the bounded release-checker and button-label
+files under `briefs/PUBLIC_RELEASE_UPDATES.md`. It does not edit Electron main,
+instruction delivery, product text or governing records, leaving those writes
+available to the parent and instruction author after the audit returns.
+
+The instruction audit found native role wiring absent and hot resume overrides
+ignored by Codex 0.154.0. A bounded Astra/medium Runtime author implements the
+explicit product source, per-thread named role configuration and verified idle
+refresh under `briefs/PRODUCT_INSTRUCTION_RUNTIME.md`. HELP_HUMAN owns the
+product text, App-owned editable file/settings, packaging and governing
+alignment. Source qualification and native child/edit checks precede the fresh
+independent review and consolidated package.
+
+Native instruction editing exposed the stock idle-cache delay; the existing
+Runtime author corrected that bounded integration and retained the failed
+observation. The parent records specialist fan-in in
+`PRODUCT_GUIDANCE_AND_UPDATES.md`. Fresh independent Astra/high review follows
+`briefs/REVIEW_PRODUCT_GUIDANCE.md`, under the standing exception for this
+consequential instruction-delivery boundary. The packaging child still waits.
+
+The first guidance review found an ordinary development-launch default-path
+defect, repaired by the parent with explicit source/package resolution. A native
+edit still returned old guidance; the read-only auditor traced Codex's restored
+reference context omitting changed general developer text. The Runtime author
+now pairs cold-resume configuration with a supported developer-item injection
+before the next user turn. Failure or uncertain acknowledgment must leave that
+turn unstarted. Direct native edit checks and independent review follow.
+
+The owner added Report issue before building. The existing Astra/medium update
+author implements the fixed GitHub link in the main footer under
+`briefs/REPORT_ISSUE.md`, with no user-data attachment. Parent tests native
+navigation, and the final independent review includes the addition.

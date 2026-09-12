@@ -9,6 +9,7 @@ const scriptPath = fileURLToPath(import.meta.url);
 
 export const ROLE_IDS = ['HELP_HUMAN', 'HELPS_HUMANS', 'WORKING_ITEMS', 'TASK'];
 export const ROOT_FILES = ['AGENTS.md', 'CLAUDE.md', 'README.md'];
+export const PRODUCT_AGENTS_SOURCE = 'projects/chirality-app-dev/instructions/AGENTS.md';
 export const DOC_FILES = [
   'DIRECTIVE.md',
   'CONTRACT.md',
@@ -259,7 +260,9 @@ export async function buildExpectedInstructionManifest({
     });
   };
 
-  for (const fileName of ROOT_FILES) await add(fileName, rootFilesRoot, fileName);
+  for (const fileName of ROOT_FILES) {
+    await add(fileName, rootFilesRoot, fileName === 'AGENTS.md' ? PRODUCT_AGENTS_SOURCE : fileName);
+  }
 
   const registryPath = await requireContainedFile(agentsRoot, 'registry.json');
   const registry = JSON.parse(await readFile(registryPath, 'utf8'));
@@ -380,6 +383,7 @@ export async function preparePackagedInstructionRoot({ sourceRoot, docsRoot, out
     throw new Error('output-root must not equal or contain source-root');
   }
   const lexicalInstructionRoots = [
+    path.join(path.resolve(sourceRoot), 'projects', 'chirality-app-dev', 'instructions'),
     path.resolve(docsRoot),
     path.join(path.resolve(sourceRoot), 'agents'),
     path.join(path.resolve(sourceRoot), 'workflows'),

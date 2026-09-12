@@ -107,7 +107,7 @@ it('renders the Plan tab from the host-supplied model and the Skills tab as its 
   const model = { revisions: [{ revision: 1, sourceEvent: { qualificationState: 'qualified' as const, eventId: 'plan-1', occurredAt: '2026-09-12T00:00:00.000Z', qualification: { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const }, plan: '# Plan one\n\nStep.' } }],
     clarifications: [], active: true, refreshing: false, fileCatalog: [], actionsDisabled: false, onRefresh: vi.fn(), onRevise: vi.fn(), onSave: vi.fn(), onExecute: vi.fn(), onSaveAsWorkflow: vi.fn(), onReplyClarification: vi.fn() };
   const plan = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'plan' }} sessionOpen={false} planPanel={model} />);
-  for (const label of ['Revise in chat', 'Execute plan', 'Save as workflow in chat', 'Save plan…']) expect(plan).toContain(label);
+  for (const label of ['Revise in chat', 'Execute plan', 'Turn into workflow', 'Save plan…']) expect(plan).toContain(label);
   expect(plan).toContain('Plan one');
   expect(plan).toContain('aria-label="1 revisions"');
   const skills = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'skills' }} sessionOpen={false} />);

@@ -20,7 +20,7 @@ export function createFakeCodexServer(options = {}) {
 
   async function runTurn(thread, turn, input) {
     // Scripted behaviour keys off the user prompt, which is the last text item; an
-    // additive "Chirality context update:" item may precede it.
+    // attachments may precede it.
     const text = input.filter(item => item.type === "text").at(-1)?.text ?? "";
     const live = { interrupted: false, resolveInterrupt: undefined };
     liveTurns.set(turn.id, live);
@@ -82,16 +82,43 @@ export function createFakeCodexServer(options = {}) {
       case "model/list": return reply({ data: state.signedIn ? models : [], nextCursor: null });
       case "collaborationMode/list": return reply({ data: [{ name: "Plan", mode: "plan", model: null, reasoning_effort: null, developer_instructions: null }, { name: "Default", mode: "default", model: null, reasoning_effort: null, developer_instructions: null }] });
       case "thread/start": {
-        const thread = { id: `thread-${state.nextThread++}`, cwd: params?.cwd ?? "", model: params?.model ?? "gpt-5-codex", mode: "default", policy: { approvalPolicy: params?.approvalPolicy, sandbox: params?.sandbox } };
+        const thread = { history: params?.developerInstructions ? [{ type: "message", role: "developer", content: [{ type: "input_text", text: params.developerInstructions }] }] : [], loaded: true, developerInstructions: params?.developerInstructions, config: params?.config, id: `thread-${state.nextThread++}`, cwd: params?.cwd ?? "", model: params?.model ?? "gpt-5-codex", mode: "default", policy: { approvalPolicy: params?.approvalPolicy, sandbox: params?.sandbox } };
         state.threads.set(thread.id, thread);
         notify("thread/started", { thread: { id: thread.id, parentThreadId: null } });
         return reply({ thread: { id: thread.id, preview: "", modelProvider: "openai", createdAt: 0, updatedAt: 0, path: null, cwd: thread.cwd, cliVersion: "0.154.0", source: "vscode", gitInfo: null, name: null, ephemeral: false, turns: [] }, model: thread.model, modelProvider: "openai", cwd: thread.cwd, instructionSources: [], approvalPolicy: thread.policy.approvalPolicy ?? "on-request", sandbox: { type: "readOnly", networkAccess: false }, reasoningEffort: null });
       }
       case "thread/resume": {
         const existing = state.threads.get(params?.threadId);
-        const thread = existing ?? { id: params?.threadId, cwd: params?.cwd ?? "", model: params?.model ?? "gpt-5-codex", mode: "default", policy: {} };
+        const thread = existing ?? { history: [], id: params?.threadId, cwd: params?.cwd ?? "", model: params?.model ?? "gpt-5-codex", mode: "default", policy: {} };
+        // Cold resume changes config but retains reconstructed model-visible history.
+        if (!thread.loaded) { thread.developerInstructions = params?.developerInstructions; thread.config = params?.config; }
+        thread.loaded = true;
         state.threads.set(thread.id, thread);
-        return reply({ thread: { id: thread.id, cwd: thread.cwd }, model: thread.model, modelProvider: "openai", cwd: thread.cwd, instructionSources: [], approvalPolicy: "on-request", sandbox: { type: "readOnly", networkAccess: false }, reasoningEffort: null });
+        return reply({ thread: { id: thread.id, cwd: thread.cwd, status: { type: "idle" } }, model: thread.model, modelProvider: "openai", cwd: thread.cwd, instructionSources: [], approvalPolicy: "on-request", sandbox: { type: "readOnly", networkAccess: false }, reasoningEffort: null });
+      }
+      case "thread/inject_items": {
+        const thread = state.threads.get(params?.threadId);
+        if (!thread?.loaded) return fail(-32602, "thread is not loaded");
+        const outcome = state.injectionOutcome;
+        state.injectionOutcome = undefined;
+        if (outcome === "reject") return fail(-32000, "injection rejected");
+        thread.history ??= [];
+        thread.history.push(...structuredClone(params.items));
+        if (outcome === "applied-error") return fail(-32000, "injection persistence acknowledgement failed");
+        return reply({});
+      }
+      case "thread/loaded/list": return reply({ data: [...state.threads.values()].filter(thread => thread.loaded).map(thread => thread.id), nextCursor: null });
+      case "thread/read": {
+        const thread = state.threads.get(params?.threadId);
+        return reply({ thread: { id: params?.threadId, parentThreadId: thread?.parentThreadId ?? null, status: { type: thread?.loaded ? thread.status ?? "idle" : "notLoaded" } } });
+      }
+      case "thread/unsubscribe": {
+        const thread = state.threads.get(params?.threadId);
+        if (!thread?.loaded) return reply({ status: "notLoaded" });
+        thread.loaded = false;
+        reply({ status: "unsubscribed" });
+        notify("thread/closed", { threadId: thread.id });
+        return;
       }
       case "thread/settings/update": {
         const thread = state.threads.get(params?.threadId);
@@ -102,6 +129,7 @@ export function createFakeCodexServer(options = {}) {
       case "turn/start": {
         const thread = state.threads.get(params?.threadId);
         if (!thread) return fail(-32602, "unknown thread");
+        state.notes.push({ modelHistory: structuredClone(thread.history ?? []) });
         const turn = { id: `turn-${state.nextTurn++}`, items: [], status: "inProgress", error: null };
         reply({ turn });
         void runTurn(thread, turn, Array.isArray(params?.input) ? params.input : []);

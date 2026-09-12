@@ -630,6 +630,16 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     });
   }, [workspaceState.openDocumentPath, primarySessionId, stateHydrated]);
 
+  const stacked = availableWidth < 960;
+  const leftWidth = workspaceState.navigatorCollapsed ? 56 : Math.min(clamp(workspaceState.navigatorWidth, 220, 360), Math.max(220, availableWidth - 724));
+  // Keep the preferred per-tab width in state; announce and resize the width
+  // that fits the current layout without replacing it when the viewport changes.
+  const effectiveRightWidth = Math.max(280, Math.min(
+    workspaceState.rightPanelExpanded ? Math.round(availableWidth * 0.6 / 8) * 8 : rightWidth,
+    availableWidth - leftWidth - 444
+  ));
+  const visibleRightWidth = workspaceState.coordinationCollapsed ? 56 : effectiveRightWidth;
+
   const beginResize = useCallback(
     (event: PointerEvent<HTMLDivElement>, target: ResizeTarget): void => {
       if (event.button !== 0) {
@@ -640,7 +650,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       const startValue =
         target === 'navigator'
           ? clamp(workspaceState.navigatorWidth, 220, 360)
-          : rightWidth;
+          : effectiveRightWidth;
       resizeRef.current = {
         target,
         startX: event.clientX,
@@ -648,7 +658,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
         startValue
       };
     },
-    [workspaceState, rightWidth, restoreExpanded]
+    [workspaceState, effectiveRightWidth, restoreExpanded]
   );
 
   useEffect(() => {
@@ -705,7 +715,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
             ? 280
             : key === 'End'
               ? maximumRightWidth
-              : rightWidth + (key === 'ArrowLeft' ? step : -step);
+              : effectiveRightWidth + (key === 'ArrowLeft' ? step : -step);
         updateWorkspaceState({
           rightPanelWidths: { ...workspaceState.rightPanelWidths, [widthKey]: clamp(value, 280, maximumRightWidth) },
           coordinationWidth: clamp(value, 280, maximumRightWidth),
@@ -714,7 +724,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
 
       }
     },
-    [updateWorkspaceState, workspaceState, rightWidth, widthKey, restoreExpanded, maximumRightWidth]
+    [updateWorkspaceState, workspaceState, effectiveRightWidth, widthKey, restoreExpanded, maximumRightWidth]
   );
 
   const toggleExpanded = () => {
@@ -723,12 +733,6 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       preExpandState: { rightWidth, leftCollapsed: workspaceState.navigatorCollapsed },
       navigatorCollapsed: true, coordinationCollapsed: false });
   };
-  const stacked = availableWidth < 960;
-  const leftWidth = workspaceState.navigatorCollapsed ? 56 : Math.min(clamp(workspaceState.navigatorWidth, 220, 360), Math.max(220, availableWidth - 724));
-  const visibleRightWidth = workspaceState.coordinationCollapsed ? 56 : Math.max(280, Math.min(
-    workspaceState.rightPanelExpanded ? Math.round(availableWidth * 0.6 / 8) * 8 : rightWidth,
-    availableWidth - leftWidth - 444
-  ));
   const style = {
     ...(!stacked ? { gridTemplateColumns: `${leftWidth}px 12px minmax(420px, 1fr) 12px ${visibleRightWidth}px` } : {}),
     '--woven-activity-height': '32px'
@@ -896,7 +900,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           aria-orientation="vertical"
           aria-valuemin={280}
           aria-valuemax={maximumRightWidth}
-          aria-valuenow={rightWidth}
+          aria-valuenow={effectiveRightWidth}
           onPointerDown={(event) => {
             beginResize(event, 'coordination');
           }}

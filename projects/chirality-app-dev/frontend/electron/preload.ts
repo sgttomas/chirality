@@ -6,6 +6,7 @@ import {
   type RuntimeConnectivitySnapshot
 } from './runtime-connectivity';
 import { RUNTIME_SERVICE_RESTART_CHANNEL } from './runtime-control-ipc-contract';
+import { PRODUCT_INSTRUCTIONS_CHANNEL, type ProductInstructionsResult } from './product-instructions-ipc-contract';
 import {
   APP_ABOUT_SHOW_CHANNEL,
   APP_UPDATE_CHANGED_CHANNEL,
@@ -37,6 +38,11 @@ contextBridge.exposeInMainWorld('chirality', {
     node: process.versions.node
   },
   selectDirectory: () => ipcRenderer.invoke(SELECT_DIRECTORY_CHANNEL),
+  instructions: {
+    get: (): Promise<ProductInstructionsResult> => ipcRenderer.invoke(PRODUCT_INSTRUCTIONS_CHANNEL, 'get'),
+    open: (): Promise<ProductInstructionsResult> => ipcRenderer.invoke(PRODUCT_INSTRUCTIONS_CHANNEL, 'open'),
+    restore: (): Promise<ProductInstructionsResult> => ipcRenderer.invoke(PRODUCT_INSTRUCTIONS_CHANNEL, 'restore')
+  },
   folders: {
     registerRecent: (path: string) => ipcRenderer.invoke('chirality:folder-register-recent', path),
     pathForFile: (file: File): string => {

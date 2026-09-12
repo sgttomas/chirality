@@ -1,8 +1,9 @@
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import {
   RuntimeError,
   type DelegatedHarnessProcessSupervisorPort,
   type DelegatedTurnProgressEvent,
+  type InstructionHistoryInjection,
   type NativePlanClarificationAnswers,
   type NativePlanClarificationPrompt,
   type NativePlanTransportEvent,
@@ -29,6 +30,8 @@ import { JSON_RPC_METHOD_NOT_FOUND, NOOP_CODEX_LOGGER, type CodexAppServerExit, 
  */
 
 export const APPROVAL_REQUEST_METHODS = Object.freeze(new Set(["item/commandExecution/requestApproval", "item/fileChange/requestApproval", "item/permissions/requestApproval", "execCommandApproval", "applyPatchApproval"]));
+// Stock thread shutdown allows ten seconds; retain two seconds for scheduling.
+export const INSTRUCTION_UNLOAD_TIMEOUT_MS = 12_000;
 const USER_INPUT_METHOD = "item/tool/requestUserInput";
 const ELICITATION_METHOD = "mcpServer/elicitation/request";
 const DYNAMIC_TOOL_METHOD = "item/tool/call";
@@ -43,6 +46,7 @@ export interface CodexSupervisorOptions {
   maxWorkers?: number;
   /** Bound on queued progress events per turn before the oldest are dropped with a warning. */
   maxQueuedProgress?: number;
+  instructionUnloadTimeoutMs?: number;
 }
 
 interface PendingRequestEntry {
@@ -52,6 +56,7 @@ interface PendingRequestEntry {
 interface Entry {
   handle: WorkerHandle;
   envelope: CodexTurnEnvelope;
+  instructionHistoryInjection?: InstructionHistoryInjection;
   threadId: string;
   /** Unknown until the turn/start response; notifications that arrive first are deferred behind the started event. */
   turnId: string | undefined;
@@ -69,7 +74,7 @@ interface Entry {
   settle(result: WorkerResult): void;
   settled: boolean;
 }
-interface ThreadState { lastPolicy?: PolicySelection; lastMode?: "plan" | "default"; model?: string; hostGeneration: number }
+interface ThreadState { instructionDigest: string; instructionHistoryInjection?: InstructionHistoryInjection; lastPolicy?: PolicySelection; lastMode?: "plan" | "default"; model?: string; hostGeneration: number }
 
 const id = (value: unknown): value is string => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(value);
 const unavailable = (message: string, details?: Record<string, unknown>) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503, details);
@@ -91,6 +96,11 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
   private readonly entries = new Map<string, Entry>();
   private readonly byThread = new Map<string, Entry>();
   private readonly childThreads = new Map<string, string>();
+  private readonly activeChildren = new Set<string>();
+  private readonly acquiringThreads = new Set<string>();
+  private readonly closedThreads = new Set<string>();
+  private readonly pendingUnloads = new Set<string>();
+  private readonly closeWaiters = new Map<string, () => void>();
   private readonly threads = new Map<string, ThreadState>();
   private readonly retirements = new Map<string, Promise<void>>();
   private readonly acquiring = new Set<string>();
@@ -110,47 +120,83 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
     return state !== undefined && state.hostGeneration === this.options.host.generation ? state : undefined;
   }
 
-  async acquire(workerId: string, input: string): Promise<WorkerHandle> {
+  async acquire(workerId: string, input: string, signal?: AbortSignal): Promise<WorkerHandle> {
     if (this.closed) throw unavailable("Codex supervisor is closed");
+    signal?.throwIfAborted();
     if (!id(workerId)) throw new RuntimeError("INVALID_REQUEST", "Invalid worker identity");
     if (this.entries.has(workerId) || this.acquiring.has(workerId)) throw unavailable("Codex worker is already acquired");
     if (this.entries.size + this.acquiring.size >= (this.options.maxWorkers ?? 16)) throw unavailable("Codex worker capacity exceeded");
     if (typeof input !== "string" || Buffer.byteLength(input) > 4 * 1024 * 1024) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex turn envelope");
     const envelope = parseCodexTurnEnvelope(input);
+    if (envelope.contextUpdate !== undefined) throw new RuntimeError("INVALID_REQUEST", "Persistent guidance must use developerInstructions; contextUpdate is retired");
+    if (envelope.resumeThreadId !== undefined) {
+      if (this.acquiringThreads.has(envelope.resumeThreadId) || this.byThread.has(envelope.resumeThreadId)) throw unavailable("Codex thread already has a live turn or instruction adoption");
+      this.acquiringThreads.add(envelope.resumeThreadId);
+    }
     this.acquiring.add(workerId);
     try {
       const host = this.options.host;
       const hostGeneration = host.generation;
       const model = envelope.model;
+      const instructionDigest = createHash("sha256").update(JSON.stringify([envelope.developerInstructions ?? null, envelope.nativeRoleConfig ?? null])).digest("hex");
       let threadId: string;
       let threadModel: string | undefined;
       let state = envelope.resumeThreadId === undefined ? undefined : this.threadState(envelope.resumeThreadId);
+      if (envelope.resumeThreadId !== undefined && (state === undefined || state.instructionDigest !== instructionDigest || this.pendingUnloads.has(envelope.resumeThreadId))) {
+        await this.prepareInstructionResume(envelope.resumeThreadId, hostGeneration, signal);
+        state = undefined;
+      }
+      signal?.throwIfAborted();
       if (envelope.resumeThreadId !== undefined && state === undefined) {
-        const resumed = await host.request<{ thread: { id: string }; model: string }>("thread/resume", { threadId: envelope.resumeThreadId, cwd: envelope.cwd, developerInstructions: envelope.developerInstructions ?? null, approvalPolicy: envelope.policy.approvalPolicy, sandbox: envelope.policy.sandbox, ...(model === undefined ? {} : { model }) });
+        const resumed = await host.request<{ thread: { id: string; status: { type: string } }; model: string }>("thread/resume", { threadId: envelope.resumeThreadId, cwd: envelope.cwd, developerInstructions: envelope.developerInstructions ?? null, ...(envelope.nativeRoleConfig === undefined ? {} : { config: envelope.nativeRoleConfig }), approvalPolicy: envelope.policy.approvalPolicy, sandbox: envelope.policy.sandbox, ...(model === undefined ? {} : { model }) });
+        if (resumed.thread.id !== envelope.resumeThreadId || host.generation !== hostGeneration) throw unavailable("Provider changed during instruction adoption; retry the turn");
+        if (resumed.thread.status?.type !== "idle") throw new RuntimeError("INSTRUCTION_ADOPTION_PENDING", "Instruction update pending: resumed thread is not confirmed idle; no developer item or user turn was sent.", 503, { reason: "INSTRUCTION_ADOPTION_PENDING", stage: "resume", threadId: envelope.resumeThreadId });
         threadId = resumed.thread.id; threadModel = resumed.model;
-        state = { lastPolicy: { ...envelope.policy }, model: threadModel, hostGeneration };
+        this.closedThreads.delete(threadId); this.pendingUnloads.delete(threadId);
+        // Cold resume restores reference context and history independently of
+        // config.developer_instructions in stock 0.154. Explicitly supersede the
+        // prior Chirality guidance in developer-level model-visible history.
+        const text = "The following is the current Chirality guidance. It supersedes earlier Chirality-provided product, active-role, catalog, and selected-method instructions in this conversation. Earlier versions remain historical context, not current instructions. This update does not replace Codex base instructions or change tools, permissions, applicable project guidance, or conversation history.\n\nCurrent Chirality developer instructions:\n\n" + (envelope.developerInstructions ?? "");
+        const instructionHistoryInjection: InstructionHistoryInjection = { method: "thread/inject_items", text, sha256: createHash("sha256").update(text).digest("hex") };
+        try {
+          signal?.throwIfAborted();
+          const acknowledged = await host.request<unknown>("thread/inject_items", { threadId, items: [{ type: "message", role: "developer", content: [{ type: "input_text", text }] }] });
+          if (!acknowledged || typeof acknowledged !== "object" || Array.isArray(acknowledged) || Object.keys(acknowledged).length !== 0 || host.generation !== hostGeneration || this.closed) throw unavailable("Developer history injection was not acknowledged");
+          signal?.throwIfAborted();
+        } catch (error) {
+          // A lost acknowledgement may have persisted the item. A retry must
+          // re-establish the cold boundary and supersede it again, never infer
+          // exactly-once delivery or reuse a config-only accepted digest.
+          this.threads.delete(threadId); this.pendingUnloads.add(threadId);
+          signal?.throwIfAborted();
+          throw new RuntimeError("INSTRUCTION_ADOPTION_PENDING", "Instruction update pending: developer history injection was not confirmed. Retry in this conversation; no new user turn was sent.", 503, { reason: "INSTRUCTION_ADOPTION_PENDING", stage: "developer-history-injection", threadId });
+        }
+        state = { instructionDigest, instructionHistoryInjection, lastPolicy: { ...envelope.policy }, model: threadModel, hostGeneration };
+
         this.threads.set(threadId, state);
         this.logger.warn("codex.thread.resumed", { threadId, workerId });
       } else if (state === undefined) {
-        const started = await host.request<{ thread: { id: string }; model: string }>("thread/start", { cwd: envelope.cwd, developerInstructions: envelope.developerInstructions ?? null, approvalPolicy: envelope.policy.approvalPolicy, sandbox: envelope.policy.sandbox, ...(model === undefined ? {} : { model }), ephemeral: false, serviceName: "chirality" });
+        const started = await host.request<{ thread: { id: string }; model: string }>("thread/start", { cwd: envelope.cwd, developerInstructions: envelope.developerInstructions ?? null, ...(envelope.nativeRoleConfig === undefined ? {} : { config: envelope.nativeRoleConfig }), approvalPolicy: envelope.policy.approvalPolicy, sandbox: envelope.policy.sandbox, ...(model === undefined ? {} : { model }), ephemeral: false, serviceName: "chirality" });
         threadId = started.thread.id; threadModel = started.model;
-        state = { lastPolicy: { ...envelope.policy }, model: threadModel, hostGeneration };
+        state = { instructionDigest, lastPolicy: { ...envelope.policy }, model: threadModel, hostGeneration };
         this.threads.set(threadId, state);
       } else {
         threadId = envelope.resumeThreadId!;
         threadModel = state.model;
       }
+      signal?.throwIfAborted();
+      if (this.closed) throw unavailable("Codex supervisor is closed");
       if (this.byThread.has(threadId)) throw unavailable("Codex thread already has a live turn");
       const requestedMode: "plan" | "default" = envelope.interactionMode === "native-plan" ? "plan" : "default";
       if (state.lastMode !== requestedMode) {
         await host.request("thread/settings/update", { threadId, collaborationMode: { mode: requestedMode, settings: { model: model ?? threadModel ?? state.model ?? null, reasoning_effort: envelope.reasoningEffort ?? null, developer_instructions: null } } });
         state.lastMode = requestedMode;
       }
+      signal?.throwIfAborted();
       const policyChanged = !samePolicy(state.lastPolicy, envelope.policy);
       state.lastPolicy = { ...envelope.policy };
       if (model !== undefined) state.model = model;
       const inputItems: unknown[] = [];
-      if (envelope.contextUpdate !== undefined) inputItems.push({ type: "text", text: envelope.contextUpdate });
       inputItems.push({ type: "text", text: envelope.prompt });
       for (const attachment of envelope.attachments ?? []) {
         if (attachment.type === "text") inputItems.push({ type: "text", text: attachment.text });
@@ -164,7 +210,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       const result = new Promise<WorkerResult>(resolve => { settle = resolve; });
       let adopt!: (turnId: string | undefined) => void;
       const turnIdReady = new Promise<string | undefined>(resolve => { adopt = resolve; });
-      const entry: Entry = { handle, envelope, threadId, turnId: undefined, turnIdReady, adopt, deferred: [], hostGeneration, progress: [], nativePlanEvents: [], pending: new Map(), text: "", emittedByItem: new Map(), result, settle: value => { if (entry.settled) return; entry.settled = true; entry.handle.state = "exited"; entry.adopt(undefined); settle(value); }, settled: false };
+      const entry: Entry = { handle, envelope, ...(state.instructionHistoryInjection === undefined ? {} : { instructionHistoryInjection: state.instructionHistoryInjection }), threadId, turnId: undefined, turnIdReady, adopt, deferred: [], hostGeneration, progress: [], nativePlanEvents: [], pending: new Map(), text: "", emittedByItem: new Map(), result, settle: value => { if (entry.settled) return; entry.settled = true; entry.handle.state = "exited"; entry.adopt(undefined); settle(value); }, settled: false };
       this.entries.set(workerId, entry);
       this.byThread.set(threadId, entry);
       let started: { turn: { id: string; status: string } };
@@ -181,7 +227,84 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       }
       this.adoptTurn(entry, started.turn.id);
       return { ...handle };
-    } finally { this.acquiring.delete(workerId); }
+    } finally { this.acquiring.delete(workerId); if (envelope.resumeThreadId !== undefined) this.acquiringThreads.delete(envelope.resumeThreadId); }
+  }
+
+  /** Codex 0.154 ignores hot resume overrides. Unsubscribe is not proof of unload. */
+  private async prepareInstructionResume(threadId: string, hostGeneration: number, signal?: AbortSignal): Promise<void> {
+    const pending = (reason: string) => new RuntimeError("INSTRUCTION_ADOPTION_PENDING", `Instruction update pending: ${reason}. Wait for active work or thread unload, then retry. If this persists, restart Chirality after active work finishes and retry in this conversation; no new turn was sent.`, 503, { reason: "INSTRUCTION_ADOPTION_PENDING", threadId });
+    // Read the current loaded tree, including descendants that outlived the
+    // primary's last turn. Never stop descendants as an instruction refresh.
+    try {
+      signal?.throwIfAborted();
+      let cursor: string | undefined;
+      const seen = new Set<string>();
+      const loaded = new Map<string, { parent?: string; active: boolean }>();
+      do {
+        const page = await this.options.host.request<{ data: string[]; nextCursor: string | null }>("thread/loaded/list", { ...(cursor === undefined ? {} : { cursor }) });
+        if (!Array.isArray(page.data)) throw pending("loaded-thread evidence is unavailable");
+        for (const id of page.data) {
+          const result = await this.options.host.request<{ thread: { parentThreadId?: string | null; status: { type: string } } }>("thread/read", { threadId: id, includeTurns: false });
+          const status = result.thread.status?.type;
+          loaded.set(id, { ...(result.thread.parentThreadId ? { parent: result.thread.parentThreadId } : {}), active: !["idle", "systemError", "notLoaded"].includes(status) });
+          if (["idle", "systemError", "notLoaded"].includes(status)) this.activeChildren.delete(id);
+        }
+        cursor = page.nextCursor ?? undefined;
+        if (cursor !== undefined && seen.has(cursor)) throw pending("loaded-thread pagination did not converge");
+        if (cursor !== undefined) seen.add(cursor);
+      } while (cursor !== undefined);
+      const descendant = (id: string): boolean => {
+        const visited = new Set<string>();
+        let parent = loaded.get(id)?.parent ?? this.childThreads.get(id);
+        while (parent && !visited.has(parent)) {
+          if (parent === threadId) return true;
+          visited.add(parent); parent = loaded.get(parent)?.parent ?? this.childThreads.get(parent);
+        }
+        return false;
+      };
+      if (loaded.get(threadId)?.active || [...loaded].some(([id, value]) => value.active && descendant(id)) || [...this.activeChildren].some(descendant)) throw pending("the primary or a native descendant is active");
+      signal?.throwIfAborted();
+      if (this.options.host.generation !== hostGeneration || this.closed) throw pending("the provider changed");
+      if (!loaded.has(threadId)) { this.threads.delete(threadId); return; }
+      this.closedThreads.delete(threadId);
+      let finish!: () => void;
+      const closed = new Promise<void>(resolve => { finish = resolve; });
+      this.closeWaiters.set(threadId, finish);
+      signal?.addEventListener("abort", finish, { once: true });
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      try {
+        this.pendingUnloads.add(threadId);
+        const result = await this.options.host.request<{ status: string }>("thread/unsubscribe", { threadId });
+        if (result.status !== "notLoaded") {
+          if (!["unsubscribed", "notSubscribed"].includes(result.status)) throw pending("unsubscribe was not accepted");
+          await Promise.race([closed, new Promise<void>(resolve => { timer = setTimeout(resolve, this.options.instructionUnloadTimeoutMs ?? INSTRUCTION_UNLOAD_TIMEOUT_MS); })]);
+          signal?.throwIfAborted();
+          if (!this.closedThreads.has(threadId) && (await this.loadedThreadIds()).has(threadId)) throw pending("Codex has not confirmed thread unload");
+        }
+        if (this.options.host.generation !== hostGeneration || this.closed) throw pending("the provider changed");
+        this.threads.delete(threadId);
+      } finally { if (timer) clearTimeout(timer); this.closeWaiters.delete(threadId); signal?.removeEventListener("abort", finish); }
+    } catch (error) {
+      signal?.throwIfAborted();
+      if (error instanceof RuntimeError && error.details?.reason === "INSTRUCTION_ADOPTION_PENDING") throw error;
+      throw pending("safe unload could not be verified");
+    }
+  }
+
+  /** A missed closed notification is recoverable only with complete absence evidence. */
+  private async loadedThreadIds(): Promise<Set<string>> {
+    const loaded = new Set<string>();
+    const seen = new Set<string>();
+    let cursor: string | undefined;
+    do {
+      const page = await this.options.host.request<{ data: string[]; nextCursor: string | null }>("thread/loaded/list", { ...(cursor === undefined ? {} : { cursor }) });
+      if (!Array.isArray(page.data) || page.data.some(id => typeof id !== "string") || (page.nextCursor !== null && typeof page.nextCursor !== "string")) throw unavailable("Invalid loaded-thread evidence");
+      for (const id of page.data) loaded.add(id);
+      cursor = page.nextCursor ?? undefined;
+      if (cursor !== undefined && seen.has(cursor)) throw unavailable("Loaded-thread pagination did not converge");
+      if (cursor !== undefined) seen.add(cursor);
+    } while (cursor !== undefined);
+    return loaded;
   }
 
   async inventory(): Promise<readonly WorkerHandle[]> { return [...this.entries.values()].map(entry => ({ ...entry.handle })); }
@@ -219,7 +342,6 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       if (!entry.settled) entry.settle(this.failedResult(entry, "turn retired before its terminal"));
       if (this.entries.get(workerId) === entry) this.entries.delete(workerId);
       if (this.byThread.get(entry.threadId) === entry) this.byThread.delete(entry.threadId);
-      for (const [child, parent] of this.childThreads) if (parent === entry.threadId) this.childThreads.delete(child);
     })();
     this.retirements.set(key, attempt);
     if (this.retirements.size > 1024) { const oldest = this.retirements.keys().next().value; if (oldest !== undefined && oldest !== key) this.retirements.delete(oldest); }
@@ -238,7 +360,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
     entry.turnId = turnId;
     entry.adopt(turnId);
     const deferred = entry.deferred.splice(0);
-    this.push(entry, { type: "started", providerThreadId: entry.threadId, providerTurnId: turnId });
+    this.push(entry, { type: "started", providerThreadId: entry.threadId, providerTurnId: turnId, ...(entry.instructionHistoryInjection === undefined ? {} : { instructionHistoryInjection: entry.instructionHistoryInjection }) });
     for (const event of deferred) this.push(entry, { ...event, providerTurnId: turnId } as DelegatedTurnProgressEvent);
   }
 
@@ -305,14 +427,37 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
   }
   private entryForThread(threadId: unknown): Entry | undefined {
     if (typeof threadId !== "string") return undefined;
-    return this.byThread.get(threadId) ?? this.byThread.get(this.childThreads.get(threadId) ?? "");
+    let current: string = threadId;
+    const visited = new Set<string>();
+    while (!visited.has(current)) {
+      visited.add(current);
+      const entry = this.byThread.get(current);
+      if (entry) return entry;
+      const parent = this.childThreads.get(current);
+      if (!parent) return undefined;
+      current = parent;
+    }
+    return undefined;
   }
   private handleNotification(notification: CodexNotification): void {
     const params = record(notification.params);
     const method = notification.method;
     if (method === "thread/started") {
       const thread = record(params.thread);
-      if (typeof thread.parentThreadId === "string" && typeof thread.id === "string" && this.byThread.has(thread.parentThreadId)) this.childThreads.set(thread.id, thread.parentThreadId);
+      if (typeof thread.parentThreadId === "string" && typeof thread.id === "string") {
+        this.childThreads.set(thread.id, thread.parentThreadId);
+        if (record(thread.status).type !== "idle") this.activeChildren.add(thread.id);
+      }
+    }
+    if (typeof params.threadId === "string") {
+      if (method === "thread/closed") {
+        this.closedThreads.add(params.threadId); this.threads.delete(params.threadId);
+        this.activeChildren.delete(params.threadId); this.closeWaiters.get(params.threadId)?.();
+      }
+      if (this.childThreads.has(params.threadId)) {
+        if (method === "turn/started" || (method === "thread/status/changed" && record(params.status).type === "active")) this.activeChildren.add(params.threadId);
+        if (method === "turn/completed" || (method === "thread/status/changed" && ["idle", "systemError", "notLoaded"].includes(String(record(params.status).type)))) this.activeChildren.delete(params.threadId);
+      }
     }
     const entry = this.entryForThread(params.threadId ?? record(params.thread).id ?? record(params.thread).parentThreadId);
     if (entry === undefined) return;
@@ -376,6 +521,8 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
     }
   }
   private handleExit(exit: CodexAppServerExit, generation: number): void {
+    this.activeChildren.clear(); this.childThreads.clear(); this.closedThreads.clear(); this.pendingUnloads.clear();
+    for (const finish of this.closeWaiters.values()) finish();
     const reason = `codex app-server exited during the turn (code ${exit.code ?? "null"}, signal ${exit.signal ?? "null"})`;
     for (const entry of this.entries.values()) {
       if (entry.hostGeneration !== generation || entry.settled) continue;

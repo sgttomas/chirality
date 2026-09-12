@@ -459,6 +459,12 @@ describe("Unix-domain runtime daemon", () => {
     const replayed = await request(socketPath, `${base}/turn/stream?after=0`, token);
     expect(replayed.status).toBe(200);
     expect(replayed.body.match(/^id: /gmu)).toHaveLength(6);
+    const matched = await request(socketPath, `${base}/turn/stream?after=0&turnId=${finished.turnId}`, token);
+    expect(matched.status).toBe(200);
+    const stale = await request(socketPath, `${base}/turn/stream?after=0&turnId=new-submission`, token);
+    expect(stale.status).toBe(404);
+    expect(JSON.parse(stale.body)).toMatchObject({ error: { code: "TURN_NOT_ACTIVE" } });
+    expect(stale.body).not.toContain('event: chat:delta');
   });
 
   it("interrupts only through the interrupt route and reports 404 TURN_NOT_ACTIVE without a turn", async () => {
@@ -514,7 +520,16 @@ describe("Unix-domain runtime daemon", () => {
     expect(await stream.status).toBe(200);
     await new Promise((resolve) => setTimeout(resolve, 120));
     expect(gated.interrupts).toBe(0);
+    const state = JSON.parse((await request(socketPath, `/v1/projects/keepalive-project/sessions/${session.sessionId}/turn/state`, token)).body);
+    const attached = streamRequest(socketPath, `/v1/projects/keepalive-project/sessions/${session.sessionId}/turn/stream?after=${state.lastSeq}`, token);
+    // Headers and heartbeat arrive even when no buffered/model frame is due.
+    expect(await attached.status).toBe(200);
+    await new Promise(resolve => setTimeout(resolve, 80));
+    expect(gated.interrupts).toBe(0);
     gated.release();
+    const attachedBody = (await attached.chunks).join("");
+    expect(attachedBody).toContain(": keepalive\n\n");
+    expect(attachedBody).not.toContain("id: 1\n");
     const body = (await stream.chunks).join("");
     expect(body.split(": keepalive\n\n").length - 1).toBeGreaterThanOrEqual(2);
     expect(body.indexOf(": keepalive")).toBeGreaterThan(body.indexOf("id: 1\nevent: harness:event\n"));

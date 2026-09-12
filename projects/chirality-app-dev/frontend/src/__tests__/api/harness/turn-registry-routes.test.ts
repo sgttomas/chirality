@@ -6,6 +6,7 @@ import * as streamRoute from '../../../app/api/harness/session/[id]/turn/stream/
 import * as stateRoute from '../../../app/api/harness/session/[id]/turn/state/route';
 import * as requestsRoute from '../../../app/api/harness/session/[id]/requests/route';
 import * as answerRoute from '../../../app/api/harness/session/[id]/requests/[requestId]/answer/route';
+import { turnStreamResponse, TURN_STREAM_KEEPALIVE_MS } from '../../../lib/harness/http';
 import { requireServerRequestAnswer } from '../../../lib/harness/server-request-answer';
 import { createFakeDaemonHarnessPort } from './fake-daemon-harness-port';
 
@@ -25,6 +26,7 @@ const params = (id: string, requestId = '') => ({ params: Promise.resolve({ id, 
 afterEach(() => {
   resetDaemonHarnessPortForTests();
   vi.restoreAllMocks();
+  vi.useRealTimers();
 });
 
 describe('session turn stream route', () => {
@@ -43,19 +45,20 @@ describe('session turn stream route', () => {
     installDaemonHarnessPort(port({ attachTurn, interrupt }));
 
     const response = await streamRoute.GET(
-      new Request('http://localhost/api/harness/session/sess-1/turn/stream?after=6'),
+      new Request('http://localhost/api/harness/session/sess-1/turn/stream?after=6&turnId=turn-1'),
       params('sess-1')
     );
     expect(response.status).toBe(200);
     expect(response.headers.get('content-type')).toContain('text/event-stream');
     const reader = response.body!.getReader();
+    expect(new TextDecoder().decode((await reader.read()).value)).toBe('event: transport:connected\ndata: {}\n\n');
     const first = await reader.read();
     expect(new TextDecoder().decode(first.value)).toBe('id: 7\nevent: harness:event\ndata: {"type":"message.delta","text":"hi"}\n\n');
 
     await reader.cancel();
     expect(cancel).toHaveBeenCalledOnce();
     expect(interrupt).not.toHaveBeenCalled();
-    expect(attachTurn).toHaveBeenCalledWith('sess-1', 6, { signal: expect.any(AbortSignal) });
+    expect(attachTurn).toHaveBeenCalledWith('sess-1', 6, { signal: expect.any(AbortSignal), turnId: 'turn-1' });
   });
 
   it('defaults after to 0 and rejects a malformed value before touching the Runtime', async () => {
@@ -133,4 +136,25 @@ describe('session turn state and request routes', () => {
     expect(requireServerRequestAnswer({ kind: 'elicitation', action: 'decline' })).toEqual({ kind: 'elicitation', action: 'decline' });
     expect(() => requireServerRequestAnswer(null)).toThrow(HarnessError);
   });
+});
+
+
+it('proxy keepalives never replace upstream health or hide a failed Runtime subscription', async () => {
+  vi.useFakeTimers();
+  let fail!: (error: Error) => void;
+  const cancel = vi.fn(async () => undefined);
+  const response = turnStreamResponse({ events: (async function* () {
+    await new Promise<void>((_resolve, reject) => { fail = reject; });
+  })(), cancel });
+  const reader = response.body!.getReader();
+  const text = async () => new TextDecoder().decode((await reader.read()).value);
+  expect(await text()).toContain('event: transport:connected');
+  await vi.advanceTimersByTimeAsync(TURN_STREAM_KEEPALIVE_MS);
+  expect(await text()).toBe(': keepalive\n\n');
+  const pending = reader.read();
+  const rejected = expect(pending).rejects.toThrow('Runtime byte deadline');
+  fail(new Error('Runtime byte deadline'));
+  await rejected;
+  expect(vi.getTimerCount()).toBe(0);
+  expect(cancel).not.toHaveBeenCalled();
 });

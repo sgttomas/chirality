@@ -51,7 +51,7 @@ describe("Codex app-server client", () => {
   it("redacts e-mail-like tokens from diagnostics and pins the app-server arguments", () => {
     // The address-like token is assembled at runtime so no literal address lives in the fixture.
     expect(redactAccountText(`signed in as ${["someone", "example.test"].join("@")} today`)).toBe("signed in as [redacted] today");
-    expect([...CODEX_APP_SERVER_ARGUMENTS]).toEqual(["-c", 'cli_auth_credentials_store="file"', "app-server"]);
+    expect([...CODEX_APP_SERVER_ARGUMENTS]).toEqual(["-c", 'cli_auth_credentials_store="file"', "-c", "thread_unload_delay_secs=0", "app-server"]);
   });
 });
 

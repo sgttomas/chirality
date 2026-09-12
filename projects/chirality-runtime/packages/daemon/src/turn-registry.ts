@@ -199,13 +199,17 @@ export class TurnRegistry {
   }
 
   /** Buffered frames with `seq > afterSeq`, then live frames until the terminal frame. */
-  subscribe(projectId: string, sessionId: string, afterSeq = 0): TurnSubscription {
+  subscribe(projectId: string, sessionId: string, afterSeq = 0, turnId?: string): TurnSubscription {
     if (!Number.isSafeInteger(afterSeq) || afterSeq < 0) {
       throw new RuntimeError("INVALID_REQUEST", "after must be a non-negative integer", 400, { reason: "TURN_AFTER_INVALID" });
     }
-    const record = this.turns.get(this.key(projectId, sessionId));
-    if (record === undefined) {
-      throw new RuntimeError("TURN_NOT_ACTIVE", "No active or retained turn for this session", 404, { sessionId });
+    const key = this.key(projectId, sessionId);
+    if (turnId !== undefined && this.starting.get(key)?.turnId === turnId) {
+      throw new RuntimeError("ENGINE_UNAVAILABLE", "The matching turn is still starting", 503, { sessionId, turnId, reason: "TURN_STARTING" });
+    }
+    const record = this.turns.get(key);
+    if (record === undefined || (turnId !== undefined && record.turnId !== turnId)) {
+      throw new RuntimeError("TURN_NOT_ACTIVE", "No matching active or retained turn for this session", 404, { sessionId, ...(turnId === undefined ? {} : { turnId }) });
     }
     return new Subscription(record, afterSeq);
   }

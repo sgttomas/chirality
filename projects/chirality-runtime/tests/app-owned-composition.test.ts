@@ -11,7 +11,7 @@ import { createFakeCodexTransport, type FakeCodexTransport } from "./fake-codex-
 const cleanups: (() => Promise<unknown>)[] = [];
 afterEach(async () => { for (const cleanup of cleanups.splice(0).reverse()) await cleanup().catch(() => undefined); });
 
-async function start(options: { signedIn?: boolean } = {}) {
+async function start(options: { signedIn?: boolean; productText?: string } = {}) {
   const root = await realpath(await mkdtemp(join(tmpdir(), "ao-")));
   cleanups.push(() => rm(root, { recursive: true, force: true }));
   const projectRoot = join(root, "project");
@@ -30,6 +30,7 @@ async function start(options: { signedIn?: boolean } = {}) {
     schema: "chirality-app-owned/v1", socketPath: join(root, "d.sock"), runtimeDirectory: join(root, "runtime"), instructionRoot, clientTokenFile: join(root, "secrets", "app-host.token"),
     codex: { executablePath: join(root, "codex"), userCodexHome, effectiveHome: join(root, "runtime", "codex-home"), expectedVersion: "0.154.0" }
   };
+  if (options.productText !== undefined) { config.productInstructionsPath = join(root, "product", "AGENTS.md"); await mkdir(join(root, "product")); await writeFile(config.productInstructionsPath, options.productText); }
   const logs: string[] = [];
   const logger = { warn: (event: string) => { logs.push(event); }, error: (event: string) => { logs.push(`error:${event}`); } };
   const runtimeOptions = { logger, transportFactory: async () => { const fake = createFakeCodexTransport({ signedIn: options.signedIn ?? true, pid: 100 + transports.length }); transports.push(fake); return fake.transport; } };
@@ -121,6 +122,7 @@ describe("App-owned Codex composition", () => {
     const events = await streaming;
     expect(f.fake().server.state.requests.some(request => request.method === "turn/interrupt")).toBe(true);
     expect(harness(events).map(event => event.type)).toContain("turn.interrupted");
+    expect(harness(events).find(event => event.type === "turn.interrupted")?.data.reason).toBeUndefined();
     expect(events.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 130 } });
     expect((await f.runtime.service.sessions.get(f.projectId, session.sessionId)).status).not.toBe("running");
   });
@@ -132,24 +134,29 @@ describe("App-owned Codex composition", () => {
     await poll(async () => f.fake().server.state.requests.some(request => request.method === "turn/start"), Boolean, "turn/start");
     await f.runtime.close();
     const events = await streaming;
-    expect(harness(events).map(event => event.type)).toContain("turn.interrupted");
+    const terminals = harness(events).filter(event => event.type === "turn.interrupted");
+    expect(terminals).toHaveLength(1);
+    expect(terminals[0]).toMatchObject({ data: { outcome: "interrupted", reason: "service-shutdown" } });
+    const replayed = await f.runtime.service.sessions.replay(f.projectId, session.sessionId);
+    expect(replayed.find(event => event.eventId === terminals[0]!.eventId)).toEqual(terminals[0]);
+    expect(f.fake().server.state.requests.filter(request => request.method === "turn/start")).toHaveLength(1);
     expect(f.fake().terminated).toBe(true);
     expect(f.runtime.host.status().state).toBe("closed");
     await expect(stat(f.config.socketPath)).rejects.toMatchObject({ code: "ENOENT" });
     await expect(f.runtime.close()).resolves.toBeUndefined();
   });
 
-  it("settles a session a hard-killed service left running when the next service starts", async () => {
+  it("recovers a persisted running session when the next service starts", async () => {
     const f = await start();
     const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
     const streaming = collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "hang" }));
     await poll(async () => f.fake().server.state.requests.some(request => request.method === "turn/start"), Boolean, "turn/start");
     expect((await f.runtime.service.sessions.get(f.projectId, session.sessionId)).status).toBe("running");
-    // A SIGKILL leaves no settlement behind: emulate it by closing the daemon and
-    // the app-server without the registry's shutdown settlement.
-    await f.runtime.daemon.stop();
-    await f.runtime.host.close();
-    await streaming.catch(() => undefined);
+    // Tear down the fixture through the production shutdown ordering, then
+    // deliberately construct stale persisted running state for startup recovery.
+    // This tests persisted-state recovery, not actual SIGKILL behavior.
+    await f.runtime.close();
+    await streaming;
     await f.runtime.service.sessions.update({ ...(await f.runtime.service.sessions.get(f.projectId, session.sessionId)), status: "running" });
     const relaunched = await f.restart();
     expect(f.logs).toContain("runtime.sessions.settled_on_start");
@@ -161,8 +168,8 @@ describe("App-owned Codex composition", () => {
     const next = await collect(await project.turnSession(f.projectId, session.sessionId, { message: "after relaunch" }));
     expect(next.find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "echo: after relaunch" } });
     expect(next.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 0 } });
-    // A first turn killed before its terminal has no durable thread association yet, so the
-    // relaunched service establishes a thread again (resume when one was recorded, start otherwise).
+    // Startup preserves provider continuity when a durable thread association
+    // exists; otherwise it establishes a thread for the recovered session.
     expect(f.fake().server.state.requests.some(request => request.method === "thread/resume" || request.method === "thread/start")).toBe(true);
   });
 
@@ -210,6 +217,9 @@ describe("App-owned Codex composition", () => {
     expect(() => validateAppOwnedRuntimeConfig({ ...base, socketPath: `/tmp/${"x".repeat(120)}.sock` })).toThrow(/103/);
     expect(() => validateAppOwnedRuntimeConfig({ ...base, codex: { ...base.codex, expectedVersion: "latest" } })).toThrow(/semantic/);
     expect(() => validateAppOwnedRuntimeConfig({ ...base, extra: true })).toThrow(/exactly/);
+    expect(validateAppOwnedRuntimeConfig({ ...base, productInstructionsPath: "/tmp/product/AGENTS.md" }).productInstructionsPath).toBe("/tmp/product/AGENTS.md");
+    expect(() => validateAppOwnedRuntimeConfig({ ...base, productInstructionsPath: "relative.md" })).toThrow(/absolute/);
+    expect(() => validateAppOwnedRuntimeConfig({ ...base, productInstructionsPath: "/tmp/user-codex/AGENTS.md" })).toThrow(/outside Codex/);
     expect(APP_HOST_CLIENT_ID).toBe("app-host");
   });
 
@@ -222,12 +232,13 @@ describe("App-owned Codex composition", () => {
     expect(typeof booted.boot.bootedAt).toBe("string");
     expect(booted.session.bootFingerprint).toBe(booted.boot.bootFingerprint);
     expect(f.fake().server.state.requests.filter(request => request.method === "thread/start" || request.method === "turn/start")).toHaveLength(0);
-    const events = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "after boot" }), event => event.type === "process:exit");
+    const events = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "after boot", turnId: "client-submitted-turn" }), event => event.type === "process:exit");
+    expect(harness(events).filter(event => event.type === "turn.accepted" || event.type === "turn.completed").map(event => event.turnId)).toEqual(["client-submitted-turn", "client-submitted-turn"]);
     expect(harness(events).map(event => event.type)).toContain("turn.completed");
     expect(f.fake().server.state.requests.filter(request => request.method === "thread/start")).toHaveLength(1);
   });
 
-  it("changes selected methods additively after a turn: the thread stays and the next turn carries a context update", async () => {
+  it("adopts changed methods through verified unload and cold resume on the same thread", async () => {
     const f = await start();
     const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
     await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "first" }), event => event.type === "process:exit");
@@ -239,7 +250,9 @@ describe("App-owned Codex composition", () => {
     const starts = f.fake().server.state.requests.filter(request => request.method === "turn/start");
     expect(starts).toHaveLength(firstStarts + 1);
     const input = (starts.at(-1)!.params as { input: { type: string; text?: string }[] }).input;
-    expect(input.some(item => item.type === "text" && item.text?.startsWith("Chirality context update:"))).toBe(true);
+    expect(input.some(item => item.type === "text" && item.text?.startsWith("Chirality context update:"))).toBe(false);
+    expect(f.fake().server.state.requests.filter(request => request.method === "thread/unsubscribe")).toHaveLength(1);
+    expect(f.fake().server.state.requests.find(request => request.method === "thread/resume")?.params).toMatchObject({ threadId: "thread-1", developerInstructions: expect.stringContaining("project-setup") });
     expect(input.some(item => item.type === "text" && item.text === "second")).toBe(true);
     // One provider thread throughout: no successor, no second thread/start.
     expect(f.fake().server.state.requests.filter(request => request.method === "thread/start")).toHaveLength(1);
@@ -257,4 +270,115 @@ describe("App-owned Codex composition", () => {
     const session = await legacy.createSession(registered.projectId, { projectId: registered.projectId });
     expect(session.engineSelection.adapterId).toBe("codex-app-server");
   });
+});
+
+it("captures editable product guidance, isolates native roles, and preserves prior adopted bytes across edits", async () => {
+  const f = await start({ productText: "# Product common\nFIRST CUSTOM GUIDANCE\n" });
+  const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
+  await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "first" }));
+  const first = f.fake().server.state.requests.find(request => request.method === "thread/start")!.params as { developerInstructions: string; config: Record<string, string> };
+  expect(first.developerInstructions).toContain("FIRST CUSTOM GUIDANCE");
+  expect(first.developerInstructions).toContain("# HELP_HUMAN");
+  expect(first.developerInstructions).not.toContain("# TASK\n");
+  expect(first.developerInstructions).not.toContain("# Spike project");
+  expect(first.developerInstructions).toContain(join(f.config.instructionRoot, ".agents", "skills"));
+  expect(Object.keys(first.config)).toHaveLength(8);
+  expect(Object.keys(first.config).every(key => /^agents\.(HELP_HUMAN|HELPS_HUMANS|WORKING_ITEMS|TASK)\.(description|config_file)$/.test(key))).toBe(true);
+  const roleFiles = Object.entries(first.config).filter(([key]) => key.endsWith("config_file"));
+  for (const [key, path] of roleFiles) {
+    const role = key.split(".")[1]!;
+    const body = await readFile(path, "utf8");
+    const instructions = JSON.parse(body.trim().slice("developer_instructions = ".length)) as string;
+    expect(instructions).toContain("FIRST CUSTOM GUIDANCE");
+    expect(instructions).toContain(`\n# Active role: ${role}\n`);
+    expect(instructions).toContain(`\n# ${role}\n`);
+    expect(instructions).toContain("fork_context=false");
+    for (const other of ["HELP_HUMAN", "HELPS_HUMANS", "WORKING_ITEMS", "TASK"].filter(value => value !== role)) expect(instructions).not.toContain(`\n# ${other}\n`);
+  }
+  const firstEvents = await f.runtime.service.sessions.replay(f.projectId, session.sessionId);
+  const acceptance = firstEvents.find(event => event.type === "adapter.initialized");
+  expect(acceptance?.data).toMatchObject({ instructionAcceptance: "provider-accepted", providerThreadId: "thread-1" });
+  const historyBefore = await f.runtime.service.sessions.instructionBases.history(f.projectId, session.sessionId);
+  const firstBasisId = historyBefore.find(record => record.type === "instruction-basis.resolved")!.basisId;
+  expect(acceptance?.data.instructionBasisId).toBe(firstBasisId);
+  const firstBasis = await f.runtime.service.sessions.instructionBases.get(f.projectId, session.sessionId, firstBasisId);
+  expect(firstBasis.suppliedEntries.find(entry => entry.kind === "root")).toMatchObject({ content: "# Product common\nFIRST CUSTOM GUIDANCE\n", path: f.config.productInstructionsPath, origin: join(f.root, "product") });
+  expect(firstBasis.suppliedEntries.some(entry => entry.kind === "project")).toBe(false);
+  await writeFile(f.config.productInstructionsPath!, "# Product common\nSECOND CUSTOM GUIDANCE\n");
+  const events = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "second" }));
+  expect(events.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 0 } });
+  const resumed = f.fake().server.state.requests.find(request => request.method === "thread/resume")!.params as { threadId: string; developerInstructions: string; config: Record<string, string> };
+  expect(resumed.threadId).toBe("thread-1");
+  expect(resumed.developerInstructions).toContain("SECOND CUSTOM GUIDANCE");
+  expect(resumed.developerInstructions).not.toContain("FIRST CUSTOM GUIDANCE");
+  expect(resumed.config["agents.TASK.config_file"]).not.toBe(first.config["agents.TASK.config_file"]);
+  expect(await readFile(first.config["agents.TASK.config_file"]!, "utf8")).toContain("FIRST CUSTOM GUIDANCE");
+  expect(await readFile(resumed.config["agents.TASK.config_file"]!, "utf8")).toContain("SECOND CUSTOM GUIDANCE");
+  expect(await f.runtime.service.sessions.instructionBases.get(f.projectId, session.sessionId, firstBasisId)).toEqual(firstBasis);
+  expect((f.fake().server.state.threads.get("thread-1") as unknown as { developerInstructions: string }).developerInstructions).toBe(resumed.developerInstructions);
+  const injection = f.fake().server.state.requests.find(request => request.method === "thread/inject_items")!.params as { threadId: string; items: { type: string; role: string; content: { type: string; text: string }[] }[] };
+  expect(injection).toMatchObject({ threadId: "thread-1", items: [{ type: "message", role: "developer", content: [{ type: "input_text" }] }] });
+  const injectedText = injection.items[0]!.content[0]!.text;
+  expect(injectedText).toContain("supersedes earlier Chirality-provided");
+  expect(injectedText.endsWith(resumed.developerInstructions)).toBe(true);
+  const historyViews = f.fake().server.state.notes.filter((note: any) => note.modelHistory) as { modelHistory: { content: { text: string }[] }[] }[];
+  expect(historyViews[0]!.modelHistory[0]!.content[0]!.text).toBe(first.developerInstructions);
+  expect(historyViews[1]!.modelHistory[0]!.content[0]!.text).toBe(first.developerInstructions);
+  expect(historyViews[1]!.modelHistory.at(-1)!.content[0]!.text).toBe(injectedText);
+  const secondAcceptance = harness(events).find(event => event.type === "adapter.initialized")!;
+  expect(secondAcceptance.data.instructionHistoryInjection).toMatchObject({ method: "thread/inject_items", text: injectedText, sha256: expect.stringMatching(/^[a-f0-9]{64}$/) });
+  const methods = f.fake().server.state.requests.map(request => request.method);
+  expect(methods.indexOf("thread/resume")).toBeLessThan(methods.indexOf("thread/inject_items"));
+  expect(methods.indexOf("thread/inject_items")).toBeLessThan(methods.lastIndexOf("turn/start"));
+});
+
+
+it("records resolved edits without provider acceptance while a native child keeps working", async () => {
+  const f = await start({ productText: "original guidance" });
+  const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
+  await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "first" }));
+  const child = { id: "child", cwd: f.projectRoot, model: "gpt-5-codex", mode: "default", loaded: true, parentThreadId: "thread-1", status: "active" };
+  f.fake().server.state.threads.set("child", child);
+  await writeFile(f.config.productInstructionsPath!, "pending edited guidance");
+  const pending = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "second" }));
+  expect(pending.some(event => event.type === "session:init")).toBe(false);
+  expect(harness(pending).some(event => event.type === "adapter.initialized")).toBe(false);
+  expect(harness(pending).find(event => event.type === "turn.failed")?.data).toMatchObject({ code: "INSTRUCTION_ADOPTION_PENDING", message: expect.stringContaining("Instruction update pending") });
+  expect(pending.find(event => event.type === "turn:error")).toMatchObject({ data: { errorType: "INSTRUCTION_ADOPTION_PENDING", details: { reason: "INSTRUCTION_ADOPTION_PENDING" } } });
+  expect(pending.find(event => event.type === "process:exit")).toMatchObject({ data: { errorType: "INSTRUCTION_ADOPTION_PENDING" } });
+  expect(f.fake().server.state.requests.filter(request => request.method === "turn/start")).toHaveLength(1);
+  expect(f.fake().server.state.requests.some(request => ["thread/unsubscribe", "turn/interrupt"].includes(request.method))).toBe(false);
+  const resolved = (await f.runtime.service.sessions.instructionBases.history(f.projectId, session.sessionId)).filter(record => record.type === "instruction-basis.resolved");
+  expect(resolved).toHaveLength(2);
+  const replay = await f.runtime.service.sessions.replay(f.projectId, session.sessionId);
+  expect(replay.filter(event => event.type === "adapter.initialized")).toHaveLength(1);
+  child.status = "idle";
+  const retry = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "retry" }));
+  expect(harness(retry).find(event => event.type === "adapter.initialized")?.data.instructionAcceptance).toBe("provider-accepted");
+  expect(f.fake().server.state.requests.filter(request => request.method === "turn/start")).toHaveLength(2);
+});
+
+
+it("does not report adoption or dispatch a user turn after an uncertain injection, then retries the full current basis", async () => {
+  const f = await start({ productText: "OLD AMBER" });
+  const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
+  await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "first" }));
+  await writeFile(f.config.productInstructionsPath!, "NEW COPPER");
+  f.fake().server.state.injectionOutcome = "applied-error";
+  const failed = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "second" }));
+  expect(harness(failed).some(event => event.type === "adapter.initialized")).toBe(false);
+  expect(failed.some(event => event.type === "session:init")).toBe(false);
+  expect(failed.find(event => event.type === "turn:error")).toMatchObject({ data: { errorType: "INSTRUCTION_ADOPTION_PENDING" } });
+  expect(f.fake().server.state.requests.filter(request => request.method === "turn/start")).toHaveLength(1);
+  const retry = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "retry" }));
+  expect(retry.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 0 } });
+  expect(f.fake().server.state.requests.filter(request => request.method === "thread/inject_items")).toHaveLength(2);
+  expect(f.fake().server.state.requests.filter(request => request.method === "thread/resume")).toHaveLength(2);
+  const accepted = harness(retry).find(event => event.type === "adapter.initialized")!;
+  expect(accepted.data.instructionHistoryInjection).toMatchObject({ text: expect.stringContaining("NEW COPPER") });
+  const views = f.fake().server.state.notes.filter((note: any) => note.modelHistory) as { modelHistory: { content: { text: string }[] }[] }[];
+  expect(views).toHaveLength(2);
+  expect(views[1]!.modelHistory).toHaveLength(3);
+  expect(views[1]!.modelHistory.at(-1)!.content[0]!.text).toContain("NEW COPPER");
+  expect(views[1]!.modelHistory[0]!.content[0]!.text).toContain("OLD AMBER");
 });

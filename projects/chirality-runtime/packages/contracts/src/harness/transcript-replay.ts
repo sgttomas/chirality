@@ -40,6 +40,8 @@ export type TranscriptItem = {
   text?: string;
   attachments?: string[];
   summary?: string;
+  /** Recorded terminal cause; distinct from presentation status. */
+  terminalReason?: string;
   toolName?: string;
   artifact?: TranscriptArtifactLink;
 };
@@ -353,7 +355,8 @@ export function deriveTranscriptView(
         eventId: event.eventId,
         eventType: event.type,
         turnId: event.turnId,
-        summary: terminalSummary(event)
+        summary: terminalSummary(event),
+        ...(readString(data.reason) ? { terminalReason: readString(data.reason) } : {})
       });
       continue;
     }

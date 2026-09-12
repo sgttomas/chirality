@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { homedir } from "node:os";
-import { isAbsolute, join, relative, resolve, sep } from "node:path";
+import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { lstat, mkdir, open, readFile, realpath } from "node:fs/promises";
 import {
   assertAdmittedNativePlanEvent,
@@ -70,13 +70,19 @@ const responseAdmission = (value: Exclude<NativePlanCapabilityResponse | NativeP
   value.status === "qualified" ? value.qualification : value.admission;
 const eventAdmission = (event: NativePlanRevision["sourceEvent"]) => event.qualificationState === "qualified" ? event.qualification : event.admission;
 
+export interface ProductInstructionOptions {
+  productInstructionsPath?: string;
+  nativeProjectDiscovery?: boolean;
+}
+
 export class RuntimeMethodService {
   private readonly nativeChildActivationLocks = new Map<string, Promise<void>>();
   constructor(
     private readonly projects: ProjectRegistry,
     private readonly sessions: SessionStore,
     private readonly engines: EngineRegistry,
-    private readonly nativePlan?: TrustedNativePlanAdapterRegistry
+    private readonly nativePlan?: TrustedNativePlanAdapterRegistry,
+    private readonly productInstructions: ProductInstructionOptions = {}
   ) {}
 
   async listRoles(projectId: string): Promise<RolesResponse> {
@@ -158,7 +164,7 @@ export class RuntimeMethodService {
       }
     }
     // An engine without successor preparation keeps its provider thread and
-    // receives changed instructions as an additive context update (D-GOV-43);
+    // supplies changed developer instructions at its verified adoption boundary;
     // changed instruction bytes are re-frozen with the accepting turn.
     const additiveEngine = this.engines.resolve(session.engineSelection).prepareContextSuccessor === undefined;
     if (lastAccepted?.type === "instruction-basis.resolved" && !additiveEngine) {
@@ -552,10 +558,23 @@ export class RuntimeMethodService {
       supplied.push({ kind, id, content, sha256: digest, ...(method ? { method } : {}), ...(resourcePath ? { resourcePath } : {}) });
       frozen.push({ kind, id, origin, path, content, sha256: digest, ...(method ? { method } : {}), ...(resourcePath ? { resourcePath } : {}) });
     };
-    await this.addFile(add, "root", "root:AGENTS", roots.instructionRoot, join(roots.instructionRoot, "AGENTS.md"));
-    if (roots.workingRoot !== roots.instructionRoot) await this.addFile(add, "project", "project:AGENTS", roots.workingRoot, join(roots.workingRoot, "AGENTS.md"), true);
+    const productPath = this.productInstructions.productInstructionsPath ?? join(roots.instructionRoot, "AGENTS.md");
+    await this.addFile(add, "root", "root:AGENTS", dirname(productPath), productPath);
+    if (!this.productInstructions.nativeProjectDiscovery && roots.workingRoot !== roots.instructionRoot) await this.addFile(add, "project", "project:AGENTS", roots.workingRoot, join(roots.workingRoot, "AGENTS.md"), true);
     const role = (await this.listRoles(projectId)).roles.find(value => value.id === request.roleId)!;
-    await this.addFile(add, "role", `role:${role.id}`, roots.instructionRoot, join(roots.instructionRoot, role.instruction));
+    if (this.productInstructions.nativeProjectDiscovery) {
+      for (const nativeRole of (await this.listRoles(projectId)).roles) {
+        const path = join(roots.instructionRoot, nativeRole.instruction);
+        await this.addFile((kind, id, origin, file, content) => {
+          add(kind, id, origin, file, content);
+          if (nativeRole.id === role.id) add("role", `role:${role.id}`, origin, file, content);
+        }, "resource", `native-role:${nativeRole.id}`, roots.instructionRoot, path);
+      }
+      add("resource", "product:library", roots.instructionRoot, roots.instructionRoot,
+        `Bundled skills: ${join(roots.instructionRoot, ".agents", "skills")}\nBundled workflows: ${join(roots.instructionRoot, "workflows")}\nRole library: ${join(roots.instructionRoot, "agents")}\nUse named native roles with a bounded brief and fresh context (fork_context=false); full-history forks do not isolate the role in Codex 0.154.0.`);
+    } else {
+      await this.addFile(add, "role", `role:${role.id}`, roots.instructionRoot, join(roots.instructionRoot, role.instruction));
+    }
     for (const entry of catalog.entries.filter(value => value.descriptor.kind === "skill")) {
       const reference = this.reference(entry.descriptor);
       add("catalog-description", `method-description:${entry.descriptor.qualifiedId}`, entry.sourceRootPath, entry.entrypointPath, entry.descriptor.description, reference);

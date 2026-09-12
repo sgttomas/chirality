@@ -101,7 +101,7 @@ it('replays the log, attaches from seq 0, deduplicates by eventId and streams me
   await mountResumed();
 
   expect(state.hydrate).toHaveBeenCalledWith([expect.objectContaining({ eventId: 'e1' }), expect.objectContaining({ eventId: 'e2' })]);
-  expect(state.attach).toHaveBeenCalledWith('resumed', 0, expect.any(Function), expect.any(AbortSignal));
+  expect(state.attach).toHaveBeenCalledWith('resumed', 0, expect.any(Function), expect.any(AbortSignal), 'turn-1');
   expect(stopButtons()).toHaveLength(1);
   expect(state.streaming).toHaveBeenLastCalledWith(true);
 
@@ -264,6 +264,8 @@ it('moves to Stopping on Stop and to Stopped once the Runtime confirms, reportin
   state.attach.mockImplementation((_s: string, _a: number, onEvent: (frame: Frame) => void) => new Promise<void>(resolve => { deliver = onEvent; finish = resolve; }));
   await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: projection('resumed') }} onTurnPhaseChange={phase => phases.push(phase)} />); });
   await flush();
+  expect(phases.at(-1)).toBe('reconnecting');
+  await act(async () => { deliver({ event: 'transport:connected', data: {} }); });
   expect(phases.at(-1)).toBe('working');
   await act(async () => stopButtons()[0].props.onClick());
   expect(phases.at(-1)).toBe('stopping');
@@ -273,4 +275,218 @@ it('moves to Stopping on Stop and to Stopped once the Runtime confirms, reportin
   expect(rendered()).toContain('"data-turn-outcome":"interrupted"');
   expect(rendered()).toContain('Stopped');
   expect(phases.at(-1)).toBe('idle');
+});
+
+
+it('returns to Working on a real reattachment with no new model output and retries an initially failed attach', async () => {
+  vi.useFakeTimers();
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  let deliver!: (frame: Frame) => void;
+  state.attach.mockRejectedValueOnce(new TypeError('Runtime stalled'))
+    .mockImplementation((_s: string, _a: number, onEvent: (frame: Frame) => void) => new Promise<void>(() => { deliver = onEvent; }));
+  await mountResumed();
+  expect(status()).toContain('Reconnecting');
+  expect(stopButtons()).toHaveLength(1);
+  await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+  expect(state.attach).toHaveBeenCalledTimes(2);
+  expect(status()).toContain('Reconnecting');
+  await act(async () => { deliver({ event: 'transport:connected', data: {} }); });
+  expect(tree!.root.findByProps({ className: 'chat-runtime-status' }).props['data-turn-phase']).toBe('working');
+  await act(async () => { await vi.advanceTimersByTimeAsync(70_000); });
+  expect(stopButtons()).toHaveLength(1);
+  expect(state.stream).not.toHaveBeenCalled();
+  expect(state.interrupt).not.toHaveBeenCalled();
+});
+
+it.each([
+  ['service-shutdown', 'failed'], ['service-restart', 'unknown'], [undefined, 'interrupted']
+])('preserves live interruption cause %s across a generic interrupted exit', async (reason, expected) => {
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  state.attach.mockImplementation(async (_s: string, _a: number, onEvent: (frame: Frame) => void) => {
+    onEvent(harness(1, 'e1', 'turn.interrupted', reason ? { reason } : {}));
+    onEvent({ event: 'process:exit', seq: 2, data: { exitCode: 130, interrupted: true } });
+  });
+  await mountResumed();
+  expect(rendered()).toContain(`"data-turn-outcome":"${expected}"`);
+  expect(rendered()).not.toContain('"data-turn-outcome":"completed"');
+  if (reason) expect(rendered()).not.toContain('Turn interrupted by operator.');
+  expect(state.stream).not.toHaveBeenCalled();
+});
+
+it.each([
+  ['service-shutdown', 'failed'], ['service-restart', 'unknown'], [undefined, 'interrupted']
+])('preserves replay interruption cause %s', async (reason, expected) => {
+  const replay = projection('resumed');
+  replay.transcript.items.push({ key: 'terminal', kind: 'terminal', status: 'interrupted', title: 'Turn interrupted', timestamp: '2026-09-12T00:00:00Z', eventId: 'end', eventType: 'turn.interrupted', turnId: 'turn-1', ...(reason ? { terminalReason: reason } : {}) });
+  await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: replay }} />); });
+  await flush();
+  expect(rendered()).toContain(`"data-turn-outcome":"${expected}"`);
+  if (reason) expect(rendered()).not.toContain('Turn interrupted by operator.');
+  expect(state.stream).not.toHaveBeenCalled();
+});
+
+it('sends once, recovers by GET after a dropped stream, and retains a service-loss message without restoring the draft', async () => {
+  vi.useFakeTimers();
+  await mountResumed();
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [], instructionBases: [], instructionHistory: [] });
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1 });
+  let submittedTurnId!: string;
+  state.stream.mockImplementation(async (input: { turnId: string }, onEvent: (frame: Frame) => void) => {
+    submittedTurnId = input.turnId;
+    const accepted = harness(1, 'accepted', 'turn.accepted');
+    onEvent({ ...accepted, data: { ...accepted.data, turnId: submittedTurnId } });
+    throw new TypeError('transport dropped');
+  });
+  state.attach.mockImplementation(async (_s: string, _a: number, onEvent: (frame: Frame) => void) => {
+    onEvent({ event: 'transport:connected', data: {} });
+    const ended = harness(2, 'ended', 'turn.interrupted', { reason: 'service-shutdown' });
+    onEvent({ ...ended, data: { ...ended.data, turnId: submittedTurnId } });
+    onEvent({ event: 'process:exit', seq: 3, data: { exitCode: 130, interrupted: true } });
+  });
+  await act(async () => { tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value: 'Keep this sent message' } }); });
+  await act(async () => { tree!.root.findByProps({ className: 'chat-input-row' }).props.onSubmit({ preventDefault: vi.fn() }); });
+  await flush();
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(status()).toContain('Reconnecting');
+  await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+  await flush();
+  expect(state.attach).toHaveBeenCalledWith('resumed', 1, expect.any(Function), expect.any(AbortSignal), submittedTurnId);
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(rendered()).toContain('Keep this sent message');
+  expect(rendered()).toContain('"data-turn-outcome":"failed"');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+});
+
+it.each([['service-shutdown', 'failed'], ['service-restart', 'unknown']])('settles a failed first reload attachment from this turn’s recorded %s reason', async (reason, expected) => {
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1 });
+  state.attach.mockRejectedValue(new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'No active turn', { reason: 'TURN_NOT_ACTIVE' }));
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [persisted('ended', 'turn.interrupted', { reason })] });
+  await mountResumed();
+  expect(rendered()).toContain(`"data-turn-outcome":"${expected}"`);
+  expect(state.stream).not.toHaveBeenCalled();
+});
+
+it('does not borrow an older turn’s completion when reload attachment fails before its first frame', async () => {
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1 });
+  state.attach.mockRejectedValue(new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'No active turn', { reason: 'TURN_NOT_ACTIVE' }));
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [{ ...persisted('older', 'turn.completed'), turnId: 'turn-0' }] });
+  await mountResumed();
+  expect(rendered()).toContain('"data-turn-outcome":"unknown"');
+  expect(rendered()).not.toContain('"data-turn-outcome":"completed"');
+});
+
+it.each(['retained-old', 'expired-old', 'matching', 'matching-replay'])('correlates a fresh POST whose response is lost before any frame: %s', async scenario => {
+  vi.useFakeTimers();
+  await mountResumed();
+  const older = [persisted('old-text', 'message.delta', { text: 'OLD TURN TEXT' }), persisted('old-end', 'turn.completed')]
+    .map(event => ({ ...event, turnId: 'previous-turn' }));
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: older, instructionHistory: [], instructionBases: [] });
+  state.turnState.mockResolvedValue({ active: false, turnId: 'previous-turn', lastSeq: 2 });
+  let submitted!: string;
+  state.stream.mockImplementation(async (input: { turnId: string }) => {
+    submitted = input.turnId;
+    if (scenario === 'matching-replay') {
+      const current = [persisted('new-text', 'message.delta', { text: 'NEW TURN TEXT' }), persisted('new-end', 'turn.completed')].map(event => ({ ...event, turnId: submitted }));
+      state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [...older, ...current], instructionHistory: [], instructionBases: [] });
+    }
+    throw new TypeError('POST response lost');
+  });
+  state.attach.mockImplementation(async (_s: string, _after: number, deliver: (frame: Frame) => void, _signal: AbortSignal, expectedTurnId?: string) => {
+    if (scenario === 'matching') {
+      const accepted = harness(1, 'new-accepted', 'turn.accepted');
+      const ended = harness(3, 'new-end', 'turn.completed');
+      deliver({ ...accepted, data: { ...accepted.data, turnId: submitted } });
+      deliver({ event: 'chat:delta', seq: 2, data: { text: 'NEW TURN TEXT' } });
+      deliver({ ...ended, data: { ...ended.data, turnId: submitted } });
+      return;
+    }
+    if (scenario === 'expired-old' || expectedTurnId !== undefined) {
+      throw new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'No matching retained turn', { reason: 'TURN_NOT_ACTIVE' });
+    }
+    // The old behavior (unqualified seq-0 attach) would replay this prior turn.
+    deliver({ event: 'chat:delta', seq: 1, data: { text: 'OLD TURN TEXT' } });
+    deliver({ event: 'process:exit', seq: 2, data: { exitCode: 0 } });
+  });
+  await act(async () => { tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value: 'Keep exactly this submitted message' } }); });
+  await act(async () => { tree!.root.findByProps({ className: 'chat-input-row' }).props.onSubmit({ preventDefault: vi.fn() }); });
+  expect(submitted).toEqual(expect.any(String));
+  expect(submitted).not.toBe('previous-turn');
+  expect(status()).toContain('Reconnecting');
+  await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+  await flush();
+  expect(state.attach).toHaveBeenCalledWith('resumed', 0, expect.any(Function), expect.any(AbortSignal), submitted);
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(rendered()).toContain('Keep exactly this submitted message');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+  expect(rendered()).not.toContain('OLD TURN TEXT');
+  expect(state.append.mock.calls.some(([event]) => event.turnId === 'previous-turn')).toBe(false);
+  if (scenario === 'matching' || scenario === 'matching-replay') {
+    expect(rendered()).toContain('NEW TURN TEXT');
+    expect(rendered()).toContain('"data-turn-outcome":"completed"');
+  } else {
+    expect(rendered()).toContain('"data-turn-outcome":"unknown"');
+    expect(rendered()).not.toContain('"data-turn-outcome":"completed"');
+  }
+  expect(state.interrupt).not.toHaveBeenCalled();
+});
+
+it.each(['matching', 'different'])('persists an Execute attempt identity before dispatch and retains it across ambiguous response plus reload: %s', async recovery => {
+  vi.useFakeTimers();
+  const key = 'chirality.planExecutions.v1:resumed';
+  const store = new Map<string, string>();
+  Object.assign(window, { localStorage: { getItem: (name: string) => store.get(name) ?? null, setItem: (name: string, value: string) => { store.set(name, value); }, removeItem: (name: string) => { store.delete(name); } } });
+  const records = () => JSON.parse(store.get(key) ?? '[]') as Array<{ turnId?: string; status: string; revision: number; attempt: number }>;
+  const qualification = { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const };
+  const revision = { revision: 1, sourceEvent: { qualificationState: 'qualified' as const, eventId: 'plan-1', occurredAt: '2026-09-12T00:00:00Z', qualification, plan: { id: 'plan-item', type: 'plan', text: 'Perform the planned work.' } } };
+  state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'qualified', qualification });
+  state.nativeRevisions.mockResolvedValue({ schemaVersion: 'chirality.native-plan-revisions/v3', status: 'qualified', qualification, revisions: [revision] });
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [], instructionBases: [], instructionHistory: [] });
+  const selected = projection('resumed');
+  selected.session!.continuation!.interactionMode = 'native-plan';
+  let model: import('../../components/shell/native-plan-panel').NativePlanPanelModel | null = null;
+  await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: selected }} onPlanPanelChange={value => { model = value; }} />); });
+  await flush();
+  await act(async () => { model!.onExecute(revision); });
+  let submitted!: string;
+  let persistedAtDispatch: ReturnType<typeof records> = [];
+  state.stream.mockImplementation(async (input: { turnId: string }) => {
+    submitted = input.turnId;
+    // Capture at dispatch, before any response, frame, or later effect. Assert
+    // outside the handler so the observer cannot swallow an assertion failure.
+    persistedAtDispatch = records();
+    throw new TypeError('Execute POST response lost');
+  });
+  await act(async () => { tree!.root.findByProps({ className: 'chat-input-row' }).props.onSubmit({ preventDefault: vi.fn() }); });
+  await flush();
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(status()).toContain('Reconnecting');
+  expect(persistedAtDispatch).toEqual([expect.objectContaining({ revision: 1, attempt: 1, status: 'running', turnId: submitted })]);
+  expect(records()[0]).toMatchObject({ status: 'running', turnId: submitted });
+  // Reload before the observer's first retry/settlement. Keep only persisted state.
+  await act(async () => { tree!.unmount(); });
+  tree = undefined;
+  await flush();
+  expect(records()[0]).toMatchObject({ status: 'running', turnId: submitted });
+  const observed = recovery === 'matching' ? submitted : 'prior-active-turn';
+  state.turnState.mockResolvedValue({ active: true, turnId: observed, lastSeq: 1 });
+  state.attach.mockImplementation(async (_s: string, _after: number, deliver: (frame: Frame) => void) => {
+    const ended = harness(1, 'reloaded-end', 'turn.completed');
+    deliver({ ...ended, data: { ...ended.data, turnId: observed } });
+  });
+  await mountResumed();
+  expect(records()[0]).toMatchObject({ turnId: submitted, status: recovery === 'matching' ? 'completed' : 'unknown' });
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+});
+
+it('never adopts a recovered live turn identity or completion for a legacy idless plan attempt', async () => {
+  const key = 'chirality.planExecutions.v1:resumed';
+  let saved = JSON.stringify([{ revision: 1, attempt: 1, startedAt: '2026-09-12T00:00:00Z', status: 'running' }]);
+  Object.assign(window, { localStorage: { getItem: (name: string) => name === key ? saved : null, setItem: (name: string, value: string) => { if (name === key) saved = value; }, removeItem: () => undefined } });
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1 });
+  state.attach.mockImplementation(async (_s: string, _after: number, deliver: (frame: Frame) => void) => { deliver(harness(1, 'other-end', 'turn.completed')); });
+  await mountResumed();
+  expect(JSON.parse(saved)).toEqual([expect.objectContaining({ status: 'unknown' })]);
+  expect(JSON.parse(saved)[0].turnId).toBeUndefined();
+  expect(state.stream).not.toHaveBeenCalled();
 });

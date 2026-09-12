@@ -26,7 +26,7 @@ export interface WorkerResult {
 export interface DelegatedHarnessProcessSupervisorPort {
   /** Host-only concrete adapter check, never a client-supplied containment assertion. */
   verifyHostedBoundary?(identity: WorkerContinuity): Promise<void>;
-  acquire(workerId: string, input: string): Promise<WorkerHandle>;
+  acquire(workerId: string, input: string, signal?: AbortSignal): Promise<WorkerHandle>;
   inventory(): Promise<readonly WorkerHandle[]>;
   reconnect(workerId: string, generation: string): Promise<WorkerHandle>;
   wait(workerId: string, generation: string): Promise<WorkerResult>;
@@ -78,7 +78,9 @@ export interface DelegatedTurnRequest {
   reasoningEffort?: string;
   /** Rendered role and method instructions for `thread/start` or `thread/resume` (`developerInstructions`); never a user message. */
   developerInstructions?: string;
-  /** Instruction delta sent as an extra input item when the developer instructions changed between turns of one thread. */
+  /** Additive supported per-thread native role configuration; no feature or depth overrides. */
+  nativeRoleConfig?: Readonly<Record<string, string>>;
+  /** @deprecated Rejected by the stock supervisor; send persistent developerInstructions instead. */
   contextUpdate?: string;
 }
 export interface DelegatedRoleEvidence {
@@ -258,8 +260,15 @@ export interface SupervisorRuntimeToolPort {
  * stock Codex App Server's notifications and server requests pass through
  * unchanged: `method` and `params` are the upstream names and payloads.
  */
+/** Exact developer history item whose injection was acknowledged by the supplier. */
+export interface InstructionHistoryInjection {
+  method: "thread/inject_items";
+  text: string;
+  sha256: string;
+}
+
 export type DelegatedTurnProgressEvent =
-  | { type: "started"; providerThreadId: string; providerTurnId: string }
+  | { type: "started"; providerThreadId: string; providerTurnId: string; instructionHistoryInjection?: InstructionHistoryInjection }
   | { type: "text"; providerThreadId: string; providerTurnId: string; text: string }
   | { type: "notification"; providerThreadId: string; providerTurnId?: string; method: string; params: unknown; occurredAt: string }
   | { type: "request"; providerThreadId: string; providerTurnId?: string; requestId: string; method: string; params: unknown; occurredAt: string }

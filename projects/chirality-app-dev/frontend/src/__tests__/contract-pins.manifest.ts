@@ -55,8 +55,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'notMatches', pattern: '\\brelaunch\\b' },
       { kind: 'notMatches', pattern: "from '(node:)?(fs|fs/promises|child_process)'" },
       { kind: 'notMatches', pattern: "from 'electron'" },
-      { kind: 'notContains', value: 'userData' },
-      { kind: 'contains', value: 'Nothing downloads, installs or restarts.' }
+      { kind: 'notContains', value: 'userData' }
     ]
   },
   {

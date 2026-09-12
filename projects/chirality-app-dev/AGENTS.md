@@ -52,15 +52,10 @@ list, inspection, selection, context-resolution, and replay results; App code
 does not maintain a second Markdown parser or infer method completion from a
 loaded instruction body.
 
-Ordinary App skill discovery and context use only the reviewed bundled skill
-library.
-Project `.agents/skills` and user `~/.agents/skills` definitions remain
-standalone compatibility inputs and historical origins; the App does not load
-or activate them in ordinary agent context even when their files exist.
-Read-only replay may render preserved historical bytes and source-qualified
-identity without activating the skill for a new turn. Continuation requires an
-explicit drop or change to an eligible bundled skill; Runtime never silently
-binds a same-named bundled definition.
+Ordinary App skill discovery follows Codex's native project, user and bundled
+sources under D-GOV-43. Display each skill's actual origin. Read-only replay
+preserves historical bytes and source-qualified identity without activating a
+skill for a new turn or silently binding a same-named definition elsewhere.
 
 Project workflows live under `.chirality/workflows/<name>/WORKFLOW.md`, user
 workflows under `~/.chirality/workflows/<name>/WORKFLOW.md`, and reviewed
@@ -81,14 +76,23 @@ agent writes a valid canonical project or user workflow package with ordinary
 file tools, validates its metadata and contained resources, and refreshes the
 Runtime catalog. The App has no separate workflow editor.
 
-New conversation context contains Root `AGENTS.md`, applicable project
-instructions, the full active-role instructions, and bundled-skill descriptions.
+New conversation context contains the App product `AGENTS.md`, native global
+and project instructions, the full active-role instructions, and available skill descriptions.
 Selected or needed method bodies and contained resources load through Runtime.
 The recorded basis preserves each supplied item's origin and hash for replay.
 Interaction mode and permission mode are independent. Native Plan Mode is
 available only when Runtime reports admitted adapter evidence; plan revisions
 remain in conversation history and are exported to a project file only through
 an explicit user-selected save action.
+
+The product default lives in `instructions/AGENTS.md` in this project and is
+seeded into the App's user-data instructions folder. Settings opens that copy
+for editing and can restore the default while retaining a backup. Runtime
+supplies common guidance and the selected full role automatically to primary
+chats and fresh named native children. Native user/project discovery is not
+duplicated by Runtime. Edits apply at a confirmed safe boundary; running agents
+and historical basis retain the content they received. These files are open
+source and the distinction from repository development guidance is applicability.
 
 ## Execution attribution
 

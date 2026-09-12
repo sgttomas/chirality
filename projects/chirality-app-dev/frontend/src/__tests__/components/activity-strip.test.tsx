@@ -11,6 +11,19 @@ function event(type: HarnessEvent['type'], second: number, sessionId = 'primary'
 const completed = () => [event('turn.started', 0), event('tool.started', 1, 'primary', 'turn', { toolUseId: 'tool-a' }), event('turn.completed', 3)];
 
 describe('primary ActivityStrip projection', () => {
+  it('offers an accessible public issue link without sending current activity or session details', () => {
+    let tree!: ReturnType<typeof create>;
+    act(() => { tree = create(<ActivityStrip primarySessionId="private-session" events={completed()} running onOpenDetails={() => {}} />); });
+    const link = tree.root.findByType('a');
+    expect(link.children.join('')).toBe('Report issue');
+    expect(link.props.href).toBe('https://github.com/sgttomas/chirality-app/issues/new/choose');
+    expect(link.props.target).toBe('_blank');
+    expect(link.props.rel.split(' ')).toEqual(expect.arrayContaining(['noopener', 'noreferrer']));
+    expect(link.props['aria-hidden']).not.toBe(true);
+    expect(link.props.tabIndex).not.toBe(-1);
+    act(() => tree.unmount());
+  });
+
   it.each([42, {}, [], null, true, '   '])('renders unavailable for malformed turn identity %j without throwing', turnId => {
     const malformed = { ...event('turn.started', 5), turnId } as unknown as HarnessEvent;
     expect(derivePrimaryTurnActivity([...completed(), malformed], 'primary')).toBeNull();

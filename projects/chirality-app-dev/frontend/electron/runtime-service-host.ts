@@ -44,6 +44,7 @@ export type RuntimeServiceConfig = {
   socketPath: string;
   runtimeDirectory: string;
   instructionRoot: string;
+  productInstructionsPath?: string;
   clientTokenFile: string;
   codex: {
     executablePath: string;
@@ -87,12 +88,14 @@ export function resolveRuntimeServicePaths(input: {
 export function buildRuntimeServiceConfig(input: {
   paths: RuntimeServicePaths;
   instructionRoot: string;
+  productInstructionsPath?: string;
   codexExecutablePath: string;
   userCodexHome: string;
   expectedCodexVersion: string;
 }): RuntimeServiceConfig {
   for (const [label, value] of Object.entries({
     instructionRoot: input.instructionRoot,
+    ...(input.productInstructionsPath === undefined ? {} : { productInstructionsPath: input.productInstructionsPath }),
     codexExecutablePath: input.codexExecutablePath,
     userCodexHome: input.userCodexHome
   })) {
@@ -105,6 +108,7 @@ export function buildRuntimeServiceConfig(input: {
     socketPath: input.paths.socketPath,
     runtimeDirectory: input.paths.runtimeDirectory,
     instructionRoot: path.resolve(input.instructionRoot),
+    ...(input.productInstructionsPath === undefined ? {} : { productInstructionsPath: path.resolve(input.productInstructionsPath) }),
     clientTokenFile: input.paths.clientTokenFile,
     codex: {
       executablePath: path.resolve(input.codexExecutablePath),

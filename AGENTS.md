@@ -160,6 +160,17 @@ policy, or run a patched supplier. Approval and sandbox policy are the user's
 choice per project and per turn; changing them grants nothing beyond what the
 host enforces. Local models are Codex model providers, not a second engine.
 
+The App's shared behavioral guidance is maintained at
+`projects/chirality-app-dev/instructions/AGENTS.md` and packaged as its default
+`AGENTS.md`. The App seeds an editable copy in its own user-data instructions
+folder and supplies that common guidance plus the active role automatically.
+This repository entry remains guidance for work in the Chirality repository;
+the distinction is applicability, not confidentiality. Codex owns native global
+and project instruction discovery. Fresh named children receive the shared
+product guidance and their intended full role. Instruction changes take effect
+at a verified idle boundary, preserving prior supplied content and conversation
+history. A full-history fork alone does not establish a different role.
+
 The shared governance is in `docs/DIRECTIVE.md`, `docs/CONTRACT.md`,
 `docs/SPEC.md`, and `docs/TYPES.md`, with accepted amendments. Component design
 is specified in `docs/WORKFLOW_COMPONENT_STANDARD.md`; runtime configuration,

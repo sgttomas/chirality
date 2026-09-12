@@ -36,6 +36,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
 }));
 vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, getHarnessSession: state.getSession, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn(), getHarnessTurnState: vi.fn(async () => ({ active: false, lastSeq: 0 })), attachHarnessTurn: vi.fn(async () => undefined) }));
 import { ChatPanel } from '../../components/shell/chat-panel';
+import { HarnessApiClientError } from '../../lib/harness/client';
 
 let tree: ReactTestRenderer | undefined;
 let values: Map<string, string>;
@@ -79,7 +80,8 @@ beforeEach(() => {
   state.replyClarification.mockResolvedValue({ schemaVersion: 'chirality.native-plan-clarification-reply/v3', sessionId: 'bound', requestId: 7, sent: true });
   state.exportPlan.mockResolvedValue({ schemaVersion: 'chirality.native-plan-export/v3', sessionId: 'bound', revision: 1, targetRelativePath: 'plans/fixture.md', sha256: 'a'.repeat(64) });
   state.apply.mockImplementation(async (value: string) => { root(value); return true; });
-  state.stream.mockRejectedValue(new Error('Fixture turn failure'));
+  // A known HTTP rejection before turn acceptance, rather than a lost response.
+  state.stream.mockRejectedValue(new HarnessApiClientError(400, 'INVALID_REQUEST', 'Fixture turn failure'));
 });
 afterEach(() => { if (tree) act(() => tree!.unmount()); tree = undefined; vi.unstubAllGlobals(); });
 
@@ -89,7 +91,7 @@ it('uses the returned canonical root without migrating or overwriting either con
   expect(state.root).toBe('/canonical'); assertCanonicalUntouched();
   expect(tree!.root.findByProps({ className: 'chat-folder-fixed' }).props.title).toBe('/canonical');
   await act(async () => pending.resolve(false));
-  await type('Second prompt'); state.stream.mockRejectedValue(new Error('Failed again')); await submit();
+  await type('Second prompt'); state.stream.mockRejectedValue(new HarnessApiClientError(400, 'INVALID_REQUEST', 'Failed again')); await submit();
   expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Second prompt');
   assertCanonicalUntouched();
@@ -210,7 +212,7 @@ it('starts Plan Mode in a new Codex chat and keeps inspect, revise, save, and ex
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('Execute the accepted native Plan Mode revision 2');
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('# Approved plan');
 
-  await act(async () => tree!.root.findAllByType('button').find(button => button.children.includes('Save as workflow in chat'))!.props.onClick());
+  await act(async () => tree!.root.findAllByType('button').find(button => button.children.includes('Turn into workflow'))!.props.onClick());
   const saveDraft = tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value;
   expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.value).toBe('chat');
   expect(saveDraft).toContain('Limit this turn to the bounded workflow save; do not execute the plan.');
@@ -324,7 +326,7 @@ it('clears native plan actions while a different resumed chat is still loading i
   const loadingView = JSON.stringify(tree!.toJSON());
   expect(loadingView).not.toContain('Plan A');
   expect(tree!.root.findAllByType('button').some(button => button.children.includes('Execute plan'))).toBe(false);
-  expect(tree!.root.findAllByType('button').some(button => button.children.includes('Save as workflow in chat'))).toBe(false);
+  expect(tree!.root.findAllByType('button').some(button => button.children.includes('Turn into workflow'))).toBe(false);
 
   await act(async () => {
     capabilityB.resolve(capability);
@@ -486,7 +488,7 @@ it('preserves an explicit empty next-message selection when a bound turn fails',
   await type('This turn will fail');
   const submission = act(async () => { await tree!.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }); });
   await act(async () => select([]));
-  await act(async () => rejectTurn(new Error('Fixture turn failure')));
+  await act(async () => rejectTurn(new HarnessApiClientError(400, 'INVALID_REQUEST', 'Fixture turn failure')));
   await submission;
   expect(tree!.root.findAllByProps({ 'aria-label': 'Methods for next turn' })).toHaveLength(0);
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('This turn will fail');
@@ -733,7 +735,7 @@ it('keeps retained assistant Markdown bound to the root that produced it', async
 
 it('accepts Runtime interrupted exit 130 without a request failure and permits a follow-up turn', async () => {
   state.stream.mockImplementationOnce(async (_input, onEvent) => {
-    onEvent({ event: 'harness:event', data: { type: 'turn.interrupted', sessionId: 'bound', turnId: 'interrupted-turn' } });
+    onEvent({ event: 'harness:event', data: { type: 'turn.interrupted', sessionId: 'bound', turnId: _input.turnId } });
     onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
   });
   await mount(); await type('Interrupt this turn'); await submit();
@@ -900,11 +902,33 @@ it('hands the Plan tab model to its host, keeps every plan action working from t
   await act(async () => button('Execute plan').props.onClick());
   expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.value).toBe('chat');
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('Execute the accepted native Plan Mode revision 2');
-  await act(async () => button('Save as workflow in chat').props.onClick());
+  await act(async () => button('Turn into workflow').props.onClick());
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('do not execute the plan');
   window.chirality!.plans = { chooseExportTarget: vi.fn().mockResolvedValue({ cancelled: false, targetRelativePath: 'plans/native.md' }), confirmOverwrite: vi.fn().mockResolvedValue(false) };
   await act(async () => { await button('Save plan…').props.onClick(); });
   expect(state.exportPlan).toHaveBeenLastCalledWith({ sessionId: 'bound', revision: 2, targetRelativePath: 'plans/native.md' });
   expect(hostText()).toContain('Plan saved to');
   expect(host.findByProps({ className: 'native-plan-history' })).toBeDefined();
+});
+
+
+it('keeps an ambiguously delivered prompt in history without restoring its draft or sending twice', async () => {
+  vi.useFakeTimers();
+  try {
+    // Fetch failed without a typed HTTP rejection: Runtime may have accepted it.
+    state.stream.mockRejectedValueOnce(new TypeError('Failed to fetch'));
+    await mount();
+    await type('An uncertain delivery');
+    await submit();
+    expect(state.stream).toHaveBeenCalledTimes(1);
+    expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+    expect(JSON.stringify(tree!.toJSON())).toContain('Reconnecting');
+    await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+    expect(state.stream).toHaveBeenCalledTimes(1);
+    expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+    expect(JSON.stringify(tree!.toJSON())).toContain('An uncertain delivery');
+    expect(JSON.stringify(tree!.toJSON())).toContain('"data-turn-outcome":"unknown"');
+    expect(JSON.stringify(tree!.toJSON())).not.toContain('"data-turn-outcome":"completed"');
+    assertCanonicalUntouched();
+  } finally { vi.useRealTimers(); }
 });

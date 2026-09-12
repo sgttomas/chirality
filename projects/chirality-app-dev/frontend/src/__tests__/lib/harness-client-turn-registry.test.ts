@@ -35,8 +35,8 @@ describe('turn registry client', () => {
     vi.stubGlobal('fetch', fetchMock);
     const received: unknown[] = [];
     const controller = new AbortController();
-    await attachHarnessTurn('sess/1', 4, (event) => received.push(event), controller.signal);
-    expect(fetchMock).toHaveBeenCalledWith('/api/harness/session/sess%2F1/turn/stream?after=4', expect.objectContaining({ method: 'GET', signal: controller.signal }));
+    await attachHarnessTurn('sess/1', 4, (event) => received.push(event), controller.signal, 'turn/1');
+    expect(fetchMock).toHaveBeenCalledWith('/api/harness/session/sess%2F1/turn/stream?after=4&turnId=turn%2F1', expect.objectContaining({ method: 'GET', signal: controller.signal }));
     expect(received).toEqual([
       { event: 'harness:event', data: { type: 'message.delta', text: 'hello' }, seq: 5 },
       { event: 'harness:event', data: { type: 'turn.completed' }, seq: 6 }
@@ -47,9 +47,9 @@ describe('turn registry client', () => {
     const fetchMock = vi.fn().mockResolvedValue(sse('event: chat:complete\ndata: {"text":"done"}\n\n'));
     vi.stubGlobal('fetch', fetchMock);
     const controller = new AbortController();
-    await streamHarnessTurn({ sessionId: 's1', message: 'hi', model: 'gpt-alt', reasoningEffort: 'low' }, () => undefined, controller.signal);
+    await streamHarnessTurn({ sessionId: 's1', message: 'hi', turnId: 'submitted-turn', model: 'gpt-alt', reasoningEffort: 'low' }, () => undefined, controller.signal);
     expect(fetchMock.mock.calls[0][0]).toBe('/api/harness/turn');
-    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ sessionId: 's1', message: 'hi', model: 'gpt-alt', reasoningEffort: 'low' });
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ sessionId: 's1', message: 'hi', turnId: 'submitted-turn', model: 'gpt-alt', reasoningEffort: 'low' });
     expect(fetchMock.mock.calls[0][1].signal).toBe(controller.signal);
   });
 

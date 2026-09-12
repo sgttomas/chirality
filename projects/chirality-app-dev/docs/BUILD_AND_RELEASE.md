@@ -207,3 +207,22 @@ bundle, socket placement and permissions, and the checks in §8.1.
 The bundled `chirality` CLI remains a socket-API client; its compatibility
 with the service is unverified and not an MVP prerequisite, and no
 `~/.local/bin` installation is part of the procedure.
+
+## 12. Product guidance and public update source (2026-09-12)
+
+The owner named `https://github.com/sgttomas/chirality-app/releases` as the
+App's public release source. Manual checks read its latest published stable
+release through the public GitHub API without authentication. A newer matching
+installer, or the exact release page when no matching asset is identified,
+opens in the system browser on request. The App does not install, restart,
+notarize, or publish itself. Public release discovery and publishing authority
+remain distinct. The currently published v2.0.0 is older than v3.0.0-rc.1.
+
+The package stages `instructions/AGENTS.md` from this project as its shared
+product default. It retains the open-source role and method library. An
+App-owned editable copy at `{userData}/instructions/AGENTS.md` is seeded once,
+preserved across upgrades, and accessible through Settings. Restoration keeps
+a backup. Verify the packaged default against this source through the existing
+instruction-integrity check; do not overwrite the user's copy during an update.
+Native user and project instruction discovery remains with Codex. Per-run
+product/role bytes and history must survive edits and resume accurately.

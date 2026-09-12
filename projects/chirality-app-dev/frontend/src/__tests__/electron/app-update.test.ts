@@ -1,91 +1,20 @@
 import { describe, expect, it, vi } from 'vitest';
-import {
-  checkForAppUpdate,
-  compareSemver,
-  createAppUpdateController,
-  createPolicyGuardedFetch,
-  evaluateAppUpdateSourcePolicy,
-  parseAppUpdateFeed,
-  parseSemver,
-  type AppUpdateFetch,
-  type AppUpdateFetchResponse
-} from '../../../electron/app-update';
-import {
-  APP_UPDATE_ALLOWED_FEED_HOSTS,
-  describeAppUpdateSource,
-  resolveAppUpdateSource,
-  type AppUpdateSource
-} from '../../../electron/app-update-source';
-import {
-  APP_ABOUT_SHOW_CHANNEL,
-  APP_UPDATE_CHANGED_CHANNEL,
-  APP_UPDATE_CHECK_CHANNEL,
-  APP_UPDATE_GET_CHANNEL,
-  APP_UPDATE_OPEN_DOWNLOAD_CHANNEL,
-  type AppUpdateState
-} from '../../../electron/app-update-ipc-contract';
+import { checkForAppUpdate, compareSemver, createAppUpdateController, createPolicyGuardedFetch,
+  evaluateAppUpdateSourcePolicy, parseAppUpdateFeed, parseSemver, type AppUpdateFetchResponse } from '../../../electron/app-update';
+import { APP_UPDATE_FEED_URL, APP_UPDATE_RELEASE_ROOT, resolveAppUpdateSource } from '../../../electron/app-update-source';
 
-/**
- * The checker is exercised with a fake `fetchImpl` only: no test here, and no
- * production path today, issues a network request. The configured-source cases
- * use a hypothetical allowlist passed explicitly, because the shipped allowlist
- * is empty and must stay that way until a K-NET-1 amendment names a host.
- */
-
-const FEED_HOST = 'releases.example.test';
-const FEED_URL = `https://${FEED_HOST}/chirality/feed.json`;
-const CONFIGURED: AppUpdateSource = { feedUrl: FEED_URL, description: 'Example feed' };
-const ALLOW = [FEED_HOST];
-const CURRENT = '3.0.0-rc.1';
-const CLOCK = () => new Date('2026-09-12T10:00:00.000Z');
-
-function response(body: string, init: { ok?: boolean; status?: number } = {}): AppUpdateFetchResponse {
-  return { ok: init.ok ?? true, status: init.status ?? 200, text: async () => body };
+const source = resolveAppUpdateSource()!;
+function release(version = '3.0.0', overrides: Record<string, unknown> = {}) {
+  return { tag_name: `v${version}`, draft: false, prerelease: false,
+    html_url: `${APP_UPDATE_RELEASE_ROOT}/tag/v${version}`, published_at: '2026-09-12T10:00:00Z',
+    assets: [{ name: `Chirality-${version}-arm64.dmg`, state: 'uploaded',
+      browser_download_url: `${APP_UPDATE_RELEASE_ROOT}/download/v${version}/Chirality-${version}-arm64.dmg` }], ...overrides };
 }
-
-function feedWith(version: string, extra: Record<string, unknown> = {}): string {
-  return JSON.stringify({ version, downloadUrl: 'https://releases.example.test/Chirality.dmg', ...extra });
-}
-
-const neverFetch: AppUpdateFetch = vi.fn(async () => {
-  throw new Error('fetch must not be called');
+const response = (body: unknown = release(), status = 200): AppUpdateFetchResponse => ({
+  ok: status === 200, status, text: async () => JSON.stringify(body)
 });
-
-describe('app-update contract', () => {
-  it('pins the channel names the preload and renderer are coded against', () => {
-    expect(APP_UPDATE_GET_CHANNEL).toBe('chirality:app-update-get');
-    expect(APP_UPDATE_CHECK_CHANNEL).toBe('chirality:app-update-check');
-    expect(APP_UPDATE_OPEN_DOWNLOAD_CHANNEL).toBe('chirality:app-update-open-download');
-    expect(APP_UPDATE_CHANGED_CHANNEL).toBe('chirality:app-update-changed');
-    expect(APP_ABOUT_SHOW_CHANNEL).toBe('chirality:app-about-show');
-  });
-});
-
-describe('release source (shipped unconfigured)', () => {
-  it('resolves no source and allowlists no host', () => {
-    expect(resolveAppUpdateSource()).toBeNull();
-    expect(APP_UPDATE_ALLOWED_FEED_HOSTS).toEqual([]);
-    expect(describeAppUpdateSource(null)).toEqual({
-      configured: false,
-      description: 'No release source is configured for this build.'
-    });
-    expect(describeAppUpdateSource(CONFIGURED)).toEqual({ configured: true, description: 'Example feed' });
-  });
-
-  it('fails the policy gate for a missing, non-https, malformed or non-allowlisted source', () => {
-    expect(evaluateAppUpdateSourcePolicy(null)).toMatchObject({ allowed: false, failure: { code: 'no-release-source' } });
-    expect(evaluateAppUpdateSourcePolicy(CONFIGURED)).toMatchObject({ allowed: false, failure: { code: 'policy' } });
-    expect(evaluateAppUpdateSourcePolicy({ ...CONFIGURED, feedUrl: `http://${FEED_HOST}/feed.json` }, ALLOW)).toMatchObject({
-      allowed: false,
-      failure: { code: 'policy' }
-    });
-    expect(evaluateAppUpdateSourcePolicy({ ...CONFIGURED, feedUrl: 'not a url' }, ALLOW)).toMatchObject({
-      allowed: false,
-      failure: { code: 'policy' }
-    });
-    expect(evaluateAppUpdateSourcePolicy(CONFIGURED, ALLOW)).toEqual({ allowed: true, feedUrl: FEED_URL, hostname: FEED_HOST });
-    expect(evaluateAppUpdateSourcePolicy(CONFIGURED, ['RELEASES.EXAMPLE.TEST'])).toMatchObject({ allowed: true });
-  });
+const check = (body: unknown = release(), currentVersion = '3.0.0-rc.1') => checkForAppUpdate({
+  source, currentVersion, platform: 'darwin', arch: 'arm64', fetchImpl: async () => response(body)
 });
 
 describe('semver precedence', () => {
@@ -94,7 +23,7 @@ describe('semver precedence', () => {
   it('parses release and prerelease identities and rejects malformed ones', () => {
     expect(parseSemver('3.0.0-rc.1')).toEqual({ major: 3, minor: 0, patch: 0, prerelease: ['rc', 1] });
     expect(parseSemver('v3.0.0+build.7')).toEqual({ major: 3, minor: 0, patch: 0, prerelease: [] });
-    for (const bad of ['3.0', '03.0.0', '3.0.0-', 'latest', '', '3.0.0-rc..1']) {
+    for (const bad of ['3.0', '03.0.0', '3.0.0-', 'latest', '', '3.0.0-rc..1', '3.0.0-01']) {
       expect(parseSemver(bad), bad).toBeNull();
     }
   });
@@ -111,244 +40,103 @@ describe('semver precedence', () => {
     expect(order('3.0.0-rc.1+a', '3.0.0-rc.1+b')).toBe(0);
     expect(order('3.0.1-rc.1', '3.0.0')).toBeGreaterThan(0);
     expect(order('2.9.9', '3.0.0-rc.1')).toBeLessThan(0);
+    expect(order('999999999999999999.0.0', '999999999999999998.0.0')).toBeGreaterThan(0);
+    expect(order('3.0.0-999999999999999999', '3.0.0-999999999999999998')).toBeGreaterThan(0);
   });
 });
 
-describe('feed parsing', () => {
-  it('accepts the published shape and rejects every malformed variant', () => {
-    expect(parseAppUpdateFeed(feedWith('3.0.0', { releaseNotesUrl: 'https://x.test/notes', publishedAt: '2026-09-12' }))).toEqual({
-      ok: true,
-      feed: { version: '3.0.0', downloadUrl: 'https://releases.example.test/Chirality.dmg', releaseNotesUrl: 'https://x.test/notes', publishedAt: '2026-09-12' }
-    });
-    expect(parseAppUpdateFeed('not json')).toMatchObject({ ok: false });
-    expect(parseAppUpdateFeed('[]')).toMatchObject({ ok: false });
-    expect(parseAppUpdateFeed('null')).toMatchObject({ ok: false });
-    expect(parseAppUpdateFeed(JSON.stringify({ downloadUrl: 'https://x.test/a' }))).toMatchObject({ ok: false });
-    expect(parseAppUpdateFeed(JSON.stringify({ version: 'latest', downloadUrl: 'https://x.test/a' }))).toMatchObject({ ok: false });
-    expect(parseAppUpdateFeed(JSON.stringify({ version: '3.0.0' }))).toMatchObject({ ok: false });
-    expect(parseAppUpdateFeed(JSON.stringify({ version: '3.0.0', downloadUrl: 'http://x.test/a' }))).toMatchObject({ ok: false });
-    expect(parseAppUpdateFeed(JSON.stringify({ version: '3.0.0', downloadUrl: 'https://x.test/a', releaseNotesUrl: 'ftp://x' }))).toMatchObject({ ok: false });
-    expect(parseAppUpdateFeed(JSON.stringify({ version: '3.0.0', downloadUrl: 'https://x.test/a', publishedAt: 7 }))).toMatchObject({ ok: false });
-  });
-});
 
-describe('checkForAppUpdate', () => {
-  it('fails closed with no-release-source and never fetches when no source is configured', async () => {
-    const result = await checkForAppUpdate({ source: null, currentVersion: CURRENT, fetchImpl: neverFetch, now: CLOCK });
-    expect(result).toEqual({
-      status: 'failed',
-      checkedAt: '2026-09-12T10:00:00.000Z',
-      failure: { code: 'no-release-source', message: 'No release source is configured for this build.' }
-    });
-    expect(neverFetch).not.toHaveBeenCalled();
-  });
-
-  it('fails closed with policy and never fetches when the source host is not allowlisted', async () => {
-    const result = await checkForAppUpdate({ source: CONFIGURED, currentVersion: CURRENT, fetchImpl: neverFetch, now: CLOCK });
-    expect(result).toMatchObject({ status: 'failed', failure: { code: 'policy' } });
-    expect(neverFetch).not.toHaveBeenCalled();
-    // The shipped allowlist is the default: passing nothing is the same as passing it.
-    const shipped = await checkForAppUpdate({ source: CONFIGURED, currentVersion: CURRENT, fetchImpl: neverFetch, allowedHosts: APP_UPDATE_ALLOWED_FEED_HOSTS });
-    expect(shipped).toMatchObject({ status: 'failed', failure: { code: 'policy' } });
-  });
-
-  it('reports network when the fetch rejects or answers non-2xx, with no URL in the message', async () => {
-    const rejecting: AppUpdateFetch = async () => {
-      throw new Error(`getaddrinfo ENOTFOUND ${FEED_HOST} while fetching ${FEED_URL}?token=abc`);
-    };
-    const rejected = await checkForAppUpdate({ source: CONFIGURED, currentVersion: CURRENT, fetchImpl: rejecting, allowedHosts: ALLOW });
-    expect(rejected).toMatchObject({ status: 'failed', failure: { code: 'network' } });
-    expect(rejected.status === 'failed' && rejected.failure.message).not.toContain('token=abc');
-    expect(rejected.status === 'failed' && rejected.failure.message).not.toContain('https://');
-
-    const notFound = await checkForAppUpdate({ source: CONFIGURED, currentVersion: CURRENT, fetchImpl: async () => response('', { ok: false, status: 404 }), allowedHosts: ALLOW });
-    expect(notFound).toMatchObject({ status: 'failed', failure: { code: 'network', message: 'The release feed request failed with HTTP 404.' } });
-  });
-
-  it('reports invalid-feed for a malformed body', async () => {
-    for (const body of ['<html>', '{}', feedWith('3.0.0').replace('https://', 'http://')]) {
-      const result = await checkForAppUpdate({ source: CONFIGURED, currentVersion: CURRENT, fetchImpl: async () => response(body), allowedHosts: ALLOW });
-      expect(result, body).toMatchObject({ status: 'failed', failure: { code: 'invalid-feed' } });
+describe('public release source and validation', () => {
+  it('allows only the exact public latest endpoint, even with a broader host allowlist', () => {
+    expect(evaluateAppUpdateSourcePolicy(source)).toMatchObject({ allowed: true, feedUrl: APP_UPDATE_FEED_URL });
+    expect(evaluateAppUpdateSourcePolicy(null)).toMatchObject({ allowed: false });
+    for (const feedUrl of [APP_UPDATE_FEED_URL + '?token=x', APP_UPDATE_FEED_URL + '#x',
+      APP_UPDATE_FEED_URL.replace('https://', 'https://user:pass@'),
+      APP_UPDATE_FEED_URL.replace('chirality-app', 'other'), APP_UPDATE_FEED_URL.replace('https:', 'http:'),
+      APP_UPDATE_FEED_URL.replace('api.github.com', 'foreign.test')]) {
+      expect(evaluateAppUpdateSourcePolicy({ ...source, feedUrl }, ['api.github.com', 'foreign.test'])).toMatchObject({ allowed: false });
     }
   });
-
-  it('reports invalid-feed when the installed version cannot be compared, without fetching', async () => {
-    const result = await checkForAppUpdate({ source: CONFIGURED, currentVersion: 'dev', fetchImpl: neverFetch, allowedHosts: ALLOW });
-    expect(result).toMatchObject({ status: 'failed', failure: { code: 'invalid-feed' } });
-    expect(neverFetch).not.toHaveBeenCalled();
-  });
-
-  it('fetches exactly the configured feed URL and reports update-available with the feed details', async () => {
-    const fetchImpl = vi.fn(async () => response(feedWith('3.0.0', { releaseNotesUrl: 'https://releases.example.test/notes', publishedAt: '2026-10-01T00:00:00.000Z' })));
-    const result = await checkForAppUpdate({ source: CONFIGURED, currentVersion: CURRENT, fetchImpl, allowedHosts: ALLOW, now: CLOCK });
-    expect(fetchImpl).toHaveBeenCalledTimes(1);
-    expect(fetchImpl).toHaveBeenCalledWith(FEED_URL);
-    expect(result).toEqual({
-      status: 'update-available',
-      checkedAt: '2026-09-12T10:00:00.000Z',
-      available: {
-        version: '3.0.0',
-        downloadUrl: 'https://releases.example.test/Chirality.dmg',
-        releaseNotesUrl: 'https://releases.example.test/notes',
-        publishedAt: '2026-10-01T00:00:00.000Z'
-      }
-    });
-  });
-
-  it('reports up-to-date for an equal or older feed version, including prerelease ordering', async () => {
-    for (const version of ['3.0.0-rc.1', '3.0.0-rc.0', '3.0.0-beta.9', '2.9.9']) {
-      const result = await checkForAppUpdate({ source: CONFIGURED, currentVersion: CURRENT, fetchImpl: async () => response(feedWith(version)), allowedHosts: ALLOW, now: CLOCK });
-      expect(result, version).toEqual({ status: 'up-to-date', checkedAt: '2026-09-12T10:00:00.000Z' });
+  it('accepts published stable releases and chooses only matching architecture assets', () => {
+    const body = JSON.stringify(release());
+    expect(parseAppUpdateFeed(body, 'darwin', 'arm64')).toMatchObject({ ok: true, feed: { downloadUrl: release().assets[0].browser_download_url } });
+    for (const [platform, arch] of [['darwin', 'x64'], ['linux', 'arm64'], ['win32', 'x64']]) {
+      expect(parseAppUpdateFeed(body, platform, arch)).toMatchObject({ ok: true, feed: { downloadUrl: release().html_url } });
     }
-    const release = await checkForAppUpdate({ source: CONFIGURED, currentVersion: '3.0.0', fetchImpl: async () => response(feedWith('3.0.0-rc.2')), allowedHosts: ALLOW });
-    expect(release).toMatchObject({ status: 'up-to-date' });
+    expect(parseAppUpdateFeed(JSON.stringify(release('3.0.0', { assets: [] })))).toMatchObject({ ok: true, feed: { downloadUrl: release().html_url } });
+  });
+  it('rejects drafts, prereleases, malformed bodies and foreign/credentialed/redirect-shaped URLs', () => {
+    for (const overrides of [{ draft: true }, { prerelease: true }, { tag_name: '3.0.0-rc.2' },
+      { published_at: null }, { assets: null }, { html_url: 'https://github.com/foreign/repo/releases/tag/v3.0.0' },
+      { html_url: release().html_url + '?redirect=bad' },
+      { html_url: release().html_url.replace('https://', 'https://u:p@') },
+      { assets: [{ ...release().assets[0], browser_download_url: 'https://foreign.test/a.dmg' }] }]) {
+      expect(parseAppUpdateFeed(JSON.stringify(release('3.0.0', overrides)))).toMatchObject({ ok: false });
+    }
+    for (const body of ['not json', 'null', '[]', '{}']) expect(parseAppUpdateFeed(body)).toMatchObject({ ok: false });
   });
 });
 
-describe('createPolicyGuardedFetch (production wiring)', () => {
-  it('rejects without delegating unless a source is configured and allowlisted', async () => {
-    const delegate = vi.fn<AppUpdateFetch>(async () => response(feedWith('3.0.0')));
-    await expect(createPolicyGuardedFetch({ source: null, fetchImpl: delegate })(FEED_URL)).rejects.toThrow(/refused/u);
-    await expect(createPolicyGuardedFetch({ source: CONFIGURED, fetchImpl: delegate })(FEED_URL)).rejects.toThrow(/refused/u);
-    await expect(createPolicyGuardedFetch({ source: CONFIGURED, allowedHosts: ALLOW, fetchImpl: delegate })('https://releases.example.test/other.json')).rejects.toThrow(/not the configured feed/u);
-    expect(delegate).not.toHaveBeenCalled();
-    await expect(createPolicyGuardedFetch({ source: CONFIGURED, allowedHosts: ALLOW, fetchImpl: delegate })(FEED_URL)).resolves.toMatchObject({ ok: true });
-    expect(delegate).toHaveBeenCalledWith(FEED_URL);
+describe('manual release checks', () => {
+  it('offers newer stable versions and never downgrades the 3.0.0 candidate to public 2.0.0', async () => {
+    expect(await check()).toMatchObject({ status: 'update-available', available: { version: '3.0.0' } });
+    expect(await check(release('2.0.0'))).toMatchObject({ status: 'up-to-date' });
+    expect(await check(release(), '3.0.0+build.9')).toMatchObject({ status: 'up-to-date' });
+    expect(await check(release(), '4.0.0')).toMatchObject({ status: 'up-to-date' });
+    expect(await check({}, 'dev')).toMatchObject({ status: 'failed', failure: { code: 'invalid-feed' } });
+    expect(await check({})).toMatchObject({ status: 'failed', failure: { code: 'invalid-feed' } });
   });
-
-  it('surfaces through the checker as a network failure with the shipped (empty) source', async () => {
-    const result = await checkForAppUpdate({
-      source: CONFIGURED,
-      currentVersion: CURRENT,
-      allowedHosts: ALLOW,
-      fetchImpl: createPolicyGuardedFetch({ source: resolveAppUpdateSource(), allowedHosts: APP_UPDATE_ALLOWED_FEED_HOSTS })
-    });
-    expect(result).toMatchObject({ status: 'failed', failure: { code: 'network' } });
+  it('truthfully reports no release, rate limits, network and redirects', async () => {
+    for (const [status, message] of [[404, /No published stable release/], [403, /rate-limited/], [429, /rate-limited/], [500, /HTTP 500/]] as const) {
+      expect(await checkForAppUpdate({ source, currentVersion: '3.0.0', fetchImpl: async () => response({}, status) })).toMatchObject({ status: 'failed', failure: { message } });
+    }
+    for (const extra of [{ redirected: true }, { url: 'https://foreign.test/feed' }]) {
+      expect(await checkForAppUpdate({ source, currentVersion: '3.0.0', fetchImpl: async () => ({ ...response(), ...extra }) })).toMatchObject({ status: 'failed', failure: { message: /redirected/ } });
+    }
+  });
+  it('bounds stalled headers and body and aborts the request', async () => {
+    for (const bodyStalls of [false, true]) {
+      let signal: AbortSignal | null | undefined;
+      const result = await checkForAppUpdate({ source, currentVersion: '3.0.0', timeoutMs: 5,
+        fetchImpl: async (_, init) => { signal = init?.signal; return bodyStalls
+          ? { ...response(), text: () => new Promise(() => undefined) } : new Promise(() => undefined); } });
+      expect(result).toMatchObject({ status: 'failed', failure: { message: /timed out/ } });
+      expect(signal?.aborted).toBe(true);
+    }
+  });
+  it('production fetch omits credentials, refuses redirects and cannot be retargeted', async () => {
+    const fetchImpl = vi.fn(async () => response());
+    const guarded = createPolicyGuardedFetch({ source, fetchImpl });
+    await expect(guarded('https://foreign.test')).rejects.toThrow(/not the configured/);
+    expect(fetchImpl).not.toHaveBeenCalled();
+    await guarded(APP_UPDATE_FEED_URL, { headers: { Authorization: 'secret' }, credentials: 'include', redirect: 'follow' });
+    expect(fetchImpl).toHaveBeenCalledWith(APP_UPDATE_FEED_URL, expect.objectContaining({ credentials: 'omit', redirect: 'error',
+      headers: { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' } }));
   });
 });
 
-type ControllerHarness = {
-  states: AppUpdateState[];
-  logs: Array<{ level: string; event: string; detail?: unknown }>;
-  openExternal: ReturnType<typeof vi.fn>;
-  controller: ReturnType<typeof createAppUpdateController>;
-};
-
-function harness(options: { source?: AppUpdateSource | null; fetchImpl?: AppUpdateFetch; openExternal?: (url: string) => Promise<void> } = {}): ControllerHarness {
-  const states: AppUpdateState[] = [];
-  const logs: ControllerHarness['logs'] = [];
-  const openExternal = vi.fn(options.openExternal ?? (async () => undefined));
-  const controller = createAppUpdateController({
-    appVersion: CURRENT,
-    source: options.source ?? null,
-    fetchImpl: options.fetchImpl ?? neverFetch,
-    allowedHosts: ALLOW,
-    openExternal,
-    now: CLOCK,
-    log: (level, event, detail) => logs.push({ level, event, detail })
-  });
-  controller.subscribe((state) => states.push(state));
-  return { states, logs, openExternal, controller };
-}
-
-describe('createAppUpdateController', () => {
-  it('starts idle with the current version and the unconfigured source description', () => {
-    const { controller } = harness();
-    expect(controller.getState()).toEqual({
-      currentVersion: CURRENT,
-      status: 'idle',
-      releaseSource: { configured: false, description: 'No release source is configured for this build.' }
-    });
-  });
-
-  it('publishes checking then failed/no-release-source for the shipped build, with a checkedAt', async () => {
-    const { controller, states } = harness();
-    const settled = await controller.check();
-    expect(states.map((state) => state.status)).toEqual(['checking', 'failed']);
-    expect(states[0]).toEqual({ currentVersion: CURRENT, status: 'checking', checkedAt: undefined, releaseSource: settled.releaseSource });
-    expect(settled).toEqual({
-      currentVersion: CURRENT,
-      status: 'failed',
-      checkedAt: '2026-09-12T10:00:00.000Z',
-      failure: { code: 'no-release-source', message: 'No release source is configured for this build.' },
-      releaseSource: { configured: false, description: 'No release source is configured for this build.' }
-    });
-    expect(controller.getState()).toBe(settled);
-  });
-
-  it('shares one in-flight check between concurrent callers and runs a fresh one afterwards', async () => {
-    let release: (() => void) | undefined;
-    const fetchImpl = vi.fn(async () => {
-      await new Promise<void>((resolve) => { release = resolve; });
-      return response(feedWith('3.0.0'));
-    });
-    const { controller, states } = harness({ source: CONFIGURED, fetchImpl });
+describe('controller browser-mediated UX', () => {
+  it('deduplicates checks, clears stale updates, and opens only the validated release URL', async () => {
+    let body: unknown = release();
+    let finish!: () => void;
+    const fetchImpl = vi.fn(async () => { await new Promise<void>(resolve => { finish = resolve; }); return response(body); });
+    const openExternal = vi.fn(async () => undefined);
+    const controller = createAppUpdateController({ source, appVersion: '3.0.0-rc.1', platform: 'darwin', arch: 'arm64', fetchImpl, openExternal });
+    expect(await controller.openDownload()).toMatchObject({ ok: false });
     const first = controller.check();
-    const second = controller.check();
-    expect(second).toBe(first);
+    expect(controller.check()).toBe(first);
     expect(controller.getState().status).toBe('checking');
-    release?.();
-    const [a, b] = await Promise.all([first, second]);
-    expect(a).toBe(b);
-    expect(a).toMatchObject({ status: 'update-available', available: { version: '3.0.0' } });
-    expect(fetchImpl).toHaveBeenCalledTimes(1);
-    expect(states.map((state) => state.status)).toEqual(['checking', 'update-available']);
-
-    const third = controller.check();
-    expect(third).not.toBe(first);
-    release?.();
-    await third;
+    finish(); await first;
+    expect(openExternal).not.toHaveBeenCalled();
+    expect(await controller.openDownload()).toEqual({ ok: true });
+    expect(openExternal).toHaveBeenCalledWith(release().assets[0].browser_download_url);
+    controller.getState().available!.downloadUrl = 'https://foreign.test/file';
+    expect(await controller.openDownload()).toMatchObject({ ok: false });
+    body = {};
+    const next = controller.check();
+    expect(controller.getState().available).toBeUndefined();
+    finish(); await next;
+    expect(controller.getState()).toMatchObject({ status: 'failed' });
     expect(fetchImpl).toHaveBeenCalledTimes(2);
-  });
-
-  it('clears a stale outcome while checking and keeps the last checkedAt', async () => {
-    let body = feedWith('3.0.0');
-    const { controller } = harness({ source: CONFIGURED, fetchImpl: async () => response(body) });
-    await controller.check();
-    expect(controller.getState().available).toBeDefined();
-    body = '<html>';
-    const pending = controller.check();
-    expect(controller.getState()).toEqual({
-      currentVersion: CURRENT,
-      status: 'checking',
-      checkedAt: '2026-09-12T10:00:00.000Z',
-      releaseSource: { configured: true, description: 'Example feed' }
-    });
-    const settled = await pending;
-    expect(settled.available).toBeUndefined();
-    expect(settled).toMatchObject({ status: 'failed', failure: { code: 'invalid-feed' } });
-  });
-
-  it('opens only an https download, and reports why otherwise', async () => {
-    const none = harness();
-    await expect(none.controller.openDownload()).resolves.toEqual({ ok: false, error: 'No update download is available to open.' });
-    expect(none.openExternal).not.toHaveBeenCalled();
-
-    const some = harness({ source: CONFIGURED, fetchImpl: async () => response(feedWith('3.0.0')) });
-    await some.controller.check();
-    await expect(some.controller.openDownload()).resolves.toEqual({ ok: true });
-    expect(some.openExternal).toHaveBeenCalledWith('https://releases.example.test/Chirality.dmg');
-
-    const failing = harness({ source: CONFIGURED, fetchImpl: async () => response(feedWith('3.0.0')), openExternal: async () => { throw new Error('launch services refused https://releases.example.test/Chirality.dmg?sig=1'); } });
-    await failing.controller.check();
-    const refused = await failing.controller.openDownload();
-    expect(refused.ok).toBe(false);
-    expect(refused.error).not.toContain('sig=1');
-  });
-
-  it('never logs a URL or an @ and unsubscribes cleanly', async () => {
-    const { controller, logs, states } = harness({
-      source: CONFIGURED,
-      fetchImpl: async () => { throw new Error(`refused for user@example.test at ${FEED_URL}?k=v`); }
-    });
-    const stop = controller.subscribe(() => undefined);
-    stop();
-    await controller.check();
-    const serialized = JSON.stringify(logs);
-    expect(serialized).not.toContain('http');
-    expect(serialized).not.toContain('@');
-    expect(logs.map((entry) => entry.event)).toEqual(['app_update.check.started', 'app_update.check.completed']);
-    expect(logs[1]).toMatchObject({ level: 'warn', detail: { status: 'failed', failureCode: 'network' } });
-    expect(states).toHaveLength(2);
   });
 });

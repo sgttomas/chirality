@@ -76,6 +76,8 @@ function normalizeEngineFailure(error: unknown, local: boolean): RuntimeError {
         harness.message,
         harness.status
       );
+    case "INSTRUCTION_ADOPTION_PENDING":
+      return new RuntimeError("INSTRUCTION_ADOPTION_PENDING", harness.message, harness.status);
     case "ENGINE_UNAVAILABLE":
     case "CONTEXT_EXHAUSTED":
     case "SDK_FAILURE":
@@ -399,6 +401,12 @@ export class TurnCoordinator {
         terminalPersisted = true;
         yield { type: "harness:event", data: completed };
       } else {
+        // The supplier reports that it stopped; the Runtime owns why it asked
+        // for interruption. Preserve supplier details while recording that
+        // cause on the same terminal before both persistence and publication.
+        if (terminalHarnessEvent.type === "turn.interrupted" && controller.signal.aborted && activeTurn.reason !== undefined) {
+          terminalHarnessEvent = { ...terminalHarnessEvent, data: { ...terminalHarnessEvent.data, reason: activeTurn.reason } };
+        }
         await this.sessions.persistEvent(projectId, terminalHarnessEvent);
         terminalPersisted = true;
         yield { type: "harness:event", data: terminalHarnessEvent };
@@ -444,7 +452,7 @@ export class TurnCoordinator {
           type: "turn:error",
           data: {
             phase: "mid-stream",
-            errorType: "SDK_FAILURE",
+            errorType: runtimeError.code === "INSTRUCTION_ADOPTION_PENDING" ? "INSTRUCTION_ADOPTION_PENDING" : "SDK_FAILURE",
             message: runtimeError.message,
             status: runtimeError.status,
             severity: "error",

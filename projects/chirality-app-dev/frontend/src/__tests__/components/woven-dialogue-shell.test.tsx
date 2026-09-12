@@ -330,6 +330,48 @@ describe('WovenDialogueShell composition', () => {
     act(() => tree.unmount());
   });
 
+  it.each(['pointer', 'keyboard'] as const)('announces the constrained panel width, restores its preference, and starts %s resizing from the visible width', async (input) => {
+    let measure!: (entries: Array<{ contentRect: { width: number } }>) => void;
+    const persist = vi.fn();
+    const listeners: Record<string, (event: unknown) => void> = {};
+    vi.stubGlobal('ResizeObserver', class { constructor(callback: typeof measure) { measure = callback; } observe() {} disconnect() {} });
+    vi.stubGlobal('window', {
+      localStorage: { getItem: () => JSON.stringify({ schema: 'chirality.woven-workspace/v1', navigatorWidth: 280,
+        rightPanelView: 'files', openDocumentPath: 'spec.md', rightPanelWidths: { document: 480, files: 300 } }), setItem: persist },
+      addEventListener: (name: string, callback: (event: unknown) => void) => { listeners[name] = callback; }, removeEventListener: vi.fn()
+    });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />, { createNodeMock: element => element.type === 'section' && element.props['data-woven-surface'] ? {} : null }); });
+    const resize = () => tree.root.findByProps({ 'aria-label': 'Resize Coordination Panel' });
+    const saved = () => JSON.parse(persist.mock.calls.at(-1)![1]);
+    const assertWidth = (width: number) => {
+      expect(tree.root.findByProps({ 'data-woven-surface': 'dialogue' }).props.style.gridTemplateColumns).toMatch(new RegExp(` ${width}px$`));
+      expect(resize().props['aria-valuenow']).toBe(width);
+      expect(width).toBeGreaterThanOrEqual(resize().props['aria-valuemin']);
+      expect(width).toBeLessThanOrEqual(resize().props['aria-valuemax']);
+    };
+    act(() => measure([{ contentRect: { width: 1000 } }]));
+    assertWidth(280);
+    expect(saved().rightPanelWidths.document).toBe(480);
+    act(() => measure([{ contentRect: { width: 1440 } }]));
+    assertWidth(480);
+    act(() => measure([{ contentRect: { width: 1080 } }]));
+    assertWidth(356);
+    if (input === 'pointer') {
+      act(() => resize().props.onPointerDown({ button: 0, clientX: 700, clientY: 0, preventDefault: vi.fn() }));
+      act(() => listeners.pointermove({ clientX: 716, clientY: 0 }));
+      act(() => listeners.pointerup({}));
+    } else {
+      act(() => resize().props.onKeyDown({ key: 'ArrowRight', shiftKey: false, preventDefault: vi.fn() }));
+    }
+    assertWidth(340);
+    expect(saved().rightPanelWidths).toMatchObject({ document: 340, files: 300 });
+    act(() => measure([{ contentRect: { width: 1440 } }]));
+    assertWidth(340);
+    // The grid declaration is covered here; actual browser geometry remains the parent's proof.
+    act(() => tree.unmount());
+  });
+
   it('responds to measured stacked widths without removing primary, document or activity controls', async () => {
     let measure!: (entries: Array<{ contentRect: { width: number } }>) => void;
     vi.stubGlobal('ResizeObserver', class { constructor(callback: typeof measure) { measure = callback; } observe() {} disconnect() {} });

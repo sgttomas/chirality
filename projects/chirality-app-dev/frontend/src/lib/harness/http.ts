@@ -71,6 +71,9 @@ export function turnStreamResponse(turn: {
   };
   const stream = new ReadableStream<Uint8Array>({
     async start(controller): Promise<void> {
+      // The port returns only after Runtime has accepted the SSE subscription.
+      // This is transport evidence; proxy keepalives below are not.
+      controller.enqueue(encoder.encode(formatSseEvent('transport:connected', {})));
       keepalive = setInterval(() => {
         try {
           controller.enqueue(encoder.encode(': keepalive\n\n'));

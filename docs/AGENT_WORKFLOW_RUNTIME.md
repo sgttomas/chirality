@@ -145,14 +145,39 @@ workflow-editor surface or alternate workflow document format.
 
 ## Context selection and execution
 
-Ordinary selective App context contains Root `AGENTS.md`, applicable project
-instructions, the active role instruction, and the names and descriptions of
+Ordinary selective App context contains the product `AGENTS.md`, applicable
+native user/project instructions, the active role instruction, and the names and descriptions of
 the skills Codex reports as available. It excludes other full role
 instructions, broad governance documents, and unselected method bodies. Selected skill/workflow bodies and
 only the resources needed for the current stage load on demand. A selected
 resource must exist and remain within its source package after real-path
 resolution. Deliberate wider-index consultation is a recorded catalog
 operation, not routine context expansion.
+
+For the desktop App, the product default is maintained at
+`projects/chirality-app-dev/instructions/AGENTS.md`. The App seeds an editable
+`instructions/AGENTS.md` under its own user data, preserves it across updates,
+and exposes opening and restoration through Settings. Codex owns global and
+project `AGENTS.md` discovery, including native override precedence; Runtime
+does not inject a second project copy on this path. The product file and only
+the active full role are additive to Codex's base instructions. The Root
+repository entry and other open-source references remain available for their
+applicable work.
+
+Native named-role configuration carries common product guidance plus one full
+role. Its immutable paths are bound to the primary's adopted instruction basis
+so an edit does not change running descendants. Fresh role dispatch uses a
+bounded brief and fresh child context; arbitrary full-history forks do not
+establish role replacement. User native feature, model and depth settings are
+preserved. At Codex 0.154.0, a loaded thread can ignore instruction overrides;
+changed persistent guidance therefore requires confirmed idle unload followed
+by cold resume and acknowledged developer-level history injection before
+another turn. Configuration alone does not establish that restored history
+received new guidance. Record the actual supplied update text and hash; an
+uncertain acknowledgment leaves the user turn unstarted. Failed or deferred adoption remains
+explicit and must not be represented as successful application through a
+user-message append. Historical instruction basis and the visible conversation
+remain intact.
 
 The provider returns exact supplied origins, content hashes when bytes are
 available, ordered selection, resource history, and context events. Governed

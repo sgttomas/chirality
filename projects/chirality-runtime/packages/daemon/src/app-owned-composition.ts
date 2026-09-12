@@ -44,6 +44,7 @@ export interface AppOwnedRuntimeConfig {
   runtimeDirectory: string;
   /** Root of the bundled instruction tree (`CHIRALITY_INSTRUCTION_ROOT`). */
   instructionRoot: string;
+  productInstructionsPath?: string;
   /** Where the App-host client token is written (0600). */
   clientTokenFile: string;
   codex: {
@@ -92,13 +93,16 @@ function exactKeys(value: unknown, keys: readonly string[], label: string): Reco
   return value as Record<string, unknown>;
 }
 export function validateAppOwnedRuntimeConfig(value: unknown): AppOwnedRuntimeConfig {
-  const config = exactKeys(value, ["schema", "socketPath", "runtimeDirectory", "instructionRoot", "clientTokenFile", "codex"], "App-owned runtime configuration");
+  const config = exactKeys(value, ["schema", "socketPath", "runtimeDirectory", "instructionRoot", "clientTokenFile", "codex", ...(value && typeof value === "object" && Object.hasOwn(value, "productInstructionsPath") ? ["productInstructionsPath"] : [])], "App-owned runtime configuration");
   if (config.schema !== APP_OWNED_CONFIG_SCHEMA) throw invalid(`Unsupported configuration schema; expected ${APP_OWNED_CONFIG_SCHEMA}`);
   const codex = exactKeys(config.codex, ["executablePath", "userCodexHome", "effectiveHome", "expectedVersion"], "codex configuration");
   const socketPath = absolutePath(config.socketPath, "socketPath");
   if (Buffer.byteLength(socketPath) > 103) throw invalid("socketPath exceeds the Unix socket path limit (103 bytes)");
   if (typeof codex.expectedVersion !== "string" || !/^\d+\.\d+\.\d+$/.test(codex.expectedVersion)) throw invalid("codex.expectedVersion must be a semantic version");
+  const productInstructionsPath = config.productInstructionsPath === undefined ? undefined : absolutePath(config.productInstructionsPath, "productInstructionsPath");
+  if (productInstructionsPath !== undefined && [codex.userCodexHome, codex.effectiveHome].some(home => typeof home === "string" && (productInstructionsPath === home || productInstructionsPath.startsWith(`${home}/`)))) throw invalid("productInstructionsPath must be outside Codex homes");
   return {
+    ...(productInstructionsPath === undefined ? {} : { productInstructionsPath }),
     schema: APP_OWNED_CONFIG_SCHEMA, socketPath,
     runtimeDirectory: absolutePath(config.runtimeDirectory, "runtimeDirectory"),
     instructionRoot: absolutePath(config.instructionRoot, "instructionRoot"),
@@ -204,7 +208,7 @@ export async function startAppOwnedRuntime(rawConfig: AppOwnedRuntimeConfig, opt
     }
   });
   const catalogNow = (): Readonly<HostedModelCatalog> | undefined => hostedBootstrap.catalog();
-  engines.register(createDelegatedEngineAdapter({ delegated, selection: { ...CODEX_ENGINE_SELECTION, model: "codex-default" }, catalog: catalogNow }));
+  engines.register(createDelegatedEngineAdapter({ delegated, selection: { ...CODEX_ENGINE_SELECTION, model: "codex-default" }, catalog: catalogNow, nativeRoleDirectory: join(config.runtimeDirectory, "native-role-bases") }));
 
   const defaultSessionPolicy = {
     async resolve({ agentType, modelSelection }: { agentType: 0 | 1; modelSelection?: { model: string; reasoningEffort: string } }) {
@@ -216,7 +220,7 @@ export async function startAppOwnedRuntime(rawConfig: AppOwnedRuntimeConfig, opt
     }
   };
   const credentials = { async get() { return undefined; }, async status() { return { configured: false as const }; }, set: offline, remove: offline };
-  const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency), auth, credentials, undefined, undefined, createDelegatedPermissionBroker(delegated), defaultSessionPolicy, nativePlan);
+  const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency), auth, credentials, undefined, undefined, createDelegatedPermissionBroker(delegated), defaultSessionPolicy, nativePlan, { nativeProjectDiscovery: true, ...(config.productInstructionsPath === undefined ? {} : { productInstructionsPath: config.productInstructionsPath }) });
   const turnRegistry = new TurnRegistry(service, { sessions, logger });
   const daemon = new RuntimeDaemon({ socketPath: config.socketPath, runtimeDirectory: config.runtimeDirectory, service, turnRegistry, requests: delegated, delegated, hostedBootstrap, logger });
 

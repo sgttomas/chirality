@@ -31,7 +31,7 @@ import type { ProjectRegistry } from "./project-registry.js";
 import type { ResidencyCoordinator } from "./residency-coordinator.js";
 import type { SessionStore } from "./session-store.js";
 import type { TurnCoordinator } from "./turn-coordinator.js";
-import { RuntimeMethodService, type TrustedNativePlanAdapterRegistry } from "./runtime-method-service.js";
+import { RuntimeMethodService, type TrustedNativePlanAdapterRegistry, type ProductInstructionOptions } from "./runtime-method-service.js";
 
 export interface RuntimeCredentialStore extends ProviderCredentialPort {
   set(providerId: string, value: string): Promise<void>;
@@ -119,9 +119,10 @@ export class RuntimeService {
     private readonly agent1Runs?: Agent1RunPort,
     private readonly permissions?: PermissionDecisionPort,
     private readonly defaultSessionPolicy?: DefaultSessionPolicy,
-    nativePlan?: TrustedNativePlanAdapterRegistry
+    nativePlan?: TrustedNativePlanAdapterRegistry,
+    productInstructions?: ProductInstructionOptions
   ) {
-    this.methods = new RuntimeMethodService(projects, sessions, engines, nativePlan);
+    this.methods = new RuntimeMethodService(projects, sessions, engines, nativePlan, productInstructions);
     this.turns.configureRuntimeMethods(this.methods);
   }
 

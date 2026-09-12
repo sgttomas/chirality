@@ -4,7 +4,7 @@ import type { CodexAppServerExit, CodexAppServerTransport } from "../packages/da
 import { createFakeCodexServer } from "./fixtures/fake-codex-app-server.mjs";
 
 export interface FakeCodexServer {
-  state: { signedIn: boolean; threads: Map<string, { id: string; cwd: string; model: string; mode: string }>; requests: { method: string; params: unknown }[]; notes: unknown[]; login?: { loginId: string; pending: boolean } };
+  state: { injectionOutcome?: "reject" | "applied-error"; signedIn: boolean; threads: Map<string, { id: string; cwd: string; model: string; mode: string }>; requests: { method: string; params: unknown }[]; notes: unknown[]; login?: { loginId: string; pending: boolean } };
   attach(write: (chunk: string) => void): void;
   feed(chunk: string): void;
   notify(method: string, params: unknown): void;

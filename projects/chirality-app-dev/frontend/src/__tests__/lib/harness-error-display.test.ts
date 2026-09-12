@@ -3,6 +3,15 @@ import { HarnessApiClientError } from '../../lib/harness/client';
 import { toHarnessUiError } from '../../lib/harness/error-display';
 
 describe('harness ui error mapping', () => {
+  it('keeps instruction adoption pending distinct from a failed boot or a new chat', () => {
+    const mapped = toHarnessUiError(new HarnessApiClientError(503, 'INSTRUCTION_ADOPTION_PENDING', 'raw thread details'));
+    expect(mapped.title).toBe('Instruction update pending');
+    expect(mapped.code).toBe('INSTRUCTION_ADOPTION_PENDING');
+    expect(mapped.message).toContain('next turn has not started');
+    expect(mapped.message).not.toContain('raw thread details');
+    expect(mapped.nextStep).toContain('retry in this chat');
+  });
+
   it('maps known typed errors to actionable copy', () => {
     const input = new HarnessApiClientError(
       404,

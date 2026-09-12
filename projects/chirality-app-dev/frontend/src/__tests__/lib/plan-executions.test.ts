@@ -38,3 +38,11 @@ describe('plan execution records', () => {
     expect(readPlanExecutionRecords({ getItem: () => '{not json' }, 'sess')).toEqual([]);
   });
 });
+
+it('stores the preallocated identity in the initial running attempt before any observed result', () => {
+  const store = new Map<string, string>();
+  const storage = { getItem: (key: string) => store.get(key) ?? null, setItem: (key: string, value: string) => { store.set(key, value); }, removeItem: (key: string) => { store.delete(key); } };
+  const started = beginPlanExecution([], 2, '2026-09-12T00:00:00Z', 'submitted-turn');
+  writePlanExecutionRecords(storage, 'session', started);
+  expect(readPlanExecutionRecords(storage, 'session')).toEqual([{ revision: 2, attempt: 1, startedAt: '2026-09-12T00:00:00Z', status: 'running', turnId: 'submitted-turn' }]);
+});

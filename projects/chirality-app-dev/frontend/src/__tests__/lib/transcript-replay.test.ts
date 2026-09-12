@@ -164,3 +164,9 @@ describe('accepted turn conversation history', () => {
     expect(transcript.items[0].attachments).toBeUndefined();
   });
 });
+
+
+it.each(['service-shutdown', 'service-restart'])('preserves recorded interruption reason %s without changing Runtime status', reason => {
+  const view = deriveTranscriptView([event('turn.interrupted', { reason })]);
+  expect(view.items[0]).toMatchObject({ kind: 'terminal', status: 'interrupted', terminalReason: reason });
+});

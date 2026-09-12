@@ -24,9 +24,12 @@ function readAfter(url: URL): number {
 export async function GET(request: Request, context: RouteContext): Promise<Response> {
   try {
     const sessionId = requireNonEmptyString((await context.params).id, 'id');
-    const after = readAfter(new URL(request.url));
+    const url = new URL(request.url);
+    const after = readAfter(url);
+    const turnId = url.searchParams.has('turnId') ? requireNonEmptyString(url.searchParams.get('turnId'), 'turnId') : undefined;
     const subscription = await getDaemonHarnessPort().attachTurn(sessionId, after, {
-      signal: request.signal
+      signal: request.signal,
+      ...(turnId === undefined ? {} : { turnId })
     });
     return turnStreamResponse(subscription);
   } catch (error) {
