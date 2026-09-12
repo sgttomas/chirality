@@ -10,9 +10,9 @@ carries it out, inspects and corrects the results, and preserves a useful
 workflow for another assignment. Judge the implementation by whether that
 whole experience works.
 
-Basis: `main` at or after `230be0ca9` (the merge of PR #768, which contains
-PR #767's merge `d2878462b`). Verify with the command in HANDOFF.md
-section 0 before anything else.
+Basis: `main` at or after the merge of PR #769 (which contains PR #768's
+merge `230be0ca9` and PR #767's merge `d2878462b`). Verify with the command
+in HANDOFF.md section 0 before anything else.
 
 Read in this order, and no more than this to start: Root `AGENTS.md`;
 `PERSPECTIVE.md` (the owner's note and the reviewer's statement of intent)
@@ -41,6 +41,22 @@ rule that execution, observation, interruption and shutdown are distinct
 (section 3). Account for the PR #767 defect in that composition and its
 regression checks.
 
+Git integration: the owner's standing authorization of 2026-09-12 lets you
+commit, push, open and update pull requests, and merge within the
+authorized scope without asking for each operation, using the configured
+Git and GitHub credentials and the SSH remote. Its exact text is being
+recorded in the repository by a parallel session; locate it before your
+first merge. Merge only when the required CI passes and independent review
+has no unresolved blocking findings; review must cover the actual candidate
+revision, and changes after review reassess the affected checks. A passing
+rerun does not show that a previously identified defect was repaired. Keep
+truthful authorship and agent attribution, and never describe an agent's
+review as the owner's personal approval. It does not permit expanding
+scope, changing repository protections, accepting governed deliverables for
+the owner, or publishing a release; the owner's holds and later directions
+take precedence. Tranche manifests you author record this direction in
+their `owner_direction` block as the validator requires.
+
 Boundaries are in sections 5 and 6: a separate independent source reviewer
 before the one consolidated signed build; escalate only material scope or
 behaviour changes, substantial product additions, or departures from the
@@ -50,8 +66,10 @@ status clear. Never enter credentials; the owner performs OAuth and native
 verification. Preserve the R17 installation and all trial evidence. No
 publishing. No admission, certification or binding rebuilt under new names.
 
-Open items you inherit: the interruption-versus-retirement defect; the
-publication SHA still to be written into the register rows; PEC
+Open items you inherit: the interruption-versus-retirement defect, which
+also keeps the Harness pre-merge check intermittently red on two Runtime
+interrupt tests until it is fixed (the governance harness check must pass);
+the publication SHA still to be written into the register rows; PEC
 compatibility unverified and not a prerequisite; Piping integration and
 local models deferred.
 
