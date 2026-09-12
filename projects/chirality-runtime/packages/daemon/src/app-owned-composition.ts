@@ -6,7 +6,8 @@ import { promisify } from "node:util";
 import {
   CHIRALITY_INSTRUCTION_ROOT_ENV, resolveHostedModelSelection, RuntimeError,
   type EngineSelection, type HostedModelCatalog, type NativePlanAdapterTrialAdmission, type NativePlanCapabilityResponse, type NativePlanClarificationsResponse,
-  type NativePlanRevisionsResponse, type ReplyNativePlanClarificationRequest, type RuntimeSessionRecord, type WorkerContinuity
+  type NativePlanRevisionsResponse, type ReplyNativePlanClarificationRequest, type RuntimeSessionRecord, type WorkerContinuity,
+  CODEX_ENGINE_ADAPTER_ID
 } from "@chirality/runtime-contracts";
 import {
   AuthRegistry, createDelegatedEngineAdapter, createDelegatedPermissionBroker, DelegatedRuntime, EngineRegistry, privateDirectory, ProjectRegistry,
@@ -28,7 +29,7 @@ import { TurnRegistry } from "./turn-registry.js";
  */
 export const APP_OWNED_CONFIG_SCHEMA = "chirality-app-owned/v1";
 export const APP_HOST_CLIENT_ID = "app-host";
-export const CODEX_ENGINE_SELECTION = Object.freeze({ adapterId: "codex-app-server", providerId: "openai" } as const);
+export const CODEX_ENGINE_SELECTION = Object.freeze({ adapterId: CODEX_ENGINE_ADAPTER_ID, providerId: "openai" } as const);
 /** Native Plan trial admission for the spike: D-GOV-43 local human trial over the stock app-server plan items. */
 export const CODEX_NATIVE_PLAN_TRIAL_ADMISSION: Readonly<NativePlanAdapterTrialAdmission> = Object.freeze({
   adapterId: CODEX_ENGINE_SELECTION.adapterId, providerId: CODEX_ENGINE_SELECTION.providerId,

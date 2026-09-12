@@ -12,6 +12,7 @@
     "dataBoundary": []
   },
   "enabledAdapterIds": [
+    "codex-app-server",
     "stub",
     "anthropic-direct",
     "claude-agent-sdk",

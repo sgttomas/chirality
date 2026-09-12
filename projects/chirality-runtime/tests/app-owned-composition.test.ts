@@ -173,7 +173,7 @@ describe("App-owned Codex composition", () => {
   });
 
   it("validates the configuration before touching the file system", () => {
-    const base: AppOwnedRuntimeConfig = { schema: "chirality-app-owned/v1", socketPath: "/tmp/d.sock", runtimeDirectory: "/tmp/runtime", instructionRoot: "/tmp/instructions", clientTokenFile: "/tmp/app.token", codex: { executablePath: "/usr/local/bin/codex", userCodexHome: "/Users/someone/.codex", effectiveHome: "/tmp/runtime/codex-home", expectedVersion: "0.154.0" } };
+    const base: AppOwnedRuntimeConfig = { schema: "chirality-app-owned/v1", socketPath: "/tmp/d.sock", runtimeDirectory: "/tmp/runtime", instructionRoot: "/tmp/instructions", clientTokenFile: "/tmp/app.token", codex: { executablePath: "/usr/local/bin/codex", userCodexHome: "/tmp/user-codex", effectiveHome: "/tmp/runtime/codex-home", expectedVersion: "0.154.0" } };
     expect(validateAppOwnedRuntimeConfig(base)).toEqual(base);
     expect(() => validateAppOwnedRuntimeConfig({ ...base, schema: "chirality-standalone/v1" })).toThrow(/schema/);
     expect(() => validateAppOwnedRuntimeConfig({ ...base, socketPath: "relative.sock" })).toThrow(/socketPath/);
@@ -181,5 +181,18 @@ describe("App-owned Codex composition", () => {
     expect(() => validateAppOwnedRuntimeConfig({ ...base, codex: { ...base.codex, expectedVersion: "latest" } })).toThrow(/semantic/);
     expect(() => validateAppOwnedRuntimeConfig({ ...base, extra: true })).toThrow(/exactly/);
     expect(APP_HOST_CLIENT_ID).toBe("app-host");
+  });
+
+  it("creates sessions for a project whose pre-replatform manifest never listed the Codex adapter", async () => {
+    const f = await start();
+    // A manifest whose enabledAdapterIds name only pre-D-GOV-43 adapters.
+    const legacyRoot = join(f.root, "legacy");
+    await mkdir(legacyRoot);
+    const manifestPath = join(legacyRoot, "chirality.project.json");
+    await writeFile(manifestPath, `${JSON.stringify({ schemaVersion: "chirality.project/v2", projectId: "legacy-project", displayName: "Legacy", workingRoot: ".", instructionRoot: { mode: "runtime" }, defaultExecutionRoot: ".", profiles: { domain: [], capability: [], dataBoundary: [] }, enabledAdapterIds: ["stub", "pi"], embeddedUi: { declared: false } })}\n`, "utf8");
+    const registered = await f.app.registerHostedBootstrapProject({ manifestPath });
+    const legacy = new RuntimeClient({ socketPath: f.config.socketPath, tokenFile: resolveHostedProjectTokenFile(f.config.runtimeDirectory, registered.projectId) });
+    const session = await legacy.createSession(registered.projectId, { projectId: registered.projectId });
+    expect(session.engineSelection.adapterId).toBe("codex-app-server");
   });
 });

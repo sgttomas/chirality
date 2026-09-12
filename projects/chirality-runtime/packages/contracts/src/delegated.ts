@@ -299,6 +299,11 @@ export interface SupervisorRequestPort {
 }
 
 /** The user's chosen Codex approval policy and sandbox mode (TYPES §12 `PolicySelection`). */
+/**
+ * The sole engine under D-GOV-43. A project manifest's `enabledAdapterIds`
+ * remains a compatibility record for other adapters; it never gates Codex.
+ */
+export const CODEX_ENGINE_ADAPTER_ID = "codex-app-server";
 export interface PolicySelection {
   approvalPolicy: "untrusted" | "on-request" | "never";
   sandbox: "read-only" | "workspace-write" | "danger-full-access";

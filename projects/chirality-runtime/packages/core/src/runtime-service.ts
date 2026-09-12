@@ -3,6 +3,7 @@ import { describeFailureDetails } from "./retirement-failure.js";
 import { readdir, readFile, realpath, stat } from "node:fs/promises";
 import { basename, join, relative, resolve } from "node:path";
 import {
+  CODEX_ENGINE_ADAPTER_ID,
   HarnessError,
   HOSTED_MODEL_ID_PATTERN,
   HOSTED_REASONING_EFFORT_PATTERN,
@@ -225,7 +226,9 @@ export class RuntimeService {
         403
       );
     }
-    if (!project.enabledAdapterIds.includes(engineSelection.adapterId)) {
+    // Codex is the sole engine (D-GOV-43); manifests written before the
+    // re-platform list other adapters and must not lock the user out.
+    if (engineSelection.adapterId !== CODEX_ENGINE_ADAPTER_ID && !project.enabledAdapterIds.includes(engineSelection.adapterId)) {
       throw new RuntimeError(
         "DELEGATION_POLICY_VIOLATION",
         `Engine adapter is not enabled for project ${request.projectId}: ${engineSelection.adapterId}`,
