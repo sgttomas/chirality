@@ -1,6 +1,6 @@
 schema: instruction-tranche-manifest/v1
 tranche_id: ROOT-DGOV43-PROPOSAL-20260911
-title: D-GOV-43 Codex host re-platform proposal candidate
+title: D-GOV-43 Codex host re-platform proposal candidate (revision 2)
 date: 2026-09-11
 basis: a75adecf13f055c092ffa92809f66e7817c44242
 
@@ -9,6 +9,7 @@ instruction_surface_paths:
   - docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/D-GOV-43.proposed.md
   - docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/AGENTS.proposed.patch
   - docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/IMPACT.md
+  - docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/REVIEW_FEEDBACK_R1.md
   - docs/governance_harness/tranche_manifests/ROOT-DGOV43-PROPOSAL-20260911.yaml
 
 m2_gate:

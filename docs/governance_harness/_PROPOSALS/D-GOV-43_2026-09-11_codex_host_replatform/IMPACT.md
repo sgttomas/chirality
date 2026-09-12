@@ -1,6 +1,6 @@
 # D-GOV-43 Proposed Impact and Conformance Assessment
 
-Status: `CANDIDATE IMPACT ANALYSIS — NO AUTHORITY OR APPLICATION`
+Status: `CANDIDATE IMPACT ANALYSIS — NO AUTHORITY OR APPLICATION` (revision 2, after the round-1 review in `REVIEW_FEEDBACK_R1.md`)
 
 Basis: `main@a75adecf13f055c092ffa92809f66e7817c44242`; preparation HEAD
 `03a4b41c3b0e6996c9c8e4b89c95ea25b5e3cb86` on `claude/chirality-v3-mvp-trial-ab05cb`.
@@ -13,8 +13,9 @@ unless and until the owner rules and the owning application workflow lawfully
 changes the live surfaces. The proposal changes no live instruction, standard,
 contract, deliverable, lifecycle, pointer, product source, project loop, hold,
 pin, installation or trial evidence. The proposed patch is intentionally
-inactive and was verified with `git apply --check` against `AGENTS.md`
-SHA-256 `2f2e5ee53ab227936379ee47169c0e0ff19bf5fd3bcff9086f088f3568adfac7`.
+inactive and was verified with `git apply --check` against the `AGENTS.md`
+at the preparation basis. Packet integrity is the Git history of the
+branch; no hash table or self-hash is maintained (round-1 review, point 3).
 
 ## Evidence basis for the findings
 
@@ -146,7 +147,41 @@ routed notice, loop-owned disposition.
 3. The trial's consolidated-signed-build spine (Stage 9–13, steps 0a–25)
    survives as a procedure; its supplier certification steps do not.
 
-## Required routed notices after ruling
+## Purpose test for affected checks and gates (ruling item 11)
+
+| Check or gate | Actual purpose | Disposition |
+|---|---|---|
+| Hosted admission and identity binding (daemon, native addon, `chiralityAdmissionAuthority`) | Prove the running binary and account match an accepted basis before a signed-in turn | Retire. Codex owns the account; the App bundle's code signing covers the bundled binary. Not re-created. |
+| Exact supply pin with drift refusal (DEL-02-08, supply steers) | Prevent silent substitution of the Codex binary | Adapt to a lockfile pin recorded in release evidence; drift is a reviewed dependency update. |
+| Effective-configuration veto (`config/read` table checks) | Keep the agent inside a fixed policy | Retire. Policy is the user's choice per project and turn, shown and recorded. |
+| Notification whitelist and quarantine; closed HarnessEvent union v2 (DEL-02-10) | Give the UI a stable contract and reject unknown payloads | Adapt: generated bindings for the pinned version plus a declared experimental augmentation; unknown items rendered generically, never dropped. |
+| Continuity gate on `thread/resume` (DEL-02-11) | Avoid resuming under a changed root, account or policy | Retire. Codex's thread store and `thread/resume` carry continuity; the App index records the project and policy used. |
+| Root-private Codex home (DEL-02-09, D-APP-125 item 3) | Keep Chirality credentials and consent separate | Adapt to the effective home with private `auth.json` and shared configuration; consent is the chosen policy. |
+| Restart admission (R16 repair) | Survive GUI relaunch without re-authentication | Retire; relaunch restarts the child and resumes threads. |
+| Nine held release bindings (DEL-02-12, `HOLD_SUCCESSOR_MAP.csv`) | Gate a shared release on identity and conformance evidence | Adapt: re-seat on App bundle identity, the Codex pin and spike checks S-1 to S-8; drop supplier conformance limbs. |
+| Two-job installer and `APP-HOLD-1` (DEL-09-07) | Install the LaunchAgent safely | Retire with the LaunchAgent. |
+| Consolidated signed build spine (Stage 9–13, steps 0a–25) | Produce one reviewable signed candidate | Retain as procedure; remove observer, payload-bind, governance and seal steps that certify a supplier. |
+| Candidate whitespace guard | Cosmetic hygiene | Retire as an acceptance or merge condition; advisory at most. |
+| README self-hash convention (D-GOV-35 packet style) | Packet integrity without a consumer | Retire; Git history suffices. |
+| Duplicate test executions across stages | Re-establish the same fact per stage | Remove where an existing result establishes the same thing; keep checks for distinct integration conditions. |
+| Independent source review before a consolidated build | Catch defects before packaging | Retain. |
+| Owner ruling, owner trial, publishing approval | Human accountability | Retain. |
+
+## Existing trial chats
+
+Daemon-era chats (R6 trial project, R14 to R17 sessions) exist as Runtime
+JSON/JSONL session records under the trial user-data directory and as Codex
+thread records in the trial's private Codex home. Default disposition:
+preserve in place, viewable read-only through the App's history import of the
+JSON/JSONL records; no continuation as Codex threads (unresolved choice B).
+
+## Coordinated tranche and notices after ruling
+
+Under unresolved choice A, the Runtime and App revisions listed above are
+applied in the same coordinated tranche as the Root amendments, and the
+notices below are records of that change rather than requests for adoption.
+If choice A is declined, the notices become the adoption requests each loop
+decides.
 
 - `projects/chirality-runtime/execution/_Coordination/NOTICE_<date>_ROOT_D-GOV-43_CODEX_HOST_REPLATFORM.md`
 - `projects/chirality-app-dev/execution/_Coordination/NOTICE_<date>_ROOT_D-GOV-43_CODEX_HOST_REPLATFORM.md`
@@ -157,5 +192,5 @@ routed notice, loop-owned disposition.
 - No live surface changes. No installation, trial evidence, R17 App or
   daemon, or Codex home is modified or deleted.
 - No supplier, package, release, publication or merge is authorized.
-- Blockers to application: the owner ruling; the application tranche's own
-  M2/G4 manifest; loop-owned revisions of the deliverables above.
+- Blockers to application: the owner ruling including choices A to C; the
+  coordinated application tranche's own M2/G4 manifest.
