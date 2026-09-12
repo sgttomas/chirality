@@ -545,7 +545,11 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   // The chat open when the window was last used comes back on the next launch,
   // once its folder's sessions confirm it still exists; never while a turn runs.
   useEffect(() => {
-    if (!stateHydrated || restoredLastChat.current || sessionsLoading || !projectRoot || sessionsRoot !== projectRoot || streaming || primarySessionId) return;
+    if (!stateHydrated || restoredLastChat.current || streaming) return;
+    // A chat already open takes precedence: there is nothing to restore over
+    // it, and recording may begin (otherwise the gate would never lift).
+    if (primarySessionId) { restoredLastChat.current = true; return; }
+    if (sessionsLoading || !projectRoot || sessionsRoot !== projectRoot) return;
     const last = workspaceState.lastActiveChat;
     if (!last) { restoredLastChat.current = true; return; }
     // A last chat from another folder is left alone: the folder for new chats
@@ -585,8 +589,15 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     if (remembered && remembered !== workspaceState.openDocumentPath) setWorkspaceState(current => ({ ...current, openDocumentPath: remembered, rightPanelView: 'files' }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [primarySessionId, stateHydrated]);
+  // Only a document opened or closed while this chat is active is recorded for
+  // it: a chat without a remembered document does not inherit whatever was on
+  // screen when it was opened (review F-2).
+  const documentRecordSessionRef = useRef<string | undefined>(undefined);
   useEffect(() => {
     if (!stateHydrated || !primarySessionId) return;
+    const sessionChanged = documentRecordSessionRef.current !== primarySessionId;
+    documentRecordSessionRef.current = primarySessionId;
+    if (sessionChanged) return;
     const path = workspaceState.openDocumentPath;
     setWorkspaceState(current => {
       const documents = { ...(current.chatDocuments ?? {}) };

@@ -1144,7 +1144,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       if (observation.signal.aborted) return;
       if (outcome.error) setRuntimeError(toHarnessUiError(outcome.error, { sessionModel: session.model, origin: 'session' }));
       if (outcome.outcome === 'unknown') setRuntimeError({ title: 'Turn outcome unknown', message: 'The connection to the Runtime was lost and its record does not show how this turn ended.', nextStep: 'Reopen the chat to check the recorded result. Nothing was re-sent.' });
-      settleRecoveredExecution(state.turnId, outcome.outcome ?? 'unknown');
+      // Only an observed ending settles the record. When the attach never
+      // opened the Runtime still owns the turn; the record stays running and
+      // the no-live-turn effect settles it from the log later.
+      if (outcome.terminal) settleRecoveredExecution(state.turnId, outcome.outcome ?? 'unknown');
       if (!outcome.assistantText.trim() && !outcome.error) {
         setMessages((existing) => existing.map((item) => item.id === assistantId ? { ...item, text: 'No assistant text was returned for this turn.' } : item));
       }

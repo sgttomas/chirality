@@ -70,7 +70,7 @@ vi.mock('../../components/shell/shell-frame', () => ({
 vi.mock('../../components/shell/chat-panel', () => ({
   ChatPanel: ({ onActiveSessionChange, onDraftCaptured, onSessionBootedPrompt, fileCatalog = [], onOpenFile, resumeConversation, onConversationResumed }: { onActiveSessionChange: (id: string) => void; onDraftCaptured: () => void; onSessionBootedPrompt: (input: { sessionId: string; prompt: string; persona: string }) => void; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void; resumeConversation?: { projection: { selectedSessionId: string } }; onConversationResumed?: (sessionId: string) => void }) => {
     useEffect(() => { shellState.mounted++; onActiveSessionChange(shellState.initialActiveSession as string); return () => { shellState.unmounted++; }; }, [onActiveSessionChange]);
-    useEffect(() => { if (resumeConversation) { shellState.resumedSession = resumeConversation.projection.selectedSessionId; onConversationResumed?.(resumeConversation.projection.selectedSessionId); } }, [resumeConversation, onConversationResumed]);
+    useEffect(() => { if (resumeConversation) { shellState.resumedSession = resumeConversation.projection.selectedSessionId; onActiveSessionChange(resumeConversation.projection.selectedSessionId); onConversationResumed?.(resumeConversation.projection.selectedSessionId); } }, [resumeConversation, onActiveSessionChange, onConversationResumed]);
     return <><input data-chat-panel="mounted" data-chat-input="primary" onChange={onDraftCaptured} /><button data-chat-file={fileCatalog.length} onClick={() => { if (fileCatalog[0]) onOpenFile?.(fileCatalog[0]); }}>open linked file</button><button data-live-title onClick={() => onSessionBootedPrompt({ sessionId: 'primary', prompt: `Review ${process.env.CHIRALITY_ANTHROPIC_API_KEY ?? ''} safely`, persona: 'TASK' })}>capture title</button></>;
   }
 }));
@@ -606,6 +606,38 @@ describe('WovenDialogueShell per-chat folders', () => {
     expect(shellState.resumedSession).toBe('recorded');
     const persistedState = JSON.parse(persist.mock.calls.at(-1)![1]);
     expect(persistedState.lastActiveChat).toEqual({ sessionId: 'recorded', projectRoot: '/repo/projects/chirality-app-dev' });
+    act(() => tree.unmount());
+  });
+
+  it('does not hand an open document to a chat that never had one, and records only documents opened in that chat', async () => {
+    shellState.query = 'agent=HELP_HUMAN';
+    const persist = vi.fn();
+    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+    await settle();
+    const documents = () => JSON.parse(persist.mock.calls.at(-1)![1]).chatDocuments ?? {};
+    // A chat open before the listing settled is recorded as the last active chat rather than blocking recording.
+    expect(JSON.parse(persist.mock.calls.at(-1)![1]).lastActiveChat.sessionId).toBe('primary');
+    act(() => tree.root.findByType(RightPanel).props.onOpenFile('/repo/projects/chirality-app-dev/docs/SPEC.md'));
+    expect(documents()).toEqual({ primary: 'docs/SPEC.md' });
+
+    // Continuing a chat with no remembered document must not attribute the document still on screen to it.
+    shellState.resumedSession = undefined;
+    act(() => tree.root.findByType(RightPanel).props.onOpenParent('recorded'));
+    expect(shellState.replayLoad).toHaveBeenCalledWith('recorded');
+    const projection = { selectedSessionId: 'recorded', sourceReference: 'session:recorded/events', observedAt: '2026-09-09', disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', transcript: { itemCount: 0, items: [] }, instructionHistory: [], instructionBases: [], malformedLineCount: 0, sourceEventCount: 0, renderedItemCount: 0, diagnostics: [], session: { sessionId: 'recorded', parentage: { state: 'NOT_RECORDED' }, diagnostics: [], continuation: { schemaVersion: 'chirality.session/v3', projectRoot: shellState.projectRoot, roleId: 'HELP_HUMAN', mode: 'CHAT', interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [], methodSelectionRevision: 1, instructionBasisId: 'basis-1' } } };
+    await act(async () => shellState.replayNotify?.({ status: 'READY', projection }));
+    await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('Continue this chat'))!.props.onClick());
+    await settle();
+    expect(shellState.resumedSession).toBe('recorded');
+    expect(JSON.parse(persist.mock.calls.at(-1)![1]).lastActiveChat.sessionId).toBe('recorded');
+    expect(documents()).toEqual({ primary: 'docs/SPEC.md' });
+
+    // A document opened while that chat is active is remembered for it alone.
+    act(() => tree.root.findByType(RightPanel).props.onOpenFile('/repo/projects/chirality-app-dev/docs/TYPES.md'));
+    expect(documents()).toEqual({ primary: 'docs/SPEC.md', recorded: 'docs/TYPES.md' });
     act(() => tree.unmount());
   });
 

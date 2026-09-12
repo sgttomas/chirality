@@ -196,6 +196,23 @@ it('renders turn.interrupted the moment it arrives and Stop calls the interrupt 
 // Item 15: the phases a live turn passes through are reported to the host, a
 // lost connection never reads as completion, and Stop is its own phase until
 // the Runtime confirms the interruption.
+it('leaves a recovered plan execution running when the attach never opens, instead of settling it as unknown', async () => {
+  const key = 'chirality.planExecutions.v1:resumed';
+  const writes: string[] = [];
+  const running = [{ revision: 1, attempt: 1, startedAt: '2026-09-12T00:00:00.000Z', status: 'running', turnId: 'turn-1' }];
+  (globalThis as unknown as { window: { localStorage: Storage } }).window.localStorage = {
+    getItem: (name: string) => name === key ? JSON.stringify(running) : null,
+    setItem: (name: string, value: string) => { if (name === key) writes.push(value); }, removeItem: () => undefined
+  } as unknown as Storage;
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1, startedAt: '2026-09-12T00:00:00.000Z' });
+  state.attach.mockRejectedValue(new Error('stream refused'));
+  await mountResumed();
+  await flush();
+  const settled = writes.map(value => JSON.parse(value) as Array<{ status: string }>);
+  expect(settled.flat().every(record => record.status === 'running')).toBe(true);
+  expect(rendered()).not.toContain('Turn outcome unknown');
+});
+
 it('reports Reconnecting then Outcome unknown when the connection is lost and the log records no ending, keeping the message', async () => {
   vi.useFakeTimers();
   const phases: string[] = [];

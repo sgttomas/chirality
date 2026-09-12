@@ -39,3 +39,20 @@ it('cannot use a late old-root catalog or a failed new-root read', async () => {
   expect(open).not.toHaveBeenCalled();
   act(() => view.unmount());
 });
+
+it('hands out one stable empty catalog while no tree is available, so consumers do not re-derive per render', async () => {
+  vi.stubGlobal('fetch', vi.fn(async () => ({ ok: false, json: async () => ({}) })));
+  const seen: Array<readonly string[]> = [];
+  function Probe({ root, tick }: { root: string; tick: number }) {
+    const catalog = useConversationFileCatalog(root, false, 0);
+    seen.push(catalog.paths);
+    return <span data-tick={tick} />;
+  }
+  let view!: ReactTestRenderer;
+  await act(async () => { view = create(<Probe root="/trial" tick={0} />); });
+  await act(async () => view.update(<Probe root="/trial" tick={1} />));
+  await act(async () => view.update(<Probe root="/other" tick={2} />));
+  expect(seen.length).toBeGreaterThanOrEqual(3);
+  expect(seen.every(paths => paths === seen[0] && paths.length === 0)).toBe(true);
+  act(() => view.unmount());
+});
