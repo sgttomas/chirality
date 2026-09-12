@@ -8,10 +8,10 @@ and its A2 supplement.
 
 ## 0. Preconditions — verify before any work
 
-1. **Basis.** Branch `claude/chirality-v3-mvp-trial-ab05cb` at or after the
-   commit that adds `LAUNCH_PROMPT.md` in this directory, or the `main`
-   merge of [PR #767](https://github.com/sgttomas/chirality/pull/767) if
-   it has landed. The proposal text is revision 3 at
+1. **Basis.** `main` at or after the merge of
+   [PR #767](https://github.com/sgttomas/chirality/pull/767),
+   `d2878462be59a43b4afc175a8cce85abca9cf696`, which contains everything
+   named below. The proposal text is revision 3 at
    `3ef2ef524956498f8923323dc6cf9d672dbeb50b`; the ruling, its supplement,
    the comparison and this handoff follow it. Verify:
 
@@ -88,6 +88,8 @@ management remain deferred.
   `docs/AGENT_WORKFLOW_RUNTIME.md` skills and `permissionMode` sentences.
   `docs/PLAN.md` and `docs/PRD_ROOT.md` transcriptions read with the
   ruling. Whitespace guard advisory in `.github/workflows/harness-premerge.yml`.
+  Record the publication SHA `d2878462b` in the two D-GOV-43 rows of
+  `docs/governance_harness/_DECISIONS/_REGISTER.md`.
 - **Runtime and App.** Apply the family dispositions in `IMPACT.md` "Purpose
   test by family" (families 1 and 2 retire; 3 adapts; 4 retains; 5 retires
   as gates; 6 retains) and the per-path tables, with the A2 difference that
@@ -147,6 +149,26 @@ subscription observes it; explicit Stop is the existing interrupt endpoint;
 reopening after a renderer disconnect recovers current state, missed
 activity and any outstanding user decision from the session store and turn
 state, without re-sending the prompt or executing twice.
+
+**Interrupt versus retirement (defect found 2026-09-12, settled).** The
+supervisor server answers an `interrupt` request by calling `retire()` when
+the backend has no native interrupt (`supervisor-server.ts:189-190`); the
+client always advertises `interrupt` (`:284`); the coordinator therefore
+always takes the interrupt branch (`delegated-runtime.ts:288`, `:490`) and
+then retires again after `wait()` resolves (`:518`), and the two attempts do
+not share the memoized retirement. The inner protocol collapses the second
+failure to `supervisor request rejected`, reported as a 500. Either
+interleaving fails (worker finishing before the interrupt fails the
+interrupt request, which is what CI recorded; interrupt first fails the
+turn request). Full diagnosis by the parallel debugging session in the
+[PR #767 comments](https://github.com/sgttomas/chirality/pull/767). Under the
+single-process composition the production supervisor has a native
+interrupt, so the fallback disappears for the App path; keep the
+distinction between interruption and final retirement, make both paths
+join one exact-generation retirement result, keep rejection of foreign or
+stale generations, and add a deterministic regression that orders
+interruption, worker completion and final cleanup explicitly, without
+extending sleeps or skipping the assertions.
 
 **Codex session.** In `codex-session.ts` remove the private lines
 (authority initialize `:637-702`, identity snapshot, native-child carrier
@@ -299,11 +321,18 @@ designated direct tester.
   `../APP_V3_TRIAL_COMPLETION_20260910/RUN_LOG.md`.
 - `PERSPECTIVE.md` (the owner's intent) and `LAUNCH_PROMPT.md` (ready to
   paste) sit beside this file.
+- PR #767 merged to `main` as `d2878462be59a43b4afc175a8cce85abca9cf696`
+  on 2026-09-12 with all checks green at merge; that is the publication SHA
+  for the ruling and its supplement (K-AUTH-2). Record it in the
+  `_REGISTER.md` rows for D-GOV-43 in the application tranche.
 - Known CI condition at handoff: the Harness pre-merge job's Runtime test
-  step failed on Linux in two interrupt tests of
-  `tests/delegated-runtime.test.ts` (500 on the interrupt request) that pass
-  on macOS; the same check was already red on `main` at the merged PR #766
-  head. Its resolution is recorded in the trial `RUN_LOG.md`.
+  step is intermittent in the two interrupt tests of
+  `tests/delegated-runtime.test.ts` (500 on the interrupt or the turn
+  request), red at the merged PR #766 head and at one head of PR #767,
+  green at the merged head. The cause is the interrupt-versus-retirement
+  defect in section 3, not a platform difference; the green run is
+  intermittency, not repair. `9d122b08e` added a stderr logger to the
+  fixture daemon so a red run prints the bounded cause.
 - R17-F1 and R17-F2 are subsumed by the re-platform; S-2, S-6 and S-7 and
   the disconnection check cover them.
 - Who relaunched the R16 daemon at 2026-09-12T01:41Z is an unanswered owner

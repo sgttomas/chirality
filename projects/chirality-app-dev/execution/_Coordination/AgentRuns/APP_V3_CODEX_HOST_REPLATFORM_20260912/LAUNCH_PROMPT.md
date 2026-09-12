@@ -1,10 +1,9 @@
 # Launch prompt for the implementing session (ready to paste)
 
 Continue the Chirality v3 Codex-only MVP as the implementing agent for the
-Codex host re-platform (D-GOV-43, topology A2). Work in a checkout that
-contains branch `claude/chirality-v3-mvp-trial-ab05cb` at or after the
-commit that adds `APP_V3_CODEX_HOST_REPLATFORM_20260912/LAUNCH_PROMPT.md`
-(PR #767; use its merge if it has landed). Read Root `AGENTS.md`, then
+Codex host re-platform (D-GOV-43, topology A2). Work in a checkout of
+`main` at or after `d2878462be59a43b4afc175a8cce85abca9cf696` (the merge
+of PR #767). Read Root `AGENTS.md`, then
 `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/PERSPECTIVE.md`
 and `HANDOFF.md` in the same directory, then the records the handoff names:
 `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`, its

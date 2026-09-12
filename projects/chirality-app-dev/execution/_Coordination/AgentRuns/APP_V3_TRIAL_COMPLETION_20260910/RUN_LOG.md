@@ -982,3 +982,25 @@ Linux-only Runtime interrupt test failures so the pre-merge check is green;
 merge PR #767 on that approval and record the merge SHA in the PR closeout
 comment. No live surface, installation, evidence or credential changed;
 nothing published. R17 GUI 31613 and daemon 27838 still running.
+
+## PR #767 merged; interrupt-lifecycle defect diagnosed — 2026-09-12T06:45Z
+
+Owner: "merge the PR once the CI goes green, on this approval." The
+diagnostic head 9d122b08e (fixture daemon logger) ran green; merged with a
+merge commit as d2878462be59a43b4afc175a8cce85abca9cf696, branch kept.
+Closeout and findings posted as PR comments. A parallel debugging agent
+engaged by the owner posted its diagnosis on the PR: the supervisor server
+answers interrupt by retire() when the backend lacks a native interrupt,
+the client always advertises interrupt, and the coordinator retires again
+after wait() resolves without sharing the memoized retirement, so either
+interleaving fails with a 500 that the inner protocol collapses to
+"supervisor request rejected"; reproduced on macOS with the built modules.
+Verified against source (supervisor-server.ts:189-190, :284;
+delegated-runtime.ts:288, :490, :518). The earlier "Linux-only"
+characterization is withdrawn: the 900 ms fixture worker finishing before
+the interrupt on a slow runner explains the interrupt-side 500 CI recorded.
+Disposition: fix in the A2 lifecycle work with a deterministic regression;
+the green run is intermittency, not repair. Handoff and launch prompt
+updated to the merged basis. No live surface, installation, evidence or
+credential changed; nothing published. R17 GUI 31613 and daemon 27838
+still running.
