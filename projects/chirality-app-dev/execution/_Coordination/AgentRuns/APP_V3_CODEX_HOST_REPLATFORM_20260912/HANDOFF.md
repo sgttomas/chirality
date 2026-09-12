@@ -4,6 +4,18 @@ Prepared 2026-09-12 by HELP_HUMAN for a separate implementing session. Read
 Root `AGENTS.md` and your role instruction first. This file is coordination,
 not governance: the governing record is D-GOV-43 and its ruling.
 
+## Reopened 2026-09-12 — do not start on the ruled topology
+
+After the ruling, the owner reopened ruling items 1 (hosting) and 7 (daemon
+retirement) on the independent reviewer's counter-proposal; items 2 to 6 and
+8 to 14 stand. `TOPOLOGY_COMPARISON.md` in this directory compares retaining
+a simplified Runtime host (as a launchd daemon or as an App-owned child)
+with an in-process host behind the existing port, and records a
+recommendation. Implementation starts only after the owner's decision is
+recorded as a supplement to the D-GOV-43 record; sections 3 and 4 below will
+be revised to the chosen topology. PR #767 is open and unmerged by the
+owner's direction.
+
 ## 0. Preconditions — verify before any work
 
 1. **Implementation basis.** The proposal text is revision 3 at commit

@@ -930,3 +930,25 @@ repeated runs, so the failure is CI-environment specific and lies in the
 daemon path that D-GOV-43 retires. Owner held the merge ("Let's not merge
 this PR just yet. I might revise it further.") and will reconsider using the
 failed CI. No merge; PR left open; nothing published.
+
+## Topology choice reopened; source comparison prepared — 2026-09-12T06:50Z
+
+Owner relayed the reviewer's counter-proposal reopening D-GOV-43 items 1
+and 7 (hosting, daemon retirement) and, after the lead's assessment,
+directed "Start the comparison." Three read-only source sweeps (daemon and
+Codex modules; contracts, core, client, CLI, PEC, native addon; App Electron,
+ports, routes, harness library, components, packaging) plus spot checks; no
+builds, tests or experiments. Written to
+APP_V3_CODEX_HOST_REPLATFORM_20260912/TOPOLOGY_COMPARISON.md: twelve
+source facts (the daemon is the App executable in --runtime-daemon mode
+hosting the Runtime in Electron main; a legacy in-process host exists; the
+turn path crosses three processes and two sockets; ~700 of 1,064
+codex-session lines are generic; ~4,400 daemon lines are the private
+admission family; the v2 event contract is orphaned; the App is the only
+production socket consumer), the common work C1-C6, the small timeout
+repair kept separate, three topologies (A1 launchd daemon, A2 App-owned
+child, B in-process host behind the existing port), governance by purpose,
+established versus uncertain, and a recommendation (B narrowly over A2;
+not A1). HANDOFF.md gained a "Reopened" section. PR #767 remains unmerged.
+No live surface, installation, evidence or credential changed; nothing
+published. R17 GUI 31613 and daemon 27838 still running.
