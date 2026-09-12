@@ -896,12 +896,14 @@ describe('RuntimeDaemonHarnessPort', () => {
     const scopedClient = client({
       projectStatus: vi.fn().mockResolvedValue(healthy),
       hostedBootstrapStatus: vi.fn().mockResolvedValue({ ...signedOut, ceremony: 'signed-in', admission: 'ready' }),
-      signOutHostedProject
+      signOutHostedProject: vi.fn()
     });
+    // Account actions use the App-host client; the project-scoped client is never asked to sign out.
     const port = new RuntimeHostedBootstrapPort({
       bootstrapClient: client({
         resolveProjectByRoot: vi.fn().mockResolvedValue(registered),
-        projectStatus: vi.fn().mockResolvedValue(healthy)
+        projectStatus: vi.fn().mockResolvedValue(healthy),
+        signOutHostedProject
       }),
       runtimeDirectory: '/runtime',
       socketPath: '/runtime/control.sock',
@@ -912,6 +914,7 @@ describe('RuntimeDaemonHarnessPort', () => {
     const controller = new AbortController();
     await expect(port.signOut(projectRoot, { signal: controller.signal })).resolves.toEqual(signedOut);
     expect(signOutHostedProject).toHaveBeenCalledWith(registered.projectId, controller.signal);
+    expect(scopedClient.signOutHostedProject).not.toHaveBeenCalled();
     expect(scopedClient.hostedBootstrapStatus).toHaveBeenCalledTimes(1);
   });
 

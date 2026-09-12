@@ -760,13 +760,18 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
     });
   }
 
+  /**
+   * Sign-in, cancel and sign-out are account actions of the App host, so they
+   * travel over the per-launch client token; the project-scoped client keeps
+   * its least scopes (runtime, sessions, model reads).
+   */
   async startLogin(
     projectRoot: string,
     options?: DaemonRequestOptions
   ): ReturnType<HostedBootstrapPort['startLogin']> {
     return mapped(async () => {
       const binding = await this.requireBinding(projectRoot, options?.signal, this.binding);
-      return binding.client.startHostedBootstrapLogin(binding.projectId, options?.signal);
+      return this.options.bootstrapClient.startHostedBootstrapLogin(binding.projectId, options?.signal);
     });
   }
 
@@ -776,7 +781,7 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
   ): ReturnType<HostedBootstrapPort['cancelLogin']> {
     return mapped(async () => {
       const binding = await this.requireBinding(projectRoot, options?.signal, this.binding);
-      return binding.client.cancelHostedBootstrapLogin(binding.projectId, options?.signal);
+      return this.options.bootstrapClient.cancelHostedBootstrapLogin(binding.projectId, options?.signal);
     });
   }
 
@@ -794,7 +799,7 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
           409
         );
       }
-      return binding.client.signOutHostedProject(binding.projectId, options?.signal);
+      return this.options.bootstrapClient.signOutHostedProject(binding.projectId, options?.signal);
     });
   }
 
