@@ -342,3 +342,66 @@ trial App or userdata access; no suite other than the six named files; no
 edits to product or test files; no commit. Live-state item 5 of HANDOFF
 (native quit/relaunch with retained daemon) remains open and is outside this
 review.
+
+## Backcheck — commit `6e2b631ec` (delta only)
+
+Reviewed `git show 6e2b631ec -- projects/chirality-runtime` (two files:
+`packages/daemon/src/codex-supervisor.ts`, 27 lines changed;
+`tests/runtime-conformance-v2-admission.test.ts`, 26 lines added) on the same
+checkout, same boundaries; nothing edited or committed. Post-delta hashes:
+codex-supervisor.ts `af7d2222573ca4ca4fc385da09b77498e465d8d54a64f33d16dd0b435470bf3b`,
+runtime-conformance-v2-admission.test.ts `1d7fd8c6da098f31d362f90fcdcbce3dfcbbfe0fd3eac9ef5b6a51203013fce2`.
+
+### Verdict for the delta: PASS
+
+All three findings are resolved; no new finding.
+
+- Finding 1 (Medium) resolved. `codex-supervisor.ts:469-473` wraps the
+  renewal await in a `try`; after `cancelled()` it repeats the `:425` guard
+  (duplicate id in `entries`/`acquiring`, `maxWorkers` capacity) and adds an
+  ownership check that this acquisition's cancellation record is still the
+  one it installed (`:472`, `this.cancellations.get(workerId) !== cancellation`).
+  `acquiring.add(workerId)` at `:474` follows synchronously with no await in
+  between, so the recheck cannot be reopened. Duplicate-id scenario: the
+  earlier of two same-id acquisitions sees its record overwritten and refuses
+  without touching the later one's record; the later proceeds alone. Capacity
+  scenario: joined continuations run in order and each rechecks against the
+  registrations made by the previous, so `maxWorkers` holds.
+- Finding 2 (Low) resolved. The `catch` at `:473` deletes the cancellation
+  record on any pre-registration refusal (renewal rejection, cancellation,
+  close, guard refusal) but only when the record is still this acquisition's
+  own, so a concurrent same-id acquisition's record is never removed by the
+  loser.
+- Finding 3 (Low) resolved. `:309` moves the three retirement steps of the
+  queued candidate into `queuedRetirement` instead of running them inline;
+  `:311-316` runs every retained step, keeps only the failing ones, and throws
+  before the factory is called, so a failed step blocks renewal until it
+  succeeds rather than for one attempt only. `close()` (`:665`) runs the
+  retained steps between `preadmitted.authority.close()` and the factory
+  close, so ownership is retained through supervisor retirement, consistent
+  with the existing "ownership retained" close semantics. `preadmitted` is
+  assigned once (`admitHostedWithVerifier`), so the queue holds at most one
+  candidate's steps.
+
+Fail-closed and subject invariants are unaffected: the delta adds refusals and
+retries and removes no check; the factory is still reached only after the
+queue is empty; superseded admissions remain invalid.
+
+New test (`tests/runtime-conformance-v2-admission.test.ts:328-350`) uses the
+real factory through a counting wrapper and asserts: the first attempt runs
+all three steps, rejects with the step's error, leaves `preadmitted` cleared,
+retains exactly one step, and never calls the factory; the second attempt
+retries only the failed step, clears the queue, calls the factory once, and
+yields a live renewed admission. This covers Finding 3 directly.
+
+Remaining gap (unchanged from the main review, not blocking): no test drives
+the real `acquireGuarded` post-renewal recheck (`:469-474`) — duplicate-id
+ownership refusal, capacity refusal after the await, or cancellation-record
+cleanup on refusal — because the renewal fixture bypasses the constructor.
+
+### Backcheck commands (from `projects/chirality-runtime`)
+
+| Command | Result |
+|---|---|
+| `npx tsc -b --pretty false` | exit 0, no diagnostics (clean) |
+| `npx vitest run tests/runtime-conformance-v2-admission.test.ts tests/codex-supervisor.test.ts` | 2 files passed (2), 56 tests passed (56), 0 failed, 0 skipped (admission 14, supervisor 42), 2.54 s |
