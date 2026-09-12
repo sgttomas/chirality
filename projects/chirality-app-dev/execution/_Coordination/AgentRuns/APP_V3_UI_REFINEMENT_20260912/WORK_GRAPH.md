@@ -100,3 +100,17 @@ The owner added Report issue before building. The existing Astra/medium update
 author implements the fixed GitHub link in the main footer under
 `briefs/REPORT_ISSUE.md`, with no user-data attachment. Parent tests native
 navigation, and the final independent review includes the addition.
+
+## Completed replacement package
+
+Final independent Astra/high review passed all 104 paths at `3ad6fac0d`.
+Parent validated fan-in, direct native checks and final suites, then merged
+PR #776 at `26657ff90` after all three CI checks passed. The separate
+Astra/medium packaging child built that exact source once, without retry or
+source changes. Its return is `BUILD_EVIDENCE_REPLACEMENT_20260912.md`; the
+parent checked the recorded results, actual DMG digest and packaged product
+guidance. All delegated work is complete. The owned dev instance is stopped,
+temporary guidance probes are removed and earlier packages remain preserved.
+The owner handoff and update-preservation checklist identify the remaining
+notarization, install-over and native acceptance steps. Publishing remains
+separate and unperformed.
