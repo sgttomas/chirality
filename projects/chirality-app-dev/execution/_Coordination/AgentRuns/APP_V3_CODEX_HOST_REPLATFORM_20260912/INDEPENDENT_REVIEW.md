@@ -712,3 +712,76 @@ interrupt (`delegated-runtime.ts:228`); the section 8 order A/B tests and
 | `npx vitest run tests/turn-registry.test.ts tests/session-and-residency.test.ts tests/codex-supervisor.test.ts` (`runtime/`) | 3 files passed, 23 tests passed |
 | `npm run typecheck` (`frontend/`) | exit 0 |
 | `npx vitest run src/__tests__/electron/runtime-service-host.test.ts` (`frontend/`) | 1 file passed, 12 tests passed |
+
+## Re-check 2026-09-12: sign hook repair `388de6973` (delta only)
+
+Reviewer: Claude Fable 5.1, medium reasoning, no delegation. Read-only
+review of `git diff 26fffb89a..388de6973 -- projects/chirality-app-dev/frontend/scripts projects/chirality-app-dev/frontend/src/__tests__/scripts`
+(HEAD now `388de6973`; the other commit in the range, `825cacbbb`, is this
+review record). The complete final `frontend/scripts/sign-electron-runtime-v2.mjs`
+was read, together with the installed electron-builder call site
+(`app-builder-lib` 26.15.3, `out/macPackager.js`, `out/util/resolve.js`,
+`out/mac/MacTargetHelper.js`) to check the hook against the real call. No
+build, packaging, signing or `security` command was run; only this file was
+edited.
+
+### Verdict for the delta: PASS
+
+The signing policy is unchanged and the hook now matches electron-builder's
+actual `sign(options, packager)` call.
+
+### Policy unchanged
+
+The diff touches only the hook's construction (`sign-electron-runtime-v2.mjs:80-98`).
+`createSignOptions` (`:37-59`) is byte-for-byte the same: `hardenedRuntime: true`
+on every file, the App entitlements on `appPath` and any `.app`, the Code Mode
+host entitlements on `Contents/Resources/codex/bin/codex-code-mode-host`
+only, the inherit entitlements everywhere else. `verifySignedBundle`
+(`:65-78`) is unchanged: strict verification and the hardened-runtime flag
+on both Codex binaries, then a deep strict verification of the bundle. The
+entitlement sources are still electron-builder's own `optionsForFile` for the
+bundle (`mac.entitlements`, `package.json:155`) and for a nested path
+(`mac.entitlementsInherit`, `:156`), falling back to the checked-in plists
+(`:89-92`). The policy tests at
+`frontend/src/__tests__/scripts/sign-electron-runtime-v2.test.ts:22-43`,
+`:56-75` are unchanged and pass.
+
+### Fix complete for the real call
+
+- `MacPackager.doSign` resolves the configured hook with
+  `resolveFunction(type, config.sign, "sign", root)` and calls it as
+  `customSign(opts, this)` (`node_modules/app-builder-lib/out/macPackager.js:324`,
+  `:334`). `resolveFunction` imports the module and returns the named export
+  `sign` if present, else `m.default || m`
+  (`node_modules/app-builder-lib/out/util/resolve.js:21-58`). The module
+  exports no `sign`, so the default export, `createCustomMacSign()` bound to
+  `signAsync` and `verifySignedBundle` (`:86-98`), is what runs; its second
+  argument (the `MacPackager`) is ignored by the function signature, so the
+  packager's unbound `sign` method can no longer be picked up. That is the
+  exact failure the coordinator reported.
+- The `opts` electron-builder passes (`MacTargetHelper.js`, `buildSignOptions`)
+  carry `app`, `identity` (hash or name), `type`, `platform`, `version`,
+  `keychain`, `binaries`, `strictVerify`, `preAutoEntitlements`,
+  `optionsForFile` and `provisioningProfile`; the hook spreads them into the
+  `signAsync` options and only overrides `optionsForFile`, so nothing the
+  packager decided (identity, keychain, ignore filter) is dropped.
+- No other caller of the hook exists (`pack-electron.mjs:18` is a comment;
+  `package.json:154` is the only binding), so the removed second-argument
+  injection point has no remaining users; tests inject through the factory.
+- Test `:56-67` calls the bound hook with a packager whose `sign` throws if
+  used and asserts the verify result and that `packager.sign` was never
+  called; it also asserts the default export is a function. Deterministic
+  (in-process fakes, temp directory).
+
+### Residual (Informational)
+
+- R4: the resolution rule prefers a named export called `sign`. Adding one
+  to this module in future would silently replace the bound default hook. A
+  comment or a test asserting `import * as m` has no `sign` export would
+  guard it.
+
+### Re-check commands
+
+| Command (cwd) | Result |
+|---|---|
+| `npx vitest run src/__tests__/scripts/sign-electron-runtime-v2.test.ts src/__tests__/scripts` (`frontend/`) | 21 files passed, 145 tests passed, 0 failed, 2.17 s |
