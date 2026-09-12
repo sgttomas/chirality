@@ -840,7 +840,7 @@ it('shows a confirmed interruption alongside partial commentary and after reopen
     onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
   });
   await mount(); await type('Begin work'); await submit();
-  expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
+  expect(tree!.root.findByProps({ 'data-turn-outcome': 'interrupted' }).children).toEqual(['Stopped']);
   expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
   expect(tree!.root.findAllByProps({ className: 'chat-runtime-error' })).toHaveLength(0);
   const projection = resumableProjection('interrupted-history');
@@ -849,7 +849,7 @@ it('shows a confirmed interruption alongside partial commentary and after reopen
     { key: 'stop', kind: 'terminal', status: 'interrupted', title: 'Turn interrupted', timestamp: '2026-09-09T00:00:02Z', eventId: 'stop', eventType: 'turn.interrupted', turnId: 'cancelled' }
   ];
   await act(async () => tree!.update(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection }} />));
-  expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
+  expect(tree!.root.findByProps({ 'data-turn-outcome': 'interrupted' }).children).toEqual(['Stopped']);
   expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
 });
 

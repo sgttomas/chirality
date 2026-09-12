@@ -171,7 +171,7 @@ it('treats a 404 TURN_NOT_ACTIVE on re-attach as the turn having ended and reads
   expect(state.attach).toHaveBeenCalledTimes(2);
   expect(state.attach.mock.calls[1][1]).toBe(3);
   expect(rendered()).toContain('before drop');
-  expect(rendered()).toContain('Interrupted');
+  expect(rendered()).toContain('"data-turn-outcome":"interrupted"');
   expect(stopButtons()).toHaveLength(0);
 });
 

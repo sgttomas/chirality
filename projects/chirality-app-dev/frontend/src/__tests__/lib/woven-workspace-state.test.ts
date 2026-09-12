@@ -44,6 +44,7 @@ describe('Woven Dialogue workspace state', () => {
       rightPanelView: 'files', rightPanelWidths: {}, rightPanelExpanded: false,
       preExpandState: null, openDocumentPath: null, chatTitles: {}, chatPins: [],
       chatArchived: [], chatDeleted: [], chatGroups: [], groupsCollapsed: [], knownRoots: [], chatRung: {},
+      chatIndex: {}, foldersCollapsed: [], chatDocuments: {}, lastActiveChat: null,
       schema: WOVEN_WORKSPACE_SCHEMA,
       theme: 'light',
       navigatorWidth: 240,
@@ -525,12 +526,12 @@ describe('additive shell convenience fields', () => {
     expect(readWovenWorkspaceStateFromStorage(storage)).toMatchObject({ theme: 'dark', navigatorWidth: 500, knownRoots: [] });
   });
 
-  it('clears project hints while retaining app state and excludes activeChatRoot', () => {
+  it('clears project hints while retaining chat organisation and app state, and excludes activeChatRoot', () => {
     const storage = storageFor({ openDocumentPath: '/doc', chatTitles: { s: 'Title' }, chatPins: ['s'], chatArchived: ['s'], chatDeleted: ['s'], chatRung: { s: { kind: 'plain' } }, chatGroups: [{ id: 'g', name: 'G', sessionIds: ['s'] }], groupsCollapsed: ['g'],
       knownRoots: [{ path: '/root', lastUsedAt: '2026-09-05T00:00:00Z' }], rightPanelView: 'workflows', rightPanelWidths: { workflows: 460 }, rightPanelExpanded: true, preExpandState: { rightWidth: 400, leftCollapsed: true }, theme: 'dark', sessionSurfaces: { s: 'dialogue' }, activeChatRoot: '/authority' });
     const state = readWovenWorkspaceStateFromStorage(storage);
     const cleared = clearProjectScopedWovenWorkspaceState(state);
-    expect(cleared).toMatchObject({ openDocumentPath: null, chatTitles: state.chatTitles, chatPins: [], chatArchived: [], chatDeleted: [], chatRung: state.chatRung, chatGroups: [], groupsCollapsed: [], knownRoots: state.knownRoots, rightPanelView: 'workflows', rightPanelWidths: { workflows: 460 }, rightPanelExpanded: true, preExpandState: state.preExpandState, theme: 'dark', sessionSurfaces: { s: 'dialogue' } });
+    expect(cleared).toMatchObject({ openDocumentPath: null, chatTitles: state.chatTitles, chatPins: ['s'], chatArchived: ['s'], chatDeleted: ['s'], chatRung: state.chatRung, chatGroups: state.chatGroups, groupsCollapsed: ['g'], knownRoots: state.knownRoots, rightPanelView: 'workflows', rightPanelWidths: { workflows: 460 }, rightPanelExpanded: true, preExpandState: state.preExpandState, theme: 'dark', sessionSurfaces: { s: 'dialogue' } });
     writeWovenWorkspaceStateToStorage(storage, { ...state, activeChatRoot: '/forbidden' } as typeof state);
     expect(JSON.parse(storage.values.get(WOVEN_WORKSPACE_STORAGE_KEY)!)).not.toHaveProperty('activeChatRoot');
     writeWovenWorkspaceThemeToStorage(storage, 'light');
@@ -609,11 +610,44 @@ it('retains titles and rung/declined hints for sessions in two roots across root
     groupsCollapsed: ['group-a'], dialogueAnchorId: 'turn-a', contextReferences: ['/root-a/context.md']
   };
   const inRootB = clearProjectScopedWovenWorkspaceState(state);
+  // Chats from every folder share one navigator, so pins, groups and
+  // archive/delete marks (globally unique session ids) survive a root switch.
   expect(inRootB).toMatchObject({ chatTitles: state.chatTitles, chatRung: state.chatRung,
-    knownRoots: state.knownRoots, openDocumentPath: null, chatPins: [], chatArchived: [], chatDeleted: [],
-    chatGroups: [], groupsCollapsed: [], dialogueAnchorId: null, contextReferences: [] });
+    knownRoots: state.knownRoots, openDocumentPath: null, chatPins: state.chatPins, chatArchived: state.chatArchived, chatDeleted: state.chatDeleted,
+    chatGroups: state.chatGroups, groupsCollapsed: state.groupsCollapsed, dialogueAnchorId: null, contextReferences: [] });
   writeWovenWorkspaceStateToStorage(storage, inRootB);
   const backInRootA = clearProjectScopedWovenWorkspaceState(readWovenWorkspaceStateFromStorage(storage));
   expect(backInRootA.chatTitles).toEqual(state.chatTitles);
   expect(backInRootA.chatRung).toEqual(state.chatRung);
+});
+
+describe('chat index', () => {
+  it('indexes listed chats per folder, drops stale entries for that folder only, and keeps identity when unchanged', async () => {
+    const { indexWovenChats, createDefaultWovenWorkspaceState: defaults } = await import('../../lib/woven-dialogue/woven-workspace-state');
+    const base = defaults();
+    const a1 = indexWovenChats(base, '/root-a', [{ sessionId: 's1', projectRoot: '/root-a', persona: 'TASK', createdAt: '2026-09-01T00:00:00Z', updatedAt: '2026-09-02T00:00:00Z' }]);
+    expect(a1.chatIndex).toEqual({ s1: { projectRoot: '/root-a', persona: 'TASK', createdAt: '2026-09-01T00:00:00Z', updatedAt: '2026-09-02T00:00:00Z' } });
+    const b1 = indexWovenChats(a1, '/root-b', [{ sessionId: 's2', projectRoot: '/root-b', createdAt: '2026-09-03T00:00:00Z', updatedAt: '2026-09-03T00:00:00Z' }]);
+    expect(Object.keys(b1.chatIndex ?? {})).toEqual(['s2', 's1']);
+    // Re-listing folder A without s1 removes only s1; s2 (folder B) stays.
+    const a2 = indexWovenChats(b1, '/root-a', []);
+    expect(a2.chatIndex).toEqual({ s2: b1.chatIndex!.s2 });
+    // Same listing again is a no-op with the same reference.
+    expect(indexWovenChats(a2, '/root-b', [{ sessionId: 's2', projectRoot: '/root-b', createdAt: '2026-09-03T00:00:00Z', updatedAt: '2026-09-03T00:00:00Z' }])).toBe(a2);
+  });
+
+  it('reads and persists the additive chat fields and rejects malformed entries', () => {
+    const storageFor = (value: Record<string, unknown>) => {
+      const values = new Map<string, string>([[WOVEN_WORKSPACE_STORAGE_KEY, JSON.stringify({ schema: WOVEN_WORKSPACE_SCHEMA, ...value })]]);
+      return { getItem: (key: string) => values.get(key) ?? null, setItem: (key: string, item: string) => { values.set(key, item); } };
+    };
+    const storage = storageFor({ chatIndex: { ok: { projectRoot: '/r', createdAt: 'c', updatedAt: 'u', persona: 'TASK' }, bad: { projectRoot: '' }, worse: 'nope' },
+      foldersCollapsed: ['/r', 7], chatDocuments: { ok: 'docs/a.md', bad: 3 }, lastActiveChat: { sessionId: 'ok', projectRoot: '/r' } });
+    const state = readWovenWorkspaceStateFromStorage(storage);
+    expect(state.chatIndex).toEqual({ ok: { projectRoot: '/r', createdAt: 'c', updatedAt: 'u', persona: 'TASK' } });
+    expect(state.foldersCollapsed).toEqual(['/r']);
+    expect(state.chatDocuments).toEqual({ ok: 'docs/a.md' });
+    expect(state.lastActiveChat).toEqual({ sessionId: 'ok', projectRoot: '/r' });
+    expect(readWovenWorkspaceStateFromStorage(storageFor({ lastActiveChat: { sessionId: 'x' } })).lastActiveChat).toBeNull();
+  });
 });

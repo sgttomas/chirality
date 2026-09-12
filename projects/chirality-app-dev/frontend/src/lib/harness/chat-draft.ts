@@ -19,6 +19,14 @@ export type ChatDraftSnapshot = {
    */
   model?: string;
   reasoningEffort?: string;
+  /**
+   * Unsent per-chat settings, stored only under a session-owned key: the
+   * permission and interaction mode chosen for that chat but not yet applied
+   * by a turn. New-chat entry keys never carry them, so a choice made in one
+   * chat can neither leak into another chat nor become a new-chat default.
+   */
+  permissionMode?: string;
+  interactionMode?: 'chat' | 'native-plan';
 };
 
 export type ChatDraftStorageReadResult = {
@@ -37,6 +45,14 @@ function readString(value: unknown): string {
     return '';
   }
   return value;
+}
+
+const PERMISSION_MODES: ReadonlySet<string> = new Set(['readOnly', 'ask', 'workspaceWrite', 'bypass']);
+
+function readChatSettings(record: Record<string, unknown>): Pick<ChatDraftSnapshot, 'permissionMode' | 'interactionMode'> {
+  const permissionMode = typeof record.permissionMode === 'string' && PERMISSION_MODES.has(record.permissionMode) ? record.permissionMode : undefined;
+  const interactionMode = record.interactionMode === 'chat' || record.interactionMode === 'native-plan' ? record.interactionMode : undefined;
+  return { ...(permissionMode ? { permissionMode } : {}), ...(interactionMode ? { interactionMode } : {}) };
 }
 
 function readModelSelection(record: Record<string, unknown>): Pick<ChatDraftSnapshot, 'model' | 'reasoningEffort'> {
@@ -87,13 +103,15 @@ export function sanitizeChatDraftSnapshot(value: unknown): ChatDraftSnapshot {
     draft: readString(record.draft),
     attachments: sanitizeStoredAttachments(record.attachments),
     methods,
-    ...readModelSelection(record)
+    ...readModelSelection(record),
+    ...readChatSettings(record)
   };
 }
 
 function isEmptySnapshot(snapshot: ChatDraftSnapshot): boolean {
   return snapshot.draft.length === 0 && snapshot.attachments.length === 0 && snapshot.methods.length === 0 &&
-    snapshot.model === undefined && snapshot.reasoningEffort === undefined;
+    snapshot.model === undefined && snapshot.reasoningEffort === undefined &&
+    snapshot.permissionMode === undefined && snapshot.interactionMode === undefined;
 }
 
 export function readChatDraftSnapshotFromStorage(

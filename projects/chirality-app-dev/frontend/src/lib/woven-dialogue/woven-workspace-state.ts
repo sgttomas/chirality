@@ -15,6 +15,8 @@ const MAX_REFERENCE_LENGTH = 2048;
  * are evicted rather than growing the stored blob without limit.
  */
 export const MAX_SESSION_SURFACE_ATTRIBUTIONS = 500;
+/** Upper bound on the local chat index; the oldest entries are evicted. */
+export const MAX_CHAT_INDEX_ENTRIES = 500;
 
 type WovenWorkspaceMigrationField = 'navigatorWidth' | 'navigatorCollapsed';
 
@@ -67,6 +69,13 @@ export function resolveRightPanelView(view: WovenRightPanelView | undefined): Wo
 }
 export type WovenRightPanelWidthKey = WovenRightPanelView | 'document' | 'session';
 export type WovenChatRung = { kind: 'plain' | 'spec' | 'workflow'; ref?: string; declined?: string[] };
+/**
+ * Local index of every chat this App has listed, keyed by session id, so chats
+ * bound to folders other than the one currently selected stay reachable in
+ * the navigator. The Runtime record is the truth; this is a pointer to it
+ * (folder, role, timestamps) refreshed whenever that folder is listed again.
+ */
+export type WovenChatIndexEntry = { projectRoot: string; persona?: string; createdAt: string; updatedAt: string };
 export type WovenWorkspaceAdditions = {
   rightPanelView: WovenRightPanelView;
   rightPanelWidths: Partial<Record<WovenRightPanelWidthKey, number>>;
@@ -81,6 +90,13 @@ export type WovenWorkspaceAdditions = {
   groupsCollapsed: string[];
   knownRoots: { path: string; lastUsedAt: string }[];
   chatRung: Record<string, WovenChatRung>;
+  chatIndex: Record<string, WovenChatIndexEntry>;
+  /** Navigator folder sections the human collapsed (folder paths). */
+  foldersCollapsed: string[];
+  /** Per-chat document context: the Files tab document open for that session. */
+  chatDocuments: Record<string, string>;
+  /** The chat open when the window was last used; restored on the next launch. */
+  lastActiveChat: { sessionId: string; projectRoot: string } | null;
 };
 
 // Older typed callers may omit additions; readers always return every field.
@@ -236,6 +252,60 @@ function readKnownRoots(value: unknown): WovenWorkspaceAdditions['knownRoots'] {
   return [...roots.values()].sort((a, b) => b.lastUsedAt.localeCompare(a.lastUsedAt)).slice(0, 50);
 }
 
+function readChatIndexEntry(value: unknown): WovenChatIndexEntry | null {
+  if (!isRecord(value)) return null;
+  const projectRoot = readIdentity(value.projectRoot);
+  const createdAt = readIdentity(value.createdAt) ?? '';
+  const updatedAt = readIdentity(value.updatedAt) ?? createdAt;
+  if (!projectRoot) return null;
+  const persona = readIdentity(value.persona);
+  return { projectRoot, createdAt, updatedAt, ...(persona ? { persona } : {}) };
+}
+
+function readLastActiveChat(value: unknown): WovenWorkspaceAdditions['lastActiveChat'] {
+  if (!isRecord(value)) return null;
+  const sessionId = readIdentity(value.sessionId);
+  const projectRoot = readIdentity(value.projectRoot);
+  return sessionId && projectRoot ? { sessionId, projectRoot } : null;
+}
+
+/**
+ * Merge freshly listed sessions into the index. Entries for sessions the
+ * listing of `projectRoot` no longer returns are dropped only for that folder,
+ * so an index entry never outlives the record it points to on the folder that
+ * owns it. Returns the same reference when nothing changed.
+ */
+export function indexWovenChats(
+  state: WovenWorkspaceState,
+  projectRoot: string,
+  sessions: readonly { sessionId: string; projectRoot?: string; persona?: string; createdAt?: string; updatedAt?: string }[]
+): WovenWorkspaceState {
+  const current = state.chatIndex ?? {};
+  const next: Record<string, WovenChatIndexEntry> = {};
+  let changed = false;
+  const dropped = new Set<string>();
+  for (const [sessionId, entry] of Object.entries(current)) {
+    if (entry.projectRoot === projectRoot) { dropped.add(sessionId); continue; }
+    next[sessionId] = entry;
+  }
+  for (const session of sessions) {
+    const root = readIdentity(session.projectRoot) ?? projectRoot;
+    const entry: WovenChatIndexEntry = {
+      projectRoot: root,
+      createdAt: session.createdAt ?? '',
+      updatedAt: session.updatedAt ?? session.createdAt ?? '',
+      ...(session.persona ? { persona: session.persona } : {})
+    };
+    const previous = current[session.sessionId];
+    if (!previous || previous.projectRoot !== entry.projectRoot || previous.updatedAt !== entry.updatedAt || previous.createdAt !== entry.createdAt || previous.persona !== entry.persona) changed = true;
+    dropped.delete(session.sessionId);
+    next[session.sessionId] = entry;
+  }
+  if (!changed && dropped.size === 0) return state;
+  const entries = Object.entries(next).sort((a, b) => b[1].updatedAt.localeCompare(a[1].updatedAt)).slice(0, MAX_CHAT_INDEX_ENTRIES);
+  return { ...state, chatIndex: Object.fromEntries(entries) };
+}
+
 function readAdditions(value: Record<string, unknown>): WovenWorkspaceAdditions {
   const views: readonly WovenRightPanelView[] = RIGHT_PANEL_VIEWS;
   const widths: WovenWorkspaceAdditions['rightPanelWidths'] = {};
@@ -270,7 +340,11 @@ function readAdditions(value: Record<string, unknown>): WovenWorkspaceAdditions 
     chatGroups: [...groups.values()],
     groupsCollapsed: readIdentities(value.groupsCollapsed),
     knownRoots: readKnownRoots(value.knownRoots),
-    chatRung: readHintMap(value.chatRung, readRung)
+    chatRung: readHintMap(value.chatRung, readRung),
+    chatIndex: readHintMap(value.chatIndex, readChatIndexEntry),
+    foldersCollapsed: readIdentities(value.foldersCollapsed),
+    chatDocuments: readHintMap(value.chatDocuments, readIdentity),
+    lastActiveChat: readLastActiveChat(value.lastActiveChat)
   };
 }
 
@@ -455,6 +529,9 @@ export function createDefaultWovenWorkspaceState(): NormalizedWovenWorkspaceStat
  * layout preference, like the pane widths, and is likewise not project-scoped.
  * Titles and rung/declined hints also follow globally unique session IDs across
  * known folders; switching roots must not lose a rename or declined proposal.
+ * Pins, groups, archive and local-delete marks are kept for the same reason:
+ * chats from every folder share one navigator, and opening a chat in another
+ * folder switches the root as a matter of course.
  */
 export function clearProjectScopedWovenWorkspaceState(
   state: WovenWorkspaceState
@@ -466,12 +543,7 @@ export function clearProjectScopedWovenWorkspaceState(
     expandedObjectIds: [],
     selectedReplaySessionId: null,
     contextReferences: [],
-    openDocumentPath: null,
-    chatPins: [],
-    chatArchived: [],
-    chatDeleted: [],
-    chatGroups: [],
-    groupsCollapsed: []
+    openDocumentPath: null
   };
 }
 

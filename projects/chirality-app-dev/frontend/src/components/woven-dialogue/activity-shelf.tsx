@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
+import { turnPhaseLabel, type TurnPhase } from '../../lib/shell/turn-phase';
 import { deriveCodexNotifications, deriveToolActivity, deriveSubagentActivity, type CodexNotificationRow, type ToolActivityRow, type SubagentActivityRow } from '../../lib/shell/harness-event-views';
 import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import { useHarnessEvents } from '../workspace/harness-events-provider';
@@ -105,15 +106,18 @@ export function derivePrimaryTurnActivity(events: readonly HarnessEvent[], prima
 }
 
 /** Fixed status line; counts describe the observed primary turn, never complete work. */
-export function ActivityStrip({ reconnectControl, onOpenDetails, running, events, primarySessionId }: {
-  reconnectControl?: React.ReactNode; onOpenDetails: () => void; running: boolean; events: readonly HarnessEvent[]; primarySessionId?: string;
+export function ActivityStrip({ reconnectControl, onOpenDetails, running, phase, events, primarySessionId }: {
+  reconnectControl?: React.ReactNode; onOpenDetails: () => void; running: boolean; phase?: TurnPhase; events: readonly HarnessEvent[]; primarySessionId?: string;
 }): JSX.Element {
   const observedTurn = derivePrimaryTurnActivity(events, primarySessionId);
   // Streaming may begin before its first event; do not label an older completed turn current.
   const turn = running && observedTurn?.elapsed !== undefined ? null : observedTurn;
-  return <div className="woven-activity-strip" aria-label="Activity status">
+  // The chat panel's phase names what the agent is doing (working, waiting for
+  // an answer, reconnecting, stopping); the streaming flag alone only says busy.
+  const label = phase && phase !== 'idle' ? turnPhaseLabel(phase) : running ? 'Working' : 'Idle';
+  return <div className="woven-activity-strip" aria-label="Activity status" data-turn-phase={phase ?? (running ? 'working' : 'idle')}>
     {reconnectControl}
-    <span role="status">{running ? 'Working' : 'Idle'}{turn ? ` · ${turn.actions} actions · ${turn.children} children observed` : ''}{!running && turn?.elapsed !== undefined ? ` · Last turn: ${(turn.elapsed / 1000).toFixed(1)} s` : ''}</span>
+    <span role="status">{label}{turn ? ` · ${turn.actions} actions · ${turn.children} children observed` : ''}{!running && turn?.elapsed !== undefined ? ` · Last turn: ${(turn.elapsed / 1000).toFixed(1)} s` : ''}</span>
     <button type="button" onClick={onOpenDetails}>Details ›</button>
   </div>;
 }

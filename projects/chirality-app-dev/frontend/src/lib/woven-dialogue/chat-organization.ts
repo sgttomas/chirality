@@ -13,8 +13,11 @@ export const CHAT_MESSAGE_SEARCH_LIMIT = 20;
 export type ChatSection = {
   id: string;
   label: string;
-  kind: 'pinned' | 'group' | 'date';
+  kind: 'pinned' | 'group' | 'folder';
   entries: ChatOrganizationEntry[];
+  /** Folder sections: the recorded folder path, and whether it is the folder selected for new chats. */
+  folderPath?: string;
+  current?: boolean;
 };
 
 export type ChatOrganizationEntry = {
@@ -96,14 +99,30 @@ export function formatChatWhen(value: string, referenceDay: string): string {
   return `${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][date.getUTCMonth()]} ${date.getUTCDate()}`;
 }
 
-function dateSection(value: string, referenceDay: string): { id: string; label: string } {
-  const difference = dayDifference(referenceDay, value);
-  if (difference === 0) return { id: 'today', label: 'Today' };
-  if (difference === 1) return { id: 'yesterday', label: 'Yesterday' };
-  if (difference !== null && difference >= 2 && difference < 7) {
-    return { id: 'earlier-this-week', label: 'Earlier this week' };
+/** Folder key for grouping: the recorded path without a trailing slash; the empty string means no recorded folder. */
+export function chatFolderKey(projectRoot: string | undefined): string {
+  return typeof projectRoot === 'string' ? projectRoot.replace(/\/+$/, '') : '';
+}
+
+/**
+ * Short labels for folder sections: the basename, widened with the parent
+ * directory when two folders share a basename.
+ */
+export function folderSectionLabels(paths: readonly string[]): Map<string, string> {
+  const labels = new Map<string, string>();
+  const byBase = new Map<string, string[]>();
+  for (const path of paths) {
+    const base = folderBasename(path);
+    byBase.set(base, [...(byBase.get(base) ?? []), path]);
   }
-  return { id: 'earlier', label: 'Earlier' };
+  for (const path of paths) {
+    if (!path) { labels.set(path, 'No folder'); continue; }
+    const base = folderBasename(path);
+    if ((byBase.get(base)?.length ?? 0) <= 1) { labels.set(path, base); continue; }
+    const parts = path.split('/').filter(Boolean);
+    labels.set(path, parts.length >= 2 ? `${parts.at(-2)}/${parts.at(-1)}` : base);
+  }
+  return labels;
 }
 
 function orderSessions(sessions: readonly SessionRecord[]): SessionRecord[] {
@@ -134,6 +153,10 @@ export function projectChatSections(input: {
   firstOperatorMessages?: Readonly<Record<string, string>>;
   referenceDay: string;
   visibility?: 'active' | 'archived' | 'deleted';
+  /** The folder selected for new chats; its section is listed first. */
+  currentRoot?: string | null;
+  /** Known folders, most recently used first; breaks ties between folder sections. */
+  folderOrder?: readonly string[];
 }): ChatSection[] {
   const archived = new Set(input.state.chatArchived);
   const deleted = new Set(input.state.chatDeleted);
@@ -174,18 +197,32 @@ export function projectChatSections(input: {
     sections.push({ id: group.id, label: group.name, kind: 'group', entries });
   }
 
-  const dateOrder = ['today', 'yesterday', 'earlier-this-week', 'earlier'];
-  const dateSections = new Map<string, ChatSection>();
+  // Everything else sits under its recorded folder: the folder selected for
+  // new chats first, then known folders by recency of use, then any other
+  // recorded folder by the recency of its newest chat.
+  const currentKey = chatFolderKey(input.currentRoot ?? undefined);
+  const folderRank = new Map((input.folderOrder ?? []).map((path, index) => [chatFolderKey(path), index]));
+  const folderSections = new Map<string, ChatSection>();
   for (const session of ordered) {
     if (assigned.has(session.sessionId)) continue;
-    const section = dateSection(session.updatedAt || session.createdAt || '', input.referenceDay);
-    const target = dateSections.get(section.id) ?? { ...section, kind: 'date' as const, entries: [] };
+    const key = chatFolderKey(session.projectRoot);
+    const target = folderSections.get(key) ?? { id: `folder:${key}`, label: '', kind: 'folder' as const, entries: [], folderPath: key, current: key === currentKey && key !== '' };
     target.entries.push(entry(session));
-    dateSections.set(section.id, target);
+    folderSections.set(key, target);
   }
-  for (const id of dateOrder) {
-    const section = dateSections.get(id);
-    if (section?.entries.length) sections.push(section);
+  const labels = folderSectionLabels([...folderSections.keys()]);
+  const ranked = [...folderSections.values()].map((section, index) => ({ section, index }));
+  ranked.sort((a, b) => {
+    if (a.section.current !== b.section.current) return a.section.current ? -1 : 1;
+    const rankA = folderRank.get(a.section.folderPath ?? '') ?? Number.MAX_SAFE_INTEGER;
+    const rankB = folderRank.get(b.section.folderPath ?? '') ?? Number.MAX_SAFE_INTEGER;
+    if (rankA !== rankB) return rankA - rankB;
+    if ((a.section.folderPath === '') !== (b.section.folderPath === '')) return a.section.folderPath === '' ? 1 : -1;
+    return a.index - b.index;
+  });
+  for (const { section } of ranked) {
+    section.label = labels.get(section.folderPath ?? '') ?? 'No folder';
+    sections.push(section);
   }
   return sections;
 }
