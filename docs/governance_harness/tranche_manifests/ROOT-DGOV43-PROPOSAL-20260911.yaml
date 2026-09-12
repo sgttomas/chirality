@@ -31,10 +31,15 @@ m2_gate:
   authorization_date: 2026-09-11
   integration_owner: >-
     HELP_HUMAN is the sole serialized integration owner for this proposal
-    candidate on branch claude/chirality-v3-mvp-trial-ab05cb; one normal
-    commit, no merge, no push without owner direction
+    candidate on branch claude/chirality-v3-mvp-trial-ab05cb; normal
+    commits; push, pull request and merge under the owner's direction of
+    2026-09-11 recorded in ROOT-DGOV43-RULING-20260911.yaml
   merge_gate: human-gated-pr
-  self_merge: false
+  self_merge: true
+  owner_direction:
+    directed_by: Ryan Tufts
+    direction_date: 2026-09-11
+    approved_source_sha: "ad682173d7a294091064d4689f2977b390dce399"
 
 m6_notice:
   disposition: pending
@@ -46,7 +51,7 @@ m6_notice:
     PEC loops named in IMPACT.md.
 
 scope_limits:
-  - proposal-candidate only; no AGENTS.md change and no D-GOV-43 ruling
+  - proposal-candidate files only; no AGENTS.md change; the D-GOV-43 ruling is recorded under ROOT-DGOV43-RULING-20260911, not by this tranche
   - no instruction application, lifecycle transition, hold lift, pin change, runtime or project-source change, release, reliance, publication or merge
   - no modification or deletion of trial installations, evidence, Codex homes or credentials
   - no rebase, force-push or history rewrite

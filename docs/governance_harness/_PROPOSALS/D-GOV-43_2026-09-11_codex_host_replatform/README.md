@@ -1,7 +1,10 @@
 # D-GOV-43 Proposal Packet — Codex Host Re-platform
 
-Status: `PROPOSED — AWAITING OWNER RULING` (revision 3; text frozen at
-commit `3ef2ef524956498f8923323dc6cf9d672dbeb50b`)
+Status: `RULED 2026-09-11` — the owner accepted revision 3 (text frozen at
+commit `3ef2ef524956498f8923323dc6cf9d672dbeb50b`) with the post-build
+clarification; the ruling record is
+`docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`.
+The files in this packet are the proposal history and are not edited further.
 
 Date: `2026-09-11`
 
@@ -28,8 +31,9 @@ authorizes performs the propagation.
   — the three rounds of independent review, verbatim, with each point's
   disposition. Round 3 endorsed revision 3 and added one clarification that
   accompanies the ruling rather than a further revision.
-- `RULING_CANDIDATE.md` — the prepared `_DECISIONS` record: fill the owner's
-  verbatim ruling and date, copy it into `_DECISIONS/`, add the register row.
+- `RULING_CANDIDATE.md` — the prepared `_DECISIONS` record, since
+  transcribed with the owner's verbatim ruling into
+  `_DECISIONS/D-GOV-43_codex_host_replatform.md` (historical).
 - `docs/governance_harness/tranche_manifests/ROOT-DGOV43-PROPOSAL-20260911.yaml`
   — the proposal-candidate tranche manifest.
 

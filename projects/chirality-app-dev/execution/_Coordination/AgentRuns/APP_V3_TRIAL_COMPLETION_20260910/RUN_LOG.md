@@ -888,3 +888,21 @@ Manifest, README and steer transcription updated. Still no ruling recorded;
 the owner's verbatim ruling is the remaining input. No live surface,
 installation, evidence or credential changed; nothing published. R17 GUI
 31613 and daemon 27838 still running.
+
+## D-GOV-43 ruled; push, pull request and merge authorized — 2026-09-12T05:40Z
+
+Owner ruled, verbatim: "I rule D-GOV-43 accepted as revision 3 at commit
+3ef2ef524, with the post-build minimum-not-ceiling clarification. The three
+folded choices stand." and directed: "You may push changes and open a PR and
+merge once the CI goes green." Transcribed the ruling into
+docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md (RULED
+2026-09-11, verbatim ruling, clarification, application boundary) with the
+_REGISTER.md row; recorded the ruling and merge direction in the new manifest
+ROOT-DGOV43-RULING-20260911.yaml (self_merge true under the recorded owner
+direction) and aligned the proposal manifest; marked the packet README and
+RULING_CANDIDATE.md as transcribed; updated HANDOFF.md preconditions to the
+merged basis and added its transport-record section; steer transcription
+extended. Next: validators, commit, push, open the pull request, record its
+number below, merge when CI is green. No live surface, installation,
+evidence or credential changed; nothing published. R17 GUI 31613 and daemon
+27838 still running.

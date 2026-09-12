@@ -7,30 +7,28 @@ not governance: the governing record is D-GOV-43 and its ruling.
 ## 0. Preconditions — verify before any work
 
 1. **Implementation basis.** The proposal text is revision 3 at commit
-   `3ef2ef524956498f8923323dc6cf9d672dbeb50b` on branch
-   `claude/chirality-v3-mvp-trial-ab05cb`. That branch is local to this host
-   (originating worktree
-   `/Users/ryan/dev/chirality/.claude/worktrees/owner-alignment-inspection-db4335`).
-   It is **not** on `origin/main` (`origin/main` was
-   `a75adecf13f055c092ffa92809f66e7817c44242` at preparation). Work from a
-   checkout that contains it; verify with
+   `3ef2ef524956498f8923323dc6cf9d672dbeb50b`; the owner's ruling record and
+   this handoff follow it on branch `claude/chirality-v3-mvp-trial-ab05cb`,
+   merged to `main` through the pull request named in section 7 under the
+   owner's direction of 2026-09-11. Use an integration checkout updated
+   from `origin/main` that contains that merge; do not assume an older
+   `origin/main` has it (`origin/main` was
+   `a75adecf13f055c092ffa92809f66e7817c44242` before the merge). Verify with
 
    ```bash
-   git merge-base --is-ancestor 3ef2ef524956498f8923323dc6cf9d672dbeb50b HEAD && echo basis-present
+   git merge-base --is-ancestor 3ef2ef524956498f8923323dc6cf9d672dbeb50b HEAD && test -f docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md && echo basis-and-ruling-present
    ```
 
-   Later commits on the branch add the round-3 review record, the ruling
-   candidate and this handoff; use the branch head. Prefer a fresh worktree
-   from that head (`git worktree add <path> claude/chirality-v3-mvp-trial-ab05cb`
-   from the main checkout). Do not rewrite history, do not push without the
-   owner's direction, never use bare `git stash`.
-2. **The owner's ruling record must exist** at
+   The originating worktree
+   `/Users/ryan/dev/chirality/.claude/worktrees/owner-alignment-inspection-db4335`
+   is preserved local evidence, not a requirement. Do not rewrite history,
+   never use bare `git stash`, and do not push or merge beyond the owner's
+   direction.
+2. **The owner's ruling record exists** at
    `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`
-   with the owner's verbatim ruling and a `_REGISTER.md` row. The ruling is
-   the owner's act (K-AUTH-1). If the record is absent, stop and obtain the
-   ruling verbatim from the owner, then transcribe it from the prepared
-   `RULING_CANDIDATE.md` in the packet below and commit it under a tranche
-   manifest before starting the tranche.
+   (ruled 2026-09-11, verbatim, with the post-build clarification and the
+   `_REGISTER.md` row). It is the governing record; the packet is the
+   proposal history. If your checkout lacks it, you are on the wrong basis.
 3. **Read** the packet
    `docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/`
    (`D-GOV-43.proposed.md`, `IMPACT.md`, `AGENTS.proposed.patch`,
@@ -256,7 +254,14 @@ tester.
   `RUN_LOG.md` in this directory with UTC timestamps, in the style of
   `../APP_V3_TRIAL_COMPLETION_20260910/RUN_LOG.md`.
 
-## 7. Inherited open items
+## 7. Transport record and inherited open items
+
+- Pull request from `claude/chirality-v3-mvp-trial-ab05cb` into `main`:
+  recorded here once opened (see `RUN_LOG.md` in
+  `../APP_V3_TRIAL_COMPLETION_20260910/` for the number and merge SHA).
+- The owner's perspective note for the implementing session accompanies the
+  launch prompt; if committed, it lives beside this file as
+  `PERSPECTIVE.md` and explains intent without changing the ruled scope.
 
 - R17-F1 (interrupted turn not rendered live) and R17-F2 (30 s
   stream-silence interruption) are subsumed by the re-platform; S-2 and S-7

@@ -74,9 +74,18 @@ the packet's `REVIEW_FEEDBACK_R3.md`):
 > I have some final refinements, then we need to make this guidance durable
 > so a third agent can begin implementation in their own session.
 
+Ruling and merge authorization (transcribed into
+`docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`):
+
+> I rule D-GOV-43 accepted as revision 3 at commit 3ef2ef524, with the
+> post-build minimum-not-ceiling clarification. The three folded choices
+> stand.
+>
+> You may push changes and open a PR and merge once the CI goes green.
+
 ## Referent
 
 The "second re-platform route" is the re-platform described in the context
 above. The D-GOV-43 proposal packet at
 `docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/`
-frames it as a ruling candidate. The owner has not yet ruled on that record.
+framed it as a ruling candidate; the owner ruled on 2026-09-11 as quoted above.
