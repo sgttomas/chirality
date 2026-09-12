@@ -952,3 +952,12 @@ established versus uncertain, and a recommendation (B narrowly over A2;
 not A1). HANDOFF.md gained a "Reopened" section. PR #767 remains unmerged.
 No live surface, installation, evidence or credential changed; nothing
 published. R17 GUI 31613 and daemon 27838 still running.
+
+Addendum 2026-09-12T07:10Z: owner added that the agent host is intended
+for embedding in later Chirality applications (Chirality Piping, a Tauri
+app with a Rust core; checked: no Runtime dependency today) with local
+models. TOPOLOGY_COMPARISON.md section 8 records the consequence: the
+recommendation moves from B to A2 (host as an application-owned child
+speaking the existing socket API, packaged as a spawnable service); not
+A1; common work and retirements unchanged; local models refine item 13
+(shared model server, not a shared Codex host). PR #767 still unmerged.

@@ -258,3 +258,65 @@ Decision requested from the owner: B or A2, and whether an optional socket
 listener for the CLI and PEC is in the MVP (recommended: no). The ruled
 D-GOV-43 record then receives a one-paragraph supplement recording the
 reopening and the outcome; items 2 to 6 and 8 to 14 stand as ruled.
+
+## 8. Addendum: embedding in later Chirality applications (owner context, 2026-09-12)
+
+The owner added that the same agents and agent host are intended to be
+embedded in later Chirality applications, first Chirality Piping
+(`projects/chirality-piping`, also called SWBPIPE and OpenPipeStress), with
+local models operating with Codex inside those applications; a vague notion
+today, while the Chirality App is close to its release candidate.
+
+Facts checked (E):
+
+- Chirality Piping is a Tauri desktop application: Rust core crates
+  (`core/*/Cargo.toml`), a Vite and React front end
+  (`apps/desktop/package.json`), WASM builds. It is not Electron and has no
+  dependency on, or documented intent about, the Runtime or agents.
+- A spawnable service shape already exists: `standalone-bin.ts` (35 lines,
+  package bin `chirality-runtime-service daemon|supervisor --config <path>`)
+  starts the host as a plain child process and prints its socket path on
+  stdout. No launchd involvement.
+- PEC is a present out-of-process consumer of the socket API (F10).
+
+Consequences:
+
+1. **A Node in-process library cannot be embedded in a Tauri main process.**
+   A later application either runs the host as a sidecar process and speaks
+   its socket API, or spawns `codex app-server` itself and re-implements the
+   thin Chirality layer. Either way the reusable unit for other
+   applications is the service composition plus a protocol-first Chirality
+   layer (roles as developer instructions, workflows as files, plans through
+   native collaboration mode, evidence as files), which ruled items 8 to 10
+   already prescribe.
+2. **This moves the recommendation from B to A2.** Under A2 the Chirality App
+   spawns the same service composition a sidecar would use, so the flagship
+   exercises the embedding path every day, PEC and the CLI keep working, and
+   the transport layer that B would delete (client, port, routes, daemon SSE,
+   about 2,600 lines) is retained rather than rebuilt later. A2's new code
+   is smaller than B's: child lifecycle in Electron main (reusing
+   `standalone-bin.ts`, `descendant-tracker.ts`, `process-supervisor.ts`)
+   plus the small repair of section 3, against B's new in-process port.
+   The composition work (replacing `hosted-private-composition.ts` with a
+   minimal one) is common to both. B remains the smaller choice only if the
+   embedding intent is set aside.
+3. **Unchanged:** not A1; the common work C1 to C6; the F7 retirement; the
+   governance families. A2 also keeps K-RUNTIME-1, K-CONTROL-1 and SPEC
+   §14.1 closest to their present text (a Chirality host process on a Unix
+   socket, no TCP), changing only the launchd, per-user and exclusive-owner
+   clauses to "application-owned child".
+4. **Local models refine, not reverse, ruled item 13.** Codex reaches local
+   models through model providers over a local base URL. What several
+   applications would have to share is the local model server itself (GPU
+   residency), which is a per-user service separate from the Codex host.
+   The daemon-era `ResidencyCoordinator` and `engine-pi-omlx` code is the
+   seed of that future service and should be kept compiling as reference,
+   as item 13 already says; it does not justify a per-user Codex-host daemon
+   (A1).
+
+Revised recommendation: **A2**, the Runtime host as an application-owned
+child speaking the existing socket API, with the same composition
+packaged as a spawnable service for later applications; B if the owner sets
+the embedding intent aside for the MVP. Decision requested: A2 or B, and
+whether Piping's future integration is to be recorded now as a design
+constraint in DIRECTIVE §7 or left for its own loop.
