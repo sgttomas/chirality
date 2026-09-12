@@ -108,6 +108,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [folderNotices, setFolderNotices] = useState<Record<string, NavigatorFolderNotice>>({});
   const [failedFolder, setFailedFolder] = useState<string | null>(null);
   const restoredLastChat = useRef(false);
+  const lastPrimaryRef = useRef<string | undefined>(undefined);
   const widthKey = rightView === 'files' && workspaceState.openDocumentPath ? 'document' : rightView === 'agents' && coordinationView === 'session' ? 'session' : rightView;
   const rightWidth = workspaceState.rightPanelWidths?.[widthKey] ?? (widthKey === 'files' ? 300 : widthKey === 'agents' ? 360 : 480);
   const maximumRightWidth = Math.max(280, Math.min(Math.round(availableWidth * 0.6 / 8) * 8, availableWidth - (workspaceState.navigatorCollapsed ? 56 : clamp(workspaceState.navigatorWidth, 220, 360)) - 444));
@@ -122,6 +123,9 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [sessions, setSessions] = useState<SessionRecord[]>([]);
   const [referenceDay, setReferenceDay] = useState('1970-01-01');
   const [sessionsLoading, setSessionsLoading] = useState(false);
+  // The folder the current `sessions` list was read for; a folder change
+  // leaves the previous list on screen until the new one arrives.
+  const [sessionsRoot, setSessionsRoot] = useState<string | null>(null);
   const [sessionsError, setSessionsError] = useState<string | null>(null);
   const [sessionRefreshToken, setSessionRefreshToken] = useState(0);
   const directHistorySelection = useRef<string>();
@@ -234,6 +238,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   useEffect(() => {
     if (!projectRoot) {
       setSessions([]);
+      setSessionsRoot(null);
       setSessionsLoading(false);
       return;
     }
@@ -245,6 +250,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       .then((records) => {
         if (!cancelled) {
           setSessions(records);
+          setSessionsRoot(projectRoot);
           setWorkspaceState(current => indexWovenChats(current, projectRoot, records));
         }
       })
@@ -522,7 +528,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   // that asked for it; a chat the folder does not list is reported, not guessed.
   useEffect(() => {
     const pending = pendingFolderChat.current;
-    if (!pending || sessionsLoading || !projectRoot) return;
+    if (!pending || sessionsLoading || !projectRoot || sessionsRoot !== projectRoot) return;
     if (pending.expectedRoot !== null && pending.expectedRoot !== projectRoot) return;
     pendingFolderChat.current = null;
     const recordedRoot = (workspaceState.chatIndex ?? {})[pending.sessionId]?.projectRoot ?? pending.expectedRoot ?? projectRoot;
@@ -534,22 +540,31 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     }
     // loadReplay is intentionally read at the time the listing settles.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sessions, sessionsLoading, sessionsError, projectRoot]);
+  }, [sessions, sessionsRoot, sessionsLoading, sessionsError, projectRoot]);
 
   // The chat open when the window was last used comes back on the next launch,
   // once its folder's sessions confirm it still exists; never while a turn runs.
   useEffect(() => {
-    if (!stateHydrated || restoredLastChat.current || sessionsLoading || !projectRoot || streaming || primarySessionId) return;
+    if (!stateHydrated || restoredLastChat.current || sessionsLoading || !projectRoot || sessionsRoot !== projectRoot || streaming || primarySessionId) return;
     const last = workspaceState.lastActiveChat;
     if (!last) { restoredLastChat.current = true; return; }
-    if (last.projectRoot !== projectRoot) return;
+    // A last chat from another folder is left alone: the folder for new chats
+    // is the one the user chose, and that chat stays reachable in the navigator.
+    if (last.projectRoot !== projectRoot) { restoredLastChat.current = true; return; }
     restoredLastChat.current = true;
     if (sessions.some(session => session.sessionId === last.sessionId)) loadReplay(last.sessionId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stateHydrated, sessions, sessionsLoading, projectRoot, streaming, primarySessionId]);
+  }, [stateHydrated, sessions, sessionsRoot, sessionsLoading, projectRoot, streaming, primarySessionId]);
 
   useEffect(() => {
-    if (!stateHydrated) return;
+    // Nothing is recorded until the launch-time restore has had its chance,
+    // so an empty panel at startup never erases the remembered chat.
+    if (!stateHydrated || !restoredLastChat.current) return;
+    // Only a chat this window actually had open can be forgotten: an empty
+    // panel while a restore is still in flight leaves the record alone.
+    const hadPrimary = lastPrimaryRef.current !== undefined;
+    lastPrimaryRef.current = primarySessionId;
+    if (!primarySessionId && !hadPrimary) return;
     setWorkspaceState(current => {
       const next = primarySessionId && projectRoot ? { sessionId: primarySessionId, projectRoot } : null;
       const previous = current.lastActiveChat ?? null;

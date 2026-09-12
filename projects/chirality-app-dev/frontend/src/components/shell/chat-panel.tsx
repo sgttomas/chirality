@@ -1050,7 +1050,15 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       try {
         const replay = await replaySessionEvents(session.sessionId);
         const events = replay.events.filter(event => !seen.has(event.eventId));
-        for (const event of events) { seen.add(event.eventId); appendEvent(event); }
+        // Text the Runtime recorded after the connection dropped belongs to
+        // this reply: append what was missed rather than showing a torn message.
+        for (const event of events) {
+          seen.add(event.eventId); appendEvent(event);
+          if (assistantText && event.type === 'message.delta' && (!turnId || event.turnId === turnId) && !textSeen.has(event.eventId)) {
+            textSeen.add(event.eventId);
+            appendText(readTextField(event.data) ?? '', 'message.delta');
+          }
+        }
         // Settle from this turn's own record. With the turn id known, only its
         // events count; an older turn's ending is never read as this one's.
         const scoped = turnId ? replay.events.filter(event => event.turnId === turnId) : replay.events;
