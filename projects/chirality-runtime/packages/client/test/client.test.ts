@@ -339,3 +339,36 @@ describe("RuntimeClient turn ownership transport (D-GOV-43)", () => {
     } finally { await server.close(); }
   });
 });
+
+it("bounds stream opening separately from JSON timeout without sending an interrupt", async () => {
+  const server = await fixture(() => {});
+  const client = new RuntimeClient({ socketPath: join(server.root, "control.sock"), tokenFile: join(server.root, "operator.token"), streamTransportTimeoutMs: 80 });
+  try {
+    await expect(client.attachSessionTurn("project-a", "sess-a", { after: 4 })).rejects.toMatchObject({ reason: "timeout" });
+    expect(server.requests.map(request => request.url)).toEqual(["/v1/projects/project-a/sessions/sess-a/turn/stream?after=4"]);
+  } finally { await server.close(); }
+});
+
+it("keeps heartbeat-only observations healthy, then expires missing bytes without interrupting", async () => {
+  let stopHeartbeat!: () => void;
+  const server = await fixture((_request, response) => {
+    response.writeHead(200, { "content-type": "text/event-stream" });
+    response.flushHeaders();
+    const timer = setInterval(() => response.write(": keepalive\n\n"), 25);
+    stopHeartbeat = () => clearInterval(timer);
+    response.once("close", stopHeartbeat);
+  });
+  const client = new RuntimeClient({ socketPath: join(server.root, "control.sock"), tokenFile: join(server.root, "operator.token"), timeoutMs: 10, streamTransportTimeoutMs: 150 });
+  try {
+    const stream = await client.attachSessionTurn("project-a", "sess-a", { after: 4 });
+    let ended = false;
+    const pending = stream[Symbol.asyncIterator]().next();
+    const rejected = expect(pending).rejects.toBeInstanceOf(Error);
+    void pending.then(() => { ended = true; }, () => { ended = true; });
+    await new Promise(resolve => setTimeout(resolve, 400));
+    expect(ended).toBe(false);
+    stopHeartbeat();
+    await rejected;
+    expect(server.requests.map(request => request.method)).toEqual(["GET"]);
+  } finally { stopHeartbeat?.(); await server.close(); }
+});

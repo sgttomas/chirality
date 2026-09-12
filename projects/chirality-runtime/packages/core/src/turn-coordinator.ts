@@ -399,6 +399,12 @@ export class TurnCoordinator {
         terminalPersisted = true;
         yield { type: "harness:event", data: completed };
       } else {
+        // The supplier reports that it stopped; the Runtime owns why it asked
+        // for interruption. Preserve supplier details while recording that
+        // cause on the same terminal before both persistence and publication.
+        if (terminalHarnessEvent.type === "turn.interrupted" && controller.signal.aborted && activeTurn.reason !== undefined) {
+          terminalHarnessEvent = { ...terminalHarnessEvent, data: { ...terminalHarnessEvent.data, reason: activeTurn.reason } };
+        }
         await this.sessions.persistEvent(projectId, terminalHarnessEvent);
         terminalPersisted = true;
         yield { type: "harness:event", data: terminalHarnessEvent };

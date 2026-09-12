@@ -70,3 +70,10 @@ export const TURN_CONTINUATION_NOTE = 'Runs in Chirality’s runtime. Closing th
 export function isLiveTurnPhase(phase: TurnPhase): boolean {
   return phase !== 'idle';
 }
+
+/** Preserve Runtime's recorded interruption cause in live and replay views. */
+export function interruptedTurnPresentation(reason: unknown): { outcome: TurnOutcome; message: string } {
+  if (reason === 'service-shutdown') return { outcome: 'failed', message: 'Chirality’s runtime stopped before this turn finished. Nothing was re-sent.' };
+  if (reason === 'service-restart') return { outcome: 'unknown', message: 'Chirality’s runtime restarted without recording how this turn ended. Nothing was re-sent.' };
+  return { outcome: 'interrupted', message: 'Turn interrupted by operator.' };
+}

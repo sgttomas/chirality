@@ -36,6 +36,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
 }));
 vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, getHarnessSession: state.getSession, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn(), getHarnessTurnState: vi.fn(async () => ({ active: false, lastSeq: 0 })), attachHarnessTurn: vi.fn(async () => undefined) }));
 import { ChatPanel } from '../../components/shell/chat-panel';
+import { HarnessApiClientError } from '../../lib/harness/client';
 
 let tree: ReactTestRenderer | undefined;
 let values: Map<string, string>;
@@ -79,7 +80,8 @@ beforeEach(() => {
   state.replyClarification.mockResolvedValue({ schemaVersion: 'chirality.native-plan-clarification-reply/v3', sessionId: 'bound', requestId: 7, sent: true });
   state.exportPlan.mockResolvedValue({ schemaVersion: 'chirality.native-plan-export/v3', sessionId: 'bound', revision: 1, targetRelativePath: 'plans/fixture.md', sha256: 'a'.repeat(64) });
   state.apply.mockImplementation(async (value: string) => { root(value); return true; });
-  state.stream.mockRejectedValue(new Error('Fixture turn failure'));
+  // A known HTTP rejection before turn acceptance, rather than a lost response.
+  state.stream.mockRejectedValue(new HarnessApiClientError(400, 'INVALID_REQUEST', 'Fixture turn failure'));
 });
 afterEach(() => { if (tree) act(() => tree!.unmount()); tree = undefined; vi.unstubAllGlobals(); });
 
@@ -89,7 +91,7 @@ it('uses the returned canonical root without migrating or overwriting either con
   expect(state.root).toBe('/canonical'); assertCanonicalUntouched();
   expect(tree!.root.findByProps({ className: 'chat-folder-fixed' }).props.title).toBe('/canonical');
   await act(async () => pending.resolve(false));
-  await type('Second prompt'); state.stream.mockRejectedValue(new Error('Failed again')); await submit();
+  await type('Second prompt'); state.stream.mockRejectedValue(new HarnessApiClientError(400, 'INVALID_REQUEST', 'Failed again')); await submit();
   expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Second prompt');
   assertCanonicalUntouched();
@@ -486,7 +488,7 @@ it('preserves an explicit empty next-message selection when a bound turn fails',
   await type('This turn will fail');
   const submission = act(async () => { await tree!.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }); });
   await act(async () => select([]));
-  await act(async () => rejectTurn(new Error('Fixture turn failure')));
+  await act(async () => rejectTurn(new HarnessApiClientError(400, 'INVALID_REQUEST', 'Fixture turn failure')));
   await submission;
   expect(tree!.root.findAllByProps({ 'aria-label': 'Methods for next turn' })).toHaveLength(0);
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('This turn will fail');
@@ -907,4 +909,26 @@ it('hands the Plan tab model to its host, keeps every plan action working from t
   expect(state.exportPlan).toHaveBeenLastCalledWith({ sessionId: 'bound', revision: 2, targetRelativePath: 'plans/native.md' });
   expect(hostText()).toContain('Plan saved to');
   expect(host.findByProps({ className: 'native-plan-history' })).toBeDefined();
+});
+
+
+it('keeps an ambiguously delivered prompt in history without restoring its draft or sending twice', async () => {
+  vi.useFakeTimers();
+  try {
+    // Fetch failed without a typed HTTP rejection: Runtime may have accepted it.
+    state.stream.mockRejectedValueOnce(new TypeError('Failed to fetch'));
+    await mount();
+    await type('An uncertain delivery');
+    await submit();
+    expect(state.stream).toHaveBeenCalledTimes(1);
+    expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+    expect(JSON.stringify(tree!.toJSON())).toContain('Reconnecting');
+    await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+    expect(state.stream).toHaveBeenCalledTimes(1);
+    expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+    expect(JSON.stringify(tree!.toJSON())).toContain('An uncertain delivery');
+    expect(JSON.stringify(tree!.toJSON())).toContain('"data-turn-outcome":"unknown"');
+    expect(JSON.stringify(tree!.toJSON())).not.toContain('"data-turn-outcome":"completed"');
+    assertCanonicalUntouched();
+  } finally { vi.useRealTimers(); }
 });

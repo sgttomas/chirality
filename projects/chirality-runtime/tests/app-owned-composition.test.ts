@@ -121,6 +121,7 @@ describe("App-owned Codex composition", () => {
     const events = await streaming;
     expect(f.fake().server.state.requests.some(request => request.method === "turn/interrupt")).toBe(true);
     expect(harness(events).map(event => event.type)).toContain("turn.interrupted");
+    expect(harness(events).find(event => event.type === "turn.interrupted")?.data.reason).toBeUndefined();
     expect(events.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 130 } });
     expect((await f.runtime.service.sessions.get(f.projectId, session.sessionId)).status).not.toBe("running");
   });
@@ -132,7 +133,12 @@ describe("App-owned Codex composition", () => {
     await poll(async () => f.fake().server.state.requests.some(request => request.method === "turn/start"), Boolean, "turn/start");
     await f.runtime.close();
     const events = await streaming;
-    expect(harness(events).map(event => event.type)).toContain("turn.interrupted");
+    const terminals = harness(events).filter(event => event.type === "turn.interrupted");
+    expect(terminals).toHaveLength(1);
+    expect(terminals[0]).toMatchObject({ data: { outcome: "interrupted", reason: "service-shutdown" } });
+    const replayed = await f.runtime.service.sessions.replay(f.projectId, session.sessionId);
+    expect(replayed.find(event => event.eventId === terminals[0]!.eventId)).toEqual(terminals[0]);
+    expect(f.fake().server.state.requests.filter(request => request.method === "turn/start")).toHaveLength(1);
     expect(f.fake().terminated).toBe(true);
     expect(f.runtime.host.status().state).toBe("closed");
     await expect(stat(f.config.socketPath)).rejects.toMatchObject({ code: "ENOENT" });

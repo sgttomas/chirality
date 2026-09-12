@@ -1,5 +1,11 @@
 # Packaged UI refinement candidate
 
+Status after the owner's additional live checks: the artifact below is preserved
+historical evidence. Live checks found and repaired recovery/cause and panel-width
+defects; the replacement package waits for independent review and merge. See
+`LIVE_VERIFICATION_20260912.md`. This hand-off will be updated with the replacement
+artifact and the filled-in manual checklist after that build succeeds.
+
 Candidate source: `85f19f019589b798331c804c4b206e34849eeab5`, merged PR #775.
 Version: `3.0.0-rc.1`, macOS Apple Silicon, macOS 15 or later.
 This hand-off records a review candidate, not trial acceptance or publishing approval.

@@ -32,7 +32,7 @@ import { resolvePersona } from '../../lib/shell/persona-resolution';
 import { useHarnessEventActions, useHarnessEvents } from '../workspace/harness-events-provider';
 import { deriveTurnActivityFromEvents, deriveTurnActivityFromTranscript, type TurnActivity } from '../../lib/shell/turn-activity';
 import { selectPendingPermissionRequests, selectPendingServerRequests } from '../../lib/shell/harness-event-views';
-import { TURN_CONTINUATION_NOTE, turnOutcomeDescription, turnOutcomeLabel, turnPhaseStatusLine, type TurnOutcome, type TurnPhase } from '../../lib/shell/turn-phase';
+import { TURN_CONTINUATION_NOTE, interruptedTurnPresentation, turnOutcomeDescription, turnOutcomeLabel, turnPhaseStatusLine, type TurnOutcome, type TurnPhase } from '../../lib/shell/turn-phase';
 import {
   attachPlanExecutionTurn, beginPlanExecution, detectPlanExecution, planExecutionMarker, readPlanExecutionRecords, runningPlanExecution,
   settlePlanExecution, writePlanExecutionRecords, type PlanExecutionRecord
@@ -72,6 +72,7 @@ type ChatMessage = {
   interrupted?: boolean;
   /** How the Runtime-owned turn behind this reply ended, once known. */
   outcome?: TurnOutcome;
+  outcomeDescription?: string;
   persona?: string;
   projectRoot?: string;
   text: string;
@@ -671,7 +672,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     bindingGeneration.current += 1;
     lastInstructionSequenceRef.current = projection.instructionHistory.reduce((maximum, record) => Math.max(maximum, record.sequence), 0);
     const nextMessages: ChatMessage[] = projection.transcript.items.flatMap<ChatMessage>(item => {
-      if (item.kind === 'terminal' && item.status === 'interrupted') return [{ id: `replay-${item.key}`, role: 'assistant' as const, text: '', interrupted: true }];
+      if (item.kind === 'terminal' && item.status === 'interrupted') {
+        const ending = interruptedTurnPresentation(item.terminalReason);
+        return [{ id: `replay-${item.key}`, role: 'assistant' as const, text: ending.message, outcome: ending.outcome, outcomeDescription: ending.message, interrupted: ending.outcome === 'interrupted', turnId: item.turnId }];
+      }
       if (item.kind !== 'message' || !item.role || (!item.text && !item.attachments?.length)) return [];
       const recordedRole = item.role === 'assistant'
         ? recordedRoleForTurn(item.turnId, projection.instructionHistory, projection.instructionBases)
@@ -870,6 +874,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     signal: AbortSignal;
     start: (onEvent: (event: HarnessTurnStreamEvent) => void) => Promise<void>;
     resetTextOnStart?: boolean;
+    /** This turn is already Runtime-owned; an initial failed attach must retry. */
+    reattach?: boolean;
+    turnId?: string;
     /** Event ids already in the bridged log (hydrated from replay); never appended again. */
     seenEventIds?: Iterable<string>;
   }): Promise<TurnObservationOutcome> {
@@ -883,9 +890,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     let assistantText = '';
     let textSource: 'chat:delta' | 'message.delta' | null = null;
     let terminal = false;
-    let turnIdSeen = false;
-    let turnId: string | undefined;
+    let turnIdSeen = Boolean(input.turnId);
+    let turnId: string | undefined = input.turnId;
     let interrupted = false;
+    let interruption: ReturnType<typeof interruptedTurnPresentation> | undefined;
     // Set only when the turn ended without a terminal fact for it: the stream
     // dropped, the Runtime no longer holds the turn, and the log for this turn
     // shows no end. Never inferred from silence alone.
@@ -903,8 +911,22 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       setAssistant({ text: assistantText });
     };
 
+    const recordInterruption = (reason: unknown): void => {
+      // A generic exit frame must not erase the terminal's specific cause.
+      if (!interruption || reason === 'service-shutdown' || reason === 'service-restart') {
+        interruption = interruptedTurnPresentation(reason);
+      }
+      interrupted = interruption.outcome === 'interrupted';
+      setAssistant({ interrupted, outcome: interruption.outcome, outcomeDescription: interruption.message, ...(!assistantText ? { text: interruption.message } : {}) });
+      if (!assistantText) assistantText = interruption.message;
+    };
     const onEvent = (streamEvent: HarnessTurnStreamEvent): void => {
       if (signal.aborted) return;
+      // Emitted only when the proxy has an actual Runtime subscription. Its
+      // own keepalive comments are never evidence of Runtime recovery.
+      setReconnectAttempt(null);
+      setRuntimeStatus('Running turn...');
+      if (streamEvent.event === 'transport:connected') return;
       receivedFrames += 1;
       if (typeof streamEvent.seq === 'number' && streamEvent.seq > lastSeq) lastSeq = streamEvent.seq;
 
@@ -929,9 +951,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         if (harnessEvent.type === 'turn.interrupted') {
           // Rendered the moment it arrives, not after the stream closes (R17-F1).
           terminal = true;
-          interrupted = true;
-          setAssistant({ interrupted: true, ...(assistantText ? {} : { text: 'Turn interrupted by operator.' }) });
-          if (!assistantText) assistantText = 'Turn interrupted by operator.';
+          recordInterruption(harnessEvent.data?.reason);
           return;
         }
         if (harnessEvent.type === 'turn.failed') {
@@ -982,9 +1002,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         const exitCode = typeof payload.exitCode === 'number' ? payload.exitCode : 0;
         const exitInterrupted = payload.interrupted === true;
         if (exitInterrupted) {
-          interrupted = true;
-          setAssistant({ interrupted: true, ...(assistantText ? {} : { text: 'Turn interrupted by operator.' }) });
-          if (!assistantText) assistantText = 'Turn interrupted by operator.';
+          recordInterruption(payload.reason);
         }
         // Runtime normalizes a confirmed operator interruption to 130 plus
         // interrupted:true. A bare 130 or any other nonzero exit still fails.
@@ -1010,10 +1028,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         await open(onEvent);
       } catch (caught) {
         if (signal.aborted) break;
-        if (attempt === 0 && open === input.start && receivedFrames === framesBefore) {
+        const transportFailure = !(caught instanceof HarnessApiClientError) ||
+          Boolean(caught.details && typeof caught.details === 'object' && 'transportReason' in caught.details);
+        if (!input.reattach && !transportFailure && attempt === 0 && open === input.start && receivedFrames === framesBefore) {
           // The first stream never opened: report it as today.
           return { assistantText, error: caught instanceof Error ? caught : new Error(String(caught)), terminal: false, outcome: null };
         }
+        lostConnection = true;
         if (isTurnNotActive(caught)) {
           // Nothing left to attach to: the turn ended while we were away, or
           // the Runtime restarted. The persisted log carries the outcome.
@@ -1078,9 +1099,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           // clean close the Runtime settled itself, is a known ending.
           if (!error && lostConnection) outcomeUnknown = true;
         } else if (last.type === 'turn.interrupted') {
-          interrupted = true;
-          setAssistant({ interrupted: true, ...(assistantText ? {} : { text: 'Turn interrupted by operator.' }) });
-          if (!assistantText) assistantText = 'Turn interrupted by operator.';
+          recordInterruption(last.data?.reason);
         } else if (last.type === 'turn.failed' && !error) {
           const payload = last.data ?? {};
           error = new HarnessApiClientError(500, typeof payload.code === 'string' ? payload.code : 'SDK_FAILURE', typeof payload.message === 'string' ? payload.message : 'Turn failed.', payload.details);
@@ -1098,9 +1117,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       }
     }
 
-    const outcome: TurnOutcome | null = !terminal ? null : outcomeUnknown ? 'unknown' : interrupted ? 'interrupted' : error ? 'failed' : 'completed';
+    const outcome: TurnOutcome | null = !terminal ? null : interruption ? interruption.outcome : outcomeUnknown ? 'unknown' : interrupted ? 'interrupted' : error ? 'failed' : 'completed';
     if (outcome) setAssistant({ outcome });
-    return { assistantText, error, terminal, outcome, ...(turnId ? { turnId } : {}) };
+    return { assistantText, error: interruption && interruption.outcome !== 'interrupted' ? null : error, terminal, outcome, ...(turnId ? { turnId } : {}) };
   }
 
   /**
@@ -1144,10 +1163,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         // Missed activity is then recovered from the retained turn buffer alone.
       }
       if (observation.signal.aborted) return;
-      setRuntimeStatus('Running turn...');
-      setReconnectAttempt(null);
       const outcome = await observeTurn({
-        session, assistantId, signal: observation.signal, seenEventIds: hydratedIds,
+        session, assistantId, signal: observation.signal, seenEventIds: hydratedIds, reattach: true, turnId: state.turnId,
         start: (onEvent) => attachHarnessTurn(session.sessionId, 0, onEvent, observation.signal)
       });
       if (observation.signal.aborted) return;
@@ -1211,7 +1228,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           const replay = await replaySessionEvents(sessionId);
           const last = [...replay.events].reverse().find(event => event.turnId === running.turnId && TERMINAL_HARNESS_EVENTS.has(event.type));
           if (last?.type === 'turn.completed') outcome = 'completed';
-          else if (last?.type === 'turn.interrupted' || last?.type === 'turn.cancelled') outcome = 'interrupted';
+          else if (last?.type === 'turn.interrupted') outcome = interruptedTurnPresentation(last.data?.reason).outcome;
+          else if (last?.type === 'turn.cancelled') outcome = 'interrupted';
           else if (last?.type === 'turn.failed') outcome = 'failed';
         }
       } catch {
@@ -1715,7 +1733,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
               <AttachmentChips items={message.attachments} />
             ) : null}
             {message.role === 'assistant' && message.outcome && (message.outcome !== 'completed' || index === messages.length - 1)
-              ? <p className={`chat-turn-status chat-turn-status--${message.outcome}`} role="status" data-turn-outcome={message.outcome} title={turnOutcomeDescription(message.outcome)}>{turnOutcomeLabel(message.outcome)}</p>
+              ? <p className={`chat-turn-status chat-turn-status--${message.outcome}`} role="status" data-turn-outcome={message.outcome} title={message.outcomeDescription ?? turnOutcomeDescription(message.outcome)}>{turnOutcomeLabel(message.outcome)}</p>
               : message.interrupted ? <p className="chat-turn-status chat-turn-status--interrupted" role="status" data-turn-outcome="interrupted" title={turnOutcomeDescription('interrupted')}>{turnOutcomeLabel('interrupted')}</p> : null}
             {message.methods?.length ? <ul className="method-chip-list" aria-label="Selected methods">{message.methods.map(method => <li key={`${method.sourceRootId}:${method.kind}:${method.name}`} className="method-chip"><span>{method.name}</span><small>{method.source}</small></li>)}</ul> : null}
             {message.instructionBasis || message.instructionHistory?.length ? <details className="chat-instruction-basis"><summary>Instruction basis</summary>

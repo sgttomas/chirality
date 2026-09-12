@@ -304,7 +304,9 @@ describe('agentSdk scripted dev turn validation', () => {
     expect(turnResponse.status).toBe(200);
     // turn.accepted / turn.started bridge after session:init (D-APP-25), then the
     // model.completed / turn.completed evidence before the terminal uiEvents.
+    expect(events[0]).toEqual({ type: 'transport:connected', data: {} });
     expect(events.map((event) => event.type)).toEqual([
+      'transport:connected',
       'session:init',
       'harness:event',
       'harness:event',

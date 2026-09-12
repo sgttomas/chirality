@@ -62,13 +62,17 @@ import {
 import { RuntimeTransportError, runtimeErrorFromResponse } from "./errors.js";
 import { parseSse, parseUiEvent, type SseFrame } from "./sse.js";
 
+export const STREAM_TRANSPORT_TIMEOUT_MS = 25_000;
+
 const MAX_JSON_BYTES = 16 * 1024 * 1024;
 
 export interface RuntimeClientOptions {
   socketPath: string;
   tokenFile: string;
-  /** Idle timeout for JSON requests (default 30 s). Streams disable the idle timeout: a silent tool run is not a dead turn. */
+  /** Idle timeout for JSON requests (default 30 s), independent of stream transport health. */
   timeoutMs?: number;
+  /** Byte inactivity and connection-opening deadline; Runtime comments count as activity. */
+  streamTransportTimeoutMs?: number;
   loadToken?: (tokenFile: string) => Promise<string>;
 }
 
@@ -179,15 +183,24 @@ export class RuntimeClient {
     const abort = (): void => controller.abort(options.signal?.reason);
     if (options.signal?.aborted) abort();
     else options.signal?.addEventListener("abort", abort, { once: true });
-    const response = await this.request(path, {
-      method: options.method ?? "GET",
-      token,
-      body,
-      signal: controller.signal,
-      accept: "text/event-stream",
-      // A turn may be silent for minutes while tools run; the Runtime sends keepalive comments instead.
-      timeoutMs: options.timeoutMs ?? 0
-    });
+    const transportTimeoutMs = this.options.streamTransportTimeoutMs ?? STREAM_TRANSPORT_TIMEOUT_MS;
+    // This deadline bounds opening, even before a socket has connected. Once
+    // open, the socket idle timeout resets on bytes (including SSE comments),
+    // not model output. Neither deadline interrupts the Runtime-owned turn.
+    const opening = setTimeout(() => controller.abort(new RuntimeTransportError("Runtime stream opening timed out", undefined, "timeout")), transportTimeoutMs);
+    let response: IncomingMessage;
+    try {
+      response = await this.request(path, {
+        method: options.method ?? "GET", token, body, signal: controller.signal,
+        accept: "text/event-stream", timeoutMs: transportTimeoutMs
+      });
+    } catch (error) {
+      options.signal?.removeEventListener("abort", abort);
+      if (controller.signal.reason instanceof RuntimeTransportError) throw controller.signal.reason;
+      throw error;
+    } finally {
+      clearTimeout(opening);
+    }
     const status = response.statusCode ?? 500;
     if (status < 200 || status >= 300) {
       const value = await readResponseJson(response);

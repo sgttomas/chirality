@@ -195,6 +195,8 @@ describe('Desktop daemon harness proxy boundary', () => {
       })
     );
     const reader = response.body?.getReader();
+    const connected = await reader?.read();
+    expect(new TextDecoder().decode(connected?.value)).toBe('event: transport:connected\ndata: {}\n\n');
     const first = await reader?.read();
 
     expect(response.headers.get('content-type')).toContain('text/event-stream');

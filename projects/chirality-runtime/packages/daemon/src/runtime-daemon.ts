@@ -688,7 +688,8 @@ export class RuntimeDaemon {
       const subscription = this.turns.subscribe(projectId, sessionId, after);
       return await this.sse(response, subscription, {
         interrupt: () => this.turns.interrupt(projectId, sessionId, "service-shutdown"),
-        onDisconnect: () => subscription.close()
+        onDisconnect: () => subscription.close(),
+        subscriptionReady: true
       }, generation);
     }
     if (segments.length === 8 && segments[5] === "requests" && segments[7] === "answer" && method === "POST") {
@@ -754,7 +755,8 @@ export class RuntimeDaemon {
       const subscription = this.turns.subscribe(projectId, sessionId, 0);
       return await this.sse(response, subscription, {
         interrupt: () => this.turns.interrupt(projectId, sessionId, "service-shutdown"),
-        onDisconnect: () => subscription.close()
+        onDisconnect: () => subscription.close(),
+        subscriptionReady: true
       }, generation);
     }
     if (action === "interrupt" && method === "POST") {
@@ -897,7 +899,7 @@ export class RuntimeDaemon {
   private async sse(
     response: ServerResponse,
     frames: AsyncIterable<TurnFrame>,
-    hooks: { interrupt: () => Promise<void> | undefined; onDisconnect?: () => void },
+    hooks: { interrupt: () => Promise<void> | undefined; onDisconnect?: () => void; subscriptionReady?: boolean },
     generation: DaemonGeneration
   ): Promise<void> {
     const iterator = frames[Symbol.asyncIterator]();
@@ -930,9 +932,10 @@ export class RuntimeDaemon {
       response.write(`id: ${frame.seq}\nevent: ${frame.event.type}\ndata: ${JSON.stringify(frame.event.data)}\n\n`);
     };
     try {
-      const first = await iterator.next();
+      // Registry subscriptions have already passed admission. Other streams
+      // retain pre-first-frame validation and typed non-200 failure responses.
+      const first = hooks.subscriptionReady ? undefined : await iterator.next();
       streamStarted = true;
-      // A shutdown may already be latched; the first event may be what reveals the identity to interrupt.
       this.tryStopInterruption(control);
       if (response.destroyed) disconnected = true;
       if (!disconnected) {
@@ -942,12 +945,15 @@ export class RuntimeDaemon {
           connection: "keep-alive",
           "x-accel-buffering": "no"
         });
+        // Establish a healthy subscription even when `after` has consumed all
+        // buffered frames and the active tool has no new output yet.
+        response.flushHeaders();
         keepalive = setInterval(() => {
           if (!disconnected && !response.destroyed) response.write(": keepalive\n\n");
         }, this.keepaliveMs);
         keepalive.unref?.();
       }
-      if (!first.done) write(first.value);
+      if (first && !first.done) write(first.value);
       while (true) {
         const next = await iterator.next();
         this.tryStopInterruption(control);

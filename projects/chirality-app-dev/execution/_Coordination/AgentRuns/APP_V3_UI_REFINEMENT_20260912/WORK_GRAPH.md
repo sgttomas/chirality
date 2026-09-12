@@ -34,3 +34,14 @@ ones in `briefs/` and `returns/`.
 The reviewer uses `gpt-6-astra`, medium, under the owner's prior explicit model
 direction for this session. The handoff's Fable models are unavailable here;
 this does not change the attribution of the earlier Fable work or reviews.
+
+Owner-added live checks: parent directly exercises stall/hard-loss/reload and panel controls; one bounded Type 2 maps the observed reconnect mismatch read-only in parallel. Parent validates diagnosis against direct observations, then assigns any bounded repair and a fresh independent source review before new source is merged or rebuilt. The install-over comparison remains the owner's packaged check.
+
+The later owner request supersedes the source-free scope above. Two bounded
+Astra/medium Type 2 authors completed recovery/cause propagation and the
+constrained panel-width correction in distinct files. Parent validated their
+returns, integrated the actual App/Runtime path through direct UI checks, and
+ran the full suites. A fresh Astra/medium TASK using software-code-review reviews
+the complete frozen diff under `briefs/REVIEW_LIVE_RECOVERY.md`. Only then does
+Git integration proceed, followed by one replacement package from the merge.
+Existing packages remain preserved; the owner performs install-over acceptance.

@@ -264,6 +264,8 @@ it('moves to Stopping on Stop and to Stopped once the Runtime confirms, reportin
   state.attach.mockImplementation((_s: string, _a: number, onEvent: (frame: Frame) => void) => new Promise<void>(resolve => { deliver = onEvent; finish = resolve; }));
   await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: projection('resumed') }} onTurnPhaseChange={phase => phases.push(phase)} />); });
   await flush();
+  expect(phases.at(-1)).toBe('reconnecting');
+  await act(async () => { deliver({ event: 'transport:connected', data: {} }); });
   expect(phases.at(-1)).toBe('working');
   await act(async () => stopButtons()[0].props.onClick());
   expect(phases.at(-1)).toBe('stopping');
@@ -273,4 +275,98 @@ it('moves to Stopping on Stop and to Stopped once the Runtime confirms, reportin
   expect(rendered()).toContain('"data-turn-outcome":"interrupted"');
   expect(rendered()).toContain('Stopped');
   expect(phases.at(-1)).toBe('idle');
+});
+
+
+it('returns to Working on a real reattachment with no new model output and retries an initially failed attach', async () => {
+  vi.useFakeTimers();
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  let deliver!: (frame: Frame) => void;
+  state.attach.mockRejectedValueOnce(new TypeError('Runtime stalled'))
+    .mockImplementation((_s: string, _a: number, onEvent: (frame: Frame) => void) => new Promise<void>(() => { deliver = onEvent; }));
+  await mountResumed();
+  expect(status()).toContain('Reconnecting');
+  expect(stopButtons()).toHaveLength(1);
+  await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+  expect(state.attach).toHaveBeenCalledTimes(2);
+  expect(status()).toContain('Reconnecting');
+  await act(async () => { deliver({ event: 'transport:connected', data: {} }); });
+  expect(tree!.root.findByProps({ className: 'chat-runtime-status' }).props['data-turn-phase']).toBe('working');
+  await act(async () => { await vi.advanceTimersByTimeAsync(70_000); });
+  expect(stopButtons()).toHaveLength(1);
+  expect(state.stream).not.toHaveBeenCalled();
+  expect(state.interrupt).not.toHaveBeenCalled();
+});
+
+it.each([
+  ['service-shutdown', 'failed'], ['service-restart', 'unknown'], [undefined, 'interrupted']
+])('preserves live interruption cause %s across a generic interrupted exit', async (reason, expected) => {
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  state.attach.mockImplementation(async (_s: string, _a: number, onEvent: (frame: Frame) => void) => {
+    onEvent(harness(1, 'e1', 'turn.interrupted', reason ? { reason } : {}));
+    onEvent({ event: 'process:exit', seq: 2, data: { exitCode: 130, interrupted: true } });
+  });
+  await mountResumed();
+  expect(rendered()).toContain(`"data-turn-outcome":"${expected}"`);
+  expect(rendered()).not.toContain('"data-turn-outcome":"completed"');
+  if (reason) expect(rendered()).not.toContain('Turn interrupted by operator.');
+  expect(state.stream).not.toHaveBeenCalled();
+});
+
+it.each([
+  ['service-shutdown', 'failed'], ['service-restart', 'unknown'], [undefined, 'interrupted']
+])('preserves replay interruption cause %s', async (reason, expected) => {
+  const replay = projection('resumed');
+  replay.transcript.items.push({ key: 'terminal', kind: 'terminal', status: 'interrupted', title: 'Turn interrupted', timestamp: '2026-09-12T00:00:00Z', eventId: 'end', eventType: 'turn.interrupted', turnId: 'turn-1', ...(reason ? { terminalReason: reason } : {}) });
+  await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: replay }} />); });
+  await flush();
+  expect(rendered()).toContain(`"data-turn-outcome":"${expected}"`);
+  if (reason) expect(rendered()).not.toContain('Turn interrupted by operator.');
+  expect(state.stream).not.toHaveBeenCalled();
+});
+
+it('sends once, recovers by GET after a dropped stream, and retains a service-loss message without restoring the draft', async () => {
+  vi.useFakeTimers();
+  await mountResumed();
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [], instructionBases: [], instructionHistory: [] });
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1 });
+  state.stream.mockImplementation(async (_input: unknown, onEvent: (frame: Frame) => void) => {
+    onEvent(harness(1, 'accepted', 'turn.accepted'));
+    throw new TypeError('transport dropped');
+  });
+  state.attach.mockImplementation(async (_s: string, _a: number, onEvent: (frame: Frame) => void) => {
+    onEvent({ event: 'transport:connected', data: {} });
+    onEvent(harness(2, 'ended', 'turn.interrupted', { reason: 'service-shutdown' }));
+    onEvent({ event: 'process:exit', seq: 3, data: { exitCode: 130, interrupted: true } });
+  });
+  await act(async () => { tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value: 'Keep this sent message' } }); });
+  await act(async () => { tree!.root.findByProps({ className: 'chat-input-row' }).props.onSubmit({ preventDefault: vi.fn() }); });
+  await flush();
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(status()).toContain('Reconnecting');
+  await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+  await flush();
+  expect(state.attach).toHaveBeenCalledWith('resumed', 1, expect.any(Function), expect.any(AbortSignal));
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(rendered()).toContain('Keep this sent message');
+  expect(rendered()).toContain('"data-turn-outcome":"failed"');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+});
+
+it.each([['service-shutdown', 'failed'], ['service-restart', 'unknown']])('settles a failed first reload attachment from this turn’s recorded %s reason', async (reason, expected) => {
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1 });
+  state.attach.mockRejectedValue(new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'No active turn', { reason: 'TURN_NOT_ACTIVE' }));
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [persisted('ended', 'turn.interrupted', { reason })] });
+  await mountResumed();
+  expect(rendered()).toContain(`"data-turn-outcome":"${expected}"`);
+  expect(state.stream).not.toHaveBeenCalled();
+});
+
+it('does not borrow an older turn’s completion when reload attachment fails before its first frame', async () => {
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1 });
+  state.attach.mockRejectedValue(new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'No active turn', { reason: 'TURN_NOT_ACTIVE' }));
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [{ ...persisted('older', 'turn.completed'), turnId: 'turn-0' }] });
+  await mountResumed();
+  expect(rendered()).toContain('"data-turn-outcome":"unknown"');
+  expect(rendered()).not.toContain('"data-turn-outcome":"completed"');
 });
