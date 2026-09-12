@@ -628,3 +628,58 @@ APP-HOLD reliance ALLOW/CLEAR/NOT_HELD; scan720ca10a948967478e5a539ea1759656d0ce
 NEXT_AGENT_HANDOFF.md now instructs successors to use main containing the PR,
 while preserving original worktree and local-only Apps/packaging evidence.
 PR metadata records final source/merge SHA and CI disposition. No new build.
+
+### Successor takeover: restart-admission repair completed — 2026-09-12T01:35Z to 02:05Z
+
+HELP_HUMAN successor (Claude Fable 5.1) resumed on the integration checkout,
+fast-forwarded to `a75adecf1` (PR #766). The four partial-file hashes in
+R16_RESTART_ADMISSION/PARTIAL_SOURCE_HASHES.json matched before any edit.
+
+Cause established from source, without live state: the App main process
+re-runs the P2 host ceremony on every launch (`electron/main.ts`
+`createHostAccountConnection` → `createVerifiedHostAccountClient`), and the
+daemon's `completeCeremony` revokes the previous host as `host-replaced`. The
+retained supervisor's worker instance admission and the launcher factory's
+preparation were both bound to the replaced lease, so every revalidation
+returned `HOST_AUTHORITY_NOT_LIVE` and the owner saw the generic
+`Runtime v2 admission is missing, invalid, stale or no longer live`. The Stage25
+worker release expires 2026-10-10, so expiry is excluded. R16 daemon logs carry
+warn-level phase lines only and recorded nothing for the failed turn.
+
+Repair (final, replacing the partial diff): supervisor renewal happens only
+for `HOST_AUTHORITY_NOT_LIVE`, only at an idle boundary, with distinct refusals
+(after retirement, while work is active, renewal unavailable); a queued
+candidate is fully retired before renewal and a retirement failure blocks
+renewal; the renewed admission must carry the identical release, subject,
+policy and account (host authority excluded) and the supervisor's current
+admission must be unchanged across the await; `acquire` rechecks
+cancellation/close after the renewal await; `close()` waits for an in-flight
+renewal; the launcher factory reports `LAUNCHER_FACTORY_RENEWING` instead of
+"closed" during renewal. Composition `live()` keeps the durable account binding
+as the liveness signal and renews opportunistically; a renewal that cannot
+complete now never fences the account (a relaunch must not force OAuth), and
+the next launch renews or reports its own failure. Superseded admissions and
+preparations remain invalid; no authentication, seal or payload policy change.
+
+Tests: `tests/runtime-conformance-v2-admission.test.ts` gained five renewal
+tests through the real release verifier, P2 issuers, launcher factory and
+supervisor against a synthetic in-memory lease carrier: fresh-host renewal
+with old admission/preparation rejected and queued-candidate retirement;
+refusals while active/retired/outstanding launcher plus joined concurrent
+renewals; subject (account epoch) and policy (consent) mismatch rejection with
+the superseded admission left unrenewed; disconnect during renewal; expired
+release. `tsc -b` clean. Focused suites (admission, launcher, supervisor,
+composition, bootstrap integration) 81/81. Full Runtime suite run concurrently
+with the frontend suite: 1134 pass, 14 skipped, 3 fail — composition connect
+and pi-packaging cjs consumer timed out at 5 s under load and pass alone
+(26/26); `custody-config-status` asserts a stale exact request key set from
+before commit `364796528` added `timeoutMs`, corrected in a separate test-only
+commit. Frontend suite: 2278 pass, 4 skipped, 5 fail, all 5 s timeouts or
+temp-dir `ENOTEMPTY` under the same load; the three files pass alone (22/22).
+
+Live state observation: at 2026-09-12T01:41:00Z the R16 daemon 10666 logged
+`desktop.shutdown.started` (before-quit) and daemon 17185 started under launchd;
+no GUI process was present afterwards. This lead ran no launch, quit, attach
+or protected-state read; the owner is asked to confirm who relaunched. Existing
+Apps, userdata and stage evidence untouched. Independent review dispatched
+next; no build, signing or publishing.

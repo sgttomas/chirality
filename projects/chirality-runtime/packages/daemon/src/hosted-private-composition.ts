@@ -631,11 +631,17 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
             if (closed || !context || context.retired || context.signedOut) return false;
             const observed = await context.store.observe();
             if (observed.state !== "active" || observed.accountId !== admission.continuity.accountId || observed.accountEpoch !== admission.continuity.accountEpoch) return false;
-            const refreshed = context.runtimeV2 ? await admission.supervisor.refreshHostAdmission() : undefined;
-            if (refreshed) context.runtimeV2 = refreshed;
-            if (closed || context.retired || context.signedOut) return false;
-            if (context.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(context.runtimeV2.instanceInput, context.runtimeV2.instanceAdmission);
-            return true;
+            // Liveness is the durable account binding. A host relaunch leaves that
+            // binding live but supersedes the v2 instance admission's host lease, so
+            // renew it opportunistically here. A renewal that cannot complete now
+            // (work active, host not yet reconnected, release no longer accepted)
+            // does not fence the account: the next launch renews or reports it.
+            if (context.runtimeV2) {
+              let refreshed: typeof context.runtimeV2 | undefined;
+              try { refreshed = await admission.supervisor.refreshHostAdmission(); } catch { refreshed = undefined; }
+              if (refreshed && admissions.get(publicAdmission) === context) context.runtimeV2 = refreshed;
+            }
+            return !closed && !context.retired && !context.signedOut;
           } });
         const finalizedRuntimeV2 = runtimeV2 ?? admission.runtimeV2;
         admissions.set(publicAdmission, { ...context, admission, launcherFactory, store, retired: false, signedOut: false, ...(finalizedRuntimeV2 ? { runtimeV2: finalizedRuntimeV2 } : {}) }); ceremonies.delete(context.ceremony);
