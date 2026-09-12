@@ -202,3 +202,21 @@ blocking findings covering the actual candidate revision.
     supervisor Stop during the `turn/start` round trip.
 - Informational findings and test gaps are recorded, not repaired, in this candidate.
 - Post-review changes: the reviewer is asked to re-check this delta before the build.
+
+## 2026-09-12T16:40:00Z — consolidated signed build at 388de6973
+- Reviewer re-checks: 886eb2707..26fffb89a PASS (Findings 1 to 4 closed); the sign hook fix
+  26fffb89a..388de6973 PASS (signing policy unchanged). Overall verdict for 388de6973 PASS,
+  no blocking finding.
+- First packaging attempt failed twice for reasons outside the product: electron-builder
+  refuses sources under `/private/tmp` (build checkout moved under the home directory),
+  then the App's `mac.sign` hook took electron-builder's packager argument as its injected
+  signer (fixed in 388de6973 with a two-argument test; the reviewer re-checked it).
+- `desktop:dist` at 388de6973: signed DMG `~/.claude/chirality-build-a2-out/Chirality-3.0.0-rc.1-arm64.dmg`;
+  dependency boundary PASS; Codex pin 0.154.0 PASS after signing; instruction-root
+  integrity pass (366 files); codesign deep strict valid, hardened runtime, Developer ID
+  chain; version identity PASS. `spctl` rejects as unnotarized until the owner notarizes
+  and staples. Details in `BUILD_EVIDENCE_20260912.md`.
+- Owner acts remaining: notarize and staple; native checklist (`NATIVE_CHECKLIST.md`) on the
+  stapled App with a fresh userData, which covers packaged S-6, S-8 and the disconnect check.
+- Tranche manifest `approved_source_sha` set to the reviewed and built revision 388de6973
+  (record commits after it change no product byte).

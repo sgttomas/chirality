@@ -43,12 +43,13 @@ m2_gate:
   owner_direction:
     directed_by: Ryan Tufts
     direction_date: 2026-09-12
-    approved_source_sha: e83cb1f47cce55a49aebfc3c84eabc744a32ffad
+    approved_source_sha: 388de6973c32730d130b4084fd78996391899e06
     note: >-
       Merge proceeds under the owner's standing Git authorization of
       2026-09-12 (Root AGENTS.md, Execution and governance); the
-      approved_source_sha names the basis at drafting and is updated to the
-      candidate HEAD before merge.
+      approved_source_sha named the basis at drafting (e83cb1f47) and now pins
+      the reviewed and built candidate revision; commits after it on the
+      candidate branch are review and evidence records only.
 
 m6_notice:
   disposition: routed
