@@ -811,3 +811,29 @@ timeout, the daemon SSE writer has no keepalives and interrupts the turn on
 close, and tool activity emits no stream bytes. No log line for it; no
 rebuild; nothing published. R17 GUI 31613 and daemon 27838 still running
 and signed in; trial project files preserved (no deletions).
+
+## Owner direction: Codex host re-platform; D-GOV-43 proposal packet — 2026-09-12T05:10Z
+
+After the demonstration and R17-F2, the lead assessed that the Runtime fences
+Codex (eight-notification whitelist with quarantine, effective-config veto,
+private Codex home, patched 0.149.0 supplier with private protocol
+extensions, generic multi-engine UI vocabulary, four-hop turn transport) and
+offered two routes. Owner approved the second, re-platform route (Electron
+main process owns a stock `codex app-server` child over one channel; Next
+turn route and daemon dropped; Codex thread store for resume) and directed
+that governance comes first and impacted deliverables and scopes be revised.
+Verified upstream: Codex `rust-v0.154.0` (2026-09-09), npm 0.154.0, schema
+with 101 client methods, 10 server requests, 82 notifications, none
+Chirality-specific; T3 Code (MIT, Electron, schema-generated client, auth-
+overlay home layout) and Pi (MIT, own agent loop) checked as references.
+Prepared and committed (8f97859ee) the proposal packet
+`docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/`
+(decision with twelve ruling items, inactive AGENTS patch verified with
+`git apply --check`, impact assessment enumerating Root, Runtime, App and PEC
+surfaces, README with hashes), proposal manifest
+`ROOT-DGOV43-PROPOSAL-20260911.yaml`, and the owner-direction transcription
+under `plans/steers/`. Validators: G4 candidate-range and CI, agent
+instructions, instruction entrypoints, candidate whitespace all pass. No
+ruling recorded; no live surface, installation, evidence or credential
+changed; nothing published. Next: owner ruling on D-GOV-43, then the
+application tranche, loop notices and the spike against ruling item 11.
