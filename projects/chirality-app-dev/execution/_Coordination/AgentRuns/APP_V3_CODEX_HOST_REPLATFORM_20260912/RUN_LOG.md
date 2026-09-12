@@ -105,3 +105,19 @@ blocking findings covering the actual candidate revision.
 - Commits 95364569a (Runtime) and 39c0bb6ab (App) pushed to PR #774; contract cleanup and
   this log follow as their own commit. Governance validators rerun locally after the
   manifest and workflow edits (results in the next entry).
+
+## 2026-09-12T09:05:00Z — validators, live-path fix, spike launched from source
+- Local validators on the candidate: agent instructions OK, workflow metadata OK, conflict
+  markers PASS, harness self-check exit 0, tranche manifest validator exit 0 (13 surface
+  paths against one manifest), root fence/adapter/ownership/dispatch validators exit 0,
+  candidate whitespace PASS (one trailing blank line trimmed, 087a7c8dc).
+- Live-path defect found while preparing the source run: the Next server's hosted bootstrap
+  port factory still required the retired `CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE`, which
+  the Electron main removes, so folder binding, status and sign-in would have failed with
+  503 on the App path. Fixed in 5fe619fdd (factory reads `CHIRALITY_RUNTIME_TOKEN_FILE`,
+  unit test added). The full frontend suite had passed without covering this seam; noted
+  for the independent reviewer.
+- App launched from source at 08:56Z with isolated userData (details and filtered log
+  excerpts in `spike/EVIDENCE.md` notes). Service child ready 0.5 s after spawn; pinned
+  Codex 0.154.0 child running; effective home carries no `auth.json`; status route answers
+  over the client token. Waiting on the owner to bind a folder and complete OAuth.
