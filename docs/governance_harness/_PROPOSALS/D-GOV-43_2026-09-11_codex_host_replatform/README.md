@@ -1,6 +1,7 @@
 # D-GOV-43 Proposal Packet — Codex Host Re-platform
 
-Status: `PROPOSED — AWAITING OWNER RULING` (revision 3)
+Status: `PROPOSED — AWAITING OWNER RULING` (revision 3; text frozen at
+commit `3ef2ef524956498f8923323dc6cf9d672dbeb50b`)
 
 Date: `2026-09-11`
 
@@ -23,8 +24,12 @@ authorizes performs the propagation.
   with `git apply --check`.
 - `IMPACT.md` — affected Root, Runtime, App and PEC surfaces, the purpose
   test by family, preservation of trial chats and executed records, notices.
-- `REVIEW_FEEDBACK_R1.md`, `REVIEW_FEEDBACK_R2.md` — the two rounds of
-  independent review, verbatim, with each point's disposition.
+- `REVIEW_FEEDBACK_R1.md`, `REVIEW_FEEDBACK_R2.md`, `REVIEW_FEEDBACK_R3.md`
+  — the three rounds of independent review, verbatim, with each point's
+  disposition. Round 3 endorsed revision 3 and added one clarification that
+  accompanies the ruling rather than a further revision.
+- `RULING_CANDIDATE.md` — the prepared `_DECISIONS` record: fill the owner's
+  verbatim ruling and date, copy it into `_DECISIONS/`, add the register row.
 - `docs/governance_harness/tranche_manifests/ROOT-DGOV43-PROPOSAL-20260911.yaml`
   — the proposal-candidate tranche manifest.
 
@@ -50,6 +55,12 @@ and quoted in `D-GOV-43.proposed.md`.
 
 Structural validation is evidence only. It is not semantic acceptance or an
 owner ruling.
+
+## Implementation handoff
+
+The durable handoff for a separate implementing session is
+`projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md`.
+It requires the ruling record to exist before work starts.
 
 ## What the owner is asked to rule on
 

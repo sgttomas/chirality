@@ -133,3 +133,22 @@ running, signed in. Computer Use cannot attach to the GUI after a restart
 because the bundle id resolves to the daemon's lower pid; owner observation is
 the fallback. Packaging cleanup, system-prompt discussion and any publishing
 remain owner decisions; none is authorized.
+
+## Successor — Codex host re-platform (2026-09-12T05:20Z)
+
+The text above is the daemon-era checkpoint and is preserved unchanged. After
+the R17 pass, the owner's plan/execute/save-as-workflow demonstration exposed
+R17-F2 (turns interrupted after ~30 s of stream silence, a transport defect
+by construction; see R17_FUNCTIONAL_FINDINGS.md). The owner approved
+re-platforming the App onto a stock, pinned `codex app-server` child owned by
+the Electron main process (D-GOV-43, proposal revision 3 at commit
+3ef2ef524956498f8923323dc6cf9d672dbeb50b, three independent review rounds
+recorded in the packet). The restart-admission repair, the daemon and its
+supplier-admission machinery are retired by that decision once ruled; the
+next consolidated build is the re-platformed App, not a daemon batch.
+
+The durable entry for the implementing session is
+`../APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md`. It requires the
+owner's ruling record in `docs/governance_harness/_DECISIONS/` before work
+starts. R17 GUI 31613 and daemon 27838 were still running and signed in at
+this checkpoint; the R17 installation and all evidence remain preserved.

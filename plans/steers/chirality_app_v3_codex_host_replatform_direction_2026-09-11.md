@@ -68,6 +68,12 @@ Revision-3 direction, relaying the same reviewer's round-2 feedback
 > Once more consider the other agent's feedback. Seek any further answers
 > from me if needed. Otherwise update your proposal for my direction.
 
+Handoff direction, relaying the reviewer's round-3 refinements (reproduced in
+the packet's `REVIEW_FEEDBACK_R3.md`):
+
+> I have some final refinements, then we need to make this guidance durable
+> so a third agent can begin implementation in their own session.
+
 ## Referent
 
 The "second re-platform route" is the re-platform described in the context

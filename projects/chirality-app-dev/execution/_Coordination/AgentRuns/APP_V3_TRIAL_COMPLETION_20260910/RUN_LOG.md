@@ -868,3 +868,23 @@ REVIEW_FEEDBACK_R1.md and REVIEW_FEEDBACK_R2.md. No ruling recorded; no live
 surface, installation, evidence or credential changed; nothing published.
 R17 GUI 31613 and daemon 27838 still running. Next: owner ruling, then the
 coordinated application tranche and the spike against ruling item 12.
+
+## Round-3 review, ruling candidate and implementation handoff — 2026-09-12T05:20Z
+
+Owner relayed the reviewer's round-3 refinements ("Yes—you can go forward on
+this basis... I do not recommend another broad proposal round") and asked
+that the guidance be made durable for a third agent's own session. No
+revision 4: the proposal text stays at revision 3 (3ef2ef524). Added to the
+packet: REVIEW_FEEDBACK_R3.md (verbatim plus dispositions) and
+RULING_CANDIDATE.md (prepared _DECISIONS record with the post-build
+"expected minimum, not a ceiling" clarification, blanks for the owner's
+verbatim ruling and date, and the register row). Wrote the implementation
+handoff APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md (basis commit and
+branch, ruling-record precondition, working priority, application tranche
+list, source-established spike starting points, acceptance and post-build
+rule, review boundary, live state and safety boundaries) and appended a
+successor pointer to NEXT_AGENT_HANDOFF.md without editing earlier text.
+Manifest, README and steer transcription updated. Still no ruling recorded;
+the owner's verbatim ruling is the remaining input. No live surface,
+installation, evidence or credential changed; nothing published. R17 GUI
+31613 and daemon 27838 still running.
