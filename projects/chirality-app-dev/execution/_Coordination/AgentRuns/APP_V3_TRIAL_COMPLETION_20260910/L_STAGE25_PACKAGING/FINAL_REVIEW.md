@@ -1,0 +1,15 @@
+# Stage25 / R16 final independent review
+
+**PASS — packaging through step 25. No blocking findings. Native acceptance remains pending.**
+
+Independent Type2, no delegation. Read-only evidence review against the previously reviewed frozen recipe; no build, signing, supplier/native execution, launcher execution, GUI action, or protected account/state access. Only this review was written.
+
+Accepted completion: `/private/tmp/chirality-local-human-trial-20260910-25/phase-b-completion.json`, SHA256 `185cac65f508104cedcec6ab5f20995b9ba4b7d338adc5d033accaf86b970eca`. Independently verified all 111 root evidence inventory entries and all 35 frozen preparation entries against their recorded sizes/hashes, with zero mismatches. HEAD remains `70a02f74f1c1d7246539d689090362021b972055`; Runtime/frontend working state is clean.
+
+All eleven invocation records report success; the five build commands each exited zero. The observer/payload/governance/seal/final-observation/provision invocation fields preserve their corresponding plans. Fresh account-free observation reports eight attempted/passed limbs; all eight referenced evidence hashes match. Its exact three-entry supplier closure binds the newly signed Codex and official host identities. Signature evidence records successful verification and the expected identity/team; all three binary correspondence results pass, including the host's strict signing-byte comparison.
+
+The final sealed result exactly matches the completion record. Payload SHA256 `1a50d9a2ef9f34f637fbd14e101dccece05f4b9bd0e3c8281e6edd659a0ca646` was independently confirmed on both stage and durable R16 payload manifests. Outer inventory `8d8e941a867624d33ebc337c7737ba60e440f84411a36d511e46362ba8e39a9d` agrees across seal, copy, final observation, and provisioning records. The copy verifier records 1152 matching entries, zero semantic differences/shared inodes/hardlink groups, equal xattrs, and successful signature verification. Final observation has three attempted/passed checks and is published byte-identically. Provisioning records successful create disposition with the matching inventory and observation digest.
+
+The actual R16 launcher is mode 0700 and hashes to `03707773b04e8be56a92d1662b346772db596c859a18013e925db482f4736258`; recorded and frozen expected diffs match. The R15 launcher retains its accepted hash. No launcher was executed by this reviewer. Evidence supports the reported single successful sequence; no failed gate/retry is present in the reviewed records.
+
+This derivative review accepts packaging evidence only. It does not independently rerun codesign, repeat the full bundle/cache inventory, inspect installed protected userdata, or prove authenticated native behavior. The return correctly leaves R15 retirement, guarded launch, native/OAuth checklist, and human-trial acceptance with the parent. Preserve prior R15 state until that authorized continuation. Parent should record a separate immutable native-trial outcome; packaging PASS must not be promoted to native acceptance.

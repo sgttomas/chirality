@@ -522,3 +522,38 @@ source commit and input freeze follow this accepted adoption. Recipe review and
 lead release still precede the single consolidated build/sign operation; SectionB
 retirement, guarded launch and native checklist remain lead/owner steps. No
 publishing approval.
+
+### Stage25 / R16 ready for guarded native trial
+
+Accepted supplier correspondence committed70a02f74f1c1d7246539d689090362021b972055,
+which is the exact R16 build source including prior App/Runtime repairs364796528.
+APP-HOLD reliance at70a02f74f ALLOW/CLEAR/NOT_HELD; scanf3364578a06a148dc8891ec8401f230f22c2b7a20e1e3177351721badfa8aa51.
+Stage25 recipef40e39e692e0c260cb0988dcd37a230847ec32f9058da19fa8d758a203fd9b7b
+independently reviewed PASS, then lead released one consolidated PhaseB build/sign
+through step25. All steps passed without failure or retry. Five source-build
+commands, binary correspondence, corrected eight-limb observer, seal,1152-entry
+independent copy, three final observations and provisioning passed. No full-suite
+duplication. Independent final review checked111 evidence entries and passed.
+
+Completion185cac65f508104cedcec6ab5f20995b9ba4b7d338adc5d033accaf86b970eca
+at `/private/tmp/chirality-local-human-trial-20260910-25/phase-b-completion.json`.
+App `/Users/ryan/Applications/Chirality Trial 20260910 R16.app`;
+userdata `/Users/ryan/Library/Application Support/Chirality Trial 20260910 R16`;
+guarded launcher `/Users/ryan/Applications/Launch Chirality Trial 20260910 R16.command`,
+SHA03707773b04e8be56a92d1662b346772db596c859a18013e925db482f4736258.
+Outer inventory8d8e941a867624d33ebc337c7737ba60e440f84411a36d511e46362ba8e39a9d;
+payload1a50d9a2ef9f34f637fbd14e101dccece05f4b9bd0e3c8281e6edd659a0ca646.
+L_STAGE25_PACKAGING/{PREPARATION,PACKAGING_REVIEW,RETURN,FINAL_REVIEW}.md
+contain the reviewed preparation and final handoff.
+
+SectionB, guard execution and R16 GUI/native/OAuth tests have NOT run. R15 remains
+GUI88255/daemon83669 as last observed. One current Computer Use attachment attempt
+still timed out after its earlier restart; no repeated launch or daemon changes.
+Asked owner asynchronously to quit R15 with CmdQ when idle and confirm closure;
+no answer received at this record. Once closure is confirmed, lead verifies
+process state, preserves/removes only the old registration through reviewed
+SectionB, checks and uses the R16 guarded launcher, then resumes
+R16_NATIVE_CHECKLIST.md with owner OAuth/2FA. Never open the App directly or read
+protected live identity/auth/Codex-home/session/event files. All workers complete.
+All earlier Apps, state and evidence remain preserved. Trial acceptance,
+system-prompt discussion and publishing approval remain outstanding.
