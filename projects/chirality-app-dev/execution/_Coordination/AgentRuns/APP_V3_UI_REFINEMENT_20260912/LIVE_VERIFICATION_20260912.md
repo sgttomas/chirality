@@ -116,3 +116,31 @@ That bounded repair and its review precede integration and replacement packaging
 The install-over acceptance remains unperformed. `OWNER_HANDOFF_20260912.md`
 will carry the six manual steps and both complete installer paths. A source
 restart, live recovery, or offline inventory test is not an install-over test.
+
+## Final plan-attempt repair and native recheck
+
+Reviewed source `ba6198cc0c7ad360d7734c4607de33ddd25ef5f6` creates the
+plan attempt with its submission identity and writes it synchronously before
+POST. Recovered attempts require the same identity; unmatched and legacy idless
+attempts are Unknown. Author's 82 focused checks and both typechecks passed.
+Parent full frontend suite passed 2183 tests, four skipped, with one worker;
+Runtime source is unchanged from the 321-pass run. Fresh independent Astra/high
+review returned PASS, all 46 changed paths covered and both P1 findings resolved
+(`returns/REVIEW_LIVE_RECOVERY_FINAL.md`).
+
+The parent ran the final source through the isolated dev launcher (wrapper
+63742, concurrently 63767, verified Runtime 63912 under Electron 63908). Native
+Plan Mode generated Revision 1 for one harmless sleep-70 command. Execute plan
+prepared the message, Send started the attempt, and the Plan panel read Running.
+Renderer reload during that command restored the revision and Running attempt;
+Stop remained available and Send disabled. After completion both the chat and
+Revision 1 read Completed, with PLAN-IDENTITY-RELOAD-20260912, one action and
+74.3 seconds. No second execution was observed. The brief initial empty-plan
+view resolved when normal hydration completed. The previously recorded duplicate
+partial commentary remains a presentation residual. Dev concurrently 63767 was
+stopped at 21:50:41Z after verifying its working directory. The filtered recorder
+is `dev-plan-identity-filtered.log`. No account or private-state files were read.
+
+After these checks the owner added product guidance/instruction-delivery work,
+the public releases update source and a workflow-button rename. The next build
+is held to consolidate that separately reviewed work with these recovery fixes.
