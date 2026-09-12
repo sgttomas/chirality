@@ -728,3 +728,43 @@ records this section as the frozen source; the packager runs only the
 create-only source-candidate, source-freeze and manifest-freeze tools next,
 then stops for recipe review. Phase B (build) is held until that review
 passes and the lead releases it. No commits will be made while Phase B runs.
+
+### Stage26 frozen, recipe reviewed, Phase B released — 2026-09-12T03:20Z
+
+Packager froze the source at `fb529591d` (source-freeze.json SHA-256
+`aecb0b90e79ab5ba3757c284f94fecedc4d4aea3cc19682cf3927a353c9d9f15`) and the
+manifest (`stage26-frozen-preparation-manifest.json` SHA-256
+`6e962726f931cabf8415db2999902064197c98219d9cc2dec28af8480759202f`);
+verify-preparation and prepare-current-inputs --check PASS; run-build --check
+correctly refused before the Phase B preflight receipt. Independent recipe
+review (same reviewer instance, L_STAGE26_PACKAGING/PACKAGING_REVIEW.md):
+PASS, all 66 manifest entries recomputed, delta = source commit only, R17
+launcher derivation `150d3437…` reproduced, no seal/signing/auth weakening,
+Stage25 and the running R16 untouched; three prose-only notes in the
+procedure. Lead released Phase B (steps 0a–25, one consolidated build) to the
+packager; Section B, guarded launch and native tests remain lead-only. HEAD
+stays at the frozen commit until Phase B completes; these records are
+committed afterwards.
+
+### Stage26/R17 Phase B returned PASS — 2026-09-12T02:40Z
+
+Packager return (L_STAGE26_PACKAGING/RETURN.md): PASS through steps 0a–25,
+one consolidated build and signing sequence, no failed gate, no retry, HEAD
+unchanged at `fb529591d`. Completion record
+`/private/tmp/chirality-local-human-trial-20260910-26/phase-b-completion.json`
+SHA-256 `b6e5209f59b23ef8d4a65b429e4e2bf73f703552f511769129d551996b85dccd`;
+root evidence inventory SHA-256 `e5c44772…` (117 files). Durable outputs:
+`/Users/ryan/Applications/Chirality Trial 20260910 R17.app`, userdata
+`/Users/ryan/Library/Application Support/Chirality Trial 20260910 R17` (0700,
+anchor disposition `created`), launcher
+`/Users/ryan/Applications/Launch Chirality Trial 20260910 R17.command`
+(SHA-256 `150d3437…` verified by the lead, 0700, not yet executed).
+Measured identities: outer inventory `34709cd3…`, payload manifest
+`855d90ca…`, support profile `e534c3a2…`, release input digest
+`dcec9ada…`, trial observation `6459050b…`; signed supplier `9a59fcec…`,
+host `d820df9d…`, native `a926a0b9…` with raw inputs unchanged from Stage25.
+Lead checked RETURN.md for addresses: none (the one `@` is the quoted log
+filter phrase). R16 App, userdata, LaunchAgent and daemon (pid 17185) were
+untouched during the build. Packaging PASS is not native acceptance. Next,
+lead-only: Section B R16 retirement, R17 `--check-only`, guarded launch and
+R17_NATIVE_CHECKLIST.md.
