@@ -147,3 +147,19 @@ blocking findings covering the actual candidate revision.
 - Observation for review: after `turn/interrupt` the sandboxed `sleep 120` child of the
   interrupted command kept running to its natural end (stock Codex behaviour; the turn
   itself was interrupted within 1.1 s and the session continued).
+
+## 2026-09-12T15:50:00Z — S-8 and the window-level disconnect check complete
+- Window-level disconnect (owner, 15:40Z, session 52b6f621): the App window was reloaded
+  while `sleep 45 && echo slept-45` ran; the renderer read `turn/state`, replayed events and
+  re-attached to the retained turn; one `tool.started`, one `tool.completed`, answer shown.
+  PASS. The owner noted an initial quiet interval before the output appeared (the remaining
+  sleep); showing the recovered in-flight tool during reattach is noted as a presentation
+  refinement for after the loop, per the launch order (loop first).
+- S-8 (15:45:44Z): sign-out through the App route removed `auth.json` from the App's
+  effective Codex home only; `~/.codex/auth.json` metadata unchanged (never read); status
+  back to `ready-to-start`; the App's Codex child stayed up; the owner's other Codex client
+  (ChatGPT desktop's app-server) untouched. PASS.
+- Runtime suite after the bootless-boot change: 34 files, 312 tests pass. CI at 84078a275:
+  harness, Harness pre-merge and pec pass. Frontend suite rerun in progress.
+- All of S-1..S-8 and the disconnect check now PASS on the source-run App. Next: PR body
+  update, independent source review, then the consolidated signed build.

@@ -50,4 +50,3 @@ if (mode === 'never-ready') {
   }
   setInterval(() => {}, 1000);
 }
-
