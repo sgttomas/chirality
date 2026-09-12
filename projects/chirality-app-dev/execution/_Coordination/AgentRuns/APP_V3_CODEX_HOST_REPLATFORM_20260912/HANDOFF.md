@@ -21,9 +21,10 @@ and its A2 supplement.
 
    Do not assume an older `origin/main` has these. The originating worktree
    `/Users/ryan/dev/chirality/.claude/worktrees/owner-alignment-inspection-db4335`
-   is preserved local evidence, not a requirement. Do not rewrite history,
-   never use bare `git stash`, and do not push or merge beyond the owner's
-   direction.
+   is preserved local evidence, not a requirement. Git integration follows
+   the owner's standing authorization of 2026-09-12 (summarized in
+   `LAUNCH_PROMPT.md`; exact text recorded in the repository by a parallel
+   session). Do not rewrite history and never use bare `git stash`.
 2. **Governing records.** `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`
    (ruled 2026-09-11) and `D-GOV-43_supplement_topology_A2.md` (recorded
    2026-09-12). The packet under
@@ -69,8 +70,11 @@ management remain deferred.
 - Its own manifest `docs/governance_harness/tranche_manifests/ROOT-DGOV43-APPLICATION-<YYYYMMDD>.yaml`
   (`instruction-tranche-manifest/v1`): `basis` = the head you start from;
   `m2_gate.authorization` quotes the ruling and the supplement verbatim;
-  `merge_gate: human-gated-pr`; `self_merge: false`; `m6_notice.disposition:
-  routed` to the three loop notices named in `IMPACT.md` (records of
+  `merge_gate: human-gated-pr`; `self_merge: true` only with the complete
+  `owner_direction` block (`directed_by`, `direction_date` 2026-09-12, full
+  `approved_source_sha`) citing the owner's standing Git authorization, as
+  `validate_instruction_tranche_manifest.py` requires, otherwise
+  `self_merge: false`; `m6_notice.disposition: routed` to the three loop notices named in `IMPACT.md` (records of
   application, not adoption requests).
 - **Root, A2-adjusted.** Apply `AGENTS.proposed.patch` with `git apply`
   ("owned by the App's own host process" reads as the application-owned
