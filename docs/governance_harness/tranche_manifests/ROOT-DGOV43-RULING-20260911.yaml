@@ -1,12 +1,13 @@
 schema: instruction-tranche-manifest/v1
 tranche_id: ROOT-DGOV43-RULING-20260911
-title: D-GOV-43 owner ruling recorded (Codex host re-platform)
+title: D-GOV-43 owner ruling and topology supplement recorded (Codex host re-platform)
 date: 2026-09-11
 basis: a75adecf13f055c092ffa92809f66e7817c44242
 
 instruction_surface_paths:
   - docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md
   - docs/governance_harness/_DECISIONS/_REGISTER.md
+  - docs/governance_harness/_DECISIONS/D-GOV-43_supplement_topology_A2.md
   - docs/governance_harness/tranche_manifests/ROOT-DGOV43-RULING-20260911.yaml
 
 m2_gate:
@@ -21,7 +22,12 @@ m2_gate:
     Transcribed with context in
     plans/steers/chirality_app_v3_codex_host_replatform_direction_2026-09-11.md
     and recorded in docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md.
-    This tranche records the ruling and its register row. It applies no
+    Supplement of 2026-09-12, after the owner reopened ruling items 1 and 7
+    and the source comparison of topologies, verbatim:
+    "We are all in agreement this is the path forward. You will be handing
+    this off so a third agent can begin implementation."
+    Recorded in docs/governance_harness/_DECISIONS/D-GOV-43_supplement_topology_A2.md.
+    This tranche records the ruling, its supplement and their register rows. It applies no
     change to AGENTS.md or the ratified standards; the coordinated
     application tranche authorized by the ruling follows under its own
     manifest. Merge executes as agent-as-proxy under the owner's direction

@@ -320,3 +320,28 @@ packaged as a spawnable service for later applications; B if the owner sets
 the embedding intent aside for the MVP. Decision requested: A2 or B, and
 whether Piping's future integration is to be recorded now as a design
 constraint in DIRECTIVE §7 or left for its own loop.
+
+## 9. Corrections after review (2026-09-12)
+
+- Section 3 named three disconnection sites; there is a fourth. The App's
+  turn route passes the browser request's abort signal into the port and
+  calls the port's `cancel()` when its stream is cancelled
+  (`frontend/src/app/api/harness/turn/route.ts:17-40`), and that cancel
+  issues a fresh interrupt (`runtime-daemon-harness-port.ts:556-562`). A
+  renderer disconnect is therefore indistinguishable from an explicit Stop
+  today. The repair is the four sites plus a rule: Stop is an explicit
+  interrupt call; stream teardown is loss of observation only; reopening
+  recovers the turn's actual state.
+- "A2's new code is smaller than B's" is an estimate. Source establishes the
+  reusable interfaces and an existing transport; implementation establishes
+  how much survives cleanly.
+- The standalone entry's hosted branch routes into the retired admission
+  composition (`standalone.ts:182`); reuse is of its shape, not its
+  composition, and the core's conformance, exact-supply and private-home
+  checks need deliberate removal.
+- "PEC keeps working" (section 4, B) overstated: A2 preserves PEC's
+  integration opportunity; compatibility is unverified and not an MVP
+  prerequisite.
+- Section 8's GPU statement was categorical; memory and server capability
+  decide. Preserving prior Pi and oMLX work creates no obligation to keep it
+  compiling.

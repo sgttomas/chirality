@@ -1,239 +1,263 @@
-# Codex host re-platform (D-GOV-43) — implementation handoff
+# Codex host re-platform (D-GOV-43, topology A2) — implementation handoff
 
-Prepared 2026-09-12 by HELP_HUMAN for a separate implementing session. Read
-Root `AGENTS.md` and your role instruction first. This file is coordination,
-not governance: the governing record is D-GOV-43 and its ruling.
-
-## Reopened 2026-09-12 — do not start on the ruled topology
-
-After the ruling, the owner reopened ruling items 1 (hosting) and 7 (daemon
-retirement) on the independent reviewer's counter-proposal; items 2 to 6 and
-8 to 14 stand. `TOPOLOGY_COMPARISON.md` in this directory compares retaining
-a simplified Runtime host (as a launchd daemon or as an App-owned child)
-with an in-process host behind the existing port, and records a
-recommendation. Implementation starts only after the owner's decision is
-recorded as a supplement to the D-GOV-43 record; sections 3 and 4 below will
-be revised to the chosen topology. PR #767 is open and unmerged by the
-owner's direction.
+Prepared 2026-09-12 by HELP_HUMAN for a separate implementing session,
+revised the same day to the selected topology. Read Root `AGENTS.md`,
+`PERSPECTIVE.md` (the owner's intent) and this file first. This file is
+coordination, not governance: the governing records are the D-GOV-43 ruling
+and its A2 supplement.
 
 ## 0. Preconditions — verify before any work
 
-1. **Implementation basis.** The proposal text is revision 3 at commit
-   `3ef2ef524956498f8923323dc6cf9d672dbeb50b`; the owner's ruling record and
-   this handoff follow it on branch `claude/chirality-v3-mvp-trial-ab05cb`,
-   merged to `main` through PR #767 (section 7) under the owner's
-   direction of 2026-09-11. Use an integration checkout updated
-   from `origin/main` that contains that merge; do not assume an older
-   `origin/main` has it (`origin/main` was
-   `a75adecf13f055c092ffa92809f66e7817c44242` before the merge). Verify with
+1. **Basis.** Branch `claude/chirality-v3-mvp-trial-ab05cb` at or after the
+   commit that adds `LAUNCH_PROMPT.md` in this directory, or the `main`
+   merge of [PR #767](https://github.com/sgttomas/chirality/pull/767) if
+   it has landed. The proposal text is revision 3 at
+   `3ef2ef524956498f8923323dc6cf9d672dbeb50b`; the ruling, its supplement,
+   the comparison and this handoff follow it. Verify:
 
    ```bash
-   git merge-base --is-ancestor 3ef2ef524956498f8923323dc6cf9d672dbeb50b HEAD && test -f docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md && echo basis-and-ruling-present
+   git merge-base --is-ancestor 3ef2ef524956498f8923323dc6cf9d672dbeb50b HEAD && test -f docs/governance_harness/_DECISIONS/D-GOV-43_supplement_topology_A2.md && echo basis-ruling-and-supplement-present
    ```
 
-   The originating worktree
+   Do not assume an older `origin/main` has these. The originating worktree
    `/Users/ryan/dev/chirality/.claude/worktrees/owner-alignment-inspection-db4335`
    is preserved local evidence, not a requirement. Do not rewrite history,
    never use bare `git stash`, and do not push or merge beyond the owner's
    direction.
-2. **The owner's ruling record exists** at
-   `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`
-   (ruled 2026-09-11, verbatim, with the post-build clarification and the
-   `_REGISTER.md` row). It is the governing record; the packet is the
-   proposal history. If your checkout lacks it, you are on the wrong basis.
-3. **Read** the packet
+2. **Governing records.** `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`
+   (ruled 2026-09-11) and `D-GOV-43_supplement_topology_A2.md` (recorded
+   2026-09-12). The packet under
    `docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/`
-   (`D-GOV-43.proposed.md`, `IMPACT.md`, `AGENTS.proposed.patch`,
-   `REVIEW_FEEDBACK_R1.md` to `R3.md`, `RULING_CANDIDATE.md`), the trial
-   findings
-   `../APP_V3_TRIAL_COMPLETION_20260910/R17_FUNCTIONAL_FINDINGS.md`
-   (R17-F2 is the transport failure the re-platform removes), and this file.
+   is the proposal history (decision revision 3, `IMPACT.md`,
+   `AGENTS.proposed.patch`, three review rounds). `TOPOLOGY_COMPARISON.md`
+   here is the reasoning record for A2, with its corrections in section 9.
+3. **Trial context.** `../APP_V3_TRIAL_COMPLETION_20260910/R17_FUNCTIONAL_FINDINGS.md`
+   (R17-F2 is the transport defect; the demonstration there is the seed of
+   the eight checks).
 
-Owner's prior model direction for this work, subject to the launch prompt:
-bounded Type 2 work, separate independent review and packaging on
-`fable-5.1` at `medium` reasoning. Role as the owner directs at launch;
-WORKING_ITEMS fits (organize implementation, assign bounded work, integrate
-results); under HELP_HUMAN the same applies with direct Type 2 dispatch.
+Owner's prior model direction, subject to the launch prompt: bounded Type 2
+work, separate independent review and packaging on `fable-5.1` at `medium`
+reasoning. Role as the owner directs; WORKING_ITEMS fits (organize
+implementation, assign bounded work, integrate results); under HELP_HUMAN
+the same applies with direct Type 2 dispatch.
 
-## 1. Working priority
+## 1. Working priority and settled points
 
-1. **Retire the obsolete constraints** (the coordinated application tranche,
-   section 2). This removes the daemon's requirements, holds and checks so
-   the implementation is not fighting retired governance.
+1. **Retire the obsolete constraints** (section 2) so the implementation is
+   not fighting retired governance.
 2. **Prove the production-path experience**: plan → execute → save → reuse →
-   iterate, as ruling item 12's checks S-1 to S-8 (section 4).
+   iterate, as the eight checks in section 4. Get the loop working end to
+   end before refining presentation; let the checks justify what the UI must
+   show.
 
-Documentation explains and supports that work. It is not a separate
-programme and must not delay the functional demonstration. Remaining
+Documentation explains and supports; it is not a separate programme and must
+not delay the demonstration. **Codex is the only engine** for this release;
+the multi-engine abstractions are retired, not generalized (local models
+will be Codex model providers later). Two design points are settled and are
+not to be reopened by accident: the disconnection rule (section 3, transport)
+and the new service composition (section 3, composition). Remaining
 technical discoveries belong in the spike; they need another human decision
 only if they materially change the agreed scope or behaviour.
+
+**Cross-product constraint (recorded):** keep the Runtime host independent of
+Electron and Next and consumable as an application-owned service; package
+only what the Chirality App needs; Piping integration and local-model
+management remain deferred.
 
 ## 2. Application tranche (governance first)
 
 - Its own manifest `docs/governance_harness/tranche_manifests/ROOT-DGOV43-APPLICATION-<YYYYMMDD>.yaml`
-  (`instruction-tranche-manifest/v1`): `basis` = the branch head you start
-  from; `m2_gate.authorization` quotes the owner's ruling verbatim and cites
-  the `_DECISIONS` record; `merge_gate: human-gated-pr`; `self_merge: false`;
-  `m6_notice.disposition: routed` to the three loop notices named in
-  `IMPACT.md` (they are records of application, not adoption requests).
-- Root: apply `AGENTS.proposed.patch` with `git apply`; amend
-  `docs/CONTRACT.md` §1.13, `docs/SPEC.md` §14, `docs/DIRECTIVE.md` §5/§7,
-  `docs/TYPES.md` §12, `docs/AGENT_WORKFLOW_RUNTIME.md`, and the
-  `docs/PLAN.md` / `docs/PRD_ROOT.md` transcriptions exactly as "Surfaces
-  touched" lists; make the candidate whitespace guard advisory in
-  `.github/workflows/harness-premerge.yml`; add the `_REGISTER.md` row if
-  the ruling commit did not.
-- Runtime and App: apply the family dispositions in `IMPACT.md` "Purpose
-  test by family" (families 1 and 2 retire outright; 3 adapts; 4 retains;
-  5 retires as gates; 6 retains) and the per-path tables. Preserve executed
-  records unchanged; create the new procedures and supersede applicability.
-  One App decision record supersedes D-APP-125 item 3, D-APP-126, D-APP-122,
-  D-APP-100, D-APP-88 and D-APP-107; revise SCA-APP-008 before any
-  acceptance; close the nine Runtime holds with one `scope-change` amendment
-  and a concise rationale.
+  (`instruction-tranche-manifest/v1`): `basis` = the head you start from;
+  `m2_gate.authorization` quotes the ruling and the supplement verbatim;
+  `merge_gate: human-gated-pr`; `self_merge: false`; `m6_notice.disposition:
+  routed` to the three loop notices named in `IMPACT.md` (records of
+  application, not adoption requests).
+- **Root, A2-adjusted.** Apply `AGENTS.proposed.patch` with `git apply`
+  ("owned by the App's own host process" reads as the application-owned
+  Runtime service). `docs/CONTRACT.md` §1.13: K-RUNTIME-1 becomes the
+  application-owned Runtime child (no per-user LaunchAgent, no exclusive
+  daemon) that owns the Codex child; K-CONTROL-1 keeps its spine (Unix
+  socket, no TCP listener) with the supervisor socket retired; retire
+  K-RESIDENCY-1 from the live contract; revise the closing paragraph and
+  the enforcement-map row. `docs/SPEC.md` §14.1: launch and lifetime of the
+  child, socket and tokens private to the application, thread index; keep
+  §14.2 manifests; §14.3 and §14.4 to history. `docs/DIRECTIVE.md` §5 row
+  and §7, adding the cross-product constraint. `docs/TYPES.md` §12: revise
+  the runtime types to the child model; add `PolicySelection`,
+  `ApprovalRecord`, a thread index entry; retire the residency types.
+  `docs/AGENT_WORKFLOW_RUNTIME.md` skills and `permissionMode` sentences.
+  `docs/PLAN.md` and `docs/PRD_ROOT.md` transcriptions read with the
+  ruling. Whitespace guard advisory in `.github/workflows/harness-premerge.yml`.
+- **Runtime and App.** Apply the family dispositions in `IMPACT.md` "Purpose
+  test by family" (families 1 and 2 retire; 3 adapts; 4 retains; 5 retires
+  as gates; 6 retains) and the per-path tables, with the A2 difference that
+  the socket API, client, port and routes are retained and repaired. Preserve
+  executed records unchanged; create the new procedures and supersede
+  applicability. One App decision record supersedes D-APP-125 item 3,
+  D-APP-126, D-APP-122, D-APP-100, D-APP-88 and D-APP-107; revise SCA-APP-008
+  before any acceptance; close the nine Runtime holds with one
+  `scope-change` amendment and a concise rationale; DEL-09-07 and
+  `APP-HOLD-1` retire with the LaunchAgent.
 - Validate: `tools/validation/validate_instruction_tranche_manifest.py`
   (plain, and `--base origin/main --head HEAD --added-manifests-only`),
   `validate_agent_instructions.py`, `validate_instruction_entrypoints.py`,
-  and the whitespace validator until it is retired.
-- Keep the rationale concise. The reviewed Git changes are the record; do
-  not build a register to demonstrate simplification.
+  and the whitespace validator until it is advisory.
+- Keep the rationale concise; the reviewed Git changes are the record.
 
-## 3. Spike — technical starting points (all source-established at the basis)
+## 3. Spike — technical starting points (source-established at the basis)
 
-**Host process.** `projects/chirality-app-dev/frontend/electron/`: keep and
-reuse `main.ts`, `preload.ts`, `renderer-window-policy.ts`,
-`ipc-sender-policy.ts` (validated IPC), `attachment-*.ts`,
-`plan-export-*.ts`, `desktop-log.ts`. The daemon path leaves with
-`runtime-host.ts`, `runtime-host-legacy.ts`, `runtime-control-ipc.ts`,
-`runtime-autostart.ts`, `runtime-connectivity.ts`, `runtime-socket-watch.ts`,
-`daemon-*.ts`, `desktop-daemon-posture.ts`, `host-account-*.ts`,
-`protected-runtime-cli.ts`. Add a Codex host module that spawns
-`codex app-server` over stdio, owns its lifetime (exit, relaunch, quit) and
-relays JSON-RPC both ways.
+**Composition (settled).** Replace `hosted-private-composition.ts` with one
+application-owned mode that composes, in one process, `RuntimeService`,
+`DelegatedRuntime`, `CodexSupervisor`, `CodexLogin` and the effective Codex
+home, with no admission, supplier staging, containment wrapper, native
+addon or second socket (the supervisor job folds in; verify that
+`DelegatedRuntime` takes `CodexSupervisor` directly through
+`DelegatedHarnessProcessSupervisorPort`, `contracts/delegated.ts:45`, rather
+than `SupervisorClient`, `standalone.ts:225-255`). The standalone entry
+(`standalone-bin.ts`, `chirality-runtime-service daemon --config`, ready
+line on stdout) is the shape to reuse; its hosted branch
+(`standalone.ts:182`) routes into the retired composition and is not. In
+`packages/core`, the conformance, exact-supply and private-home checks
+(`runtime-conformance-v2.ts`, `exact-supply.ts`, `hosted-consent.ts`) are
+removed deliberately; "keep the core" means keep the services. Reuse is
+assessed by behaviour, not line counts.
 
-**Child and pin.** Add `@openai/codex` as a dependency pinned in
-`package.json` and the lockfile (upstream was `rust-v0.154.0` / npm 0.154.0
-on 2026-09-09; check the current release and pin the one you validate).
-Launch `codex app-server` with the pinned binary; pass through user config
-arguments (`-c`, `--config`, `--enable`, `--disable`) as T3 Code's
-`codexLaunchArgs.ts` does (MIT; reference, not a copy target). No patched or
-forked supplier; `tools/codex-supplier` and `tools/native-admission` retire.
+**App-owned child.** Electron main spawns the service (the daemon-mode path
+`main.ts:958` `initializeDaemon` → `runtime-host.ts:208` `startRuntimeHost`
+is the starting point, minus launchd; decide the packaged entry by reading
+`scripts/build-electron.mjs`), waits for its ready line, connects
+`RuntimeClient` with a per-launch token under `userData`, restarts it with
+backoff on crash, and stops it in `teardown()` on quit. Reuse
+`core/descendant-tracker.ts` and `core/process-supervisor.ts` for orphan
+protection. Retire `runtime-autostart.ts`, `cli/launch-agent.ts`,
+`runtime-jobs.ts`, `daemon-activate-policy.ts`, `desktop-daemon-posture.ts`,
+the `runtime.daemon` IPC operations, `host-account-*.ts` and the XPC
+channel, `protected-runtime-cli.ts` if unused. Ordinary private
+communication, cleanup and recovery are engineering responsibilities.
 
-**Bindings.** Generate TypeScript types from the upstream JSON schema at the
-pinned tag (`codex-rs/app-server-protocol/schema/json`: `ClientRequest.json`,
-`ServerRequest.json`, `ServerNotification.json`, `v2/*`; fetch from GitHub at
-implementation time, the session scratchpad copies do not persist). Declare
-the experimental augmentation in one file, starting with
-`TurnStartParams.collaborationMode` (omitted from the exported schema,
-accepted at runtime under `experimentalApi`; Plan Mode depends on it). Add an
-integration check against the pinned binary: `initialize` with
-`experimentalApi`, `thread/start`, `turn/start` in plan collaboration mode,
-expect plan items or `turn/plan/updated`.
+**Transport repair and the disconnection rule (settled).** Four sites:
+`packages/client/src/client.ts:177-183` (pass a long or disabled
+`timeoutMs` on the stream path; default at `:139`), `runtime-daemon.ts:966-991`
+(SSE comment keepalives), `runtime-daemon.ts:955-959` with `:1002` and
+`:1028` (a closed connection no longer interrupts the turn), and
+`frontend/src/app/api/harness/turn/route.ts:17-40` with
+`runtime-daemon-harness-port.ts:556-562` (stream cancel unsubscribes; it does
+not interrupt). Rule: the Runtime owns the active turn; a browser
+subscription observes it; explicit Stop is the existing interrupt endpoint;
+reopening after a renderer disconnect recovers current state, missed
+activity and any outstanding user decision from the session store and turn
+state, without re-sending the prompt or executing twice.
 
-**Effective Codex home (authentication separation).** `CODEX_HOME` =
-`{userData}/codex-home`. Share the user's `~/.codex` entries by reference
-(config, skills, plugins, MCP definitions, instruction caches, `sessions`,
-`archived_sessions`, MCP OAuth locks); keep `auth.json` and the models cache
-private. T3 Code's `CodexHomeLayout.ts` "authOverlay" mode is the reference.
-Never copy credentials. Check the pinned version's credential-store setting
-(file versus OS keyring): if a keyring backend is active, confirm the
-Chirality home yields a separate identity, otherwise report and do not
-share silently. S-8 proves it. The direct shared-authentication opt-in is
-deferred; do not build it.
+**Codex session.** In `codex-session.ts` remove the private lines
+(authority initialize `:637-702`, identity snapshot, native-child carrier
+`:489-524`, role TOML pins `:213-234`, policy override `:862-875`, private
+framing `:132-141`, `:275`) and the config veto (`:788-821`); stock
+`initialize` with `experimentalApi`; replace the whitelist (`:545`) and
+item quarantine (`:624`) with pass-through; answer all ten server-request
+methods (today `:288-291` handles three and throws on the rest, which fails
+the session): approvals, user input, dynamic tool calls, elicitation and
+the legacy approval forms through cards or the recorded policy; any
+unfamiliar request with a JSON-RPC error response and a visible
+"unsupported request" outcome, never an implied approval. `thread/resume`
+exists at `:893`; `turn/start` already carries model, reasoning effort and
+`collaborationMode` per turn (`:934`), so the per-chat freeze is App-side
+only (`chat-panel.tsx:103`, `:751`).
 
-**Authentication.** `account/login/start` (open the returned URL with
-`shell.openExternal`; the owner completes OAuth and 2FA, never the agent),
-`account/login/cancel`, `account/logout`, `account/read`; observe
-`account/login/completed`. Credentials are Codex's; the App never reads,
-copies or relays them.
+**Event representation (clarified).** Retaining `packages/contracts` does not
+retain its eight-name `UIEvent` set (`client/src/sse.ts:62-71`) or the
+orphaned v2 union. Use an extensible representation that preserves upstream
+method names, identifiers and payloads for faithful rendering and
+inspection, with normalized views for known items (tool activity, file
+changes, reasoning summaries, plan, sub-agents, usage, approvals,
+questions). Producer chain: session events → `core/delegated-engine-adapter.ts`
+→ `core/turn-coordinator.ts` → the App provider
+(`components/workspace/harness-events-provider.tsx`) and views
+(`tool-stream-view.tsx`, `subagent-stream-view.tsx`,
+`permission-requests.tsx`, `NativePlanClarificationCard`). Unfamiliar
+notifications stay inspectable in a generic card and the event log.
 
-**Threads and turns.** `thread/start` with `cwd`, `developerInstructions`
-(role plus selected workflow context), sandbox and approval policy from the
-project's `PolicySelection`; `thread/resume` on relaunch; App index keyed by
-thread id in userData (the sidebar shows the index, not `thread/list`).
-`turn/start` with input items and per-turn model and effort (`model/list`
-for the picker; the per-chat freeze in `chat-panel.tsx` goes);
-`turn/interrupt`; `turn/steer` optional.
+**Effective home and authentication.** Replace the private `CODEX_HOME`,
+Seatbelt wrapper and `-c` overrides in `codex-containment.ts` with the
+overlay layout: share the user's config, skills, plugins, MCP definitions,
+instruction caches and sessions by reference; keep `auth.json` and the
+models cache private; set `cli_auth_credentials_store=file` (the key
+already exists, `:163`); never copy credentials. T3 Code's
+`CodexHomeLayout.ts` "authOverlay" is the reference (MIT). Keep the login
+flow (`codex-login.ts`, `codex-session.ts:709-752`); the owner completes
+OAuth in the browser. S-8 proves the separation.
 
-**Server requests.** Answer every one: `item/commandExecution/requestApproval`,
-`item/fileChange/requestApproval`, `item/permissions/requestApproval`,
-`item/tool/requestUserInput`, `item/tool/call`, `mcpServer/elicitation/request`,
-`applyPatchApproval`, `execCommandApproval` through cards or the recorded
-policy; anything else (including `account/chatgptAuthTokens/refresh` and
-`attestation/generate` if they ever arrive under Codex-custodied auth) with
-a JSON-RPC error response and a visible "unsupported request" outcome. No
-request left pending; no card implies approval. Unfamiliar notifications:
-generic inspection card plus the event log.
+**Threads, roles, delegation.** `thread/start` with `cwd`,
+`developerInstructions` (role plus selected workflow context) and the
+project's `PolicySelection`; `thread/resume` on relaunch; index chats by
+thread id in the session store (sidebar shows the index). Role text from
+the bundled instruction root (`src/lib/harness/instruction-root.ts`);
+workflow context from `.chirality/workflows/<name>/WORKFLOW.md` (project,
+user, bundled; catalog refresh stays); additive turn input for a
+mid-conversation selection; Codex discovers project `AGENTS.md` itself;
+base instructions are never replaced. Delegation uses the upstream
+`[agents]` configuration; S-5 needs evidence that the child received the
+intended role instructions.
 
-**Renderer.** One long-lived channel through `preload.ts` (events main to
-renderer, requests renderer to main) with validated shapes; `contextIsolation`
-on; no credential material crosses. The Next API routes under
-`src/app/api/harness/*` (turn, interrupt, permission, session, …) and
-`src/lib/runtime-client/*` are replaced by the channel. Reuse
-`src/components/shell/chat-panel.tsx` (composer, plan pane, "Execute plan",
-"Save as workflow in chat"), `src/components/woven-dialogue/activity-shelf.tsx`
-(Activity), the Workflows library and Inspect, the Files panel, the viewer
-and the attachment picker. Retire the legacy multi-engine managers and
-mappers in `src/lib/harness/` (Claude SDK, Pi) only when nothing references
-them; do not let deletion scope delay the demonstration.
+**Shutdown behaviour (clarified).** Closing or hiding a window is distinct
+from quitting. Quit stops the owned Runtime and Codex processes
+deliberately and leaves an accurate continuation record. Unexpected
+termination is never shown as completion. No unattended execution after
+quit is promised.
 
-**Roles, workflows, delegation.** Role text from the bundled instruction root
-(`src/lib/harness/instruction-root.ts`, `agent-instruction.ts`); workflow
-context from `.chirality/workflows/<name>/WORKFLOW.md` (project, user,
-bundled; catalog refresh stays an App function). Supply through
-`developerInstructions` at thread start and resume and as additive turn input
-for a mid-conversation selection; Codex discovers project `AGENTS.md`
-itself; upstream base instructions are never replaced. Delegation uses the
-upstream `[agents]` configuration; S-5 requires evidence that the child
-received the intended role instructions (for example a role marker the child
-must echo, or its recorded developer instructions).
+**UI.** Reuse `chat-panel.tsx` (composer, plan pane, "Execute plan", "Save
+as workflow in chat"), `activity-shelf.tsx`, the workflows library and
+Inspect, the Files panel, viewer and attachment picker. Lift the model and
+effort freeze. Extend the existing cards for approvals, questions, tool
+activity and delegation. Keep primary surfaces concise with inspection on
+demand. Retire the legacy multi-engine managers in `src/lib/harness/`
+(unreachable today; forbidden from the bundle) only when nothing references
+them; do not let deletion delay the demonstration.
 
-**Evidence.** Write AgentRuns evidence from the same stream
+**Evidence and history.** Write AgentRuns evidence from the same stream
 (`run-logger.ts`, `tool-evidence.ts` are reuse candidates), including the
-active policy and approvals given. Codex's session store is operational
-state.
+active policy and approvals. Daemon-era chats live under the trial
+`userData` `runtime/projects/<id>/sessions` and in the trial's private Codex
+home; if the existing session reader renders them read-only without new
+work, keep that, otherwise leave them as an accessible archive. No import
+feature, no continuation promised. Preserve prior Pi and oMLX work in
+history and reference without an obligation to keep it compiling.
 
-**Daemon-era chats.** JSON/JSONL under the trial userData
-`runtime/projects/<id>/sessions` plus Codex thread records in the trial's
-private home. `src/lib/harness/session-manager.ts` / `session-events.ts` is
-the existing reader; if it renders them read-only without new work, keep
-that; otherwise leave them as an accessible archive. No import feature, no
-continuation.
-
-**Runtime package.** `projects/chirality-runtime/packages/daemon` (`codex-*.ts`,
-`hosted-*.ts`, `host-account-*.ts`, `supplier-authority-*.ts`,
-`runtime-daemon.ts`, `supervisor-server.ts`), `packages/native-admission`,
-`packages/client` and the LaunchAgent tooling are retired from the App path.
-`packages/core` and `packages/contracts` (workflow catalog, method identity,
-validation) are reuse candidates; decide by reading, do not port daemon code.
+**Consumers.** The App is the only production consumer. The Runtime CLI
+(`packages/cli`) and the PEC server use the socket API; A2 preserves their
+integration opportunity, and their compatibility is unverified and not an
+MVP prerequisite. Record affected compatibility honestly.
 
 ## 4. Acceptance and the post-build rule
 
 Run S-1 to S-8 (ruling item 12) on the production path from source first
-(`npm run dev` in `frontend/` with a distinct userData directory and its
-own effective Codex home, so the running R17 installation is untouched).
-Then one consolidated signed build after independent source review; the new
-short packaging procedure is build, sign, notarize, verify signature and
-Codex pin, then the distinct packaged checks. After the build repeat S-6,
-S-8 and the signature and pin verification as the **expected minimum, not a
-ceiling**: repeat any affected check when a source, configuration or
-packaging change invalidates its earlier evidence (for example, packaged
-instruction roots resolving differently from development files; the existing
-`instruction-root:integrity` script is the relevant check). Do not repeat
-unaffected tests merely because another stage has begun. Native
-verification of the packaged App is by the owner's designated direct
-tester.
+(`npm run dev` in `frontend/` with a distinct `userData` and its own
+effective Codex home, so the R17 installation is untouched). Add to the
+continuity checks: a renderer disconnect during tool work, after which
+reopening the conversation shows the missed activity and any outstanding
+decision, with no duplicate execution. Then one consolidated signed build
+after independent source review; the new short packaging procedure is
+build, sign, notarize, verify signature and Codex pin, then the distinct
+packaged checks. After the build repeat S-6, S-8 and the signature and pin
+verification as the expected minimum, not a ceiling: repeat any affected
+check when a source, configuration or packaging change invalidates its
+earlier evidence (for example packaged instruction roots resolving
+differently from development files; `instruction-root:integrity` is the
+relevant script). Do not repeat unaffected tests merely because another
+stage has begun. Native verification of the packaged App is by the owner's
+designated direct tester.
 
 ## 5. Review boundary
 
 - Your code gets a **separate independent source reviewer** (a fresh
   session or a dispatched Type 2 reviewer with no authorship of the change)
-  before the consolidated signed build. The three proposal reviews do not
-  substitute. Record the review in this directory (the
-  `INDEPENDENT_REVIEW.md` pattern from `../APP_V3_TRIAL_COMPLETION_20260910/R16_RESTART_ADMISSION/`).
-- Return to the owner only for material scope or behaviour changes and
-  consequential findings. Routine implementation choices are yours; record
-  them here.
+  before the consolidated signed build. The proposal reviews do not
+  substitute. Record the review here (the `INDEPENDENT_REVIEW.md` pattern
+  from `../APP_V3_TRIAL_COMPLETION_20260910/R16_RESTART_ADMISSION/`).
+- Return to the owner only for material scope or behaviour changes,
+  substantial product-scope additions, departures from the established
+  visual direction (the shell as built through the R16 UI batch and its
+  consolidated review), and consequential findings. Routine implementation
+  and UI choices are yours; record them here.
 - Publishing, the system-prompt discussion and trial acceptance remain the
   owner's separate acts. Nothing here authorizes a release.
 
@@ -266,18 +290,21 @@ tester.
   `RUN_LOG.md` in this directory with UTC timestamps, in the style of
   `../APP_V3_TRIAL_COMPLETION_20260910/RUN_LOG.md`.
 
-## 7. Transport record and inherited open items
+## 7. Transport record and inherited items
 
-- Pull request from `claude/chirality-v3-mvp-trial-ab05cb` into `main`:
-  [PR #767](https://github.com/sgttomas/chirality/pull/767), opened
-  2026-09-12 under the owner's direction; the merge SHA is recorded in
-  `../APP_V3_TRIAL_COMPLETION_20260910/RUN_LOG.md` and the PR closeout.
-- The owner's perspective note for the implementing session accompanies the
-  launch prompt; if committed, it lives beside this file as
-  `PERSPECTIVE.md` and explains intent without changing the ruled scope.
-
-- R17-F1 (interrupted turn not rendered live) and R17-F2 (30 s
-  stream-silence interruption) are subsumed by the re-platform; S-2 and S-7
-  cover them.
+- [PR #767](https://github.com/sgttomas/chirality/pull/767) carries the
+  packet, ruling, supplement, comparison and this handoff from
+  `claude/chirality-v3-mvp-trial-ab05cb` into `main`; its merge SHA is
+  recorded in the PR closeout comment and
+  `../APP_V3_TRIAL_COMPLETION_20260910/RUN_LOG.md`.
+- `PERSPECTIVE.md` (the owner's intent) and `LAUNCH_PROMPT.md` (ready to
+  paste) sit beside this file.
+- Known CI condition at handoff: the Harness pre-merge job's Runtime test
+  step failed on Linux in two interrupt tests of
+  `tests/delegated-runtime.test.ts` (500 on the interrupt request) that pass
+  on macOS; the same check was already red on `main` at the merged PR #766
+  head. Its resolution is recorded in the trial `RUN_LOG.md`.
+- R17-F1 and R17-F2 are subsumed by the re-platform; S-2, S-6 and S-7 and
+  the disconnection check cover them.
 - Who relaunched the R16 daemon at 2026-09-12T01:41Z is an unanswered owner
   question; historical, no action.

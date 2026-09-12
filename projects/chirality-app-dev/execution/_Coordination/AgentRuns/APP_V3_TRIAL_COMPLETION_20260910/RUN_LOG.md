@@ -961,3 +961,24 @@ recommendation moves from B to A2 (host as an application-owned child
 speaking the existing socket API, packaged as a spawnable service); not
 A1; common work and retirements unchanged; local models refine item 13
 (shared model server, not a shared Codex host). PR #767 still unmerged.
+
+## A2 selected and recorded; handoff package completed — 2026-09-12T07:40Z
+
+Owner: "We are all in agreement this is the path forward. You will be
+handing this off so a third agent can begin implementation." Recorded the
+supplement docs/governance_harness/_DECISIONS/D-GOV-43_supplement_topology_A2.md
+(items 1, 7, 2 and 13 re-expressed; cross-product constraint; three
+implementation clarifications from the reviewer; reuse by behaviour; PEC
+compatibility unverified) with its register row, and extended the ruling
+manifest and steer transcription. Rewrote
+APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md to A2 (settled
+composition and disconnection rule, four-site transport repair, extensible
+event representation, shutdown behaviour, Codex-only, sequencing, review
+boundary, live state); added PERSPECTIVE.md (owner's note verbatim with an
+orientation preamble) and LAUNCH_PROMPT.md; appended corrections to
+TOPOLOGY_COMPARISON.md. Owner then directed: "merge the PR once the CI goes
+green, on this approval." Next: validators, commit, push; resolve the two
+Linux-only Runtime interrupt test failures so the pre-merge check is green;
+merge PR #767 on that approval and record the merge SHA in the PR closeout
+comment. No live surface, installation, evidence or credential changed;
+nothing published. R17 GUI 31613 and daemon 27838 still running.

@@ -83,6 +83,19 @@ Ruling and merge authorization (transcribed into
 >
 > You may push changes and open a PR and merge once the CI goes green.
 
+Reopening and topology decision (2026-09-12), after the owner relayed the
+reviewer's counter-proposal ("Let's not merge this PR just yet. I might
+revise it further. We can take advantage of the failed CI to reconsider."),
+directed the comparison ("Start the comparison."), added the embedding
+context ("the same agents and agent server is intended to be imbedded in
+subsequent applications from Chirality, like the SWBPIPE ... and I want to
+be able to integrate local models with Codex"), and concluded:
+
+> We are all in agreement this is the path forward. You will be handing
+> this off so a third agent can begin implementation.
+
+Recorded in `docs/governance_harness/_DECISIONS/D-GOV-43_supplement_topology_A2.md`.
+
 ## Referent
 
 The "second re-platform route" is the re-platform described in the context
