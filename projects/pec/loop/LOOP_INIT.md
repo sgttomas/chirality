@@ -250,9 +250,11 @@ one commit and one receipt per iteration, pushed after every closeout.
 Within an iteration, independent nodes run concurrently under one recorded
 work graph with disjoint write loci, per `projects/pec/AGENTS.md`; dependent
 nodes run in later iterations on the same branch. Open one PR at terminus
-(§7) or when the next lawful step requires a merged act. Never self-merge;
-the owner merges or rejects by commit. A rejected item's next run restarts
-at Step 0 from `origin/main`.
+(§7) or when the next lawful step requires a merged act. Agents may merge under
+Root `docs/PRD_ROOT.md` §5.3.1's standing owner authorization after required CI
+and independent review cover the actual candidate with no blocking findings.
+Explicit holds and later owner directions prevail. A rejected item's next run
+restarts at Step 0 from `origin/main`.
 
 Write only within the run's exact owner-granted scope; §3 is unchanged,
 including the packet requirement for loop-ledger writes. An adopted brief

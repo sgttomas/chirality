@@ -1,5 +1,13 @@
 # Governance Requirements Charter — Chirality Root (retained PRD lineage)
 
+> **Owner merge-policy amendment — 2026-09-12.** D-8 and §5.3.1 below now
+> record standing Git authorization for `sgttomas/chirality`, approved by Ryan
+> Tufts in the HELP_HUMAN session and applied through this PR. This specific
+> amendment supersedes the earlier merge defaults and K-MERGE-1 wording;
+> it does not adopt the unrelated prospective migration clauses in this file.
+> Revision 8 control and earlier candidate records below describe their
+> historical bases, not the current merge-execution policy.
+
 > PROSPECTIVE EXACT POST-IMAGE — NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.
 
 > **Current status: ACCEPTED — Revision 8 is the current Root product
@@ -10,11 +18,11 @@
 > became effective at
 > `main@602dd71b8c123d8a47a36644db1453f515c0f778`.
 >
-> **Current-reconciliation limit.** This status layer and §10.5 reconcile
-> current-facing document control only. They do not change any stable
+> **Revision 8 reconciliation limit (historical).** That status layer and
+> §10.5 reconciled document control only. They do not change any stable
 > commitment, provenance-origin label, scope item, objective, count, or
-> substantive requirement. The accepted D-8 Revision 8 bytes and annex
-> §5.3.1 remain unchanged.
+> substantive requirement at that time. The 2026-09-12 amendment above now
+> supersedes D-8 and annex §5.3.1 for merge execution.
 >
 > **Historical control preserved.** The following Revision 7 candidate-control
 > block is retained as proposal history. Its references to “this candidate,”
@@ -448,7 +456,7 @@ owner as a new proposal.
 | **D-5** | Validation is deterministic and severity-typed (BLOCK / REVIEW / WARN / INFO / NOT_APPLICABLE, with exit-code semantics and human-only recorded BLOCK override); "BLOCK" never means globally proven safe or unsafe; and a validator finding may **never** mechanically reject content the owner has ruled — where ruled text trips a validator, the validator is defective. | TRANSCRIBED — D-GOV-02; D-GOV-17; `docs/CONTRACT.md` §1.7 note |
 | **D-6** | Phase-crossing work is bound by the governance integration rules — derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution, and change-notice routing. **Incorporated by reference** to `AGENTS.md` §Governance Integration Rules. | TRANSCRIBED — `AGENTS.md`; `docs/DIRECTIVE.md` §2.7 |
 | **D-7** | Root governance runs through its session-init contract, deterministic intent-plan pointer and append-only receipts. Coordination records do not acquire authority from existence. Current owner steers and accepted instruments govern; discrepancies are recorded. The runtime project maintains its own accepted product entry and evidence. | PROSPECTIVE — exact runtime migration successor; inactive until accepted effect |
-| **D-8** | Git closeout in every registered loop runs through the shared change-management role with human-gated PRs as the standing default; beyond that default, the owner may direct merge execution — typed by the owner directly or executed by an agent as the owner's proxy, identical authority either way — with the direction recorded in the loop's ordinary closeout evidence under the merge-gate policy in annex §5.3.1, preserving K-MERGE-1. Each loop's stricter local merge discipline remains controlling until that loop adopts or acknowledges the policy under its own instruments. | **ADOPTED (Rev 8)** — D-GOV-31 as simplified by owner direction 2026-07-29, arriving as PR review per the terminal-artifact rule (D-1); successor to the Rev 6 TRANSCRIBED row ("never self-merge"); default source `execution/_Coordination/LOOP_INIT.md` §7; invariant K-MERGE-1 |
+| **D-8** | Current and subsequent agents may commit, push, open/update PRs, and merge authorized work under the owner's standing Git grant in §5.3.1 and K-MERGE-1. Required CI and independent review cover the actual candidate; explicit holds and later directions prevail. Git integration grants no governed acceptance or product release. | Owner amendment 2026-09-12; supersedes earlier per-merge defaults across registered loops; prior D-GOV-31/Revision 8 records remain historical. |
 | **D-9** | The decomposition pipeline is not waivable: packages and deliverables come only from an accepted decomposition. Nothing authorizes inventing packages from discussion. | TRANSCRIBED — D-GOV-21 packet §4 |
 | **D-10** | The public-export boundary is an explicit allowlist profile that copies allowlisted content, sanitizes private absolute paths, writes a manifest and report, and fails on forbidden paths or leaks. **The profile is the boundary contract and is incorporated by reference**; membership is not restated here. | TRANSCRIBED — `exports/chirality-app/export_public.py`; K-EXPORT-1 |
 | **D-11** | A tranche changing surfaces that downstream loops pin or mirror ships a routed coordination notice to each affected loop in the same tranche. The notice is coordination, not authority: the receiving loop adopts, amends, or declines under its own instruments. | TRANSCRIBED — `AGENTS.md` change-notice rule; D-GOV-21 M6 |
@@ -467,35 +475,51 @@ and this run's record stays valid, and no future commitment may reuse `D-3`.
 
 #### 5.3.1 Merge-gate policy — the D-8 successor
 
-Adopted by D-GOV-31 as simplified by owner direction of 2026-07-29,
-arriving as PR review per the terminal-artifact rule (D-1). This policy
-governs the shared change-management (CHANGE) role across all registered
-loops; each loop's stricter local merge discipline remains controlling
-until that loop adopts or acknowledges the policy under its own
-instruments. Nothing in this annex relabels, cures, or reopens any
-historical act.
+**Owner standing authorization, 2026-09-12.** Ryan Tufts approved the
+following policy in the HELP_HUMAN session and directed its implementation,
+independent review, applicable checks, and PR merge under this authorization.
+The owner's approving message was: "I approve this. Will you carry out the
+changes and open a PR and merge as now intended?" The policy and ordinary PR
+history are the durable record; no separate approval registry is required.
 
-**Default and owner direction.** Human-gated PRs remain the standing
-Git-closeout default. Beyond that default, the owner may direct merge
-execution — typed by the owner directly or executed by an agent as the
-owner's proxy; the authority is identical either way. The direction is
-recorded in the loop's ordinary closeout evidence — receipts, plus the PR
-and merge SHAs Git already keeps — which names the approved source HEAD,
-the owner's direction, and the effective merge SHA. No further
-instrument, registry, or log exists or is required.
+For `sgttomas/chirality`, current and subsequent agents have standing
+authorization to commit, push, create and update pull requests, and merge work
+within the scope the owner has authorized, without requesting separate approval
+for each Git operation. This replaces earlier per-merge approval defaults in
+Root and project-local instructions across the repository. Existing explicit
+holds and later owner directions take precedence. It does not authorize work
+outside the assigned scope.
 
-**Standing prohibitions.** No agent-authored semantic approval; no
-content mutation after approval; no force push, rebase, or invented
-conflict resolution; no authority beyond the direction given.
+**Candidate and review.** Merge when required CI passes and independent review
+has no unresolved blocking findings. The reviewer must be separate from the
+author. Review and validation must cover the actual candidate revision;
+changes after review require reassessment of the affected checks. Verify the
+source HEAD when merging. A passing rerun does not establish that a previously
+identified defect was repaired. Preserve the review, check results, source
+revision, and resulting merge in ordinary PR/Git history rather than another
+receipt chain or approval-token scheme.
 
-**K-MERGE-1 unchanged.** Merge to main is allowed only when branch HEAD
-equals the approved SHA for the relevant run (`docs/CONTRACT.md` §1.8).
+**Acting on the owner's behalf.** Use the owner's configured Git and GitHub
+credentials. Push through the configured SSH remote where available; merge PRs
+through GitHub using the owner's authenticated account, ordinarily via the
+GitHub CLI or API. This grants no authority to change repository protections
+or account permissions. Preserve truthful commit authorship and agent
+attribution. Acting as the owner's authorized agent does not mean the owner
+personally reviewed the changes; do not describe agent review as personal
+owner approval.
 
-**Owner token grammar.** Short owner tokens — for example `APPROVE <ID>`,
-`RATIFY <IDs> AS ENUMERATED IN <RECORD> <SHA8>`, and `SELECT <OPTION>` —
-are lawful rulings only where the exact candidate, SHA, scope, and effect
-are pre-fixed in an immutable record that the token names. This grammar
-lives in this policy; transcription records never define or extend it.
+**Boundaries.** This is conditional standing authorization for Git integration,
+not acceptance of future governed content. K-AUTH-1/2 continue to govern human
+acceptance and its binding to the accepted content. The grant permits no scope
+expansion, bypass of repository protections, acceptance of governed deliverables
+on the owner's behalf, product release or publishing, force push, or history
+rewrite. Required semantic decisions remain with their owning workflows and
+the human. Ordinary implementation and Git closeout within authorized scope do
+not require another owner confirmation.
+
+Historical exact-action approvals and their records remain valid for the acts
+they describe. Their SHA fields and token conventions are not a required format
+for future execution under this standing grant.
 
 ### 5.4 Evidence
 
@@ -1004,7 +1028,7 @@ document control is in §10.5.
 | Rev 6 open items | Stable machine-readable register in the D-GOV-28 proposal package's `OPEN_ITEMS.csv`; statuses restricted to OPEN or PROPOSED; carried unchanged by Rev 7 |
 | Adoption condition | The D-8 successor policy takes effect only through an explicit D-GOV-31 owner ruling against the exact candidate SHA, after owner selection between the two committed candidates and an HZN-GOV-01 rerun against the selected candidate. Such adoption does not pre-approve any propagation act, SCOPE_CHANGE gate, or grant. |
 
-### 10.5 Predecessor document control — Revision 8 (current until successor effect)
+### 10.5 Predecessor document control — Revision 8 (historical merge policy)
 
 | Field | Current value |
 |---|---|
@@ -1013,7 +1037,7 @@ document control is in §10.5.
 | Effective Revision 8 identity | `main@602dd71b8c123d8a47a36644db1453f515c0f778`; pre-reconciliation live subject SHA-256 `278f31ae99607f970e39c6535f809c93a7c5bf09b139ffa2cbbdbe3f08c3746c` |
 | Revision lineage | Rev 5 adopted by D-GOV-22; Rev 6 adopted by D-GOV-28; Rev 7 adopted by D-GOV-31; Rev 8 is the Receipt-64 owner-directed simplification of the accepted Rev 7 merge-execution policy |
 | Current change envelope | Revision 8 changes only the D-8 successor merge-gate policy and annex §5.3.1 from the bounded-grant form to owner direction recorded in ordinary closeout evidence; every other stable commitment remains as inherited from Revision 7 |
-| Current D-8 standing | `ADOPTED (Rev 8)`; human-gated PRs remain the standing default, owner direction may authorize merge execution, K-MERGE-1 remains unchanged, and stricter loop-local discipline remains controlling until locally adopted or acknowledged |
+| D-8 standing at Revision 8 | `ADOPTED (Rev 8)`; human-gated PRs remain the standing default, owner direction may authorize merge execution, K-MERGE-1 remains unchanged, and stricter loop-local discipline remains controlling until locally adopted or acknowledged |
 | Historical candidate evidence | The Revision 7 candidate header, amendment mechanics, and document-control table above remain deliberately preserved as time-scoped proposal history; they are not current-status claims |
 | Effect of this reconciliation | Metadata/status alignment only. No scope, objective, stable commitment, topology, mapping, count, provenance-origin label, lifecycle, release, or reliance state changes |
 

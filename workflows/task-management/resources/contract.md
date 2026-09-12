@@ -216,8 +216,9 @@ into another loop's surfaces.
 Every session that changes a register ends with: the exact rows changed and
 why (citing the owner ruling for each), staleness/closure-echo deltas, and
 any escalation candidates for the parent loop's notice flow. Git closeout
-follows the loop's standing policy (human-gated PRs; owner-directed merge
-recorded in ordinary closeout evidence per `docs/PRD_ROOT.md` annex §5.3.1).
+follows the owner's standing Git authorization in `docs/PRD_ROOT.md` annex
+§5.3.1, with required CI and independent review of the actual candidate and
+ordinary PR/Git records. Explicit holds and later owner directions prevail.
 A register write is never semantic acceptance of anything it cites.
 
 The closeout tranche also appends one receipt entry to the owning loop's
