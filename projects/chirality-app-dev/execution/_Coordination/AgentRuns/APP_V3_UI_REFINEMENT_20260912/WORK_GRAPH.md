@@ -19,3 +19,18 @@ Contracts fixed before dispatch (so A, B and C proceed in parallel):
    `{ category: 'core' | 'specialist' | 'superseded'; tier: 'primary' | 'supporting'; order: number; displayName?: string; group?: { key: string; label: string }; supersededBy?: string }`.
    Emitted by the Root index generator from `workflows/catalog.yaml` `navigation`; read through by the Runtime catalog; project and user workflows carry no navigation and are categorised by source in the App.
 2. `window.chirality.appUpdate` bridge: `get(): Promise<AppUpdateState>`, `check(): Promise<AppUpdateState>`, `openDownload(): Promise<{ ok: boolean; error?: string }>`, `subscribe(listener): () => void`, `onShowAbout(listener): () => void`; `AppUpdateState` as defined in `frontend/electron/app-update-ipc-contract.ts` (status `idle | checking | up-to-date | update-available | failed`, `failure.code` in `no-release-source | policy | network | invalid-feed`).
+
+## Packaged hand-off continuation after PR #775
+
+The original source graph is complete and merged at `85f19f019`. This continuation
+has no product-source write target. HELP_HUMAN performs the single build and
+checks, prepares the owner notes, and validates the independent return. A fresh
+read-only Type 2 reviewer checks the frozen record diff and its supporting build
+evidence. Git closeout follows the standing grant. Owner native verification
+precedes deletion of the old build checkout; notarization and publishing remain
+separate owner acts. The review brief and return are recorded beside the earlier
+ones in `briefs/` and `returns/`.
+
+The reviewer uses `gpt-6-astra`, medium, under the owner's prior explicit model
+direction for this session. The handoff's Fable models are unavailable here;
+this does not change the attribution of the earlier Fable work or reviews.
