@@ -10,9 +10,25 @@ carries it out, inspects and corrects the results, and preserves a useful
 workflow for another assignment. Judge the implementation by whether that
 whole experience works.
 
-Basis: `main` at or after the merge of PR #769 (which contains PR #768's
-merge `230be0ca9` and PR #767's merge `d2878462b`). Verify with the command
-in HANDOFF.md section 0 before anything else.
+Orient first. Claude Code starts you in a checkout, usually a git worktree.
+Run `git rev-parse --show-toplevel` and treat that directory as the
+repository root for every path in this prompt and in the handoff (all are
+repository-relative); run `git branch --show-current` to know your branch.
+Then `git fetch origin` and confirm
+`git merge-base --is-ancestor a5fa05544992f51c31bb07ab87b101472c980f57 HEAD`
+(the merge of PR #769, which contains PR #768's merge `230be0ca9` and
+PR #767's merge `d2878462b`). If that fails, your worktree was cut from a
+stale local `main`: create your working branch from `origin/main` rather
+than merging blindly. Never work in the preserved originating worktree
+`.claude/worktrees/owner-alignment-inspection-db4335` or on its trial
+branch `claude/chirality-v3-mvp-trial-ab05cb`; they are evidence. Then run
+the precondition check in HANDOFF.md section 0.
+
+Models: the lead session runs on Fable 5.1 at its default reasoning;
+bounded Type 2 implementation, test and packaging dispatches on Fable 5.1
+at medium; read-only exploration dispatches may use Sonnet 5; the
+independent source reviewer is a fresh Fable 5.1 session with no authorship
+of the change under review.
 
 Read in this order, and no more than this to start: Root `AGENTS.md`;
 `PERSPECTIVE.md` (the owner's note and the reviewer's statement of intent)
