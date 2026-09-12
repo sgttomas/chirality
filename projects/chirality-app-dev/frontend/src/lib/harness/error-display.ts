@@ -135,8 +135,85 @@ function withAttachmentFailureDetails(baseMessage: string, details: unknown): st
   return `${baseMessage} Rejections: ${preview.join(' | ')}${suffix}`;
 }
 
-export function toHarnessUiError(error: unknown): HarnessUiError {
+export const MODEL_NOT_IN_CATALOG_REASON = 'MODEL_NOT_IN_CATALOG';
+
+function readDetailString(details: unknown, key: string): string | undefined {
+  if (!details || typeof details !== 'object') return undefined;
+  const value = (details as Record<string, unknown>)[key];
+  return typeof value === 'string' && value.trim().length > 0 ? value : undefined;
+}
+
+/**
+ * Where a `MODEL_NOT_IN_CATALOG` rejection arose. `session-create` is the
+ * create request for a chat that has not started (the renderer's catalog
+ * snapshot was stale); `session` is the boot route or the turn stream of an
+ * existing session whose recorded model left the catalog.
+ */
+export type ModelNotInCatalogOrigin = 'session-create' | 'session';
+
+export type HarnessUiErrorContext = {
+  /** The caller retained the unsent draft after a boot request failed. */
+  bootBeforePrompt?: boolean;
+  /** Names the model when the details omit it (the turn stream forwards only `runtimeCode` and `reason`). */
+  sessionModel?: string;
+  /** Defaults to `session`. */
+  origin?: ModelNotInCatalogOrigin;
+};
+
+/**
+ * Runtime reports a model outside the authenticated Codex catalog with
+ * `details.reason = MODEL_NOT_IN_CATALOG`. For an existing session (boot route
+ * and the turn stream's `turn:error`) the record is never rewritten; the
+ * operator starts a new chat. For session creation no chat exists yet, so the
+ * operator refreshes the account status and chooses again.
+ */
+export function modelNotInCatalogUiError(error: unknown, context: HarnessUiErrorContext = {}): HarnessUiError | null {
+  if (!(error instanceof HarnessApiClientError)) return null;
+  if (readDetailString(error.details, 'reason') !== MODEL_NOT_IN_CATALOG_REASON) return null;
+  const model = readDetailString(error.details, 'model') ?? context.sessionModel;
+  if (context.origin === 'session-create') {
+    return {
+      title: 'Model No Longer Offered',
+      message: model
+        ? `Model ${model} is no longer offered by your Codex account. Refresh your account status and choose again.`
+        : 'The chosen model is no longer offered by your Codex account. Refresh your account status and choose again.',
+      nextStep: 'Refresh your account status and choose a model your account offers.',
+      code: error.code
+    };
+  }
+  return {
+    title: 'Model No Longer Offered',
+    message: model
+      ? `This chat used ${model}, which your Codex account no longer offers. Start a new chat.`
+      : 'This chat used a model your Codex account no longer offers. Start a new chat.',
+    nextStep: 'Start a new chat to choose a model your account offers.',
+    code: error.code
+  };
+}
+
+export function toHarnessUiError(error: unknown, context: HarnessUiErrorContext = {}): HarnessUiError {
+  const catalogError = modelNotInCatalogUiError(error, context);
+  if (catalogError) return catalogError;
   if (error instanceof HarnessApiClientError) {
+    const bootstrapState = readDetailString(error.details, 'bootstrapState');
+    const bootTimeout = readDetailString(error.details, 'operation') === 'boot' &&
+      (readDetailString(error.details, 'transportReason') === 'timeout' || readDetailString(error.details, 'reason') === 'BOOT_TIMEOUT');
+    const bootTransportFailure = readDetailString(error.details, 'operation') === 'boot' && readDetailString(error.details, 'transportReason') === 'transport';
+    const bootCancelled = readDetailString(error.details, 'operation') === 'boot' && readDetailString(error.details, 'reason') === 'BOOT_CANCELLED';
+    if (bootTimeout || bootTransportFailure || bootCancelled || bootstrapState) {
+      const failed = bootstrapState === 'failed' || bootCancelled;
+      const conflict = bootstrapState === 'conflict';
+      return {
+        title: bootTimeout ? 'Chat took too long to start' : failed ? 'Chat could not start' : conflict ? 'Chat context changed' : bootstrapState === 'pending' ? 'Chat is still starting' : 'Chat start is not confirmed',
+        message: context.bootBeforePrompt ? 'Your message is saved.' : 'The chat did not finish starting.',
+        nextStep: failed ? 'Start a new chat to try again.' : conflict ? "Return to this chat's original role and folder, or start a new chat." : 'Send again to check this chat, or start a new chat.',
+        code: error.code
+      };
+    }
+    if (readDetailString(error.details, 'transportReason') === 'timeout') return {
+      title: 'Runtime Request Timed Out', message: 'Runtime did not respond within the request wait period.',
+      nextStep: 'Check the current session before retrying.', code: error.code
+    };
     const copy = ERROR_COPY[error.code as HarnessErrorType];
     if (copy) {
       const message =

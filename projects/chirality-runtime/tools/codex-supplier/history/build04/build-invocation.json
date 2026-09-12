@@ -1,0 +1,50 @@
+{
+  "mode": "DEV local trial with only sha2:0.10.9 opt-level3; no optimized/public release claim",
+  "argv": [
+    "/usr/bin/sandbox-exec",
+    "-f",
+    "/private/tmp/chirality-supplier-release-20260910-02/evidence/stageA-author/resume-target-metadata/execution.sb",
+    "/usr/bin/env",
+    "-i",
+    "PATH=/Users/ryan/.rustup/toolchains/1.97.1-aarch64-apple-darwin/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "HOME=/private/tmp/chirality-supplier-release-20260910-02/tmp",
+    "TMPDIR=/private/tmp/chirality-supplier-release-20260910-02/tmp",
+    "CARGO_HOME=/private/tmp/chirality-supplier-release-20260910-02/cargo-exec-diagnostic-01",
+    "CARGO_TARGET_DIR=/private/tmp/chirality-supplier-release-20260910-02/target",
+    "LANG=C",
+    "LC_ALL=C",
+    "CARGO_TERM_COLOR=never",
+    "GIT_CONFIG_NOSYSTEM=1",
+    "GIT_CONFIG_GLOBAL=/dev/null",
+    "GIT_OPTIONAL_LOCKS=0",
+    "GIT_NO_LAZY_FETCH=1",
+    "GIT_TERMINAL_PROMPT=0",
+    "CARGO_NET_GIT_FETCH_WITH_CLI=false",
+    "CARGO_NET_OFFLINE=true",
+    "cargo",
+    "build",
+    "--manifest-path",
+    "/private/tmp/chirality-supplier-release-20260910-02/source/codex-rs/cli/Cargo.toml",
+    "--bin",
+    "codex",
+    "--locked",
+    "--offline",
+    "--target",
+    "aarch64-apple-darwin"
+  ],
+  "cwd": "/private/tmp/chirality-supplier-release-20260910-02/source",
+  "previousExecutable": {
+    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/artifact/codex",
+    "sha256": "0489a897c482dd03c79ee18055d796be5935c48c93a257f30c53141fec985100",
+    "size": 761944360
+  },
+  "sourceBeforeSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
+  "productionCut": "bef8889cefd0ecb64d18adc376d0c5f501f7bcb8cc63d00d8ee194fba19edf86",
+  "status": "completed exit0",
+  "sourceDelta": "final retained test-only source plus exact sha2 dev package override",
+  "changesSinceBuild03": [
+    "codex-rs/Cargo.toml",
+    "codex-rs/core/src/tools/handlers/multi_agents_tests.rs"
+  ],
+  "prebuildReviewSha256": "f912cf487e145c149e13d5174c0f90dd0a5924d66fb77a7777c39df30468c07b"
+}

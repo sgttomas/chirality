@@ -93,7 +93,8 @@ vi.mock('../../components/woven-dialogue/agents-projection', () => ({
   AgentsProjection: () => <div data-agents="mounted" />
 }));
 vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => shellState.runtimeEpoch }));
-vi.mock('../../lib/woven-dialogue/selected-session-replay', () => ({
+vi.mock('../../lib/woven-dialogue/selected-session-replay', async (importOriginal) => ({
+  ...await importOriginal<typeof import('../../lib/woven-dialogue/selected-session-replay')>(),
   createSelectedSessionReplayLoader: () => {
     let current: any = { status: 'IDLE' };
     return {
@@ -172,8 +173,9 @@ describe('WovenDialogueShell composition', () => {
       expect(tree.root.findAll(node => Boolean(node.props['data-focused-surface']))).toHaveLength(0);
     };
     const click = (label: string) => act(() => { tree.root.findAllByType('button').find(button => (button.props['aria-label'] ?? button.children.join('')) === label)!.props.onClick(); });
+    const inspectRecorded = tree.root.findByType(RightPanel).props.onOpenParent;
     act(() => tree.root.findByType(RightPanel).props.onClose());
-    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
+    act(() => inspectRecorded('recorded'));
     expect(tree.root.findByType(CoordinationPanel).props.activeView).toBe('session');
     expect(tree.root.findByProps({ 'data-replay-lens': 'LOADING' })).toBeTruthy();
     assertPrimary();
@@ -183,11 +185,16 @@ describe('WovenDialogueShell composition', () => {
     expect(shellState.replayLoad).toHaveBeenCalledTimes(2);
     act(() => shellState.replayNotify?.({ status: 'READY', projection: { selectedSessionId: 'recorded' } }));
     assertPrimary();
-    click('Who is working'); assertPrimary();
-    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
+    // The right panel's "Agents" tab or breadcrumb, never the Coordination view toggle (which carries aria-pressed).
+    const agentsButton = () => tree.root.findAllByType('button').find(button => button.children.join('') === 'Agents' && button.props['aria-pressed'] === undefined)!;
+    const clickAgentsTab = () => act(() => { agentsButton().props.onClick(); });
+    expect(agentsButton()).toBeDefined();
+    expect(tree.root.findAllByType('button').some(button => button.children.join('') === 'Who is working')).toBe(false);
+    clickAgentsTab(); assertPrimary();
+    act(() => tree.root.findByType(RightPanel).props.onOpenParent('recorded'));
     expect(tree.root.findByType(CoordinationPanel).props.activeView).toBe('session');
     expect(shellState.replayLoad).toHaveBeenCalledTimes(2); assertPrimary();
-    click('Who is working'); act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded')); assertPrimary();
+    clickAgentsTab(); act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded')); assertPrimary();
     click('Close Navigator'); assertPrimary(); click('Open Navigator'); assertPrimary();
     act(() => tree.root.findByType(RightPanel).props.onView('files'));
     act(() => tree.root.findByType(RightPanel).props.onClose()); assertPrimary(); click('Open Coordination'); assertPrimary();
@@ -197,7 +204,7 @@ describe('WovenDialogueShell composition', () => {
         assertPrimary();
       }
     }
-    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
+    act(() => tree.root.findByType(RightPanel).props.onOpenParent('recorded'));
     click('Return to primary dialogue');
     expect(focus).toHaveBeenCalled(); assertPrimary();
     expect(tree.root.findAll(node => Boolean(node.props['data-replay-lens']))).toHaveLength(0);
@@ -247,10 +254,15 @@ describe('WovenDialogueShell composition', () => {
     const oldCatalogCallback = panel.props.onFileCatalog;
     act(() => oldCatalogCallback({ root: shellState.projectRoot, paths: [`${shellState.projectRoot}/docs/SPEC.md`] }));
     expect(tree.root.findByProps({ 'data-chat-file': 1 })).toBeTruthy();
+    act(() => panel.props.onClose());
+    expect(tree.root.findByProps({ 'aria-label': 'Open Coordination' })).toBeTruthy();
+    expect(tree.root.findAllByType(RightPanel)).toHaveLength(0);
     act(() => tree.root.findByProps({ 'data-chat-file': 1 }).props.onClick());
+    expect(tree.root.findAllByProps({ 'aria-label': 'Open Coordination' })).toHaveLength(0);
+    expect(tree.root.findByType(RightPanel).props.state.openDocumentPath).toBe('docs/SPEC.md');
     expect(JSON.parse(persist.mock.calls.at(-1)![1])).toMatchObject({ openDocumentPath: 'docs/SPEC.md', rightPanelView: 'files', coordinationCollapsed: false });
 
-    act(() => panel.props.onOpenFile('/repo/projects/chirality-app-dev-other/docs/SPEC.md'));
+    act(() => tree.root.findByType(RightPanel).props.onOpenFile('/repo/projects/chirality-app-dev-other/docs/SPEC.md'));
     expect(JSON.parse(persist.mock.calls.at(-1)![1]).openDocumentPath).toBe('docs/SPEC.md');
 
     shellState.projectRoot = '/repo/next';
@@ -270,7 +282,7 @@ describe('WovenDialogueShell composition', () => {
     vi.stubGlobal('document', { querySelector: () => ({ focus }) });
     let tree!: ReactTestRenderer; await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
     const input = tree.root.findByProps({ 'data-chat-input': 'primary' });
-    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
+    act(() => tree.root.findByType(RightPanel).props.onOpenParent('recorded'));
     const projection = (parentSessionId: string) => ({ selectedSessionId: 'recorded', sourceReference: 'events:recorded', observedAt: '2026-09-05', disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', sourceEventCount: 2, renderedItemCount: 1, malformedLineCount: 0, diagnostics: [], session: { sessionId: 'recorded', currency: 'CURRENT', parentage: { state: 'RECORDED', parentSessionId, parentAvailable: true }, diagnostics: [] } });
     act(() => shellState.replayNotify?.({ status: 'READY', projection: projection('parent') }));
     const openParent = () => tree.root.findAllByType('button').find(x => x.children.includes('Open parent chat'))!;
@@ -293,7 +305,7 @@ describe('WovenDialogueShell composition', () => {
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
-    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
+    act(() => tree.root.findByType(RightPanel).props.onOpenParent('recorded'));
     const projection = { selectedSessionId: 'recorded', sourceReference: 'session:recorded/events', observedAt: '2026-09-09', disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', transcript: { itemCount: 0, items: [] }, instructionHistory: [], instructionBases: [], malformedLineCount: 0, sourceEventCount: 0, renderedItemCount: 0, diagnostics: [], session: { sessionId: 'recorded', parentage: { state: 'NOT_RECORDED' }, diagnostics: [], continuation: { schemaVersion: 'chirality.session/v3', projectRoot: shellState.projectRoot, roleId: 'WORKING_ITEMS', mode: 'CHAT', interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [], methodSelectionRevision: 1, instructionBasisId: 'basis-1' } } };
     await act(async () => shellState.replayNotify?.({ status: 'READY', projection }));
     await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('Continue this chat'))!.props.onClick());
@@ -482,4 +494,23 @@ it('opens Settings from the sole footer or collapsed account control without rem
   expect(tree.root.findByProps({ 'data-activity-strip': 'mounted' }).props['data-primary-session']).toBe('primary');
   act(() => tree.unmount());
   vi.unstubAllGlobals();
+});
+
+
+it('ordinary history selection opens an eligible chat directly and pauses the old composer during loading', async () => {
+  shellState.query = 'agent=HELP_HUMAN';
+  vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+  vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
+  let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+  act(() => tree.root.findByType(RightPanel).props.onOpenFile(`${shellState.projectRoot}/report.md`));
+  await act(async () => { tree.root.findByType(Navigator).props.onSelectSession('recorded'); });
+  expect(tree.root.findByType(RightPanel).props.state).toMatchObject({ rightPanelView: 'files', openDocumentPath: 'report.md' });
+  expect(tree.root.findByType('fieldset').props.disabled).toBe(true);
+  await act(async () => { shellState.replayNotify?.({ status: 'READY', projection: { selectedSessionId: 'recorded', disclosure: 'READY_SNAPSHOT', session: { continuation: { roleId: 'HELP_HUMAN', projectRoot: shellState.projectRoot } } } }); });
+  expect(shellState.resumedSession).toBe('recorded');
+  expect(tree.root.findByType(RightPanel).props.state).toMatchObject({ rightPanelView: 'files', openDocumentPath: 'report.md' });
+  expect(tree.root.findByType('fieldset').props.disabled).toBe(false);
+  expect(tree.root.findAllByProps({ 'data-replay-lens': 'READY' })).toHaveLength(0);
+  act(() => tree.unmount());
 });

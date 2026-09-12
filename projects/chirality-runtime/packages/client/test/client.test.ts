@@ -244,3 +244,17 @@ describe("RuntimeClient Unix-socket transport", () => {
     await expect(client.health()).rejects.toBeInstanceOf(RuntimeTransportError);
   });
 });
+
+it("keeps boot waiting past the generic JSON deadline and labels transport failures", async () => {
+  const server = await fixture(async (_request, response) => {
+    await new Promise(resolve => setTimeout(resolve, 40));
+    json(response, 200, { boot: { engineSessionId: "actual-boot" } });
+  });
+  const client = new RuntimeClient({ socketPath: join(server.root, "control.sock"), tokenFile: join(server.root, "operator.token"), timeoutMs: 10 });
+  try {
+    await expect(client.requestJson("/slow")).rejects.toMatchObject({ reason: "timeout" });
+    await expect(client.bootSession("project-a", "sess-a")).resolves.toMatchObject({ boot: { engineSessionId: "actual-boot" } });
+    const controller = new AbortController(); controller.abort();
+    await expect(client.bootSession("project-a", "sess-a", {}, controller.signal)).rejects.toMatchObject({ reason: "transport", operation: "boot", sessionId: "sess-a" });
+  } finally { await server.close(); }
+});

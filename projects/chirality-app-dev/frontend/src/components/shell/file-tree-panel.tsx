@@ -30,7 +30,7 @@ export type FileCatalog = {
   paths: string[];
 };
 
-function collectFilePaths(node: TreeNode): string[] {
+export function collectFilePaths(node: TreeNode): string[] {
   const paths: string[] = [];
   const visit = (candidate: TreeNode): void => {
     if (candidate.kind === 'file') {
@@ -123,6 +123,7 @@ export function FileTreePanel({ onOpenFile, onFileCatalog, selectedPath, present
   const [pollingGeneration, setPollingGeneration] = useState(0);
   const latestRequestIdRef = useRef(0);
   const treeRef = useRef<TreeNode | null>(null);
+  const catalogRootRef = useRef(projectRoot);
 
   useEffect(() => {
     treeRef.current = tree;
@@ -134,10 +135,12 @@ export function FileTreePanel({ onOpenFile, onFileCatalog, selectedPath, present
     treeRef.current = null;
     setError(null);
     setLoading(false);
-    onFileCatalog?.(null);
+    if (catalogRootRef.current !== projectRoot) onFileCatalog?.(null);
+    catalogRootRef.current = projectRoot;
   }, [projectRoot, onFileCatalog]);
 
-  useEffect(() => () => onFileCatalog?.(null), [onFileCatalog]);
+  // The catalog belongs to the conversation, not this panel's visibility.
+  // Root changes and failed reads still invalidate it above/below.
 
   const triggerRefresh = useCallback(() => {
     setRefreshNonce((current) => current + 1);

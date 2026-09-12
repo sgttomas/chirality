@@ -32,6 +32,18 @@ describe("closed additive v2 wire schema", () => {
     const valid = { ...envelope, type: "message.delta", data: { text: "hi" } };
     for (const mutation of [{ schemaVersion: 1 }, { sequence: -1 }, { timestamp: "yesterday" }, { turnId: "" }, { vendor: {} }, { attribution: { model: "m" } }]) expect(validateHarnessEventV2({ ...valid, ...mutation })).toBe(false);
   });
+  it("accepts optional per-turn reasoning effort attribution and projects it, rejecting other attribution extensions", () => {
+    const valid = { ...envelope, type: "turn.completed", data: { outcome: "completed" } };
+    const base = { adapterId: "codex-app-server", providerId: "openai", model: "gpt-alt" };
+    expect(validateHarnessEventV2({ ...valid, attribution: base })).toBe(true);
+    expect(validateHarnessEventV2({ ...valid, attribution: { ...base, reasoningEffort: "low" } })).toBe(true);
+    expect(validateHarnessEventV2({ ...valid, attribution: { ...base, reasoningEffort: "" } })).toBe(false);
+    expect(validateHarnessEventV2({ ...valid, attribution: { ...base, reasoningEffort: undefined } })).toBe(false);
+    expect(validateHarnessEventV2({ ...valid, attribution: { ...base, vendorTier: "priority" } })).toBe(false);
+    const projected = projectRuntimeEventV2({ ...runtime("turn.completed", {}), attribution: { ...base, reasoningEffort: "low", packageName: "ignored" } });
+    expect(projected).toEqual({ kind: "event", event: { ...valid, eventId: "e", attribution: { ...base, reasoningEffort: "low" } } });
+    expect(projectRuntimeEventV2({ ...runtime("turn.completed", {}), attribution: base })).toMatchObject({ kind: "event", event: { attribution: base } });
+  });
   it("projects all four runtime terminal identities explicitly", () => {
     for (const type of HARNESS_V2_TERMINALS) {
       const source = { ...runtime("turn.completed", type === "turn.failed" ? { code: "FAILED", message: "failure" } : {}), type };

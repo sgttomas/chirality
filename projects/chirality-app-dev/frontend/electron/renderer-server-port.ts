@@ -7,7 +7,7 @@ export const RENDERER_PORT_RECORD_SCHEMA = 'chirality.renderer-port/v1';
 export const RENDERER_PORT_RECORD_FILENAME = 'renderer-port.json';
 const MAX_RECORD_BYTES = 256;
 
-type RendererPortRecord = {
+export type RendererPortRecord = {
   schema: typeof RENDERER_PORT_RECORD_SCHEMA;
   host: '127.0.0.1';
   port: number;
@@ -66,7 +66,17 @@ function validateRecordFile(entry: Stats): void {
   }
 }
 
-async function readRendererPortRecord(filePath: string): Promise<RendererPortRecord | null> {
+/** Absolute path of the renderer port record for a userData directory. */
+export function rendererPortRecordPath(userDataDirectory: string): string {
+  return recordPath(userDataDirectory);
+}
+
+/**
+ * The validated saved record, `null` when none exists. Throws on any record
+ * that fails validation. Shared with the daemon's activate guard, which uses
+ * the saved port as its evidence of a running GUI.
+ */
+export async function readRendererPortRecord(filePath: string): Promise<RendererPortRecord | null> {
   let entry;
   try {
     entry = await lstat(filePath);

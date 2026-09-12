@@ -1,3 +1,4 @@
+import { PLAN_EXPORT_DIALOG_CHANNEL, type PlanExportTargetResult } from './plan-export-ipc-contract';
 import { contextBridge, ipcRenderer, webUtils } from 'electron';
 import {
   RUNTIME_CONNECTIVITY_CHANGED_CHANNEL,
@@ -10,6 +11,11 @@ import {
   type HostAccountDesktopResult,
   type HostAccountDesktopValue
 } from './host-account-ipc-contract';
+import {
+  ATTACHMENT_SELECT_FILES_CHANNEL,
+  type AttachmentSelectFilesRequest,
+  type AttachmentSelectFilesResult
+} from './attachment-ipc-contract';
 
 const SELECT_DIRECTORY_CHANNEL = 'chirality:select-directory';
 const API_KEY_STORE_CHANNEL = 'chirality:api-key-store';
@@ -56,6 +62,21 @@ contextBridge.exposeInMainWorld('chirality', {
       void ipcRenderer.invoke('chirality:folder-open-ready').catch(() => { if (active) listener({ error: 'Folder intent delivery is unavailable.' }); });
       return () => { active = false; ipcRenderer.removeListener('chirality:folder-open-intent', handler); };
     }
+  },
+  plans: {
+    chooseExportTarget: (request: { projectRoot: string; revision: number }): Promise<PlanExportTargetResult> =>
+      ipcRenderer.invoke(PLAN_EXPORT_DIALOG_CHANNEL, { operation: 'choose', projectRoot: request.projectRoot, revision: request.revision }),
+    confirmOverwrite: async (request: { projectRoot: string; targetRelativePath: string }): Promise<boolean> =>
+      (await ipcRenderer.invoke(PLAN_EXPORT_DIALOG_CHANNEL, { operation: 'confirm-overwrite', projectRoot: request.projectRoot, targetRelativePath: request.targetRelativePath })) === true
+  },
+  attachments: {
+    /**
+     * Native multi-file picker rooted at the project. Only canonical absolute
+     * paths inside the project folder with a supported extension come back;
+     * any other selection cancels the whole request with a reason.
+     */
+    selectFiles: (request: AttachmentSelectFilesRequest): Promise<AttachmentSelectFilesResult> =>
+      ipcRenderer.invoke(ATTACHMENT_SELECT_FILES_CHANNEL, { projectRoot: request.projectRoot })
   },
   document: {
     // Desktop retains the frame-denying renderer policy, so inline PDF preview

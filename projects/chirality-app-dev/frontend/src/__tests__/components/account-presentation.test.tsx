@@ -6,7 +6,6 @@ import { WOVEN_WORKSPACE_STORAGE_KEY } from '../../lib/woven-dialogue/woven-work
 import { ThemeControl } from '../../components/shell/theme-control';
 import { AccountRow } from '../../components/shell/account-row';
 import { AccountPopover } from '../../components/shell/account-popover';
-import { DaemonQuickControl } from '../../components/shell/account-settings-controls';
 import { SettingsView } from '../../components/settings/settings-view';
 import { useAccountConsentController, type AccountConsentSettingsViewProps } from '../../components/settings/account-consent-settings';
 import { useRuntimeSettingsController, type RuntimeSettingsViewProps } from '../../components/settings/runtime-settings-controller';
@@ -20,26 +19,14 @@ vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRunt
 const noop = () => {};
 const accountBase: AccountConsentSettingsViewProps = { snapshot: null, busy: false, error: null, onLogin: noop, onLogout: noop, onGrantConsent: noop, onRevokeConsent: noop, onSelectNetworkPosture: noop, onResolveNetworkPrompt: noop, onSelectRole: noop };
 const runtimeBase: RuntimeSettingsViewProps = { bridgeAvailable: false, daemonStatus: null, residency: null, selectedModel: '', busyAction: null, error: null, onDaemonAction: noop, onRefresh: noop, onSelectedModelChange: noop, onActivateModel: noop };
-const hostedBase: HostedBootstrapController = { projectRoot: '/folder', snapshot: { registration: 'required' }, loading: false, busyAction: null, error: null, signOutUncertain: false, authUrl: null, onSetup: noop, onGrantConsent: noop, onStartLogin: noop, onCancelLogin: noop, onSignOut: noop };
+const hostedBase: HostedBootstrapController = { projectRoot: '/folder', snapshot: { registration: 'required' }, loading: false, busyAction: null, error: null, signOutUncertain: false, authUrl: null, onSetup: noop, onGrantConsent: noop, onStartLogin: noop, onCancelLogin: noop, onSignOut: noop, onRefresh: noop };
 const text = (node: { children: unknown[] }): string => node.children.map(child => typeof child === 'string' ? child : child && typeof child === 'object' && 'children' in child ? text(child as {children: unknown[]}) : '').join('');
-function findElement(node: React.ReactNode, predicate: (element: React.ReactElement<Record<string, unknown>>) => boolean): React.ReactElement<Record<string, unknown>> | null {
-  if (Array.isArray(node)) {
-    for (const child of node) {
-      const match = findElement(child, predicate);
-      if (match) return match;
-    }
-    return null;
-  }
-  if (!React.isValidElement<Record<string, unknown>>(node)) return null;
-  if (predicate(node)) return node;
-  return findElement(node.props.children as React.ReactNode, predicate);
-}
 const trees: ReactTestRenderer[] = [];
 afterEach(() => { act(() => trees.splice(0).forEach(tree => tree.unmount())); vi.unstubAllGlobals(); });
 function createTree(element: React.ReactElement): ReactTestRenderer { let tree!: ReactTestRenderer; act(() => { tree = create(element); }); trees.push(tree); return tree; }
 function Preview({ port, runtime = runtimeBase }: { port: HostedEngineConsentPort | null; runtime?: RuntimeSettingsViewProps }): JSX.Element {
   const account = useAccountConsentController(port);
-  return <><AccountRow account={account} runtime={runtime} folder={account.snapshot?.canonicalRoot ?? null} legacyHref="/?legacy=1" onOpenSettings={noop} /><SettingsView account={account} runtime={runtime} folder={account.snapshot?.canonicalRoot ?? null} /></>;
+  return <><AccountRow account={account} folder={account.snapshot?.canonicalRoot ?? null} onOpenSettings={noop} /><SettingsView account={account} runtime={runtime} folder={account.snapshot?.canonicalRoot ?? null} /></>;
 }
 
 describe('D122 account presentation', () => {
@@ -59,7 +46,7 @@ describe('D122 account presentation', () => {
   });
 
   it('keeps unavailable distinct from signed out and omits the folder group without context', () => {
-    const html = renderToStaticMarkup(<><AccountRow account={accountBase} runtime={runtimeBase} folder={null} legacyHref="/?legacy=1" onOpenSettings={noop} /><SettingsView account={accountBase} runtime={runtimeBase} folder={null} /></>);
+    const html = renderToStaticMarkup(<><AccountRow account={accountBase} folder={null} onOpenSettings={noop} /><SettingsView account={accountBase} runtime={runtimeBase} folder={null} /></>);
     expect(html).toContain('Account service unavailable'); expect(html).not.toContain('Not signed in');
     expect(html).not.toContain('data-settings-group="folder"');
   });
@@ -69,27 +56,25 @@ describe('D122 account presentation', () => {
     const html = renderToStaticMarkup(<SettingsView account={accountBase} runtime={runtime} hosted={hostedBase} folder="/folder" />);
 
     expect(html).toContain('data-settings-group="runtime"');
-    expect(html).toContain('Shared Runtime');
+    expect(html).toContain('>Runtime</h3>');
+    expect(html).toContain('Runtime service');
     expect(html).toContain('Not installed');
     expect(html).toContain('Install');
+    expect(html).not.toContain('Shared Runtime');
     expect(html).not.toContain('Local model');
     expect(html).not.toContain('Activate Explicitly');
+    expect(html).not.toContain('Preview account');
+    expect(html).not.toContain('apply to the selected project');
   });
 
-  it('offers hosted runtime setup before project bootstrap and sends the explicit install action', () => {
-    const action = vi.fn();
-    const runtime = { ...runtimeBase, bridgeAvailable: true, daemonStatus: { launchAgent: { installed: false, loaded: false }, daemon: { running: false } }, onDaemonAction: action };
-    const popover = AccountPopover({ account: accountBase, runtime, hosted: hostedBase, folder: '/folder', legacyHref: '/?legacy=1', onOpenSettings: noop });
-    const groups = React.Children.toArray(popover.props.children) as React.ReactElement<Record<string, unknown>>[];
-    expect(groups[0]?.props['aria-label']).toBe('Shared runtime');
-    const quickControl = findElement(groups[0], element => element.type === DaemonQuickControl);
-    expect(quickControl).not.toBeNull();
-    const controls = DaemonQuickControl(quickControl!.props as React.ComponentProps<typeof DaemonQuickControl>);
-    const setup = findElement(controls, element => element.type === 'button' && element.props.children === 'Set up runtime…');
-    expect(setup).not.toBeNull();
-
-    (setup!.props.onClick as () => void)();
-    expect(action).toHaveBeenCalledExactlyOnceWith('install');
+  it('keeps the hosted popover to account, Settings, Appearance, and About with runtime controls only in Settings', () => {
+    const tree = createTree(<AccountPopover account={accountBase} hosted={hostedBase} folder="/folder" onOpenSettings={noop} />);
+    expect(tree.root.findAllByType('section').map(node => node.props['aria-label']).filter(Boolean)).toEqual(['OpenAI account', 'App controls']);
+    expect(tree.root.findAllByType('summary').map(text)).toEqual(['Appearance', 'About Chirality']);
+    expect(tree.root.findAllByType('button').map(text)).toEqual(['Use this folder', 'Settings…', 'Light', 'Dark', 'System']);
+    const body = text(tree.root);
+    expect(body).not.toMatch(/Shared runtime|Set up runtime|runtime daemon|Local model|oMLX|Opt-in Preview/);
+    expect(body).toMatch(/Chirality \d+\.\d+/);
   });
 
   it('uses explicit login/logout/consent actions and does not carry identity across fake roots', async () => {
@@ -107,21 +92,32 @@ describe('D122 account presentation', () => {
     expect(second.getSnapshot().account.status).toBe('loggedOut'); expect(text(tree.root)).not.toContain('Signed in as');
   });
 
-  it.each([false, true])('reports unknown server status with daemon loaded=%s and targets only explicit daemon start/stop', loaded => {
-    const action = vi.fn();
-    const runtime = { ...runtimeBase, bridgeAvailable: true, daemonStatus: { launchAgent: { installed: true, loaded }, daemon: { running: loaded } }, onDaemonAction: action };
-    const tree = createTree(<AccountPopover account={accountBase} runtime={runtime} folder={null} legacyHref="/?legacy=1" onOpenSettings={noop} />);
-    expect(action).not.toHaveBeenCalled(); expect(text(tree.root)).toContain('oMLX server status unknown.');
-    act(() => tree.root.findByProps({ role: 'switch' }).props.onClick());
-    expect(action).toHaveBeenCalledExactlyOnceWith(loaded ? 'stop' : 'start');
+  it('asks the hosted controller to re-read status each time the popover opens, never on close', () => {
+    const onRefresh = vi.fn();
+    const tree = createTree(<AccountRow account={accountBase} hosted={{ ...hostedBase, onRefresh }} folder="/folder" onOpenSettings={noop} />);
+    const trigger = () => tree.root.findByProps({ 'aria-label': 'Account and settings', type: 'button' });
+    act(() => trigger().props.onClick());
+    expect(onRefresh).toHaveBeenCalledTimes(1);
+    expect(tree.root.findAllByProps({ role: 'dialog' })).toHaveLength(1);
+    act(() => trigger().props.onClick());
+    expect(onRefresh).toHaveBeenCalledTimes(1);
+    expect(tree.root.findAllByProps({ role: 'dialog' })).toHaveLength(0);
+    act(() => trigger().props.onClick());
+    expect(onRefresh).toHaveBeenCalledTimes(2);
   });
 
-  it('setup navigates to the Local model group and the folder shortcut selects the folder group', () => {
-    const open = vi.fn(); const action = vi.fn();
-    const runtime = { ...runtimeBase, bridgeAvailable: true, daemonStatus: { launchAgent: { installed: false, loaded: false }, daemon: { running: false } }, onDaemonAction: action };
-    const tree = createTree(<AccountPopover account={accountBase} runtime={runtime} folder="/folder" legacyHref="/?legacy=1" onOpenSettings={open} />);
-    act(() => tree.root.findAllByType('button').find(node => text(node) === 'Set up runtime…')!.props.onClick());
-    expect(open).toHaveBeenLastCalledWith('local-model'); expect(action).not.toHaveBeenCalled();
+  it('keeps daemon start/stop out of the non-hosted popover; the popover takes no runtime controller', () => {
+    const tree = createTree(<AccountPopover account={accountBase} folder={null} onOpenSettings={noop} />);
+    expect(tree.root.findAllByProps({ role: 'switch' })).toHaveLength(0);
+    expect(text(tree.root)).not.toMatch(/oMLX|Local model|runtime daemon/);
+  });
+
+  it('opens Settings from the popover and the folder shortcut selects the folder group', () => {
+    const open = vi.fn();
+    const tree = createTree(<AccountPopover account={accountBase} folder="/folder" onOpenSettings={open} />);
+    expect(tree.root.findAllByType('button').some(node => text(node) === 'Set up runtime…')).toBe(false);
+    act(() => tree.root.findAllByType('button').find(node => text(node) === 'Settings…')!.props.onClick());
+    expect(open).toHaveBeenLastCalledWith();
     act(() => tree.root.findAllByType('button').find(node => text(node) === 'This folder…')!.props.onClick());
     expect(open).toHaveBeenLastCalledWith('folder');
   });
@@ -132,14 +128,16 @@ describe('D122 account presentation', () => {
     vi.stubGlobal('window', { chirality: { runtime: { daemon: { status }, models: { status: models } } } });
     function Host({ settings }: { settings: boolean }): JSX.Element {
       const runtime = useRuntimeSettingsController();
-      return <><AccountPopover account={accountBase} runtime={runtime} folder={null} legacyHref="/?legacy=1" onOpenSettings={noop} />{settings ? <SettingsView account={accountBase} runtime={runtime} folder={null} /> : null}</>;
+      return <><AccountPopover account={accountBase} folder={null} onOpenSettings={noop} />{settings ? <SettingsView account={accountBase} runtime={runtime} folder={null} /> : null}</>;
     }
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<Host settings={false} />); }); trees.push(tree);
     expect(status).toHaveBeenCalledTimes(1); expect(models).toHaveBeenCalledTimes(1);
     await act(async () => tree.update(<Host settings />));
     expect(status).toHaveBeenCalledTimes(1); expect(models).toHaveBeenCalledTimes(1);
+    // Non-hosted Settings keeps its local-model group; the popover no longer repeats it.
     expect(text(tree.root)).toContain('oMLX server status unknown.');
+    expect(text(tree.root.findByProps({ 'aria-label': 'App controls' }))).not.toContain('oMLX');
   });
 });
 

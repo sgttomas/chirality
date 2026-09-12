@@ -49,6 +49,8 @@ export interface DelegatedHarnessProcessSupervisorPort {
   inventory(): Promise<readonly WorkerHandle[]>;
   reconnect(workerId: string, generation: string): Promise<WorkerHandle>;
   wait(workerId: string, generation: string): Promise<WorkerResult>;
+  /** Requests native interruption; resolves after its genuine terminal and retirement. */
+  interrupt?(workerId: string, generation: string): Promise<void>;
   retire(workerId: string, generation: string): Promise<void>;
 }
 export interface WorkerTerminalRecord {
@@ -100,6 +102,9 @@ export interface DelegatedTurnRequest {
   prompt: string;
   /** Resolved user attachments. They remain untrusted user input, never instruction context. */
   attachments?: readonly DelegatedAttachmentInput[];
+  /** Session-fixed catalog choice. Absent means the admitted default; never substituted. */
+  model?: string;
+  reasoningEffort?: string;
   compatibility: RuntimeCompatibilityIdentity;
   preflight: DelegatedPreflight;
 }
@@ -156,17 +161,82 @@ export interface HostedLoginStatus {
   binding: HostedAccountBinding;
   hostedReady: false;
 }
+/** One non-hidden entry of the authenticated Codex model catalog (`model/list`). */
+export interface HostedModelCatalogEntry {
+  model: string;
+  isDefault: boolean;
+  defaultReasoningEffort: string;
+  supportedReasoningEfforts: readonly string[];
+}
+/** Non-hidden catalog retained for one admission; `default` is its unique default entry. */
+export interface HostedModelCatalog {
+  models: readonly HostedModelCatalogEntry[];
+  default: HostedModelCatalogEntry;
+}
+export interface HostedModelSelection { model: string; reasoningEffort: string }
+export const HOSTED_MODEL_ID_PATTERN = /^[\x21-\x7e]{1,128}$/;
+export const HOSTED_REASONING_EFFORT_PATTERN = /^[\x21-\x7e]{1,64}$/;
+/** Validates the catalog shape exposed by hosted status: 1..64 entries, exactly one default, each default effort supported. */
+export function validateHostedModelCatalogEntries(value: unknown): readonly HostedModelCatalogEntry[] {
+  const invalidCatalog = () => new RuntimeError("INVALID_REQUEST", "Invalid hosted model catalog");
+  if (!Array.isArray(value) || value.length < 1 || value.length > 64) throw invalidCatalog();
+  const seen = new Set<string>();
+  const models = value.map((entry: unknown): HostedModelCatalogEntry => {
+    const item = hostedRecord(entry, ["model", "isDefault", "defaultReasoningEffort", "supportedReasoningEfforts"]);
+    if (typeof item.model !== "string" || !HOSTED_MODEL_ID_PATTERN.test(item.model) || typeof item.isDefault !== "boolean"
+      || typeof item.defaultReasoningEffort !== "string" || !HOSTED_REASONING_EFFORT_PATTERN.test(item.defaultReasoningEffort)
+      || !Array.isArray(item.supportedReasoningEfforts) || item.supportedReasoningEfforts.length < 1 || item.supportedReasoningEfforts.length > 32
+      || !item.supportedReasoningEfforts.every((effort: unknown) => typeof effort === "string" && HOSTED_REASONING_EFFORT_PATTERN.test(effort))
+      || new Set(item.supportedReasoningEfforts).size !== item.supportedReasoningEfforts.length
+      || !item.supportedReasoningEfforts.includes(item.defaultReasoningEffort) || seen.has(item.model)) throw invalidCatalog();
+    seen.add(item.model);
+    return Object.freeze({ model: item.model, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort, supportedReasoningEfforts: Object.freeze([...(item.supportedReasoningEfforts as string[])]) });
+  });
+  if (models.filter(entry => entry.isDefault).length !== 1) throw invalidCatalog();
+  return Object.freeze(models);
+}
+/** Builds a catalog from validated entries; the unique default entry becomes `default`. */
+export function hostedModelCatalog(models: readonly HostedModelCatalogEntry[]): HostedModelCatalog {
+  const validated = validateHostedModelCatalogEntries(models);
+  return Object.freeze({ models: validated, default: validated.find(entry => entry.isDefault)! });
+}
+/**
+ * Single no-substitution validator. An omitted request resolves to the catalog default;
+ * anything else must name a catalog model and one of that model's supported efforts.
+ */
+export function resolveHostedModelSelection(catalog: HostedModelCatalog, requested?: unknown): HostedModelSelection {
+  if (requested === undefined) return { model: catalog.default.model, reasoningEffort: catalog.default.defaultReasoningEffort };
+  if (!requested || typeof requested !== "object" || Array.isArray(requested) || Object.keys(requested).sort().join(",") !== "model,reasoningEffort") {
+    throw new RuntimeError("INVALID_REQUEST", "modelSelection requires exactly model and reasoningEffort", 400, { reason: "MODEL_SELECTION_INVALID" });
+  }
+  const { model, reasoningEffort } = requested as Record<string, unknown>;
+  if (typeof model !== "string" || !HOSTED_MODEL_ID_PATTERN.test(model) || typeof reasoningEffort !== "string" || !HOSTED_REASONING_EFFORT_PATTERN.test(reasoningEffort)) {
+    throw new RuntimeError("INVALID_REQUEST", "modelSelection requires exactly model and reasoningEffort", 400, { reason: "MODEL_SELECTION_INVALID" });
+  }
+  const entry = catalog.models.find(candidate => candidate.model === model);
+  if (entry === undefined) {
+    throw new RuntimeError("INVALID_REQUEST", `Model '${model}' is not in the authenticated Codex catalog`, 400, { reason: "MODEL_NOT_IN_CATALOG", model, available: catalog.models.map(candidate => candidate.model) });
+  }
+  if (!entry.supportedReasoningEfforts.includes(reasoningEffort)) {
+    throw new RuntimeError("INVALID_REQUEST", `Reasoning effort '${reasoningEffort}' is not supported by '${model}'`, 400, { reason: "REASONING_EFFORT_UNSUPPORTED", model, supported: [...entry.supportedReasoningEfforts] });
+  }
+  return { model, reasoningEffort };
+}
 export interface HostedBootstrapStatus {
   schema: "chirality-hosted-bootstrap-status/v1";
   projectId: string;
   ceremony: "consent-required" | "ready-to-start" | "pending" | "signed-in" | "failed" | "cancelled";
   admission: "unavailable" | "establishing" | "ready";
   canStartLogin: boolean;
+  /** Non-hidden authenticated catalog; present only while `admission === "ready"` and always together with `selection`. */
+  models?: readonly HostedModelCatalogEntry[];
+  /** Admitted default model and its default reasoning effort. */
+  selection?: HostedModelSelection;
 }
 export interface HostedProviderNetworkConsentRequest { consent: true }
 export interface HostedBootstrapLoginStartResponse { loginId: string; authUrl: string }
 export function validateHostedBootstrapStatus(value: unknown): HostedBootstrapStatus {
-  const status = hostedRecord(value, ["schema", "projectId", "ceremony", "admission", "canStartLogin"]);
+  const status = hostedRecord(value, ["schema", "projectId", "ceremony", "admission", "canStartLogin", "models", "selection"]);
   if (status.schema !== "chirality-hosted-bootstrap-status/v1" || typeof status.projectId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(status.projectId)
     || !["consent-required", "ready-to-start", "pending", "signed-in", "failed", "cancelled"].includes(String(status.ceremony))
     || !["unavailable", "establishing", "ready"].includes(String(status.admission)) || typeof status.canStartLogin !== "boolean"
@@ -174,7 +244,16 @@ export function validateHostedBootstrapStatus(value: unknown): HostedBootstrapSt
     || (status.admission === "ready" && status.ceremony !== "signed-in")) {
     throw new RuntimeError("INVALID_REQUEST", "Invalid hosted bootstrap status");
   }
-  return status as unknown as HostedBootstrapStatus;
+  const hasModels = Object.hasOwn(status, "models"), hasSelection = Object.hasOwn(status, "selection");
+  if (hasModels !== hasSelection || (hasModels && status.admission !== "ready")) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted bootstrap status");
+  if (!hasModels) return status as unknown as HostedBootstrapStatus;
+  const models = validateHostedModelCatalogEntries(status.models);
+  const selection = hostedRecord(status.selection, ["model", "reasoningEffort"]);
+  const selected = models.find(entry => entry.model === selection.model);
+  if (typeof selection.model !== "string" || typeof selection.reasoningEffort !== "string" || selected === undefined || !selected.supportedReasoningEfforts.includes(selection.reasoningEffort)) {
+    throw new RuntimeError("INVALID_REQUEST", "Invalid hosted bootstrap status");
+  }
+  return { ...(status as unknown as HostedBootstrapStatus), models, selection: { model: selection.model, reasoningEffort: selection.reasoningEffort } };
 }
 function hostedRecord(value: unknown, allowed: readonly string[]): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)

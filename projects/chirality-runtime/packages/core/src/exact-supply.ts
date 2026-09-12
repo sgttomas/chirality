@@ -52,6 +52,24 @@ interface SupplyOptions { executablePath: string; expectedSha256?: string; expec
 interface Profile { sha256: string; version: string; size: number }
 const denied = (message: string) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503);
 const issued = new WeakSet<VerifiedSupply>();
+/**
+ * Per-process digest cache keyed by canonical path. A path is hashed once; later verifications of the same
+ * path answer from the recorded filesystem identity (dev, ino, size, mode, mtimeNs, ctimeNs) and re-hash only
+ * when that identity changed. Every custody, symlink, closure-listing and size check still runs on each call.
+ */
+const digestCache = new Map<string, Readonly<{ identity: FileIdentity; sha256: string }>>();
+const DIGEST_CACHE_BOUND = 4096;
+let hashPasses = 0;
+function cachedDigest(path: string, current: FileIdentity): string | undefined {
+  const entry = digestCache.get(path);
+  return entry && sameIdentity(entry.identity, current) ? entry.sha256 : undefined;
+}
+function rememberDigest(path: string, identity: FileIdentity, sha256: string): void {
+  if (digestCache.size >= DIGEST_CACHE_BOUND && !digestCache.has(path)) digestCache.delete(digestCache.keys().next().value!);
+  digestCache.set(path, Object.freeze({ identity, sha256 }));
+}
+/** Number of full byte-hashing passes this process has performed; a diagnostics counter for tests and timing. */
+export function exactSupplyHashPassCountForTests(): number { return hashPasses; }
 
 function identity(stat: { dev: bigint; ino: bigint; size: bigint; mtimeNs: bigint; ctimeNs: bigint; mode: bigint }): FileIdentity {
   return Object.freeze({ dev: `${stat.dev}`, ino: `${stat.ino}`, size: `${stat.size}`, mtimeNs: `${stat.mtimeNs}`, ctimeNs: `${stat.ctimeNs}`, mode: `${stat.mode}` });
@@ -71,21 +89,26 @@ async function inspect(executablePath: string, profile: Profile): Promise<{ cano
     const before = await handle.stat({ bigint: true });
     if (!before.isFile() || !sameIdentity(identity(pathStat), identity(before))) throw denied("Supply path changed before verification");
     if (before.size !== BigInt(profile.size)) throw denied("Supply payload size does not match the pinned identity");
-    const digest = createHash("sha256");
-    const buffer = Buffer.alloc(64 * 1024);
-    let bytes = 0;
-    for (;;) {
-      const { bytesRead } = await handle.read(buffer, 0, buffer.length, null);
-      if (bytesRead === 0) break;
-      bytes += bytesRead;
-      if (bytes > profile.size) throw denied("Supply payload grew during verification");
-      digest.update(buffer.subarray(0, bytesRead));
+    const cached = cachedDigest(canonicalPath, identity(before));
+    let sha256 = cached, bytes = profile.size;
+    if (sha256 === undefined) {
+      const digest = createHash("sha256");
+      const buffer = Buffer.alloc(64 * 1024);
+      bytes = 0; hashPasses++;
+      for (;;) {
+        const { bytesRead } = await handle.read(buffer, 0, buffer.length, null);
+        if (bytesRead === 0) break;
+        bytes += bytesRead;
+        if (bytes > profile.size) throw denied("Supply payload grew during verification");
+        digest.update(buffer.subarray(0, bytesRead));
+      }
+      sha256 = digest.digest("hex");
     }
     const after = identity(await handle.stat({ bigint: true }));
     const currentPath = await lstat(executablePath, { bigint: true });
     if (!sameIdentity(identity(before), after) || !sameIdentity(after, identity(currentPath)) || await realpath(executablePath) !== canonicalPath) throw denied("Supply identity changed during verification");
-    const sha256 = digest.digest("hex");
     if (bytes !== profile.size || sha256 !== profile.sha256) throw denied("Supply payload digest does not match the pinned identity");
+    if (cached === undefined) rememberDigest(canonicalPath, after, sha256);
     return { canonicalPath, identity: after, sha256 };
   } catch (error) {
     if (error instanceof RuntimeError) throw error;
@@ -103,7 +126,7 @@ export async function verifyExactSupply(options: SupplyOptions): Promise<Verifie
   issued.add(descriptor);
   return descriptor;
 }
-/** Rehash immediately before launch. A path-based OS launch still has a residual race after this check. */
+/** Revalidate immediately before launch: identity-checked, re-hashed only when the identity changed. A path-based OS launch still has a residual race after this check. */
 export async function revalidateExactSupply(descriptor: VerifiedSupply): Promise<VerifiedSupply> {
   if (!descriptor || !issued.has(descriptor)) throw denied("Supply descriptor was not issued by this exact verifier; verify again in this process");
   const current = await verifyExactSupply({ executablePath: descriptor.executablePath });
@@ -137,10 +160,16 @@ async function inspectClosure(executablePath: string, entries: ExactSupplyVerifi
     if (expected.type === "directory") { values.push(Object.freeze({ ...expected, identity: identity(info) })); continue; }
     const handle = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
     try {
-      const before = identity(await handle.stat({ bigint: true })), digest = createHash("sha256"), buffer = Buffer.alloc(64 * 1024); let total = 0;
-      for (;;) { const { bytesRead } = await handle.read(buffer, 0, buffer.length, null); if (!bytesRead) break; total += bytesRead; if (total > expected.size) throw denied("Custom supply closure grew during verification"); digest.update(buffer.subarray(0, bytesRead)); }
+      const before = identity(await handle.stat({ bigint: true })), cached = cachedDigest(path, before);
+      let sha256 = cached, total = expected.size;
+      if (sha256 === undefined) {
+        const digest = createHash("sha256"), buffer = Buffer.alloc(64 * 1024); total = 0; hashPasses++;
+        for (;;) { const { bytesRead } = await handle.read(buffer, 0, buffer.length, null); if (!bytesRead) break; total += bytesRead; if (total > expected.size) throw denied("Custom supply closure grew during verification"); digest.update(buffer.subarray(0, bytesRead)); }
+        sha256 = digest.digest("hex");
+      }
       const after = identity(await handle.stat({ bigint: true })), current = identity(await lstat(path, { bigint: true }));
-      if (total !== expected.size || digest.digest("hex") !== expected.sha256 || !sameIdentity(before, after) || !sameIdentity(after, current)) throw denied("Custom supply closure changed or differs from its accepted profile");
+      if (total !== expected.size || sha256 !== expected.sha256 || !sameIdentity(before, after) || !sameIdentity(after, current)) throw denied("Custom supply closure changed or differs from its accepted profile");
+      if (cached === undefined) rememberDigest(path, after, sha256);
       values.push(Object.freeze({ ...expected, identity: after }));
     } finally { await handle.close(); }
   }

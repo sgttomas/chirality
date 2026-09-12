@@ -402,6 +402,19 @@ it("leaves retirement unresolved when cleanup reports unresolved descendants", a
   await expect(f.retirement.restart("retirement-fails", f.identity)).rejects.toMatchObject({ code: "DELEGATION_POLICY_VIOLATION" });
 });
 
+it("reports the worker's own failure with a failed retirement attached as its cause", async () => {
+  const f = await fixture();
+  await f.client.grantDelegatedConsent("project", compatibility, { posture: "off", approvedBy: "fixture-owner", explicitUserAct: true });
+  const retire = f.binding.supervisor.retire.bind(f.binding.supervisor);
+  f.binding.supervisor.wait = async () => { throw new RuntimeError("ENGINE_UNAVAILABLE", "controlled primary worker failure", 503, { reason: "CODEX_PROTOCOL_FAILURE" }); };
+  f.binding.supervisor.retire = async (workerId, generation) => { await retire(workerId, generation); throw new RuntimeError("ENGINE_UNAVAILABLE", "controlled unresolved descendant observation", 503, { reason: "DESCENDANT_RECONCILIATION_REQUIRED" }); };
+  const preflight = await f.delegated.preflight("project", "turn:primary-kept");
+  const failure = await f.delegated.turn("project", { compatibility, preflight, turnId: "primary-kept", prompt: "hello" }).then(() => undefined, error => error as RuntimeError);
+  expect(failure).toMatchObject({ code: "ENGINE_UNAVAILABLE", message: "controlled primary worker failure", details: { reason: "CODEX_PROTOCOL_FAILURE" } });
+  expect(failure?.cause).toMatchObject({ message: "controlled unresolved descendant observation", details: { reason: "DESCENDANT_RECONCILIATION_REQUIRED" } });
+  expect((await f.retirement.read("primary-kept"))?.state).toBe("prepared");
+});
+
 function controlledApprovalWorker(identity: Parameters<typeof createControlledCodexSupervisorForTests>[0]["identity"]) {
   let notify: (message: unknown) => void = () => {};
   const worker = createControlledCodexSupervisorForTests({ identity, model: "fixture", commandNetworkPosture: "ask-per-destination", turnTimeoutMs: 3000,
@@ -537,7 +550,9 @@ it.each([true, false])("wait failure requires confirmed retirement before failed
   f.fail(waitError); await f.retiring.promise;
   expect((await f.retirement.read("t"))?.terminal).toBeUndefined();
   if (succeeds) f.cleanup.resolve(); else f.cleanup.reject(cleanupError);
-  await expect(turn).rejects.toBe(succeeds ? waitError : cleanupError);
+  // The transport failure stays the reported error; an unconfirmed retirement travels with it as the cause.
+  await expect(turn).rejects.toBe(waitError);
+  expect(waitError.cause).toBe(succeeds ? undefined : cleanupError);
   if (succeeds) expect(await f.retirement.read("t")).toMatchObject({ state: "committed", terminal: { outcome: "failed" } });
   else await f.assertUnresolved();
   expect(f.calls).toEqual([{ workerId: "t", generation: "controlled-generation" }]);
@@ -577,7 +592,8 @@ it.each([true, false])("late approval failure joins settled retirement after tur
   await f.pollingStarted.promise;
   f.fail(waitError); await f.retiring.promise;
   if (succeeds) f.cleanup.resolve(); else f.cleanup.reject(cleanupError);
-  await expect(turn).rejects.toBe(succeeds ? waitError : cleanupError);
+  await expect(turn).rejects.toBe(waitError);
+  expect(waitError.cause).toBe(succeeds ? undefined : cleanupError);
   const record = await f.retirement.read("t");
   expect(record?.state).toBe(succeeds ? "committed" : "prepared");
   if (succeeds) expect(record?.terminal?.outcome).toBe("failed");
@@ -588,4 +604,90 @@ it.each([true, false])("late approval failure joins settled retirement after tur
   expect(f.calls).toEqual([{ workerId: "t", generation: "controlled-generation" }]);
   expect((f.runtime as unknown as { turnRetirements: Map<string, Promise<void>> }).turnRetirements.size).toBe(0);
   expect(await f.retirement.read("t")).toEqual(record);
+});
+
+describe("per-turn catalog choice through the delegated hosted envelope", () => {
+  const catalog = {
+    models: [
+      { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] },
+      { model: "gpt-alt", isDefault: false, defaultReasoningEffort: "low", supportedReasoningEfforts: ["low", "medium"] }
+    ],
+    default: { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] }
+  };
+  async function catalogFixture(withCatalog = true) {
+    const root = await realpath(await mkdtemp(join(tmpdir(), "dr-catalog-")));
+    cleanups.push(() => rm(root, { recursive: true, force: true }));
+    const project = join(root, "project"); await mkdir(project);
+    const identity = { canonicalRoot: project, cwd: project, accountId: "controlled-account", accountEpoch: 1, policyDigest: "fixture-policy" };
+    const acquired: string[] = [];
+    const supervisor = {
+      async acquire(workerId: string, input: string): Promise<WorkerHandle> { acquired.push(input); return { workerId, generation: "g1", pid: 4242, state: "running" }; },
+      async inventory() { return []; },
+      async reconnect(workerId: string, generation: string): Promise<WorkerHandle> { return { workerId, generation, pid: 4242, state: "running" }; },
+      async wait(workerId: string, generation: string): Promise<WorkerResult> { return { worker: { workerId, generation, pid: 4242, state: "exited" }, exitCode: 0, signal: null, threadId: "thread-catalog", stdout: "done", stderr: "" }; },
+      async retire() {}
+    };
+    const consent = new HostedConsentStore({ canonicalRoot: project, codexHome: join(root, "home") });
+    await consent.grant({ identity, posture: "off", approvedBy: "fixture-owner", approvedAt: new Date(0).toISOString() });
+    const retirement = new WorkerRetirementCoordinator({ directory: join(root, "journal") });
+    const delegated = new DelegatedRuntime({ daemonId: "catalog-daemon", projects: new Map([["project", {
+      identity, compatibility, supervisor, consent, retirement, commandNetworkPosture: "off" as const, evidenceClass: "controlled-worker" as const,
+      actual: { adapterId: "codex-app-server", providerId: "openai", model: "gpt-default", reasoningEffort: "high" }, ...(withCatalog ? { catalog } : {})
+    }]]) });
+    const turn = async (turnId: string, choice: { model?: string; reasoningEffort?: string }) => delegated.turn("project", { compatibility, preflight: await delegated.preflight("project", `turn:${turnId}`), turnId, prompt: "hello", ...choice });
+    return { delegated, acquired, retirement, turn, supervisor };
+  }
+  it("latches cancellation before acquisition publication and awaits genuine terminal settlement", async () => {
+    const f = await catalogFixture();
+    let publish!: () => void, began!: () => void, finish!: (result: WorkerResult) => void;
+    const entered = new Promise<void>(resolve => { began = resolve; });
+    const gate = new Promise<void>(resolve => { publish = resolve; });
+    const terminal = new Promise<WorkerResult>(resolve => { finish = resolve; });
+    const acquire = f.supervisor.acquire;
+    f.supervisor.acquire = async (id, input) => { began(); await gate; return acquire(id, input); };
+    f.supervisor.wait = async () => terminal;
+    let interrupts = 0;
+    Object.assign(f.supervisor, { async drainTurnProgress() { return []; }, async interrupt(id: string, generation: string) {
+      expect([id, generation]).toEqual(["early", "g1"]); interrupts++;
+    } });
+    const controller = new AbortController();
+    const request = { compatibility, preflight: await f.delegated.preflight("project", "turn:early"), turnId: "early", prompt: "bootstrap" };
+    let settled = false;
+    const running = f.delegated.turn("project", request, [], { signal: controller.signal, onProgress() {} }).finally(() => { settled = true; });
+    await entered; controller.abort(); expect(interrupts).toBe(0); publish();
+    await expect.poll(() => interrupts).toBe(1); expect(settled).toBe(false);
+    finish({ worker: { workerId: "early", generation: "g1", pid: 4242, state: "exited" }, exitCode: null, signal: "SIGTERM", stdout: "", stderr: "" });
+    await expect(running).resolves.toMatchObject({ terminal: { outcome: "interrupted" } });
+  });
+
+  it("carries the chosen model and effort in the envelope and stamps them on the terminal attribution", async () => {
+    const f = await catalogFixture();
+    const chosen = await f.turn("chosen", { model: "gpt-alt", reasoningEffort: "medium" });
+    expect(JSON.parse(f.acquired[0]!)).toMatchObject({ prompt: "hello", model: "gpt-alt", reasoningEffort: "medium" });
+    expect(chosen.event.attribution).toEqual({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-alt", reasoningEffort: "medium" });
+    expect(chosen.roleEvidence.actual).toEqual(chosen.event.attribution);
+    expect(validateHarnessEventV2(chosen.event)).toBe(true);
+    const admitted = await f.turn("admitted", {});
+    expect(f.acquired[1]).toBe("hello");
+    expect(admitted.event.attribution).toEqual({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-default", reasoningEffort: "high" });
+    const modelOnly = await f.turn("model-only", { model: "gpt-alt" });
+    expect(JSON.parse(f.acquired[2]!)).toMatchObject({ model: "gpt-alt" });
+    expect(JSON.parse(f.acquired[2]!)).not.toHaveProperty("reasoningEffort");
+    expect(modelOnly.event.attribution).toEqual({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-alt", reasoningEffort: "low" });
+  });
+  it("refuses an unknown model or unsupported effort before any envelope is sent", async () => {
+    const f = await catalogFixture();
+    await expect(f.turn("unknown", { model: "gpt-unknown", reasoningEffort: "low" })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-unknown", available: ["gpt-default", "gpt-alt"] } });
+    await expect(f.turn("effort", { model: "gpt-alt", reasoningEffort: "high" })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "REASONING_EFFORT_UNSUPPORTED", model: "gpt-alt", supported: ["low", "medium"] } });
+    await expect(f.turn("shape", { model: "gpt alt" })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+    expect(f.acquired).toEqual([]);
+    expect(await f.retirement.read("unknown")).toBeUndefined();
+    const uncatalogued = await catalogFixture(false);
+    await expect(uncatalogued.turn("other", { model: "gpt-alt" })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-alt", available: ["gpt-default"] } });
+    await expect(uncatalogued.turn("other-effort", { reasoningEffort: "low" })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "REASONING_EFFORT_UNSUPPORTED" } });
+    expect(uncatalogued.acquired).toEqual([]);
+    const same = await uncatalogued.turn("same", { model: "gpt-default", reasoningEffort: "high" });
+    expect(JSON.parse(uncatalogued.acquired[0]!)).toMatchObject({ model: "gpt-default", reasoningEffort: "high" });
+    expect(same.event.attribution).toEqual({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-default", reasoningEffort: "high" });
+  });
 });

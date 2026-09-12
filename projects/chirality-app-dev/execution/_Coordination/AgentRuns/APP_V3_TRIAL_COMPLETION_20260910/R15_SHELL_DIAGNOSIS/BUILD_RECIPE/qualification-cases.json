@@ -1,0 +1,58 @@
+{
+  "status": "proposed; not implemented/executed",
+  "cases": [
+    {
+      "name": "direct-cat",
+      "argv": [
+        "/bin/cat",
+        "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/qualification/project/README.md"
+      ],
+      "expect": "exit0, exact root-directory-shell-fixture newline"
+    },
+    {
+      "name": "shell-cat",
+      "argv": [
+        "/bin/zsh",
+        "-c",
+        "/bin/cat README.md"
+      ],
+      "expect": "exit0, same exact text; non-login shell"
+    },
+    {
+      "name": "bounded-write",
+      "argv": [
+        "/bin/zsh",
+        "-c",
+        "printf 'created-by-fixture\\n' > result.txt; /bin/cat result.txt"
+      ],
+      "expect": "exit0, exact text and independently verified project/result.txt"
+    },
+    {
+      "name": "protected-read",
+      "argv": [
+        "/bin/zsh",
+        "-c",
+        "printf 'started\\n'; /bin/cat protected/secret.txt"
+      ],
+      "expect": "started marker then nonzero access denial; no secret; no signal"
+    },
+    {
+      "name": "protected-write",
+      "argv": [
+        "/bin/zsh",
+        "-c",
+        "printf 'started\\n'; printf denied > protected/new.txt"
+      ],
+      "expect": "started marker then nonzero access denial; new.txt absent; no signal"
+    },
+    {
+      "name": "readonly-write",
+      "argv": [
+        "/bin/zsh",
+        "-c",
+        "printf 'started\\n'; printf denied > readonly/new.txt"
+      ],
+      "expect": "started marker then nonzero access denial; new.txt absent; no signal"
+    }
+  ]
+}

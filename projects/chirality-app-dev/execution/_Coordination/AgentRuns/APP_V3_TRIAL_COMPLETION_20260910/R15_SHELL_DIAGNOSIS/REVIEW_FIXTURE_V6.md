@@ -1,0 +1,28 @@
+# Independent shell fixture v6 invocation backcheck
+
+**PASS for frozen fixture source readiness within the approved offline scope.** No remaining actionable invocation defect found. This is static review, not successful native qualification. The parent-reported v5 first-case exit71 exposed an inherited `macos` token that earlier readiness reviews missed; those reviews did not establish CLI correctness. Preserve the failure and earlier reviews unchanged.
+
+Reviewed exact `shell-fixture-v6.mjs` SHA256 `13e07b3685e080d87af644cd4a73317bc8dca9ba7c43ed152cd63f77d5f168a5` and coupled `fixture-v6-manifest.json` SHA256 `960356d4d7e09546fa4ac0600079313ebc0a26a00d97af1b76b2d6c8b9be4898`. Every manifest member hash matches. The only v5-to-v6 changes remove the obsolete `macos` argument and select fresh v6 run directories. `result-parser-v5.mjs` remains `1dff630c54ac295d6c02fe428fa874039b5e9d0165ac3178c51feecb3f332b0e`.
+
+## Complete invocation check
+
+All supplier source references below were inspected in the actual isolated candidate `source/codex-rs` tree under `/private/tmp/chirality-supplier-root-directory-fix-20260911-01`, independently of the author's old-source CLI review note.
+
+| Invocation | Pinned source validation |
+| --- | --- |
+| Repeated global `-c`, each followed by one complete `key=value` argv value | `utils/cli/src/config_override.rs:19–38` declares append/global; parsing splits first equals and parses RHS TOML. Compiler inline maps are single argument values, not shell fragments. `cli/src/main.rs:116–122` flattens the root options. |
+| `codex [global overrides] sandbox --permission-profile ID --cd PROJECT -- CASE_ARGV` | `cli/src/main.rs:179,454,1624–1658` declares Sandbox with macOS SeatbeltCommand and native dispatch. `cli/src/lib.rs:52–105` defines singular permission-profile, cd requiring that selector, and trailing command vector. All options precede `--`; first command token is `/bin/cat` or `/bin/zsh`, with no platform token. Existing parser test at main.rs:3558–3575 confirms selector/separator/command behavior. |
+| Native sandbox forwarding | Root overrides are prepended in main.rs; `cli/src/debug_sandbox.rs:48–83,550–627` carries selector/cwd into config, sets default_permissions to the named profile, and retains profile configuration. At lines 383–408 it builds Seatbelt arguments and launches `/usr/bin/sandbox-exec`; `sandboxing/src/seatbelt.rs:934–942` appends `--` then the case vector unchanged. |
+| `codex [global overrides] app-server` | `cli/src/main.rs:547–599,1249–1308` accepts no subcommand as server mode and passes root overrides to run_main. The default transport is `stdio://` (`app-server-transport/src/transport/mod.rs:122`), matching the three pipes and newline JSON RPC. No daemon/tooling subcommand or positional command is inserted. |
+| Local code-mode host | `app-server/src/code_mode_host.rs:10–38` defaults to Local when no host URL is given. `install-context/src/lib.rs:172–201` resolves the sibling codex-code-mode-host for this arbitrary executable layout. Fixture configuration enables host/code-mode and process evidence must observe the sibling. |
+| `/bin/ps -axo pid=,ppid=,pgid=,command=` | Fixed executable and two argv elements; explicit headerless ordered columns match the four-field census parser. Timeout, buffer bound, status and signal checks are retained. No shell interpolation. |
+| Code-mode native shell calls | Exact selected-tool arguments were checked against shell_spec and native handlers: exec_command uses cmd/workdir/login=false/yield_time_ms=10000/max_output_tokens=1500; shell_command uses command/workdir/login=false/timeout_ms. Both handlers explicitly accept false login with login shells disabled. Per-case argv is shell-quoted once before embedding in JSON/JavaScript; zsh `-c` receives each case script as one argument. |
+| Case programs and cleanup | Cat reads the specified README/secret; zsh runs the bounded printf/cat/redirection scripts; sleep receives the single argument `30`. Relative targets resolve from the project cwd. Cleanup uses Node PID signal APIs, not another command parser; only census-identified fixture processes are targeted. |
+
+## Verification and handoff
+
+Read-only metadata confirms `/bin/ps`, `/bin/cat`, `/bin/zsh`, `/bin/sleep`, `/usr/bin/sandbox-exec`, candidate codex and sibling host exist as executable regular files. Both v6 run directories are absent. Node 24.18.0 `--check` passed. No fixture, supplier, compiler, policy, native shell case, build, account/Keychain/real Codex-home or actual trial-session execution/read occurred. No parser rerun was needed: its exact previously checked bytes are unchanged and its 11 pure checks remain the v5 evidence.
+
+The complete compiler setup and protocol/output reviews in V4/V5 remain applicable to their unchanged paths: broker/private/home constraints; exact file-auth fixture override; effective config and named thread/turn selector evidence; current call/output binding; structured exec decoding; ordinary denial exit1 and disk checks; bounded evidence/census/cleanup; interruption and fresh follow-up; clean exit/empty census; final shutdown error latch. No policy or auth capability changed.
+
+Independent TASK / Type 2, gpt-6-astra high under the parent-recorded owner exception, no delegation. Same actual worktree/instruction origins and hashes recorded in REVIEW_FIXTURE_V4.md. Derivative review closure: corrected invocation backchecked; parent may release the exact coupled v6 manifest under the approved recipe. Actual qualification must run and pass; authenticated native acceptance and packaging acceptance remain separate. No acceptance pointer or prior failure evidence was changed, and no new owner approval gate is introduced.

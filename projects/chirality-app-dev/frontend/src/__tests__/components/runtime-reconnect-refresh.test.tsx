@@ -49,7 +49,8 @@ vi.mock('../../lib/harness/method-selection-client', async (importOriginal) => {
 });
 
 vi.mock('../../components/workspace/workspace-provider', () => ({
-  useWorkspace: () => ({ projectRoot: state.projectRoot })
+  useWorkspace: () => ({ projectRoot: state.projectRoot }),
+  useWorkspaceSelection: () => null
 }));
 vi.mock('../../lib/harness/hosted-bootstrap-client', () => ({
   hydrateHostedBootstrapProject: (

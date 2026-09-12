@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { describeFailureDetails } from "./retirement-failure.js";
 import {
   RuntimeError,
   asHarnessError,
@@ -192,8 +193,8 @@ export class TurnCoordinator {
               })
       };
       const accepted = resolvedContext === undefined
-        ? await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.accepted", data: { message } })
-        : (await this.sessions.commitWithAcceptedTurn(session, { sessionId, turnId, type: "turn.accepted", data: { message } }, resolvedContext.snapshot)).event;
+        ? await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.accepted", data: { message, ...(request.attachments?.length ? { attachments: [...request.attachments] } : {}) } })
+        : (await this.sessions.commitWithAcceptedTurn(session, { sessionId, turnId, type: "turn.accepted", data: { message, ...(request.attachments?.length ? { attachments: [...request.attachments] } : {}) } }, resolvedContext.snapshot)).event;
       acceptedOwned = true;
       yield { type: "harness:event", data: accepted };
       await engine.preflight(input);
@@ -398,11 +399,12 @@ export class TurnCoordinator {
         }
       }
       if (!terminalPersisted) {
+        const failureDetails = controller.signal.aborted ? undefined : describeFailureDetails(error);
         const failed = await this.sessions.appendEvent(projectId, {
           sessionId,
           turnId,
           type: controller.signal.aborted ? "turn.interrupted" : "turn.failed",
-          data: { code: runtimeError.code, message: runtimeError.message }
+          data: { code: runtimeError.code, message: runtimeError.message, ...(failureDetails ? { details: failureDetails } : {}) }
         });
         yield { type: "harness:event", data: failed };
       }
@@ -416,7 +418,8 @@ export class TurnCoordinator {
             status: runtimeError.status,
             severity: "error",
             fatal: true,
-            details: { runtimeCode: runtimeError.code }
+            // A machine reason (e.g. MODEL_NOT_IN_CATALOG) lets clients map the failure without parsing text.
+            details: { runtimeCode: runtimeError.code, ...(typeof runtimeError.details?.reason === "string" ? { reason: runtimeError.details.reason } : {}) }
           }
         };
       }

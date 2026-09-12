@@ -1,8 +1,11 @@
 import { randomUUID } from "node:crypto";
+import { describeFailureDetails } from "./retirement-failure.js";
 import { readdir, readFile, realpath, stat } from "node:fs/promises";
 import { basename, join, relative, resolve } from "node:path";
 import {
   HarnessError,
+  HOSTED_MODEL_ID_PATTERN,
+  HOSTED_REASONING_EFFORT_PATTERN,
   RuntimeError,
   type Agent1RunRequest,
   type AgentDefinitionSummary,
@@ -58,11 +61,27 @@ export interface DefaultSessionPolicy {
     persona: string;
     mode: string;
     agentType: 0 | 1;
-  }): Promise<{ role: "agent0" | "agent1"; engineSelection: EngineSelection }>;
+    /** Client catalog choice; a policy that honours it returns the same model and reasoningEffort. */
+    modelSelection?: { model: string; reasoningEffort: string };
+  }): Promise<{ role: "agent0" | "agent1"; engineSelection: EngineSelection; reasoningEffort?: string }>;
+}
+
+/**
+ * Pre-catalog shape gate: a request must carry exactly `model` and `reasoningEffort`
+ * before any catalog can be consulted. Catalog membership is decided only by
+ * `resolveHostedModelSelection` in the daemon's default session policy.
+ */
+function validateModelSelection(value: unknown): { model: string; reasoningEffort: string } {
+  const invalid = () => new RuntimeError("INVALID_REQUEST", "modelSelection requires exactly model and reasoningEffort", 400, { reason: "MODEL_SELECTION_INVALID" });
+  if (!value || typeof value !== "object" || Array.isArray(value) || Object.keys(value).sort().join(",") !== "model,reasoningEffort") throw invalid();
+  const { model, reasoningEffort } = value as Record<string, unknown>;
+  if (typeof model !== "string" || !HOSTED_MODEL_ID_PATTERN.test(model) || typeof reasoningEffort !== "string" || !HOSTED_REASONING_EFFORT_PATTERN.test(reasoningEffort)) throw invalid();
+  return { model, reasoningEffort };
 }
 
 export class RuntimeService {
   readonly methods: RuntimeMethodService;
+  private readonly bootingSessions = new Set<string>();
   constructor(
     readonly projects: ProjectRegistry,
     readonly sessions: SessionStore,
@@ -141,11 +160,16 @@ export class RuntimeService {
     }
     let role = request.role;
     let engineSelection = request.engineSelection;
+    let reasoningEffort: string | undefined;
+    const modelSelection = request.modelSelection === undefined ? undefined : validateModelSelection(request.modelSelection);
     if ((role === undefined) !== (engineSelection === undefined)) {
       throw new RuntimeError(
         "INVALID_REQUEST",
         "Explicit role and engineSelection must be supplied together"
       );
+    }
+    if (modelSelection !== undefined && engineSelection !== undefined) {
+      throw new RuntimeError("INVALID_REQUEST", "modelSelection cannot be combined with an explicit engineSelection", 400, { reason: "MODEL_SELECTION_INVALID" });
     }
     if (role === undefined || engineSelection === undefined) {
       if (this.defaultSessionPolicy === undefined) {
@@ -159,10 +183,16 @@ export class RuntimeService {
         projectId: request.projectId,
         persona,
         mode,
-        agentType: rosterEntry.type
+        agentType: rosterEntry.type,
+        ...(modelSelection === undefined ? {} : { modelSelection })
       });
       role = resolved.role;
       engineSelection = resolved.engineSelection;
+      reasoningEffort = resolved.reasoningEffort;
+      // A policy that cannot validate the request must not quietly fall back to its default.
+      if (modelSelection !== undefined && (engineSelection.model !== modelSelection.model || reasoningEffort !== modelSelection.reasoningEffort)) {
+        throw new RuntimeError("INVALID_REQUEST", "modelSelection is not supported by this project's session policy", 400, { reason: "MODEL_SELECTION_UNSUPPORTED", model: modelSelection.model, reasoningEffort: modelSelection.reasoningEffort });
+      }
     }
     if (role === "agent2") {
       throw new RuntimeError(
@@ -190,6 +220,7 @@ export class RuntimeService {
       ...request,
       role,
       engineSelection,
+      ...(reasoningEffort === undefined ? {} : { reasoningEffort }),
       persona,
       mode
     });
@@ -215,11 +246,20 @@ export class RuntimeService {
   replyNativePlanClarification(projectId: string, sessionId: string, request: import("@chirality/runtime-contracts").ReplyNativePlanClarificationRequest) { return this.methods.replyNativePlanClarification(projectId, sessionId, request); }
   exportNativePlan(projectId: string, sessionId: string, request: import("@chirality/runtime-contracts").ExportNativePlanRequest) { return this.methods.exportNativePlan(projectId, sessionId, request); }
 
-  async bootSession(
+  async bootSession(projectId: string, sessionId: string, opts: HarnessOpts = {}, expectedSelection?: EngineSelection, signal?: AbortSignal): Promise<SessionBootResponse> {
+    const key = `${projectId}:${sessionId}`;
+    if (this.bootingSessions.has(key)) throw new RuntimeError("SESSION_TURN_IN_PROGRESS", "Session boot is still settling", 409, { sessionId });
+    this.bootingSessions.add(key);
+    try { return await this.performBootSession(projectId, sessionId, opts, expectedSelection, signal); }
+    finally { this.bootingSessions.delete(key); }
+  }
+
+  private async performBootSession(
     projectId: string,
     sessionId: string,
     opts: HarnessOpts = {},
-    expectedSelection?: EngineSelection
+    expectedSelection?: EngineSelection,
+    signal?: AbortSignal
   ): Promise<SessionBootResponse> {
     let session = await this.sessions.get(projectId, sessionId);
     if (
@@ -237,7 +277,10 @@ export class RuntimeService {
     }
     const project = await this.projects.requireAuthorized(projectId);
     const persona = opts.persona ?? session.persona;
-    const mode = opts.mode ?? session.mode;
+    // A v3 session boots under its persisted permission mode, exactly as its
+    // turns do (TurnCoordinator). The legacy chat `mode` (PORTAL, ...) is not a
+    // permission mode and only remains the fallback for pre-v3 sessions.
+    const mode = session.permissionMode ?? opts.mode ?? session.mode;
     if (session.schemaVersion === "chirality.session/v3") {
       const role = (await this.methods.listRoles(projectId)).roles.find(value => value.id === session.roleId);
       if (role === undefined || !role.directEntry || persona !== role.id) throw new HarnessError("INVALID_REQUEST", 400, `Persona '${persona}' is not available for direct chat`);
@@ -263,6 +306,7 @@ export class RuntimeService {
       // Production adapters use this value to distinguish an attributed boot
       // from an ordinary turn while still carrying Runtime's frozen context.
       message: "bootstrap",
+      ...(signal === undefined ? {} : { signal }),
       interactionMode: session.interactionMode ?? "chat",
       opts: {
         model: opts.model ?? session.engineSelection.model,
@@ -285,7 +329,8 @@ export class RuntimeService {
     const failBoot = async (error: unknown): Promise<void> => {
       if (resolvedContext === undefined) return;
       const failure = error instanceof Error ? error : new Error("Boot failed");
-      await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.failed", data: { code: error instanceof RuntimeError ? error.code : "ENGINE_UNAVAILABLE", message: failure.message, boot: true } }).catch(() => undefined);
+      const details = describeFailureDetails(error);
+      await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.failed", data: { code: error instanceof RuntimeError ? error.code : "ENGINE_UNAVAILABLE", message: failure.message, boot: true, ...(details ? { details } : {}) } }).catch(() => undefined);
       const current = await this.sessions.get(projectId, sessionId);
       const adapterSession = { ...(current.adapterSession ?? {}) };
       delete adapterSession.contextSuccessor;
@@ -295,7 +340,8 @@ export class RuntimeService {
         await this.sessions.failProviderSpanPreparation(projectId, sessionId, input.contextSuccessor.preparationId, { code: error instanceof RuntimeError ? error.code : "BOOT_FAILED", message: failure.message }).catch(() => undefined);
       }
     };
-    try { await engine.preflight(input); } catch (error) { await failBoot(error); throw error; }
+    const cancelled = () => new RuntimeError("ENGINE_UNAVAILABLE", "Session boot was cancelled before completion", 503, { reason: "BOOT_CANCELLED", sessionId });
+    try { if (signal?.aborted) throw cancelled(); await engine.preflight(input); } catch (error) { await failBoot(error); throw error; }
     let engineSessionId: string | undefined;
     let adapterId: string | undefined;
     let providerId: string | undefined;
@@ -306,7 +352,12 @@ export class RuntimeService {
     let fatalTurnError = false;
     let eventIndex = 0;
     const harnessEvents: HarnessEvent[] = [];
+    let interruption: Promise<void> | undefined;
+    let interruptionError: unknown;
+    const interrupt = () => { if (!engine.handlesAbortSignal) interruption ??= engine.interrupt(sessionId).catch(error => { interruptionError = error; }); };
+    signal?.addEventListener("abort", interrupt, { once: true });
     try { for await (const event of engine.startTurn(input)) {
+      if (signal?.aborted) interrupt();
       if (processExit !== undefined) {
         throw new HarnessError(
           "SDK_FAILURE",
@@ -384,6 +435,8 @@ export class RuntimeService {
       }
       eventIndex += 1;
     } } catch (error) { await failBoot(error); throw error; }
+    finally { signal?.removeEventListener("abort", interrupt); await interruption; }
+    if (interruptionError !== undefined) { await failBoot(interruptionError); throw interruptionError; }
     if (
       processExit === undefined ||
       processExit.data.exitCode !== 0 ||
@@ -395,12 +448,12 @@ export class RuntimeService {
       (terminalHarnessEvent !== undefined &&
         terminalHarnessEvent.type !== "turn.completed")
     ) {
-      const failure = new HarnessError(
-        "SDK_FAILURE",
-        500,
-        "Boot turn did not initialize and complete a conformant engine session",
-        processExit === undefined ? undefined : { exitCode: processExit.data.exitCode }
-      );
+      const failure = signal?.aborted && processExit?.data.interrupted === true
+        ? new RuntimeError("ENGINE_UNAVAILABLE", "Session boot was interrupted before completion", 503, {
+            reason: signal.reason?.name === "TimeoutError" ? "BOOT_TIMEOUT" : "BOOT_CANCELLED", operation: "boot", sessionId
+          })
+        : new HarnessError("SDK_FAILURE", 500, "Boot turn did not initialize and complete a conformant engine session",
+            processExit === undefined ? undefined : { exitCode: processExit.data.exitCode });
       await failBoot(failure);
       throw failure;
     }

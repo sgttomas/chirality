@@ -1,5 +1,6 @@
 import { mkdtemp, realpath, rm } from 'node:fs/promises';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { RuntimeError } from '@chirality/runtime-contracts';
 
 const electron = vi.hoisted(() => {
   const handlers = new Map<string, (...arguments_: unknown[]) => Promise<unknown>>();
@@ -55,6 +56,21 @@ describe('host account main-process IPC', () => {
     expect(result).toMatchObject({ ok: true, value: { registration: 'registered', projectId: project.projectId } });
     expect(runtimeClient.projectStatus).toHaveBeenCalledWith(project.projectId);
     expect(account.status).toHaveBeenCalledWith(project.projectId);
+  });
+
+  it('forwards a ready status with the model catalog and selection verbatim', async () => {
+    const ready = {
+      schema: 'chirality-hosted-bootstrap-status/v1', projectId: project.projectId, ceremony: 'signed-in', admission: 'ready', canStartLogin: false,
+      models: [
+        { model: 'gpt-default', isDefault: true, defaultReasoningEffort: 'high', supportedReasoningEfforts: ['low', 'medium', 'high'] },
+        { model: 'gpt-alt', isDefault: false, defaultReasoningEffort: 'medium', supportedReasoningEfforts: ['medium', 'low'] }
+      ],
+      selection: { model: 'gpt-default', reasoningEffort: 'high' }
+    };
+    account.status.mockResolvedValue(ready);
+    const runtimeClient = { listProjects: vi.fn(async () => [projectStatus()]), projectStatus: vi.fn(async () => projectStatus()) };
+    const result = await performHostAccountOperation({ operation: 'status', projectRoot: root }, { runtimeClient, accountClient: () => account });
+    expect(result).toEqual({ ok: true, value: { registration: 'registered', projectId: project.projectId, status: ready } });
   });
 
   it('rejects malformed and noncanonical roots before registry or account effects', async () => {
@@ -171,5 +187,87 @@ describe('host account main-process IPC', () => {
     await expect(operation).resolves.toEqual({ ok: false, error: 'Hosted account service is unavailable.' });
     expect(connection.client()).toBe(second);
     await connection.close();
+  });
+
+  describe('daemon operation rejections', () => {
+    const rejected = (details: Record<string, unknown>) =>
+      new RuntimeError('ENGINE_UNAVAILABLE', 'Account operation was rejected', 409, details);
+    const runtime = () => ({ listProjects: vi.fn(async () => [projectStatus()]), projectStatus: vi.fn(async () => projectStatus()) });
+
+    it('keeps the signed client, returns the reason, and logs the rejection without request material', async () => {
+      account.startLogin.mockRejectedValue(rejected({
+        kind: 'operation-rejected', operation: 'start-login', status: 409,
+        daemonCode: 'ENGINE_UNAVAILABLE', reason: 'CODEX_REQUEST_REJECTED', daemonMessage: 'Codex refused the login request'
+      }));
+      const invalidateAccountClient = vi.fn();
+      const log = vi.fn();
+      await expect(performHostAccountOperation(
+        { operation: 'start-login', projectRoot: root },
+        { runtimeClient: runtime(), accountClient: () => account, invalidateAccountClient, log }
+      )).resolves.toEqual({ ok: false, error: 'Sign-in could not start (CODEX_REQUEST_REJECTED).', reason: 'CODEX_REQUEST_REJECTED' });
+      expect(invalidateAccountClient).not.toHaveBeenCalled();
+      expect(log).toHaveBeenCalledOnce();
+      expect(log).toHaveBeenCalledWith('warn', 'runtime.account_host.operation_rejected', expect.objectContaining({
+        operation: 'start-login', projectId: project.projectId, code: 'ENGINE_UNAVAILABLE', status: 409,
+        message: 'Account operation was rejected', daemonCode: 'ENGINE_UNAVAILABLE', reason: 'CODEX_REQUEST_REJECTED',
+        daemonMessage: 'Codex refused the login request'
+      }));
+      expect(JSON.stringify(log.mock.calls)).not.toMatch(/authUrl|Bearer|proof|counter|https?:/i);
+    });
+
+    it('falls back to the daemon code as the reason and words each operation for the operator', async () => {
+      const details = { kind: 'operation-rejected', operation: 'x', status: 400, daemonCode: 'INVALID_REQUEST' };
+      account.grantProviderNetworkConsent.mockRejectedValue(rejected(details));
+      account.cancelLogin.mockRejectedValue(rejected(details));
+      account.signOut.mockRejectedValue(rejected(details));
+      account.status.mockRejectedValue(rejected({ kind: 'operation-rejected', operation: 'status', status: 404 }));
+      const invalidateAccountClient = vi.fn();
+      const options = { runtimeClient: runtime(), accountClient: () => account, invalidateAccountClient };
+      await expect(performHostAccountOperation({ operation: 'grant-provider-network-consent', projectRoot: root }, options))
+        .resolves.toEqual({ ok: false, error: 'Provider network consent could not be recorded (INVALID_REQUEST).', reason: 'INVALID_REQUEST' });
+      await expect(performHostAccountOperation({ operation: 'cancel-login', projectRoot: root }, options))
+        .resolves.toEqual({ ok: false, error: 'Sign-in could not be cancelled (INVALID_REQUEST).', reason: 'INVALID_REQUEST' });
+      await expect(performHostAccountOperation({ operation: 'sign-out', projectRoot: root }, options))
+        .resolves.toEqual({ ok: false, error: 'Sign-out could not complete (INVALID_REQUEST).', reason: 'INVALID_REQUEST' });
+      await expect(performHostAccountOperation({ operation: 'status', projectRoot: root }, options))
+        .resolves.toEqual({ ok: false, error: 'Account status could not be read.' });
+      expect(invalidateAccountClient).not.toHaveBeenCalled();
+    });
+
+    it.each([
+      ['no details', new RuntimeError('ENGINE_UNAVAILABLE', 'Account host authority was revoked during request', 503)],
+      ['a different kind', rejected({ kind: 'transport', operation: 'start-login', status: 503 })],
+      ['a malformed reason', rejected({ kind: 'operation-rejected', operation: 'start-login', status: 409, reason: 'not a code' })],
+      ['an oversized daemon message', rejected({ kind: 'operation-rejected', operation: 'start-login', status: 409, daemonMessage: 'x'.repeat(201) })],
+      ['a plain transport error', new Error('Bearer secret-token x-chirality-account-proof signature-value')]
+    ])('treats %s as a transport failure: retires the client and logs without the raw message', async (_label, failure) => {
+      account.startLogin.mockRejectedValue(failure);
+      const invalidateAccountClient = vi.fn();
+      const log = vi.fn();
+      await expect(performHostAccountOperation(
+        { operation: 'start-login', projectRoot: root },
+        { runtimeClient: runtime(), accountClient: () => account, invalidateAccountClient, log }
+      )).resolves.toEqual({ ok: false, error: 'Hosted account service is unavailable.' });
+      expect(invalidateAccountClient).toHaveBeenCalledWith(account);
+      expect(log).toHaveBeenCalledWith('error', 'runtime.account_host.operation_failed', expect.objectContaining({
+        operation: 'start-login', projectId: project.projectId, clientSelected: true
+      }));
+      expect(JSON.stringify(log.mock.calls)).not.toMatch(/secret-token|signature-value|not a code|xxxx/);
+    });
+
+    it('logs an invalid request and a missing account client without retiring anything', async () => {
+      const invalidateAccountClient = vi.fn();
+      const log = vi.fn();
+      await expect(performHostAccountOperation(
+        { operation: 'nope', projectRoot: root },
+        { runtimeClient: runtime(), accountClient: () => account, invalidateAccountClient, log }
+      )).resolves.toEqual({ ok: false, error: 'Hosted account service is unavailable.' });
+      expect(log).toHaveBeenCalledWith('error', 'runtime.account_host.operation_failed', expect.objectContaining({ clientSelected: false }));
+      await expect(performHostAccountOperation(
+        { operation: 'status', projectRoot: root },
+        { runtimeClient: runtime(), accountClient: () => undefined, invalidateAccountClient, log }
+      )).resolves.toEqual({ ok: false, error: 'Hosted account service is unavailable.' });
+      expect(invalidateAccountClient).not.toHaveBeenCalled();
+    });
   });
 });

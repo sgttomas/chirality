@@ -3,7 +3,6 @@ import { constants, type BigIntStats } from "node:fs";
 import { dirname, isAbsolute, join, resolve } from "node:path";
 import { RuntimeError } from "@chirality/runtime-contracts";
 import {
-  verifyPackagedRuntimeBasisV2,
   type RuntimeSupportProfileV2,
   type VerifiedPackagedRuntimeBasisV2
 } from "@chirality/runtime-core/runtime-conformance-v2";
@@ -81,6 +80,8 @@ type StoredIssuedPackagedBasisV2 = Readonly<RetainedIssuedPackagedBasisV2 & {
   supplyVerifier: ExactSupplyVerifier;
 }>;
 const issuedPackagedBases = new WeakMap<object, StoredIssuedPackagedBasisV2>();
+/** Latest issued basis per packaged resources root, held weakly so it lives exactly as long as its issued basis. */
+const issuedByResourcesRoot = new Map<string, WeakRef<object>>();
 const issuedSupplyVerifiers = new WeakSet<object>();
 const PURPOSE_FILES: Readonly<Record<Purpose, readonly [keyof HostedPackagedPurposeBasisV2, keyof HostedPackagedPurposeBasisV2, keyof HostedPackagedPurposeBasisV2]>> = Object.freeze({
   login: ["recordPath", "acceptancePath", "ownerActPath"],
@@ -105,6 +106,9 @@ function exactIdentity(left: Identity, right: Identity, includeTimes: boolean): 
   return left.dev === right.dev && left.ino === right.ino && left.mode === right.mode && left.uid === right.uid && left.nlink === right.nlink
     && (!includeTimes || (left.size === right.size && left.mtimeNs === right.mtimeNs && left.ctimeNs === right.ctimeNs));
 }
+/** The filesystem identity this registry records and compares; shared with the loader's trial-seal subject observation. */
+export function issuedFilesystemIdentityV2(value: BigIntStats): Identity { return identity(value); }
+export function sameIssuedFilesystemIdentityV2(left: Identity, right: Identity): boolean { return exactIdentity(left, right, true); }
 function sameMutableAncestor(left: Identity, right: Identity): boolean {
   return left.dev === right.dev && left.ino === right.ino && left.mode === right.mode && left.uid === right.uid;
 }
@@ -196,11 +200,31 @@ export async function registerIssuedPackagedReleaseBasisV2(basis: Readonly<Hoste
   }, closureEntries);
   issuedSupplyVerifiers.add(supplyVerifier as object);
   issuedPackagedBases.set(basis as object, Object.freeze({ ...state, directories, files: Object.freeze(files), origin, supplyVerifier }));
+  issuedByResourcesRoot.set(state.resourcesRoot, new WeakRef(basis as object));
 }
 
-/** Internal production projection; arbitrary verifier objects cannot cross this issued-basis gate. */
+/**
+ * The verified payload of the issued basis that matches a packaged policy basis (same root, manifest paths and digests),
+ * after the issued basis's identity revalidation. Payload bytes are not re-read: the basis was hashed once at issuance
+ * and drift is caught by filesystem identity. `undefined` when no basis is issued for that root, so a caller may fall
+ * back to a full byte verification.
+ */
+export async function resolveIssuedPackagedRuntimeBasisV2(inventory: Readonly<{ resourcesRoot: string; inventoryPath: string; payloadManifestPath: string; outerInventorySha256: string; payloadDigest: string }>): Promise<Readonly<VerifiedPackagedRuntimeBasisV2> | undefined> {
+  const basis = issuedByResourcesRoot.get(inventory.resourcesRoot)?.deref() as Readonly<HostedPackagedReleaseBasisV2> | undefined;
+  const state = basis ? issuedPackagedBases.get(basis as object) : undefined;
+  if (!basis || !state) return undefined;
+  const verified = basis.verified;
+  if (verified.resourcesRoot !== inventory.resourcesRoot || verified.inventoryPath !== inventory.inventoryPath || verified.payloadManifestPath !== inventory.payloadManifestPath
+    || verified.inventorySha256 !== inventory.outerInventorySha256 || verified.payloadDigest !== inventory.payloadDigest) return undefined;
+  await revalidate(basis, state.issuance);
+  return verified;
+}
+
+/**
+ * Internal production projection; arbitrary verifier objects cannot cross this issued-basis gate.
+ * Nominal only: composition performs the single live revalidation immediately before requesting the verifier.
+ */
 export async function issuedPackagedSupplyVerifierV2(basis: Readonly<HostedPackagedReleaseBasisV2>): Promise<ExactSupplyVerifier> {
-  await revalidateIssuedPackagedReleaseBasisV2(basis);
   const state = requireIssued(basis, "production");
   if (!issuedSupplyVerifiers.has(state.supplyVerifier as object)) throw unavailable("PACKAGED_SUPPLY_VERIFIER_UNISSUED");
   return state.supplyVerifier;
@@ -241,16 +265,16 @@ function requireIssued(basis: Readonly<HostedPackagedReleaseBasisV2>, expectedIs
     || (basis.workerDisposition === "local-human-trial") !== (state.revalidateTrialSeal !== undefined)) throw unavailable("PACKAGED_RELEASE_BASIS_NOT_ISSUED");
   return state;
 }
+/**
+ * Single-boundary revalidation. The packaged payload was fully hashed once when the basis was issued; afterwards
+ * drift is detected by filesystem identity (dev, ino, size, mode, uid, nlink, mtimeNs, ctimeNs) of every payload
+ * entry, both manifests, the governance files and the directories, plus a bounded re-read of the small private
+ * records. Any identity change is PACKAGED_RELEASE_BASIS_CHANGED; payload bytes are never re-read here.
+ */
 async function revalidate(basis: Readonly<HostedPackagedReleaseBasisV2>, expectedIssuance: Issuance): Promise<void> {
   const state = requireIssued(basis, expectedIssuance);
   await observePrivateState(state);
   await observeOriginState(state);
-  await state.revalidateTrialSeal?.();
-  const verified = await verifyPackagedRuntimeBasisV2({ resourcesRoot: state.resourcesRoot });
-  if (verified.inventorySha256 !== state.inventorySha256 || verified.payloadDigest !== state.payloadDigest
-    || !verified.payload.supportProfiles.some(profile => profile.profileDigest === state.profileDigest)) throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
-  await observeOriginState(state);
-  await observePrivateState(state);
   await state.revalidateTrialSeal?.();
 }
 

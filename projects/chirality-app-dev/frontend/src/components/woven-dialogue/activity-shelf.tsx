@@ -110,7 +110,7 @@ export function ActivityStrip({ reconnectControl, onOpenDetails, running, events
   const turn = running && observedTurn?.elapsed !== undefined ? null : observedTurn;
   return <div className="woven-activity-strip" aria-label="Activity status">
     {reconnectControl}
-    <span role="status">{running ? 'Working' : 'Idle'}{turn ? ` · ${turn.actions} actions · ${turn.children} children observed` : ' · Primary turn activity unavailable'}{!running && turn?.elapsed !== undefined ? ` · Last turn: ${(turn.elapsed / 1000).toFixed(1)} s` : ' · Turn duration unavailable'}</span>
+    <span role="status">{running ? 'Working' : 'Idle'}{turn ? ` · ${turn.actions} actions · ${turn.children} children observed` : ''}{!running && turn?.elapsed !== undefined ? ` · Last turn: ${(turn.elapsed / 1000).toFixed(1)} s` : ''}</span>
     <button type="button" onClick={onOpenDetails}>Details ›</button>
   </div>;
 }
@@ -169,8 +169,8 @@ function ActivityTime({ timestamp }: { timestamp: string }): JSX.Element {
     : <span className="harness-stream-meta" style={{ flexShrink: 0, whiteSpace: 'nowrap' }} title={timestamp || 'No recorded timestamp'}>Time unavailable</span>;
 }
 
-function ActivityActions({ rows }: { rows: ToolActivityRow[] }): JSX.Element {
-  return rows.length === 0 ? <p className="panel-empty">No matching actions.</p> : <ul className="harness-stream-list" aria-label="Actions">
+function ActivityActions({ rows, emptyMessage }: { rows: ToolActivityRow[]; emptyMessage: string }): JSX.Element {
+  return rows.length === 0 ? <p className="panel-empty">{emptyMessage}</p> : <ul className="harness-stream-list" aria-label="Actions">
     {rows.map(row => <li key={row.key} className={`harness-stream-item harness-stream-item--${row.status}`}>
       <div className="harness-stream-row">
         <span className="harness-stream-name" title={row.toolName}>{actionSentence(row)}</span>
@@ -235,6 +235,6 @@ export function ActivityView(): JSX.Element {
       <input aria-label="Filter activity" placeholder="Filter activity…" value={filter} onChange={event => setFilter(event.target.value)} />
       <button type="button" onClick={clearView}>Clear view</button>
     </div>
-    {tab === 'tools' ? <ActivityActions rows={projected.tools.filter(row => visible('tools', row, `${actionSentence(row)} ${actionDetail(row)} ${timeLabel(row.timestamp)}`))} /> : tab === 'events' ? <TranscriptStreamList items={projected.transcript.filter(row => visible('transcript', row))} /> : <ActivityTasks rows={projected.children.filter(row => visible('children', row, `${taskSentence(row)} ${taskDetail(row)} ${timeLabel(row.timestamp)}`))} />}
+    {tab === 'tools' ? <ActivityActions emptyMessage={query ? 'No matching actions.' : projected.tools.length ? 'No actions in this view.' : 'No recorded actions.'} rows={projected.tools.filter(row => visible('tools', row, `${actionSentence(row)} ${actionDetail(row)} ${timeLabel(row.timestamp)}`))} /> : tab === 'events' ? <TranscriptStreamList items={projected.transcript.filter(row => visible('transcript', row))} /> : <ActivityTasks rows={projected.children.filter(row => visible('children', row, `${taskSentence(row)} ${taskDetail(row)} ${timeLabel(row.timestamp)}`))} />}
   </section>;
 }

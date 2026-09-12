@@ -5,7 +5,7 @@ import {
   type AuthenticatedCodexCandidate,
   type AuthenticatedCodexCandidateInput
 } from "./codex-authenticated-transport.js";
-import { inspectCodexPolicyInstanceV2, type RuntimeWorkerInstancePreparationV2 } from "./runtime-conformance-v2-admission.js";
+import { inspectCodexPolicyInstanceV2, prepareRuntimeWorkerInstanceV2FromP2, completeRuntimeWorkerInstanceV2FromP2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2, type RuntimeWorkerInstancePreparationV2 } from "./runtime-conformance-v2-admission.js";
 import { assertIssuedPackagedSupplyVerifierV2 } from "./hosted-packaged-release-state.js";
 
 export type CodexAdmittedLauncherBindings = Omit<AuthenticatedCodexCandidateInput, "kernelLease"> & {
@@ -22,6 +22,7 @@ export interface CodexCandidateLauncher {
 }
 
 export interface CodexCandidateLauncherFactory {
+  refreshHostAdmission?(account: NonNullable<RuntimeInstanceAdmissionInputV2["account"]>): Promise<{ instanceInput: RuntimeInstanceAdmissionInputV2; instanceAdmission: RuntimeInstanceAdmissionV2 }>;
   create(): CodexCandidateLauncher;
   close?(): Promise<void>;
 }
@@ -152,17 +153,33 @@ function compose(options: CodexCandidateLauncherOptions, adapters: ControlledCod
 
 function factory(options: CodexCandidateLauncherOptions, adapters: ControlledCodexCandidateLauncherAdapters): CodexCandidateLauncherFactory {
   if (!options || !exactKeys(options, ["bindings", "kernelLease"]) || !options.kernelLease?.held) throw unavailable("LAUNCHER_CONFIGURATION_INVALID");
-  const bindings = validateBindings(options.bindings);
+  let bindings = validateBindings(options.bindings);
   const kernelLease = options.kernelLease;
   const launchers = new Set<CodexCandidateLauncher>();
   let closed = false;
+  let refreshing = false;
   return Object.freeze({
     create(): CodexCandidateLauncher {
-      if (closed || !kernelLease.held) throw unavailable("LAUNCHER_FACTORY_CLOSED");
+      if (closed || refreshing || !kernelLease.held) throw unavailable("LAUNCHER_FACTORY_CLOSED");
       let launcher!: CodexCandidateLauncher;
       launcher = compose({ bindings, kernelLease }, adapters, () => { launchers.delete(launcher); });
       launchers.add(launcher);
       return launcher;
+    },
+    async refreshHostAdmission(account: NonNullable<RuntimeInstanceAdmissionInputV2["account"]>) {
+      if (closed || refreshing || !kernelLease.held || launchers.size) throw unavailable("LAUNCHER_FACTORY_NOT_IDLE");
+      const previous = bindings.instancePreparationV2;
+      if (!previous) throw unavailable("HOST_ADMISSION_REFRESH_UNAVAILABLE");
+      refreshing = true;
+      try {
+        const next = await prepareRuntimeWorkerInstanceV2FromP2(previous.source, previous.releaseBasis, previous.input);
+        if (next.lease.daemonGeneration !== previous.lease.daemonGeneration) throw unavailable("HOST_ADMISSION_DAEMON_CHANGED");
+        const admission = await completeRuntimeWorkerInstanceV2FromP2(next, account);
+        if (closed || !kernelLease.held || launchers.size) throw unavailable("LAUNCHER_FACTORY_NOT_IDLE");
+        await revalidateRuntimeInstanceAdmissionV2(admission.instanceInput, admission.instanceAdmission);
+        bindings = validateBindings({ ...bindings, instancePreparationV2: next });
+        return admission;
+      } finally { refreshing = false; }
     },
     async close(): Promise<void> {
       closed = true;

@@ -3,6 +3,7 @@ import renderer, { act, type ReactTestRenderer } from 'react-test-renderer';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { RuntimeConnectivitySnapshot } from '../../lib/shell/runtime-connectivity';
 import { RuntimeConnectivityProvider } from '../../components/shell/runtime-connectivity-provider';
+import { useRuntimeSettingsController, type RuntimeSettingsViewProps } from '../../components/settings/runtime-settings-controller';
 import { RuntimeSettings } from '../../components/settings/runtime-settings';
 
 /**
@@ -127,4 +128,28 @@ describe('RuntimeSettings re-probe on runtime reconnect', () => {
 
     tree.unmount();
   });
+});
+
+
+it('does not probe or activate local models for the hosted Codex shell, including refresh and daemon actions', async () => {
+  vi.clearAllMocks();
+  installBridge(snapshot());
+  const status = { ok: true, launchAgent: { installed: true, loaded: true }, daemon: { running: true } };
+  daemonStatus.mockResolvedValue(status);
+  const bridge = (window as any).chirality.runtime;
+  bridge.daemon.start.mockResolvedValue(status);
+  let controller!: RuntimeSettingsViewProps;
+  function HostedController() { controller = useRuntimeSettingsController({ localModels: false }); return null; }
+  let tree!: ReactTestRenderer;
+  await act(async () => { tree = renderer.create(<HostedController />); });
+  await act(async () => { controller.onRefresh(); });
+  await act(async () => { controller.onDaemonAction('start'); });
+  await act(async () => { controller.onSelectedModelChange('irrelevant-model'); });
+  await act(async () => { controller.onActivateModel(); });
+  expect(modelStatus).not.toHaveBeenCalled();
+  expect(bridge.models.activate).not.toHaveBeenCalled();
+  expect(controller.error).toBeNull();
+  expect(controller.daemonStatus?.daemon.running).toBe(true);
+  act(() => tree.unmount());
+  delete (globalThis as { window?: unknown }).window;
 });

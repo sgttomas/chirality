@@ -57,9 +57,11 @@ async function inspectSupplierTree(root) {
     }
   }
   await visit(root);
-  const executable = records.find((entry) => entry.relativePath === 'codex');
-  if (!executable || executable.directory || (executable.mode & 0o111) === 0) {
-    throw new Error('Supplier source must contain an executable regular file named codex');
+  for (const name of ['codex', 'codex-code-mode-host']) {
+    const executable = records.find((entry) => entry.relativePath === name);
+    if (!executable || executable.directory || (executable.mode & 0o111) === 0) {
+      throw new Error(`Supplier source must contain an executable regular file named ${name}`);
+    }
   }
   return records;
 }
@@ -256,6 +258,8 @@ export async function runElectronPack({
       throw new Error('Runtime v2 signed preparation requires explicit identity, team, bundle, and checkpoint inputs');
     }
     builderEnvironment[RUNTIME_MANIFEST_VERSION_ENV] = 'v2';
+    // V2 packages admitted native inputs; rebuilding here changes their basis.
+    args.push('-c.npmRebuild=false');
     builderEnvironment.CSC_NAME = env[SIGNING_IDENTITY_SHA1_ENV];
     delete builderEnvironment[RUNTIME_V2_INPUT_DIGEST_ENV];
   } else {

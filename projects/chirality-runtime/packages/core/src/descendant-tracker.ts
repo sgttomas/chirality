@@ -92,7 +92,12 @@ export class DescendantTracker {
     } catch (error) { this.failure = error instanceof Error ? error.message : 'CENSUS_FAILED'; throw error; }
   }
   async reconcile() {
-    if (!this.closed) await this.sample().catch(() => {});
+    if (!this.closed) {
+      // A reconciliation boundary needs a census started after the call. A
+      // pending poll may have captured rows before caller-owned cleanup.
+      await this.pending?.catch(() => {});
+      await this.sample().catch(() => {});
+    }
     const byPid = new Map(this.latest.map(row => [row.pid, row]));
     const ownedGroup: ProcessIdentity[] = [], detached: ProcessIdentity[] = [], gone: ProcessIdentity[] = [], identityChanged: ProcessIdentity[] = [];
     for (const recorded of this.records.values()) {

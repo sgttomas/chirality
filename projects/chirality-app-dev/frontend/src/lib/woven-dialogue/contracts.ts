@@ -52,10 +52,14 @@ export type OperatorSessionProjection = {
   currency: ProjectionCurrency;
   persona?: string;
   role?: 'agent0' | 'agent1' | 'agent2';
+  /** Defined by current readers; missing legacy projection keeps compatibility behavior. */
+  bootstrapConfirmed?: boolean;
   runtimeStatus?: 'idle' | 'running' | 'completed' | 'failed' | 'interrupted';
   adapterId?: string;
   providerId?: string;
   model?: string;
+  /** Session-fixed reasoning effort recorded with the model (Codex catalog sessions). */
+  reasoningEffort?: string;
   residencyEpoch?: string;
   parentage: ParentageProjection;
   outputArtifactReference?: string;

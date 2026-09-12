@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { mkdtemp, mkdir, realpath, readFile, writeFile, rm, access, symlink, chmod } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
+import { mkdtemp, mkdir, realpath, readdir, readFile, writeFile, rm, access, symlink, chmod } from 'node:fs/promises';
+import { homedir, tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { assertCodexKeyringHomeHasNoPlaintextCredentials, assertTrustedRuntimeReadRoot, bindTrustedRuntimeReadRoot, prepareCodexContainment, prepareCodexNativePolicy, prepareCodexTrustedSupplierContainment } from '../packages/daemon/src/codex-containment.js';
+import { assertCodexKeyringHomeHasNoPlaintextCredentials, assertTrustedRuntimeReadRoot, bindTrustedRuntimeReadRoot, prepareCodexContainment, prepareCodexNativePolicy, prepareCodexContainmentV2, prepareCodexTrustedSupplierContainment, prepareCodexTrustedSupplierContainmentV2 } from '../packages/daemon/src/codex-containment.js';
 
 describe('trusted Runtime bundle binding',()=>{
   it('rejects source-tree instruction reads without a reviewed packaged bundle',async()=>{
@@ -99,8 +99,78 @@ describe.skipIf(process.platform !== 'darwin')('actual macOS Codex containment',
       await expect(assertCodexKeyringHomeHasNoPlaintextCredentials(home)).rejects.toThrow('Plaintext Codex credential');
     } finally { await rm(base, { recursive: true, force: true }); }
   });
+
+  it('lets only keyring purposes read and rewrite the OS user keychain directory', async () => {
+    // The Security framework rewrites login.keychain-db through a temporary file in this directory.
+    // The probe below only creates and removes an empty uniquely named file there; no keychain is touched.
+    const keychains = join(homedir(), 'Library', 'Keychains');
+    const base = await mkdtemp(join(await realpath(tmpdir()), 'keychain-dir-'));
+    const root = join(base, 'root'); const priv = join(base, 'private'); const home = join(priv, 'codex');
+    await mkdir(root); await mkdir(priv, { mode: 0o700 }); await mkdir(home, { mode: 0o700 });
+    const probe = join(keychains, `chirality-containment-probe-${process.pid}-${createHash('sha256').update(base).digest('hex').slice(0, 12)}`);
+    const shellQuote = (s: string) => "'" + s.replaceAll("'", "'\\''") + "'";
+    const consent = { approvedBy: 'owner', approvalReference: 'consent' };
+    const supplier = await prepareCodexContainmentV2({ purpose: 'trusted-login', canonicalRoot: root, privateDirectory: priv, codexHome: home, providerNetworkConsent: consent, trustedRuntimeReadRoots: [] });
+    const worker = await prepareCodexContainment({ canonicalRoot: root, privateDirectory: priv, codexHome: home, providerNetworkConsent: consent });
+    const run = (prepared: typeof worker, command: string) => spawnSync('/usr/bin/sandbox-exec', [...prepared.args, '/bin/sh', '-c', command], { env: prepared.environment, cwd: root, encoding: 'utf8' });
+    try {
+      expect(supplier.environment.HOME).toBe(homedir());
+      expect(await readFile(supplier.sandboxProfilePath!, 'utf8')).toContain(`(subpath ${JSON.stringify(keychains)})`);
+      expect(await readFile(worker.sandboxProfilePath, 'utf8')).not.toContain('Keychains');
+      const listed = run(supplier, `/bin/ls ${shellQuote(keychains)}`);
+      expect(listed.status, JSON.stringify(listed)).toBe(0);
+      const created = run(supplier, `/usr/bin/touch ${shellQuote(probe)} && /bin/rm ${shellQuote(probe)}`);
+      expect(created.status, JSON.stringify(created)).toBe(0);
+      const workerCreate = run(worker, `/usr/bin/touch ${shellQuote(probe)}`);
+      expect(workerCreate.status).not.toBe(0); await expect(access(probe)).rejects.toThrow();
+      const workerList = run(worker, `/bin/ls ${shellQuote(keychains)}`);
+      expect(workerList.status).not.toBe(0);
+    } finally {
+      await rm(probe, { force: true }); await supplier.cleanup(); await worker.cleanup();
+      await rm(base, { recursive: true, force: true });
+    }
+  });
 });
 
+
+describe.skipIf(process.platform !== 'darwin')('trusted supplier direct launch', () => {
+  it('launches the v2 trusted supplier directly because macOS refuses a nested Seatbelt under any denying outer profile', async () => {
+    const base = await mkdtemp(join(await realpath(tmpdir()), 'direct-launch-'));
+    const root = join(base, 'root'); const priv = join(base, 'private'); const home = join(priv, 'codex');
+    await mkdir(root); await mkdir(priv, { mode: 0o700 }); await mkdir(home, { mode: 0o700 });
+    const executable = join(priv, 'codex-executable'); await writeFile(executable, '#!/bin/sh\nexit 0\n', { mode: 0o700 });
+    const consent = { approvedBy: 'owner', approvalReference: 'consent' };
+    const supplier = await prepareCodexTrustedSupplierContainmentV2({ canonicalRoot: root, privateDirectory: priv, codexHome: home, providerNetworkConsent: consent, trustedRuntimeReadRoots: [] });
+    const login = await prepareCodexContainmentV2({ purpose: 'trusted-login', canonicalRoot: root, privateDirectory: priv, codexHome: home, providerNetworkConsent: consent, trustedRuntimeReadRoots: [] });
+    try {
+      expect(supplier.launcher).toBe('direct'); expect(supplier.sandboxProfilePath).toBeNull(); expect(supplier.args).toEqual([]);
+      expect(await readdir(supplier.environment.TMPDIR)).toEqual([]);
+      expect(await supplier.launchArguments(executable)).toEqual([executable]);
+      await expect(supplier.launchArguments('/bin/sh')).rejects.toThrow('within');
+      expect(supplier.commandNetworkBoundary).toBe('configuration-only');
+      expect(supplier.environment.HOME).toBe(homedir()); expect(supplier.config.cli_auth_credentials_store).toBe('keyring');
+      expect(login.launcher).toBe('outer-seatbelt'); expect(login.sandboxProfilePath).not.toBeNull();
+      expect(supplier.outerPolicyDigest).not.toBe(login.outerPolicyDigest);
+      // The supplier's own Seatbelt (a deny-default profile applied through sandbox-exec) works only without the outer profile.
+      const inner = ['-p', '(version 1)(deny default)(allow process-exec (literal "/usr/bin/true"))(allow file-read*)(allow process-fork)(allow sysctl-read)(allow mach-lookup)(allow signal)', '/usr/bin/true'];
+      const direct = spawnSync('/usr/bin/sandbox-exec', inner, { env: supplier.environment, cwd: root, encoding: 'utf8' });
+      expect(direct.status, JSON.stringify(direct)).toBe(0);
+      const nested = spawnSync('/usr/bin/sandbox-exec', [...login.args, '/usr/bin/sandbox-exec', ...inner], { env: login.environment, cwd: root, encoding: 'utf8' });
+      expect(nested.status).not.toBe(0); expect(nested.stderr).toContain('sandbox_apply');
+    } finally { await supplier.cleanup(); await login.cleanup(); await rm(base, { recursive: true, force: true }); }
+  });
+
+  it('refuses a direct supplier launch without provider network consent because no outer profile denies the network', async () => {
+    const base = await mkdtemp(join(await realpath(tmpdir()), 'direct-launch-consent-'));
+    const root = join(base, 'root'); const priv = join(base, 'private'); const home = join(priv, 'codex');
+    await mkdir(root); await mkdir(priv, { mode: 0o700 }); await mkdir(home, { mode: 0o700 });
+    try {
+      await expect(prepareCodexTrustedSupplierContainmentV2({ canonicalRoot: root, privateDirectory: priv, codexHome: home, trustedRuntimeReadRoots: [] })).rejects.toThrow('provider network consent');
+      const v1 = await prepareCodexTrustedSupplierContainment({ canonicalRoot: root, privateDirectory: priv, codexHome: home });
+      try { expect(v1.launcher).toBe('outer-seatbelt'); expect(v1.sandboxProfilePath).not.toBeNull(); } finally { await v1.cleanup(); }
+    } finally { await rm(base, { recursive: true, force: true }); }
+  });
+});
 
 describe.skipIf(process.platform !== 'darwin')('native policy compiler only', () => {
   it('compiles stable named policy without provider execution and excludes broker control', async () => {

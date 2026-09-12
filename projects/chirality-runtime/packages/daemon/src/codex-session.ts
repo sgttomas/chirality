@@ -1,3 +1,4 @@
+import { CodexTextAssembly } from "./codex-text-assembly.js";
 import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV2, type RuntimeInstanceAdmissionInputV2, type RuntimeInstanceAdmissionV2 } from "./runtime-conformance-v2-admission.js";
 import type { RuntimeAdmissionLease } from "@chirality/runtime-core";
 import { randomUUID, createHash } from "node:crypto";
@@ -48,8 +49,18 @@ export interface CodexUserInputRequest {
   questions: readonly NativePlanClarificationQuestion[]; isBlocking: boolean; autoResolutionMs: number | null;
 }
 export type CodexSessionEvent = { type: "started"; threadId: string; turnId: string } | { type: "text"; threadId: string; turnId: string; text: string } | CodexPlanEvent | { type: "terminal"; terminal: CodexTurnTerminal };
-interface Pending { resolve(value: Record<string, unknown>): void; reject(error: Error): void; timer: ReturnType<typeof setTimeout> }
+interface Pending { resolve(value: Record<string, unknown>): void; reject(error: Error): void; timer: ReturnType<typeof setTimeout>; method: string }
+/** Bounded diagnostics from a Codex JSON-RPC error object: the numeric or short string code and a control-free message of at most 256 characters. */
+export function describeCodexRejection(value: unknown): { codexCode?: number | string; codexMessage?: string } {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  const raw = value as Record<string, unknown>, result: { codexCode?: number | string; codexMessage?: string } = {};
+  if (typeof raw.code === "number" && Number.isSafeInteger(raw.code)) result.codexCode = raw.code;
+  else if (typeof raw.code === "string" && /^[\x21-\x7e]{1,64}$/.test(raw.code)) result.codexCode = raw.code;
+  if (typeof raw.message === "string") { const text = raw.message.replace(/[\x00-\x1f\x7f]/g, " ").trim(); if (text) result.codexMessage = text.length > 256 ? `${text.slice(0, 256)}…` : text; }
+  return result;
+}
 interface Turn {
+  textAssembly: CodexTextAssembly;
   threadId: string; id?: string; terminal?: CodexTurnTerminal; startedEmitted: boolean; items: Map<string, { text: string; completed: boolean }>;
   plans: Map<string, { deltaText: string; completed: boolean; completedText?: string }>;
   done: Promise<CodexTurnTerminal>; resolve(value: CodexTurnTerminal): void; reject(error: Error): void;
@@ -144,6 +155,7 @@ export class CodexTurnSession {
   private authorityFailed?:()=>void;
   private initializing = false;
   private selecting = false;
+  private userInterruptRequested = false;
   private threadId: string | undefined;
   private threadNotice: string | undefined;
   private active: Turn | undefined;
@@ -246,7 +258,7 @@ export class CodexTurnSession {
     const id = this.nextId++;
     return new Promise((resolveRequest, reject) => {
       const timer = setTimeout(() => this.fail(protocol("Codex request timed out")), this.options.requestTimeoutMs ?? 10000);
-      this.requests.set(id, { resolve: resolveRequest, reject, timer });
+      this.requests.set(id, { resolve: resolveRequest, reject, timer, method });
       try { this.write(params === undefined ? { id, method } : { id, method, params }); }
       catch (error) { clearTimeout(timer); this.requests.delete(id); reject(error); }
     });
@@ -267,7 +279,7 @@ export class CodexTurnSession {
           if (!pending || (("result" in message) === ("error" in message))) throw protocol("Unsolicited or duplicate Codex response");
           const result = "result" in message ? object(message.result) : undefined;
           this.requests.delete(message.id as number); clearTimeout(pending.timer);
-          if ("error" in message) pending.reject(new RuntimeError("ENGINE_UNAVAILABLE", "Codex rejected the requested operation", 503, { reason: "CODEX_REQUEST_REJECTED" }));
+          if ("error" in message) pending.reject(new RuntimeError("ENGINE_UNAVAILABLE", "Codex rejected the requested operation", 503, { reason: "CODEX_REQUEST_REJECTED", method: pending.method, ...describeCodexRejection(message.error) }));
           else pending.resolve(result!);
         } else this.notification(identifierMethod(message.method), message.params);
       } catch (error) { this.fail(error instanceof RuntimeError ? error : protocol("Malformed Codex protocol")); return; }
@@ -568,7 +580,9 @@ export class CodexTurnSession {
       if ([...this.toolCalls.values()].some(call => call.turnId === turnId && !call.completed && !call.controller.signal.aborted)) throw protocol("Codex terminal preceded host tool completion");
       this.resolveNetworkApprovals(turnId);
       for (const entry of this.userInputRequests.values()) if (entry.prompt.turnId === turnId) entry.state = "resolved";
-      const terminal: CodexTurnTerminal = { threadId, turnId, status, output: [...active.items.values()].map(item => item.text).join("") };
+      const remainder = active.textAssembly.flush(active.items, true);
+      if (remainder) this.emit({ type: "text", threadId, turnId, text: remainder });
+      const terminal: CodexTurnTerminal = { threadId, turnId, status, output: active.textAssembly.text };
       if (active.primaryTerminal && JSON.stringify(active.primaryTerminal) !== JSON.stringify(terminal)) throw protocol("Conflicting duplicate Codex terminal");
       active.primaryTerminal = terminal; this.finishActiveIfSettled(); return;
     }
@@ -577,7 +591,9 @@ export class CodexTurnSession {
       if (typeof text !== "string" || Buffer.byteLength(text) > 65536) throw protocol("Unsupported text delta");
       const item = active.items.get(itemId) ?? { text: "", completed: false };
       if (item.completed || Buffer.byteLength(item.text) + Buffer.byteLength(text) > 262144) throw protocol("Late or oversized text delta");
-      item.text += text; active.items.set(itemId, item); this.emit({ type: "text", threadId, turnId, text }); return;
+      item.text += text; active.items.set(itemId, item);
+      const delta = active.textAssembly.flush(active.items);
+      if (delta) this.emit({ type: "text", threadId, turnId, text: delta }); return;
     }
     if (method === "item/plan/delta") {
       const itemId = identifier(params.itemId), text = params.delta;
@@ -610,9 +626,10 @@ export class CodexTurnSession {
       if (method === "item/started") { if (!active.items.has(itemId)) active.items.set(itemId, { text: "", completed: false }); return; }
       if (typeof item.text !== "string" || Buffer.byteLength(item.text) > 262144) throw protocol("Unsupported completed message");
       const prior = active.items.get(itemId);
-      if (prior?.completed || (prior && !item.text.startsWith(prior.text))) throw protocol("Conflicting completed message");
-      const remainder = item.text.slice(prior?.text.length ?? 0);
+      if (prior?.completed) { if (prior.text !== item.text) throw protocol("Conflicting completed message"); return; }
+      if (prior && !item.text.startsWith(prior.text)) throw protocol("Conflicting completed message");
       active.items.set(itemId, { text: item.text, completed: true });
+      const remainder = active.textAssembly.flush(active.items);
       if (remainder) this.emit({ type: "text", threadId, turnId, text: remainder }); return;
     }
     throw protocol("Unsupported Codex notification");
@@ -651,7 +668,7 @@ export class CodexTurnSession {
       authority.assertSnapshotBinding({supplierGeneration:snapshot.supplierGeneration,identityGeneration:snapshot.identityGeneration,snapshotDigest:snapshot.snapshotDigest});
       return createHash("sha256").update(JSON.stringify({schema:"chirality-hosted-account-conformance/v1",accountUserId:snapshot.accountUserId,providerWorkspaceId:snapshot.providerWorkspaceId})).digest("hex");});
   }
-  async listModelsPage(cursor?: string): Promise<{ data: readonly { model: string; hidden: boolean; isDefault: boolean; defaultReasoningEffort: string }[]; nextCursor: string | null }> {
+  async listModelsPage(cursor?: string): Promise<{ data: readonly { model: string; hidden: boolean; isDefault: boolean; defaultReasoningEffort: string; supportedReasoningEfforts: readonly string[] }[]; nextCursor: string | null }> {
     this.assertReady();
     if (cursor !== undefined && (typeof cursor !== "string" || !/^[\x21-\x7e]{1,512}$/.test(cursor))) throw invalid("Invalid model catalog cursor");
     const response = await this.request("model/list", cursor === undefined ? { limit: 100 } : { limit: 100, cursor });
@@ -670,7 +687,7 @@ export class CodexTurnSession {
         return effort;
       });
       if (new Set(efforts).size !== efforts.length || !efforts.includes(item.defaultReasoningEffort)) throw protocol("Unusable default model reasoning");
-      return Object.freeze({ model: item.model, hidden: item.hidden, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort });
+      return Object.freeze({ model: item.model, hidden: item.hidden, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort, supportedReasoningEfforts: Object.freeze(efforts) });
     });
     return Object.freeze({ data: Object.freeze(data), nextCursor: response.nextCursor as string | null });
   }
@@ -786,7 +803,7 @@ export class CodexTurnSession {
         if (features.multi_agent !== true || features.multi_agent_v2 !== false || agents.enabled !== true || agents.max_depth !== 2) throw protocol("Effective native role pins differ from the trusted configuration");
         for (const roleId of CHIRALITY_ROLE_NAMES) {
           const expectedRole = this.expectedNativeRoles.roles[roleId]!;
-          if (!sameTable(agents[roleId], { description: expectedRole.description, config_file: expectedRole.config_file })) throw protocol("Effective native role entry differs from the trusted configuration");
+          if (!sameTable(normalizeObservedRole(agents[roleId]), { description: expectedRole.description, config_file: expectedRole.config_file })) throw protocol("Effective native role entry differs from the trusted configuration");
         }
         const safeDefaults = new Set(["enabled", "max_depth", "max_concurrent_threads_per_session", "default_subagent_model", "default_subagent_reasoning_effort", "interrupt_message", ...CHIRALITY_ROLE_NAMES]);
         if (Object.entries(agents).some(([key, value]) => !safeDefaults.has(key) && value !== null && value !== undefined)) throw protocol("Unexpected effective native role configuration");
@@ -905,9 +922,9 @@ export class CodexTurnSession {
         userInput.push({ type: "localImage", path: attachment.path });
       }
     }
-    const turn: Turn = { threadId: input.threadId, startedEmitted: false, items: new Map(), plans: new Map(), done, resolve: resolveTurn, reject: rejectTurn,
+    const turn: Turn = { threadId: input.threadId, startedEmitted: false, items: new Map(), textAssembly: new CodexTextAssembly(), plans: new Map(), done, resolve: resolveTurn, reject: rejectTurn,
       familyEnabled: this.inheritableTools !== undefined, familySettled: this.inheritableTools === undefined,
-      timer: setTimeout(() => this.fail(protocol("Codex turn timed out")), this.options.turnTimeoutMs ?? 120000) };
+      timer: setTimeout(() => this.expireTurn(turn), this.options.turnTimeoutMs ?? 120000) };
     this.active = turn;
     try {
       await this.checkNativePolicy();
@@ -918,8 +935,36 @@ export class CodexTurnSession {
         collaborationMode: { mode: mode === "native-plan" ? "plan" : "default", settings: { model: input.model, reasoning_effort: input.reasoningEffort ?? null, developer_instructions: null } }, ...this.policyParameters() });
       const id = identifier(object(result.turn).id);
       if ((turn.id && turn.id !== id) || (this.terminals.has(id) && turn.terminal?.turnId !== id)) throw protocol("Turn response identity mismatch");
-      turn.id = id; if (!turn.startedEmitted) { turn.startedEmitted = true; this.emit({ type: "started", threadId: turn.threadId, turnId: id }); } return id;
+      turn.id = id; if (!turn.startedEmitted) { turn.startedEmitted = true; this.emit({ type: "started", threadId: turn.threadId, turnId: id }); }
+      if (this.userInterruptRequested && this.active === turn) this.interruptActiveTurn();
+      return id;
     } catch (error) { clearTimeout(turn.timer); if (this.active === turn) this.active = undefined; turn.reject(error as Error); if (error instanceof RuntimeError && error.details?.reason === "CODEX_PROTOCOL_FAILURE") this.fail(error); throw error; }
+  }
+  /**
+   * A turn that outlives its budget is interrupted through the provider, not
+   * treated as a transport failure: the account authority stays intact and the
+   * turn ends with the provider's own "interrupted" terminal. Only a provider
+   * that ignores the interrupt within one request budget is a protocol failure.
+   */
+  private expireTurn(turn: Turn): void {
+    if (this.failure || this.active !== turn || !turn.id) { if (this.active === turn && !turn.id) this.fail(protocol("Codex turn timed out")); return; }
+    const turnId = turn.id;
+    turn.timer = setTimeout(() => { if (this.active === turn && !this.failure) this.fail(protocol("Codex turn timed out")); }, this.options.requestTimeoutMs ?? 10000);
+    this.interrupt(turnId).catch(() => { if (this.active === turn && !this.failure) this.fail(protocol("Codex turn timed out")); });
+  }
+  /** Latches a user request made before turn/start completes. Terminal evidence stays provider-owned. */
+  requestInterrupt(): void {
+    if (this.failure) throw this.failure;
+    this.userInterruptRequested = true;
+    this.interruptActiveTurn();
+  }
+  private interruptActiveTurn(): void {
+    const turn = this.active;
+    if (!turn?.id || this.failure) return;
+    this.userInterruptRequested = false;
+    clearTimeout(turn.timer);
+    turn.timer = setTimeout(() => { if (this.active === turn && !this.failure) this.fail(protocol("Codex interrupt timed out")); }, this.options.requestTimeoutMs ?? 10000);
+    void this.interrupt(turn.id).catch(() => { if (this.active === turn && !this.failure) this.fail(protocol("Codex interrupt failed")); });
   }
   async waitTurn(turnId: string): Promise<CodexTurnTerminal> {
     const terminal = this.terminals.get(turnId); if (terminal) return { ...terminal };
@@ -971,6 +1016,17 @@ function normalizeObservedProfile(value: Record<string, unknown>, expectedNetwor
   profile.filesystem = stripNulls(object(profile.filesystem), ["glob_scan_max_depth"]);
   profile.network = stripNulls(object(profile.network), ["proxy_url", "enable_socks5", "socks_url", "enable_socks5_udp", "allow_upstream_proxy", "dangerously_allow_non_loopback_proxy", "dangerously_allow_all_unix_sockets", "mode", "domains", "unix_sockets", "allow_local_binding", "mitm"].filter(field => !Object.hasOwn(expectedNetwork, field)));
   return profile;
+}
+
+/** Only the inert null nickname default observed from the pinned 0.149.0 typed role readback. */
+function normalizeObservedRole(value: unknown): unknown {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return value;
+  const role = { ...(value as Record<string, unknown>) };
+  if (Object.hasOwn(role, "nickname_candidates")) {
+    if (role.nickname_candidates !== null) throw protocol("Non-inert native role metadata is unsupported");
+    delete role.nickname_candidates;
+  }
+  return role;
 }
 
 function freezeTree<T>(value: T): T {

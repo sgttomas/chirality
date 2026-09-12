@@ -80,31 +80,40 @@ export type DaemonRequestOptions = {
   signal?: AbortSignal;
 };
 
-export type HostedBootstrapStatusResponse =
-  | { registration: 'required' }
-  | {
-      registration: 'registered';
-      projectId: string;
-      status: HostedBootstrapStatus;
-    };
-
 export type HostedProjectBindingResponse =
   | { registration: 'required' }
   | { registration: 'registered'; projectId: string };
+
+/**
+ * Explicit initialization returns only the verified registration and binding.
+ * Hosted account status is never produced by the Next tier: the daemon
+ * requires the Desktop account-host proof for every account read, so the
+ * renderer obtains status through the signed main-process IPC path after this
+ * binding is established.
+ */
+export type HostedProjectInitializationResponse = Extract<
+  HostedProjectBindingResponse,
+  { registration: 'registered' }
+>;
 
 export interface HostedBootstrapPort {
   bindProject(
     projectRoot: string,
     options?: DaemonRequestOptions
   ): Promise<HostedProjectBindingResponse>;
+  /**
+   * Read-only registration probe. It resolves and verifies the binding for the
+   * selected folder but never carries hosted account status (see
+   * {@link HostedProjectInitializationResponse}).
+   */
   getStatus(
     projectRoot: string,
     options?: DaemonRequestOptions
-  ): Promise<HostedBootstrapStatusResponse>;
+  ): Promise<HostedProjectBindingResponse>;
   initializeProject(
     projectRoot: string,
     options?: DaemonRequestOptions
-  ): Promise<Extract<HostedBootstrapStatusResponse, { registration: 'registered' }>>;
+  ): Promise<HostedProjectInitializationResponse>;
   grantProviderNetworkConsent(
     projectRoot: string,
     options?: DaemonRequestOptions
@@ -135,6 +144,8 @@ export type V3SessionCreateRequest = SessionCreateRequest & {
   selectedMethods?: ResolveSelectedContextRequest['methods'];
   declaredContext?: string[];
   allowedWriteTargets?: string[];
+  /** Session-fixed catalog choice; forwarded to Runtime `CreateSessionRequest.modelSelection`. */
+  modelSelection?: { model: string; reasoningEffort: string };
 };
 
 export type V3TurnRequest = TurnRequest & {

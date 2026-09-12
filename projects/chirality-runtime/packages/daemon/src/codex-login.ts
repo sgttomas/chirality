@@ -2,7 +2,7 @@ import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { constants } from "node:fs";
 import { open, realpath } from "node:fs/promises";
 import { spawn } from "node:child_process";
-import { RuntimeError, validateHostedLoginStatus, type HostedLoginStatus } from "@chirality/runtime-contracts";
+import { RuntimeError, hostedModelCatalog, validateHostedLoginStatus, type HostedLoginStatus, type HostedModelCatalog } from "@chirality/runtime-contracts";
 import { computeRuntimeArtifactDigest, configureRuntimeConformanceArtifactInventory, isContained, privateDirectory, recordKey, revalidateExactSupply, runtimeConformanceArtifactInventory, runtimeStageCAppServerArguments, RuntimeConformanceFileAcceptancePort, verifyExactSupply, type ExactSupplyVerifier, type ExactVerifiedSupply, type RuntimeConformanceConfiguration } from "@chirality/runtime-core";
 import { assertCodexKeyringHomeHasNoPlaintextCredentials, codexLoginConfigOverridesV2, prepareCodexContainment, prepareCodexContainmentV2 } from "./codex-containment.js";
 import { CodexTurnSession, type CodexAuthorityInitialize, type CodexSessionTransport } from "./codex-session.js";
@@ -11,7 +11,7 @@ import { revalidateHostedAccountAuthorityV2, revalidateRuntimeInstanceAdmissionV
 import type { HostedPackagedReleaseBasisV2 } from "./hosted-packaged-release-state.js";
 import { assertIssuedPackagedSupplyVerifierV2 } from "./hosted-packaged-release-state.js";
 import { loadNativeAdmissionBinding } from "@chirality/native-admission";
-import { assertOwnedCompiledPathV2, codexEffectiveConfigDigestV2, retireAuthenticatedSupplierGroup } from "./codex-authenticated-transport.js";
+import { assertOwnedCompiledPathV2, codexEffectiveConfigDigestV2, retireAuthenticatedSupplierGroup, type AuthenticatedSupplierRetirementOutcome } from "./codex-authenticated-transport.js";
 
 const CODEX_LOGIN_V1_CONFIG_OVERRIDES = Object.freeze(['cli_auth_credentials_store="keyring"', "features.plugins=false", "allow_login_shell=false", 'approval_policy="never"', "check_for_update_on_startup=false", "analytics.enabled=false", "feedback.enabled=false"] as const);
 
@@ -111,6 +111,7 @@ export async function validateCodexLoginStartup(options: Omit<CodexLoginOptions,
     if (supply.sha256 !== releaseV2.supportProfile.supplier.sha256 || Number(supply.identity.size) !== releaseV2.supportProfile.supplier.size || supply.version !== releaseV2.supportProfile.supplier.version) throw unavailable("Login supply differs from v2 release profile");
     const containment = await prepareCodexContainmentV2({ ...startup, purpose: "trusted-login" });
     try {
+      if (containment.launcher !== "outer-seatbelt" || containment.sandboxProfilePath === null) throw unavailable("Login requires the outer containment profile");
       await assertOwnedCompiledPathV2(options.privateDirectory, containment.environment.TMPDIR, "directory");
       await assertOwnedCompiledPathV2(containment.environment.TMPDIR, containment.sandboxProfilePath, "file");
       const effectiveConfigDigest = codexEffectiveConfigDigestV2({ executablePath: supply.executablePath, cwd: options.canonicalRoot,
@@ -152,10 +153,37 @@ export const qualifyCodexLoginPurpose = validateCodexLoginStartup;
 export type CodexLoginPurposeAdmission = CodexLoginStartupAdmission;
 export type CodexLoginStatus = HostedLoginStatus;
 const unavailable = (message: string) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503);
+/** Sanitized pre-reap signal diagnostic from a verified group retirement; never a failure by itself. */
+export interface CodexLoginCloseDiagnostic { readonly phase: "term" | "kill"; readonly message: string }
+/** Login transport whose close may expose retirement diagnostics after it settles. */
+export type CodexLoginTransport = CodexSessionTransport & { diagnostics?(): readonly CodexLoginCloseDiagnostic[] };
+const diagnosticText = (value: unknown) => (value instanceof Error ? value.message : String(value ?? "")).replace(/[\x00-\x1f\x7f]/g, " ").slice(0, 200);
+/** Memoized grouped-login close. A verified retirement (leader exited, reaped, group retired) with failed pre-reap signals
+ * resolves and keeps those signals as diagnostics; only unproven retirement or a failed containment cleanup rejects. */
+export function createGroupedLoginRetirement(input: { retire(): Promise<AuthenticatedSupplierRetirementOutcome>; cleanup(): Promise<void>; retainedResources: readonly string[]; pid?: number }): { close(): Promise<void>; diagnostics(): readonly CodexLoginCloseDiagnostic[] } {
+  let closing: Promise<void> | undefined, diagnostics: readonly CodexLoginCloseDiagnostic[] = Object.freeze([]);
+  const retained = { retainedResources: [...input.retainedResources], ...(input.pid === undefined ? {} : { pid: input.pid }) };
+  const close = () => closing ??= (async () => {
+    let outcome: AuthenticatedSupplierRetirementOutcome;
+    try { outcome = await input.retire(); }
+    catch (cause) {
+      const error = new RuntimeError("ENGINE_UNAVAILABLE", "Login group retirement is unproven; containment allocation retained", 503, { reason: "LOGIN_RETIREMENT_UNVERIFIED", ...retained });
+      error.cause = new AggregateError([cause], "Login retirement failed; cleanup is unsafe"); throw error;
+    }
+    diagnostics = Object.freeze(outcome.signalFailures.map(failure => Object.freeze({ phase: failure.phase, message: diagnosticText(failure.cause) })));
+    try { await input.cleanup(); }
+    catch (cause) {
+      const error = new RuntimeError("ENGINE_UNAVAILABLE", "Login containment cleanup failed; allocation retained", 503, { reason: "LOGIN_CLEANUP_FAILED", ...retained, signalFailures: diagnostics.map(value => value.phase) });
+      error.cause = new AggregateError([cause, ...outcome.signalFailures.map(failure => failure.cause)], "Login retirement and cleanup diagnostics"); throw error;
+    }
+  })();
+  return { close, diagnostics: () => diagnostics };
+}
 /** Operator-only, explicit-consent sign-in lifecycle; construction performs no login. */
 export class CodexLogin {
   private actor: CodexTurnSession | undefined;
-  private fixture: CodexSessionTransport | undefined;
+  private fixture: CodexLoginTransport | undefined;
+  private transport: CodexLoginTransport | undefined;
   private started = false;
   private closed = false;
   private expired = false;
@@ -164,6 +192,7 @@ export class CodexLogin {
   private closeFailure: unknown;
   private result: CodexLoginStatus | undefined;
   private selectedModel: Readonly<{ model: string; defaultReasoningEffort: string }> | undefined;
+  private modelCatalog: Readonly<HostedModelCatalog> | undefined;
   private retainAuthenticatedSessionForModelCatalog = false;
   private authorityInitialize: CodexAuthorityInitialize | undefined;
   private controlledNativeSkills: "disabled" | undefined;
@@ -173,13 +202,13 @@ export class CodexLogin {
     if (options.supplyVerifier) assertIssuedPackagedSupplyVerifierV2(options.supplyVerifier);
   }
   /** Explicit fixture seam, never emits exact-supply-login evidence. */
-  static controlledForTests(input: { transport: CodexSessionTransport; codexHome: string; canonicalRoot?: string; timeoutMs?: number; retainAuthenticatedSessionForModelCatalog?: boolean; nativeSkills?: "disabled"; authorityInitialize?: CodexAuthorityInitialize }): CodexLogin {
+  static controlledForTests(input: { transport: CodexLoginTransport; codexHome: string; canonicalRoot?: string; timeoutMs?: number; retainAuthenticatedSessionForModelCatalog?: boolean; nativeSkills?: "disabled"; authorityInitialize?: CodexAuthorityInitialize }): CodexLogin {
     const instance = new CodexLogin({ executablePath: "", canonicalRoot: input.canonicalRoot ?? "", privateDirectory: "", codexHome: input.codexHome, providerNetworkConsent: { approvedBy: "", approvalReference: "" }, timeoutMs: input.timeoutMs });
     instance.fixture = input.transport; instance.retainAuthenticatedSessionForModelCatalog = input.retainAuthenticatedSessionForModelCatalog === true;
     instance.controlledNativeSkills=input.nativeSkills;instance.authorityInitialize=input.authorityInitialize;return instance;
   }
   private get evidenceClass(): CodexLoginStatus["evidenceClass"] { return this.fixture ? "controlled-fixture" : "exact-supply-login"; }
-  private async launch(): Promise<CodexSessionTransport> {
+  private async launch(): Promise<CodexLoginTransport> {
     if (this.fixture) return this.fixture;
     if (process.platform !== "darwin" || process.arch !== "arm64") throw unavailable("Exact login requires darwin-arm64");
     const consent = this.options.providerNetworkConsent;
@@ -198,6 +227,7 @@ export class CodexLogin {
       const configOverrides = this.options.instanceV2 ? codexLoginConfigOverridesV2(containment.config) : CODEX_LOGIN_V1_CONFIG_OVERRIDES;
       const flags = configOverrides.flatMap(value => ["-c", value]);
       if (this.options.instanceV2) {
+        if (containment.launcher !== "outer-seatbelt" || containment.sandboxProfilePath === null) throw unavailable("Login requires the outer containment profile");
         await assertOwnedCompiledPathV2(this.options.privateDirectory, containment.environment.TMPDIR, "directory");
         await assertOwnedCompiledPathV2(containment.environment.TMPDIR, containment.sandboxProfilePath, "file");
         if (JSON.stringify(args) !== JSON.stringify(["-f", containment.sandboxProfilePath, supply.executablePath])) throw unavailable("Login outer invocation changed");
@@ -217,20 +247,9 @@ export class CodexLogin {
         const appServerArguments=this.options.releaseV2?.supportProfile.compiler.nativePolicyIdentityVersion===11?runtimeStageCAppServerArguments(configOverrides):["app-server",...flags];
         const child = native.value.spawnGroupedSupplier("/usr/bin/sandbox-exec", [...args, ...appServerArguments], authoritySecret, { cwd: this.options.canonicalRoot, environment: containment.environment, processGroup: true });
         if (child.state !== "available") throw unavailable("Contained login process could not start");
-        let closing: Promise<void> | undefined;
-        const close = () => closing ??= (async () => {
-          let outcome;
-          try { outcome = await retireAuthenticatedSupplierGroup(child.value); }
-          catch (cause) {
-            const error = new RuntimeError("ENGINE_UNAVAILABLE", "Login group retirement is unproven; containment allocation retained", 503,
-              { reason: "LOGIN_RETIREMENT_UNVERIFIED", retainedResources: [containment.environment.TMPDIR, containment.sandboxProfilePath], pid: child.value.pid });
-            error.cause = new AggregateError([cause], "Login retirement failed; cleanup is unsafe"); throw error;
-          }
-          const failures: unknown[] = outcome.signalFailures.map(value => value.cause);
-          try { await containment.cleanup(); } catch (error) { failures.push(error); }
-          if (failures.length) throw new AggregateError(failures, "Login retirement and cleanup diagnostics");
-        })();
-        return { stdin: child.value.stdin, stdout: child.value.stdout, close };
+        const retirement = createGroupedLoginRetirement({ retire: () => retireAuthenticatedSupplierGroup(child.value), cleanup: () => containment.cleanup(),
+          retainedResources: [containment.environment.TMPDIR, containment.sandboxProfilePath], ...(child.value.pid === undefined ? {} : { pid: child.value.pid }) });
+        return { stdin: child.value.stdin, stdout: child.value.stdout, close: retirement.close, diagnostics: retirement.diagnostics };
       }
       const child = spawn("/usr/bin/sandbox-exec", [...args, ...flags], { env: containment.environment, cwd: this.options.canonicalRoot, shell: false, detached: true, stdio: "pipe" });
       const closed = new Promise<void>(resolve => child.once("close", () => resolve()));
@@ -253,7 +272,7 @@ export class CodexLogin {
   async startLogin(): Promise<{ loginId: string; authUrl: string }> {
     if (this.started || this.closed) throw unavailable("Login component is single-use"); this.started = true;
     try {
-      const transport = await this.launch();
+      const transport = await this.launch(); this.transport = transport;
       if (this.closed) { await transport.close(); throw unavailable("Login was closed during startup"); }
       const nativeSkills = this.controlledNativeSkills ?? (this.options.releaseV2?.supportProfile.compiler.nativePolicyIdentityVersion === 11 ? "disabled" as const : undefined);
       this.actor = new CodexTurnSession({ transport, purpose: "login", nativeSkills, runtimeV2: this.options.instanceV2 && this.options.instanceAdmissionV2 ? { instanceInput: this.options.instanceV2, instanceAdmission: this.options.instanceAdmissionV2 } : undefined });
@@ -265,11 +284,18 @@ export class CodexLogin {
       return await this.actor.loginStart();
     } catch (error) { try { await this.close(); } catch (cleanup) { throw new AggregateError([error, cleanup], "Login startup and retirement failed"); } throw error; }
   }
+  /** The admitted default is the unique non-hidden default of the same catalog read `resolveModelCatalog` retains. */
   async resolveDefaultModel(): Promise<Readonly<{ model: string; defaultReasoningEffort: string }>> {
     if (this.selectedModel) return this.selectedModel;
+    const catalog = await this.resolveModelCatalog();
+    return this.selectedModel ?? Object.freeze({ model: catalog.default.model, defaultReasoningEffort: catalog.default.defaultReasoningEffort });
+  }
+  /** Same `model/list` requests, pages and bound as before; non-hidden entries are retained in catalog order. */
+  async resolveModelCatalog(): Promise<Readonly<HostedModelCatalog>> {
+    if (this.modelCatalog) return this.modelCatalog;
     if (!this.actor || this.closed) throw unavailable("Authenticated model catalog is unavailable");
     try {
-    const cursors = new Set<string>(), models = new Map<string, { hidden: boolean; isDefault: boolean; defaultReasoningEffort: string }>();
+    const cursors = new Set<string>(), models = new Map<string, { hidden: boolean; isDefault: boolean; defaultReasoningEffort: string; supportedReasoningEfforts: readonly string[] }>();
     let cursor: string | undefined;
     for (let pageIndex = 0; pageIndex < 64; pageIndex++) {
       if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
@@ -277,19 +303,24 @@ export class CodexLogin {
       const page = await this.actor.listModelsPage(cursor);
       for (const item of page.data) {
         const previous = models.get(item.model);
-        if (previous && (previous.hidden !== item.hidden || previous.isDefault !== item.isDefault || previous.defaultReasoningEffort !== item.defaultReasoningEffort)) throw unavailable("Conflicting model catalog record");
+        if (previous && (previous.hidden !== item.hidden || previous.isDefault !== item.isDefault || previous.defaultReasoningEffort !== item.defaultReasoningEffort
+          || previous.supportedReasoningEfforts.join("\0") !== item.supportedReasoningEfforts.join("\0"))) throw unavailable("Conflicting model catalog record");
         if (previous) throw unavailable("Duplicate model catalog record");
-        models.set(item.model, { hidden: item.hidden, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort });
+        models.set(item.model, { hidden: item.hidden, isDefault: item.isDefault, defaultReasoningEffort: item.defaultReasoningEffort, supportedReasoningEfforts: item.supportedReasoningEfforts });
       }
       if (page.nextCursor === null) {
-        const defaults = [...models].filter(([, value]) => value.isDefault && !value.hidden);
+        const visible = [...models].filter(([, value]) => !value.hidden);
+        const defaults = visible.filter(([, value]) => value.isDefault);
         if (defaults.length !== 1) throw unavailable("Model catalog has no unique usable default");
-        if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
+        if (visible.length > 64) throw unavailable("Model catalog exceeds the retained catalog bound");
         if (this.closed || this.expired) throw unavailable("Model catalog closed before selection");
-        const selected = Object.freeze({ model: defaults[0]![0], defaultReasoningEffort: defaults[0]![1].defaultReasoningEffort });
+        let catalog: Readonly<HostedModelCatalog>;
+        try { catalog = hostedModelCatalog(visible.map(([model, value]) => ({ model, isDefault: value.isDefault, defaultReasoningEffort: value.defaultReasoningEffort, supportedReasoningEfforts: value.supportedReasoningEfforts }))); }
+        catch { throw unavailable("Model catalog is not usable"); }
+        const selected = Object.freeze({ model: catalog.default.model, defaultReasoningEffort: catalog.default.defaultReasoningEffort });
         await this.close();
         if (this.expired || this.cancelled) throw unavailable("Model catalog cancelled or expired during retirement");
-        this.selectedModel = selected; return selected;
+        this.selectedModel = selected; this.modelCatalog = catalog; return catalog;
       }
       if (page.nextCursor === cursor || cursors.has(page.nextCursor)) throw unavailable("Model catalog cursor did not make progress");
       cursors.add(page.nextCursor); cursor = page.nextCursor;
@@ -305,7 +336,7 @@ export class CodexLogin {
     if (this.options.instanceV2) {
       if (!this.options.instanceAdmissionV2 || admission?.instanceAdmissionV2 !== this.options.instanceAdmissionV2 || this.options.instanceV2.outerPolicyDigest !== outerPolicyDigest
         || this.options.releaseV2?.supportProfile.supplier.sha256 !== supplySha256) throw unavailable("Trusted v2 login admission is unavailable");
-      await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2); return;
+      return;
     }
     const { timeoutMs: _timeoutMs, startupAdmission: _startupAdmission, purposeAdmission: _purposeAdmission, purposeRelease: _purposeRelease, releaseV2: _releaseV2, instanceV2: _instanceV2, instanceAdmissionV2: _instanceAdmissionV2, ...binding } = this.options;
     if (!admission || !loginAdmissions.has(admission) || admission.evidence !== "externally-accepted-native-login-purpose"
@@ -328,7 +359,6 @@ export class CodexLogin {
       // Cancellation, timeout or close during account/read must not revive the ceremony.
       if (this.closed || this.expired) return this.projectStatus({ state: "failed", loginId: current.loginId });
       if (!account.hasAccount) throw unavailable("Provider completion has no account");
-      if (this.options.instanceV2 && this.options.instanceAdmissionV2) await revalidateRuntimeInstanceAdmissionV2(this.options.instanceV2, this.options.instanceAdmissionV2);
       if (!this.fixture) await assertCodexKeyringHomeHasNoPlaintextCredentials(this.options.codexHome);
       this.result = this.projectStatus({ state: "completed", loginId: current.loginId, hasAccount: true });
       if (!this.options.instanceV2 && !this.retainAuthenticatedSessionForModelCatalog) clearTimeout(this.timer);
@@ -351,5 +381,7 @@ export class CodexLogin {
     if (this.closeFailure) throw this.closeFailure;
     // Persistent managed-auth storage remains supplier-owned; this component never reads credentials.
   }
+  /** Sanitized retirement diagnostics recorded by the last settled close; empty before close or when nothing failed. */
+  closeDiagnostics(): readonly CodexLoginCloseDiagnostic[] { return (this.transport ?? this.fixture)?.diagnostics?.() ?? []; }
 }
 export const createControlledCodexLoginForTests = CodexLogin.controlledForTests;

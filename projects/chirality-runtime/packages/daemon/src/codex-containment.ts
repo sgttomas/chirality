@@ -6,6 +6,7 @@ import { userInfo } from 'node:os';
 import { CHIRALITY_ROLE_NAMES } from '@chirality/runtime-contracts';
 import { compareRuntimeUtf8V2, runtimeConformanceInstructionBundleDigest, verifyPackagedRuntimeBasisV2, RUNTIME_STAGE_C_NATIVE_POLICY_IDENTITY_VERSION, RUNTIME_STAGE_C_NATIVE_SKILL_ARGUMENT, runtimeStageCAppServerArguments, runtimeStageCPolicyParameterSchemaDigest, type RuntimeConformanceArtifactInventorySelection } from '@chirality/runtime-core';
 import { digestCodexPolicyInstanceV2, inspectCodexPolicyInstanceV2, type CodexPolicyInstanceV2, type RuntimePackagedPolicyBasisV2 } from './runtime-conformance-v2-admission.js';
+import { resolveIssuedPackagedRuntimeBasisV2 } from './hosted-packaged-release-state.js';
 
 export interface TrustedRuntimeReadRootBinding {
   path: string;
@@ -110,6 +111,14 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
   if (consent && (!consent.approvedBy.trim() || !consent.approvalReference.trim())) {
     throw new Error('Provider network requires an explicit trusted operator consent record');
   }
+  // macOS refuses to apply a second Seatbelt profile inside a process that already
+  // runs under a profile carrying any deny rule. The worker supplier applies its own
+  // compiled permission profile through sandbox-exec for every file read and command,
+  // so the trusted-supplier purpose launches the verified supplier directly and that
+  // native Seatbelt is its containment. Login and keyring-only purposes never start a
+  // thread and keep the outer profile.
+  const directLaunch = identityVersion === 2 && options.purpose === 'trusted-supplier';
+  if (directLaunch && !consent) throw new Error('Direct supplier launch requires an explicit trusted operator provider network consent');
   const trustedReads = [...(options.trustedRuntimeReadRoots ?? [])].sort((left, right) => identityVersion === 2 ? compareRuntimeUtf8V2(left.path, right.path) : left.path.localeCompare(right.path));
   for (const entry of trustedReads) {
     if (!entry || !/^[a-f0-9]{64}$/.test(entry.contentDigest) || !isAbsolute(entry.path) || resolve(entry.path) !== entry.path
@@ -122,19 +131,29 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
   }
   const sessionDirectory = await mkdtemp(join(privateDirectory, 'containment-'));
   const sandboxProfilePath = join(sessionDirectory, 'launch.sb');
-  const readable = ['/System', '/usr', '/bin', '/sbin', '/Library/Apple', '/private/var/db/dyld', root, privateDirectory, ...trustedReads.flatMap(entry => entry.readPaths)];
+  // Keyring purposes persist OAuth tokens through the macOS login keychain. The
+  // Security framework reads and rewrites the keychain database inside the
+  // client process (a temporary file beside login.keychain-db), so the keychain
+  // directory of the effective home must stay readable and writable. Without it
+  // macOS reports the keychain as missing and offers a destructive reset.
+  const keychainDirectories = keyringPurpose ? [join(home, 'Library', 'Keychains')] : [];
+  const readable = ['/System', '/usr', '/bin', '/sbin', '/Library/Apple', '/private/var/db/dyld', root, privateDirectory,
+    ...(keyringPurpose ? ['/Library/Keychains', ...keychainDirectories] : []), ...trustedReads.flatMap(entry => entry.readPaths)];
+  const writable = [root, privateDirectory, ...keychainDirectories];
   const profile = [
     '(version 1)', '(allow default)',
     `(deny file-read-data (require-not (require-any (literal "/") ${readable.map(path => `(subpath ${quote(path)})`).join(' ')} (literal "/dev/null") (literal "/dev/urandom") (literal "/dev/random"))))`,
-    `(deny file-write* (require-not (require-any (subpath ${quote(root)}) (subpath ${quote(privateDirectory)}) (literal "/dev/null"))))`,
+    `(deny file-write* (require-not (require-any ${writable.map(path => `(subpath ${quote(path)})`).join(' ')} (literal "/dev/null"))))`,
     ...(keyringPurpose ? [] : ['(deny mach-lookup (global-name "com.apple.securityd"))']),
     ...(consent ? [] : ['(deny network*)']),
     '',
   ].join('\n');
-  try { await writeFile(sandboxProfilePath, profile, { mode: 0o600, flag: 'wx' }); }
-  catch (error) { await rm(sessionDirectory, { recursive: true, force: true }); throw error; }
+  if (!directLaunch) {
+    try { await writeFile(sandboxProfilePath, profile, { mode: 0o600, flag: 'wx' }); }
+    catch (error) { await rm(sessionDirectory, { recursive: true, force: true }); throw error; }
+  }
   const preparedDirectory = identityVersion === 2 ? await lstat(sessionDirectory, { bigint: true }) : undefined;
-  const preparedProfile = identityVersion === 2 ? await lstat(sandboxProfilePath, { bigint: true }) : undefined;
+  const preparedProfile = identityVersion === 2 && !directLaunch ? await lstat(sandboxProfilePath, { bigint: true }) : undefined;
   const config = {
     sandbox_mode: 'workspace-write',
     sandbox_workspace_write: { writable_roots: [root], network_access: false, exclude_slash_tmp: true, exclude_tmpdir_env_var: true },
@@ -149,25 +168,32 @@ async function prepareCodexContainmentVersion(options: CodexContainmentOptions |
   } as const;
   const outerPolicyIdentity = {
     schema: `chirality-codex-outer-policy/v${identityVersion}`, purpose: options.purpose ?? 'worker', root, privateDirectory, codexHome,
-    ...(identityVersion === 2 ? { home } : {}), trustedReads, profile, config, providerNetworkEnabled: Boolean(consent)
+    ...(identityVersion === 2 ? { home } : {}), trustedReads, profile: directLaunch ? null : profile, config, providerNetworkEnabled: Boolean(consent),
+    ...(directLaunch ? { launcher: 'direct-supplier-executable' as const } : {})
   };
   const outerPolicyDigest = createHash('sha256').update(JSON.stringify(outerPolicyIdentity)).digest('hex');
   return {
-    sandboxProfilePath,
-    args: ['-f', sandboxProfilePath],
+    /** `direct`: the verified supplier is the launcher and its native Seatbelt is the containment. */
+    launcher: directLaunch ? 'direct' as const : 'outer-seatbelt' as const,
+    sandboxProfilePath: directLaunch ? null : sandboxProfilePath,
+    args: directLaunch ? [] : ['-f', sandboxProfilePath],
     /** Caller verifies the supply digest/signature before calling this path gate. */
     launchArguments: async (verifiedExecutablePath: string): Promise<string[]> => {
       if (identityVersion === 2) {
-        const directory = await lstat(sessionDirectory, { bigint: true }), profile = await lstat(sandboxProfilePath, { bigint: true });
-        if (await realpath(sessionDirectory) !== sessionDirectory || await realpath(sandboxProfilePath) !== sandboxProfilePath
-          || ['dev', 'ino', 'mode', 'uid'].some(key => directory[key as 'dev'] !== preparedDirectory![key as 'dev'])
-          || ['dev', 'ino', 'mode', 'uid', 'size', 'mtimeNs', 'ctimeNs'].some(key => profile[key as 'dev'] !== preparedProfile![key as 'dev'])) throw new Error('Prepared outer allocation changed');
+        const directory = await lstat(sessionDirectory, { bigint: true });
+        if (await realpath(sessionDirectory) !== sessionDirectory
+          || ['dev', 'ino', 'mode', 'uid'].some(key => directory[key as 'dev'] !== preparedDirectory![key as 'dev'])) throw new Error('Prepared outer allocation changed');
+        if (!directLaunch) {
+          const profile = await lstat(sandboxProfilePath, { bigint: true });
+          if (await realpath(sandboxProfilePath) !== sandboxProfilePath
+            || ['dev', 'ino', 'mode', 'uid', 'size', 'mtimeNs', 'ctimeNs'].some(key => profile[key as 'dev'] !== preparedProfile![key as 'dev'])) throw new Error('Prepared outer allocation changed');
+        }
       }
       const executable = await realpath(verifiedExecutablePath);
       if (executable !== verifiedExecutablePath || (!contained(root, executable) && !contained(privateDirectory, executable)) || !(await stat(executable)).isFile()) {
         throw new Error('Verified Codex executable must be canonical and within the project or private directory');
       }
-      return ['-f', sandboxProfilePath, executable];
+      return directLaunch ? [executable] : ['-f', sandboxProfilePath, executable];
     },
     environment: {
       HOME: home, CODEX_HOME: codexHome, TMPDIR: sessionDirectory,
@@ -473,7 +499,7 @@ async function assertTrustedRuntimeReadRootV2(binding: TrustedRuntimeReadRootBin
   const inventory = binding.artifactInventory;
   if (!inventory || inventory.schema !== 'chirality-runtime-packaged-basis/v2' || binding.path !== join(inventory.resourcesRoot, 'instruction-root')
     || binding.readPaths.length < 1 || binding.readPaths.length > 32 || !binding.readPaths.every(path => path === binding.path || contained(binding.path, path))) throw new Error('Trusted Runtime v2 read root is outside its packaged basis');
-  const verified = await verifyPackagedRuntimeBasisV2({ resourcesRoot: inventory.resourcesRoot });
+  const verified = await verifiedPackagedBasisV2(inventory);
   if (verified.inventoryPath !== inventory.inventoryPath || verified.payloadManifestPath !== inventory.payloadManifestPath
     || verified.inventorySha256 !== inventory.outerInventorySha256 || verified.payloadDigest !== inventory.payloadDigest) throw new Error('Trusted Runtime v2 packaged basis changed');
   const records = verified.payload.entries.filter((entry): entry is Extract<typeof entry, {type:'file'}> => entry.type === 'file' && entry.relativePath.startsWith('instruction-root/'))
@@ -481,8 +507,13 @@ async function assertTrustedRuntimeReadRootV2(binding: TrustedRuntimeReadRootBin
   const observed = createHash('sha256').update(`${JSON.stringify(records)}\n`).digest('hex');
   if (observed !== binding.contentDigest) throw new Error('Trusted Runtime v2 instruction content changed');
 }
+/** The packaged basis behind a v2 read-root binding. A daemon-issued basis is reused after its identity revalidation
+ * (its payload was hashed once at issuance); only a root without an issued basis is hashed in full here. */
+async function verifiedPackagedBasisV2(inventory: RuntimePackagedPolicyBasisV2) {
+  return await resolveIssuedPackagedRuntimeBasisV2(inventory) ?? await verifyPackagedRuntimeBasisV2({ resourcesRoot: inventory.resourcesRoot });
+}
 export async function bindTrustedRuntimeReadRootV2(path: string, artifactInventory: RuntimePackagedPolicyBasisV2): Promise<TrustedRuntimeReadRootBindingV2> {
-  const verified = await verifyPackagedRuntimeBasisV2({ resourcesRoot: artifactInventory.resourcesRoot });
+  const verified = await verifiedPackagedBasisV2(artifactInventory);
   if (path !== join(verified.resourcesRoot, 'instruction-root') || verified.inventoryPath !== artifactInventory.inventoryPath || verified.payloadManifestPath !== artifactInventory.payloadManifestPath
     || verified.inventorySha256 !== artifactInventory.outerInventorySha256 || verified.payloadDigest !== artifactInventory.payloadDigest) throw new Error('Trusted Runtime v2 packaged basis changed');
   const records = verified.payload.entries.filter((entry): entry is Extract<typeof entry, {type:'file'}> => entry.type === 'file' && entry.relativePath.startsWith('instruction-root/'))

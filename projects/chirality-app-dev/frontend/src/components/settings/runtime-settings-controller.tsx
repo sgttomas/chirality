@@ -83,7 +83,7 @@ function getRuntimeBridge(): ChiralityRuntimeBridge | undefined {
   return (window as RuntimeWindow).chirality?.runtime;
 }
 
-export function useRuntimeSettingsController(): RuntimeSettingsViewProps {
+export function useRuntimeSettingsController({ localModels = true }: { localModels?: boolean } = {}): RuntimeSettingsViewProps {
   const [daemonStatus, setDaemonStatus] = useState<RuntimeDaemonStatus | null>(null);
   const [residency, setResidency] = useState<RuntimeResidencyStatus | null>(null);
   const [selectedModel, setSelectedModel] = useState('');
@@ -127,7 +127,7 @@ export function useRuntimeSettingsController(): RuntimeSettingsViewProps {
       }
       setDaemonStatus(daemonResult);
 
-      if (!daemonResult.daemon.running) {
+      if (!daemonResult.daemon.running || !localModels) {
         setResidency(null);
         return;
       }
@@ -143,7 +143,7 @@ export function useRuntimeSettingsController(): RuntimeSettingsViewProps {
     } finally {
       setBusyAction(null);
     }
-  }, [applyResidency]);
+  }, [applyResidency, localModels]);
 
   // Re-probed on reconnect as well as on mount: this panel's whole content is a
   // claim about the daemon ("not running", "no models"), and a claim captured
@@ -176,7 +176,7 @@ export function useRuntimeSettingsController(): RuntimeSettingsViewProps {
       setDaemonStatus(result);
       if (!result.daemon.running) {
         setResidency(null);
-      } else {
+      } else if (localModels) {
         const modelResult = await bridge.models.status();
         if (modelResult.ok) {
           applyResidency(modelResult.residency);
@@ -191,7 +191,7 @@ export function useRuntimeSettingsController(): RuntimeSettingsViewProps {
 
   async function activateModel(): Promise<void> {
     const bridge = getRuntimeBridge();
-    if (!bridge || !selectedModel) return;
+    if (!bridge || !localModels || !selectedModel) return;
     if (
       !window.confirm(
         `Activate the exact oMLX model “${selectedModel}”? Active local turns will be drained before a model switch.`

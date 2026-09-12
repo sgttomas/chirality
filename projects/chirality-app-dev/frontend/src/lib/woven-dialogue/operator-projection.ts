@@ -97,6 +97,7 @@ function projectionSignature(source: SessionSource): string {
     status: source.status,
     engineSelection: source.engineSelection,
     model: source.model,
+    reasoningEffort: source.reasoningEffort,
     residencyEpoch: source.residencyEpoch,
     schemaVersion: source.schemaVersion,
     roleId: source.roleId,
@@ -138,6 +139,7 @@ function projectOne(
   const adapterId = readString(engineSelection?.adapterId);
   const providerId = readString(engineSelection?.providerId);
   const model = readString(engineSelection?.model) ?? readString(source.model);
+  const reasoningEffort = readString(source.reasoningEffort);
   const residencyEpoch = readString(source.residencyEpoch);
   const outputArtifactReference = readString(source.outputArtifact);
   const approvalEvidenceReference = readString(source.approvalRef);
@@ -170,6 +172,7 @@ function projectOne(
     ...(adapterId ? { adapterId } : {}),
     ...(providerId ? { providerId } : {}),
     ...(model ? { model } : {}),
+    ...(reasoningEffort ? { reasoningEffort } : {}),
     ...(residencyEpoch ? { residencyEpoch } : {}),
     parentage: parentSessionId
       ? {
@@ -181,6 +184,7 @@ function projectOne(
     ...(outputArtifactReference ? { outputArtifactReference } : {}),
     ...(approvalEvidenceReference ? { approvalEvidenceReference } : {}),
     ...(continuation ? { continuation } : {}),
+    ...(source.schemaVersion === 'chirality.session/v3' ? { bootstrapConfirmed: Boolean(readString(source.bootedAt) && readString(source.bootFingerprint) && readString(source.engineSessionId)) } : {}),
     diagnostics
   };
 }

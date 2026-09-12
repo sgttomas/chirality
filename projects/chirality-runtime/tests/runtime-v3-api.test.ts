@@ -1,3 +1,4 @@
+import { RuntimeError } from "@chirality/runtime-contracts";
 import { mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
@@ -10,7 +11,7 @@ import { RuntimeClient } from "@chirality/runtime-client";
 const daemons: RuntimeDaemon[] = [];
 afterEach(async () => { await Promise.all(daemons.splice(0).map(daemon => daemon.stop().catch(() => undefined))); });
 
-async function setup(startTurn: AgentEnginePort["startTurn"], nativePlan?: any, successor?: Partial<Pick<AgentEnginePort, "preflight" | "prepareContextSuccessor" | "cancelContextSuccessor">>, runtimeControlTools = true) {
+async function setup(startTurn: AgentEnginePort["startTurn"], nativePlan?: any, successor?: Partial<Pick<AgentEnginePort, "preflight" | "prepareContextSuccessor" | "cancelContextSuccessor" | "interrupt">>, runtimeControlTools = true) {
   const directory = await mkdtemp(join(tmpdir(), "chirality-v3-api-"));
   const projectRoot = join(directory, "project");
   const runtime = join(directory, "runtime");
@@ -289,12 +290,66 @@ describe("v3 Runtime API integration", () => {
     expect(replay.instructionBases).toContainEqual(expect.objectContaining({ basisId: captured?.instructionContext?.basisPreview.id }));
   });
 
+  it("boots a v3 session under its persisted permission mode rather than the legacy chat mode", async () => {
+    let captured: AgentEngineRunInput | undefined;
+    const fixture = await setup(async function* (input) { captured = input; yield { type: "session:init", data: { engineSessionId: "boot-mode-engine", adapterId: "stub", providerId: "stub", model: "fixture" } }; yield { type: "process:exit", data: { exitCode: 0 } }; });
+    const session = await fixture.client.createSession("v3-api", { projectId: "v3-api", permissionMode: "workspaceWrite" });
+    expect(session).toMatchObject({ schemaVersion: "chirality.session/v3", permissionMode: "workspaceWrite" });
+    expect(["readOnly", "ask", "workspaceWrite", "bypass"]).not.toContain(session.mode);
+    await fixture.service.bootSession("v3-api", session.sessionId);
+    expect(captured?.message).toBe("bootstrap");
+    expect(captured?.opts.mode).toBe("workspaceWrite");
+    expect(await fixture.sessions.get("v3-api", session.sessionId)).toMatchObject({ status: "idle", permissionMode: "workspaceWrite" });
+  });
+
+  it("settles disconnected boot through real interruption and rejects a duplicate boot", async () => {
+    let release!: () => void, began!: () => void;
+    const started = new Promise<void>(resolve => { began = resolve; });
+    const terminal = new Promise<void>(resolve => { release = resolve; });
+    let interrupts = 0;
+    const fixture = await setup(async function* () {
+      yield { type: "session:init", data: { engineSessionId: "cancel-boot", adapterId: "stub", providerId: "stub", model: "fixture" } };
+      began(); await terminal;
+      yield { type: "process:exit", data: { exitCode: 130, interrupted: true } };
+    }, undefined, { async interrupt() { interrupts++; release(); } });
+    const session = await fixture.client.createSession("v3-api", { projectId: "v3-api" });
+    const controller = new AbortController();
+    const pending = fixture.service.bootSession("v3-api", session.sessionId, {}, undefined, controller.signal);
+    const failed = expect(pending).rejects.toMatchObject({ details: { reason: "BOOT_CANCELLED", sessionId: session.sessionId } });
+    await started;
+    await expect(fixture.service.bootSession("v3-api", session.sessionId)).rejects.toMatchObject({ code: "SESSION_TURN_IN_PROGRESS" });
+    controller.abort(); await failed;
+    expect(interrupts).toBe(1);
+    expect(await fixture.sessions.get("v3-api", session.sessionId)).toMatchObject({ status: "failed" });
+    expect((await fixture.sessions.get("v3-api", session.sessionId)).bootedAt).toBeUndefined();
+  });
+
+  it("propagates an HTTP boot disconnect to the service cancellation signal", async () => {
+    const fixture = await setup(async function* () {});
+    const session = await fixture.client.createSession("v3-api", { projectId: "v3-api" });
+    let entered!: () => void, cancelled!: () => void;
+    const began = new Promise<void>(resolve => { entered = resolve; });
+    const stopped = new Promise<void>(resolve => { cancelled = resolve; });
+    fixture.service.bootSession = async (_project, _session, _opts, _expected, signal) => {
+      expect(signal).toBeDefined(); entered();
+      await new Promise<void>(resolve => signal!.addEventListener("abort", () => { cancelled(); resolve(); }, { once: true }));
+      throw new RuntimeError("ENGINE_UNAVAILABLE", "controlled disconnected boot");
+    };
+    const controller = new AbortController();
+    const request = fixture.client.bootSession("v3-api", session.sessionId, {}, controller.signal);
+    const failed = expect(request).rejects.toMatchObject({ operation: "boot", sessionId: session.sessionId });
+    await began; controller.abort(); await failed; await stopped;
+  });
+
   it("terminalizes an accepted v3 boot when preflight fails", async () => {
-    const fixture = await setup(async function* () { yield { type: "process:exit", data: { exitCode: 1 } }; }, undefined, { async preflight() { throw new Error("controlled preflight failure"); } });
+    const preflightFailure = new RuntimeError("ENGINE_UNAVAILABLE", "controlled preflight failure", 503, { reason: "CODEX_PROTOCOL_FAILURE" });
+    preflightFailure.cause = new RuntimeError("ENGINE_UNAVAILABLE", "controlled retirement diagnostic", 503, { reason: "DESCENDANT_RECONCILIATION_REQUIRED", detachedCount: 1 });
+    const fixture = await setup(async function* () { yield { type: "process:exit", data: { exitCode: 1 } }; }, undefined, { async preflight() { throw preflightFailure; } });
     const session = await fixture.client.createSession("v3-api", { projectId: "v3-api" });
     await expect(fixture.service.bootSession("v3-api", session.sessionId)).rejects.toThrow("controlled preflight failure");
     expect(await fixture.sessions.get("v3-api", session.sessionId)).toMatchObject({ status: "failed" });
-    expect(await fixture.sessions.replay("v3-api", session.sessionId)).toContainEqual(expect.objectContaining({ type: "turn.failed", data: expect.objectContaining({ boot: true }) }));
+    expect(await fixture.sessions.replay("v3-api", session.sessionId)).toContainEqual(expect.objectContaining({ type: "turn.failed", data: expect.objectContaining({ boot: true, code: "ENGINE_UNAVAILABLE",
+      details: { reason: "CODEX_PROTOCOL_FAILURE", cause: expect.objectContaining({ message: "controlled retirement diagnostic", details: { reason: "DESCENDANT_RECONCILIATION_REQUIRED", detachedCount: 1 } }) } }) }));
   });
 
   it("terminalizes an accepted v3 boot when the provider exits unsuccessfully", async () => {

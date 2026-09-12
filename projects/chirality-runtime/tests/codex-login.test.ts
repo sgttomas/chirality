@@ -4,7 +4,7 @@ import { mkdtemp, readdir, realpath, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { PassThrough } from "node:stream";
-import { CodexLogin, createControlledCodexLoginForTests, inspectCodexLoginPurposeReleaseRecord } from "../packages/daemon/src/codex-login.js";
+import { CodexLogin, createControlledCodexLoginForTests, createGroupedLoginRetirement, inspectCodexLoginPurposeReleaseRecord } from "../packages/daemon/src/codex-login.js";
 import { AUTHORITY_CONTRACT, initializationProof } from "../packages/daemon/src/supplier-authority-controller.js";
 async function fixture(mode = "success", authUrl = "https://auth.openai.com/authorize?state=fixture", timeoutMs = 1000) {
   const codexHome = await mkdtemp(join(await realpath(tmpdir()), "login-fixture-"));
@@ -65,6 +65,39 @@ describe("operator-only sign-in component (controlled fixture)", () => {
     try { await expect(repeated.login.resolveDefaultModel()).rejects.toThrow("cursor"); } finally { await repeated.close(); }
     const multiple = await run({ "": { data: [{ model: "a", isDefault: true, defaultReasoningEffort: "low" }, { model: "b", isDefault: true, defaultReasoningEffort: "high" }], nextCursor: null } });
     try { await expect(multiple.login.resolveDefaultModel()).rejects.toThrow("unique usable default"); } finally { await multiple.close(); }
+  });
+  it("retains the non-hidden catalog with supported efforts from the same paginated read as the default", async () => {
+    const run = async (pages: Record<string, { data: unknown[]; nextCursor: string | null }>) => {
+      const stdin = new PassThrough(), stdout = new PassThrough(), listCalls: unknown[] = [];
+      const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+      stdin.on("data", bytes => {
+        for (const line of bytes.toString().trim().split("\n")) {
+          const request = JSON.parse(line);
+          if (request.method === "initialize") send({ id: request.id, result: {} });
+          else if (request.method === "account/login/start") { send({ id: request.id, result: { type: "chatgpt", loginId: "catalog", authUrl: "https://auth.openai.com/catalog" } }); send({ method: "account/login/completed", params: { loginId: "catalog", success: true, error: null } }); }
+          else if (request.method === "account/read") send({ id: request.id, result: { account: { type: "apiKey" }, requiresOpenaiAuth: true } });
+          else if (request.method === "model/list") { listCalls.push(request.params); send({ id: request.id, result: pages[request.params.cursor ?? ""] }); }
+        }
+      });
+      const login = createControlledCodexLoginForTests({ codexHome: "/synthetic/catalog", transport: { stdin, stdout, async close() {} }, timeoutMs: 1000, retainAuthenticatedSessionForModelCatalog: true });
+      await login.startLogin(); await expect.poll(async () => (await login.status()).state).toBe("completed");
+      return { login, listCalls, close: async () => { await login.close(); stdin.destroy(); stdout.destroy(); } };
+    };
+    const entry = (model: string, isDefault: boolean, efforts: string[], defaultReasoningEffort = efforts[0]!, hidden = false) => ({ model, hidden, isDefault, defaultReasoningEffort, supportedReasoningEfforts: efforts.map(reasoningEffort => ({ reasoningEffort, description: reasoningEffort })) });
+    const valid = await run({ "": { data: [entry("gpt-fast", false, ["low", "medium"]), entry("gpt-hidden", false, ["low"], "low", true)], nextCursor: "next" }, next: { data: [entry("gpt-default", true, ["medium", "high", "xhigh"], "high")], nextCursor: null } });
+    try {
+      const catalog = await valid.login.resolveModelCatalog();
+      expect(catalog).toEqual({
+        models: [{ model: "gpt-fast", isDefault: false, defaultReasoningEffort: "low", supportedReasoningEfforts: ["low", "medium"] }, { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high", "xhigh"] }],
+        default: { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high", "xhigh"] }
+      });
+      expect(JSON.stringify(catalog)).not.toContain("gpt-hidden");
+      expect(await valid.login.resolveDefaultModel()).toEqual({ model: catalog.default.model, defaultReasoningEffort: catalog.default.defaultReasoningEffort });
+      expect(await valid.login.resolveModelCatalog()).toBe(catalog);
+      expect(valid.listCalls).toEqual([{ limit: 100 }, { limit: 100, cursor: "next" }]);
+    } finally { await valid.close(); }
+    const conflicting = await run({ "": { data: [entry("gpt-default", true, ["high"])], nextCursor: "next" }, next: { data: [entry("gpt-default", true, ["high", "low"])], nextCursor: null } });
+    try { await expect(conflicting.login.resolveModelCatalog()).rejects.toThrow("Conflicting model catalog record"); } finally { await conflicting.close(); }
   });
 
   it("accepts only an exact account-free observed login-purpose record", () => {
@@ -150,4 +183,31 @@ it.each(["close", "cancel"] as const)("custody %s during account projection cann
     expect(await projection).toMatchObject({ state: "failed", binding: { state: "unavailable" }, hostedReady: false });
     expect(await login.status()).toMatchObject({ state: "failed", hostedReady: false });
   } finally { await login.close(); stdin.destroy(); stdout.destroy(); }
+});
+
+describe("grouped login retirement diagnostics", () => {
+  const outcome = (signalFailures: Array<{ phase: "term" | "kill"; cause: unknown }>) => ({ leader: { exitCode: 0, signal: null }, groupRetired: true as const, signalFailures });
+  it("resolves a verified retirement with signal failures and exposes sanitized diagnostics through the login", async () => {
+    let cleaned = 0;
+    const retirement = createGroupedLoginRetirement({ retire: async () => outcome([{ phase: "term", cause: new Error("wait-unavailable\u0007") }, { phase: "kill", cause: "ESRCH" }]), cleanup: async () => { cleaned++; }, retainedResources: ["/private/tmp/login"], pid: 42 });
+    const stdin = new PassThrough(), stdout = new PassThrough();
+    const login = createControlledCodexLoginForTests({ codexHome: "/synthetic/retirement", transport: { stdin, stdout, close: retirement.close, diagnostics: retirement.diagnostics } });
+    try {
+      expect(login.closeDiagnostics()).toEqual([]);
+      await expect(login.close()).resolves.toBeUndefined();
+      await expect(login.close()).resolves.toBeUndefined();
+      expect(cleaned).toBe(1);
+      expect(login.closeDiagnostics()).toEqual([{ phase: "term", message: "wait-unavailable " }, { phase: "kill", message: "ESRCH" }]);
+    } finally { stdin.destroy(); stdout.destroy(); }
+  });
+  it("still rejects an unproven retirement or a failed containment cleanup while retaining diagnostics", async () => {
+    const unverified = createGroupedLoginRetirement({ retire: async () => { throw new Error("SUPPLIER_LEADER_RETIREMENT_UNVERIFIED"); }, cleanup: async () => { throw new Error("must not run"); }, retainedResources: ["/private/tmp/a"] });
+    await expect(unverified.close()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", details: { reason: "LOGIN_RETIREMENT_UNVERIFIED", retainedResources: ["/private/tmp/a"] } });
+    expect(unverified.diagnostics()).toEqual([]);
+    const cleanupFailed = createGroupedLoginRetirement({ retire: async () => outcome([{ phase: "kill", cause: new Error("wait-unavailable") }]), cleanup: async () => { throw new Error("EACCES"); }, retainedResources: ["/private/tmp/b"], pid: 7 });
+    const first = await cleanupFailed.close().catch(error => error);
+    expect(first).toMatchObject({ code: "ENGINE_UNAVAILABLE", details: { reason: "LOGIN_CLEANUP_FAILED", retainedResources: ["/private/tmp/b"], pid: 7, signalFailures: ["kill"] } });
+    await expect(cleanupFailed.close()).rejects.toBe(first);
+    expect(cleanupFailed.diagnostics()).toEqual([{ phase: "kill", message: "wait-unavailable" }]);
+  });
 });

@@ -10,6 +10,7 @@ import type { DelegatedNativePlanSink } from "@chirality/runtime-core";
 import type { UIEvent, WorkerHandle } from "@chirality/runtime-contracts";
 import { RuntimeClient } from "@chirality/runtime-client";
 import { CodexSupervisor } from "../packages/daemon/src/codex-supervisor.js";
+import { PACKAGED_REQUEST_TIMEOUT_MS, PACKAGED_TURN_TIMEOUT_MS } from "../packages/daemon/src/hosted-packaged-release.js";
 import { admitHostedControlledForTests } from "../packages/daemon/src/codex-supervisor-test-support.js";
 import { createControlledCodexCandidateLauncherFactoryForTests } from "../packages/daemon/src/codex-admitted-launcher.js";
 import type { AuthenticatedCodexCandidate } from "../packages/daemon/src/codex-authenticated-transport.js";
@@ -18,6 +19,7 @@ import { hostAuthoritySubjectBindingDigestV2 } from "../packages/daemon/src/runt
 import { AuthorityTranscript, AUTHORITY_CONTRACT, initializationProof } from "../packages/daemon/src/supplier-authority-controller.js";
 import { resolveHostedProjectTokenFile } from "../packages/daemon/src/hosted-paths.js";
 import { startControlledHostedBootstrapRuntimeHostForTests } from "../packages/daemon/src/hosted-bootstrap.js";
+import { settledHostedBootstrapStatus } from "./helpers.js";
 import { startControlledHostedPrivateBootstrapRuntimeHostForTests } from "../packages/daemon/src/hosted-private-entry.js";
 import {
   createControlledHostedBootstrapPrivateBindingsForTests,
@@ -88,7 +90,7 @@ async function controlledAuthenticatedCandidate(input: {
     roles[roleId] = { description: JSON.parse(input.nativeRoles.configOverrides[offset]!.slice(`agents.${roleId}.description=`.length)),
       config_file: JSON.parse(input.nativeRoles.configOverrides[offset + 1]!.slice(`agents.${roleId}.config_file=`.length)) };
   }
-  let buffered = "", closed = false;
+  let buffered = "", closed = false, operationHeld = false, ignoreInterrupt = false;
   stdin.on("data", chunk => {
     buffered += String(chunk);
     for (;;) {
@@ -111,15 +113,28 @@ async function controlledAuthenticatedCandidate(input: {
           projects: { [input.projectRoot]: { trust_level: "trusted" } } } } }); continue;
       }
       if (message.method === "account/read") { input.trace.push(`account-${input.index}`); send({ id: message.id, result: { requiresOpenaiAuth: true, account: { type: "chatgpt", email: null, planType: "fixture" } } }); continue; }
+      // Mirror the pinned supplier's live_lease_matches guard: private model operations require a live lease.
+      if (["thread/start", "thread/resume", "turn/start", "turn/interrupt"].includes(message.method) && !operationHeld) {
+        input.trace.push(`rejected-without-lease-${input.index}`);
+        send({ id: message.id, error: { code: -32600, message: "Private authority unavailable" } }); continue;
+      }
       if (message.method === "thread/start" || message.method === "thread/resume") {
         const threadId = message.params.threadId ?? "provider-thread"; input.trace.push(`${message.method}-${input.index}`);
         send({ method: "thread/started", params: { thread: { id: threadId } } });
         send({ id: message.id, result: { thread: { id: threadId }, approvalsReviewer: "user", approvalPolicy: "never" } }); continue;
       }
+      if (message.method === "turn/interrupt") {
+        input.trace.push(`interrupt-${input.index}`);
+        if (ignoreInterrupt) { send({ id: message.id, result: {} }); continue; }
+        send({ id: message.id, result: {} });
+        send({ method: "turn/completed", params: { threadId: message.params.threadId, turn: { id: message.params.turnId, status: "interrupted" } } }); continue;
+      }
       if (message.method === "turn/start") {
         const threadId = message.params.threadId, turnId = `turn-${input.index}`; input.trace.push(`turn-${input.index}`);
         send({ id: message.id, result: { turn: { id: turnId, status: "inProgress" } } });
         send({ method: "turn/started", params: { threadId, turn: { id: turnId, status: "inProgress" } } });
+        ignoreInterrupt = message.params.input.some((item: { text?: string }) => item.text?.includes("ignore-interrupt"));
+        if (ignoreInterrupt || message.params.input.some((item: { text?: string }) => item.text?.includes("hold-for-interrupt"))) continue;
         send({ method: "item/started", params: { threadId, turnId, item: { id: `item-${input.index}`, type: "agentMessage", text: "" } } });
         send({ method: "item/agentMessage/delta", params: { threadId, turnId, itemId: `item-${input.index}`, delta: `controlled-candidate-${input.index}` } });
         send({ method: "item/completed", params: { threadId, turnId, item: { id: `item-${input.index}`, type: "agentMessage", text: `controlled-candidate-${input.index}` } } });
@@ -129,10 +144,12 @@ async function controlledAuthenticatedCandidate(input: {
       if (body.kind !== "request") throw new Error("controlled authority request expected");
       input.trace.push(`${body.op}-${input.index}`);
       if (body.op === "chirality/admissionAcquire") {
+        operationHeld = true;
         const common = { requestId: body.requestId, operationId: body.operationId, leaseId: `lease-${input.index}`, supplierGeneration, identityGeneration, snapshotDigest };
         send(outbound.encode({ kind: "result", op: body.op, state: "acquired", ...common }));
         send(outbound.encode({ kind: "notification", op: "chirality/admissionAcquired", ...common }));
       } else {
+        operationHeld = false;
         const released = body.op === "chirality/admissionRelease", common = { requestId: body.requestId, leaseId: body.leaseId, disposition: body.disposition };
         send(outbound.encode({ kind: "result", op: body.op, state: released ? "released" : "aborted", ...common } as any));
         send(outbound.encode({ kind: "notification", op: released ? "chirality/admissionReleased" : "chirality/admissionAborted", ...common } as any));
@@ -141,6 +158,8 @@ async function controlledAuthenticatedCandidate(input: {
   });
   const privateBindingStore = await HostedIdentityBindingStore.open({ privateDirectory: input.privateDirectory, canonicalRoot: input.projectRoot,
     policyDigest: input.policyDigest, runtimeAuthorityId: `runtime-${input.index}`, randomHandle: () => Buffer.alloc(32, 42) });
+  const fence = privateBindingStore.fence.bind(privateBindingStore);
+  privateBindingStore.fence = async (...args) => { input.trace.push(`fence-${input.index}`); return fence(...args); };
   const pid = 5000 + input.index; let alive = true;
   const descendantTracker = new DescendantTracker({ leaderPid: pid, intervalMs: 10, maxDurationMs: 10_000,
     census: async () => alive ? [{ pid, ppid: 1, pgid: pid, uid: process.getuid!(), startIdentity: `candidate-${input.index}` }] : [] });
@@ -170,10 +189,10 @@ async function fixture(input: { logoutFails?: boolean; openStoreFails?: boolean;
     prepareNativeRoles: async () => { events.push("roles-materialized"); return { digest: "9".repeat(64), configOverrides: ["agents.enabled=true", "features.multi_agent=true", "features.multi_agent_v2=false", "agents.max_depth=2"] }; },
     bindRuntimeReadRoot: async (path, artifactInventory) => ({ path, readPaths: [join(path, "agents")], contentDigest: "4".repeat(64), artifactInventory }),
     validateLoginStartup: async () => ({ bindingDigest: "8".repeat(64), evidence: "externally-accepted-native-login-purpose", recordSha256: "6".repeat(64), ownerReference: "owner-act" }),
-    createLogin: () => ({ start: async () => ({ loginId: "login-1", authUrl: "https://auth.openai.com/login" }), status: async () => ({ state: ceremonyState, hasAccount: ceremonyState === "completed" }), cancel: async () => { events.push("ceremony-cancel"); }, close: async () => { events.push("ceremony-close"); } }),
+    createLogin: () => ({ start: async () => ({ loginId: "login-1", authUrl: "https://auth.openai.com/login" }), status: async () => ({ state: ceremonyState, hasAccount: ceremonyState === "completed" }), resolveModelCatalog: async () => { events.push("catalog-read"); throw new Error("v1 path never reads the catalog"); }, cancel: async () => { events.push("ceremony-cancel"); }, close: async () => { events.push("ceremony-close"); } }),
     preparePolicy: async input => { events.push(`policy-roles-${input.nativeRoleConfiguration?.digest ?? "missing"}`); return { policyDigest: "a".repeat(64), cleanup: async () => { events.push("policy-cleanup"); } }; },
-    createLauncherFactory: launcherInput => { launcherFactoryCalls++; events.push(`launcher-roles-${launcherInput.bindings.nativeRoleConfiguration?.digest ?? "missing"}`); if (input.logoutLauncherFails && launcherFactoryCalls > 1) throw new Error("logout launcher failed"); return { create: () => { throw new Error("controlled logout adapter does not launch"); }, close: async () => { events.push("launcher-close"); } }; },
-    admitHosted: async () => ({ supervisor, continuity, authority: { supplierGeneration: "supplier-1", identityGeneration: "identity-1", snapshotDigest: "b".repeat(64) }, accountDigest: "7".repeat(64), retire: async () => { events.push("admission-retire"); } }),
+    createLauncherFactory: launcherInput => { launcherFactoryCalls++; events.push(`launcher-roles-${launcherInput.bindings.nativeRoleConfiguration?.digest ?? "missing"}`); events.push(`launcher-config-${launcherInput.bindings.configDigest}`); if (input.logoutLauncherFails && launcherFactoryCalls > 1) throw new Error("logout launcher failed"); return { create: () => { throw new Error("controlled logout adapter does not launch"); }, close: async () => { events.push("launcher-close"); } }; },
+    admitHosted: async admitOptions => { events.push(`admit-config-${admitOptions.configDigest}`); events.push(`admit-catalog-${admitOptions.modelCatalog === undefined ? "absent" : "present"}`); return { supervisor, continuity, authority: { supplierGeneration: "supplier-1", identityGeneration: "identity-1", snapshotDigest: "b".repeat(64) }, accountDigest: "7".repeat(64), retire: async () => { events.push("admission-retire"); } }; },
     logout: async (_factory, digest) => { events.push(`logout-digest-${digest}`); events.push("supplier-logout"); if (input.logoutFails) throw new Error("logout failed"); },
     openBindingStore: async () => { if (input.openStoreFails) throw new Error("store failed"); return ({ fence: async reason => { events.push(`fence-${reason}`); if (input.fenceFails) throw new Error("fence failed"); return continuity; } }) as unknown as HostedIdentityBindingStore; }
   };
@@ -207,6 +226,9 @@ describe("hosted private production composition boundary", () => {
     expect(() => validateHostedPrivateCompositionOptions({ ...options, commandNetworkPosture: "on" })).toThrow();
     expect(() => validateHostedPrivateCompositionOptions({ ...options, configDigest: "a".repeat(64) })).toThrow();
     expect(() => validateHostedPrivateCompositionOptions({ ...options, managedAuth: f.options.managedAuth })).toThrow();
+    expect(() => validateHostedPrivateCompositionOptions({ ...options, turnTimeoutMs: 3_600_001 })).toThrow(expect.objectContaining({ code: "ENGINE_UNAVAILABLE", details: { reason: "HOST_CONFIGURATION_INVALID" } }));
+    expect(() => validateHostedPrivateCompositionOptions({ ...options, requestTimeoutMs: 600_001 })).toThrow(expect.objectContaining({ code: "ENGINE_UNAVAILABLE", details: { reason: "HOST_CONFIGURATION_INVALID" } }));
+    expect(validateHostedPrivateCompositionOptions({ ...options, requestTimeoutMs: 90_000, turnTimeoutMs: 1_800_000 })).toMatchObject({ requestTimeoutMs: 90_000, turnTimeoutMs: 1_800_000 });
     expect(validateHostedPrivateCompositionOptions(options)).not.toHaveProperty("managedAuth");
     const bindings = await createControlledHostedBootstrapPrivateBindingsForTests(options, adapters);
     await expect(bindings.createCeremony({ projectId: "project", manifestHash: "9".repeat(64), canonicalRoot: f.canonicalRoot, privateDirectory: f.privateRoot, codexHome: f.codexHome,
@@ -226,6 +248,12 @@ describe("hosted private production composition boundary", () => {
     const materialized = await f.bindings.materializeAdmission!({ projectId: "project", canonicalRoot: f.canonicalRoot, admission,
       runtime: { projects, sessions: {} as SessionStore, nativePlanSink, attachmentStagingRoot: join(f.canonicalRoot, ".chirality", "attachments") } });
     expect("delegated" in materialized && materialized.selection).toEqual({ adapterId: "codex-app-server", providerId: "openai", model: "gpt-test" });
+    // The v1 managed-auth path never reads a catalog, exposes none, and its configDigest recipe is byte-identical to the accepted v1 recipe.
+    expect(materialized.catalog).toBeUndefined();
+    expect(f.events).not.toContain("catalog-read");
+    expect(f.events).toContain("admit-catalog-absent");
+    expect(f.events).toContain(`launcher-config-${f.options.configDigest}`);
+    expect(f.events).toContain(`admit-config-${f.options.configDigest}`);
     expect(f.lease.held).toBe(true);
     await f.bindings.close!(); await f.bindings.close!();
     expect(f.lease.held).toBe(false);
@@ -294,7 +322,7 @@ describe("hosted private production composition boundary", () => {
     await f.bindings.close!();
   });
 
-  it("connects public bootstrap through real same-actor admission to retained and fresh controlled candidates", async () => {
+  it("connects public bootstrap through real same-actor admission after genuine interruption to a fresh controlled candidate", async () => {
     const root = await realpath(await mkdtemp(join(await realpath("/tmp"), "hcp-"))); roots.push(root);
     const runtimeDirectory = join(root, "runtime"), projectRoot = join(root, "project"), packaged = await packagedInventoryFixture(root);
     const instructionRoot = packaged.instructionRoot;
@@ -311,7 +339,7 @@ describe("hosted private production composition boundary", () => {
       managedAuth: { backend: "keyring", binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" } }, compatibility,
       conformance: { recordPath: join(root, "record"), acceptancePath: join(root, "acceptance"), ownerActPath: join(root, "owner"), ownerActSha256: "d".repeat(64), activationId: "activation", gateIdentity: "G4", artifactInventory: packaged.selection },
       loginPurposeRelease: { recordPath: join(root, "login-record"), acceptancePath: join(root, "login-acceptance"), ownerActPath: join(root, "login-owner"), ownerActSha256: "5".repeat(64), activationId: "login-activation", gateIdentity: "D36", artifactInventory: packaged.selection },
-      configDigest: "0".repeat(64), consentVersion: "consent-v1", commandNetworkPosture: "off", commandNetworkConsent: { approvedBy: "owner", approvedAt: "2026-09-10T00:00:00.000Z", explicitUserAct: true }, protectedPaths: [runtimeDirectory], immutableReadRoots: ["/usr"]
+      configDigest: "0".repeat(64), consentVersion: "consent-v1", commandNetworkPosture: "off", requestTimeoutMs: 1000, turnTimeoutMs: PACKAGED_TURN_TIMEOUT_MS, commandNetworkConsent: { approvedBy: "owner", approvedAt: "2026-09-10T00:00:00.000Z", explicitUserAct: true }, protectedPaths: [runtimeDirectory], immutableReadRoots: ["/usr"]
     };
     privateOptions.configDigest = recordKey({ schema: "chirality.hosted-private-config/v1", model: privateOptions.model, managedAuth: privateOptions.managedAuth, compatibility,
       commandNetworkPosture: "off", commandNetworkConsent: privateOptions.commandNetworkConsent, protectedPaths: privateOptions.protectedPaths, immutableReadRoots: privateOptions.immutableReadRoots, instructionRoot, nativeRoleConfigurationDigest: roleDigest, trustedRuntimeReadRoot: { contentDigest: runtimeReadRoot.contentDigest, readPaths: runtimeReadRoot.readPaths }, loginPurposeRelease: privateOptions.loginPurposeRelease, consentVersion: privateOptions.consentVersion });
@@ -333,22 +361,32 @@ describe("hosted private production composition boundary", () => {
       logout: async () => {}, openBindingStore: HostedIdentityBindingStore.open
     };
     const bootstrapInput = { enabled: true as const, runtimeDirectory, daemonSocket: "runtime.sock", instructionRoot, nativeAddonPath: privateOptions.nativeAddonPath, artifactInventory: privateOptions.conformance.artifactInventory };
+    const phases: Array<{ phase: string; projectId: string; elapsedMs: number }> = [];
     const host = await startControlledHostedPrivateBootstrapRuntimeHostForTests({ bootstrap: bootstrapInput, privateComposition: privateOptions }, {
-      createBindings: options => createControlledHostedBootstrapPrivateBindingsForTests(options, adapters),
+      createBindings: options => createControlledHostedBootstrapPrivateBindingsForTests(options, adapters, (phase, detail) => { phases.push({ phase, ...detail }); }),
       startHost: (boot, admittedBindings) => startControlledHostedBootstrapRuntimeHostForTests(boot, admittedBindings!)
     });
     try {
       const bootstrap = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
       const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
       await bootstrap.grantHostedProviderNetworkConsent(registered.projectId); await bootstrap.startHostedBootstrapLogin(registered.projectId);
-      expect(await bootstrap.hostedBootstrapStatus(registered.projectId)).toMatchObject({ admission: "ready" });
+      expect(await settledHostedBootstrapStatus(bootstrap, registered.projectId)).toMatchObject({ admission: "ready" });
       expect(generations).toEqual([{ supplier: "supplier-1", identity: "identity-1" }]);
       const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtimeDirectory, registered.projectId) });
       const session = await client.createSession(registered.projectId, { projectId: registered.projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite" });
-      const first = await drain(await client.turnSession(registered.projectId, session.sessionId, { message: "first" }));
+      const firstPending = drain(await client.turnSession(registered.projectId, session.sessionId, { message: "hold-for-interrupt" }));
+      {
+        await expect.poll(() => trace.includes("turn-1"), { timeout: 2000 }).toBe(true);
+        await client.interruptSession(registered.projectId, session.sessionId);
+      }
+      const first = await firstPending;
+      {
+        expect(trace).toContain("interrupt-1");
+        expect(first.filter(event => event.type === "turn:error")).toEqual([]);
+      }
       expect(generations).toHaveLength(1);
       const second = await drain(await client.turnSession(registered.projectId, session.sessionId, { message: "second" }));
-      expect(first).toContainEqual(expect.objectContaining({ type: "chat:complete", data: expect.objectContaining({ text: "controlled-candidate-1" }) }));
+      expect(first).toContainEqual(expect.objectContaining({ type: "harness:event", data: expect.objectContaining({ type: "turn.interrupted" }) }));
       expect(second).toContainEqual(expect.objectContaining({ type: "chat:complete", data: expect.objectContaining({ text: "controlled-candidate-2" }) }));
       expect(generations).toEqual([{ supplier: "supplier-1", identity: "identity-1" }, { supplier: "supplier-2", identity: "identity-2" }]);
       expect(conformanceActuals).toHaveLength(2);
@@ -356,7 +394,24 @@ describe("hosted private production composition boundary", () => {
       expect(conformanceActuals[1]).toMatchObject({ accountId: conformanceActuals[0]!.accountId, accountEpoch: 1, accountDigest: conformanceActuals[0]!.accountDigest, policyDigest });
       expect(trace.filter(value => value.startsWith("initialize-"))).toEqual(["initialize-1", "initialize-2"]);
       expect(trace).toEqual(expect.arrayContaining(["snapshot-1", "snapshot-2", "chirality/admissionAcquire-1", "chirality/admissionRelease-1", "chirality/admissionAcquire-2", "chirality/admissionRelease-2", "cleanup-1", "cleanup-2"]));
+      expect(trace.some(value => value.startsWith("rejected-without-lease-"))).toBe(false);
+      for (const index of [1, 2]) expect(trace.indexOf(`chirality/admissionRelease-${index}`)).toBeGreaterThan(trace.indexOf(`turn-${index}`));
+      expect(trace.some(value => value.startsWith("fence-"))).toBe(false);
       expect(secrets).toHaveLength(2); expect(secrets.every(secret => secret.every(byte => byte === 0))).toBe(true);
+      // Sign-in and admission phases are reported in order with non-negative durations, bound to the project.
+      expect(phases.map(entry => entry.phase)).toEqual(["login.host-authority", "login.stage-supplier", "login.native-roles", "login.runtime-read-root", "login.instance-admission", "login.validate-startup",
+        "admission.login-status", "admission.model-catalog", "admission.native-policy", "admission.admit-supervisor", "admission.binding-store"]);
+      expect(phases.every(entry => entry.projectId === registered.projectId && Number.isSafeInteger(entry.elapsedMs) && entry.elapsedMs >= 0)).toBe(true);
+      // Acknowledgement without a native terminal is still a failed/fenced turn.
+      const stuck = drain(await client.turnSession(registered.projectId, session.sessionId, { message: "ignore-interrupt" }));
+      await expect.poll(() => trace.includes("turn-3"), { timeout: 2000 }).toBe(true);
+      await client.interruptSession(registered.projectId, session.sessionId).catch(() => {});
+      const failed = await stuck;
+      expect(trace).toContain("interrupt-3");
+      expect(trace).toContain("fence-3");
+      expect(trace).not.toContain("chirality/admissionRelease-3");
+      expect(failed.some(event => event.type === "turn:error")).toBe(true);
+
     } finally { await host.stop(); }
   });
 });

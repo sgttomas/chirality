@@ -52,6 +52,39 @@ interface ClientAuthority {
   counter: number;
 }
 
+/** Sanitized projection of a daemon rejection (HTTP >= 400) attached as `RuntimeError.details`. Transport failures never carry it. */
+export interface HostAccountOperationRejection {
+  readonly kind: "operation-rejected";
+  readonly operation: HostAccountOperation;
+  readonly status: number;
+  /** Daemon `error.code`, only when it is <= 64 chars of `[A-Z_]`. */
+  readonly daemonCode?: string;
+  /** Daemon `error.details.reason`, only when it is <= 64 chars of `[A-Z0-9_]`. */
+  readonly reason?: string;
+  /** Daemon `error.message`, control characters stripped and cut to 200 chars. */
+  readonly daemonMessage?: string;
+}
+const REJECTION_BODY_LIMIT_BYTES = 16 * 1024;
+const REJECTION_MESSAGE = "Account operation was rejected";
+function record(value: unknown): Record<string, unknown> | undefined {
+  return value !== null && typeof value === "object" && !Array.isArray(value) ? value as Record<string, unknown> : undefined;
+}
+/** Bounded parse: at most 16 KiB of a JSON `{ error: { code, message, details?: { reason? } } }` (or bare) object; anything else yields only kind/operation/status. */
+export function hostAccountOperationRejection(operation: HostAccountOperation, status: number, body: Buffer | undefined): HostAccountOperationRejection {
+  const details: { -readonly [K in keyof HostAccountOperationRejection]: HostAccountOperationRejection[K] } = { kind: "operation-rejected", operation, status };
+  if (body === undefined || body.length > REJECTION_BODY_LIMIT_BYTES) return details;
+  let parsed: unknown;
+  try { parsed = JSON.parse(body.toString("utf8")); } catch { return details; }
+  const envelope = record(parsed), error = record(envelope?.error) ?? envelope;
+  if (!error || typeof error.code !== "string" || typeof error.message !== "string") return details;
+  if (error.code.length <= 64 && /^[A-Z_]+$/.test(error.code)) details.daemonCode = error.code;
+  const reason = record(error.details)?.reason;
+  if (typeof reason === "string" && reason.length <= 64 && /^[A-Z0-9_]+$/.test(reason)) details.reason = reason;
+  const message = error.message.replace(/[\x00-\x1f\x7f]/g, "").slice(0, 200);
+  if (message.length) details.daemonMessage = message;
+  return details;
+}
+
 export interface HostAccountClient {
   start(): Promise<void>;
   close(): Promise<void>;
@@ -213,16 +246,19 @@ export class MainHostAccountClient implements HostAccountClient {
         signal: controller.signal
       }, (response) => {
         const chunks: Buffer[] = [];
-        let size = 0;
+        const status = response.statusCode ?? 503, rejected = status >= 400;
+        let size = 0, oversized = false;
         response.on("data", (chunk: Buffer) => {
           size += chunk.length;
-          if (size > 1024 * 1024) response.destroy(new Error("Account response exceeds limit"));
+          // A rejection body is read to at most 16 KiB; beyond that only kind/operation/status survive.
+          if (rejected) { if (size > REJECTION_BODY_LIMIT_BYTES) oversized = true; else chunks.push(chunk); }
+          else if (size > 1024 * 1024) response.destroy(new Error("Account response exceeds limit"));
           else chunks.push(chunk);
         });
         response.on("end", () => {
           try {
+            if (rejected) throw new RuntimeError("ENGINE_UNAVAILABLE", REJECTION_MESSAGE, status, { ...hostAccountOperationRejection(operation, status, oversized ? undefined : Buffer.concat(chunks)) });
             const value = JSON.parse(Buffer.concat(chunks).toString("utf8")) as unknown;
-            if ((response.statusCode ?? 500) >= 400) throw new RuntimeError("ENGINE_UNAVAILABLE", "Account operation was rejected", response.statusCode ?? 503);
             if (controller.signal.aborted || this.closed || this.invalidated || this.authority !== signed.authority) throw new RuntimeError("ENGINE_UNAVAILABLE", "Account host authority was revoked during request", 503);
             resolve(value);
           } catch (error) { reject(error); }

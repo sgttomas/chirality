@@ -8,6 +8,7 @@ export { loadPackagedHostedReleaseBasis, startHostedPackagedPrivateBootstrapRunt
 export { createVerifiedHostAccountClient, createVerifiedHostAccountAuthority, inspectHostAccountSignedPeerIdentity, verifyHostAccountPackagedIdentity } from "./host-account-release.js";
 export type { VerifiedHostAccountPackagedIdentity } from "./host-account-release.js";
 export type { HostAccountClient } from "./host-account-client.js";
+export type { RuntimeDaemonLogger } from "./runtime-daemon.js";
 export type { EmbeddedRuntimeVersionsV2 } from "@chirality/runtime-core/runtime-conformance-v2";
 export type { HostedPackagedReleaseBasisV2, HostedPackagedReleaseLoadResult, HostedPackagedPurposeBasisV2 } from "./hosted-packaged-release.js";
 export * from "./codex-admitted-launcher.js";

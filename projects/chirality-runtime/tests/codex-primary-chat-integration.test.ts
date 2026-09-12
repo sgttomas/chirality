@@ -2,13 +2,19 @@ import { PassThrough } from "node:stream";
 import { mkdir, mkdtemp, readdir, readFile, realpath, rm, stat, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import type { UIEvent, WorkerContinuity } from "@chirality/runtime-contracts";
-import { AuthRegistry, HostedConsentStore, ProjectRegistry, SessionStore } from "@chirality/runtime-core";
+import { hostedModelCatalog, type UIEvent, type WorkerContinuity } from "@chirality/runtime-contracts";
+import { AuthRegistry, DelegatedRuntime, HostedConsentStore, ProjectRegistry, SessionStore, WorkerRetirementCoordinator, type DelegatedNativePlanSink } from "@chirality/runtime-core";
 import {
   createControlledCodexSupervisorForTests,
-  startControlledHostedRuntimeHostForTests
+  resolveHostedProjectTokenFile,
+  startControlledHostedBootstrapRuntimeHostForTests,
+  startControlledHostedRuntimeHostForTests,
+  startSupervisorServer,
+  SupervisorClient,
+  type TrustedHostedLoginCeremony
 } from "@chirality/runtime-daemon";
 import { RuntimeClient } from "@chirality/runtime-client";
+import { settledHostedBootstrapStatus } from "./helpers.js";
 
 const cleanup: Array<() => Promise<void>> = [];
 afterEach(async () => { for (const close of cleanup.splice(0).reverse()) await close().catch(() => undefined); });
@@ -196,5 +202,96 @@ describe("controlled Codex primary connecting path", () => {
     expect(await persistedText(runtime)).not.toContain("fixture-secret-never-persist");
     expect(await readFile(join(projectRoot, ".chirality", "workflows", "authored-workflow", "WORKFLOW.md"), "utf8")).toContain("AUTHORED_WORKFLOW_BODY");
     expect(await supervisor.inventory()).toEqual([]);
+  }, 20_000);
+});
+
+describe("controlled Codex primary connecting path with a catalog choice", () => {
+  it("carries the session's chosen model and reasoning effort from the client to the provider's thread/start and turn/start", async () => {
+    const directory = await realpath(await mkdtemp("/tmp/chirality-primary-catalog-"));
+    cleanup.push(() => rm(directory, { recursive: true, force: true }));
+    const projectRoot = join(directory, "project"), runtime = join(directory, "runtime");
+    await mkdir(projectRoot); await mkdir(runtime, { mode: 0o700 });
+    const brokerRoot = join(runtime, "broker"), workerPrivate = join(brokerRoot, "worker"), codexHome = join(workerPrivate, "codex-home");
+    await mkdir(codexHome, { recursive: true, mode: 0o700 });
+    const entries = [
+      { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] },
+      { model: "gpt-alt", isDefault: false, defaultReasoningEffort: "low", supportedReasoningEfforts: ["low", "medium"] }
+    ];
+    const catalog = hostedModelCatalog(entries);
+    const compatibility = { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "b".repeat(64) };
+    const identity: WorkerContinuity = { canonicalRoot: projectRoot, cwd: projectRoot, accountId: "controlled-catalog", accountEpoch: 1, policyDigest: "controlled-policy" };
+    const observed: { method: string; params: any }[] = [];
+    let launches = 0;
+    const controlled = createControlledCodexSupervisorForTests({ identity, model: "gpt-default", reasoningEffort: "high", modelCatalog: entries, allowUnauthenticatedModel: true, requestTimeoutMs: 2000, turnTimeoutMs: 5000, launch: async () => {
+      const launch = ++launches, threadId = `catalog-thread-${launch}`, turnId = `catalog-turn-${launch}`;
+      const stdin = new PassThrough(), stdout = new PassThrough(); let buffered = "";
+      const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+      stdin.on("data", chunk => {
+        buffered += String(chunk);
+        for (let newline = buffered.indexOf("\n"); newline >= 0; newline = buffered.indexOf("\n")) {
+          const request = JSON.parse(buffered.slice(0, newline)); buffered = buffered.slice(newline + 1);
+          if (request.method) observed.push({ method: request.method, params: request.params });
+          if (request.method === "initialize") send({ id: request.id, result: {} });
+          else if (request.method === "account/read") send({ id: request.id, result: { requiresOpenaiAuth: false, account: null } });
+          else if (request.method === "thread/start") { send({ method: "thread/started", params: { thread: { id: threadId } } }); send({ id: request.id, result: { thread: { id: threadId }, approvalPolicy: "never", approvalsReviewer: "auto_review" } }); }
+          else if (request.method === "turn/start") {
+            send({ id: request.id, result: { turn: { id: turnId, status: "inProgress" } } });
+            send({ method: "turn/started", params: { threadId, turn: { id: turnId, status: "inProgress" } } });
+            send({ method: "item/completed", params: { threadId, turnId, item: { id: "answer", type: "agentMessage", text: `provider used ${request.params.model} at ${request.params.collaborationMode.settings.reasoning_effort}` } } });
+            send({ method: "turn/completed", params: { threadId, turn: { id: turnId, status: "completed" } } });
+          }
+        }
+      });
+      return { pid: 15000 + launch, transport: { stdin, stdout, async close() { stdin.destroy(); stdout.destroy(); } } };
+    } });
+    cleanup.push(() => controlled.close());
+    const supervisorSocket = join(runtime, "controlled-supervisor.sock");
+    const supervisorServer = await startSupervisorServer({ socketPath: supervisorSocket, supervisor: controlled });
+    cleanup.push(() => supervisorServer.close());
+    const supervisor = new SupervisorClient({ socketPath: supervisorSocket, credential: supervisorServer.credential });
+    let delegated: DelegatedRuntime | undefined;
+    const ceremony: TrustedHostedLoginCeremony = { async start() { return { loginId: "login", authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "completed", hasAccount: true }; }, async cancel() {}, async close() {} };
+    const bindings = {
+      async createCeremony() { return ceremony; },
+      async establishAdmission() { return { continuity: identity, authority: { supplierGeneration: "supplier", identityGeneration: "identity", snapshotDigest: "c".repeat(64) }, async retire() { await delegated?.close(); } }; },
+      async materializeAdmission(input: { projectId: string; runtime: { nativePlanSink: DelegatedNativePlanSink } }) {
+        const consent = new HostedConsentStore({ canonicalRoot: projectRoot, codexHome: join(runtime, "consent-home") });
+        await consent.grant({ identity, posture: "off", approvedBy: "controlled-test", approvedAt: new Date(0).toISOString() });
+        delegated = new DelegatedRuntime({ daemonId: "bootstrap-catalog", projects: new Map([[input.projectId, {
+          identity, compatibility, supervisor, consent, retirement: new WorkerRetirementCoordinator({ directory: join(runtime, "retirements") }),
+          nativePlanSink: input.runtime.nativePlanSink, commandNetworkPosture: "off" as const, evidenceClass: "controlled-worker" as const,
+          actual: { adapterId: "codex-app-server", providerId: "openai", model: catalog.default.model, reasoningEffort: catalog.default.defaultReasoningEffort }, catalog
+        }]]) });
+        return { delegated, selection: { adapterId: "codex-app-server", providerId: "openai", model: catalog.default.model }, compatibility, evidenceClass: "controlled-worker" as const, catalog };
+      }
+    };
+    const host = await startControlledHostedBootstrapRuntimeHostForTests({ enabled: true, runtimeDirectory: runtime, daemonSocket: "runtime.sock", instructionRoot: resolve(process.cwd(), "../..") }, bindings);
+    cleanup.push(() => host.stop());
+    const bootstrap = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
+    const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
+    const projectId = registered.projectId;
+    await bootstrap.grantHostedProviderNetworkConsent(projectId); await bootstrap.startHostedBootstrapLogin(projectId);
+    expect(await settledHostedBootstrapStatus(bootstrap, projectId)).toMatchObject({ admission: "ready", models: entries, selection: { model: "gpt-default", reasoningEffort: "high" } });
+    const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtime, projectId) });
+    await expect(client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-elsewhere", reasoningEffort: "low" } })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-elsewhere", available: ["gpt-default", "gpt-alt"] } });
+    const chosen = await client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-alt", reasoningEffort: "low" } });
+    expect(chosen).toMatchObject({ engineSelection: { model: "gpt-alt" }, reasoningEffort: "low" });
+    const chosenEvents = await drain(await client.turnSession(projectId, chosen.sessionId, { message: "Answer with the chosen pair." }));
+    expect(chosenEvents.find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "provider used gpt-alt at low" } });
+    expect(chosenEvents.find(event => event.type === "session:init")).toMatchObject({ data: { model: "gpt-alt" } });
+    expect(observed.find(entry => entry.method === "thread/start")?.params).toMatchObject({ model: "gpt-alt", cwd: projectRoot });
+    expect(observed.find(entry => entry.method === "turn/start")?.params).toMatchObject({ model: "gpt-alt", collaborationMode: { mode: "default", settings: { model: "gpt-alt", reasoning_effort: "low" } } });
+    observed.length = 0;
+    const defaulted = await client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite" });
+    expect(defaulted).toMatchObject({ engineSelection: { model: "gpt-default" }, reasoningEffort: "high" });
+    expect((await drain(await client.turnSession(projectId, defaulted.sessionId, { message: "Answer with the admitted default." }))).find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "provider used gpt-default at high" } });
+    expect(observed.find(entry => entry.method === "thread/start")?.params).toMatchObject({ model: "gpt-default" });
+    expect(observed.find(entry => entry.method === "turn/start")?.params).toMatchObject({ model: "gpt-default", collaborationMode: { settings: { model: "gpt-default", reasoning_effort: "high" } } });
+    expect(launches).toBe(2);
+    await expect.poll(async () => (await controlled.inventory()).length).toBe(0);
+    const sessions = new SessionStore(runtime, new ProjectRegistry(runtime, { CHIRALITY_INSTRUCTION_ROOT: resolve(process.cwd(), "../..") }));
+    expect(await sessions.get(projectId, chosen.sessionId)).toMatchObject({ engineSelection: { model: "gpt-alt" }, reasoningEffort: "low" });
+    const replay = await client.replaySession(projectId, chosen.sessionId);
+    expect(JSON.stringify(replay)).toContain("gpt-alt");
   }, 20_000);
 });

@@ -21,6 +21,7 @@ type CreateRequest = SessionCreateRequest & {
   selectedMethods?: readonly MethodReference[];
   declaredContext?: string[];
   allowedWriteTargets?: string[];
+  modelSelection?: { model: string; reasoningEffort: string };
 };
 
 export async function POST(request: Request): Promise<Response> {
@@ -55,7 +56,11 @@ export async function POST(request: Request): Promise<Response> {
         ...(body.declaredContext === undefined ? {} : { declaredContext: body.declaredContext }),
         ...(body.allowedWriteTargets === undefined
           ? {}
-          : { allowedWriteTargets: body.allowedWriteTargets })
+          : { allowedWriteTargets: body.allowedWriteTargets }),
+        // Passed through verbatim: Runtime validates the pair against the
+        // authenticated catalog and reports MODEL_NOT_IN_CATALOG /
+        // REASONING_EFFORT_UNSUPPORTED / MODEL_SELECTION_INVALID itself.
+        ...(body.modelSelection === undefined ? {} : { modelSelection: body.modelSelection })
       },
       { signal: request.signal }
     );

@@ -101,7 +101,7 @@ it('retains the folder selector fallback after mounting in a browser without the
   act(() => tree.unmount());
 });
 
-it('publishes a sorted file-only catalog from the tree response and clears it on error and unmount', async () => {
+it('publishes a sorted file-only catalog from the tree response and clears it on error', async () => {
   let poll!: () => void;
   vi.stubGlobal('window', { setInterval: vi.fn((callback: () => void) => { poll = callback; return 1; }), clearInterval: vi.fn(), addEventListener: vi.fn(), removeEventListener: vi.fn() });
   vi.stubGlobal('document', { visibilityState: 'visible', addEventListener: vi.fn(), removeEventListener: vi.fn() });
@@ -122,6 +122,29 @@ it('publishes a sorted file-only catalog from the tree response and clears it on
   expect(catalog).toHaveBeenLastCalledWith(null);
   act(() => tree.unmount());
   expect(catalog).toHaveBeenLastCalledWith(null);
+});
+
+it('retains the conversation catalog when navigation closes the Files panel', async () => {
+  vi.stubGlobal('window', { setInterval: vi.fn(), clearInterval: vi.fn(), addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  vi.stubGlobal('document', { addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: async () => ({ root: { path: '/root', kind: 'directory', children: [{ name: 'README.md', path: '/root/README.md', kind: 'file' }] } }) })));
+  const catalog = vi.fn(); let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<FileTreePanel onFileCatalog={catalog} />); });
+  catalog.mockClear();
+  act(() => tree.unmount());
+  expect(catalog).not.toHaveBeenCalled();
+});
+
+it('does not erase an existing conversation catalog while a newly opened Files panel is loading', async () => {
+  vi.stubGlobal('window', { setInterval: vi.fn(), clearInterval: vi.fn(), addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  vi.stubGlobal('document', { addEventListener: vi.fn(), removeEventListener: vi.fn() });
+  const pending = deferred<{ ok: boolean; json: () => Promise<unknown> }>();
+  vi.stubGlobal('fetch', vi.fn(() => pending.promise));
+  const catalog = vi.fn(); let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<FileTreePanel onFileCatalog={catalog} />); });
+  act(() => tree.unmount());
+  await act(async () => pending.resolve({ ok: true, json: async () => ({ root: { path: '/root', kind: 'directory', children: [] } }) }));
+  expect(catalog).not.toHaveBeenCalled();
 });
 
 it('clears immediately on root change and ignores a late response from the stale root', async () => {

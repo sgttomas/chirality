@@ -27,7 +27,7 @@ import type {
   DaemonRequestOptions,
   HostedBootstrapPort,
   HostedProjectBindingResponse,
-  HostedBootstrapStatusResponse,
+  HostedProjectInitializationResponse,
   RunningDaemonHarnessTurn
 } from './daemon-harness-port';
 
@@ -120,10 +120,15 @@ function translateDaemonError(error: unknown): HarnessError {
     );
   }
   if (error instanceof RuntimeTransportError) {
+    const transport = error as RuntimeTransportError & { reason?: string; operation?: string; sessionId?: string };
+    const timeout = transport.reason === 'timeout';
+    const boot = transport.operation === 'boot';
+    const sessionId = typeof transport.sessionId === 'string' && /^[A-Za-z0-9_.-]{1,160}$/.test(transport.sessionId) ? transport.sessionId : undefined;
     return new HarnessError(
       'ENGINE_UNAVAILABLE',
-      503,
-      'Chirality runtime daemon is unavailable'
+      timeout ? 504 : 503,
+      timeout ? (boot ? 'Session initialization timed out while waiting for Runtime.' : 'The Runtime request timed out.') : 'Chirality runtime daemon is unavailable',
+      { transportReason: timeout ? 'timeout' : 'transport', ...(boot ? { operation: 'boot' } : {}), ...(sessionId ? { sessionId } : {}) }
     );
   }
   if (error instanceof Error) {
@@ -209,6 +214,9 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
           ...(request.allowedWriteTargets === undefined
             ? {}
             : { allowedWriteTargets: request.allowedWriteTargets }),
+          ...(request.modelSelection === undefined
+            ? {}
+            : { modelSelection: request.modelSelection }),
           ...(request.persona === undefined ? {} : { persona: request.persona }),
           ...(request.mode === undefined ? {} : { mode: request.mode })
         },
@@ -635,22 +643,28 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
     });
   }
 
+  /**
+   * Read-only registration probe. The ordinary scoped client carries no
+   * account-host proof, so this port never asks the daemon for hosted account
+   * status; the daemon rejects such a read (401) whenever an account host
+   * exists. Account status is served only through the Desktop account-host IPC.
+   */
   async getStatus(
     projectRoot: string,
     options?: DaemonRequestOptions
-  ): Promise<HostedBootstrapStatusResponse> {
+  ): Promise<HostedProjectBindingResponse> {
     return mapped(async () => {
       const canonicalRoot = await this.canonicalRoot(projectRoot);
       const binding = await this.resolveAndBind(canonicalRoot, options?.signal);
       if (!binding) return { registration: 'required' };
-      return this.registeredStatus(binding, options?.signal);
+      return { registration: 'registered', projectId: binding.projectId };
     });
   }
 
   async initializeProject(
     projectRoot: string,
     options?: DaemonRequestOptions
-  ): ReturnType<HostedBootstrapPort['initializeProject']> {
+  ): Promise<HostedProjectInitializationResponse> {
     return mapped(async () => {
       const reservation = this.reserveExplicitSelection();
       try {
@@ -666,7 +680,7 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
           options?.signal,
           reservation
         );
-        return this.registeredStatus(binding, options?.signal);
+        return { registration: 'registered', projectId: binding.projectId };
       } finally {
         if (this.pendingExplicitSelection === reservation.selectionGeneration) {
           this.pendingExplicitSelection = undefined;
@@ -913,15 +927,6 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
         { projectId: registration.projectId }
       );
     }
-  }
-
-  private async registeredStatus(
-    binding: VerifiedHostedBinding,
-    signal?: AbortSignal
-  ): Promise<Extract<HostedBootstrapStatusResponse, { registration: 'registered' }>> {
-    const current = await this.revalidateBinding(binding, signal);
-    const status = await current.client.hostedBootstrapStatus(current.projectId, signal);
-    return { registration: 'registered', projectId: binding.projectId, status };
   }
 
   private async revalidateBinding(

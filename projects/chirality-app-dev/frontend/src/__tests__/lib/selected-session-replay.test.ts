@@ -4,6 +4,7 @@ import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import type { SessionEventsReplay } from '../../lib/harness/client';
 import {
   buildSelectedSessionReplayProjection,
+  canContinueRecordedConversation,
   createSelectedSessionReplayLoader
 } from '../../lib/woven-dialogue/selected-session-replay';
 
@@ -219,4 +220,16 @@ describe('selected-session replay loader', () => {
     loader.cancel();
     expect(loader.getState()).toEqual({ status: 'IDLE' });
   });
+});
+
+
+it('opens only complete, current, same-project idle conversation snapshots directly', () => {
+  const projection = buildSelectedSessionReplayProjection('selected', replay('selected', []), { observedAt: '2026-09-11' });
+  projection.session!.continuation = { schemaVersion: 'chirality.session/v3', projectRoot: '/repo/project', roleId: 'HELP_HUMAN', mode: 'governed', interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis' };
+  expect(canContinueRecordedConversation(projection, '/repo/project', false)).toBe(true);
+  expect(canContinueRecordedConversation(projection, '/other', false)).toBe(false);
+  expect(canContinueRecordedConversation(projection, '/repo/project', true)).toBe(false);
+  for (const disclosure of ['CONFLICTING', 'STALE', 'MALFORMED', 'BOUNDED'] as const) {
+    expect(canContinueRecordedConversation({ ...projection, disclosure }, '/repo/project', false)).toBe(false);
+  }
 });

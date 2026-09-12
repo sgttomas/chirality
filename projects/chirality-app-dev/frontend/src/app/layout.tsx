@@ -54,7 +54,7 @@ const THEME_BOOTSTRAP_SCRIPT = `(function(){var d=document.documentElement;var t
 )});if(raw){var parsed=JSON.parse(raw);if(parsed&&(parsed.theme==="dark"||parsed.theme==="system"||parsed.theme==="light")){t=parsed.theme;}}}catch(e){t="light";}d.setAttribute("data-theme",t);})();`;
 
 export const metadata: Metadata = {
-  title: 'Chirality Workflow Shell',
+  title: 'Chirality',
   description: 'PORTAL, PIPELINE, and WORKBENCH shell for local agent execution'
 };
 

@@ -29,7 +29,8 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    const selected={filesystem:{'/usr':'read','/private/tmp':'write','/private/protected':'deny'},network:{enabled:posture!=="off"}};
    const config={permissions:{'bound-profile':selected},approvals_reviewer:'user',approval_policy:posture==='ask-per-destination'?'on-request':'never',allow_login_shell:false,features:{plugins:false,remote_plugin:false,shell_snapshot:false,network_proxy:posture!=='off'},hooks:null,mcp_servers:{},notify:null,plugins:{},profiles:{},profile:null,projects:{'/private/tmp':{trust_level:'trusted'}}};
    if(mode.startsWith('named-stage-c'))config.chirality_runtime={nativeSkills:(mode==='named-stage-c-start-drift'&&configReads>=2)||(mode==='named-stage-c-turn-drift'&&configReads>=3)||(mode==='named-stage-c-resume-drift'&&configReads>=4)?'upstream':'disabled'};
-   if(mode.startsWith('named-roles')){config.features.multi_agent=true;config.features.multi_agent_v2=false;config.agents={enabled:true,max_depth:(mode==='named-roles-drift'&&configReads>=3)?1:2,HELP_HUMAN:{description:'Help',config_file:'/private/roles/HELP_HUMAN.toml'},HELPS_HUMANS:{description:'Manage',config_file:'/private/roles/HELPS_HUMANS.toml'},WORKING_ITEMS:{description:'Work',config_file:'/private/roles/WORKING_ITEMS.toml'},TASK:{description:'Task',config_file:'/private/roles/TASK.toml'}};}
+   if(mode.startsWith('named-roles')){config.features.multi_agent=true;config.features.multi_agent_v2=false;config.agents={enabled:true,max_depth:(mode==='named-roles-drift'&&configReads>=3)?1:2,HELP_HUMAN:{description:'Help',config_file:'/private/roles/HELP_HUMAN.toml'},HELPS_HUMANS:{description:'Manage',config_file:'/private/roles/HELPS_HUMANS.toml'},WORKING_ITEMS:{description:'Work',config_file:'/private/roles/WORKING_ITEMS.toml'},TASK:{description:'Task',config_file:'/private/roles/TASK.toml'}};
+    if(mode==='named-roles-nickname-null'||mode==='named-roles-nickname-set')for(const role of ['HELP_HUMAN','HELPS_HUMANS','WORKING_ITEMS','TASK'])config.agents[role].nickname_candidates=mode==='named-roles-nickname-set'?['Nick']:null;}
    if(mode==='named-null-defaults'||mode==='named-nonnull-default'||mode==='named-unknown-default'){
     selected.description=null;selected.extends=null;selected.workspace_roots=null;selected.filesystem.glob_scan_max_depth=null;
     for(const field of ['proxy_url','enable_socks5','socks_url','enable_socks5_udp','allow_upstream_proxy','dangerously_allow_non_loopback_proxy','dangerously_allow_all_unix_sockets','mode','domains','unix_sockets','allow_local_binding','mitm'])selected.network[field]=null;
@@ -109,7 +110,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    }
    if(mode==='foreign-request'){send({id:99,method:'item/tool/call',params:{threadId:'child-thread',turnId:'child-turn',callId:'child-call',tool:'review',arguments:{}}});return;}
    if(mode==='approval'){send({id:99,method:'item/commandExecution/requestApproval',params:{threadId:'thread1',turnId:'turn1'}});return;}
-   if(mode==='silent'||mode==='interrupt')return;
+   if(mode==='silent'||mode==='interrupt'||mode==='deaf'||mode==='interrupt-crash')return;
    if(mode==='flood'){process.stdout.write('x'.repeat(1100000));return;}
    if(mode==='unknown'){note('item/future/event',{privateContent:'must not escape'});return;}
    if(mode==='diagnostics'){note('thread/status/changed',{status:'active'});note('error',{willRetry:true,error:{message:'must not escape',codexErrorInfo:{responseStreamDisconnected:{httpStatusCode:null}}}});}
@@ -117,6 +118,15 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    if(mode==='diagnostic-flood'){for(let i=0;i<1025;i++)note('warning',{message:'private'});return;}
    if(mode==='bad-terminal'){note('turn/completed',{threadId:'thread1',turn:{id:'turn1',status:'inProgress'}});return;}
    note('item/started',{threadId:'thread1',turnId:'turn1',item:{id:'item1',type:'agentMessage',text:''}});
+   if(mode==='multiple-messages'){
+    note('item/started',{threadId:'thread1',turnId:'turn1',item:{id:'a',type:'agentMessage'}});
+    note('item/started',{threadId:'thread1',turnId:'turn1',item:{id:'b',type:'agentMessage'}});
+    note('item/agentMessage/delta',{threadId:'thread1',turnId:'turn1',itemId:'a',delta:'Hel'});
+    note('item/completed',{threadId:'thread1',turnId:'turn1',item:{id:'b',type:'agentMessage',text:'Final'}});
+    note('item/completed',{threadId:'thread1',turnId:'turn1',item:{id:'a',type:'agentMessage',text:'Hello'}});
+    note('item/completed',{threadId:'thread1',turnId:'turn1',item:{id:'a',type:'agentMessage',text:'Hello'}});
+    end('completed');return;
+   }
    note('item/agentMessage/delta',{threadId:'thread1',turnId:'turn1',itemId:'item1',delta:'hello'});
    note('item/completed',{threadId:'thread1',turnId:'turn1',item:{id:'item1',type:'agentMessage',text:'hello'}});
    end(mode==='failed'?'failed':'completed');
@@ -125,7 +135,7 @@ function fixture(mode = "normal", timeout = 500, purpose: "turn" | "login" = "tu
    if(mode==='late')note('item/agentMessage/delta',{threadId:'thread1',turnId:'turn1',itemId:'item1',delta:'late'});
    return;
   }
-  if(r.method==='turn/interrupt'){response(r,{});setImmediate(()=>end('interrupted'));return;}
+  if(r.method==='turn/interrupt'){if(mode==='interrupt-crash')process.exit(9);if(mode==='deaf')return;response(r,{});setImmediate(()=>end('interrupted'));return;}
   process.exit(5);
  });`;
   const child = spawn(process.execPath, ["-e", code], { env: {}, stdio: "pipe", detached: process.platform !== "win32" });
@@ -164,8 +174,25 @@ describe("persistent known-method Codex actor (controlled provider)", () => {
     const session = new CodexTurnSession({ purpose: "login", transport: { stdin, stdout, async close() {} } });
     try {
       await session.initialize();
-      expect(await session.listModelsPage()).toEqual({ data: [{ model: "gpt-default", hidden: false, isDefault: true, defaultReasoningEffort: "high" }], nextCursor: null });
+      expect(await session.listModelsPage()).toEqual({ data: [{ model: "gpt-default", hidden: false, isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["high"] }], nextCursor: null });
       expect(requests).toContainEqual(expect.objectContaining({ method: "model/list", params: { limit: 100 } }));
+      expect(requests.filter(request => (request as { method?: string }).method === "model/list")).toHaveLength(1);
+    } finally { await session.close(); stdin.destroy(); stdout.destroy(); }
+  });
+  it("rejects a model/list page whose default reasoning effort is outside its supported list", async () => {
+    const stdin = new PassThrough(), stdout = new PassThrough();
+    const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+    stdin.on("data", bytes => {
+      for (const line of bytes.toString().trim().split("\n")) {
+        const request = JSON.parse(line);
+        if (request.method === "initialize") send({ id: request.id, result: {} });
+        else if (request.method === "model/list") send({ id: request.id, result: { data: [{ model: "gpt-default", hidden: false, isDefault: true, defaultReasoningEffort: "xhigh", supportedReasoningEfforts: [{ reasoningEffort: "low", description: "Low" }, { reasoningEffort: "high", description: "High" }] }], nextCursor: null } });
+      }
+    });
+    const session = new CodexTurnSession({ purpose: "login", transport: { stdin, stdout, async close() {} } });
+    try {
+      await session.initialize();
+      await expect(session.listModelsPage()).rejects.toThrow("Unusable default model reasoning");
     } finally { await session.close(); stdin.destroy(); stdout.destroy(); }
   });
 
@@ -221,6 +248,14 @@ describe("persistent known-method Codex actor (controlled provider)", () => {
     const drift = fixture("named-roles-drift");
     try { await drift.session.initialize(); await drift.session.verifyNativePolicy(expectedPolicy, expectedNativeRoles); await drift.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true }); await expect(drift.session.startTurn(turn)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" }); }
     finally { await drift.close(); }
+  });
+  it("accepts only the inert null nickname default on native role entries from the pinned typed readback", async () => {
+    const inert = fixture("named-roles-nickname-null");
+    try { await inert.session.initialize(); await inert.session.verifyNativePolicy(expectedPolicy, expectedNativeRoles); await inert.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true }); const turnId = await inert.session.startTurn(turn); expect((await inert.session.waitTurn(turnId)).status).toBe("completed"); }
+    finally { await inert.close(); }
+    const named = fixture("named-roles-nickname-set");
+    try { await named.session.initialize(); await expect(named.session.verifyNativePolicy(expectedPolicy, expectedNativeRoles)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", message: "Non-inert native role metadata is unsupported" }); }
+    finally { await named.close(); }
   });
   it("rejects merged grants, missing denies, network changes and host-side overrides on readback", async () => {
     for (const mode of ["named-extra", "named-missing", "named-network", "named-preset", "named-hook", "named-mcp", "named-notify", "named-project", "named-nonnull-default", "named-unknown-default", "named-remote-plugin"]) {
@@ -353,6 +388,27 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
     try { await ready(f); const id = await f.session.startTurn(turn); await expect(f.session.startTurn(turn)).rejects.toThrow("already active"); await f.session.interrupt(id); expect((await f.session.waitTurn(id)).status).toBe("interrupted"); }
     finally { await f.close(); }
   });
+  it.each([false, true])("user interrupt retains genuine terminal semantics before/after turn start (early=%s)", async early => {
+    const f = fixture("interrupt");
+    try {
+      await ready(f);
+      if (early) f.session.requestInterrupt();
+      const id = await f.session.startTurn(turn);
+      if (!early) f.session.requestInterrupt();
+      expect((await f.session.waitTurn(id)).status).toBe("interrupted");
+      await expect(f.session.accountRead()).resolves.toBeDefined();
+    } finally { await f.close(); }
+  });
+  it.each(["deaf", "interrupt-crash"])("user interrupt without provider terminal leaves the session failed (%s)", async mode => {
+    const f = fixture(mode, 100);
+    try {
+      await ready(f);
+      const id = await f.session.startTurn(turn);
+      f.session.requestInterrupt();
+      await expect(f.session.waitTurn(id)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+      await expect(f.session.accountRead()).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+    } finally { await f.close(); }
+  });
   it("deduplicates identical terminals and retains failed terminal as provider outcome", async () => {
     for (const mode of ["duplicate", "failed"]) { const f = fixture(mode); try { await ready(f); const id = await f.session.startTurn(turn); expect((await f.session.waitTurn(id)).status).toBe(mode === "failed" ? "failed" : "completed"); expect(await f.session.accountRead()).toEqual({ authRequired: true, hasAccount: false }); } finally { await f.close(); } }
   });
@@ -371,7 +427,7 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
     try { await ready(f); const id = await f.session.startTurn(turn); expect((await f.session.waitTurn(id)).status).toBe("completed"); expect(f.session.diagnostics()).toEqual({ quarantinedNotifications: 2, retryableErrors: 1 }); expect(JSON.stringify(f.session.diagnostics())).not.toContain("must not escape"); }
     finally { await f.close(); }
     const unknown = fixture("unknown", 100);
-    try { await ready(unknown); const id = await unknown.session.startTurn(turn); await expect(unknown.session.waitTurn(id)).rejects.toThrow("timed out"); expect(unknown.session.diagnostics().quarantinedNotifications).toBe(1); }
+    try { await ready(unknown); const id = await unknown.session.startTurn(turn); expect((await unknown.session.waitTurn(id)).status).toBe("interrupted"); expect(unknown.session.diagnostics().quarantinedNotifications).toBe(1); }
     finally { await unknown.close(); }
   });
   it("never terminalizes retryable errors followed by a clean process exit", async () => {
@@ -382,9 +438,19 @@ require('node:readline').createInterface({input:process.stdin}).on('line',line=>
   it("refuses provider reuse of a previously terminal turn identifier", async () => {
     const f = fixture(); try { await ready(f); const id = await f.session.startTurn(turn); await f.session.waitTurn(id); await expect(f.session.startTurn(turn)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" }); } finally { await f.close(); }
   });
+  it("interrupts an expired turn through the provider and keeps the session usable", async () => {
+    const f = fixture("interrupt", 100);
+    try {
+      await ready(f); const id = await f.session.startTurn(turn);
+      expect((await f.session.waitTurn(id)).status).toBe("interrupted");
+      expect(await f.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true })).toBe("thread1");
+    } finally { await f.close(); }
+  });
   it("rejects provider errors and times out without manufacturing terminal completion", async () => {
-    const rejected = fixture("reject"); try { await ready(rejected); await expect(rejected.session.startTurn(turn)).rejects.toMatchObject({ details: { reason: "CODEX_REQUEST_REJECTED" } }); await expect(rejected.session.waitTurn("turn1")).rejects.toThrow("Unknown"); } finally { await rejected.close(); }
-    const silent = fixture("silent", 100); try { await ready(silent); const id = await silent.session.startTurn(turn); await expect(silent.session.waitTurn(id)).rejects.toThrow("timed out"); } finally { await silent.close(); }
+    const rejected = fixture("reject"); try { await ready(rejected); await expect(rejected.session.startTurn(turn)).rejects.toMatchObject({ details: { reason: "CODEX_REQUEST_REJECTED", method: "turn/start", codexCode: -32600, codexMessage: "fixture" } }); await expect(rejected.session.waitTurn("turn1")).rejects.toThrow("Unknown"); } finally { await rejected.close(); }
+    // An expired turn is interrupted through the provider; only a provider that ignores the interrupt is a failure.
+    const silent = fixture("silent", 100); try { await ready(silent); const id = await silent.session.startTurn(turn); expect((await silent.session.waitTurn(id)).status).toBe("interrupted"); } finally { await silent.close(); }
+    const deaf = fixture("deaf", 100); try { await ready(deaf); const id = await deaf.session.startTurn(turn); await expect(deaf.session.waitTurn(id)).rejects.toThrow("timed out"); await expect(deaf.session.startThread({ cwd: "/private/tmp", model: "fixture-model", continuityChecked: true })).rejects.toThrow("timed out"); } finally { await deaf.close(); }
   });
 });
 
@@ -708,4 +774,20 @@ describe("private authority session transport",()=>{
 
 describe("connected private initialize/snapshot/admission",()=>{
  it("authenticates initialization, refreshes V4 and exchanges envelopes through CodexTurnSession",async()=>{const {initializationProof,AuthorityTranscript,AUTHORITY_CONTRACT}=await import("../packages/daemon/src/supplier-authority-controller.js");const {createFakeRuntimeAdmissionNativeAdapter}=await import("../packages/core/src/runtime-admission-lock.js");const secret=Buffer.alloc(32,6),stdin=new PassThrough(),stdout=new PassThrough();const identity={runtimeProcessIncarnationId:"11111111-1111-1111-1111-111111111111",supplierGeneration:"s"};const descriptor={capability:"chirality.local-admission-authority",contract:AUTHORITY_CONTRACT,major:1,minor:0},v4Descriptor={capability:"account.identity-snapshot",contract:"chirality-supplier-account-identity/1",major:1,minor:0,method:"account/identitySnapshot"};const input={...identity,authoritySecret:secret,runtimeChallenge:Buffer.alloc(32,3).toString("base64url"),exactSupplyDigest:"a".repeat(64),descriptor,v4Descriptor};const inbound=new AuthorityTranscript(secret,identity,"runtime-to-supplier"),outbound=new AuthorityTranscript(secret,identity,"supplier-to-runtime");const calls:string[]=[];let buffered="";const send=(value:unknown)=>stdout.write(JSON.stringify(value)+"\n");stdin.on("data",chunk=>{buffered+=String(chunk);let newline:number;while((newline=buffered.indexOf("\n"))>=0){const raw=buffered.slice(0,newline);buffered=buffered.slice(newline+1);const message=JSON.parse(raw);if(message.method==="initialize"){calls.push("initialize");const result={contract:AUTHORITY_CONTRACT,...identity,supplierChallenge:Buffer.alloc(32,4).toString("base64url"),descriptor,v4Descriptor,proof:""};result.proof=initializationProof(secret,{...input,...result});send({id:message.id,result:{chiralityAdmissionAuthority:result}});}else if(message.method==="initialized")continue;else if(message.method==="account/identitySnapshot"){calls.push("snapshot");send({id:message.id,result:{schema:"chirality-supplier-account-identity-response/1",state:"available",supplierGeneration:"s",identityGeneration:"i",accountUserId:"u",providerWorkspaceId:"w"}});}else {const b=inbound.accept(raw);if(b.kind!=="request")throw Error();calls.push(b.op);const acquire=b.op==="chirality/admissionAcquire";const base=acquire?{requestId:b.requestId,operationId:b.operationId,leaseId:"l",supplierGeneration:"s",identityGeneration:"i",snapshotDigest:b.v4.snapshotDigest}:{requestId:b.requestId,leaseId:b.leaseId,disposition:b.disposition};send(outbound.encode({kind:"result",op:b.op,state:acquire?"acquired":"aborted",...base} as any));send(outbound.encode({kind:"notification",op:acquire?"chirality/admissionAcquired":"chirality/admissionAborted",...base} as any));}}});const session=new CodexTurnSession({transport:{stdin,stdout,close:async()=>{stdin.destroy();stdout.destroy();}}});const controller=await session.establishAuthority(input,createFakeRuntimeAdmissionNativeAdapter().acquire("","runtime-admission-authority.lock"),async()=>{});await controller.acquire("w");await controller.abort("w");expect(calls).toEqual(["initialize","snapshot","snapshot","chirality/admissionAcquire","chirality/admissionAbort"]);await controller.close();});
+});
+
+it("projects ordered message boundaries identically in native progress and terminal output", async () => {
+  const f = fixture("multiple-messages");
+  try {
+    await ready(f);
+    const id = await f.session.startTurn(turn);
+    const terminal = await f.session.waitTurn(id);
+    expect(terminal.output).toBe("Hello\n\nFinal");
+    const chunks: string[] = [];
+    for await (const event of f.session.events()) {
+      if (event.type === "text") chunks.push(event.text);
+      if (event.type === "terminal") break;
+    }
+    expect(chunks.join("")).toBe(terminal.output);
+  } finally { await f.close(); }
 });

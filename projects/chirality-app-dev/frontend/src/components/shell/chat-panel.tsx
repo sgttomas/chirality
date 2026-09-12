@@ -1,22 +1,28 @@
 'use client';
 
+import { nativePlanText } from '../../lib/harness/native-plan-text';
+
 import { usePathname, useSearchParams } from 'next/navigation';
 import React, { FormEvent, useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import {
   HarnessApiClientError,
   bootHarnessSession,
+  getHarnessSession,
   createHarnessSession,
   interruptHarnessSession,
   replaySessionEvents,
-  streamHarnessTurn
+  streamHarnessTurn,
+  type HarnessModelSelection
 } from '../../lib/harness/client';
+import { isSelectionInCatalog, selectHostedModelCatalog, useHostedBootstrap } from '../../lib/harness/hosted-bootstrap-context';
 import { toHarnessUiError, type HarnessUiError } from '../../lib/harness/error-display';
 import {
   buildChatDraftStorageKey,
   persistChatDraftSnapshotToStorage,
   readChatDraftSnapshotFromStorage
 } from '../../lib/harness/chat-draft';
-import { type UiAttachment } from '../../lib/harness/ui-attachments';
+import { buildUiAttachment, type UiAttachment } from '../../lib/harness/ui-attachments';
+import { getNativeAttachmentBridge } from '../../lib/shell/native-attachments';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import { CHAT_SECTION } from '../../lib/shell/loop-first';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
@@ -49,6 +55,7 @@ import type { RuntimeSessionRecordV3 } from '@chirality/runtime-contracts';
 type ChatMessage = {
   id: string;
   role: 'operator' | 'assistant';
+  interrupted?: boolean;
   persona?: string;
   projectRoot?: string;
   text: string;
@@ -67,6 +74,10 @@ type ActiveSession = {
   selectedMethods: readonly QualifiedMethodReference[];
   methodSelectionRevision: number;
   instructionBasisId: string;
+  /** Recorded `engineSelection.model` / `reasoningEffort`; fixed for the session's lifetime. */
+  model?: string;
+  reasoningEffort?: string;
+  bootstrapPending?: boolean;
 };
 
 export type ResumeConversationRequest = {
@@ -75,8 +86,9 @@ export type ResumeConversationRequest = {
 };
 
 // Operator permission modes (DESIGN §3.4), mapped to the harness's canonical
-// `opts.mode` values consumed by the permission overlay. Sent per turn so the
-// operator can switch the posture live without re-creating the session.
+// `opts.mode` values consumed by the permission overlay. Sent per turn. The
+// only supported posture is enforced project access, so no selector is shown;
+// a recorded chat carrying another stored mode must opt back in explicitly.
 type OperatorModeOption = {
   value: string;
   label: string;
@@ -87,10 +99,30 @@ const OPERATOR_MODES: readonly OperatorModeOption[] = [
 ];
 
 const DEFAULT_OPERATOR_MODE = 'workspaceWrite';
+const MODEL_SELECTOR_SIGNED_OUT_TITLE = 'Sign in to Codex to choose a model';
+const MODEL_SELECTOR_FIXED_TITLE = 'Model and reasoning are fixed for this chat. Start a new chat to change them.';
+const MODEL_SELECTOR_HELP = 'Codex model for the next chat, from your authenticated account catalog. Fixed once the chat starts.';
+const REASONING_SELECTOR_HELP = 'Reasoning effort supported by the selected model. Separate from Plan Mode and from permissions.';
 const PLAIN_MODE_LABELS: Record<string, string> = { readOnly: 'Read only', ask: 'Ask before changes', workspaceWrite: 'Project access', bypass: 'Autonomous' };
 
 function isSupportedOperatorMode(mode: string): boolean {
-  return mode === 'workspaceWrite';
+  return OPERATOR_MODES.some(option => option.value === mode);
+}
+
+/**
+ * The recorded pair from a Runtime session record: `engineSelection.model` and
+ * the additive `reasoningEffort`. Read from the booted record first, then the
+ * created one; absent fields stay absent (never inferred).
+ */
+function recordedModelSelection(...records: ReadonlyArray<Partial<RuntimeSessionRecordV3> | null | undefined>): Pick<ActiveSession, 'model' | 'reasoningEffort'> {
+  const selection: Pick<ActiveSession, 'model' | 'reasoningEffort'> = {};
+  for (const record of records) {
+    const model = record?.engineSelection?.model;
+    if (selection.model === undefined && typeof model === 'string' && model.trim()) selection.model = model;
+    const effort = record?.reasoningEffort;
+    if (selection.reasoningEffort === undefined && typeof effort === 'string' && effort.trim()) selection.reasoningEffort = effort;
+  }
+  return selection;
 }
 
 function readTextField(data: unknown): string | undefined {
@@ -157,10 +189,6 @@ function AttachmentChips({ items }: { items: UiAttachment[] }): JSX.Element | nu
   );
 }
 
-function nativePlanText(revision: NativePlanRevision): string {
-  const plan = revision.sourceEvent.plan;
-  return typeof plan === 'string' ? plan : JSON.stringify(plan, null, 2);
-}
 
 function nativePlanAvailable(capability: NativePlanCapabilityResponse): boolean {
   return capability.status === 'qualified' || capability.status === 'trial';
@@ -253,7 +281,11 @@ function recordedRoleForTurn(
   bases: readonly FrozenInstructionBasisV3[]
 ): ChiralityRoleName | undefined {
   if (!turnId) return undefined;
-  const basisRecord = history.find(record => record.type === 'instruction-basis.resolved' && record.turnId === turnId);
+  const basisRecord = history.find(record => {
+    if (record.type !== 'instruction-basis.resolved') return false;
+    const accepted = record.acceptedTurn;
+    return record.turnId === turnId || (accepted !== null && typeof accepted === 'object' && 'turnId' in accepted && accepted.turnId === turnId);
+  });
   const basisId = basisRecord && typeof basisRecord.basisId === 'string' ? basisRecord.basisId : undefined;
   return basisId ? bases.find(basis => basis.basisId === basisId)?.roleId : undefined;
 }
@@ -299,6 +331,18 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const [pickerOpen, setPickerOpen] = useState(false);
   const [operatorMode, setOperatorMode] = useState<string>(DEFAULT_OPERATOR_MODE);
   const [interactionMode, setInteractionMode] = useState<InteractionMode>('chat');
+  // Explicit model/reasoning choice for the next session. Null means the
+  // catalog default published by Runtime status; a pair outside the current
+  // catalog is dropped rather than substituted.
+  const [modelChoice, setModelChoice] = useState<HarnessModelSelection | null>(null);
+  const hostedBootstrap = useHostedBootstrap();
+  const modelCatalog = useMemo(() => selectHostedModelCatalog(hostedBootstrap.snapshot), [hostedBootstrap.snapshot]);
+  const nextSessionSelection: HarnessModelSelection | null = modelCatalog
+    ? (isSelectionInCatalog(modelCatalog, modelChoice) ? modelChoice : modelCatalog.selection)
+    : null;
+  useEffect(() => {
+    if (modelCatalog && modelChoice && !isSelectionInCatalog(modelCatalog, modelChoice)) setModelChoice(null);
+  }, [modelCatalog, modelChoice]);
   const [planCapability, setPlanCapability] = useState<NativePlanCapabilityResponse>({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: 'Start a chat to check native Plan Mode support.' });
   const [planRevisions, setPlanRevisions] = useState<readonly NativePlanRevision[]>([]);
   const [planClarifications, setPlanClarifications] = useState<readonly NativePlanClarification[]>([]);
@@ -312,10 +356,22 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const lastInstructionSequenceRef = useRef(0);
   const [isRunning, setIsRunning] = useState(false);
   const [nativeFolderError, setNativeFolderError] = useState<string | null>(null);
+  const [attachmentPickPending, setAttachmentPickPending] = useState(false);
   const nativeSelectionActive = useRef(false);
   const [folderSyncError, setFolderSyncError] = useState<string | null>(null);
   const composerRef = useRef<HTMLTextAreaElement | null>(null);
   const bindingGeneration = useRef(0);
+  // True only while a create request is outstanding, so a MODEL_NOT_IN_CATALOG
+  // rejection can be told apart from one raised for an existing session.
+  const sessionCreateInFlight = useRef(false);
+  // A failed boot response never means creation failed. Retain its identity so
+  // the next explicit Send only reconciles this session, never creates twice.
+  const pendingBootstrap = useRef<{
+    session: Awaited<ReturnType<typeof createHarnessSession>>;
+    selectedRootAtBinding: string;
+    persona: string;
+    mode: string;
+  }>();
   const canonicalTransition = useRef<{ from: string; to: string; persona: string; mode: string } | null>(null);
   const previousContext = useRef<{ root: string | null; persona: string; mode: string } | null>(null);
   const newChatSeen = useRef(newChatRequest);
@@ -416,12 +472,17 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     });
   }, [projectRoot, activePersona, activeMode]);
 
+  const previousDraftContext = useRef({ root: draftRoot, persona: draftPersona });
   useEffect(() => {
+    const prior = previousDraftContext.current;
+    const roleOnlyChange = !activeSession && prior.root === draftRoot && prior.persona !== draftPersona && !prior.persona.startsWith('session:');
+    previousDraftContext.current = { root: draftRoot, persona: draftPersona };
     if (!draftStorageKey || typeof window === 'undefined') {
       setLoadedDraftKey(null);
       setDraft('');
       setAttachments([]);
       onSelectedMethodsChange([]);
+      setModelChoice(null);
       setDraftStorageWritable(true);
       setDraftStorageWarning(null);
       return;
@@ -430,6 +491,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const result = readChatDraftSnapshotFromStorage(window.localStorage, draftStorageKey);
     setDraft(result.snapshot.draft);
     setAttachments(result.snapshot.attachments);
+    if (!roleOnlyChange) setModelChoice(result.snapshot.model && result.snapshot.reasoningEffort
+      ? { model: result.snapshot.model, reasoningEffort: result.snapshot.reasoningEffort }
+      : null);
     const hydratedMethods = isRunning && activeSession && result.snapshot.methods.length === 0
       ? selectedMethodsSnapshot.current
       : result.snapshot.methods;
@@ -450,7 +514,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       {
         draft,
         attachments,
-        methods: selectedMethods
+        methods: selectedMethods,
+        ...(modelChoice ? { model: modelChoice.model, reasoningEffort: modelChoice.reasoningEffort } : {})
       }
     );
 
@@ -461,7 +526,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if (result.warning) {
       setDraftStorageWarning((existing) => existing ?? result.warning);
     }
-  }, [draftStorageKey, loadedDraftKey, draft, attachments, selectedMethods, draftStorageWritable]);
+  }, [draftStorageKey, loadedDraftKey, draft, attachments, selectedMethods, modelChoice, draftStorageWritable]);
 
   useEffect(() => {
     if (!activeSession) {
@@ -536,6 +601,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if ((draft.trim() || attachments.length || selectedMethods.length) && !window.confirm('Start a new chat and discard the unsent draft, attachments, and methods?')) return;
     bindingGeneration.current++;
     activeSessionIdRef.current = undefined;
+    pendingBootstrap.current = undefined;
     clearNativePlanProjection();
     lastInstructionSequenceRef.current = 0;
     setActiveSession(null); setConversationBinding(null); setDraft(''); setAttachments([]); onSelectedMethodsChange([]); setMessages([]);
@@ -551,15 +617,17 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const continuation = projection.session?.continuation;
     if (!continuation || continuation.roleId !== activePersona || continuation.projectRoot !== projectRoot) return;
     resumeRequestSeen.current = resumeConversation.requestId;
+    pendingBootstrap.current = undefined;
     bindingGeneration.current += 1;
     lastInstructionSequenceRef.current = projection.instructionHistory.reduce((maximum, record) => Math.max(maximum, record.sequence), 0);
-    const nextMessages: ChatMessage[] = projection.transcript.items.flatMap(item => {
-      if (item.kind !== 'message' || !item.role || !item.text) return [];
+    const nextMessages: ChatMessage[] = projection.transcript.items.flatMap<ChatMessage>(item => {
+      if (item.kind === 'terminal' && item.status === 'interrupted') return [{ id: `replay-${item.key}`, role: 'assistant' as const, text: '', interrupted: true }];
+      if (item.kind !== 'message' || !item.role || (!item.text && !item.attachments?.length)) return [];
       const recordedRole = item.role === 'assistant'
         ? recordedRoleForTurn(item.turnId, projection.instructionHistory, projection.instructionBases)
         : undefined;
       return [{ id: `replay-${item.key}`, role: item.role === 'user' ? 'operator' as const : 'assistant' as const,
-        ...(item.role === 'assistant' ? { ...(recordedRole ? { persona: recordedRole } : {}), projectRoot: continuation.projectRoot } : {}), text: item.text }];
+        ...(item.role === 'assistant' ? { ...(recordedRole ? { persona: recordedRole } : {}), projectRoot: continuation.projectRoot } : {}), text: item.text ?? '', ...(item.role === 'user' && item.attachments?.length ? { attachments: item.attachments.map(buildUiAttachment) } : {}) }];
     });
     const latestBasis = projection.instructionBases.at(-1);
     let lastOperatorIndex = -1;
@@ -572,13 +640,21 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
     const nextSession: ActiveSession = {
       sessionId: projection.selectedSessionId,
+      ...(projection.session?.bootstrapConfirmed === false ? { bootstrapPending: true } : {}),
       projectRoot: continuation.projectRoot,
       selectedRootAtBinding: continuation.projectRoot,
       persona: continuation.roleId,
       mode: activeMode,
       selectedMethods: continuation.selectedMethods,
       methodSelectionRevision: continuation.methodSelectionRevision,
-      instructionBasisId: continuation.instructionBasisId
+      instructionBasisId: continuation.instructionBasisId,
+      ...(projection.session?.model ? { model: projection.session.model } : {}),
+      ...(projection.session?.reasoningEffort ? { reasoningEffort: projection.session.reasoningEffort } : {})
+    };
+    if (nextSession.bootstrapPending) pendingBootstrap.current = {
+      session: { sessionId: nextSession.sessionId, projectRoot: nextSession.projectRoot, persona: nextSession.persona,
+        mode: nextSession.mode, createdAt: projection.observedAt, updatedAt: projection.observedAt },
+      selectedRootAtBinding: nextSession.selectedRootAtBinding, persona: nextSession.persona, mode: nextSession.mode
     };
     activeSessionIdRef.current = nextSession.sessionId;
     clearNativePlanProjection();
@@ -625,7 +701,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
 
     if (
-      activeSession &&
+      activeSession && !activeSession.bootstrapPending &&
       (activeSession.projectRoot === projectRoot || activeSession.selectedRootAtBinding === projectRoot) &&
       activeSession.mode === activeMode
     ) {
@@ -634,19 +710,51 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
     const generation = bindingGeneration.current;
     const selectedRootAtBinding = conversationBinding?.selectedRootAtBinding ?? projectRoot;
+    const pending = pendingBootstrap.current;
+    if (pending && (pending.persona !== activePersona || pending.mode !== activeMode ||
+      (pending.selectedRootAtBinding !== projectRoot && pending.session.projectRoot !== projectRoot))) {
+      throw new HarnessApiClientError(409, 'INVALID_REQUEST', 'The created chat is still awaiting initialization.', { bootstrapState: 'conflict', sessionId: pending.session.sessionId });
+    }
+    let session = pending?.session;
+    let boot: { session: Awaited<ReturnType<typeof getHarnessSession>> };
+    if (pending) {
+      setRuntimeStatus('Checking session initialization...');
+      const recorded = await getHarnessSession(pending.session.sessionId);
+      const recordedRole = 'schemaVersion' in recorded && recorded.schemaVersion === 'chirality.session/v3'
+        ? ('roleId' in recorded ? recorded.roleId : undefined) : recorded.persona;
+      if (recordedRole !== pending.persona || recorded.sessionId !== pending.session.sessionId ||
+        (pending.session.projectRoot && recorded.projectRoot !== pending.session.projectRoot)) {
+        throw new HarnessApiClientError(409, 'INVALID_REQUEST', 'Session reconciliation returned a different chat.', { bootstrapState: 'conflict', sessionId: pending.session.sessionId });
+      }
+      if (!recorded.bootedAt || !recorded.bootFingerprint || !recorded.engineSessionId) {
+        const status = 'status' in recorded ? recorded.status : undefined;
+        throw new HarnessApiClientError(409, 'ENGINE_UNAVAILABLE', 'Session initialization is not confirmed.', {
+          bootstrapState: status === 'running' ? 'pending' : status === 'failed' || status === 'interrupted' ? 'failed' : 'unknown',
+          sessionId: pending.session.sessionId
+        });
+      }
+      boot = { session: recorded };
+    } else {
     setRuntimeStatus('Creating session...');
-    const session = await createHarnessSession({
+    sessionCreateInFlight.current = true;
+    session = await createHarnessSession({
       projectRoot: conversationBinding?.projectRoot ?? projectRoot,
       persona: activePersona,
       roleId: activePersona,
       mode: activeMode,
       interactionMode,
       permissionMode: operatorMode as 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass',
-      selectedMethods
+      selectedMethods,
+      // The pair shown in the selectors is what the session is created with.
+      // Runtime validates it against the catalog and rejects rather than
+      // substitutes; boot and turn carry no opts.model.
+      ...(nextSessionSelection ? { modelSelection: nextSessionSelection } : {})
     });
+    sessionCreateInFlight.current = false;
+    pendingBootstrap.current = { session, selectedRootAtBinding, persona: activePersona, mode: activeMode };
 
     setRuntimeStatus('Booting session...');
-    const boot = await bootHarnessSession(
+    boot = await bootHarnessSession(
       optsPayload
         ? {
             sessionId: session.sessionId,
@@ -656,6 +764,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             sessionId: session.sessionId
           }
     );
+    }
 
     if (generation !== bindingGeneration.current) throw new Error('The chat context changed while the session was starting.');
     const runtimeSession = boot.session as typeof boot.session & Partial<RuntimeSessionRecordV3>;
@@ -670,7 +779,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       methodSelectionRevision: runtimeSession.schemaVersion === 'chirality.session/v3' && typeof runtimeSession.methodSelectionRevision === 'number'
         ? runtimeSession.methodSelectionRevision : 0,
       instructionBasisId: runtimeSession.schemaVersion === 'chirality.session/v3' && typeof runtimeSession.instructionBasisId === 'string'
-        ? runtimeSession.instructionBasisId : ''
+        ? runtimeSession.instructionBasisId : '',
+      ...recordedModelSelection(runtimeSession, session)
     };
     activeSessionIdRef.current = nextSession.sessionId;
     if (conversationBinding && nextSession.projectRoot !== conversationBinding.projectRoot) {
@@ -680,6 +790,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       setConversationBinding(existing => existing ?? { projectRoot: nextSession.projectRoot, selectedRootAtBinding });
     }
     setActiveSession(nextSession);
+    pendingBootstrap.current = undefined;
     if (presentation === 'woven' && nextSession.projectRoot !== projectRoot) {
       canonicalTransition.current = { from: projectRoot, to: nextSession.projectRoot, persona: activePersona, mode: activeMode };
       const applied = await applyProjectRoot(nextSession.projectRoot);
@@ -721,6 +832,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const submittedMethodsRevision = selectedMethodsRevision.current;
     const submittedDraftStorageKey = draftStorageKey;
     const submittedWithoutSession = activeSession === null;
+    const submittedModelChoice = modelChoice;
+    let bootedSession: ActiveSession | null = activeSession;
 
     setRuntimeError(null);
     setRuntimeStatus('Preparing turn...');
@@ -751,6 +864,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
     try {
       const session = await ensureSessionBooted();
+      bootedSession = session;
       const roleChanged = session.persona !== activePersona;
       let activeMethods = session.selectedMethods;
       let activeRevision = session.methodSelectionRevision;
@@ -791,6 +905,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       }
 
       let assistantText = '';
+      let nativePlanProduced = false;
       let processExitError: HarnessApiClientError | Error | null = null;
 
       setRuntimeStatus('Running turn...');
@@ -875,6 +990,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
                 errorMessage,
                 payload.details
               );
+              // An engine failure can fence the signed-in account underneath a
+              // "ready" status. Re-read status so the account row reports it.
+              if (errorType === 'ENGINE_UNAVAILABLE') hostedBootstrap.refresh?.();
             }
             return;
           }
@@ -888,6 +1006,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             const exitCode = typeof payload.exitCode === 'number' ? payload.exitCode : 0;
             const interrupted = payload.interrupted === true;
 
+            if (interrupted) setMessages(existing => existing.map(item => item.id === assistantId ? { ...item, interrupted: true } : item));
             if (interrupted && !assistantText) {
               assistantText = 'Turn interrupted by operator.';
               setMessages((existing) =>
@@ -902,7 +1021,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
               );
             }
 
-            if (exitCode !== 0) {
+            // Runtime normalizes a confirmed operator interruption to 130 plus
+            // interrupted:true. A bare 130 or any other nonzero exit still fails.
+            if (exitCode !== 0 && !(exitCode === 130 && interrupted)) {
               const errorMessage =
                 typeof payload.error === 'string' && payload.error.trim().length > 0
                   ? payload.error
@@ -930,7 +1051,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         throw processExitError;
       }
 
-      if (!assistantText.trim()) {
+      if (!assistantText.trim() && !nativePlanProduced && interactionMode === 'native-plan') {
+        const latest = await listNativePlanRevisions(session.sessionId).catch(() => undefined);
+        nativePlanProduced = Boolean(latest?.revisions.some(revision => revision.revision > (planRevisions.at(-1)?.revision ?? 0)));
+      }
+      if (!assistantText.trim() && nativePlanProduced) {
+        setMessages(existing => existing.filter(item => item.id !== assistantId));
+      } else if (!assistantText.trim()) {
         setMessages((existing) =>
           existing.map((item) =>
             item.id === assistantId
@@ -962,7 +1089,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         persona: activePersona,
         selectedMethods: replayRuntimeSession?.selectedMethods ?? recordedBasis?.selectedMethods ?? activeMethods,
         methodSelectionRevision: replayRuntimeSession?.methodSelectionRevision ?? activeRevision,
-        instructionBasisId: replayRuntimeSession?.instructionBasisId ?? recordedBasis?.basisId ?? activeBasisId
+        instructionBasisId: replayRuntimeSession?.instructionBasisId ?? recordedBasis?.basisId ?? activeBasisId,
+        ...(replayRuntimeSession ? recordedModelSelection(replayRuntimeSession) : {})
       } : existing);
       // Composer method references apply to the submitted message. A selection
       // made while this turn was streaming belongs to the next message and must
@@ -974,9 +1102,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       // the canonical Runtime session key. Consume the exact prior entry key
       // so its submitted method references cannot reappear in a later New
       // chat. Edits made during the turn already belong to the session key.
+      // The model choice is not a per-message reference: it stays on the entry
+      // key so the next new chat offers the same pair (still re-checked
+      // against the current catalog before use).
       if (submittedWithoutSession && submittedDraftStorageKey && typeof window !== 'undefined') {
         persistChatDraftSnapshotToStorage(window.localStorage, submittedDraftStorageKey, {
-          draft: '', attachments: [], methods: []
+          draft: '', attachments: [], methods: [],
+          ...(submittedModelChoice ? { model: submittedModelChoice.model, reasoningEffort: submittedModelChoice.reasoningEffort } : {})
         });
       }
       if (interactionMode === 'native-plan') {
@@ -984,7 +1116,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           .catch(() => {});
       }
     } catch (error) {
-      const uiError = toHarnessUiError(error);
+      const origin = sessionCreateInFlight.current ? 'session-create' : 'session';
+      sessionCreateInFlight.current = false;
+      const uiError = toHarnessUiError(error, { sessionModel: bootedSession?.model, origin, bootBeforePrompt: Boolean(pendingBootstrap.current) && !bootedSession });
       setRuntimeError(uiError);
       setRuntimeStatus(null);
       if (requestGeneration === bindingGeneration.current) {
@@ -1026,25 +1160,40 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     window.requestAnimationFrame(() => composerRef.current?.focus());
   }
 
-  function savePlanRevision(revision: NativePlanRevision): void {
+  async function savePlanRevision(revision: NativePlanRevision): Promise<void> {
     if (!activeSession) return;
-    const targetRelativePath = window.prompt(`Save this plan in ${activeSession.projectRoot} as`, `plans/native-plan-${revision.revision}.md`)?.trim();
-    if (!targetRelativePath) return;
-    setPlanExportStatus('Saving plan…');
-    const sessionId = activeSession.sessionId;
-    const request = { sessionId, revision: revision.revision, targetRelativePath };
-    void exportNativePlanRevision(request)
-      .then(result => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${activeSession.projectRoot}/${result.targetRelativePath}`); })
-      .catch(error => {
+    const { sessionId, projectRoot: root } = activeSession;
+    const bridge = window.chirality?.plans;
+    try {
+      const selection = bridge
+        ? await bridge.chooseExportTarget({ projectRoot: root, revision: revision.revision })
+        : { cancelled: false as const, targetRelativePath: window.prompt(`Save this plan in ${root} as`, `plans/native-plan-${revision.revision}.md`)?.trim() };
+      if (activeSessionIdRef.current !== sessionId) return;
+      if (selection.cancelled) {
+        setPlanExportStatus(selection.error ?? 'Save cancelled.');
+        return;
+      }
+      const targetRelativePath = selection.targetRelativePath;
+      if (!targetRelativePath) { setPlanExportStatus('Save cancelled.'); return; }
+      setPlanExportStatus('Saving plan…');
+      const request = { sessionId, revision: revision.revision, targetRelativePath };
+      let result;
+      try {
+        result = await exportNativePlanRevision(request);
+      } catch (error) {
         if (activeSessionIdRef.current !== sessionId) return;
-        if (error instanceof MethodSelectionClientError && error.status === 409 && window.confirm(`${targetRelativePath} already exists. Replace it?`)) {
-          void exportNativePlanRevision({ ...request, overwrite: true })
-            .then(result => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${activeSession.projectRoot}/${result.targetRelativePath}`); })
-            .catch(reason => { if (activeSessionIdRef.current === sessionId) setPlanExportStatus(reason instanceof Error ? reason.message : 'The plan could not be saved.'); });
-          return;
-        }
-        setPlanExportStatus(error instanceof Error ? error.message : 'The plan could not be saved.');
-      });
+        if (!(error instanceof MethodSelectionClientError && error.status === 409)) throw error;
+        const overwrite = bridge
+          ? await bridge.confirmOverwrite({ projectRoot: root, targetRelativePath })
+          : window.confirm(`${targetRelativePath} already exists. Replace it?`);
+        if (activeSessionIdRef.current !== sessionId) return;
+        if (!overwrite) { setPlanExportStatus('Save cancelled.'); return; }
+        result = await exportNativePlanRevision({ ...request, overwrite: true });
+      }
+      if (activeSessionIdRef.current === sessionId) setPlanExportStatus(`Plan saved to ${root}/${result.targetRelativePath}`);
+    } catch (error) {
+      if (activeSessionIdRef.current === sessionId) setPlanExportStatus(error instanceof Error ? error.message : 'The plan could not be saved.');
+    }
   }
 
   async function answerPlanClarification(clarification: NativePlanClarification, answers: Record<string, { answers: string[] }>): Promise<void> {
@@ -1066,6 +1215,26 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
   }
 
+  const fixedModelSelection = activeSession ?? (pendingBootstrap.current
+    ? recordedModelSelection(pendingBootstrap.current.session) : null);
+
+  // Desktop builds pick attachments through the native dialog (main process
+  // canonicalises and scopes the paths); web builds keep the in-app picker.
+  const pickAttachments = async (): Promise<void> => {
+    if (!projectRoot || attachmentPickPending) return;
+    const bridge = getNativeAttachmentBridge();
+    if (!bridge) { setPickerOpen(true); return; }
+    setAttachmentPickPending(true); setNativeFolderError(null);
+    try {
+      const result = await bridge.selectFiles({ projectRoot });
+      if (result.cancelled) { if (result.error) setNativeFolderError(result.error); return; }
+      const incoming = result.paths.map(buildUiAttachment);
+      if (incoming.length) setAttachments(existing => mergeAttachments(existing, incoming));
+    } catch (error) {
+      setNativeFolderError(error instanceof Error ? error.message : 'Unable to attach files.');
+    } finally { setAttachmentPickPending(false); }
+  };
+
   return (
     <aside className={`panel panel--chat${presentation === 'woven' ? ' chat-panel--woven' : ''}`}>
       {presentation !== 'woven' ? <header className="panel-header">
@@ -1073,23 +1242,6 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <p className="chat-meta">
           Role: {activePersona} | Section: {activeMode}
         </p>
-        <label className="chat-mode-selector">
-          <span>Operator mode</span>
-          <select
-            value={operatorMode}
-            disabled={isRunning}
-            onChange={(event) => {
-              setOperatorMode(event.target.value);
-            }}
-          >
-            {!isSupportedOperatorMode(operatorMode) ? <option value={operatorMode} disabled>{PLAIN_MODE_LABELS[operatorMode] ?? operatorMode} (unsupported)</option> : null}
-            {OPERATOR_MODES.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </label>
       </header> : null}
 
       <div className={presentation === 'woven' && (interactionMode === 'native-plan' || planRevisions.length > 0) ? 'chat-conversation-stage chat-conversation-stage--planning' : 'chat-conversation-stage'}>
@@ -1110,15 +1262,18 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             {message.attachments && message.attachments.length > 0 ? (
               <AttachmentChips items={message.attachments} />
             ) : null}
+            {message.interrupted ? <p className="chat-turn-status" role="status">Interrupted</p> : null}
             {message.methods?.length ? <ul className="method-chip-list" aria-label="Selected methods">{message.methods.map(method => <li key={`${method.sourceRootId}:${method.kind}:${method.name}`} className="method-chip"><span>{method.name}</span><small>{method.source}</small></li>)}</ul> : null}
-            {message.instructionBasis ? <details className="chat-instruction-basis">
-              <summary>Recorded instruction basis · {message.instructionBasis.suppliedEntries.length} supplied</summary>
+            {message.instructionBasis || message.instructionHistory?.length ? <details className="chat-instruction-basis"><summary>Turn details</summary>
+            {message.instructionBasis ? <>
+
               <p><code>{message.instructionBasis.basisId}</code> · {message.instructionBasis.roleId}</p>
               <ul>{message.instructionBasis.suppliedEntries.map((entry, index) => <li key={`${entry.sha256}:${index}`}><strong>{entry.kind}</strong> · {entry.id} · <code>{entry.sha256.slice(0, 12)}</code></li>)}</ul>
-            </details> : null}
+            </> : null}
             {message.instructionHistory?.length ? <ul className="chat-instruction-events" aria-label="Recorded instruction activity">
               {message.instructionHistory.map(record => <li key={record.historyId}>{instructionActivityLabel(record)}</li>)}
             </ul> : null}
+            </details> : null}
           </article>
         ))}
         {presentation !== 'woven' ? planRevisions.map(revision => <article key={`native-plan-${revision.revision}`} className="chat-bubble chat-bubble--assistant native-plan-revision">
@@ -1226,10 +1381,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             <p>{runtimeError.nextStep}</p>
           </div>
         ) : null}
-        {!isSupportedOperatorMode(operatorMode) ? <div className="chat-runtime-error" role="alert">
-          <p className="chat-runtime-error-title">Unsupported permission profile</p>
-          <p>This recorded chat used {PLAIN_MODE_LABELS[operatorMode] ?? operatorMode}. Select Project access before sending another message.</p>
-        </div> : null}
+        {!isSupportedOperatorMode(operatorMode) ? <p className="chat-runtime-error" role="alert">
+          This recorded chat used {PLAIN_MODE_LABELS[operatorMode] ?? operatorMode}, which is no longer supported. <button type="button" disabled={isRunning} onClick={() => setOperatorMode(DEFAULT_OPERATOR_MODE)}>Continue with Project access</button>
+        </p> : null}
       </div>
 
       <form
@@ -1294,7 +1448,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             projectRoot ? presentation === 'woven' ? `Message ${personaLabel}…` : `Send prompt as ${activePersona}...` : presentation === 'woven' ? 'Choose a folder first…' : 'Select a Working Root first...'
           }
         />)}
-        {presentation === 'woven' ? <button type="button" aria-label="Attach files" title="Attach files" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={() => setPickerOpen(true)}>⊕</button> : null}
+        {presentation === 'woven' ? <button type="button" aria-label="Attach files" title="Attach files" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady || attachmentPickPending} onClick={() => void pickAttachments()}>⊕</button> : null}
         {presentation === 'woven' ? <button type="button" className="chat-workflow-button" aria-label="Choose a workflow" title="Open workflows and skill references" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={onOpenMethods}>Workflows</button> : null}
         <button
           type="submit"
@@ -1319,14 +1473,40 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <span>{conversationBinding ? 'Working in' : 'Start in'}</span>
         <FolderSelect knownRoots={knownRoots} root={conversationBinding?.projectRoot ?? projectRoot} locked={Boolean(conversationBinding)} disabled={isRunning || folderSelectionPending} onPendingChange={onFolderSelectionPending} />
         <span aria-hidden="true">·</span><PersonaPicker compact disabled={isRunning} />
-        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Operator mode</span><select value={operatorMode} disabled={isRunning} onChange={event => setOperatorMode(event.target.value)}>
-          {!isSupportedOperatorMode(operatorMode) ? <option value={operatorMode} disabled>{PLAIN_MODE_LABELS[operatorMode] ?? operatorMode} (unsupported)</option> : null}
-          {OPERATOR_MODES.map(option => <option key={option.value} value={option.value}>{PLAIN_MODE_LABELS[option.value]}</option>)}</select></label>
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Interaction mode</span><select aria-label="Interaction mode" value={interactionMode} disabled={isRunning} onChange={event => setInteractionMode(event.target.value as InteractionMode)}>
-          <option value="chat">Chat</option><option value="native-plan" disabled={Boolean(activeSession) && !nativePlanAvailable(planCapability)}>Plan Mode</option>
+          <option value="chat">Chat</option><option value="native-plan" disabled={Boolean(activeSession) && !nativePlanAvailable(planCapability)} title={activeSession && planCapability.status === 'unavailable' ? `Plan Mode unavailable: ${planCapability.reason}` : undefined}>Plan Mode</option>
         </select></label>
-        {activeSession && planCapability.status === 'unavailable' ? <span title={planCapability.reason}>Plan Mode unavailable</span> : null}
-        {activeSession && planCapability.status === 'trial' ? <span>Human trial — empirical qualification pending</span> : null}
+        {/* Model and reasoning are session-fixed catalog choices, distinct from Plan Mode (interaction) and permissions. */}
+        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Model</span><select aria-label="Model"
+          value={fixedModelSelection ? fixedModelSelection.model ?? '' : nextSessionSelection?.model ?? ''}
+          disabled={Boolean(fixedModelSelection) || !modelCatalog || isRunning}
+          title={fixedModelSelection ? MODEL_SELECTOR_FIXED_TITLE : modelCatalog ? MODEL_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          onChange={event => {
+            if (fixedModelSelection) return;
+            const entry = modelCatalog?.models.find(model => model.model === event.target.value);
+            if (entry) setModelChoice({ model: entry.model, reasoningEffort: entry.defaultReasoningEffort });
+          }}>
+          {fixedModelSelection
+            ? <option value={fixedModelSelection.model ?? ''}>{fixedModelSelection.model ?? 'Model'}</option>
+            : modelCatalog
+              ? modelCatalog.models.map(entry => <option key={entry.model} value={entry.model}>{entry.model}</option>)
+              : <option value="">Model</option>}
+        </select></label>
+        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Reasoning</span><select aria-label="Reasoning"
+          value={fixedModelSelection ? fixedModelSelection.reasoningEffort ?? '' : nextSessionSelection?.reasoningEffort ?? ''}
+          disabled={Boolean(fixedModelSelection) || !modelCatalog || isRunning}
+          title={fixedModelSelection ? MODEL_SELECTOR_FIXED_TITLE : modelCatalog ? REASONING_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          onChange={event => {
+            if (fixedModelSelection) return;
+            const entry = nextSessionSelection && modelCatalog?.models.find(model => model.model === nextSessionSelection.model);
+            if (entry && entry.supportedReasoningEfforts.includes(event.target.value)) setModelChoice({ model: entry.model, reasoningEffort: event.target.value });
+          }}>
+          {fixedModelSelection
+            ? <option value={fixedModelSelection.reasoningEffort ?? ''}>{fixedModelSelection.reasoningEffort ?? 'Reasoning'}</option>
+            : modelCatalog && nextSessionSelection
+              ? (modelCatalog.models.find(entry => entry.model === nextSessionSelection.model)?.supportedReasoningEfforts ?? []).map(effort => <option key={effort} value={effort}>{effort}</option>)
+              : <option value="">Reasoning</option>}
+        </select></label>
         {folderSyncError ? <p role="alert">{folderSyncError}</p> : null}
         {nativeFolderError ? <p role="alert">{nativeFolderError}</p> : null}
       </div> : null}

@@ -45,6 +45,7 @@ const OUTER_MAIN_RELATIVE_PATH = 'Contents/MacOS/Chirality';
 const frontendRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const defaultEntitlements = path.join(frontendRoot, 'build', 'entitlements.mac.plist');
 const defaultInheritEntitlements = path.join(frontendRoot, 'build', 'entitlements.mac.inherit.plist');
+const codeModeHostEntitlements = path.join(frontendRoot, 'build', 'entitlements.mac.code-mode-host.plist');
 
 export const SIGNING_IDENTITY_SHA1_ENV = 'CHIRALITY_SIGNING_IDENTITY_SHA1';
 export const SIGNING_TEAM_ID_ENV = 'CHIRALITY_SIGNING_TEAM_ID';
@@ -201,7 +202,10 @@ export function createRuntimeV2SignOptions(options, { appPath, peerRequirement, 
       const applicationBundle = filePath === appPath || filePath.endsWith('.app');
       return {
         ...inherited,
-        entitlements: applicationBundle ? entitlements : inheritEntitlements,
+        // Only this reviewed supplier sibling needs V8 JIT; other nested code keeps its existing policy.
+        entitlements: filePath === path.join(appPath, 'Contents', 'Resources', 'supplier', 'codex-code-mode-host')
+          ? codeModeHostEntitlements
+          : applicationBundle ? entitlements : inheritEntitlements,
         hardenedRuntime: true,
         requirements: filePath === appPath ? codesignDesignatedRequirement(peerRequirement) : undefined
       };

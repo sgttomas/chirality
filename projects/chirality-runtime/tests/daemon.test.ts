@@ -18,7 +18,8 @@ import {
   TurnCoordinator,
   atomicWriteJson
 } from "@chirality/runtime-core";
-import { RuntimeDaemon } from "@chirality/runtime-daemon";
+import { RuntimeDaemon, describeRuntimeFailure } from "@chirality/runtime-daemon";
+import { RuntimeError } from "@chirality/runtime-contracts";
 import { createProjectFixture } from "./helpers.js";
 
 const active: RuntimeDaemon[] = [];
@@ -309,7 +310,9 @@ describe("Unix-domain runtime daemon", () => {
       }
     });
     const socketPath = join(runtime, "control.sock");
-    const daemon = new RuntimeDaemon({ runtimeDirectory: runtime, socketPath, service });
+    const logged: Array<{ event: string; fields?: Readonly<Record<string, unknown>> }> = [];
+    const logger = { warn(event: string, fields?: Readonly<Record<string, unknown>>) { logged.push({ event, fields }); }, error(event: string, fields?: Readonly<Record<string, unknown>>) { logged.push({ event, fields }); } };
+    const daemon = new RuntimeDaemon({ runtimeDirectory: runtime, socketPath, service, logger });
     active.push(daemon);
     await daemon.start();
     const projectRoot = join(root, "project");
@@ -327,6 +330,22 @@ describe("Unix-domain runtime daemon", () => {
     expect(JSON.parse(response.body)).toMatchObject({
       error: { code: "INTERNAL_FAILURE" }
     });
+    // A server-side failure is logged with its route identity and bounded diagnostics, never the body or query.
+    const failed = logged.filter(entry => entry.event === "runtime.daemon.request.failed");
+    expect(failed).toHaveLength(1);
+    expect(failed[0]!.fields).toMatchObject({ method: "POST", path: "/v1/projects/stream-fail/runs", code: "INTERNAL_FAILURE", status: 500, cause: "pre-stream failure" });
+    expect(JSON.stringify(failed[0]!.fields)).not.toContain("D-TEST");
+    // Client errors stay quiet.
+    const missing = await request(socketPath, "/v1/projects/stream-fail/unknown-route", token, "GET");
+    expect(missing.status).toBe(404);
+    expect(logged.filter(entry => entry.event === "runtime.daemon.request.failed")).toHaveLength(1);
+  });
+
+  it("describes a supplier rejection with its method, code and bounded message", () => {
+    const described = describeRuntimeFailure(new RuntimeError("ENGINE_UNAVAILABLE", "Codex rejected the requested operation", 503, { reason: "CODEX_REQUEST_REJECTED", method: "turn/start", codexCode: -32600, codexMessage: `bad\u0000model ${"x".repeat(300)}` }));
+    expect(described).toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, reason: "CODEX_REQUEST_REJECTED", method: "turn/start", codexCode: -32600 });
+    expect(described.codexMessage).toBe(`bad model ${"x".repeat(300)}`.slice(0, 256));
+    expect(describeRuntimeFailure(new RuntimeError("ENGINE_UNAVAILABLE", "plain", 503))).not.toHaveProperty("method");
   });
 
   it("interrupts and drains a disconnected SSE turn through canonical terminal persistence", async () => {

@@ -42,28 +42,40 @@ export function RuntimeSettingsView({
   const daemonLabel = !daemonStatus
     ? 'Checking...'
     : daemonStatus.daemon.running
-      ? `Running${daemonStatus.daemon.pid ? ` (PID ${daemonStatus.daemon.pid})` : ''}`
+      ? 'Running'
       : daemonStatus.launchAgent.loaded
         ? 'LaunchAgent loaded; daemon unavailable'
         : daemonStatus.launchAgent.installed
           ? 'Installed and stopped'
           : 'Not installed';
+  // Routine process metadata is hover-only; the visible label carries state.
+  const daemonDetail = daemonStatus?.daemon.running
+    ? [
+        daemonStatus.daemon.pid ? `PID ${daemonStatus.daemon.pid}` : null,
+        daemonStatus.daemon.startedAt ? `started ${daemonStatus.daemon.startedAt}` : null
+      ].filter(Boolean).join(' · ') || undefined
+    : undefined;
+  const daemonStatusLine = (
+    <span
+      className="runtime-status"
+      data-running={daemonStatus?.daemon.running ? 'true' : 'false'}
+      title={daemonDetail}
+    >
+      {daemonLabel}
+    </span>
+  );
 
   return (
     <section className="runtime-settings" aria-labelledby="runtime-settings-title">
       <h3 className="api-key-settings-title" id="runtime-settings-title">
-        Shared Runtime
+        Runtime
       </h3>
-      <p
-        className="runtime-status"
-        data-running={daemonStatus?.daemon.running ? 'true' : 'false'}
-      >
-        {daemonLabel}
-      </p>
 
       {bridgeAvailable ? (
         <>
-          <div className="runtime-control-row">
+          <details className="runtime-service">
+            <summary>Runtime service · {daemonStatusLine}</summary>
+            <div className="runtime-control-row">
             {!daemonStatus?.launchAgent.installed ? (
               <button
                 type="button"
@@ -109,7 +121,8 @@ export function RuntimeSettingsView({
                 {busyAction === 'uninstall' ? 'Uninstalling...' : 'Uninstall'}
               </button>
             ) : null}
-          </div>
+            </div>
+          </details>
 
           {showLocalModels && daemonStatus?.daemon.running ? (
             <div className="runtime-model-controls">
@@ -159,9 +172,12 @@ export function RuntimeSettingsView({
           ) : null}
         </>
       ) : (
-        <p className="api-key-hint">
-          Runtime controls are available only in Chirality Desktop.
-        </p>
+        <>
+          <p>{daemonStatusLine}</p>
+          <p className="api-key-hint">
+            Runtime controls are available only in Chirality Desktop.
+          </p>
+        </>
       )}
 
       {error ? <p className="api-key-error">{error}</p> : null}

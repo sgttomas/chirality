@@ -3,7 +3,7 @@ import { chmod, mkdir, mkdtemp, realpath, rename, rm, symlink, writeFile } from 
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
-import { ACCEPTED_SUPPLY, createControlledSupplyVerifierForTests, createCustomSupplyVerifier, revalidateExactSupply, verifyExactSupply, type VerifiedSupply } from "../packages/core/src/exact-supply.js";
+import { ACCEPTED_SUPPLY, createControlledSupplyVerifierForTests, createCustomSupplyVerifier, exactSupplyHashPassCountForTests, revalidateExactSupply, verifyExactSupply, type VerifiedSupply } from "../packages/core/src/exact-supply.js";
 
 let directory: string;
 let executablePath: string;
@@ -87,6 +87,51 @@ describe("exact accepted supply boundary", () => {
     await writeFile(helper, "tamper");
     await expect(verifier.revalidate(descriptor)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
     await expect(createCustomSupplyVerifier(exactProfile, closure).revalidate(descriptor)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+  });
+  it("hashes a path once per process, answers later verifications from filesystem identity, and still detects a replaced executable", async () => {
+    const verifier = createControlledSupplyVerifierForTests(profile);
+    const passes = exactSupplyHashPassCountForTests();
+    const first = await verifier.verify(executablePath);
+    expect(exactSupplyHashPassCountForTests()).toBe(passes + 1);
+    expect(await verifier.verify(executablePath)).toEqual(first);
+    expect(await verifier.revalidate(first)).toEqual(first);
+    expect(exactSupplyHashPassCountForTests()).toBe(passes + 1);
+    // Replaced inode, same length, different bytes: the identity changed, so the bytes are hashed again and rejected (and not cached).
+    await writeFile(join(directory, "replacement"), Buffer.alloc(bytes.length, 66)); await rename(join(directory, "replacement"), executablePath);
+    await expect(verifier.verify(executablePath)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+    expect(exactSupplyHashPassCountForTests()).toBe(passes + 2);
+    // Rewritten in place with the accepted bytes: a fresh verification re-hashes once and is cached under the new identity.
+    await writeFile(executablePath, bytes);
+    expect((await verifier.verify(executablePath)).sha256).toBe(profile.sha256);
+    expect(exactSupplyHashPassCountForTests()).toBe(passes + 3);
+    // The earlier descriptor is stale: identity drift is rejected without another byte read.
+    await expect(verifier.revalidate(first)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+    expect(exactSupplyHashPassCountForTests()).toBe(passes + 3);
+  });
+  it("re-uses custom closure digests by identity while still walking the closure and rejecting a rewritten closure file", async () => {
+    const supplier = join(directory, "supplier"), codex = join(supplier, "codex"), helper = join(supplier, "helper.dat"), helperBytes = Buffer.from("helper");
+    await mkdir(supplier); await writeFile(codex, bytes); await chmod(codex, 0o700); await writeFile(helper, helperBytes);
+    const closure = [
+      { relativePath: "supplier", type: "directory" as const },
+      { relativePath: "supplier/codex", type: "file" as const, sha256: profile.sha256, size: bytes.length, mode: "executable" as const },
+      { relativePath: "supplier/helper.dat", type: "file" as const, sha256: createHash("sha256").update(helperBytes).digest("hex"), size: helperBytes.length, mode: "data" as const }
+    ];
+    const verifier = createCustomSupplyVerifier({ schema: "chirality-custom-supplier-exact-profile/v1" as const, executable: { relativePath: "supplier/codex" as const, ...profile } }, closure);
+    const passes = exactSupplyHashPassCountForTests();
+    const descriptor = await verifier.verify({ executablePath: codex });
+    expect(exactSupplyHashPassCountForTests()).toBe(passes + 2);
+    expect(await verifier.verify({ executablePath: codex })).toEqual(descriptor);
+    expect(await verifier.revalidate(descriptor)).toEqual(descriptor);
+    expect(exactSupplyHashPassCountForTests()).toBe(passes + 2);
+    // The closure listing is still walked on every call.
+    await writeFile(join(supplier, "unlisted"), "extra");
+    await expect(verifier.verify({ executablePath: codex })).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+    await rm(join(supplier, "unlisted"));
+    expect(exactSupplyHashPassCountForTests()).toBe(passes + 2);
+    // Same-length rewrite of a closure file: its identity changed, its bytes are re-hashed and the digest mismatch is rejected.
+    await writeFile(helper, "tamper");
+    await expect(verifier.revalidate(descriptor)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+    expect(exactSupplyHashPassCountForTests()).toBe(passes + 3);
   });
   it("detects symlink substitution after verification", async () => {
     const verifier = createControlledSupplyVerifierForTests(profile);

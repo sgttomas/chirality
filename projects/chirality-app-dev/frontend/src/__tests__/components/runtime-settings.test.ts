@@ -57,15 +57,19 @@ describe('RuntimeSettings rendering', () => {
   it('server-renders a Desktop-only fallback without invoking the bridge', () => {
     const html = renderToStaticMarkup(createElement(RuntimeSettings));
 
-    expect(html).toContain('Shared Runtime');
+    expect(html).toContain('>Runtime</h3>');
     expect(html).toContain('Checking...');
     expect(html).toContain('available only in Chirality Desktop');
+    expect(html).not.toContain('<details');
   });
 
   it('shows daemon lifecycle controls and exact managed-model attribution', () => {
     const html = renderView();
 
-    expect(html).toContain('Running (PID 4242)');
+    expect(html).not.toContain('PID 4242)');
+    expect(html).toMatch(/<span class="runtime-status" data-running="true" title="PID 4242">Running<\/span>/);
+    expect(html).toMatch(/<details class="runtime-service"><summary>Runtime service · <span/);
+    expect(html).not.toContain('<details class="runtime-service" open');
     expect(html).toContain('Stop');
     expect(html).toContain('Uninstall');
     expect(html).toContain('Residency:');
@@ -82,8 +86,9 @@ describe('RuntimeSettings rendering', () => {
       })
     );
 
-    expect(html).toContain('Shared Runtime');
-    expect(html).toContain('Running (PID 4242)');
+    expect(html).toContain('>Runtime</h3>');
+    expect(html).not.toContain('PID 4242)');
+    expect(html).toContain('title="PID 4242">Running</span>');
     expect(html).toContain('Stop');
     expect(html).toContain('Uninstall');
     expect(html).not.toContain('Residency:');

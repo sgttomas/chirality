@@ -1,6 +1,8 @@
 import { randomUUID } from "node:crypto";
+import { withRetirementFailure } from "./retirement-failure.js";
 import { realpath } from "node:fs/promises";
 import {
+  HOSTED_MODEL_ID_PATTERN, HOSTED_REASONING_EFFORT_PATTERN,
   RuntimeError, validateHarnessEventV2,
   type NetworkApprovalPrompt, type SupervisorNetworkApprovalPort,
   type DelegatedCapabilities, type DelegatedApprovalDecisionRequest, type EventAttributionV2,
@@ -9,6 +11,7 @@ import {
   type DelegatedTurnRequest,
   type DelegatedTurnResponse,
   type HostedEngineConsentPort,
+  type HostedModelCatalog,
   type RuntimeCompatibilityIdentity,
   type WorkerContinuity,
   type WorkerRetirementCoordinatorPort,
@@ -27,6 +30,8 @@ import { createRolePolicyEvidence, RUNTIME_ROLES, type RolePolicySettings } from
 
 export interface DelegatedProjectBinding {
   actual?: EventAttributionV2;
+  /** Authenticated non-hidden catalog; a requested model/effort outside it is refused before any envelope is sent. */
+  catalog?: Readonly<HostedModelCatalog>;
   rolePolicy?: RolePolicySettings;
   commandNetworkPosture?: "off" | "ask-per-destination" | "on";
   approvals?: ApprovalStore;
@@ -53,6 +58,7 @@ export interface DelegatedNativePlanSink {
   close(binding: DelegatedNativePlanWorkerBinding): Promise<void>;
 }
 export interface DelegatedTurnObserver {
+  signal?: AbortSignal;
   onProgress(event: DelegatedTurnProgressEvent): void | Promise<void>;
 }
 export interface DelegatedRuntimeOptions {
@@ -205,6 +211,27 @@ export class DelegatedRuntime {
     return store.request(this.approvalTurn(projectId, turnId), context, requestedBy);
   }
 
+  /** Per-turn attribution: the requested catalog choice or the admitted default, never a substitute. */
+  private resolveTurnAttribution(binding: DelegatedProjectBinding, admitted: EventAttributionV2, request: DelegatedTurnRequest): EventAttributionV2 {
+    if (request.model === undefined && request.reasoningEffort === undefined) return admitted;
+    const pattern = (value: unknown, expected: RegExp) => typeof value === "string" && expected.test(value);
+    if ((request.model !== undefined && !pattern(request.model, HOSTED_MODEL_ID_PATTERN)) || (request.reasoningEffort !== undefined && !pattern(request.reasoningEffort, HOSTED_REASONING_EFFORT_PATTERN))) throw new RuntimeError("INVALID_REQUEST", "Invalid model or reasoning effort selection");
+    const model = request.model ?? admitted.model;
+    if (request.model !== undefined && request.model !== admitted.model && binding.catalog === undefined) {
+      throw new RuntimeError("ENGINE_UNAVAILABLE", `Model '${request.model}' is not in the authenticated Codex catalog`, 503, { reason: "MODEL_NOT_IN_CATALOG", model: request.model, available: [admitted.model] });
+    }
+    const entry = binding.catalog?.models.find(candidate => candidate.model === model);
+    if (binding.catalog !== undefined && entry === undefined) {
+      throw new RuntimeError("ENGINE_UNAVAILABLE", `Model '${model}' is not in the authenticated Codex catalog`, 503, { reason: "MODEL_NOT_IN_CATALOG", model, available: binding.catalog.models.map(candidate => candidate.model) });
+    }
+    if (request.reasoningEffort !== undefined) {
+      const supported = entry ? [...entry.supportedReasoningEfforts] : admitted.reasoningEffort === undefined ? [] : [admitted.reasoningEffort];
+      if (!supported.includes(request.reasoningEffort)) throw new RuntimeError("ENGINE_UNAVAILABLE", `Reasoning effort '${request.reasoningEffort}' is not supported by '${model}'`, 503, { reason: "REASONING_EFFORT_UNSUPPORTED", model, supported });
+    }
+    const reasoningEffort = request.reasoningEffort ?? (request.model === undefined || request.model === admitted.model ? admitted.reasoningEffort : entry?.defaultReasoningEffort);
+    return { ...admitted, model, ...(reasoningEffort === undefined ? {} : { reasoningEffort }) };
+  }
+
   private approvalPort(binding: DelegatedProjectBinding): SupervisorNetworkApprovalPort | undefined {
     if (binding.approvalForwardingEnabled !== true) return undefined;
     const port = binding.supervisor as DelegatedHarnessProcessSupervisorPort & Partial<SupervisorNetworkApprovalPort>;
@@ -258,7 +285,8 @@ export class DelegatedRuntime {
     const key = `${projectId}\0${request.turnId}`;
     if (!await this.isApprovalLive(live) || this.interruptedTurns.has(key)) throw new RuntimeError("FORBIDDEN", "Turn is no longer interruptible", 403);
     this.interruptedTurns.add(key);
-    await this.retireWorker(binding, key, live.turnId, live.workerGeneration);
+    if (binding.supervisor.interrupt) await binding.supervisor.interrupt(live.turnId, live.workerGeneration);
+    else await this.retireWorker(binding, key, live.turnId, live.workerGeneration);
     return { interrupted: true as const, turnId: live.turnId, workerGeneration: live.workerGeneration };
   }
 
@@ -388,8 +416,9 @@ export class DelegatedRuntime {
     // Consent and configured native posture must agree; record existence is never a network grant.
     if (consent.posture !== (binding.commandNetworkPosture ?? "off")) throw new RuntimeError("ENGINE_UNAVAILABLE", "Consent posture must match the configured native worker policy; worker policy does not match", 503);
     if (consent.posture === "ask-per-destination" && (!binding.approvals || !this.approvalPort(binding))) throw new RuntimeError("ENGINE_UNAVAILABLE", "Ask posture requires the private live approval bridge", 503);
-    const actual = binding.actual ?? (binding.evidenceClass === "controlled-worker" ? { adapterId: "controlled-worker", providerId: "not-applicable", model: "not-applicable" } : undefined);
-    if (!actual) throw new RuntimeError("ENGINE_UNAVAILABLE", "Trusted provider/model attribution is unavailable", 503);
+    const admitted = binding.actual ?? (binding.evidenceClass === "controlled-worker" ? { adapterId: "controlled-worker", providerId: "not-applicable", model: "not-applicable" } : undefined);
+    if (!admitted) throw new RuntimeError("ENGINE_UNAVAILABLE", "Trusted provider/model attribution is unavailable", 503);
+    const actual = this.resolveTurnAttribution(binding, admitted, request);
     const roleEvidence = createRolePolicyEvidence({ role: requestedRole, actual, policy: binding.rolePolicy ?? { allowedTools: [], readRoots: [identity.canonicalRoot], writeRoots: [identity.canonicalRoot], networkPosture: consent.posture, processPolicy: "broker-managed", delegationPolicy: "native descent does not assign a role" } });
     const key = `${projectId}\0${request.turnId}`;
     if (this.active.has(key)) throw new RuntimeError("SESSION_TURN_IN_PROGRESS", "Turn is already running", 409);
@@ -402,8 +431,9 @@ export class DelegatedRuntime {
       if (this.closing) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated runtime is shutting down", 503);
       const hostedEnvelope = { prompt: request.prompt, requestedRole, roleEvidence, interactionMode, ...(request.permissionMode ? { permissionMode: request.permissionMode } : {}),
         ...(request.attachments?.length ? { attachments: structuredClone(request.attachments) } : {}),
+        ...(request.model === undefined ? {} : { model: request.model }), ...(request.reasoningEffort === undefined ? {} : { reasoningEffort: request.reasoningEffort }),
         ...(interactionMode === "native-plan" ? { projectId, sessionId: request.sessionId, clientTurnId: request.turnId } : {}), ...(restart.threadId ? { resumeThreadId: restart.threadId } : {}) };
-      const workerInput = binding.evidenceClass === "controlled-worker" && interactionMode === "chat" && runtimeToolMap.size === 0 && !request.attachments?.length ? request.prompt : JSON.stringify(hostedEnvelope);
+      const workerInput = binding.evidenceClass === "controlled-worker" && interactionMode === "chat" && runtimeToolMap.size === 0 && !request.attachments?.length && request.model === undefined && request.reasoningEffort === undefined ? request.prompt : JSON.stringify(hostedEnvelope);
       const declarations: RuntimeToolCallbackDeclaration[] = [...runtimeToolMap.values()].map(({ name, description, inputSchema }) => ({ name, description, inputSchema: structuredClone(inputSchema) }));
       const inheritedNames = new Set(["chirality_list_methods", "chirality_inspect_method", "chirality_load_method"]);
       const inheritableTools = declarations.filter(tool => inheritedNames.has(tool.name));
@@ -453,6 +483,16 @@ export class DelegatedRuntime {
       // generation's settled attempt rather than recreating it afterward.
       let retirementAttempt: Promise<void> | undefined;
       const retire = () => retirementAttempt ??= (async () => { for (const controller of runtimeToolControllers) controller.abort(); await this.retireWorker(binding, key, worker.workerId, worker.generation); })();
+      let cancellation: Promise<void> | undefined;
+      let cancellationError: unknown;
+      const cancel = () => {
+        cancellation ??= (async () => {
+          if (binding.supervisor.interrupt) await binding.supervisor.interrupt(worker.workerId, worker.generation);
+          else { this.interruptedTurns.add(key); await retire(); }
+        })().catch(error => { cancellationError = error; });
+      };
+      observer?.signal?.addEventListener("abort", cancel, { once: true });
+      if (observer?.signal?.aborted) cancel();
       try {
         if (nativePlanBinding && binding.nativePlanSink) { await binding.nativePlanSink.open(nativePlanBinding, nativePlanPort as SupervisorNativePlanPort); nativePlanOpened = true; }
         let waiting = true;
@@ -467,6 +507,8 @@ export class DelegatedRuntime {
         } })();
         void polling.catch(() => { void retire().catch(() => {}); });
         const result = await resultPromise;
+        await cancellation;
+        if (cancellationError !== undefined) throw cancellationError;
         waiting = false; await polling; await captureNativePlan(); await captureProgress();
         if (result.threadId !== undefined) {
           if (retirement.associateThread === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Durable thread association is unavailable", 503);
@@ -474,7 +516,7 @@ export class DelegatedRuntime {
         }
         // Process reconciliation must succeed before publishing any terminal.
         await retire();
-        const terminal = await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: this.interruptedTurns.has(key) ? "interrupted" : result.exitCode === 0 ? "completed" : "failed", recordedAt: new Date().toISOString() });
+        const terminal = await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: (binding.supervisor.interrupt ? result.exitCode === null && result.signal === "SIGTERM" : this.interruptedTurns.has(key)) ? "interrupted" : result.exitCode === 0 ? "completed" : "failed", recordedAt: new Date().toISOString() });
         const event = { schemaVersion: 2, eventId: randomUUID(), sequence: 0, timestamp: terminal.recordedAt, projectId, sessionId: request.sessionId ?? request.turnId, turnId: request.turnId, attribution: actual,
           type: terminal.outcome === "completed" ? "turn.completed" : terminal.outcome === "interrupted" ? "turn.interrupted" : "turn.failed",
           data: terminal.outcome === "completed" ? { outcome: "completed" } : terminal.outcome === "interrupted" ? { outcome: "interrupted" } : { code: "WORKER_FAILED", message: "Delegated worker did not complete successfully" } };
@@ -483,11 +525,17 @@ export class DelegatedRuntime {
       } catch (error) {
         // A transport outcome or interruption intent is not retirement evidence.
         // Keep the prepared record unresolved when cleanup cannot be confirmed.
-        await retire();
-        await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: this.interruptedTurns.has(key) ? "interrupted" : "failed", recordedAt: new Date().toISOString() });
-        throw error;
+        // The turn's own failure stays the reported error; a retirement
+        // diagnostic travels with it as the cause instead of replacing it.
+        let retired = false, failure: unknown = error;
+        try { await retire(); retired = true; } catch (cleanup) { failure = withRetirementFailure(error, cleanup); }
+        if (retired) await retirement.terminalize({ turnId: request.turnId, workerId: worker.workerId, generation: worker.generation, outcome: !binding.supervisor.interrupt && this.interruptedTurns.has(key) ? "interrupted" : "failed", recordedAt: new Date().toISOString() });
+        throw failure;
       } finally {
-        try { await retire(); }
+        observer?.signal?.removeEventListener("abort", cancel);
+        await cancellation;
+        // The settled retirement attempt already reported its outcome above.
+        try { await retire().catch(() => {}); }
         finally { await closeNativePlan(); }
       }
     } finally {

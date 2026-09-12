@@ -1,12 +1,13 @@
 import { codexLoginConfigOverridesV2 } from "./codex-containment.js";
 import { constants } from "node:fs";
-import { lstat, open, realpath, rmdir, unlink } from "node:fs/promises";
+import { chmod, copyFile, lstat, open, realpath, rmdir, unlink } from "node:fs/promises";
 import { isAbsolute, join, relative, resolve, sep } from "node:path";
 import {
   CHIRALITY_ROLE_NAMES,
   RuntimeError,
   validateHostedManagedAuth,
   type HostedManagedAuth,
+  type HostedModelCatalog,
   type NativePlanAdapterAdmission,
   type NativePlanAdapterQualification,
   type RuntimeCompatibilityIdentity
@@ -34,7 +35,7 @@ import { codexEffectiveConfigDigestV2 } from "./codex-authenticated-transport.js
 import { bindTrustedRuntimeReadRoot, bindTrustedRuntimeReadRootV2, prepareCodexContainmentV2, prepareCodexNativePolicy, prepareCodexNativePolicyV2, prepareCodexTrustedSupplierContainmentV2, type TrustedRuntimeReadRootBinding, type TrustedRuntimeReadRootBindingV2 } from "./codex-containment.js";
 import { CodexLogin, validateCodexLoginStartup, type CodexLoginStartupAdmission } from "./codex-login.js";
 import { CodexTurnSession } from "./codex-session.js";
-import { CodexSupervisor, type HostedCodexSupervisorAdmission, type HostedCodexSupervisorOptions } from "./codex-supervisor.js";
+import { CodexSupervisor, assertCodexSupervisorBounds, type HostedCodexSupervisorAdmission, type HostedCodexSupervisorOptions } from "./codex-supervisor.js";
 import { HostedIdentityBindingStore } from "./hosted-identity-binding.js";
 import type { HostedBootstrapPrivateBindings, TrustedHostedLoginCeremony, TrustedHostedPrivateAdmission } from "./hosted-bootstrap.js";
 import {
@@ -62,6 +63,13 @@ function unavailable(reason: string, cause?: unknown): RuntimeError {
   const error = new RuntimeError("ENGINE_UNAVAILABLE", "Hosted private Codex composition is unavailable", 503, { reason });
   if (cause !== undefined) error.cause = cause;
   return error;
+}
+/** Timing diagnostics for the sign-in and admission paths; observers never change outcomes and their failures are swallowed. */
+export type HostedPhaseObserver = (phase: string, detail: Readonly<{ projectId: string; elapsedMs: number }>) => void;
+/** Marks consecutive phases of one scope: each mark reports the time since the previous mark (or the scope start). */
+function phaseMarks(observe: HostedPhaseObserver | undefined, scope: string, projectId: string): (phase: string) => void {
+  let last = Date.now();
+  return phase => { const now = Date.now(); try { observe?.(`${scope}.${phase}`, { projectId, elapsedMs: now - last }); } catch { /* diagnostics only */ } last = now; };
 }
 function canonical(value: unknown): value is string {
   return typeof value === "string" && isAbsolute(value) && resolve(value) === value && !/[\x00-\x1f]/.test(value);
@@ -189,24 +197,27 @@ async function stageExactSupplierExecutableInternal(sourcePath: string, privateR
           if (entry.type === "directory") { await ensureTrackedDirectory(to); continue; }
           await ensureTrackedDirectory(resolve(to, ".."));
           const input = await open(from, constants.O_RDONLY | constants.O_NOFOLLOW);
-          let output: Awaited<ReturnType<typeof open>> | undefined;
           try {
             const expectedIdentity = source.closure.find(value => value.relativePath === entry.relativePath)?.identity;
             const before = await input.stat({ bigint: true });
             if (!expectedIdentity || `${before.dev}` !== expectedIdentity.dev || `${before.ino}` !== expectedIdentity.ino || `${before.size}` !== expectedIdentity.size || `${before.mtimeNs}` !== expectedIdentity.mtimeNs || `${before.ctimeNs}` !== expectedIdentity.ctimeNs) throw unavailable("PACKAGED_SUPPLIER_CHANGED");
-            output = await open(to, constants.O_WRONLY | constants.O_CREAT | constants.O_EXCL | constants.O_NOFOLLOW, entry.mode === "executable" ? 0o700 : 0o600);
+            // Exclusive create as an APFS clone: exact bytes, copy-on-write independent of the source, without a
+            // byte loop over the supplier. Where cloning is unsupported Node falls back to a plain copy. The staged
+            // bytes are still proven by the verifier's hash read below; custody is asserted on the created file.
+            try { await copyFile(from, to, constants.COPYFILE_EXCL | constants.COPYFILE_FICLONE); }
+            catch (error) { await unlink(to).catch(() => {}); throw error; }
             createdPaths.push(to);
-            const buffer = Buffer.alloc(64 * 1024); let total = 0;
-            for (;;) {
-              const { bytesRead } = await input.read(buffer, 0, Math.min(buffer.length, entry.size - total + 1), null); if (!bytesRead) break;
-              total += bytesRead; if (total > entry.size) throw unavailable("PACKAGED_SUPPLIER_CHANGED");
-              let written = 0; while (written < bytesRead) written += (await output.write(buffer, written, bytesRead - written)).bytesWritten;
-            }
+            await chmod(to, entry.mode === "executable" ? 0o700 : 0o600);
+            const output = await open(to, constants.O_RDONLY | constants.O_NOFOLLOW);
+            try {
+              const staged = await output.stat({ bigint: true });
+              if (!staged.isFile() || staged.nlink !== 1n || staged.uid !== BigInt(ownerId()) || staged.size !== BigInt(entry.size)) throw unavailable("PACKAGED_SUPPLIER_CHANGED");
+              await output.sync();
+            } finally { await output.close(); }
             const after = await input.stat({ bigint: true }), current = await lstat(from, { bigint: true });
-            if (total !== entry.size || `${after.dev}` !== expectedIdentity.dev || `${after.ino}` !== expectedIdentity.ino || `${after.size}` !== expectedIdentity.size
+            if (`${after.dev}` !== expectedIdentity.dev || `${after.ino}` !== expectedIdentity.ino || `${after.size}` !== expectedIdentity.size
               || after.dev !== current.dev || after.ino !== current.ino || after.size !== current.size || after.mtimeNs !== current.mtimeNs || after.ctimeNs !== current.ctimeNs) throw unavailable("PACKAGED_SUPPLIER_CHANGED");
-            await output.sync();
-          } finally { await input.close(); await output?.close(); }
+          } finally { await input.close(); }
         }
         for (const path of [...new Set(supplyVerifier.closureEntries.filter(entry => entry.type === "directory").map(entry => entry.relativePath === "supplier" ? supplierDirectory : resolve(supplierDirectory, entry.relativePath.slice("supplier/".length))))].reverse()) await syncDirectory(path);
       }
@@ -215,8 +226,9 @@ async function stageExactSupplierExecutableInternal(sourcePath: string, privateR
         if (relativePath && !contained(supplierDirectory, path)) throw unavailable("SUPPLIER_STAGING_PATH_INVALID");
         if (entry.type === "directory") await assertStagedClosureDirectory(path); else await assertStagedClosureFile(path, entry.mode === "executable");
       }
-      const staged = await supplyVerifier.verify({ executablePath: destination, custody: "private-staged" });
-      await assertPackagedSourceFile(sourcePath); await supplyVerifier.revalidate(source); await supplyVerifier.revalidate(staged);
+      // verify(staged) is the staged copy's boundary read; the source is revalidated once more because the copy read it.
+      await supplyVerifier.verify({ executablePath: destination, custody: "private-staged" });
+      await assertPackagedSourceFile(sourcePath); await supplyVerifier.revalidate(source);
       return destination;
     } catch (error) {
       const cleanupErrors: unknown[] = [];
@@ -244,7 +256,7 @@ async function stageExactSupplierExecutableInternal(sourcePath: string, privateR
       await assertStagedFile(destination);
       const existing = await verifyExactSupply({ executablePath: destination });
       if (existing.sha256 !== source.sha256 || existing.version !== source.version || existing.signatureStatus !== source.signatureStatus) throw unavailable("STAGED_SUPPLIER_CONFLICT");
-      await assertPackagedSourceFile(sourcePath); await revalidateExactSupply(source); await revalidateExactSupply(existing);
+      await assertPackagedSourceFile(sourcePath); await revalidateExactSupply(source);
       return destination;
     }
     const metadata = await output.stat();
@@ -259,7 +271,7 @@ async function stageExactSupplierExecutableInternal(sourcePath: string, privateR
     await assertStagedFile(destination);
     const staged = await verifyExactSupply({ executablePath: destination });
     if (staged.sha256 !== source.sha256 || staged.version !== source.version || staged.signatureStatus !== source.signatureStatus) throw unavailable("STAGED_SUPPLIER_MISMATCH");
-    await assertPackagedSourceFile(sourcePath); await revalidateExactSupply(source); await revalidateExactSupply(staged);
+    await assertPackagedSourceFile(sourcePath); await revalidateExactSupply(source);
     return destination;
   } catch (error) {
     if (created) await unlink(destination).catch(() => {});
@@ -343,8 +355,10 @@ const productionAdapters: ControlledHostedPrivateCompositionAdapters = Object.fr
       start: () => login.startLogin(),
       async status() { const value = await login.status(); return { state: value.state, ...(value.hasAccount === undefined ? {} : { hasAccount: value.hasAccount }) }; },
       resolveDefaultModel: () => login.resolveDefaultModel(),
+      resolveModelCatalog: () => login.resolveModelCatalog(),
       cancel: () => login.cancel(),
-      close: () => login.close()
+      close: () => login.close(),
+      closeDiagnostics: () => login.closeDiagnostics()
     });
   },
   preparePolicy: prepareCodexNativePolicy,
@@ -358,7 +372,7 @@ const productionAdapters: ControlledHostedPrivateCompositionAdapters = Object.fr
 interface CeremonyContext {
   projectId: string; manifestHash: string; consentVersion: string; canonicalRoot: string; privateDirectory: string; codexHome: string;
   providerNetworkConsent: { approvedBy: string; approvalReference: string; approvedAt: string };
-  stagedExecutable: string; configDigest: string; model?: string; defaultReasoningEffort?: string; ceremony: TrustedHostedLoginCeremony; nativeRoles: { digest: string; configOverrides: readonly string[] }; runtimeReadRoot: TrustedRuntimeReadRootBinding;
+  stagedExecutable: string; configDigest: string; model?: string; defaultReasoningEffort?: string; catalog?: Readonly<HostedModelCatalog>; ceremony: TrustedHostedLoginCeremony; nativeRoles: { digest: string; configOverrides: readonly string[] }; runtimeReadRoot: TrustedRuntimeReadRootBinding;
   v2?: { loginRelease: RuntimePurposeReleaseAdmissionV2; loginInput: RuntimeInstanceAdmissionInputV2; loginAdmission: RuntimeInstanceAdmissionV2; runtimeReadRoot: TrustedRuntimeReadRootBindingV2 };
 }
 interface AdmissionContext extends CeremonyContext {
@@ -391,13 +405,16 @@ export function validateHostedPrivateCompositionOptions(value: unknown): Readonl
     || !exactKeys(options.commandNetworkConsent, ["approvedBy", "approvedAt", "explicitUserAct"]) || !options.commandNetworkConsent!.approvedBy.trim()
     || !Number.isFinite(Date.parse(options.commandNetworkConsent!.approvedAt)) || options.commandNetworkConsent!.explicitUserAct !== true)) throw unavailable("HOST_CONFIGURATION_INVALID");
   if (options.managedAuth) validateHostedManagedAuth(options.managedAuth);
+  // Budgets are admitted here, at host start, so a misconfigured budget is a
+  // configuration failure instead of an admission failure after sign-in.
+  try { assertCodexSupervisorBounds(options); } catch (cause) { throw unavailable("HOST_CONFIGURATION_INVALID", cause); }
   const { releaseV2, ...plain } = options;
   const clone = structuredClone(plain) as HostedPrivateCompositionOptions;
   if (options.releaseV2) clone.releaseV2 = Object.freeze({ basis: options.releaseV2.basis });
   return Object.freeze(clone);
 }
 
-async function compose(options: HostedPrivateCompositionOptions, adapters: ControlledHostedPrivateCompositionAdapters): Promise<HostedBootstrapPrivateBindings> {
+async function compose(options: HostedPrivateCompositionOptions, adapters: ControlledHostedPrivateCompositionAdapters, observePhase?: HostedPhaseObserver): Promise<HostedBootstrapPrivateBindings> {
   const trusted = validateHostedPrivateCompositionOptions(options);
   if (trusted.releaseV2) await (adapters.revalidateReleaseBasis ?? revalidateIssuedPackagedReleaseBasisV2)(trusted.releaseV2.basis);
   const supplyVerifier = trusted.releaseV2 && adapters === productionAdapters ? await issuedPackagedSupplyVerifierV2(trusted.releaseV2.basis) : undefined;
@@ -442,6 +459,7 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
       }
     } : {}),
     async createCeremony(input) {
+      const mark = phaseMarks(observePhase, "login", input.projectId);
       if (closed || !lease.held || !ID.test(input.projectId) || (trusted.releaseV2 !== undefined && !HEX.test(input.manifestHash ?? "")) || !canonical(input.canonicalRoot) || !canonical(input.privateDirectory) || !canonical(input.codexHome)
         || !contained(input.privateDirectory, input.codexHome) || contained(input.canonicalRoot, input.privateDirectory) || contained(input.privateDirectory, input.canonicalRoot)
         || !exactKeys(input.providerNetworkConsent, ["approvedBy", "approvalReference", "approvedAt"]) || !input.providerNetworkConsent.approvedBy.trim()
@@ -457,15 +475,19 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
         if (loginHost.account !== null || loginHost.authority.subjectBindingDigest !== hostAuthoritySubjectBindingDigestV2({ purpose: "login", projectId: input.projectId, manifestHash, canonicalRoot: input.canonicalRoot, account: null, consentDigest: v2ConsentDigest })) throw unavailable("HOST_ACCOUNT_AUTHORITY_MISMATCH");
         await revalidateHostedAccountAuthorityV2(loginHost.authority, { purpose: "login", projectId: input.projectId, manifestHash, canonicalRoot: input.canonicalRoot, account: null, consentDigest: v2ConsentDigest });
       }
+      mark("host-authority");
       const stagedExecutable = await adapters.stageSupplier(trusted.supplierExecutablePath, input.privateDirectory, supplyVerifier);
       if (!canonical(stagedExecutable) || !contained(input.privateDirectory, stagedExecutable)) throw unavailable("STAGED_SUPPLIER_PATH_INVALID");
+      mark("stage-supplier");
       const nativeRoles = await adapters.prepareNativeRoles(trusted.instructionRoot, input.privateDirectory);
       const policyBasis: RuntimePackagedPolicyBasisV2 | undefined = trusted.releaseV2 ? { schema: "chirality-runtime-packaged-basis/v2", resourcesRoot: trusted.releaseV2.basis.verified.resourcesRoot,
         inventoryPath: trusted.releaseV2.basis.verified.inventoryPath, payloadManifestPath: trusted.releaseV2.basis.verified.payloadManifestPath,
         outerInventorySha256: trusted.releaseV2.basis.verified.inventorySha256, payloadDigest: trusted.releaseV2.basis.verified.payloadDigest } : undefined;
+      mark("native-roles");
       const runtimeReadRoot = trusted.releaseV2
         ? await bindTrustedRuntimeReadRootV2(trusted.instructionRoot, policyBasis!)
         : await adapters.bindRuntimeReadRoot(trusted.instructionRoot, trusted.conformance!.artifactInventory);
+      mark("runtime-read-root");
       const expectedConfigDigest = trusted.releaseV2
         ? recordKey({ schema: "chirality.hosted-private-config/v2", projectId: input.projectId, manifestHash: input.manifestHash, model: trusted.model, accountStorage: { backend: "keyring" },
             compatibility: trusted.compatibility, providerNetworkConsent: input.providerNetworkConsent, commandNetworkPosture: trusted.commandNetworkPosture, protectedPaths: trusted.protectedPaths,
@@ -484,6 +506,7 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
         const manifestHash = input.manifestHash!;
         const consentDigest = v2ConsentDigest!, observedHost = loginHost!;
         const purposeRelease = await verifyRuntimePurposeReleaseV2(trusted.releaseV2.basis, "login");
+        mark("purpose-release");
         const policy: CodexPolicyInstanceV2 = { schema: "chirality-codex-policy-instance/v2", outerPurpose: "trusted-login", nativePurpose: null,
           canonicalRoot: input.canonicalRoot, privateDirectory: input.privateDirectory, codexHome: input.codexHome, executablePath: stagedExecutable, nativeAddonPath: trusted.nativeAddonPath,
           providerNetworkConsent: { approvedBy: input.providerNetworkConsent.approvedBy, approvalReference: input.providerNetworkConsent.approvalReference }, commandNetworkPosture: "off",
@@ -501,7 +524,9 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
           v2 = { loginRelease: purposeRelease, loginInput: instanceInput, loginAdmission: instanceAdmission, runtimeReadRoot: runtimeReadRoot as TrustedRuntimeReadRootBindingV2 };
         } finally { await outer.cleanup(); }
       }
+      mark("instance-admission");
       const startupAdmission = await adapters.validateLoginStartup(loginOptions);
+      mark("validate-startup");
       const ceremony = adapters.createLogin({ ...loginOptions, startupAdmission });
       ceremonies.set(ceremony, { ...input, manifestHash: input.manifestHash ?? "", consentVersion: v2?.loginInput.consent.version ?? trusted.consentVersion!, stagedExecutable, configDigest: expectedConfigDigest, ceremony, nativeRoles, runtimeReadRoot: runtimeReadRoot as TrustedRuntimeReadRootBinding, ...(v2 ? { v2 } : {}) });
       return ceremony;
@@ -510,17 +535,22 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
       if (closed || !lease.held || (input.nativeAddonPath !== undefined && input.nativeAddonPath !== trusted.nativeAddonPath)) throw unavailable("ADMISSION_BINDING_INVALID");
       const context = ceremonies.get(input.ceremony);
       if (!context || context.projectId !== input.projectId || context.canonicalRoot !== input.canonicalRoot) throw unavailable("CEREMONY_BINDING_MISMATCH");
+      const mark = phaseMarks(observePhase, "admission", context.projectId);
       const status = await context.ceremony.status();
       if (status.state !== "completed" || status.hasAccount !== true) throw unavailable("CEREMONY_NOT_COMPLETED");
+      // The catalog is the same authenticated model/list read; its unique default is the admitted default.
+      mark("login-status");
+      const catalog = context.v2 ? await context.ceremony.resolveModelCatalog?.() : undefined;
       const selected = context.v2
-        ? await context.ceremony.resolveDefaultModel?.() ?? (() => { throw unavailable("MODEL_CATALOG_UNAVAILABLE"); })()
+        ? catalog ? { model: catalog.default.model, defaultReasoningEffort: catalog.default.defaultReasoningEffort } : await context.ceremony.resolveDefaultModel?.() ?? (() => { throw unavailable("MODEL_CATALOG_UNAVAILABLE"); })()
         : { model: trusted.model!, defaultReasoningEffort: "" };
-      context.model = selected.model; context.defaultReasoningEffort = context.v2 ? selected.defaultReasoningEffort : undefined;
+      context.model = selected.model; context.defaultReasoningEffort = context.v2 ? selected.defaultReasoningEffort : undefined; context.catalog = catalog;
       if (context.v2 && trusted.releaseV2) context.configDigest = recordKey({ schema: "chirality.hosted-private-config/v2", projectId: context.projectId, manifestHash: context.manifestHash,
         model: selected.model, defaultReasoningEffort: selected.defaultReasoningEffort, accountStorage: { backend: "keyring" }, compatibility: trusted.compatibility,
         providerNetworkConsent: context.providerNetworkConsent, commandNetworkPosture: trusted.commandNetworkPosture, protectedPaths: trusted.protectedPaths,
         immutableReadRoots: trusted.immutableReadRoots, instructionRoot: trusted.instructionRoot, nativeRoleConfigurationDigest: context.nativeRoles.digest,
         trustedRuntimeReadRoot: { contentDigest: context.v2.runtimeReadRoot.contentDigest, readPaths: context.v2.runtimeReadRoot.readPaths }, releaseV2: { basisDigest: trusted.releaseV2.basis.basisDigest }, consentVersion: context.consentVersion });
+      mark("model-catalog");
       const attachmentRoot = join(context.canonicalRoot, ".chirality", "attachments"); await privateDirectory(attachmentRoot);
       const policy = context.v2
         ? await prepareCodexNativePolicyV2({ purpose: "worker", canonicalRoot: context.canonicalRoot, privateDirectory: context.privateDirectory,
@@ -534,6 +564,7 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
             commandNetworkPosture: trusted.commandNetworkPosture, protectedPaths: [...trusted.protectedPaths], readOnlyProjectPaths: [attachmentRoot], immutableReadRoots: [...trusted.immutableReadRoots],
             trustedRuntimeReadRoots: [context.runtimeReadRoot], nativeRoleConfiguration: context.nativeRoles });
       let launcherFactory: CodexCandidateLauncherFactory | undefined;
+      mark("native-policy");
       let admitted: HostedCodexSupervisorAdmission | undefined;
       let nativePlanAdmission: NativePlanAdapterAdmission | undefined = trusted.nativePlanQualification;
       try {
@@ -542,6 +573,7 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
         if (context.v2 && trusted.releaseV2) {
           const consentDigest = context.v2.loginInput.consent.digest;
           const purposeRelease = await verifyRuntimePurposeReleaseV2(trusted.releaseV2.basis, "worker");
+          mark("purpose-release");
           if (purposeRelease.disposition === "local-human-trial") nativePlanAdmission = Object.freeze({
             adapterId: "codex-app-server", providerId: "openai", dispositionId: purposeRelease.ownerReference,
             admissionSha256: purposeRelease.recordSha256, evidenceClass: "native-adapter-local-human-trial"
@@ -558,12 +590,15 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
                 configOverrides: (policy as Awaited<ReturnType<typeof prepareCodexNativePolicyV2>>).configOverrides, nativePolicyIdentityVersion: trusted.releaseV2!.basis.supportProfile.compiler.nativePolicyIdentityVersion }) };
             if (adapters.hostAuthority) {
               const observedHost = await observeHostAuthority({ purpose: "worker", projectId: context.projectId, manifestHash: context.manifestHash, canonicalRoot: context.canonicalRoot, consentDigest });
+              mark("host-authority");
               if (!observedHost.account || observedHost.authority.subjectBindingDigest !== hostAuthoritySubjectBindingDigestV2({ purpose: "worker", projectId: context.projectId, manifestHash: context.manifestHash, canonicalRoot: context.canonicalRoot, account: observedHost.account, consentDigest })) throw unavailable("HOST_ACCOUNT_AUTHORITY_MISMATCH");
               const instanceInput: RuntimeInstanceAdmissionInputV2 = { ...preparedInput, hostAuthority: observedHost.authority, account: observedHost.account };
               runtimeV2 = { releaseBasis: trusted.releaseV2.basis, instanceInput, instanceAdmission: await issueRuntimeInstanceAdmissionV2(instanceInput) };
+              mark("instance-admission");
             } else {
               if (!accountHost) throw unavailable("HOST_ACCOUNT_AUTHORITY_UNAVAILABLE");
               runtimeV2Preparation = await prepareRuntimeWorkerInstanceV2FromP2(accountHost, trusted.releaseV2.basis, preparedInput);
+              mark("worker-preparation");
             }
           } finally { await outer.cleanup(); }
         }
@@ -579,16 +614,29 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
             ...(runtimeV2 ? { instanceInputV2: runtimeV2.instanceInput, instanceAdmissionV2: runtimeV2.instanceAdmission } : { instancePreparationV2: runtimeV2Preparation! }),
             nativePolicyIdentityVersion: trusted.releaseV2!.basis.supportProfile.compiler.nativePolicyIdentityVersion } : {}) }, kernelLease: lease });
         const admission = admitted = await adapters.admitHosted({ canonicalRoot: context.canonicalRoot, candidateLauncherFactory: launcherFactory,
-          ...(trusted.conformance ? { conformance: trusted.conformance } : {}), executablePath: context.stagedExecutable, model: selected.model, ...(context.v2 ? { reasoningEffort: selected.defaultReasoningEffort } : {}), codexHome: context.codexHome,
+          ...(trusted.conformance ? { conformance: trusted.conformance } : {}), executablePath: context.stagedExecutable, model: selected.model, ...(context.v2 ? { reasoningEffort: selected.defaultReasoningEffort } : {}), ...(catalog ? { modelCatalog: catalog.models } : {}), codexHome: context.codexHome,
           privateDirectory: context.privateDirectory, ...(context.v2 ? { accountStorageBackend: "keyring" as const } : { managedAuth: trusted.managedAuth! }), providerNetworkConsent: { approvedBy: context.providerNetworkConsent.approvedBy, approvalReference: context.providerNetworkConsent.approvalReference },
           protectedPaths: [...trusted.protectedPaths], readOnlyProjectPaths: [attachmentRoot], commandNetworkPosture: trusted.commandNetworkPosture,
           configDigest: context.configDigest, consentVersion: context.consentVersion, ...(runtimeV2 ? { runtimeV2 } : {}), ...(runtimeV2Preparation ? { runtimeV2Preparation } : {}),
           requestTimeoutMs: trusted.requestTimeoutMs, turnTimeoutMs: trusted.turnTimeoutMs, maxWorkers: trusted.maxWorkers });
         if (admission.continuity.canonicalRoot !== context.canonicalRoot || admission.continuity.cwd !== context.canonicalRoot || admission.continuity.policyDigest !== policy.policyDigest) throw unavailable("ADMISSION_CONTINUITY_MISMATCH");
+        mark("admit-supervisor");
         const store = await adapters.openBindingStore({ privateDirectory: context.privateDirectory, canonicalRoot: context.canonicalRoot,
           policyDigest: policy.policyDigest, runtimeAuthorityId: `composition-${recordKey({ projectId: context.projectId, policyDigest: policy.policyDigest }).slice(0, 32)}` });
+        mark("binding-store");
         const publicAdmission: TrustedHostedPrivateAdmission = Object.freeze({ continuity: { ...admission.continuity }, authority: { ...admission.authority },
-          ...(nativePlanAdmission ? { nativePlanQualification: structuredClone(nativePlanAdmission) } : {}), retire: async () => retire(admissions.get(publicAdmission)!) });
+          ...(nativePlanAdmission ? { nativePlanQualification: structuredClone(nativePlanAdmission) } : {}), retire: async () => retire(admissions.get(publicAdmission)!),
+          live: async () => {
+            const context = admissions.get(publicAdmission);
+            if (closed || !context || context.retired || context.signedOut) return false;
+            const observed = await context.store.observe();
+            if (observed.state !== "active" || observed.accountId !== admission.continuity.accountId || observed.accountEpoch !== admission.continuity.accountEpoch) return false;
+            const refreshed = context.runtimeV2 ? await admission.supervisor.refreshHostAdmission() : undefined;
+            if (refreshed) context.runtimeV2 = refreshed;
+            if (closed || context.retired || context.signedOut) return false;
+            if (context.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(context.runtimeV2.instanceInput, context.runtimeV2.instanceAdmission);
+            return true;
+          } });
         const finalizedRuntimeV2 = runtimeV2 ?? admission.runtimeV2;
         admissions.set(publicAdmission, { ...context, admission, launcherFactory, store, retired: false, signedOut: false, ...(finalizedRuntimeV2 ? { runtimeV2: finalizedRuntimeV2 } : {}) }); ceremonies.delete(context.ceremony);
         launcherFactory = undefined; return publicAdmission;
@@ -606,15 +654,20 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
       const project = await input.runtime.projects.requireAuthorized(input.projectId), roots = await input.runtime.projects.roots(input.projectId);
       if (project.canonicalRoot !== input.canonicalRoot || (context.v2 && project.manifestHash !== context.manifestHash) || roots.workingRoot !== input.canonicalRoot || roots.instructionRoot !== trusted.instructionRoot) throw unavailable("PROJECT_REGISTRATION_MISMATCH");
       const consent = new HostedConsentStore({ canonicalRoot: input.canonicalRoot, codexHome: context.codexHome });
-      if (!context.v2) await consent.grant({ identity: input.admission.continuity, posture: trusted.commandNetworkPosture,
-        approvedBy: trusted.commandNetworkConsent!.approvedBy, approvedAt: trusted.commandNetworkConsent!.approvedAt });
+      // Every materialized admission records the command-network consent its DelegatedRuntime turns require.
+      // v1 hosts carry it as configured `commandNetworkConsent`; a v2 host's posture is fixed "off" and the
+      // consent is the same explicit provider-network act (approvedBy/approvedAt) the ceremony was bound to.
+      await consent.grant({ identity: input.admission.continuity, posture: trusted.commandNetworkPosture,
+        ...(context.v2 ? { approvedBy: context.providerNetworkConsent.approvedBy, approvedAt: context.providerNetworkConsent.approvedAt }
+          : { approvedBy: trusted.commandNetworkConsent!.approvedBy, approvedAt: trusted.commandNetworkConsent!.approvedAt }) });
       const retirement = new WorkerRetirementCoordinator({ directory: join(context.privateDirectory, "retirements") }); await retirement.reconcile();
       const approvals = new ApprovalStore({ canonicalRoot: input.canonicalRoot, storageRoot: join(context.privateDirectory, "approvals"), consent,
         isLive: async binding => (await context.admission.supervisor.inventory()).some(worker => worker.workerId === binding.turnId && worker.generation === binding.workerGeneration && worker.state === "running") });
       const delegated = new DelegatedRuntime({ daemonId: `hosted-${input.projectId}`, projects: new Map([[input.projectId, { identity: input.admission.continuity,
         compatibility: trusted.compatibility, supervisor: context.admission.supervisor, consent, retirement, approvals,
         approvalForwardingEnabled: trusted.commandNetworkPosture === "ask-per-destination", nativePlanSink: input.runtime.nativePlanSink,
-        commandNetworkPosture: trusted.commandNetworkPosture, actual: { adapterId: "codex-app-server", providerId: "openai", model: context.model! }, evidenceClass: "provider-observed" as const }]]) });
+        commandNetworkPosture: trusted.commandNetworkPosture, actual: { adapterId: "codex-app-server", providerId: "openai", model: context.model!, ...(context.defaultReasoningEffort ? { reasoningEffort: context.defaultReasoningEffort } : {}) },
+        ...(context.catalog ? { catalog: context.catalog } : {}), evidenceClass: "provider-observed" as const }]]) });
       if (context.runtimeV2) {
         await revalidateRuntimeInstanceAdmissionV2(context.runtimeV2.instanceInput, context.runtimeV2.instanceAdmission);
         const finalProject = await input.runtime.projects.requireAuthorized(input.projectId), finalRoots = await input.runtime.projects.roots(input.projectId);
@@ -624,7 +677,7 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
         if (closed || !lease.held || context.retired || context.signedOut || admissions.get(input.admission) !== context) throw unavailable("MATERIALIZATION_BINDING_INVALID");
       }
       context.materialized = delegated;
-      return { delegated, selection: { adapterId: "codex-app-server", providerId: "openai", model: context.model! }, compatibility: { ...trusted.compatibility }, evidenceClass: "provider-observed" as const };
+      return { delegated, selection: { adapterId: "codex-app-server", providerId: "openai", model: context.model! }, compatibility: { ...trusted.compatibility }, evidenceClass: "provider-observed" as const, ...(context.catalog ? { catalog: context.catalog } : {}) };
     },
     async signOut(input) {
       if (closed || !ID.test(input.projectId) || !canonical(input.canonicalRoot) || !canonical(input.privateDirectory) || !canonical(input.codexHome)) throw unavailable("SIGNOUT_BINDING_INVALID");
@@ -698,11 +751,11 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
   return Object.freeze(bindings);
 }
 
-export function createHostedBootstrapPrivateBindings(options: HostedPrivateCompositionOptions): Promise<HostedBootstrapPrivateBindings> {
-  return compose(options, productionAdapters);
+export function createHostedBootstrapPrivateBindings(options: HostedPrivateCompositionOptions, observePhase?: HostedPhaseObserver): Promise<HostedBootstrapPrivateBindings> {
+  return compose(options, productionAdapters, observePhase);
 }
 
 /** Controlled composition seam. It supplies no exact-supply, native, account, or conformance acceptance. */
-export function createControlledHostedBootstrapPrivateBindingsForTests(options: HostedPrivateCompositionOptions, adapters: ControlledHostedPrivateCompositionAdapters): Promise<HostedBootstrapPrivateBindings> {
-  return compose(options, Object.freeze({ ...adapters }));
+export function createControlledHostedBootstrapPrivateBindingsForTests(options: HostedPrivateCompositionOptions, adapters: ControlledHostedPrivateCompositionAdapters, observePhase?: HostedPhaseObserver): Promise<HostedBootstrapPrivateBindings> {
+  return compose(options, Object.freeze({ ...adapters }), observePhase);
 }

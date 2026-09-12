@@ -8,6 +8,7 @@ import type {
   QualifiedMethodReference
 } from '@chirality/runtime-contracts/v3';
 import type { NativePlanRevision } from '@chirality/runtime-contracts/v3';
+import { nativePlanText } from '../../lib/harness/native-plan-text';
 import { listNativePlanRevisions } from '../../lib/harness/method-selection-client';
 import type {
   ProjectionDiagnostic,
@@ -37,9 +38,9 @@ function ReplayHeader({
   return (
     <header className="woven-replay-header">
       <div>
-        <p className="woven-replay-eyebrow">Replay — read-only</p>
+        <p className="woven-replay-eyebrow">Recorded chat · read-only</p>
         <h2>Recorded session</h2>
-        <p>
+        <details><summary>Session details</summary><p>
           <span>Selected session: </span>
           <code>{selectedSessionId}</code>
         </p>
@@ -48,7 +49,7 @@ function ReplayHeader({
             <span>Primary dialogue remains mounted: </span>
             <code>{primarySessionId}</code>
           </p>
-        ) : null}
+        ) : null}</details>
       </div>
       <button type="button" onClick={onReturnToPrimary}>
         Return to primary dialogue
@@ -89,6 +90,7 @@ function TranscriptItemView({ item }: { item: TranscriptItem }): JSX.Element {
         <span> — {item.status}</span>
       </div>
       {item.text ? <p>{item.text}</p> : null}
+      {item.attachments?.length ? <ul aria-label="Recorded attachments">{item.attachments.map((path, index) => <li key={`${path}:${index}`}>{path.split(/[\\/]/).at(-1)}</li>)}</ul> : null}
       {item.summary ? <p>{item.summary}</p> : null}
       {artifactReference ? (
         <p>
@@ -96,11 +98,11 @@ function TranscriptItemView({ item }: { item: TranscriptItem }): JSX.Element {
           <code>{artifactReference}</code>
         </p>
       ) : null}
-      <p>
+      <details><summary>Event details</summary><p>
         <span>Event: </span>
         <code>{item.eventId}</code>
         <span> / {item.eventType}</span>
-      </p>
+      </p></details>
     </li>
   );
 }
@@ -170,11 +172,6 @@ function InstructionHistoryView({
   </section>;
 }
 
-function nativePlanText(revision: NativePlanRevision): string {
-  const plan = revision.sourceEvent.plan;
-  return typeof plan === 'string' ? plan : JSON.stringify(plan, null, 2);
-}
-
 function RecordedNativePlans({ sessionId }: { sessionId: string }): JSX.Element | null {
   const [revisions, setRevisions] = useState<readonly NativePlanRevision[]>([]);
   useEffect(() => {
@@ -204,6 +201,7 @@ function ReadyReplay({
 
   return (
     <>
+      <details><summary>Inspect recorded session</summary>
       <section
         className="woven-replay-provenance"
         aria-label="Replay provenance and status"
@@ -275,6 +273,12 @@ function ReadyReplay({
                 <dd>{attribution.model}</dd>
               </>
             ) : null}
+            {attribution.reasoningEffort ? (
+              <>
+                <dt>Reasoning</dt>
+                <dd>{attribution.reasoningEffort}</dd>
+              </>
+            ) : null}
             {attribution.residencyEpoch ? (
               <>
                 <dt>Residency epoch</dt>
@@ -294,6 +298,7 @@ function ReadyReplay({
         bases={projection.instructionBases}
       />
 
+      </details>
       <RecordedNativePlans sessionId={projection.selectedSessionId} />
 
       <section className="woven-replay-transcript" aria-label="Read-only transcript">
@@ -350,7 +355,7 @@ export function SelectedSessionReplayLens({
         selectedSessionId={selectedSessionId}
         primarySessionId={primarySessionId}
         onReturnToPrimary={onReturnToPrimary}
-        onContinue={state.status === 'READY' && state.projection.session?.continuation && onContinue
+        onContinue={state.status === 'READY' && state.projection.session?.continuation && !['CONFLICTING', 'STALE', 'MALFORMED', 'BOUNDED'].includes(state.projection.disclosure) && onContinue
           ? () => onContinue(state.projection) : undefined}
       />
 

@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import { RuntimeError, validateHostedManagedAuth, type HostedManagedAuth, type DelegatedAttachmentInput, type DelegatedHarnessProcessSupervisorPort, type WorkerContinuity, type WorkerHandle, type WorkerResult, type NetworkApprovalPrompt, type NetworkApprovalChoice, type HostedConsent, type NativePlanTransportEvent, type NativePlanClarificationPrompt, type NativePlanClarificationAnswers, type RuntimeToolCallbackDeclaration, type RuntimeToolCallbackMessage, type RuntimeToolCallbackResult, type DelegatedTurnProgressEvent } from "@chirality/runtime-contracts";
-import { assertContinuity, recordKey, verifyConfiguredRuntimeConformance, type RuntimeConformanceConfiguration, DescendantTracker, HostedConsentStore } from "@chirality/runtime-core";
+import { HOSTED_MODEL_ID_PATTERN, HOSTED_REASONING_EFFORT_PATTERN, RuntimeError, validateHostedManagedAuth, validateHostedModelCatalogEntries, type HostedManagedAuth, type HostedModelCatalogEntry, type DelegatedAttachmentInput, type DelegatedHarnessProcessSupervisorPort, type WorkerContinuity, type WorkerHandle, type WorkerResult, type NetworkApprovalPrompt, type NetworkApprovalChoice, type HostedConsent, type NativePlanTransportEvent, type NativePlanClarificationPrompt, type NativePlanClarificationAnswers, type RuntimeToolCallbackDeclaration, type RuntimeToolCallbackMessage, type RuntimeToolCallbackResult, type DelegatedTurnProgressEvent } from "@chirality/runtime-contracts";
+import { assertContinuity, recordKey, verifyConfiguredRuntimeConformance, withRetirementFailure, type RuntimeConformanceConfiguration, DescendantTracker, HostedConsentStore } from "@chirality/runtime-core";
 import { prepareCodexNativePolicy } from "./codex-containment.js";
 import { CodexTurnSession, type CodexSessionTransport, type CodexDynamicTool, type CodexDynamicToolResult } from "./codex-session.js";
 import { SupplierAuthorityController } from "./supplier-authority-controller.js";
@@ -16,6 +16,8 @@ export interface CodexSupervisorOptions {
   executablePath: string;
   model: string;
   reasoningEffort?: string;
+  /** Authenticated non-hidden catalog. Envelope model/effort outside it fail before any provider request. */
+  modelCatalog?: readonly HostedModelCatalogEntry[];
   identity: WorkerContinuity;
   codexHome: string;
   privateDirectory: string;
@@ -74,6 +76,24 @@ interface NativePlanBinding { projectId: string; sessionId: string; clientTurnId
 interface Entry { handle: WorkerHandle; session: CodexTurnSession; result: Promise<WorkerResult>; cleanup: () => Promise<void>; nativePlanBinding?: NativePlanBinding; nativePlanEvents: NativePlanTransportEvent[]; turnProgress: DelegatedTurnProgressEvent[] }
 interface AdmittedCandidate { candidate: AuthenticatedCodexCandidate; session: CodexTurnSession; authority: SupplierAuthorityController; continuity: WorkerContinuity; evidence: HostedCodexSupervisorAdmission["authority"]; accountDigest: string; runtimeV2?: NonNullable<HostedCodexSupervisorOptions["runtimeV2"]> }
 const unavailable = (message: string) => new RuntimeError("ENGINE_UNAVAILABLE", message, 503);
+/**
+ * Per-field ceilings for the supervisor's operational budgets. A request
+ * budget covers one app-server exchange; a turn budget covers a whole
+ * agentic turn and may legitimately run for many minutes, but never beyond
+ * the descendant tracker's one-hour lifetime.
+ */
+export const CODEX_SUPERVISOR_BOUNDS = Object.freeze({
+  requestTimeoutMs: Object.freeze({ min: 1, max: 600_000 }),
+  turnTimeoutMs: Object.freeze({ min: 1, max: 3_600_000 }),
+  maxWorkers: Object.freeze({ min: 1, max: 1_024 })
+});
+export function assertCodexSupervisorBounds(options: { requestTimeoutMs?: number; turnTimeoutMs?: number; maxWorkers?: number }): void {
+  const values = { requestTimeoutMs: options.requestTimeoutMs ?? 10_000, turnTimeoutMs: options.turnTimeoutMs ?? 120_000, maxWorkers: options.maxWorkers ?? 16 };
+  for (const key of ["requestTimeoutMs", "turnTimeoutMs", "maxWorkers"] as const) {
+    const value = values[key], bound = CODEX_SUPERVISOR_BOUNDS[key];
+    if (!Number.isSafeInteger(value) || value < bound.min || value > bound.max) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex supervisor bound");
+  }
+}
 function id(value: string): void { if (typeof value !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(value)) throw new RuntimeError("INVALID_REQUEST", "Invalid worker identity"); }
 
 class RuntimeToolMailbox {
@@ -113,6 +133,10 @@ class RuntimeToolMailbox {
   finish(error: Error = unavailable("Runtime tool worker ended")): void { this.terminal = error; for (const callback of this.callbacks.values()) callback.reject(error); this.callbacks.clear(); }
 }
 
+function censusFailureText(failure: unknown): string {
+  const text = failure instanceof Error ? `${failure.name}: ${failure.message}` : String(failure);
+  return text.length > 256 ? `${text.slice(0, 256)}…` : text;
+}
 async function failAfterCleanup(error: unknown, closes: Array<() => Promise<unknown> | undefined>): Promise<never> {
   const failures: unknown[] = [error];
   for (const close of closes) try { await close(); } catch (cleanup) { failures.push(cleanup); }
@@ -134,12 +158,18 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   private readonly runtimeToolMailboxes = new Map<string, RuntimeToolMailbox>();
   private candidateLauncherFactory?: CodexCandidateLauncherFactory;
   private controlledVerifyConformance?: ControlledHostedConformanceVerifier;
+  private hostAdmissionRefresh?: Promise<void>;
   private conformance?: Pick<HostedCodexSupervisorOptions, "conformance" | "configDigest" | "consentVersion" | "runtimeV2"> & { accountDigest: string };
   private preadmitted?: AdmittedCandidate;
   constructor(options: CodexSupervisorOptions) {
     if (!options || typeof options.model !== "string" || !options.model.trim() || options.model.length > 128 || /[\x00-\x1f]/.test(options.model)) throw new RuntimeError("INVALID_REQUEST", "Explicit Codex model required");
-    if (options.reasoningEffort !== undefined && !/^[\x21-\x7e]{1,64}$/.test(options.reasoningEffort)) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex reasoning effort");
-    for (const value of [options.requestTimeoutMs ?? 10_000, options.turnTimeoutMs ?? 120_000, options.maxWorkers ?? 16]) if (!Number.isSafeInteger(value) || value < 1 || value > 600_000) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex supervisor bound");
+    if (options.reasoningEffort !== undefined && !HOSTED_REASONING_EFFORT_PATTERN.test(options.reasoningEffort)) throw new RuntimeError("INVALID_REQUEST", "Invalid Codex reasoning effort");
+    if (options.modelCatalog !== undefined) {
+      const catalog = validateHostedModelCatalogEntries(options.modelCatalog);
+      const admitted = catalog.find(entry => entry.model === options.model);
+      if (!admitted || (options.reasoningEffort !== undefined && !admitted.supportedReasoningEfforts.includes(options.reasoningEffort))) throw new RuntimeError("INVALID_REQUEST", "Admitted Codex model or reasoning effort is outside its catalog");
+    }
+    assertCodexSupervisorBounds(options);
     if (options.commandNetworkPosture !== undefined && !["off", "ask-per-destination", "on"].includes(options.commandNetworkPosture)) throw new RuntimeError("INVALID_REQUEST", "Unsupported executable command-network posture");
     if (options.supportedPermissionMode !== undefined && options.supportedPermissionMode !== "workspaceWrite") throw new RuntimeError("INVALID_REQUEST", "Unsupported native permission profile");
     if ((options.accountStorageBackend === "keyring") === (options.managedAuth !== undefined)) throw new RuntimeError("INVALID_REQUEST", "Codex account storage policy must use exactly one Runtime generation");
@@ -220,14 +250,56 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     } catch (error) { return failAfterCleanup(error, [() => authority?.close(), () => session.close(), () => candidate.cleanup()]); }
   }
   /** Controlled adapter tests are structurally excluded from verifyHostedBoundary. */
-  static controlledForTests(options: { supplierAuthority?:SupplierAuthorityController; barrier?:(name:string)=>Promise<void>; commandNetworkPosture?: "off" | "ask-per-destination" | "on"; allowUnauthenticatedModel?: boolean; identity: WorkerContinuity; model: string; launch: ControlledCodexLauncher; requestTimeoutMs?: number; turnTimeoutMs?: number }): CodexSupervisor {
-    const result = new CodexSupervisor({ identity: options.identity, model: options.model, privateDirectory: options.identity.canonicalRoot, codexHome: options.identity.canonicalRoot,
+  static controlledForTests(options: { supplierAuthority?:SupplierAuthorityController; barrier?:(name:string)=>Promise<void>; commandNetworkPosture?: "off" | "ask-per-destination" | "on"; allowUnauthenticatedModel?: boolean; identity: WorkerContinuity; model: string; reasoningEffort?: string; modelCatalog?: readonly HostedModelCatalogEntry[]; launch: ControlledCodexLauncher; requestTimeoutMs?: number; turnTimeoutMs?: number }): CodexSupervisor {
+    const result = new CodexSupervisor({ identity: options.identity, model: options.model, ...(options.reasoningEffort === undefined ? {} : { reasoningEffort: options.reasoningEffort }), ...(options.modelCatalog === undefined ? {} : { modelCatalog: options.modelCatalog }), privateDirectory: options.identity.canonicalRoot, codexHome: options.identity.canonicalRoot,
       commandNetworkPosture: options.commandNetworkPosture, executablePath: "controlled-fixture-only", managedAuth: { backend: "keyring", binding: { schema: "chirality-hosted-account-binding/v1", state: "unavailable", reason: "canonical-identity-producer-unavailable" } }, providerNetworkConsent: { approvedBy: "", approvalReference: "" }, requestTimeoutMs: options.requestTimeoutMs, turnTimeoutMs: options.turnTimeoutMs });
     result.fixtureLauncher = options.launch;
     result.options.supplierAuthority=options.supplierAuthority;
     result.barrier=options.barrier;
     result.fixtureAllowUnauthenticatedModel = options.allowUnauthenticatedModel === true;
     return result;
+  }
+  /** Last line before launch: an envelope choice must be the admitted default or a member of the admitted catalog. */
+  private assertCatalogChoice(model: unknown, reasoningEffort: unknown): { model: string; reasoningEffort?: string } {
+    const invalid = (message: string) => new RuntimeError("INVALID_REQUEST", message, 400, { reason: "MODEL_NOT_IN_CATALOG" });
+    if (model !== undefined && (typeof model !== "string" || !HOSTED_MODEL_ID_PATTERN.test(model))) throw invalid("Invalid hosted turn envelope model");
+    if (reasoningEffort !== undefined && (typeof reasoningEffort !== "string" || !HOSTED_REASONING_EFFORT_PATTERN.test(reasoningEffort))) throw invalid("Invalid hosted turn envelope reasoning effort");
+    const selectedModel = model ?? this.options.model;
+    const catalog = this.options.modelCatalog;
+    if (catalog === undefined) {
+      if (selectedModel !== this.options.model) throw invalid(`Model '${selectedModel}' is not the admitted Codex model`);
+      if (reasoningEffort !== undefined && reasoningEffort !== this.options.reasoningEffort) throw new RuntimeError("INVALID_REQUEST", `Reasoning effort '${reasoningEffort}' is not the admitted Codex reasoning effort`, 400, { reason: "REASONING_EFFORT_UNSUPPORTED" });
+      return { model: selectedModel, reasoningEffort: this.options.reasoningEffort };
+    }
+    const entry = catalog.find(candidate => candidate.model === selectedModel);
+    if (!entry) throw invalid(`Model '${selectedModel}' is not in the authenticated Codex catalog`);
+    const effort = reasoningEffort ?? (selectedModel === this.options.model ? this.options.reasoningEffort : entry.defaultReasoningEffort);
+    if (effort !== undefined && !entry.supportedReasoningEfforts.includes(effort)) throw new RuntimeError("INVALID_REQUEST", `Reasoning effort '${effort}' is not supported by '${selectedModel}'`, 400, { reason: "REASONING_EFFORT_UNSUPPORTED" });
+    return { model: selectedModel, reasoningEffort: effort };
+  }
+  /** Renew only at an idle boundary; old lease-bound admissions remain invalid. */
+  async refreshHostAdmission(): Promise<NonNullable<HostedCodexSupervisorOptions["runtimeV2"]> | undefined> {
+    if (this.hostAdmissionRefresh) { await this.hostAdmissionRefresh; return this.conformance?.runtimeV2; }
+    const operation = this.refreshHostAdmissionIdle();
+    this.hostAdmissionRefresh = operation;
+    try { await operation; return this.conformance?.runtimeV2; }
+    finally { if (this.hostAdmissionRefresh === operation) this.hostAdmissionRefresh = undefined; }
+  }
+  private async refreshHostAdmissionIdle(): Promise<void> {
+    const current = this.conformance?.runtimeV2;
+    if (!current) return;
+    try { await revalidateRuntimeInstanceAdmissionV2(current.instanceInput, current.instanceAdmission); return; }
+    catch (error) { if (!(error instanceof RuntimeError) || error.details?.reason !== "HOST_AUTHORITY_NOT_LIVE") throw error; }
+    if (this.closed || this.entries.size || this.acquiring.size || !this.candidateLauncherFactory?.refreshHostAdmission || !current.instanceInput.account) throw unavailable("Host admission cannot renew while work is active");
+    if (this.preadmitted) {
+      const pending = this.preadmitted; this.preadmitted = undefined;
+      await pending.authority.close(); await pending.session.close(); await pending.candidate.cleanup();
+    }
+    const next = await this.candidateLauncherFactory.refreshHostAdmission(current.instanceInput.account);
+    if (this.closed || this.entries.size || this.acquiring.size) throw unavailable("Host admission changed during renewal");
+    if (JSON.stringify({ ...next.instanceInput, hostAuthority: null }) !== JSON.stringify({ ...current.instanceInput, hostAuthority: null })) throw unavailable("Host admission renewal changed its subject or policy");
+    await revalidateRuntimeInstanceAdmissionV2(next.instanceInput, next.instanceAdmission);
+    this.conformance!.runtimeV2 = { ...current, ...next };
   }
   private async revalidateCurrentHost(): Promise<void> {
     const input = this.conformance?.runtimeV2?.instanceInput;
@@ -247,7 +319,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       reason: "DESCENDANT_RECONCILIATION_REQUIRED", leaderObserved: Boolean(state.leader), observed: state.observed, scans: state.scans,
       detachedCount: state.detached.length, detachedPids: state.detached.slice(0, 32).map(value => value.pid),
       ownedGroupCount: state.ownedGroup.length, identityChangedCount: state.identityChanged.length,
-      censusFailed: Boolean(state.failure), limitations: state.limitations, signalAuthority: "NONE"
+      censusFailed: Boolean(state.failure), ...(state.failure ? { censusFailure: censusFailureText(state.failure) } : {}), limitations: state.limitations, signalAuthority: "NONE"
     });
     try { await tracker.start(); }
     catch {
@@ -337,9 +409,10 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     id(workerId);
     if (this.closed || this.entries.has(workerId) || this.acquiring.has(workerId) || this.entries.size + this.acquiring.size >= (this.options.maxWorkers ?? 16)) throw unavailable("Codex worker is unavailable or already acquired");
     if (typeof input !== "string" || Buffer.byteLength(input) > 1048576) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted turn envelope");
-    let request: { prompt: string; attachments?: DelegatedAttachmentInput[]; resumeThreadId?: string; requestedRole?: string; roleEvidence?: { selectedRole?: string; enforcementLabel?: string; evidencePosture?: string }; interactionMode?: "chat" | "native-plan"; permissionMode?: "readOnly" | "ask" | "workspaceWrite" | "bypass"; projectId?: string; sessionId?: string; clientTurnId?: string };
+    let request: { prompt: string; attachments?: DelegatedAttachmentInput[]; resumeThreadId?: string; requestedRole?: string; roleEvidence?: { selectedRole?: string; enforcementLabel?: string; evidencePosture?: string }; interactionMode?: "chat" | "native-plan"; permissionMode?: "readOnly" | "ask" | "workspaceWrite" | "bypass"; projectId?: string; sessionId?: string; clientTurnId?: string; model?: string; reasoningEffort?: string };
     try { request = JSON.parse(input); } catch { throw new RuntimeError("INVALID_REQUEST", "Hosted worker requires the private broker JSON envelope"); }
-    if (!request || typeof request !== "object" || Array.isArray(request) || Object.keys(request).some(key => !["prompt", "attachments", "resumeThreadId", "requestedRole", "roleEvidence", "interactionMode", "permissionMode", "projectId", "sessionId", "clientTurnId"].includes(key)) || typeof request.prompt !== "string" || !request.prompt.trim()) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted turn envelope");
+    if (!request || typeof request !== "object" || Array.isArray(request) || Object.keys(request).some(key => !["prompt", "attachments", "resumeThreadId", "requestedRole", "roleEvidence", "interactionMode", "permissionMode", "projectId", "sessionId", "clientTurnId", "model", "reasoningEffort"].includes(key)) || typeof request.prompt !== "string" || !request.prompt.trim()) throw new RuntimeError("INVALID_REQUEST", "Invalid hosted turn envelope");
+    const choice = this.assertCatalogChoice(request.model, request.reasoningEffort);
     const validAttachment = (attachment: DelegatedAttachmentInput): boolean => {
       if (!attachment || typeof attachment !== "object" || Array.isArray(attachment)) return false;
       if (attachment.type === "text") return !Object.keys(attachment).some(key => !["type", "text", "source"].includes(key)) && attachment.source === "untrusted-document" && typeof attachment.text === "string" && Buffer.byteLength(attachment.text) <= 262144;
@@ -368,6 +441,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     const cancelled=()=>{if(cancellation.cancelled||this.closed)throw unavailable("Admission cancelled");};
     const kind=dynamicTools?"manager":"regular";
     let localEntry:Entry|undefined;let begin:(()=>void)|undefined;let finishAdmissionLifecycle:((graceful:boolean)=>void)|undefined;
+    await this.refreshHostAdmission();
     this.acquiring.add(workerId);
     let finishAcquisition!: () => void;
     this.pendingAcquisitions.set(workerId, new Promise<void>(resolve => { finishAcquisition = resolve; }));
@@ -431,12 +505,13 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       } })();
       // A projection failure is a worker failure, including when the provider has
       // already emitted a terminal. Never publish success after losing an event.
-      void eventDrain.catch(() => activeSession.close());
+      void eventDrain.catch(() => activeSession.close().catch(() => {}));
       const admitted=new Promise<void>(resolve=>{begin=resolve;});
       let admissionLifecycleFinished=false;
       const admissionLifecycle=new Promise<boolean>(resolve=>{finishAdmissionLifecycle=value=>{if(!admissionLifecycleFinished){admissionLifecycleFinished=true;resolve(value);}};});
       const result = (async (): Promise<WorkerResult> => {
         await admitted;
+        let primary: unknown, failed = false;
         try {
           if(!publicationCommitted)throw unavailable("Admission cancelled before publication");
           if(this.fixtureLauncher){await activeSession.initialize();if(launched.expectedPermissions)await activeSession.verifyNativePolicy(launched.expectedPermissions);}
@@ -445,18 +520,32 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
           if (!account.hasAccount && !(this.fixtureLauncher && this.fixtureAllowUnauthenticatedModel && account.authRequired === false)) throw unavailable("Codex has no root-private authenticated account");
           if (!this.fixtureLauncher) this.requireHostedIdentity();
           const threadId = request.resumeThreadId
-            ? await activeSession.resumeThread({ threadId: request.resumeThreadId, model: this.options.model, continuityChecked: true })
-            : await activeSession.startThread({ cwd: this.options.identity.canonicalRoot, model: this.options.model, continuityChecked: true });
-          const turnId = await activeSession.startTurn({ threadId, text: prompt, model: this.options.model, reasoningEffort: this.options.reasoningEffort, interactionMode, attachments: request.attachments });
+            ? await activeSession.resumeThread({ threadId: request.resumeThreadId, model: choice.model, continuityChecked: true })
+            : await activeSession.startThread({ cwd: this.options.identity.canonicalRoot, model: choice.model, continuityChecked: true });
+          const turnId = await activeSession.startTurn({ threadId, text: prompt, model: choice.model, reasoningEffort: choice.reasoningEffort, interactionMode, attachments: request.attachments });
           const terminal = await activeSession.waitTurn(turnId);
           await eventDrain;
           return { worker: { ...handle, state: "exited" }, exitCode: terminal.status === "completed" ? 0 : terminal.status === "failed" ? 1 : null,
             signal: terminal.status === "interrupted" ? "SIGTERM" : null, stdout: terminal.output, stderr: "", threadId };
-        } finally {
+        } catch (error) { primary = error; failed = true; throw error; }
+        finally {
           handle.state = "exited";
           const graceful=await admissionLifecycle;
-          if(authority&&!this.fixtureLauncher){if(graceful)await authority.retire();else await authority.revoke();}
-          await activeSession.close(); await launched.transport.close();
+          // Every retirement step runs. A retirement diagnostic is attached to the
+          // turn's own failure as its cause; it only becomes the error when the turn
+          // itself completed.
+          let retirementFailure: unknown, retirementFailed = false;
+          const note = (error: unknown) => { retirementFailure = retirementFailed ? withRetirementFailure(retirementFailure, error) : error; retirementFailed = true; };
+          // The supplier requires the admission lease for every private model request and native descendant.
+          // Keep it through the terminal/event drain, then release before retiring the private authority.
+          if (authority && graceful && !releaseAttempted) {
+            releaseAttempted = true;
+            try { await authority.release(operationId); } catch (error) { note(error); await authority.revoke().catch(note); }
+          }
+          if(authority&&!this.fixtureLauncher){try{if(graceful)await authority.retire();else await authority.revoke();}catch(error){note(error);}}
+          try { await activeSession.close(); } catch (error) { note(error); }
+          try { await launched.transport.close(); } catch (error) { note(error); }
+          if (retirementFailed) { if (failed) { const combined = withRetirementFailure(primary, retirementFailure); if (combined !== primary) throw combined; } else throw retirementFailure; }
         }
       })();
       void result.catch(() => {});
@@ -465,8 +554,8 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
       this.entries.set(workerId,localEntry);
       publicationCommitted = true;begin?.();
       await this.barrier?.(`${kind}/post-publication-pre-release`);
-      if (authority) {releaseAttempted=true;await authority.release(operationId);}
-      cancelled();finishAdmissionLifecycle?.(true);return { ...handle };
+      // Publication is not the end of supplier work. Releasing here races thread/start and removes its live lease.
+      cancelled();authority?.assertCommit(operationId);finishAdmissionLifecycle?.(true);return { ...handle };
     } catch (error) {
       // Removal is synchronous and precedes all cleanup awaits and caller return.
       if(localEntry&&this.entries.get(workerId)===localEntry)this.entries.delete(workerId);
@@ -476,9 +565,14 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
         if (publicationCommitted) {if(!releaseAttempted){releaseAttempted=true;await activeAuthority.release(operationId).catch(()=>activeAuthority.revoke());}}
         else await activeAuthority.abort(operationId).catch(()=>activeAuthority.revoke());
       }
-      if(localEntry){await localEntry.session.close();await localEntry.result.catch(()=>{});await localEntry.cleanup();}
-      else return failAfterCleanup(error, [() => session?.close(), () => launched?.transport.close()]);
-      throw error;
+      if(localEntry){
+        let failure: unknown = error;
+        await localEntry.session.close().catch(cleanup => { failure = withRetirementFailure(failure, cleanup); });
+        await localEntry.result.catch(()=>{});
+        await localEntry.cleanup().catch(cleanup => { failure = withRetirementFailure(failure, cleanup); });
+        throw failure;
+      }
+      return failAfterCleanup(error, [() => session?.close(), () => launched?.transport.close()]);
     } finally { this.cancellations.delete(workerId);this.acquiring.delete(workerId); this.pendingAcquisitions.delete(workerId); finishAcquisition(); }
   }
 
@@ -525,6 +619,11 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   }
   async reconnect(workerId: string, generation: string): Promise<WorkerHandle> { return { ...this.entry(workerId, generation).handle }; }
   async wait(workerId: string, generation: string): Promise<WorkerResult> { return this.entry(workerId, generation).result; }
+  async interrupt(workerId: string, generation: string): Promise<void> {
+    const entry = this.entry(workerId, generation);
+    if (entry.handle.state === "running") entry.session.requestInterrupt();
+    await entry.result;
+  }
   async retire(workerId: string, generation: string): Promise<void> { const entry = this.entry(workerId, generation); this.managers.get(workerId)?.finish(undefined, unavailable("Manager retired")); this.managers.delete(workerId); this.runtimeToolMailboxes.get(workerId)?.finish(unavailable("Runtime tool worker retired")); this.runtimeToolMailboxes.delete(workerId); await entry.session.close(); await entry.result.catch(() => {}); await entry.cleanup(); if (this.entries.get(workerId) === entry) this.entries.delete(workerId); }
   async close(): Promise<void> {
     this.closed = true;

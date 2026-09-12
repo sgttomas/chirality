@@ -266,6 +266,10 @@ export interface VerifiedPackagedRuntimeBasisV2 {
   payloadDigest: RuntimeSha256V2;
   payload: Readonly<RuntimePayloadManifestV2>;
   inventory: Readonly<RuntimeArtifactInventoryV2>;
+  /** Digest of the filesystem identity (dev, ino, size, mtime, ctime, mode, uid, nlink) of every packaged entry as
+   * observed by the final pass of the byte verification. `observePackagedRuntimeBasisIdentityV2` recomputes it
+   * without reading payload bytes, so an issued basis is rechecked for drift by identity alone. */
+  identityDigest: RuntimeSha256V2;
 }
 
 export interface EmbeddedRuntimeVersionsV2 { electron: string; node: string; modules: string; napi: string; architecture: string }
@@ -277,6 +281,8 @@ export interface RuntimeSupportObservationInputV2 {
   immutableSystemRoots: readonly string[];
   /** Compiler-owned selection; omission preserves historical native-10 observation. */
   nativePolicyIdentityVersion?: 10 | 11;
+  /** Omission hashes the measured payload files; `sealed` observes their shape, size and identity and takes their digests from the payload manifest. */
+  payloadBytes?: RuntimePayloadByteCheckV2;
 }
 export interface RuntimePayloadSupportObservationInputV2 extends Omit<RuntimeSupportObservationInputV2, "basis"> {
   resourcesRoot: string;
@@ -310,6 +316,23 @@ async function stableDirectory(path:string):Promise<string>{
   return JSON.stringify([info.dev,info.ino,info.size,info.mtimeNs,info.ctimeNs,info.mode,info.uid,info.nlink].map(String));
 }
 
+/** Identity of a regular file by lstat only, in the encoding `stableFile` records; no bytes are read. */
+async function fileIdentity(path:string):Promise<string>{
+  if(!isAbsolute(path)||resolve(path)!==path||await runtimePhysicalFilesystem().realpath(path)!==path)throw unavailable();const info=await runtimePhysicalFilesystem().lstat(path,{bigint:true});if(!info.isFile()||info.isSymbolicLink()||info.nlink!==1n)throw unavailable();
+  return JSON.stringify([info.dev,info.ino,info.size,info.mtimeNs,info.ctimeNs,info.mode,info.uid,info.nlink].map(String));
+}
+function packagedIdentityDigest(identities:Map<string,string>):RuntimeSha256V2{return sha256(canonicalJsonBytes([...identities.entries()].sort((left,right)=>compareRuntimeUtf8V2(left[0],right[0]))));}
+/** Sealed-bundle observation of a payload file: existence, regular-file shape, declared size and filesystem identity, without
+ * reading its bytes. The bytes are sealed by the packaged app's code signature, which the host verifies separately. */
+async function sealedFile(path:string,expectedSize:number,maximum:number):Promise<StableRuntimeFileV2>{
+  const identity=await fileIdentity(path);const size=Number((JSON.parse(identity) as string[])[2]);
+  if(!Number.isSafeInteger(size)||size!==expectedSize||size>maximum)throw unavailable();
+  return {size,sha256:"",identity};
+}
+/** How payload bytes are checked: `hash` reads and hashes every payload file against the manifest (packaging and development);
+ * `sealed` checks shape, size and identity only and relies on the bundle's code signature for byte integrity (packaged daemon). */
+export type RuntimePayloadByteCheckV2 = "hash" | "sealed";
+
 async function walk(root: string, base: string, output: string[], signal?: AbortSignal): Promise<void> {
   signal?.throwIfAborted();
   if (output.length > 50_010 || await runtimePhysicalFilesystem().realpath(root) !== root) throw unavailable();
@@ -319,8 +342,10 @@ async function walk(root: string, base: string, output: string[], signal?: Abort
   if (info.isDirectory()) for (const name of (await runtimePhysicalFilesystem().readdir(root)).sort(compareRuntimeUtf8V2)) await walk(join(root, name), base, output, signal);
 }
 
-export async function verifyPackagedRuntimeBasisV2(input: { resourcesRoot: string; signal?: AbortSignal }): Promise<Readonly<VerifiedPackagedRuntimeBasisV2>> {
+export async function verifyPackagedRuntimeBasisV2(input: { resourcesRoot: string; signal?: AbortSignal; payloadBytes?: RuntimePayloadByteCheckV2 }): Promise<Readonly<VerifiedPackagedRuntimeBasisV2>> {
   try {
+    const sealed = input.payloadBytes === "sealed";
+    const payloadFile = (path: string, expectedSize: number): Promise<StableRuntimeFileV2> => sealed ? sealedFile(path, expectedSize, RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES) : stableFile(path, RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES, input.signal);
     const resourcesRoot = await runtimePhysicalFilesystem().realpath(input.resourcesRoot);
     if (resourcesRoot !== input.resourcesRoot || !(await runtimePhysicalFilesystem().lstat(resourcesRoot)).isDirectory()) throw unavailable();
     const resourcesIdentity=await stableDirectory(resourcesRoot);
@@ -339,19 +364,42 @@ export async function verifyPackagedRuntimeBasisV2(input: { resourcesRoot: strin
     for (const entry of payload.entries) {
       const path = join(resourcesRoot, entry.relativePath);
       if (entry.type === "directory") observations.set(entry.relativePath,await stableDirectory(path));
-      else { const current = await stableFile(path, RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES, input.signal); if (current.size !== entry.size || current.sha256 !== entry.sha256) throw unavailable();observations.set(entry.relativePath,current.identity); }
+      else { const current = await payloadFile(path, entry.size); if (current.size !== entry.size || (!sealed && current.sha256 !== entry.sha256)) throw unavailable();observations.set(entry.relativePath,current.identity); }
     }
     const seen: string[] = []; await walk(resourcesRoot, resourcesRoot, seen, input.signal); seen.sort(compareRuntimeUtf8V2);
     const expected = [...payload.entries.map(entry => entry.relativePath), "runtime-payload-manifest.json", "runtime-governance", "runtime-governance/v2", ...inventory.governance.map(entry => entry.relativePath), "runtime-artifact-inventory-v2.json"].sort(compareRuntimeUtf8V2);
     if (seen.length !== expected.length || seen.some((path, index) => path !== expected[index])) throw unavailable();
     if (byPath.get("runtime-contracts/runtime-policy-parameters-v2.json")?.sha256 !== sha256(encodeRuntimePolicyParameterDeclarationV2())) throw unavailable();
-    for(const entry of payload.entries){const path=join(resourcesRoot,entry.relativePath),identity=entry.type==="directory"?await stableDirectory(path):(await stableFile(path,RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES,input.signal)).identity;if(identity!==observations.get(entry.relativePath))throw unavailable();}
-    for(const entry of inventory.governance){const current=await stableFile(join(resourcesRoot,entry.relativePath),1_048_576,input.signal);if(current.size!==entry.size||current.sha256!==entry.sha256||current.identity!==governanceObservations.get(entry.relativePath))throw unavailable();}
-    for(const [path,identity] of governanceDirectoryObservations)if(await stableDirectory(join(resourcesRoot,path))!==identity)throw unavailable();
+    const finalIdentities=new Map<string,string>();
+    for(const entry of payload.entries){const path=join(resourcesRoot,entry.relativePath),identity=entry.type==="directory"?await stableDirectory(path):(await payloadFile(path,entry.size)).identity;if(identity!==observations.get(entry.relativePath))throw unavailable();finalIdentities.set(entry.relativePath,identity);}
+    for(const entry of inventory.governance){const current=await stableFile(join(resourcesRoot,entry.relativePath),1_048_576,input.signal);if(current.size!==entry.size||current.sha256!==entry.sha256||current.identity!==governanceObservations.get(entry.relativePath))throw unavailable();finalIdentities.set(entry.relativePath,current.identity);}
+    for(const [path,identity] of governanceDirectoryObservations){if(await stableDirectory(join(resourcesRoot,path))!==identity)throw unavailable();finalIdentities.set(path,identity);}
     const finalInventory = await stableFile(inventoryPath, 16_777_216, input.signal); const finalPayload = await stableFile(payloadManifestPath, 16_777_216, input.signal);
     if (finalInventory.sha256 !== inventorySource.sha256 || finalPayload.sha256 !== payloadSource.sha256) throw unavailable();
+    finalIdentities.set("runtime-artifact-inventory-v2.json",finalInventory.identity);finalIdentities.set("runtime-payload-manifest.json",finalPayload.identity);
     if(await stableDirectory(resourcesRoot)!==resourcesIdentity)throw unavailable();
-    return Object.freeze({ resourcesRoot, inventoryPath, payloadManifestPath, inventorySha256: inventorySource.sha256, payloadDigest: payloadSource.sha256, payload, inventory });
+    finalIdentities.set("",resourcesIdentity);
+    return Object.freeze({ resourcesRoot, inventoryPath, payloadManifestPath, inventorySha256: inventorySource.sha256, payloadDigest: payloadSource.sha256, payload, inventory, identityDigest: packagedIdentityDigest(finalIdentities) });
+  } catch { throw unavailable(); }
+}
+
+/**
+ * Identity-only recheck of a verified packaged basis. Every entry the byte verification observed is re-observed by
+ * lstat (files) or directory identity in the same encoding, and the digest is returned for comparison with the
+ * basis's `identityDigest`. Payload bytes are never read here: byte integrity beyond filesystem identity is the
+ * responsibility of the code signature the packaged app carries.
+ */
+export async function observePackagedRuntimeBasisIdentityV2(basis: Pick<VerifiedPackagedRuntimeBasisV2, "resourcesRoot" | "inventoryPath" | "payloadManifestPath" | "payload" | "inventory">): Promise<RuntimeSha256V2> {
+  try {
+    const root = basis.resourcesRoot;
+    if (!isAbsolute(root) || resolve(root) !== root || basis.inventoryPath !== join(root, "runtime-artifact-inventory-v2.json") || basis.payloadManifestPath !== join(root, "runtime-payload-manifest.json")) throw unavailable();
+    const identities = new Map<string, string>();
+    identities.set("", await stableDirectory(root));
+    identities.set("runtime-artifact-inventory-v2.json", await fileIdentity(basis.inventoryPath)); identities.set("runtime-payload-manifest.json", await fileIdentity(basis.payloadManifestPath));
+    for (const path of ["runtime-governance", "runtime-governance/v2"]) identities.set(path, await stableDirectory(join(root, path)));
+    for (const entry of basis.inventory.governance) identities.set(entry.relativePath, await fileIdentity(join(root, entry.relativePath)));
+    for (const entry of basis.payload.entries) identities.set(entry.relativePath, entry.type === "directory" ? await stableDirectory(join(root, entry.relativePath)) : await fileIdentity(join(root, entry.relativePath)));
+    return packagedIdentityDigest(identities);
   } catch { throw unavailable(); }
 }
 
@@ -380,10 +428,15 @@ export async function observeRuntimeSupportProfileFromPayloadV2(input: RuntimePa
     const nativeEntry = payload.get("native/chirality_native_admission.node"), supplierEntry = payload.get("supplier/codex");
     const appEntry = payload.get("app.asar"), cliEntry = payload.get("runtime-cli/chirality-cli.mjs"), cliMapEntry = payload.get("runtime-cli/chirality-cli.mjs.map");
     if (!nativeEntry || !supplierEntry || !appEntry || !cliEntry || !cliMapEntry || !digest(input.appServerProtocolDigest) || !/^\d+\.\d+\.\d+$/.test(input.supplierVersion)) throw unavailable();
+    // Sealed mode observes the measured payload files by shape, size and identity and carries the manifest's digests; the
+    // system tools are small and are always hashed.
+    const measured = async (entry: Extract<RuntimePayloadEntryV2,{type:"file"}>, maximum: number): Promise<StableRuntimeFileV2> => input.payloadBytes === "sealed"
+      ? { ...await sealedFile(join(input.resourcesRoot, entry.relativePath), entry.size, maximum), sha256: entry.sha256 }
+      : stableFile(join(input.resourcesRoot, entry.relativePath), maximum, signal);
     const [sw, sandbox, nativeFile, supplierFile, appFile, cliFile, cliMapFile, productVersion, buildVersion] = await Promise.all([
       stableFile("/usr/bin/sw_vers", RUNTIME_V2_MAX_SYSTEM_OR_NATIVE_ARTIFACT_BYTES, signal), stableFile("/usr/bin/sandbox-exec", RUNTIME_V2_MAX_SYSTEM_OR_NATIVE_ARTIFACT_BYTES, signal),
-      stableFile(join(input.resourcesRoot, nativeEntry.relativePath), RUNTIME_V2_MAX_SYSTEM_OR_NATIVE_ARTIFACT_BYTES, signal), stableFile(join(input.resourcesRoot, supplierEntry.relativePath), RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES, signal),
-      stableFile(join(input.resourcesRoot, appEntry.relativePath), RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES, signal), stableFile(join(input.resourcesRoot, cliEntry.relativePath), RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES, signal), stableFile(join(input.resourcesRoot, cliMapEntry.relativePath), RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES, signal),
+      measured(nativeEntry, RUNTIME_V2_MAX_SYSTEM_OR_NATIVE_ARTIFACT_BYTES), measured(supplierEntry, RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES),
+      measured(appEntry, RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES), measured(cliEntry, RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES), measured(cliMapEntry, RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES),
       runSwVers("-productVersion", signal), runSwVers("-buildVersion", signal)
     ]);
     for(const [observed,entry] of [[nativeFile,nativeEntry],[supplierFile,supplierEntry],[appFile,appEntry],[cliFile,cliEntry],[cliMapFile,cliMapEntry]] as const)if(observed.sha256!==entry.sha256||observed.size!==entry.size)throw unavailable();
@@ -392,8 +445,10 @@ export async function observeRuntimeSupportProfileFromPayloadV2(input: RuntimePa
     const nativePolicyIdentityVersion = input.nativePolicyIdentityVersion ?? 10;
     const compilerSource = sha256(canonicalJsonBytes({ schema: "chirality-runtime-compiler-source/v2", compilerArtifacts: [appEntry, cliEntry, cliMapEntry], outerPolicySchema: "chirality-codex-outer-policy/v2", nativePolicyIdentityVersion }));
     const kernelHelper = sha256(canonicalJsonBytes({ schema: "chirality-runtime-kernel-helper-contract/v2", sandboxExecSha256: sandbox.sha256, nativeAdmissionSha256: nativeFile.sha256, nativeAdmissionContract: "chirality-native-admission/v1", groupedSpawn: true, processGroup: true, authoritySecretFd: 3, closeOnExecExceptAuthorityFd: true, leaderObservation: "waitid-pid-wnowait", exactLeaderReap: true, postReapGroupAbsence: true }));
-    const finalFiles=await Promise.all([stableFile("/usr/bin/sw_vers",RUNTIME_V2_MAX_SYSTEM_OR_NATIVE_ARTIFACT_BYTES,signal),stableFile("/usr/bin/sandbox-exec",RUNTIME_V2_MAX_SYSTEM_OR_NATIVE_ARTIFACT_BYTES,signal),stableFile(join(input.resourcesRoot,nativeEntry.relativePath),RUNTIME_V2_MAX_SYSTEM_OR_NATIVE_ARTIFACT_BYTES,signal),stableFile(join(input.resourcesRoot,supplierEntry.relativePath),RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES,signal),stableFile(join(input.resourcesRoot,appEntry.relativePath),RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES,signal),stableFile(join(input.resourcesRoot,cliEntry.relativePath),RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES,signal),stableFile(join(input.resourcesRoot,cliMapEntry.relativePath),RUNTIME_V2_MAX_PAYLOAD_ARTIFACT_BYTES,signal)]);
-    for(const [before,after] of [[sw,finalFiles[0]!],[sandbox,finalFiles[1]!],[nativeFile,finalFiles[2]!],[supplierFile,finalFiles[3]!],[appFile,finalFiles[4]!],[cliFile,finalFiles[5]!],[cliMapFile,finalFiles[6]!]] as const)if(before.identity!==after.identity||before.sha256!==after.sha256||before.size!==after.size)throw unavailable();
+    // Final pass by filesystem identity only. The bytes were hashed once above; a changed identity is drift, and byte
+    // integrity beyond identity is the code signature's responsibility.
+    const finalIdentities=await Promise.all([fileIdentity("/usr/bin/sw_vers"),fileIdentity("/usr/bin/sandbox-exec"),fileIdentity(join(input.resourcesRoot,nativeEntry.relativePath)),fileIdentity(join(input.resourcesRoot,supplierEntry.relativePath)),fileIdentity(join(input.resourcesRoot,appEntry.relativePath)),fileIdentity(join(input.resourcesRoot,cliEntry.relativePath)),fileIdentity(join(input.resourcesRoot,cliMapEntry.relativePath))]);
+    for(const [before,after] of [[sw,finalIdentities[0]!],[sandbox,finalIdentities[1]!],[nativeFile,finalIdentities[2]!],[supplierFile,finalIdentities[3]!],[appFile,finalIdentities[4]!],[cliFile,finalIdentities[5]!],[cliMapFile,finalIdentities[6]!]] as const)if(before.identity!==after)throw unavailable();
     if(await stableDirectory(input.resourcesRoot)!==resourcesIdentity)throw unavailable();
     const withoutDigest = {
       schema: "chirality-runtime-support-profile/v2" as const, macosProductVersion: productVersion, macosBuildVersion: buildVersion, architecture: "arm64" as const,
@@ -413,7 +468,8 @@ export async function observeRuntimeSupportProfileFromPayloadV2(input: RuntimePa
 export function observeRuntimeSupportProfileV2(input: RuntimeSupportObservationInputV2, signal?: AbortSignal): Promise<Readonly<RuntimeSupportProfileV2>> {
   return observeRuntimeSupportProfileFromPayloadV2({ embeddedRuntime: input.embeddedRuntime, resourcesRoot: input.basis.resourcesRoot,
     payloadEntries: input.basis.payload.entries, supplierVersion: input.supplierVersion, appServerProtocolDigest: input.appServerProtocolDigest,
-    immutableSystemRoots: input.immutableSystemRoots, ...(input.nativePolicyIdentityVersion === undefined ? {} : { nativePolicyIdentityVersion: input.nativePolicyIdentityVersion }) }, signal);
+    immutableSystemRoots: input.immutableSystemRoots, ...(input.nativePolicyIdentityVersion === undefined ? {} : { nativePolicyIdentityVersion: input.nativePolicyIdentityVersion }),
+    ...(input.payloadBytes === undefined ? {} : { payloadBytes: input.payloadBytes }) }, signal);
 }
 
 export function matchRuntimeSupportProfileV2(observed: RuntimeSupportProfileV2, accepted: readonly RuntimeSupportProfileV2[]): Readonly<RuntimeSupportProfileV2> {

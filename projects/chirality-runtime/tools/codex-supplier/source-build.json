@@ -2,26 +2,26 @@
   "schema": "chirality-codex-local-trial-source/v1",
   "upstreamCommit": "758ef40f50c1a458425c7cfbf1eb12cbc07af0b0",
   "upstreamTree": "0f7a27df60e01dccf918f3203235266a0d6e3258",
-  "patchSha256": "5045e334a1efa02e84a5b7a1b88dd33c9ea126a7de3ee25df56bcaeda9f9df29",
+  "patchSha256": "ce64b7d498dfa7122cffac0df1ad1a96697e64e580c19f97a6fd3ef11b63e20a",
   "patchAppliesToUpstream": true,
-  "sourceSnapshotSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
+  "sourceSnapshotSha256": "a4d0313e25094711a73c9f8bb8e92138c439e32cc354970fa05340d79cf58fc6",
   "buildProfile": "dev; sha2:0.10.9 opt-level=3 only",
   "artifact": {
-    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/artifact/codex",
-    "sha256": "871623860ef18212fabef851f24ad5f384d140395d50c41f6a63677fd42768fa",
-    "size": 761932488,
-    "sourceCount": 6444,
+    "path": "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/artifact/codex",
+    "sha256": "d93489389a5de4d7b6579314948ea6a07a440f20799cf3ad65e8adabfb3ed233",
+    "size": 762253256,
+    "sourceCount": 6419,
     "sourceUnchanged": true,
-    "sourceBeforeSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
+    "sourceBeforeSha256": "a4d0313e25094711a73c9f8bb8e92138c439e32cc354970fa05340d79cf58fc6",
+    "sourceAfterSha256": "a4d0313e25094711a73c9f8bb8e92138c439e32cc354970fa05340d79cf58fc6",
     "lockSha256": "598546764c876b93c6a59edcd5879b8c1b17cdf7c8df023fb051bcfb755a81f4",
     "profile": "dev; sha2:0.10.9 opt-level=3 only",
     "buildExit": {
       "exit": 0,
-      "seconds": 164.67973518371582
+      "seconds": 371.40189814567566
     },
-    "dependenciesExit": 0,
-    "signatureExit": 0,
-    "fileExit": 0
+    "architecture": "arm64",
+    "dependencies": "system only"
   },
   "lockSha256": "598546764c876b93c6a59edcd5879b8c1b17cdf7c8df023fb051bcfb755a81f4",
   "changedFiles": [
@@ -183,7 +183,7 @@
     {
       "path": "codex-rs/app-server/src/message_processor.rs",
       "upstreamSha256": "fcde1d673c5b6c96fb2a4ca1c75e688299b0a0b1206f927f4a53a11baa7d66d4",
-      "buildSha256": "6ca66b1958414164095069ecb716e800a23cfb3402f547daa1e848c461f448e9"
+      "buildSha256": "84744d916f672c56d140f98e7b65cb75f08dc1daa6cae668e7451e167cbe0ab5"
     },
     {
       "path": "codex-rs/app-server/src/message_processor_tracing_tests.rs",
@@ -489,34 +489,84 @@
       "path": "codex-rs/tui/src/chatwidget/protocol.rs",
       "upstreamSha256": "9473b1f4daca66b135db1e0caefe83f4b021711daed94056abe4012220cc5e6a",
       "buildSha256": "5bb3ee41b40a8b1c30649e665b8fd90da56be7dcd9b229079a19c4fb00383fcc"
+    },
+    {
+      "path": "codex-rs/sandboxing/src/seatbelt_base_policy.sbpl",
+      "upstreamSha256": "9a7a181ac5fab3e8fcecfeeec280f8b0d4fd60c852cf71cdf3b5c65d02401e0c",
+      "buildSha256": "4461a10f2a11474f6b21463512f7e076f4543c92a7f6d87acbe6c2039890265f"
     }
   ],
-  "qualification": "Prior independently accepted bounded routing evidence retained. Profile-only production change separately reviewed and built offline. New signed-artifact startup latency remains pending actual measurement; broader fork/resume and durable-sleep cases remain unqualified.",
-  "reportedVersion": "codex-cli 0.149.0",
+  "qualification": "Six direct generated-policy shell probes and six actual Codex/official-host shell turns passed (reads, bounded write and protected/read-only denials). The original pair V6 overall FAIL remains preserved: its raw-interrupt-implies-retirement assertion exceeded Codex semantics. A separate reviewed lifecycle continuation passed actual interrupted-turn EOF retirement, fresh-worker exact-thread resume and README read, then second retirement; both exits were code0/no signal, no emergency cleanup, full checked retirement68.20ms and55.85ms under1000ms. Five bounded existing Rust filters passed14 tests. These are controlled account-free supplier checks, not authenticated Runtime authority/census or new signed-App qualification. Broader fork/resume and durable-sleep claims remain unqualified.",
   "payload": {
-    "root": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/artifact",
+    "root": "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/artifact",
     "files": [
       {
         "path": "codex",
-        "sha256": "871623860ef18212fabef851f24ad5f384d140395d50c41f6a63677fd42768fa",
-        "size": 761932488
+        "sha256": "d93489389a5de4d7b6579314948ea6a07a440f20799cf3ad65e8adabfb3ed233",
+        "size": 762253256,
+        "origin": "this source build"
+      },
+      {
+        "path": "codex-code-mode-host",
+        "sha256": "3eca39bb7f93315fab6b0dec2334381c0f50a2ccda113ec482fb815f16072a5c",
+        "size": 57150048,
+        "origin": "unchanged official OpenAI rust-v0.149.0 host; not built by this patch"
       }
     ],
     "nonSystemDylibSidecars": [],
-    "signature": "linker ad-hoc; no team identifier"
+    "signature": "Raw inputs; packaging owns nested signing and measures resulting identities separately."
   },
   "evidence": {
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/RESULT.json": "d5d4d4cba25c21fb7c4cdfe274544a51c1a9a66a404da694c36bdf5f5b8b48af",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/stderr.log": "b36c59411d54a869d506e9415e546768a4b4ebca1a9ef9bc0a27b3cd4f03b691",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/ARTIFACT.json": "63377beeb8d77948f8c8fdae1ed0b7148ed5a8b592b0aa2e9bd34c47f135e192",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/SOURCE_BEFORE.json": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/dependencies.stdout": "e2058b51735d80a7bbdd4abb7ae4d6f182ab16d6c757b6efb33faab91cb43602",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/signature.stderr": "19645c8b1a2e3953df4c22f98859f9ab453065f5178d6eb8866f479565e92c38",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/version.stdout": "26247c5af0a85b5e7bd1d7064e175fa566b8c14624b9a6e08ab85fa0edd41f2d",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/version.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/sha2-optimized-fingerprint.json": "1823446bafb972ba0bf73124244d65d5b10a4167f5fda0b6916485e7e60cb48a",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-04/profile-author/PREBUILD_REVIEW.md": "f912cf487e145c149e13d5174c0f90dd0a5924d66fb77a7777c39df30468c07b"
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/PREPARATION.json": "391b6b551248d41bddfcbc7f7898180fd767c8bf74fc50664d01b4fd06616911",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/SOURCE_BEFORE.json": "faa3b31c1744dab2cb8722c1f781ae04ab84c44b7e988b05794ddac436556692",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/SOURCE_CANDIDATE.json": "a4d0313e25094711a73c9f8bb8e92138c439e32cc354970fa05340d79cf58fc6",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/SOURCE_AFTER.json": "a4d0313e25094711a73c9f8bb8e92138c439e32cc354970fa05340d79cf58fc6",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/build-result.json": "c0d0923a1df9905d9f24448fa5dcc90021528bd41381856c434649c92b4d63e0",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/build.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/build.stderr": "5ba87a4092d6045d2bf77e320daeaa79c1c0ebca16d404acf646ad4be7b205e3",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/artifact-integrity.json": "9378292a0bd03b4060a2b75675a7d36837587b77efe5fd91f03996e879809ddb",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/preserved-inputs-final.json": "83d62a6af8f23ed5bc94df9911aefe91c43144326883a385a899264222a38b64",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/build-invocation.json": "b2473c41ea47872635622b00a743bbb0dc069d1087ab97206d518095604ded7d",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/build-enclosure.sb": "6f8fada36a25bc332db157f9d31d9afbab4efa11749a83ba57243e206d2a2dfb",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/qualification/fixture-v6-manifest.json": "960356d4d7e09546fa4ac0600079313ebc0a26a00d97af1b76b2d6c8b9be4898",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/qualification/direct-run-v6/result.json": "5e871d54546bef9e62f02530cc2172d3f9cda7cba09d66f20a166fc3423c5d5b",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/qualification/pair-run-v6/result.json": "8d1ced38c8c0c7ca463e67e0c7f27af36977c27347242a689fb71b7baddd7e13",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/qualification/lifecycle-manifest-v2.json": "57589c93c5cf2a1ee2a68633cceac2a2355bd27c094b8acc32fc413ee19039b5",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/qualification/lifecycle-run-v2/result.json": "f14d1fa0364b7a1a27b0c5032bc066f5a7d5483bc629a29e8b80f21e6c8dd7e4",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/regressions-result.json": "cd8cd9737c447a607fe93fb300323a6085d7293e5da7594fbb0469e5e827a4c1",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/RETURN_FINAL.json": "72fa893eb961e0063e3a5030a5d8f0bc40e582621cd7b1b7acf5c4580acd016b"
   },
   "historicalBuild03": "history/build03/source-build.json",
-  "testSourceCorrespondence": "Final formerly post-build03 cfg(test) patch is now included in the exact build04 input patch; prior executed tests are not claimed rerun."
+  "testSourceCorrespondence": "Candidate source is retained build05 regular source excluding Git administration plus the one seatbelt_base_policy.sbpl change. All five existing selected Rust filters ran against this exact unchanged candidate (14 passed). No duplicate full suite; historical test claims are retained only as history.",
+  "historicalBuild04": "history/build04/source-build.json",
+  "sourceTreeNote": "Compiled regular-file snapshot has 6419 entries; 24 retained Git administrative files were explicitly excluded from the 6443-entry historical baseline. Contained source symlink codex-rs/vendor/bubblewrap/LICENSE -> COPYING is separately preserved in the copy and final-input inventories. The earlier note describing the license as absent did not distinguish symlinks from regular files.",
+  "historicalBuild05": {
+    "commit": "798507c4712819f77fa868813d11adb799af9726",
+    "path": "projects/chirality-runtime/tools/codex-supplier/source-build.json",
+    "sha256": "fa6b6dc6fb3b4545ce503257fd43c02b300479a6e9ca3ddb3e6e3eebf509d4a4"
+  },
+  "sourceVersion": "0.149.0",
+  "rustFilters": [
+    {
+      "filter": "private_initialize_",
+      "passed": 10
+    },
+    {
+      "filter": "exact_operation_binding_rejects_replacement_lease_with_same_identity",
+      "passed": 1
+    },
+    {
+      "filter": "joined_identity_transition_known_no_change_restores_exact_snapshot",
+      "passed": 1
+    },
+    {
+      "filter": "joined_identity_auth_change_notification_observes_complete_published_snapshot",
+      "passed": 1
+    },
+    {
+      "filter": "refresh_failure_is_scoped_to_the_matching_auth_snapshot",
+      "passed": 1
+    }
+  ],
+  "observedShutdownDiagnostic": "The interrupted worker emitted an exec_command UnknownProcessId diagnostic during shutdown. Exact interruption, exit0/no-signal retirement, empty checked descendant state and successor-thread read assertions passed; error-free stderr is not claimed."
 }

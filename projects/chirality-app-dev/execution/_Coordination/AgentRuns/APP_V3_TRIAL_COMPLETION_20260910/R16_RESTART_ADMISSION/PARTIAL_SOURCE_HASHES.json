@@ -1,0 +1,21 @@
+{
+  "status": "incomplete-unreviewed",
+  "files": [
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-admitted-launcher.ts",
+      "sha256": "430d81bdcc23e4dfa822b1d034a18bcfcce8ad44ae7456a8caaa153e504c3af8"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/codex-supervisor.ts",
+      "sha256": "df9154e554eaca047cd631d64b75fd1c1a4d692c6169b52610cf0cb46b5e8ebb"
+    },
+    {
+      "path": "projects/chirality-runtime/packages/daemon/src/hosted-private-composition.ts",
+      "sha256": "cb57fcdf81293669114009009602360e2cdbf98ffe08dd692b4d349b381159e0"
+    },
+    {
+      "path": "projects/chirality-runtime/tests/runtime-conformance-v2-admission.test.ts",
+      "sha256": "2ee33f9a51ceb25ac499d4d9eebd819b4ad46d8902de663dc51611ad748fc964"
+    }
+  ]
+}

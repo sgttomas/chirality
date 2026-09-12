@@ -1,5 +1,5 @@
 import { PassThrough } from "node:stream";
-import { chmod, mkdir, mkdtemp, readdir, realpath, rm, stat, symlink, writeFile } from "node:fs/promises";
+import { appendFile, chmod, mkdir, mkdtemp, readdir, readFile, realpath, rm, stat, symlink, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -38,7 +38,7 @@ function fixture() {
     protectedPaths: ["/private/broker"], readOnlyProjectPaths: ["/project/.chirality/attachments"], immutableReadRoots: ["/usr"], trustedRuntimeReadRoots: [{ path: "/runtime/instruction-root", readPaths:["/runtime/instruction-root"], contentDigest: "e".repeat(64), artifactInventory: { kind: "packaged-resources" as const, resourcesRoot: "/runtime", manifestPath:"/runtime/runtime-artifact-inventory.json" } }],
     policyDigest: DIGEST, nativeRoleConfiguration: { digest: "d".repeat(64), configOverrides: ["agents.enabled=true"] }, toolRuntime: { codexSelfExecutablePath: "/private/supplier/codex" }, kernelLease
   };
-  const outer = { cleanup: vi.fn(async () => { events.push("outer-cleanup"); }), sandboxProfilePath: "/private/supplier/outer.sb", launchArguments: vi.fn(async () => ["-f", "/private/supplier/outer.sb", "/private/supplier/codex"]), environment: { HOME: "/private/supplier", CODEX_HOME: "/private/supplier/home", TMPDIR: "/private/supplier/tmp", PATH: "/usr/bin:/bin:/usr/sbin:/sbin", LANG: "en_US.UTF-8" } };
+  const outer = { cleanup: vi.fn(async () => { events.push("outer-cleanup"); }), launcher: "outer-seatbelt" as const, sandboxProfilePath: "/private/supplier/outer.sb", launchArguments: vi.fn(async () => ["-f", "/private/supplier/outer.sb", "/private/supplier/codex"]), environment: { HOME: "/private/supplier", CODEX_HOME: "/private/supplier/home", TMPDIR: "/private/supplier/tmp", PATH: "/usr/bin:/bin:/usr/sbin:/sbin", LANG: "en_US.UTF-8" } };
   const toolPolicy = { cleanup: vi.fn(async () => { events.push("tool-cleanup"); }), scratchDirectory: "/project/.chirality-native-policy-fixture", policyDigest: DIGEST, permissionProfile: "chirality_policy", expectedPermissions: { filesystem: { "/project": "write" }, network: { enabled: false } }, nativeRoleConfiguration: input.nativeRoleConfiguration, configOverrides: ["cli_auth_credentials_store=\"keyring\""], args: ["-c", "cli_auth_credentials_store=\"keyring\""] };
   const spawnSupplier = vi.fn(() => ({ state: "available" as const, value: child }));
   const adapters: ControlledAuthenticatedCodexCandidateAdapters = {
@@ -82,6 +82,12 @@ describe("authenticated Codex candidate transport", () => {
       const staged = await stageExactSupplierExecutableControlledForTests(source, privateRoot, verifier);
       expect((await stat(join(privateRoot, "supplier", "runtime.dat"))).mode & 0o777).toBe(0o700);
       expect((await stat(join(privateRoot, "supplier", "nested", "config.dat"))).mode & 0o777).toBe(0o600);
+      // The staged closure is an exclusive private copy (one link, exact bytes) that stays independent of its source.
+      expect((await stat(staged)).nlink).toBe(1);
+      await appendFile(source, "-mutated-after-staging");
+      expect(await readFile(staged)).toEqual(executableBytes);
+      expect(await readFile(join(privateRoot, "supplier", "runtime.dat"))).toEqual(helperBytes);
+      await writeFile(source, executableBytes, { mode: 0o700 });
       const f = fixture();
       f.input = { ...f.input, executablePath: staged, toolRuntime: { codexSelfExecutablePath: staged }, supplyVerifier: verifier };
       expect(() => new CodexLogin({ executablePath: staged, canonicalRoot: root, privateDirectory: privateRoot, codexHome: join(privateRoot, "home"),

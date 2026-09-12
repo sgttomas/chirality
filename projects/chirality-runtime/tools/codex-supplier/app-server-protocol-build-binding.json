@@ -1,9 +1,9 @@
 {
-  "appServerProtocolDigest": "10ca915fe11c473c28e88f50fd6f0b855868944cf4e67438122baac425386906",
-  "manifestPath": "/Users/ryan/.codex/worktrees/chirality-change-lessons-20260910/chirality/projects/chirality-runtime/tools/codex-supplier/app-server-protocol-source-basis.json",
+  "appServerProtocolDigest": "ee159945256810fedd434658e78938d3e211bb2bda18066908b1de122bbeab49",
+  "artifactSha256": "eecbc73eea2d472cfefb285dcee6d7ca46024668c2e8d907a1452053c7745189",
+  "compiledPatchSha256": "91df1f91bd16ee72b24be89d2bb777a9bfc6eb90b8f764821619331e33613fe1",
   "fileCount": 65,
-  "verifiedAgainstBuildSourceSnapshotSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
-  "compiledPatchSha256": "5045e334a1efa02e84a5b7a1b88dd33c9ea126a7de3ee25df56bcaeda9f9df29",
-  "artifactSha256": "871623860ef18212fabef851f24ad5f384d140395d50c41f6a63677fd42768fa",
-  "meaning": "factual source-basis fingerprint only; no schema generation, binary invocation, or new acceptance"
+  "manifestPath": "/Users/ryan/dev/chirality/.claude/worktrees/owner-alignment-inspection-db4335/projects/chirality-runtime/tools/codex-supplier/app-server-protocol-source-basis.json",
+  "meaning": "factual source-basis fingerprint only; no schema generation, binary invocation, or new acceptance",
+  "verifiedAgainstBuildSourceSnapshotSha256": "4e5250720d8a947e815602fb38352726b9e2c7f16d5d219ef5d450d2ea129d16"
 }

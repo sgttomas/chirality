@@ -29,6 +29,11 @@ describe("hosted private production entry wiring", () => {
     await expect(startControlledHostedPrivateBootstrapRuntimeHostForTests(structuredClone(input), { createBindings, startHost })).resolves.toBe(host);
     expect(createBindings).toHaveBeenCalledWith(expect.objectContaining({ instructionRoot: "/runtime/instructions" }));
     expect(startHost).toHaveBeenCalledWith(expect.objectContaining({ artifactInventory: inventory }), bindings);
+    // With a daemon logger the bindings receive a phase observer that reports timings as `hosted.phase` warnings.
+    const warn = vi.fn(), observed = vi.fn(async (_options: unknown, observe?: (phase: string, detail: { projectId: string; elapsedMs: number }) => void) => { observe?.("login.stage-supplier", { projectId: "p", elapsedMs: 7 }); return bindings; });
+    await expect(startControlledHostedPrivateBootstrapRuntimeHostForTests({ ...structuredClone(input), logger: { warn, error: vi.fn() } }, { createBindings: observed, startHost })).resolves.toBe(host);
+    expect(observed).toHaveBeenCalledWith(expect.objectContaining({ instructionRoot: "/runtime/instructions" }), expect.any(Function));
+    expect(warn).toHaveBeenCalledWith("hosted.phase", { phase: "login.stage-supplier", projectId: "p", elapsedMs: 7 });
   });
 
   it("accepts reordered selector properties because equality is fieldwise", async () => {

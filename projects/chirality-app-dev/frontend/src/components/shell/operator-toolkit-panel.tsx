@@ -62,17 +62,6 @@ export function OperatorToolkitPanel(): JSX.Element {
         ) : null}
 
         <label>
-          `opts.model`
-          <input
-            value={values.model}
-            onChange={(event) => {
-              updateValues({ model: event.target.value });
-            }}
-            placeholder="haiku"
-          />
-        </label>
-
-        <label>
           `opts.tools` (comma or newline separated)
           <textarea
             value={values.tools}

@@ -1,0 +1,18 @@
+{
+  "status": "proposal-only-not-applied",
+  "sourcePath": "/private/tmp/chirality-supplier-login-fix-20260911/source/codex-rs/sandboxing/src/seatbelt_base_policy.sbpl",
+  "files": {
+    "seatbelt_base_policy.before.sbpl": {
+      "sha256": "9a7a181ac5fab3e8fcecfeeec280f8b0d4fd60c852cf71cdf3b5c65d02401e0c",
+      "bytes": 4075
+    },
+    "seatbelt_base_policy.candidate.sbpl": {
+      "sha256": "4461a10f2a11474f6b21463512f7e076f4543c92a7f6d87acbe6c2039890265f",
+      "bytes": 4296
+    },
+    "CANDIDATE.patch": {
+      "sha256": "1eb61c814c8dbc320cf87dbfbb3fc9329697a119048872267d6b312c589acfc8",
+      "bytes": 483
+    }
+  }
+}

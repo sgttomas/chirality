@@ -1,0 +1,33 @@
+{
+  "sourceHead": "05f11d5eb54a232b8b324e664fd59e3d500996af",
+  "instructionAndFindingSources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "2f2e5ee53ab227936379ee47169c0e0ff19bf5fd3bcff9086f088f3568adfac7"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "47e11feeba9640caaaa5f7d45af7b5d3be5538fc7ab631213691d908f08244d7"
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "sha256": "d9d644117688a896aba8a4496533b5fadadeb612b97dfd05d2796f7ad013b07b"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/HANDOFF_STATE.md",
+      "sha256": "bb8435b3b617812bb6bb1f7875f9e6a1697274371f0611d77bb9b82f78655ead"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_TRIAL_COMPLETION_20260910/R14_FUNCTIONAL_FINDINGS.md",
+      "sha256": "1ae041fcbfcab461034674b0b1622e6f529fa5baecf77905c66a8a24f368c79c"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "context": {
+    "AGENTS.md": "2f2e5ee53ab227936379ee47169c0e0ff19bf5fd3bcff9086f088f3568adfac7",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-app-dev/AGENTS.md": "47e11feeba9640caaaa5f7d45af7b5d3be5538fc7ab631213691d908f08244d7",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_TRIAL_COMPLETION_20260910/R16_UI_FINDINGS/BRIEF.md": "dd7768bef35e8df80afe2073362b7dfbcf378e747da0fd9c586281cbcb966a09"
+  },
+  "postimages": {
+    "projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx": "579c82b6d323b8f35c4c25293b4f211616d9fa7b12b005151472598b5967c674",
+    "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx": "37ae650ca86a45945f0092da2f2806f4d4ab77a72d59b584774e056415e087fa",
+    "projects/chirality-app-dev/frontend/src/app/globals.css": "2f95e87babe70cdfc969fd12a7664c66574819c881b54c0af6824c0caab22350",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx": "fcf84d3ed7220f33ad029bb081892824d20789e88c8121a792abad8016da0697",
+    "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx": "1770e2a95cac870844af432aa5c7509e9de7de5017da5a652d2aed344d5f849f"
+  }
+}

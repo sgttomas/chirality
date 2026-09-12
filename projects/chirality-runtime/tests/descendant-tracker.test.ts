@@ -42,3 +42,42 @@ it.skipIf(!['darwin', 'linux'].includes(process.platform))('observes an actual d
     expect((await censusProcesses()).every(row => !('args' in row))).toBe(true);
   } finally { await tracker.stop(); if (leader.exitCode === null) leader.kill(); await new Promise(resolve => setTimeout(resolve, 2300)); }
 }, 10000);
+
+
+it.each(['gone', 'live', 'detached', 'identity-changed', 'failure'] as const)('reconciliation drains a pre-cleanup census then starts fresh (%s)', async outcome => {
+  let rows = [row(10, 1)];
+  let hold = false, fail = false, release!: () => void, calls = 0;
+  const tracker = new DescendantTracker({ leaderPid: 10, intervalMs: 10000, census: async () => {
+    calls++;
+    const captured = rows, capturedFailure = fail;
+    if (hold) await new Promise<void>(resolve => { release = resolve; });
+    if (capturedFailure) throw new Error('fresh census failure');
+    return captured;
+  } });
+  try {
+    await tracker.start();
+    hold = true;
+    const pending = tracker.sample(); // Captures the leader before cleanup.
+    rows = outcome === 'gone' || outcome === 'failure' ? []
+      : outcome === 'detached' ? [row(10, 1, 20)]
+      : outcome === 'identity-changed' ? [row(10, 1, 10, 'new-identity')]
+      : [row(10, 1)];
+    const reconciled = tracker.reconcile(); // Invoked after controlled cleanup.
+    hold = false;
+    fail = outcome === 'failure';
+    release();
+    await pending;
+    const state = await reconciled;
+    expect(calls).toBe(3); // Initial, old pending poll, newly initiated census.
+    expect(state.ownedGroup.length).toBe(outcome === 'live' || outcome === 'failure' ? 1 : 0);
+    expect(state.detached.length).toBe(outcome === 'detached' ? 1 : 0);
+    expect(state.identityChanged.length).toBe(outcome === 'identity-changed' ? 1 : 0);
+    if (outcome === 'failure') {
+      expect(state.failure).toBe('fresh census failure');
+      fail = false;
+      const later = await tracker.reconcile();
+      expect(later.ownedGroup).toEqual([]);
+      expect(later.failure).toBe('fresh census failure'); // Observation gaps stay visible.
+    } else expect(state.failure).toBeUndefined();
+  } finally { await tracker.stop(); }
+});

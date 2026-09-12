@@ -2,7 +2,8 @@ import { PassThrough } from "node:stream";
 import { mkdir, mkdtemp, readdir, readFile, realpath, rm, stat, writeFile } from "node:fs/promises";
 import { basename, join, resolve } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import type { AgentEnginePort, AgentEngineRunInput, UIEvent, WorkerContinuity } from "@chirality/runtime-contracts";
+import { randomUUID } from "node:crypto";
+import { hostedModelCatalog, RuntimeError, type AgentEnginePort, type AgentEngineRunInput, type DelegatedTurnRequest, type UIEvent, type WorkerContinuity } from "@chirality/runtime-contracts";
 import { DelegatedRuntime, HostedConsentStore, WorkerRetirementCoordinator, type DelegatedNativePlanSink } from "@chirality/runtime-core";
 import { RuntimeClient } from "@chirality/runtime-client";
 import {
@@ -14,6 +15,7 @@ import {
   startControlledHostedBootstrapRuntimeHostForTests,
   type TrustedHostedLoginCeremony
 } from "@chirality/runtime-daemon";
+import { settledHostedBootstrapStatus } from "./helpers.js";
 
 const cleanup: Array<() => Promise<void>> = [];
 afterEach(async () => { for (const close of cleanup.splice(0).reverse()) await close().catch(() => undefined); });
@@ -84,7 +86,7 @@ describe("hosted bootstrap public-to-private composition", () => {
     const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
     await bootstrap.grantHostedProviderNetworkConsent(registered.projectId);
     await bootstrap.startHostedBootstrapLogin(registered.projectId);
-    expect(await bootstrap.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
+    expect(await settledHostedBootstrapStatus(bootstrap, registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
     const retirementsBeforeSignOut = retire.mock.calls.length;
     await expect(bootstrap.signOutHostedProject(registered.projectId)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
     expect(signOut).toHaveBeenCalledTimes(1);
@@ -174,7 +176,7 @@ describe("hosted bootstrap public-to-private composition", () => {
     const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
     expect(registered.projectId).toMatch(/^[0-9a-f-]{36}$/);
     await bootstrap.grantHostedProviderNetworkConsent(registered.projectId); await bootstrap.startHostedBootstrapLogin(registered.projectId);
-    const admittedStatus = await bootstrap.hostedBootstrapStatus(registered.projectId);
+    const admittedStatus = await settledHostedBootstrapStatus(bootstrap, registered.projectId);
     if (admittedStatus.admission !== "ready" && materializationFailure !== undefined) throw new Error("Controlled native Plan materialization failed", { cause: materializationFailure });
     expect(admittedStatus).toMatchObject({ ceremony: "signed-in", admission: "ready" });
     const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtimeDirectory, registered.projectId) });
@@ -249,9 +251,10 @@ describe("hosted bootstrap public-to-private composition", () => {
       await expect(bootstrap.startHostedBootstrapLogin(project.projectId)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
     }
     for (const project of registrations) expect(ceremonyManifests.get(project.projectId)).toBe(project.manifestHash);
-    expect(await bootstrap.hostedBootstrapStatus(signedInOnly.projectId)).toMatchObject({ ceremony: "signed-in", admission: "unavailable", canStartLogin: false });
-    expect(await bootstrap.hostedBootstrapStatus(first.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready", canStartLogin: false });
-    expect(await bootstrap.hostedBootstrapStatus(second.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready", canStartLogin: false });
+    // Establishment no longer completes inside one poll: the signed-in-only project reports "establishing" first and "unavailable" once its establishment fails.
+    expect(await settledHostedBootstrapStatus(bootstrap, signedInOnly.projectId)).toMatchObject({ ceremony: "signed-in", admission: "unavailable", canStartLogin: false });
+    expect(await settledHostedBootstrapStatus(bootstrap, first.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready", canStartLogin: false });
+    expect(await settledHostedBootstrapStatus(bootstrap, second.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready", canStartLogin: false });
 
     const projectClient = (projectId: string) => new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtimeDirectory, projectId) });
     const firstClient = projectClient(first.projectId), secondClient = projectClient(second.projectId);
@@ -300,12 +303,102 @@ describe("hosted bootstrap public-to-private composition", () => {
     const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
     const registered = await client.initializeHostedBootstrapProject({ projectRoot });
     await client.grantHostedProviderNetworkConsent(registered.projectId); await client.startHostedBootstrapLogin(registered.projectId);
-    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ admission: "ready" });
+    expect(await settledHostedBootstrapStatus(client, registered.projectId)).toMatchObject({ admission: "ready" });
     const manifestPath = join(projectRoot, "chirality.project.json");
     await writeFile(manifestPath, `${(await readFile(manifestPath, "utf8")).trim()} \n`, "utf8");
     await expect(client.hostedBootstrapStatus(registered.projectId)).rejects.toMatchObject({ code: "PROJECT_MANIFEST_DRIFT" });
     expect(retire).toHaveBeenCalledTimes(1);
   });
+
+  it("exposes the authenticated catalog while admitted, fixes a validated choice per session, and refuses a model the account no longer offers", async () => {
+    const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-catalog-"));
+    cleanup.push(() => rm(root, { recursive: true, force: true }));
+    const runtimeDirectory = join(root, "runtime"), projectRoot = join(root, "project");
+    await mkdir(runtimeDirectory, { mode: 0o700 }); await mkdir(projectRoot);
+    const entries = {
+      full: [{ model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] }, { model: "gpt-alt", isDefault: false, defaultReasoningEffort: "low", supportedReasoningEfforts: ["low", "medium"] }],
+      reduced: [{ model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] }]
+    };
+    const compatibility = { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "b".repeat(64) };
+    const requests: DelegatedTurnRequest[] = [];
+    const delegated = {
+      async preflight(projectId: string, operationId: string) { return { ...compatibility, projectId, operationId, daemonId: "controlled-catalog", nonce: randomUUID() }; },
+      async turn(_projectId: string, request: DelegatedTurnRequest, _tools: unknown[], observer: { onProgress(event: unknown): void }) {
+        requests.push(structuredClone(request));
+        observer.onProgress({ type: "started", providerThreadId: "thread-catalog", providerTurnId: `turn-${requests.length}` });
+        return { event: {} as never, terminal: { turnId: request.turnId, workerId: request.turnId, generation: "g", outcome: "completed" as const, recordedAt: new Date().toISOString() }, output: `used:${request.model}:${request.reasoningEffort}`, providerThreadId: "thread-catalog", evidenceClass: "controlled-worker" as const };
+      },
+      async interruptTurn() { return { interrupted: true }; }
+    } as unknown as DelegatedRuntime;
+    let admissions = 0;
+    const ceremony: TrustedHostedLoginCeremony = { async start() { return { loginId: "login", authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "completed" as const, hasAccount: true }; }, async cancel() {}, async close() {} };
+    const bindings = {
+      async createCeremony() { return ceremony; },
+      async establishAdmission() { return { continuity: { canonicalRoot: projectRoot, cwd: projectRoot, accountId: "private-catalog", accountEpoch: 1, policyDigest: "private" }, authority: { supplierGeneration: "supplier", identityGeneration: "identity", snapshotDigest: "d".repeat(64) }, async retire() {} }; },
+      async materializeAdmission() {
+        const catalog = hostedModelCatalog(admissions++ === 0 ? entries.full : entries.reduced);
+        return { delegated, selection: { adapterId: "codex-app-server", providerId: "openai", model: catalog.default.model }, compatibility, evidenceClass: "controlled-worker" as const, catalog };
+      },
+      async signOut() {}
+    };
+    const host = await startControlledHostedBootstrapRuntimeHostForTests({ enabled: true, runtimeDirectory, daemonSocket: "runtime.sock", instructionRoot: resolve(process.cwd(), "../..") }, bindings);
+    cleanup.push(() => host.stop());
+    const bootstrap = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
+    const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
+    const projectId = registered.projectId;
+    expect(await bootstrap.hostedBootstrapStatus(projectId)).toEqual({ schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: "consent-required", admission: "unavailable", canStartLogin: false });
+    await bootstrap.grantHostedProviderNetworkConsent(projectId);
+    await bootstrap.startHostedBootstrapLogin(projectId);
+    const ready = await settledHostedBootstrapStatus(bootstrap, projectId);
+    expect(ready).toEqual({ schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: "signed-in", admission: "ready", canStartLogin: false, models: entries.full, selection: { model: "gpt-default", reasoningEffort: "high" } });
+    const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: resolveHostedProjectTokenFile(runtimeDirectory, projectId) });
+    // A session cannot be created before admission for a model outside the catalog, nor with a partial or doubled selection.
+    await expect(client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-unknown", reasoningEffort: "low" } })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, message: "Model 'gpt-unknown' is not in the authenticated Codex catalog", details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-unknown", available: ["gpt-default", "gpt-alt"] } });
+    await expect(client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-alt", reasoningEffort: "high" } })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, message: "Reasoning effort 'high' is not supported by 'gpt-alt'", details: { reason: "REASONING_EFFORT_UNSUPPORTED", model: "gpt-alt", supported: ["low", "medium"] } });
+    await expect(client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-alt" } as never })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, details: { reason: "MODEL_SELECTION_INVALID" } });
+    await expect(client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-alt", reasoningEffort: "low", extra: true } as never })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, details: { reason: "MODEL_SELECTION_INVALID" } });
+    await expect(client.createSession(projectId, { projectId, role: "agent0", engineSelection: { adapterId: "codex-app-server", providerId: "openai", model: "gpt-alt" }, modelSelection: { model: "gpt-alt", reasoningEffort: "low" } })).rejects.toMatchObject({ code: "INVALID_REQUEST", status: 400, details: { reason: "MODEL_SELECTION_INVALID" } });
+    expect(await client.listSessions(projectId)).toEqual([]);
+    const chosen = await client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite", modelSelection: { model: "gpt-alt", reasoningEffort: "medium" } });
+    expect(chosen).toMatchObject({ engineSelection: { adapterId: "codex-app-server", providerId: "openai", model: "gpt-alt" }, reasoningEffort: "medium", schemaVersion: "chirality.session/v3" });
+    expect(await client.getSession(projectId, chosen.sessionId)).toMatchObject({ engineSelection: { model: "gpt-alt" }, reasoningEffort: "medium" });
+    const defaulted = await client.createSession(projectId, { projectId, roleId: "HELP_HUMAN", permissionMode: "workspaceWrite" });
+    expect(defaulted).toMatchObject({ engineSelection: { model: "gpt-default" }, reasoningEffort: "high" });
+    // The App boots every new session before its first turn without an opts.mode; a v3
+    // session boots under its persisted permission mode, never the legacy chat mode.
+    await client.bootSession(projectId, chosen.sessionId);
+    expect(requests).toHaveLength(1);
+    expect(requests[0]).toMatchObject({ permissionMode: "workspaceWrite", model: "gpt-alt", reasoningEffort: "medium", sessionId: chosen.sessionId, prompt: expect.stringContaining("bootstrap") });
+    expect(await client.getSession(projectId, chosen.sessionId)).toMatchObject({ status: "idle", permissionMode: "workspaceWrite" });
+    const chosenEvents = await drain(await client.turnSession(projectId, chosen.sessionId, { message: "Use the chosen pair." }));
+    expect(chosenEvents.find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-alt:medium" } });
+    expect(chosenEvents.find(event => event.type === "session:init")).toMatchObject({ data: { model: "gpt-alt" } });
+    expect(requests.at(-1)).toMatchObject({ model: "gpt-alt", reasoningEffort: "medium", sessionId: chosen.sessionId });
+    expect((await drain(await client.turnSession(projectId, defaulted.sessionId, { message: "Use the default pair." }))).find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-default:high" } });
+    expect(requests.at(-1)).toMatchObject({ model: "gpt-default", reasoningEffort: "high" });
+    // A native-picker selection travels as a project-staged untrusted image input.
+    const picked = join(projectRoot, "diagram.png");
+    await writeFile(picked, Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+    const attached = await drain(await client.turnSession(projectId, defaulted.sessionId, { message: "Describe the attachment.", attachments: [picked] }));
+    expect(attached.find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-default:high" } });
+    expect(requests.at(-1)).toMatchObject({ sessionId: defaulted.sessionId, permissionMode: "workspaceWrite", attachments: [{ type: "localImage", path: expect.stringContaining(join(projectRoot, ".chirality", "attachments", defaulted.sessionId)), mimeType: "image/png", source: "untrusted-attachment" }] });
+    // The turn path never lets a client-supplied opts.model override the session's fixed model.
+    const overridden = await drain(await client.turnSession(projectId, chosen.sessionId, { message: "Try to substitute.", opts: { model: "gpt-default" } }));
+    expect(overridden).toContainEqual(expect.objectContaining({ type: "turn:error", data: expect.objectContaining({ fatal: true, details: { runtimeCode: "ENGINE_UNAVAILABLE", reason: "MODEL_SELECTION_MISMATCH" } }) }));
+    expect(requests).toHaveLength(4);
+    expect(await bootstrap.signOutHostedProject(projectId)).toEqual({ schema: "chirality-hosted-bootstrap-status/v1", projectId, ceremony: "consent-required", admission: "unavailable", canStartLogin: false });
+    await bootstrap.grantHostedProviderNetworkConsent(projectId);
+    await bootstrap.startHostedBootstrapLogin(projectId);
+    expect(await settledHostedBootstrapStatus(bootstrap, projectId)).toMatchObject({ admission: "ready", models: entries.reduced, selection: { model: "gpt-default", reasoningEffort: "high" } });
+    await expect(client.bootSession(projectId, chosen.sessionId)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", status: 503, details: { reason: "MODEL_NOT_IN_CATALOG", model: "gpt-alt", available: ["gpt-default"] } });
+    const removed = await drain(await client.turnSession(projectId, chosen.sessionId, { message: "The model left the catalog." }));
+    expect(removed).toContainEqual(expect.objectContaining({ type: "turn:error", data: expect.objectContaining({ fatal: true, details: { runtimeCode: "ENGINE_UNAVAILABLE", reason: "MODEL_NOT_IN_CATALOG" } }) }));
+    expect(await client.getSession(projectId, chosen.sessionId)).toMatchObject({ engineSelection: { model: "gpt-alt" }, reasoningEffort: "medium" });
+    expect((await drain(await client.turnSession(projectId, defaulted.sessionId, { message: "Still offered." }))).find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "used:gpt-default:high" } });
+    expect(requests).toHaveLength(5);
+    const persisted = await persistedText(runtimeDirectory);
+    expect(persisted).toMatch(/"reasoningEffort":\s*"medium"/);
+  }, 20_000);
 
   it("cannot publish a late admission after cancellation", async () => {
     const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-cancel-"));
@@ -337,5 +430,139 @@ describe("hosted bootstrap public-to-private composition", () => {
     expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "cancelled", admission: "unavailable" });
     expect(retire).toHaveBeenCalledTimes(1);
     expect(materialize).not.toHaveBeenCalled();
+  });
+
+  it("reports establishing without blocking the poll, ready once establishment settles, and unavailable after a failed establishment", async () => {
+    const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-establishing-"));
+    cleanup.push(() => rm(root, { recursive: true, force: true }));
+    const runtimeDirectory = join(root, "runtime"), projectRoot = join(root, "project");
+    await mkdir(runtimeDirectory, { mode: 0o700 }); await mkdir(projectRoot);
+    let release!: () => void;
+    let gate = new Promise<void>(resolveGate => { release = resolveGate; });
+    let fail = false, establishments = 0;
+    const events: Array<{ level: string; event: string; fields: Record<string, unknown> }> = [];
+    const logger = {
+      warn: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "warn", event, fields }); },
+      error: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "error", event, fields }); }
+    };
+    const ceremony: TrustedHostedLoginCeremony = { async start() { return { loginId: "login", authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "completed" as const, hasAccount: true }; }, async cancel() {}, async close() {} };
+    const host = await startControlledHostedBootstrapRuntimeHostForTests({ enabled: true, runtimeDirectory, daemonSocket: "runtime.sock", instructionRoot: resolve(process.cwd(), "../..") }, {
+      async createCeremony() { return ceremony; },
+      async establishAdmission() {
+        establishments++; await gate;
+        if (fail) throw new Error("controlled establishment failure");
+        return { continuity: { canonicalRoot: projectRoot, cwd: projectRoot, accountId: "private", accountEpoch: 1, policyDigest: "private" }, authority: { supplierGeneration: "supplier", identityGeneration: "identity", snapshotDigest: "e".repeat(64) }, async retire() {} };
+      },
+      async materializeAdmission(input: { projectId: string }) { return { engine: engine(input.projectId, "fixture-model", []), selection: { adapterId: "codex-app-server", providerId: "openai", model: "fixture-model" } }; },
+      async signOut() {}
+    }, undefined, logger);
+    cleanup.push(() => host.stop());
+    const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
+    const registered = await client.initializeHostedBootstrapProject({ projectRoot });
+    await client.grantHostedProviderNetworkConsent(registered.projectId); await client.startHostedBootstrapLogin(registered.projectId);
+    expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.ceremony.started", fields: expect.objectContaining({ projectId: registered.projectId, elapsedMs: expect.any(Number) }) }));
+    // The gate is still closed: a blocking status call could never return here.
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "establishing", canStartLogin: false });
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "establishing" });
+    expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.ceremony.completed", fields: expect.objectContaining({ projectId: registered.projectId, elapsedMs: expect.any(Number) }) }));
+    expect(establishments).toBe(1);
+    release();
+    expect(await settledHostedBootstrapStatus(client, registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
+    expect(establishments).toBe(1);
+    expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.admission.established", fields: expect.objectContaining({ projectId: registered.projectId, elapsedMs: expect.any(Number), admission: "ready" }) }));
+    expect(events.filter(entry => entry.event === "hosted.admission.establish_failed")).toEqual([]);
+    for (const phase of ["login.create-ceremony", "admission.establish", "admission.materialize"]) {
+      expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.phase", fields: expect.objectContaining({ phase, projectId: registered.projectId, elapsedMs: expect.any(Number) }) }));
+    }
+
+    // A later ceremony whose establishment fails surfaces as unavailable on a subsequent poll, with the failure logged.
+    await client.signOutHostedProject(registered.projectId);
+    fail = true; gate = Promise.resolve();
+    await client.grantHostedProviderNetworkConsent(registered.projectId); await client.startHostedBootstrapLogin(registered.projectId);
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "establishing" });
+    expect(await settledHostedBootstrapStatus(client, registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "unavailable" });
+    expect(establishments).toBe(2);
+    expect(events).toContainEqual(expect.objectContaining({ level: "error", event: "hosted.admission.establish_failed", fields: expect.objectContaining({ projectId: registered.projectId, elapsedMs: expect.any(Number) }) }));
+    expect(JSON.stringify(events)).not.toContain("auth.example.test");
+  });
+});
+
+describe("hosted bootstrap fenced admission", () => {
+  it("reports a ready admission whose durable binding was fenced as sign-in required and retires it once", async () => {
+    const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-fenced-"));
+    cleanup.push(() => rm(root, { recursive: true, force: true }));
+    const runtimeDirectory = join(root, "runtime"), projectRoot = join(root, "project");
+    await mkdir(runtimeDirectory, { mode: 0o700 }); await mkdir(projectRoot);
+    const events: Array<{ level: string; event: string; fields: Record<string, unknown> }> = [];
+    const logger = {
+      warn: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "warn", event, fields }); },
+      error: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "error", event, fields }); }
+    };
+    let live = true; const retire = vi.fn(async () => {}), liveness = vi.fn(async () => live);
+    const ceremony: TrustedHostedLoginCeremony = { async start() { return { loginId: "login", authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "completed" as const, hasAccount: true }; }, async cancel() {}, async close() {} };
+    const host = await startControlledHostedBootstrapRuntimeHostForTests({ enabled: true, runtimeDirectory, daemonSocket: "runtime.sock", instructionRoot: resolve(process.cwd(), "../..") }, {
+      async createCeremony() { return ceremony; },
+      async establishAdmission() {
+        return { continuity: { canonicalRoot: projectRoot, cwd: projectRoot, accountId: "private", accountEpoch: 1, policyDigest: "private" }, authority: { supplierGeneration: "supplier", identityGeneration: "identity", snapshotDigest: "e".repeat(64) }, retire, live: liveness };
+      },
+      async materializeAdmission(input: { projectId: string }) { return { engine: engine(input.projectId, "fixture-model", []), selection: { adapterId: "codex-app-server", providerId: "openai", model: "fixture-model" } }; },
+      async signOut() {}
+    }, undefined, logger);
+    cleanup.push(() => host.stop());
+    const client = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
+    const registered = await client.initializeHostedBootstrapProject({ projectRoot });
+    await client.grantHostedProviderNetworkConsent(registered.projectId); await client.startHostedBootstrapLogin(registered.projectId);
+    expect(await settledHostedBootstrapStatus(client, registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "signed-in", admission: "ready" });
+    expect(liveness).toHaveBeenCalled(); expect(retire).not.toHaveBeenCalled();
+    live = false;
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "failed", admission: "unavailable", canStartLogin: true });
+    expect(retire).toHaveBeenCalledTimes(1);
+    expect(events).toContainEqual(expect.objectContaining({ level: "error", event: "hosted.admission.fenced", fields: expect.objectContaining({ projectId: registered.projectId }) }));
+    expect(await client.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "failed", admission: "unavailable" });
+    expect(retire).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("hosted bootstrap login retry after a failed start", () => {
+  it("detaches a failed ceremony before its close settles so the next start creates a new ceremony and records the failure", async () => {
+    const root = await realpath(await mkdtemp("/tmp/chirality-bootstrap-retry-"));
+    cleanup.push(() => rm(root, { recursive: true, force: true }));
+    const runtimeDirectory = join(root, "runtime"), projectRoot = join(root, "project");
+    await mkdir(runtimeDirectory, { mode: 0o700 }); await mkdir(projectRoot);
+    const events: Array<{ level: string; event: string; fields: Record<string, unknown> }> = [];
+    const logger = {
+      warn: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "warn", event, fields }); },
+      error: (event: string, fields: Record<string, unknown> = {}) => { events.push({ level: "error", event, fields }); }
+    };
+    const created: TrustedHostedLoginCeremony[] = [];
+    const bindings = {
+      async createCeremony() {
+        const index = created.length;
+        const ceremony: TrustedHostedLoginCeremony = index === 0
+          ? { async start() { throw new RuntimeError("ENGINE_UNAVAILABLE", "controlled start failure", 503, { reason: "CONTROLLED_START" }); }, async status() { return { state: "failed" as const }; }, async cancel() {},
+              async close() { throw new Error("controlled close failure"); }, closeDiagnostics: () => [{ phase: "term", message: "wait-unavailable" }] }
+          : { async start() { return { loginId: `login-${index}`, authUrl: "https://auth.example.test/login" }; }, async status() { return { state: "pending" as const }; }, async cancel() {}, async close() {} };
+        created.push(ceremony); return ceremony;
+      }
+    };
+    const host = await startControlledHostedBootstrapRuntimeHostForTests({ enabled: true, runtimeDirectory, daemonSocket: "runtime.sock", instructionRoot: resolve(process.cwd(), "../..") }, bindings, undefined, logger);
+    cleanup.push(() => host.stop());
+    const bootstrap = new RuntimeClient({ socketPath: host.socketPath, tokenFile: host.bootstrapTokenFile });
+    const registered = await bootstrap.initializeHostedBootstrapProject({ projectRoot });
+    await bootstrap.grantHostedProviderNetworkConsent(registered.projectId);
+    await expect(bootstrap.startHostedBootstrapLogin(registered.projectId)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", message: "controlled start failure" });
+    expect(await bootstrap.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "failed", canStartLogin: true });
+    // The retry must not fail fast on the previous ceremony's memoized close rejection.
+    await expect(bootstrap.startHostedBootstrapLogin(registered.projectId)).resolves.toMatchObject({ loginId: "login-1" });
+    expect(created).toHaveLength(2);
+    expect(await bootstrap.hostedBootstrapStatus(registered.projectId)).toMatchObject({ ceremony: "pending" });
+    expect(events).toContainEqual(expect.objectContaining({ level: "error", event: "runtime.daemon.hosted_account.failed",
+      fields: expect.objectContaining({ operation: "start-login", projectId: registered.projectId, code: "ENGINE_UNAVAILABLE", status: 503, reason: "CONTROLLED_START", message: "controlled start failure" }) }));
+    expect(events).toContainEqual(expect.objectContaining({ level: "error", event: "hosted.ceremony.close_failed", fields: expect.objectContaining({ operation: "start-login", projectId: registered.projectId, message: "controlled close failure" }) }));
+    expect(events).toContainEqual(expect.objectContaining({ level: "warn", event: "hosted.ceremony.close_diagnostics", fields: expect.objectContaining({ operation: "start-login", diagnostics: [{ phase: "term", message: "wait-unavailable" }] }) }));
+    expect(JSON.stringify(events)).not.toContain("auth.example.test");
+    // The earlier close rejection cannot poison daemon stop either.
+    await expect(host.stop()).resolves.toBeUndefined();
   });
 });

@@ -1,3 +1,4 @@
+import { HOSTED_MODEL_ID_PATTERN, HOSTED_REASONING_EFFORT_PATTERN } from '@chirality/runtime-contracts';
 import { sanitizeStoredAttachments, type UiAttachment } from './ui-attachments';
 import type { QualifiedMethodReference } from './method-selection-client';
 
@@ -11,6 +12,13 @@ export type ChatDraftSnapshot = {
   draft: string;
   attachments: UiAttachment[];
   methods: QualifiedMethodReference[];
+  /**
+   * Explicit model/reasoning choice for the next session, persisted as a pair.
+   * Stored values are only charset-checked here; the chat panel drops a pair
+   * that is not in the currently authenticated catalog before using it.
+   */
+  model?: string;
+  reasoningEffort?: string;
 };
 
 export type ChatDraftStorageReadResult = {
@@ -29,6 +37,18 @@ function readString(value: unknown): string {
     return '';
   }
   return value;
+}
+
+function readModelSelection(record: Record<string, unknown>): Pick<ChatDraftSnapshot, 'model' | 'reasoningEffort'> {
+  const model = record.model;
+  const reasoningEffort = record.reasoningEffort;
+  if (
+    typeof model !== 'string' || !HOSTED_MODEL_ID_PATTERN.test(model) ||
+    typeof reasoningEffort !== 'string' || !HOSTED_REASONING_EFFORT_PATTERN.test(reasoningEffort)
+  ) {
+    return {};
+  }
+  return { model, reasoningEffort };
 }
 
 export function buildChatDraftStorageKey(
@@ -66,12 +86,14 @@ export function sanitizeChatDraftSnapshot(value: unknown): ChatDraftSnapshot {
   return {
     draft: readString(record.draft),
     attachments: sanitizeStoredAttachments(record.attachments),
-    methods
+    methods,
+    ...readModelSelection(record)
   };
 }
 
 function isEmptySnapshot(snapshot: ChatDraftSnapshot): boolean {
-  return snapshot.draft.length === 0 && snapshot.attachments.length === 0 && snapshot.methods.length === 0;
+  return snapshot.draft.length === 0 && snapshot.attachments.length === 0 && snapshot.methods.length === 0 &&
+    snapshot.model === undefined && snapshot.reasoningEffort === undefined;
 }
 
 export function readChatDraftSnapshotFromStorage(

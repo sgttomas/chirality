@@ -6,7 +6,7 @@ import type { QualifiedMethodReference } from '../../lib/harness/method-selectio
 import type { SelectedSessionReplayProjection } from '../../lib/woven-dialogue/contracts';
 
 const state = vi.hoisted(() => ({ root: '/chosen/subfolder', query: '', listeners: new Set<() => void>(),
-  create: vi.fn(), boot: vi.fn(), replay: vi.fn(), stream: vi.fn(), apply: vi.fn(), append: vi.fn(), clear: vi.fn(), streaming: vi.fn(),
+  create: vi.fn(), boot: vi.fn(), getSession: vi.fn(), replay: vi.fn(), stream: vi.fn(), apply: vi.fn(), append: vi.fn(), clear: vi.fn(), streaming: vi.fn(),
   replaceMethods: vi.fn(), resolveContext: vi.fn(),
   nativeCapability: vi.fn(), nativeRevisions: vi.fn(), nativeClarifications: vi.fn(), replyClarification: vi.fn(), exportPlan: vi.fn(),
   markdownProps: [] as Array<{ source: string; projectRoot?: string | null; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void }>,
@@ -34,7 +34,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
   replyNativePlanClarification: state.replyClarification,
   exportNativePlanRevision: state.exportPlan
 }));
-vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn() }));
+vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, getHarnessSession: state.getSession, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn() }));
 import { ChatPanel } from '../../components/shell/chat-panel';
 
 let tree: ReactTestRenderer | undefined;
@@ -52,7 +52,7 @@ function deferred<T>() {
 async function mount(props: Partial<React.ComponentProps<typeof ChatPanel>> = {}) { await act(async () => { tree = create(<ChatPanel presentation="woven" {...props} />); }); }
 async function type(value: string) { await act(async () => { tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value } }); }); }
 async function submit() { await act(async () => { tree!.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }); }); }
-function operatorModeSelect() { return tree!.root.findAllByType('select').find(node => node.props['aria-label'] !== 'Interaction mode')!; }
+function continueWithProjectAccess() { return tree!.root.findAllByType('button').find(node => node.children.join('') === 'Continue with Project access'); }
 function assertCanonicalUntouched() { expect(values.get(canonicalKey)).toBe(canonicalDraft); expect(writes.filter(([key]) => key === canonicalKey)).toEqual([]); }
 function resumableProjection(sessionId: string): SelectedSessionReplayProjection {
   return { selectedSessionId: sessionId, sourceReference: `session:${sessionId}/events`, observedAt: '2026-09-09T00:00:00.000Z', disclosure: 'EMPTY', currency: 'CURRENT',
@@ -171,7 +171,7 @@ it('merges next-message methods into the active basis without sending turn-time 
 
 it('starts Plan Mode in a new Codex chat and keeps inspect, revise, save, and execute in the conversation', async () => {
   const qualification = { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const };
-  const revision = { revision: 2, sourceEvent: { qualificationState: 'qualified' as const, eventId: 'plan-2', occurredAt: '2026-09-09T00:00:00.000Z', qualification, plan: '# Approved plan\n\nKeep the exact scope.' } };
+  const revision = { revision: 2, sourceEvent: { qualificationState: 'qualified' as const, eventId: 'plan-2', occurredAt: '2026-09-09T00:00:00.000Z', qualification, plan: { id: 'native-item', type: 'plan', text: '# Approved plan\n\nKeep the exact scope.' } } };
   state.boot.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'bound', projectRoot: '/chosen/subfolder', selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis-1' } });
   state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'qualified', qualification });
   state.nativeRevisions.mockResolvedValue({ schemaVersion: 'chirality.native-plan-revisions/v3', status: 'qualified', qualification, revisions: [revision] });
@@ -203,6 +203,24 @@ it('starts Plan Mode in a new Codex chat and keeps inspect, revise, save, and ex
   expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.value).toBe('chat');
   expect(saveDraft).toContain('Limit this turn to the bounded workflow save; do not execute the plan.');
   expect(saveDraft).toContain('# Approved plan');
+  expect(saveDraft).not.toContain('native-item');
+  expect(JSON.stringify(tree!.toJSON())).not.toContain('No assistant text was returned');
+  const chooseExportTarget = vi.fn().mockResolvedValue({ cancelled: true });
+  const confirmOverwrite = vi.fn().mockResolvedValue(false);
+  window.chirality!.plans = { chooseExportTarget, confirmOverwrite };
+  const save = () => tree!.root.findAllByType('button').find(button => button.children.includes('Save plan…'))!.props.onClick();
+  await act(async () => { await save(); });
+  expect(state.exportPlan).not.toHaveBeenCalled();
+  chooseExportTarget.mockResolvedValue({ cancelled: false, targetRelativePath: 'plans/native.md' });
+  const { MethodSelectionClientError } = await import('../../lib/harness/method-selection-client');
+  state.exportPlan.mockRejectedValueOnce(new MethodSelectionClientError(409, 'exists'));
+  await act(async () => { await save(); });
+  expect(confirmOverwrite).toHaveBeenCalled();
+  expect(state.exportPlan).toHaveBeenCalledTimes(1);
+  confirmOverwrite.mockResolvedValue(true);
+  state.exportPlan.mockRejectedValueOnce(new MethodSelectionClientError(409, 'exists'));
+  await act(async () => { await save(); });
+  expect(state.exportPlan).toHaveBeenLastCalledWith({ sessionId: 'bound', revision: 2, targetRelativePath: 'plans/native.md', overwrite: true });
 });
 
 it('enables genuine Plan controls for a trial admission and labels its empirical status', async () => {
@@ -219,7 +237,7 @@ it('enables genuine Plan controls for a trial admission and labels its empirical
   await submit();
   await act(async () => { await Promise.resolve(); await Promise.resolve(); });
   expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).findByProps({ value: 'native-plan' }).props.disabled).toBe(false);
-  expect(JSON.stringify(tree!.toJSON())).toContain('Human trial — empirical qualification pending');
+  expect(JSON.stringify(tree!.toJSON())).not.toContain('Human trial');
   expect(JSON.stringify(tree!.toJSON())).toContain('Trial plan');
   expect(tree!.root.findAllByType('button').find(button => button.children.includes('Execute plan'))!.props.disabled).toBe(false);
 });
@@ -335,33 +353,39 @@ it('ignores a late clarification reply failure after switching resumed chats', a
   expect(switchedView).not.toContain('Late session A failure');
 });
 
-it('preserves an unsupported legacy permission profile until the operator selects Project access', async () => {
+it('preserves an unsupported legacy permission profile until the operator continues with Project access', async () => {
   state.stream.mockResolvedValue(undefined);
   const projection = resumableProjection('legacy-permissions');
   await mount({ resumeConversation: { requestId: 1, projection } });
   await type('Continue this recorded chat');
-  const operatorMode = operatorModeSelect();
-  expect(operatorMode.props.value).toBe('ask');
-  expect(operatorMode.findAllByType('option').find(option => option.props.value === 'ask')!.children.join('')).toBe('Ask before changes (unsupported)');
-  expect(JSON.stringify(tree!.toJSON())).toContain('Unsupported permission profile');
+  // No permission selector exists; the only posture is enforced project access.
+  // Model and Reasoning are separate catalog controls, not permission postures.
+  expect(tree!.root.findAllByType('select').map(node => node.props['aria-label'])).toEqual(['Interaction mode', 'Model', 'Reasoning']);
+  const alert = tree!.root.findByProps({ role: 'alert' });
+  expect(alert.type).toBe('p');
+  const textOf = (node: { children: unknown[] }): string => node.children.map(child => typeof child === 'string' ? child : textOf(child as { children: unknown[] })).join('');
+  expect(textOf(alert)).toBe('This recorded chat used Ask before changes, which is no longer supported. Continue with Project access');
+  expect(continueWithProjectAccess()).toBeDefined();
   expect(tree!.root.findByProps({ 'aria-label': 'Send' }).props.disabled).toBe(true);
   await submit();
   expect(state.stream).not.toHaveBeenCalled();
 
-  await act(async () => operatorMode.props.onChange({ target: { value: 'workspaceWrite' } }));
+  await act(async () => continueWithProjectAccess()!.props.onClick());
+  expect(tree!.root.findAllByProps({ role: 'alert' })).toHaveLength(0);
   expect(tree!.root.findByProps({ 'aria-label': 'Send' }).props.disabled).toBe(false);
   await submit();
   expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'legacy-permissions', permissionMode: 'workspaceWrite' }), expect.any(Function));
 });
 
 it('resets a new chat to the supported Project access profile', async () => {
+  state.stream.mockResolvedValue(undefined);
   await mount({ resumeConversation: { requestId: 1, projection: resumableProjection('legacy-permissions') } });
-  expect(operatorModeSelect().props.value).toBe('ask');
+  expect(continueWithProjectAccess()).toBeDefined();
   await act(async () => tree!.update(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: resumableProjection('legacy-permissions') }} newChatRequest={1} />));
-  const operatorMode = operatorModeSelect();
-  expect(operatorMode.props.value).toBe('workspaceWrite');
-  expect(operatorMode.findAllByType('option').find(option => option.props.value === 'workspaceWrite')!.children.join('')).toBe('Project access');
-  expect(JSON.stringify(tree!.toJSON())).not.toContain('Unsupported permission profile');
+  expect(continueWithProjectAccess()).toBeUndefined();
+  expect(JSON.stringify(tree!.toJSON())).not.toContain('no longer supported');
+  await type('Fresh chat'); await submit();
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ permissionMode: 'workspaceWrite' }), expect.any(Function));
 });
 
 it('restores method references when the first method-bearing turn fails after boot', async () => {
@@ -520,9 +544,10 @@ it('continues a compatible recorded v3 conversation without creating or booting 
     selectedSessionId: 'recorded-v3', sourceReference: 'session:recorded-v3/events', observedAt: '2026-09-09T00:00:00.000Z',
     disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', malformedLineCount: 0, sourceEventCount: 2, renderedItemCount: 2, diagnostics: [],
     transcript: { sessionId: 'recorded-v3', itemCount: 2, items: [
-      { key: 'old-user', kind: 'message', role: 'user', status: 'completed', title: 'You', timestamp: '2026-09-09T00:00:00.000Z', eventId: 'event-1', eventType: 'message.completed', text: 'Earlier question' },
+      { key: 'old-user', kind: 'message', role: 'user', status: 'completed', title: 'You', timestamp: '2026-09-09T00:00:00.000Z', eventId: 'event-1', eventType: 'message.completed', text: 'Earlier question', attachments: ['/chosen/subfolder/red.png'] },
+      { key: 'attachment-only', kind: 'message', role: 'user', status: 'accepted', title: 'You', timestamp: '2026-09-09T00:00:00.100Z', eventId: 'attachment-event', eventType: 'turn.accepted', attachments: ['/chosen/subfolder/notes.md'] },
       { key: 'old-answer', kind: 'message', role: 'assistant', status: 'completed', title: 'Assistant', timestamp: '2026-09-09T00:00:01.000Z', eventId: 'event-2', eventType: 'message.completed', turnId: 'turn-old', text: 'Earlier answer' }
-    ] }, instructionHistory: [{ schemaVersion: 'chirality.instruction-history/v1', historyId: 'history-old', sessionId: 'recorded-v3', sequence: 1, timestamp: '2026-09-09T00:00:00.500Z', type: 'instruction-basis.resolved', turnId: 'turn-old', basisId: 'basis-old' }], instructionBases: [{
+    ] }, instructionHistory: [{ schemaVersion: 'chirality.instruction-history/v1', historyId: 'history-old', sessionId: 'recorded-v3', sequence: 1, timestamp: '2026-09-09T00:00:00.500Z', type: 'instruction-basis.resolved', acceptedTurn: { turnId: 'turn-old', eventId: 'event-1' }, basisId: 'basis-old' }], instructionBases: [{
       schemaVersion: 'chirality.instruction-basis/v1', basisId: 'basis-old', sessionId: 'recorded-v3', createdAt: '2026-09-09T00:00:00.500Z', roleId: 'HELP_HUMAN', interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [], compatibilityInputs: [], compatibilityMappings: [], suppliedEntries: [], methodDispositions: []
     }],
     session: { projectionId: 'operator-session:recorded-v3', sourceReference: 'session:recorded-v3', sessionId: 'recorded-v3', observedAt: '2026-09-09T00:00:02.000Z', currency: 'CURRENT', runtimeStatus: 'completed', parentage: { state: 'NOT_RECORDED' }, diagnostics: [], continuation: {
@@ -534,10 +559,12 @@ it('continues a compatible recorded v3 conversation without creating or booting 
   expect(resumed).toHaveBeenCalledWith('recorded-v3');
   expect(JSON.stringify(tree!.toJSON())).toContain('Earlier question');
   expect(JSON.stringify(tree!.toJSON())).toContain('Earlier answer');
+  expect(JSON.stringify(tree!.toJSON())).toContain('red.png');
+  expect(JSON.stringify(tree!.toJSON())).toContain('notes.md');
   expect(tree!.root.findAllByProps({ className: 'chat-speaker' }).some(node => node.children.join('') === 'Help Human')).toBe(true);
   await type('Continue here'); await submit();
   expect(state.stream).not.toHaveBeenCalled();
-  await act(async () => operatorModeSelect().props.onChange({ target: { value: 'workspaceWrite' } }));
+  await act(async () => continueWithProjectAccess()!.props.onClick());
   await submit();
   expect(state.create).not.toHaveBeenCalled();
   expect(state.boot).not.toHaveBeenCalled();
@@ -688,4 +715,139 @@ it('keeps retained assistant Markdown bound to the root that produced it', async
   state.markdownProps = [];
   await mount({ fileCatalog: ['/other/docs/SPEC.md'], onOpenFile: vi.fn() });
   expect(state.markdownProps.at(-1)?.projectRoot).toBeUndefined();
+});
+
+
+it('accepts Runtime interrupted exit 130 without a request failure and permits a follow-up turn', async () => {
+  state.stream.mockImplementationOnce(async (_input, onEvent) => {
+    onEvent({ event: 'harness:event', data: { type: 'turn.interrupted', sessionId: 'bound', turnId: 'interrupted-turn' } });
+    onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
+  });
+  await mount(); await type('Interrupt this turn'); await submit();
+  const output = JSON.stringify(tree!.toJSON());
+  expect(output).toContain('Turn interrupted by operator.');
+  expect(tree!.root.findAllByProps({ className: 'chat-runtime-error' })).toHaveLength(0);
+  expect(output).not.toContain('Harness Request Failed');
+  expect(output).not.toContain('Turn failed with exit code');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+  state.stream.mockImplementationOnce(async (_input, onEvent) => {
+    onEvent({ event: 'chat:complete', data: { text: 'Follow-up completed.' } });
+    onEvent({ event: 'process:exit', data: { exitCode: 0 } });
+  });
+  await type('Continue normally'); await submit();
+  expect(JSON.stringify(tree!.toJSON())).toContain('Follow-up completed.');
+  expect(state.create).toHaveBeenCalledTimes(1);
+});
+
+it.each([{ exitCode: 130 }, { exitCode: 1, interrupted: true }, { exitCode: 1 }])('retains failure handling for unconfirmed or other nonzero exits: %j', async payload => {
+  state.stream.mockImplementationOnce(async (_input, onEvent) => {
+    onEvent({ event: 'process:exit', data: payload });
+  });
+  await mount(); await type('Keep this failed draft'); await submit();
+  expect(JSON.stringify(tree!.toJSON())).toContain(`Turn failed with exit code ${payload.exitCode}.`);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this failed draft');
+});
+
+it('does not erase an earlier fatal turn error when a later exit is marked interrupted', async () => {
+  state.stream.mockImplementationOnce(async (_input, onEvent) => {
+    onEvent({ event: 'turn:error', data: { fatal: true, message: 'Underlying fatal failure', errorType: 'SDK_FAILURE' } });
+    onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
+  });
+  await mount(); await type('Preserve failure evidence'); await submit();
+  expect(JSON.stringify(tree!.toJSON())).toContain('SDK_FAILURE');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Preserve failure evidence');
+});
+
+
+it('retains a created chat after boot timeout and reconciles without duplicate creation, boot, or prompt', async () => {
+  const { HarnessApiClientError } = await import('../../lib/harness/client');
+  state.create.mockResolvedValue({ sessionId: 'created-before-timeout', projectRoot: '/chosen/subfolder', engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'gpt-5.6-terra' }, reasoningEffort: 'high' });
+  state.boot.mockRejectedValue(new HarnessApiClientError(504, 'ENGINE_UNAVAILABLE', 'hidden raw cause', { transportReason: 'timeout', operation: 'boot', sessionId: 'created-before-timeout' }));
+  await mount(); await type('Send this exactly once'); await submit();
+  expect(state.stream).not.toHaveBeenCalled();
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Send this exactly once');
+  expect(JSON.stringify(tree!.toJSON())).toContain('Chat took too long to start');
+  expect(JSON.stringify(tree!.toJSON())).not.toContain('hidden raw cause');
+  expect(tree!.root.findByProps({ 'aria-label': 'Model' }).props).toMatchObject({ disabled: true, value: 'gpt-5.6-terra' });
+  expect(tree!.root.findByProps({ 'aria-label': 'Reasoning' }).props).toMatchObject({ disabled: true, value: 'high' });
+  state.getSession.mockResolvedValue({ persona: 'WORKING_ITEMS', sessionId: 'created-before-timeout', projectRoot: '/chosen/subfolder', status: 'running' });
+  await submit();
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1); expect(state.stream).not.toHaveBeenCalled();
+  state.getSession.mockResolvedValue({ persona: 'WORKING_ITEMS', sessionId: 'created-before-timeout', projectRoot: '/chosen/subfolder', status: 'idle', bootedAt: '2026-09-11T00:00:00Z', bootFingerprint: 'fingerprint', engineSessionId: 'native-fixture', engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'gpt-5.6-terra' }, reasoningEffort: 'high' });
+  state.stream.mockResolvedValue(undefined);
+  await submit();
+  expect(state.getSession).toHaveBeenCalledTimes(2);
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(state.stream.mock.calls[0][0]).toMatchObject({ sessionId: 'created-before-timeout', message: 'Send this exactly once' });
+});
+
+it('never replaces or reboots an unconfirmed failed chat on another Send', async () => {
+  state.create.mockResolvedValue({ sessionId: 'created-failed', projectRoot: '/chosen/subfolder' });
+  state.boot.mockRejectedValue(new Error('boot failed'));
+  await mount(); await type('Retain this request'); await submit();
+  for (const status of ['failed', 'interrupted', 'idle']) {
+    state.getSession.mockResolvedValue({ persona: 'WORKING_ITEMS', sessionId: 'created-failed', projectRoot: '/chosen/subfolder', status });
+    await submit();
+  }
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1); expect(state.stream).not.toHaveBeenCalled();
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Retain this request');
+});
+
+
+it('reconciles known unbooted history sessions before sending and resets for an explicit new chat', async () => {
+  const projection = resumableProjection('historic-unbooted');
+  projection.session!.bootstrapConfirmed = false;
+  projection.session!.continuation!.permissionMode = 'workspaceWrite';
+  state.getSession.mockResolvedValue({ persona: 'WORKING_ITEMS', sessionId: 'historic-unbooted', projectRoot: '/chosen/subfolder', status: 'failed' });
+  await mount({ resumeConversation: { requestId: 1, projection } });
+  await type('Unsatisfied original request'); await submit();
+  expect(state.getSession).toHaveBeenCalledWith('historic-unbooted');
+  expect(state.stream).not.toHaveBeenCalled(); expect(state.create).not.toHaveBeenCalled(); expect(state.boot).not.toHaveBeenCalled();
+  await act(async () => tree!.update(<ChatPanel presentation="woven" newChatRequest={1} />));
+  state.create.mockResolvedValue({ sessionId: 'fresh', projectRoot: '/chosen/subfolder' });
+  state.boot.mockResolvedValue({ session: { sessionId: 'fresh', projectRoot: '/chosen/subfolder' } });
+  state.stream.mockResolvedValue(undefined);
+  await type('A deliberately new request'); await submit();
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'fresh', message: 'A deliberately new request' }), expect.any(Function));
+});
+
+
+it.each([
+  { schemaVersion: 'chirality.session/v3', roleId: 'HELPS_HUMANS', persona: 'WORKING_ITEMS' },
+  { schemaVersion: 'chirality.session/v3', persona: 'WORKING_ITEMS' },
+  { persona: 'HELPS_HUMANS' },
+  {}
+])('rejects mismatched or missing canonical reconciliation role before sending: %j', async roleFields => {
+  state.create.mockResolvedValue({ sessionId: 'role-check', projectRoot: '/chosen/subfolder', persona: 'WORKING_ITEMS' });
+  state.boot.mockRejectedValue(new Error('boot response lost'));
+  await mount(); await type('Keep this request with its role'); await submit();
+  state.getSession.mockResolvedValue({ sessionId: 'role-check', projectRoot: '/chosen/subfolder', status: 'idle',
+    bootedAt: '2026-09-11T00:00:00Z', bootFingerprint: 'confirmed', engineSessionId: 'native', ...roleFields });
+  await submit();
+  expect(state.stream).not.toHaveBeenCalled();
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
+  expect(JSON.stringify(tree!.toJSON())).toContain('Chat context changed');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this request with its role');
+});
+
+
+it('shows a confirmed interruption alongside partial commentary and after reopening', async () => {
+  state.stream.mockImplementationOnce(async (_input, onEvent) => {
+    onEvent({ event: 'chat:delta', data: { text: 'Starting the requested work.' } });
+    onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
+  });
+  await mount(); await type('Begin work'); await submit();
+  expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
+  expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
+  expect(tree!.root.findAllByProps({ className: 'chat-runtime-error' })).toHaveLength(0);
+  const projection = resumableProjection('interrupted-history');
+  projection.transcript.items = [
+    { key: 'partial', kind: 'message', role: 'assistant', status: 'started', title: 'Assistant', timestamp: '2026-09-09T00:00:01Z', eventId: 'partial', eventType: 'message.delta', turnId: 'cancelled', text: 'Starting the requested work.' },
+    { key: 'stop', kind: 'terminal', status: 'interrupted', title: 'Turn interrupted', timestamp: '2026-09-09T00:00:02Z', eventId: 'stop', eventType: 'turn.interrupted', turnId: 'cancelled' }
+  ];
+  await act(async () => tree!.update(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection }} />));
+  expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
+  expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
 });

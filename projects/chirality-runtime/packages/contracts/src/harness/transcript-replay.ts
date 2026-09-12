@@ -38,6 +38,7 @@ export type TranscriptItem = {
   eventType: HarnessEventType;
   turnId?: string;
   text?: string;
+  attachments?: string[];
   summary?: string;
   toolName?: string;
   artifact?: TranscriptArtifactLink;
@@ -232,12 +233,35 @@ export function deriveTranscriptView(
   session?: SessionRecord
 ): TranscriptView {
   const items: TranscriptItem[] = [];
+  const bootTurns = new Set(events.filter(event => event.type === "turn.accepted" && event.data.boot === true).map(turnKey));
   const assistantCompletionKeys = completedAssistantKeys(events);
+  // Older adapters also emitted a user message event. Prefer that record to
+  // avoid duplicating the same accepted input during mixed-version replay.
+  const explicitUserTurns = new Set(events.filter(event =>
+    ['message.accepted', 'message.queued', 'message.started', 'message.completed'].includes(event.type) &&
+    messageRole(event) === 'user' && Boolean(readString(event.data.text) ?? readString(event.data.message))
+  ).map(turnKey));
+  const acceptedAttachments = new Map(events.filter(event => event.type === 'turn.accepted')
+    .map(event => [turnKey(event), readStringArray(event.data.attachments)]));
   const deltaItems = new Map<string, TranscriptItem>();
   let currentTerminalStatus: TranscriptView['terminalStatus'];
 
   for (const event of events) {
     const data = event.data;
+    if (bootTurns.has(turnKey(event))) continue;
+
+    if (event.type === 'turn.accepted' && !explicitUserTurns.has(turnKey(event))) {
+      const text = readString(data.message) ?? readString(data.text);
+      const attachments = readStringArray(data.attachments);
+      // Missing historical input is absence of evidence, never invented prose.
+      if (text || attachments.length) items.push({
+        key: event.eventId, kind: 'message', role: 'user', status: 'accepted',
+        title: 'User', timestamp: event.timestamp, eventId: event.eventId,
+        eventType: event.type, turnId: event.turnId, text,
+        ...(attachments.length ? { attachments } : {})
+      });
+      continue;
+    }
 
     if (
       event.type === 'message.accepted' ||
@@ -258,6 +282,8 @@ export function deriveTranscriptView(
         eventType: event.type,
         turnId: event.turnId,
         text,
+        ...(role === 'user' ? { attachments: readStringArray(data.attachments).length
+          ? readStringArray(data.attachments) : acceptedAttachments.get(turnKey(event)) ?? [] } : {}),
         summary: text ? undefined : event.type
       });
       continue;

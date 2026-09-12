@@ -22,6 +22,8 @@ export interface RuntimeSessionRecord extends SessionRecord {
   instructionBasisId?: string;
   parentSessionId?: string;
   engineSelection: EngineSelection;
+  /** Session-fixed reasoning effort chosen from the authenticated catalog; additive, no schema bump. */
+  reasoningEffort?: string;
   engineSessionId?: string;
   residencyEpoch?: string;
   status: "idle" | "running" | "completed" | "failed" | "interrupted";
@@ -53,6 +55,8 @@ export interface CreateSessionRequest {
   permissionMode?: "readOnly" | "ask" | "workspaceWrite" | "bypass";
   selectedMethods?: readonly MethodReference[];
   engineSelection?: EngineSelection;
+  /** Catalog choice resolved by the daemon session policy; mutually exclusive with explicit engineSelection. */
+  modelSelection?: { model: string; reasoningEffort: string };
   persona?: string;
   mode?: string;
   parentSessionId?: string;

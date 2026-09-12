@@ -27,6 +27,10 @@ export interface LiveHostedAuthority {
 
 export type HostedIdentityFenceReason = "sign-out" | "switch" | "revoke" | "identity-change";
 
+export type HostedIdentityBindingObservation =
+  | { state: "absent" }
+  | { state: "active" | "fenced"; accountId: string; accountEpoch: number; fenceReason: HostedIdentityFenceReason | null };
+
 interface BindingRecord {
   schema: typeof SCHEMA;
   accountId: string;
@@ -153,7 +157,32 @@ export class HostedIdentityBindingStore {
     if (!root?.isDirectory() || root.isSymbolicLink() || await realpath(this.options.canonicalRoot).catch(() => undefined) !== this.options.canonicalRoot
       || BigInt(root.dev) !== this.rootIdentity.device || BigInt(root.ino) !== this.rootIdentity.inode) { this.poisoned = true; throw custodyError(); }
     const disk = await HostedIdentityBindingStore.readRecord(this.recordPath);
-    if (JSON.stringify(disk) !== JSON.stringify(this.record)) { this.poisoned = true; throw custodyError(); }
+    if (JSON.stringify(disk) === JSON.stringify(this.record)) return;
+    // Several store instances of one runtime process share this record (each
+    // admitted candidate opens its own). A digest-valid record that continues
+    // this instance's lineage is adopted; anything else is custody loss.
+    if (!HostedIdentityBindingStore.lineageSuccessor(this.record, disk)) { this.poisoned = true; throw custodyError(); }
+    this.record = disk;
+  }
+
+  private static lineageSuccessor(prior: BindingRecord | undefined, disk: BindingRecord | undefined): disk is BindingRecord {
+    if (!disk || !prior) return false;
+    return disk.canonicalRoot === prior.canonicalRoot && disk.policyDigest === prior.policyDigest && disk.accountId === prior.accountId && disk.accountEpoch >= prior.accountEpoch;
+  }
+
+  /**
+   * Re-reads the durable record under custody checks. Reports whether the
+   * binding is still active and at which coordinate, so an admission bound to
+   * an earlier epoch can learn that it was fenced by another store instance.
+   */
+  observe(signal?: AbortSignal): Promise<HostedIdentityBindingObservation> {
+    const run = this.serial.then(async () => {
+      abortIfRequested(signal); await this.assertCustody();
+      const record = this.record;
+      return record ? { state: record.state, accountId: record.accountId, accountEpoch: record.accountEpoch, fenceReason: record.fenceReason } as const : { state: "absent" } as const;
+    });
+    this.serial = run.then(() => {}, () => {});
+    return run;
   }
 
   private async acquireLock(): Promise<() => Promise<void>> {

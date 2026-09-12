@@ -1,0 +1,7 @@
+# Supplier build and calibrated account-free qualification — PASS
+
+One offline enclosed build passed with only the approved base-policy file change. Raw codex: `/private/tmp/chirality-supplier-root-directory-fix-20260911-01/artifact/codex`, SHA256 `d93489389a5de4d7b6579314948ea6a07a440f20799cf3ad65e8adabfb3ed233`,762253256bytes. Official host unchanged: `3eca39bb7f93315fab6b0dec2334381c0f50a2ccda113ec482fb815f16072a5c`. Original source/cache/target/artifact inputs passed preservation checks.
+
+Six direct generated-policy probes and six actual-pair shell operation/denial turns passed. V6 overall interruption FAIL is preserved: raw turn/interrupt intentionally leaves background unified-exec sessions. The separately reviewed lifecycle V2 passed actual EOF retirement, fresh-worker exact thread resume and real README read; both clean exits and all observed children retired within68.20ms/55.85ms against1000ms bounds, with no emergency signaling. All5 approved Rust filters passed14 tests; source/binary identities remained unchanged afterward.
+
+Final result and evidence hashes: `/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/RETURN_FINAL.json`. Earlier stopped return and every failed fixture/run remain retained. No supplier adoption, signing, App build or authenticated native/account operation occurred. This is supplier EOF/new-worker/resume evidence, not authenticated Runtime authority/census qualification. Parent owns the next source/provenance/package acceptance. TASK / Type2, no delegation.

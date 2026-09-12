@@ -12,8 +12,9 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
 import { SelectedSessionReplayLens } from '../../components/woven-dialogue/selected-session-replay-lens';
 import { buildSelectedSessionReplayProjection } from '../../lib/woven-dialogue/selected-session-replay';
 
-function replayProjection() {
+function replayProjection(sessionOverrides: Record<string, unknown> = {}) {
   const session = {
+    ...sessionOverrides,
     sessionId: 'recorded-session',
     projectRoot: '/repo/project',
     persona: 'WORKING_ITEMS',
@@ -84,7 +85,8 @@ describe('SelectedSessionReplayLens', () => {
       />
     );
 
-    expect(html).toContain('Replay — read-only');
+    expect(html).toContain('Recorded chat · read-only');
+    expect(html).toContain('<summary>Inspect recorded session</summary>');
     expect(html).toContain('recorded-session');
     expect(html).toContain('primary-live-session');
     expect(html).toContain('session:recorded-session/events');
@@ -92,6 +94,26 @@ describe('SelectedSessionReplayLens', () => {
     expect(html).toContain('recorded-model');
     expect(html).toContain('Recorded runtime status');
     expect(html).toContain('Return to primary dialogue');
+  });
+
+  it('renders the recorded reasoning effort under the model only when the record carries it', () => {
+    const withEffort = renderToStaticMarkup(
+      <SelectedSessionReplayLens
+        state={{ status: 'READY', projection: replayProjection({ reasoningEffort: 'low' }) }}
+        primarySessionId="primary-live-session"
+        onReturnToPrimary={() => {}}
+      />
+    );
+    expect(withEffort).toContain('<dt>Recorded model selection</dt><dd>recorded-model</dd><dt>Reasoning</dt><dd>low</dd>');
+
+    const withoutEffort = renderToStaticMarkup(
+      <SelectedSessionReplayLens
+        state={{ status: 'READY', projection: replayProjection() }}
+        primarySessionId="primary-live-session"
+        onReturnToPrimary={() => {}}
+      />
+    );
+    expect(withoutEffort).not.toContain('<dt>Reasoning</dt>');
   });
 
   it('exposes no historical mutation controls', () => {

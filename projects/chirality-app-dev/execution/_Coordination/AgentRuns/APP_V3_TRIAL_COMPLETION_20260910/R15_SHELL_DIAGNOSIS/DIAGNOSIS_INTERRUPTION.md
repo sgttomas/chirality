@@ -1,0 +1,33 @@
+# Actual-pair V6 interruption diagnosis
+
+Read-only Type2 return; no supplier/fixture execution, source changes, build or live account reads. Basis: preserved pair-run-v6 result/summary, shell-fixture-v6.mjs, exact compiled source under /private/tmp/chirality-supplier-root-directory-fix-20260911-01/source/codex-rs (S below), current Runtime source (R = projects/chirality-runtime). Derivative evidence, qualification remains open.
+
+## Finding
+
+The failed assertion requires semantics stronger than raw turn/interrupt provides. This is explicit upstream lifecycle behavior, not presently evidence requiring another supplier patch. Preserve V6 FAIL and six actual pair tool passes plus six direct policy passes as separate results. Do not relabel the failed run PASS or infer Runtime cleanup from raw terminal alone.
+
+Evidence: the actual interrupt request used code-mode exec awaiting tools.exec_command with cmd /bin/sleep 30, login false, yield_time_ms10000. Exact interrupted terminal was turn01a092d7-0624-7a40-ba25-8513b083d494. Sleep PID1394 remained parented to AppServer1369, with its own process group1394; host1379 likewise had its own group1379. Fixture line33 waits five seconds after raw terminal and asserts child absence while keeping that same AppServer/thread alive. It never reaches its next-turn or stdin-close success path. result.json records fallback SIGTERM for1369/1379/1394; no cleanup error entry is present. Overall FAIL is specifically interrupted child remains, not proof that fallback cleanup itself failed.
+
+## Precise supplier path
+
+1. S/app-server/src/request_processors/turn_processor.rs1437-1480 validates active turn identity, records pending interrupt response, submits Op::Interrupt; acknowledgement waits for TurnAborted.
+2. S/core/src/session/handlers.rs60 calls interrupt_task only. session/mod.rs4152 calls abort_all_tasks(Interrupted). tasks/mod.rs894 onward cancels task token, optionally interrupts code-mode cells, waits graceful task handling, aborts task and emits TurnAborted. That is turn termination, not a process-tree retirement attestation.
+3. S/core/src/unified_exec/process_manager.rs526 explicitly persists live sessions before the initial yield wait so interrupting the turn cannot drop the final Arc and terminate the background process. Thus the observed sleep survives by design even though exec had not yet returned its first yield to the model.
+4. Code-mode cell cancellation is additionally gated by CodeModeInterrupt (tasks/mod.rs898-909; features/src/lib.rs917 default false). tools/code_mode/mod.rs145 invokes cell termination, not terminate_all_processes. Merely enabling this feature is neither a demonstrated shell-cleanup solution nor proposed here.
+5. Separate cleanup operations exist: handlers.rs64 clean_background_terminals -> tasks/mod.rs873 close_unified_exec_processes -> process_manager.rs1520 terminate_all_processes. App Server exposes thread/backgroundTerminals/clean and experimental terminate/list paths. These are distinct from raw turn/interrupt; adding one to a test would test another contract, not reproduce current Runtime automatically.
+
+## Runtime lifecycle and stdin-close path
+
+R/packages/daemon/src/codex-supervisor.ts596 requests native interruption and awaits entry.result (genuine terminal). R/packages/core/src/delegated-runtime.ts then awaits retire before terminalize/publication. Supervisor retire601 closes session, joins result, runs cleanup. CodexSession.close calls fail and awaits transport closure (codex-session.ts235-247/close); this internal closure is not itself a successful user terminal.
+
+Actual authenticated v2 transport cleanup is retireAuthenticatedSupplierGroup (codex-authenticated-transport.ts155 onward): closeInput; one-second EOF grace; owned-group TERM; one-second grace; owned-group KILL; leader observation/reap and bounded group verification. Supervisor observeTransport adds before/after descendant census and rejects surviving detached, changed-identity, owned-group or failed-census state. Since sleep and host have separate groups, owned supplier-group signaling alone cannot establish their cleanup; the post-close census remains essential and must not be weakened.
+
+Supplier stdin-close has a real cleanup path: S/app-server/src/lib.rs1061-1081 treats stdio connection closure as processor-loop exit; lines1240-1248 drain gates/background tasks and call shutdown_threads. request_processors/thread_processor.rs1430 invokes shutdown_all_threads_bounded(10s), which submits thread shutdown. core/src/session/handlers.rs399 shutdown_session_runtime aborts tasks, then explicitly terminates all unified-exec processes (410) and shuts down code mode. Therefore orderly EOF is a source-supported means of cleaning stored exec children. It is not yet empirically qualified for this actual pair under Runtime's shorter EOF grace/escalation deadlines. V6 never tested it before failure cleanup.
+
+## Smallest faithful continuation proposal
+
+No source patch or feature toggle. Preserve all existing results. Add a narrowly scoped new immutable qualification run using the same exact binary/official-host pair, fake provider, synthetic account-free roots and policy: create/resume thread; start one /bin/sleep30; observe exact owned child; raw interrupt and exact interrupted terminal; immediately perform the actual Runtime retirement sequence (prefer existing authenticated transport/native grouped-child retirement machinery with controlled inputs), including bounded EOF/TERM/KILL, leader reap, and existing descendant guards. Require sleep and host gone before accepting Runtime terminal. Never count fixture emergency cleanup as successful product retirement.
+
+Then acquire a genuinely fresh worker, resume the preserved thread through Runtime's restart/continuity preparation (supervisor.ts496-498), perform one bounded README read, and retire cleanly. Record exact IDs, group identities, timing and which cleanup phase succeeded. A smaller raw EOF-only probe can isolate supplier graceful shutdown, but must be labelled supplier-shutdown evidence and cannot substitute for actual Runtime deadline/group/authority qualification. Existing six read/write/negative pair cases need not be duplicated just to diagnose this lifecycle gap.
+
+If actual retirement fails because detached children outlive EOF grace, retain failure and diagnose that specific shutdown timing/path before proposing repair. Do not weaken census, infer terminal from interrupt intent, broaden signal authority, bypass account checks, or claim next-turn/authority continuity from the six earlier successful turns. Parent owns qualification calibration and authorization; no continuation executed by this worker.

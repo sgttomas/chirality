@@ -26,6 +26,8 @@ export type EngineDescriptor = {
 export type AgentEngineRunInput = {
   /** Modern Runtime coordinators supply this; legacy adapters may omit it. */
   projectId?: string;
+  /** Cancellation intent; adapters still require genuine terminal settlement. */
+  signal?: AbortSignal;
   session: SessionRecord;
   message: string;
   opts: ResolvedOpts;
@@ -67,6 +69,8 @@ export interface AgentEnginePort {
   readonly descriptor: EngineDescriptor;
   /** @deprecated Use descriptor.adapterId. */
   readonly subject: EngineAdapterSubject;
+  /** Adapter latches input.signal through acquisition and terminal settlement. */
+  readonly handlesAbortSignal?: boolean;
   preflight(input: AgentEngineRunInput): Promise<void>;
   startTurn(input: AgentEngineRunInput): AsyncIterable<UIEvent>;
   interrupt(sessionId: string): Promise<void>;

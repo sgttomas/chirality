@@ -192,7 +192,7 @@ describe('ShellFrame runtime connectivity indicator', () => {
     expect(findRuntimeDot(tree)?.props.className).toBe(
       'shell-runtime-dot shell-runtime-dot--ready'
     );
-    expect(textOf(chip as renderer.ReactTestInstance)).toBe('runtimeconnected');
+    expect(textOf(chip as renderer.ReactTestInstance)).toBe('connected');
   });
 
   it('shows an offline runtime with the failure reason in the title', async () => {
@@ -239,7 +239,7 @@ describe('ShellFrame runtime connectivity indicator', () => {
       'shell-runtime-chip shell-runtime-chip--pending'
     );
     expect(textOf(findRuntimeChip(tree) as renderer.ReactTestInstance)).toBe(
-      'runtimeconnecting'
+      'connecting'
     );
   });
 
@@ -331,7 +331,7 @@ describe('ShellFrame runtime connectivity indicator', () => {
 
     const chip = findRuntimeChip(tree);
     expect(chip?.props.className).toBe('shell-runtime-chip shell-runtime-chip--ready');
-    expect(textOf(chip as renderer.ReactTestInstance)).toBe('runtimeconnected');
+    expect(textOf(chip as renderer.ReactTestInstance)).toBe('connected');
     expect(chip?.props.title).toBe(
       'Runtime daemon connected. Last check failed: socket refused'
     );
@@ -351,7 +351,7 @@ describe('ShellFrame runtime connectivity indicator', () => {
 
     const chip = findRuntimeChip(tree);
     expect(chip?.props.className).toBe('shell-runtime-chip shell-runtime-chip--ready');
-    expect(textOf(chip as renderer.ReactTestInstance)).toBe('runtimeconnected');
+    expect(textOf(chip as renderer.ReactTestInstance)).toBe('connected');
     expect(chip?.props.title).toBe(
       'Runtime daemon connected. Last check failed: Runtime daemon is unreachable'
     );

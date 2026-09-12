@@ -15,14 +15,14 @@ describe('primary ActivityStrip projection', () => {
     const malformed = { ...event('turn.started', 5), turnId } as unknown as HarnessEvent;
     expect(derivePrimaryTurnActivity([...completed(), malformed], 'primary')).toBeNull();
     const html = renderToStaticMarkup(<ActivityStrip primarySessionId="primary" events={[...completed(), malformed]} running={false} onOpenDetails={() => {}} />);
-    expect(html).toContain('Primary turn activity unavailable');
-    expect(html).toContain('Turn duration unavailable');
+    expect(html).not.toContain('Primary turn activity unavailable');
+    expect(html).not.toContain('Turn duration unavailable');
     expect(html).not.toContain('Last turn:');
     expect(html).not.toContain('1 actions');
   });
   it.each([42, {}, null])('does not apply string operations to malformed primary identity %j', identity => {
     const html = renderToStaticMarkup(<ActivityStrip primarySessionId={identity as unknown as string} events={completed()} running={false} onOpenDetails={() => {}} />);
-    expect(html).toContain('Primary turn activity unavailable');
+    expect(html).not.toContain('Primary turn activity unavailable');
   });
   it('ignores later other-session work even when turn and tool identities collide', () => {
     const primary = completed();
@@ -60,14 +60,14 @@ describe('primary ActivityStrip projection', () => {
     expect(derivePrimaryTurnActivity(events, 'primary')).toEqual({ actions: 1, children: 0, elapsed: undefined });
     const html = renderToStaticMarkup(<ActivityStrip primarySessionId="primary" events={events} running onOpenDetails={() => {}} />);
     expect(html).toContain('Working'); expect(html).toContain('1 actions · 0 children observed');
-    expect(html).toContain('Turn duration unavailable'); expect(html).not.toContain('Last turn:');
+    expect(html).not.toContain('Turn duration unavailable'); expect(html).not.toContain('Last turn:');
   });
   it.each(['turn.completed', 'turn.failed', 'turn.interrupted'] as const)('uses only the matching %s observation for elapsed', end => {
     expect(derivePrimaryTurnActivity([event('turn.started', 1), event(end, 4)], 'primary')?.elapsed).toBe(3000);
   });
   it('does not label a completed previous turn current when streaming starts before events arrive', () => {
     const html = renderToStaticMarkup(<ActivityStrip primarySessionId="primary" events={completed()} running onOpenDetails={() => {}} />);
-    expect(html).toContain('Working'); expect(html).toContain('Primary turn activity unavailable');
+    expect(html).toContain('Working'); expect(html).not.toContain('Primary turn activity unavailable');
     expect(html).not.toContain('1 actions'); expect(html).not.toContain('Last turn:');
   });
   it('preserves reconnect content, live region and Details callback without changing primary identity', () => {

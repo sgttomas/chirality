@@ -4,14 +4,24 @@ import { link, lstat, mkdir, open, realpath, rm } from "node:fs/promises";
 import { dirname, isAbsolute, join, resolve } from "node:path";
 import { RuntimeError } from "@chirality/runtime-contracts";
 import {
-  matchRuntimeSupportProfileV2, observeRuntimeSupportProfileV2, verifyPackagedRuntimeBasisV2,
+  matchRuntimeSupportProfileV2, observePackagedRuntimeBasisIdentityV2, observeRuntimeSupportProfileV2, verifyPackagedRuntimeBasisV2,
   type EmbeddedRuntimeVersionsV2, type RuntimeArtifactEntryV2, type RuntimeSupportProfileV2,
   type VerifiedPackagedRuntimeBasisV2
 } from "@chirality/runtime-core/runtime-conformance-v2";
 import { type HostedBootstrapRuntimeBootInput, type HostedBootstrapRuntimeHost } from "./hosted-bootstrap.js";
 import { startHostedPrivateBootstrapRuntimeHost } from "./hosted-private-entry.js";
+import type { RuntimeDaemonLogger } from "./runtime-daemon.js";
 import { inspectRuntimePurposeAcceptanceV2,inspectRuntimePurposeReleaseV2 } from "./runtime-conformance-v2-admission.js";
-import { inspectHostAccountSignedPeerIdentity, type VerifiedHostAccountPackagedIdentity } from "./host-account-release.js";
+import { inspectHostAccountSignedPeerIdentity, revalidateObservedSignedAppFiles, type VerifiedHostAccountPackagedIdentity } from "./host-account-release.js";
+
+/**
+ * Supplier request budget for the packaged release. The first `thread/start`
+ * in a fresh Codex home runs schema migrations and MCP startup; a request
+ * budget below that cost fails the session and revokes the account.
+ */
+export const PACKAGED_REQUEST_TIMEOUT_MS = 90_000;
+/** Turn budget; expiry interrupts the turn through the provider rather than failing the session. */
+export const PACKAGED_TURN_TIMEOUT_MS = 1_800_000;
 import {
   assertIssuedPrivateDirectoryChainV2,
   assertIssuedPackagedReleaseBasisV2,
@@ -111,7 +121,7 @@ async function inspectTrialSeal(input:{path:string;expectedSha256:string;outerIn
   for(const name of names){const check=value.checks[name];if(!exactKeys(check,["attempted","passed","evidenceSha256"])||check.attempted!==true||check.passed!==true||!digest(check.evidenceSha256))throw unavailable("TRIAL_SEAL_OBSERVATION_INVALID");}
   const identity=await inspect({executablePath:input.executablePath,resourcesPath:input.resourcesPath});
   if(value.mainCodeDirectoryHash!==identity.subject.cdHash||value.peerRequirementSha256!==hash(identity.effectivePeerRequirement))throw unavailable("TRIAL_SEAL_SUBJECT_MISMATCH");
-  return Object.freeze({path:input.path,sha256:source.sha256,mainCodeDirectoryHash:value.mainCodeDirectoryHash,peerRequirementSha256:value.peerRequirementSha256});
+  return Object.freeze({observation:Object.freeze({path:input.path,sha256:source.sha256,mainCodeDirectoryHash:value.mainCodeDirectoryHash,peerRequirementSha256:value.peerRequirementSha256}),observedFiles:Object.freeze([...(identity.observedFiles??[])])});
 }
 
 async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;embeddedRuntime:EmbeddedRuntimeVersionsV2;executablePath?:string},observe:typeof observeRuntimeSupportProfileV2,issuance:"production"|"controlled-test",hooks?:{captureFailure?:(error:unknown)=>void;beforeFinalRevalidation?:()=>Promise<void>;inspectSignedPeerIdentity?:TrialSealInspector}):Promise<HostedPackagedReleaseLoadResult>{
@@ -121,11 +131,15 @@ async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;emb
     await assertPrivateChain(input.runtimeDirectory,anchorRoot);
     if(!anchorRootInfo.isDirectory()||anchorRootInfo.uid!==(process.getuid?.()??-1)||(anchorRootInfo.mode&0o077)!==0||await realpath(anchorRoot)!==anchorRoot)throw unavailable("INVALID_RELEASE_ANCHOR_CUSTODY");
     const anchorPath=join(anchorRoot,"release-anchor.json"),anchorSource=await stablePrivateFile(anchorPath);
-    const anchor=inspectAnchor(JSON.parse(anchorSource.bytes.toString("utf8"))),verified=await verifyPackagedRuntimeBasisV2({resourcesRoot:input.resourcesRoot});
+    // Sealed-bundle basis: the payload's shape, sizes and filesystem identities are checked against the manifests, and the
+    // manifests, governance records and anchor are hashed; payload bytes are not read. Their integrity is the packaged
+    // app's code signature, which the host verifies (codesign --verify --strict --deep) at trial-seal inspection and again
+    // before the host-account authority loads the native addon.
+    const anchor=inspectAnchor(JSON.parse(anchorSource.bytes.toString("utf8"))),verified=await verifyPackagedRuntimeBasisV2({resourcesRoot:input.resourcesRoot,payloadBytes:"sealed"});
     if(verified.inventorySha256!==anchor.outerInventorySha256)throw unavailable("ANCHOR_INVENTORY_MISMATCH");
     const observedCandidates:RuntimeSupportProfileV2[]=[];
     for(const candidate of verified.payload.supportProfiles){
-      try{const observed=await observe({embeddedRuntime:input.embeddedRuntime,basis:verified,supplierVersion:candidate.supplier.version,appServerProtocolDigest:candidate.supplier.appServerProtocolDigest,immutableSystemRoots:candidate.immutableSystemRoots,nativePolicyIdentityVersion:candidate.compiler.nativePolicyIdentityVersion});if(observed.profileDigest===candidate.profileDigest)observedCandidates.push(observed);}catch{}
+      try{const observed=await observe({embeddedRuntime:input.embeddedRuntime,basis:verified,supplierVersion:candidate.supplier.version,appServerProtocolDigest:candidate.supplier.appServerProtocolDigest,immutableSystemRoots:candidate.immutableSystemRoots,nativePolicyIdentityVersion:candidate.compiler.nativePolicyIdentityVersion,payloadBytes:"sealed"});if(observed.profileDigest===candidate.profileDigest)observedCandidates.push(observed);}catch{}
     }
     if(observedCandidates.length!==1)throw unavailable("UNSUPPORTED_RUNTIME");
     const supportProfile=matchRuntimeSupportProfileV2(observedCandidates[0]!,verified.payload.supportProfiles);
@@ -138,19 +152,28 @@ async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;emb
     if(loginRelease.disposition!=="qualified"||(anchor.schema==="chirality-runtime-release-anchor/v3")!==(workerRelease.disposition==="local-human-trial"))throw unavailable("RELEASE_DISPOSITION_MISMATCH");
     const observationPath=join(anchorRoot,"trial-seal-observation.json"),inspect=hooks?.inspectSignedPeerIdentity??inspectHostAccountSignedPeerIdentity;
     const trialSealObservation=workerRelease.disposition==="local-human-trial"
-      ? await inspectTrialSeal({path:observationPath,expectedSha256:anchor.postSealObservationSha256!,outerInventorySha256:verified.inventorySha256,payloadDigest:verified.payloadDigest,executablePath:input.executablePath??"",resourcesPath:verified.resourcesRoot},inspect)
+      ? (await inspectTrialSeal({path:observationPath,expectedSha256:anchor.postSealObservationSha256!,outerInventorySha256:verified.inventorySha256,payloadDigest:verified.payloadDigest,executablePath:input.executablePath??"",resourcesPath:verified.resourcesRoot},inspect)).observation
       : undefined;
     await hooks?.beforeFinalRevalidation?.();
-    const finalAnchor=await stablePrivateFile(anchorPath),finalVerified=await verifyPackagedRuntimeBasisV2({resourcesRoot:input.resourcesRoot});
-    if(finalAnchor.sha256!==anchorSource.sha256||finalVerified.inventorySha256!==verified.inventorySha256||finalVerified.payloadDigest!==verified.payloadDigest)throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
+    // The payload was observed in sealed mode above. The final pass rechecks every packaged entry by filesystem
+    // identity, the same boundary the issued-basis registry applies afterwards; the bundle's code signature carries byte integrity.
+    const finalAnchor=await stablePrivateFile(anchorPath);
+    if(finalAnchor.sha256!==anchorSource.sha256||await observePackagedRuntimeBasisIdentityV2(verified)!==verified.identityDigest)throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
+    const finalVerified=verified;
     const finalLogin=await snapshotPurpose({resourcesRoot:finalVerified.resourcesRoot,snapshotRoot,purpose:"login",anchor:anchor.login,entries:finalVerified.inventory.governance}),finalWorker=await snapshotPurpose({resourcesRoot:finalVerified.resourcesRoot,snapshotRoot,purpose:"worker",anchor:anchor.worker,entries:finalVerified.inventory.governance});
     if(JSON.stringify(finalLogin)!==JSON.stringify(login)||JSON.stringify(finalWorker)!==JSON.stringify(worker))throw unavailable("PACKAGED_RELEASE_BASIS_CHANGED");
     const finalLoginRelease=await verifyPurposeAcceptance({purpose:"login",basis:finalLogin,payloadDigest:finalVerified.payloadDigest,profile:supportProfile});const finalWorkerRelease=await verifyPurposeAcceptance({purpose:"worker",basis:finalWorker,payloadDigest:finalVerified.payloadDigest,profile:supportProfile});
     if(finalLoginRelease.disposition!==loginRelease.disposition||finalWorkerRelease.disposition!==workerRelease.disposition)throw unavailable("RELEASE_DISPOSITION_CHANGED");
-    const finalTrialSealObservation=trialSealObservation?await inspectTrialSeal({path:observationPath,expectedSha256:anchor.postSealObservationSha256!,outerInventorySha256:finalVerified.inventorySha256,payloadDigest:finalVerified.payloadDigest,executablePath:input.executablePath!,resourcesPath:finalVerified.resourcesRoot},inspect):undefined;
+    const finalTrialSeal=trialSealObservation?await inspectTrialSeal({path:observationPath,expectedSha256:anchor.postSealObservationSha256!,outerInventorySha256:finalVerified.inventorySha256,payloadDigest:finalVerified.payloadDigest,executablePath:input.executablePath!,resourcesPath:finalVerified.resourcesRoot},inspect):undefined;
+    const finalTrialSealObservation=finalTrialSeal?.observation;
     if(JSON.stringify(finalTrialSealObservation??null)!==JSON.stringify(trialSealObservation??null))throw unavailable("TRIAL_SEAL_OBSERVATION_CHANGED");
     const basis=deepFreeze(structuredClone({schema:"chirality-hosted-packaged-release-basis/v2" as const,basisDigest,verified:finalVerified,supportProfile,instructionRoot:join(verified.resourcesRoot,"instruction-root"),nativeAddonPath:join(verified.resourcesRoot,"native/chirality_native_admission.node"),supplierExecutablePath:join(verified.resourcesRoot,"supplier/codex"),preNativeFilesystemObservation:{runtimeDirectory:input.runtimeDirectory,anchorRoot,evidence:"canonical-owner-mode-chain-observed" as const},login:finalLogin,worker:finalWorker,workerDisposition:workerRelease.disposition,...(finalTrialSealObservation?{trialSealObservation:finalTrialSealObservation}:{})}));
-    const revalidateTrialSeal=finalTrialSealObservation?async()=>{const current=await inspectTrialSeal({path:observationPath,expectedSha256:finalTrialSealObservation.sha256,outerInventorySha256:finalVerified.inventorySha256,payloadDigest:finalVerified.payloadDigest,executablePath:input.executablePath!,resourcesPath:finalVerified.resourcesRoot},inspect);if(JSON.stringify(current)!==JSON.stringify(finalTrialSealObservation))throw unavailable("TRIAL_SEAL_OBSERVATION_CHANGED");}:undefined;
+    // Single-boundary trial-seal revalidation: the signed-app inspection (codesign, fuses, asar) ran at issuance; afterwards the
+    // small observation record is re-read and every signed-app file it was bound to is compared by filesystem identity.
+    const revalidateTrialSeal=finalTrialSeal?async()=>{
+      const current=await stablePrivateFile(observationPath);if(current.sha256!==finalTrialSeal.observation.sha256)throw unavailable("TRIAL_SEAL_OBSERVATION_CHANGED");
+      await revalidateObservedSignedAppFiles(finalTrialSeal.observedFiles,"TRIAL_SEAL_SUBJECT_CHANGED");
+    }:undefined;
     await registerIssuedPackagedReleaseBasisV2(basis,{issuance,resourcesRoot:finalVerified.resourcesRoot,runtimeDirectory:input.runtimeDirectory,anchorRoot,anchorPath,anchorSha256:finalAnchor.sha256,
       inventorySha256:finalVerified.inventorySha256,payloadDigest:finalVerified.payloadDigest,profileDigest:supportProfile.profileDigest,basisDigest,login:basis.login,worker:basis.worker,workerDisposition:basis.workerDisposition,...(basis.trialSealObservation?{trialSealObservation:basis.trialSealObservation,revalidateTrialSeal}:{})});
     return {status:"ready",basis};
@@ -164,7 +187,7 @@ async function loadBasis(input:{resourcesRoot:string;runtimeDirectory:string;emb
 /** Pure filesystem/support verification. It must complete before any native addon or XPC authority mechanism is loaded. */
 export function loadPackagedHostedReleaseBasis(input:{resourcesRoot:string;runtimeDirectory:string;embeddedRuntime:EmbeddedRuntimeVersionsV2;executablePath?:string}):Promise<HostedPackagedReleaseLoadResult>{return loadBasis(input,observeRuntimeSupportProfileV2,"production");}
 
-type PackagedStartInput={bootstrap:BootstrapEnabled;basis:Readonly<HostedPackagedReleaseBasisV2>;executablePath:string};
+type PackagedStartInput={bootstrap:BootstrapEnabled;basis:Readonly<HostedPackagedReleaseBasisV2>;executablePath:string;/** Host diagnostic sink forwarded unchanged to the private entry; absent means discarded. */logger?:RuntimeDaemonLogger};
 type PrivateStarter=(input:Parameters<typeof startHostedPrivateBootstrapRuntimeHost>[0])=>Promise<HostedBootstrapRuntimeHost>;
 async function startPackaged(input:PackagedStartInput,revalidate:(basis:Readonly<HostedPackagedReleaseBasisV2>)=>Promise<void>|void,start:PrivateStarter):Promise<HostedBootstrapRuntimeHost>{
   if(!input||input.bootstrap?.enabled!==true||!input.basis||typeof input.basis!=="object")throw unavailable("PACKAGED_BOOTSTRAP_BASIS_MISMATCH");
@@ -172,11 +195,11 @@ async function startPackaged(input:PackagedStartInput,revalidate:(basis:Readonly
   await revalidate(input.basis);
   if(input.basis.supportProfile.compiler.nativePolicyIdentityVersion!==11)throw unavailable("STAGE_C_COMPILER_UNAVAILABLE");
   if(input.bootstrap.runtimeDirectory!==dirname(dirname(dirname(input.basis.login.recordPath)))||input.bootstrap.instructionRoot!==input.basis.instructionRoot||input.bootstrap.nativeAddonPath!==input.basis.nativeAddonPath)throw unavailable("PACKAGED_BOOTSTRAP_BASIS_MISMATCH");
-  return start({bootstrap:{...input.bootstrap,artifactInventory:undefined},privateComposition:{runtimeDirectory:input.bootstrap.runtimeDirectory,
+  return start({bootstrap:{...input.bootstrap,artifactInventory:undefined},...(input.logger===undefined?{}:{logger:input.logger}),privateComposition:{runtimeDirectory:input.bootstrap.runtimeDirectory,
     supplierExecutablePath:input.basis.supplierExecutablePath,nativeAddonPath:input.basis.nativeAddonPath,instructionRoot:input.basis.instructionRoot,
     compatibility:{compatibilityIdentity:"root-runtime-1",contractBasisSha256:"6005a00695a96eb46e59896f01653d3504ef85b35a7d28509bba8d33171425e2"},
     commandNetworkPosture:"off",protectedPaths:[input.bootstrap.runtimeDirectory,join(input.bootstrap.runtimeDirectory,"release-authority"),join(input.bootstrap.runtimeDirectory,"release-basis")],
-    immutableReadRoots:[...input.basis.supportProfile.immutableSystemRoots],turnTimeoutMs:600_000,releaseV2:{basis:input.basis},hostAccount:{executablePath:input.executablePath,resourcesPath:input.basis.verified.resourcesRoot}}});
+    immutableReadRoots:[...input.basis.supportProfile.immutableSystemRoots],requestTimeoutMs:PACKAGED_REQUEST_TIMEOUT_MS,turnTimeoutMs:PACKAGED_TURN_TIMEOUT_MS,releaseV2:{basis:input.basis},hostAccount:{executablePath:input.executablePath,resourcesPath:input.basis.verified.resourcesRoot}}});
 }
 
 /** Packaged startup consumes only a current loader-issued basis and derives the fixed private v2 composition. */

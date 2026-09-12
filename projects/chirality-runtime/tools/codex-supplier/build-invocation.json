@@ -1,16 +1,17 @@
 {
-  "mode": "DEV local trial with only sha2:0.10.9 opt-level3; no optimized/public release claim",
+  "status": "EXECUTED; single approved offline build succeeded",
+  "cwd": "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/source",
   "argv": [
     "/usr/bin/sandbox-exec",
     "-f",
-    "/private/tmp/chirality-supplier-release-20260910-02/evidence/stageA-author/resume-target-metadata/execution.sb",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/build-enclosure.sb",
     "/usr/bin/env",
     "-i",
     "PATH=/Users/ryan/.rustup/toolchains/1.97.1-aarch64-apple-darwin/bin:/usr/bin:/bin:/usr/sbin:/sbin",
-    "HOME=/private/tmp/chirality-supplier-release-20260910-02/tmp",
-    "TMPDIR=/private/tmp/chirality-supplier-release-20260910-02/tmp",
-    "CARGO_HOME=/private/tmp/chirality-supplier-release-20260910-02/cargo-exec-diagnostic-01",
-    "CARGO_TARGET_DIR=/private/tmp/chirality-supplier-release-20260910-02/target",
+    "HOME=/private/tmp/chirality-supplier-root-directory-fix-20260911-01/tmp",
+    "TMPDIR=/private/tmp/chirality-supplier-root-directory-fix-20260911-01/tmp",
+    "CARGO_HOME=/private/tmp/chirality-supplier-root-directory-fix-20260911-01/cargo-home",
+    "CARGO_TARGET_DIR=/private/tmp/chirality-supplier-root-directory-fix-20260911-01/target",
     "LANG=C",
     "LC_ALL=C",
     "CARGO_TERM_COLOR=never",
@@ -24,7 +25,7 @@
     "cargo",
     "build",
     "--manifest-path",
-    "/private/tmp/chirality-supplier-release-20260910-02/source/codex-rs/cli/Cargo.toml",
+    "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/source/codex-rs/cli/Cargo.toml",
     "--bin",
     "codex",
     "--locked",
@@ -32,19 +33,17 @@
     "--target",
     "aarch64-apple-darwin"
   ],
-  "cwd": "/private/tmp/chirality-supplier-release-20260910-02/source",
-  "previousExecutable": {
-    "path": "/private/tmp/chirality-supplier-release-20260910-02/evidence/trial-supplier-build-03/artifact/codex",
-    "sha256": "0489a897c482dd03c79ee18055d796be5935c48c93a257f30c53141fec985100",
-    "size": 761944360
-  },
-  "sourceBeforeSha256": "bd0d820a8f6b1d8c016026ff4a58f1412ec9cdb59f6d1843c4826b5d9b1b3f3b",
-  "productionCut": "bef8889cefd0ecb64d18adc376d0c5f501f7bcb8cc63d00d8ee194fba19edf86",
-  "status": "completed exit0",
-  "sourceDelta": "final retained test-only source plus exact sha2 dev package override",
-  "changesSinceBuild03": [
-    "codex-rs/Cargo.toml",
-    "codex-rs/core/src/tools/handlers/multi_agents_tests.rs"
-  ],
-  "prebuildReviewSha256": "f912cf487e145c149e13d5174c0f90dd0a5924d66fb77a7777c39df30468c07b"
+  "artifact": "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/target/aarch64-apple-darwin/debug/codex",
+  "publishedRawArtifact": "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/artifact/codex",
+  "mode": "DEV local trial with only sha2:0.10.9 opt-level3; no optimized/public release claim",
+  "sourceDelta": "Only codex-rs/sandboxing/src/seatbelt_base_policy.sbpl; exact candidate SHA256 4461a10f2a11474f6b21463512f7e076f4543c92a7f6d87acbe6c2039890265f",
+  "stop": "First nonzero exit, signal, missing cache, unexpected source delta, policy failure, missing/zero tests, or residual child stops; preserve all outputs. No download/retry/profile relaxation.",
+  "execution": {
+    "exit": 0,
+    "seconds": 371.40189814567566,
+    "evidence": "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/evidence/build-result.json",
+    "sha256": "c0d0923a1df9905d9f24448fa5dcc90021528bd41381856c434649c92b4d63e0",
+    "preservedApprovedProposal": "/private/tmp/chirality-supplier-root-directory-fix-20260911-01/build-invocation.json",
+    "proposalSha256": "b2473c41ea47872635622b00a743bbb0dc069d1087ab97206d518095604ded7d"
+  }
 }

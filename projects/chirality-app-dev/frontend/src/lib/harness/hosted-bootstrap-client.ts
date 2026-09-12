@@ -2,6 +2,9 @@ import type {
   HostedBootstrapLoginStartResponse,
   HostedBootstrapStatus
 } from '@chirality/runtime-contracts';
+import type { HostedProjectInitializationResponse } from '../runtime-client/daemon-harness-port';
+
+export type { HostedProjectInitializationResponse };
 
 export type HostedBootstrapStatusResponse =
   | { registration: 'required' }
@@ -114,13 +117,15 @@ export function bindHostedBootstrapProject(
   );
 }
 
-export async function hydrateHostedBootstrapProject(
+/**
+ * Reads hosted account status through the signed Desktop bridge, walking the
+ * transient-retry ladder while the main-process account host is still coming
+ * up. Non-transient failures and exhausted retries surface unchanged.
+ */
+export async function getHostedBootstrapStatusWithRetry(
   projectRoot: string,
-  onBound: (binding: Extract<HostedProjectBindingResponse, { registration: 'registered' }>) => void,
   signal?: AbortSignal
 ): Promise<HostedBootstrapStatusResponse> {
-  const binding = await bindHostedBootstrapProject(projectRoot, signal);
-  if (binding.registration === 'registered') onBound(binding);
   for (let attempt = 0; ; attempt += 1) {
     try {
       return await getHostedBootstrapStatus(projectRoot, signal);
@@ -132,10 +137,20 @@ export async function hydrateHostedBootstrapProject(
   }
 }
 
+export async function hydrateHostedBootstrapProject(
+  projectRoot: string,
+  onBound: (binding: HostedProjectInitializationResponse) => void,
+  signal?: AbortSignal
+): Promise<HostedBootstrapStatusResponse> {
+  const binding = await bindHostedBootstrapProject(projectRoot, signal);
+  if (binding.registration === 'registered') onBound(binding);
+  return getHostedBootstrapStatusWithRetry(projectRoot, signal);
+}
+
 export function initializeHostedBootstrapProject(
   projectRoot: string,
   signal?: AbortSignal
-): Promise<Extract<HostedBootstrapStatusResponse, { registration: 'registered' }>> {
+): Promise<HostedProjectInitializationResponse> {
   return requestJson(
     '/api/harness/hosted-bootstrap/project/initialize',
     post(projectRoot, signal)

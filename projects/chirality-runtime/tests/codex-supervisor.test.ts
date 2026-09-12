@@ -5,11 +5,12 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { prepareCodexNativePolicy } from "../packages/daemon/src/codex-containment.js";
 import { DescendantTracker } from "../packages/core/src/descendant-tracker.js";
-import { CodexSupervisor, codexRuntimeConformanceConfigDigest, createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
+import { CodexSupervisor, CODEX_SUPERVISOR_BOUNDS, assertCodexSupervisorBounds, codexRuntimeConformanceConfigDigest, createControlledCodexSupervisorForTests } from "../packages/daemon/src/codex-supervisor.js";
+import { PACKAGED_REQUEST_TIMEOUT_MS, PACKAGED_TURN_TIMEOUT_MS } from "../packages/daemon/src/hosted-packaged-release.js";
 import { admitHostedControlledForTests } from "../packages/daemon/src/codex-supervisor-test-support.js";
 import * as daemonPublicSurface from "../packages/daemon/src/index.js";
 import { recordKey } from "@chirality/runtime-core";
-import type { WorkerContinuity } from "@chirality/runtime-contracts";
+import type { RuntimeError, WorkerContinuity } from "@chirality/runtime-contracts";
 
 let root: string;
 let identity: WorkerContinuity;
@@ -111,6 +112,26 @@ describe("Codex supervisor adapter without account/network use", () => {
     expect(() => process.kill(handle.pid, 0)).toThrow();
     supervisors.splice(supervisors.indexOf(s), 1); // Expected persistent diagnostic, no actual detached process was created.
   });
+  it("reports the turn's own failure and carries the reconciliation diagnostic as its cause", async () => {
+    const s = fixture(false, 300, undefined, false, "detached");
+    const unhandled: unknown[] = []; const onUnhandled = (reason: unknown) => { unhandled.push(reason); };
+    process.on("unhandledRejection", onUnhandled);
+    try {
+      const handle = await s.acquire("hung", JSON.stringify({ prompt: "hang" }));
+      const failure = await s.wait(handle.workerId, handle.generation).then(() => undefined, error => error as RuntimeError);
+      expect(failure).toMatchObject({ code: "ENGINE_UNAVAILABLE", message: expect.stringContaining("timed out"), details: { reason: "CODEX_PROTOCOL_FAILURE" } });
+      expect(failure?.cause).toMatchObject({ code: "ENGINE_UNAVAILABLE", details: { reason: "DESCENDANT_RECONCILIATION_REQUIRED", detachedCount: 1, detachedPids: [999991] } });
+      await expect(s.retire(handle.workerId, handle.generation)).rejects.toMatchObject({ details: { reason: "DESCENDANT_RECONCILIATION_REQUIRED" } });
+      await new Promise(resolve => setTimeout(resolve, 20));
+      expect(unhandled).toEqual([]);
+    } finally { process.off("unhandledRejection", onUnhandled); }
+    await expect(s.close()).rejects.toMatchObject({ details: { detachedCount: 1 } });
+    supervisors.splice(supervisors.indexOf(s), 1);
+  });
+  it("names the census failure in the reconciliation diagnostic", async () => {
+    const s = fixture(false, 1000, undefined, false, "census-failure");
+    await expect(s.acquire("no-census-text", JSON.stringify({ prompt: "hello" }))).rejects.toMatchObject({ details: { censusFailed: true, censusFailure: "fixture census failure" } });
+  });
   it("permits an observed clean closure while retaining the tracker's polling limitation", async () => {
     const s = fixture(false, 1000, undefined, false, "gone");
     const handle = await s.acquire("tracked", JSON.stringify({ prompt: "hello" }));
@@ -202,6 +223,90 @@ describe("Codex supervisor adapter without account/network use", () => {
   });
 });
 
+describe("supervisor budget bounds", () => {
+  const construct = (budgets: { requestTimeoutMs?: number; turnTimeoutMs?: number; maxWorkers?: number }) => () =>
+    createControlledCodexSupervisorForTests({ identity, model: "fixture-model", commandNetworkPosture: "off", ...budgets, async launch() { throw new Error("must not launch"); } });
+
+  it("admits the packaged release budgets and a turn budget up to one hour", () => {
+    expect(construct({ requestTimeoutMs: PACKAGED_REQUEST_TIMEOUT_MS, turnTimeoutMs: PACKAGED_TURN_TIMEOUT_MS })).not.toThrow();
+    expect(construct({ requestTimeoutMs: CODEX_SUPERVISOR_BOUNDS.requestTimeoutMs.max, turnTimeoutMs: CODEX_SUPERVISOR_BOUNDS.turnTimeoutMs.max })).not.toThrow();
+    expect(PACKAGED_TURN_TIMEOUT_MS).toBeGreaterThan(CODEX_SUPERVISOR_BOUNDS.requestTimeoutMs.max);
+  });
+
+  it("rejects each budget outside its own ceiling", () => {
+    const rejected = { code: "INVALID_REQUEST", message: "Invalid Codex supervisor bound" };
+    expect(construct({ turnTimeoutMs: CODEX_SUPERVISOR_BOUNDS.turnTimeoutMs.max + 1 })).toThrow(expect.objectContaining(rejected));
+    expect(construct({ requestTimeoutMs: CODEX_SUPERVISOR_BOUNDS.requestTimeoutMs.max + 1 })).toThrow(expect.objectContaining(rejected));
+    expect(() => assertCodexSupervisorBounds({ maxWorkers: CODEX_SUPERVISOR_BOUNDS.maxWorkers.max + 1 })).toThrow(expect.objectContaining(rejected));
+    expect(() => assertCodexSupervisorBounds({ maxWorkers: CODEX_SUPERVISOR_BOUNDS.maxWorkers.max })).not.toThrow();
+    expect(construct({ turnTimeoutMs: 0 })).toThrow(expect.objectContaining(rejected));
+    expect(construct({ requestTimeoutMs: 1.5 })).toThrow(expect.objectContaining(rejected));
+  });
+});
+
+describe("catalog-bound per-turn model and reasoning choice", () => {
+  const catalog = [
+    { model: "gpt-default", isDefault: true, defaultReasoningEffort: "high", supportedReasoningEfforts: ["medium", "high"] },
+    { model: "gpt-alt", isDefault: false, defaultReasoningEffort: "low", supportedReasoningEfforts: ["low", "medium"] }
+  ];
+  function catalogFixture(options: { modelCatalog?: typeof catalog; reasoningEffort?: string } = { modelCatalog: catalog, reasoningEffort: "high" }) {
+    const requests: { method: string; params: any }[] = []; let launches = 0;
+    const supervisor = createControlledCodexSupervisorForTests({ identity, model: "gpt-default", allowUnauthenticatedModel: true, requestTimeoutMs: 1000, turnTimeoutMs: 1000, ...options, async launch() {
+      launches++;
+      const stdin = new PassThrough(), stdout = new PassThrough(); let buffer = "";
+      const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+      stdin.on("data", chunk => {
+        buffer += String(chunk);
+        for (let newline = buffer.indexOf("\n"); newline >= 0; newline = buffer.indexOf("\n")) {
+          const request = JSON.parse(buffer.slice(0, newline)); buffer = buffer.slice(newline + 1);
+          requests.push({ method: request.method, params: request.params });
+          if (request.method === "initialize") send({ id: request.id, result: {} });
+          else if (request.method === "account/read") send({ id: request.id, result: { requiresOpenaiAuth: false, account: null } });
+          else if (request.method === "thread/start") send({ id: request.id, result: { thread: { id: "thread-catalog" }, approvalsReviewer: "auto_review", approvalPolicy: "never" } });
+          else if (request.method === "turn/start") {
+            send({ id: request.id, result: { turn: { id: "turn-catalog", status: "inProgress" } } });
+            send({ method: "item/completed", params: { threadId: "thread-catalog", turnId: "turn-catalog", item: { id: "item", type: "agentMessage", text: `used:${request.params.model}:${request.params.collaborationMode.settings.reasoning_effort}` } } });
+            send({ method: "turn/completed", params: { threadId: "thread-catalog", turn: { id: "turn-catalog", status: "completed" } } });
+          }
+        }
+      });
+      return { pid: 24680 + launches, transport: { stdin, stdout, async close() { stdin.destroy(); stdout.destroy(); } } };
+    } });
+    supervisors.push(supervisor);
+    const run = async (workerId: string, envelope: Record<string, unknown>) => { const handle = await supervisor.acquire(workerId, JSON.stringify({ prompt: "hello", ...envelope })); return supervisor.wait(handle.workerId, handle.generation); };
+    return { supervisor, requests, run, launches: () => launches };
+  }
+  it("carries an in-catalog envelope choice to thread/start and turn/start, defaulting to the admitted pair", async () => {
+    const f = catalogFixture();
+    expect((await f.run("chosen", { model: "gpt-alt", reasoningEffort: "medium" })).stdout).toBe("used:gpt-alt:medium");
+    expect(f.requests.find(r => r.method === "thread/start")?.params).toMatchObject({ model: "gpt-alt" });
+    expect(f.requests.find(r => r.method === "turn/start")?.params).toMatchObject({ model: "gpt-alt", collaborationMode: { mode: "default", settings: { model: "gpt-alt", reasoning_effort: "medium" } } });
+    f.requests.length = 0;
+    expect((await f.run("default", {})).stdout).toBe("used:gpt-default:high");
+    expect(f.requests.find(r => r.method === "turn/start")?.params).toMatchObject({ model: "gpt-default", collaborationMode: { settings: { reasoning_effort: "high" } } });
+    f.requests.length = 0;
+    expect((await f.run("model-only", { model: "gpt-alt" })).stdout).toBe("used:gpt-alt:low");
+    expect(f.launches()).toBe(3);
+  });
+  it("rejects out-of-catalog model or effort before any launch and keeps managers on the admitted model", async () => {
+    const f = catalogFixture();
+    await expect(f.run("unknown-model", { model: "gpt-unknown", reasoningEffort: "low" })).rejects.toMatchObject({ code: "INVALID_REQUEST", details: { reason: "MODEL_NOT_IN_CATALOG" } });
+    await expect(f.run("bad-effort", { model: "gpt-alt", reasoningEffort: "high" })).rejects.toMatchObject({ code: "INVALID_REQUEST", details: { reason: "REASONING_EFFORT_UNSUPPORTED" } });
+    await expect(f.run("bad-default-effort", { reasoningEffort: "xhigh" })).rejects.toMatchObject({ code: "INVALID_REQUEST", details: { reason: "REASONING_EFFORT_UNSUPPORTED" } });
+    await expect(f.run("bad-shape", { model: "gpt alt" })).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+    await expect(f.supervisor.startManager("manager-alt", JSON.stringify({ canonicalRoot: root, model: "gpt-alt", prompt: "manager" }))).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
+    expect(f.launches()).toBe(0);
+    expect(await f.supervisor.inventory()).toEqual([]);
+    const uncatalogued = catalogFixture({});
+    await expect(uncatalogued.run("other", { model: "gpt-alt" })).rejects.toMatchObject({ code: "INVALID_REQUEST", details: { reason: "MODEL_NOT_IN_CATALOG" } });
+    await expect(uncatalogued.run("other-effort", { reasoningEffort: "low" })).rejects.toMatchObject({ code: "INVALID_REQUEST", details: { reason: "REASONING_EFFORT_UNSUPPORTED" } });
+    expect(uncatalogued.launches()).toBe(0);
+    expect((await uncatalogued.run("same", { model: "gpt-default" })).stdout).toBe("used:gpt-default:null");
+    expect(() => createControlledCodexSupervisorForTests({ identity, model: "gpt-missing", modelCatalog: catalog, launch: async () => { throw new Error("unused"); } })).toThrow("outside its catalog");
+    expect(() => createControlledCodexSupervisorForTests({ identity, model: "gpt-default", reasoningEffort: "xhigh", modelCatalog: catalog, launch: async () => { throw new Error("unused"); } })).toThrow("outside its catalog");
+  });
+});
+
 it("custody blocks production regular and manager admission before account reads or worker launch", async () => {
   const s = new CodexSupervisor({ identity, model: "fixture-not-production", executablePath: join(root, "absent-vendor"), codexHome: join(root, "absent-account"), privateDirectory: root, managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "no-owner-act" } }); supervisors.push(s);
   await expect(s.acquire("missing-conformance", JSON.stringify({ prompt: "must not launch" }))).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
@@ -234,5 +339,49 @@ it("custody changes the config digest without treating unavailable binding as an
 describe("deterministic supplier admission cancellation",()=>{
   function authorityFixture(trace:string[],releaseFailure=false){let held=false;return {projection:()=>({state:"ready"}),runGuarded:async(fn:()=>Promise<unknown>)=>fn(),acquire:async()=>{trace.push("acquire");held=true;return{leaseId:"private"};},assertCommit:()=>{if(!held)throw Error("not-held");},release:async()=>{trace.push("release");held=false;if(releaseFailure)throw Error("release-response-lost");},abort:async()=>{trace.push("abort");held=false;},revoke:async()=>{trace.push("revoke");held=false;},close:async()=>{}} as any;}
   for(const kind of ["regular","manager"]){for(const phase of ["pre-acquire","post-acquire-pre-worker-publication","post-publication-pre-release"]){it(`${kind}/${phase} has exact ordered cancellation cardinalities`,async()=>{const trace:string[]=[];let reached!:()=>void,unblock!:()=>void;const at=new Promise<void>(r=>reached=r),gate=new Promise<void>(r=>unblock=r);let closed=false;const supervisor=createControlledCodexSupervisorForTests({identity,model:"fixture-model",supplierAuthority:authorityFixture(trace),barrier:async name=>{trace.push(name);if(name===`${kind}/${phase}`){reached();await gate;}},launch:async()=>{trace.push("launch");const stdin=new PassThrough(),stdout=new PassThrough();return{pid:12345,transport:{stdin,stdout,close:async()=>{if(!closed){closed=true;trace.push("retire");stdin.destroy();stdout.destroy();}}}};}});supervisors.push(supervisor);const pending=kind==="regular"?supervisor.acquire("w",JSON.stringify({prompt:"test"})):supervisor.startManager("w",JSON.stringify({canonicalRoot:root,model:"fixture-model",prompt:"test"}));void pending.catch(()=>{});await at;supervisor.cancelAdmission("w");unblock();await expect(pending).rejects.toThrow("cancelled");expect(await supervisor.inventory()).toEqual([]);const relevant=trace.filter(x=>["acquire","launch","release","abort","retire"].includes(x));expect(relevant).toEqual(phase==="pre-acquire"?[]:phase==="post-acquire-pre-worker-publication"?["acquire","launch","abort","retire"]:["acquire","launch","release","retire"]);});}}
-  it("release failure removes publication and retires once without a second release or abort",async()=>{const trace:string[]=[];let closed=false;const supervisor=createControlledCodexSupervisorForTests({identity,model:"fixture-model",supplierAuthority:authorityFixture(trace,true),launch:async()=>{const stdin=new PassThrough(),stdout=new PassThrough();return{pid:12345,transport:{stdin,stdout,close:async()=>{if(!closed){closed=true;trace.push("retire");stdin.destroy();stdout.destroy();}}}};}});supervisors.push(supervisor);await expect(supervisor.acquire("w",JSON.stringify({prompt:"test"}))).rejects.toThrow("release-response-lost");expect(await supervisor.inventory()).toEqual([]);expect(trace).toEqual(["acquire","release","retire"]);});
+  it.each(["completed", "failed", "interrupted", "release-failure"])("retains authority through %s and releases once at retirement", async outcome => {
+    const trace: string[] = [];
+    const authority = authorityFixture(trace, outcome === "release-failure");
+    let finish!: () => void, started!: () => void, closed = false;
+    const turnStarted = new Promise<void>(resolve => { started = resolve; });
+    const supervisor = createControlledCodexSupervisorForTests({ identity, model: "fixture-model", supplierAuthority: authority,
+      launch: async () => {
+        const stdin = new PassThrough(), stdout = new PassThrough();
+        const send = (value: unknown) => stdout.write(`${JSON.stringify(value)}\n`);
+        stdin.on("data", chunk => {
+          for (const line of String(chunk).trim().split("\n")) {
+            const frame = JSON.parse(line);
+            if (frame.method === "initialized") continue;
+            if (frame.method === "initialize") send({ id: frame.id, result: {} });
+            else if (frame.method === "account/read") send({ id: frame.id, result: { requiresOpenaiAuth: true, account: { type: "apiKey" } } });
+            else if (frame.method === "thread/start") {
+              authority.assertCommit("regular:w"); trace.push("thread");
+              send({ id: frame.id, result: { thread: { id: "thread" } } });
+            } else if (frame.method === "turn/start") {
+              authority.assertCommit("regular:w"); trace.push("turn");
+              send({ id: frame.id, result: { turn: { id: "turn", status: "inProgress" } } });
+              finish = () => {
+                authority.assertCommit("regular:w"); trace.push("terminal");
+                send({ method: "turn/completed", params: { threadId: "thread", turn: { id: "turn", status: outcome === "release-failure" ? "completed" : outcome } } });
+              };
+              started();
+            }
+          }
+        });
+        return { pid: 12345, transport: { stdin, stdout, close: async () => {
+          if (!closed) { closed = true; trace.push("retire"); stdin.destroy(); stdout.destroy(); }
+        } } };
+      }
+    });
+    supervisors.push(supervisor);
+    const worker = await supervisor.acquire("w", JSON.stringify({ prompt: "test" }));
+    await turnStarted;
+    expect(trace).toEqual(["acquire", "thread", "turn"]);
+    finish();
+    if (outcome === "release-failure") await expect(supervisor.wait(worker.workerId, worker.generation)).rejects.toThrow("release-response-lost");
+    else expect(await supervisor.wait(worker.workerId, worker.generation)).toMatchObject({ exitCode: outcome === "completed" ? 0 : outcome === "failed" ? 1 : null });
+    expect(trace).toEqual(["acquire", "thread", "turn", "terminal", "release", ...(outcome === "release-failure" ? ["revoke"] : []), "retire"]);
+    await supervisor.retire(worker.workerId, worker.generation);
+    expect(await supervisor.inventory()).toEqual([]);
+  });
 });

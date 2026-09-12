@@ -36,3 +36,10 @@ it('delivers only the intent payload, registers readiness after listening and un
   stop(); expect(mocks.removeListener).toHaveBeenCalledWith('chirality:folder-open-intent', handler);
   handler(privileged, { path: '/later' }); expect(listener).toHaveBeenCalledTimes(1);
 });
+it('forwards only the project root to the attachment picker channel and returns the fixed result shape', async () => {
+  const bridge = (mocks.exposed as Bridge & { attachments: { selectFiles: (request: { projectRoot: string }) => Promise<unknown> } }).attachments;
+  const selected = { cancelled: false, paths: ['/project/notes.md'] };
+  mocks.invoke.mockResolvedValueOnce(selected);
+  await expect(bridge.selectFiles({ projectRoot: '/project', extra: 'ignored' } as { projectRoot: string })).resolves.toBe(selected);
+  expect(mocks.invoke).toHaveBeenLastCalledWith('chirality:attachments-select-files', { projectRoot: '/project' });
+});

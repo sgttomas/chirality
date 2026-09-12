@@ -20,6 +20,7 @@ import { createChatReplayReader, deriveChatTitle, visibleActiveChatSessions, typ
 import { guardRecordedSessionSelection } from '../../lib/woven-dialogue/guarded-session-selection';
 import {
   createSelectedSessionReplayLoader,
+  canContinueRecordedConversation,
   type SelectedSessionReplayLoader
 } from '../../lib/woven-dialogue/selected-session-replay';
 import {
@@ -38,7 +39,7 @@ import { ShellFrame } from '../shell/shell-frame';
 import { ActivityStrip } from './activity-shelf';
 import { CoordinationPanel } from './coordination-panel';
 import { RightPanel } from './right-panel';
-import type { FileCatalog } from '../shell/file-tree-panel';
+import { useConversationFileCatalog } from '../../lib/workspace/use-conversation-file-catalog';
 import { DialogueViewport } from './dialogue-viewport';
 import { Navigator, type WovenSurface } from './navigator';
 import { SelectedSessionReplayLens } from './selected-session-replay-lens';
@@ -73,11 +74,11 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const { events } = useHarnessEvents();
   const [binding, setBinding] = useState<{ root: string | null; locked: boolean }>({ root: null, locked: false });
   const [folderSelectionPending, setFolderSelectionPending] = useState(false);
-  const [fileCatalog, setFileCatalog] = useState<FileCatalog | null>(null);
   const [newChatRequest, setNewChatRequest] = useState(0);
   const [focusNavigatorSearchRequest, setFocusNavigatorSearchRequest] = useState(0);
   const [navigatorModalOpen, setNavigatorModalOpen] = useState(false);
   const runtimeEpoch = useRuntimeEpoch();
+  const { paths: currentFileCatalog, acceptCatalog: handleFileCatalog } = useConversationFileCatalog(projectRoot, streaming, runtimeEpoch);
   const [primarySessionId, setPrimarySessionId] = useState<string>();
   const [selectedMethods, setSelectedMethods] = useState<QualifiedMethodReference[]>([]);
   const [pendingResume, setPendingResume] = useState<ResumeConversationRequest>();
@@ -105,6 +106,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const [sessionsLoading, setSessionsLoading] = useState(false);
   const [sessionsError, setSessionsError] = useState<string | null>(null);
   const [sessionRefreshToken, setSessionRefreshToken] = useState(0);
+  const directHistorySelection = useRef<string>();
   const replayLoaderRef = useRef<SelectedSessionReplayLoader>();
   const titleReaderRef = useRef<ChatReplayReader>();
   const previousProjectRootRef = useRef(projectRoot);
@@ -341,6 +343,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   }, [widthKey, rightWidth]);
 
   const returnToPrimaryDialogue = useCallback((): void => {
+    directHistorySelection.current = undefined;
+    setPendingResume(undefined);
     replayLoaderRef.current?.cancel();
     updateWorkspaceState({ selectedReplaySessionId: null });
     window.requestAnimationFrame(() => {
@@ -352,7 +356,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
 
   const continueRecordedConversation = useCallback((projection: Extract<SelectedSessionReplayState, { status: 'READY' }>['projection']): void => {
     const continuation = projection.session?.continuation;
-    if (!continuation || continuation.projectRoot !== projectRoot || streaming) return;
+    if (!continuation || !canContinueRecordedConversation(projection, projectRoot, streaming)) return;
     const request = { requestId: ++resumeSequence.current, projection };
     const currentRole = searchParams.get('agent');
     setPendingResume(request);
@@ -363,8 +367,22 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     }
   }, [pathname, projectRoot, router, searchParams, streaming]);
 
+  useEffect(() => {
+    if (!directHistorySelection.current || directHistorySelection.current !== selectedReplayId(replayState)) return;
+    if (replayState.status !== 'READY' && replayState.status !== 'UNAVAILABLE') return;
+    directHistorySelection.current = undefined;
+    if (replayState.status === 'READY' && canContinueRecordedConversation(replayState.projection, projectRoot, streaming)) {
+      continueRecordedConversation(replayState.projection);
+    } else {
+      // An incompatible or unavailable recording still needs its inspection/retry surface.
+      restoreExpanded();
+      updateWorkspaceState({ rightPanelView: 'agents', coordinationCollapsed: false });
+      setCoordinationView('session');
+    }
+  }, [replayState, projectRoot, streaming, continueRecordedConversation, restoreExpanded, updateWorkspaceState]);
+
   const loadReplay = useCallback(
-    (sessionId: string): void => {
+    (sessionId: string, inspect = false): void => {
       const decision = guardRecordedSessionSelection({
         currentState: replayState,
         requestedSessionId: sessionId,
@@ -378,6 +396,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
         return;
       }
       if (decision.outcome === 'UNCHANGED') {
+        if (!inspect) return;
         restoreExpanded();
         updateWorkspaceState({ coordinationCollapsed: false, rightPanelView: 'agents' });
         setCoordinationView('session');
@@ -387,13 +406,14 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
         return;
       }
 
-      restoreExpanded();
-      updateWorkspaceState({
-        selectedReplaySessionId: sessionId,
-        rightPanelView: 'agents',
-        coordinationCollapsed: false
-      });
-      setCoordinationView('session');
+      setPendingResume(undefined);
+      directHistorySelection.current = inspect ? undefined : sessionId;
+      updateWorkspaceState({ selectedReplaySessionId: sessionId });
+      if (inspect) {
+        restoreExpanded();
+        updateWorkspaceState({ rightPanelView: 'agents', coordinationCollapsed: false });
+        setCoordinationView('session');
+      }
       void replayLoaderRef.current?.load(sessionId, {
         observedAt: new Date().toISOString(),
         availableSessionIds: new Set(sessions.map((session) => session.sessionId))
@@ -514,17 +534,13 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     '--woven-activity-height': '32px'
   } as CSSProperties;
   const replayVisible = replayState.status !== 'IDLE';
-  const currentFileCatalog = fileCatalog?.root === projectRoot ? fileCatalog.paths : [];
   const openContainedFile = useCallback((filePath: string): void => {
     if (!projectRoot) return;
     const prefix = `${projectRoot.replace(/\/$/, '')}/`;
     if (!filePath.startsWith(prefix)) return;
     restoreExpanded();
-    updateWorkspaceState({ openDocumentPath: filePath.slice(prefix.length), rightPanelView: 'files' });
+    updateWorkspaceState({ openDocumentPath: filePath.slice(prefix.length), rightPanelView: 'files', coordinationCollapsed: false });
   }, [projectRoot, restoreExpanded, updateWorkspaceState]);
-  const handleFileCatalog = useCallback((catalog: FileCatalog | null): void => {
-    setFileCatalog(catalog?.root === projectRoot ? catalog : null);
-  }, [projectRoot]);
 
   return (
     <ShellFrame
@@ -567,6 +583,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           <DialogueViewport
             primaryDialogue={
               <>
+                {replayVisible && !streaming ? <p role="status">Opening recorded chat. The current composer is paused until you open this chat or return.</p> : null}
+                <fieldset disabled={replayVisible && !streaming} style={{ border: 0, padding: 0, margin: 0, minWidth: 0, minHeight: 0, display: 'contents' }}>
                 <Suspense fallback={<p className="panel-empty">Loading primary dialogue…</p>}>
                   <ChatPanel presentation="woven" onDraftCaptured={restoreExpanded} onActiveSessionChange={setPrimarySessionId}
                     selectedMethods={selectedMethods} onSelectedMethodsChange={setSelectedMethods}
@@ -578,6 +596,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
                     onConversationResumed={() => { setPendingResume(undefined); returnToPrimaryDialogue(); }}
                     knownRoots={workspaceState.knownRoots ?? []} onBindingChange={setBinding} newChatRequest={newChatRequest} folderSelectionPending={folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} />
                 </Suspense>
+                </fieldset>
               </>
             }
           />
@@ -693,7 +712,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           {!workspaceState.coordinationCollapsed ? (
             <RightPanel settingsView={settingsView} folderLocked={binding.locked || streaming || folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} folderMismatch={binding.locked && Boolean(binding.root && binding.root !== projectRoot)} state={workspaceState} sessionOpen={coordinationView === 'session'}
               replayState={replayState} recordedSessionIds={sessions.map(session => session.sessionId)}
-              primarySessionId={primarySessionId} liveTurnActive={streaming} onOpenParent={loadReplay}
+              primarySessionId={primarySessionId} liveTurnActive={streaming} onOpenParent={sessionId => loadReplay(sessionId, true)}
               onView={(view) => {
                 restoreExpanded();
                 updateWorkspaceState({ rightPanelView: view, ...(view === 'files' ? { openDocumentPath: null } : {}) });
@@ -744,7 +763,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               onRefreshSessions={() => {
                 setSessionRefreshToken((token) => token + 1);
               }}
-              onSelectSession={loadReplay}
+              onSelectSession={sessionId => loadReplay(sessionId, true)}
             />} />
           ) : (
             <span className="woven-collapsed-label">Coordination</span>
