@@ -887,6 +887,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const textSeen = new Set<string>();
     let lastSeq = 0;
     let receivedFrames = 0;
+    let streamOpened = false;
     let assistantText = '';
     let textSource: 'chat:delta' | 'message.delta' | null = null;
     let terminal = false;
@@ -903,6 +904,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const setAssistant = (patch: Partial<ChatMessage>): void => {
       setMessages((existing) => existing.map((item) => item.id === assistantId ? { ...item, ...patch } : item));
     };
+    if (turnId) setAssistant({ turnId });
     const appendText = (chunk: string, source: 'chat:delta' | 'message.delta'): void => {
       if (!chunk) return;
       textSource ??= source;
@@ -922,11 +924,15 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     };
     const onEvent = (streamEvent: HarnessTurnStreamEvent): void => {
       if (signal.aborted) return;
+      streamOpened = true;
       // Emitted only when the proxy has an actual Runtime subscription. Its
       // own keepalive comments are never evidence of Runtime recovery.
       setReconnectAttempt(null);
       setRuntimeStatus('Running turn...');
       if (streamEvent.event === 'transport:connected') return;
+      if (streamEvent.event === 'harness:event' && isHarnessEvent(streamEvent.data) && turnId && streamEvent.data.turnId && streamEvent.data.turnId !== turnId) {
+        throw new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'The stream belongs to a different turn.', { reason: 'TURN_NOT_ACTIVE' });
+      }
       receivedFrames += 1;
       if (typeof streamEvent.seq === 'number' && streamEvent.seq > lastSeq) lastSeq = streamEvent.seq;
 
@@ -1017,10 +1023,6 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
     let attempt = 0;
     let open = input.start;
-    // Set once the connection to the Runtime was actually lost (a dropped
-    // stream, or a Runtime that could not be asked). Only then can a missing
-    // record leave the outcome unknown; a clean close settles as before.
-    let lostConnection = false;
     while (!signal.aborted) {
       let dropped = false;
       const framesBefore = receivedFrames;
@@ -1030,11 +1032,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         if (signal.aborted) break;
         const transportFailure = !(caught instanceof HarnessApiClientError) ||
           Boolean(caught.details && typeof caught.details === 'object' && 'transportReason' in caught.details);
-        if (!input.reattach && !transportFailure && attempt === 0 && open === input.start && receivedFrames === framesBefore) {
+        if (!input.reattach && !streamOpened && !transportFailure && attempt === 0 && open === input.start && receivedFrames === framesBefore) {
           // The first stream never opened: report it as today.
           return { assistantText, error: caught instanceof Error ? caught : new Error(String(caught)), terminal: false, outcome: null };
         }
-        lostConnection = true;
         if (isTurnNotActive(caught)) {
           // Nothing left to attach to: the turn ended while we were away, or
           // the Runtime restarted. The persisted log carries the outcome.
@@ -1042,7 +1043,6 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           break;
         }
         dropped = true;
-        lostConnection = true;
       }
       if (terminal || signal.aborted) break;
       // The stream closed without a terminal frame. Ask the Runtime whether
@@ -1054,12 +1054,15 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         try { state = await getHarnessTurnState(session.sessionId, signal); } catch { state = undefined; }
       }
       if (signal.aborted) break;
+      if (state && turnId && state.turnId !== turnId) {
+        await settleFromReplay();
+        break;
+      }
       if (state && !state.active && state.lastSeq <= lastSeq) {
         await settleFromReplay();
         break;
       }
       if (!state || state.active) {
-        if (!state) lostConnection = true;
         // The connection dropped while the turn continues. Never show Idle.
         setRuntimeStatus(attempt === 0 ? 'Reconnecting to the running turn...' : `Reconnecting to the running turn (attempt ${attempt + 1})...`);
         setReconnectAttempt(attempt + 1);
@@ -1069,8 +1072,14 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       }
       // Either the turn is still active, or it finished with frames we have
       // not seen: attach after the last frame we processed.
+      if (!turnId) {
+        // Without a submission identity, neither a retained stream nor an
+        // older replay ending can establish which request was accepted.
+        await settleFromReplay();
+        break;
+      }
       const after = lastSeq;
-      open = (handler) => attachHarnessTurn(session.sessionId, after, handler, signal);
+      open = (handler) => attachHarnessTurn(session.sessionId, after, handler, signal, turnId);
     }
     if (terminal) setReconnectAttempt(null);
 
@@ -1079,7 +1088,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       setReconnectAttempt(null);
       try {
         const replay = await replaySessionEvents(session.sessionId);
-        const events = replay.events.filter(event => !seen.has(event.eventId));
+        const scoped = turnId ? replay.events.filter(event => event.turnId === turnId) : [];
+        const events = scoped.filter(event => !seen.has(event.eventId));
         // Text the Runtime recorded after the connection dropped belongs to
         // this reply: append what was missed rather than showing a torn message.
         for (const event of events) {
@@ -1091,13 +1101,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         }
         // Settle from this turn's own record. With the turn id known, only its
         // events count; an older turn's ending is never read as this one's.
-        const scoped = turnId ? replay.events.filter(event => event.turnId === turnId) : replay.events;
         const last = [...scoped].reverse().find(event => TERMINAL_HARNESS_EVENTS.has(event.type));
         if (!last) {
-          // No recorded ending. After a lost connection that leaves the
-          // outcome unknown; a failure already reported on the stream, or a
-          // clean close the Runtime settled itself, is a known ending.
-          if (!error && lostConnection) outcomeUnknown = true;
+          // No terminal for this exact turn means its outcome is unknown;
+          // a clean observer close alone cannot establish completion.
+          if (!error) outcomeUnknown = true;
         } else if (last.type === 'turn.interrupted') {
           recordInterruption(last.data?.reason);
         } else if (last.type === 'turn.failed' && !error) {
@@ -1106,14 +1114,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         }
         if (!assistantText) {
           const textTurnId = turnId ?? last?.turnId;
-          const text = replay.events.filter(event => event.type === 'message.delta' && (!textTurnId || event.turnId === textTurnId)).map(event => readTextField(event.data) ?? '').join('');
+          const text = scoped.filter(event => event.type === 'message.delta' && event.turnId === textTurnId).map(event => readTextField(event.data) ?? '').join('');
           if (text) { assistantText = text; setAssistant({ text }); }
         }
       } catch {
-        // The log could not be read right now. After a lost connection the
-        // turn's ending is unknown, not assumed; what was streamed stays on
-        // screen and reopening replays it.
-        if (!error && lostConnection) outcomeUnknown = true;
+        // Without a readable terminal record, the observer cannot establish
+        // completion. Keep streamed text and report the uncertainty.
+        if (!error) outcomeUnknown = true;
       }
     }
 
@@ -1165,7 +1172,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       if (observation.signal.aborted) return;
       const outcome = await observeTurn({
         session, assistantId, signal: observation.signal, seenEventIds: hydratedIds, reattach: true, turnId: state.turnId,
-        start: (onEvent) => attachHarnessTurn(session.sessionId, 0, onEvent, observation.signal)
+        start: (onEvent) => attachHarnessTurn(session.sessionId, 0, onEvent, observation.signal, state.turnId)
       });
       if (observation.signal.aborted) return;
       if (outcome.error) setRuntimeError(toHarnessUiError(outcome.error, { sessionModel: session.model, origin: 'session' }));
@@ -1369,13 +1376,16 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       const observation = new AbortController();
       turnObservation.current?.abort();
       turnObservation.current = observation;
+      const submittedTurnId = crypto.randomUUID();
       const outcome = await observeTurn({
         session,
         assistantId,
+        turnId: submittedTurnId,
         signal: observation.signal,
         start: (onEvent) => streamHarnessTurn(
           {
             sessionId: session.sessionId,
+            turnId: submittedTurnId,
             message: text,
             attachments: preservedAttachments.map((item) => item.path),
             interactionMode,

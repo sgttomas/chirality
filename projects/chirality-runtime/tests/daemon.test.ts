@@ -459,6 +459,12 @@ describe("Unix-domain runtime daemon", () => {
     const replayed = await request(socketPath, `${base}/turn/stream?after=0`, token);
     expect(replayed.status).toBe(200);
     expect(replayed.body.match(/^id: /gmu)).toHaveLength(6);
+    const matched = await request(socketPath, `${base}/turn/stream?after=0&turnId=${finished.turnId}`, token);
+    expect(matched.status).toBe(200);
+    const stale = await request(socketPath, `${base}/turn/stream?after=0&turnId=new-submission`, token);
+    expect(stale.status).toBe(404);
+    expect(JSON.parse(stale.body)).toMatchObject({ error: { code: "TURN_NOT_ACTIVE" } });
+    expect(stale.body).not.toContain('event: chat:delta');
   });
 
   it("interrupts only through the interrupt route and reports 404 TURN_NOT_ACTIVE without a turn", async () => {

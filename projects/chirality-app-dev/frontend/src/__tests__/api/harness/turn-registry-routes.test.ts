@@ -45,7 +45,7 @@ describe('session turn stream route', () => {
     installDaemonHarnessPort(port({ attachTurn, interrupt }));
 
     const response = await streamRoute.GET(
-      new Request('http://localhost/api/harness/session/sess-1/turn/stream?after=6'),
+      new Request('http://localhost/api/harness/session/sess-1/turn/stream?after=6&turnId=turn-1'),
       params('sess-1')
     );
     expect(response.status).toBe(200);
@@ -58,7 +58,7 @@ describe('session turn stream route', () => {
     await reader.cancel();
     expect(cancel).toHaveBeenCalledOnce();
     expect(interrupt).not.toHaveBeenCalled();
-    expect(attachTurn).toHaveBeenCalledWith('sess-1', 6, { signal: expect.any(AbortSignal) });
+    expect(attachTurn).toHaveBeenCalledWith('sess-1', 6, { signal: expect.any(AbortSignal), turnId: 'turn-1' });
   });
 
   it('defaults after to 0 and rejects a malformed value before touching the Runtime', async () => {

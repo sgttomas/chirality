@@ -119,7 +119,10 @@ describe("TurnRegistry", () => {
     expect(registry.state("p", "s1").endedAt).toEqual(expect.any(String));
     expect(turn.finished).toBe(true);
 
-    // A retained turn still replays in full and ends immediately.
+    // Matching is atomic: a retained prior turn cannot satisfy a new POST's identity.
+    expect(() => registry.subscribe("p", "s1", 0, "turn-2")).toThrow(expect.objectContaining({ code: "TURN_NOT_ACTIVE", status: 404 }));
+    expect((await collect(registry.subscribe("p", "s1", 0, "turn-1"))).map(frame => frame.seq)).toEqual([1, 2, 3, 4]);
+    // Omitted identity retains legacy full replay.
     expect((await collect(registry.subscribe("p", "s1", 0))).map((frame) => frame.seq)).toEqual([1, 2, 3, 4]);
     expect(await collect(registry.subscribe("p", "s1", 4))).toEqual([]);
   });
@@ -243,4 +246,22 @@ describe("TurnRegistry", () => {
     expect(registry.state("p", "stuck")).toMatchObject({ active: false, lastSeq: 1 });
     expect(registry.state("p", "quick")).toMatchObject({ active: false, lastSeq: 2 });
   });
+});
+
+
+it("does not confuse a matching start still awaiting its first event with the old retained turn", async () => {
+  const older = scriptedTurn([delta("old"), exit]);
+  older.releaseAll();
+  const current = scriptedTurn([delta("current"), exit]);
+  let calls = 0;
+  const { stub } = service(() => ++calls === 1 ? older.iterable : current.iterable);
+  const registry = new TurnRegistry(stub);
+  await registry.start("p", "s", { message: "older", turnId: "older" });
+  await settle();
+  const starting = registry.start("p", "s", { message: "current", turnId: "current" });
+  expect(registry.state("p", "s")).toMatchObject({ active: true, turnId: "current" });
+  expect(() => registry.subscribe("p", "s", 0, "current")).toThrow(expect.objectContaining({ status: 503, details: expect.objectContaining({ reason: "TURN_STARTING" }) }));
+  current.releaseAll();
+  await starting;
+  expect((await collect(registry.subscribe("p", "s", 0, "current"))).map(frame => frame.event)).toEqual([delta("current"), exit]);
 });

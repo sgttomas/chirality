@@ -178,6 +178,8 @@ export type V3SessionCreateRequest = SessionCreateRequest & {
 };
 
 export type V3TurnRequest = TurnRequest & {
+  /** Identity chosen before POST so a lost response can be reconciled safely. */
+  turnId?: string;
   interactionMode?: ResolveSelectedContextRequest['interactionMode'];
   permissionMode?: ResolveSelectedContextRequest['permissionMode'];
   methods?: ResolveSelectedContextRequest['methods'];
@@ -234,7 +236,7 @@ export interface DaemonHarnessPort {
   attachTurn(
     sessionId: string,
     after: number,
-    options?: DaemonRequestOptions
+    options?: DaemonRequestOptions & { turnId?: string }
   ): Promise<RunningDaemonHarnessTurn>;
   turnState(
     sessionId: string,

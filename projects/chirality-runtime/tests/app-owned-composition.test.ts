@@ -228,7 +228,8 @@ describe("App-owned Codex composition", () => {
     expect(typeof booted.boot.bootedAt).toBe("string");
     expect(booted.session.bootFingerprint).toBe(booted.boot.bootFingerprint);
     expect(f.fake().server.state.requests.filter(request => request.method === "thread/start" || request.method === "turn/start")).toHaveLength(0);
-    const events = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "after boot" }), event => event.type === "process:exit");
+    const events = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "after boot", turnId: "client-submitted-turn" }), event => event.type === "process:exit");
+    expect(harness(events).filter(event => event.type === "turn.accepted" || event.type === "turn.completed").map(event => event.turnId)).toEqual(["client-submitted-turn", "client-submitted-turn"]);
     expect(harness(events).map(event => event.type)).toContain("turn.completed");
     expect(f.fake().server.state.requests.filter(request => request.method === "thread/start")).toHaveLength(1);
   });

@@ -101,7 +101,7 @@ it('replays the log, attaches from seq 0, deduplicates by eventId and streams me
   await mountResumed();
 
   expect(state.hydrate).toHaveBeenCalledWith([expect.objectContaining({ eventId: 'e1' }), expect.objectContaining({ eventId: 'e2' })]);
-  expect(state.attach).toHaveBeenCalledWith('resumed', 0, expect.any(Function), expect.any(AbortSignal));
+  expect(state.attach).toHaveBeenCalledWith('resumed', 0, expect.any(Function), expect.any(AbortSignal), 'turn-1');
   expect(stopButtons()).toHaveLength(1);
   expect(state.streaming).toHaveBeenLastCalledWith(true);
 
@@ -330,13 +330,17 @@ it('sends once, recovers by GET after a dropped stream, and retains a service-lo
   await mountResumed();
   state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [], instructionBases: [], instructionHistory: [] });
   state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 1 });
-  state.stream.mockImplementation(async (_input: unknown, onEvent: (frame: Frame) => void) => {
-    onEvent(harness(1, 'accepted', 'turn.accepted'));
+  let submittedTurnId!: string;
+  state.stream.mockImplementation(async (input: { turnId: string }, onEvent: (frame: Frame) => void) => {
+    submittedTurnId = input.turnId;
+    const accepted = harness(1, 'accepted', 'turn.accepted');
+    onEvent({ ...accepted, data: { ...accepted.data, turnId: submittedTurnId } });
     throw new TypeError('transport dropped');
   });
   state.attach.mockImplementation(async (_s: string, _a: number, onEvent: (frame: Frame) => void) => {
     onEvent({ event: 'transport:connected', data: {} });
-    onEvent(harness(2, 'ended', 'turn.interrupted', { reason: 'service-shutdown' }));
+    const ended = harness(2, 'ended', 'turn.interrupted', { reason: 'service-shutdown' });
+    onEvent({ ...ended, data: { ...ended.data, turnId: submittedTurnId } });
     onEvent({ event: 'process:exit', seq: 3, data: { exitCode: 130, interrupted: true } });
   });
   await act(async () => { tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value: 'Keep this sent message' } }); });
@@ -346,7 +350,7 @@ it('sends once, recovers by GET after a dropped stream, and retains a service-lo
   expect(status()).toContain('Reconnecting');
   await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
   await flush();
-  expect(state.attach).toHaveBeenCalledWith('resumed', 1, expect.any(Function), expect.any(AbortSignal));
+  expect(state.attach).toHaveBeenCalledWith('resumed', 1, expect.any(Function), expect.any(AbortSignal), submittedTurnId);
   expect(state.stream).toHaveBeenCalledTimes(1);
   expect(rendered()).toContain('Keep this sent message');
   expect(rendered()).toContain('"data-turn-outcome":"failed"');
@@ -369,4 +373,59 @@ it('does not borrow an older turn’s completion when reload attachment fails be
   await mountResumed();
   expect(rendered()).toContain('"data-turn-outcome":"unknown"');
   expect(rendered()).not.toContain('"data-turn-outcome":"completed"');
+});
+
+it.each(['retained-old', 'expired-old', 'matching', 'matching-replay'])('correlates a fresh POST whose response is lost before any frame: %s', async scenario => {
+  vi.useFakeTimers();
+  await mountResumed();
+  const older = [persisted('old-text', 'message.delta', { text: 'OLD TURN TEXT' }), persisted('old-end', 'turn.completed')]
+    .map(event => ({ ...event, turnId: 'previous-turn' }));
+  state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: older, instructionHistory: [], instructionBases: [] });
+  state.turnState.mockResolvedValue({ active: false, turnId: 'previous-turn', lastSeq: 2 });
+  let submitted!: string;
+  state.stream.mockImplementation(async (input: { turnId: string }) => {
+    submitted = input.turnId;
+    if (scenario === 'matching-replay') {
+      const current = [persisted('new-text', 'message.delta', { text: 'NEW TURN TEXT' }), persisted('new-end', 'turn.completed')].map(event => ({ ...event, turnId: submitted }));
+      state.replay.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'resumed' }, events: [...older, ...current], instructionHistory: [], instructionBases: [] });
+    }
+    throw new TypeError('POST response lost');
+  });
+  state.attach.mockImplementation(async (_s: string, _after: number, deliver: (frame: Frame) => void, _signal: AbortSignal, expectedTurnId?: string) => {
+    if (scenario === 'matching') {
+      const accepted = harness(1, 'new-accepted', 'turn.accepted');
+      const ended = harness(3, 'new-end', 'turn.completed');
+      deliver({ ...accepted, data: { ...accepted.data, turnId: submitted } });
+      deliver({ event: 'chat:delta', seq: 2, data: { text: 'NEW TURN TEXT' } });
+      deliver({ ...ended, data: { ...ended.data, turnId: submitted } });
+      return;
+    }
+    if (scenario === 'expired-old' || expectedTurnId !== undefined) {
+      throw new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'No matching retained turn', { reason: 'TURN_NOT_ACTIVE' });
+    }
+    // The old behavior (unqualified seq-0 attach) would replay this prior turn.
+    deliver({ event: 'chat:delta', seq: 1, data: { text: 'OLD TURN TEXT' } });
+    deliver({ event: 'process:exit', seq: 2, data: { exitCode: 0 } });
+  });
+  await act(async () => { tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value: 'Keep exactly this submitted message' } }); });
+  await act(async () => { tree!.root.findByProps({ className: 'chat-input-row' }).props.onSubmit({ preventDefault: vi.fn() }); });
+  expect(submitted).toEqual(expect.any(String));
+  expect(submitted).not.toBe('previous-turn');
+  expect(status()).toContain('Reconnecting');
+  await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
+  await flush();
+  expect(state.attach).toHaveBeenCalledWith('resumed', 0, expect.any(Function), expect.any(AbortSignal), submitted);
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(rendered()).toContain('Keep exactly this submitted message');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+  expect(rendered()).not.toContain('OLD TURN TEXT');
+  expect(state.append.mock.calls.some(([event]) => event.turnId === 'previous-turn')).toBe(false);
+  if (scenario === 'matching' || scenario === 'matching-replay') {
+    expect(rendered()).toContain('NEW TURN TEXT');
+    expect(rendered()).toContain('"data-turn-outcome":"completed"');
+  } else {
+    expect(rendered()).toContain('"data-turn-outcome":"unknown"');
+    expect(rendered()).not.toContain('"data-turn-outcome":"completed"');
+  }
+  expect(state.interrupt).not.toHaveBeenCalled();
 });

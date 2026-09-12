@@ -45,3 +45,13 @@ ran the full suites. A fresh Astra/medium TASK using software-code-review review
 the complete frozen diff under `briefs/REVIEW_LIVE_RECOVERY.md`. Only then does
 Git integration proceed, followed by one replacement package from the merge.
 Existing packages remain preserved; the owner performs install-over acceptance.
+
+The first recovery review found an ambiguous-submission identity defect. The
+same bounded recovery author repaired the request, attachment and replay path;
+the parent validates its return with the full suites and a direct reload check.
+A fresh gpt-6-astra/high Type 2 reviews the complete new frozen candidate under
+`briefs/REVIEW_LIVE_RECOVERY_FINAL.md`. This bounded escalation uses the owner's
+standing exception because the boundary determines truthful completion. A
+separate gpt-6-astra/medium packaging child is prepared under
+`briefs/REPLACEMENT_PACKAGE.md` and waits for the reviewed merge revision before
+any setup or build. No source author serves as independent reviewer.

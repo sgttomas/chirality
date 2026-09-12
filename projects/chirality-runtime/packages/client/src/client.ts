@@ -79,6 +79,8 @@ export interface RuntimeClientOptions {
 export interface AttachSessionTurnOptions {
   /** Deliver only frames with a sequence greater than this value (0 replays the whole buffer). */
   after?: number;
+  /** If present, atomically attach only to this Runtime turn identity. */
+  turnId?: string;
 }
 
 export interface CancellableStream<T> extends AsyncIterable<T> {
@@ -500,7 +502,7 @@ export class RuntimeClient {
     if (!Number.isSafeInteger(after) || after < 0) {
       throw new RuntimeError("INVALID_REQUEST", "after must be a non-negative integer", 400);
     }
-    return this.requestEvents(`${RUNTIME_ROUTES.sessionTurnStream(projectId, sessionId)}?after=${after}`, {
+    return this.requestEvents(`${RUNTIME_ROUTES.sessionTurnStream(projectId, sessionId)}?after=${after}${options.turnId === undefined ? "" : `&turnId=${encodeURIComponent(options.turnId)}`}`, {
       method: "GET",
       signal
     });

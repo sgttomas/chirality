@@ -154,6 +154,8 @@ export function parseSseFrame(frame: string): HarnessTurnStreamEvent | null {
 }
 
 export type V3TurnRequest = TurnRequest & {
+  /** Identity chosen before POST so a lost response can be reconciled safely. */
+  turnId?: string;
   interactionMode?: ResolveSelectedContextRequest['interactionMode'];
   permissionMode?: ResolveSelectedContextRequest['permissionMode'];
   methods?: readonly MethodReference[];
@@ -181,9 +183,9 @@ async function openTurnStream(input: V3TurnRequest, signal?: AbortSignal): Promi
   throw fromHarnessErrorPayload(response.status, payload, 'Unable to start harness turn');
 }
 
-async function openAttachStream(sessionId: string, after: number, signal?: AbortSignal): Promise<Response> {
+async function openAttachStream(sessionId: string, after: number, signal?: AbortSignal, turnId?: string): Promise<Response> {
   const response = await fetch(
-    `/api/harness/session/${encodeURIComponent(sessionId)}/turn/stream?after=${Math.max(0, Math.floor(after))}`,
+    `/api/harness/session/${encodeURIComponent(sessionId)}/turn/stream?after=${Math.max(0, Math.floor(after))}${turnId === undefined ? '' : `&turnId=${encodeURIComponent(turnId)}`}`,
     { method: 'GET', ...(signal ? { signal } : {}) }
   );
   if (response.ok) {
@@ -486,9 +488,10 @@ export async function attachHarnessTurn(
   sessionId: string,
   after: number,
   onEvent: (event: HarnessTurnStreamEvent) => void,
-  signal?: AbortSignal
+  signal?: AbortSignal,
+  turnId?: string
 ): Promise<void> {
-  const response = await openAttachStream(sessionId, after, signal);
+  const response = await openAttachStream(sessionId, after, signal, turnId);
   await readTurnStream(response, onEvent, 'Attach response did not include a stream body');
 }
 

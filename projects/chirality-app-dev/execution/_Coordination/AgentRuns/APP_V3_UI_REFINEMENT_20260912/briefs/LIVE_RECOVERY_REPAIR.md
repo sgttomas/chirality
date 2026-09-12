@@ -45,3 +45,7 @@ live/supplier/credential-dependent tests. Never read protected live files/logs,
 use security, launch an App or signal processes. Do not commit. Return changed
 files, source reasoning, focused results and limits. If more write scope or a
 materially different design is needed, return the issue before changing it.
+
+## Independent-review repair, 2026-09-12T21:21:14Z
+
+Review of 9eb92d33b found one P1: an ambiguous fresh POST could attach to an old retained turn or select an old replay terminal before learning the new turn identity. Parent authorizes a generated submission turnId through the App to the existing Runtime SessionTurnRequest.turnId, plus an optional expected identity on the App/client/Runtime attach path checked atomically in TurnRegistry.subscribe. Legacy omitted-identity calls retain their existing behavior. Supplier protocol is unchanged. Extend only the related request/port/client/route/registry types and maintained tests. Replay must use the same expected identity. Test old retained completion, old replay, matching recovery, preserved known-rejection restoration and no automatic second POST. See returns/REVIEW_LIVE_RECOVERY_1.md.

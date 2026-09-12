@@ -321,6 +321,7 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
         request.sessionId,
         {
           message: request.message,
+          ...(request.turnId === undefined ? {} : { turnId: request.turnId }),
           ...(request.opts === undefined ? {} : { opts: request.opts }),
           ...(request.attachments === undefined
             ? {}
@@ -346,7 +347,7 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
   async attachTurn(
     sessionId: string,
     after: number,
-    options?: DaemonRequestOptions
+    options?: DaemonRequestOptions & { turnId?: string }
   ): Promise<RunningDaemonHarnessTurn> {
     return mapped(async () => {
       await this.requireConfiguredProject(options?.signal);
@@ -354,7 +355,7 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
       const stream = await this.client.attachSessionTurn(
         this.projectId,
         sessionId,
-        { after: afterSeq },
+        { after: afterSeq, ...(options?.turnId === undefined ? {} : { turnId: options.turnId }) },
         options?.signal
       );
       return this.runningTurn(stream);

@@ -735,7 +735,7 @@ it('keeps retained assistant Markdown bound to the root that produced it', async
 
 it('accepts Runtime interrupted exit 130 without a request failure and permits a follow-up turn', async () => {
   state.stream.mockImplementationOnce(async (_input, onEvent) => {
-    onEvent({ event: 'harness:event', data: { type: 'turn.interrupted', sessionId: 'bound', turnId: 'interrupted-turn' } });
+    onEvent({ event: 'harness:event', data: { type: 'turn.interrupted', sessionId: 'bound', turnId: _input.turnId } });
     onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
   });
   await mount(); await type('Interrupt this turn'); await submit();

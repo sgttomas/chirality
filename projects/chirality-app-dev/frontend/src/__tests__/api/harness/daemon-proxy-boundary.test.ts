@@ -190,7 +190,7 @@ describe('Desktop daemon harness proxy boundary', () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           sessionId: 'sess_proxy_1',
-          message: 'hello daemon'
+          message: 'hello daemon', turnId: 'submitted-turn'
         })
       })
     );
@@ -207,7 +207,7 @@ describe('Desktop daemon harness proxy boundary', () => {
     await reader?.cancel();
     expect(cancelled).toHaveBeenCalledOnce();
     expect(turn).toHaveBeenCalledWith(
-      { sessionId: 'sess_proxy_1', message: 'hello daemon' },
+      { sessionId: 'sess_proxy_1', message: 'hello daemon', turnId: 'submitted-turn' },
       { signal: expect.any(AbortSignal) }
     );
   });

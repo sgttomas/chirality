@@ -287,7 +287,7 @@ describe("RuntimeClient turn ownership transport (D-GOV-43)", () => {
     const seen: string[] = [];
     const server = await fixture(async (request, response) => {
       seen.push(`${request.method} ${request.url}`);
-      if (request.url === "/v1/projects/project-a/sessions/sess-a/turn/stream?after=3") {
+      if (request.url === "/v1/projects/project-a/sessions/sess-a/turn/stream?after=3&turnId=turn%2F1") {
         request.once("close", () => closedResolve?.());
         // Silence longer than the client's JSON idle timeout must not end a turn subscription.
         await new Promise((resolve) => setTimeout(resolve, 40));
@@ -299,12 +299,12 @@ describe("RuntimeClient turn ownership transport (D-GOV-43)", () => {
       return json(response, 404, { error: { code: "NOT_FOUND", message: "not found" } });
     });
     const client = new RuntimeClient({ socketPath: join(server.root, "control.sock"), tokenFile: join(server.root, "operator.token"), timeoutMs: 10 });
-    const stream = await client.attachSessionTurn("project-a", "sess-a", { after: 3 });
+    const stream = await client.attachSessionTurn("project-a", "sess-a", { after: 3, turnId: "turn/1" });
     const iterator = stream[Symbol.asyncIterator]();
     await expect(iterator.next()).resolves.toEqual({ done: false, value: { type: "chat:delta", data: { text: "late" }, seq: 4 } });
     stream.cancel();
     await closed;
-    expect(seen).toEqual(["GET /v1/projects/project-a/sessions/sess-a/turn/stream?after=3"]);
+    expect(seen).toEqual(["GET /v1/projects/project-a/sessions/sess-a/turn/stream?after=3&turnId=turn%2F1"]);
     expect(() => client.attachSessionTurn("project-a", "sess-a", { after: -1 })).toThrow(expect.objectContaining({ code: "INVALID_REQUEST" }));
     await server.close();
   });

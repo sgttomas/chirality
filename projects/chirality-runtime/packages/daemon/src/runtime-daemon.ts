@@ -684,8 +684,11 @@ export class RuntimeDaemon {
     }
     if (segments.length === 7 && segments[5] === "turn" && segments[6] === "stream" && method === "GET") {
       await this.authorize(request, "sessions:read", projectId);
-      const after = this.afterSequence(new URL(request.url ?? "/", "http://chirality.invalid").searchParams.get("after"));
-      const subscription = this.turns.subscribe(projectId, sessionId, after);
+      const query = new URL(request.url ?? "/", "http://chirality.invalid").searchParams;
+      const after = this.afterSequence(query.get("after"));
+      const turnId = query.get("turnId");
+      if (turnId !== null && turnId.trim() === "") throw new RuntimeError("INVALID_REQUEST", "turnId must be non-empty", 400);
+      const subscription = this.turns.subscribe(projectId, sessionId, after, turnId ?? undefined);
       return await this.sse(response, subscription, {
         interrupt: () => this.turns.interrupt(projectId, sessionId, "service-shutdown"),
         onDisconnect: () => subscription.close(),
