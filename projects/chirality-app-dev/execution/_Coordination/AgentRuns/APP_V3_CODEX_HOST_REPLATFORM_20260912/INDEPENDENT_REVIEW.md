@@ -542,3 +542,173 @@ use as coded here), CSS, and files outside the two workspace roots.
 8. The effective-home tests prove exclusion of the names; no test spawns a
    process under `CODEX_HOME=<overlay>` and shows a write to `auth.json`
    lands in the overlay, which is the property the design relies on.
+
+## Re-check 2026-09-12: repair commit `26fffb89a` (delta only)
+
+Reviewer: Claude Fable 5.1, medium reasoning, no delegation. Read-only review
+of `git diff 886eb2707..26fffb89a` (HEAD now `26fffb89a`, one commit) in the
+same worktree, restricted to the product and test files the coordinator
+named, together with the complete final `turn-registry.ts`,
+`codex-supervisor.ts`, `delegated-runtime.ts`, `app-owned-composition.ts`,
+`session-store.ts` (`settleRunningOnStart` and its callers) and
+`runtime-service-host.ts` constants. Same constraints as the main review;
+only this file was edited.
+
+### Verdict for the delta: PASS
+
+Findings 1 to 4 are closed. No regression in the interrupt-versus-retirement
+rule. Two Informational residuals and two test gaps are recorded; none is
+blocking.
+
+### Finding 1 (shutdown budgets; stuck `running` session): closed
+
+- The interrupt fan-out is now raced against the grace
+  (`runtime/packages/daemon/src/turn-registry.ts:264-274`), so the
+  `waitForTerminal` loop and `markInterruptedOnShutdown` always run inside
+  the grace; the default grace is 3 s (`:20`). The app-server kill grace is
+  2 s (`codex-app-server-client.ts:47`, `:83`); the App host's SIGKILL grace
+  is 10 s (`frontend/electron/runtime-service-host.ts:217`). Worst-case
+  service close is registry 3 s, then `delegated.close()` (immediate, see
+  below), daemon stop 2 s plus the 0.5 s force-settle cap
+  (`runtime-daemon.ts:52-53`), then app-server kill 2 s: about 7.5 s plus
+  overhead, inside the 10 s window. SPIKE_DESIGN.md:94-96 and :409-411 now
+  state the same figures.
+- On start, `settleRunningOnStart` moves every `running` session of every
+  registered project to `interrupted` with a `turn.interrupted` event
+  (reason `service-restart`) against the last accepted or started turn
+  (`runtime/packages/core/src/session-store.ts:168-180`;
+  `app-owned-composition.ts:166-171`). It runs before the engine registry,
+  the delegated runtime and the daemon exist, so within the new process no
+  turn can own a session at that moment.
+- Abandoned interrupt question. When the race times out, the fan-out
+  promise keeps running with `CodexSupervisor.interrupt` awaiting
+  `entry.result`. The next close step, `delegated.close()`
+  (`delegated-runtime.ts:249-262`), skips turns already latched in
+  `interruptedTurns` (every fan-out reached `executeInterrupt` within the
+  grace unless `binding()` itself stalled) and retires every worker in the
+  supervisor inventory; `retire` settles an unsettled entry
+  (`codex-supervisor.ts:210`), which resolves the abandoned await and the
+  turn's own `wait`. `host.close()` then SIGTERMs and SIGKILLs the app-server
+  within 2 s, so no live Codex turn outlives the service. The next service
+  resumes the durable thread through `thread/resume` on the first turn
+  (`codex-supervisor.ts:104`, `:126`); the composition test at
+  `runtime/tests/app-owned-composition.test.ts:142-167` runs a new turn on
+  the settled session after a relaunch. The only path that still leaves a
+  live child is a SIGKILL from Electron before `host.close()`, which the
+  10 s window is sized to prevent.
+- Sweep-versus-live-turn question. The sweep cannot settle a session owned
+  by the new process. It could touch a session owned by a predecessor only
+  if two services share the runtime directory at once; Electron's
+  `restart()` awaits the previous child's termination (`runtime-service-host.ts:521`),
+  and a crashed child is dead. The ready-timeout path does not await
+  `terminateChild` (`:463`) before the restart ladder, so a predecessor that
+  received SIGTERM at 30 s could still be closing when the successor starts
+  1 s later; but such a predecessor is already settling its own turns with
+  `markInterruptedOnShutdown`, which returns false once the record is no
+  longer `running` (`session-store.ts:155`), and the successor's daemon then
+  fails closed on the live owner record (`runtime-daemon.ts:1319`). No
+  double settlement and no misreported live turn; see residual R1.
+
+### Finding 2 (Stop during the `turn/start` round trip): closed
+
+`interrupt` now awaits the turn identity (`entry.turnId ?? await
+entry.turnIdReady`, `codex-supervisor.ts:202-204`), which is resolved on the
+`turn/start` response through `adoptTurn` (`:239`), on `turn/start` failure
+(`:176`) and on settlement (`:167`), so it can never wait past the turn's
+own end and never sends an empty id. A rejected supervisor interrupt now
+unlatches `interruptedTurns` before rethrowing
+(`delegated-runtime.ts:224-227`), so a later Stop is accepted. Test
+`runtime/tests/codex-supervisor.test.ts:192-213` holds the `turn/start`
+response, calls `interrupt`, asserts no `turn/interrupt` was sent, releases
+the response, and asserts the exact `turn/interrupt` with the adopted id
+followed by the `SIGTERM` result.
+
+### Finding 3 (polling failure retired a live worker): closed
+
+A polling failure now sends the supervisor's `interrupt` (which joins the
+turn's own terminal) before `retire`, and the polling error is thrown after
+the terminal arrives (`delegated-runtime.ts:363-376`); the catch path joins
+the same memoized retirement (`:397`). The interrupt-versus-retirement rule
+is intact: apart from service shutdown (`delegated.close()` inventory
+retirement after the interrupts, and `supervisor.close()`), no path retires
+a live worker without an interrupt first. Trade-off accepted: a supplier
+that never honours the interrupt now keeps the failed turn open until Stop
+or shutdown instead of orphaning it upstream.
+
+### Finding 4 (`establishing`): closed by design text
+
+SPIKE_DESIGN.md:460-461 now names the state (signed in, catalog read failed,
+next status read retries); the code is unchanged. The related
+`resolveProject` change (`app-owned-composition.ts:202`) reads the catalog
+on demand when nothing is cached so a first turn after relaunch validates
+its model and effort; a failed read falls back to the pre-delta
+catalog-less binding.
+
+### Regression check: interrupt versus retirement
+
+No regression. `interrupt` still never retires (`codex-supervisor.ts:196-206`);
+`retire` is still memoized per generation (`:212-227`); `executeInterrupt`
+still takes the retire branch only for supervisors without a native
+interrupt (`delegated-runtime.ts:228`); the section 8 order A/B tests and
+`codex-supervisor.test.ts:166` pass unchanged.
+
+### Test coverage and determinism
+
+- `runtime/tests/turn-registry.test.ts:73-89`: holds the service interrupt
+  forever, closes with a 100 ms grace, asserts the close returned in under
+  2 s with the turn reported unsettled, the session marked interrupted with
+  reason `service-shutdown`, and the registry state inactive. Real timers
+  against an in-process stub; deterministic.
+- `runtime/tests/session-and-residency.test.ts:132-148`: store-level sweep
+  with one running and one idle session; asserts the event, the turn id, the
+  idempotent second sweep. Deterministic.
+- `runtime/tests/app-owned-composition.test.ts:142-167`: emulates a hard kill
+  by stopping the daemon and the app-server, then rewrites the record to
+  `running`, restarts a second service over the same directory, and asserts
+  the settlement log line, the `interrupted` status, the `service-restart`
+  terminal and a successful new turn on the same session. Deterministic
+  (2.5 s, the daemon's production stop grace). Fidelity note: because the
+  emulated stop already appended a terminal, the log ends with two
+  terminals; a real SIGKILL leaves none. The sweep does not read the log's
+  terminal state, so the assertion still proves the repair.
+- `runtime/tests/codex-supervisor.test.ts:192-213`: ordering relies on 1 ms
+  sleeps against a synchronous in-process fake host; deterministic in
+  practice.
+- Frontend: `DEFAULT_KILL_GRACE_MS` has no direct test (the host tests pass
+  `killGraceMs: 300`); the relation "App kill grace exceeds the service close
+  budget" is asserted nowhere (gap G2).
+
+### Residuals (non-blocking)
+
+- R1 (Informational): the start sweep runs before the daemon acquires the
+  socket owner record (`app-owned-composition.ts:166` precedes
+  `daemon.start`). Moving it after the owner record is held would make "a
+  fresh service owns no turns" hold by construction rather than by the
+  Electron launcher's single-owner discipline.
+- R2 (Informational): `daemon.stop()` calls `delegated.close()` a second time
+  (`runtime-daemon.ts:366`); it is idempotent in effect but not memoized.
+- R3 (Informational, unchanged from the main review): when
+  `engine.interrupt` rejects, `TurnCoordinator.interrupt` has already aborted
+  its controller (`turn-coordinator.ts:494-495`), so the eventual terminal of
+  a turn that was never interrupted is reported with `interrupted: true`.
+  Far less reachable now that Finding 2 is closed.
+
+### Test gaps after the delta
+
+- G1: no composition-level test drives a fake app-server that ignores
+  `turn/interrupt` through `runtime.close()` end to end and asserts the total
+  close time and that the app-server was terminated (the registry-level
+  test covers the bound; the budget composition is argued, not measured).
+- G2: no test or static assertion ties `DEFAULT_KILL_GRACE_MS` (10 s) to the
+  service's close budget.
+- G3 (carried): the polling-failure path (Finding 3) has no test.
+
+### Re-check commands
+
+| Command (cwd) | Result |
+|---|---|
+| `npx tsc -b --pretty false` (`runtime/`) | exit 0, no diagnostics |
+| `npx vitest run tests/turn-registry.test.ts tests/session-and-residency.test.ts tests/app-owned-composition.test.ts tests/codex-supervisor.test.ts tests/delegated-runtime.test.ts tests/codex-app-server-client.test.ts tests/standalone.test.ts tests/daemon.test.ts tests/runtime-daemon-signal.test.ts` (`runtime/`) | 9 files passed, 76 tests passed, 0 failed, 14.97 s (turn-registry 8, session-and-residency 8, codex-supervisor 7, app-owned-composition 10, delegated-runtime 9, codex-app-server-client 7, standalone 5, daemon 20, runtime-daemon-signal 2) |
+| `npx vitest run tests/turn-registry.test.ts tests/session-and-residency.test.ts tests/codex-supervisor.test.ts` (`runtime/`) | 3 files passed, 23 tests passed |
+| `npm run typecheck` (`frontend/`) | exit 0 |
+| `npx vitest run src/__tests__/electron/runtime-service-host.test.ts` (`frontend/`) | 1 file passed, 12 tests passed |
