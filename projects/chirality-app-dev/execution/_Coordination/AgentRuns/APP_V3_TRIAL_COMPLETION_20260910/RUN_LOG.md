@@ -837,3 +837,34 @@ instructions, instruction entrypoints, candidate whitespace all pass. No
 ruling recorded; no live surface, installation, evidence or credential
 changed; nothing published. Next: owner ruling on D-GOV-43, then the
 application tranche, loop notices and the spike against ruling item 11.
+
+## D-GOV-43 revisions 2 and 3 after independent review — 2026-09-12T05:05Z
+
+Owner relayed two rounds of feedback from an independent reviewing agent
+("Let's iterate to get the best proposal"; then "Once more consider the
+other agent's feedback... update your proposal for my direction"). Revision
+2 (commit a0698bf9c): Chirality effective Codex home with separated
+authentication instead of the user's own home; role and workflow context
+through supported additive inputs; governance simplification as a primary
+deliverable with a purpose test; eight-check measure of done S-1 to S-8;
+`collaborationMode` as a declared experimental augmentation; three owner
+choices surfaced (coordinated tranche, read-only trial chats, residency
+retirement). Revision 3 (this entry): AGENTS patch regenerated to describe
+shared configuration, Chirality-separated Codex-custodied authentication,
+additive role instructions and every server request answered (`git apply
+--check` ok); IMPACT retires residency requirements and the nine held
+bindings outright, regroups the purpose test into six families with whole
+families retired and ordinary software integrity retained, supersedes the
+Stage 9-13 packaging procedure with a new short one, and preserves executed
+records and daemon-era chats unchanged without an import prerequisite;
+ruling item 2 distinguishes unfamiliar notifications (generic inspection)
+from server requests (always answered, explicit unsupported outcome);
+coordinated authority made explicit and bounded with independent review as
+an engineering responsibility; shared-authentication opt-in deferred; the
+eight checks bounded to the production path with only S-6, S-8 and
+signature/pin verification repeated after packaging; the three choices
+folded into the ruling with alternatives noted. Feedback recorded verbatim in
+REVIEW_FEEDBACK_R1.md and REVIEW_FEEDBACK_R2.md. No ruling recorded; no live
+surface, installation, evidence or credential changed; nothing published.
+R17 GUI 31613 and daemon 27838 still running. Next: owner ruling, then the
+coordinated application tranche and the spike against ruling item 12.

@@ -1,6 +1,6 @@
 # D-GOV-43 Proposal Packet — Codex Host Re-platform
 
-Status: `PROPOSED — AWAITING OWNER RULING` (revision 2)
+Status: `PROPOSED — AWAITING OWNER RULING` (revision 3)
 
 Date: `2026-09-11`
 
@@ -18,18 +18,18 @@ authorizes performs the propagation.
 ## Packet inventory
 
 - `D-GOV-43.proposed.md` — the decision: findings, fourteen ruling items,
-  three unresolved choices, surfaces touched, gates.
+  the three folded choices with alternatives, surfaces touched, gates.
 - `AGENTS.proposed.patch` — the exact inactive delta to `AGENTS.md`, verified
   with `git apply --check`.
-- `IMPACT.md` — affected Root, Runtime, App and PEC surfaces, the purpose test
-  for every affected check and gate, trial-chat preservation, notices.
-- `REVIEW_FEEDBACK_R1.md` — the round-1 independent review, verbatim, with
-  each point's disposition in revision 2.
+- `IMPACT.md` — affected Root, Runtime, App and PEC surfaces, the purpose
+  test by family, preservation of trial chats and executed records, notices.
+- `REVIEW_FEEDBACK_R1.md`, `REVIEW_FEEDBACK_R2.md` — the two rounds of
+  independent review, verbatim, with each point's disposition.
 - `docs/governance_harness/tranche_manifests/ROOT-DGOV43-PROPOSAL-20260911.yaml`
   — the proposal-candidate tranche manifest.
 
 Packet integrity is the branch's Git history. No hash table or self-hash is
-maintained (review point 3).
+maintained.
 
 ## Owner direction of record
 
@@ -53,13 +53,16 @@ owner ruling.
 
 ## What the owner is asked to rule on
 
-Fourteen ruling items and three unresolved choices in `D-GOV-43.proposed.md`:
-stock pinned App Server owned by the App host; faithful transport; a
-Chirality effective Codex home with separated authentication; user-chosen
-policy; continuity from Codex; Codex-native authentication; daemon
-retirement; role and workflow instructions through supported mechanisms;
-evidence from the full stream; roles, skills, workflows and Plan Mode;
-governance simplification as a primary deliverable; the eight-check measure
-of done; local models deferred; exclusions. Choices: one coordinated tranche
-across loops; daemon-era trial chats read-only; residency requirements
-retired.
+Fourteen ruling items in `D-GOV-43.proposed.md`: stock pinned App Server
+owned by the App host with ordinary software integrity retained; faithful
+transport with every server request answered; a Chirality effective Codex
+home with separated authentication as the only MVP mode; user-chosen policy;
+continuity from Codex with inexpensive preservation of daemon-era chats;
+Codex-native authentication; daemon retirement; role and workflow
+instructions through supported additive mechanisms; evidence from the full
+stream with executed records preserved unchanged; roles, skills, workflows
+and Plan Mode; governance simplification under a bounded coordinated
+authority with a purpose test by family; the eight-check acceptance set on
+the production path; local models deferred and residency requirements
+retired; exclusions. The three revision-2 choices are folded into the ruling
+with their alternatives noted; the owner may strike any of them.

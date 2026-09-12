@@ -62,6 +62,12 @@ Revision-2 direction, relaying an independent reviewing agent's feedback
 > don't have to adopt everything, it's offered as feedback for your
 > consideration.
 
+Revision-3 direction, relaying the same reviewer's round-2 feedback
+(reproduced in the packet's `REVIEW_FEEDBACK_R2.md`):
+
+> Once more consider the other agent's feedback. Seek any further answers
+> from me if needed. Otherwise update your proposal for my direction.
+
 ## Referent
 
 The "second re-platform route" is the re-platform described in the context

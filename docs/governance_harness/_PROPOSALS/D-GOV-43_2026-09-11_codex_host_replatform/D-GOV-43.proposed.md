@@ -1,16 +1,17 @@
 # D-GOV-43 — Codex Host Re-platform: Stock App Server Owned by the App Host
 
-Status: `PROPOSED — AWAITING OWNER RULING` (revision 2)
+Status: `PROPOSED — AWAITING OWNER RULING` (revision 3)
 
 Decision ID: `D-GOV-43` (verified next free after D-GOV-42 on the preparation basis)
 
-Date: `2026-09-11` (America/Edmonton); revision 2 same day after review
+Date: `2026-09-11` (America/Edmonton); revisions 2 and 3 after independent review
 
 Framed by: HELP_HUMAN, Chirality v3 Codex-only MVP trial session, after the
 Stage26/R17 native pass and the plan/execute/workflow demonstration recorded in
 `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_TRIAL_COMPLETION_20260910/R17_FUNCTIONAL_FINDINGS.md`
-(findings R17-F1 and R17-F2). Revision 2 incorporates the independent review
-recorded in `REVIEW_FEEDBACK_R1.md`.
+(findings R17-F1 and R17-F2). Revision 2 incorporated the round-1 review in
+`REVIEW_FEEDBACK_R1.md`; revision 3 incorporates the round-2 review in
+`REVIEW_FEEDBACK_R2.md`.
 
 Accepted preparation basis: `main@a75adecf13f055c092ffa92809f66e7817c44242`
 (PR #766 merge). Prepared on branch `claude/chirality-v3-mvp-trial-ab05cb`.
@@ -36,7 +37,10 @@ own Electron main process over stdio, speaking the published protocol in
 full, with Chirality's conversational interface, roles and reusable workflows
 supplied through supported upstream mechanisms, authentication separated from
 the user's other Codex clients, and approval and sandbox policy chosen by the
-user. Governance simplification is a primary deliverable of the same ruling.
+user. The same ruling authorizes, together and as a bounded act, the named
+Root, Runtime and App governance changes that remove the daemon's obsolete
+requirements, holds and checks. The working target throughout is
+plan → execute → save → reuse → iterate.
 
 ## Owner direction already recorded
 
@@ -70,6 +74,11 @@ and, relaying the round-1 review:
 > Let's iterate to get the best proposal. How do you see this matter now? You
 > don't have to adopt everything, it's offered as feedback for your
 > consideration.
+
+and, relaying the round-2 review:
+
+> Once more consider the other agent's feedback. Seek any further answers
+> from me if needed. Otherwise update your proposal for my direction.
 
 ## Findings that motivate the decision
 
@@ -138,21 +147,28 @@ protocol schema at Codex `rust-v0.154.0` (released 2026-09-09):
    version in its package manifest and lockfile and updates the pin routinely
    with re-validation. Upstream drift is a dependency update, not a stop
    condition. No patched, forked or privately extended supplier is used; the
-   private protocol extensions in finding 3 are retired. The App bundle's
-   ordinary code signing covers the bundled binary; no runtime admission,
-   supplier certification, payload hashing or identity binding is
-   re-created under any name.
+   private protocol extensions in finding 3 are retired. Ordinary software
+   integrity is retained: lockfile-pinned dependencies, the App bundle's code
+   signing and notarization covering the bundled binary, and the security
+   checks a desktop application normally carries. No runtime admission,
+   supplier certification, payload hashing or identity binding is re-created
+   under any name.
 2. **Faithful transport.** The App forwards the complete App Server
    notification and server-request stream to its renderer over one
    long-lived channel (Electron IPC through the preload bridge with validated
    message shapes, `contextIsolation` on, no credential material in the
    renderer), with no notification whitelist, quarantine, projection to a
    closed generic event schema, or client-side idle timeout that terminates a
-   turn. Server requests are surfaced to the user or answered by the user's
-   recorded policy, never dropped or denied silently. Familiar items get
-   purpose-built cards; unfamiliar items and methods are preserved for
-   inspection in a generic card and the event log without bespoke UI per
-   upstream method.
+   turn. Notifications and server requests are treated differently. A
+   familiar notification gets a purpose-built card; an unfamiliar notification
+   is rendered for generic inspection and kept in the event log, never
+   dropped. Every server request receives a response: familiar requests
+   (command, file-change and permission approvals, user input, dynamic tool
+   calls, MCP elicitation) through their cards or the user's recorded policy;
+   an unfamiliar request receives an explicit JSON-RPC error response and a
+   visible "unsupported request" outcome in the transcript. No request is
+   left unanswered, so Codex never waits indefinitely, and a generic card
+   never implies approval.
 3. **Chirality's effective Codex home with separated authentication.** The
    App runs Codex against a Chirality-owned effective home that shares the
    user's configuration and resources by reference (config, skills, plugins,
@@ -165,8 +181,9 @@ protocol schema at Codex `rust-v0.154.0` (released 2026-09-09):
    Codex's own flow. The actual credential backend (file versus OS keyring) is
    verified so that signing into or out of Chirality does not sign another
    Codex client in or out; if a backend cannot separate, the App reports it
-   and does not silently share. Using the user's own home directly is an
-   explicit opt-in setting. There is no effective-configuration veto.
+   and does not silently share. Separation is the only mode implemented and
+   verified for the MVP; a direct shared-authentication opt-in is deferred.
+   There is no effective-configuration veto.
 4. **Chosen policy.** Approval policy and sandbox mode are the user's choice
    per project with per-turn override, taken from Codex's own options
    (approval `untrusted`, `on-request`, `on-failure`, `never`; sandbox
@@ -183,10 +200,11 @@ protocol schema at Codex `rust-v0.154.0` (released 2026-09-09):
    operational user-data state; the sidebar shows the App's index, not every
    thread in the shared store. App relaunch resumes threads through
    `thread/resume`; the daemon's restart-admission mechanism is retired.
-   Daemon-era trial chats are preserved in place and remain viewable
-   read-only from their existing JSON/JSONL records; continuation of those
-   chats as Codex threads is not promised by this ruling (see unresolved
-   choice B).
+   Daemon-era trial chats and their evidence are preserved unchanged in
+   place. If the App's existing session reader renders them without new
+   work, they remain viewable; otherwise they are retained as an accessible
+   archive. No history-import feature is a release prerequisite, and
+   continuation of those chats as Codex threads is not promised.
 6. **Authentication.** Sign-in and sign-out use Codex's own
    `account/login/start`, `account/login/cancel` and `account/logout` within
    the Chirality effective home, with credentials custodied by Codex as
@@ -197,9 +215,10 @@ protocol schema at Codex `rust-v0.154.0` (released 2026-09-09):
    control socket, client tokens, accepted supervisor-socket design, hosted
    admission and identity binding, packaged-basis hashing, native admission
    addon and the SSE-over-Next turn route are retired from the App MVP path,
-   together with the requirements that governed them. K-RUNTIME-1's
-   exclusive-owner language transfers to the App host process for its own App
-   Server child. No network-exposed control listener is introduced.
+   together with the requirements, holds and checks that governed them
+   (item 11). K-RUNTIME-1's exclusive-owner language transfers to the App
+   host process for its own App Server child. No network-exposed control
+   listener is introduced.
 8. **Instructions.** Upstream base instructions and tool behaviour are
    preserved. The active Chirality role and any selected workflow context are
    supplied through supported additive mechanisms: `developerInstructions` at
@@ -214,7 +233,9 @@ protocol schema at Codex `rust-v0.154.0` (released 2026-09-09):
    checkout-contained project evidence where the governing workflow requires
    it. Codex's session store is operational, non-authoritative state.
    Historical evidence is preserved and is not regenerated to resemble the
-   new architecture.
+   new architecture. Executed checklists, packaging records and prior
+   findings are preserved unchanged; the new procedures supersede their
+   applicability rather than editing them.
 10. **Roles, skills, workflows, Plan Mode.** HELP_HUMAN, HELPS_HUMANS,
     WORKING_ITEMS and TASK remain, supplied per item 8; D-GOV-35's
     recognition of delegated-harness-native descendants stands with its "hard
@@ -229,20 +250,30 @@ protocol schema at Codex `rust-v0.154.0` (released 2026-09-09):
     through `collaborationMode`, carried as an explicitly declared
     experimental-field augmentation of the generated bindings and covered by
     an integration check against the pinned Codex.
-11. **Governance simplification is a primary deliverable.** The application
-    tranche removes obsolete requirements together with the mechanisms they
-    governed. For every affected requirement, check and gate, the tranche
-    records its actual purpose and then retains, adapts or retires it
-    (IMPACT.md "Purpose test"). Conflicting live contracts, scopes and
-    notices across Root, Runtime and App are updated in one coordinated
-    tranche under this ruling; routed notices are records of the change, not
-    further approval requests. Cosmetic whitespace ceases to be an acceptance
-    or merge condition; README self-hash machinery is not used; duplicate
-    test execution is removed where existing results establish the same
-    thing, and checks for distinct integration conditions are kept. The human
-    decisions retained are this ruling, independent source review before one
-    consolidated signed build, the owner's native trial, and explicit
-    publishing approval.
+11. **Governance simplification is a primary deliverable, under a bounded
+    coordinated authority.** This ruling authorizes together the Root
+    amendments in "Surfaces touched" and the Runtime and App contract, scope,
+    deliverable, hold and notice changes named in `IMPACT.md`. Notices to
+    those loops record the application; they do not reopen approval of this
+    decision. The authorization is bounded to this decision and does not
+    change how unrelated project loops adopt Root changes. The application
+    tranche applies a purpose test by family of shared purpose: a family
+    whose purpose disappears with the daemon is deleted outright, not renamed,
+    re-seated or mapped onto new checks. In particular the nine held release
+    bindings are not mapped onto the spike checks, and the Stage 9–13
+    twenty-five-step packaging procedure is superseded by a new short
+    procedure rather than trimmed. A concise rationale in the tranche and the
+    reviewed Git changes are the record of simplification; no register or
+    hash table is built to demonstrate it. Retained: ordinary software
+    integrity (dependency integrity, application signing, renderer isolation
+    and validated IPC, request and session correctness tests). Retired as
+    gates: cosmetic whitespace, README self-hash machinery, and repeated test
+    execution where one run establishes the fact; a test runs once per
+    distinct condition. The human decisions retained are this ruling, the
+    owner's native trial and explicit publishing approval. Independent source
+    review before the consolidated build is an engineering responsibility,
+    not a human approval prompt. Material scope changes and consequential
+    findings return to the owner; routine implementation choices do not.
 12. **Measure of done.** The functional spike extends the R17 demonstration
     and is complete when, against the pinned stock Codex in a trial project,
     one App instance demonstrates all of:
@@ -260,34 +291,40 @@ protocol schema at Codex `rust-v0.154.0` (released 2026-09-09):
     - S-8 sign-in and sign-out scoped to Chirality, with another Codex client's
       state unchanged.
     Every action is visible in Activity, with no read-free workaround and no
-    interrupted turn attributable to transport.
-13. **Local models deferred.** Local-model integration is not part of this
-    ruling. When taken up it uses Codex model providers (`model_provider`,
-    `[model_providers.<id>]`, `--oss`, `oss_provider`), keeping Codex the sole
-    engine. The daemon-era residency requirements are retired from live
-    contracts with the daemon; their history is preserved (see unresolved
-    choice C).
+    interrupted turn attributable to transport. The eight checks are an
+    acceptance set, not a requirement to build two implementations or to
+    rerun every test after packaging. The spike is built on the production
+    path. After the consolidated signed build, only the checks that exercise
+    a distinct packaged or native condition are repeated: S-6, S-8, and
+    verification of the bundle signature and the Codex pin.
+13. **Local models deferred; residency requirements retired.** Local-model
+    integration is not part of this ruling. When taken up it uses Codex model
+    providers (`model_provider`, `[model_providers.<id>]`, `--oss`,
+    `oss_provider`), keeping Codex the sole engine. K-RESIDENCY-1, SPEC §14.3
+    and the residency types are retired from live contracts with the daemon
+    rather than kept as prospective text nothing implements; their history is
+    preserved. Useful prior work (the Pi and oMLX validation records and
+    provider research) is preserved as reference without release obligations.
 14. **Exclusions.** This ruling does not authorize release, publishing,
     acceptance of unknown future bytes, any change to the Codex sole-engine
     rule, any change to Root decomposition workflows, or reliance on the
     retired daemon path.
 
-## Unresolved choices surfaced for the owner
+## Choices folded into the ruling, with the alternative noted
 
-- **A. One coordinated tranche across loops.** Item 11 proposes that this
-  ruling authorizes the Root, Runtime and App revisions together, with
-  notices as records. Current doctrine has each loop decide its own adoption
-  after a notice. Recommendation: adopt the coordinated tranche; the owner is
-  the accountable human for all three loops and the alternative is repeated
-  restatement.
-- **B. Daemon-era trial chats.** Recommendation: preserve read-only in place
-  (item 5). The alternative is migrating their Codex thread records into the
-  shared sessions store for continuation, which is extra work of uncertain
-  value for evidence that is already complete.
-- **C. Residency requirements.** Recommendation: retire K-RESIDENCY-1, SPEC
-  §14.3 and the residency types from live contracts with the daemon, and
-  re-specify local models when that work is taken up. The alternative keeps
-  them as prospective text that nothing implements.
+Revision 2 surfaced three choices. The round-2 review supported the
+recommendations and revision 3 folds them into the ruling text. The owner may
+strike any of them when ruling.
+
+- **Coordinated authority** (item 11): one bounded authorization for the
+  named Root, Runtime and App changes, notices as records. Alternative:
+  route notices and let each loop re-decide adoption of the same decision.
+- **Daemon-era trial chats** (item 5): preserved unchanged, viewable through
+  the existing reader if that is straightforward, otherwise an accessible
+  archive; no continuation and no import feature as a prerequisite.
+  Alternative: migrate their thread records into the shared sessions store.
+- **Residency requirements** (item 13): retired with the daemon. Alternative:
+  keep K-RESIDENCY-1, SPEC §14.3 and the residency types as prospective text.
 
 ## Surfaces touched by the proposed ruling
 
@@ -296,10 +333,12 @@ Ratified Root surfaces to be amended in the coordinated application tranche
 
 - `AGENTS.md` — skills paragraph (bundled-only trust), ordinary-context
   sentence, and the Execution and governance section; the exact inactive
-  delta is `AGENTS.proposed.patch`.
+  delta is `AGENTS.proposed.patch` (shared configuration and resources,
+  Chirality-separated Codex-custodied authentication, additive role
+  instructions, every server request answered).
 - `docs/CONTRACT.md` §1.13 — re-express K-RUNTIME-1 (App host owns the App
   Server child), K-CONTROL-1 (no network control listener; daemon and
-  supervisor sockets retired), retire K-RESIDENCY-1 (choice C), and revise the
+  supervisor sockets retired), retire K-RESIDENCY-1 (item 13), and revise the
   §1.13 closing paragraph and the enforcement-map row "Shared runtime daemon
   and clients".
 - `docs/SPEC.md` §14 — replace §14.1 with the App-host App Server child
@@ -324,24 +363,25 @@ Decision records superseded in the stated parts, never edited: D-GOV-20,
 D-GOV-36. Decision records read with this ruling: D-GOV-28, D-GOV-35,
 D-GOV-37 through D-GOV-42.
 
-Project-loop surfaces revised in the same coordinated tranche (choice A) or,
-failing that, by routed notice: `projects/chirality-runtime` and
-`projects/chirality-app-dev` as enumerated in `IMPACT.md`; `projects/pec`
-receives a notice only.
+Runtime and App loop changes authorized together with the Root amendments
+(item 11) are enumerated in `IMPACT.md`; `projects/pec` receives a notice as
+a record.
 
 ## Application, compatibility, and closure gates
 
-1. Owner ruling on this record, including choices A to C (K-AUTH-1).
+1. Owner ruling on this record (K-AUTH-1).
 2. One coordinated application tranche with its own M2/G4 manifest applying
-   the Root amendments, the Runtime and App contract, scope and notice
-   revisions, and the purpose-test dispositions.
-3. Functional spike against item 12, built by reusing the existing
-   conversation, plan pane, workflow, attachment and viewer components, with
-   generated bindings and the declared experimental-field augmentation.
-   Existing trial evidence and the R17 installation are preserved, not
-   deleted.
-4. Independent source review before one consolidated signed build, then
-   native verification of item 12 by the owner's direct tester.
+   the Root amendments and the Runtime and App changes named in `IMPACT.md`,
+   with the family dispositions and a concise rationale; notices routed as
+   records.
+3. Functional spike on the production path against item 12, reusing the
+   existing conversation, plan pane, workflow, attachment and viewer
+   components, with generated bindings and the declared experimental-field
+   augmentation. Existing installations and trial evidence are preserved,
+   not deleted.
+4. Independent source review, as an engineering responsibility, before one
+   consolidated signed build; then the distinct packaged and native checks of
+   item 12 by the owner's direct tester.
 5. The owner's trial, the system-prompt discussion, and explicit publishing
    approval remain separate acts.
 
