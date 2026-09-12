@@ -906,3 +906,8 @@ extended. Next: validators, commit, push, open the pull request, record its
 number below, merge when CI is green. No live surface, installation,
 evidence or credential changed; nothing published. R17 GUI 31613 and daemon
 27838 still running.
+
+Pull request opened 2026-09-12T05:50Z: https://github.com/sgttomas/chirality/pull/767
+(branch claude/chirality-v3-mvp-trial-ab05cb into main, HEAD 78974d0ba before
+this entry). Merge follows CI green per the owner's direction; merge SHA
+appended when known.

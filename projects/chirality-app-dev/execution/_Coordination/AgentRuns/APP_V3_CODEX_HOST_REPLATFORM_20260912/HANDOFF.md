@@ -9,8 +9,8 @@ not governance: the governing record is D-GOV-43 and its ruling.
 1. **Implementation basis.** The proposal text is revision 3 at commit
    `3ef2ef524956498f8923323dc6cf9d672dbeb50b`; the owner's ruling record and
    this handoff follow it on branch `claude/chirality-v3-mvp-trial-ab05cb`,
-   merged to `main` through the pull request named in section 7 under the
-   owner's direction of 2026-09-11. Use an integration checkout updated
+   merged to `main` through PR #767 (section 7) under the owner's
+   direction of 2026-09-11. Use an integration checkout updated
    from `origin/main` that contains that merge; do not assume an older
    `origin/main` has it (`origin/main` was
    `a75adecf13f055c092ffa92809f66e7817c44242` before the merge). Verify with
@@ -257,8 +257,9 @@ tester.
 ## 7. Transport record and inherited open items
 
 - Pull request from `claude/chirality-v3-mvp-trial-ab05cb` into `main`:
-  recorded here once opened (see `RUN_LOG.md` in
-  `../APP_V3_TRIAL_COMPLETION_20260910/` for the number and merge SHA).
+  [PR #767](https://github.com/sgttomas/chirality/pull/767), opened
+  2026-09-12 under the owner's direction; the merge SHA is recorded in
+  `../APP_V3_TRIAL_COMPLETION_20260910/RUN_LOG.md` and the PR closeout.
 - The owner's perspective note for the implementing session accompanies the
   launch prompt; if committed, it lives beside this file as
   `PERSPECTIVE.md` and explains intent without changing the ruled scope.
