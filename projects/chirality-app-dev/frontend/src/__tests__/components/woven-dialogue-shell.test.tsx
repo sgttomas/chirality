@@ -25,7 +25,9 @@ const shellState = vi.hoisted(() => ({
   realReaders: [] as Array<{ dispose: ReturnType<typeof vi.fn>; cancel: ReturnType<typeof vi.fn> }>
   , routerReplace: vi.fn(), resumedSession: undefined as string | undefined,
   applyProjectRoot: vi.fn(async (_path: string) => true), chooseProjectRoot: vi.fn(async () => false), workspaceError: null as string | null,
-  initialActiveSession: 'primary' as string | undefined
+  initialActiveSession: 'primary' as string | undefined,
+  // The mocked chat panel reports a bound chat when set, and honours or declines New chat requests.
+  bindingLocked: false, newChatAccepted: true, newChatRequests: 0
 }));
 
 vi.mock('next/navigation', () => ({
@@ -68,8 +70,16 @@ vi.mock('../../components/shell/shell-frame', () => ({
   )
 }));
 vi.mock('../../components/shell/chat-panel', () => ({
-  ChatPanel: ({ onActiveSessionChange, onDraftCaptured, onSessionBootedPrompt, fileCatalog = [], onOpenFile, resumeConversation, onConversationResumed }: { onActiveSessionChange: (id: string) => void; onDraftCaptured: () => void; onSessionBootedPrompt: (input: { sessionId: string; prompt: string; persona: string }) => void; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void; resumeConversation?: { projection: { selectedSessionId: string } }; onConversationResumed?: (sessionId: string) => void }) => {
-    useEffect(() => { shellState.mounted++; onActiveSessionChange(shellState.initialActiveSession as string); return () => { shellState.unmounted++; }; }, [onActiveSessionChange]);
+  ChatPanel: ({ onActiveSessionChange, onDraftCaptured, onSessionBootedPrompt, fileCatalog = [], onOpenFile, resumeConversation, onConversationResumed, onBindingChange, onNewChatSettled, newChatRequest = 0 }: { onActiveSessionChange: (id: string | undefined) => void; onDraftCaptured: () => void; onSessionBootedPrompt: (input: { sessionId: string; prompt: string; persona: string }) => void; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void; resumeConversation?: { projection: { selectedSessionId: string } }; onConversationResumed?: (sessionId: string) => void; onBindingChange?: (binding: { root: string | null; locked: boolean }) => void; onNewChatSettled?: (started: boolean) => void; newChatRequest?: number }) => {
+    useEffect(() => { shellState.mounted++; onActiveSessionChange(shellState.initialActiveSession as string); onBindingChange?.({ root: shellState.projectRoot, locked: shellState.bindingLocked }); return () => { shellState.unmounted++; }; }, [onActiveSessionChange, onBindingChange]);
+    useEffect(() => {
+      if (!newChatRequest) return;
+      shellState.newChatRequests++;
+      const started = shellState.newChatAccepted;
+      if (started) { shellState.bindingLocked = false; onBindingChange?.({ root: shellState.projectRoot, locked: false }); onActiveSessionChange(undefined); }
+      onNewChatSettled?.(started);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [newChatRequest]);
     useEffect(() => { if (resumeConversation) { shellState.resumedSession = resumeConversation.projection.selectedSessionId; onActiveSessionChange(resumeConversation.projection.selectedSessionId); onConversationResumed?.(resumeConversation.projection.selectedSessionId); } }, [resumeConversation, onActiveSessionChange, onConversationResumed]);
     return <><input data-chat-panel="mounted" data-chat-input="primary" onChange={onDraftCaptured} /><button data-chat-file={fileCatalog.length} onClick={() => { if (fileCatalog[0]) onOpenFile?.(fileCatalog[0]); }}>open linked file</button><button data-live-title onClick={() => onSessionBootedPrompt({ sessionId: 'primary', prompt: `Review ${process.env.CHIRALITY_ANTHROPIC_API_KEY ?? ''} safely`, persona: 'TASK' })}>capture title</button></>;
   }
@@ -530,8 +540,9 @@ describe('WovenDialogueShell per-chat folders', () => {
     shellState.pathname = '/'; shellState.query = ''; shellState.projectRoot = '/repo/projects/chirality-app-dev'; shellState.streaming = false; shellState.extraSessions = [];
     shellState.replayLoad.mockClear(); shellState.applyProjectRoot.mockReset(); shellState.chooseProjectRoot.mockReset(); shellState.workspaceError = null;
     shellState.titleLoad.mockReset(); shellState.titleLoad.mockResolvedValue({}); shellState.useRealReader = false; shellState.initialActiveSession = 'primary';
+    shellState.bindingLocked = false; shellState.newChatAccepted = true; shellState.newChatRequests = 0; shellState.resumedSession = undefined;
   });
-  afterEach(() => { vi.unstubAllGlobals(); shellState.initialActiveSession = 'primary'; });
+  afterEach(() => { vi.unstubAllGlobals(); shellState.initialActiveSession = 'primary'; shellState.bindingLocked = false; });
   const settle = async () => { for (let tick = 0; tick < 6; tick += 1) await act(async () => { await Promise.resolve(); }); };
 
   it('lists chats from other folders under their folder, opens one by re-selecting its folder, and resumes it there', async () => {
@@ -558,6 +569,66 @@ describe('WovenDialogueShell per-chat folders', () => {
     expect(tree.root.findByType(Navigator).props.currentRoot).toBe(otherRoot);
     expect(shellState.replayLoad).toHaveBeenCalledWith('elsewhere');
     expect(tree.root.findByType(Navigator).props.folderNotices).toEqual({});
+    act(() => tree.unmount());
+  });
+
+  it('closes a bound chat through New chat before switching folders, and only then opens the other folder\'s chat', async () => {
+    shellState.bindingLocked = true;
+    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
+    let applied = false;
+    shellState.applyProjectRoot.mockImplementation(async (path: string) => { applied = true; shellState.projectRoot = path; shellState.extraSessions = ['elsewhere']; return true; });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+    await settle();
+    expect(tree.root.findByType(RightPanel).props.folderLocked).toBe(true);
+    await act(async () => { tree.root.findByType(Navigator).props.onSelectSession('elsewhere'); });
+    // The panel was asked to close its chat first; the folder switch waited for that.
+    expect(shellState.newChatRequests).toBe(1);
+    expect(applied).toBe(true);
+    await settle();
+    expect(tree.root.findByType(Navigator).props.currentRoot).toBe(otherRoot);
+    expect(tree.root.findByType(RightPanel).props.folderMismatch).toBe(false);
+    expect(shellState.replayLoad).toHaveBeenCalledWith('elsewhere');
+    expect(tree.root.findByType(Navigator).props.folderNotices).toEqual({});
+    act(() => tree.unmount());
+  });
+
+  it('leaves everything as it was when closing the current chat is declined', async () => {
+    shellState.bindingLocked = true; shellState.newChatAccepted = false;
+    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+    await settle();
+    await act(async () => { tree.root.findByType(Navigator).props.onSelectSession('elsewhere'); });
+    await settle();
+    expect(shellState.newChatRequests).toBe(1);
+    expect(shellState.applyProjectRoot).not.toHaveBeenCalled();
+    expect(shellState.replayLoad).not.toHaveBeenCalled();
+    expect(tree.root.findByType(Navigator).props.currentRoot).toBe('/repo/projects/chirality-app-dev');
+    expect(tree.root.findByType(Navigator).props.folderNotices).toEqual({});
+    expect(tree.root.findByType(RightPanel).props.folderLocked).toBe(true);
+    act(() => tree.unmount());
+  });
+
+  it('reports a chat its folder no longer lists and leaves a clean chat in that folder', async () => {
+    shellState.bindingLocked = true;
+    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
+    // The folder opens, but its listing does not contain the indexed chat.
+    shellState.applyProjectRoot.mockImplementation(async (path: string) => { shellState.projectRoot = path; return true; });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+    await settle();
+    await act(async () => { tree.root.findByType(Navigator).props.onSelectSession('elsewhere'); });
+    await settle();
+    expect(shellState.replayLoad).not.toHaveBeenCalled();
+    expect(tree.root.findByType(Navigator).props.currentRoot).toBe(otherRoot);
+    expect(tree.root.findByType(Navigator).props.folderNotices[otherRoot]?.kind).toBe('unavailable');
+    expect(tree.root.findByType(Navigator).props.folderNotices[otherRoot]?.message).toContain('was not found in');
+    expect(tree.root.findByType(RightPanel).props.folderLocked).toBe(false);
+    expect(tree.root.findByType(RightPanel).props.folderMismatch).toBe(false);
     act(() => tree.unmount());
   });
 
@@ -594,7 +665,8 @@ describe('WovenDialogueShell per-chat folders', () => {
 
   it('restores the last active chat of the current folder on launch and remembers the document each chat had open', async () => {
     // On a fresh launch the chat panel has no session yet; the restore fills it.
-    shellState.initialActiveSession = undefined;
+    // The recorded role matches the current one, so the resume reaches the panel without a role redirect.
+    shellState.initialActiveSession = undefined; shellState.query = 'agent=HELP_HUMAN';
     const persist = vi.fn();
     vi.stubGlobal('window', { localStorage: { getItem: () => stored({ lastActiveChat: { sessionId: 'recorded', projectRoot: '/repo/projects/chirality-app-dev' }, chatDocuments: { recorded: 'notes.md' } }), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
@@ -638,6 +710,34 @@ describe('WovenDialogueShell per-chat folders', () => {
     // A document opened while that chat is active is remembered for it alone.
     act(() => tree.root.findByType(RightPanel).props.onOpenFile('/repo/projects/chirality-app-dev/docs/TYPES.md'));
     expect(documents()).toEqual({ primary: 'docs/SPEC.md', recorded: 'docs/TYPES.md' });
+    act(() => tree.unmount());
+  });
+
+  it('does not attribute a document opened while no chat was active to the chat resumed afterwards', async () => {
+    shellState.query = 'agent=HELP_HUMAN';
+    const persist = vi.fn();
+    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
+    let tree!: ReactTestRenderer;
+    await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+    await settle();
+    const documents = () => JSON.parse(persist.mock.calls.at(-1)![1]).chatDocuments ?? {};
+    act(() => tree.root.findByType(RightPanel).props.onOpenFile('/repo/projects/chirality-app-dev/docs/SPEC.md'));
+    expect(documents()).toEqual({ primary: 'docs/SPEC.md' });
+    // New chat: no chat is active; a document opened now belongs to no chat.
+    await act(async () => { tree.root.findByType(Navigator).props.onNewChat(); });
+    expect(shellState.newChatRequests).toBe(1);
+    act(() => tree.root.findByType(RightPanel).props.onOpenFile('/repo/projects/chirality-app-dev/docs/TYPES.md'));
+    expect(documents()).toEqual({ primary: 'docs/SPEC.md' });
+    // Resuming the earlier chat brings back its own document, not the one opened in between.
+    act(() => tree.root.findByType(RightPanel).props.onOpenParent('primary'));
+    const projection = { selectedSessionId: 'primary', sourceReference: 'session:primary/events', observedAt: '2026-09-09', disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', transcript: { itemCount: 0, items: [] }, instructionHistory: [], instructionBases: [], malformedLineCount: 0, sourceEventCount: 0, renderedItemCount: 0, diagnostics: [], session: { sessionId: 'primary', parentage: { state: 'NOT_RECORDED' }, diagnostics: [], continuation: { schemaVersion: 'chirality.session/v3', projectRoot: shellState.projectRoot, roleId: 'HELP_HUMAN', mode: 'CHAT', interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [], methodSelectionRevision: 1, instructionBasisId: 'basis-1' } } };
+    await act(async () => shellState.replayNotify?.({ status: 'READY', projection }));
+    await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('Continue this chat'))!.props.onClick());
+    await settle();
+    expect(shellState.resumedSession).toBe('primary');
+    expect(documents()).toEqual({ primary: 'docs/SPEC.md' });
+    expect(JSON.parse(persist.mock.calls.at(-1)![1]).openDocumentPath).toBe('docs/SPEC.md');
     act(() => tree.unmount());
   });
 

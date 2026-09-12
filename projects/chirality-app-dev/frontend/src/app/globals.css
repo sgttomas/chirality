@@ -4595,7 +4595,16 @@ button:disabled {
 .method-library-search { width: 100%; min-width: 0; margin-bottom: 10px; padding: 6px 8px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); font-size: 12px; }
 .method-library-note { margin: 0 0 8px; color: var(--ink-faint); font-size: 11.5px; line-height: 1.45; }
 .method-library-subgroup { margin: 10px 0 0; }
-.method-library-subgroup h4 { margin: 0 0 6px; font-size: 12px; font-weight: 600; color: var(--ink-soft); }
+.method-library-subgroup h4 { margin: 0; font-size: 12px; font-weight: 600; color: var(--ink-soft); }
+.method-library-subgroup > summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; padding: 4px 0; list-style: none; }
+.method-library-subgroup > summary::-webkit-details-marker { display: none; }
+.method-library-subgroup > summary::before { content: '▸'; flex: 0 0 auto; margin-right: 6px; font-size: 10px; color: var(--ink-faint); }
+.method-library-subgroup[open] > summary::before { content: '▾'; }
+.method-library-subgroup > summary h4 { flex: 1 1 auto; min-width: 0; }
+.method-library-subgroup > summary:hover h4, .method-library-subgroup > summary:focus-visible h4 { color: var(--ink); }
+.method-library-subgroup > summary:focus-visible { outline: none; }
+.method-library-count { font-size: 11px; color: var(--ink-faint); }
+.method-library-subgroup > .method-library-list, .method-library-subgroup > .method-library-supporting { margin-top: 6px; }
 .method-library-supporting, .method-library-superseded { margin: 6px 0 0; }
 .method-library-supporting > summary, .method-library-superseded > summary { cursor: pointer; font-size: 12px; color: var(--ink-faint); }
 .method-card-identifier { margin-left: 6px; font-size: 10.5px; color: var(--ink-faint); }

@@ -140,11 +140,11 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
       {section('Core', library.core)}
       {library.specialist.length ? <section className="method-library-group" aria-labelledby={groupId('Specialist')}>
         <h3 id={groupId('Specialist')}>Specialist</h3>
-        {library.specialist.map(group => <section className="method-library-subgroup" key={group.key} aria-labelledby={groupId(`specialist-${group.key}`)}>
-          <h4 id={groupId(`specialist-${group.key}`)}>{group.label}</h4>
+        {library.specialist.map(group => <details className="method-library-subgroup" key={group.key} open={query ? true : undefined} data-method-category={group.key}>
+          <summary><h4 id={groupId(`specialist-${group.key}`)}>{group.label}</h4><span className="method-library-count">{group.primary.length + group.supporting.length}</span></summary>
           {group.primary.length ? <ul className="method-library-list">{group.primary.map(card)}</ul> : null}
           {group.supporting.length ? <details className="method-library-supporting"><summary>Supporting steps ({group.supporting.length})</summary><ul className="method-library-list">{group.supporting.map(card)}</ul></details> : null}
-        </section>)}
+        </details>)}
       </section> : null}
       {section('Project Specific', library.projectSpecific, undefined, library.projectSpecific.length ? undefined : 'Workflows saved in this project appear here, including plans saved as workflows.')}
       {section('Your workflows', library.personal)}

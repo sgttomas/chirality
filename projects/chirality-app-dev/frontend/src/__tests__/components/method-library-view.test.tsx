@@ -80,6 +80,12 @@ it('presents Core in catalog order with display names, Specialist by intent grou
   expect(coreNames).toEqual(['project-setup', 'Manage tasks', 'Check project status']);
   expect(text).toContain('task-management');
   expect(tree.root.findAllByType('h4').map(node => node.children.join(''))).toEqual(['Plan & organize', 'Extract from documents']);
+  // Specialist categories list their name and count only until expanded; a search opens them so matches are visible.
+  const categories = tree.root.findAll(node => node.type === 'details' && node.props.className === 'method-library-subgroup');
+  expect(categories.map(node => [node.props['data-method-category'], node.props.open, node.findByProps({ className: 'method-library-count' }).children.join('')])).toEqual([['plan-organize', undefined, '1'], ['extract-documents', undefined, '2']]);
+  act(() => { tree.root.findByProps({ className: 'method-library-search' }).props.onChange({ target: { value: 'pdf' } }); });
+  await act(async () => { await new Promise(resolve => setTimeout(resolve, 200)); });
+  expect(tree.root.findAll(node => node.type === 'details' && node.props.className === 'method-library-subgroup').map(node => node.props.open)).toEqual([true]);
   const supporting = tree.root.findByProps({ className: 'method-library-supporting' });
   expect(supporting.type).toBe('details');
   expect(supporting.props.open).toBeUndefined();

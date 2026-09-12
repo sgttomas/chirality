@@ -104,7 +104,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   // Chats recorded in other folders are opened by switching to that folder
   // first and resuming once its sessions are listed. `expectedRoot` null means
   // "whichever folder the human locates".
-  const pendingFolderChat = useRef<{ sessionId: string; expectedRoot: string | null } | null>(null);
+  const pendingFolderChat = useRef<{ sessionId: string; expectedRoot: string | null; awaitingNewChat?: boolean } | null>(null);
   const [folderNotices, setFolderNotices] = useState<Record<string, NavigatorFolderNotice>>({});
   const [failedFolder, setFailedFolder] = useState<string | null>(null);
   const restoredLastChat = useRef(false);
@@ -418,8 +418,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   }, [sessions, workspaceState.chatIndex, projectRoot]);
   const knownRootPaths = useMemo(() => (workspaceState.knownRoots ?? []).map(root => root.path), [workspaceState.knownRoots]);
 
-  const openChatInFolder = useCallback(async (sessionId: string, folderPath: string): Promise<void> => {
-    if (streaming || folderSelectionPending || typeof workspace.applyProjectRoot !== 'function') return;
+  const switchToFolderChat = useCallback(async (sessionId: string, folderPath: string): Promise<void> => {
+    if (typeof workspace.applyProjectRoot !== 'function') return;
     pendingFolderChat.current = { sessionId, expectedRoot: folderPath };
     setFailedFolder(null);
     setFolderNotices(current => ({ ...current, [folderPath]: { kind: 'indexed', message: 'Opening this chat: switching to its folder…' } }));
@@ -431,7 +431,28 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     pendingFolderChat.current = null;
     setFailedFolder(folderPath);
     setFolderNotices(current => ({ ...current, [folderPath]: { kind: 'unavailable', message: 'This folder could not be opened. Its chats stay recorded and are never moved to another folder. Locate the folder if it moved, or forget it.' } }));
-  }, [streaming, folderSelectionPending, workspace]);
+  }, [workspace]);
+
+  // Opening a chat from another folder first closes the chat open in the
+  // panel, through the same New chat path (its unsent-draft confirmation
+  // included), so the folder never switches under a bound chat. The switch
+  // proceeds once the panel reports the chat closed; a declined confirmation
+  // leaves everything as it was.
+  const openChatInFolder = useCallback(async (sessionId: string, folderPath: string): Promise<void> => {
+    if (streaming || folderSelectionPending || typeof workspace.applyProjectRoot !== 'function') return;
+    if (!binding.locked) { await switchToFolderChat(sessionId, folderPath); return; }
+    pendingFolderChat.current = { sessionId, expectedRoot: folderPath, awaitingNewChat: true };
+    setFolderNotices(current => ({ ...current, [folderPath]: { kind: 'indexed', message: 'Opening this chat: closing the current chat first…' } }));
+    setNewChatRequest(value => value + 1);
+  }, [streaming, folderSelectionPending, workspace, binding.locked, switchToFolderChat]);
+  const handleNewChatSettled = useCallback((started: boolean): void => {
+    const pending = pendingFolderChat.current;
+    if (!pending?.awaitingNewChat) return;
+    const folderPath = pending.expectedRoot ?? '';
+    pendingFolderChat.current = null;
+    if (!started) { setFolderNotices(current => { const next = { ...current }; delete next[folderPath]; return next; }); return; }
+    void switchToFolderChat(pending.sessionId, folderPath);
+  }, [switchToFolderChat]);
 
   // The workspace reports why a folder failed after the failed apply; attach
   // that reason to the notice so the human sees the actual problem.
@@ -528,7 +549,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   // that asked for it; a chat the folder does not list is reported, not guessed.
   useEffect(() => {
     const pending = pendingFolderChat.current;
-    if (!pending || sessionsLoading || !projectRoot || sessionsRoot !== projectRoot) return;
+    if (!pending || pending.awaitingNewChat || sessionsLoading || !projectRoot || sessionsRoot !== projectRoot) return;
     if (pending.expectedRoot !== null && pending.expectedRoot !== projectRoot) return;
     pendingFolderChat.current = null;
     const recordedRoot = (workspaceState.chatIndex ?? {})[pending.sessionId]?.projectRoot ?? pending.expectedRoot ?? projectRoot;
@@ -594,10 +615,12 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   // screen when it was opened (review F-2).
   const documentRecordSessionRef = useRef<string | undefined>(undefined);
   useEffect(() => {
-    if (!stateHydrated || !primarySessionId) return;
+    if (!stateHydrated) return;
+    // The ref follows the chat through "no chat" too: a document opened while
+    // no chat was active is not attributed to the chat resumed afterwards.
     const sessionChanged = documentRecordSessionRef.current !== primarySessionId;
     documentRecordSessionRef.current = primarySessionId;
-    if (sessionChanged) return;
+    if (sessionChanged || !primarySessionId) return;
     const path = workspaceState.openDocumentPath;
     setWorkspaceState(current => {
       const documents = { ...(current.chatDocuments ?? {}) };
@@ -774,7 +797,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
                     resumeConversation={pendingResume?.projection.session?.continuation?.roleId === searchParams.get('agent') &&
                       pendingResume.projection.session.continuation.projectRoot === projectRoot ? pendingResume : undefined}
                     onConversationResumed={() => { setPendingResume(undefined); returnToPrimaryDialogue(); }}
-                    knownRoots={workspaceState.knownRoots ?? []} onBindingChange={setBinding} newChatRequest={newChatRequest} folderSelectionPending={folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} />
+                    knownRoots={workspaceState.knownRoots ?? []} onBindingChange={setBinding} onNewChatSettled={handleNewChatSettled} newChatRequest={newChatRequest} folderSelectionPending={folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} />
                 </Suspense>
                 </fieldset>
               </>

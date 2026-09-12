@@ -117,6 +117,18 @@ it('rejects a stale synchronization completion after a different folder transiti
   expect(state.stream).not.toHaveBeenCalled();
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).not.toBe('Old context prompt'); assertCanonicalUntouched();
 });
+it('reports whether a New chat request went ahead, keeping the draft when the confirmation is declined', async () => {
+  const settled = vi.fn();
+  await mount({ onNewChatSettled: settled }); await type('Unsent words');
+  (window.confirm as ReturnType<typeof vi.fn>).mockReturnValueOnce(false);
+  await act(async () => tree!.update(<ChatPanel presentation="woven" onNewChatSettled={settled} newChatRequest={1} />));
+  expect(settled).toHaveBeenLastCalledWith(false);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Unsent words');
+  await act(async () => tree!.update(<ChatPanel presentation="woven" onNewChatSettled={settled} newChatRequest={2} />));
+  expect(settled).toHaveBeenLastCalledWith(true);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+});
+
 it('blocks native folder intent while bound or pending and blocks Send during pending selection', async () => {
   await mount({ folderSelectionPending: true }); await type('Pending'); await submit();
   expect(state.create).not.toHaveBeenCalled();

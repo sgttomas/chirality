@@ -283,6 +283,8 @@ type ChatPanelProps = {
   folderSelectionPending?: boolean;
   onFolderSelectionPending?: (pending: boolean) => void;
   onBindingChange?: (binding: { root: string | null; locked: boolean }) => void;
+  /** Reports whether a New chat request went ahead (false when the unsent-draft confirmation was declined or a turn was running). */
+  onNewChatSettled?: (started: boolean) => void;
   onDraftCaptured?: () => void;
   onActiveSessionChange?: (sessionId: string | undefined) => void;
   onSessionBootedPrompt?: (input: { sessionId: string; prompt: string; persona: string }) => void;
@@ -301,7 +303,7 @@ type ChatPanelProps = {
   onConversationResumed?: (sessionId: string) => void;
 };
 
-export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBootedPrompt, presentation, knownRoots = NO_KNOWN_ROOTS, newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange, fileCatalog = NO_FILE_CATALOG, onOpenFile, selectedMethods = NO_SELECTED_METHODS, onSelectedMethodsChange = IGNORE_SELECTED_METHODS, onOpenMethods, onPlanPanelChange, onOpenPlan, onTurnPhaseChange, resumeConversation, onConversationResumed }: ChatPanelProps = {}): JSX.Element {
+export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBootedPrompt, presentation, knownRoots = NO_KNOWN_ROOTS, newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange, onNewChatSettled, fileCatalog = NO_FILE_CATALOG, onOpenFile, selectedMethods = NO_SELECTED_METHODS, onSelectedMethodsChange = IGNORE_SELECTED_METHODS, onOpenMethods, onPlanPanelChange, onOpenPlan, onTurnPhaseChange, resumeConversation, onConversationResumed }: ChatPanelProps = {}): JSX.Element {
   const { projectRoot, applyProjectRoot } = useWorkspace();
   const { optsPayload } = useToolkit();
   const { appendEvent, clearEvents, hydrateEvents, setStreaming } = useHarnessEventActions();
@@ -634,11 +636,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     field.style.height = `${Math.min(field.scrollHeight, 132)}px`;
   }, [draft]);
 
-  useEffect(() => {
-    if (newChatSeen.current === newChatRequest) return;
-    newChatSeen.current = newChatRequest;
-    if (isRunning || folderSelectionPending) return;
-    if ((draft.trim() || attachments.length || selectedMethods.length) && !window.confirm('Start a new chat and discard the unsent draft, attachments, and methods?')) return;
+  // Closes the open chat in this panel (New chat). This clears only the
+  // current local view; no runtime record is deleted.
+  const resetConversationRef = useRef<() => void>(() => {});
+  resetConversationRef.current = () => {
     bindingGeneration.current++;
     turnObservation.current?.abort();
     activeSessionIdRef.current = undefined;
@@ -648,9 +649,17 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     setActiveSession(null); setConversationBinding(null); setDraft(''); setAttachments([]); onSelectedMethodsChange([]); setMessages([]);
     setOperatorMode(DEFAULT_OPERATOR_MODE);
     setRuntimeError(null); setRuntimeStatus(null); setFolderSyncError(null);
-    // This clears only the current local view; no runtime record is deleted.
     clearEvents();
-  }, [newChatRequest, isRunning, folderSelectionPending, draft, attachments, selectedMethods, clearEvents, onSelectedMethodsChange, clearNativePlanProjection]);
+  };
+
+  useEffect(() => {
+    if (newChatSeen.current === newChatRequest) return;
+    newChatSeen.current = newChatRequest;
+    if (isRunning || folderSelectionPending) { onNewChatSettled?.(false); return; }
+    if ((draft.trim() || attachments.length || selectedMethods.length) && !window.confirm('Start a new chat and discard the unsent draft, attachments, and methods?')) { onNewChatSettled?.(false); return; }
+    resetConversationRef.current();
+    onNewChatSettled?.(true);
+  }, [newChatRequest, isRunning, folderSelectionPending, draft, attachments, selectedMethods, onNewChatSettled]);
 
   useEffect(() => {
     if (!resumeConversation || resumeConversation.requestId === resumeRequestSeen.current || isRunning) return;
