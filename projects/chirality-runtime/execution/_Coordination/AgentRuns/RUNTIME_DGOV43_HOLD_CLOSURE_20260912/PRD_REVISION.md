@@ -37,4 +37,3 @@ ruling item 11's bounded coordinated authority. The statements of `docs/PRD.md` 
 - The Gate3 payload hash index in `docs/PRD_AUTHORITY.md` remains the identity
   record of the accepted 2026-09-05 subject; the two loop-owned files amended by
   SCA-004 are re-hashed there once. README self-hash machinery is retired (item 11).
-
