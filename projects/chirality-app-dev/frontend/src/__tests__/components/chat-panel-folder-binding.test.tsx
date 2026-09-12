@@ -831,3 +831,23 @@ it.each([
   expect(JSON.stringify(tree!.toJSON())).toContain('Chat context changed');
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this request with its role');
 });
+
+
+it('shows a confirmed interruption alongside partial commentary and after reopening', async () => {
+  state.stream.mockImplementationOnce(async (_input, onEvent) => {
+    onEvent({ event: 'chat:delta', data: { text: 'Starting the requested work.' } });
+    onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
+  });
+  await mount(); await type('Begin work'); await submit();
+  expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
+  expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
+  expect(tree!.root.findAllByProps({ className: 'chat-runtime-error' })).toHaveLength(0);
+  const projection = resumableProjection('interrupted-history');
+  projection.transcript.items = [
+    { key: 'partial', kind: 'message', role: 'assistant', status: 'started', title: 'Assistant', timestamp: '2026-09-09T00:00:01Z', eventId: 'partial', eventType: 'message.delta', turnId: 'cancelled', text: 'Starting the requested work.' },
+    { key: 'stop', kind: 'terminal', status: 'interrupted', title: 'Turn interrupted', timestamp: '2026-09-09T00:00:02Z', eventId: 'stop', eventType: 'turn.interrupted', turnId: 'cancelled' }
+  ];
+  await act(async () => tree!.update(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection }} />));
+  expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
+  expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
+});

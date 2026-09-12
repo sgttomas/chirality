@@ -557,3 +557,74 @@ R16_NATIVE_CHECKLIST.md with owner OAuth/2FA. Never open the App directly or rea
 protected live identity/auth/Codex-home/session/event files. All workers complete.
 All earlier Apps, state and evidence remain preserved. Trial acceptance,
 system-prompt discussion and publishing approval remain outstanding.
+
+### R16 guarded launch and owner sign-in handoff
+
+Owner confirmed R15 GUI closed. Lead verified only its daemon remained, bootout
+succeeded, service print returned113 and no R15 App processes remained. Preserved
+old registration create-only as Stage25/retired-r15-com.chirality.runtime.plist,
+SHAa69ff03a78eeec4119feebe35b04dc521ab717ea288a37130fbae6610722b4b6,
+then removed only the original registration. R16 guard check PASS; launched only
+through its reviewed guarded launcher (execution session38552). R16 GUI10625 and
+daemon10666 observed; new registration and running service point to exact R16.
+
+Computer Use attached successfully to R16. Native folder picker selected the
+existing synthetic `/Users/ryan/dev/chirality-trial-20260911-r6` workspace; Runtime
+connected automatically. Under standing provider/sign-in scope, lead enabled
+provider connection, clicked Sign in, observed Sign-in pending and clicked
+Continue to OpenAI. Browser authentication/2FA handed to owner; no credentials,
+codes or protected live state accessed. R16 account Ready and model/tool turns
+remain unverified until owner completes sign-in. Continue R16_NATIVE_CHECKLIST.md
+from the account-ready check, then real shell/attachment/plan/second-chat/interrupt
+and restart testing. All worker tasks remain complete; no further build.
+
+### R16 native functional batch — 2026-09-12T00:58:52.210786+00:00
+
+Owner completed OAuth. Account Ready and actual turns pass. Direct native tests
+passed shell read/report creation, collapsed-panel inline link, image picker/send/
+recognition, native plan revision and execution, second HELPS_HUMANS chat with
+terra/medium, actual running-shell interruption and fresh shell recovery, and
+pre-restart history/plan revision preservation. See R16_FUNCTIONAL_FINDINGS.md.
+Two modest UI findings dispatched to separate bounded Type 2 author: cancellation
+marker and unintended empty session-detail sidebar on chat selection. No new build.
+
+Quit idle R16 via CmdQ and guarded relaunch PASS, GUI13417/daemon10666. Computer Use
+attachment timed out; owner asked for direct postrestart chat/history/follow-up
+observation. This final native restart check remains unverified. No protected
+identity/auth/Codex-home/session/event reads or account modifications. Existing
+Apps and evidence preserved. Publishing remains unapproved.
+
+### Owner R16 restart failure and scroll finding
+
+Owner's requested follow-up after guarded restart failed with ENGINE_UNAVAILABLE:
+Runtime v2 admission is missing, invalid, stale or no longer live. Also cannot
+scroll to the composer in the other chat. Actual trial readiness is blocked;
+process/connectivity alone was correctly not accepted. Source diagnosis assigned
+to r13_second_turn_diagnosis under R16_RESTART_ADMISSION/BRIEF.md; scrolling added
+to r14_ui_cleanup's existing App-only batch. Preserve authentication and existing
+live state; no further owner retry or rebuild yet. See R16_FUNCTIONAL_FINDINGS.md.
+
+### Frozen successor handoff
+
+Owner requested copy/paste handoff. All workers stopped. UI five-file batch
+independent PASS /66 focused tests, no native scrolling acceptance yet. Runtime
+four-file repair stopped incomplete and unreviewed; initial tsc passed, newer
+guard/test not rechecked. Connecting regression failed fixture setup before
+renewal (missing verified.payloadDigest). No active commands. See
+R16_RESTART_ADMISSION/HANDOFF.md for races, safety checks and next validation.
+HEAD bad09b9d2; current repairs and records uncommitted, preserved for successor.
+NEXT_AGENT_HANDOFF.md is the current entry. No new package/build/launch planned
+by outgoing lead. R16 remains running; owner should not repeat failed turns.
+
+### Owner-directed unfinished source integration
+
+Owner: “rather, merge your work via PR and then update the handoff as required.”
+This directs integration of the preserved branch, reviewed five-file App fixes,
+incomplete four-file Runtime repair and handoff records. It does not assert
+passing Runtime validation or product release. Latest known regression fails
+fixture setup before renewal; unresolved race/security checks remain explicit
+in R16_RESTART_ADMISSION/HANDOFF.md. No product changes are being added for merge.
+APP-HOLD reliance ALLOW/CLEAR/NOT_HELD; scan720ca10a948967478e5a539ea1759656d0cebe845505e4f8f796a74fd994e39e.
+NEXT_AGENT_HANDOFF.md now instructs successors to use main containing the PR,
+while preserving original worktree and local-only Apps/packaging evidence.
+PR metadata records final source/merge SHA and CI disposition. No new build.

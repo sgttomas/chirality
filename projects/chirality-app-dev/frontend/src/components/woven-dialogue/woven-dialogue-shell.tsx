@@ -368,15 +368,21 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   }, [pathname, projectRoot, router, searchParams, streaming]);
 
   useEffect(() => {
-    if (replayState.status !== 'READY' || directHistorySelection.current !== replayState.projection.selectedSessionId) return;
+    if (!directHistorySelection.current || directHistorySelection.current !== selectedReplayId(replayState)) return;
+    if (replayState.status !== 'READY' && replayState.status !== 'UNAVAILABLE') return;
     directHistorySelection.current = undefined;
-    if (canContinueRecordedConversation(replayState.projection, projectRoot, streaming)) {
+    if (replayState.status === 'READY' && canContinueRecordedConversation(replayState.projection, projectRoot, streaming)) {
       continueRecordedConversation(replayState.projection);
+    } else {
+      // An incompatible or unavailable recording still needs its inspection/retry surface.
+      restoreExpanded();
+      updateWorkspaceState({ rightPanelView: 'agents', coordinationCollapsed: false });
+      setCoordinationView('session');
     }
-  }, [replayState, projectRoot, streaming, continueRecordedConversation]);
+  }, [replayState, projectRoot, streaming, continueRecordedConversation, restoreExpanded, updateWorkspaceState]);
 
   const loadReplay = useCallback(
-    (sessionId: string): void => {
+    (sessionId: string, inspect = false): void => {
       const decision = guardRecordedSessionSelection({
         currentState: replayState,
         requestedSessionId: sessionId,
@@ -390,6 +396,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
         return;
       }
       if (decision.outcome === 'UNCHANGED') {
+        if (!inspect) return;
         restoreExpanded();
         updateWorkspaceState({ coordinationCollapsed: false, rightPanelView: 'agents' });
         setCoordinationView('session');
@@ -400,14 +407,13 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       }
 
       setPendingResume(undefined);
-      directHistorySelection.current = sessionId;
-      restoreExpanded();
-      updateWorkspaceState({
-        selectedReplaySessionId: sessionId,
-        rightPanelView: 'agents',
-        coordinationCollapsed: false
-      });
-      setCoordinationView('session');
+      directHistorySelection.current = inspect ? undefined : sessionId;
+      updateWorkspaceState({ selectedReplaySessionId: sessionId });
+      if (inspect) {
+        restoreExpanded();
+        updateWorkspaceState({ rightPanelView: 'agents', coordinationCollapsed: false });
+        setCoordinationView('session');
+      }
       void replayLoaderRef.current?.load(sessionId, {
         observedAt: new Date().toISOString(),
         availableSessionIds: new Set(sessions.map((session) => session.sessionId))
@@ -706,7 +712,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           {!workspaceState.coordinationCollapsed ? (
             <RightPanel settingsView={settingsView} folderLocked={binding.locked || streaming || folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} folderMismatch={binding.locked && Boolean(binding.root && binding.root !== projectRoot)} state={workspaceState} sessionOpen={coordinationView === 'session'}
               replayState={replayState} recordedSessionIds={sessions.map(session => session.sessionId)}
-              primarySessionId={primarySessionId} liveTurnActive={streaming} onOpenParent={loadReplay}
+              primarySessionId={primarySessionId} liveTurnActive={streaming} onOpenParent={sessionId => loadReplay(sessionId, true)}
               onView={(view) => {
                 restoreExpanded();
                 updateWorkspaceState({ rightPanelView: view, ...(view === 'files' ? { openDocumentPath: null } : {}) });
@@ -757,7 +763,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               onRefreshSessions={() => {
                 setSessionRefreshToken((token) => token + 1);
               }}
-              onSelectSession={loadReplay}
+              onSelectSession={sessionId => loadReplay(sessionId, true)}
             />} />
           ) : (
             <span className="woven-collapsed-label">Coordination</span>

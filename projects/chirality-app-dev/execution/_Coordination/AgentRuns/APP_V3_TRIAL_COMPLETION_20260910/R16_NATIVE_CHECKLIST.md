@@ -48,3 +48,28 @@ appearance and About checks remain historical passes, not freshly repeated ones.
 Collect any new findings before choosing a repair batch. No per-finding rebuild.
 Trial acceptance, packaging cleanup, system-prompt discussion and publishing
 approval remain separate later steps.
+
+## R16 result and focused next-candidate continuation
+
+R16 execution is recorded in R16_FUNCTIONAL_FINDINGS.md. Core checks 1–6 and
+pre-restart history passed. Actual owner follow-up after guarded restart failed
+admission; long first-chat composer could not be reached by scrolling. These are
+trial blockers. Smaller findings are absent interruption labeling and unintended
+empty session sidebar on chat navigation.
+
+After the bounded source repairs and independent review, the next consolidated
+candidate should prioritize:
+
+- Owner-assisted sign-in only if required by that candidate, one actual first turn.
+- Long chat with native plan/history: scrolling reaches composer; switching chats
+  preserves a useful sidebar; expected interruption shows a concise status.
+- Normal idle quit and guarded relaunch with daemon retained, then real follow-up
+  and file read in both retained chats without account-state edits or renewed
+  authority assumptions. Account changes must still reject stale admission.
+- Retain R16/R15 core functional evidence; repeat attachment/plan/PDF cases only
+  when affected code or an observed regression warrants it. No blanket full-suite
+  repetition or per-finding signed build.
+
+Computer Use restart attachment limitations may require owner observation. An
+actual response is required; live GUI/daemon processes or connected logs alone
+are insufficient. Publishing still requires the owner's explicit decision.

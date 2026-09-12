@@ -1,0 +1,327 @@
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx
+index 394614ac3..876054d03 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-folder-binding.test.tsx
+@@ -831,3 +831,23 @@ it.each([
+   expect(JSON.stringify(tree!.toJSON())).toContain('Chat context changed');
+   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this request with its role');
+ });
++
++
++it('shows a confirmed interruption alongside partial commentary and after reopening', async () => {
++  state.stream.mockImplementationOnce(async (_input, onEvent) => {
++    onEvent({ event: 'chat:delta', data: { text: 'Starting the requested work.' } });
++    onEvent({ event: 'process:exit', data: { exitCode: 130, interrupted: true } });
++  });
++  await mount(); await type('Begin work'); await submit();
++  expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
++  expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
++  expect(tree!.root.findAllByProps({ className: 'chat-runtime-error' })).toHaveLength(0);
++  const projection = resumableProjection('interrupted-history');
++  projection.transcript.items = [
++    { key: 'partial', kind: 'message', role: 'assistant', status: 'started', title: 'Assistant', timestamp: '2026-09-09T00:00:01Z', eventId: 'partial', eventType: 'message.delta', turnId: 'cancelled', text: 'Starting the requested work.' },
++    { key: 'stop', kind: 'terminal', status: 'interrupted', title: 'Turn interrupted', timestamp: '2026-09-09T00:00:02Z', eventId: 'stop', eventType: 'turn.interrupted', turnId: 'cancelled' }
++  ];
++  await act(async () => tree!.update(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection }} />));
++  expect(tree!.root.findByProps({ className: 'chat-turn-status' }).children).toEqual(['Interrupted']);
++  expect(state.markdownProps.some(props => props.source === 'Starting the requested work.')).toBe(true);
++});
+diff --git a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
+index bab8f6bde..03b858185 100644
+--- a/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
++++ b/projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx
+@@ -173,8 +173,9 @@ describe('WovenDialogueShell composition', () => {
+       expect(tree.root.findAll(node => Boolean(node.props['data-focused-surface']))).toHaveLength(0);
+     };
+     const click = (label: string) => act(() => { tree.root.findAllByType('button').find(button => (button.props['aria-label'] ?? button.children.join('')) === label)!.props.onClick(); });
++    const inspectRecorded = tree.root.findByType(RightPanel).props.onOpenParent;
+     act(() => tree.root.findByType(RightPanel).props.onClose());
+-    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
++    act(() => inspectRecorded('recorded'));
+     expect(tree.root.findByType(CoordinationPanel).props.activeView).toBe('session');
+     expect(tree.root.findByProps({ 'data-replay-lens': 'LOADING' })).toBeTruthy();
+     assertPrimary();
+@@ -190,7 +191,7 @@ describe('WovenDialogueShell composition', () => {
+     expect(agentsButton()).toBeDefined();
+     expect(tree.root.findAllByType('button').some(button => button.children.join('') === 'Who is working')).toBe(false);
+     clickAgentsTab(); assertPrimary();
+-    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
++    act(() => tree.root.findByType(RightPanel).props.onOpenParent('recorded'));
+     expect(tree.root.findByType(CoordinationPanel).props.activeView).toBe('session');
+     expect(shellState.replayLoad).toHaveBeenCalledTimes(2); assertPrimary();
+     clickAgentsTab(); act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded')); assertPrimary();
+@@ -203,7 +204,7 @@ describe('WovenDialogueShell composition', () => {
+         assertPrimary();
+       }
+     }
+-    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
++    act(() => tree.root.findByType(RightPanel).props.onOpenParent('recorded'));
+     click('Return to primary dialogue');
+     expect(focus).toHaveBeenCalled(); assertPrimary();
+     expect(tree.root.findAll(node => Boolean(node.props['data-replay-lens']))).toHaveLength(0);
+@@ -281,7 +282,7 @@ describe('WovenDialogueShell composition', () => {
+     vi.stubGlobal('document', { querySelector: () => ({ focus }) });
+     let tree!: ReactTestRenderer; await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+     const input = tree.root.findByProps({ 'data-chat-input': 'primary' });
+-    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
++    act(() => tree.root.findByType(RightPanel).props.onOpenParent('recorded'));
+     const projection = (parentSessionId: string) => ({ selectedSessionId: 'recorded', sourceReference: 'events:recorded', observedAt: '2026-09-05', disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', sourceEventCount: 2, renderedItemCount: 1, malformedLineCount: 0, diagnostics: [], session: { sessionId: 'recorded', currency: 'CURRENT', parentage: { state: 'RECORDED', parentSessionId, parentAvailable: true }, diagnostics: [] } });
+     act(() => shellState.replayNotify?.({ status: 'READY', projection: projection('parent') }));
+     const openParent = () => tree.root.findAllByType('button').find(x => x.children.includes('Open parent chat'))!;
+@@ -304,7 +305,7 @@ describe('WovenDialogueShell composition', () => {
+     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
+     let tree!: ReactTestRenderer;
+     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+-    act(() => tree.root.findByType(Navigator).props.onSelectSession('recorded'));
++    act(() => tree.root.findByType(RightPanel).props.onOpenParent('recorded'));
+     const projection = { selectedSessionId: 'recorded', sourceReference: 'session:recorded/events', observedAt: '2026-09-09', disclosure: 'READY_SNAPSHOT', currency: 'CURRENT', transcript: { itemCount: 0, items: [] }, instructionHistory: [], instructionBases: [], malformedLineCount: 0, sourceEventCount: 0, renderedItemCount: 0, diagnostics: [], session: { sessionId: 'recorded', parentage: { state: 'NOT_RECORDED' }, diagnostics: [], continuation: { schemaVersion: 'chirality.session/v3', projectRoot: shellState.projectRoot, roleId: 'WORKING_ITEMS', mode: 'CHAT', interactionMode: 'chat', permissionMode: 'ask', selectedMethods: [], methodSelectionRevision: 1, instructionBasisId: 'basis-1' } } };
+     await act(async () => shellState.replayNotify?.({ status: 'READY', projection }));
+     await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('Continue this chat'))!.props.onClick());
+@@ -502,10 +503,13 @@ it('ordinary history selection opens an eligible chat directly and pauses the ol
+   vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
+   let tree!: ReactTestRenderer;
+   await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+-  await act(async () => { tree.root.findByType(RightPanel).props.onOpenParent('recorded'); });
++  act(() => tree.root.findByType(RightPanel).props.onOpenFile(`${shellState.projectRoot}/report.md`));
++  await act(async () => { tree.root.findByType(Navigator).props.onSelectSession('recorded'); });
++  expect(tree.root.findByType(RightPanel).props.state).toMatchObject({ rightPanelView: 'files', openDocumentPath: 'report.md' });
+   expect(tree.root.findByType('fieldset').props.disabled).toBe(true);
+   await act(async () => { shellState.replayNotify?.({ status: 'READY', projection: { selectedSessionId: 'recorded', disclosure: 'READY_SNAPSHOT', session: { continuation: { roleId: 'HELP_HUMAN', projectRoot: shellState.projectRoot } } } }); });
+   expect(shellState.resumedSession).toBe('recorded');
++  expect(tree.root.findByType(RightPanel).props.state).toMatchObject({ rightPanelView: 'files', openDocumentPath: 'report.md' });
+   expect(tree.root.findByType('fieldset').props.disabled).toBe(false);
+   expect(tree.root.findAllByProps({ 'data-replay-lens': 'READY' })).toHaveLength(0);
+   act(() => tree.unmount());
+diff --git a/projects/chirality-app-dev/frontend/src/app/globals.css b/projects/chirality-app-dev/frontend/src/app/globals.css
+index 509585116..c7dbefe45 100644
+--- a/projects/chirality-app-dev/frontend/src/app/globals.css
++++ b/projects/chirality-app-dev/frontend/src/app/globals.css
+@@ -2574,7 +2574,7 @@ button:disabled {
+ /* Four rows, always: header / transcript / composer dock / composer. The row
+    list used to be six positional `auto` tracks against a child count that
+    changed with state; see the Stage C section for the defect this fixes. */
+-.woven-primary-dialogue > .panel--chat {
++.woven-primary-dialogue .panel--chat {
+   height: 100%;
+   min-width: 0;
+   min-height: 0;
+@@ -2584,7 +2584,7 @@ button:disabled {
+   box-shadow: none;
+ }
+ 
+-.woven-primary-dialogue > .panel--chat .chat-transcript {
++.woven-primary-dialogue .panel--chat .chat-transcript {
+   min-height: 0;
+   overflow: auto;
+ }
+@@ -3322,7 +3322,7 @@ button:disabled {
+    (TRB-APPDEV-WOVEN-REDESIGN-2026-07-24 §5 Stage C)
+ 
+    Appended section. Exactly one rule above this section was edited — the
+-   `.woven-primary-dialogue > .panel--chat` grid-row list (see the comment
++   `.woven-primary-dialogue .panel--chat` grid-row list (see the comment
+    there) — because the defect is a grid-track defect and cannot be corrected
+    from a lower-cascade override alone. Everything else here is additive and
+    every value resolves from the Stage A token layer (no literal colours).
+@@ -3356,24 +3356,24 @@ button:disabled {
+   min-height: 0;
+ }
+ 
+-.woven-primary-dialogue > .panel--chat > .chat-composer-dock {
++.woven-primary-dialogue .panel--chat > .chat-composer-dock {
+   overflow: auto;
+   border-top: 1px solid var(--rule);
+ }
+ 
+-.woven-primary-dialogue > .panel--chat > .chat-composer-dock > .chat-attachment-preview {
++.woven-primary-dialogue .panel--chat > .chat-composer-dock > .chat-attachment-preview {
+   border-top: 0;
+ }
+ 
+-.woven-primary-dialogue > .panel--chat > .chat-transcript {
++.woven-primary-dialogue .panel--chat > .chat-transcript {
+   padding-block: 0;
+ }
+ 
+-.woven-primary-dialogue > .panel--chat > .chat-transcript > :first-child {
++.woven-primary-dialogue .panel--chat > .chat-transcript > :first-child {
+   margin-top: 0.85rem;
+ }
+ 
+-.woven-primary-dialogue > .panel--chat > .chat-transcript > :last-child {
++.woven-primary-dialogue .panel--chat > .chat-transcript > :last-child {
+   margin-bottom: 0.85rem;
+ }
+ 
+@@ -3381,7 +3381,7 @@ button:disabled {
+    the transcript's reading measure and never sits on the composer. It stays on
+    `--ink-soft` — `--ink-faint` at this size is 3.2:1 light / 3.6:1 dark and
+    would fail AA. */
+-.woven-primary-dialogue > .panel--chat > .chat-transcript > .panel-empty {
++.woven-primary-dialogue .panel--chat > .chat-transcript > .panel-empty {
+   max-width: 74ch;
+   font-size: 0.82rem;
+   color: var(--ink-soft);
+@@ -3393,7 +3393,7 @@ button:disabled {
+    but kept in the accessibility tree, and the header collapses to the single
+    row that carries a live control. This returns ~65px to the transcript. */
+ 
+-.woven-primary-dialogue > .panel--chat > .panel-header {
++.woven-primary-dialogue .panel--chat > .panel-header {
+   position: relative;
+   display: flex;
+   align-items: center;
+@@ -3401,8 +3401,8 @@ button:disabled {
+   padding: 0.34rem 1rem;
+ }
+ 
+-.woven-primary-dialogue > .panel--chat > .panel-header > h2,
+-.woven-primary-dialogue > .panel--chat > .panel-header > .chat-meta {
++.woven-primary-dialogue .panel--chat > .panel-header > h2,
++.woven-primary-dialogue .panel--chat > .panel-header > .chat-meta {
+   position: absolute;
+   width: 1px;
+   height: 1px;
+@@ -3414,7 +3414,7 @@ button:disabled {
+   white-space: nowrap;
+ }
+ 
+-.woven-primary-dialogue > .panel--chat > .panel-header > .chat-mode-selector {
++.woven-primary-dialogue .panel--chat > .panel-header > .chat-mode-selector {
+   margin-top: 0;
+ }
+ 
+@@ -3536,7 +3536,7 @@ button:disabled {
+ @media (max-width: 860px) {
+   /* Stacked: the dialogue pane is full width, so the composer dock no longer
+      needs to compete with the transcript for a fixed pane height. */
+-  .woven-primary-dialogue > .panel--chat {
++  .woven-primary-dialogue .panel--chat {
+     grid-template-rows: auto minmax(0, 1fr) auto auto;
+   }
+ 
+@@ -4328,7 +4328,7 @@ button:disabled {
+ .shell--stone > .woven-workspace { grid-template-rows: minmax(0, 1fr) 32px; }
+ .shell--stone .woven-primary-dialogue { display: block; }
+ .shell--stone .woven-dialogue-region { padding: 0; }
+-.shell--stone .woven-primary-dialogue > .chat-panel--woven {
++.shell--stone .woven-primary-dialogue .chat-panel--woven {
+   display: grid;
+   grid-template-rows: minmax(0, 1fr) auto auto auto;
+   background: var(--surface);
+diff --git a/projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx b/projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx
+index 60a3a88da..5c0f2ccc6 100644
+--- a/projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx
+@@ -55,6 +55,7 @@ import type { RuntimeSessionRecordV3 } from '@chirality/runtime-contracts';
+ type ChatMessage = {
+   id: string;
+   role: 'operator' | 'assistant';
++  interrupted?: boolean;
+   persona?: string;
+   projectRoot?: string;
+   text: string;
+@@ -619,7 +620,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
+     pendingBootstrap.current = undefined;
+     bindingGeneration.current += 1;
+     lastInstructionSequenceRef.current = projection.instructionHistory.reduce((maximum, record) => Math.max(maximum, record.sequence), 0);
+-    const nextMessages: ChatMessage[] = projection.transcript.items.flatMap(item => {
++    const nextMessages: ChatMessage[] = projection.transcript.items.flatMap<ChatMessage>(item => {
++      if (item.kind === 'terminal' && item.status === 'interrupted') return [{ id: `replay-${item.key}`, role: 'assistant' as const, text: '', interrupted: true }];
+       if (item.kind !== 'message' || !item.role || (!item.text && !item.attachments?.length)) return [];
+       const recordedRole = item.role === 'assistant'
+         ? recordedRoleForTurn(item.turnId, projection.instructionHistory, projection.instructionBases)
+@@ -1004,6 +1006,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
+             const exitCode = typeof payload.exitCode === 'number' ? payload.exitCode : 0;
+             const interrupted = payload.interrupted === true;
+ 
++            if (interrupted) setMessages(existing => existing.map(item => item.id === assistantId ? { ...item, interrupted: true } : item));
+             if (interrupted && !assistantText) {
+               assistantText = 'Turn interrupted by operator.';
+               setMessages((existing) =>
+@@ -1259,6 +1262,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
+             {message.attachments && message.attachments.length > 0 ? (
+               <AttachmentChips items={message.attachments} />
+             ) : null}
++            {message.interrupted ? <p className="chat-turn-status" role="status">Interrupted</p> : null}
+             {message.methods?.length ? <ul className="method-chip-list" aria-label="Selected methods">{message.methods.map(method => <li key={`${method.sourceRootId}:${method.kind}:${method.name}`} className="method-chip"><span>{method.name}</span><small>{method.source}</small></li>)}</ul> : null}
+             {message.instructionBasis || message.instructionHistory?.length ? <details className="chat-instruction-basis"><summary>Turn details</summary>
+             {message.instructionBasis ? <>
+diff --git a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+index 6e1e2e6ea..ac1003f12 100644
+--- a/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
++++ b/projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+@@ -368,15 +368,21 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+   }, [pathname, projectRoot, router, searchParams, streaming]);
+ 
+   useEffect(() => {
+-    if (replayState.status !== 'READY' || directHistorySelection.current !== replayState.projection.selectedSessionId) return;
++    if (!directHistorySelection.current || directHistorySelection.current !== selectedReplayId(replayState)) return;
++    if (replayState.status !== 'READY' && replayState.status !== 'UNAVAILABLE') return;
+     directHistorySelection.current = undefined;
+-    if (canContinueRecordedConversation(replayState.projection, projectRoot, streaming)) {
++    if (replayState.status === 'READY' && canContinueRecordedConversation(replayState.projection, projectRoot, streaming)) {
+       continueRecordedConversation(replayState.projection);
++    } else {
++      // An incompatible or unavailable recording still needs its inspection/retry surface.
++      restoreExpanded();
++      updateWorkspaceState({ rightPanelView: 'agents', coordinationCollapsed: false });
++      setCoordinationView('session');
+     }
+-  }, [replayState, projectRoot, streaming, continueRecordedConversation]);
++  }, [replayState, projectRoot, streaming, continueRecordedConversation, restoreExpanded, updateWorkspaceState]);
+ 
+   const loadReplay = useCallback(
+-    (sessionId: string): void => {
++    (sessionId: string, inspect = false): void => {
+       const decision = guardRecordedSessionSelection({
+         currentState: replayState,
+         requestedSessionId: sessionId,
+@@ -390,6 +396,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+         return;
+       }
+       if (decision.outcome === 'UNCHANGED') {
++        if (!inspect) return;
+         restoreExpanded();
+         updateWorkspaceState({ coordinationCollapsed: false, rightPanelView: 'agents' });
+         setCoordinationView('session');
+@@ -400,14 +407,13 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+       }
+ 
+       setPendingResume(undefined);
+-      directHistorySelection.current = sessionId;
+-      restoreExpanded();
+-      updateWorkspaceState({
+-        selectedReplaySessionId: sessionId,
+-        rightPanelView: 'agents',
+-        coordinationCollapsed: false
+-      });
+-      setCoordinationView('session');
++      directHistorySelection.current = inspect ? undefined : sessionId;
++      updateWorkspaceState({ selectedReplaySessionId: sessionId });
++      if (inspect) {
++        restoreExpanded();
++        updateWorkspaceState({ rightPanelView: 'agents', coordinationCollapsed: false });
++        setCoordinationView('session');
++      }
+       void replayLoaderRef.current?.load(sessionId, {
+         observedAt: new Date().toISOString(),
+         availableSessionIds: new Set(sessions.map((session) => session.sessionId))
+@@ -706,7 +712,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+           {!workspaceState.coordinationCollapsed ? (
+             <RightPanel settingsView={settingsView} folderLocked={binding.locked || streaming || folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} folderMismatch={binding.locked && Boolean(binding.root && binding.root !== projectRoot)} state={workspaceState} sessionOpen={coordinationView === 'session'}
+               replayState={replayState} recordedSessionIds={sessions.map(session => session.sessionId)}
+-              primarySessionId={primarySessionId} liveTurnActive={streaming} onOpenParent={loadReplay}
++              primarySessionId={primarySessionId} liveTurnActive={streaming} onOpenParent={sessionId => loadReplay(sessionId, true)}
+               onView={(view) => {
+                 restoreExpanded();
+                 updateWorkspaceState({ rightPanelView: view, ...(view === 'files' ? { openDocumentPath: null } : {}) });
+@@ -757,7 +763,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
+               onRefreshSessions={() => {
+                 setSessionRefreshToken((token) => token + 1);
+               }}
+-              onSelectSession={loadReplay}
++              onSelectSession={sessionId => loadReplay(sessionId, true)}
+             />} />
+           ) : (
+             <span className="woven-collapsed-label">Coordination</span>

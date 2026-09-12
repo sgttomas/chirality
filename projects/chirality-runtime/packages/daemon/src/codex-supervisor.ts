@@ -158,6 +158,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
   private readonly runtimeToolMailboxes = new Map<string, RuntimeToolMailbox>();
   private candidateLauncherFactory?: CodexCandidateLauncherFactory;
   private controlledVerifyConformance?: ControlledHostedConformanceVerifier;
+  private hostAdmissionRefresh?: Promise<void>;
   private conformance?: Pick<HostedCodexSupervisorOptions, "conformance" | "configDigest" | "consentVersion" | "runtimeV2"> & { accountDigest: string };
   private preadmitted?: AdmittedCandidate;
   constructor(options: CodexSupervisorOptions) {
@@ -275,6 +276,30 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     const effort = reasoningEffort ?? (selectedModel === this.options.model ? this.options.reasoningEffort : entry.defaultReasoningEffort);
     if (effort !== undefined && !entry.supportedReasoningEfforts.includes(effort)) throw new RuntimeError("INVALID_REQUEST", `Reasoning effort '${effort}' is not supported by '${selectedModel}'`, 400, { reason: "REASONING_EFFORT_UNSUPPORTED" });
     return { model: selectedModel, reasoningEffort: effort };
+  }
+  /** Renew only at an idle boundary; old lease-bound admissions remain invalid. */
+  async refreshHostAdmission(): Promise<NonNullable<HostedCodexSupervisorOptions["runtimeV2"]> | undefined> {
+    if (this.hostAdmissionRefresh) { await this.hostAdmissionRefresh; return this.conformance?.runtimeV2; }
+    const operation = this.refreshHostAdmissionIdle();
+    this.hostAdmissionRefresh = operation;
+    try { await operation; return this.conformance?.runtimeV2; }
+    finally { if (this.hostAdmissionRefresh === operation) this.hostAdmissionRefresh = undefined; }
+  }
+  private async refreshHostAdmissionIdle(): Promise<void> {
+    const current = this.conformance?.runtimeV2;
+    if (!current) return;
+    try { await revalidateRuntimeInstanceAdmissionV2(current.instanceInput, current.instanceAdmission); return; }
+    catch (error) { if (!(error instanceof RuntimeError) || error.details?.reason !== "HOST_AUTHORITY_NOT_LIVE") throw error; }
+    if (this.closed || this.entries.size || this.acquiring.size || !this.candidateLauncherFactory?.refreshHostAdmission || !current.instanceInput.account) throw unavailable("Host admission cannot renew while work is active");
+    if (this.preadmitted) {
+      const pending = this.preadmitted; this.preadmitted = undefined;
+      await pending.authority.close(); await pending.session.close(); await pending.candidate.cleanup();
+    }
+    const next = await this.candidateLauncherFactory.refreshHostAdmission(current.instanceInput.account);
+    if (this.closed || this.entries.size || this.acquiring.size) throw unavailable("Host admission changed during renewal");
+    if (JSON.stringify({ ...next.instanceInput, hostAuthority: null }) !== JSON.stringify({ ...current.instanceInput, hostAuthority: null })) throw unavailable("Host admission renewal changed its subject or policy");
+    await revalidateRuntimeInstanceAdmissionV2(next.instanceInput, next.instanceAdmission);
+    this.conformance!.runtimeV2 = { ...current, ...next };
   }
   private async revalidateCurrentHost(): Promise<void> {
     const input = this.conformance?.runtimeV2?.instanceInput;
@@ -416,6 +441,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort {
     const cancelled=()=>{if(cancellation.cancelled||this.closed)throw unavailable("Admission cancelled");};
     const kind=dynamicTools?"manager":"regular";
     let localEntry:Entry|undefined;let begin:(()=>void)|undefined;let finishAdmissionLifecycle:((graceful:boolean)=>void)|undefined;
+    await this.refreshHostAdmission();
     this.acquiring.add(workerId);
     let finishAcquisition!: () => void;
     this.pendingAcquisitions.set(workerId, new Promise<void>(resolve => { finishAcquisition = resolve; }));

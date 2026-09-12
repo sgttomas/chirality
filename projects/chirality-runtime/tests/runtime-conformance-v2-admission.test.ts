@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { describe, expect, it, vi } from "vitest";
 import { REQUIRED_RUNTIME_CONFORMANCE_LIMBS, runtimePolicyParameterSchemaDigestV2, type RuntimeSupportProfileV2 } from "../packages/core/src/index.js";
-import { digestCodexPolicyInstanceV2, inspectCodexPolicyInstanceV2, inspectRuntimePurposeAcceptanceV2, inspectRuntimePurposeReleaseV2, revalidateRuntimePurposeReleaseV2, verifyRuntimePurposeReleaseV2 } from "../packages/daemon/src/runtime-conformance-v2-admission.js";
+import { prepareRuntimeWorkerInstanceV2FromP2, completeRuntimeWorkerInstanceV2FromP2, revalidateRuntimeInstanceAdmissionV2, revalidateRuntimeWorkerInstancePreparationV2, digestCodexPolicyInstanceV2, inspectCodexPolicyInstanceV2, inspectRuntimePurposeAcceptanceV2, inspectRuntimePurposeReleaseV2, revalidateRuntimePurposeReleaseV2, verifyRuntimePurposeReleaseV2 } from "../packages/daemon/src/runtime-conformance-v2-admission.js";
 import { compileCodexNativePolicyProjectionV2, prepareCodexNativePolicyV2 } from "../packages/daemon/src/codex-containment.js";
 
 vi.mock("../packages/daemon/src/hosted-packaged-release-state.js", async importOriginal => ({
@@ -141,4 +141,55 @@ describe("D36 v2 policy instance", () => {
     expect(() => inspectCodexPolicyInstanceV2({ ...worker, protectedPaths: [...worker.protectedPaths].reverse() })).toThrow();
     expect(() => inspectCodexPolicyInstanceV2({ ...worker, nativeRoleConfiguration: { ...worker.nativeRoleConfiguration, configOverrides: [...configOverrides].reverse() } })).toThrow();
   });
+});
+
+// The release file verifier and nominal issuer are real; only the packaged
+// filesystem/seal boundary is mocked above. No supplier/native execution.
+it("renews an idle supervisor and future launcher from verified host B while A stays invalid", async () => {
+  const { HostAccountAuthority } = await import("../packages/daemon/src/host-account-authority.js");
+  const { CodexSupervisor } = await import("../packages/daemon/src/codex-supervisor.js");
+  const { createControlledCodexCandidateLauncherFactoryForTests } = await import("../packages/daemon/src/codex-admitted-launcher.js");
+  const directory = await realpath(await mkdtemp(join(await realpath(tmpdir()), "host-renewal-")));
+  try {
+    const profile = supportProfile(), payloadDigest = hash("payload"), sourceDigest = hash("source");
+    const record = { schema: "chirality-codex-worker-purpose-release/v2", evidenceClass: "exact-worker-purpose-observed", sourceDigest, payloadDigest,
+      supportProfileDigests: [profile.profileDigest], policyContractDigest: runtimePolicyParameterSchemaDigestV2(), supplyProfileDigest: hash(`${JSON.stringify(profile.supplier)}\n`),
+      issuedAt: "2020-01-01T00:00:00.000Z", expiresAt: "2099-01-01T00:00:00.000Z", limbs: limbs(REQUIRED_RUNTIME_CONFORMANCE_LIMBS) };
+    const recordBytes = `${JSON.stringify(record)}\n`, ownerBytes = "owner\n";
+    const acceptance = { schema: "chirality-runtime-conformance-acceptance/v1", status: "accepted", recordSha256: hash(recordBytes), sourceDigest, activationId: "r", gateIdentity: "D36", ownerActSha256: hash(ownerBytes), ownerReference: "owner", expiresAt: "2099-01-01T00:00:00.000Z" };
+    const acceptanceBytes = `${JSON.stringify(acceptance)}\n`;
+    const release = { purpose: "worker", recordPath: join(directory,"record"), recordSha256: hash(recordBytes), acceptancePath: join(directory,"acceptance"), acceptanceSha256: hash(acceptanceBytes), ownerActPath: join(directory,"owner"), ownerActSha256: hash(ownerBytes), activationId: "r", gateIdentity: "D36", payloadDigest, supportProfile: profile };
+    await Promise.all([writeFile(release.recordPath,recordBytes,{mode:0o600}),writeFile(release.acceptancePath,acceptanceBytes,{mode:0o600}),writeFile(release.ownerActPath,ownerBytes,{mode:0o600})]);
+    const basis = { worker: release } as any;
+    const purposeRelease = await verifyRuntimePurposeReleaseV2(basis,"worker");
+    const source = Object.create(HostAccountAuthority.prototype) as any;
+    source.generation="daemon"; source.closing=false; source.active={clientId:"A",connectionId:"A",revoked:false};
+    const roles = { digest: hash("roles"), configOverrides: ["agents.enabled=true","features.multi_agent=true","features.multi_agent_v2=false","agents.max_depth=2", ...["HELP_HUMAN","HELPS_HUMANS","WORKING_ITEMS","TASK"].flatMap(role=>[`agents.${role}.description="${role}"`,`agents.${role}.config_file="/broker/private/${role}.toml"`])] };
+    const policy = { schema:"chirality-codex-policy-instance/v2",outerPurpose:"trusted-supplier",nativePurpose:"worker",canonicalRoot:"/project",privateDirectory:"/broker/private",codexHome:"/broker/private/home",executablePath:"/broker/private/codex",nativeAddonPath:"/resources/addon",providerNetworkConsent:{approvedBy:"owner",approvalReference:"ref"},commandNetworkPosture:"off",immutableReadRoots:["/System","/usr"],protectedPaths:["/broker"],readOnlyProjectPaths:["/project/.chirality/attachments"],trustedRuntimeReadRoots:[{path:"/resources/instructions",readPaths:["/resources/instructions"],contentDigest:hash("instructions"),artifactInventory:{schema:"chirality-runtime-packaged-basis/v2",resourcesRoot:"/resources",inventoryPath:"/resources/inventory",payloadManifestPath:"/resources/manifest",outerInventorySha256:hash("inventory"),payloadDigest}}],toolRuntime:{codexSelfExecutablePath:"/broker/private/codex",requiresSandboxedFileSystem:true,requiresSandboxedFileStreaming:true},nativeRoleConfiguration:roles } as any;
+    const input={purposeRelease,projectId:"p",manifestHash:hash("manifest"),canonicalRoot:"/project",cwd:"/project",privateDirectory:"/broker/private",codexHome:policy.codexHome,brokerRoot:"/broker",instructionRoot:"/resources/instructions",nativeAddonPath:policy.nativeAddonPath,supplierExecutablePath:policy.executablePath,attachmentRoot:"/project/.chirality/attachments",consent:{version:hash("consent"),digest:hash("consent"),authenticatedExplicitUserAct:true},policy,outerPolicyDigest:hash("outer"),nativePolicyDigest:hash("native"),effectiveConfigDigest:hash("config")} as any;
+    const preparation=await prepareRuntimeWorkerInstanceV2FromP2(source,basis,input);
+    const account={accountId:"account",accountEpoch:1,accountDigest:hash("account")};
+    const initial=await completeRuntimeWorkerInstanceV2FromP2(preparation,account);
+    const launches:any[]=[];
+    const factory=createControlledCodexCandidateLauncherFactoryForTests({kernelLease:{held:true,device:1n,inode:2n,created:false,close(){}},bindings:{canonicalRoot:policy.canonicalRoot,privateDirectory:policy.privateDirectory,codexHome:policy.codexHome,executablePath:policy.executablePath,nativeAddonPath:policy.nativeAddonPath,model:"fixture",providerNetworkConsent:policy.providerNetworkConsent,commandNetworkPosture:"off",protectedPaths:policy.protectedPaths,readOnlyProjectPaths:policy.readOnlyProjectPaths,immutableReadRoots:policy.immutableReadRoots,trustedRuntimeReadRoots:[{path:"/resources/instructions",readPaths:["/resources/instructions"],contentDigest:hash("instructions"),artifactInventory:{kind:"packaged-resources",resourcesRoot:"/resources",manifestPath:"/resources/inventory"}}],policyDigest:input.nativePolicyDigest,configDigest:hash("config"),consentVersion:"consent",toolRuntime:{codexSelfExecutablePath:policy.executablePath},nativeRoleConfiguration:roles,policyInstanceV2:policy,expectedEffectiveConfigDigestV2:input.effectiveConfigDigest,instancePreparationV2:preparation,nativePolicyIdentityVersion:10}}, {async launchCandidate(value){await revalidateRuntimeWorkerInstancePreparationV2(value.instancePreparationV2!); launches.push(value); throw new Error("controlled-stop-before-supplier");}});
+    const supervisor=Object.create(CodexSupervisor.prototype) as any;
+    Object.assign(supervisor,{conformance:{runtimeV2:{releaseBasis:basis,...initial}},candidateLauncherFactory:factory,entries:new Map(),acquiring:new Set(),closed:false});
+    await supervisor.refreshHostAdmission();
+    source.active.revoked=true;
+    await expect(supervisor.refreshHostAdmission()).rejects.toThrow();
+    source.active={clientId:"B",connectionId:"B",revoked:false};
+    supervisor.entries.set("active",{});
+    await expect(supervisor.refreshHostAdmission()).rejects.toThrow("while work is active"); supervisor.entries.clear();
+    await Promise.all([supervisor.refreshHostAdmission(),supervisor.refreshHostAdmission()]);
+    await expect(revalidateRuntimeInstanceAdmissionV2(initial.instanceInput,initial.instanceAdmission)).rejects.toMatchObject({details:{reason:"HOST_AUTHORITY_NOT_LIVE"}});
+    const renewed=supervisor.conformance.runtimeV2;
+    expect(renewed.instanceInput.account).toEqual(account);
+    await revalidateRuntimeInstanceAdmissionV2(renewed.instanceInput,renewed.instanceAdmission);
+    await expect(factory.create().launchCandidate()).rejects.toThrow("controlled-stop-before-supplier");
+    expect(launches).toHaveLength(1); expect(launches[0].instancePreparationV2.lease).not.toEqual(preparation.lease);
+    source.active={clientId:"C",connectionId:"C",revoked:false};
+    const now=vi.spyOn(Date,"now").mockReturnValue(Date.parse("2100-01-01T00:00:00Z"));
+    try { await expect(supervisor.refreshHostAdmission()).rejects.toMatchObject({details:{reason:"PURPOSE_RELEASE_STALE"}}); } finally {now.mockRestore();}
+    await factory.close?.();
+  } finally {await rm(directory,{recursive:true,force:true});}
 });

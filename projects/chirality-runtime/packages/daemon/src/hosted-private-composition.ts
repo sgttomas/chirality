@@ -630,7 +630,12 @@ async function compose(options: HostedPrivateCompositionOptions, adapters: Contr
             const context = admissions.get(publicAdmission);
             if (closed || !context || context.retired || context.signedOut) return false;
             const observed = await context.store.observe();
-            return observed.state === "active" && observed.accountId === admission.continuity.accountId && observed.accountEpoch === admission.continuity.accountEpoch;
+            if (observed.state !== "active" || observed.accountId !== admission.continuity.accountId || observed.accountEpoch !== admission.continuity.accountEpoch) return false;
+            const refreshed = context.runtimeV2 ? await admission.supervisor.refreshHostAdmission() : undefined;
+            if (refreshed) context.runtimeV2 = refreshed;
+            if (closed || context.retired || context.signedOut) return false;
+            if (context.runtimeV2) await revalidateRuntimeInstanceAdmissionV2(context.runtimeV2.instanceInput, context.runtimeV2.instanceAdmission);
+            return true;
           } });
         const finalizedRuntimeV2 = runtimeV2 ?? admission.runtimeV2;
         admissions.set(publicAdmission, { ...context, admission, launcherFactory, store, retired: false, signedOut: false, ...(finalizedRuntimeV2 ? { runtimeV2: finalizedRuntimeV2 } : {}) }); ceremonies.delete(context.ceremony);

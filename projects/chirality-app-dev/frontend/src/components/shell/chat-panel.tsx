@@ -55,6 +55,7 @@ import type { RuntimeSessionRecordV3 } from '@chirality/runtime-contracts';
 type ChatMessage = {
   id: string;
   role: 'operator' | 'assistant';
+  interrupted?: boolean;
   persona?: string;
   projectRoot?: string;
   text: string;
@@ -619,7 +620,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     pendingBootstrap.current = undefined;
     bindingGeneration.current += 1;
     lastInstructionSequenceRef.current = projection.instructionHistory.reduce((maximum, record) => Math.max(maximum, record.sequence), 0);
-    const nextMessages: ChatMessage[] = projection.transcript.items.flatMap(item => {
+    const nextMessages: ChatMessage[] = projection.transcript.items.flatMap<ChatMessage>(item => {
+      if (item.kind === 'terminal' && item.status === 'interrupted') return [{ id: `replay-${item.key}`, role: 'assistant' as const, text: '', interrupted: true }];
       if (item.kind !== 'message' || !item.role || (!item.text && !item.attachments?.length)) return [];
       const recordedRole = item.role === 'assistant'
         ? recordedRoleForTurn(item.turnId, projection.instructionHistory, projection.instructionBases)
@@ -1004,6 +1006,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             const exitCode = typeof payload.exitCode === 'number' ? payload.exitCode : 0;
             const interrupted = payload.interrupted === true;
 
+            if (interrupted) setMessages(existing => existing.map(item => item.id === assistantId ? { ...item, interrupted: true } : item));
             if (interrupted && !assistantText) {
               assistantText = 'Turn interrupted by operator.';
               setMessages((existing) =>
@@ -1259,6 +1262,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
             {message.attachments && message.attachments.length > 0 ? (
               <AttachmentChips items={message.attachments} />
             ) : null}
+            {message.interrupted ? <p className="chat-turn-status" role="status">Interrupted</p> : null}
             {message.methods?.length ? <ul className="method-chip-list" aria-label="Selected methods">{message.methods.map(method => <li key={`${method.sourceRootId}:${method.kind}:${method.name}`} className="method-chip"><span>{method.name}</span><small>{method.source}</small></li>)}</ul> : null}
             {message.instructionBasis || message.instructionHistory?.length ? <details className="chat-instruction-basis"><summary>Turn details</summary>
             {message.instructionBasis ? <>

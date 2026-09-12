@@ -2574,7 +2574,7 @@ button:disabled {
 /* Four rows, always: header / transcript / composer dock / composer. The row
    list used to be six positional `auto` tracks against a child count that
    changed with state; see the Stage C section for the defect this fixes. */
-.woven-primary-dialogue > .panel--chat {
+.woven-primary-dialogue .panel--chat {
   height: 100%;
   min-width: 0;
   min-height: 0;
@@ -2584,7 +2584,7 @@ button:disabled {
   box-shadow: none;
 }
 
-.woven-primary-dialogue > .panel--chat .chat-transcript {
+.woven-primary-dialogue .panel--chat .chat-transcript {
   min-height: 0;
   overflow: auto;
 }
@@ -3322,7 +3322,7 @@ button:disabled {
    (TRB-APPDEV-WOVEN-REDESIGN-2026-07-24 §5 Stage C)
 
    Appended section. Exactly one rule above this section was edited — the
-   `.woven-primary-dialogue > .panel--chat` grid-row list (see the comment
+   `.woven-primary-dialogue .panel--chat` grid-row list (see the comment
    there) — because the defect is a grid-track defect and cannot be corrected
    from a lower-cascade override alone. Everything else here is additive and
    every value resolves from the Stage A token layer (no literal colours).
@@ -3356,24 +3356,24 @@ button:disabled {
   min-height: 0;
 }
 
-.woven-primary-dialogue > .panel--chat > .chat-composer-dock {
+.woven-primary-dialogue .panel--chat > .chat-composer-dock {
   overflow: auto;
   border-top: 1px solid var(--rule);
 }
 
-.woven-primary-dialogue > .panel--chat > .chat-composer-dock > .chat-attachment-preview {
+.woven-primary-dialogue .panel--chat > .chat-composer-dock > .chat-attachment-preview {
   border-top: 0;
 }
 
-.woven-primary-dialogue > .panel--chat > .chat-transcript {
+.woven-primary-dialogue .panel--chat > .chat-transcript {
   padding-block: 0;
 }
 
-.woven-primary-dialogue > .panel--chat > .chat-transcript > :first-child {
+.woven-primary-dialogue .panel--chat > .chat-transcript > :first-child {
   margin-top: 0.85rem;
 }
 
-.woven-primary-dialogue > .panel--chat > .chat-transcript > :last-child {
+.woven-primary-dialogue .panel--chat > .chat-transcript > :last-child {
   margin-bottom: 0.85rem;
 }
 
@@ -3381,7 +3381,7 @@ button:disabled {
    the transcript's reading measure and never sits on the composer. It stays on
    `--ink-soft` — `--ink-faint` at this size is 3.2:1 light / 3.6:1 dark and
    would fail AA. */
-.woven-primary-dialogue > .panel--chat > .chat-transcript > .panel-empty {
+.woven-primary-dialogue .panel--chat > .chat-transcript > .panel-empty {
   max-width: 74ch;
   font-size: 0.82rem;
   color: var(--ink-soft);
@@ -3393,7 +3393,7 @@ button:disabled {
    but kept in the accessibility tree, and the header collapses to the single
    row that carries a live control. This returns ~65px to the transcript. */
 
-.woven-primary-dialogue > .panel--chat > .panel-header {
+.woven-primary-dialogue .panel--chat > .panel-header {
   position: relative;
   display: flex;
   align-items: center;
@@ -3401,8 +3401,8 @@ button:disabled {
   padding: 0.34rem 1rem;
 }
 
-.woven-primary-dialogue > .panel--chat > .panel-header > h2,
-.woven-primary-dialogue > .panel--chat > .panel-header > .chat-meta {
+.woven-primary-dialogue .panel--chat > .panel-header > h2,
+.woven-primary-dialogue .panel--chat > .panel-header > .chat-meta {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -3414,7 +3414,7 @@ button:disabled {
   white-space: nowrap;
 }
 
-.woven-primary-dialogue > .panel--chat > .panel-header > .chat-mode-selector {
+.woven-primary-dialogue .panel--chat > .panel-header > .chat-mode-selector {
   margin-top: 0;
 }
 
@@ -3536,7 +3536,7 @@ button:disabled {
 @media (max-width: 860px) {
   /* Stacked: the dialogue pane is full width, so the composer dock no longer
      needs to compete with the transcript for a fixed pane height. */
-  .woven-primary-dialogue > .panel--chat {
+  .woven-primary-dialogue .panel--chat {
     grid-template-rows: auto minmax(0, 1fr) auto auto;
   }
 
@@ -4328,7 +4328,7 @@ button:disabled {
 .shell--stone > .woven-workspace { grid-template-rows: minmax(0, 1fr) 32px; }
 .shell--stone .woven-primary-dialogue { display: block; }
 .shell--stone .woven-dialogue-region { padding: 0; }
-.shell--stone .woven-primary-dialogue > .chat-panel--woven {
+.shell--stone .woven-primary-dialogue .chat-panel--woven {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto auto auto;
   background: var(--surface);
