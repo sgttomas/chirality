@@ -911,3 +911,22 @@ Pull request opened 2026-09-12T05:50Z: https://github.com/sgttomas/chirality/pul
 (branch claude/chirality-v3-mvp-trial-ab05cb into main, HEAD 78974d0ba before
 this entry). Merge follows CI green per the owner's direction; merge SHA
 appended when known.
+
+## PR #767 CI result and merge hold — 2026-09-12T06:05Z
+
+CI at head eb9688556: governance-harness PASS, pec PASS, unsigned-artifact
+check skipped, Harness pre-merge FAIL in "Test shared runtime"
+(projects/chirality-runtime, `npm test -- --maxWorkers=1`, Node 24 on
+ubuntu): two tests in tests/delegated-runtime.test.ts, "interrupts an active
+exact worker once and records the closed interrupted terminal" and "allows
+exact live-turn interruption after hosted launch verification becomes
+unavailable", each with a 500 INTERNAL_FAILURE from the daemon on the
+interrupt request; 1126 other tests passed. The same workflow already failed
+on main's merged PR #766 head 09a0b75c7 (three files, including the second
+of these tests); the unmerged restart-admission commits fixed the other two
+files. Locally (macOS, Node 24.18.0) the full Runtime suite passes with
+--maxWorkers=1 (84 files, 1138 tests) and the two tests passed in six
+repeated runs, so the failure is CI-environment specific and lies in the
+daemon path that D-GOV-43 retires. Owner held the merge ("Let's not merge
+this PR just yet. I might revise it further.") and will reconsider using the
+failed CI. No merge; PR left open; nothing published.
