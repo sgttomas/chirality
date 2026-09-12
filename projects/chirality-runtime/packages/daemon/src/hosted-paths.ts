@@ -12,11 +12,6 @@ export function hostedProjectClientId(projectId: string): string {
   return `hosted-project-${projectId}`;
 }
 
-export function resolveHostedBootstrapTokenFile(runtimeDirectory: string): string {
-  runtimeRoot(runtimeDirectory);
-  return join(runtimeDirectory, "auth", "tokens", `${HOSTED_BOOTSTRAP_CLIENT_ID}.token`);
-}
-
 export function resolveHostedProjectTokenFile(runtimeDirectory: string, projectId: string): string {
   runtimeRoot(runtimeDirectory);
   return join(runtimeDirectory, "auth", "tokens", `${hostedProjectClientId(projectId)}.token`);

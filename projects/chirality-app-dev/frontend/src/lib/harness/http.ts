@@ -40,6 +40,77 @@ export function errorResponse(error: unknown): NextResponse<HarnessErrorResponse
   );
 }
 
-export function formatSseEvent(event: string, data: unknown): string {
-  return `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
+/**
+ * One browser-facing SSE frame. `id` carries the Runtime turn registry's frame
+ * sequence so a renderer can re-attach with `after=<seq>` after a dropped
+ * connection (D-GOV-43 section 5).
+ */
+export function formatSseEvent(event: string, data: unknown, id?: number): string {
+  const idLine = typeof id === 'number' && Number.isFinite(id) ? `id: ${Math.floor(id)}\n` : '';
+  return `${idLine}event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
+}
+
+/** Comment-frame cadence on the browser-facing turn stream; matches the Runtime socket cadence. */
+export const TURN_STREAM_KEEPALIVE_MS = 15_000;
+
+/** Streams Runtime turn frames to the browser; closing the response only unsubscribes. */
+export function turnStreamResponse(turn: {
+  events: AsyncIterable<{ type: string; data: unknown; seq?: number }>;
+  cancel(): Promise<void>;
+}): Response {
+  const encoder = new TextEncoder();
+  // The Runtime's own comment keepalives are consumed by the runtime client,
+  // so this proxy emits its own: a silent tool run must not look like a dead
+  // stream to the renderer or to anything between them.
+  let keepalive: ReturnType<typeof setInterval> | undefined;
+  const stopKeepalive = (): void => {
+    if (keepalive !== undefined) {
+      clearInterval(keepalive);
+      keepalive = undefined;
+    }
+  };
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller): Promise<void> {
+      keepalive = setInterval(() => {
+        try {
+          controller.enqueue(encoder.encode(': keepalive\n\n'));
+        } catch {
+          stopKeepalive();
+        }
+      }, TURN_STREAM_KEEPALIVE_MS);
+      try {
+        for await (const frame of turn.events) {
+          controller.enqueue(encoder.encode(formatSseEvent(frame.type, frame.data, frame.seq)));
+        }
+      } catch (error) {
+        stopKeepalive();
+        try {
+          controller.error(error);
+        } catch {
+          // Stream may already be closed/cancelled.
+        }
+        return;
+      }
+      stopKeepalive();
+      try {
+        controller.close();
+      } catch {
+        // Stream may already be closed/cancelled.
+      }
+    },
+    async cancel(): Promise<void> {
+      // The browser went away (navigation, reload, window close). The Runtime
+      // keeps owning the turn; only this observer is released.
+      stopKeepalive();
+      await turn.cancel();
+    }
+  });
+  return new Response(stream, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/event-stream; charset=utf-8',
+      'Cache-Control': 'no-cache, no-transform',
+      Connection: 'keep-alive'
+    }
+  });
 }

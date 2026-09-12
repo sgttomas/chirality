@@ -1,6 +1,8 @@
 import { randomUUID } from "node:crypto";
 import { describeFailureDetails } from "./retirement-failure.js";
 import {
+  HOSTED_MODEL_ID_PATTERN,
+  HOSTED_REASONING_EFFORT_PATTERN,
   RuntimeError,
   asHarnessError,
   type AgentEngineRunInput,
@@ -19,6 +21,17 @@ import type { RuntimeMethodService } from "./runtime-method-service.js";
 interface ActiveTurn {
   controller: AbortController;
   engineInterrupt: () => Promise<void>;
+  /** Caller-supplied reason recorded on the synthesized `turn.interrupted` terminal (for example `service-shutdown`). */
+  reason?: string;
+}
+
+/** Per-turn override validation: absent means "use the session's value"; anything else must be a well-formed identifier. */
+function validateTurnOverride(value: unknown, pattern: RegExp, field: "model" | "reasoningEffort"): string | undefined {
+  if (value === undefined) return undefined;
+  if (typeof value !== "string" || !pattern.test(value)) {
+    throw new RuntimeError("INVALID_REQUEST", `Turn ${field} override is malformed`, 400, { reason: field === "model" ? "TURN_MODEL_INVALID" : "TURN_REASONING_EFFORT_INVALID" });
+  }
+  return value;
 }
 
 export interface RequiredToolReceipt {
@@ -107,11 +120,16 @@ export class TurnCoordinator {
       throw new RuntimeError("INVALID_REQUEST", "Turn message cannot be empty");
     }
     const local = session.engineSelection.providerId === "omlx";
+    const modelOverride = validateTurnOverride(request.model, HOSTED_MODEL_ID_PATTERN, "model");
+    const effortOverride = validateTurnOverride(request.reasoningEffort, HOSTED_REASONING_EFFORT_PATTERN, "reasoningEffort");
+    const turnModel = modelOverride ?? request.opts?.model ?? session.engineSelection.model;
+    const turnEffort = effortOverride ?? session.reasoningEffort;
     let releaseResidency = (): void => undefined;
-    this.active.set(key, {
+    const activeTurn: ActiveTurn = {
       controller,
       engineInterrupt: () => engine.interrupt(sessionId)
-    });
+    };
+    this.active.set(key, activeTurn);
     let processExit: Extract<UIEvent, { type: "process:exit" }> | undefined;
     let turnErrorSeen = false;
     let terminalHarnessEvent: HarnessEvent | undefined;
@@ -147,11 +165,17 @@ export class TurnCoordinator {
       );
       const input: AgentEngineRunInput = {
         projectId,
-        session,
+        // The engine sees the effective per-turn selection; the stored session keeps its default engine selection.
+        session: modelOverride === undefined && effortOverride === undefined ? session : {
+          ...session,
+          engineSelection: { ...session.engineSelection, model: turnModel },
+          ...(turnEffort === undefined ? {} : { reasoningEffort: turnEffort })
+        },
         message,
         interactionMode: request.interactionMode ?? session.interactionMode ?? "chat",
+        ...(turnEffort === undefined ? {} : { reasoningEffort: turnEffort }),
         opts: {
-          model: request.opts?.model ?? session.engineSelection.model,
+          model: turnModel,
           tools: admittedTools,
           maxTurns: request.opts?.maxTurns ?? 50,
           persona: request.opts?.persona ?? session.persona,
@@ -192,9 +216,15 @@ export class TurnCoordinator {
                 ).contentBlocks
               })
       };
+      const acceptedData = {
+        message,
+        ...(request.attachments?.length ? { attachments: [...request.attachments] } : {}),
+        ...(modelOverride === undefined ? {} : { model: modelOverride }),
+        ...(effortOverride === undefined ? {} : { reasoningEffort: effortOverride })
+      };
       const accepted = resolvedContext === undefined
-        ? await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.accepted", data: { message, ...(request.attachments?.length ? { attachments: [...request.attachments] } : {}) } })
-        : (await this.sessions.commitWithAcceptedTurn(session, { sessionId, turnId, type: "turn.accepted", data: { message, ...(request.attachments?.length ? { attachments: [...request.attachments] } : {}) } }, resolvedContext.snapshot)).event;
+        ? await this.sessions.appendEvent(projectId, { sessionId, turnId, type: "turn.accepted", data: acceptedData })
+        : (await this.sessions.commitWithAcceptedTurn(session, { sessionId, turnId, type: "turn.accepted", data: acceptedData }, resolvedContext.snapshot)).event;
       acceptedOwned = true;
       yield { type: "harness:event", data: accepted };
       await engine.preflight(input);
@@ -271,7 +301,7 @@ export class TurnCoordinator {
           if (
             received.data.adapterId !== engine.descriptor.adapterId ||
             received.data.providerId !== engine.descriptor.providerId ||
-            (local && received.data.model !== session.engineSelection.model)
+            (local && received.data.model !== turnModel)
           ) {
             throw new RuntimeError(
               "INTERNAL_FAILURE",
@@ -293,7 +323,8 @@ export class TurnCoordinator {
             engineSelection: {
               adapterId: received.data.adapterId,
               providerId: received.data.providerId,
-              model: received.data.model
+              // A per-turn model override never rewrites the session's default selection.
+              model: modelOverride === undefined ? received.data.model : session.engineSelection.model
             },
             adapterSession,
             ...(received.data.claudeSessionId === undefined
@@ -362,7 +393,7 @@ export class TurnCoordinator {
           sessionId,
           turnId,
           type: controller.signal.aborted ? "turn.interrupted" : "turn.completed",
-          data: {}
+          data: controller.signal.aborted && activeTurn.reason !== undefined ? { reason: activeTurn.reason } : {}
         });
         terminalHarnessEvent = completed;
         terminalPersisted = true;
@@ -379,14 +410,14 @@ export class TurnCoordinator {
           502
         );
       }
-      await this.sessions.update({
+      await this.sessions.update(withLastUsed({
         ...session,
         status: controller.signal.aborted
           ? "interrupted"
           : terminalHarnessEvent.type === "turn.completed"
             ? "completed"
             : "failed"
-      });
+      }, turnModel, turnEffort));
       await this.runtimeMethods?.applyPendingMethodChanges(projectId, sessionId, turnId);
       yield processExit;
     } catch (error) {
@@ -404,7 +435,7 @@ export class TurnCoordinator {
           sessionId,
           turnId,
           type: controller.signal.aborted ? "turn.interrupted" : "turn.failed",
-          data: { code: runtimeError.code, message: runtimeError.message, ...(failureDetails ? { details: failureDetails } : {}) }
+          data: { code: runtimeError.code, message: runtimeError.message, ...(failureDetails ? { details: failureDetails } : {}), ...(controller.signal.aborted && activeTurn.reason !== undefined ? { reason: activeTurn.reason } : {}) }
         });
         yield { type: "harness:event", data: failed };
       }
@@ -423,10 +454,10 @@ export class TurnCoordinator {
           }
         };
       }
-      if (acceptedOwned) await this.sessions.update({
+      if (acceptedOwned) await this.sessions.update(withLastUsed({
         ...session,
         status: controller.signal.aborted ? "interrupted" : "failed"
-      });
+      }, turnModel, turnEffort));
       if (acceptedOwned) await this.runtimeMethods?.applyPendingMethodChanges(projectId, sessionId, turnId);
       yield {
         type: "process:exit",
@@ -451,10 +482,24 @@ export class TurnCoordinator {
     }
   }
 
-  async interrupt(projectId: string, sessionId: string): Promise<void> {
+  /** Whether this coordinator currently owns an active turn for the session. */
+  isActive(projectId: string, sessionId: string): boolean {
+    return this.active.has(`${projectId}\0${sessionId}`);
+  }
+
+  async interrupt(projectId: string, sessionId: string, reason?: string): Promise<void> {
     const active = this.active.get(`${projectId}\0${sessionId}`);
     if (active === undefined) return;
+    if (reason !== undefined && active.reason === undefined) active.reason = reason;
     active.controller.abort();
     await active.engineInterrupt();
   }
+}
+
+/** Records the model and effort the turn actually ran with; the session's default selection is untouched. */
+function withLastUsed<T extends { lastUsedModel?: string; lastUsedReasoningEffort?: string }>(record: T, model: string, reasoningEffort: string | undefined): T {
+  const updated = { ...record, lastUsedModel: model };
+  if (reasoningEffort === undefined) delete updated.lastUsedReasoningEffort;
+  else updated.lastUsedReasoningEffort = reasoningEffort;
+  return updated;
 }

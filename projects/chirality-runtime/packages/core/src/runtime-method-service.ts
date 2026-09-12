@@ -157,7 +157,11 @@ export class RuntimeMethodService {
         throw new RuntimeError("RUNTIME_COMPATIBILITY_MISMATCH", "Prepared successor target no longer matches the freshly resolved instruction basis", 409, { expectedBasisId: successor.targetBasisId, actualBasisId: resolved.response.basisPreview.id });
       }
     }
-    if (lastAccepted?.type === "instruction-basis.resolved") {
+    // An engine without successor preparation keeps its provider thread and
+    // receives changed instructions as an additive context update (D-GOV-43);
+    // changed instruction bytes are re-frozen with the accepting turn.
+    const additiveEngine = this.engines.resolve(session.engineSelection).prepareContextSuccessor === undefined;
+    if (lastAccepted?.type === "instruction-basis.resolved" && !additiveEngine) {
       const accepted = await this.sessions.instructionBases.get(projectId, session.sessionId, lastAccepted.basisId);
       const latestLoad = [...instructionHistory].reverse().find(record => record.type === "selection.changed" && record.reason === "agent-load");
       const intentionalDynamicBaseline = latestLoad?.type === "selection.changed"
@@ -197,6 +201,7 @@ export class RuntimeMethodService {
     let resolved!: ResolvedInternal;
     let prepared: PreparedContextSuccessor | undefined;
     let preparedEngine: AgentEnginePort | undefined;
+    let additive = false;
     const revision = (session.methodSelectionRevision ?? 0) + 1;
     try { await this.sessions.mutateSelection(projectId, sessionId, { instructionBasisId: session.instructionBasisId, methodSelectionRevision: session.methodSelectionRevision ?? 0 }, async (current, lockedSnapshot) => {
       const replay = lockedSnapshot.events;
@@ -224,8 +229,12 @@ export class RuntimeMethodService {
       const policyChangedFromAccepted = acceptedBasis?.instructionPolicySha256 !== undefined && acceptedBasis.instructionPolicySha256 !== resolved.response.basisPreview.instructionPolicySha256;
       const needsSuccessor = (changed || changedFromAccepted || policyChangedFromAccepted || targetRoleId !== this.roleId(current)) && (current.engineSessionId !== undefined || priorTurnAccepted || acceptedMethods !== undefined);
       let providerSpanPreparation: import("./instruction-basis-store.js").ProviderSpanPreparedHistoryRecord | undefined;
-      if (needsSuccessor) {
-        const engine = this.engines.resolve(current.engineSelection);
+      const engineForTransition = this.engines.resolve(current.engineSelection);
+      // Additive engines (no successor preparation) keep their thread; the
+      // next turn carries the changed instructions as a context update.
+      additive = needsSuccessor && engineForTransition.prepareContextSuccessor === undefined;
+      if (needsSuccessor && !additive) {
+        const engine = engineForTransition;
         if (engine.prepareContextSuccessor === undefined || engine.cancelContextSuccessor === undefined || current.engineSessionId === undefined) throw new RuntimeError("RUNTIME_COMPATIBILITY_MISMATCH", "Selected adapter cannot prepare a reversible context successor", 409, { successorAvailable: false });
         const dialogue: { role: "user" | "assistant"; content: string; turnId?: string }[] = [];
         for (const event of replay) {
@@ -256,7 +265,9 @@ export class RuntimeMethodService {
       revision,
       methods: resolved.response.methods.map(method => this.reference(method)),
       basisPreview: resolved.response.basisPreview,
-      transition: prepared === undefined ? { status: "unchanged", successorAvailable: true } : { status: "prepared", successorAvailable: true, preparationId: prepared.preparationId }
+      transition: prepared !== undefined
+        ? { status: "prepared", successorAvailable: true, preparationId: prepared.preparationId }
+        : additive ? { status: "additive", successorAvailable: false } : { status: "unchanged", successorAvailable: true }
     };
   }
 

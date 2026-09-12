@@ -35,23 +35,23 @@
     "pi:lock-integrity": "node ./scripts/normalize-pi-lock-integrity.mjs",
     "pi:supply-chain": "node ./scripts/verify-pi-supply-chain.mjs",
     "electron:supply-chain": "node ./scripts/verify-electron-dist.mjs",
-    "runtime:build-core": "npm --prefix ../../chirality-runtime run build --workspace @chirality/runtime-core",
+    "runtime:build": "npm --prefix ../../chirality-runtime run build",
     "desktop:verify-dependencies": "node ./scripts/verify-packaged-dependency-boundary.mjs",
-    "desktop:prepare": "npm run instruction-root:prepare && npm run runtime:build-core && npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false node ./scripts/pack-electron-with-supply.mjs --runtime-manifest v2",
-    "desktop:bind-payload": "node ./scripts/pack-electron-with-supply.mjs --runtime-manifest v2 --runtime-v2-phase payload",
-    "desktop:pack": "node ./scripts/pack-electron-with-supply.mjs --runtime-manifest v2 --runtime-v2-phase seal && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
-    "desktop:dist": "node ./scripts/pack-electron-with-supply.mjs --target dmg --runtime-manifest v2 --runtime-v2-phase seal && npm run desktop:verify-dependencies && npm run instruction-root:integrity",
+    "desktop:verify-codex-pin": "node ./scripts/verify-codex-pin.mjs",
+    "desktop:prepare": "npm run instruction-root:prepare && npm run runtime:build && npm run build && node ./scripts/pack-electron.mjs",
+    "desktop:pack": "node ./scripts/pack-electron.mjs && npm run desktop:verify-dependencies && npm run desktop:verify-codex-pin && npm run instruction-root:integrity",
+    "desktop:dist": "node ./scripts/pack-electron.mjs --target dmg && npm run desktop:verify-dependencies && npm run desktop:verify-codex-pin -- --after-signing && npm run instruction-root:integrity",
     "sbom:generate": "node ./scripts/generate-sbom.mjs",
     "notices:generate": "node ./scripts/generate-third-party-notices.mjs",
     "verify:version-identity": "node ./scripts/verify-version-identity.mjs"
   },
   "dependencies": {
-    "@chirality/native-admission": "file:../../chirality-runtime/packages/native-admission",
     "@chirality/runtime-cli": "file:../../chirality-runtime/packages/cli",
     "@chirality/runtime-client": "file:../../chirality-runtime/packages/client",
     "@chirality/runtime-contracts": "file:../../chirality-runtime/packages/contracts",
     "@chirality/runtime-core": "file:../../chirality-runtime/packages/core",
     "@chirality/runtime-daemon": "file:../../chirality-runtime/packages/daemon",
+    "@openai/codex": "0.154.0",
     "ansi_up": "^6.0.6",
     "next": "15.5.21",
     "react": "^18.2.0",
@@ -115,23 +115,27 @@
       ".next/**/*",
       "public/**/*",
       "!node_modules/@chirality/**",
+      "!node_modules/@openai/**",
       "package.json",
       "next.config.mjs"
     ],
     "extraResources": [
       {
-        "from": "node_modules/.cache/chirality-supplier",
-        "to": "supplier",
+        "from": "node_modules/@openai/codex-darwin-arm64/vendor/aarch64-apple-darwin",
+        "to": "codex",
         "filter": [
           "**/*"
         ]
       },
       {
-        "from": "../../chirality-runtime/packages/native-admission/build/Release/chirality_native_admission.node",
-        "to": "native/chirality_native_admission.node"
+        "from": "dist-runtime/runtime-service",
+        "to": "runtime-service",
+        "filter": [
+          "**/*"
+        ]
       },
       {
-        "from": "dist-runtime",
+        "from": "dist-runtime/runtime-cli",
         "to": "runtime-cli",
         "filter": [
           "**/*"

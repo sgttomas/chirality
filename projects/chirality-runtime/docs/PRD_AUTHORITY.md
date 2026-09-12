@@ -30,3 +30,21 @@ Every bare companion filename in PRD.md resolves to `../execution/_Decomposition
 | `execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation.md` | `abd5dcef7a835bafac3e1dd29d7f7b6771ad0aeb60e4af9c25734bfa2534ab02` |
 | `execution/_Decomposition/SOURCE_SCOPE_REQUIREMENTS/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in.md` | `62bcfbdd6a20b647f15594fdd35b312d62942f85cf96aedb4aae5db12ea04663` |
 | `execution/_Decomposition/TRACE_PREVIEW.csv` | `240a4055979a7ddb833f5308ca798734ab4f69cd6b8153af2b3cd1c62d08565c` |
+
+## D-GOV-43 revision (2026-09-12, SCA-004)
+
+The table above remains the identity record of the Gate3 payload as
+published. Under Root D-GOV-43 (A2 supplement) and SCA-004, the files below
+were amended once and are re-hashed once here; every other listed file is
+unchanged. `docs/PRD.md` is unchanged (Root-pinned); its D-GOV-43 reading is
+`../execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/PRD_REVISION.md`. DEL-02-07 through DEL-02-12 are RETIRED; DEL-02-06 is revised by
+notes recorded in the hold-closure packet
+(`../execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/`);
+its `ScopeOfWork.md` bytes are unchanged. Actual state:
+`../execution/_Coordination/HANDOFF_STATE.md`. README self-hash machinery is retired
+by ruling item 11 and is not maintained.
+
+| Project-relative amended path | SHA256 |
+|---|---|
+| `execution/_Decomposition/HOLD_SUCCESSOR_MAP.csv` | `0bcae8529209aa0de46dfbecbc181048b02d4f0a1511db120feade202abc8c8f` |
+| `execution/_Decomposition/GATE_READINESS.md` | `11ef70c412ffc0ee3541983c6cc0fce293c856a8fa4e7562fdde271d966bafa5` |

@@ -52,7 +52,7 @@ async function setup(hostedBootstrap: any) {
 
 describe("hosted bootstrap API", () => {
   it("registers an explicit manifest, derives provenance, and keeps the project token server-only", async () => {
-    const status = { schema: "chirality-hosted-bootstrap-status/v1", projectId: "bootstrap-project", ceremony: "consent-required", admission: "unavailable", canStartLogin: false } as const;
+    const status = { schema: "chirality-hosted-bootstrap-status/v1", projectId: "bootstrap-project", ceremony: "ready-to-start", admission: "unavailable", canStartLogin: true } as const;
     const grant = vi.fn(async (_projectId: string, _provenance: unknown, _signal?: AbortSignal) => ({ ...status, ceremony: "ready-to-start", canStartLogin: true } as const));
     const signOut = vi.fn(async (_projectId: string, _signal?: AbortSignal) => status);
     const port = { status: vi.fn(async () => status), grantProviderNetworkConsent: grant, startLogin: vi.fn(async () => ({ loginId: "login-1", authUrl: "https://auth.example.test/authorize?state=opaque" })), cancelLogin: vi.fn(async () => ({ ...status, ceremony: "cancelled", canStartLogin: true } as const)), signOut };
@@ -135,7 +135,7 @@ describe("hosted bootstrap API", () => {
     const pending = new Promise<void>(resolve => { release = resolve; });
     const cancel = vi.fn(async () => { release(); return { schema: "chirality-hosted-bootstrap-status/v1", projectId: "strict-project", ceremony: "cancelled", admission: "unavailable", canStartLogin: true } as const; });
     const port = {
-      status: vi.fn(async () => ({ schema: "chirality-hosted-bootstrap-status/v1", projectId: "wrong-project", ceremony: "consent-required", admission: "unavailable", canStartLogin: false } as const)),
+      status: vi.fn(async () => ({ schema: "chirality-hosted-bootstrap-status/v1", projectId: "wrong-project", ceremony: "ready-to-start", admission: "unavailable", canStartLogin: true } as const)),
       grantProviderNetworkConsent: vi.fn(),
       startLogin: vi.fn(async () => { await pending; return { loginId: "late", authUrl: "http://unsafe.example.test" }; }),
       cancelLogin: cancel,

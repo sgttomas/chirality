@@ -1,7 +1,7 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-09-06
+**Last Updated:** 2026-09-12
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -89,24 +89,27 @@
   do not contain the repaired detector. This history is superseded by the R20
   owner-executed PASS recorded in R21.
 
+## Retired under D-GOV-43 (preserved, not Remaining)
+
+- Retired 2026-09-12 (`execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`): the LaunchAgent daemon service and its owner deployment act no longer exist on the App path (D-GOV-43 item 7; APP-HOLD-1 and DEL-09-07 retired). Original item text, preserved:
+  - (`NOT_SELECTABLE_UNTIL: owner act`) After a rebuilt C1 artifact exists, the owner may deploy the daemon service
+    on the owner's machine and report the result (owner act, not agent work;
+    owner decision gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
+    nothing on a machine whose LaunchAgent was installed earlier: the existing
+    plist keeps the crash-only restart contract and carries no pinned environment
+    until `daemon install` is re-run from a rebuilt app or the rebuilt CLI.
+    Operator-facing behaviour changes are enumerated in the run record.
+
 ## Remaining
 
-- (`NOT_SELECTABLE_UNTIL: owner act`) After a rebuilt C1 artifact exists, the owner may deploy the daemon service
-  on the owner's machine and report the result (owner act, not agent work;
-  owner decision gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
-  nothing on a machine whose LaunchAgent was installed earlier: the existing
-  plist keeps the crash-only restart contract and carries no pinned environment
-  until `daemon install` is re-run from a rebuilt app or the rebuilt CLI.
-  Operator-facing behaviour changes are enumerated in the run record.
-
-- **DEL-09-04-V3-01** (`NOT_SELECTABLE_UNTIL: accepted Root supervisor/runtime bytes routed to App (Root DEL-02-07) and the DEL-02-06 implementation act`) — package supervisor/runtime bytes into the unsigned macOS arm64 DMG with preparation posture evidence.
+- **DEL-09-04-V3-01** (`NOT_SELECTABLE_UNTIL: the re-platformed Runtime service child and stock Codex integration build on the production path (D-GOV-43 spike)`) — package the Runtime service and the bundled, lockfile-pinned stock `@openai/codex` dependency into the macOS arm64 DMG under the short packaging procedure (revised under D-APP-127 from "supervisor/runtime bytes" and the admitted supplier).
   Trace: OUT-001, AC-001, VER-001; DEL-09-04-REQ-001/002/005/006/008/010; applied decomposition row L367 (produce the macOS arm64 unsigned DMG and prove instruction-root assets plus SDK packaging posture are valid; one release target).
   Plan: WP-09; G5; AT-038 unsigned-artifact configuration, AT-047 nested-byte survival, AT-058 preparation observation; macOS arm64 only (G0 B1). Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
-  Depends: Root DEL-02-07 accepted supervisor bytes and DEL-02-06 implementation act (routed notices); DEL-09-05-V3-03 identity check and DEL-09-05-V3-06 identity application (dependency-linked, not gates: the package this item produces is what G5 reviews); DEP-09-04-005 through 009; R18 frozen Electron supply posture (`electron-v43.2.0-darwin-arm64.zip`, SHA-256 `ad4a0ae3c37ee05aa06c7e2ed0627608389790f0505a2b0d20319efbe33ffe28`). The two-job installer/migration/rollback through runtime-control IPC (AT-054 App side) is unseated (`SCOPE_AMENDMENT_REQUIRED`, see the seating packet MAPPING). Any `frontend/` mutation invalidates the staged R20 procedure (A1 re-stage rule).
+  Depends: the Runtime service build and the pinned stock `@openai/codex` (no supervisor bytes, no admitted supplier, no native admission addon); DEL-09-05-V3-03 identity check and DEL-09-05-V3-06 identity application (dependency-linked, not gates: the package this item produces is what G5 reviews); DEP-09-04-005 through 009; R18 frozen Electron supply posture (`electron-v43.2.0-darwin-arm64.zip`, SHA-256 `ad4a0ae3c37ee05aa06c7e2ed0627608389790f0505a2b0d20319efbe33ffe28`). The two-job installer, migration and rollback (DEL-09-07, APP-HOLD-1) are retired with the LaunchAgent (D-GOV-43 item 7). The A1 re-stage rule is superseded by the affected-check rule of `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/PACKAGING_PROCEDURE.md`.
   Write locus: `frontend/scripts/**` packaging glue, electron-builder configuration, `Evidence/**`, and deliverable-local state; no signing identity, notary call, or distribution.
   Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); Step 0 must carry the A1 re-stage declaration because `frontend/` is touched; packaged launches run only under the AGENTS.md host-capability escalation rule.
   Return: Offline network-denied package evidence with nested-byte/signature inventory, integrity summary, and unsigned/ad-hoc posture proof; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: the preparation package lands with G5 evidence.
+  Removed when: the package lands with the packaging procedure's verification evidence (bundle signature and Codex pin) recorded.
 
 - **DEL-09-04-V3-02** (`NOT_SELECTABLE_UNTIL: DEL-02-01-V3-04 selected`) — `build/icon.icns` replacement with packaging-integrity regeneration and the reproducibility record for the raster icon (T7 packaging part).
   Trace: OUT-001, AC-001, VER-001; applied decomposition row L381 (macOS arm64 unsigned DMG; instruction-root assets plus SDK packaging posture proven valid); SOW-030, SOW-072.
@@ -118,6 +121,7 @@
   Removed when: merged with review PASS.
 
 ## History
+- 2026-09-12 - D-GOV-43 application (`execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`): the LaunchAgent daemon-service owner-act item is retired and preserved above; V3-01 revised to the bundled stock dependency and the Runtime service child under `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/PACKAGING_PROCEDURE.md`; the D-APP-100 packaged-daemon instruction-root node is superseded (the child resolves the instruction root as the App does; `instruction-root:integrity` remains the packaged check); the Stage 16 to 26 packaging records under `execution/_Coordination/AgentRuns/APP_V3_TRIAL_COMPLETION_20260910/` and the carrier patch under `CODEX_MVP_PACKAGING_20260910/` are preserved unchanged and superseded in applicability. No lifecycle, Checking Approval SHA or product change.
 - 2026-09-06 - D124 bounded compiler obligation closed after Agent0 accepted final-union validation and scoped closeout commit `dbf40276066a771213a849d8e9c2fa32d4a738f5`, published at exact PR #739 head. PR #739 remains OPEN, not merged. D124 source was already merged through PR #738; only its completed Remaining item is removed. Other Remaining items, lifecycle, Checking Approval SHA and dependencies are unchanged. See `_run_records/D_APP_124_SCOPED_CLOSEOUT_2026-09-06.md`.
 - 2026-09-06 - PR #738 merged D124 through `28a8ed32ba83c5514ae2e65e9260833c1d46b7ef`. Fresh current-App validation includes the seven pending shell changes and passes all registered checks plus isolated registered headless premerge 8/8 with cleanup. D124 Remaining is retained for parent final-union/local closeout; historical failed attempts, other Remaining items, lifecycle, Checking Approval SHA and dependencies are unchanged. See `_run_records/D_APP_124_MERGED_APP_V3_INTEGRATION_2026-09-06.md`.
 - 2026-09-06 - D-APP-124 exact compiler repair applied locally and fresh source review/checks passed, except the independently preserved local premerge Runtime-binding failure. Scoped integration remains pending; all neighboring Remaining items, lifecycle, Checking Approval SHA and dependencies are unchanged. See `_run_records/D_APP_124_COMPILER_DECLARATION_REPAIR_2026-09-06.md`.

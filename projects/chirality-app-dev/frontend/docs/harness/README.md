@@ -1,5 +1,17 @@
 # Harness Validation Suite
 
+> **D-GOV-43 (A2) note, 2026-09-12:** Codex is the only engine. The adapter
+> boundary is the Runtime service's Unix-socket API; the App starts, owns and
+> stops that service as a child process, and the service owns the stock,
+> lockfile-pinned `codex app-server`. The renderer channel is loopback HTTP
+> and SSE through the in-process Next server. The browser stream carries an
+> extensible representation that preserves upstream method names, identifiers
+> and payloads with normalized views for known items; the former eight-name
+> `UIEvent` set is compatibility history. A closed stream never interrupts a
+> turn; explicit Stop is the interrupt. The `agentsdk-*` scripts and the
+> Anthropic network proof below are Claude-path compatibility history and are
+> not MVP evidence.
+
 This suite validates the harness runtime contract for session lifecycle, turn execution, SSE streaming, options fallback resolution, subagent governance gates, and attachment behavior.
 
 ## Scripts

@@ -4,6 +4,7 @@
 **Date:** 2026-06-13
 **Product:** Chirality desktop harness and bundled agent operating system
 **Applies to:** release-significant app-dev changes, validation evidence, packaging evidence, and release-quality review
+**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: family 1, 2 and 5 gate members are retired in place; the shared-runtime gate is revised to the application-owned Runtime service
 
 ## 1. Purpose
 
@@ -91,7 +92,8 @@ Required evidence:
 - `npm run validate:release-quality` for runtime-premerge evidence when the tranche needs a full local validation wrapper;
 - `npm run harness:validate:premerge` against a reachable local harness API;
 - review of `frontend/artifacts/harness/section8/latest/summary.json` when generated;
-- preservation of stable browser-facing SSE event names unless a governed compatibility change authorizes them.
+- preservation of the D-GOV-43 event representation on the browser stream: upstream method names, identifiers and payloads are carried through, with normalized views for known items; unfamiliar notifications stay inspectable; every server request is answered;
+- the disconnection rule: SSE comment keepalives, no idle timeout that ends a turn, a closed connection never interrupts the turn, and the turn route's stream cancel unsubscribes without interrupting; explicit Stop is the interrupt endpoint.
 
 ## 8. Security And Network Gate
 
@@ -130,7 +132,7 @@ Required evidence:
 - `npm run harness:validate:agentsdk-packaged-proof` when packaged SDK subprocess resolver or transcript/HOME posture is in scope;
 - generated artifact path, checksum when applicable, signing/notarization state, and known limitations.
 
-Current release target remains macOS 15+ Apple Silicon unsigned/unnotarized local-builder DMG unless a governed amendment changes it.
+Ordinary local output remains the macOS 15+ Apple Silicon unsigned local-builder DMG. The D-GOV-43 trial candidate follows the short packaging procedure in `docs/BUILD_AND_RELEASE.md` §8 (build, sign, notarize, verify the signature and the Codex pin, then the distinct packaged checks). Supplier admission, payload hashing and the Stage 9 to 13 packaging spine are retired (family 1); the README self-hash convention and duplicate test execution are retired as gates (family 5).
 
 ## 11. Domain-Adapter Gate
 
@@ -160,17 +162,24 @@ Open release-quality decisions:
 
 ## 13. Shared Runtime Gate
 
-Before SCA-APP-003 closeout, prove:
+Revised under D-GOV-43 (A2), 2026-09-12. Before SCA-APP-003 closeout, prove:
 
-- runtime-package promotion preserves current Claude/stub/Pi behavior;
-- Desktop and CLI use one daemon, session store, lock system, credential
-  owner, and interruption state;
-- the control plane has correct Unix-socket permissions, project-scoped
-  authorization, stale recovery, and no TCP listener;
+- runtime-package promotion preserves current Claude/stub/Pi behavior
+  (retired in place: Codex is the only engine; historical evidence stands);
+- the App starts, owns and stops one Runtime service child that owns the
+  stock Codex child, with one session store, one active-turn owner and one
+  interruption state; the CLI remains a socket-API client whose
+  compatibility is unverified and not an MVP prerequisite;
+- the socket API has correct Unix-socket permissions, a per-launch client
+  token private to the application, stale recovery, and no TCP listener;
 - model switching obeys explicit activation, drain, timeout, no-force,
-  `NO_MODEL`, no-helper-unload, and no-fallback rules;
+  `NO_MODEL`, no-helper-unload, and no-fallback rules (retired in place:
+  D-GOV-43 item 13 retires residency; local models later use Codex model
+  providers);
 - the app-dev and PEC pilot paths pass with canonical evidence and
-  actual-model attribution;
+  actual-model attribution (retired in place: the eight checks S-1 to S-8
+  of D-GOV-43 item 12 are the acceptance set; PEC compatibility is
+  unverified);
 - public export includes only generic runtime/CLI/contracts/safe adapters and
   excludes credentials, machine state, and private adapters.
 

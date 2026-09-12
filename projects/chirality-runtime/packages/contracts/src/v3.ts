@@ -207,7 +207,13 @@ export interface ReplaceSelectedMethodsResponse {
   methods: readonly QualifiedMethodReference[];
   basisPreview: ResolvedContextBasisPreview;
   transition: {
-    status: "unchanged" | "prepared";
+    /**
+     * `prepared`: a reversible provider successor was prepared (engines that
+     * re-project context). `additive`: the engine keeps its thread and the
+     * changed instructions travel as an additive context update on the next
+     * turn (the Codex app-server path).
+     */
+    status: "unchanged" | "prepared" | "additive";
     successorAvailable: boolean;
     preparationId?: string;
   };

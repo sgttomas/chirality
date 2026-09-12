@@ -21,6 +21,13 @@ export type EngineDescriptor = {
   packageName?: string;
   packageVersion?: string;
   capabilities: EngineCapabilities;
+  /**
+   * `turn` (default): session boot runs a reserved boot turn and requires
+   * `session:init`. `none`: the engine keeps a durable provider thread per
+   * session and boot only records readiness; the thread starts with the
+   * first real turn (the Codex app-server path).
+   */
+  boot?: "turn" | "none";
 };
 
 export type AgentEngineRunInput = {
@@ -35,6 +42,8 @@ export type AgentEngineRunInput = {
   turnId: string;
   /** Effective interaction mode for this turn, including an explicit per-turn override. */
   interactionMode?: "chat" | "native-plan";
+  /** Effective reasoning effort for this turn (per-turn override or the session's value); `opts.model` carries the effective model. */
+  reasoningEffort?: string;
   /** Exact runtime-resolved instructions supplied for this turn. */
   instructionContext?: ResolveSelectedContextResponse;
   /** Runtime-owned tools; adapters must expose only definitions admitted by their own tool bridge. */

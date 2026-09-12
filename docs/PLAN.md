@@ -142,6 +142,11 @@ logs.
 
 ## 6. Shared Runtime Execution Order
 
+Note (2026-09-12): the D-GOV-20 sequence below is historical text and is read
+with D-GOV-43 as ruled and supplemented (topology A2): the per-user daemon,
+its CLI installation, and local-model residency in steps 4 and 5 are retired,
+and the App owns a Runtime service child that hosts stock Codex.
+
 D-GOV-20 activates the following bounded sequence:
 
 1. close and preserve the D-APP-72 Pi/oMLX tranche;

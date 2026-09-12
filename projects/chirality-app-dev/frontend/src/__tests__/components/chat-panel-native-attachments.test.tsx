@@ -13,7 +13,7 @@ vi.mock('../../components/workspace/workspace-provider', () => ({ useWorkspace: 
   applyProjectRoot: state.apply, chooseProjectRoot: vi.fn(async () => false), hasElectronDirectoryPicker: false, errorMessage: null
 }) }));
 vi.mock('../../components/workspace/toolkit-provider', () => ({ useToolkit: () => ({ optsPayload: undefined }) }));
-vi.mock('../../components/workspace/harness-events-provider', () => ({ useHarnessEventActions: () => ({ appendEvent: vi.fn(), clearEvents: vi.fn(), setStreaming: vi.fn() }) }));
+vi.mock('../../components/workspace/harness-events-provider', () => ({ useHarnessEventActions: () => ({ appendEvent: vi.fn(), clearEvents: vi.fn(), hydrateEvents: vi.fn(), setStreaming: vi.fn() }), useHarnessEvents: () => ({ events: [], streaming: false }) }));
 vi.mock('../../components/shell/runtime-connectivity-provider', () => ({ useRuntimeEpoch: () => 0 }));
 vi.mock('../../components/shell/persona-picker', () => ({ PersonaPicker: () => <span>Working Items</span> }));
 vi.mock('../../components/shell/file-picker', () => ({ FilePicker: ({ open }: { open: boolean }) => { state.pickerOpen.push(open); return <div data-file-picker-open={open} />; } }));
@@ -24,7 +24,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
   replaceSelectedMethods: state.replaceMethods, resolveSelectedContext: state.resolveContext,
   getNativePlanCapability: state.nativeCapability, listNativePlanRevisions: state.nativeRevisions, listNativePlanClarifications: state.nativeClarifications
 }));
-vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn() }));
+vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn(), getHarnessTurnState: vi.fn(async () => ({ active: false, lastSeq: 0 })), attachHarnessTurn: vi.fn(async () => undefined) }));
 import { ChatPanel } from '../../components/shell/chat-panel';
 
 let tree: ReactTestRenderer | undefined;

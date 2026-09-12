@@ -1,9 +1,0 @@
-{
-  "appServerProtocolDigest": "ee159945256810fedd434658e78938d3e211bb2bda18066908b1de122bbeab49",
-  "artifactSha256": "eecbc73eea2d472cfefb285dcee6d7ca46024668c2e8d907a1452053c7745189",
-  "compiledPatchSha256": "91df1f91bd16ee72b24be89d2bb777a9bfc6eb90b8f764821619331e33613fe1",
-  "fileCount": 65,
-  "manifestPath": "/Users/ryan/dev/chirality/.claude/worktrees/owner-alignment-inspection-db4335/projects/chirality-runtime/tools/codex-supplier/app-server-protocol-source-basis.json",
-  "meaning": "factual source-basis fingerprint only; no schema generation, binary invocation, or new acceptance",
-  "verifiedAgainstBuildSourceSnapshotSha256": "4e5250720d8a947e815602fb38352726b9e2c7f16d5d219ef5d450d2ea129d16"
-}

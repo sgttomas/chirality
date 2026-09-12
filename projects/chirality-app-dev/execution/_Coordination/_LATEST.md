@@ -55,6 +55,16 @@ Historical session entry:
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md` — dated historical map from
   the pre-loop convention; never authority (`loop/LOOP_RECEIPTS.md` Receipt 0).
 
+Current architecture basis (D-GOV-43, topology A2, 2026-09-12):
+
+- `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md`
+  (implementation entry), `PACKAGING_PROCEDURE.md` and `NATIVE_CHECKLIST.md`
+  in the same directory; application record
+  `execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`;
+  loop notice `execution/_Coordination/NOTICE_2026-09-12_ROOT_D-GOV-43_CODEX_HOST_REPLATFORM.md`.
+  Daemon-era AgentRuns under `APP_V3_TRIAL_COMPLETION_20260910/` and
+  `APP_V3_DIRECT_TRIAL_20260910/` are preserved history.
+
 Active scope-change surfaces:
 
 - `execution/_ScopeChange/_LATEST.md`

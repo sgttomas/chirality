@@ -2,11 +2,11 @@
 
 ## Applicable References
 - REF-001 — Location: `docs/DIRECTIVE.md` — Relevance: Intent, authority, and professional boundaries — Accepted SHA-256: `50b816d5be74021f173e19b39773b4f5d2cc3f434966dc9d6faf9399ddf26099`.
-- REF-002 — Location: `docs/CONTRACT.md` — Relevance: Invariants and enforcement surfaces — Accepted SHA-256: `88178c2504637eb87425474ad721eb35a9e838547c84b44d183ebaa4c2404251`.
-- REF-003 — Location: `docs/SPEC.md` — Relevance: Physical structures, runtime mechanics, and API/file contracts — Accepted SHA-256: `c72ac9c9acede1cde590302225715e4ab4b73778e14bff44ac930d46c34f9dfa`.
-- REF-004 — Location: `docs/TYPES.md` — Relevance: Vocabulary, identifiers, enums, and type targets — Accepted SHA-256: `a8cdc94d39e16271ec4ef7fde5be76969f23ca3fe9e1663ac53ad1915eefd56c`.
-- REF-005 — Location: `docs/PLAN.md` — Relevance: Roadmap and implementation sequencing — Accepted SHA-256: `b3aa26e8dfa8610b12b912c182b5a23646ca71e4a5fc76cb6018872c3c77ef21`.
-- REF-006 — Location: `docs/PRD.md` — Relevance: Product requirements, runtime direction, and approved vNext scope — Accepted SHA-256: `292b5d5636e169a4f7901f5be6e7054108f131328652a6d087b3d3332c6c2f19`.
+- REF-002 — Location: `docs/CONTRACT.md` — Relevance: Invariants and enforcement surfaces — Accepted SHA-256: `fa8fc9dcc2f0b1dae555f4e24288728bf956cd1fa2db144d5462a05a6b6e219e`.
+- REF-003 — Location: `docs/SPEC.md` — Relevance: Physical structures, runtime mechanics, and API/file contracts — Accepted SHA-256: `01e1c75cdf7bcc0dbac941f5e3c797f52dbb5bf3e8bec714ab167854ffa9ec67`.
+- REF-004 — Location: `docs/TYPES.md` — Relevance: Vocabulary, identifiers, enums, and type targets — Accepted SHA-256: `334bd49602a68900cc877053493d0edb66e370919f77b768b3db679ed4087835`.
+- REF-005 — Location: `docs/PLAN.md` — Relevance: Roadmap and implementation sequencing — Accepted SHA-256: `5e9cb5e553a815cba6e3d5bf765c66290bc9e25c15c2e44a0a33bea7ed4d04dc`.
+- REF-006 — Location: `docs/PRD.md` — Relevance: Product requirements, runtime direction, and approved vNext scope — Accepted SHA-256: `8649ccba8f68107f2c6cb6d5014b2d69dad434a3bdd414310b8a91d53bf97fa4`.
 - REF-007 — Location: `workflows/software-decomp/WORKFLOW.md` — Relevance: Software decomposition method and grouped checkpoint protocol — Accepted SHA-256: `fd79f8001404a99c3438500fae413d56193dc1db408b3416bdee20414977d452`.
 - REF-009 — Location: `workflows/software-decomp/resources/contract.md` — Relevance: Software decomposition inputs, modes, and output contract — Accepted SHA-256: `f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f`.
 - REF-010 — Location: `workflows/software-decomp/resources/method.md` — Relevance: Software decomposition detailed method — Accepted SHA-256: `1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3`.

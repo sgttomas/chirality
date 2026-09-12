@@ -1,5 +1,10 @@
 # Handoff State — SCA-APP-008 Gate-1 Assessment
 
+> **Revision 2026-09-12 (D-GOV-43, topology A2).** Parts of this file are
+> `SUPERSEDED_BEFORE_ACCEPTANCE`; see `REVISION_2026-09-12_D-GOV-43_A2.md` in
+> this packet for the exact rows and their replacements. The original text
+> below is preserved unchanged.
+
 **Current state:** `AWAITING_OWNER_ACCEPTANCE`
 **Snapshot:** `projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/`
 **Accepted basis:** `3af765222bbd4f43a52dcbe17bd151c13942e5ac`

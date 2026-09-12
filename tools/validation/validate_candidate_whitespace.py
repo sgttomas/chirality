@@ -10,6 +10,9 @@ Only the recurring defects evidenced by governed closeout are checked beyond
 Git's own behavior: trailing spaces/tabs and surplus terminal blank lines.
 The tool is read-only.
 
+Advisory under D-GOV-43 item 11: findings inform the author and never gate a
+merge; no CI workflow invokes this tool as a required check.
+
 Exit codes:
     0: no findings
     1: whitespace findings

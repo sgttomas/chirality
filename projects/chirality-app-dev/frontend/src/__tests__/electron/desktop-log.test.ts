@@ -2,7 +2,7 @@ import { mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import { createDesktopLogger, createNoopDesktopLogger } from '../../../electron/desktop-log';
+import { createDesktopLogger, createNoopDesktopLogger, redactAccountEmails } from '../../../electron/desktop-log';
 
 const temporaryDirectories: string[] = [];
 
@@ -119,6 +119,23 @@ describe('createDesktopLogger', () => {
     logger.info('bare');
     const contents = await readFile(logger.filePath, 'utf8');
     expect(contents).toBe('2026-07-25T00:00:00.000Z [info] bare\n');
+  });
+});
+
+describe('account e-mail redaction at the writer', () => {
+  it('scrubs addresses from events and details but leaves scoped package names alone', async () => {
+    const root = await temporaryDirectory();
+    const logger = createDesktopLogger({ directory: root, mirrorToConsole: false });
+    logger.info('runtime.service.stderr', 'account/read owner.name+tag@example.co.uk plan pro');
+    logger.warn('runtime.service.stderr', { message: 'login as second@example.org failed', package: '@chirality/runtime-core' });
+    logger.error('owner@example.com');
+    const contents = await readFile(logger.filePath, 'utf8');
+    expect(contents).toContain('account/read [redacted-email] plan pro');
+    expect(contents).toContain('"message":"login as [redacted-email] failed"');
+    expect(contents).toContain('"package":"@chirality/runtime-core"');
+    expect(contents).toContain('[error] [redacted-email]');
+    expect(contents).not.toMatch(/example\.(com|org|co\.uk)/u);
+    expect(redactAccountEmails('a@b.io and @chirality/x')).toBe('[redacted-email] and @chirality/x');
   });
 });
 

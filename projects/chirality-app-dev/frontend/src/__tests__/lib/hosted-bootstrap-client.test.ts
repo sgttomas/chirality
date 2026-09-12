@@ -5,7 +5,6 @@ import {
   cancelHostedBootstrapLogin,
   getHostedBootstrapStatus,
   getHostedBootstrapStatusWithRetry,
-  grantHostedProviderNetworkConsent,
   hydrateHostedBootstrapProject,
   initializeHostedBootstrapProject,
   signOutHostedBootstrapProject,
@@ -17,25 +16,32 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
-function installDesktopAccountBridge(overrides: Record<string, ReturnType<typeof vi.fn>> = {}) {
-  const hostedAccount = {
-    status: vi.fn(),
-    grantProviderNetworkConsent: vi.fn(),
-    startLogin: vi.fn(),
-    cancelLogin: vi.fn(),
-    signOut: vi.fn(),
-    ...overrides
-  };
-  vi.stubGlobal('window', { chirality: { runtime: { hostedAccount } } });
-  return hostedAccount;
+function json(payload: unknown, status = 200): Response {
+  return new Response(JSON.stringify(payload), { status, headers: { 'Content-Type': 'application/json' } });
 }
 
-describe('hosted bootstrap renderer client', () => {
-  it('routes status through the fixed desktop bridge with only the selected project root', async () => {
-    const result = { registration: 'required' };
-    const bridge = installDesktopAccountBridge({ status: vi.fn().mockResolvedValue(result) });
-    await expect(getHostedBootstrapStatus('/project one')).resolves.toEqual(result);
-    expect(bridge.status).toHaveBeenCalledWith('/project one');
+function unavailable(): Response {
+  return json({ error: { type: 'ENGINE_UNAVAILABLE', message: 'Runtime service is unavailable' } }, 503);
+}
+
+const readyStatus = {
+  schema: 'chirality-hosted-bootstrap-status/v1' as const,
+  projectId: 'project-one',
+  ceremony: 'ready-to-start' as const,
+  admission: 'unavailable' as const,
+  canStartLogin: true
+};
+
+describe('hosted bootstrap renderer client (App routes, no desktop account IPC)', () => {
+  it('reads status through the App status route with only the selected project root', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(json({ registration: 'required' }));
+    vi.stubGlobal('fetch', fetchMock);
+    vi.stubGlobal('window', { chirality: { runtime: {} } });
+    await expect(getHostedBootstrapStatus('/project one')).resolves.toEqual({ registration: 'required' });
+    expect(fetchMock).toHaveBeenCalledWith(
+      '/api/harness/hosted-bootstrap/status?projectRoot=%2Fproject%20one',
+      expect.objectContaining({ method: 'GET' })
+    );
   });
 
   it('passes a ready status carrying the model catalog and selection through untouched', async () => {
@@ -43,8 +49,7 @@ describe('hosted bootstrap renderer client', () => {
       registration: 'registered',
       projectId: 'project-one',
       status: {
-        schema: 'chirality-hosted-bootstrap-status/v1',
-        projectId: 'project-one',
+        ...readyStatus,
         ceremony: 'signed-in',
         admission: 'ready',
         canStartLogin: false,
@@ -55,112 +60,85 @@ describe('hosted bootstrap renderer client', () => {
         selection: { model: 'gpt-default', reasoningEffort: 'high' }
       }
     };
-    const bridge = installDesktopAccountBridge({ status: vi.fn().mockResolvedValue(result) });
+    const fetchMock = vi.fn().mockImplementation(async () => json(result));
+    vi.stubGlobal('fetch', fetchMock);
     await expect(getHostedBootstrapStatus('/project one')).resolves.toEqual(result);
     await expect(getHostedBootstrapStatusWithRetry('/project one')).resolves.toEqual(result);
-    expect(bridge.status).toHaveBeenCalledWith('/project one');
+    expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
-  it('keeps initialization on Next and routes account effects through the fixed bridge', async () => {
-    const status = {
-      schema: 'chirality-hosted-bootstrap-status/v1',
-      projectId: 'project-one',
-      ceremony: 'ready-to-start',
-      admission: 'unavailable',
-      canStartLogin: true
-    };
+  it('routes initialization and every account effect through App routes', async () => {
     const fetchMock = vi.fn()
-      .mockResolvedValueOnce(new Response(JSON.stringify({
-        registration: 'registered', projectId: 'project-one'
-      }), { status: 200 }))
-      .mockResolvedValueOnce(new Response(JSON.stringify({
-        registration: 'registered', projectId: 'project-one'
-      }), { status: 200 }));
+      .mockResolvedValueOnce(json({ registration: 'registered', projectId: 'project-one' }))
+      .mockResolvedValueOnce(json({ registration: 'registered', projectId: 'project-one' }))
+      .mockResolvedValueOnce(json({ loginId: 'login-1', authUrl: 'https://example.test/login' }))
+      .mockResolvedValueOnce(json({ ...readyStatus, ceremony: 'cancelled' }))
+      .mockResolvedValueOnce(json(readyStatus));
     vi.stubGlobal('fetch', fetchMock);
-    const bridge = installDesktopAccountBridge();
-    bridge.grantProviderNetworkConsent.mockResolvedValue({ registration: 'registered', projectId: 'project-one', status });
-    bridge.startLogin.mockResolvedValue({ loginId: 'login-1', authUrl: 'https://example.test/login' });
-    bridge.cancelLogin.mockResolvedValue({ registration: 'registered', projectId: 'project-one', status: { ...status, ceremony: 'cancelled' } });
-    bridge.signOut.mockResolvedValue({ registration: 'registered', projectId: 'project-one', status: { ...status, ceremony: 'consent-required', canStartLogin: false } });
 
     await bindHostedBootstrapProject('/project');
     const initialized = await initializeHostedBootstrapProject('/project');
     expect(initialized).toEqual({ registration: 'registered', projectId: 'project-one' });
     expect(initialized).not.toHaveProperty('status');
-    await grantHostedProviderNetworkConsent('/project');
-    await startHostedBootstrapLogin('/project');
-    await cancelHostedBootstrapLogin('/project');
-    await signOutHostedBootstrapProject('/project');
+    await expect(startHostedBootstrapLogin('/project')).resolves.toEqual({ loginId: 'login-1', authUrl: 'https://example.test/login' });
+    await expect(cancelHostedBootstrapLogin('/project')).resolves.toEqual({ ...readyStatus, ceremony: 'cancelled' });
+    await expect(signOutHostedBootstrapProject('/project')).resolves.toEqual(readyStatus);
 
-    expect(fetchMock).toHaveBeenCalledTimes(2);
-    expect(fetchMock).toHaveBeenNthCalledWith(
-      1,
+    const urls = fetchMock.mock.calls.map((call) => call[0]);
+    expect(urls).toEqual([
       '/api/harness/hosted-bootstrap/project/bind',
-      expect.objectContaining({ method: 'POST' })
-    );
-    expect(fetchMock).toHaveBeenNthCalledWith(
-      2,
       '/api/harness/hosted-bootstrap/project/initialize',
-      expect.objectContaining({ method: 'POST' })
-    );
-    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual({ projectRoot: '/project' });
-    expect(JSON.parse(fetchMock.mock.calls[1][1].body)).toEqual({ projectRoot: '/project' });
-    expect(bridge.grantProviderNetworkConsent).toHaveBeenCalledWith('/project');
-    expect(bridge.startLogin).toHaveBeenCalledWith('/project');
-    expect(bridge.cancelLogin).toHaveBeenCalledWith('/project');
-    expect(bridge.signOut).toHaveBeenCalledWith('/project');
+      '/api/harness/hosted-bootstrap/login/start',
+      '/api/harness/hosted-bootstrap/login/cancel',
+      '/api/harness/hosted-bootstrap/logout'
+    ]);
+    for (const call of fetchMock.mock.calls) {
+      expect(call[1]).toEqual(expect.objectContaining({ method: 'POST' }));
+      expect(JSON.parse(call[1].body)).toEqual({ projectRoot: '/project' });
+    }
   });
 
-  it('reads status after setup through the bridge with the same transient-retry ladder', async () => {
+  it('surfaces the App error message and status on a rejected action', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(json({ error: { type: 'INVALID_REQUEST', message: 'Sign-in could not start.' } }, 400)));
+    await expect(startHostedBootstrapLogin('/project')).rejects.toMatchObject({ status: 400, message: 'Sign-in could not start.' });
+  });
+
+  it('retries a 503 status read with the transient ladder and stops on other failures', async () => {
     vi.useFakeTimers();
-    const recovered = {
-      registration: 'registered' as const,
-      projectId: 'project-one',
-      status: {
-        schema: 'chirality-hosted-bootstrap-status/v1' as const,
-        projectId: 'project-one',
-        ceremony: 'consent-required' as const,
-        admission: 'unavailable' as const,
-        canStartLogin: false
-      }
-    };
-    const unavailable = new Error('Hosted account service is unavailable.');
-    const bridge = installDesktopAccountBridge({
-      status: vi.fn().mockRejectedValueOnce(unavailable).mockResolvedValueOnce(recovered)
-    });
-    vi.stubGlobal('fetch', vi.fn());
+    const recovered = { registration: 'registered' as const, projectId: 'project-one', status: readyStatus };
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(unavailable())
+      .mockResolvedValueOnce(json(recovered));
+    vi.stubGlobal('fetch', fetchMock);
 
     const operation = getHostedBootstrapStatusWithRetry('/project');
     await vi.advanceTimersByTimeAsync(250);
 
     await expect(operation).resolves.toEqual(recovered);
-    expect(bridge.status).toHaveBeenCalledTimes(2);
-    expect(bridge.status).toHaveBeenCalledWith('/project');
-    expect(fetch).not.toHaveBeenCalled();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
 
-    bridge.status.mockRejectedValueOnce(new Error('account unavailable'));
+    fetchMock.mockResolvedValueOnce(json({ error: { type: 'INVALID_REQUEST', message: 'account unavailable' } }, 400));
     await expect(getHostedBootstrapStatusWithRetry('/project')).rejects.toThrow('account unavailable');
     expect(vi.getTimerCount()).toBe(0);
   });
 
-  it('settles cancellation locally without forwarding an AbortSignal through IPC', async () => {
-    const pending = new Promise<never>(() => undefined);
-    const bridge = installDesktopAccountBridge({ signOut: vi.fn(() => pending) });
+  it('forwards the AbortSignal to fetch and rejects before sending once aborted', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(json(readyStatus));
+    vi.stubGlobal('fetch', fetchMock);
     const controller = new AbortController();
-    const operation = signOutHostedBootstrapProject('/project', controller.signal);
+    await signOutHostedBootstrapProject('/project', controller.signal);
+    expect(fetchMock.mock.calls[0][1].signal).toBe(controller.signal);
+
     controller.abort(new DOMException('cancelled', 'AbortError'));
-    await expect(operation).rejects.toMatchObject({ name: 'AbortError' });
-    expect(bridge.signOut).toHaveBeenCalledWith('/project');
+    await expect(signOutHostedBootstrapProject('/project', controller.signal)).rejects.toMatchObject({ name: 'AbortError' });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   it('publishes a recovered binding before an independent account-status failure', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify({
-      registration: 'registered', projectId: 'restart-project'
-    }), { status: 200 }));
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(json({ registration: 'registered', projectId: 'restart-project' }))
+      .mockResolvedValueOnce(json({ error: { type: 'INVALID_REQUEST', message: 'account unavailable' } }, 400));
     vi.stubGlobal('fetch', fetchMock);
-    const bridge = installDesktopAccountBridge({
-      status: vi.fn().mockRejectedValue(new Error('account unavailable'))
-    });
     const onBound = vi.fn();
 
     await expect(hydrateHostedBootstrapProject('/project', onBound))
@@ -169,34 +147,19 @@ describe('hosted bootstrap renderer client', () => {
       registration: 'registered',
       projectId: 'restart-project'
     });
-    expect(bridge.status).toHaveBeenCalledWith('/project');
+    expect(fetchMock.mock.calls[1][0]).toBe('/api/harness/hosted-bootstrap/status?projectRoot=%2Fproject');
   });
 
   it('retries transient account startup failures without repeating the project bind', async () => {
     vi.useFakeTimers();
-    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify({
-      registration: 'registered', projectId: 'restart-project'
-    }), { status: 200 }));
+    const recovered = { registration: 'registered' as const, projectId: 'restart-project', status: { ...readyStatus, projectId: 'restart-project' } };
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(json({ registration: 'registered', projectId: 'restart-project' }))
+      .mockResolvedValueOnce(unavailable())
+      .mockResolvedValueOnce(unavailable())
+      .mockResolvedValueOnce(unavailable())
+      .mockResolvedValueOnce(json(recovered));
     vi.stubGlobal('fetch', fetchMock);
-    const recovered = {
-      registration: 'registered' as const,
-      projectId: 'restart-project',
-      status: {
-        schema: 'chirality-hosted-bootstrap-status/v1' as const,
-        projectId: 'restart-project',
-        ceremony: 'consent-required' as const,
-        admission: 'unavailable' as const,
-        canStartLogin: false
-      }
-    };
-    const unavailable = new Error('Hosted account service is unavailable.');
-    const bridge = installDesktopAccountBridge({
-      status: vi.fn()
-        .mockRejectedValueOnce(unavailable)
-        .mockRejectedValueOnce(unavailable)
-        .mockRejectedValueOnce(unavailable)
-        .mockResolvedValueOnce(recovered)
-    });
 
     const operation = hydrateHostedBootstrapProject('/project', vi.fn());
     await vi.advanceTimersByTimeAsync(250);
@@ -204,18 +167,17 @@ describe('hosted bootstrap renderer client', () => {
     await vi.advanceTimersByTimeAsync(5_000);
 
     await expect(operation).resolves.toEqual(recovered);
-    expect(fetchMock).toHaveBeenCalledOnce();
-    expect(bridge.status).toHaveBeenCalledTimes(4);
+    const binds = fetchMock.mock.calls.filter((call) => call[0] === '/api/harness/hosted-bootstrap/project/bind');
+    expect(binds).toHaveLength(1);
+    expect(fetchMock).toHaveBeenCalledTimes(5);
   });
 
   it('aborts a pending account startup retry and clears its timer', async () => {
     vi.useFakeTimers();
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({
-      registration: 'registered', projectId: 'restart-project'
-    }), { status: 200 })));
-    const bridge = installDesktopAccountBridge({
-      status: vi.fn().mockRejectedValue(new Error('Hosted account service is unavailable.'))
-    });
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(json({ registration: 'registered', projectId: 'restart-project' }))
+      .mockImplementation(async () => unavailable());
+    vi.stubGlobal('fetch', fetchMock);
     const controller = new AbortController();
     const operation = hydrateHostedBootstrapProject('/project', vi.fn(), controller.signal);
     await vi.advanceTimersByTimeAsync(0);
@@ -223,7 +185,7 @@ describe('hosted bootstrap renderer client', () => {
     controller.abort(new DOMException('cancelled', 'AbortError'));
 
     await expect(operation).rejects.toMatchObject({ name: 'AbortError' });
-    expect(bridge.status).toHaveBeenCalledOnce();
+    expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(vi.getTimerCount()).toBe(0);
   });
 });

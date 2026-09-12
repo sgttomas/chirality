@@ -2,17 +2,12 @@ import type {
   HostedBootstrapLoginStartResponse,
   HostedBootstrapStatus
 } from '@chirality/runtime-contracts';
-import type { HostedProjectInitializationResponse } from '../runtime-client/daemon-harness-port';
+import type {
+  HostedBootstrapStatusResponse,
+  HostedProjectInitializationResponse
+} from '../runtime-client/daemon-harness-port';
 
-export type { HostedProjectInitializationResponse };
-
-export type HostedBootstrapStatusResponse =
-  | { registration: 'required' }
-  | {
-      registration: 'registered';
-      projectId: string;
-      status: HostedBootstrapStatus;
-    };
+export type { HostedBootstrapStatusResponse, HostedProjectInitializationResponse };
 
 export type HostedProjectBindingResponse =
   | { registration: 'required' }
@@ -25,32 +20,18 @@ export class HostedBootstrapClientError extends Error {
   }
 }
 
+/**
+ * Every hosted-bootstrap call goes through the App's own API routes, which
+ * proxy to the App-owned Runtime over its socket. The status read walks a
+ * short retry ladder while the Runtime service is still coming up after an
+ * App launch or a service restart (the App tier answers 503 until then).
+ */
 const HOST_ACCOUNT_RETRY_DELAYS_MS = [250, 1_000, 5_000] as const;
-const HOST_ACCOUNT_UNAVAILABLE = 'Hosted account service is unavailable.';
-
-function desktopHostedAccount() {
-  const client = window.chirality?.runtime?.hostedAccount;
-  if (!client) {
-    throw new HostedBootstrapClientError(503, 'The hosted runtime bootstrap service is unavailable.');
-  }
-  return client;
-}
 
 function preflightSignal(signal?: AbortSignal): void {
   if (signal?.aborted) {
     throw signal.reason ?? new DOMException('The operation was aborted.', 'AbortError');
   }
-}
-
-function withLocalAbort<T>(operation: Promise<T>, signal?: AbortSignal): Promise<T> {
-  if (!signal) return operation;
-  return new Promise<T>((resolve, reject) => {
-    const abort = (): void => reject(
-      signal.reason ?? new DOMException('The operation was aborted.', 'AbortError')
-    );
-    signal.addEventListener('abort', abort, { once: true });
-    operation.then(resolve, reject).finally(() => signal.removeEventListener('abort', abort));
-  });
 }
 
 function retryDelay(delayMs: number, signal?: AbortSignal): Promise<void> {
@@ -69,7 +50,7 @@ function retryDelay(delayMs: number, signal?: AbortSignal): Promise<void> {
 }
 
 function isTransientHostAccountError(error: unknown): boolean {
-  return error instanceof Error && error.message === HOST_ACCOUNT_UNAVAILABLE;
+  return error instanceof HostedBootstrapClientError && error.status === 503;
 }
 
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {
@@ -99,12 +80,13 @@ function post(projectRoot: string, signal?: AbortSignal, extra: object = {}): Re
   };
 }
 
-export function getHostedBootstrapStatus(
+export async function getHostedBootstrapStatus(
   projectRoot: string,
   signal?: AbortSignal
 ): Promise<HostedBootstrapStatusResponse> {
   preflightSignal(signal);
-  return withLocalAbort(desktopHostedAccount().status(projectRoot), signal);
+  const url = `/api/harness/hosted-bootstrap/status?projectRoot=${encodeURIComponent(projectRoot)}`;
+  return requestJson(url, { method: 'GET', signal });
 }
 
 export function bindHostedBootstrapProject(
@@ -118,9 +100,9 @@ export function bindHostedBootstrapProject(
 }
 
 /**
- * Reads hosted account status through the signed Desktop bridge, walking the
- * transient-retry ladder while the main-process account host is still coming
- * up. Non-transient failures and exhausted retries surface unchanged.
+ * Reads hosted account status, walking the transient-retry ladder while the
+ * Runtime service is still coming up. Non-transient failures and exhausted
+ * retries surface unchanged.
  */
 export async function getHostedBootstrapStatusWithRetry(
   projectRoot: string,
@@ -157,45 +139,26 @@ export function initializeHostedBootstrapProject(
   );
 }
 
-export function grantHostedProviderNetworkConsent(
-  projectRoot: string,
-  signal?: AbortSignal
-): Promise<HostedBootstrapStatus> {
-  preflightSignal(signal);
-  return withLocalAbort(desktopHostedAccount()
-    .grantProviderNetworkConsent(projectRoot)
-    .then((result) => {
-      if (result.registration !== 'registered') throw new HostedBootstrapClientError(503, 'The hosted runtime bootstrap service is unavailable.');
-      return result.status;
-    }), signal);
-}
-
-export function startHostedBootstrapLogin(
+export async function startHostedBootstrapLogin(
   projectRoot: string,
   signal?: AbortSignal
 ): Promise<HostedBootstrapLoginStartResponse> {
   preflightSignal(signal);
-  return withLocalAbort(desktopHostedAccount().startLogin(projectRoot), signal);
+  return requestJson('/api/harness/hosted-bootstrap/login/start', post(projectRoot, signal));
 }
 
-export function cancelHostedBootstrapLogin(
+export async function cancelHostedBootstrapLogin(
   projectRoot: string,
   signal?: AbortSignal
 ): Promise<HostedBootstrapStatus> {
   preflightSignal(signal);
-  return withLocalAbort(desktopHostedAccount().cancelLogin(projectRoot).then((result) => {
-    if (result.registration !== 'registered') throw new HostedBootstrapClientError(503, 'The hosted runtime bootstrap service is unavailable.');
-    return result.status;
-  }), signal);
+  return requestJson('/api/harness/hosted-bootstrap/login/cancel', post(projectRoot, signal));
 }
 
-export function signOutHostedBootstrapProject(
+export async function signOutHostedBootstrapProject(
   projectRoot: string,
   signal?: AbortSignal
 ): Promise<HostedBootstrapStatus> {
   preflightSignal(signal);
-  return withLocalAbort(desktopHostedAccount().signOut(projectRoot).then((result) => {
-    if (result.registration !== 'registered') throw new HostedBootstrapClientError(503, 'The hosted runtime bootstrap service is unavailable.');
-    return result.status;
-  }), signal);
+  return requestJson('/api/harness/hosted-bootstrap/logout', post(projectRoot, signal));
 }

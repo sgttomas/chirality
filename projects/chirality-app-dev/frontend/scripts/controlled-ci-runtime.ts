@@ -15,14 +15,58 @@ import { RuntimeDaemon } from '@chirality/runtime-daemon';
 import { StubAgentSdkManager } from '../src/lib/harness/agent-sdk-manager';
 import { LegacyAgentEngineAdapter } from '../src/lib/harness/engine-registry';
 
+/**
+ * Controlled CI Runtime fixture (D-GOV-43, A2).
+ *
+ * The release-quality wrapper needs a real Runtime daemon on a Unix socket so
+ * the App's harness routes are exercised end to end, but CI has no Codex
+ * executable and no sign-in. This entry composes `RuntimeDaemon` over
+ * `RuntimeService` with the stub engine only: no `codex app-server`, no
+ * App-owned composition, no Electron main. It registers one project from a
+ * manifest with the fixture's own approval, then prints exactly one ready
+ * line carrying the project token so the workflow needs no operator token
+ * and no CLI registration step.
+ */
 export const CONTROLLED_CI_PURPOSE = 'chirality-controlled-ci-runtime/v1';
+export const CONTROLLED_CI_APPROVED_BY = 'github-actions';
+export const CONTROLLED_CI_APPROVAL_REFERENCE = 'harness-premerge-ci';
 
 export type ControlledCiRuntimeOptions = {
   purpose: typeof CONTROLLED_CI_PURPOSE;
   runtimeDirectory: string;
   socketPath: string;
   instructionRoot: string;
+  /** Absolute path of the `chirality.project.json` to register. */
+  projectManifestPath: string;
+  approvedBy?: string;
+  approvalReference?: string;
 };
+
+export type ControlledCiRuntimeReady = {
+  status: 'ready';
+  purpose: typeof CONTROLLED_CI_PURPOSE;
+  socketPath: string;
+  /** The registered project's client token file (`project-<id>.token`). */
+  tokenFile: string;
+  projectId: string;
+  /** The registered project's canonical working root. */
+  projectRoot: string;
+};
+
+export function parseControlledCiReadyLine(line: string): ControlledCiRuntimeReady {
+  const parsed: unknown = JSON.parse(line);
+  if (!parsed || typeof parsed !== 'object') throw new Error('Controlled CI ready line is not an object.');
+  const candidate = parsed as Partial<ControlledCiRuntimeReady>;
+  if (candidate.status !== 'ready' || candidate.purpose !== CONTROLLED_CI_PURPOSE) {
+    throw new Error('Controlled CI ready line does not declare the controlled purpose.');
+  }
+  for (const field of ['socketPath', 'tokenFile', 'projectId', 'projectRoot'] as const) {
+    if (typeof candidate[field] !== 'string' || candidate[field]!.length === 0) {
+      throw new Error(`Controlled CI ready line is missing ${field}.`);
+    }
+  }
+  return candidate as ControlledCiRuntimeReady;
+}
 
 export async function startControlledCiRuntime(options: ControlledCiRuntimeOptions) {
   if (options.purpose !== CONTROLLED_CI_PURPOSE) {
@@ -31,7 +75,8 @@ export async function startControlledCiRuntime(options: ControlledCiRuntimeOptio
   for (const [label, value] of Object.entries({
     runtimeDirectory: options.runtimeDirectory,
     socketPath: options.socketPath,
-    instructionRoot: options.instructionRoot
+    instructionRoot: options.instructionRoot,
+    projectManifestPath: options.projectManifestPath
   })) {
     if (!path.isAbsolute(value)) throw new Error(`${label} must be an absolute path.`);
   }
@@ -93,7 +138,26 @@ export async function startControlledCiRuntime(options: ControlledCiRuntimeOptio
     service
   });
   const started = await daemon.start();
-  return { ...started, daemon, stop: () => daemon.stop() };
+  try {
+    const registration = await service.registerProject(
+      options.projectManifestPath,
+      options.approvedBy ?? CONTROLLED_CI_APPROVED_BY,
+      options.approvalReference ?? CONTROLLED_CI_APPROVAL_REFERENCE
+    );
+    const project = await projects.requireAuthorized(registration.projectId);
+    const ready: ControlledCiRuntimeReady = {
+      status: 'ready',
+      purpose: CONTROLLED_CI_PURPOSE,
+      socketPath: started.socketPath,
+      tokenFile: registration.tokenFile,
+      projectId: registration.projectId,
+      projectRoot: project.canonicalRoot
+    };
+    return { ...ready, daemon, stop: () => daemon.stop() };
+  } catch (error) {
+    await daemon.stop().catch(() => undefined);
+    throw error;
+  }
 }
 
 function requiredAbsoluteEnvironment(name: string): string {
@@ -102,22 +166,40 @@ function requiredAbsoluteEnvironment(name: string): string {
   return value;
 }
 
+/**
+ * `--manifest <path>` names the project manifest to register; the only
+ * argument the entry accepts. Anything else is refused so the fixture cannot
+ * be mistaken for the product service or the CLI.
+ */
+export function parseControlledCiArguments(argv: readonly string[]): { manifestPath: string } {
+  if (argv.length !== 2 || argv[0] !== '--manifest' || !argv[1]) {
+    throw new Error('Usage: controlled-runtime.mjs --manifest <absolute path to chirality.project.json>');
+  }
+  if (!path.isAbsolute(argv[1])) throw new Error('--manifest must be an absolute path.');
+  return { manifestPath: argv[1] };
+}
+
 async function main(): Promise<void> {
   if (process.env.CHIRALITY_CONTROLLED_CI_RUNTIME !== CONTROLLED_CI_PURPOSE) {
     throw new Error(`CHIRALITY_CONTROLLED_CI_RUNTIME must equal ${CONTROLLED_CI_PURPOSE}.`);
   }
+  const { manifestPath } = parseControlledCiArguments(process.argv.slice(2));
   const host = await startControlledCiRuntime({
     purpose: CONTROLLED_CI_PURPOSE,
     runtimeDirectory: requiredAbsoluteEnvironment('CHIRALITY_RUNTIME_DIRECTORY'),
     socketPath: requiredAbsoluteEnvironment('CHIRALITY_RUNTIME_SOCKET_PATH'),
-    instructionRoot: requiredAbsoluteEnvironment('CHIRALITY_INSTRUCTION_ROOT')
+    instructionRoot: requiredAbsoluteEnvironment('CHIRALITY_INSTRUCTION_ROOT'),
+    projectManifestPath: manifestPath
   });
-  process.stdout.write(`${JSON.stringify({
+  const ready: ControlledCiRuntimeReady = {
     status: 'ready',
     purpose: CONTROLLED_CI_PURPOSE,
     socketPath: host.socketPath,
-    operatorTokenFile: host.operatorTokenFile
-  })}\n`);
+    tokenFile: host.tokenFile,
+    projectId: host.projectId,
+    projectRoot: host.projectRoot
+  };
+  process.stdout.write(`${JSON.stringify(ready)}\n`);
 
   let stopping = false;
   const stop = (): void => {

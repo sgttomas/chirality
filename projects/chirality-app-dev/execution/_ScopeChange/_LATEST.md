@@ -33,3 +33,12 @@ ineffective until a later integration record binds both accepted project
 identities. SCA-APP-010 `AUDIT_SCOPE_CLOSURE`, SCA-APP-009 derivative closure,
 the SCA-APP-008 package-shape disposition, Root OI-008 returns, and Q15/Q16
 remain open.
+
+**D-GOV-43 application (2026-09-12):** SCA-APP-008 is revised before any
+acceptance by `SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/REVISION_2026-09-12_D-GOV-43_A2.md`
+under `_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`:
+the hosted consent port seating, the two-job installer (DEL-09-07, APP-HOLD-1)
+and the K-CONTROL-1 supervisor-socket language are superseded by the A2
+pathway (application-owned Runtime service child, one private Unix-socket
+API, short packaging procedure). Its status stays `AWAITING_OWNER_ACCEPTANCE`;
+this pointer's active snapshot is unchanged.

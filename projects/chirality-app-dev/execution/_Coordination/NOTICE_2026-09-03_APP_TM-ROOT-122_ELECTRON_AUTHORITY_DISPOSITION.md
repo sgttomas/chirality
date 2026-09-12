@@ -1,5 +1,6 @@
 # NOTICE TO ROOT — App Electron authority disposition for TM-ROOT-122
 
+**Superseded in part 2026-09-12 (D-GOV-43, topology A2).** The Electron authority disposition below is read on the daemon path; under D-GOV-43 item 7 the LaunchAgent daemon is retired and the Electron main process owns the Runtime service child directly, so the daemon-path Electron authority statements (helper bundle, LaunchAgent target, daemon-mediated runtime ownership) no longer apply. The Electron version pin itself remains ordinary dependency integrity (family 4). Application record `execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`. The text below is preserved unchanged.
 **Status:** `READY_TO_ROUTE — NOT ROUTED`
 **Notice class:** cross-loop coordination, not authority
 **Routing state:** `NOT_ROUTED`

@@ -4,6 +4,7 @@
 **Date:** 2026-06-13
 **Product:** Chirality desktop harness and bundled agent operating system
 **Applies to:** app-dev governance, harness runtime, frontend validation, packaging evidence, and governed workspace workflows
+**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: the shared-runtime addendum is revised to the application-owned Runtime service and the eight-check acceptance set
 
 ## 1. Purpose
 
@@ -100,23 +101,35 @@ Evidence artifacts are derivative records. They support review and regression an
 
 ## 7. Shared Runtime Validation Addendum
 
-SCA-APP-003 validation adds:
+Revised under D-GOV-43 (A2), 2026-09-12. SCA-APP-003 validation adds:
 
-- behavior-preserving extraction checks before daemon behavior changes;
-- Unix-socket permission, project authorization, stale recovery, and
-  no-TCP-listener tests;
-- one-daemon Desktop/CLI concurrency, turn-lock, credential-owner, interrupt,
-  and restart-recovery tests;
-- lazy cross-store session migration and replay tests;
-- fake authenticated oMLX status/load/unload/drain/failure tests with no
-  Apple Silicon or downloaded-model requirement;
-- app-dev Agent 1 required-delegation proof with parentage, manager review,
-  residency epoch, and actual-model attribution;
-- PEC scratch/demo proof through daemon, adapter, backend proxy, and embedded
-  UI while forbidden human acts remain denied;
-- packaged CLI execution without global Node and generic export-boundary
-  checks.
+- Unix-socket permission, per-launch client token, stale recovery, and
+  no-TCP-listener tests for the Runtime service's socket API;
+- App-owned child lifecycle tests: spawn from the packaged bundle, ready
+  line, restart with backoff on crash, deliberate stop in teardown on quit,
+  and an accurate continuation record; unexpected termination is never
+  presented as completion;
+- transport tests for the disconnection rule: a long or disabled client
+  timeout on the stream path, SSE comment keepalives, a closed connection
+  that never interrupts the turn, a stream cancel that unsubscribes without
+  interrupting, and reopening after a renderer disconnect that recovers
+  current state, missed activity and outstanding decisions without
+  re-sending the prompt;
+- a deterministic regression ordering interruption, worker completion and
+  final retirement explicitly (the PR #767 interrupt-versus-retirement
+  defect);
+- lazy cross-store session migration and replay tests; daemon-era chats are
+  preserved in place and viewable if the existing reader renders them;
+- request and session correctness tests (family 4), including every server
+  request answered and unfamiliar requests refused visibly;
+- the eight functional checks S-1 to S-8 of D-GOV-43 item 12 on the
+  production path, with S-5 evidencing that a delegated child received the
+  intended role instructions and S-8 proving authentication separation.
 
-The two-model live proof is opt-in evidence. It records redacted timing,
-memory, transition, interruption, and acceptance telemetry without creating a
-latency target or automatic ranking policy.
+Retired with D-GOV-43: the one-daemon Desktop/CLI concurrency proof, the
+fake and live oMLX residency tests and the two-model live proof (item 13),
+the residency-epoch delegation pilot, the PEC scratch/demo proof, and the
+packaged-CLI proof as gates; CLI and PEC compatibility with the socket API is
+unverified and not an MVP prerequisite. A test runs once per distinct
+condition; a passing rerun does not establish that a known defect was
+repaired.

@@ -18,8 +18,9 @@ import {
   TurnCoordinator,
   atomicWriteJson
 } from "@chirality/runtime-core";
-import { RuntimeDaemon, describeRuntimeFailure } from "@chirality/runtime-daemon";
-import { RuntimeError } from "@chirality/runtime-contracts";
+import { RuntimeDaemon, describeRuntimeFailure } from "../packages/daemon/src/runtime-daemon.js";
+import { RuntimeError, type PendingServerRequest, type ServerRequestAnswer } from "@chirality/runtime-contracts";
+import { createDelegatedPermissionBroker, type PermissionDecisionPort } from "@chirality/runtime-core";
 import { createProjectFixture } from "./helpers.js";
 
 const active: RuntimeDaemon[] = [];
@@ -172,6 +173,62 @@ function daemonLifecycle(daemon: RuntimeDaemon): string {
   return (daemon as unknown as { lifecycle: string }).lifecycle;
 }
 
+function streamRequest(
+  socketPath: string,
+  path: string,
+  token: string,
+  method = "GET",
+  body?: unknown
+): { chunks: Promise<string[]>; outgoing: ClientRequest; status: Promise<number> } {
+  const encoded = body === undefined ? undefined : JSON.stringify(body);
+  const outgoing = httpRequest({
+    socketPath,
+    path,
+    method,
+    headers: {
+      authorization: `Bearer ${token}`,
+      ...(encoded === undefined ? {} : { "content-type": "application/json", "content-length": Buffer.byteLength(encoded) })
+    }
+  });
+  const status = new Promise<number>((resolve, reject) => {
+    outgoing.once("response", (response) => resolve(response.statusCode ?? 0));
+    outgoing.once("error", reject);
+  });
+  const chunks = new Promise<string[]>((resolve, reject) => {
+    outgoing.once("response", (response) => {
+      const received: string[] = [];
+      response.on("data", (chunk) => received.push(Buffer.from(chunk).toString("utf8")));
+      response.once("end", () => resolve(received));
+      response.once("error", reject);
+    });
+    outgoing.once("error", reject);
+  });
+  if (encoded !== undefined) outgoing.write(encoded);
+  outgoing.end();
+  return { chunks, outgoing, status };
+}
+
+function gatedEngine(adapterId = "stub"): { engine: AgentEnginePort; release(): void; interrupts: number; released: Promise<void> } {
+  let release!: () => void;
+  const released = new Promise<void>((resolve) => { release = resolve; });
+  const state = { interrupts: 0 };
+  const engine: AgentEnginePort = {
+    descriptor: { adapterId, providerId: "stub", capabilities: { credentials: false, tools: false, attachments: false, interruption: true, durableResume: false, compaction: false } },
+    subject: "gated",
+    async preflight() {},
+    async *startTurn(input) {
+      yield { type: "session:init", data: { engineSessionId: `engine-${input.session.sessionId}`, adapterId, providerId: "stub", model: input.opts.model } };
+      yield { type: "chat:delta", data: { text: "before" } };
+      await released;
+      if (input.signal?.aborted) { yield { type: "process:exit", data: { exitCode: 130, interrupted: true } }; return; }
+      yield { type: "chat:delta", data: { text: "missed" } };
+      yield { type: "process:exit", data: { exitCode: 0 } };
+    },
+    async interrupt() { state.interrupts += 1; release(); }
+  };
+  return { engine, release, released, get interrupts() { return state.interrupts; } };
+}
+
 async function fixture(
   root: string,
   runner: { run(): AsyncIterable<UIEvent>; interrupt?(): Promise<void> } = {
@@ -179,7 +236,8 @@ async function fixture(
       yield { type: "chat:delta", data: { text: "hello" } };
       yield { type: "process:exit", data: { exitCode: 0 } };
     }
-  }
+  },
+  permissions?: PermissionDecisionPort
 ) {
   const runtime = join(root, "runtime");
   const projects = new ProjectRegistry(runtime);
@@ -214,7 +272,8 @@ async function fixture(
     auth,
     credentials,
     undefined,
-    runner
+    runner,
+    permissions
   );
   return { runtime, service, engines, sessions };
 }
@@ -348,95 +407,180 @@ describe("Unix-domain runtime daemon", () => {
     expect(describeRuntimeFailure(new RuntimeError("ENGINE_UNAVAILABLE", "plain", 503))).not.toHaveProperty("method");
   });
 
-  it("interrupts and drains a disconnected SSE turn through canonical terminal persistence", async () => {
+  it("keeps a turn running after its subscriber disconnects and replays the missed frames on attach", async () => {
     const root = await mkdtemp(join(tmpdir(), "ch-daemon-disconnect-"));
     const { runtime, service, engines, sessions } = await fixture(root);
-    let releaseEngine!: () => void;
-    const interrupted = new Promise<void>((resolve) => {
-      releaseEngine = resolve;
-    });
-    const engine: AgentEnginePort = {
-      descriptor: {
-        adapterId: "stub",
-        providerId: "stub",
-        capabilities: {
-          credentials: false,
-          tools: false,
-          attachments: false,
-          interruption: true,
-          durableResume: false,
-          compaction: false
-        }
-      },
-      subject: "disconnect-test",
-      async preflight() {},
-      async *startTurn(input) {
-        yield {
-          type: "session:init",
-          data: {
-            engineSessionId: `engine-${input.session.sessionId}`,
-            adapterId: "stub",
-            providerId: "stub",
-            model: input.opts.model
-          }
-        };
-        await interrupted;
-      },
-      async interrupt() {
-        releaseEngine();
-      }
-    };
-    engines.register(engine);
-
+    const gated = gatedEngine();
+    engines.register(gated.engine);
     const socketPath = join(runtime, "control.sock");
     const daemon = new RuntimeDaemon({ runtimeDirectory: runtime, socketPath, service });
     active.push(daemon);
     await daemon.start();
-    const projectRoot = join(root, "project");
-    const { manifestPath } = await createProjectFixture(
-      projectRoot,
-      "disconnect-project"
-    );
+    const { manifestPath } = await createProjectFixture(join(root, "project"), "disconnect-project");
     const registered = await service.registerProject(manifestPath, "test", "D-TEST");
     const token = (await readFile(registered.tokenFile, "utf8")).trim();
-    const session = await service.createSession({
-      projectId: "disconnect-project",
-      role: "agent1",
-      engineSelection: {
-        adapterId: "stub",
-        providerId: "stub",
-        model: "blocking"
-      },
-      persona: "WORKING_ITEMS"
-    });
+    const session = await service.createSession({ projectId: "disconnect-project", role: "agent1", engineSelection: { adapterId: "stub", providerId: "stub", model: "blocking" }, persona: "WORKING_ITEMS" });
+    const base = `/v1/projects/disconnect-project/sessions/${session.sessionId}`;
 
-    await disconnectAfterFirstChunk(
-      socketPath,
-      `/v1/projects/disconnect-project/sessions/${session.sessionId}/turn`,
-      token,
-      { prompt: "wait for disconnect" }
-    );
+    await disconnectAfterFirstChunk(socketPath, `${base}/turn`, token, { prompt: "wait for disconnect" });
 
-    let events = await sessions.replay("disconnect-project", session.sessionId);
-    let storedSession = await sessions.get("disconnect-project", session.sessionId);
-    for (let attempt = 0; attempt < 100; attempt += 1) {
-      if (
-        events.some((event) => event.type === "turn.interrupted") &&
-        storedSession.status === "interrupted"
-      ) {
-        break;
-      }
+    // The Runtime still owns the turn: nothing was interrupted and the state reports it active.
+    let state = JSON.parse((await request(socketPath, `${base}/turn/state`, token)).body);
+    for (let attempt = 0; attempt < 100 && state.lastSeq < 3; attempt += 1) {
       await new Promise((resolve) => setTimeout(resolve, 10));
-      events = await sessions.replay("disconnect-project", session.sessionId);
-      storedSession = await sessions.get("disconnect-project", session.sessionId);
+      state = JSON.parse((await request(socketPath, `${base}/turn/state`, token)).body);
+    }
+    expect(state).toMatchObject({ active: true, lastSeq: 3, turnId: expect.any(String), startedAt: expect.any(String) });
+    expect(gated.interrupts).toBe(0);
+    expect(await sessions.get("disconnect-project", session.sessionId)).toMatchObject({ status: "running" });
+    // A second start is refused while the turn is active.
+    const conflict = await request(socketPath, `${base}/turn`, token, "POST", { prompt: "second" });
+    expect(conflict.status).toBe(409);
+    expect(JSON.parse(conflict.body)).toMatchObject({ error: { code: "SESSION_TURN_IN_PROGRESS" } });
+
+    // Attaching after the disconnect delivers the frames missed since seq 1, then the live remainder.
+    const attached = streamRequest(socketPath, `${base}/turn/stream?after=1`, token);
+    expect(await attached.status).toBe(200);
+    gated.release();
+    const body = (await attached.chunks).join("");
+    expect(body).not.toContain("id: 1\n");
+    expect(body).toContain("id: 2\nevent: session:init\n");
+    expect(body).toContain("id: 3\nevent: chat:delta\ndata: {\"text\":\"before\"}\n\n");
+    expect(body).toContain("id: 4\nevent: chat:delta\ndata: {\"text\":\"missed\"}\n\n");
+    expect(body).toContain("event: process:exit\n");
+    expect(gated.interrupts).toBe(0);
+    const events = await sessions.replay("disconnect-project", session.sessionId);
+    expect(events.filter((event) => event.type === "turn.completed")).toHaveLength(1);
+    expect(events.filter((event) => event.type === "turn.interrupted")).toHaveLength(0);
+    expect(await sessions.get("disconnect-project", session.sessionId)).toMatchObject({ status: "completed", lastUsedModel: "blocking" });
+    const finished = JSON.parse((await request(socketPath, `${base}/turn/state`, token)).body);
+    expect(finished).toMatchObject({ active: false, lastSeq: 6, endedAt: expect.any(String) });
+    // The retained buffer is still attachable and replays completely.
+    const replayed = await request(socketPath, `${base}/turn/stream?after=0`, token);
+    expect(replayed.status).toBe(200);
+    expect(replayed.body.match(/^id: /gmu)).toHaveLength(6);
+  });
+
+  it("interrupts only through the interrupt route and reports 404 TURN_NOT_ACTIVE without a turn", async () => {
+    const root = await mkdtemp(join(tmpdir(), "ch-daemon-interrupt-"));
+    const { runtime, service, engines, sessions } = await fixture(root);
+    const gated = gatedEngine();
+    engines.register(gated.engine);
+    const socketPath = join(runtime, "control.sock");
+    const daemon = new RuntimeDaemon({ runtimeDirectory: runtime, socketPath, service });
+    active.push(daemon);
+    await daemon.start();
+    const { manifestPath } = await createProjectFixture(join(root, "project"), "interrupt-project");
+    const registered = await service.registerProject(manifestPath, "test", "D-TEST");
+    const token = (await readFile(registered.tokenFile, "utf8")).trim();
+    const session = await service.createSession({ projectId: "interrupt-project", role: "agent1", engineSelection: { adapterId: "stub", providerId: "stub", model: "blocking" }, persona: "WORKING_ITEMS" });
+    const base = `/v1/projects/interrupt-project/sessions/${session.sessionId}`;
+
+    const missing = await request(socketPath, `${base}/turn/stream`, token);
+    expect(missing.status).toBe(404);
+    expect(JSON.parse(missing.body)).toMatchObject({ error: { code: "TURN_NOT_ACTIVE" } });
+    expect(JSON.parse((await request(socketPath, `${base}/turn/state`, token)).body)).toEqual({ active: false, lastSeq: 0 });
+    const malformed = await request(socketPath, `${base}/turn/stream?after=-1`, token);
+    expect(malformed.status).toBe(400);
+
+    await disconnectAfterFirstChunk(socketPath, `${base}/turn`, token, { prompt: "hold" });
+    const interrupted = await request(socketPath, `${base}/interrupt`, token, "POST");
+    expect(interrupted.status).toBe(200);
+    expect(gated.interrupts).toBe(1);
+    let events = await sessions.replay("interrupt-project", session.sessionId);
+    for (let attempt = 0; attempt < 100 && !events.some((event) => event.type === "turn.interrupted"); attempt += 1) {
+      await new Promise((resolve) => setTimeout(resolve, 10));
+      events = await sessions.replay("interrupt-project", session.sessionId);
     }
     expect(events.filter((event) => event.type === "turn.interrupted")).toHaveLength(1);
-    expect(
-      events.filter((event) =>
-        ["turn.completed", "turn.failed", "turn.cancelled"].includes(event.type)
-      )
-    ).toHaveLength(0);
-    expect(storedSession).toMatchObject({ status: "interrupted" });
+    expect(await sessions.get("interrupt-project", session.sessionId)).toMatchObject({ status: "interrupted" });
+    expect(JSON.parse((await request(socketPath, `${base}/turn/state`, token)).body)).toMatchObject({ active: false });
+  });
+
+  it("emits keepalive comments on an idle stream without touching the turn", async () => {
+    const root = await mkdtemp(join(tmpdir(), "ch-daemon-keepalive-"));
+    const { runtime, service, engines } = await fixture(root);
+    const gated = gatedEngine();
+    engines.register(gated.engine);
+    const socketPath = join(runtime, "control.sock");
+    const daemon = new RuntimeDaemon({ runtimeDirectory: runtime, socketPath, service, sseKeepaliveMs: 20 });
+    active.push(daemon);
+    await daemon.start();
+    const { manifestPath } = await createProjectFixture(join(root, "project"), "keepalive-project");
+    const registered = await service.registerProject(manifestPath, "test", "D-TEST");
+    const token = (await readFile(registered.tokenFile, "utf8")).trim();
+    const session = await service.createSession({ projectId: "keepalive-project", role: "agent1", engineSelection: { adapterId: "stub", providerId: "stub", model: "blocking" }, persona: "WORKING_ITEMS" });
+    const stream = streamRequest(socketPath, `/v1/projects/keepalive-project/sessions/${session.sessionId}/turn`, token, "POST", { prompt: "idle" });
+    expect(await stream.status).toBe(200);
+    await new Promise((resolve) => setTimeout(resolve, 120));
+    expect(gated.interrupts).toBe(0);
+    gated.release();
+    const body = (await stream.chunks).join("");
+    expect(body.split(": keepalive\n\n").length - 1).toBeGreaterThanOrEqual(2);
+    expect(body.indexOf(": keepalive")).toBeGreaterThan(body.indexOf("id: 1\nevent: harness:event\n"));
+    expect(body).toContain("event: process:exit\n");
+  });
+
+  it("serves pending server requests and answers, and validates answer shapes", async () => {
+    const root = await mkdtemp(join(tmpdir(), "ch-daemon-requests-"));
+    const { runtime, service } = await fixture(root);
+    const pending: PendingServerRequest[] = [{ requestId: "17", method: "item/tool/requestUserInput", params: { itemId: "item-q" }, itemId: "item-q", receivedAt: "2026-09-12T00:00:00.000Z" }];
+    const answered: { projectId: string; sessionId: string; requestId: string; answer: ServerRequestAnswer }[] = [];
+    const socketPath = join(runtime, "control.sock");
+    const daemon = new RuntimeDaemon({ runtimeDirectory: runtime, socketPath, service, requests: {
+      async pendingRequests() { return pending; },
+      async answerRequest(projectId, sessionId, requestId, answer) { answered.push({ projectId, sessionId, requestId, answer }); return { sent: true }; }
+    } });
+    active.push(daemon);
+    await daemon.start();
+    const { manifestPath } = await createProjectFixture(join(root, "project"), "requests-project");
+    const registered = await service.registerProject(manifestPath, "test", "D-TEST");
+    const token = (await readFile(registered.tokenFile, "utf8")).trim();
+    const session = await service.createSession({ projectId: "requests-project", role: "agent1", engineSelection: { adapterId: "stub", providerId: "stub", model: "fixture" }, persona: "WORKING_ITEMS" });
+    const base = `/v1/projects/requests-project/sessions/${session.sessionId}`;
+    const listed = await request(socketPath, `${base}/requests`, token);
+    expect(listed.status).toBe(200);
+    expect(JSON.parse(listed.body)).toEqual({ requests: pending });
+    expect((await request(socketPath, `/v1/projects/requests-project/sessions/missing-session/requests`, token)).status).toBe(404);
+    for (const body of [{ verdict: "allow" }, { answer: { kind: "approval", verdict: "maybe" } }, { answer: { kind: "userInput", answers: { q1: ["x"] } } }, { answer: { kind: "elicitation", action: "later" } }, { answer: { kind: "approval", verdict: "allow" }, extra: 1 }]) {
+      const rejected = await request(socketPath, `${base}/requests/17/answer`, token, "POST", body);
+      expect(rejected.status).toBe(400);
+      expect(JSON.parse(rejected.body)).toMatchObject({ error: { code: "INVALID_REQUEST" } });
+    }
+    expect(answered).toEqual([]);
+    const accepted = await request(socketPath, `${base}/requests/17/answer`, token, "POST", { answer: { kind: "userInput", answers: { q1: { answers: ["blue"] } } } });
+    expect(accepted.status).toBe(200);
+    expect(JSON.parse(accepted.body)).toEqual({ sent: true });
+    const elicited = await request(socketPath, `${base}/requests/18/answer`, token, "POST", { answer: { kind: "elicitation", action: "accept", content: { ok: true } } });
+    expect(elicited.status).toBe(200);
+    expect(answered).toEqual([
+      { projectId: "requests-project", sessionId: session.sessionId, requestId: "17", answer: { kind: "userInput", answers: { q1: { answers: ["blue"] } } } },
+      { projectId: "requests-project", sessionId: session.sessionId, requestId: "18", answer: { kind: "elicitation", action: "accept", content: { ok: true } } }
+    ]);
+  });
+
+  it("answers 503 for request routes without a request port and routes permission decisions to the approval answer", async () => {
+    const root = await mkdtemp(join(tmpdir(), "ch-daemon-permission-"));
+    const verdicts: unknown[][] = [];
+    const { runtime, service } = await fixture(root, undefined, createDelegatedPermissionBroker({ async answerApprovalByToolUseId(...args) { verdicts.push(args); return { sent: true }; } }));
+    const socketPath = join(runtime, "control.sock");
+    const daemon = new RuntimeDaemon({ runtimeDirectory: runtime, socketPath, service });
+    active.push(daemon);
+    await daemon.start();
+    const { manifestPath } = await createProjectFixture(join(root, "project"), "permission-project");
+    const registered = await service.registerProject(manifestPath, "test", "D-TEST");
+    const token = (await readFile(registered.tokenFile, "utf8")).trim();
+    const session = await service.createSession({ projectId: "permission-project", role: "agent1", engineSelection: { adapterId: "stub", providerId: "stub", model: "fixture" }, persona: "WORKING_ITEMS" });
+    const base = `/v1/projects/permission-project/sessions/${session.sessionId}`;
+    expect((await request(socketPath, `${base}/requests`, token)).status).toBe(503);
+    expect((await request(socketPath, `${base}/requests/1/answer`, token, "POST", { answer: { kind: "approval", verdict: "allow" } })).status).toBe(503);
+    const decided = await request(socketPath, `${base}/permission`, token, "POST", { requestId: "item-7", decision: "deny" });
+    expect(decided.status).toBe(200);
+    expect(JSON.parse(decided.body)).toEqual({ accepted: true, requestId: "item-7", decision: "deny" });
+    expect(verdicts).toEqual([["permission-project", session.sessionId, "item-7", "deny"]]);
+    const invalid = await request(socketPath, `${base}/permission`, token, "POST", { requestId: "item-7", decision: "later" });
+    expect(invalid.status).toBe(400);
+    expect(verdicts).toHaveLength(1);
   });
 
   it("fails closed for a non-socket or ambiguous live owner record", async () => {

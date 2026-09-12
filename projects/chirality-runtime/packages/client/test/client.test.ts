@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import type { RuntimeSessionRecord } from "@chirality/runtime-contracts";
-import { RuntimeClient, RuntimeTransportError } from "../src/index.js";
+import { RuntimeClient, RuntimeTransportError, parseUiEvent } from "../src/index.js";
 
 type RequestHandler = (
   request: IncomingMessage,
@@ -257,4 +257,85 @@ it("keeps boot waiting past the generic JSON deadline and labels transport failu
     const controller = new AbortController(); controller.abort();
     await expect(client.bootSession("project-a", "sess-a", {}, controller.signal)).rejects.toMatchObject({ reason: "transport", operation: "boot", sessionId: "sess-a" });
   } finally { await server.close(); }
+});
+
+describe("RuntimeClient turn ownership transport (D-GOV-43)", () => {
+  it("no longer carries the retired v2 delegated, hosted-login, consent, preflight or approval surface", () => {
+    const retired = [
+      "startHostedLogin", "hostedLoginStatus", "cancelHostedLogin",
+      "runDelegatedTurn", "interruptDelegatedTurn", "delegatedCapabilities", "delegatedPreflight",
+      "grantDelegatedConsent", "pendingDelegatedApprovals", "decideDelegatedApproval",
+      "pendingRuntimeApprovals", "decideRuntimeApproval"
+    ];
+    const surface = Object.getOwnPropertyNames(RuntimeClient.prototype);
+    expect(retired.filter((name) => surface.includes(name))).toEqual([]);
+    for (const kept of ["hostedBootstrapStatus", "startHostedBootstrapLogin", "cancelHostedBootstrapLogin", "signOutHostedProject", "grantHostedProviderNetworkConsent", "attachSessionTurn", "sessionTurnState", "listSessionRequests", "answerSessionRequest", "decidePermission"]) {
+      expect(surface).toContain(kept);
+    }
+  });
+
+  it("parses any named SSE event, surfaces the wire id as seq, and rejects nameless frames", () => {
+    expect(parseUiEvent({ event: "harness:event", data: '{"type":"codex.notification"}', id: "7", seq: 7 })).toEqual({ type: "harness:event", data: { type: "codex.notification" }, seq: 7 });
+    expect(parseUiEvent({ event: "vendor:unknown", data: "{}" })).toEqual({ type: "vendor:unknown", data: {} });
+    expect(() => parseUiEvent({ data: "{}" })).toThrow(expect.objectContaining({ code: "INTERNAL_FAILURE" }));
+    expect(() => parseUiEvent({ event: "chat:delta", data: "[]" })).toThrow(expect.objectContaining({ code: "INTERNAL_FAILURE" }));
+  });
+
+  it("attaches to a Runtime-owned turn with after=, keeps the stream open past the JSON idle timeout, and cancel only unsubscribes", async () => {
+    let closedResolve: (() => void) | undefined;
+    const closed = new Promise<void>((resolve) => { closedResolve = resolve; });
+    const seen: string[] = [];
+    const server = await fixture(async (request, response) => {
+      seen.push(`${request.method} ${request.url}`);
+      if (request.url === "/v1/projects/project-a/sessions/sess-a/turn/stream?after=3") {
+        request.once("close", () => closedResolve?.());
+        // Silence longer than the client's JSON idle timeout must not end a turn subscription.
+        await new Promise((resolve) => setTimeout(resolve, 40));
+        response.writeHead(200, { "content-type": "text/event-stream" });
+        response.write(": keepalive\n\n");
+        response.write('id: 4\nevent: chat:delta\ndata: {"text":"late"}\n\n');
+        return;
+      }
+      return json(response, 404, { error: { code: "NOT_FOUND", message: "not found" } });
+    });
+    const client = new RuntimeClient({ socketPath: join(server.root, "control.sock"), tokenFile: join(server.root, "operator.token"), timeoutMs: 10 });
+    const stream = await client.attachSessionTurn("project-a", "sess-a", { after: 3 });
+    const iterator = stream[Symbol.asyncIterator]();
+    await expect(iterator.next()).resolves.toEqual({ done: false, value: { type: "chat:delta", data: { text: "late" }, seq: 4 } });
+    stream.cancel();
+    await closed;
+    expect(seen).toEqual(["GET /v1/projects/project-a/sessions/sess-a/turn/stream?after=3"]);
+    expect(() => client.attachSessionTurn("project-a", "sess-a", { after: -1 })).toThrow(expect.objectContaining({ code: "INVALID_REQUEST" }));
+    await server.close();
+  });
+
+  it("reads turn state, lists pending server requests, answers one, and passes per-turn model and effort through", async () => {
+    const bodies: { url: string; body: unknown }[] = [];
+    const server = await fixture(async (request, response) => {
+      const chunks: Buffer[] = [];
+      for await (const chunk of request) chunks.push(Buffer.from(chunk));
+      const body = chunks.length === 0 ? undefined : JSON.parse(Buffer.concat(chunks).toString("utf8"));
+      bodies.push({ url: `${request.method} ${request.url}`, body });
+      if (request.url === "/v1/projects/project-a/sessions/sess-a/turn/state") return json(response, 200, { active: true, turnId: "t-1", lastSeq: 9, startedAt: "2026-09-12T00:00:00.000Z" });
+      if (request.url === "/v1/projects/project-a/sessions/sess-a/requests") return json(response, 200, { requests: [{ requestId: "42", method: "item/commandExecution/requestApproval", params: { itemId: "item-1" }, itemId: "item-1", receivedAt: "2026-09-12T00:00:01.000Z" }] });
+      if (request.url === "/v1/projects/project-a/sessions/sess-a/requests/42/answer") return json(response, 200, { sent: true });
+      if (request.url === "/v1/projects/project-a/sessions/sess-a/turn") {
+        response.writeHead(200, { "content-type": "text/event-stream" });
+        response.end('id: 1\nevent: process:exit\ndata: {"exitCode":0}\n\n');
+        return;
+      }
+      return json(response, 404, { error: { code: "NOT_FOUND", message: "not found" } });
+    });
+    try {
+      expect(await server.client.sessionTurnState("project-a", "sess-a")).toEqual({ active: true, turnId: "t-1", lastSeq: 9, startedAt: "2026-09-12T00:00:00.000Z" });
+      expect((await server.client.listSessionRequests("project-a", "sess-a")).requests[0]).toMatchObject({ requestId: "42", itemId: "item-1" });
+      expect(await server.client.answerSessionRequest("project-a", "sess-a", "42", { kind: "approval", verdict: "deny" })).toEqual({ sent: true });
+      const stream = await server.client.turnSession("project-a", "sess-a", { message: "go", model: "gpt-alt", reasoningEffort: "high" });
+      const frames = [];
+      for await (const frame of stream) frames.push(frame);
+      expect(frames).toEqual([{ type: "process:exit", data: { exitCode: 0 }, seq: 1 }]);
+      expect(bodies.find((entry) => entry.url.endsWith("/requests/42/answer"))?.body).toEqual({ answer: { kind: "approval", verdict: "deny" } });
+      expect(bodies.find((entry) => entry.url === "POST /v1/projects/project-a/sessions/sess-a/turn")?.body).toEqual({ message: "go", model: "gpt-alt", reasoningEffort: "high" });
+    } finally { await server.close(); }
+  });
 });

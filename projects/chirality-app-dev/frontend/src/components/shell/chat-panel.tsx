@@ -6,13 +6,16 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import React, { FormEvent, useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import {
   HarnessApiClientError,
+  attachHarnessTurn,
   bootHarnessSession,
   getHarnessSession,
+  getHarnessTurnState,
   createHarnessSession,
   interruptHarnessSession,
   replaySessionEvents,
   streamHarnessTurn,
-  type HarnessModelSelection
+  type HarnessModelSelection,
+  type HarnessTurnStreamEvent
 } from '../../lib/harness/client';
 import { isSelectionInCatalog, selectHostedModelCatalog, useHostedBootstrap } from '../../lib/harness/hosted-bootstrap-context';
 import { toHarnessUiError, type HarnessUiError } from '../../lib/harness/error-display';
@@ -34,6 +37,7 @@ import { PersonaPicker } from './persona-picker';
 import { ChatMarkdown } from './chat-markdown';
 import { FilePicker } from './file-picker';
 import { PermissionRequests } from './permission-requests';
+import { ServerRequests } from './request-card';
 import { useRuntimeEpoch } from './runtime-connectivity-provider';
 import {
   getNativePlanCapability,
@@ -74,7 +78,7 @@ type ActiveSession = {
   selectedMethods: readonly QualifiedMethodReference[];
   methodSelectionRevision: number;
   instructionBasisId: string;
-  /** Recorded `engineSelection.model` / `reasoningEffort`; fixed for the session's lifetime. */
+  /** Last recorded `engineSelection.model` / `reasoningEffort`; the default for the next turn. */
   model?: string;
   reasoningEffort?: string;
   bootstrapPending?: boolean;
@@ -85,28 +89,49 @@ export type ResumeConversationRequest = {
   projection: SelectedSessionReplayProjection;
 };
 
-// Operator permission modes (DESIGN §3.4), mapped to the harness's canonical
-// `opts.mode` values consumed by the permission overlay. Sent per turn. The
-// only supported posture is enforced project access, so no selector is shown;
-// a recorded chat carrying another stored mode must opt back in explicitly.
+// The App permission mode is the user's Codex policy selection (TYPES §12
+// `PolicySelection`): each mode is a fixed approval policy plus sandbox pair
+// that the Runtime applies at thread start and re-sends when it changes. Sent
+// per turn; it grants nothing beyond what Codex itself enforces.
 type OperatorModeOption = {
-  value: string;
+  value: 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass';
   label: string;
+  /** Codex terms: approval policy and sandbox mode. */
+  description: string;
 };
 
-const OPERATOR_MODES: readonly OperatorModeOption[] = [
-  { value: 'workspaceWrite', label: 'Project access' }
+export const OPERATOR_MODES: readonly OperatorModeOption[] = [
+  { value: 'readOnly', label: 'Read only', description: 'Codex sandbox read-only, approval on request: the agent can read the project but every write or command outside the sandbox asks first.' },
+  { value: 'ask', label: 'Ask before changes', description: 'Codex sandbox workspace-write, approval on request: the agent asks before commands or edits that leave the sandbox.' },
+  { value: 'workspaceWrite', label: 'Write in workspace', description: 'Codex sandbox workspace-write, approval never: the agent edits inside the project folder without asking; anything outside it is refused.' },
+  { value: 'bypass', label: 'Full access', description: 'Codex sandbox danger-full-access, approval never: no sandbox and no approval prompts. Use only when you accept every action the agent takes.' }
 ];
 
 const DEFAULT_OPERATOR_MODE = 'workspaceWrite';
 const MODEL_SELECTOR_SIGNED_OUT_TITLE = 'Sign in to Codex to choose a model';
-const MODEL_SELECTOR_FIXED_TITLE = 'Model and reasoning are fixed for this chat. Start a new chat to change them.';
-const MODEL_SELECTOR_HELP = 'Codex model for the next chat, from your authenticated account catalog. Fixed once the chat starts.';
-const REASONING_SELECTOR_HELP = 'Reasoning effort supported by the selected model. Separate from Plan Mode and from permissions.';
-const PLAIN_MODE_LABELS: Record<string, string> = { readOnly: 'Read only', ask: 'Ask before changes', workspaceWrite: 'Project access', bypass: 'Autonomous' };
+const MODEL_SELECTOR_HELP = 'Codex model for the next turn, from your authenticated account catalog. Changeable between turns.';
+const REASONING_SELECTOR_HELP = 'Reasoning effort supported by the selected model, sent with the next turn. Separate from Plan Mode and from permissions.';
+const PERMISSION_SELECTOR_HELP = 'Codex approval policy and sandbox for this chat. Applied at the next turn.';
+const TERMINAL_HARNESS_EVENTS = new Set(['turn.completed', 'turn.failed', 'turn.interrupted', 'turn.cancelled']);
+const RECONNECT_DELAYS_MS = [1_000, 2_000, 4_000, 8_000, 15_000, 30_000] as const;
 
-function isSupportedOperatorMode(mode: string): boolean {
+function isSupportedOperatorMode(mode: string): mode is OperatorModeOption['value'] {
   return OPERATOR_MODES.some(option => option.value === mode);
+}
+
+function wait(ms: number, signal: AbortSignal): Promise<void> {
+  return new Promise(resolve => {
+    if (signal.aborted) { resolve(); return; }
+    const timer = setTimeout(() => { signal.removeEventListener('abort', done); resolve(); }, ms);
+    const done = (): void => { clearTimeout(timer); resolve(); };
+    signal.addEventListener('abort', done, { once: true });
+  });
+}
+
+function isTurnNotActive(error: unknown): boolean {
+  if (!(error instanceof HarnessApiClientError)) return false;
+  const reason = error.details && typeof error.details === 'object' ? (error.details as Record<string, unknown>).reason : undefined;
+  return error.status === 404 || reason === 'TURN_NOT_ACTIVE';
 }
 
 /**
@@ -320,7 +345,7 @@ type ChatPanelProps = {
 export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBootedPrompt, presentation, knownRoots = [], newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange, fileCatalog = [], onOpenFile, selectedMethods = [], onSelectedMethodsChange = () => {}, onOpenMethods, resumeConversation, onConversationResumed }: ChatPanelProps = {}): JSX.Element {
   const { projectRoot, applyProjectRoot } = useWorkspace();
   const { optsPayload } = useToolkit();
-  const { appendEvent, clearEvents, setStreaming } = useHarnessEventActions();
+  const { appendEvent, clearEvents, hydrateEvents, setStreaming } = useHarnessEventActions();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [draft, setDraft] = useState('');
@@ -337,9 +362,6 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const [modelChoice, setModelChoice] = useState<HarnessModelSelection | null>(null);
   const hostedBootstrap = useHostedBootstrap();
   const modelCatalog = useMemo(() => selectHostedModelCatalog(hostedBootstrap.snapshot), [hostedBootstrap.snapshot]);
-  const nextSessionSelection: HarnessModelSelection | null = modelCatalog
-    ? (isSelectionInCatalog(modelCatalog, modelChoice) ? modelChoice : modelCatalog.selection)
-    : null;
   useEffect(() => {
     if (modelCatalog && modelChoice && !isSelectionInCatalog(modelCatalog, modelChoice)) setModelChoice(null);
   }, [modelCatalog, modelChoice]);
@@ -355,6 +377,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const activeSessionIdRef = useRef<string>();
   const lastInstructionSequenceRef = useRef(0);
   const [isRunning, setIsRunning] = useState(false);
+  // Runtime owns the turn; this panel only observes it. The abort controller
+  // closes the current observation (start or attach) without touching the turn.
+  const turnObservation = useRef<AbortController | null>(null);
   const [nativeFolderError, setNativeFolderError] = useState<string | null>(null);
   const [attachmentPickPending, setAttachmentPickPending] = useState(false);
   const nativeSelectionActive = useRef(false);
@@ -392,6 +417,17 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
   const runtimeEpoch = useRuntimeEpoch();
 
+  // The pair shown in the selectors and sent with the next turn: the explicit
+  // choice when it is in the catalog, else the session's last recorded pair
+  // when that is, else the catalog default. Never a pair Runtime did not publish.
+  const recordedPair = activeSession ?? (pendingBootstrap.current ? recordedModelSelection(pendingBootstrap.current.session) : null);
+  const recordedSelection: HarnessModelSelection | null = recordedPair?.model && recordedPair.reasoningEffort
+    ? { model: recordedPair.model, reasoningEffort: recordedPair.reasoningEffort } : null;
+  const nextTurnSelection: HarnessModelSelection | null = modelCatalog
+    ? (isSelectionInCatalog(modelCatalog, modelChoice) ? modelChoice
+      : isSelectionInCatalog(modelCatalog, recordedSelection) ? recordedSelection : modelCatalog.selection)
+    : null;
+
   const refreshNativePlan = useCallback(async (sessionId: string, signal?: AbortSignal): Promise<void> => {
     setPlanRefreshing(true);
     try {
@@ -421,6 +457,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     activeSessionIdRef.current = activeSession?.sessionId;
     onActiveSessionChange?.(activeSession?.sessionId);
   }, [activeSession?.sessionId, onActiveSessionChange]);
+
+  // Leaving a session (new chat, another chat, unmount) only stops observing
+  // its turn; the Runtime keeps running it and reopening recovers it.
+  useEffect(() => () => { turnObservation.current?.abort(); }, []);
 
   // The red banner under the composer is a record of one failed attempt, not a
   // live status. Once the main process reports a fresh binding, the reason it
@@ -600,6 +640,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     if (isRunning || folderSelectionPending) return;
     if ((draft.trim() || attachments.length || selectedMethods.length) && !window.confirm('Start a new chat and discard the unsent draft, attachments, and methods?')) return;
     bindingGeneration.current++;
+    turnObservation.current?.abort();
     activeSessionIdRef.current = undefined;
     pendingBootstrap.current = undefined;
     clearNativePlanProjection();
@@ -667,6 +708,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     setRuntimeError(null); setRuntimeStatus(null); setFolderSyncError(null);
     clearEvents();
     onConversationResumed?.(nextSession.sessionId);
+    void recoverActiveTurn(nextSession);
   }, [resumeConversation, isRunning, activePersona, activeMode, projectRoot, clearEvents, onConversationResumed, clearNativePlanProjection]);
 
   const selectNativeFolder = useCallback(async (intent: { path?: string; error?: string }) => {
@@ -745,10 +787,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       interactionMode,
       permissionMode: operatorMode as 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass',
       selectedMethods,
-      // The pair shown in the selectors is what the session is created with.
-      // Runtime validates it against the catalog and rejects rather than
-      // substitutes; boot and turn carry no opts.model.
-      ...(nextSessionSelection ? { modelSelection: nextSessionSelection } : {})
+      // The pair shown in the selectors is the session default. Runtime
+      // validates it against the catalog and rejects rather than substitutes;
+      // each turn then carries its own model and effort.
+      ...(nextTurnSelection ? { modelSelection: nextTurnSelection } : {})
     });
     sessionCreateInFlight.current = false;
     pendingBootstrap.current = { session, selectedRootAtBinding, persona: activePersona, mode: activeMode };
@@ -799,6 +841,276 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       if (!applied) setFolderSyncError('The session is bound to its recorded folder, but file browsing could not switch to it. Start a new chat to choose a folder again.');
     }
     return nextSession;
+  }
+
+  type TurnOutcome = { assistantText: string; error: HarnessApiClientError | Error | null; terminal: boolean };
+
+  /**
+   * Observe one Runtime-owned turn to its end. `start` opens the first stream
+   * (POST turn, or an attach). A stream that closes without a terminal frame is
+   * a lost connection, never a finished turn: the panel re-attaches from the
+   * last seen frame with backoff and shows "Reconnecting" until the Runtime
+   * reports the turn over. Harness events are de-duplicated by eventId, so an
+   * attach from seq 0 after a persisted replay never double-counts.
+   */
+  async function observeTurn(input: {
+    session: ActiveSession;
+    assistantId: string;
+    signal: AbortSignal;
+    start: (onEvent: (event: HarnessTurnStreamEvent) => void) => Promise<void>;
+    resetTextOnStart?: boolean;
+    /** Event ids already in the bridged log (hydrated from replay); never appended again. */
+    seenEventIds?: Iterable<string>;
+  }): Promise<TurnOutcome> {
+    const { session, assistantId, signal } = input;
+    const seen = new Set<string>(input.seenEventIds ?? []);
+    // Text deltas are assembled from the observed stream even when the log
+    // already holds them: an attach from seq 0 is the complete text source.
+    const textSeen = new Set<string>();
+    let lastSeq = 0;
+    let receivedFrames = 0;
+    let assistantText = '';
+    let textSource: 'chat:delta' | 'message.delta' | null = null;
+    let terminal = false;
+    let error: HarnessApiClientError | Error | null = null;
+
+    const setAssistant = (patch: Partial<ChatMessage>): void => {
+      setMessages((existing) => existing.map((item) => item.id === assistantId ? { ...item, ...patch } : item));
+    };
+    const appendText = (chunk: string, source: 'chat:delta' | 'message.delta'): void => {
+      if (!chunk) return;
+      textSource ??= source;
+      if (textSource !== source) return;
+      assistantText += chunk;
+      setAssistant({ text: assistantText });
+    };
+
+    const onEvent = (streamEvent: HarnessTurnStreamEvent): void => {
+      if (signal.aborted) return;
+      receivedFrames += 1;
+      if (typeof streamEvent.seq === 'number' && streamEvent.seq > lastSeq) lastSeq = streamEvent.seq;
+
+      if (streamEvent.event === 'harness:event') {
+        if (!isHarnessEvent(streamEvent.data)) return;
+        const harnessEvent = streamEvent.data;
+        const duplicate = seen.has(harnessEvent.eventId);
+        seen.add(harnessEvent.eventId);
+        if (!duplicate) appendEvent(harnessEvent);
+        if (harnessEvent.type === 'message.delta') {
+          if (!textSeen.has(harnessEvent.eventId)) {
+            textSeen.add(harnessEvent.eventId);
+            appendText(readTextField(harnessEvent.data) ?? '', 'message.delta');
+          }
+          return;
+        }
+        if (harnessEvent.type === 'turn.interrupted') {
+          // Rendered the moment it arrives, not after the stream closes (R17-F1).
+          terminal = true;
+          setAssistant({ interrupted: true, ...(assistantText ? {} : { text: 'Turn interrupted by operator.' }) });
+          if (!assistantText) assistantText = 'Turn interrupted by operator.';
+          return;
+        }
+        if (harnessEvent.type === 'turn.failed') {
+          terminal = true;
+          const payload = harnessEvent.data ?? {};
+          const message = typeof payload.message === 'string' && payload.message.trim() ? payload.message : 'Turn failed.';
+          const code = typeof payload.code === 'string' && payload.code.trim() ? payload.code : 'SDK_FAILURE';
+          error ??= new HarnessApiClientError(500, code, message, payload.details);
+          return;
+        }
+        if (TERMINAL_HARNESS_EVENTS.has(harnessEvent.type)) { terminal = true; return; }
+        if (harnessEvent.type.includes('clarification') || harnessEvent.type.includes('native-plan') ||
+          ((harnessEvent.type === 'codex.request' || harnessEvent.type === 'codex.request.resolved') && interactionMode === 'native-plan')) {
+          void refreshNativePlanClarifications(session.sessionId).catch(() => {});
+        }
+        return;
+      }
+
+      if (streamEvent.event === 'chat:delta') {
+        appendText(readTextField(streamEvent.data) ?? '', 'chat:delta');
+        return;
+      }
+
+      if (streamEvent.event === 'chat:complete') {
+        const completed = readTextField(streamEvent.data);
+        if (completed) { assistantText = completed; setAssistant({ text: assistantText }); }
+        return;
+      }
+
+      if (streamEvent.event === 'turn:error' && streamEvent.data && typeof streamEvent.data === 'object') {
+        const payload = streamEvent.data as Record<string, unknown>;
+        const fatal = payload.fatal !== false;
+        const errorMessage = typeof payload.message === 'string' && payload.message.trim().length > 0 ? payload.message : 'Turn failed during streaming.';
+        if (fatal) {
+          const errorType = typeof payload.errorType === 'string' && payload.errorType.trim().length > 0 ? payload.errorType : 'SDK_FAILURE';
+          const errorStatus = typeof payload.status === 'number' ? payload.status : 500;
+          error = new HarnessApiClientError(errorStatus, errorType, errorMessage, payload.details);
+          // An engine failure can fence the signed-in account underneath a
+          // "ready" status. Re-read status so the account row reports it.
+          if (errorType === 'ENGINE_UNAVAILABLE') hostedBootstrap.refresh?.();
+        }
+        return;
+      }
+
+      if (streamEvent.event === 'process:exit' && streamEvent.data && typeof streamEvent.data === 'object') {
+        terminal = true;
+        const payload = streamEvent.data as Record<string, unknown>;
+        const exitCode = typeof payload.exitCode === 'number' ? payload.exitCode : 0;
+        const interrupted = payload.interrupted === true;
+        if (interrupted) {
+          setAssistant({ interrupted: true, ...(assistantText ? {} : { text: 'Turn interrupted by operator.' }) });
+          if (!assistantText) assistantText = 'Turn interrupted by operator.';
+        }
+        // Runtime normalizes a confirmed operator interruption to 130 plus
+        // interrupted:true. A bare 130 or any other nonzero exit still fails.
+        if (exitCode !== 0 && !(exitCode === 130 && interrupted) && !error) {
+          const errorMessage = typeof payload.error === 'string' && payload.error.trim().length > 0 ? payload.error : `Turn failed with exit code ${exitCode}.`;
+          const errorType = typeof payload.errorType === 'string' && payload.errorType.trim().length > 0 ? payload.errorType : null;
+          const errorStatus = typeof payload.status === 'number' ? payload.status : 500;
+          error = errorType ? new HarnessApiClientError(errorStatus, errorType, errorMessage, payload.errorDetails) : new Error(errorMessage);
+        }
+      }
+    };
+
+    let attempt = 0;
+    let open = input.start;
+    while (!signal.aborted) {
+      let dropped = false;
+      const framesBefore = receivedFrames;
+      try {
+        await open(onEvent);
+      } catch (caught) {
+        if (signal.aborted) break;
+        if (attempt === 0 && open === input.start && receivedFrames === framesBefore) {
+          // The first stream never opened: report it as today.
+          return { assistantText, error: caught instanceof Error ? caught : new Error(String(caught)), terminal: false };
+        }
+        if (isTurnNotActive(caught)) {
+          // Nothing left to attach to: the turn ended while we were away, or
+          // the Runtime restarted. The persisted log carries the outcome.
+          await settleFromReplay();
+          break;
+        }
+        dropped = true;
+      }
+      if (terminal || signal.aborted) break;
+      // The stream closed without a terminal frame. Ask the Runtime whether
+      // the turn is still running before deciding anything: a clean close of
+      // a finished turn settles from the log, and only a turn that is still
+      // active (or a Runtime that cannot be reached) is a reconnect.
+      let state: Awaited<ReturnType<typeof getHarnessTurnState>> | undefined;
+      if (!dropped) {
+        try { state = await getHarnessTurnState(session.sessionId, signal); } catch { state = undefined; }
+      }
+      if (signal.aborted) break;
+      if (state && !state.active && state.lastSeq <= lastSeq) {
+        await settleFromReplay();
+        break;
+      }
+      if (!state || state.active) {
+        // The connection dropped while the turn continues. Never show Idle.
+        setRuntimeStatus(attempt === 0 ? 'Reconnecting to the running turn...' : `Reconnecting to the running turn (attempt ${attempt + 1})...`);
+        await wait(RECONNECT_DELAYS_MS[Math.min(attempt, RECONNECT_DELAYS_MS.length - 1)], signal);
+        attempt += 1;
+        if (signal.aborted) break;
+      }
+      // Either the turn is still active, or it finished with frames we have
+      // not seen: attach after the last frame we processed.
+      const after = lastSeq;
+      open = (handler) => attachHarnessTurn(session.sessionId, after, handler, signal);
+    }
+
+    async function settleFromReplay(): Promise<void> {
+      terminal = true;
+      try {
+        const replay = await replaySessionEvents(session.sessionId);
+        const events = replay.events.filter(event => !seen.has(event.eventId));
+        for (const event of events) { seen.add(event.eventId); appendEvent(event); }
+        const last = [...replay.events].reverse().find(event => TERMINAL_HARNESS_EVENTS.has(event.type));
+        if (last?.type === 'turn.interrupted') {
+          setAssistant({ interrupted: true, ...(assistantText ? {} : { text: 'Turn interrupted by operator.' }) });
+          if (!assistantText) assistantText = 'Turn interrupted by operator.';
+        } else if (last?.type === 'turn.failed' && !error) {
+          const payload = last.data ?? {};
+          error = new HarnessApiClientError(500, typeof payload.code === 'string' ? payload.code : 'SDK_FAILURE', typeof payload.message === 'string' ? payload.message : 'Turn failed.', payload.details);
+        }
+        if (!assistantText) {
+          const turnId = last?.turnId;
+          const text = replay.events.filter(event => event.type === 'message.delta' && (!turnId || event.turnId === turnId)).map(event => readTextField(event.data) ?? '').join('');
+          if (text) { assistantText = text; setAssistant({ text }); }
+        }
+      } catch {
+        // The log could not be read right now. The turn is over either way;
+        // what was streamed stays on screen and reopening the chat replays it.
+      }
+    }
+
+    return { assistantText, error, terminal };
+  }
+
+  /**
+   * Opening a chat asks the Runtime whether it owns an active turn for it. If so
+   * the persisted events are replayed, the panel is marked running, and the
+   * live turn is attached from seq 0 (de-duplicated by eventId) so missed
+   * activity, streamed text and outstanding decisions are recovered without
+   * re-sending anything.
+   */
+  async function recoverActiveTurn(session: ActiveSession): Promise<void> {
+    let state: Awaited<ReturnType<typeof getHarnessTurnState>>;
+    try { state = await getHarnessTurnState(session.sessionId); } catch { return; }
+    if (!state.active || activeSessionIdRef.current !== session.sessionId) return;
+    const observation = new AbortController();
+    turnObservation.current?.abort();
+    turnObservation.current = observation;
+    const assistantId = `assistant-recovered-${session.sessionId}-${state.turnId ?? Date.now()}`;
+    setIsRunning(true);
+    setStreaming(true);
+    setRuntimeError(null);
+    setRuntimeStatus('Reconnecting to the running turn...');
+    setMessages((existing) => {
+      const last = existing.at(-1);
+      // The resumed transcript already ends with this turn's user message; the
+      // assistant reply streams into a fresh bubble.
+      const withoutPartial = last?.role === 'assistant' && !last.text && !last.interrupted && last.id.startsWith('replay-') ? existing.slice(0, -1) : existing;
+      return [...withoutPartial, { id: assistantId, role: 'assistant', persona: session.persona, projectRoot: session.projectRoot, text: '' }];
+    });
+    try {
+      const hydratedIds: string[] = [];
+      try {
+        const replay = await replaySessionEvents(session.sessionId);
+        if (!observation.signal.aborted) {
+          hydrateEvents(replay.events);
+          for (const event of replay.events) hydratedIds.push(event.eventId);
+        }
+      } catch {
+        // Missed activity is then recovered from the retained turn buffer alone.
+      }
+      if (observation.signal.aborted) return;
+      setRuntimeStatus('Running turn...');
+      const outcome = await observeTurn({
+        session, assistantId, signal: observation.signal, seenEventIds: hydratedIds,
+        start: (onEvent) => attachHarnessTurn(session.sessionId, 0, onEvent, observation.signal)
+      });
+      if (observation.signal.aborted) return;
+      if (outcome.error) setRuntimeError(toHarnessUiError(outcome.error, { sessionModel: session.model, origin: 'session' }));
+      if (!outcome.assistantText.trim() && !outcome.error) {
+        setMessages((existing) => existing.map((item) => item.id === assistantId ? { ...item, text: 'No assistant text was returned for this turn.' } : item));
+      }
+      const replay = await replaySessionEvents(session.sessionId).catch(() => undefined);
+      const replaySession = replay?.session;
+      if (replaySession && 'schemaVersion' in replaySession && replaySession.schemaVersion === 'chirality.session/v3') {
+        const recorded = recordedModelSelection(replaySession as RuntimeSessionRecordV3);
+        setActiveSession(existing => existing?.sessionId === session.sessionId ? { ...existing, ...recorded } : existing);
+      }
+      if (interactionMode === 'native-plan') void refreshNativePlan(session.sessionId).catch(() => {});
+    } finally {
+      if (turnObservation.current === observation) turnObservation.current = null;
+      if (!observation.signal.aborted) {
+        setRuntimeStatus(null);
+        setIsRunning(false);
+        setStreaming(false);
+      }
+    }
   }
 
   async function interruptTurn(): Promise<void> {
@@ -904,151 +1216,37 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         onSessionBootedPrompt?.({ sessionId: session.sessionId, prompt: text, persona: activePersona });
       }
 
-      let assistantText = '';
       let nativePlanProduced = false;
-      let processExitError: HarnessApiClientError | Error | null = null;
 
       setRuntimeStatus('Running turn...');
 
-      await streamHarnessTurn(
-        {
-          sessionId: session.sessionId,
-          message: text,
-          attachments: preservedAttachments.map((item) => item.path),
-          interactionMode,
-          permissionMode: operatorMode as 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass',
-          opts: { ...(optsPayload ?? {}), mode: operatorMode }
-        },
-        (streamEvent) => {
-          if (streamEvent.event === 'harness:event') {
-            if (isHarnessEvent(streamEvent.data)) {
-              appendEvent(streamEvent.data);
-              if (streamEvent.data.type.includes('clarification') || streamEvent.data.type.includes('native-plan')) {
-                void refreshNativePlanClarifications(session.sessionId).catch(() => {});
-              }
-            }
-            return;
-          }
-
-          if (streamEvent.event === 'chat:delta') {
-            const chunk = readTextField(streamEvent.data);
-            if (chunk) {
-              assistantText += chunk;
-              setMessages((existing) =>
-                existing.map((item) =>
-                  item.id === assistantId
-                    ? {
-                        ...item,
-                        text: assistantText
-                      }
-                    : item
-                )
-              );
-            }
-            return;
-          }
-
-          if (streamEvent.event === 'chat:complete') {
-            const completed = readTextField(streamEvent.data);
-            if (completed) {
-              assistantText = completed;
-              setMessages((existing) =>
-                existing.map((item) =>
-                  item.id === assistantId
-                    ? {
-                        ...item,
-                        text: assistantText
-                      }
-                    : item
-                )
-              );
-            }
-            return;
-          }
-
-          if (
-            streamEvent.event === 'turn:error' &&
-            streamEvent.data &&
-            typeof streamEvent.data === 'object'
-          ) {
-            const payload = streamEvent.data as Record<string, unknown>;
-            const fatal = payload.fatal !== false;
-            const errorMessage =
-              typeof payload.message === 'string' && payload.message.trim().length > 0
-                ? payload.message
-                : 'Turn failed during streaming.';
-
-            if (fatal) {
-              const errorType =
-                typeof payload.errorType === 'string' && payload.errorType.trim().length > 0
-                  ? payload.errorType
-                  : 'SDK_FAILURE';
-              const errorStatus = typeof payload.status === 'number' ? payload.status : 500;
-              processExitError = new HarnessApiClientError(
-                errorStatus,
-                errorType,
-                errorMessage,
-                payload.details
-              );
-              // An engine failure can fence the signed-in account underneath a
-              // "ready" status. Re-read status so the account row reports it.
-              if (errorType === 'ENGINE_UNAVAILABLE') hostedBootstrap.refresh?.();
-            }
-            return;
-          }
-
-          if (
-            streamEvent.event === 'process:exit' &&
-            streamEvent.data &&
-            typeof streamEvent.data === 'object'
-          ) {
-            const payload = streamEvent.data as Record<string, unknown>;
-            const exitCode = typeof payload.exitCode === 'number' ? payload.exitCode : 0;
-            const interrupted = payload.interrupted === true;
-
-            if (interrupted) setMessages(existing => existing.map(item => item.id === assistantId ? { ...item, interrupted: true } : item));
-            if (interrupted && !assistantText) {
-              assistantText = 'Turn interrupted by operator.';
-              setMessages((existing) =>
-                existing.map((item) =>
-                  item.id === assistantId
-                    ? {
-                        ...item,
-                        text: assistantText
-                      }
-                    : item
-                )
-              );
-            }
-
-            // Runtime normalizes a confirmed operator interruption to 130 plus
-            // interrupted:true. A bare 130 or any other nonzero exit still fails.
-            if (exitCode !== 0 && !(exitCode === 130 && interrupted)) {
-              const errorMessage =
-                typeof payload.error === 'string' && payload.error.trim().length > 0
-                  ? payload.error
-                  : `Turn failed with exit code ${exitCode}.`;
-              const errorType =
-                typeof payload.errorType === 'string' && payload.errorType.trim().length > 0
-                  ? payload.errorType
-                  : null;
-              const errorStatus = typeof payload.status === 'number' ? payload.status : 500;
-
-              processExitError = errorType
-                ? new HarnessApiClientError(
-                    errorStatus,
-                    errorType,
-                    errorMessage,
-                    payload.errorDetails
-                  )
-                : new Error(errorMessage);
-            }
-          }
-        }
-      );
-
-      if (processExitError) {
-        throw processExitError;
+      const observation = new AbortController();
+      turnObservation.current?.abort();
+      turnObservation.current = observation;
+      const outcome = await observeTurn({
+        session,
+        assistantId,
+        signal: observation.signal,
+        start: (onEvent) => streamHarnessTurn(
+          {
+            sessionId: session.sessionId,
+            message: text,
+            attachments: preservedAttachments.map((item) => item.path),
+            interactionMode,
+            permissionMode: operatorMode as 'readOnly' | 'ask' | 'workspaceWrite' | 'bypass',
+            // Model and reasoning effort are per turn (Codex `turn/start`).
+            ...(nextTurnSelection ? { model: nextTurnSelection.model, reasoningEffort: nextTurnSelection.reasoningEffort } : {}),
+            opts: { ...(optsPayload ?? {}), mode: operatorMode }
+          },
+          onEvent,
+          observation.signal
+        )
+      });
+      if (turnObservation.current === observation) turnObservation.current = null;
+      if (observation.signal.aborted) return;
+      const assistantText = outcome.assistantText;
+      if (outcome.error) {
+        throw outcome.error;
       }
 
       if (!assistantText.trim() && !nativePlanProduced && interactionMode === 'native-plan') {
@@ -1215,8 +1413,9 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
   }
 
-  const fixedModelSelection = activeSession ?? (pendingBootstrap.current
-    ? recordedModelSelection(pendingBootstrap.current.session) : null);
+  // A Plan Mode clarification is the same Codex `item/tool/requestUserInput`
+  // request as a generic user-input card; the plan sidebar presents it once.
+  const clarificationRequestIds = useMemo(() => new Set(planClarifications.map(item => String(item.requestId))), [planClarifications]);
 
   // Desktop builds pick attachments through the native dialog (main process
   // canonicalises and scopes the paths); web builds keep the in-app picker.
@@ -1283,6 +1482,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         </article>) : null}
         {planExportStatus ? <p role="status">{planExportStatus}</p> : null}
         <PermissionRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} />
+        <ServerRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} suppressedRequestIds={clarificationRequestIds} />
       </div>
       {presentation === 'woven' && (interactionMode === 'native-plan' || planRevisions.length > 0) ? <NativePlanSidebar
         revisions={planRevisions} clarifications={planClarifications} active={interactionMode === 'native-plan'} refreshing={planRefreshing}
@@ -1382,7 +1582,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           </div>
         ) : null}
         {!isSupportedOperatorMode(operatorMode) ? <p className="chat-runtime-error" role="alert">
-          This recorded chat used {PLAIN_MODE_LABELS[operatorMode] ?? operatorMode}, which is no longer supported. <button type="button" disabled={isRunning} onClick={() => setOperatorMode(DEFAULT_OPERATOR_MODE)}>Continue with Project access</button>
+          This recorded chat used an unknown permission mode ({operatorMode}). <button type="button" disabled={isRunning} onClick={() => setOperatorMode(DEFAULT_OPERATOR_MODE)}>Continue with Write in workspace</button>
         </p> : null}
       </div>
 
@@ -1465,7 +1665,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           }}
           disabled={!isRunning || !activeSession}
         >
-          Interrupt
+          Stop
         </button>) : null}
         </div>
       </form>
@@ -1476,36 +1676,38 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Interaction mode</span><select aria-label="Interaction mode" value={interactionMode} disabled={isRunning} onChange={event => setInteractionMode(event.target.value as InteractionMode)}>
           <option value="chat">Chat</option><option value="native-plan" disabled={Boolean(activeSession) && !nativePlanAvailable(planCapability)} title={activeSession && planCapability.status === 'unavailable' ? `Plan Mode unavailable: ${planCapability.reason}` : undefined}>Plan Mode</option>
         </select></label>
-        {/* Model and reasoning are session-fixed catalog choices, distinct from Plan Mode (interaction) and permissions. */}
+        {/* Permissions are the Codex policy selection; model and reasoning are per-turn catalog choices. All three are distinct from Plan Mode (interaction). */}
+        <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Permissions</span><select aria-label="Permissions"
+          value={isSupportedOperatorMode(operatorMode) ? operatorMode : ''}
+          disabled={isRunning}
+          title={OPERATOR_MODES.find(option => option.value === operatorMode)?.description ?? PERMISSION_SELECTOR_HELP}
+          onChange={event => { if (isSupportedOperatorMode(event.target.value)) setOperatorMode(event.target.value); }}>
+          {isSupportedOperatorMode(operatorMode) ? null : <option value="">Permissions</option>}
+          {OPERATOR_MODES.map(option => <option key={option.value} value={option.value} title={option.description}>{option.label}</option>)}
+        </select></label>
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Model</span><select aria-label="Model"
-          value={fixedModelSelection ? fixedModelSelection.model ?? '' : nextSessionSelection?.model ?? ''}
-          disabled={Boolean(fixedModelSelection) || !modelCatalog || isRunning}
-          title={fixedModelSelection ? MODEL_SELECTOR_FIXED_TITLE : modelCatalog ? MODEL_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          value={nextTurnSelection?.model ?? recordedSelection?.model ?? ''}
+          disabled={!modelCatalog || isRunning}
+          title={modelCatalog ? MODEL_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
           onChange={event => {
-            if (fixedModelSelection) return;
             const entry = modelCatalog?.models.find(model => model.model === event.target.value);
             if (entry) setModelChoice({ model: entry.model, reasoningEffort: entry.defaultReasoningEffort });
           }}>
-          {fixedModelSelection
-            ? <option value={fixedModelSelection.model ?? ''}>{fixedModelSelection.model ?? 'Model'}</option>
-            : modelCatalog
-              ? modelCatalog.models.map(entry => <option key={entry.model} value={entry.model}>{entry.model}</option>)
-              : <option value="">Model</option>}
+          {modelCatalog
+            ? modelCatalog.models.map(entry => <option key={entry.model} value={entry.model}>{entry.model}</option>)
+            : <option value={recordedSelection?.model ?? ''}>{recordedSelection?.model ?? 'Model'}</option>}
         </select></label>
         <span aria-hidden="true">·</span><label className="chat-mode-selector"><span className="visually-hidden">Reasoning</span><select aria-label="Reasoning"
-          value={fixedModelSelection ? fixedModelSelection.reasoningEffort ?? '' : nextSessionSelection?.reasoningEffort ?? ''}
-          disabled={Boolean(fixedModelSelection) || !modelCatalog || isRunning}
-          title={fixedModelSelection ? MODEL_SELECTOR_FIXED_TITLE : modelCatalog ? REASONING_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
+          value={nextTurnSelection?.reasoningEffort ?? recordedSelection?.reasoningEffort ?? ''}
+          disabled={!modelCatalog || isRunning}
+          title={modelCatalog ? REASONING_SELECTOR_HELP : MODEL_SELECTOR_SIGNED_OUT_TITLE}
           onChange={event => {
-            if (fixedModelSelection) return;
-            const entry = nextSessionSelection && modelCatalog?.models.find(model => model.model === nextSessionSelection.model);
+            const entry = nextTurnSelection && modelCatalog?.models.find(model => model.model === nextTurnSelection.model);
             if (entry && entry.supportedReasoningEfforts.includes(event.target.value)) setModelChoice({ model: entry.model, reasoningEffort: event.target.value });
           }}>
-          {fixedModelSelection
-            ? <option value={fixedModelSelection.reasoningEffort ?? ''}>{fixedModelSelection.reasoningEffort ?? 'Reasoning'}</option>
-            : modelCatalog && nextSessionSelection
-              ? (modelCatalog.models.find(entry => entry.model === nextSessionSelection.model)?.supportedReasoningEfforts ?? []).map(effort => <option key={effort} value={effort}>{effort}</option>)
-              : <option value="">Reasoning</option>}
+          {modelCatalog && nextTurnSelection
+            ? (modelCatalog.models.find(entry => entry.model === nextTurnSelection.model)?.supportedReasoningEfforts ?? []).map(effort => <option key={effort} value={effort}>{effort}</option>)
+            : <option value={recordedSelection?.reasoningEffort ?? ''}>{recordedSelection?.reasoningEffort ?? 'Reasoning'}</option>}
         </select></label>
         {folderSyncError ? <p role="alert">{folderSyncError}</p> : null}
         {nativeFolderError ? <p role="alert">{nativeFolderError}</p> : null}

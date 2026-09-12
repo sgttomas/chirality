@@ -8,20 +8,13 @@ import {
   RuntimeError,
   type Agent1RunRequest,
   type CreateSessionRequest,
-  type RuntimeCompatibilityIdentity,
-  type DelegatedApprovalDecisionRequest,
   type SessionTurnRequest
 } from "@chirality/runtime-contracts";
-import { observeRuntimeSupportProfileFromPayloadV2, type RuntimePayloadSupportObservationInputV2, type RuntimeSupportProfileV2 } from "@chirality/runtime-core/runtime-conformance-v2";
 import {
   resolveCliRuntimePaths,
   runtimeClientOptions,
   type CliRuntimePaths
 } from "./config.js";
-import {
-  LaunchAgentManager,
-  resolveRuntimeLaunchAgentOptions
-} from "./launch-agent.js";
 
 export interface CliIo {
   stdout(text: string): void;
@@ -29,19 +22,12 @@ export interface CliIo {
   readStdin(): Promise<string>;
 }
 
+/**
+ * The v1 Runtime surface the CLI drives. It is a compatibility surface on
+ * the App path: the App-owned Runtime service serves these routes, the CLI
+ * only addresses them over the same Unix socket and token file.
+ */
 export interface RuntimeCliClient {
-  startHostedLogin?(projectId: string, compatibility: RuntimeCompatibilityIdentity): Promise<unknown>;
-  hostedLoginStatus?(projectId: string): Promise<unknown>;
-  cancelHostedLogin?(projectId: string, compatibility: RuntimeCompatibilityIdentity): Promise<unknown>;
-  delegatedCapabilities?(projectId: string): Promise<unknown>;
-  pendingRuntimeApprovals?(projectId: string, scopeId?: string): Promise<unknown>;
-  decideRuntimeApproval?(projectId: string, requestId: string, compatibility: RuntimeCompatibilityIdentity, request: Omit<DelegatedApprovalDecisionRequest, "compatibility" | "preflight">): Promise<unknown>;
-  pendingDelegatedApprovals?(projectId: string, turnId: string): Promise<unknown>;
-  decideDelegatedApproval?(projectId: string, requestId: string, compatibility: RuntimeCompatibilityIdentity, request: Omit<DelegatedApprovalDecisionRequest, "compatibility" | "preflight">): Promise<unknown>;
-  runDelegatedTurn?(projectId: string, compatibility: RuntimeCompatibilityIdentity, request: {turnId: string; prompt: string; previousTurnId?: string; requestedRole?: "untyped"|"agent0"|"agent1"|"agent2"|"task"}): Promise<unknown>;
-  interruptDelegatedTurn?(projectId: string, turnId: string, compatibility: RuntimeCompatibilityIdentity): Promise<unknown>;
-  grantDelegatedConsent?(projectId: string, compatibility: RuntimeCompatibilityIdentity, request: {posture: "off"|"ask-per-destination"|"on"; approvedBy: string; explicitUserAct: boolean}): Promise<unknown>;
-
   daemonStatus(): Promise<unknown>;
   registerProject(request: {
     manifestPath: string;
@@ -67,21 +53,10 @@ export interface RuntimeCliClient {
   runAgent1(projectId: string, request: Agent1RunRequest): Promise<RuntimeStream>;
 }
 
-export interface RuntimeLaunchAgent {
-  install(executablePath: string): Promise<void>;
-  start(): Promise<void>;
-  stop(): Promise<void>;
-  status(): Promise<unknown>;
-  uninstall(): Promise<void>;
-}
-
 export interface CliDependencies {
   client: RuntimeCliClient;
-  launchAgent: RuntimeLaunchAgent;
   paths: CliRuntimePaths;
-  executablePath: string;
   readTextFile(path: string): Promise<string>;
-  measureRuntimeSupportProfile(input: RuntimePayloadSupportObservationInputV2): Promise<Readonly<RuntimeSupportProfileV2>>;
 }
 
 type ParsedArguments = {
@@ -112,7 +87,7 @@ function parseArguments(args: readonly string[]): ParsedArguments {
       continue;
     }
     const key = argument.slice(2);
-    if (key === "json" || key === "explicit-user-act") {
+    if (key === "json") {
       options.set(key, true);
       continue;
     }
@@ -279,6 +254,28 @@ async function readRunRequest(
   };
 }
 
+const USAGE = `Runtime CLI: daemon, project, models, session, run
+
+The Runtime service is started and stopped by the Chirality App; this CLI only
+addresses a running service over its Unix socket (CHIRALITY_USER_DATA,
+CHIRALITY_RUNTIME_SOCKET_PATH, CHIRALITY_RUNTIME_TOKEN_FILE).
+
+  daemon status
+  project register <manifest> [--approved-by ACTOR] [--approval-reference REF]
+  project list
+  project status --project ID
+  models list
+  models activate <model-id> [--approval-reference REF]
+  session create --project ID (--request-file PATH | --role ROLE --adapter ID --provider ID --model ID [--parent-session ID])
+  session list --project ID
+  session replay --project ID --session ID
+  session turn --project ID --session ID [--prompt TEXT | --request-file PATH]   (or the prompt on standard input)
+  session interrupt --project ID --session ID
+  run --project ID --agent ID [--brief-file PATH | --request-file PATH] [--local-model ID [--read-file PATH]] [--approval-reference REF]
+
+Add --json for single-line JSON output and NDJSON event streams.
+`;
+
 export async function runCli(
   argv: readonly string[],
   io: CliIo,
@@ -288,23 +285,7 @@ export async function runCli(
     const group = argv[0];
     if (!group) throw new CliUsageError("A command is required");
     if (group === "--help" || group === "help") {
-      io.stdout(`Runtime CLI: daemon, project, models, session, run
-
-Runtime approvals (require --project ID; works for governed managers and delegated turns):
-  approvals list [--scope-id ID]
-  approvals decide --request-id ID --scope-id ID --generation ID --decision allow|deny|acceptForSession --approved-by ACTOR --explicit-user-act
-
-Delegated runtime (all require --project ID):
-  delegated capabilities
-  delegated turn --turn-id ID --prompt TEXT [--role untyped|agent0|agent1|agent2|task] [--previous-turn ID]
-  delegated interrupt --turn-id ID
-  delegated consent --posture off|ask-per-destination|on --approved-by ACTOR --explicit-user-act
-  delegated approvals --turn-id ID
-  delegated decide-approval --request-id ID --turn-id ID --generation ID --decision allow|deny|acceptForSession --approved-by ACTOR --explicit-user-act
-  hosted-login start|status|cancel
-Mutations also require --compatibility ID --basis-sha256 SHA256.
-Login uses operator credentials. Approval records do not imply provider forwarding.
-`);
+      io.stdout(USAGE);
       return 0;
     }
     const action = group === "run" ? undefined : argv[1];
@@ -312,89 +293,11 @@ Login uses operator credentials. Approval records do not imply provider forwardi
     const args = parseArguments(rest);
     const json = flag(args, "json");
 
-    if (group === "release" && action === "measure-support") {
-      const path = requiredOption(args, "recipe");
-      let recipe: unknown;
-      try { recipe = JSON.parse(await deps.readTextFile(path)); } catch { throw new CliUsageError("Release support recipe must be valid JSON"); }
-      if (!recipe || typeof recipe !== "object" || Array.isArray(recipe)) throw new CliUsageError("Release support recipe must be an object");
-      const value = recipe as Omit<RuntimePayloadSupportObservationInputV2, "embeddedRuntime">;
-      const embeddedRuntime = { electron: process.versions.electron ?? "", node: process.versions.node, modules: process.versions.modules ?? "", napi: process.versions.napi ?? "", architecture: process.arch };
-      printJson(io, await deps.measureRuntimeSupportProfile({ ...value, embeddedRuntime }), true); return 0;
-    }
-    if (group === "approvals") {
-      const projectId = requiredOption(args, "project");
-      let result: unknown;
-      if (action === "list") {
-        if (!deps.client.pendingRuntimeApprovals) throw new RuntimeError("ENGINE_UNAVAILABLE", "Runtime approval API unavailable", 503);
-        result = await deps.client.pendingRuntimeApprovals(projectId, option(args, "scope-id"));
-      } else if (action === "decide") {
-        if (!deps.client.decideRuntimeApproval) throw new RuntimeError("ENGINE_UNAVAILABLE", "Runtime approval API unavailable", 503);
-        const decision = requiredOption(args, "decision");
-        if (!["allow", "deny", "acceptForSession"].includes(decision) || !flag(args, "explicit-user-act")) throw new CliUsageError("Approval decision requires a known decision and --explicit-user-act");
-        result = await deps.client.decideRuntimeApproval(projectId, requiredOption(args, "request-id"), { compatibilityIdentity: requiredOption(args, "compatibility"), contractBasisSha256: requiredOption(args, "basis-sha256") }, { turnId: requiredOption(args, "scope-id"), workerGeneration: requiredOption(args, "generation"), decision: decision as "allow" | "deny" | "acceptForSession", approvedBy: requiredOption(args, "approved-by"), explicitUserAct: true });
-      } else throw new CliUsageError("approvals requires list or decide");
-      printJson(io, result, json); return 0;
-    }
-
-    if (group === "hosted-login" || group === "delegated") {
-      const projectId = requiredOption(args, "project");
-      const compatibility = (): RuntimeCompatibilityIdentity => ({ compatibilityIdentity: requiredOption(args, "compatibility"), contractBasisSha256: requiredOption(args, "basis-sha256") });
-      const missing = (): never => { throw new RuntimeError("ENGINE_UNAVAILABLE", "Runtime client does not support this operation", 503); };
-      let result: unknown;
-      if (group === "hosted-login") {
-        if (action === "start") result = await (deps.client.startHostedLogin?.(projectId, compatibility()) ?? missing());
-        else if (action === "status") result = await (deps.client.hostedLoginStatus?.(projectId) ?? missing());
-        else if (action === "cancel") result = await (deps.client.cancelHostedLogin?.(projectId, compatibility()) ?? missing());
-        else throw new CliUsageError("hosted-login requires start, status, or cancel");
-      } else if (action === "capabilities") result = await (deps.client.delegatedCapabilities?.(projectId) ?? missing());
-      else if (action === "turn") {
-        const prompt = option(args, "prompt") ?? await io.readStdin();
-        const requestedRole = option(args, "role") ?? "untyped";
-        if (!["untyped", "agent0", "agent1", "agent2", "task"].includes(requestedRole)) throw new CliUsageError("Unknown runtime role");
-        result = await (deps.client.runDelegatedTurn?.(projectId, compatibility(), { turnId: requiredOption(args, "turn-id"), prompt, ...(option(args, "previous-turn") ? { previousTurnId: option(args, "previous-turn") } : {}), requestedRole: requestedRole as "untyped"|"agent0"|"agent1"|"agent2"|"task" }) ?? missing());
-      } else if (action === "interrupt") result = await (deps.client.interruptDelegatedTurn?.(projectId, requiredOption(args, "turn-id"), compatibility()) ?? missing());
-      else if (action === "approvals") result = await (deps.client.pendingDelegatedApprovals?.(projectId, requiredOption(args, "turn-id")) ?? missing());
-      else if (action === "decide-approval") {
-        const decision = requiredOption(args, "decision");
-        if (!["allow", "deny", "acceptForSession"].includes(decision) || !flag(args, "explicit-user-act")) throw new CliUsageError("Approval decision requires a known decision and --explicit-user-act");
-        result = await (deps.client.decideDelegatedApproval?.(projectId, requiredOption(args, "request-id"), compatibility(), { turnId: requiredOption(args, "turn-id"), workerGeneration: requiredOption(args, "generation"), decision: decision as "allow"|"deny"|"acceptForSession", approvedBy: requiredOption(args, "approved-by"), explicitUserAct: true }) ?? missing());
-      } else if (action === "consent") {
-        const posture = requiredOption(args, "posture");
-        if (!["off", "ask-per-destination", "on"].includes(posture) || !flag(args, "explicit-user-act")) throw new CliUsageError("Consent requires a known posture and --explicit-user-act");
-        result = await (deps.client.grantDelegatedConsent?.(projectId, compatibility(), { posture: posture as "off"|"ask-per-destination"|"on", approvedBy: requiredOption(args, "approved-by"), explicitUserAct: true }) ?? missing());
-      } else throw new CliUsageError("delegated requires capabilities, turn, interrupt, consent, approvals, or decide-approval");
-      printJson(io, result, json);
-      return 0;
-    }
-
     if (group === "daemon") {
-      if (action === "install") {
-        await deps.launchAgent.install(
-          option(args, "executable") ?? deps.executablePath
-        );
-        printJson(io, { installed: true }, json);
-      } else if (action === "start") {
-        await deps.launchAgent.start();
-        printJson(io, { started: true }, json);
-      } else if (action === "stop") {
-        await deps.launchAgent.stop();
-        printJson(io, { stopped: true }, json);
-      } else if (action === "status") {
-        printJson(
-          io,
-          {
-            launchAgent: await deps.launchAgent.status(),
-            daemon: await deps.client.daemonStatus()
-          },
-          json
-        );
-      } else if (action === "uninstall") {
-        await deps.launchAgent.uninstall();
-        printJson(io, { uninstalled: true }, json);
+      if (action === "status") {
+        printJson(io, await deps.client.daemonStatus(), json);
       } else {
-        throw new CliUsageError(
-          "daemon requires install, start, stop, status, or uninstall"
-        );
+        throw new CliUsageError("daemon requires status");
       }
       return 0;
     }
@@ -557,25 +460,7 @@ export function createDefaultCliDependencies(): CliDependencies {
   return {
     paths,
     client: new RuntimeClient(runtimeClientOptions(paths)),
-    // The job posture comes from the environment, not from a hard-coded default.
-    // Constructing this with no options meant two things: `daemon install` could
-    // never render anything but the historical `crash-only` plist with no pinned
-    // environment (so the CLI path silently reinstated the defect the in-app
-    // install fixes), and every verb resolved to the default label — so an
-    // otherwise fully isolated environment still addressed, and could have
-    // booted out or deleted, an operator's real job.
-    launchAgent: new LaunchAgentManager(
-      {
-        launchAgentsDirectory: paths.launchAgentsDirectory,
-        runtimeDirectory: paths.runtimeDirectory
-      },
-      undefined,
-      undefined,
-      resolveRuntimeLaunchAgentOptions(process.env, paths.userData)
-    ),
-    executablePath: process.execPath,
-    readTextFile: (path) => readFile(path, "utf8"),
-    measureRuntimeSupportProfile: (input) => observeRuntimeSupportProfileFromPayloadV2(input)
+    readTextFile: (path) => readFile(path, "utf8")
   };
 }
 

@@ -5,6 +5,15 @@
 > is the accepted placement; `AgentEnginePort` is historical design naming,
 > not a required live interface name.
 
+> **D-GOV-43 (A2) note, 2026-09-12:** Codex is the only engine. The adapter
+> boundary is the Runtime service's Unix-socket API: the App starts, owns and
+> stops the service as a child process, and the service owns the stock,
+> lockfile-pinned `codex app-server`. The App-local `TurnEngine`, first-adapter
+> (Claude Agent SDK), stub and Anthropic paths described below are
+> compatibility history under the Codex-only rule. Public event names are the
+> extensible upstream-preserving representation of `docs/SPEC.md` §11, not
+> the eight-name `UIEvent` set.
+
 ## Scope
 
 This contract defines Chirality's product-owned turn boundary for harness runtime adapters.
@@ -25,17 +34,24 @@ unless explicitly mapped into Chirality-owned records.
 
 The product boundary is represented by `frontend/packages/harness-contract/src/agent-engine-port.ts`.
 
-Required behavior:
+Required behavior (revised under D-GOV-43 A2):
 
-- `startTurn(input)` yields only the existing `UIEvent` stream names:
-  `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`,
-  `turn:error`, `process:exit`, and `harness:event`.
-- `interrupt(sessionId)` attempts to interrupt the active turn and emits terminal process
-  evidence through the adapter.
-- SDK/provider identifiers may be stored as metadata fields such as `sdkSessionId` or
-  `sdkClaudeCodeVersion`; they do not rename public UI events.
-- `harness:event` is a provider-neutral passthrough for redacted `HarnessEvent` records;
-  it does not expose SDK/provider event names as product-owned public names.
+- `startTurn(input)` yields the extensible event representation: upstream App
+  Server method names, identifiers and payloads preserved, with normalized
+  views for known items (tool activity, file changes, reasoning summaries,
+  plan, sub-agents, usage, approvals, questions). The former fixed
+  `UIEvent` names (`session:init`, `chat:delta`, `chat:complete`,
+  `tool:result`, `session:complete`, `turn:error`, `process:exit`,
+  `harness:event`) are compatibility history. Unfamiliar notifications remain
+  inspectable and are never dropped; every server request is answered, an
+  unfamiliar one with a JSON-RPC error and a visible "unsupported request"
+  outcome.
+- `interrupt(sessionId)` is explicit Stop: it interrupts the turn the Runtime
+  service owns and yields an interrupted terminal outcome. A closed browser
+  subscription never interrupts; the turn route's cancel unsubscribes.
+- Codex thread identifiers are stored in the App's thread index keyed by
+  thread id; they do not rename public events.
+- Redacted `HarnessEvent` records remain provider-neutral persisted evidence.
 
 ## TurnEngine
 
@@ -325,7 +341,8 @@ The current key-aware default remains bounded to the first Anthropic / Claude Ag
 adapter and ongoing conformance evidence. Future adapter or default semantics changes
 cannot proceed until they pass:
 
-- stable UI event name checks,
+- event representation checks (upstream names, identifiers and payloads
+  preserved; normalized views; unfamiliar items inspectable),
 - provider-neutral public type checks,
 - SDK options isolation checks,
 - SDK message mapping checks,

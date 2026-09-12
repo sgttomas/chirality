@@ -2,6 +2,7 @@
 
 **Status:** vNext governance rewrite aligned to the approved `docs/PRD.md` dated 2026-05-20
 **Product:** Chirality desktop harness and bundled agent operating system
+**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: browser event terms and the shared-runtime vocabulary revised to the application-owned Runtime service; residency terms retired
 
 This document is the authoritative vocabulary reference for Chirality App. It defines canonical entities, stable identifier formats, enumerated values, agent roles, runtime vocabulary, and type targets used by governance documents, agent instructions, implementation code, validation scripts, and release runbooks.
 
@@ -402,20 +403,23 @@ Later event categories:
 - `coordination.acknowledged`
 - `runtime.mirror.error`
 
-### 7.4 Browser `UIEvent` Terms
+### 7.4 Browser Event Terms
 
-Browser-facing turn streams use compact UI events. Provider/SDK messages are not the UI contract.
+Revised under D-GOV-43 (A2), 2026-09-12. The browser-facing turn stream is
+loopback SSE through the in-process Next server, observing a turn the
+Runtime service owns. It carries an extensible representation that preserves
+upstream App Server method names, identifiers and payloads, with normalized
+views for known items: tool activity, file changes, reasoning summaries,
+plan, sub-agents, usage, approvals and questions. Unfamiliar notifications
+remain inspectable in a generic card and the event log. Every server request
+is answered: familiar requests through cards or the recorded policy;
+unfamiliar requests with a JSON-RPC error and a visible "unsupported request"
+outcome, never an implied approval.
 
-SSE event names:
-
-- `session:init`
-- `chat:delta`
-- `chat:complete`
-- `tool:result`
-- `session:complete`
-- `turn:error`
-- `process:exit`
-- `harness:event`
+The former fixed eight-name `UIEvent` set (`session:init`, `chat:delta`,
+`chat:complete`, `tool:result`, `session:complete`, `turn:error`,
+`process:exit`, `harness:event`) is superseded and retained only as
+compatibility history.
 
 ---
 
@@ -719,12 +723,15 @@ These labels help separate evidence from inference and prevent plausible inventi
 
 | Term | Meaning |
 |---|---|
-| **Runtime Daemon** | The one per-user headless Chirality process that exclusively owns engines, credentials, sessions, delegation, tools, turn locks, interruption, and model residency. |
-| **Runtime Client** | Desktop, CLI, backend, or embedded UI using the authenticated Unix-socket API without constructing its own runtime. |
+| **Runtime Service** | Revised under D-GOV-43 (A2): the simplified Runtime host that the App starts, owns and stops as a child process, speaking its existing Unix-socket API with a per-launch client token, and owning the stock, lockfile-pinned `codex app-server` child, the sessions, delegation, tools, the active turn and interruption. It replaces the per-user Runtime Daemon; credentials are custodied by Codex. |
+| **Runtime Client** | The App, or another socket-API client such as the CLI or PEC (compatibility unverified), using the Unix-socket API without constructing its own runtime. |
+| **PolicySelection** | The user's per-project approval policy (`untrusted`, `on-request`, `on-failure`, `never`) and sandbox mode (`read-only`, `workspace-write`, `danger-full-access`) taken from Codex's own options, with per-turn override; recommended default `on-request` with `workspace-write`. `permissionMode` maps onto it and grants nothing by itself. |
+| **ApprovalRecord** | The recorded outcome of one server request (approval, question, dynamic tool call or elicitation): request identity, the response given or the policy that answered it, and any "unsupported request" refusal. |
+| **Thread Index Entry** | The App session store's record for one chat keyed by Codex thread id: title, role, plan revisions, workflow selections, `PolicySelection` and evidence pointers. The sidebar shows the App's index, not every thread in the shared store. |
 | **Project Manifest** | Tracked `chirality.project/v1` registration declaration containing stable project identity and relative authority references, never secrets or machine-specific absolute paths. |
 | **Project Registration** | Machine-local binding of a manifest hash to its resolved checkout root, client credential, and approval metadata. It is operational state, not project authority. |
-| **Residency Epoch** | Monotonic identifier for one verified primary-local-model residency state, referenced by every local session and AgentRun. |
-| **Primary Local LLM** | The sole model the daemon currently manages for local Pi turns; helper, embedding, and reranking models are outside automatic unload authority. |
-| **NO_MODEL** | Fail-closed residency state after no model is active or a prior unload succeeded and target load failed. |
-| **Required Delegation** | A run contract requiring its Agent 1 to launch and review a specified bounded Agent 2 child; absence yields `REQUIRED_DELEGATION_MISSING`. |
+| **Residency Epoch** | RETIRED under D-GOV-43 item 13 (2026-09-12) with the residency requirements; historical meaning: monotonic identifier for one verified primary-local-model residency state. |
+| **Primary Local LLM** | RETIRED under D-GOV-43 item 13; local models, when taken up, are Codex model providers. |
+| **NO_MODEL** | RETIRED under D-GOV-43 item 13; historical fail-closed residency state. |
+| **Required Delegation** | Historical Pi/oMLX pilot contract; under D-GOV-43 delegation uses Codex native sub-agents through the upstream `[agents]` configuration, and S-5 evidences that the child received the intended role instructions. |
 | **Actual Model Attribution** | Recorded adapter/provider/model identity observed for a run. It does not prescribe a durable model-to-role mapping. |

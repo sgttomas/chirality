@@ -1,5 +1,6 @@
 # Root Notice — D-GOV-35 Delegated-Harness-Native Class
 
+**Read with D-GOV-43 (2026-09-12).** D-GOV-35's recognition of the delegated-harness-native class stands (D-GOV-43 item 10). Its "hard outer envelope" is re-expressed as the user-chosen approval policy and sandbox mode of D-GOV-43 item 4, taken from Codex's own options and recorded in evidence; delegation uses the upstream `[agents]` configuration and the child receives the intended role instructions (S-5). No other part of this notice is superseded. Application record `execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`. The text below is preserved unchanged.
 Status: `ROUTED 2026-08-22 — COORDINATION, NOT AUTHORITY`
 
 Source decision:

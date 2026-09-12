@@ -3,6 +3,7 @@ import { describeFailureDetails } from "./retirement-failure.js";
 import { readdir, readFile, realpath, stat } from "node:fs/promises";
 import { basename, join, relative, resolve } from "node:path";
 import {
+  CODEX_ENGINE_ADAPTER_ID,
   HarnessError,
   HOSTED_MODEL_ID_PATTERN,
   HOSTED_REASONING_EFFORT_PATTERN,
@@ -47,6 +48,30 @@ export interface PermissionDecisionPort {
     sessionId: string,
     request: PermissionDecisionRequest
   ): Promise<void>;
+}
+
+/** Narrow view of the delegated runtime's approval answer; declared here so the broker compiles against the method name only. */
+export interface DelegatedApprovalAnswerPort {
+  answerApprovalByToolUseId(projectId: string, sessionId: string, toolUseId: string, verdict: "allow" | "deny" | "allowForSession"): Promise<unknown>;
+}
+
+/**
+ * Permission broker for the stock Codex composition: a `PermissionDecisionRequest`
+ * names the tool-use id (the Codex item id carried by `tool.permission`) and the
+ * broker forwards the verdict to the delegated runtime's approval answer.
+ */
+export function createDelegatedPermissionBroker(port: DelegatedApprovalAnswerPort): PermissionDecisionPort {
+  return {
+    async submit(projectId, sessionId, request) {
+      if (typeof request.requestId !== "string" || request.requestId.trim() === "") {
+        throw new RuntimeError("INVALID_REQUEST", "Permission decision requires the tool-use id as requestId", 400, { reason: "PERMISSION_REQUEST_ID_INVALID" });
+      }
+      if (request.decision !== "allow" && request.decision !== "deny") {
+        throw new RuntimeError("INVALID_REQUEST", "Permission decision must be allow or deny", 400, { reason: "PERMISSION_DECISION_INVALID" });
+      }
+      await port.answerApprovalByToolUseId(projectId, sessionId, request.requestId, request.decision);
+    }
+  };
 }
 
 export interface Agent1RunPort {
@@ -201,7 +226,9 @@ export class RuntimeService {
         403
       );
     }
-    if (!project.enabledAdapterIds.includes(engineSelection.adapterId)) {
+    // Codex is the sole engine (D-GOV-43); manifests written before the
+    // re-platform list other adapters and must not lock the user out.
+    if (engineSelection.adapterId !== CODEX_ENGINE_ADAPTER_ID && !project.enabledAdapterIds.includes(engineSelection.adapterId)) {
       throw new RuntimeError(
         "DELEGATION_POLICY_VIOLATION",
         `Engine adapter is not enabled for project ${request.projectId}: ${engineSelection.adapterId}`,
@@ -295,6 +322,27 @@ export class RuntimeService {
       }
     }
     const engine = this.engines.resolve(session.engineSelection);
+    if (engine.descriptor.boot === "none") {
+      // No boot turn: the engine keeps a durable provider thread per session
+      // and starts it with the first real turn. Readiness is recorded now.
+      const bootedAt = new Date().toISOString();
+      const fingerprint = this.runtimeFingerprint(engine, session.engineSelection);
+      const bootFingerprint = sha256(JSON.stringify([project.manifestHash, session.persona, session.mode, fingerprint]));
+      const updated = { ...session, bootFingerprint, runtimeFingerprint: fingerprint, bootedAt };
+      await this.sessions.update(updated);
+      return {
+        session: updated,
+        boot: {
+          ...(session.engineSessionId === undefined ? {} : { engineSessionId: session.engineSessionId }),
+          adapterId: session.engineSelection.adapterId,
+          providerId: session.engineSelection.providerId,
+          model: session.engineSelection.model,
+          bootFingerprint,
+          runtimeFingerprint: fingerprint,
+          bootedAt
+        }
+      };
+    }
     const turnId = randomUUID();
     const resolvedContext = session.schemaVersion === "chirality.session/v3" ? await this.methods.resolveForTurn(projectId, session) : undefined;
     const requestedTools = opts.tools ?? [];
@@ -461,29 +509,7 @@ export class RuntimeService {
       await this.sessions.persistEvent(projectId, event);
     }
     const bootedAt = new Date().toISOString();
-    const fingerprint = {
-      schemaVersion: "chirality.runtime-fingerprint/v2",
-      personaComposerVersion: "shared-runtime/v1",
-      permissionPolicyVersion: "shared-runtime/v1",
-      managedDelegationPolicyVersion: "shared-runtime/v1",
-      subagentPolicyVersion: "shared-runtime/v1",
-      toolRegistryVersion: "shared-runtime/v1",
-      sdkPackageVersion: engine.descriptor.packageVersion ?? "embedded",
-      engineAdapter: {
-        adapterId,
-        providerId,
-        model,
-        ...(engine.descriptor.packageName === undefined
-          ? {}
-          : { packageName: engine.descriptor.packageName }),
-        ...(engine.descriptor.packageVersion === undefined
-          ? {}
-          : { packageVersion: engine.descriptor.packageVersion })
-      },
-      mcpServers: [],
-      fingerprintSha256: ""
-    };
-    fingerprint.fingerprintSha256 = sha256(JSON.stringify(fingerprint));
+    const fingerprint = this.runtimeFingerprint(engine, { adapterId, providerId, model });
     const bootFingerprint = sha256(
       JSON.stringify([project.manifestHash, session.persona, session.mode, fingerprint])
     );
@@ -527,6 +553,34 @@ export class RuntimeService {
           : { claudeSessionId: updated.claudeSessionId })
       }
     };
+  }
+
+  private runtimeFingerprint(engine: ReturnType<EngineRegistry["resolve"]>, attribution: { adapterId: string; providerId: string; model: string }): SessionBootResponse["boot"]["runtimeFingerprint"] {
+    const { adapterId, providerId, model } = attribution;
+    const fingerprint = {
+      schemaVersion: "chirality.runtime-fingerprint/v2",
+      personaComposerVersion: "shared-runtime/v1",
+      permissionPolicyVersion: "shared-runtime/v1",
+      managedDelegationPolicyVersion: "shared-runtime/v1",
+      subagentPolicyVersion: "shared-runtime/v1",
+      toolRegistryVersion: "shared-runtime/v1",
+      sdkPackageVersion: engine.descriptor.packageVersion ?? "embedded",
+      engineAdapter: {
+        adapterId,
+        providerId,
+        model,
+        ...(engine.descriptor.packageName === undefined
+          ? {}
+          : { packageName: engine.descriptor.packageName }),
+        ...(engine.descriptor.packageVersion === undefined
+          ? {}
+          : { packageVersion: engine.descriptor.packageVersion })
+      },
+      mcpServers: [],
+      fingerprintSha256: ""
+    };
+    fingerprint.fingerprintSha256 = sha256(JSON.stringify(fingerprint));
+    return fingerprint;
   }
 
   async listAgents(
@@ -584,9 +638,9 @@ export class RuntimeService {
     await this.permissions.submit(projectId, sessionId, request);
   }
 
-  async interruptSession(projectId: string, sessionId: string): Promise<void> {
+  async interruptSession(projectId: string, sessionId: string, reason?: string): Promise<void> {
     await Promise.all([
-      this.turns.interrupt(projectId, sessionId),
+      this.turns.interrupt(projectId, sessionId, reason),
       this.agent1Runs?.interrupt?.(projectId, sessionId) ?? Promise.resolve()
     ]);
   }

@@ -1,23 +1,16 @@
-import { mkdtemp, readFile, rm, stat, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import type { RuntimeStream } from "@chirality/runtime-client";
 import { RuntimeError } from "@chirality/runtime-contracts";
 import type { RuntimeSseFrame } from "@chirality/runtime-contracts";
-import type { RuntimePayloadSupportObservationInputV2, RuntimeSupportProfileV2 } from "@chirality/runtime-core/runtime-conformance-v2";
-import {
-  LaunchAgentManager,
-  RUNTIME_LAUNCH_AGENT_LABEL,
-  renderRuntimeLaunchAgent,
-  resolveRuntimeLaunchAgentOptions
-} from "../src/launch-agent.js";
+import { resolveCliRuntimePaths } from "../src/config.js";
 import {
   runCli,
   type CliDependencies,
   type CliIo,
-  type RuntimeCliClient,
-  type RuntimeLaunchAgent
+  type RuntimeCliClient
 } from "../src/cli.js";
 
 const temporaryDirectories: string[] = [];
@@ -54,21 +47,6 @@ function fakeClient(
   };
 }
 
-function fakeLaunchAgent(
-  overrides: Partial<RuntimeLaunchAgent> = {}
-): RuntimeLaunchAgent {
-  return {
-    async install() {},
-    async start() {},
-    async stop() {},
-    async status() {
-      return { installed: false, loaded: false };
-    },
-    async uninstall() {},
-    ...overrides
-  };
-}
-
 function io(stdin = ""): {
   io: CliIo;
   stdout: string[];
@@ -93,23 +71,16 @@ function io(stdin = ""): {
   };
 }
 
-function dependencies(
-  client: RuntimeCliClient,
-  launchAgent: RuntimeLaunchAgent = fakeLaunchAgent()
-): CliDependencies {
+function dependencies(client: RuntimeCliClient): CliDependencies {
   return {
     client,
-    launchAgent,
     paths: {
       userData: "/tmp/chirality-test",
       runtimeDirectory: "/tmp/chirality-test/runtime",
       socketPath: "/tmp/chirality-test/runtime/control.sock",
-      tokenFile: "/tmp/chirality-test/runtime/operator.token",
-      launchAgentsDirectory: "/tmp/chirality-test/LaunchAgents"
+      tokenFile: "/tmp/chirality-test/runtime/operator.token"
     },
-    executablePath: "/Applications/Chirality.app/Contents/MacOS/Chirality",
-    readTextFile: (path) => readFile(path, "utf8"),
-    measureRuntimeSupportProfile: async () => { throw new Error("Unexpected support measurement"); }
+    readTextFile: (path) => readFile(path, "utf8")
   };
 }
 
@@ -123,15 +94,6 @@ afterEach(async () => {
 });
 
 describe("chirality CLI", () => {
-  it("measures a frozen pre-governance payload through the protected Runtime command", async () => {
-    const output = io(), recipe = { resourcesRoot: "/Applications/Chirality.app/Contents/Resources", payloadEntries: [{ relativePath: "app.asar", type: "file", size: 3, sha256: "a".repeat(64) }], supplierVersion: "1.2.3", appServerProtocolDigest: "b".repeat(64), immutableSystemRoots: ["/System"], nativePolicyIdentityVersion: 11 };
-    const measureRuntimeSupportProfile = vi.fn(async (input: RuntimePayloadSupportObservationInputV2) => ({ schema: "chirality-runtime-support-profile/v2", profileDigest: "c".repeat(64) }) as RuntimeSupportProfileV2);
-    const deps = dependencies(fakeClient()); deps.readTextFile = async path => { expect(path).toBe("/private/recipe.json"); return JSON.stringify(recipe); }; deps.measureRuntimeSupportProfile = measureRuntimeSupportProfile;
-    expect(await runCli(["release", "measure-support", "--recipe", "/private/recipe.json"], output.io, deps)).toBe(0);
-    expect(measureRuntimeSupportProfile).toHaveBeenCalledWith(expect.objectContaining({ ...recipe, embeddedRuntime: { electron: process.versions.electron ?? "", node: process.versions.node, modules: process.versions.modules ?? "", napi: process.versions.napi ?? "", architecture: process.arch } }));
-    expect(JSON.parse(output.stdout.join(""))).toMatchObject({ schema: "chirality-runtime-support-profile/v2", profileDigest: "c".repeat(64) });
-  });
-
   it("runs an Agent 1 request from a brief file and emits UIEvent NDJSON", async () => {
     const root = await mkdtemp(join(tmpdir(), "chirality-cli-run-"));
     temporaryDirectories.push(root);
@@ -268,6 +230,43 @@ describe("chirality CLI", () => {
     );
   });
 
+  it("registers and lists projects through the v1 client with the JSON output convention", async () => {
+    const registered = { project: { projectId: "app-dev" }, warnings: [] };
+    const registerProject = vi.fn(async () => registered);
+    const listProjects = vi.fn(async () => [{ project: { projectId: "app-dev" }, manifestDrift: false, adaptersEnabled: true }]);
+    const client = fakeClient({ registerProject, listProjects });
+
+    const register = io();
+    expect(await runCli(["project", "register", "/projects/app-dev/chirality.project.json", "--json"], register.io, dependencies(client))).toBe(0);
+    expect(registerProject).toHaveBeenCalledWith({
+      manifestPath: "/projects/app-dev/chirality.project.json",
+      approvedBy: "local-operator",
+      approvalReference: "cli-explicit-registration"
+    });
+    expect(register.stdout).toEqual([`${JSON.stringify(registered)}\n`]);
+
+    const list = io();
+    expect(await runCli(["project", "list"], list.io, dependencies(client))).toBe(0);
+    expect(listProjects).toHaveBeenCalledOnce();
+    expect(JSON.parse(list.stdout.join(""))).toEqual([{ project: { projectId: "app-dev" }, manifestDrift: false, adaptersEnabled: true }]);
+  });
+
+  it("reports the daemon status without any job-management surface", async () => {
+    const status = { daemonId: "daemon-1", startedAt: "2026-09-12T00:00:00.000Z" };
+    const daemonStatus = vi.fn(async () => status);
+    const output = io();
+
+    expect(await runCli(["daemon", "status", "--json"], output.io, dependencies(fakeClient({ daemonStatus })))).toBe(0);
+    expect(daemonStatus).toHaveBeenCalledOnce();
+    expect(output.stdout).toEqual([`${JSON.stringify(status)}\n`]);
+
+    for (const action of ["install", "start", "stop", "uninstall"]) {
+      const retired = io();
+      expect(await runCli(["daemon", action], retired.io, dependencies(fakeClient()))).toBe(2);
+      expect(retired.stderr.join("")).toContain("daemon requires status");
+    }
+  });
+
   it("has no credential command surface", async () => {
     const output = io();
     const client = fakeClient({ listProjects: vi.fn() });
@@ -281,6 +280,22 @@ describe("chirality CLI", () => {
     expect(exitCode).toBe(2);
     expect(output.stderr.join("")).toContain("Unknown command");
     expect(client.listProjects).not.toHaveBeenCalled();
+  });
+
+  it("no longer offers the retired v2 login, delegated, approval and release commands", async () => {
+    for (const argv of [
+      ["hosted-login", "start", "--project", "project"],
+      ["delegated", "turn", "--project", "project", "--turn-id", "turn-one", "--prompt", "hello"],
+      ["approvals", "list", "--project", "project"],
+      ["release", "measure-support", "--recipe", "/private/recipe.json"]
+    ]) {
+      const output = io();
+      const client = fakeClient({ daemonStatus: vi.fn(), listProjects: vi.fn() });
+      expect(await runCli(argv, output.io, dependencies(client))).toBe(2);
+      expect(output.stderr.join("")).toContain("Unknown command");
+      expect(client.daemonStatus).not.toHaveBeenCalled();
+      expect(client.listProjects).not.toHaveBeenCalled();
+    }
   });
 
   it("does not reject ordinary request paths or model IDs containing credential-like words", async () => {
@@ -313,416 +328,53 @@ describe("chirality CLI", () => {
     expect(runAgent1).toHaveBeenCalledOnce();
   });
 
-  it("renders and installs a private opt-in LaunchAgent without a model argument", async () => {
-    const root = await mkdtemp(join(tmpdir(), "chirality-launch-agent-"));
-    temporaryDirectories.push(root);
-    const launchAgentsDirectory = join(root, "LaunchAgents");
-    const runtimeDirectory = join(root, "user-data", "runtime");
-    const calls: Array<{ executable: string; args: readonly string[] }> = [];
-    const manager = new LaunchAgentManager(
-      { launchAgentsDirectory, runtimeDirectory },
-      async (executable, args) => {
-        calls.push({ executable, args });
-        return { exitCode: 0, stdout: "ok", stderr: "" };
-      },
-      501
-    );
-    const executablePath = "/Applications/Chirality.app/Contents/MacOS/Chirality";
-
-    await manager.install(executablePath);
-    const source = await readFile(manager.plistPath, "utf8");
-    const metadata = await stat(manager.plistPath);
-    const runtimeMetadata = await stat(runtimeDirectory);
-    const logsMetadata = await stat(join(runtimeDirectory, "logs"));
-    expect(metadata.mode & 0o777).toBe(0o600);
-    expect(runtimeMetadata.mode & 0o777).toBe(0o700);
-    expect(logsMetadata.mode & 0o777).toBe(0o700);
-    expect(source).toContain(`<string>${RUNTIME_LAUNCH_AGENT_LABEL}</string>`);
-    expect(source).toContain("<string>--runtime-daemon</string>");
-    expect(source).toContain("<key>MachServices</key>");
-    expect(source).toContain("<key>com.chirality.app.runtime.account-host</key>");
-    expect(source).toContain("<key>RunAtLoad</key>");
-    expect(source).toContain("<key>KeepAlive</key>");
-    expect(source).toContain("<key>SuccessfulExit</key>");
-    expect(source).toContain("<false/>");
-    expect(source).toContain("<key>ThrottleInterval</key>");
-    expect(source).not.toMatch(/model|activate|omlx/iu);
-
-    // `bootstrap` on a fresh job already starts it under RunAtLoad, so no
-    // kickstart follows: a second launch inside ThrottleInterval would stall the
-    // call for the rest of the window and double the job's launch count.
-    await manager.start();
-    expect(calls).toEqual([
-      {
-        executable: "launchctl",
-        args: ["bootstrap", "gui/501", manager.plistPath]
-      }
-    ]);
-  });
-
-  it("escapes executable and log paths in the LaunchAgent plist", () => {
-    const source = renderRuntimeLaunchAgent({
-      executablePath: "/Applications/A&B<Dev>.app/Chirality",
-      runtimeDirectory: "/tmp/A&B"
-    });
-    expect(source).toContain("A&amp;B&lt;Dev&gt;");
-    expect(source).toContain("/tmp/A&amp;B/logs");
-  });
-
-  it("renders KeepAlive=true so launchd also restarts after a clean exit", () => {
-    const source = renderRuntimeLaunchAgent({
-      executablePath: "/Applications/Chirality.app/Chirality",
-      runtimeDirectory: "/tmp/keep-alive-always",
-      keepAlive: "always"
-    });
-    expect(source).toContain("<key>KeepAlive</key>\n  <true/>");
-    // The crash-only semaphore must be gone: it is precisely what suppressed a
-    // relaunch after an externally induced `exit(0)`.
-    expect(source).not.toContain("<key>SuccessfulExit</key>");
-  });
-
-  it("omits KeepAlive entirely when restarts are not wanted", () => {
-    const source = renderRuntimeLaunchAgent({
-      executablePath: "/Applications/Chirality.app/Chirality",
-      runtimeDirectory: "/tmp/keep-alive-never",
-      keepAlive: "never"
-    });
-    expect(source).not.toContain("<key>KeepAlive</key>");
-  });
-
-  it("pins EnvironmentVariables, RunAtLoad and ThrottleInterval when supplied", () => {
-    const source = renderRuntimeLaunchAgent({
-      executablePath: "/Applications/Chirality.app/Chirality",
-      runtimeDirectory: "/tmp/env-pinning",
-      runAtLoad: false,
-      throttleIntervalSeconds: 4,
-      environmentVariables: {
-        CHIRALITY_USER_DATA: "/tmp/A&B/user-data",
-        OTHER: "value"
-      }
-    });
-    expect(source).toContain("<key>RunAtLoad</key>\n  <false/>");
-    expect(source).toContain("<key>ThrottleInterval</key>\n  <integer>4</integer>");
-    expect(source).toContain("<key>EnvironmentVariables</key>");
-    expect(source).toContain("<key>CHIRALITY_USER_DATA</key>");
-    // Values reach the plist through the same XML escaping as every other path.
-    expect(source).toContain("<string>/tmp/A&amp;B/user-data</string>");
-    expect(source).toContain("<key>OTHER</key>");
-  });
-
-  it("omits the EnvironmentVariables block when no variables are pinned", () => {
-    const source = renderRuntimeLaunchAgent({
-      executablePath: "/Applications/Chirality.app/Chirality",
-      runtimeDirectory: "/tmp/no-env"
-    });
-    expect(source).not.toContain("<key>EnvironmentVariables</key>");
-  });
-
-  it("keeps the historical plist as the default so existing callers are unchanged", () => {
-    const source = renderRuntimeLaunchAgent({
-      executablePath: "/Applications/Chirality.app/Chirality",
-      runtimeDirectory: "/tmp/defaults"
-    });
-    expect(source).toContain(`<string>${RUNTIME_LAUNCH_AGENT_LABEL}</string>`);
-    expect(source).toContain("<key>RunAtLoad</key>\n  <true/>");
-    expect(source).toContain("<key>KeepAlive</key>\n  <dict>");
-    expect(source).toContain("<key>SuccessfulExit</key>");
-    expect(source).toContain("<key>ThrottleInterval</key>\n  <integer>10</integer>");
-  });
-
-  it("routes an overridden label through the plist path, service name and plist body", async () => {
-    const root = await mkdtemp(join(tmpdir(), "chirality-launch-agent-label-"));
-    temporaryDirectories.push(root);
-    const calls: Array<{ executable: string; args: readonly string[] }> = [];
-    const manager = new LaunchAgentManager(
-      {
-        launchAgentsDirectory: join(root, "LaunchAgents"),
-        runtimeDirectory: join(root, "user-data", "runtime")
-      },
-      async (executable, args) => {
-        calls.push({ executable, args });
-        return { exitCode: 0, stdout: "ok", stderr: "" };
-      },
-      501,
-      {
-        label: "com.chirality.runtime.isolated",
-        keepAlive: "always",
-        environmentVariables: { CHIRALITY_USER_DATA: join(root, "user-data") }
-      }
-    );
-
-    expect(manager.label).toBe("com.chirality.runtime.isolated");
-    expect(manager.plistPath).toBe(
-      join(root, "LaunchAgents", "com.chirality.runtime.isolated.plist")
-    );
-
-    await manager.install("/Applications/Chirality.app/Contents/MacOS/Chirality");
-    const source = await readFile(manager.plistPath, "utf8");
-    expect(source).toContain("<string>com.chirality.runtime.isolated</string>");
-    expect(source).toContain("<key>KeepAlive</key>\n  <true/>");
-    expect(source).toContain("<key>CHIRALITY_USER_DATA</key>");
-    expect(source).not.toContain(`<string>${RUNTIME_LAUNCH_AGENT_LABEL}</string>`);
-
-    // An isolated job must be startable and stoppable without ever naming the
-    // default service, which is what keeps a verification run off a real agent.
-    await manager.start();
-    await manager.stop();
-    expect(calls.map((call) => call.args)).toEqual([
-      ["bootstrap", "gui/501", manager.plistPath],
-      ["bootout", "gui/501/com.chirality.runtime.isolated"]
-    ]);
-  });
-
-  it("kickstarts only when bootstrap did not itself start the job", async () => {
-    const root = await mkdtemp(join(tmpdir(), "chirality-launch-agent-kickstart-"));
-    temporaryDirectories.push(root);
-    const paths = {
-      launchAgentsDirectory: join(root, "LaunchAgents"),
-      runtimeDirectory: join(root, "user-data", "runtime")
-    };
-
-    // Case 1: already loaded. `bootstrap` fails with launchctl's already-loaded
-    // signal, so a kickstart is the only thing that can (re)start the job.
-    const alreadyLoadedCalls: Array<readonly string[]> = [];
-    const alreadyLoaded = new LaunchAgentManager(
-      paths,
-      async (_executable, args) => {
-        alreadyLoadedCalls.push(args);
-        return args[0] === "bootstrap"
-          ? { exitCode: 5, stdout: "", stderr: "Bootstrap failed: 5: Input/output error" }
-          : { exitCode: 0, stdout: "ok", stderr: "" };
-      },
-      501
-    );
-    await alreadyLoaded.start();
-    expect(alreadyLoadedCalls).toEqual([
-      ["bootstrap", "gui/501", alreadyLoaded.plistPath],
-      ["kickstart", "-k", "gui/501/com.chirality.runtime"]
-    ]);
-
-    // Case 2: RunAtLoad off. A fresh bootstrap loads the job but launchd will not
-    // run it, so the kickstart is genuinely required.
-    const manualCalls: Array<readonly string[]> = [];
-    const manual = new LaunchAgentManager(
-      paths,
-      async (_executable, args) => {
-        manualCalls.push(args);
-        return { exitCode: 0, stdout: "ok", stderr: "" };
-      },
-      501,
-      { runAtLoad: false }
-    );
-    await manual.start();
-    expect(manualCalls).toEqual([
-      ["bootstrap", "gui/501", manual.plistPath],
-      ["kickstart", "-k", "gui/501/com.chirality.runtime"]
-    ]);
-  });
-
-  it("still fails loudly when bootstrap fails for a reason other than already-loaded", async () => {
-    const root = await mkdtemp(join(tmpdir(), "chirality-launch-agent-bootstrap-fail-"));
-    temporaryDirectories.push(root);
-    const manager = new LaunchAgentManager(
-      {
-        launchAgentsDirectory: join(root, "LaunchAgents"),
-        runtimeDirectory: join(root, "user-data", "runtime")
-      },
-      async () => ({ exitCode: 1, stdout: "", stderr: "Operation not permitted" }),
-      501
-    );
-
-    await expect(manager.start()).rejects.toThrow("Operation not permitted");
-  });
-});
-
-describe("resolveRuntimeLaunchAgentOptions", () => {
-  const userData = "/Users/example/Library/Application Support/chirality-frontend";
-
-  it("pins a self-describing job environment: runtime directory, label and posture", () => {
-    // launchd inherits almost nothing, and an unpinned Electron daemon resolves a
-    // different default userData than this CLI does — the mismatch the pin removes.
-    // Label and posture are pinned too so a process the daemon starts inherits the
-    // same job identity rather than falling back to the default label.
-    expect(resolveRuntimeLaunchAgentOptions({}, userData)).toEqual({
-      environmentVariables: {
-        CHIRALITY_USER_DATA: userData,
-        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "com.chirality.runtime",
-        CHIRALITY_RUNTIME_KEEP_ALIVE: "crash-only"
-      }
-    });
-  });
-
-  it("pins the isolated label into the job so children cannot escape isolation", () => {
-    const options = resolveRuntimeLaunchAgentOptions(
-      {
-        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "com.chirality.runtime.tranchetest",
-        CHIRALITY_RUNTIME_KEEP_ALIVE: "always"
-      },
-      userData
-    );
-
-    expect(options.environmentVariables).toEqual({
-      CHIRALITY_USER_DATA: userData,
-      CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "com.chirality.runtime.tranchetest",
-      CHIRALITY_RUNTIME_KEEP_ALIVE: "always"
-    });
-  });
-
-  it("resolves a relative runtime directory so a plist never carries one", () => {
-    const options = resolveRuntimeLaunchAgentOptions({}, "relative/user-data");
-    expect(options.environmentVariables?.CHIRALITY_USER_DATA).toBe(
-      resolve("relative/user-data")
-    );
-  });
-
-  it("reads the full posture from the environment", () => {
-    expect(
-      resolveRuntimeLaunchAgentOptions(
-        {
-          CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: " com.chirality.runtime.tranchetest ",
-          CHIRALITY_RUNTIME_KEEP_ALIVE: "ALWAYS",
-          CHIRALITY_RUNTIME_RUN_AT_LOAD: "yes",
-          CHIRALITY_RUNTIME_THROTTLE_INTERVAL_SECONDS: "30"
-        },
-        userData
-      )
-    ).toEqual({
-      label: "com.chirality.runtime.tranchetest",
-      keepAlive: "always",
-      runAtLoad: true,
-      throttleIntervalSeconds: 30,
-      environmentVariables: {
-        CHIRALITY_USER_DATA: userData,
-        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "com.chirality.runtime.tranchetest",
-        CHIRALITY_RUNTIME_KEEP_ALIVE: "always"
-      }
-    });
-  });
-
-  it("pins the configured instruction root into the managed daemon", () => {
-    const options = resolveRuntimeLaunchAgentOptions(
-      { CHIRALITY_INSTRUCTION_ROOT: "relative/instructions" },
-      userData
-    );
-
-    expect(options.environmentVariables?.CHIRALITY_INSTRUCTION_ROOT).toBe(
-      resolve("relative/instructions")
-    );
-  });
-
-  it("accepts the documented false spellings for RunAtLoad", () => {
-    for (const value of ["0", "false", "no", "OFF"]) {
-      expect(
-        resolveRuntimeLaunchAgentOptions({ CHIRALITY_RUNTIME_RUN_AT_LOAD: value }, userData)
-          .runAtLoad
-      ).toBe(false);
+  it("shows the retained command surface without contacting the runtime", async () => {
+    const output = io();
+    const daemonStatus = vi.fn();
+    expect(await runCli(["--help"], output.io, dependencies(fakeClient({ daemonStatus })))).toBe(0);
+    const usage = output.stdout.join("");
+    for (const line of ["daemon status", "project register", "project list", "session create", "session turn", "session interrupt", "run --project"]) {
+      expect(usage).toContain(line);
     }
+    expect(usage).not.toMatch(/hosted-login|delegated|approvals|measure-support|LaunchAgent|daemon install/u);
+    expect(daemonStatus).not.toHaveBeenCalled();
   });
 
-  it("omits unrecognised or blank values so each option keeps its default", () => {
-    // A typo must never stop the CLI from managing a job.
-    const options = resolveRuntimeLaunchAgentOptions(
-      {
-        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "   ",
-        CHIRALITY_RUNTIME_KEEP_ALIVE: "sometimes",
-        CHIRALITY_RUNTIME_RUN_AT_LOAD: "perhaps",
-        CHIRALITY_RUNTIME_THROTTLE_INTERVAL_SECONDS: "soon"
-      },
-      userData
-    );
-
-    expect(options).not.toHaveProperty("label");
-    expect(options).not.toHaveProperty("keepAlive");
-    expect(options).not.toHaveProperty("runAtLoad");
-    expect(options).not.toHaveProperty("throttleIntervalSeconds");
+  it("preserves every compatibility mismatch machine field on CLI stderr", async () => {
+    const details = { operation_id: "turn:one", project_id: "project", daemon_identity: "safe-daemon", client_compatibility_identity: "root-runtime-2", daemon_compatibility_identity: "root-runtime-1", client_contract_basis_sha256: "a".repeat(64), daemon_contract_basis_sha256: "b".repeat(64), retryable: false, consequential_work_started: false, diagnostic: "unequal" };
+    const output = io();
+    const result = await runCli(["daemon", "status"], output.io, dependencies(fakeClient({ async daemonStatus() { throw new RuntimeError("RUNTIME_COMPATIBILITY_MISMATCH", "mismatch", 409, details); } })));
+    expect(result).toBe(1);
+    expect(JSON.parse(output.stderr.join(""))).toEqual({ error: { code: "RUNTIME_COMPATIBILITY_MISMATCH", message: "mismatch", details } });
   });
+});
 
-  it("rejects a negative throttle interval", () => {
-    expect(
-      resolveRuntimeLaunchAgentOptions(
-        { CHIRALITY_RUNTIME_THROTTLE_INTERVAL_SECONDS: "-5" },
-        userData
-      )
-    ).not.toHaveProperty("throttleIntervalSeconds");
-  });
-
-  it("renders the intended plist end to end from environment alone", () => {
-    const options = resolveRuntimeLaunchAgentOptions(
-      {
-        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "com.chirality.runtime",
-        CHIRALITY_RUNTIME_KEEP_ALIVE: "always"
-      },
-      userData
-    );
-    const source = renderRuntimeLaunchAgent({
-      ...options,
-      executablePath: "/Applications/Chirality.app/Contents/MacOS/Chirality",
-      runtimeDirectory: `${userData}/runtime`
+describe("resolveCliRuntimePaths", () => {
+  it("resolves the socket and token file under the App user data by default", () => {
+    const paths = resolveCliRuntimePaths({}, "/Users/example");
+    expect(paths).toEqual({
+      userData: "/Users/example/Library/Application Support/Chirality",
+      runtimeDirectory: "/Users/example/Library/Application Support/Chirality/runtime",
+      socketPath: "/Users/example/Library/Application Support/Chirality/runtime/control.sock",
+      tokenFile: "/Users/example/Library/Application Support/Chirality/runtime/auth/tokens/operator.token"
     });
-
-    expect(source).toContain("<key>KeepAlive</key>\n  <true/>");
-    expect(source).toContain("<key>RunAtLoad</key>\n  <true/>");
-    expect(source).toContain("<key>CHIRALITY_USER_DATA</key>");
-    expect(source).not.toContain("<key>SuccessfulExit</key>");
   });
-});
 
-it("preserves every compatibility mismatch machine field on CLI stderr", async () => {
-  const details = { operation_id: "turn:one", project_id: "project", daemon_identity: "safe-daemon", client_compatibility_identity: "root-runtime-2", daemon_compatibility_identity: "root-runtime-1", client_contract_basis_sha256: "a".repeat(64), daemon_contract_basis_sha256: "b".repeat(64), retryable: false, consequential_work_started: false, diagnostic: "unequal" };
-  const output = io();
-  const result = await runCli(["daemon", "status"], output.io, dependencies(fakeClient({ async daemonStatus() { throw new RuntimeError("RUNTIME_COMPATIBILITY_MISMATCH", "mismatch", 409, details); } })));
-  expect(result).toBe(1);
-  expect(JSON.parse(output.stderr.join(""))).toEqual({ error: { code: "RUNTIME_COMPATIBILITY_MISMATCH", message: "mismatch", details } });
-});
-
-it("routes explicit operator login through the daemon client without opening a browser", async () => {
-  const output = io();
-  const startHostedLogin = vi.fn(async () => ({ loginId: "login-one", authUrl: "https://auth.openai.com/authorize?state=fixture" }));
-  expect(await runCli(["hosted-login", "start", "--project", "project", "--compatibility", "root-runtime-1", "--basis-sha256", "a".repeat(64)], output.io, dependencies(fakeClient({ startHostedLogin })))).toBe(0);
-  expect(startHostedLogin).toHaveBeenCalledWith("project", { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) });
-  expect(JSON.parse(output.stdout.join(""))).toMatchObject({ loginId: "login-one" });
-});
-it("offers explicit Agent2 delegated CLI turns without assigning a model from role", async () => {
-  const output = io();
-  const runDelegatedTurn = vi.fn(async () => ({ terminal: { outcome: "completed" } }));
-  expect(await runCli(["delegated", "turn", "--project", "project", "--turn-id", "turn-one", "--role", "agent2", "--prompt", "hello", "--compatibility", "root-runtime-1", "--basis-sha256", "a".repeat(64)], output.io, dependencies(fakeClient({ runDelegatedTurn })))).toBe(0);
-  expect(runDelegatedTurn).toHaveBeenCalledWith("project", { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) }, { turnId: "turn-one", prompt: "hello", requestedRole: "agent2" });
-});
-it("requires an explicit CLI consent act before contacting the daemon", async () => {
-  const output = io();
-  const grantDelegatedConsent = vi.fn(async () => ({}));
-  expect(await runCli(["delegated", "consent", "--project", "project", "--posture", "on", "--approved-by", "fixture"], output.io, dependencies(fakeClient({ grantDelegatedConsent })))).toBe(2);
-  expect(grantDelegatedConsent).not.toHaveBeenCalled();
-});
-
-it("keeps delegated approval attribution and unapplied result explicit", async () => {
-  const output = io();
-  const decideDelegatedApproval = vi.fn(async () => ({ applied: false, reason: "not forwarded" }));
-  const args = ["delegated", "decide-approval", "--project", "project", "--turn-id", "turn-one", "--request-id", "request-one", "--generation", "generation-one", "--decision", "acceptForSession", "--approved-by", "fixture-owner", "--compatibility", "root-runtime-1", "--basis-sha256", "a".repeat(64)];
-  expect(await runCli(args, output.io, dependencies(fakeClient({ decideDelegatedApproval })))).toBe(2);
-  expect(decideDelegatedApproval).not.toHaveBeenCalled();
-  const approved = io();
-  expect(await runCli([...args, "--explicit-user-act"], approved.io, dependencies(fakeClient({ decideDelegatedApproval })))).toBe(0);
-  expect(decideDelegatedApproval).toHaveBeenCalledWith("project", "request-one", { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) }, { turnId: "turn-one", workerGeneration: "generation-one", decision: "acceptForSession", approvedBy: "fixture-owner", explicitUserAct: true });
-  expect(JSON.parse(approved.stdout.join(""))).toMatchObject({ applied: false });
-});
-
-it("shows delegated command and approval limits without contacting the runtime", async () => {
-  const output = io(), daemonStatus = vi.fn();
-  expect(await runCli(["--help"], output.io, dependencies(fakeClient({ daemonStatus })))).toBe(0);
-  expect(output.stdout.join("")).toContain("--explicit-user-act");
-  expect(output.stdout.join("")).toContain("Approval records do not imply provider forwarding");
-  expect(daemonStatus).not.toHaveBeenCalled();
-});
-it("lists generic manager approvals without requiring private worker discovery", async () => {
-  const output = io(), pendingRuntimeApprovals = vi.fn(async () => [{ requestId: "opaque", binding: { sessionId: "manager-session" } }]);
-  expect(await runCli(["approvals", "list", "--project", "project"], output.io, dependencies(fakeClient({ pendingRuntimeApprovals })))).toBe(0);
-  expect(pendingRuntimeApprovals).toHaveBeenCalledWith("project", undefined);
-});
-it("requires explicit attributed action on generic manager approval decisions", async () => {
-  const output = io(), decideRuntimeApproval = vi.fn(async () => ({ applied: true, reason: "Written to transport" }));
-  const args = ["approvals", "decide", "--project", "project", "--request-id", "opaque", "--scope-id", "manager-session", "--generation", "generation", "--decision", "acceptForSession", "--approved-by", "fixture-human", "--compatibility", "root-runtime-1", "--basis-sha256", "a".repeat(64)];
-  expect(await runCli(args, output.io, dependencies(fakeClient({ decideRuntimeApproval })))).toBe(2); expect(decideRuntimeApproval).not.toHaveBeenCalled();
-  expect(await runCli([...args, "--explicit-user-act"], io().io, dependencies(fakeClient({ decideRuntimeApproval })))).toBe(0);
-  expect(decideRuntimeApproval).toHaveBeenCalledWith("project", "opaque", { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) }, { turnId: "manager-session", workerGeneration: "generation", decision: "acceptForSession", approvedBy: "fixture-human", explicitUserAct: true });
+  it("honours the explicit environment overrides and carries no job directory", () => {
+    const paths = resolveCliRuntimePaths(
+      {
+        CHIRALITY_USER_DATA: "/tmp/user-data",
+        CHIRALITY_RUNTIME_SOCKET_PATH: "/tmp/runtime/service.sock",
+        CHIRALITY_RUNTIME_TOKEN_FILE: "/tmp/runtime/client-token"
+      },
+      "/Users/example"
+    );
+    expect(paths).toEqual({
+      userData: "/tmp/user-data",
+      runtimeDirectory: "/tmp/user-data/runtime",
+      socketPath: "/tmp/runtime/service.sock",
+      tokenFile: "/tmp/runtime/client-token"
+    });
+    expect(paths).not.toHaveProperty("launchAgentsDirectory");
+  });
 });

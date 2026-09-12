@@ -293,7 +293,7 @@ These constraints are hard to change later. They define the boundaries of the sy
 | Constraint | Rationale |
 |---|---|
 | No external database dependency | Filesystem is the single source of authoritative truth; rebuildable gitignored projections permitted, never authoritative — per D-GOV-01 (`docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md`); eliminates sync burden |
-| No external server requirement | Desktop-first and offline-capable; the opt-in per-user Chirality runtime daemon is a local process over a Unix-domain socket, not remote infrastructure or a source of authoritative project truth |
+| No external server requirement | Desktop-first and offline-capable; the Chirality Runtime service is a child process the App starts, owns, and stops, reached over a Unix-domain socket private to the application, not remote infrastructure or a source of authoritative project truth (D-GOV-43, A2 supplement) |
 | All state as plain files | Human-readable, git-trackable, tool-agnostic |
 | Git-trackable artifacts only | Auditability, reproducibility, rollback, diff-based review |
 | Flat package hierarchy | No nesting; simplifies automation, coverage checking, and scope assignment |
@@ -320,20 +320,33 @@ This framework is designed to support professional responsibility, not replace i
 At effective transfer, Chirality’s executable agent harness is owned by the
 `projects/chirality-runtime/` product project. This prospectively supersedes only
 D-GOV-20’s Root ownership/location proposition; Root retains shared governance.
-One opt-in per-user daemon owns engines, credentials,
-sessions, delegation, tools, interruption, turn admission, and local-model
-residency. Desktop, CLI, and registered project surfaces are clients of that
-single owner.
+Under D-GOV-43 as supplemented (topology A2), the Chirality App starts, owns,
+and stops one simplified Runtime service as a child process. That service
+owns the stock, version-pinned Codex App Server child and, for that App
+instance, sessions, delegation, tools, interruption, and turn admission.
+Credentials are custodied by Codex within Chirality's effective home, with
+authentication separated from other Codex clients. The per-user daemon, its
+LaunchAgent, and local-model residency are retired.
 
-The daemon’s user-data files are operational state, not project authority.
+The service's user-data files are operational state, not project authority.
 Governed truth remains in checkout-contained manifests, instructions,
 decisions, execution trees, AgentRuns, evidence, and Git. Agent 0/1/2 roles
 remain authority contracts independent of engines and models; actual runtime
 attribution is recorded without creating durable model-to-role doctrine.
 
 Local control is authenticated HTTP/1.1 over a protected Unix-domain socket
-only. The initial local pilot permits one explicitly resident authenticated
-loopback oMLX model and one bounded read-only Pi Agent 2 child under a real
-Agent 1. It does not authorize automatic fallback or switching, multiple
-primary local models, remote oMLX, local Agent 1, production domain mutation,
-release, publication, issuance, or professional reliance.
+only, with client tokens private to the application and no TCP listener.
+Approval policy and sandbox mode are the user's choice per project with
+per-turn override, taken from Codex's own options. Codex is the sole engine;
+local models, when taken up, are Codex model providers.
+
+Cross-product constraint (D-GOV-43 A2 supplement): Keep the Runtime host
+independent of Electron and Next and consumable as an application-owned
+service. Chirality App is the only implementation and qualification target
+for this tranche; Piping integration and local-model management remain
+deferred.
+
+The D-GOV-20 pilot text this section previously carried (one resident
+loopback oMLX model and one bounded read-only Pi Agent 2 child) is preserved
+in git history. Nothing here authorizes release, publication, issuance, or
+professional reliance.

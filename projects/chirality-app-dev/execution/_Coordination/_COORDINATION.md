@@ -85,6 +85,11 @@ fence list. The pre-2026-07-10 text is in git history at this path.
 - Work surface: `execution/PKG-*/1_Working/DEL-*/_STATUS.md` (`## Remaining`).
 - Decision register: `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 - Discovery pointer: `execution/_Coordination/_LATEST.md`.
+- Codex host re-platform (D-GOV-43, topology A2, 2026-09-12): implementation entry
+  `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md`;
+  App application record `_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`.
+  The "Shared Runtime Boundary" wording in `{WORKING_ROOT}/AGENTS.md` (per-user daemon as
+  sole owner) is read with that record until the instruction surface is revised.
 - Role posture: `{REPO_ROOT}/AGENTS.md`, the active role instruction under
   `{REPO_ROOT}/agents/`, and `{WORKING_ROOT}/AGENTS.md`. New chats default to
   HELP_HUMAN; implementation uses WORKING_ITEMS with bounded TASK executors;

@@ -5,12 +5,7 @@ import {
   RUNTIME_CONNECTIVITY_QUERY_CHANNEL,
   type RuntimeConnectivitySnapshot
 } from './runtime-connectivity';
-import {
-  HOST_ACCOUNT_CHANNEL,
-  type HostAccountDesktopOperation,
-  type HostAccountDesktopResult,
-  type HostAccountDesktopValue
-} from './host-account-ipc-contract';
+import { RUNTIME_SERVICE_RESTART_CHANNEL } from './runtime-control-ipc-contract';
 import {
   ATTACHMENT_SELECT_FILES_CHANNEL,
   type AttachmentSelectFilesRequest,
@@ -24,23 +19,6 @@ const API_KEY_STATUS_CHANNEL = 'chirality:api-key-status';
 const PROVIDER_API_KEY_STORE_CHANNEL = 'chirality:provider-api-key-store';
 const PROVIDER_API_KEY_REMOVE_CHANNEL = 'chirality:provider-api-key-remove';
 const PROVIDER_API_KEY_STATUS_CHANNEL = 'chirality:provider-api-key-status';
-const RUNTIME_DAEMON_CONTROL_CHANNEL = 'chirality:runtime-daemon-control';
-const RUNTIME_MODEL_STATUS_CHANNEL = 'chirality:runtime-model-status';
-const RUNTIME_MODEL_ACTIVATE_CHANNEL = 'chirality:runtime-model-activate';
-
-async function invokeHostAccount(
-  operation: HostAccountDesktopOperation,
-  projectRoot: string
-): Promise<HostAccountDesktopValue> {
-  const result = (await ipcRenderer.invoke(HOST_ACCOUNT_CHANNEL, {
-    operation,
-    projectRoot
-  })) as HostAccountDesktopResult;
-  if (!result.ok) {
-    throw new Error(result.error);
-  }
-  return result.value;
-}
 
 contextBridge.exposeInMainWorld('chirality', {
   platform: process.platform,
@@ -100,10 +78,11 @@ contextBridge.exposeInMainWorld('chirality', {
   },
   runtime: {
     /**
-     * Runtime-daemon connectivity as the main process sees it. `get()` is for
+     * Runtime connectivity as the main process sees it, including the state of
+     * the App-owned Runtime service child under `service`. `get()` is for
      * mount-time hydration; `subscribe()` receives every later transition so the
-     * top bar reflects a daemon that dies or returns without the renderer
-     * polling. The unsubscribe function must be called on unmount — the listener
+     * top bar reflects a service that dies or returns without the renderer
+     * polling. The unsubscribe function must be called on unmount: the listener
      * is held by `ipcRenderer`, which outlives any React tree.
      */
     connectivity: {
@@ -119,25 +98,12 @@ contextBridge.exposeInMainWorld('chirality', {
         };
       }
     },
-    daemon: {
-      install: () => ipcRenderer.invoke(RUNTIME_DAEMON_CONTROL_CHANNEL, 'install'),
-      start: () => ipcRenderer.invoke(RUNTIME_DAEMON_CONTROL_CHANNEL, 'start'),
-      stop: () => ipcRenderer.invoke(RUNTIME_DAEMON_CONTROL_CHANNEL, 'stop'),
-      status: () => ipcRenderer.invoke(RUNTIME_DAEMON_CONTROL_CHANNEL, 'status'),
-      uninstall: () => ipcRenderer.invoke(RUNTIME_DAEMON_CONTROL_CHANNEL, 'uninstall')
-    },
-    models: {
-      status: () => ipcRenderer.invoke(RUNTIME_MODEL_STATUS_CHANNEL),
-      activate: (modelId: string) =>
-        ipcRenderer.invoke(RUNTIME_MODEL_ACTIVATE_CHANNEL, modelId)
-    },
-    hostedAccount: {
-      status: (projectRoot: string) => invokeHostAccount('status', projectRoot),
-      grantProviderNetworkConsent: (projectRoot: string) =>
-        invokeHostAccount('grant-provider-network-consent', projectRoot),
-      startLogin: (projectRoot: string) => invokeHostAccount('start-login', projectRoot),
-      cancelLogin: (projectRoot: string) => invokeHostAccount('cancel-login', projectRoot),
-      signOut: (projectRoot: string) => invokeHostAccount('sign-out', projectRoot)
+    service: {
+      /**
+       * Operator retry after the main process gave up restarting the Runtime
+       * service. Resolves with the service state once the relaunch settled.
+       */
+      restart: () => ipcRenderer.invoke(RUNTIME_SERVICE_RESTART_CHANNEL)
     }
   }
 });

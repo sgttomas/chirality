@@ -3,20 +3,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRuntimeEpoch } from '../shell/runtime-connectivity-provider';
 
-export type RuntimeDaemonAction = 'install' | 'start' | 'stop' | 'status' | 'uninstall';
-
-export type RuntimeDaemonStatus = {
-  launchAgent: {
-    installed: boolean;
-    loaded: boolean;
-  };
-  daemon: {
-    running: boolean;
-    pid?: number;
-    startedAt?: string;
-  };
-};
-
 export type RuntimeModel = {
   id: string;
   kind: 'llm' | 'embedding' | 'reranker' | 'helper' | 'unknown';
@@ -38,20 +24,17 @@ export type RuntimeResidencyStatus = {
   models: readonly RuntimeModel[];
 };
 
-type RuntimeDaemonControlResult =
-  | ({ ok: true } & RuntimeDaemonStatus)
-  | { ok: false; error: string };
-
 type RuntimeModelStatusResult =
   | { ok: true; residency: RuntimeResidencyStatus }
   | { ok: false; error: string };
 
+/**
+ * Local-model bridge only. The `runtime.daemon` install/start/stop/uninstall
+ * operations are retired with the App-owned Runtime service (D-GOV-43): the
+ * service is a child process of the App and needs no lifecycle controls.
+ */
 type ChiralityRuntimeBridge = {
-  daemon: Record<
-    RuntimeDaemonAction,
-    () => Promise<RuntimeDaemonControlResult>
-  >;
-  models: {
+  models?: {
     status: () => Promise<RuntimeModelStatusResult>;
     activate: (modelId: string) => Promise<RuntimeModelStatusResult>;
   };
@@ -65,12 +48,10 @@ type RuntimeWindow = typeof window & {
 
 export type RuntimeSettingsViewProps = {
   bridgeAvailable: boolean;
-  daemonStatus: RuntimeDaemonStatus | null;
   residency: RuntimeResidencyStatus | null;
   selectedModel: string;
-  busyAction: RuntimeDaemonAction | 'models' | null;
+  busyAction: 'status' | 'models' | null;
   error: string | null;
-  onDaemonAction: (action: RuntimeDaemonAction) => void;
   onRefresh: () => void;
   onSelectedModelChange: (modelId: string) => void;
   onActivateModel: () => void;
@@ -84,12 +65,9 @@ function getRuntimeBridge(): ChiralityRuntimeBridge | undefined {
 }
 
 export function useRuntimeSettingsController({ localModels = true }: { localModels?: boolean } = {}): RuntimeSettingsViewProps {
-  const [daemonStatus, setDaemonStatus] = useState<RuntimeDaemonStatus | null>(null);
   const [residency, setResidency] = useState<RuntimeResidencyStatus | null>(null);
   const [selectedModel, setSelectedModel] = useState('');
-  const [busyAction, setBusyAction] = useState<RuntimeDaemonAction | 'models' | null>(
-    null
-  );
+  const [busyAction, setBusyAction] = useState<'status' | 'models' | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [bridgeAvailable, setBridgeAvailable] = useState(false);
   const runtimeEpoch = useRuntimeEpoch();
@@ -109,29 +87,17 @@ export function useRuntimeSettingsController({ localModels = true }: { localMode
     const bridge = getRuntimeBridge();
     if (!bridge) {
       setBridgeAvailable(false);
-      setDaemonStatus(null);
       setResidency(null);
       return;
     }
-
     setBridgeAvailable(true);
+    if (!localModels || !bridge.models) {
+      setResidency(null);
+      return;
+    }
     setBusyAction('status');
     setError(null);
-    setDaemonStatus(null);
-    setResidency(null);
     try {
-      const daemonResult = await bridge.daemon.status();
-      if (!daemonResult.ok) {
-        setError(daemonResult.error);
-        return;
-      }
-      setDaemonStatus(daemonResult);
-
-      if (!daemonResult.daemon.running || !localModels) {
-        setResidency(null);
-        return;
-      }
-
       const modelResult = await bridge.models.status();
       if (!modelResult.ok) {
         setError(modelResult.error);
@@ -145,53 +111,16 @@ export function useRuntimeSettingsController({ localModels = true }: { localMode
     }
   }, [applyResidency, localModels]);
 
-  // Re-probed on reconnect as well as on mount: this panel's whole content is a
-  // claim about the daemon ("not running", "no models"), and a claim captured
-  // while the client was unbound is exactly the one the operator opens it to
-  // check after the daemon comes back.
+  // Re-probed on reconnect as well as on mount: this panel's content is a claim
+  // about the Runtime, and a claim captured while the client was unbound is
+  // exactly the one the operator opens it to check after it comes back.
   useEffect(() => {
     void refresh();
   }, [refresh, runtimeEpoch]);
 
-  async function runDaemonAction(action: RuntimeDaemonAction): Promise<void> {
-    const bridge = getRuntimeBridge();
-    if (!bridge) return;
-    if (
-      action === 'uninstall' &&
-      !window.confirm(
-        'Uninstall the Chirality runtime LaunchAgent? Existing sessions and credentials are retained.'
-      )
-    ) {
-      return;
-    }
-
-    setBusyAction(action);
-    setError(null);
-    try {
-      const result = await bridge.daemon[action]();
-      if (!result.ok) {
-        setError(result.error);
-        return;
-      }
-      setDaemonStatus(result);
-      if (!result.daemon.running) {
-        setResidency(null);
-      } else if (localModels) {
-        const modelResult = await bridge.models.status();
-        if (modelResult.ok) {
-          applyResidency(modelResult.residency);
-        }
-      }
-    } catch {
-      setError(`Unable to ${action} the Chirality runtime daemon`);
-    } finally {
-      setBusyAction(null);
-    }
-  }
-
   async function activateModel(): Promise<void> {
     const bridge = getRuntimeBridge();
-    if (!bridge || !localModels || !selectedModel) return;
+    if (!bridge?.models || !localModels || !selectedModel) return;
     if (
       !window.confirm(
         `Activate the exact oMLX model “${selectedModel}”? Active local turns will be drained before a model switch.`
@@ -216,8 +145,7 @@ export function useRuntimeSettingsController({ localModels = true }: { localMode
     }
   }
 
-  return { bridgeAvailable, daemonStatus, residency, selectedModel, busyAction, error,
-    onDaemonAction: (action) => void runDaemonAction(action),
+  return { bridgeAvailable, residency, selectedModel, busyAction, error,
     onRefresh: () => void refresh(), onSelectedModelChange: setSelectedModel,
     onActivateModel: () => void activateModel() };
 }

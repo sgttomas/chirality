@@ -166,6 +166,22 @@ export function createFakeDaemonHarnessPort(): DaemonHarnessPort {
       return getHarnessRuntime().turnEngine.runTurn(request);
     },
 
+    async attachTurn() {
+      throw new HarnessError('SESSION_NOT_FOUND', 404, 'No active or retained turn in fake daemon', { reason: 'TURN_NOT_ACTIVE' });
+    },
+
+    async turnState() {
+      return { active: false, lastSeq: 0 };
+    },
+
+    async listRequests() {
+      return { requests: [] };
+    },
+
+    async answerRequest() {
+      throw new HarnessError('ENGINE_UNAVAILABLE', 503, 'Server request answers are not configured in fake daemon');
+    },
+
     async interrupt(request) {
       getPermissionBroker().clearSession(request.sessionId, 'deny');
       await getHarnessRuntime().turnEngine.interrupt(request.sessionId);

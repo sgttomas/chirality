@@ -26,6 +26,7 @@
 
 ## Notes
 
+- D-GOV-43 (A2), 2026-09-12: REQ-05 and REQ-06 are read against the revised transport. The stream carries the extensible upstream-preserving event representation (`docs/SPEC.md` §11); a client disconnect unsubscribes and never interrupts the turn; the adapter boundary is the Runtime service's socket API with Codex as the only engine. `section8.sdk_native_stream` and the SDK-named unit tests are Claude-path compatibility history where they still run.
 - The premerge script enforces required check IDs and fails if legacy IDs appear.
 - The suite uses stable machine-readable summary output for CI consumption.
 - Section 9 starts as premerge report-only while `STAB-01` proves the new aggregator.

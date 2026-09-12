@@ -1,7 +1,7 @@
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
 import { RuntimeError, type RetirementRecord, type WorkerContinuity, type WorkerRetirementCoordinatorPort, type WorkerTerminalRecord } from "@chirality/runtime-contracts";
-import { assertContinuity, privateDirectory, privateRead, publishPrivate, recordKey, sameContinuity, validContinuity } from "./hosted-consent.js";
+import { assertContinuity, privateDirectory, privateRead, publishPrivate, recordKey, sameContinuity, validContinuity } from "./fs.js";
 
 const conflict = (message: string) => new RuntimeError("DELEGATION_POLICY_VIOLATION", message, 409);
 function identifier(value: string): void {

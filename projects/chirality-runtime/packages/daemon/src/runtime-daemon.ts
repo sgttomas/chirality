@@ -1,6 +1,3 @@
-import { assertNoPrivateAuthoritySurface } from "./supervisor-server.js";
-import type { SupplierAuthorityLifecycle } from "./supplier-authority-journal.js";
-import type { RuntimeApprovalControlPort } from "@chirality/runtime-core";
 import { randomUUID } from "node:crypto";
 import { chmod, lstat, readFile, unlink } from "node:fs/promises";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
@@ -11,15 +8,14 @@ import {
   HarnessError,
   RUNTIME_API_VERSION,
   RuntimeError,
-  validateHostedLoginStatus,
   validateHostedBootstrapStatus,
+  validateAnswerSessionRequestRequest,
   deriveTranscriptView,
   type Agent1RunRequest,
   type CreateSessionRequest,
   type CredentialMutationRequest,
   type DaemonStatusResponse,
   type HealthResponse,
-  type HostedLoginStatus,
   type HostedBootstrapStatus,
   type HostedProviderNetworkConsentRequest,
   type HostedBootstrapProjectRegistrationRequest,
@@ -35,6 +31,10 @@ import {
   type ReplaceSelectedMethodsRequest,
   type ExportNativePlanRequest,
   type ReplyNativePlanClarificationRequest,
+  type PendingServerRequest,
+  type ServerRequestAnswer,
+  type SessionRequestsResponse,
+  type SessionTurnState,
   type UIEvent
 } from "@chirality/runtime-contracts";
 import {
@@ -42,17 +42,17 @@ import {
   atomicWriteJson,
   type AuthRegistry,
   type RuntimeScope,
-  type RuntimeService,
-  type DelegatedRuntime
+  type RuntimeService
   , ensureHostedProjectManifest
 } from "@chirality/runtime-core";
 import { hostedProjectClientId } from "./hosted-paths.js";
-import { hostAccountRequest, type HostAccountOperation } from "./host-account-protocol.js";
-import type { HostAccountAuthority } from "./host-account-authority.js";
+import { TurnRegistry, type TurnFrame, type TurnSubscription } from "./turn-registry.js";
 
 const JSON_LIMIT_BYTES = 1024 * 1024;
 const STOP_GRACE_MS = 2_000;
 const STOP_FORCE_SETTLE_MS = 500;
+/** Comment-line keepalive cadence on open SSE streams; a silent tool run must not look like a dead turn. */
+const SSE_KEEPALIVE_MS = 15_000;
 
 /** Optional host-supplied diagnostic sink; the default discards every event. Fields never carry auth URLs, bearers, proofs, counters, or other secrets. */
 export interface RuntimeDaemonLogger {
@@ -92,9 +92,12 @@ type DaemonLifecycle =
 
 interface ActiveSse {
   readonly generation: DaemonGeneration;
+  /** Shutdown-time interruption of the observed work; undefined when the identity is not yet known. */
   readonly interrupt: () => Promise<void> | undefined;
-  iterator?: AsyncIterator<UIEvent>;
-  cancellationRequested: boolean;
+  /** Client disconnect: unsubscribe only. Never touches the turn. */
+  readonly onDisconnect?: () => void;
+  iterator?: AsyncIterator<TurnFrame>;
+  stopRequested: boolean;
   interruptionStarted: boolean;
   interruptionSettled: boolean;
   interruptionFailure?: unknown;
@@ -103,6 +106,12 @@ interface ActiveSse {
   forceExpired: boolean;
   iteratorReturnRequested: boolean;
   iteratorReturnFailure?: unknown;
+}
+
+interface StopInterruption {
+  started: boolean;
+  settled: boolean;
+  failure?: unknown;
 }
 
 interface DaemonGeneration {
@@ -119,19 +128,36 @@ interface DaemonGeneration {
   socketUnlinked: boolean;
   ownerRemoved: boolean;
   stopStreams?: ActiveSse[];
+  /** Registry turns interrupted at stop, including turns nobody is attached to. */
+  stopTurns?: StopInterruption[];
   interruptionProblems: boolean;
 }
 
+/**
+ * Pending Codex server requests of a session's live turn (design section 7).
+ * Declared here so the daemon compiles against the method names only; the
+ * composition passes the delegated runtime.
+ */
+export interface DelegatedRequestPort {
+  pendingRequests(projectId: string, sessionId: string): Promise<readonly PendingServerRequest[]>;
+  answerRequest(projectId: string, sessionId: string, requestId: string, answer: ServerRequestAnswer): Promise<{ sent: true }>;
+}
+
+/** Delegated runtime lifecycle the daemon drives; the composition passes the `DelegatedRuntime`. */
+export interface DelegatedControlPort {
+  startGeneration(daemonId?: string): void;
+  close(): Promise<void>;
+}
+
 export interface RuntimeDaemonOptions {
-  supplierAuthority?:SupplierAuthorityLifecycle;
-  accountHost?: HostAccountAuthority;
   socketPath: string;
   runtimeDirectory: string;
   service: RuntimeService;
-  delegated?: DelegatedRuntime;
-  approvals?: RuntimeApprovalControlPort;
-  loginProjectId?: string;
-  login?: { startLogin(): Promise<{ loginId: string; authUrl: string }>; status(): Promise<HostedLoginStatus>; cancel(): Promise<void> };
+  /** Runtime-owned turn execution; constructed over `service` when not supplied. */
+  turnRegistry?: TurnRegistry;
+  /** Pending Codex server requests and their answers (`GET/POST .../requests`). */
+  requests?: DelegatedRequestPort;
+  delegated?: DelegatedControlPort;
   hostedBootstrap?: {
     /** Each operation revalidates project registration/root/drift and retires stale admission. */
     status(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus>;
@@ -140,6 +166,8 @@ export interface RuntimeDaemonOptions {
     cancelLogin(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus>;
     signOut(projectId: string, signal?: AbortSignal): Promise<HostedBootstrapStatus>;
   };
+  /** SSE keepalive cadence in milliseconds (default 15 s); tests shorten it. */
+  sseKeepaliveMs?: number;
   logger?: RuntimeDaemonLogger;
 }
 
@@ -152,22 +180,23 @@ export class RuntimeDaemon {
   private generation?: DaemonGeneration;
   private stopPromise?: Promise<void>;
   private terminalStopError?: Error;
-  private authorityStartAttempted = false;
   private terminalStartupError?: Error;
   /** Nonsecret OS-process incarnation; distinct from daemon and listener generations. */
   readonly runtimeProcessIncarnationId = randomUUID();
   private readonly ownerFile: string;
   private readonly loginOperations = new Set<Promise<unknown>>();
   private readonly hostedBootstrapProjects = new Set<string>();
+  /** Owns every active turn; survives listener generations so a restart never orphans a running turn. */
+  readonly turns: TurnRegistry;
+  private readonly keepaliveMs: number;
 
   constructor(private readonly options: RuntimeDaemonOptions) {
     this.ownerFile = `${options.socketPath}.owner.json`;
+    this.turns = options.turnRegistry ?? new TurnRegistry(options.service, { logger: options.logger ?? NOOP_RUNTIME_DAEMON_LOGGER });
+    this.keepaliveMs = options.sseKeepaliveMs ?? SSE_KEEPALIVE_MS;
   }
 
   async start(): Promise<{ socketPath: string; operatorTokenFile: string }> {
-    if (this.authorityStartAttempted) {
-      throw new Error("Supplier authority requires a fresh daemon and lifecycle instance; same-instance startup retry is unavailable", { cause: this.terminalStartupError });
-    }
     if (this.stopPromise !== undefined) throw new Error("Runtime daemon cannot start before shutdown has drained");
     if (this.lifecycle !== "INITIAL" && this.lifecycle !== "STOPPED") {
       throw new Error(`Runtime daemon cannot start while ${this.lifecycle.toLowerCase()}`);
@@ -178,21 +207,9 @@ export class RuntimeDaemon {
     const ownerGenerationId = randomUUID();
     let context: DaemonGeneration | undefined;
     let controlSocketBound = false;
-    let authorityStarted = false;
-    let accountHostStarted = false;
     try {
       await ensurePrivateDirectory(this.options.runtimeDirectory);
       await ensurePrivateDirectory(dirname(this.options.socketPath));
-      if (this.options.supplierAuthority) {
-        // The owner is single-incarnation even when its own start fails partway.
-        this.authorityStartAttempted = true;
-        await this.options.supplierAuthority.start(this.runtimeProcessIncarnationId);
-        authorityStarted = true;
-      }
-      if (this.options.accountHost) {
-        await this.options.accountHost.start();
-        accountHostStarted = true;
-      }
       await this.recoverStaleSocket();
       await atomicWriteJson(this.ownerFile, {
         schemaVersion: "chirality.daemon-owner/v1",
@@ -257,13 +274,11 @@ export class RuntimeDaemon {
         throw new Error("Runtime daemon generation changed during start");
       }
       this.options.delegated?.startGeneration(this.daemonId);
-      if (this.options.approvals !== this.options.delegated) this.options.approvals?.startGeneration(this.daemonId);
       this.lifecycle = "RUNNING";
       return { socketPath: this.options.socketPath, operatorTokenFile: operator.tokenFile };
     } catch (error) {
       const cleanupFailures: unknown[] = [];
-      // Close public admission first, then fence a successfully started authority.
-      // Every later startup failure passes here, including owner/credential/listen/chmod.
+      // Every startup failure passes here, including owner/credential/listen/chmod.
       if (context !== undefined) {
         for (const socket of context.sockets) socket.destroy();
         try {
@@ -272,14 +287,6 @@ export class RuntimeDaemon {
             else resolve();
           }));
         } catch (cleanupError) { cleanupFailures.push(cleanupError); }
-      }
-      if (authorityStarted) {
-        try { await this.options.supplierAuthority!.close(); }
-        catch (cleanupError) { cleanupFailures.push(cleanupError); }
-      }
-      if (accountHostStarted) {
-        try { await this.options.accountHost!.close(); }
-        catch (cleanupError) { cleanupFailures.push(cleanupError); }
       }
       if (controlSocketBound) {
         try { await this.unlinkControlSocket(); }
@@ -293,13 +300,12 @@ export class RuntimeDaemon {
         ? new AggregateError([error, ...cleanupFailures], "Runtime daemon startup and cleanup failed")
         : error instanceof Error ? error : new Error("Runtime daemon startup failed", { cause: error });
       this.terminalStartupError = failure;
-      if (cleanupFailures.length || (this.authorityStartAttempted && !authorityStarted)) {
-        // An incomplete authority startup or failed cleanup cannot become an idle,
-        // retryable daemon. Its held lock/custody evidence requires owner disposition.
+      if (cleanupFailures.length) {
+        // A failed cleanup cannot become an idle, retryable daemon; it requires owner disposition.
         this.lifecycle = "STOPPED_DEGRADED";
         this.terminalStopError = failure;
       } else {
-        this.lifecycle = this.authorityStartAttempted ? "STOPPED" : generationNumber === 1 ? "INITIAL" : "STOPPED";
+        this.lifecycle = generationNumber === 1 ? "INITIAL" : "STOPPED";
       }
       throw failure;
     }
@@ -317,22 +323,15 @@ export class RuntimeDaemon {
   }
 
   private async stopLogin(deadline: number): Promise<void> {
-    const login = this.options.login;
     const hosted = this.options.hostedBootstrap;
-    if (!login && !hosted && this.loginOperations.size === 0) return;
+    if (!hosted && this.loginOperations.size === 0) return;
     const pending = [...this.loginOperations];
     // Cancel promptly, then again after starts drain: an admitted startup must not
     // create a live actor after the first cancellation has already returned.
     const drain = (async () => {
-      const cancellations = [
-        ...(login ? [login.cancel()] : []),
-        ...(hosted ? [...this.hostedBootstrapProjects].map(projectId => hosted.cancelLogin(projectId)) : [])
-      ];
+      const cancellations = hosted ? [...this.hostedBootstrapProjects].map(projectId => hosted.cancelLogin(projectId)) : [];
       const results = await Promise.allSettled([...cancellations, ...pending]);
-      await Promise.all([
-        ...(login ? [login.cancel()] : []),
-        ...(hosted ? [...this.hostedBootstrapProjects].map(projectId => hosted.cancelLogin(projectId)) : [])
-      ]);
+      await Promise.all(hosted ? [...this.hostedBootstrapProjects].map(projectId => hosted.cancelLogin(projectId)) : []);
       const cancellation = results.slice(0, cancellations.length).find(result => result.status === "rejected");
       if (cancellation?.status === "rejected") throw cancellation.reason;
     })();
@@ -364,7 +363,7 @@ export class RuntimeDaemon {
     const retry = this.lifecycle === "STOP_FAILED_CLEANUP";
     this.lifecycle = "STOPPING";
     const deadline = retry ? undefined : performance.now() + STOP_GRACE_MS;
-    const promise = Promise.allSettled([this.performStop(generation, retry, deadline), this.options.delegated?.close(), this.options.approvals !== this.options.delegated ? this.options.approvals?.close() : undefined, this.stopLogin(deadline ?? performance.now() + STOP_GRACE_MS)]).then((results) => {
+    const promise = Promise.allSettled([this.performStop(generation, retry, deadline), this.options.delegated?.close(), this.stopLogin(deadline ?? performance.now() + STOP_GRACE_MS)]).then((results) => {
       const daemonResult = results[0]!;
       if (daemonResult.status === "rejected") throw daemonResult.reason;
       const delegatedResult = results.slice(1).find(result => result.status === "rejected");
@@ -454,70 +453,6 @@ export class RuntimeDaemon {
           return this.json(response, 200, { loginId: result.loginId, authUrl: result.authUrl });
         }
         throw new RuntimeError("NOT_FOUND", "Route not found", 404);
-      }
-      if (segments[0] === "v2" && segments[1] === "projects" && segments.length === 5 && segments[3] === "login") {
-        const projectId = segments[2]!;
-        await this.authorize(request, "credentials:write", projectId);
-        const project = await this.options.service.projects.requireAuthorized(projectId);
-        const { login, delegated, loginProjectId } = this.options;
-        if (!login || !delegated || loginProjectId !== projectId) throw new RuntimeError("ENGINE_UNAVAILABLE", "Login is not configured for this project", 503);
-        delegated.assertProjectRoot(projectId, project.canonicalRoot);
-        if (method === "GET" && segments[4] === "status") {
-          const status = await this.loginOperation(generation, () => login.status());
-          let safeStatus: HostedLoginStatus;
-          try { safeStatus = validateHostedLoginStatus(status); }
-          catch { throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login status", 500); }
-          return this.json(response, 200, safeStatus);
-        }
-        if (method === "POST" && (segments[4] === "start" || segments[4] === "cancel")) {
-          const body = await this.body<any>(request);
-          delegated.authorizeControl(projectId, segments[4] === "start" ? "login:start" : "login:cancel", body);
-          if (segments[4] === "cancel") { await this.loginOperation(generation, () => login.cancel()); return this.json(response, 200, { cancelled: true }); }
-          const result = await this.loginOperation(generation, () => login.startLogin());
-          let url: URL;
-          try { url = new URL(result.authUrl); } catch { throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login URL", 500); }
-          if (url.protocol !== "https:" || url.username || url.password || result.authUrl.length > 8192 || typeof result.loginId !== "string" || !result.loginId || result.loginId.length > 512) throw new RuntimeError("INTERNAL_FAILURE", "Invalid safe login response", 500);
-          return this.json(response, 200, { loginId: result.loginId, authUrl: result.authUrl });
-        }
-        throw new RuntimeError("NOT_FOUND", "Route not found", 404);
-      }
-      if (segments[0] === "v2" && segments[1] === "projects" && segments.length === 5 && segments[3] === "approvals") {
-        const projectId = segments[2]!;
-        await this.authorize(request, "sessions:write", projectId);
-        const registered = await this.options.service.projects.requireAuthorized(projectId);
-        const approvals = this.options.approvals ?? this.options.delegated;
-        if (!approvals) throw new RuntimeError("ENGINE_UNAVAILABLE", "Runtime approval controls are unavailable", 503);
-        approvals.assertProjectRoot(projectId, registered.canonicalRoot);
-        if (method === "GET" && segments[4] === "pending") return this.json(response, 200, await approvals.pendingProjectApprovals(projectId, url.searchParams.get("scopeId") ?? undefined));
-        if (method === "GET" && segments[4] === "capabilities") return this.json(response, 200, await approvals.capabilities(projectId));
-        if (method === "POST" && ["preflight", "decision"].includes(segments[4]!)) {
-          const body = await this.body<any>(request);
-          if (!body || typeof body !== "object" || Array.isArray(body)) throw new RuntimeError("INVALID_REQUEST", "Object request required");
-          if (segments[4] === "preflight") {
-            if (typeof body.operationId !== "string" || !/^approval:[a-f0-9-]{36}$/.test(body.operationId)) throw new RuntimeError("FORBIDDEN", "Approval preflight is scoped to an existing approval identity", 403);
-            return this.json(response, 200, await approvals.preflight(projectId, body.operationId));
-          }
-          return this.json(response, 200, await approvals.decideApproval(projectId, body.requestId, body));
-        }
-        throw new RuntimeError("NOT_FOUND", "Route not found", 404);
-      }
-      if (segments[0] === "v2" && segments[1] === "projects" && segments.length === 5 && segments[3] === "delegated" && (method === "POST" || method === "GET")) {
-        const projectId = segments[2]!;
-        await this.authorize(request, "sessions:write", projectId);
-        const registeredProject = await this.options.service.projects.requireAuthorized(projectId);
-        const delegated = this.options.delegated;
-        if (delegated === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Delegated runtime is not configured", 503);
-        delegated.assertProjectRoot(projectId, registeredProject.canonicalRoot);
-        if (method === "GET" && segments[4] === "capabilities") return this.json(response, 200, await delegated.capabilities(projectId));
-        if (method === "GET" && segments[4] === "approvals") return this.json(response, 200, await delegated.pendingApprovals(projectId, url.searchParams.get("turnId") ?? ""));
-        if (method !== "POST") throw new RuntimeError("NOT_FOUND", "Route not found", 404);
-        const body = await this.body<any>(request);
-        if (!body || typeof body !== "object" || Array.isArray(body)) throw new RuntimeError("INVALID_REQUEST", "Object request required");
-        if (segments[4] === "preflight") return this.json(response, 200, await delegated.preflight(projectId, body.operationId));
-        if (segments[4] === "consent") return this.json(response, 200, await delegated.grantConsent(projectId, body));
-        if (segments[4] === "approval-decision") return this.json(response, 200, await delegated.decideApproval(projectId, body.requestId, body));
-        if (segments[4] === "interrupt") return this.json(response, 200, await delegated.interruptTurn(projectId, body));
-        if (segments[4] === "turn") return this.json(response, 200, await delegated.turn(projectId, body));
       }
       if (segments[0] !== "v1") throw new RuntimeError("NOT_FOUND", "Route not found", 404);
 
@@ -637,25 +572,25 @@ export class RuntimeDaemon {
           const body = await this.body<Agent1RunRequest>(request);
           let managerSessionId: string | undefined;
           const source = this.options.service.runAgent1(projectId, body);
-          const tracked = (async function* (): AsyncIterable<UIEvent> {
+          let seq = 0;
+          const tracked = (async function* (): AsyncIterable<TurnFrame> {
             for await (const event of source) {
               if (managerSessionId === undefined && event.type === "harness:event") {
                 managerSessionId = event.data.sessionId;
               }
-              yield event;
+              seq += 1;
+              yield { seq, event };
             }
           })();
-          return await this.sse(
-            response,
-            tracked,
-            () => {
+          // The run is not registry-owned: a disconnect keeps draining it silently; only shutdown interrupts.
+          return await this.sse(response, tracked, {
+            interrupt: () => {
               if (managerSessionId !== undefined) {
                 return this.options.service.interruptSession(projectId, managerSessionId);
               }
               return undefined;
-            },
-            generation
-          );
+            }
+          }, generation);
         }
         if (segments[3] === "sessions") {
           return await this.sessionRoute(
@@ -741,8 +676,42 @@ export class RuntimeDaemon {
       const body = await this.body<ReplyNativePlanClarificationRequest>(request);
       return this.json(response, 200, await this.options.service.replyNativePlanClarification(projectId, sessionId, body));
     }
+    if (segments.length === 7 && segments[5] === "turn" && segments[6] === "state" && method === "GET") {
+      await this.authorize(request, "sessions:read", projectId);
+      await this.options.service.sessions.get(projectId, sessionId);
+      const state: SessionTurnState = this.turns.state(projectId, sessionId);
+      return this.json(response, 200, state);
+    }
+    if (segments.length === 7 && segments[5] === "turn" && segments[6] === "stream" && method === "GET") {
+      await this.authorize(request, "sessions:read", projectId);
+      const after = this.afterSequence(new URL(request.url ?? "/", "http://chirality.invalid").searchParams.get("after"));
+      const subscription = this.turns.subscribe(projectId, sessionId, after);
+      return await this.sse(response, subscription, {
+        interrupt: () => this.turns.interrupt(projectId, sessionId, "service-shutdown"),
+        onDisconnect: () => subscription.close()
+      }, generation);
+    }
+    if (segments.length === 8 && segments[5] === "requests" && segments[7] === "answer" && method === "POST") {
+      await this.authorize(request, "sessions:write", projectId);
+      const requestId = segments[6]!;
+      if (requestId.trim() === "" || requestId.length > 512) throw new RuntimeError("INVALID_REQUEST", "requestId must be a non-empty identifier");
+      const body = validateAnswerSessionRequestRequest(await this.body<unknown>(request));
+      const requests = this.options.requests;
+      if (requests === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Server request answers are unavailable in this composition", 503);
+      await this.options.service.sessions.get(projectId, sessionId);
+      const result = await requests.answerRequest(projectId, sessionId, requestId, body.answer);
+      return this.json(response, 200, { sent: result.sent === true });
+    }
     if (segments.length !== 6) throw new RuntimeError("NOT_FOUND", "Route not found", 404);
     const action = segments[5];
+    if (action === "requests" && method === "GET") {
+      await this.authorize(request, "sessions:read", projectId);
+      const requests = this.options.requests;
+      if (requests === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Server request listing is unavailable in this composition", 503);
+      await this.options.service.sessions.get(projectId, sessionId);
+      const body: SessionRequestsResponse = { requests: await requests.pendingRequests(projectId, sessionId) };
+      return this.json(response, 200, body);
+    }
     if (action === "methods" && method === "PUT") {
       await this.authorize(request, "sessions:write", projectId);
       const body = await this.body<ReplaceSelectedMethodsRequest>(request);
@@ -779,16 +748,18 @@ export class RuntimeDaemon {
     if (action === "turn" && method === "POST") {
       await this.authorize(request, "sessions:write", projectId);
       const body = await this.body<SessionTurnRequest>(request);
-      return await this.sse(
-        response,
-        this.options.service.runSessionTurn(projectId, sessionId, body),
-        () => this.options.service.interruptSession(projectId, sessionId),
-        generation
-      );
+      if (!body || typeof body !== "object" || Array.isArray(body)) throw new RuntimeError("INVALID_REQUEST", "Object request required");
+      // The registry owns the turn from here; this response is one subscription to it.
+      await this.turns.start(projectId, sessionId, body);
+      const subscription = this.turns.subscribe(projectId, sessionId, 0);
+      return await this.sse(response, subscription, {
+        interrupt: () => this.turns.interrupt(projectId, sessionId, "service-shutdown"),
+        onDisconnect: () => subscription.close()
+      }, generation);
     }
     if (action === "interrupt" && method === "POST") {
       await this.authorize(request, "sessions:write", projectId);
-      await this.options.service.interruptSession(projectId, sessionId);
+      await this.turns.interrupt(projectId, sessionId);
       return this.json(response, 200, { interrupted: true, sessionId });
     }
     if (action === "permission" && method === "POST") {
@@ -827,28 +798,24 @@ export class RuntimeDaemon {
 
   private async runHostedAccount<T>(
     request: IncomingMessage,
-    operation: HostAccountOperation,
-    legacyScope: RuntimeScope,
+    operation: "status" | "grant-provider-network-consent" | "sign-out" | "cancel-login" | "start-login",
+    scope: RuntimeScope,
     projectId: string,
     effect: (principal: { clientId: string }, signal: AbortSignal) => Promise<T>
   ): Promise<T> {
-    const proof = request.headers["x-chirality-account-proof"];
-    const authority = this.options.accountHost;
     try {
-      if (authority === undefined) return await effect(await this.authorize(request, legacyScope, projectId), new AbortController().signal);
-      if (proof === undefined) throw new RuntimeError("UNAUTHORIZED", "Complete App account host proof is required", 401);
-      return await authority.runAuthorizedRequest({
-        authorization: request.headers.authorization,
-        counter: request.headers["x-chirality-account-counter"],
-        generation: request.headers["x-chirality-account-generation"],
-        proof,
-        descriptor: hostAccountRequest(operation, projectId)
-      }, effect);
+      return await effect(await this.authorize(request, scope, projectId), new AbortController().signal);
     } catch (error) {
-      // Diagnostics only: operation identity plus code/status/reason/message. Never the auth URL, bearer, proof or counters.
+      // Diagnostics only: operation identity plus code/status/reason/message. Never the auth URL, bearer or account fields.
       try { (this.options.logger ?? NOOP_RUNTIME_DAEMON_LOGGER).error("runtime.daemon.hosted_account.failed", { operation, projectId, ...describeRuntimeFailure(error) }); } catch {}
       throw error;
     }
+  }
+
+  private afterSequence(value: string | null): number {
+    if (value === null || value === "") return 0;
+    if (!/^(0|[1-9][0-9]{0,15})$/u.test(value)) throw new RuntimeError("INVALID_REQUEST", "after must be a non-negative integer", 400, { reason: "TURN_AFTER_INVALID" });
+    return Number(value);
   }
 
   private bootstrapProvenance(clientId: string, generation: DaemonGeneration): { approvedBy: string; approvalReference: string } {
@@ -899,7 +866,7 @@ export class RuntimeDaemon {
       chunks.push(buffer);
     }
     try {
-      const value=JSON.parse(Buffer.concat(chunks).toString("utf8")) as T;assertNoPrivateAuthoritySurface(value);return value;
+      return JSON.parse(Buffer.concat(chunks).toString("utf8")) as T;
     } catch {
       throw new RuntimeError("INVALID_REQUEST", "Request body must be valid JSON");
     }
@@ -913,7 +880,6 @@ export class RuntimeDaemon {
 
   private json(response: ServerResponse, status: number, value: unknown): void {
     if (response.headersSent) return;
-    assertNoPrivateAuthoritySurface(value);
     const body = JSON.stringify(value);
     response.writeHead(status, {
       "content-type": "application/json; charset=utf-8",
@@ -922,18 +888,25 @@ export class RuntimeDaemon {
     response.end(body);
   }
 
+  /**
+   * Writes frames as `id: <seq>\nevent: <type>\ndata: <json>\n\n`, with a
+   * `: keepalive` comment while the stream is idle. A client close only
+   * unsubscribes; the writer never interrupts the observed work. Shutdown-time
+   * interruption is requested by `performStop` through the stream's hook.
+   */
   private async sse(
     response: ServerResponse,
-    events: AsyncIterable<UIEvent>,
-    onDisconnect: (() => Promise<void> | undefined) | undefined,
+    frames: AsyncIterable<TurnFrame>,
+    hooks: { interrupt: () => Promise<void> | undefined; onDisconnect?: () => void },
     generation: DaemonGeneration
   ): Promise<void> {
-    const iterator = events[Symbol.asyncIterator]();
+    const iterator = frames[Symbol.asyncIterator]();
     const control: ActiveSse = {
       generation,
-      interrupt: onDisconnect ?? (() => undefined),
+      interrupt: hooks.interrupt,
+      ...(hooks.onDisconnect === undefined ? {} : { onDisconnect: hooks.onDisconnect }),
       iterator,
-      cancellationRequested: false,
+      stopRequested: false,
       interruptionStarted: false,
       interruptionSettled: false,
       interruptionTimedOut: false,
@@ -945,69 +918,62 @@ export class RuntimeDaemon {
     let finished = false;
     let streamStarted = false;
     let disconnected = response.destroyed;
+    let keepalive: ReturnType<typeof setInterval> | undefined;
     const close = (): void => {
       if (finished) return;
       disconnected = true;
-      this.cancelSse(control);
+      control.onDisconnect?.();
     };
     response.once("close", close);
+    const write = (frame: TurnFrame): void => {
+      if (disconnected || response.destroyed) return;
+      response.write(`id: ${frame.seq}\nevent: ${frame.event.type}\ndata: ${JSON.stringify(frame.event.data)}\n\n`);
+    };
     try {
       const first = await iterator.next();
       streamStarted = true;
-      // The first Agent 1 event may reveal the session identity while a
-      // shutdown cancellation is already latched.
-      this.trySseInterrupt(control);
-      if (response.destroyed && !disconnected) disconnected = true;
-      if (disconnected) {
-        // A run stream may not know its manager session until the first event.
-        // Retry the single cancellation latch after identity has been captured.
-        this.trySseInterrupt(control);
-      } else {
+      // A shutdown may already be latched; the first event may be what reveals the identity to interrupt.
+      this.tryStopInterruption(control);
+      if (response.destroyed) disconnected = true;
+      if (!disconnected) {
         response.writeHead(200, {
           "content-type": "text/event-stream",
           "cache-control": "no-cache, no-transform",
           connection: "keep-alive",
           "x-accel-buffering": "no"
         });
+        keepalive = setInterval(() => {
+          if (!disconnected && !response.destroyed) response.write(": keepalive\n\n");
+        }, this.keepaliveMs);
+        keepalive.unref?.();
       }
-      if (!first.done && !disconnected) {
-        assertNoPrivateAuthoritySurface(first.value);
-        response.write(
-          `event: ${first.value.type}\ndata: ${JSON.stringify(first.value.data)}\n\n`
-        );
-      }
+      if (!first.done) write(first.value);
       while (true) {
         const next = await iterator.next();
-        // A later Agent 1 event may be the first to reveal the manager
-        // session while shutdown cancellation is already latched.
-        this.trySseInterrupt(control);
+        this.tryStopInterruption(control);
         if (next.done) break;
-        if (!disconnected) {
-          assertNoPrivateAuthoritySurface(next.value);
-          response.write(
-            `event: ${next.value.type}\ndata: ${JSON.stringify(next.value.data)}\n\n`
-          );
-        }
+        write(next.value);
       }
     } finally {
       finished = true;
+      if (keepalive !== undefined) clearInterval(keepalive);
       response.off("close", close);
-      if (control.cancellationRequested) this.requestSseIteratorReturn(control);
       generation.streams.delete(control);
       this.notifyGeneration(generation);
       if (streamStarted && !response.destroyed) response.end();
     }
   }
 
-  private cancelSse(control: ActiveSse): void {
-    if (!control.cancellationRequested) control.cancellationRequested = true;
-    this.trySseInterrupt(control);
+  /** Shutdown only: latch the stop request and interrupt the observed work once its identity is known. */
+  private requestStopInterruption(control: ActiveSse): void {
+    control.stopRequested = true;
+    this.tryStopInterruption(control);
   }
 
   private requestSseIteratorReturn(control: ActiveSse): void {
     if (!control.iteratorReturnRequested && control.iterator?.return !== undefined) {
       control.iteratorReturnRequested = true;
-      let returned: Promise<IteratorResult<UIEvent>>;
+      let returned: Promise<IteratorResult<TurnFrame>>;
       try {
         returned = Promise.resolve(control.iterator.return());
       } catch (error) {
@@ -1025,9 +991,9 @@ export class RuntimeDaemon {
     }
   }
 
-  private trySseInterrupt(control: ActiveSse): void {
+  private tryStopInterruption(control: ActiveSse): void {
     if (
-      !control.cancellationRequested ||
+      !control.stopRequested ||
       control.interruptionStarted ||
       control.forceExpired
     ) {
@@ -1058,6 +1024,18 @@ export class RuntimeDaemon {
     );
   }
 
+  /** Shutdown: interrupt every registry-owned turn once, attached or not. The registry joins concurrent interruptions. */
+  private interruptRegistryTurns(generation: DaemonGeneration): void {
+    generation.stopTurns = this.turns.activeTurns().map((turn) => {
+      const state: StopInterruption = { started: true, settled: false };
+      this.turns.interrupt(turn.projectId, turn.sessionId, "service-shutdown").then(
+        () => { state.settled = true; this.notifyGeneration(generation); },
+        (error) => { state.settled = true; state.failure = error; this.notifyGeneration(generation); }
+      );
+      return state;
+    });
+  }
+
   private async performStop(
     generation: DaemonGeneration,
     retry: boolean,
@@ -1067,15 +1045,15 @@ export class RuntimeDaemon {
     if (!retry) {
       generation.stopStreams = [...generation.streams];
       this.beginServerClose(generation);
-      await this.options.accountHost?.close();
-      await this.options.supplierAuthority?.close();
       // Admission is closed before any semantic interruption is requested.
-      for (const stream of generation.stopStreams) this.cancelSse(stream);
+      this.interruptRegistryTurns(generation);
+      for (const stream of generation.stopStreams) this.requestStopInterruption(stream);
       await this.waitUntilGeneration(
         generation,
         () =>
           generation.closeComplete &&
           generation.sockets.size === 0 &&
+          (generation.stopTurns ?? []).every((turn) => turn.settled) &&
           (generation.stopStreams ?? []).every(
             (stream) =>
               stream.interruptionStarted &&
@@ -1100,14 +1078,12 @@ export class RuntimeDaemon {
           stream.interruptionTimedOut ||
           stream.interruptionFailure !== undefined ||
           stream.iteratorReturnFailure !== undefined
-      );
+      ) || (generation.stopTurns ?? []).some((turn) => !turn.settled || turn.failure !== undefined);
       if (!generation.closeComplete || generation.sockets.size > 0) {
         this.forceGenerationTransport(generation, cleanupFailures);
       }
     } else if (!generation.closeComplete || generation.sockets.size > 0) {
       this.beginServerClose(generation);
-      await this.options.accountHost?.close();
-      await this.options.supplierAuthority?.close();
       this.forceGenerationTransport(generation, cleanupFailures);
     }
 
@@ -1127,7 +1103,7 @@ export class RuntimeDaemon {
         stream.interruptionTimedOut ||
         stream.interruptionFailure !== undefined ||
         stream.iteratorReturnFailure !== undefined
-    );
+    ) || (generation.stopTurns ?? []).some((turn) => !turn.settled || turn.failure !== undefined);
 
     if (!generation.socketUnlinked) {
       try {
@@ -1165,7 +1141,10 @@ export class RuntimeDaemon {
         ...(stream.interruptionTimedOut ? [new Error("INTERRUPTION_TIMEOUT")] : []),
         ...(stream.interruptionFailure === undefined ? [] : [stream.interruptionFailure]),
         ...(stream.iteratorReturnFailure === undefined ? [] : [stream.iteratorReturnFailure])
-      ]);
+      ]).concat((generation.stopTurns ?? []).flatMap((turn) => [
+        ...(turn.settled ? [] : [new Error("INTERRUPTION_TIMEOUT")]),
+        ...(turn.failure === undefined ? [] : [turn.failure])
+      ]));
       const error = this.stopError("STOPPED_DEGRADED", causes);
       this.lifecycle = "STOPPED_DEGRADED";
       this.terminalStopError = error;

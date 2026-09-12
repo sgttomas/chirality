@@ -1,5 +1,10 @@
 # Carrier Map — SCA-APP-008
 
+> **Revision 2026-09-12 (D-GOV-43, topology A2).** Parts of this file are
+> `SUPERSEDED_BEFORE_ACCEPTANCE`; see `REVISION_2026-09-12_D-GOV-43_A2.md` in
+> this packet for the exact rows and their replacements. The original text
+> below is preserved unchanged.
+
 **Status:** `PROPOSED_NOT_APPLIED`
 **Topology:** retain the live 10-package / 51-deliverable topology and stable IDs.
 **Dispatch posture:** every row remains held until SCA-APP-008 is owner-accepted and the row's later gate/activation is satisfied.

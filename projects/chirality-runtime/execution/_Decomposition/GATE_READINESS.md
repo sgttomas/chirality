@@ -13,3 +13,13 @@ All seven SOFTWARE_DECOMP confirmations below are **NOT_CONFIRMED**. The human a
 | 7 Accepted downstream basis | Entire exact sealed charter/decomposition package | NOT_CONFIRMED; not published or materialized |
 
 No acceptance, publication, PREPARATION work, activation or release is inferred. SCOPE_CHANGE Gate3 remains a separate pending owner act. Gate4 must name executable paths/owners; Gate5 must verify actual post-state and findings before closure. No _LATEST act occurs here.
+
+## D-GOV-43 supersession (2026-09-12, SCA-004)
+
+The table above is the frozen 2026-09-05 preparation record and is not
+re-confirmed. Under D-GOV-43 items 7 and 11 (A2 supplement), SCA-004 retires
+DEL-02-07 through DEL-02-12, revises DEL-02-06 and closes the nine
+`HELD_UNAVAILABLE` bindings in `HOLD_SUCCESSOR_MAP.csv`. No further
+SOFTWARE_DECOMP gate confirmation, register or hash table is inferred or
+built to demonstrate the simplification; the reviewed Git changes are the
+record.

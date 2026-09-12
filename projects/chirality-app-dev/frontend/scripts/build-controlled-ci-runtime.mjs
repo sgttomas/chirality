@@ -3,6 +3,13 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build } from 'esbuild';
 
+/**
+ * Bundles `scripts/controlled-ci-runtime.ts` (the stub-engine Runtime daemon
+ * the harness pre-merge workflow starts) into `out/controlled-ci/` and proves
+ * the bundled graph stays controlled: no Electron main, no App-owned Codex
+ * composition, no `codex-*` module and no legacy engine (D-GOV-43, A2).
+ */
+
 const frontendRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repositoryRoot = path.resolve(frontendRoot, '..', '..', '..');
 const runtimeRoot = path.join(repositoryRoot, 'projects', 'chirality-runtime');
@@ -17,9 +24,11 @@ function contractSource(subpath = '') {
 const entries = {
   '@chirality/runtime-contracts': contractSource(),
   '@chirality/runtime-core': path.join(runtimeRoot, 'packages', 'core', 'src', 'index.ts'),
-  '@chirality/runtime-daemon': path.join(runtimeRoot, 'packages', 'daemon', 'src', 'index.ts'),
-  '@chirality/runtime-client': path.join(runtimeRoot, 'packages', 'client', 'src', 'index.ts'),
-  '@chirality/runtime-cli': path.join(runtimeRoot, 'packages', 'cli', 'src', 'index.ts')
+  // The daemon package index re-exports the Codex client, supervisor and the
+  // App-owned composition; the fixture binds the daemon class directly so
+  // none of that enters the controlled graph.
+  '@chirality/runtime-daemon': path.join(runtimeRoot, 'packages', 'daemon', 'src', 'runtime-daemon.ts'),
+  '@chirality/runtime-client': path.join(runtimeRoot, 'packages', 'client', 'src', 'index.ts')
 };
 
 const runtimeSources = {
@@ -30,33 +39,43 @@ const runtimeSources = {
     }));
     for (const [name, source] of Object.entries(entries)) {
       if (name === '@chirality/runtime-contracts') continue;
-      api.onResolve({ filter: new RegExp(`^${name.replaceAll('/', '\\/')}$`) }, (args) => ({
-        path: name === '@chirality/runtime-daemon' && args.importer.endsWith('controlled-ci-runtime.ts')
-          ? path.join(runtimeRoot, 'packages', 'daemon', 'src', 'runtime-daemon.ts')
-          : source
-      }));
+      api.onResolve({ filter: new RegExp(`^${name.replaceAll('/', '\\/')}$`) }, () => ({ path: source }));
     }
   }
 };
 
-const forbiddenControlledSources = [
+export const forbiddenControlledSources = [
   '/electron/main.ts',
-  '/electron/runtime-host',
+  '/electron/runtime-service-host',
+  '/electron/runtime-service-launcher',
   '/engine-pi-omlx/',
   '/engine-claude/',
+  '/daemon/src/app-owned-composition',
+  '/daemon/src/standalone',
+  '/daemon/src/hosted-bootstrap',
   '/hosted-private-',
   '/native-admission/',
-  '/codex-'
+  '/codex-',
+  '/packages/cli/'
 ];
 
-function assertControlledGraph(metafile) {
+export const requiredControlledSources = [
+  'scripts/controlled-ci-runtime.ts',
+  'daemon/src/runtime-daemon.ts',
+  'daemon/src/turn-registry.ts',
+  'core/src/runtime-service.ts',
+  'core/src/project-registry.ts',
+  'src/lib/harness/agent-sdk-manager.ts'
+];
+
+export function assertControlledGraph(metafile) {
   const sources = Object.keys(metafile.inputs).map((item) => item.replaceAll('\\', '/'));
   for (const fragment of forbiddenControlledSources) {
     if (sources.some((source) => source.includes(fragment))) {
       throw new Error(`Controlled CI graph includes forbidden production source fragment '${fragment}'.`);
     }
   }
-  for (const required of ['scripts/controlled-ci-runtime.ts', 'daemon/src/runtime-daemon.ts', 'core/src/runtime-service.ts', 'src/lib/harness/agent-sdk-manager.ts']) {
+  for (const required of requiredControlledSources) {
     if (!sources.some((source) => source.includes(required))) {
       throw new Error(`Controlled CI graph is missing required source fragment '${required}'.`);
     }
@@ -79,22 +98,8 @@ export async function buildControlledCiRuntime() {
     logLevel: 'silent'
   });
   assertControlledGraph(controlled.metafile);
-  const cli = await build({
-    entryPoints: [path.join(runtimeRoot, 'packages', 'cli', 'src', 'bin.ts')],
-    outfile: path.join(outputRoot, 'chirality-cli.mjs'),
-    bundle: true,
-    platform: 'node',
-    target: 'node24',
-    format: 'esm',
-    banner: { js: "import { createRequire as __controlledCreateRequire } from 'node:module'; const require = __controlledCreateRequire(import.meta.url);" },
-    sourcemap: true,
-    metafile: true,
-    plugins: [runtimeSources],
-    logLevel: 'silent'
-  });
   await writeFile(path.join(outputRoot, 'controlled-runtime.meta.json'), `${JSON.stringify(controlled.metafile, null, 2)}\n`);
-  await writeFile(path.join(outputRoot, 'chirality-cli.meta.json'), `${JSON.stringify(cli.metafile, null, 2)}\n`);
-  return { outputRoot, controlledMetafile: controlled.metafile, cliMetafile: cli.metafile };
+  return { outputRoot, controlledMetafile: controlled.metafile };
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {

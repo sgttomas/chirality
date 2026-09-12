@@ -65,7 +65,7 @@ const project = {
   clientId: 'desktop', enabledAdapterIds: ['controlled-fixture'], legacySessionRoots: []
 };
 let projectRegistered = false;
-let hostedStatus = { schema: 'chirality-hosted-bootstrap-status/v1', projectId, ceremony: 'consent-required', admission: 'unavailable', canStartLogin: false };
+let hostedStatus = { schema: 'chirality-hosted-bootstrap-status/v1', projectId, ceremony: 'ready-to-start', admission: 'unavailable', canStartLogin: true };
 const sessions = new Map();
 const histories = new Map();
 const bases = new Map();
@@ -278,7 +278,7 @@ const server = createServer(async (request, response) => {
 
 await new Promise((resolve, reject) => { server.once('error', reject); server.listen(socketPath, resolve); });
 await chmod(socketPath, 0o600);
-process.stdout.write(`${JSON.stringify({ ready: true, socketPath, bootstrapTokenFile, runtimeDirectory: stateRoot, projectId, projectRoot, nextCommand: `CHIRALITY_RUNTIME_SOCKET_PATH=${socketPath} CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE=${bootstrapTokenFile} CHIRALITY_RUNTIME_DIRECTORY=${stateRoot} npm run dev:next` })}\n`);
+process.stdout.write(`${JSON.stringify({ ready: true, socketPath, bootstrapTokenFile, runtimeDirectory: stateRoot, projectId, projectRoot, nextCommand: `CHIRALITY_RUNTIME_SOCKET_PATH=${socketPath} CHIRALITY_RUNTIME_TOKEN_FILE=${bootstrapTokenFile} CHIRALITY_RUNTIME_DIRECTORY=${stateRoot} npm run dev:next` })}\n`);
 
 async function stop() {
   await new Promise((resolve) => server.close(resolve));

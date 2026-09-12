@@ -429,6 +429,14 @@ and the credentials, sessions, adapters, transport, state, registration,
 hierarchy, pilot, and export seams from being repartitioned by new paraphrase.
 Item 1 is the exact prospective migration replacement; unchanged statements retain D-GOV-20 authority and any actual later amendments. The migration candidate itself is not an owner act.
 
+Annex note (2026-09-12): items 2, 3 and 4 above are read with the superseding
+instrument D-GOV-43 (`docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`
+and its A2 supplement), published at git SHA
+`d2878462be59a43b4afc175a8cce85abca9cf696`: the App owns a Runtime service
+child that hosts stock Codex, credentials are custodied by Codex, and the
+per-user daemon, LaunchAgent and residency requirements are retired. The
+transcribed text is not rewritten.
+
 1. Chirality's executable agent harness is the projects/chirality-runtime product workspace with provider-neutral contracts, orchestration, daemon, client, CLI and safe engine adapters. The runtime project owns product semantics, implementation and release evidence; Root owns shared governance and instruction policy. Items 2–10 and security, residency, preserved-authority, exclusions and implementation gates remain subject to their existing later accepted amendments; changing the location and owning project supplies no additional capability.
 2. One opt-in per-user headless daemon exclusively owns runtime engines, credentials, sessions, delegation, tools, turn locks, interruption, and local-model residency.
 3. The packaged Electron application supplies daemon mode so the existing app identity and encrypted `safeStorage` credential boundary remain single-owner.

@@ -1,52 +1,25 @@
 import { PLAN_EXPORT_DIALOG_CHANNEL } from './plan-export-ipc-contract';
 import { createPlanExportDialogHandler } from './plan-export-dialog';
 import { app, BrowserWindow, dialog, ipcMain, shell, Menu } from 'electron';
-import { spawn } from 'node:child_process';
 import { isAuthorizedSender } from './ipc-sender-policy';
 import { createDocumentHandoffHandler, validateRevealRoot, FilePolicyError } from '../src/app/api/working-root/file/file-policy';
 import { existsSync, mkdirSync } from 'node:fs';
-import { readFile, stat } from 'node:fs/promises';
+import { stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import type { AddressInfo } from 'node:net';
+import os from 'node:os';
 import path from 'node:path';
 import { RuntimeClient } from '@chirality/runtime-client';
-import { installRuntimeDaemonSignalShutdown } from '@chirality/runtime-daemon';
-import {
-  createVerifiedHostAccountClient,
-  loadPackagedHostedReleaseBasis,
-  type HostAccountClient
-} from '@chirality/runtime-daemon/hosted';
-import { resolveHostedBootstrapTokenFile } from '@chirality/runtime-daemon/hosted-paths';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
 import { ATTACHMENT_SELECT_FILES_CHANNEL } from './attachment-ipc-contract';
 import { createAttachmentSelectionHandler } from './attachment-picker';
-import { decideDaemonActivate, observeRendererPortEvidence } from './daemon-activate-policy';
-import { ensureRuntimeDaemonAutostart } from './runtime-autostart';
-import { installBundledCliLauncher } from './cli-launcher';
-import { resolveDesktopEntryMode } from './desktop-entry-mode';
-import { runProtectedRuntimeCli } from './protected-runtime-cli';
-import {
-  createHostAccountConnection,
-  type HostAccountConnection
-} from './host-account-connection';
-import { registerHostAccountHandler, unregisterHostAccountHandler } from './host-account-ipc';
+import { CODEX_PINNED_VERSION, resolveCodexExecutable } from './codex-executable';
 import {
   createDesktopLogger,
   createNoopDesktopLogger,
   type DesktopLogger
 } from './desktop-log';
-import {
-  GUI_SPAWN_MIN_INTERVAL_MS,
-  isDaemonGuiSpawnEnabled,
-  resolveDaemonActivationPolicy,
-  resolveUserDataOverride
-} from './desktop-process-policy';
-import {
-  applyDesktopProjectBinding,
-  DESKTOP_PROJECT_ID,
-  prepareDesktopHarnessEnvironment,
-  resolveDesktopProjectBinding
-} from './desktop-project-client';
+import { resolveUserDataOverride } from './desktop-process-policy';
 import {
   applyPackagedRendererRequestPolicy,
   buildRendererContentSecurityPolicy,
@@ -56,11 +29,6 @@ import {
   runRendererSecurityProbe
 } from './renderer-window-policy';
 import {
-  packagedRuntimeBootInput,
-  startRuntimeHost,
-  type RuntimeHost
-} from './runtime-host';
-import {
   createRuntimeBindingSupervisor,
   RUNTIME_CONNECTIVITY_CHANGED_CHANNEL,
   RUNTIME_CONNECTIVITY_QUERY_CHANNEL,
@@ -68,10 +36,17 @@ import {
   type RuntimeConnectivitySnapshot
 } from './runtime-connectivity';
 import {
-  createDesktopDaemonLifecycle,
   registerRuntimeControlHandlers,
   unregisterRuntimeControlHandlers
 } from './runtime-control-ipc';
+import {
+  buildRuntimeServiceConfig,
+  createRuntimeServiceHost,
+  resolveRuntimeServicePaths,
+  type RuntimeServiceHost,
+  type RuntimeServiceState
+} from './runtime-service-host';
+import { launchRuntimeServiceChild } from './runtime-service-launcher';
 import {
   createSocketPresenceWatcher,
   type SocketPresenceWatcher
@@ -90,6 +65,11 @@ type RendererProbeResult = {
   status: number | null;
   type: string | null;
   error: string | null;
+};
+
+/** What the renderer receives: daemon reachability plus the owned child's state. */
+type RuntimeConnectivityReport = RuntimeConnectivitySnapshot & {
+  service: RuntimeServiceState | null;
 };
 
 const SELECT_DIRECTORY_CHANNEL = 'chirality:select-directory';
@@ -137,37 +117,26 @@ const ALLOWED_LOOPBACK_HOSTNAMES = new Set<string>(['localhost', '127.0.0.1', '[
 const RENDERER_EGRESS_FILTER_URLS = ['http://*/*', 'https://*/*', 'ws://*/*', 'wss://*/*'];
 
 let rendererServer: RendererServer | undefined;
-let runtimeHost: RuntimeHost | undefined;
+let runtimeServiceHost: RuntimeServiceHost | undefined;
 let shutdownStarted = false;
 let shutdownCompleted = false;
 let bindingSupervisor: RuntimeBindingSupervisor | undefined;
 let socketWatcher: SocketPresenceWatcher | undefined;
-let hostAccountConnection: HostAccountConnection | undefined;
-/** Monotonic timestamp of the last GUI spawned from daemon mode; see `activate`. */
-let lastGuiSpawnAt = 0;
 let desktopLogger: DesktopLogger = createNoopDesktopLogger();
-const desktopEntryMode = resolveDesktopEntryMode(process.argv, app.isPackaged);
-const runtimeDaemonMode = desktopEntryMode.mode === 'runtime-daemon';
-const guiMode = desktopEntryMode.mode === 'gui';
 
 /**
  * Honor `CHIRALITY_USER_DATA` for the app itself.
  *
- * The bundled `chirality` CLI and `@chirality/runtime-cli` already resolve their
- * runtime directory from `CHIRALITY_USER_DATA`, but the app hard-coded
- * Electron's default (`<appData>/chirality-frontend`). The two therefore
- * disagreed by default, and documented CLI commands pointed at a runtime
- * directory the app never used. Honoring the same variable here makes one
- * variable pin *both* sides to one runtime directory, and lets a verification
- * run drive a fully isolated app + daemon + LaunchAgent triple without touching
- * an operator's real userData.
+ * The App-owned Runtime service resolves every private path from the App's
+ * `userData`, so one variable pins the App, its service child and its Codex
+ * effective home to one isolated root, which is what lets a verification run
+ * drive a fully isolated App without touching an operator's real userData.
  *
  * Must run before anything reads `app.getPath('userData')` and before `ready`,
  * because the value also selects the Chromium profile directory. Relative values
- * are rejected rather than resolved against an unpredictable cwd (launchd starts
- * jobs in `/`). `app.setPath` throws when the directory is absent, so create it
- * first. Applies to packaged and unpackaged runs alike — an env override that
- * silently only worked in one of them would be worse than none.
+ * are rejected rather than resolved against an unpredictable cwd. `app.setPath`
+ * throws when the directory is absent, so create it first. Applies to packaged
+ * and unpackaged runs alike.
  */
 function applyUserDataOverride(): void {
   const override = resolveUserDataOverride(process.env);
@@ -192,58 +161,7 @@ function applyUserDataOverride(): void {
   }
 }
 
-/**
- * Shed the daemon's *app* identity while keeping it an Electron process.
- *
- * The daemon is the same bundle relaunched with `--runtime-daemon`, so without
- * this it comes up as an ordinary macOS application: Dock tile, menu bar, and —
- * decisively — a LaunchServices-visible, activatable instance of
- * `Chirality.app`. Opening the app from Finder/Dock then resolves against that
- * headless instance instead of starting the GUI, and the operator-visible effect
- * is "launching the GUI killed the daemon".
- *
- * `'prohibited'` is the strongest available posture ("doesn't appear in the Dock
- * and may not create windows or be activated") and is safe here precisely
- * because the daemon never creates a BrowserWindow. `'accessory'` remains
- * selectable through `CHIRALITY_DAEMON_ACTIVATION_POLICY` for comparison drills.
- *
- * safeStorage is unaffected: on macOS `safeStorage.isEncryptionAvailable()`
- * "returns true if Keychain is available" — it is gated on Keychain access, not
- * on NSApplication activation, a Dock tile, or a window. (Unlike Linux/Windows
- * it is not even gated on `ready`.) Keychain prompts are drawn by the system
- * security agent, not by this process's NSApplication.
- *
- * Called both at module scope and again after `ready`: the early call avoids a
- * visible Dock flash during launch, the later one is the belt-and-braces value
- * in case activation policy is reset while NSApplication finishes coming up.
- */
-function applyDaemonActivationPolicy(): void {
-  if (process.platform !== 'darwin') {
-    return;
-  }
-  const policy = resolveDaemonActivationPolicy(process.env);
-  try {
-    app.setActivationPolicy(policy);
-  } catch (error) {
-    console.warn(
-      'Failed to set the runtime daemon activation policy',
-      JSON.stringify({ policy, error: error instanceof Error ? error.message : String(error) })
-    );
-  }
-  if (policy === 'regular') {
-    return;
-  }
-  try {
-    app.dock?.hide();
-  } catch {
-    // A hidden or absent Dock tile is already the desired end state.
-  }
-}
-
 applyUserDataOverride();
-if (runtimeDaemonMode) {
-  applyDaemonActivationPolicy();
-}
 
 type RendererEgressPolicyDecision =
   | { allowed: true }
@@ -484,6 +402,57 @@ function resolveInstructionRootForProcess(): string {
   return resolved;
 }
 
+/** The instruction root handed to the Runtime service (packaged: the staged bundle). */
+function resolveServiceInstructionRoot(): string {
+  return app.isPackaged
+    ? path.join(process.resourcesPath, 'instruction-root')
+    : resolveInstructionRootForProcess();
+}
+
+/** Development frontend root: `dist-electron/main.js` sits one level below it. */
+function resolveFrontendRoot(): string {
+  return path.resolve(__dirname, '..');
+}
+
+/**
+ * Service entry: development uses the built Runtime workspace
+ * (`tsc -b` output); the packaged App carries the esbuild bundle produced by
+ * `scripts/build-electron.mjs` under `Contents/Resources/runtime-service`.
+ */
+function resolveRuntimeServiceEntry(): string {
+  const override = process.env.CHIRALITY_RUNTIME_SERVICE_ENTRY?.trim();
+  if (override) return path.resolve(override);
+  if (app.isPackaged) {
+    return path.join(process.resourcesPath, 'runtime-service', 'standalone-bin.mjs');
+  }
+  return path.resolve(
+    resolveFrontendRoot(),
+    '..',
+    '..',
+    'chirality-runtime',
+    'packages',
+    'daemon',
+    'dist',
+    'standalone-bin.js'
+  );
+}
+
+function resolveUserCodexHome(): string {
+  const override = process.env.CODEX_HOME?.trim();
+  return override ? path.resolve(override) : path.join(os.homedir(), '.codex');
+}
+
+/** The child's environment: this process's, without Electron-only switches. */
+function runtimeServiceEnvironment(): Record<string, string> {
+  const environment: Record<string, string> = {};
+  for (const [name, value] of Object.entries(process.env)) {
+    if (value === undefined) continue;
+    if (name === 'ELECTRON_RUN_AS_NODE' || name === 'NODE_OPTIONS') continue;
+    environment[name] = value;
+  }
+  return environment;
+}
+
 async function registerDirectorySelectionHandler(): Promise<void> {
   ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
   ipcMain.handle(SELECT_DIRECTORY_CHANNEL, async () => {
@@ -655,73 +624,58 @@ function createMainWindow(rendererUrl: string, route = '/'): BrowserWindow {
   return window;
 }
 
-function runtimeControlPaths(): {
-  runtimeDirectory: string;
-  socketPath: string;
-  bootstrapTokenFile: string;
-} {
-  const runtimeDirectory = path.join(app.getPath('userData'), 'runtime');
-  return {
-    runtimeDirectory,
-    socketPath:
-      process.env.CHIRALITY_RUNTIME_SOCKET_PATH?.trim() ||
-      path.join(runtimeDirectory, 'control.sock'),
-    bootstrapTokenFile: resolveHostedBootstrapTokenFile(runtimeDirectory)
-  };
-}
-
-async function configureDesktopHarnessClient(
-  operatorClient: RuntimeClient,
-  control: ReturnType<typeof runtimeControlPaths>
-): Promise<void> {
-  prepareDesktopHarnessEnvironment(process.env, control.socketPath);
-
-  // Installed Desktop is allowed to start without the development project's
-  // optional convenience registration. A folder selected in the UI obtains
-  // its own verified project binding through the bootstrap path.
-  const hasDefaultProject = (await operatorClient.listProjects()).some(
-    ({ project }) => project.projectId === DESKTOP_PROJECT_ID
-  );
-  if (!hasDefaultProject) return;
-
-  const binding = await resolveDesktopProjectBinding({
-    operatorClient,
-    runtimeDirectory: control.runtimeDirectory,
-    socketPath: control.socketPath
-  });
-  applyDesktopProjectBinding(process.env, binding);
-}
-
 /** Push a connectivity transition to every live renderer. */
-function broadcastRuntimeConnectivity(snapshot: RuntimeConnectivitySnapshot): void {
+function broadcastRuntimeConnectivity(report: RuntimeConnectivityReport): void {
   for (const window of BrowserWindow.getAllWindows()) {
     if (window.isDestroyed()) {
       continue;
     }
-    window.webContents.send(RUNTIME_CONNECTIVITY_CHANGED_CHANNEL, snapshot);
+    window.webContents.send(RUNTIME_CONNECTIVITY_CHANGED_CHANNEL, report);
   }
+}
+
+function currentConnectivityReport(): RuntimeConnectivityReport | null {
+  const snapshot = bindingSupervisor?.snapshot();
+  if (!snapshot) return null;
+  return { ...snapshot, service: runtimeServiceHost?.state() ?? null };
 }
 
 async function registerRuntimeConnectivityHandler(): Promise<void> {
   ipcMain.removeHandler(RUNTIME_CONNECTIVITY_QUERY_CHANNEL);
   ipcMain.handle(
     RUNTIME_CONNECTIVITY_QUERY_CHANNEL,
-    async (): Promise<RuntimeConnectivitySnapshot | null> =>
-      bindingSupervisor?.snapshot() ?? null
+    async (): Promise<RuntimeConnectivityReport | null> => currentConnectivityReport()
   );
 }
 
+/**
+ * One startup path for the App and its owned Runtime service (D-GOV-43, A2).
+ *
+ * The service is a child of this process: its config is written privately
+ * under `userData/runtime`, it is launched before the renderer, and the Next
+ * routes and the main-process `RuntimeClient` reach it through the same socket
+ * and per-launch client token. Nothing here installs, starts or stops a
+ * LaunchAgent; quitting the App stops the service.
+ */
 async function initializeGui(): Promise<void> {
-  const control = runtimeControlPaths();
-  process.env.CHIRALITY_RUNTIME_DIRECTORY = control.runtimeDirectory;
-  process.env.CHIRALITY_RUNTIME_SOCKET_PATH = control.socketPath;
-  process.env.CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE = control.bootstrapTokenFile;
+  const servicePaths = resolveRuntimeServicePaths({
+    userDataDirectory: app.getPath('userData'),
+    socketPathOverride: process.env.CHIRALITY_RUNTIME_SOCKET_PATH
+  });
+  // Set before the in-process Next server starts: its harness port reads
+  // these lazily per request, and the token file appears once the service is
+  // ready. The retired bootstrap-token variable must not linger from an older
+  // launcher's environment.
+  process.env.CHIRALITY_RUNTIME_DIRECTORY = servicePaths.runtimeDirectory;
+  process.env.CHIRALITY_RUNTIME_SOCKET_PATH = servicePaths.socketPath;
+  process.env.CHIRALITY_RUNTIME_TOKEN_FILE = servicePaths.clientTokenFile;
+  delete process.env.CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE;
   desktopLogger = createDesktopLogger({
     directory: path.join(app.getPath('userData'), 'logs')
   });
   const runtimeClient = new RuntimeClient({
-    socketPath: control.socketPath,
-    tokenFile: control.bootstrapTokenFile
+    socketPath: servicePaths.socketPath,
+    tokenFile: servicePaths.clientTokenFile
   });
   await registerDirectorySelectionHandler();
   await registerRuntimeConnectivityHandler();
@@ -729,45 +683,36 @@ async function initializeGui(): Promise<void> {
   desktopLogger.info('desktop.gui.starting', {
     packaged: app.isPackaged,
     userData: app.getPath('userData'),
-    socketPath: control.socketPath
+    socketPath: servicePaths.socketPath,
+    pid: process.pid
   });
 
-  if (app.isPackaged) {
-    // Log-and-continue, always: a convenience launcher that cannot be written
-    // must never be able to stop the app from starting.
-    await installBundledCliLauncher()
-      .then((result) => {
-        desktopLogger.info('desktop.cli_launcher.install', result);
-      })
-      .catch((error) => {
-        desktopLogger.error('desktop.cli_launcher.install_failed', error);
-      });
-  }
+  const codex = resolveCodexExecutable({
+    packaged: app.isPackaged,
+    resourcesPath: process.resourcesPath,
+    nodeModulesRoot: path.join(resolveFrontendRoot(), 'node_modules')
+  });
+  const serviceConfig = buildRuntimeServiceConfig({
+    paths: servicePaths,
+    instructionRoot: resolveServiceInstructionRoot(),
+    codexExecutablePath: codex.executablePath,
+    userCodexHome: resolveUserCodexHome(),
+    expectedCodexVersion: CODEX_PINNED_VERSION
+  });
+  const serviceEntry = resolveRuntimeServiceEntry();
 
   // Binding is a supervised main-process concern, not a one-shot startup step:
-  // a daemon that is down at this instant, or that dies later, must not leave the
-  // window permanently unable to reach the runtime. `start()` still awaits the
-  // first attempt so a healthy daemon is fully bound before the window appears.
-  const observeDaemonReachability = async (): Promise<void> => {
-    try {
-      await runtimeClient.daemonStatus();
-      void hostAccountConnection?.update(true);
-    } catch (error) {
-      void hostAccountConnection?.update(false);
-      throw error;
-    }
-  };
+  // a service that is still starting, or that dies later, must not leave the
+  // window permanently unable to reach the runtime. The host nudges the
+  // supervisor on every ready line and exit, and the socket watcher covers the
+  // moments in between, so the ladder below is only the fallback.
   bindingSupervisor = createRuntimeBindingSupervisor({
     bind: async () => {
-      // Account-host admission is daemon-scoped. Establish it as soon as the
-      // daemon answers, even when the fixed app-dev harness project is absent
-      // and the project binding below must keep retrying.
-      await observeDaemonReachability();
-      await configureDesktopHarnessClient(runtimeClient, control);
+      await runtimeClient.daemonStatus();
     },
     probe: async () => {
       try {
-        await observeDaemonReachability();
+        await runtimeClient.daemonStatus();
         return true;
       } catch {
         return false;
@@ -775,54 +720,50 @@ async function initializeGui(): Promise<void> {
     },
     onStateChange: (snapshot) => {
       desktopLogger.info('runtime.connectivity.state', snapshot);
-      broadcastRuntimeConnectivity(snapshot);
+      broadcastRuntimeConnectivity({ ...snapshot, service: runtimeServiceHost?.state() ?? null });
     },
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
   });
 
-  hostAccountConnection = createHostAccountConnection({
-    connect: async (): Promise<HostAccountClient> => {
-      if (!app.isPackaged) throw new Error('packaged-account-client-unavailable');
-      const release = await loadPackagedHostedReleaseBasis({
-        resourcesRoot: process.resourcesPath,
-        runtimeDirectory: control.runtimeDirectory,
-        executablePath: app.getPath('exe'),
-        embeddedRuntime: {
-          electron: process.versions.electron,
-          node: process.versions.node,
-          modules: process.versions.modules,
-          napi: process.versions.napi ?? '',
-          architecture: process.arch
-        }
+  runtimeServiceHost = createRuntimeServiceHost({
+    config: serviceConfig,
+    configPath: servicePaths.configPath,
+    serviceEntry,
+    environment: runtimeServiceEnvironment(),
+    launch: launchRuntimeServiceChild,
+    log: (level, event, detail) => desktopLogger.log(level, event, detail),
+    // The desktop log redacts account e-mails at its writer.
+    writeServiceStderr: (line) => desktopLogger.info('runtime.service.stderr', line),
+    onStateChange: (state) => {
+      desktopLogger.info('runtime.service.state', {
+        status: state.status,
+        pid: state.pid,
+        restarts: state.restarts,
+        recentFailures: state.recentFailures,
+        lastError: state.lastError
       });
-      if (release.status !== 'ready') throw new Error('packaged-account-client-unavailable');
-      const client = await createVerifiedHostAccountClient({
-        socketPath: control.socketPath,
-        executablePath: app.getPath('exe'),
-        resourcesPath: process.resourcesPath,
-        basis: release.basis
-      });
-      try {
-        await client.start();
-        return client;
-      } catch (error) {
-        await client.close().catch(() => undefined);
-        throw error;
+      const snapshot = bindingSupervisor?.snapshot();
+      if (snapshot) broadcastRuntimeConnectivity({ ...snapshot, service: state });
+      if (state.status === 'ready' || state.status === 'restarting' || state.status === 'failed') {
+        void bindingSupervisor?.refreshNow();
       }
-    },
-    log: (event) => desktopLogger.info(`runtime.account_host.${event}`)
+    }
+  });
+  desktopLogger.info('runtime.service.starting', {
+    entry: serviceEntry,
+    codexExecutable: codex.executablePath,
+    codexSource: codex.source,
+    expectedCodexVersion: CODEX_PINNED_VERSION,
+    runtimeDirectory: servicePaths.runtimeDirectory
+  });
+  // Not awaited: the window must not wait out a 30 s ready timeout when the
+  // service is broken. Connectivity is reported live through the supervisor.
+  void runtimeServiceHost.start().catch((error) => {
+    desktopLogger.error('runtime.service.start_failed', error);
   });
 
-  // The supervisor's timers alone make a daemon bounce cost up to a probe
-  // interval to notice plus a walk up the retry ladder to undo — even when the
-  // daemon came back in milliseconds, which is exactly what a Finder-launch
-  // handoff does. The control socket's appearance and disappearance are the
-  // same two facts, available immediately, so watching it turns both delays
-  // into a single filesystem event. The ladder stays as the fallback for the
-  // cases the filesystem cannot report (a SIGKILLed daemon leaves its socket
-  // behind, and a daemon that is listening but unhealthy changes nothing).
   socketWatcher = createSocketPresenceWatcher({
-    socketPath: control.socketPath,
+    socketPath: servicePaths.socketPath,
     onChange: () => {
       void bindingSupervisor?.refreshNow();
     },
@@ -831,25 +772,6 @@ async function initializeGui(): Promise<void> {
   socketWatcher.start();
 
   await bindingSupervisor.start();
-
-  // One lifecycle instance serves both autostart and the manual controls, so
-  // both address the same job with the same posture (label, userData pin).
-  const daemonLifecycle = createDesktopDaemonLifecycle();
-  // Ordinary use must never require the operator to install or start the
-  // daemon. Reconcile the LaunchAgent now; the outcome is logged, never thrown,
-  // and the supervisor is nudged so a freshly started daemon binds without
-  // waiting out the retry ladder.
-  const autostart = await ensureRuntimeDaemonAutostart({
-    lifecycle: daemonLifecycle,
-    desktopExecutable: app.getPath('exe'),
-    packaged: app.isPackaged,
-    readInstalledPlist: () => readFile(daemonLifecycle.plistPath, 'utf8').catch(() => undefined),
-    log: (level, event, detail) => desktopLogger.log(level, event, detail)
-  });
-  desktopLogger.info('runtime.autostart.outcome', autostart);
-  if (autostart.action === 'installed-and-started' || autostart.action === 'started') {
-    void bindingSupervisor.refreshNow();
-  }
 
   const rendererUrl = app.isPackaged
     ? (rendererServer = await startPackagedRendererServer()).url
@@ -914,26 +836,13 @@ async function initializeGui(): Promise<void> {
     rendererOrigin,
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
   });
-  registerHostAccountHandler({
-    runtimeClient,
-    accountClient: () => hostAccountConnection?.client(),
-    invalidateAccountClient: (client) => {
-      void hostAccountConnection?.invalidate(client);
-    },
-    log: (level, event, detail) => desktopLogger.log(level, event, detail),
-    rendererOrigin
-  });
 
   registerRuntimeControlHandlers({
-    client: runtimeClient,
-    lifecycle: daemonLifecycle,
-    desktopExecutable: app.getPath('exe'),
-    packaged: app.isPackaged,
     rendererOrigin,
-    // An operator action that makes the daemon reachable should not have to wait
-    // out the backoff ladder.
-    onDaemonAvailable: async () => {
-      await bindingSupervisor?.refreshNow();
+    // The renderer's retry after the host gave up: reset the budget and relaunch.
+    restartService: async () => {
+      if (!runtimeServiceHost) throw new Error('Runtime service host is not running');
+      return runtimeServiceHost.restart();
     }
   });
 
@@ -955,89 +864,22 @@ async function initializeGui(): Promise<void> {
   });
 }
 
-async function initializeDaemon(): Promise<void> {
-  // Re-assert the headless posture now that NSApplication is fully up.
-  applyDaemonActivationPolicy();
-  desktopLogger = createDesktopLogger({
-    directory: path.join(app.getPath('userData'), 'logs'),
-    fileName: 'desktop-daemon.log'
-  });
-  desktopLogger.info('runtime.daemon.starting', {
-    activationPolicy: resolveDaemonActivationPolicy(process.env),
-    packaged: app.isPackaged,
-    userData: app.getPath('userData'),
-    pid: process.pid
-  });
-  const control = runtimeControlPaths();
-  const instructionRoot = app.isPackaged
-    ? path.join(process.resourcesPath, 'instruction-root')
-    : resolveInstructionRootForProcess();
-  const runtimeBootInput =
-    app.isPackaged
-      ? packagedRuntimeBootInput({
-          runtimeDirectory: control.runtimeDirectory,
-          daemonSocket: 'control.sock',
-          resourcesRoot: process.resourcesPath,
-          executablePath: app.getPath('exe'),
-          embeddedRuntime: {
-            electron: process.versions.electron,
-            node: process.versions.node,
-            modules: process.versions.modules,
-            napi: process.versions.napi ?? '',
-            architecture: process.arch
-          }
-        })
-      : {
-          runtimeDirectory: control.runtimeDirectory,
-          daemonSocket: 'control.sock' as const,
-          instructionRoot
-        };
-  if (!app.isPackaged && process.env.CHIRALITY_HOSTED_PRIVATE_CONFIG_FILE !== undefined) {
-    throw new Error(
-      'Hosted private configuration is unavailable in development until a reviewed source-tree artifact basis is provided.'
-    );
-  }
-  process.env.CHIRALITY_INSTRUCTION_ROOT = instructionRoot;
-  runtimeHost = await startRuntimeHost(runtimeBootInput, {
-    warn: (event, fields) => desktopLogger.warn(event, fields),
-    error: (event, fields) => desktopLogger.error(event, fields)
-  });
-  process.env.CHIRALITY_RUNTIME_DIRECTORY = runtimeHost.runtimeDirectory;
-  process.env.CHIRALITY_RUNTIME_SOCKET_PATH = runtimeHost.socketPath;
-  process.env.CHIRALITY_RUNTIME_BOOTSTRAP_TOKEN_FILE = runtimeHost.bootstrapTokenFile;
-  installRuntimeDaemonSignalShutdown({
-    // Keep signal-driven shutdown inside the same Electron funnel as
-    // before-quit, initialization failure, and daemon retirement. The facade
-    // ultimately awaits the active host's RuntimeDaemon.stop() contract while
-    // preserving the surrounding cleanup, logging, and app exit.
-    stop: () => shutdown(0, 'runtime-daemon-signal')
-  });
-  desktopLogger.info('runtime.daemon.started', {
-    socketPath: runtimeHost.socketPath,
-    runtimeDirectory: runtimeHost.runtimeDirectory
-  });
-}
-
 /**
  * Release everything this process owns, without exiting.
  *
- * Separate from `shutdown()` because the relaunch path must tear down and then
- * let Electron's *own* quit sequence finish: the helper that starts the
- * replacement process runs as part of that sequence, and `app.exit()` skips it.
- * Returns the exit code, raised to 1 if any teardown step failed.
+ * Order matters: the renderer server closes first so no route can reach the
+ * service while it is stopping; then the owned Runtime service child receives
+ * SIGTERM (SIGKILL after the grace period) and quit waits for its exit. Window
+ * close and hide never reach this function; only quit does.
  */
 async function teardown(exitCode: number, reason: string): Promise<number> {
   if (shutdownStarted) {
     return exitCode;
   }
   shutdownStarted = true;
-  // Logged first: the reason a daemon exited is exactly the evidence that was
-  // missing when a clean `exit(0)` at GUI-launch time had to be diagnosed from
-  // launchd bookkeeping alone.
   desktopLogger.info('desktop.shutdown.started', {
     reason,
     exitCode,
-    daemonMode: runtimeDaemonMode,
     pid: process.pid
   });
   socketWatcher?.stop();
@@ -1049,23 +891,7 @@ async function teardown(exitCode: number, reason: string): Promise<number> {
   ipcMain.removeHandler(ATTACHMENT_SELECT_FILES_CHANNEL);
   ipcMain.removeHandler(RUNTIME_CONNECTIVITY_QUERY_CHANNEL);
   unregisterApiKeyHandlers();
-  unregisterHostAccountHandler();
   unregisterRuntimeControlHandlers();
-
-  if (hostAccountConnection) {
-    await hostAccountConnection.close();
-    hostAccountConnection = undefined;
-  }
-
-  if (runtimeHost) {
-    try {
-      await runtimeHost.stop();
-    } catch (error) {
-      exitCode = 1;
-      desktopLogger.error('runtime.daemon.stop_failed', error);
-    }
-    runtimeHost = undefined;
-  }
 
   if (rendererServer) {
     try {
@@ -1075,6 +901,16 @@ async function teardown(exitCode: number, reason: string): Promise<number> {
       desktopLogger.error('desktop.renderer_server.close_failed', error);
     }
     rendererServer = undefined;
+  }
+
+  if (runtimeServiceHost) {
+    try {
+      await runtimeServiceHost.stop();
+    } catch (error) {
+      exitCode = 1;
+      desktopLogger.error('runtime.service.stop_failed', error);
+    }
+    runtimeServiceHost = undefined;
   }
   desktopLogger.info('desktop.shutdown.completed', { reason, exitCode });
   return exitCode;
@@ -1092,62 +928,30 @@ async function shutdown(exitCode = 0, reason = 'unspecified'): Promise<void> {
 app
   .whenReady()
   .then(async () => {
-    if (desktopEntryMode.mode === 'invalid') {
-      throw new Error(desktopEntryMode.reason);
-    }
-    if (desktopEntryMode.mode === 'runtime-cli') {
-      const exitCode = await runProtectedRuntimeCli(
-        desktopEntryMode.arguments,
-        app.getPath('exe'),
-        app.isPackaged
-      );
-      app.exit(exitCode);
-      return;
-    }
-    if (runtimeDaemonMode) {
-      await initializeDaemon();
-      return;
-    }
     await initializeGui();
   })
   .catch((error) => {
     desktopLogger.error(
-      runtimeDaemonMode
-        ? 'runtime.daemon.initialize_failed'
-        : desktopEntryMode.mode === 'runtime-cli'
-          ? 'runtime.cli.failed'
-          : 'desktop.gui.initialize_failed',
+      'desktop.gui.initialize_failed',
       error instanceof Error ? error.message : String(error)
     );
     void shutdown(1, 'initialize-failed');
   });
 
 app.on('window-all-closed', () => {
-  if (guiMode && process.platform !== 'darwin') {
+  // Closing the last window is not quitting on macOS: the owned service keeps
+  // running and a later activate reopens the window against it.
+  if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-// The single quit funnel for both modes.
-//
-// This deliberately no longer vetoes an initial quit in daemon mode. The old veto was built to
-// refuse a quit AppleEvent thought to accompany a LaunchServices launch; three
-// reproductions showed the daemon receives `activate` and *no* quit at all, so
-// the veto never fired for its intended trigger — while it did swallow SIGTERM,
-// because Chromium's own native signal handler runs before any JS handler and
-// routes the signal into `app.quit()` -> `before-quit`. The result was a daemon
-// that could only be stopped by force: `runtimeHost.stop()` ran on no exit path,
-// every stop left a stale `control.sock`, and `launchctl bootout` took ~5 s to
-// reach launchd's SIGKILL escalation.
-//
-// The stay-dead bug is covered by the restart contract alone: `KeepAlive <true/>`
-// restarts the daemon after *any* exit, clean ones included. So a polite quit is
-// now honoured and made graceful — stop the runtime host (releasing the control
-// socket), then exit — and launchd brings the daemon straight back. A concurrent
-// native quit is still vetoed while that teardown is in flight; only our final
-// owned `app.exit()` is allowed through.
+// The single quit funnel. A native quit (menu, Cmd+Q, SIGTERM routed by
+// Chromium into `app.quit()`) is turned into our graceful teardown, and a
+// concurrent native quit is vetoed while that teardown is in flight; only the
+// final owned `app.exit()` is allowed through.
 app.on('before-quit', (event) => {
-  const hasOwnedResources = runtimeHost !== undefined || rendererServer !== undefined;
+  const hasOwnedResources = runtimeServiceHost !== undefined || rendererServer !== undefined;
   if (
     shouldPreventNativeQuit({ shutdownStarted, shutdownCompleted, hasOwnedResources })
   ) {
@@ -1158,113 +962,18 @@ app.on('before-quit', (event) => {
   }
 });
 
-/**
- * Start the GUI from the daemon, in response to macOS resolving a bundle launch
- * against this headless process, then retire this daemon.
- *
- * `setActivationPolicy('prohibited')` removes the Dock tile and the menu bar but
- * does *not* remove the daemon as a LaunchServices resolution target: it stays
- * registered under `com.chirality.app` (reclassified `UIElement`), so a Finder
- * double-click or Dock click resolves to it, and because it has no window nothing
- * visible happens. Handling `activate` is what makes the app open again (V-D4).
- *
- * Why it also exits — the part that is not obvious. Forking from Chromium's
- * browser process leaves this process's signal handling broken: measured on the
- * packaged app, a daemon that had run one `child_process.spawn` stopped receiving
- * SIGTERM as `before-quit` at all, so `launchctl bootout` degraded to a 5.06 s
- * SIGKILL escalation with no graceful shutdown and a stale `control.sock`. A
- * control arm that received the same `activate` with the spawn suppressed stopped
- * in 0.034 s, gracefully. `app.relaunch()` avoids the fork but produced no GUI at
- * all here, so it is not an alternative.
- *
- * So: spawn the window, then immediately tear down and exit through our *own*
- * path, where no signal is involved and the broken handling cannot matter. The
- * fork-damaged process lives for milliseconds; launchd's `KeepAlive` then starts a
- * fresh daemon that has never forked and whose stop path is intact. The visible
- * cost is a bounded runtime reconnect (the GUI's supervisor rebinds on its own and
- * the top-bar chip shows it) instead of a daemon that cannot be stopped cleanly.
- *
- * The architecturally correct fix is for the daemon to carry its own bundle
- * identity so Finder never resolves to it at all — a packaging change, out of
- * scope here and escalated.
- */
-async function spawnGuiFromDaemon(): Promise<void> {
-  if (!isDaemonGuiSpawnEnabled(process.env)) {
-    desktopLogger.info('runtime.daemon.gui_spawn_disabled');
-    return;
-  }
-  // A GUI that is already running must be left alone: spawning a second one
-  // only makes it die on the occupied renderer port, and retiring this daemon
-  // would cost the live GUI its runtime and its in-memory hosted consent. See
-  // `daemon-activate-policy.ts` for what counts as evidence.
-  const decision = decideDaemonActivate(
-    await observeRendererPortEvidence({ userDataDirectory: app.getPath('userData') })
-  );
-  if (decision.action === 'ignore') {
-    desktopLogger.info('runtime.daemon.activate_ignored_gui_running', { port: decision.port });
-    return;
-  }
-  desktopLogger.info('runtime.daemon.gui_liveness', decision.evidence);
-  const now = Date.now();
-  if (now - lastGuiSpawnAt < GUI_SPAWN_MIN_INTERVAL_MS) {
-    desktopLogger.info('runtime.daemon.gui_spawn_throttled', {
-      sinceLastMs: now - lastGuiSpawnAt
-    });
-    return;
-  }
-  lastGuiSpawnAt = now;
-  try {
-    // `detached` puts the GUI in its own session so it outlives this daemon's
-    // exit and launchd's job cleanup. No `--runtime-daemon`: the child is the GUI.
-    // The environment carries over, which is what keeps an isolated run isolated.
-    const child = spawn(app.getPath('exe'), [], { detached: true, stdio: 'ignore' });
-    child.unref();
-    desktopLogger.info('runtime.daemon.gui_spawned', { pid: child.pid });
-  } catch (error) {
-    desktopLogger.error('runtime.daemon.gui_spawn_failed', error);
-    return;
-  }
-  // Retire this process now that it has forked; see the note above.
-  void shutdown(0, 'retire-after-gui-spawn');
-}
+app.on('open-file', (event, filePath) => {
+  event.preventDefault();
+  // One latest unhandled intent is retained during renderer startup. This is
+  // selection intent only; the renderer still validates and enforces chat lock.
+  folderIntentGeneration++;
+  pendingFolderIntent = filePath;
+  if (folderIntentRendererUrl && BrowserWindow.getAllWindows().length === 0) createMainWindow(folderIntentRendererUrl);
+  void deliverFolderIntent();
+});
 
-if (guiMode) {
-  app.on('open-file', (event, filePath) => {
-    event.preventDefault();
-    // One latest unhandled intent is retained during renderer startup. This is
-    // selection intent only; the renderer still validates and enforces chat lock.
-    folderIntentGeneration++;
-    pendingFolderIntent = filePath;
-    if (folderIntentRendererUrl && BrowserWindow.getAllWindows().length === 0) createMainWindow(folderIntentRendererUrl);
-    void deliverFolderIntent();
+for (const signal of ['SIGINT', 'SIGTERM'] as const) {
+  process.once(signal, () => {
+    void shutdown(signal === 'SIGINT' ? 130 : 0, `signal:${signal}`);
   });
-}
-
-if (runtimeDaemonMode) {
-  // `activate` in the daemon is the direct signature of macOS resolving a launch
-  // of the app bundle against this headless instance instead of starting the GUI.
-  app.on('activate', () => {
-    desktopLogger.warn('runtime.daemon.activate_received', { pid: process.pid });
-    void spawnGuiFromDaemon();
-  });
-  app.on('open-file', (_event, filePath) => {
-    desktopLogger.warn('runtime.daemon.open_file_received', { filePath });
-  });
-  app.on('open-url', () => {
-    desktopLogger.warn('runtime.daemon.open_url_received', { pid: process.pid });
-  });
-  app.on('second-instance', () => {
-    desktopLogger.warn('runtime.daemon.second_instance_received', { pid: process.pid });
-  });
-}
-
-// GUI mode retains its direct Node signal path. Daemon mode instead installs
-// the shared one-shot binder after the active RuntimeHost exists, so these
-// listeners cannot race or duplicate its stop operation.
-if (guiMode) {
-  for (const signal of ['SIGINT', 'SIGTERM'] as const) {
-    process.once(signal, () => {
-      void shutdown(signal === 'SIGINT' ? 130 : 0, `signal:${signal}`);
-    });
-  }
 }

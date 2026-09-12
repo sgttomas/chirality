@@ -1,240 +1,92 @@
-import { createServer } from "node:http";
-import { spawn, execFile, type ChildProcessWithoutNullStreams } from "node:child_process";
-import { chmod, lstat, mkdir, mkdtemp, readFile, realpath, rm, symlink, writeFile } from "node:fs/promises";
-import { promisify } from "node:util";
-import { prepareCodexContainment } from "../packages/daemon/src/codex-containment.js";
-import { join, resolve } from "node:path";
-import { pathToFileURL } from "node:url";
+import { spawn } from "node:child_process";
+import { chmod, mkdir, mkdtemp, realpath, rm, stat, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { afterEach, describe, expect, it } from "vitest";
-import { AuthRegistry, ProjectRegistry } from "@chirality/runtime-core";
 import { RuntimeClient } from "@chirality/runtime-client";
-import { readStandaloneConfig, type DelegatedStandaloneConfig } from "../packages/daemon/src/standalone.js";
-import { SupervisorClient } from "../packages/daemon/src/supervisor-server.js";
-import { createProjectFixture } from "./helpers.js";
+import { readAppOwnedConfig, startStandaloneJob } from "../packages/daemon/src/standalone.js";
 
-const cleanup: (() => Promise<unknown>)[] = [];
-afterEach(async () => { for (const action of cleanup.splice(0).reverse()) await action(); });
-const compatibility = { compatibilityIdentity: "root-runtime-1", contractBasisSha256: "a".repeat(64) };
-async function fixture(register = true) {
-  const root = await realpath(await mkdtemp(join(await realpath("/tmp"), "sj-")));
-  cleanup.push(() => rm(root, { recursive: true, force: true }));
-  const runtimeDirectory = join(root, "r"); await mkdir(runtimeDirectory, { mode: 0o700 });
-  const projectRoot = join(root, "project");
-  const { manifestPath } = await createProjectFixture(projectRoot, "project");
-  let tokenFile = "";
-  if (register) {
-    await new ProjectRegistry(runtimeDirectory, {}).register(manifestPath, { approvedBy: "fixture", approvalReference: "fixture-only" }, "fixture-client");
-    tokenFile = (await new AuthRegistry(runtimeDirectory).issueClient("fixture-client", ["runtime:read", "sessions:read", "sessions:write"], "project")).tokenFile;
-  }
-  const config: DelegatedStandaloneConfig = {
-    schema: "chirality-standalone/v1", mode: "controlled-worker", runtimeDirectory,
-    daemonSocket: "d.sock", supervisorSocket: "s/s.sock", supervisorCredential: "s/credential.json",
-    project: { projectId: "project", identity: { canonicalRoot: projectRoot, cwd: projectRoot, accountId: "fixture-account", accountEpoch: 1, policyDigest: "fixture-policy" }, compatibility, codexHome: "homes/project", retirementDirectory: "journals/project" },
-    worker: { executablePath: await realpath(process.execPath), args: [await realpath(resolve("tests/fixtures/delegated-worker.mjs"))], maxRunMs: 3000 }
-  };
-  const configPath = join(runtimeDirectory, "config.json");
-  const save = async () => writeFile(configPath, JSON.stringify(config), { mode: 0o600 }); await save();
-  return { root, config, configPath, save, tokenFile };
-}
-async function launch(role: string, configPath: string, expectReady = true) {
-  const child: ChildProcessWithoutNullStreams = spawn(process.execPath, [resolve("packages/daemon/dist/standalone-bin.js"), role, "--config", configPath], { env: {}, stdio: "pipe" });
-  let stdout = "", stderr = "";
-  child.stdout.on("data", value => { stdout += value; }); child.stderr.on("data", value => { stderr += value; });
-  let exited = false;
-  const exit = new Promise<{ code: number | null; signal: NodeJS.Signals | null }>(resolveExit => child.once("exit", (code, signal) => { exited = true; resolveExit({ code, signal }); }));
-  async function stop() {
-    if (!exited) child.kill("SIGTERM");
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    try { return await Promise.race([exit, new Promise<never>((_, reject) => { timer = setTimeout(() => { child.kill("SIGKILL"); reject(new Error(`job failed graceful shutdown: ${stderr}`)); }, 5000); })]); }
-    finally { clearTimeout(timer); }
-  }
-  cleanup.push(stop);
-  if (expectReady) {
-    await new Promise<void>((resolveReady, reject) => {
-      const timer = setTimeout(() => { clearInterval(interval); reject(new Error(`job readiness timeout: ${stderr}`)); }, 5000);
-      const interval = setInterval(() => {
-        if (stdout.includes('"ready":true')) { clearInterval(interval); clearTimeout(timer); resolveReady(); }
-        else if (exited) { clearInterval(interval); clearTimeout(timer); reject(new Error(`job exited before readiness: ${stderr}`)); }
-      }, 10);
-    });
-  } else {
-    // Expected startup rejection is a bounded process operation too.
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    try {
-      await Promise.race([exit, new Promise<never>((_, reject) => {
-        timer = setTimeout(() => reject(new Error(`job rejection timeout: ${stderr}`)), 5000);
-      })]);
-    } finally { clearTimeout(timer); }
-  }
-  return { child, stop, exit, output: () => ({ stdout, stderr }) };
+const cleanups: (() => Promise<unknown>)[] = [];
+afterEach(async () => { for (const cleanup of cleanups.splice(0).reverse()) await cleanup().catch(() => undefined); });
+const runtimeRoot = dirname(dirname(fileURLToPath(import.meta.url)));
+const fakeCodex = join(runtimeRoot, "tests", "fixtures", "fake-codex.mjs");
+const binary = join(runtimeRoot, "packages", "daemon", "dist", "standalone-bin.js");
+
+async function configFile(options: { version?: string; executable?: string } = {}) {
+  const root = await realpath(await mkdtemp(join(tmpdir(), "sa-")));
+  cleanups.push(() => rm(root, { recursive: true, force: true }));
+  await mkdir(join(root, "instructions"));
+  await mkdir(join(root, "user-codex"));
+  await writeFile(join(root, "user-codex", "config.toml"), "", "utf8");
+  // A shim keeps the fixture executable on the configured absolute path with the real node.
+  const shim = join(root, "codex");
+  await writeFile(shim, `#!/bin/sh\nexec "${process.execPath}" "${fakeCodex}" "$@"\n`, "utf8");
+  await chmod(shim, 0o700);
+  const config = { schema: "chirality-app-owned/v1", socketPath: join(root, "d.sock"), runtimeDirectory: join(root, "runtime"), instructionRoot: join(root, "instructions"), clientTokenFile: join(root, "app.token"), codex: { executablePath: options.executable ?? shim, userCodexHome: join(root, "user-codex"), effectiveHome: join(root, "runtime", "codex-home"), expectedVersion: options.version ?? "0.154.0" } };
+  const path = join(root, "config.json");
+  await writeFile(path, JSON.stringify(config), "utf8");
+  return { root, path, config };
 }
 
-// Composite cases may start/stop three jobs; each operation retains its own 5s bound.
-// The 30s test ceiling sums those budgets and is not a production latency allowance.
-describe("actual two-job standalone runtime", () => {
-  it("retires an eager process generation promptly and permanently rejects later capture", async () => {
-    const moduleUrl = pathToFileURL(resolve("packages/core/dist/runtime-conformance.js")).href;
-    const script = `const m=await import(${JSON.stringify(moduleUrl)}); const start=performance.now(); await Promise.all([m.retireRuntimeConformanceGeneration(),m.retireRuntimeConformanceGeneration()]); let denied=0; for(let i=0;i<2;i++){try{await m.captureRuntimeConformanceGeneration()}catch{denied++}} if(denied!==2)throw Error("retired generation reopened"); console.log(JSON.stringify({denied,retirementMs:performance.now()-start}));`;
-    const { stdout } = await promisify(execFile)(process.execPath, ["--input-type=module", "-e", script], { env: {}, timeout: 2000 });
-    const result = JSON.parse(stdout); expect(result.denied).toBe(2); expect(result.retirementMs).toBeLessThan(1000);
+describe("standalone daemon job", () => {
+  it("reads only the app-owned configuration and rejects other schemas or roles", async () => {
+    const { path, config, root } = await configFile();
+    expect(await readAppOwnedConfig(path)).toEqual(config);
+    await writeFile(join(root, "legacy.json"), JSON.stringify({ schema: "chirality-standalone/v1", mode: "controlled-worker" }), "utf8");
+    await expect(readAppOwnedConfig(join(root, "legacy.json"))).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+    await expect(readAppOwnedConfig(join(root, "missing.json"))).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+    await expect(readAppOwnedConfig("relative.json")).rejects.toMatchObject({ code: "INVALID_REQUEST" });
+    await expect(startStandaloneJob("supervisor" as never, path)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
   });
-  it("executes client consent and turn through two separate jobs and cleans SIGTERM sockets", async () => {
-    const f = await fixture();
-    const supervisor = await launch("supervisor", f.configPath);
-    const daemon = await launch("daemon", f.configPath);
-    expect(supervisor.child.pid).not.toBe(daemon.child.pid);
-    const credentialPath = join(f.config.runtimeDirectory, f.config.supervisorCredential);
-    const secret = JSON.parse(await readFile(credentialPath, "utf8")).credential.token;
-    expect((await lstat(credentialPath)).mode & 0o777).toBe(0o600);
-    const client = new RuntimeClient({ socketPath: join(f.config.runtimeDirectory, f.config.daemonSocket), tokenFile: f.tokenFile });
-    expect(await client.listSessions("project")).toEqual([]);
-    expect(await client.delegatedCapabilities("project")).toMatchObject({ approvalRecordsAvailable: true, approvalForwardingSupported: false });
-    await client.grantDelegatedConsent("project", compatibility, { posture: "off", approvedBy: "fixture-owner", explicitUserAct: true });
-    expect(await client.runDelegatedTurn("project", compatibility, { turnId: "standalone", prompt: "hello" })).toMatchObject({ output: "controlled:hello", evidenceClass: "controlled-worker", terminal: { outcome: "completed" } });
-    expect(JSON.stringify(supervisor.output()) + JSON.stringify(daemon.output())).not.toContain(secret);
-    expect(await daemon.stop()).toMatchObject({ code: 0, signal: null });
-    expect(await supervisor.stop()).toMatchObject({ code: 0, signal: null });
-    await expect(lstat(join(f.config.runtimeDirectory, f.config.daemonSocket))).rejects.toMatchObject({ code: "ENOENT" });
-    await expect(lstat(join(f.config.runtimeDirectory, f.config.supervisorSocket))).rejects.toMatchObject({ code: "ENOENT" });
-    await expect(lstat(credentialPath)).rejects.toMatchObject({ code: "ENOENT" });
-  }, 30_000);
-  it("rotates credentials across supervisor jobs and starts the daemon with the new generation", async () => {
-    const f = await fixture();
-    const first = await launch("supervisor", f.configPath);
-    const credentialPath = join(f.config.runtimeDirectory, f.config.supervisorCredential);
-    const old = JSON.parse(await readFile(credentialPath, "utf8"));
-    await first.stop();
-    const next = await launch("supervisor", f.configPath);
-    const fresh = JSON.parse(await readFile(credentialPath, "utf8"));
-    expect(fresh.credential.epoch).not.toBe(old.credential.epoch); expect(fresh.credential.token).not.toBe(old.credential.token);
-    await expect(new SupervisorClient({ socketPath: fresh.socketPath, credential: old.credential }).inventory()).rejects.toThrow();
-    const daemon = await launch("daemon", f.configPath);
-    const client = new RuntimeClient({ socketPath: join(f.config.runtimeDirectory, f.config.daemonSocket), tokenFile: f.tokenFile });
-    await client.grantDelegatedConsent("project", compatibility, { posture: "off", approvedBy: "fixture-owner", explicitUserAct: true });
-    expect((await client.runDelegatedTurn("project", compatibility, { turnId: "new-generation", prompt: "again" })).terminal.outcome).toBe("completed");
-    await daemon.stop(); await next.stop();
-  }, 30_000);
-  it.each(["forged", "nonprivate"] as const)("refuses a %s supervisor credential at daemon startup", async variant => {
-    const f = await fixture(); await launch("supervisor", f.configPath);
-    const path = join(f.config.runtimeDirectory, f.config.supervisorCredential);
-    const original = await readFile(path, "utf8");
-    try {
-      if (variant === "forged") {
-        const forged = JSON.parse(original); forged.credential.token = "a".repeat(64);
-        await writeFile(path, JSON.stringify(forged), { mode: 0o600 });
-      } else {
-        await chmod(path, 0o644);
-      }
-      const rejected = await launch("daemon", f.configPath, false);
-      expect(await rejected.exit).toMatchObject({ code: 1 });
-    } finally {
-      await writeFile(path, original, { mode: 0o600 }); await chmod(path, 0o600);
-    }
-  }, 30_000);
-  it("does not rotate a live supervisor credential when a duplicate job is refused", async () => {
-    const f = await fixture(); await launch("supervisor", f.configPath);
-    const path = join(f.config.runtimeDirectory, f.config.supervisorCredential);
-    const original = await readFile(path, "utf8");
-    const duplicate = await launch("supervisor", f.configPath, false);
-    expect(await duplicate.exit).toMatchObject({ code: 1 });
-    expect(await readFile(path, "utf8")).toBe(original);
-  }, 30_000);
-  it("does not implicitly register the configured project", async () => {
-    const f = await fixture(false); await launch("supervisor", f.configPath);
-    const daemon = await launch("daemon", f.configPath, false);
-    expect(await daemon.exit).toMatchObject({ code: 1 });
-    await expect(lstat(join(f.config.runtimeDirectory, "projects", "registry.json"))).rejects.toMatchObject({ code: "ENOENT" });
-  }, 30_000);
-  it("refuses a credential symlink before opening the daemon", async () => {
-    const f = await fixture(); await launch("supervisor", f.configPath);
-    const path = join(f.config.runtimeDirectory, f.config.supervisorCredential), target = join(f.config.runtimeDirectory, "copied.json");
-    await writeFile(target, await readFile(path), { mode: 0o600 }); await rm(path); await symlink(target, path);
-    const daemon = await launch("daemon", f.configPath, false);
-    expect(await daemon.exit).toMatchObject({ code: 1 });
-    // Restore so the supervisor can perform its own epoch-checked teardown.
-    await rm(path); await writeFile(path, await readFile(target), { mode: 0o600 });
-  }, 30_000);
-  it("custody seats hosted v2 unavailable configuration only with a dedicated worker-private subtree", async () => {
-    const f = await fixture(false);
-    const privateDirectory = join(f.config.runtimeDirectory, "worker"); await mkdir(privateDirectory, { mode: 0o700 });
-    const executablePath = join(privateDirectory, "fixture-not-vendor"); await writeFile(executablePath, "#!/bin/sh\nexit 0\n", { mode: 0o700 });
-    const hosted = { ...f.config, schema: "chirality-standalone-hosted/v2" as const, mode: "hosted-validation" as const, project: { ...f.config.project, codexHome: "worker/codex" },
-      worker: { executablePath, privateDirectory: "worker", model: "explicit-model", managedAuth: { backend: "keyring" as const, binding: { schema: "chirality-hosted-account-binding/v1" as const, state: "unavailable" as const, reason: "canonical-identity-producer-unavailable" as const } }, providerNetworkConsent: { approvedBy: "fixture", approvalReference: "validation-only-no-account-use" } } };
-    await writeFile(f.configPath, JSON.stringify(hosted), { mode: 0o600 });
-    expect((await readStandaloneConfig(f.configPath)).mode).toBe("hosted-validation");
-    for (const invalid of [
-      { ...hosted, schema: "chirality-standalone/v1", worker: { ...hosted.worker, managedAuth: undefined, authBindingSha256: "a".repeat(64) } },
-      { ...hosted, worker: { ...hosted.worker, authBindingSha256: "a".repeat(64) } },
-      ...["file", "auto"].map(backend => ({ ...hosted, worker: { ...hosted.worker, managedAuth: { ...hosted.worker.managedAuth, backend } } })),
-      { ...hosted, worker: { ...hosted.worker, managedAuth: { backend: "keyring", binding: { schema: "chirality-hosted-account-binding/v1", state: "verified", accountId: "caller-identity" } } } },
-      { ...hosted, worker: { ...hosted.worker, purpose: "trusted-login" } },
-    ]) {
-      await writeFile(f.configPath, JSON.stringify(invalid), { mode: 0o600 });
-      await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
-    }
-    const conformance = { recordPath: "conformance/record.json", acceptancePath: "conformance/acceptance.json", ownerActPath: f.configPath, ownerActSha256: "a".repeat(64), activationId: "mechanical-fixture", gateIdentity: "fixture-G4", artifactInventory: { kind: "source-tree" as const, sourceRoot: await realpath(resolve(process.cwd(), "../..")) } };
-    await writeFile(f.configPath, JSON.stringify({ ...hosted, worker: { ...hosted.worker, conformance } }));
-    expect((await readStandaloneConfig(f.configPath)).mode).toBe("hosted-validation");
-    await writeFile(f.configPath, JSON.stringify({ ...hosted, worker: { ...hosted.worker, conformance: { ...conformance, recordPath: "worker/forbidden-record.json" } } }));
-    await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
-    await writeFile(f.configPath, JSON.stringify({ ...hosted, worker: { ...hosted.worker, privateDirectory: "auth" } }), { mode: 0o600 });
-    await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
-    await writeFile(f.configPath, JSON.stringify({ ...hosted, project: { ...hosted.project, retirementDirectory: "worker/journal" } }), { mode: 0o600 });
-    await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
-    await writeFile(f.configPath, JSON.stringify({ ...hosted, worker: { ...hosted.worker, args: ["--unsafe"] } }), { mode: 0o600 });
-    await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
-  });
-  it.runIf(process.platform === "darwin")("actual sandbox cannot read or write sibling broker credentials", async () => {
-    const f = await fixture();
-    const worker = join(f.config.runtimeDirectory, "worker"), home = join(worker, "codex"); await mkdir(home, { recursive: true, mode: 0o700 });
-    const secret = join(f.config.runtimeDirectory, "auth", "broker-secret"); await writeFile(secret, "fixture-private-value", { mode: 0o600 });
-    const containment = await prepareCodexContainment({ canonicalRoot: f.config.project.identity.canonicalRoot, privateDirectory: worker, codexHome: home });
-    try {
-      await expect(promisify(execFile)("/usr/bin/sandbox-exec", [...containment.args, "/bin/cat", secret], { env: containment.environment })).rejects.toThrow();
-      await expect(promisify(execFile)("/usr/bin/sandbox-exec", [...containment.args, "/bin/sh", "-c", 'printf changed > "$1"', "fixture", secret], { env: containment.environment })).rejects.toThrow();
-      expect(await readFile(secret, "utf8")).toBe("fixture-private-value");
-    } finally { await containment.cleanup(); }
-  });
-  it("refuses unknown public-network or production-mode configuration", async () => {
-    const f = await fixture();
-    await writeFile(f.configPath, JSON.stringify({ ...f.config, host: "0.0.0.0", port: 8000 }), { mode: 0o600 });
-    await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
-    await writeFile(f.configPath, JSON.stringify({ ...f.config, mode: "provider-observed" }), { mode: 0o600 });
-    await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
-  });
-  it("rejects unsafe config mode, symlink aliases and escaping storage", async () => {
-    const f = await fixture(); await chmod(f.configPath, 0o644);
-    await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
-    await chmod(f.configPath, 0o600);
-    const alias = join(f.config.runtimeDirectory, "alias.json"); await symlink(f.configPath, alias);
-    await expect(readStandaloneConfig(alias)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
-    await rm(alias);
-    f.config.supervisorSocket = "../outside.sock"; await f.save();
-    await expect(readStandaloneConfig(f.configPath)).rejects.toMatchObject({ code: "INVALID_REQUEST" });
-  });
-});
 
-it("starts a real local-only daemon job without any Codex supervisor credential", async () => {
-  const f = await fixture();
-  const server = createServer((_req, res) => { res.setHeader("content-type", "application/json"); res.end(JSON.stringify({ models: [{ id: "local-fixture", kind: "llm", loaded: true }] })); });
-  await new Promise<void>(resolve => server.listen(0, "127.0.0.1", resolve));
-  cleanup.push(() => new Promise<void>(resolve => { server.closeAllConnections(); server.close(() => resolve()); }));
-  await writeFile(join(f.config.runtimeDirectory, "local-secret.json"), JSON.stringify({ providerId: "omlx", credential: "synthetic-secret" }), { mode: 0o600 });
-  await writeFile(f.configPath, JSON.stringify({ schema: "chirality-standalone/v1", mode: "local-engine-only", runtimeDirectory: f.config.runtimeDirectory, daemonSocket: "local.sock", project: { projectId: "project", canonicalRoot: f.config.project.identity.canonicalRoot }, engine: { baseUrl: `http://127.0.0.1:${(server.address() as { port: number }).port}/v1`, model: { id: "local-fixture", contextWindow: 8192, maxTokens: 512 }, credentialFile: "local-secret.json", approvalReference: "synthetic-selection" } }), { mode: 0o600 });
-  const daemon = await launch("daemon", f.configPath);
-  expect(daemon.output().stdout).toContain('"mode":"local-engine-only"');
-  const client = new RuntimeClient({ socketPath: join(f.config.runtimeDirectory, "local.sock"), tokenFile: f.tokenFile });
-  expect(await client.listSessions("project")).toEqual([]);
-  expect(await daemon.stop()).toMatchObject({ code: 0 });
-  await expect(lstat(join(f.config.runtimeDirectory, f.config.supervisorCredential))).rejects.toMatchObject({ code: "ENOENT" });
-});
+  it("refuses a Codex executable whose version differs from the pin before spawning the app-server", async () => {
+    const { path, root } = await configFile({ version: "0.153.0" });
+    await expect(startStandaloneJob("daemon", path)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", details: { reason: "CODEX_VERSION_MISMATCH", observed: "0.154.0" } });
+    await expect(stat(join(root, "d.sock"))).rejects.toMatchObject({ code: "ENOENT" });
+    const missing = await configFile({ executable: join(root, "no-such-codex") });
+    await expect(startStandaloneJob("daemon", missing.path)).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE", details: { reason: "CODEX_EXECUTABLE_UNAVAILABLE" } });
+  });
 
+  it("starts the daemon over the pinned fake Codex, serves the app-host token, and closes cleanly", async () => {
+    const { path, config } = await configFile();
+    const job = await startStandaloneJob("daemon", path);
+    cleanups.push(() => job.close());
+    expect(job).toMatchObject({ role: "daemon", socketPath: config.socketPath, clientTokenFile: config.clientTokenFile });
+    const client = new RuntimeClient({ socketPath: job.socketPath, tokenFile: job.clientTokenFile });
+    await expect(client.health()).resolves.toHaveProperty("apiVersion");
+    await job.close();
+    await expect(stat(config.socketPath)).rejects.toMatchObject({ code: "ENOENT" });
+  });
 
-it("custody preserves controlled-worker and local-engine-only v1 configuration", async () => {
-  const f = await fixture(false);
-  expect(await readStandaloneConfig(f.configPath)).toEqual(f.config);
-  const local = { schema: "chirality-standalone/v1", mode: "local-engine-only", runtimeDirectory: f.config.runtimeDirectory, daemonSocket: "local.sock", project: { projectId: "project", canonicalRoot: f.config.project.identity.canonicalRoot }, engine: { baseUrl: "http://127.0.0.1:65530/v1", model: { id: "local-fixture", contextWindow: 8192, maxTokens: 512 }, credentialFile: "local-secret.json", approvalReference: "synthetic-selection" } };
-  await writeFile(f.configPath, JSON.stringify(local), { mode: 0o600 });
-  await writeFile(join(f.config.runtimeDirectory, "local-secret.json"), JSON.stringify({ providerId: "omlx", credential: "synthetic-not-a-provider-account" }), { mode: 0o600 });
-  expect(await readStandaloneConfig(f.configPath)).toEqual(local);
+  it("prints exactly one ready line from the binary and exits 0 on SIGTERM", async () => {
+    const { path, config } = await configFile();
+    const child = spawn(process.execPath, [binary, "daemon", "--config", path], { stdio: ["ignore", "pipe", "pipe"] });
+    cleanups.push(async () => { if (child.exitCode === null) child.kill("SIGKILL"); });
+    let stdout = "", stderr = "";
+    child.stdout.setEncoding("utf8"); child.stderr.setEncoding("utf8");
+    child.stdout.on("data", (chunk: string) => { stdout += chunk; });
+    child.stderr.on("data", (chunk: string) => { stderr += chunk; });
+    const exited = new Promise<{ code: number | null; signal: NodeJS.Signals | null }>(resolve => child.once("exit", (code, signal) => resolve({ code, signal })));
+    for (let attempt = 0; attempt < 600 && !stdout.includes("\n"); attempt++) await new Promise(resolve => setTimeout(resolve, 10));
+    expect(stdout.split("\n").filter(Boolean)).toHaveLength(1);
+    expect(JSON.parse(stdout.trim())).toEqual({ ready: true, role: "daemon", socketPath: config.socketPath, clientTokenFile: config.clientTokenFile });
+    const client = new RuntimeClient({ socketPath: config.socketPath, tokenFile: config.clientTokenFile });
+    await expect(client.health()).resolves.toHaveProperty("apiVersion");
+    child.kill("SIGTERM");
+    await expect(exited).resolves.toEqual({ code: 0, signal: null });
+    expect(stdout.split("\n").filter(Boolean)).toHaveLength(1);
+    expect(stderr).not.toContain("@");
+    await expect(stat(config.socketPath)).rejects.toMatchObject({ code: "ENOENT" });
+  });
+
+  it("reports a usage error for unsupported roles", async () => {
+    const { path } = await configFile();
+    const child = spawn(process.execPath, [binary, "supervisor", "--config", path], { stdio: ["ignore", "pipe", "pipe"] });
+    let stderr = "";
+    child.stderr.setEncoding("utf8"); child.stderr.on("data", (chunk: string) => { stderr += chunk; });
+    const exit = await new Promise<number | null>(resolve => child.once("exit", code => resolve(code)));
+    expect(exit).toBe(1);
+    expect(stderr).toContain("INVALID_REQUEST");
+  });
 });

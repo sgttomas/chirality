@@ -18,3 +18,7 @@ Seven successor deliverables are INITIALIZED, none activated; all 66 inherited r
 Gate 5 accepts the migration application and explicit derivative dispositions: audited coverage, reconstructed dependency/ordering basis, historical estimate and compatibility continuity. Historical effort remains 1012 base hours (920 Runtime / 92 Root governance), with current remaining effort UNKNOWN. Dependency evidence is not thereby satisfied. DEP-AUD-001 remains the generic analyzer's bare-ID/full-slug mismatch; independently checked topology has no actual orphan or cycle. Public export remains staged, not published; receiving-loop adoption remains separate. GOV-04-11 production debt and GOV-MIG-001 shared delegation wording are Root follow-ons.
 
 Prepared by HELPS_HUMANS under HELP_HUMAN, OpenAI GPT-6; exact serving model ID unavailable. Native role evidence is instruction-asserted; Agent 0 role is not mechanically enforced.
+
+## D-GOV-43 supersession (2026-09-12)
+
+Gate 5 acceptance and effective ownership stand. The statements above that seven deliverables are INITIALIZED, that all 66 inherited requirements and nine compatibility holds remain, and that daemon-owned custody applies are superseded by Root D-GOV-43 (ruled 2026-09-11; A2 supplement 2026-09-12) as applied by SCA-004 under item 11: six carriers are RETIRED, DEL-02-06 is revised, the nine holds are closed, and the Runtime is an application-owned service hosting stock Codex. See `NOTICE_2026-09-12_ROOT_D-GOV-43_CODEX_HOST_REPLATFORM.md` and `../_ScopeChange/_LATEST.md`.

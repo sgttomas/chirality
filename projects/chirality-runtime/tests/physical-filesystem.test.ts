@@ -38,12 +38,4 @@ describe("physical filesystem observation adapter", () => {
     expect(() => selectRuntimePhysicalFilesystemForTests({ electron: true, requireBuiltin() { throw new Error("missing"); }, nodeFilesystem: ordinary })).toThrow("Electron physical filesystem");
     expect(() => selectRuntimePhysicalFilesystemForTests({ electron: true, requireBuiltin: () => ({ promises: { ...ordinary, open: undefined } }), nodeFilesystem: ordinary })).toThrow("Physical filesystem");
   });
-
-  it("hashes the physical ASAR header bytes through the host identity consumer", async () => {
-    const { readPhysicalAsarHeaderHashForTests } = await import("../packages/daemon/src/host-account-release.js");
-    const root = await ordinary.realpath(await mkdtemp(join(tmpdir(), "physical-asar-header-"))); roots.push(root); const path = join(root, "app.asar");
-    const header = Buffer.from('{"files":{}}'), pickle = Buffer.alloc(8 + header.length), prefix = Buffer.alloc(8);
-    pickle.writeUInt32LE(header.length, 4); header.copy(pickle, 8); prefix.writeUInt32LE(pickle.length, 4); await writeFile(path, Buffer.concat([prefix, pickle]));
-    await expect(readPhysicalAsarHeaderHashForTests(path)).resolves.toBe(createHash("sha256").update(header).digest("hex"));
-  });
 });

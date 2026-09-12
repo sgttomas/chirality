@@ -159,7 +159,8 @@ export interface SessionListResponse {
 }
 
 export interface BootMetadata {
-  engineSessionId: string;
+  /** Absent when the engine starts its provider thread with the first real turn. */
+  engineSessionId?: string;
   adapterId: string;
   providerId: string;
   model: string;

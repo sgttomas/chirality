@@ -312,14 +312,18 @@ was found.
 
 ## Shared Runtime Boundary
 
-D-GOV-20 and D-APP-73 authorize migration of the executable harness into the
-root-owned `runtime/` workspace. After migration, the per-user runtime daemon
-is the sole owner of engines, credentials, sessions, delegation, tools, turn
-locks, interruption, and model residency. The normal Desktop process, CLI,
-and app-dev HTTP routes are clients of that daemon and must not construct an
-independent runtime.
+Amended under D-GOV-43 (topology A2, 2026-09-12; D-APP-127). The Runtime is
+an application-owned service: the App starts, owns and stops one Runtime
+service child, which owns the pinned stock `codex app-server` child and the
+effective Codex home. The Runtime service owns engines, sessions, delegation,
+tools, turn ownership and interruption; the Desktop renderer and the app-dev
+HTTP routes are clients of that service over its Unix socket with a
+per-launch token and must not construct an independent runtime. There is no
+per-user daemon, LaunchAgent, second socket or model residency on the App
+path (D-GOV-20 and D-APP-73 are read as amended; D-APP-107's preflight is
+retired).
 
-Daemon user-data state is operational and non-authoritative. This checkout
+Runtime user-data state is operational and non-authoritative. This checkout
 retains authority for project identity, instructions, execution records,
 AgentRuns, permissions, approvals, and acceptance evidence. The tracked
 `chirality.project.json` manifest contains no secret or machine-specific

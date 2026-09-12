@@ -6,6 +6,7 @@ import { useEffect, useRef } from 'react';
 import { AccountConsentSettingsView, type AccountConsentSettingsViewProps } from './account-consent-settings';
 import { RuntimeSettingsView } from './runtime-settings';
 import type { RuntimeSettingsViewProps } from './runtime-settings-controller';
+import { RuntimeStatus } from './runtime-status';
 import { ApiKeySettings } from './api-key-settings';
 import { ThemeControl } from '../shell/theme-control';
 import styles from './settings-view.module.css';
@@ -28,7 +29,7 @@ export function SettingsView({ account, runtime, folder, target, hosted }: {
   return <div ref={root} tabIndex={-1} aria-label="Settings" className={styles.settings}>
     <section data-settings-group="account">{hosted ? <HostedBootstrapView controller={hosted} /> : <AccountConsentSettingsView {...account} presentation="account" />}</section>
     {!hosted && folder ? <section tabIndex={-1} data-settings-group="folder"><h2 title={folder}>This folder · {folder.split('/').filter(Boolean).pop() || folder}</h2><AccountConsentSettingsView {...account} presentation="folder" /></section> : null}
-    {hosted ? <section tabIndex={-1} data-settings-group="runtime"><RuntimeSettingsView {...runtime} showLocalModels={false} /></section> : null}
+    {hosted ? <section tabIndex={-1} data-settings-group="runtime"><RuntimeStatus /></section> : null}
     {!hosted ? <section tabIndex={-1} data-settings-group="local-model"><h2>Local model</h2><p>oMLX server status unknown.</p><RuntimeSettingsView {...runtime} /></section> : null}
     {!hosted ? <section data-settings-group="api-keys"><h2>API keys</h2><ApiKeySettings /></section> : null}
     <section data-settings-group="appearance"><h2>Appearance</h2><ThemeControl /></section>

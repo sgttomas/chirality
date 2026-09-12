@@ -7,6 +7,8 @@ import type {
 } from "./harness/index.js";
 import type { EngineDescriptor } from "./harness/agent-engine-port.js";
 import type { RuntimeSessionRecord } from "./session.js";
+import type { PendingServerRequest, ServerRequestAnswer } from "./delegated.js";
+import { RuntimeError } from "./errors.js";
 import type { FrozenInstructionBasisV3, InstructionHistoryRecordV3 } from "./v3.js";
 import type { ProjectStatus } from "./project.js";
 import type { ResidencyStatus } from "./residency.js";
@@ -44,6 +46,15 @@ export const RUNTIME_ROUTES = {
     `${RUNTIME_ROUTES.session(projectId, sessionId)}/interrupt`,
   sessionPermission: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.session(projectId, sessionId)}/permission`,
+  /** Attach to the active (or recently finished) turn owned by the Runtime; SSE. */
+  sessionTurnStream: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.sessionTurn(projectId, sessionId)}/stream`,
+  sessionTurnState: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.sessionTurn(projectId, sessionId)}/state`,
+  sessionRequests: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.session(projectId, sessionId)}/requests`,
+  sessionRequestAnswer: (projectId: string, sessionId: string, requestId: string) =>
+    `${RUNTIME_ROUTES.sessionRequests(projectId, sessionId)}/${encodeURIComponent(requestId)}/answer`,
   sessionContextResolve: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.session(projectId, sessionId)}/context/resolve`,
   sessionMethods: (projectId: string, sessionId: string) =>
@@ -122,9 +133,69 @@ export interface RuntimeSessionBootRequest {
 }
 
 export interface PermissionDecisionRequest {
+  /** Tool-use id of the gated call; for Codex approvals this is the item id carried by `tool.permission`. */
   requestId: string;
   decision: "allow" | "deny";
   reason?: string;
+}
+
+/** Runtime-owned turn state for a session (D-GOV-43 disconnection rule). */
+export interface SessionTurnState {
+  active: boolean;
+  turnId?: string;
+  /** Sequence of the last frame buffered for the current or retained turn; 0 when none. */
+  lastSeq: number;
+  startedAt?: string;
+  endedAt?: string;
+}
+export interface SessionRequestsResponse {
+  requests: readonly PendingServerRequest[];
+}
+export interface AnswerSessionRequestRequest {
+  answer: ServerRequestAnswer;
+}
+export interface AnswerSessionRequestResponse {
+  sent: true;
+}
+
+function plainRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+/** Shape gate for a server-request answer; the supervisor decides whether the kind fits the request method. */
+export function validateServerRequestAnswer(value: unknown): ServerRequestAnswer {
+  const invalid = (message: string) => new RuntimeError("INVALID_REQUEST", message, 400, { reason: "SERVER_REQUEST_ANSWER_INVALID" });
+  if (!plainRecord(value) || typeof value.kind !== "string") throw invalid("answer must be an object with a kind");
+  const keys = Object.keys(value);
+  switch (value.kind) {
+    case "approval": {
+      if (keys.length !== 2 || !["allow", "deny", "allowForSession"].includes(String(value.verdict))) throw invalid("approval answer requires exactly a verdict of allow, deny or allowForSession");
+      return { kind: "approval", verdict: value.verdict as "allow" | "deny" | "allowForSession" };
+    }
+    case "userInput": {
+      if (keys.length !== 2 || !plainRecord(value.answers)) throw invalid("userInput answer requires exactly an answers record");
+      const answers: Record<string, { answers: string[] }> = {};
+      for (const [questionId, entry] of Object.entries(value.answers)) {
+        if (questionId.trim() === "" || !plainRecord(entry) || Object.keys(entry).join(",") !== "answers" || !Array.isArray(entry.answers) || !entry.answers.every(item => typeof item === "string")) {
+          throw invalid("userInput answers must map question ids to { answers: string[] }");
+        }
+        answers[questionId] = { answers: [...(entry.answers as string[])] };
+      }
+      return { kind: "userInput", answers };
+    }
+    case "elicitation": {
+      const allowed = keys.every(key => ["kind", "action", "content"].includes(key));
+      if (!allowed || !["accept", "decline", "cancel"].includes(String(value.action))) throw invalid("elicitation answer requires an action of accept, decline or cancel");
+      return { kind: "elicitation", action: value.action as "accept" | "decline" | "cancel", ...(Object.hasOwn(value, "content") ? { content: value.content } : {}) };
+    }
+    default:
+      throw invalid("answer kind must be approval, userInput or elicitation");
+  }
+}
+
+export function validateAnswerSessionRequestRequest(value: unknown): AnswerSessionRequestRequest {
+  if (!plainRecord(value) || Object.keys(value).join(",") !== "answer") throw new RuntimeError("INVALID_REQUEST", "Request body must be exactly { answer }", 400, { reason: "SERVER_REQUEST_ANSWER_INVALID" });
+  return { answer: validateServerRequestAnswer(value.answer) };
 }
 
 export interface AgentDefinitionSummary {
@@ -217,4 +288,5 @@ export interface CredentialMutationRequest {
 
 export interface CredentialMutationResponse extends CredentialStatusResponse {}
 
-export type RuntimeSseFrame = UIEvent;
+/** One streamed UI event; `seq` is the Runtime-owned frame sequence (`id:` on the wire) when the stream is a turn subscription. */
+export type RuntimeSseFrame = UIEvent & { seq?: number };

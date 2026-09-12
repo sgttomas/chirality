@@ -4,6 +4,7 @@
 **Date:** 2026-05-20
 **Product:** Chirality desktop harness and bundled agent operating system
 **Applies to:** Chirality App vNext filesystem, APIs, runtime, packaged app, and validation
+**Amended:** Amended under D-GOV-43 (A2), 2026-09-12: the browser event contract, harness-port and SSE clauses, release verification and §25 shared runtime revised to the application-owned Runtime service; residency subsections retired to history
 
 This document is the authoritative specification for Chirality App physical structures, file formats, schemas, runtime mechanics, session storage, validation surfaces, and layout conventions.
 
@@ -13,7 +14,7 @@ Normative keywords `MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, and `MAY` are use
 
 For the current MVP release, Codex is the sole model engine. Claude/Anthropic and Pi/oMLX descriptions, default-provider rules and engine-specific proof records below describe compatibility history; they do not require shipping or enabling those engines, and their historical qualification does not establish Codex qualification. Existing conversation history remains readable without reactivating unavailable providers or inheriting their authority.
 
-Codex account sign-in and native Plan Mode are required. This scope direction is not supplier admission or account-interoperability acceptance: the actual adapter must satisfy accepted identity/currentness, per-root consent, credential custody, containment and endpoint restrictions, and native evidence must establish its supported behavior. K-NET-1, K-PACKAGE-1 and K-RELEASE-1 remain unchanged. Source tests, controlled adapters and package generation do not substitute for required actual packaged provider and native lifecycle evidence. Publication remains separately human-authorized.
+Codex account sign-in and native Plan Mode are required. Under D-GOV-43 (A2, 2026-09-12) the App hosts the stock, lockfile-pinned `codex app-server` inside a Runtime service that it starts, owns and stops as a child process; supplier admission, identity binding, containment wrappers and the effective-configuration veto are retired, and ordinary software integrity (lockfile pin, signing and notarization, renderer isolation, validated IPC) applies. K-PACKAGE-1 remains unchanged; K-NET-1 and K-RELEASE-1 are read with D-GOV-43 items 1 and 4. Source tests, controlled adapters and package generation do not substitute for required actual packaged provider and native lifecycle evidence. Publication remains separately human-authorized.
 
 Release artifact identity is the explicitly recorded candidate version in frontend/package.json and both root version fields of frontend/package-lock.json. `Chirality-<candidate-version>-arm64.dmg`, the actual App Info.plist identity and the candidate evidence must agree. This amendment selects no version.
 
@@ -691,23 +692,36 @@ interface AgentEnginePort {
 
 ## 11. Browser SSE Event Contract
 
-Turn streams emit named SSE events with JSON payloads:
-
-- `session:init`
-- `chat:delta`
-- `chat:complete`
-- `tool:result`
-- `session:complete`
-- `turn:error`
-- `process:exit`
-- `harness:event`
+Revised under D-GOV-43 (A2), 2026-09-12. The renderer channel is loopback
+HTTP and SSE through the in-process Next server; the harness port, routes
+and client are retained and repaired. The stream carries an extensible
+representation that preserves upstream App Server method names, identifiers
+and payloads, with normalized views for known items (tool activity, file
+changes, reasoning summaries, plan, sub-agents, usage, approvals,
+questions). The former fixed eight-name set (`session:init`, `chat:delta`,
+`chat:complete`, `tool:result`, `session:complete`, `turn:error`,
+`process:exit`, `harness:event`) is superseded and kept as compatibility
+history.
 
 Rules:
 
-- Existing event names MUST remain compatible during SDK adoption.
-- Additional tool progress events MAY be introduced only with UI compatibility handling.
-- The stream MUST terminate with a process-level completion/error signal unless the client disconnects.
-- Client disconnect cleanup MUST record cancellation once the event log exists.
+- The Runtime service owns the active turn; a browser subscription observes it.
+- The client timeout on the stream path MUST be long or disabled, and the
+  server MUST send SSE comment keepalives; no idle timeout ends a turn.
+- A closed connection MUST NOT interrupt the turn. The turn route's stream
+  cancel unsubscribes without interrupting. Explicit Stop
+  (`/api/harness/interrupt`) is the only interrupt.
+- Reopening after a renderer disconnect MUST recover current state, missed
+  activity and any outstanding user decision from the session store and turn
+  state, without re-sending the prompt or executing twice.
+- Unfamiliar notifications MUST remain inspectable in a generic card and the
+  event log; they are never dropped.
+- Every server request MUST receive a response: familiar requests through
+  their cards or the recorded policy; unfamiliar requests with a JSON-RPC
+  error and a visible "unsupported request" outcome, never an implied
+  approval.
+- The stream terminates with the turn's terminal outcome; unexpected
+  termination of the Runtime or Codex child is never presented as completion.
 
 ---
 
@@ -908,7 +922,7 @@ Rules:
 | `/api/harness/permission` | POST | Resolve the governed permission decision for a pending tool request. |
 | `/api/harness/agents` | GET | Return the packaged agent roster used by the runtime shell. |
 
-Existing route shapes remain stable during adapter adoption and TurnEngine extraction.
+Existing route shapes remain stable during adapter adoption and TurnEngine extraction. Under D-GOV-43 (A2) the routes are thin loopback adapters over the Runtime service's socket API; the turn route streams per §11 and its cancel path unsubscribes without interrupting.
 
 ### 17.2 Workspace APIs
 
@@ -1053,10 +1067,11 @@ unknown parameters, remain round-trippable. Legacy matrix aliases and launch
 guards remain compatible even though the target shell does not require a
 fixed matrix.
 
-Browser API shapes in §17.1-17.2, public SSE names/order in §11, provider
-singleton composition, credential handling, network policy, daemon ownership,
-session storage, permission policy, child capability, and runtime contracts
-remain unchanged. The existing loop-first UI remains a compatibility
+Browser API shapes in §17.1-17.2, the event representation in §11 as revised
+under D-GOV-43, credential handling, network policy, Runtime service
+ownership (D-GOV-43 A2), session storage, permission policy, child
+capability, and runtime contracts remain unchanged by this information
+architecture. The existing loop-first UI remains a compatibility
 implementation until parity evidence and a separate owner retirement decision
 exist.
 
@@ -1167,10 +1182,10 @@ For macOS DMG:
 
 - binary is arm64;
 - `LSMinimumSystemVersion` is `15.0.0` or later;
-- signing posture is unsigned/adhoc as scoped;
+- signing posture is recorded: ordinary local output is unsigned/adhoc; the D-GOV-43 consolidated candidate is signed and notarized, with the signature and the Codex pin verified (`docs/BUILD_AND_RELEASE.md` §8.1);
 - app resources contain required instruction-root assets;
 - working-root selector is available;
-- accepted Codex supplier endpoint and per-root command-network safeguards under K-NET-1 remain in force;
+- the bundled `@openai/codex` version equals the lockfile pin and the user's chosen policy is shown and recorded (D-GOV-43 items 1 and 4); S-6 and S-8 are repeated on the packaged App;
 - no-live first-adapter SDK resolver/HOME proof passes from package layout and mounted DMG;
 - SDK subprocess/binary is executable from package layout;
 - live packaged provider turn and transcript creation remain unapproved until a later ruling.
@@ -1196,31 +1211,50 @@ Canonical unsanitized names are stored in `_CONTEXT.md` and decomposition record
 
 ## 25. Shared Runtime, Local API, and Residency
 
+Revised under D-GOV-43 (A2), 2026-09-12. Subsections 25.1, 25.2 and 25.5 are
+re-expressed; 25.6 and 25.7 are retired to history.
+
 ### 25.1 Runtime ownership
 
 The root `runtime/` workspace contains provider-neutral contracts, core
-orchestration, daemon, client, CLI, and engine adapters. The packaged Electron
-executable supports `--runtime-daemon` without creating a window. The normal
-GUI and app-dev `/api/harness/*` routes are clients and MUST NOT construct an
-engine runtime.
+orchestration, the Runtime service, client, CLI, and the Codex session,
+supervisor and login modules. The service is independent of Electron and
+Next. The App (Electron main) starts it as a child process from the packaged
+bundle, waits for its ready line on stdout, connects with a per-launch client
+token kept under `userData`, restarts it with backoff on crash, and stops it
+deliberately in teardown on quit, leaving an accurate continuation record.
+The service owns the stock, lockfile-pinned `codex app-server` child (npm
+`@openai/codex`). The GUI and the `/api/harness/*` routes are clients and
+MUST NOT construct an engine runtime.
 
-The daemon is installed only by explicit operator action as the macOS
-LaunchAgent `com.chirality.runtime`. Once installed it starts at login and
-restarts after failure. Logs and mutable state remain beneath Chirality's
-user-data directory, and daemon startup MUST NOT load or activate a local
-model automatically.
+There is no LaunchAgent, installer, headless `--runtime-daemon` mode,
+admission, supplier staging, containment wrapper, native addon or
+host-account channel. Closing or hiding a window is distinct from quitting;
+no unattended execution after quit is promised. Logs and mutable state remain
+beneath Chirality's user-data directory.
+
+Codex runs against Chirality's effective home, which shares the user's
+config, skills, plugins, MCP definitions, instruction caches and sessions by
+reference and keeps `auth.json` and the models cache private
+(`cli_auth_credentials_store=file`); credentials are never copied; the user
+signs in through Codex's own flow; S-8 verifies the separation. Threads start
+with `thread/start` carrying `cwd`, `developerInstructions` (role plus
+selected workflow context) and the project's policy selection, and resume
+with `thread/resume` on relaunch; the App indexes chats by Codex thread id;
+Codex discovers project `AGENTS.md`; base instructions are never replaced.
 
 ### 25.2 Local control protocol
 
-The versioned local API uses HTTP/1.1 JSON requests and canonical SSE events
-over `{userData}/runtime/control.sock`. The parent directory MUST be `0700`,
-the socket MUST be `0600`, and stale-socket recovery MUST verify that no live
-daemon owns the path. Project-scoped client authorization is mandatory. A TCP
-control listener is forbidden.
+The versioned local API uses HTTP/1.1 JSON requests and SSE events over
+`{userData}/runtime/control.sock`, private to the application. The parent
+directory MUST be `0700`, the socket MUST be `0600`, and stale-socket
+recovery MUST verify that no live service owns the path. The per-launch
+client token is mandatory. A TCP control listener is forbidden; the
+supervisor's second socket is retired.
 
 The API covers health, project registration/status, session
-create/list/boot/replay/turn/interrupt, high-level Agent 1 runs, and oMLX model
-status/activation.
+create/list/boot/replay/turn/interrupt and thread resume. Model residency
+operations are retired (§25.6).
 
 ### 25.3 Project registration
 
@@ -1243,8 +1277,11 @@ rewrite or destructive source move is permitted.
 
 ### 25.5 CLI
 
-The bundled `chirality` CLI runs with Electron’s embedded Node runtime and
-supports this initial command surface:
+The bundled `chirality` CLI is a socket-API client. Under D-GOV-43 its
+compatibility with the App-owned Runtime service is unverified and not an MVP
+prerequisite; the `daemon install|start|stop|status|uninstall` and `models`
+commands are retired with the LaunchAgent and residency. The historical
+command surface was:
 
 ```text
 chirality daemon install|start|stop|status|uninstall
@@ -1261,6 +1298,10 @@ Human output is default; `--json` emits newline-delimited canonical events.
 
 ### 25.6 Residency
 
+Retired to history under D-GOV-43 item 13 (2026-09-12): local models, when
+taken up, use Codex model providers, keeping Codex the sole engine. The
+following text is preserved as history and is not implemented.
+
 Authenticated literal-loopback oMLX status/load/unload is the only initial
 managed residency provider. Exact model IDs are used without aliases. One
 primary local LLM may be managed at a time. Activation is explicit and never
@@ -1275,6 +1316,10 @@ transition appends redacted `model-residency.jsonl` evidence and assigns an
 epoch referenced by local sessions and AgentRuns.
 
 ### 25.7 Required delegation pilot
+
+Retired to history under D-GOV-43 (2026-09-12): delegation uses Codex native
+sub-agents through the upstream `[agents]` configuration, and S-5 evidences
+that the child received the intended role instructions. Historical text:
 
 `chirality run --agent <Agent1Role> --local-model <exact-id>` creates a real
 Agent 1 session and authorizes at most one Pi/oMLX Agent 2 child with one

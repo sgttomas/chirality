@@ -153,29 +153,17 @@ async function replayThroughCli(
       return '';
     }
   };
+  // The CLI is a client of the App-owned Runtime service (D-GOV-43, A2): no
+  // LaunchAgent verbs, no daemon install paths, no conformance measurement.
   const dependencies: CliDependencies = {
     client,
-    launchAgent: {
-      async install() {},
-      async start() {},
-      async stop() {},
-      async status() {
-        return { installed: false, loaded: false };
-      },
-      async uninstall() {}
-    },
     paths: {
       userData: root,
       runtimeDirectory: join(root, 'runtime'),
       socketPath: join(root, 'runtime', 'control.sock'),
-      tokenFile: join(root, 'runtime', 'operator.token'),
-      launchAgentsDirectory: join(root, 'LaunchAgents')
+      tokenFile: join(root, 'runtime', 'operator.token')
     },
-    executablePath: join(root, 'chirality'),
-    readTextFile: (path) => readFile(path, 'utf8'),
-    async measureRuntimeSupportProfile() {
-      throw new Error('Runtime support measurement is outside this replay fixture');
-    }
+    readTextFile: (path) => readFile(path, 'utf8')
   };
 
   const exitCode = await runCli(
