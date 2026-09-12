@@ -55,6 +55,9 @@ interface Entry {
   threadId: string;
   /** Unknown until the turn/start response; notifications that arrive first are deferred behind the started event. */
   turnId: string | undefined;
+  /** Resolves with the turn identity once adopted, or undefined when the turn ends without one. */
+  turnIdReady: Promise<string | undefined>;
+  adopt(turnId: string | undefined): void;
   deferred: DelegatedTurnProgressEvent[];
   hostGeneration: number;
   progress: DelegatedTurnProgressEvent[];
@@ -159,7 +162,9 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       const handle: WorkerHandle = { workerId, generation: randomUUID(), pid: 0, state: "running" };
       let settle!: (result: WorkerResult) => void;
       const result = new Promise<WorkerResult>(resolve => { settle = resolve; });
-      const entry: Entry = { handle, envelope, threadId, turnId: undefined, deferred: [], hostGeneration, progress: [], nativePlanEvents: [], pending: new Map(), text: "", emittedByItem: new Map(), result, settle: value => { if (entry.settled) return; entry.settled = true; entry.handle.state = "exited"; settle(value); }, settled: false };
+      let adopt!: (turnId: string | undefined) => void;
+      const turnIdReady = new Promise<string | undefined>(resolve => { adopt = resolve; });
+      const entry: Entry = { handle, envelope, threadId, turnId: undefined, turnIdReady, adopt, deferred: [], hostGeneration, progress: [], nativePlanEvents: [], pending: new Map(), text: "", emittedByItem: new Map(), result, settle: value => { if (entry.settled) return; entry.settled = true; entry.handle.state = "exited"; entry.adopt(undefined); settle(value); }, settled: false };
       this.entries.set(workerId, entry);
       this.byThread.set(threadId, entry);
       let started: { turn: { id: string; status: string } };
@@ -168,6 +173,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
           ...(model === undefined ? {} : { model }), ...(envelope.reasoningEffort === undefined ? {} : { effort: envelope.reasoningEffort }),
           ...(policyChanged ? { approvalPolicy: envelope.policy.approvalPolicy, sandboxPolicy: sandboxPolicy(envelope.policy.sandbox, envelope.cwd) } : {}) });
       } catch (error) {
+        entry.adopt(undefined);
         this.cancelPending(entry, "failed");
         if (this.entries.get(workerId) === entry) this.entries.delete(workerId);
         if (this.byThread.get(threadId) === entry) this.byThread.delete(threadId);
@@ -191,7 +197,11 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
   async interrupt(workerId: string, generation: string): Promise<void> {
     const entry = this.entry(workerId, generation);
     if (entry.settled) return;
-    try { await this.options.host.request("turn/interrupt", { threadId: entry.threadId, turnId: entry.turnId ?? "" }); }
+    // Stop during the turn/start round trip waits for the turn identity (the
+    // response or the turn/started adoption) instead of sending an empty id.
+    const turnId = entry.turnId ?? await entry.turnIdReady;
+    if (turnId === undefined || entry.settled) return;
+    try { await this.options.host.request("turn/interrupt", { threadId: entry.threadId, turnId }); }
     catch (error) { if (entry.settled) return; throw error; }
     await entry.result;
   }
@@ -226,6 +236,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
   private adoptTurn(entry: Entry, turnId: string): void {
     if (entry.turnId !== undefined) return;
     entry.turnId = turnId;
+    entry.adopt(turnId);
     const deferred = entry.deferred.splice(0);
     this.push(entry, { type: "started", providerThreadId: entry.threadId, providerTurnId: turnId });
     for (const event of deferred) this.push(entry, { ...event, providerTurnId: turnId } as DelegatedTurnProgressEvent);

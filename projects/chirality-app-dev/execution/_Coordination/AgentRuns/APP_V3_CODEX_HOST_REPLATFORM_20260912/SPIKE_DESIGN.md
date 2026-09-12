@@ -93,7 +93,7 @@ daemon on `socketPath`; prints exactly one stdout line
 `{"ready":true,"role":"daemon","socketPath":"...","clientTokenFile":"..."}`.
 `SIGTERM` stops the daemon, interrupts live turns (recorded as
 `turn.interrupted` with reason `service-shutdown`), terminates the
-app-server child (SIGTERM, then SIGKILL after 5 s) and exits 0. No
+app-server child (SIGTERM, then SIGKILL after 2 s) and exits 0. No
 LaunchAgent, no second socket, no TCP.
 
 ## 2. Stock Codex client (`packages/daemon/src/codex-app-server-client.ts`)
@@ -406,7 +406,9 @@ token file. Restart on unexpected exit with backoff 1, 2, 4, 8, 16, 30 s;
 after 5 failures in 3 minutes stop retrying and surface the state through
 the existing connectivity IPC (renderer shows "Runtime stopped" with a
 retry action). Never restart during `teardown()`. `teardown()` stops the
-child (SIGTERM, SIGKILL after 5 s) after the renderer server; quit waits for
+child (SIGTERM, SIGKILL after 10 s, beyond the service's own close budget of
+interrupt grace 3 s, daemon stop 2.5 s and app-server kill grace 2 s) after
+the renderer server; quit waits for
 it. Window close and hide are distinct from quit and stop nothing. Service
 stderr is written to the desktop log with account e-mail redaction
 (`grep -v '@'` equivalence) applied at the writer.
@@ -455,8 +457,8 @@ completes OAuth; `account/login/completed` updates the state; `cancelLogin` →
 keeps its wire shape: `ceremony` is `ready-to-start` when signed out (the
 `consent-required` value is never produced), `pending` during login,
 `signed-in` afterwards, `failed`/`cancelled` as before; `admission` is
-`ready` exactly when signed in, `unavailable` otherwise (`establishing` is
-never produced); `models`/`selection` come from `model/list` (non-hidden;
+`ready` exactly when signed in, `unavailable` otherwise (`establishing` only
+while signed in but the catalog read failed; the next status read retries); `models`/`selection` come from `model/list` (non-hidden;
 default the entry with `isDefault`, else the first). The status is App-wide;
 the per-project route reports the same account for every project. No
 credential is read, copied or displayed; the account e-mail from

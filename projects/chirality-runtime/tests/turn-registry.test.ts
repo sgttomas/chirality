@@ -70,6 +70,24 @@ async function settle(): Promise<void> {
 afterEach(() => { vi.useRealTimers(); });
 
 describe("TurnRegistry", () => {
+  it("close bounds a stalled interrupt by the grace and settles the session as interrupted", async () => {
+    const turn = scriptedTurn([delta("one"), exit]);
+    const s = service({ s1: turn });
+    s.holdInterrupts();
+    const marks: unknown[] = [];
+    const registry = new TurnRegistry(s.stub, { sessions: { async markInterruptedOnShutdown(projectId, sessionId, turnId, reason) { marks.push({ projectId, sessionId, turnId, reason }); return true; } } });
+    turn.release(0);
+    await registry.start("p", "s1", { message: "hello", turnId: "turn-1" });
+    const startedAt = Date.now();
+    const result = await registry.close({ reason: "service-shutdown", graceMs: 100 });
+    expect(Date.now() - startedAt).toBeLessThan(2_000);
+    expect(s.interruptions).toEqual([{ projectId: "p", sessionId: "s1", reason: "service-shutdown" }]);
+    expect(result.unsettled.map((item) => item.turnId)).toEqual(["turn-1"]);
+    expect(marks).toEqual([{ projectId: "p", sessionId: "s1", turnId: "turn-1", reason: "service-shutdown" }]);
+    expect(registry.state("p", "s1").active).toBe(false);
+    s.releaseInterrupt();
+  });
+
   it("runs the turn in the background, numbers frames from 1 and replays missed frames to a later subscriber", async () => {
     const turn = scriptedTurn([delta("one"), delta("two"), delta("three"), exit]);
     const { stub } = service({ s1: turn });

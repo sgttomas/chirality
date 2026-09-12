@@ -32,12 +32,15 @@ async function start(options: { signedIn?: boolean } = {}) {
   };
   const logs: string[] = [];
   const logger = { warn: (event: string) => { logs.push(event); }, error: (event: string) => { logs.push(`error:${event}`); } };
-  const runtime: AppOwnedRuntime = await startAppOwnedRuntime(config, { logger, transportFactory: async () => { const fake = createFakeCodexTransport({ signedIn: options.signedIn ?? true, pid: 100 + transports.length }); transports.push(fake); return fake.transport; } });
+  const runtimeOptions = { logger, transportFactory: async () => { const fake = createFakeCodexTransport({ signedIn: options.signedIn ?? true, pid: 100 + transports.length }); transports.push(fake); return fake.transport; } };
+  const runtime: AppOwnedRuntime = await startAppOwnedRuntime(config, runtimeOptions);
   cleanups.push(() => runtime.close());
+  /** A second service over the same runtime directory, as after a hard kill and relaunch. */
+  const restart = async (): Promise<AppOwnedRuntime> => { const next = await startAppOwnedRuntime(config, runtimeOptions); cleanups.push(() => next.close()); return next; };
   const app = new RuntimeClient({ socketPath: config.socketPath, tokenFile: config.clientTokenFile });
   const registered = await app.registerHostedBootstrapProject({ manifestPath });
   const project = new RuntimeClient({ socketPath: config.socketPath, tokenFile: resolveHostedProjectTokenFile(config.runtimeDirectory, registered.projectId) });
-  return { root, config, runtime, app, project, projectId: registered.projectId, projectRoot, transports, logs, fake: () => transports[transports.length - 1]! };
+  return { root, config, runtime, restart, app, project, projectId: registered.projectId, projectRoot, transports, logs, fake: () => transports[transports.length - 1]! };
 }
 async function collect(stream: AsyncIterable<UIEvent>, until?: (event: UIEvent) => boolean): Promise<UIEvent[]> {
   const events: UIEvent[] = [];
@@ -134,6 +137,33 @@ describe("App-owned Codex composition", () => {
     expect(f.runtime.host.status().state).toBe("closed");
     await expect(stat(f.config.socketPath)).rejects.toMatchObject({ code: "ENOENT" });
     await expect(f.runtime.close()).resolves.toBeUndefined();
+  });
+
+  it("settles a session a hard-killed service left running when the next service starts", async () => {
+    const f = await start();
+    const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
+    const streaming = collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "hang" }));
+    await poll(async () => f.fake().server.state.requests.some(request => request.method === "turn/start"), Boolean, "turn/start");
+    expect((await f.runtime.service.sessions.get(f.projectId, session.sessionId)).status).toBe("running");
+    // A SIGKILL leaves no settlement behind: emulate it by closing the daemon and
+    // the app-server without the registry's shutdown settlement.
+    await f.runtime.daemon.stop();
+    await f.runtime.host.close();
+    await streaming.catch(() => undefined);
+    await f.runtime.service.sessions.update({ ...(await f.runtime.service.sessions.get(f.projectId, session.sessionId)), status: "running" });
+    const relaunched = await f.restart();
+    expect(f.logs).toContain("runtime.sessions.settled_on_start");
+    expect((await relaunched.service.sessions.get(f.projectId, session.sessionId)).status).toBe("interrupted");
+    const events = await relaunched.service.sessions.replay(f.projectId, session.sessionId);
+    expect(events.at(-1)).toMatchObject({ type: "turn.interrupted", data: { reason: "service-restart" } });
+    // The session accepts a new turn again; the relaunched app-server resumes the durable thread.
+    const project = new RuntimeClient({ socketPath: f.config.socketPath, tokenFile: resolveHostedProjectTokenFile(f.config.runtimeDirectory, f.projectId) });
+    const next = await collect(await project.turnSession(f.projectId, session.sessionId, { message: "after relaunch" }));
+    expect(next.find(event => event.type === "chat:complete")).toMatchObject({ data: { text: "echo: after relaunch" } });
+    expect(next.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 0 } });
+    // A first turn killed before its terminal has no durable thread association yet, so the
+    // relaunched service establishes a thread again (resume when one was recorded, start otherwise).
+    expect(f.fake().server.state.requests.some(request => request.method === "thread/resume" || request.method === "thread/start")).toBe(true);
   });
 
   it("fails the live turn when the app-server dies and keeps serving status afterwards", async () => {

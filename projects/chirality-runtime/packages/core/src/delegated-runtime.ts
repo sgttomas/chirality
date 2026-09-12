@@ -220,7 +220,11 @@ export class DelegatedRuntime {
     this.interruptedTurns.add(key);
     // Interruption never retires. A supervisor without a native interrupt takes
     // the retire branch deliberately, joining the turn's own memoized attempt.
-    if (binding.supervisor.interrupt) await binding.supervisor.interrupt(live.workerId, live.generation);
+    if (binding.supervisor.interrupt) {
+      // A rejected interrupt leaves the turn interruptible; only a delivered one latches.
+      try { await binding.supervisor.interrupt(live.workerId, live.generation); }
+      catch (error) { this.interruptedTurns.delete(key); throw error; }
+    }
     else await this.retireWorker(binding, key, live.workerId, live.generation);
     return { interrupted: true as const, turnId: live.turnId, workerGeneration: live.generation };
   }
@@ -356,10 +360,20 @@ export class DelegatedRuntime {
           await captureProgress();
           if (waiting) await new Promise(resolve => setTimeout(resolve, 25));
         } })();
-        void polling.catch(() => { void retire().catch(() => {}); });
+        let pollingError: unknown;
+        void polling.catch((error: unknown) => {
+          pollingError = error;
+          // The Codex turn is still live: interrupt it before releasing its
+          // bookkeeping, so the thread is not left with an orphaned turn.
+          void (async () => {
+            if (binding.supervisor.interrupt) await binding.supervisor.interrupt(worker.workerId, worker.generation).catch(() => {});
+            await retire();
+          })().catch(() => {});
+        });
         const result = await resultPromise;
         await cancellation;
         if (cancellationError !== undefined) throw cancellationError;
+        if (pollingError !== undefined) throw pollingError;
         waiting = false; await polling; await captureNativePlan(); await captureProgress();
         if (result.threadId !== undefined) {
           if (retirement.associateThread === undefined) throw new RuntimeError("ENGINE_UNAVAILABLE", "Durable thread association is unavailable", 503);

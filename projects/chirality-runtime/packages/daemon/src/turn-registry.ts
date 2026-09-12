@@ -16,7 +16,8 @@ import {
  */
 
 export const DEFAULT_TURN_RETENTION_MS = 10 * 60_000;
-const DEFAULT_CLOSE_GRACE_MS = 5_000;
+/** Close grace; with the daemon stop and the app-server kill grace it stays inside the App host's kill window. */
+const DEFAULT_CLOSE_GRACE_MS = 3_000;
 
 export interface TurnFrame {
   /** 1-based, contiguous per turn; the SSE `id:` field. */
@@ -261,8 +262,16 @@ export class TurnRegistry {
     const reason = options.reason ?? "service-shutdown";
     const graceMs = options.graceMs ?? DEFAULT_CLOSE_GRACE_MS;
     const interrupted = this.activeTurns();
-    await Promise.allSettled(interrupted.map((turn) => this.interrupt(turn.projectId, turn.sessionId, reason)));
     const deadline = Date.now() + graceMs;
+    // The interrupt fan-out is bounded by the same grace: a supplier slow to
+    // honour turn/interrupt must not push the settlement below past the host's
+    // kill window, or a relaunch would find the session still running.
+    let graceTimer: ReturnType<typeof setTimeout> | undefined;
+    await Promise.race([
+      Promise.allSettled(interrupted.map((turn) => this.interrupt(turn.projectId, turn.sessionId, reason))),
+      new Promise<void>((resolve) => { graceTimer = setTimeout(resolve, graceMs); })
+    ]);
+    clearTimeout(graceTimer);
     const unsettled: ActiveTurnSummary[] = [];
     for (const turn of interrupted) {
       const settled = await this.waitForTerminal(turn, Math.max(0, deadline - Date.now()));

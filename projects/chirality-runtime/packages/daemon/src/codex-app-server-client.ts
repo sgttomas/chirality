@@ -43,6 +43,9 @@ export function redactAccountText(value: string): string {
   return value.replace(/\S+@\S+/g, "[redacted]");
 }
 
+/** SIGTERM to SIGKILL grace for the app-server child; part of the service close budget the App host's kill window must exceed. */
+export const DEFAULT_APP_SERVER_KILL_GRACE_MS = 2_000;
+
 export async function spawnCodexAppServer(options: SpawnCodexAppServerOptions): Promise<CodexAppServerTransport> {
   const child = spawn(options.executablePath, [...CODEX_APP_SERVER_ARGUMENTS], {
     env: { ...process.env, CODEX_HOME: options.effectiveHome },
@@ -77,7 +80,7 @@ export async function spawnCodexAppServer(options: SpawnCodexAppServerOptions): 
       if (child.exitCode === null && child.signalCode === null) {
         try { child.kill("SIGTERM"); } catch { /* exited */ }
         let timer: ReturnType<typeof setTimeout> | undefined;
-        await Promise.race([exited, new Promise<void>(resolve => { timer = setTimeout(resolve, options.killGraceMs ?? 5000); })]);
+        await Promise.race([exited, new Promise<void>(resolve => { timer = setTimeout(resolve, options.killGraceMs ?? DEFAULT_APP_SERVER_KILL_GRACE_MS); })]);
         clearTimeout(timer);
         if (child.exitCode === null && child.signalCode === null) { try { child.kill("SIGKILL"); } catch { /* exited */ } }
       }

@@ -163,3 +163,42 @@ blocking findings covering the actual candidate revision.
   harness, Harness pre-merge and pec pass. Frontend suite rerun in progress.
 - All of S-1..S-8 and the disconnect check now PASS on the source-run App. Next: PR body
   update, independent source review, then the consolidated signed build.
+
+## 2026-09-12T16:05:00Z — frontend suite, PR body, independent review dispatched
+- Frontend suite on 886eb2707: 201 files / 2066 tests pass; the legacy Pi/oMLX wire
+  integration test failed once under full-suite load ("oMLX provider stream timed out",
+  its deliberately short stream timeout) and passed 11/11 when run alone. Not on the Codex
+  path; recorded as a load-only flake, not repaired here.
+- Candidate whitespace validator: one committed finding (blank line at the end of the fake
+  Runtime service fixture) fixed in 886eb2707; PASS on the committed range.
+- PR #774 body updated with the acceptance results and the fix commits.
+- `REVIEW_BRIEF.md` written; independent source review dispatched to a fresh Fable 5.1
+  session with no authorship (read-only; may run tsc, typecheck and focused vitest; no App,
+  packaging, network, identity or live-file access). Record expected in
+  `INDEPENDENT_REVIEW.md`.
+
+## 2026-09-12T17:20:00Z — independent review returned PASS; its Medium and two Low findings repaired
+- `INDEPENDENT_REVIEW.md` (fresh Fable 5.1 session, no authorship, read-only) on 886eb2707:
+  verdict PASS, no blocking finding; one Medium, three Low, five Informational findings and
+  eight test gaps. Runtime `tsc -b` clean; App typecheck clean; focused suites 85 + 167 pass.
+- Repaired before the build, as bounded lifecycle changes (reviewer's "smallest repair"):
+  - Finding 1 (Medium, nested shutdown budgets; a hard-killed service left a session
+    `running` for good): the turn registry bounds the interrupt fan-out by its close grace
+    (now 3 s) so shutdown settlement always runs; the app-server SIGTERM to SIGKILL grace is
+    2 s; the Electron kill grace is 10 s, above the service's worst-case close; and a
+    starting service settles every session still recorded `running` as `interrupted` with
+    reason `service-restart` (no service owns a turn at start). A starting service also
+    reads the model catalog on demand for the first turn instead of failing effort
+    validation before the first status read.
+  - Finding 2 (Low): the supervisor's interrupt waits for the turn identity during the
+    `turn/start` round trip instead of sending an empty id, and a rejected interrupt no
+    longer latches the turn as "no longer interruptible".
+  - Finding 3 (Low): a progress-polling failure interrupts the live Codex turn before
+    retiring its bookkeeping, and the turn reports the polling error as its failure.
+  - Finding 4 (Low): the design text now names the `establishing` state as produced only
+    while signed in with a failed catalog read (behaviour unchanged).
+  - New tests: registry close with a stalled interrupt; session store start-time sweep;
+    composition relaunch over a session a killed service left running, then a new turn;
+    supervisor Stop during the `turn/start` round trip.
+- Informational findings and test gaps are recorded, not repaired, in this candidate.
+- Post-review changes: the reviewer is asked to re-check this delta before the build.

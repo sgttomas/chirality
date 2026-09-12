@@ -162,6 +162,13 @@ export async function startAppOwnedRuntime(rawConfig: AppOwnedRuntimeConfig, opt
 
   const projects = new ProjectRegistry(config.runtimeDirectory, { ...process.env, [CHIRALITY_INSTRUCTION_ROOT_ENV]: config.instructionRoot });
   const sessions = new SessionStore(config.runtimeDirectory, projects);
+  // A fresh service owns no turns: sessions a hard-killed or crashed service left
+  // `running` settle now, so no relaunch refuses them with SESSION_TURN_IN_PROGRESS.
+  for (const status of await projects.list().catch(() => [])) {
+    const projectId = status.project.projectId;
+    const settled = await sessions.settleRunningOnStart(projectId, "service-restart").catch((error: unknown) => { logger.warn("runtime.sessions.settle_on_start_failed", { projectId, ...describeRuntimeFailure(error) }); return [] as readonly string[]; });
+    if (settled.length > 0) logger.warn("runtime.sessions.settled_on_start", { projectId, count: settled.length });
+  }
   const engines = new EngineRegistry();
   const offline = async (): Promise<never> => { throw new RuntimeError("ENGINE_UNAVAILABLE", "Local model residency is not part of the App-owned Codex composition", 503); };
   const residency = new ResidencyCoordinator({ async listStatus() { return []; }, load: offline, unload: offline }, config.runtimeDirectory);
@@ -190,7 +197,9 @@ export async function startAppOwnedRuntime(rawConfig: AppOwnedRuntimeConfig, opt
     async resolveProject(projectId): Promise<DelegatedProjectBinding | undefined> {
       const project = await projects.requireAuthorized(projectId);
       const identity: WorkerContinuity = { canonicalRoot: project.canonicalRoot, cwd: project.canonicalRoot, accountId: "chirality-app", accountEpoch: 0, policyDigest: "stock-codex" };
-      const catalog = hostedBootstrap.catalog();
+      // A service that just started has read no catalog yet; a turn before the
+      // first status read must not fail its model and effort validation for that.
+      const catalog = hostedBootstrap.catalog() ?? await hostedBootstrap.refreshCatalog().catch(() => undefined);
       return { identity, supervisor, retirement: await retirementFor(projectId), nativePlanSink: nativePlan, ...(catalog === undefined ? {} : { catalog, actual: { ...CODEX_ENGINE_SELECTION, model: catalog.default.model, reasoningEffort: catalog.default.defaultReasoningEffort } }), evidenceClass: "provider-observed" };
     }
   });

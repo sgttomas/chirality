@@ -158,6 +158,24 @@ export class SessionStore {
     return true;
   }
 
+  /**
+   * Service start: a fresh service owns no turns, so a session whose record still
+   * says `running` was left there by a service that ended without settling it
+   * (hard kill, crash). Records `turn.interrupted` with the reason against the
+   * last accepted turn and moves the session to `interrupted`. Returns the
+   * settled session ids.
+   */
+  async settleRunningOnStart(projectId: string, reason = "service-restart"): Promise<readonly string[]> {
+    const settled: string[] = [];
+    for (const record of await this.list(projectId)) {
+      if (record.status !== "running") continue;
+      const events = await this.replay(projectId, record.sessionId).catch(() => [] as readonly HarnessEvent[]);
+      const turnId = [...events].reverse().find((event) => event.turnId !== undefined && (event.type === "turn.accepted" || event.type === "turn.started"))?.turnId ?? "unknown";
+      if (await this.markInterruptedOnShutdown(projectId, record.sessionId, turnId, reason)) settled.push(record.sessionId);
+    }
+    return settled;
+  }
+
   async update(record: RuntimeSessionRecord): Promise<void> {
     await withSessionLock(`${record.projectId}\0${record.sessionId}`, async () => {
       await this.projects.requireAuthorized(record.projectId);

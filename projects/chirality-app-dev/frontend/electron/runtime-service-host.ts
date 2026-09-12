@@ -209,7 +209,12 @@ export const DEFAULT_READY_TIMEOUT_MS = 30_000;
 export const DEFAULT_RESTART_DELAYS_MS: readonly number[] = [1_000, 2_000, 4_000, 8_000, 16_000, 30_000];
 export const DEFAULT_FAILURE_WINDOW_MS = 180_000;
 export const DEFAULT_MAX_FAILURES = 5;
-export const DEFAULT_KILL_GRACE_MS = 5_000;
+/**
+ * SIGTERM to SIGKILL grace for the service. It exceeds the service's own worst-case
+ * close budget (turn interrupt grace 3 s, daemon stop 2.5 s, app-server kill grace 2 s)
+ * so a slow supplier is settled by the service, never hard-killed mid-settlement.
+ */
+export const DEFAULT_KILL_GRACE_MS = 10_000;
 
 export type RuntimeServiceHostOptions = {
   config: RuntimeServiceConfig;

@@ -189,6 +189,29 @@ describe("Codex supervisor over the shared app-server", () => {
     await expect(supervisor.acquire("w9", envelope())).rejects.toMatchObject({ code: "ENGINE_UNAVAILABLE" });
   });
 
+  it("waits for the turn identity when Stop arrives during the turn/start round trip", async () => {
+    const host = fakeHost();
+    let releaseStart!: () => void;
+    const started = new Promise<void>(resolve => { releaseStart = resolve; });
+    const original = host.request.bind(host);
+    host.request = (async (method: string, params: unknown) => { if (method === "turn/start") await started; return original(method, params); }) as typeof host.request;
+    const supervisor = new CodexSupervisor({ host });
+    const acquiring = supervisor.acquire("w1", envelope());
+    await new Promise(resolve => setTimeout(resolve, 1));
+    const handles = await supervisor.inventory();
+    expect(handles.map(handle => handle.workerId)).toEqual(["w1"]);
+    const interrupting = supervisor.interrupt("w1", handles[0]!.generation);
+    await new Promise(resolve => setTimeout(resolve, 1));
+    expect(host.calls.some(call => call.method === "turn/interrupt")).toBe(false);
+    releaseStart();
+    const worker = await acquiring;
+    await new Promise(resolve => setTimeout(resolve, 1));
+    expect(host.calls.at(-1)).toEqual({ method: "turn/interrupt", params: { threadId: "thread-1", turnId: "turn-1" } });
+    host.notify("turn/completed", { threadId: "thread-1", turn: { id: "turn-1", status: "interrupted" } });
+    await interrupting;
+    await expect(supervisor.wait(worker.workerId, worker.generation)).resolves.toMatchObject({ signal: "SIGTERM" });
+  });
+
   it("captures native plan items and clarifications for plan-mode turns and routes child-thread notifications to the parent turn", async () => {
     const host = fakeHost();
     const supervisor = new CodexSupervisor({ host });
