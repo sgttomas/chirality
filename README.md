@@ -1,93 +1,52 @@
 # Chirality
 
-Chirality helps you turn complex work into repeatable workflows and purpose-built tools that you own.
+**Plan your work. Iterate.**
 
-1. **Make complex work understandable.** Organize context into clear subjects, boundaries, dependencies, and responsibilities.
-2. **Make it repeatable.** Develop workflows, checks, and purpose-built tools from that structure.
-3. **Make it adaptable.** Adjust as conditions change and understanding grows. Carry accepted lessons into the work underway and the next project.
+Chirality helps professional knowledge workers turn complex tasks into methods they can reuse and adapt. Start a conversation with Help Human, the assistant in Chirality App. Work out what you need, make a plan when it helps, and carry out the work together. Turn a useful plan into a workflow for next time.
 
-[Website](https://chirality.dev) · [Chirality App releases](https://github.com/sgttomas/chirality-app/releases)
+[Download Chirality App](https://github.com/sgttomas/chirality-app/releases/latest) · [Website](https://chirality.ai) · [Release announcement](https://chirality.ai/announcements)
 
-## What it's for
+## Use the App
 
-Work with agents to organize the references for a task, develop a method, and put it to use.
+**Version 3.0.0 is available.** It runs on Apple Silicon Macs with macOS 15 or newer and uses Codex through your ChatGPT account. Local-model support is planned for a later release.
 
-That might mean preparing a design basis memorandum from an accepted, structured knowledge base. Preparing estimate inputs by organizing sources and assumptions and consolidating line items, units, and quantities. Or transforming data into a required format, then building custom software so next time you can run an ingestion pipeline instead of another agent session.
+Bring a task such as a monthly update, a proposal, an investigation, or a review. Help Human can organize references, prepare work, and help you check it. You can select a workflow from the library or ask it to turn your plan into one. Return to the conversation to reuse and refine the method as your work changes.
 
-The work itself helps develop the way of doing it. A useful instruction becomes part of a method. A recurring check becomes a tool. A lesson changes how the next task is performed.
+Saved plans, workflows, references, and outputs are ordinary files in your folders. Plans stay in conversation history unless you choose to save them to a file. You can keep and use them outside the App. Task content needed by the model is sent to OpenAI using your account; Chirality AI Ltd does not proxy or retain that content. See [installation and data handling](https://chirality.ai/deployment).
 
-Chirality App provides an interface for this work. This repository contains the agent instructions, growing collection of methods, deterministic tools, runtime, and application source.
+You direct the work and decide what is ready to rely on. Use review appropriate to its consequences.
 
-## Why build this?
+## Why Chirality
 
-Companies make the same mistakes repeatedly. People move and take the knowledge with them. Information is saved haphazardly. Lessons are recorded but get little traction. Each person develops their own way of completing the same task.
+Every project should give the next one a better starting point. Often, the understanding stays with the person who did the work, even when the finished document survives.
 
-Agents don't automatically solve any of that. They can produce a huge volume of work that you weren't involved in pulling together. Even when it is usually right and correctly referenced, you still need to understand and agree with the basis and check the result.
+Chirality makes more of that understanding available for reuse: the method, its references, and the checks that help someone evaluate the result. Some work becomes a repeatable workflow. Some leads to a purpose-built tool that no longer needs an agent to run it.
 
-Working with agents is project management.
+## This repository
 
-There is coordination overhead in keeping everyone working from the correct information, and validation overhead in checking that the work used that information correctly. Chirality brings those concerns into the methods used to do the work.
+This is the main source and development repository for Chirality App, its Runtime, agent instructions, reusable methods, and related projects. Downloads and user issue reports live in [chirality-app](https://github.com/sgttomas/chirality-app).
 
-There are no shortcuts around good discipline in document control and information management. Keep your filenames, versions, and references organized. Chirality helps you build effective task management on that foundation so your methods and lessons aren't lost or obscured.
-
-## The work doesn't have to stay in the App
-
-Methods, references, outputs, and decisions live in your files. Other people, applications, and agents can use them.
-
-Chirality deliberately uses the filesystem for shared working state. Git records versions and changes. The project record can survive the conversation, the model, and the application used to create it.
-
-Workflows can run within Chirality App, on another agent platform, or as standalone software you build with the agents. All work does not need to take place in Chirality.
-
-Sometimes the useful outcome is a specialized tool that no longer needs an agent to do the task.
-
-## Checking the work
-
-Deterministic tools perform defined operations and checks. Agents do work that involves interpretation, prepare supporting evidence, and identify matters that need a decision.
-
-Neither removes your responsibility to examine substantial claims against their sources or rationale. A citation helps you check a claim; it does not establish that the claim is correct.
-
-The methods in this repository provide ways to preserve sources, distinguish assumptions from supported statements, record decisions, and review changes. The requirements and checks differ by workflow. An instruction to an agent is not, by itself, a guarantee that the application enforces it.
-
-Use Chirality for work you are competent to evaluate. Apply review appropriate to the consequences.
-
-## Your work remains yours
-
-Chirality is free and open source under the MIT licence.
-
-Using Chirality App does not require sending your organization's data to Chirality AI Ltd. Model access and data handling depend on your chosen configuration; using a hosted provider is different from running a model locally. Consult the App's release documentation for supported options.
-
-You can use and adapt the published methods, bring your own, and build tools fitted to your needs. You don't need an engagement with Chirality to do that.
-
-If you want help, Chirality AI Ltd. offers paid work to develop and refine methods, workflows, and tools with your organization. The results remain yours when the engagement ends.
-
-[Work with us](https://chirality.ai/contact.html)
-
-## Where to start
-
-**To use the App:** visit the [release page](https://github.com/sgttomas/chirality-app/releases) and read the notes for the version you download. The desktop distribution targets Apple Silicon Macs running macOS 15 or newer. Version 3.0 is in development.
-
-**To explore the methods:** start with [`workflows/README.md`](workflows/README.md). Choose a task whose result you can evaluate, inspect the method's inputs and review requirements, and adapt it to your work.
-
-**To understand or develop the system:**
-
-| Location | What you'll find |
+| Location | Purpose |
 | --- | --- |
-| [`AGENTS.md`](AGENTS.md) and [`agents/`](agents/) | Four roles, their instructions, and runtime registry |
-| [`workflows/`](workflows/) | Reusable methods and their input, output, and review requirements |
-| [`tools/`](tools/) | Deterministic utilities, checks, and transformations |
-| [`projects/chirality-runtime/`](projects/chirality-runtime/) | Shared runtime, engine adapters, daemon, client, and CLI |
-| [`projects/chirality-app-dev/`](projects/chirality-app-dev/) | Desktop application source and development documentation |
-| [`projects/`](projects/) | Product and integration projects |
-| [`docs/`](docs/) | Design basis, standards, contracts, and specifications |
+| [App development](projects/chirality-app-dev/README.md) | Desktop source, local setup, and development documentation |
+| [Runtime](projects/chirality-runtime/README.md) | The App-owned service and Codex integration |
+| [Agents](agents/) | Four roles: HELP_HUMAN, HELPS_HUMANS, WORKING_ITEMS, and TASK |
+| [Workflows](workflows/README.md) | Reusable instructions for coordinating and completing work |
+| [Skills](.agents/skills/) | Bounded methods used by agents during their work |
+| [Tools](tools/) | Deterministic utilities and checks |
+| [Projects](projects/) | Product and integration work, including SWB Piping Designer |
+| [Design documentation](docs/) | Design basis, standards, and contracts |
 
-The [runtime README](projects/chirality-runtime/README.md) covers runtime development. The [App documentation index](projects/chirality-app-dev/docs/README.md) links to application requirements and build instructions.
+A role describes how an agent participates. A workflow describes how work is organized and carried through. Skills supply contextual methods; tools perform deterministic operations. The App loads the active role and brings in methods as needed.
 
-For the underlying principles, read [`docs/DIRECTIVE.md`](docs/DIRECTIVE.md). For agent execution rules, start with [`AGENTS.md`](AGENTS.md) and the instructions for the project you're working in.
+## Develop and contribute
 
-This is an active development repository. Source code, development records, and release artifacts serve different purposes; work present here is not necessarily part of a released App.
+For application development, start with the [App README](projects/chirality-app-dev/README.md). For agent-assisted work in this repository, read [AGENTS.md](AGENTS.md) and the instructions in the project you are changing.
+
+The repository contains ongoing development and historical evidence as well as released source. Consult the [release notes](https://github.com/sgttomas/chirality-app/releases) for what ships in a particular App version.
+
+[Report an App issue](https://github.com/sgttomas/chirality-app/issues/new/choose) · [Discuss source changes](https://github.com/sgttomas/chirality/issues) · [Work with us](https://chirality.ai/contact)
 
 ## License
 
-[MIT License](LICENSE.md)
-
-Copyright © 2026 Ryan Tufts.
+[MIT License](LICENSE.md), except where a component or project supplies its own licence. Copyright © 2026 Ryan Tufts.
