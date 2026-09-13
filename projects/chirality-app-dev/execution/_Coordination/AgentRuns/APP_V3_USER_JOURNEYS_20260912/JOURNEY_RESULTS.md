@@ -100,17 +100,24 @@ installed signed App was not rebuilt or modified.
   state observations before Return.
 - Recovered tool failures remain recorded. Good artifact results do not erase
   failed searches, unavailable library-refresh capabilities or failed commands.
-- Signed packaging is complete as recorded in BUILD_EVIDENCE_20260913.md.
+- Replacement signed packaging is complete as recorded in
+  BUILD_EVIDENCE_RELEASE_20260913.md. The first package is preserved with
+  superseded dependencies and its original BUILD_EVIDENCE_20260913.md record.
   Owner installer acceptance, notarization and publishing remain separate.
   No publishing was performed by this campaign.
 
-Final source `897d54e32` passed CI with 364 Runtime tests and 2234 frontend
+Journey source `897d54e32` passed CI with 364 Runtime tests and 2234 frontend
 tests, four skipped, plus the controlled production integration checks. Root and
 PEC CI also passed. PR #778 merged as `9eaddb5965642a783ad700743eecdf876e9e0104`;
-the merged tree is identical to that reviewed candidate. The consolidated
-package uses this exact merge and version `3.0.0`. See OWNER_TRIAL_NOTES.md for
-the remaining owner checks and BUILD_EVIDENCE_20260913.md for the actual build
-outcome.
+the merged tree is identical to that reviewed candidate. The replacement
+package uses `56c9f538da7f8ab355975efb0821b2b17f4a6814` from PR #779 and version
+`3.0.0`. That subsequent repair changes only the frontend dependency manifests
+and Next image-optimizer configuration in product source. It passed separate
+review, the same CI suites and an actual production HTTP check before signing;
+the eight account journeys were not repeated for this dependency patch.
+Packaged version/configuration inspection also passed. See OWNER_TRIAL_NOTES.md
+for remaining owner checks and BUILD_EVIDENCE_RELEASE_20260913.md for the actual
+replacement build outcome.
 
 Independent returns are in `returns/`: EARLY_ARTIFACT_REVIEW,
 J04_ARTIFACT_REVIEW, J02_J05_ARTIFACT_REVIEW, J06_J08_ARTIFACT_REVIEW and
