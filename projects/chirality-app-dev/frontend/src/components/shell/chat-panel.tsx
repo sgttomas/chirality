@@ -1,5 +1,6 @@
 'use client';
 
+import { isSessionBootConfirmed } from '../../lib/harness/session-boot-readiness';
 import { deriveTranscriptView, type TranscriptItem } from '@chirality/runtime-contracts/transcript-replay';
 import { mergeSteeringReceipt, persistSteeringReceipt, recoverSteeringReceipts, type SteeringReceipt } from '../../lib/shell/steering-receipts';
 import { nativePlanText } from '../../lib/harness/native-plan-text';
@@ -794,7 +795,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         (pending.session.projectRoot && recorded.projectRoot !== pending.session.projectRoot)) {
         throw new HarnessApiClientError(409, 'INVALID_REQUEST', 'Session reconciliation returned a different chat.', { bootstrapState: 'conflict', sessionId: pending.session.sessionId });
       }
-      if (!recorded.bootedAt || !recorded.bootFingerprint || !recorded.engineSessionId) {
+      if (!isSessionBootConfirmed(recorded)) {
         const status = 'status' in recorded ? recorded.status : undefined;
         throw new HarnessApiClientError(409, 'ENGINE_UNAVAILABLE', 'Session initialization is not confirmed.', {
           bootstrapState: status === 'running' ? 'pending' : status === 'failed' || status === 'interrupted' ? 'failed' : 'unknown',

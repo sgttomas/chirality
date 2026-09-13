@@ -947,3 +947,54 @@ it('recovers a definitely unsent bound message to its owning draft when context 
   expect(state.stream).not.toHaveBeenCalled();
   expect(JSON.stringify(tree!.toJSON())).toContain('original chat');
 });
+
+it('resumes a boot-ready Codex chat after a rejected first attachment and reload before any provider thread exists', async () => {
+  const { projectOperatorSession } = await import('../../lib/woven-dialogue/operator-projection');
+  const recorded = {
+    schemaVersion: 'chirality.session/v3', sessionId: 'pre-thread-attachment', projectRoot: '/chosen/subfolder',
+    persona: 'WORKING_ITEMS', roleId: 'WORKING_ITEMS', mode: 'CHAT', status: 'idle',
+    bootedAt: '2026-09-13T00:00:00Z', bootFingerprint: 'verified-boot',
+    engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'configured-model' }
+  };
+  state.create.mockResolvedValue(recorded);
+  state.boot.mockResolvedValue({ session: recorded });
+  await mount();
+  await act(async () => tree!.root.findByProps({ 'data-add-attachment': true }).props.onClick());
+  await type('Retry the original attachment'); await submit();
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Retry the original attachment');
+  await act(async () => tree!.unmount()); tree = undefined;
+  const projection = resumableProjection(recorded.sessionId);
+  projection.session!.bootstrapConfirmed = projectOperatorSession(recorded as never, new Set([recorded.sessionId]), { observedAt: '2026-09-13' }).bootstrapConfirmed;
+  state.getSession.mockResolvedValue(recorded);
+  state.stream.mockResolvedValue(undefined);
+  await mount({ resumeConversation: { requestId: 1, projection } });
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Retry the original attachment');
+  await submit();
+  expect(state.stream).toHaveBeenCalledTimes(2);
+  expect(state.stream).toHaveBeenLastCalledWith(expect.objectContaining({ sessionId: recorded.sessionId, message: 'Retry the original attachment', attachments: ['/chosen/subfolder/docs/input.txt'] }), expect.any(Function), expect.any(AbortSignal));
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
+  expect(state.getSession).not.toHaveBeenCalled();
+});
+
+it('reconciles a lost Codex boot response from Runtime boot stamps before the first provider thread', async () => {
+  state.create.mockResolvedValue({ sessionId: 'codex-boot-response-lost', projectRoot: '/chosen/subfolder' });
+  state.boot.mockRejectedValue(new Error('boot response lost'));
+  await mount(); await type('Send only after readiness'); await submit();
+  state.getSession.mockResolvedValue({ schemaVersion: 'chirality.session/v3', roleId: 'WORKING_ITEMS', sessionId: 'codex-boot-response-lost', projectRoot: '/chosen/subfolder', status: 'idle', bootedAt: '2026-09-13', bootFingerprint: 'verified-boot', engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'configured-model' } });
+  state.stream.mockResolvedValue(undefined);
+  await submit();
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'codex-boot-response-lost', message: 'Send only after readiness' }), expect.any(Function), expect.any(AbortSignal));
+});
+
+it.each([{ bootedAt: '2026-09-13' }, { bootFingerprint: 'verified-boot' }, {}])('holds a genuinely incomplete Codex boot: %j', async stamps => {
+  const projection = resumableProjection('incomplete-codex');
+  projection.session!.bootstrapConfirmed = false;
+  state.getSession.mockResolvedValue({ schemaVersion: 'chirality.session/v3', roleId: 'WORKING_ITEMS', sessionId: 'incomplete-codex', projectRoot: '/chosen/subfolder', status: 'idle', engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'configured-model' }, ...stamps });
+  await mount({ resumeConversation: { requestId: 1, projection } });
+  await type('Keep this pending'); await submit();
+  expect(state.stream).not.toHaveBeenCalled(); expect(state.boot).not.toHaveBeenCalled(); expect(state.create).not.toHaveBeenCalled();
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this pending');
+});

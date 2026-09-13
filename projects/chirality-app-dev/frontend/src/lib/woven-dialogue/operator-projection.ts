@@ -1,3 +1,4 @@
+import { isSessionBootConfirmed } from '../harness/session-boot-readiness';
 import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import type {
   OperatorSessionProjection,
@@ -188,7 +189,7 @@ function projectOne(
     ...(outputArtifactReference ? { outputArtifactReference } : {}),
     ...(approvalEvidenceReference ? { approvalEvidenceReference } : {}),
     ...(continuation ? { continuation } : {}),
-    ...(source.schemaVersion === 'chirality.session/v3' ? { bootstrapConfirmed: Boolean(readString(source.bootedAt) && readString(source.bootFingerprint) && readString(source.engineSessionId)) } : {}),
+    ...(source.schemaVersion === 'chirality.session/v3' ? { bootstrapConfirmed: isSessionBootConfirmed(source) } : {}),
     diagnostics
   };
 }

@@ -180,3 +180,14 @@ describe('operator session projection', () => {
     expect(conflict.sessions[0]?.currency).toBe('CONFLICTING');
   });
 });
+
+it.each([
+  { adapterId: 'codex-app-server', schemaVersion: 'chirality.session/v3', bootedAt: '2026-09-13', bootFingerprint: 'boot-proof', expected: true },
+  { adapterId: 'codex-app-server', schemaVersion: 'chirality.session/v3', bootedAt: '2026-09-13', bootFingerprint: '', expected: false },
+  { adapterId: 'codex-app-server', schemaVersion: 'chirality.session/v3', bootedAt: '', bootFingerprint: 'boot-proof', expected: false },
+  { adapterId: 'claude-agent-sdk', schemaVersion: 'chirality.session/v3', bootedAt: '2026-09-13', bootFingerprint: 'boot-proof', expected: false },
+  { adapterId: 'future-engine', schemaVersion: 'chirality.session/v3', bootedAt: '2026-09-13', bootFingerprint: 'boot-proof', expected: false }
+])('projects boot:none readiness without inventing a provider thread: %j', ({ expected, adapterId, ...boot }) => {
+  const record = session('pre-provider', { ...boot, engineSelection: { adapterId, providerId: 'openai', model: 'configured-model' } });
+  expect(projectOperatorSession(record, new Set(['pre-provider']), { observedAt: '2026-09-13' }).bootstrapConfirmed).toBe(expected);
+});
