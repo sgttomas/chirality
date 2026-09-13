@@ -1,22 +1,28 @@
 # Chirality 3.0.0: owner trial notes
 
-Status: the first signed package is preserved, but it is held from public
-distribution while the reported production dependency advisories are repaired.
-A replacement artifact will be identified here after review and verification.
+Status: the repaired, signed 3.0.0 candidate is ready for the owner's final
+checks. Install-over acceptance, notarization/stapling and explicit publishing
+direction remain outstanding.
 
-Source: `9eaddb5965642a783ad700743eecdf876e9e0104`, merged through
-[PR #778](https://github.com/sgttomas/chirality/pull/778). The merged tree equals
-the independently reviewed candidate. All required CI passed, including 364
-Runtime tests and 2234 frontend tests; four frontend tests remain explicitly
-skipped. Packaging evidence is in `BUILD_EVIDENCE_20260913.md`.
-This record is not publishing approval.
+Source: `56c9f538da7f8ab355975efb0821b2b17f4a6814`. The user-journey changes
+merged through [PR #778](https://github.com/sgttomas/chirality/pull/778); the
+bounded dependency repair merged through
+[PR #779](https://github.com/sgttomas/chirality/pull/779). Both merged trees
+match their independently reviewed candidates. Final required CI passed,
+including 364 Runtime tests and 2234 frontend tests; four frontend tests remain
+explicitly skipped. Current packaging evidence is in
+`BUILD_EVIDENCE_RELEASE_20260913.md`. This record is not publishing approval.
 
-Preserved first installer: `/Users/ryan/.claude/chirality-build-user-journeys-20260912-out/Chirality-3.0.0-arm64.dmg`
-(337,955,318 bytes). SHA-256:
-`321a4de9c8155be1fcd0a24f3aebfae55693df181a3151c5ad16952ef8171cb1`.
+Installer: `/Users/ryan/.claude/chirality-build-3-release-20260913-out/Chirality-3.0.0-arm64.dmg`
+(338,040,805 bytes, macOS Apple Silicon). SHA-256:
+`4078225b7cdf8520b0b7beba80aa3d96b33c68ae1657844e7caac48f0239d920`.
 The App is Developer ID signed; Gatekeeper reports Unnotarized Developer ID
 until the owner's notarization/stapling step. The installer has not been
 published or installed over the owner's application.
+
+The earlier package remains preserved at the location in
+`BUILD_EVIDENCE_20260913.md`. It contains the superseded dependency versions;
+use the replacement above for review and any later authorized distribution.
 
 ## What changed
 
@@ -39,6 +45,9 @@ published or installed over the owner's application.
   project's conversation is used. A booted chat can recover from an attachment
   failure before its first successful Codex turn. Open file previews refresh after
   the conversation updates the file.
+- Next, sharp and nanoid use the reviewed patched versions. The unused image
+  optimizer is disabled; the actual production HTTP check confirmed normal
+  App/static responses and refusal of optimizer requests before signing.
 
 ## What the campaign established
 
@@ -93,6 +102,10 @@ the current product guidance automatically.
   overlapping work passed. The standard desktop has one main conversational view.
 - Selected attachment copies are retained for retry and history. Removing a chip
   does not reclaim its staged copy in this release.
+- The final production dependency audit has zero high or critical findings.
+  One existing moderate PostCSS advisory remains, reported on PostCSS and its
+  Next dependency row. Development-only advisories are recorded separately in
+  the build evidence; this is not an entirely clean dependency audit.
 - The earlier UI review's keyboard-focus contrast, declined-folder notice and
   unbound-draft folder behavior remain follow-up observations, not claims of
   newly established defects. Its historical manifest and timeout notes are

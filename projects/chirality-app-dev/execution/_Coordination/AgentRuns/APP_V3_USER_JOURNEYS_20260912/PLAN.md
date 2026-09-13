@@ -1,10 +1,11 @@
 # Chirality v3 user journey campaign
 
 Status: real journeys, artifact evaluation, source repairs and direct rechecks
-are complete. PR #778 is merged and the first signed 3.0.0 package is preserved.
-A narrow production dependency repair and replacement package are in progress
-after the build's critical advisory report was assessed. Owner install-over
-acceptance, notarization and publishing remain pending. The
+are complete. PR #778 and the bounded dependency repair in PR #779 are merged.
+The replacement signed 3.0.0 package uses exact merge 56c9f538d, with passing
+production HTTP and packaged dependency/configuration checks. Both build outputs
+remain preserved; BUILD_EVIDENCE_RELEASE_20260913.md identifies the current one.
+Owner install-over acceptance, notarization and publishing remain pending. The
 owner approved all four native interaction additions, including native steering.
 RUN_LOG.md and JOURNEY_RESULTS.md carry current outcomes and limitations.
 Owner direction: simulate real professional knowledge work in parallel from
