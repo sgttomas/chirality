@@ -866,13 +866,17 @@ Hook failures fail closed for write, shell, domain, and subagent actions.
 ### 16.1 Attachments
 
 The stock-Codex App-owned path accepts files explicitly selected through the
-attachment picker, including external source files. On send, the existing
-Runtime attachment resolver stages validated bytes beneath
-`.chirality/attachments/<sessionId>/` in the active project. The engine receives
-the contained copy and recorded original filename. Selection does not grant
-access to the source folder or alter the user's Codex sandbox policy. The native
-picker explains the copy before selection; a chip represents a selection until
-send performs staging.
+attachment picker, including external source files. After native selection, the
+main process validates and copies only the chosen files beneath
+`.chirality/attachment-inputs/<host-generated-file-id>/<original-basename>` in
+the captured canonical project. It returns contained paths to the renderer.
+On send, the Runtime resolver rejects external input paths against the owning
+session's root before reading bytes, then validates and copies the contained
+inputs beneath `.chirality/attachments/<sessionId>/`. The engine receives those
+session copies and recorded original filenames. No new source-directory access
+or Codex permission is granted. The native picker explains copying on attach.
+Selection copies remain available across draft removal, failed send and restart;
+automatic reclamation is outside this release's scope.
 
 The Codex path validates the entire requested attachment set before dispatch.
 An invalid attachment rejects that request and preserves its draft and selections

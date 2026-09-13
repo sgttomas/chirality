@@ -2067,7 +2067,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           }
         />)}
         {presentation === 'woven' ? <button type="button" aria-label="Attach files" title="Attach files" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady || attachmentPickPending} onClick={() => void pickAttachments()}>⊕</button> : null}
-        {presentation === 'woven' ? <button type="button" className="chat-workflow-button" aria-label="Choose a workflow" title="Open workflows and skill references" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={onOpenMethods}>Workflows</button> : null}
+        {presentation === 'woven' ? <button type="button" className="chat-workflow-button" aria-label="Choose a workflow" title="Open workflows" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={onOpenMethods}>Workflows</button> : null}
         <button
           type="submit"
           aria-label={isRunning ? 'Update running turn' : 'Send'}

@@ -6,6 +6,7 @@ export * from "./fs.js";
 export * from "./project-registry.js";
 export * from "./bootstrap-project.js";
 export * from "./runtime-attachment-resolver.js";
+export * from "./attachment-copy.js";
 export * from "./residency-coordinator.js";
 export * from "./runtime-service.js";
 export * from "./runtime-method-service.js";

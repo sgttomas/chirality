@@ -7,6 +7,7 @@ import { RuntimeClient } from "@chirality/runtime-client";
 import { APP_HOST_CLIENT_ID, startAppOwnedRuntime, validateAppOwnedRuntimeConfig, type AppOwnedRuntime, type AppOwnedRuntimeConfig } from "../packages/daemon/src/app-owned-composition.js";
 import { resolveHostedProjectTokenFile } from "../packages/daemon/src/hosted-paths.js";
 import { createFakeCodexTransport, type FakeCodexTransport } from "./fake-codex-transport.js";
+import { createAttachmentSelectionHandler } from "../../chirality-app-dev/frontend/electron/attachment-picker.js";
 
 const cleanups: (() => Promise<unknown>)[] = [];
 afterEach(async () => { for (const cleanup of cleanups.splice(0).reverse()) await cleanup().catch(() => undefined); });
@@ -112,7 +113,7 @@ describe("App-owned Codex composition", () => {
     expect(JSON.stringify(f.logs)).not.toContain("@");
   });
 
-  it("imports explicitly selected inside and outside files into conversation custody before stock Codex input", async () => {
+  it("copies native selections into project inputs then session custody before stock Codex input", async () => {
     const f = await start();
     const outside = join(f.root, "selected");
     await mkdir(outside);
@@ -126,17 +127,22 @@ describe("App-owned Codex composition", () => {
     await writeFile(image, Buffer.from([0x89, 0x50, 0x4e, 0x47]));
     const originals = [inside, external, pdf, image];
     const originalBytes = await Promise.all(originals.map(file => readFile(file)));
+    const picker = createAttachmentSelectionHandler({ authorized: () => true, showOpenDialog: async () => ({ canceled: false, filePaths: originals }) });
+    const selected = await picker({}, { projectRoot: f.projectRoot });
+    if (selected.cancelled) throw new Error(selected.error);
+    expect(selected.paths.every(file => file.startsWith(join(f.projectRoot, ".chirality", "attachment-inputs") + "/"))).toBe(true);
+    await writeFile(external, "Changed after attachment selection");
     const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
-    const events = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "Inspect these attachments", attachments: originals }));
+    const events = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "Inspect these attachments", attachments: selected.paths }));
     expect(events.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 0 } });
-    expect(harness(events).find(event => event.type === "turn.accepted")?.data).toMatchObject({ attachments: originals });
+    expect(harness(events).find(event => event.type === "turn.accepted")?.data).toMatchObject({ attachments: selected.paths });
     const custody = join(f.projectRoot, ".chirality", "attachments", session.sessionId);
     const history = (await readFile(join(custody, "history.jsonl"), "utf8")).trim().split("\n").map(line => JSON.parse(line));
     expect(history.map(item => item.name)).toEqual(["inside.txt", "visitor-desk-brief.txt", "visitor-plan.pdf", "visitor-map.png"]);
     for (const [index, item] of history.entries()) {
       expect(item.sha256).toMatch(/^[a-f0-9]{64}$/);
       expect(await readFile(join(custody, item.stagedName))).toEqual(originalBytes[index]);
-      expect(await readFile(originals[index]!)).toEqual(originalBytes[index]);
+      if (originals[index] !== external) expect(await readFile(originals[index]!)).toEqual(originalBytes[index]);
     }
     const native = f.fake().server.state.requests.find(request => request.method === "turn/start")?.params as { input: Array<Record<string, unknown>> };
     expect(native.input).toEqual([
@@ -147,12 +153,16 @@ describe("App-owned Codex composition", () => {
       { type: "localImage", path: join(custody, history[3].stagedName) }
     ]);
     expect(JSON.stringify(native)).not.toContain(outside);
+    const retried = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "Read the same attached copies again", attachments: selected.paths }));
+    expect(retried.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 0 } });
+    expect(JSON.stringify(f.fake().server.state.requests.filter(request => request.method === "turn/start").at(-1)?.params)).toContain("Visitor desk owner is Morgan.");
+    expect(await readFile(external, "utf8")).toBe("Changed after attachment selection");
     expect(f.fake().server.state.requests.find(request => request.method === "thread/start")?.params).toMatchObject({ cwd: f.projectRoot, sandbox: "workspace-write" });
   });
 
   it("rejects invalid explicit attachment sources before stock Codex dispatch", async () => {
     const f = await start();
-    const selected = join(f.root, "selected");
+    const selected = join(f.projectRoot, "selected");
     await mkdir(selected);
     const valid = join(selected, "brief.txt");
     const alias = join(selected, "alias.txt");
