@@ -14,6 +14,7 @@ instruction_surface_paths:
   - workflows/index.json
   - tools/validation/build_workflow_index.py
   - tools/validation/test_workflow_catalog.py
+  - tools/validation/test_public_export_profile.py
   - docs/governance_harness/tranche_manifests/APP-JOURNEYS-CORE-WORKFLOW-20260913.yaml
 m2_gate:
   authorization: >-

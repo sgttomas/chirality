@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 import os
 from pathlib import Path
 
@@ -28,7 +29,12 @@ def test_public_export_excludes_private_runtime_surfaces(tmp_path: Path) -> None
 
     assert (stage / 'agents/registry.json').is_file()
     assert len(list((stage / 'agents').glob('AGENT_*.md'))) == 4
-    assert len(list((stage / 'workflows').glob('*/WORKFLOW.md'))) == 71
+    source_index = json.loads((REPO_ROOT / 'workflows/index.json').read_text(encoding='utf-8'))
+    expected_workflows = {
+        item['name'] for item in source_index['methods']
+        if item['kind'] == 'workflow' and item['source'] == 'bundled'
+    }
+    assert {path.parent.name for path in (stage / 'workflows').glob('*/WORKFLOW.md')} == expected_workflows
     assert (stage / 'ADOPTION_HOLD.json').is_file()
     assert not (stage / 'skills').exists()
     bundled_skills = sorted(path.parent.name for path in (stage / '.agents/skills').glob('*/SKILL.md'))
