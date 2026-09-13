@@ -117,8 +117,7 @@ export function summarizeTurnActivity(activity: TurnActivity, running: boolean):
   const failed = activity.failed ? ` · ${activity.failed} failed` : '';
   if (running) {
     const latest = [...activity.items].reverse().find(item => item.status === 'running' || item.status === 'permission') ?? activity.items.at(-1);
-    const detail = clip(latest?.detail, 140);
-    const lead = latest ? `${latest.title}${detail ? `: ${detail}` : ''}` : 'Working';
+    const lead = latest?.title ?? 'Working';
     return count ? `${lead} · ${actions}${failed}` : 'Working';
   }
   return `Turn details · ${actions}${failed}`;

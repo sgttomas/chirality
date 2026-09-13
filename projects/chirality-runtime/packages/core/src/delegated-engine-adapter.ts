@@ -282,10 +282,9 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
                 yield harness("codex.notification", { method: event.method, params: event.params, codex: base });
                 continue;
               }
-              if (item.type === "subAgentActivity") {
-                yield harness("subagent.progress", { taskId: itemId, agentThreadId: text(item.agentThreadId) ?? "", kind: text(item.kind), agentPath: text(item.agentPath), phase: started ? "started" : "completed", codex: base });
-                continue;
-              }
+              // subAgentActivity is a native child activity record, not a
+              // legacy task lifecycle. Preserve both outer item phases below;
+              // agentThreadId identifies the child and item.kind its activity.
             }
             yield harness("codex.notification", { method: event.method, params: event.params, codex: base });
             continue;

@@ -648,7 +648,7 @@ Priority:
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-036 | P0 | UI shall allow file attachments from the selected working root. | File picker supports navigation, multi-select, preview chips, remove, and clear. |
+| FR-036 | P0 | UI shall allow explicitly selected file attachments, including files outside the working root through contained conversation copies. | File picker supports navigation, multi-select, preview chips, remove, and clear. On send, the Runtime validates and copies selected bytes into the project's conversation attachment directory; the agent receives those copies without gaining access to the source folder. |
 | FR-037 | P0 | Server shall treat client attachment metadata as non-authoritative. | Server revalidates path, extension, file type, readability, symlink status, and size. |
 | FR-038 | P0 | Attachment resolver shall enforce supported file types and budgets. | Extension, regular-file, per-file 10 MB, and total 18 MB raw-byte rules are enforced. |
 | FR-039 | P0 | Anthropic provider shall map supported files to content blocks. | Images use base64 image blocks; PDFs use document blocks; text/markdown/csv use text document blocks. |

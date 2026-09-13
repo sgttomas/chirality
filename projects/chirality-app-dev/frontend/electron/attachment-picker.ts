@@ -2,12 +2,11 @@
  * Native attachment picker: validation and handler factory.
  *
  * The renderer names a project root; the main process shows a native
- * multi-file open dialog under that root and returns only canonical absolute
- * paths that (a) resolve inside the canonical project root and (b) carry a
- * supported attachment extension. Everything else — a symlink pointing out of
- * the project, a file from another folder, an unsupported type — makes the
- * whole selection fail closed with `cancelled: true` and a reason, so the
- * renderer never receives a partially trusted list.
+ * multi-file open dialog under that root and returns only explicitly selected,
+ * canonical regular files with supported extensions. Sources may be outside the
+ * project: Runtime validates and copies their bytes into contained conversation
+ * custody on send. No broader workspace access is granted. Invalid files make
+ * the whole selection fail with a reason; no partially trusted list is returned.
  *
  * Kept free of `electron` imports; the dialog and sender check are injected so
  * the validation is unit-testable against a real temporary directory.
@@ -28,6 +27,7 @@ import type {
 export type AttachmentOpenDialogOptions = {
   title: string;
   buttonLabel: string;
+  message: string;
   defaultPath: string;
   properties: Array<'openFile' | 'multiSelections'>;
   filters: Array<{ name: string; extensions: string[] }>;
@@ -52,6 +52,7 @@ export function attachmentDialogOptions(projectRoot: string): AttachmentOpenDial
   return {
     title: 'Attach files',
     buttonLabel: 'Attach',
+    message: 'Selected files are copied into this chat’s folder when you send.',
     defaultPath: projectRoot,
     properties: ['openFile', 'multiSelections'],
     filters: [{ name: 'Supported files', extensions: attachmentDialogExtensions() }]
@@ -59,14 +60,6 @@ export function attachmentDialogOptions(projectRoot: string): AttachmentOpenDial
 }
 
 export class AttachmentPickerError extends Error {}
-
-function within(root: string, candidate: string): boolean {
-  const relative = path.relative(root, candidate);
-  // Only a leading `..` path segment escapes; an in-root name such as
-  // `..notes.md` is a legitimate file.
-  const escapes = relative === '..' || relative.startsWith(`..${path.sep}`);
-  return relative !== '' && !escapes && !path.isAbsolute(relative);
-}
 
 /**
  * Validate the renderer-supplied request and resolve its project root to a
@@ -106,28 +99,27 @@ export async function resolveAttachmentProjectRoot(input: unknown): Promise<stri
 }
 
 /**
- * Canonicalize each dialog selection and enforce containment and type. Fails
+ * Validate each explicit dialog selection without following symlink aliases. Fails
  * closed on the first offending path; the returned list is deduplicated and
  * keeps the dialog's order.
  */
 export async function resolveAttachmentSelections(
-  canonicalRoot: string,
   selections: readonly string[]
 ): Promise<string[]> {
   const accepted: string[] = [];
   for (const selection of selections) {
-    if (typeof selection !== 'string' || selection.length === 0) {
+    if (typeof selection !== 'string' || !path.isAbsolute(selection) || path.resolve(selection) !== selection || /[\x00-\x1f]/u.test(selection)) {
       throw new AttachmentPickerError('Selected path is not usable.');
     }
     let canonical: string;
     try {
-      canonical = await realpath(path.resolve(selection));
+      canonical = await realpath(selection);
     } catch {
       throw new AttachmentPickerError(`Selected file is not accessible: ${path.basename(selection)}`);
     }
-    if (!within(canonicalRoot, canonical)) {
+    if (canonical !== selection) {
       throw new AttachmentPickerError(
-        `Attachments must be inside the project folder: ${path.basename(selection)}`
+        `Attachment paths must not contain symbolic links: ${path.basename(selection)}`
       );
     }
     if (!isSupportedAttachmentPath(canonical)) {
@@ -163,7 +155,7 @@ export function createAttachmentSelectionHandler(deps: AttachmentPickerDependenc
       if (dialogResult.canceled || dialogResult.filePaths.length === 0) {
         return { cancelled: true };
       }
-      const paths = await resolveAttachmentSelections(projectRoot, dialogResult.filePaths);
+      const paths = await resolveAttachmentSelections(dialogResult.filePaths);
       return { cancelled: false, paths };
     } catch (error) {
       return {

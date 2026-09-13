@@ -56,3 +56,9 @@ describe('deriveTurnActivityFromTranscript', () => {
     expect(deriveTurnActivityFromTranscript(items, undefined).items).toEqual([]);
   });
 });
+
+it('keeps raw shell details out of compact progress and in expanded activity', () => {
+  const activity = deriveTurnActivityFromEvents([{ schemaVersion: 1, eventId: 'shell', sessionId: 's', turnId: 't', timestamp: '2026-09-12T00:00:00Z', type: 'tool.started', data: { toolUseId: 'shell', toolName: 'commandExecution', summary: '/bin/zsh -lc cat /private/full/path' } }]);
+  expect(summarizeTurnActivity(activity, true)).toBe('Running command · 1 action');
+  expect(activity.items[0].detail).toContain('/bin/zsh -lc cat /private/full/path');
+});

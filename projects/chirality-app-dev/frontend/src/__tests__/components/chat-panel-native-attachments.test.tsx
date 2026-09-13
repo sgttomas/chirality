@@ -25,6 +25,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
   getNativePlanCapability: state.nativeCapability, listNativePlanRevisions: state.nativeRevisions, listNativePlanClarifications: state.nativeClarifications
 }));
 vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn(), getHarnessTurnState: vi.fn(async () => ({ active: false, lastSeq: 0 })), attachHarnessTurn: vi.fn(async () => undefined) }));
+import { HarnessApiClientError } from '../../lib/harness/client';
 import { ChatPanel } from '../../components/shell/chat-panel';
 
 let tree: ReactTestRenderer | undefined;
@@ -47,6 +48,8 @@ beforeEach(() => {
   state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: 'fixture' });
   state.nativeRevisions.mockResolvedValue({ schemaVersion: 'chirality.native-plan-revisions/v3', status: 'unavailable', reason: 'fixture', revisions: [] });
   state.nativeClarifications.mockResolvedValue({ schemaVersion: 'chirality.native-plan-clarifications/v3', status: 'unavailable', reason: 'fixture', clarifications: [] });
+  state.replaceMethods.mockResolvedValue({ schemaVersion: 'chirality.selected-methods/v3', sessionId: 'bound', revision: 1, methods: [], basisPreview: { id: 'basis-1' }, transition: { status: 'unchanged', successorAvailable: false } });
+  state.resolveContext.mockResolvedValue({ schemaVersion: 'chirality.selected-context/v3', roleId: 'WORKING_ITEMS', methods: [], documents: [], dispositions: [], supplied: [], basisPreview: {}, compatibilityInputs: [], compatibilityMappings: [] });
   state.stream.mockRejectedValue(new Error('Fixture turn failure'));
 });
 afterEach(() => { if (tree) act(() => tree!.unmount()); tree = undefined; vi.unstubAllGlobals(); });
@@ -68,10 +71,10 @@ it('attaches native picker results scoped to the project root without opening th
 
 it('surfaces a native picker error inline and stays quiet on plain cancellation', async () => {
   stubWindow(true);
-  selectFiles.mockResolvedValueOnce({ cancelled: true, error: 'Attachments must stay inside the project folder.' });
+  selectFiles.mockResolvedValueOnce({ cancelled: true, error: 'Unsupported attachment type.' });
   await mount();
   await act(async () => attachButton().props.onClick());
-  expect(tree!.root.findByProps({ role: 'alert' }).children.join('')).toBe('Attachments must stay inside the project folder.');
+  expect(tree!.root.findByProps({ role: 'alert' }).children.join('')).toBe('Unsupported attachment type.');
   expect(chips()).toEqual([]);
   selectFiles.mockResolvedValueOnce({ cancelled: true });
   await act(async () => attachButton().props.onClick());
@@ -90,4 +93,37 @@ it('falls back to the in-app FilePicker when the desktop bridge is absent', asyn
   await act(async () => attachButton().props.onClick());
   expect(pickerOpen()).toBe(true);
   expect(selectFiles).not.toHaveBeenCalled();
+});
+
+
+it('keeps original external file selection and draft available after a rejected send', async () => {
+  stubWindow(true);
+  state.stream.mockRejectedValue(new HarnessApiClientError(400, 'INVALID_REQUEST', 'Fixture turn rejection'));
+  selectFiles.mockResolvedValue({ cancelled: false, paths: ['/selected/visitor-desk-brief.txt'] });
+  await mount();
+  await act(async () => attachButton().props.onClick());
+  expect(chips()).toEqual(['/selected/visitor-desk-brief.txt']);
+  await act(async () => tree!.root.findByType('textarea').props.onChange({ target: { value: 'Summarize this brief' } }));
+  await act(async () => tree!.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }));
+  expect(state.stream).toHaveBeenCalled();
+  expect(state.stream.mock.calls[0][0]).toMatchObject({ message: 'Summarize this brief', attachments: ['/selected/visitor-desk-brief.txt'] });
+  expect(tree!.root.findByType('textarea').props.value).toBe('Summarize this brief');
+  expect(chips()).toEqual(['/selected/visitor-desk-brief.txt']);
+});
+
+it.each(['selection', 'cancellation error', 'rejected request'])('discards stale native picker %s after the active folder changes', async (outcome) => {
+  stubWindow(true);
+  let finish!: (value: unknown) => void;
+  let fail!: (error: Error) => void;
+  selectFiles.mockImplementationOnce(() => new Promise((resolve, reject) => { finish = resolve; fail = reject; }));
+  await mount();
+  act(() => { void attachButton().props.onClick(); });
+  await act(async () => { state.root = '/other/project'; state.listeners.forEach(listener => listener()); });
+  await act(async () => {
+    if (outcome === 'rejected request') fail(new Error('Stale picker error'));
+    else if (outcome === 'cancellation error') finish({ cancelled: true, error: 'Stale picker error' });
+    else finish({ cancelled: false, paths: ['/selected/visitor-desk-brief.txt'] });
+  });
+  expect(chips()).toEqual([]);
+  expect(JSON.stringify(tree!.toJSON())).not.toContain('Stale picker error');
 });

@@ -483,6 +483,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
     return buildChatDraftStorageKey(draftRoot, draftPersona, activeMode);
   }, [draftRoot, draftPersona, activeMode]);
+  const currentAttachmentContext = useRef({ projectRoot, draftStorageKey });
+  currentAttachmentContext.current = { projectRoot, draftStorageKey };
   const draftIdentityReady = typeof window === 'undefined' || Boolean(draftStorageKey && loadedDraftKey === draftStorageKey);
 
   useEffect(() => {
@@ -1816,18 +1818,25 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   const onTranscriptToggle = useCallback(() => { suppressFollowUntil.current = Date.now() + 400; }, []);
 
   // Desktop builds pick attachments through the native dialog (main process
-  // canonicalises and scopes the paths); web builds keep the in-app picker.
+  // canonicalises explicit selections; Runtime copies files on send). Web builds keep the in-app picker.
   const pickAttachments = async (): Promise<void> => {
     if (!projectRoot || attachmentPickPending) return;
     const bridge = getNativeAttachmentBridge();
     if (!bridge) { setPickerOpen(true); return; }
+    const generation = bindingGeneration.current;
+    const context = currentAttachmentContext.current;
+    const isCurrent = () => generation === bindingGeneration.current
+      && context.projectRoot === currentAttachmentContext.current.projectRoot
+      && context.draftStorageKey === currentAttachmentContext.current.draftStorageKey;
     setAttachmentPickPending(true); setNativeFolderError(null);
     try {
       const result = await bridge.selectFiles({ projectRoot });
+      if (!isCurrent()) return;
       if (result.cancelled) { if (result.error) setNativeFolderError(result.error); return; }
       const incoming = result.paths.map(buildUiAttachment);
       if (incoming.length) setAttachments(existing => mergeAttachments(existing, incoming));
     } catch (error) {
+      if (!isCurrent()) return;
       setNativeFolderError(error instanceof Error ? error.message : 'Unable to attach files.');
     } finally { setAttachmentPickPending(false); }
   };

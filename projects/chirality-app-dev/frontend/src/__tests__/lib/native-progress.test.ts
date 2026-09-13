@@ -34,3 +34,38 @@ it('records the explicit child observation boundary without declaring the task c
   expect(deriveSubagentActivity(events)[0]).toMatchObject({ status: 'running', observationEnded: 'Later child activity is not recorded here.' });
   expect(deriveTurnActivityFromEvents(events).running).toBe(0);
 });
+
+const activity = (eventId: string, id: string, kind: string, phase = 'completed', child = 'child'): HarnessEvent => e(eventId, `item/${phase}`, { ...scope, item: { type: 'subAgentActivity', id, kind, agentThreadId: child, agentPath: `/root/${child}` } });
+it('merges stock v2 raw and retained lifecycle pairs by actual child identity', () => {
+  const start = activity('a1', 'a', 'started', 'started');
+  const retained = { ...start, eventId: 'old', type: 'subagent.progress', data: { taskId: 'a', agentThreadId: 'child', kind: 'started', agentPath: '/root/child', phase: 'completed', codex: start.data } } as HarnessEvent;
+  const events = [start, activity('a2', 'a', 'started'), retained,
+    e('wait', 'item/completed', { ...scope, item: { type: 'collabAgentToolCall', receiverThreadIds: [], agentsStates: {}, status: 'completed' } }),
+    activity('b1', 'b', 'completed', 'started'), activity('b2', 'b', 'completed')];
+  const rows = deriveSubagentActivity(events);
+  expect(rows).toHaveLength(1);
+  expect(rows[0]).toMatchObject({ key: 'native:session:child', nativeThreadId: 'child', agentPath: '/root/child', status: 'completed', eventCount: 2 });
+  expect(rows[0].summary).toBeUndefined(); expect(rows[0].agentRole).toBeUndefined();
+  expect(deriveSubagentActivity(JSON.parse(JSON.stringify(events)))).toEqual(rows);
+});
+it('keeps interaction unknown, interruption explicit and missing completion nonterminal', () => {
+  const events = [activity('a', 'a', 'interacted'), activity('b', 'b', 'started', 'completed', 'second'),
+    e('end', 'chirality/nativeChildren/observationEnded', { agentThreadIds: ['second'] })];
+  expect(deriveSubagentActivity(events)).toMatchObject([{ status: 'unknown' }, { status: 'running', observationEnded: expect.any(String) }]);
+  expect(deriveSubagentActivity([...events, activity('c', 'c', 'interrupted')])[0].status).toBe('interrupted');
+});
+it('merges actual child thread metadata and messages without inventing a Runtime session', () => {
+  const rows = deriveSubagentActivity([activity('a', 'a', 'started'),
+    e('thread', 'thread/started', { thread: { id: 'child', parentThreadId: 'parent', agentNickname: 'Checker', agentRole: 'reviewer' } }),
+    e('msg', 'item/completed', { threadId: 'child', item: { type: 'agentMessage', text: 'Observed result' } })]);
+  expect(rows).toHaveLength(1);
+  expect(rows[0]).toMatchObject({ agentName: 'Checker', agentRole: 'reviewer', parentThreadId: 'parent', summary: 'Observed result', status: 'running' });
+});
+
+it('normalizes retained-only top-level and nested stock activity without a legacy row', () => {
+  const raw = activity('raw', 'a', 'started');
+  const nested = { ...raw, type: 'subagent.progress', data: { taskId: 'a', codex: raw.data } } as HarnessEvent;
+  const top = { ...raw, eventId: 'top', type: 'subagent.progress', data: { taskId: 'b', agentThreadId: 'child', agentPath: '/root/child', kind: 'completed', phase: 'started' } } as HarnessEvent;
+  expect(deriveSubagentActivity([nested, top])).toMatchObject([{ key: 'native:session:child', status: 'completed', agentPath: '/root/child', eventCount: 2 }]);
+  expect(deriveSubagentActivity([nested, top])).toHaveLength(1);
+});

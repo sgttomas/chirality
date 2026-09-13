@@ -67,7 +67,11 @@ export function CoordinationPanel({
           : null}
         {activeView === 'agents' && nativeChildren.length ? <section aria-label="Native work in current chat">
           <h3>Native work in current chat</h3>
-          {nativeChildren.map(child => <details key={child.key} className="turn-activity"><summary>{child.agentName === 'subagent' ? 'Delegated task' : child.agentName} · {child.status}{child.observationEnded ? ' · last observed' : ''}</summary>
+          {nativeChildren.map(child => <details key={child.key} className="turn-activity"><summary>{child.agentName === 'subagent' ? child.agentPath ?? 'Observed child' : child.agentName} · {child.status}{child.observationEnded ? ' · last observed' : ''}</summary>
+            {child.nativeThreadId ? <p>Thread: {child.nativeThreadId}</p> : null}
+            {child.agentRole ? <p>Role: {child.agentRole}</p> : null}
+            {child.agentPath && child.agentName !== 'subagent' ? <p>Path: {child.agentPath}</p> : null}
+            {child.parentThreadId ? <p>Parent thread: {child.parentThreadId}</p> : null}
             {child.observationEnded ? <p role="status">{child.observationEnded}</p> : null}
             {child.description ? <p>{child.description}</p> : null}{child.summary ? <p className="transcript-text">{child.summary}</p> : null}
           </details>)}

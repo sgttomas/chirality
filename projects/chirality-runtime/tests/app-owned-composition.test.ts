@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, readFile, realpath, rm, stat, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, realpath, rm, stat, symlink, truncate, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
@@ -110,6 +110,70 @@ describe("App-owned Codex composition", () => {
     expect(f.fake().server.state.requests.filter(request => request.method === "thread/start")).toHaveLength(1);
     expect(f.fake().server.state.requests.filter(request => request.method === "turn/start").at(-1)?.params).toMatchObject({ threadId: "thread-1" });
     expect(JSON.stringify(f.logs)).not.toContain("@");
+  });
+
+  it("imports explicitly selected inside and outside files into conversation custody before stock Codex input", async () => {
+    const f = await start();
+    const outside = join(f.root, "selected");
+    await mkdir(outside);
+    const inside = join(f.projectRoot, "inside.txt");
+    const external = join(outside, "visitor-desk-brief.txt");
+    const pdf = join(outside, "visitor-plan.pdf");
+    const image = join(outside, "visitor-map.png");
+    await writeFile(inside, "Inside project notes");
+    await writeFile(external, "Visitor desk owner is Morgan.");
+    await writeFile(pdf, "%PDF-1.7\ncontrolled fixture\n");
+    await writeFile(image, Buffer.from([0x89, 0x50, 0x4e, 0x47]));
+    const originals = [inside, external, pdf, image];
+    const originalBytes = await Promise.all(originals.map(file => readFile(file)));
+    const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
+    const events = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "Inspect these attachments", attachments: originals }));
+    expect(events.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 0 } });
+    expect(harness(events).find(event => event.type === "turn.accepted")?.data).toMatchObject({ attachments: originals });
+    const custody = join(f.projectRoot, ".chirality", "attachments", session.sessionId);
+    const history = (await readFile(join(custody, "history.jsonl"), "utf8")).trim().split("\n").map(line => JSON.parse(line));
+    expect(history.map(item => item.name)).toEqual(["inside.txt", "visitor-desk-brief.txt", "visitor-plan.pdf", "visitor-map.png"]);
+    for (const [index, item] of history.entries()) {
+      expect(item.sha256).toMatch(/^[a-f0-9]{64}$/);
+      expect(await readFile(join(custody, item.stagedName))).toEqual(originalBytes[index]);
+      expect(await readFile(originals[index]!)).toEqual(originalBytes[index]);
+    }
+    const native = f.fake().server.state.requests.find(request => request.method === "turn/start")?.params as { input: Array<Record<string, unknown>> };
+    expect(native.input).toEqual([
+      { type: "text", text: "Inspect these attachments" },
+      { type: "text", text: expect.stringContaining("Inside project notes") },
+      { type: "text", text: expect.stringContaining("Visitor desk owner is Morgan.") },
+      { type: "text", text: expect.stringContaining(join(custody, history[2].stagedName)) },
+      { type: "localImage", path: join(custody, history[3].stagedName) }
+    ]);
+    expect(JSON.stringify(native)).not.toContain(outside);
+    expect(f.fake().server.state.requests.find(request => request.method === "thread/start")?.params).toMatchObject({ cwd: f.projectRoot, sandbox: "workspace-write" });
+  });
+
+  it("rejects invalid explicit attachment sources before stock Codex dispatch", async () => {
+    const f = await start();
+    const selected = join(f.root, "selected");
+    await mkdir(selected);
+    const valid = join(selected, "brief.txt");
+    const alias = join(selected, "alias.txt");
+    const directory = join(selected, "directory.txt");
+    const unsupported = join(selected, "script.sh");
+    const oversized = join(selected, "oversized.txt");
+    const tenMiB = join(selected, "ten.txt");
+    const nineMiB = join(selected, "nine.txt");
+    await writeFile(valid, "Selected brief"); await symlink(valid, alias); await mkdir(directory);
+    await writeFile(unsupported, "echo fixture");
+    for (const [file, bytes] of [[oversized, 10 * 1024 * 1024 + 1], [tenMiB, 10 * 1024 * 1024], [nineMiB, 9 * 1024 * 1024]] as const) {
+      await writeFile(file, ""); await truncate(file, bytes);
+    }
+    const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
+    for (const attachments of [[alias], [directory], [unsupported], [join(selected, "missing.txt")], [oversized], [tenMiB, nineMiB], Array<string>(9).fill(valid)]) {
+      const events = await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "Read selected input", attachments }));
+      expect(events.at(-1)).toMatchObject({ type: "process:exit", data: { exitCode: 1 } });
+      expect(harness(events).some(event => event.type === "turn.accepted")).toBe(false);
+    }
+    expect(f.fake().server.state.requests.some(request => request.method === "turn/start")).toBe(false);
+    expect(await readFile(valid, "utf8")).toBe("Selected brief");
   });
 
   it("interrupts a live turn through the session route and records the interrupted terminal", async () => {

@@ -865,6 +865,20 @@ Hook failures fail closed for write, shell, domain, and subagent actions.
 
 ### 16.1 Attachments
 
+The stock-Codex App-owned path accepts files explicitly selected through the
+attachment picker, including external source files. On send, the existing
+Runtime attachment resolver stages validated bytes beneath
+`.chirality/attachments/<sessionId>/` in the active project. The engine receives
+the contained copy and recorded original filename. Selection does not grant
+access to the source folder or alter the user's Codex sandbox policy. The native
+picker explains the copy before selection; a chip represents a selection until
+send performs staging.
+
+The Codex path validates the entire requested attachment set before dispatch.
+An invalid attachment rejects that request and preserves its draft and selections
+for correction. The partial-failure behavior below describes the legacy provider
+path, not silent omission of a selected Codex attachment.
+
 Supported extensions:
 
 - `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.pdf`, `.txt`, `.md`, `.csv`

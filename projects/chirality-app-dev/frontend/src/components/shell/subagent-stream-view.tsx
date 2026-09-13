@@ -12,7 +12,7 @@ function SubagentActivityItem({ row }: { row: SubagentActivityRow }): JSX.Elemen
     <li className={`harness-stream-item harness-stream-item--${row.status}`}>
       <div className="harness-stream-row">
         <span className="harness-stream-name" title={row.agentName}>
-          {row.agentName}
+          {row.agentName === 'subagent' ? row.agentPath ?? 'Observed child' : row.agentName}
         </span>
         <span className={`harness-status-badge harness-status-badge--${row.status}`}>
           {row.status}{row.observationEnded ? ' · last observed' : ''}
