@@ -96,19 +96,19 @@ it('falls back to the in-app FilePicker when the desktop bridge is absent', asyn
 });
 
 
-it('keeps original external file selection and draft available after a rejected send', async () => {
+it('keeps the contained selected copy and draft available after a rejected send', async () => {
   stubWindow(true);
   state.stream.mockRejectedValue(new HarnessApiClientError(400, 'INVALID_REQUEST', 'Fixture turn rejection'));
-  selectFiles.mockResolvedValue({ cancelled: false, paths: ['/selected/visitor-desk-brief.txt'] });
+  selectFiles.mockResolvedValue({ cancelled: false, paths: ['/chosen/subfolder/.chirality/attachment-inputs/selection/visitor-desk-brief.txt'] });
   await mount();
   await act(async () => attachButton().props.onClick());
-  expect(chips()).toEqual(['/selected/visitor-desk-brief.txt']);
+  expect(chips()).toEqual(['/chosen/subfolder/.chirality/attachment-inputs/selection/visitor-desk-brief.txt']);
   await act(async () => tree!.root.findByType('textarea').props.onChange({ target: { value: 'Summarize this brief' } }));
   await act(async () => tree!.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }));
   expect(state.stream).toHaveBeenCalled();
-  expect(state.stream.mock.calls[0][0]).toMatchObject({ message: 'Summarize this brief', attachments: ['/selected/visitor-desk-brief.txt'] });
+  expect(state.stream.mock.calls[0][0]).toMatchObject({ message: 'Summarize this brief', attachments: ['/chosen/subfolder/.chirality/attachment-inputs/selection/visitor-desk-brief.txt'] });
   expect(tree!.root.findByType('textarea').props.value).toBe('Summarize this brief');
-  expect(chips()).toEqual(['/selected/visitor-desk-brief.txt']);
+  expect(chips()).toEqual(['/chosen/subfolder/.chirality/attachment-inputs/selection/visitor-desk-brief.txt']);
 });
 
 it.each(['selection', 'cancellation error', 'rejected request'])('discards stale native picker %s after the active folder changes', async (outcome) => {
@@ -122,7 +122,7 @@ it.each(['selection', 'cancellation error', 'rejected request'])('discards stale
   await act(async () => {
     if (outcome === 'rejected request') fail(new Error('Stale picker error'));
     else if (outcome === 'cancellation error') finish({ cancelled: true, error: 'Stale picker error' });
-    else finish({ cancelled: false, paths: ['/selected/visitor-desk-brief.txt'] });
+    else finish({ cancelled: false, paths: ['/chosen/subfolder/.chirality/attachment-inputs/selection/visitor-desk-brief.txt'] });
   });
   expect(chips()).toEqual([]);
   expect(JSON.stringify(tree!.toJSON())).not.toContain('Stale picker error');
