@@ -100,8 +100,17 @@ installed signed App was not rebuilt or modified.
   state observations before Return.
 - Recovered tool failures remain recorded. Good artifact results do not erase
   failed searches, unavailable library-refresh capabilities or failed commands.
-- Signed packaging, owner installer acceptance, notarization and publishing
-  remain separate. No publishing was performed by this campaign.
+- Signed packaging is complete as recorded in BUILD_EVIDENCE_20260913.md.
+  Owner installer acceptance, notarization and publishing remain separate.
+  No publishing was performed by this campaign.
+
+Final source `897d54e32` passed CI with 364 Runtime tests and 2234 frontend
+tests, four skipped, plus the controlled production integration checks. Root and
+PEC CI also passed. PR #778 merged as `9eaddb5965642a783ad700743eecdf876e9e0104`;
+the merged tree is identical to that reviewed candidate. The consolidated
+package uses this exact merge and version `3.0.0`. See OWNER_TRIAL_NOTES.md for
+the remaining owner checks and BUILD_EVIDENCE_20260913.md for the actual build
+outcome.
 
 Independent returns are in `returns/`: EARLY_ARTIFACT_REVIEW,
 J04_ARTIFACT_REVIEW, J02_J05_ARTIFACT_REVIEW, J06_J08_ARTIFACT_REVIEW and
