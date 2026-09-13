@@ -4589,6 +4589,10 @@ button:disabled {
 .turn-activity-item--running .turn-activity-title { color: var(--ink); }
 .turn-activity-item--reasoning .turn-activity-title { font-style: italic; }
 .turn-activity-detail { font-family: var(--font-mono, ui-monospace, monospace); font-size: 11px; color: var(--ink-faint); overflow-wrap: anywhere; }
+.turn-activity-summary { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.turn-activity-item--reasoning, .turn-activity-item--subagent { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+.turn-activity-item--reasoning .turn-activity-detail, .turn-activity-item--subagent .turn-activity-detail { font-family: inherit; white-space: pre-wrap; }
+
 .chat-plan-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .chat-plan-link { border: 1px solid var(--rule-strong); border-radius: 999px; padding: 3px 10px; background: var(--surface); color: var(--ink-soft); font-size: 12px; }
 .chat-plan-link:hover { color: var(--ink); border-color: var(--accent); }

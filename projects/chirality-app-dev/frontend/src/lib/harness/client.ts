@@ -1,3 +1,4 @@
+import type { SessionSteerRequest, SessionSteerResponse, SessionSteerReceiptRequest } from '@chirality/runtime-contracts';
 import type { AgentRosterEntry } from './agent-roster';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type { HarnessReplaySummary } from './session-events';
@@ -550,4 +551,17 @@ async function readTurnStream(
       onEvent(parsed);
     }
   }
+}
+
+export async function steerHarnessSession(sessionId: string, request: SessionSteerRequest): Promise<SessionSteerResponse> {
+  return requestHarnessJson<SessionSteerResponse>(`/api/harness/session/${encodeURIComponent(sessionId)}/turn/steer`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(request)
+  }, 'The update receipt could not be confirmed.');
+}
+
+/** Receipt lookup cannot submit user input, even when no original intent exists. */
+export async function checkHarnessSteeringReceipt(sessionId: string, request: SessionSteerReceiptRequest): Promise<SessionSteerResponse> {
+  return requestHarnessJson<SessionSteerResponse>(`/api/harness/session/${encodeURIComponent(sessionId)}/turn/steer/receipt`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(request)
+  }, 'Update delivery remains unconfirmed.');
 }

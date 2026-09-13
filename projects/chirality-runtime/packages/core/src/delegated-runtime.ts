@@ -20,6 +20,9 @@ import {
   type NativePlanClarificationPrompt,
   type SupervisorTurnProgressPort,
   type SupervisorRequestPort,
+  type SupervisorSteerPort,
+  type SessionSteerRequest,
+  type SessionSteerResponse,
   type PendingServerRequest,
   type ServerRequestAnswer,
   type DelegatedTurnProgressEvent
@@ -173,6 +176,16 @@ export class DelegatedRuntime {
   private requestPort(binding: DelegatedProjectBinding): SupervisorRequestPort | undefined {
     const port = binding.supervisor as DelegatedHarnessProcessSupervisorPort & Partial<SupervisorRequestPort>;
     return typeof port.pendingRequests === "function" && typeof port.answerRequest === "function" ? port as SupervisorRequestPort : undefined;
+  }
+
+  async steerTurn(projectId: string, sessionId: string, request: SessionSteerRequest): Promise<SessionSteerResponse> {
+    const binding = await this.binding(projectId);
+    const live = this.liveSessionTurn(projectId, sessionId);
+    const rejected = (message: string): SessionSteerResponse => ({ operationId: request.operationId, turnId: request.expectedTurnId, status: "rejected", message });
+    if (!live || live.turnId !== request.expectedTurnId) return rejected("The target turn is no longer active; no input was sent.");
+    const port = binding.supervisor as DelegatedHarnessProcessSupervisorPort & Partial<SupervisorSteerPort>;
+    if (!port.steerTurn) return rejected("Native steering is unavailable in this composition.");
+    return port.steerTurn(live.workerId, live.generation, request);
   }
 
   /** Unanswered Codex server requests of the session's live turn; empty when no turn is live. */

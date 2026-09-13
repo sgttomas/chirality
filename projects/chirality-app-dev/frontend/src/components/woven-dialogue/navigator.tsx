@@ -25,6 +25,7 @@ type NavigatorProps = {
   onOpenSurface: (surface: WovenSurface) => void; sessions?: readonly SessionRecord[]; sessionSurfaces?: WovenSessionSurfaceMap;
   liveSessionId?: string; selectedSessionId?: string; selectionDisabled?: boolean; sessionsLoading?: boolean;
   sessionsError?: string | null; onSelectSession?: (sessionId: string) => void;
+  needsAnswerSessionIds?: readonly string[]; onNeedsAnswer?: (sessionId: string) => void;
   expandedSurfaces?: readonly WovenSurface[]; onToggleSurfaceExpanded?: (surface: WovenSurface) => void;
   chatTitles?: Readonly<Record<string, string>>; chatPins?: readonly string[]; chatArchived?: readonly string[];
   chatDeleted?: readonly string[];
@@ -76,9 +77,10 @@ export function buildNavigatorSessionGroups(sessions: readonly SessionRecord[], 
   return { bySurface, all };
 }
 
-function SessionRow({ entry, live, selected, disabled, onSelectSession, onOpenMenu, controlRef }: {
+function SessionRow({ entry, live, selected, disabled, onSelectSession, onOpenMenu, controlRef, needsAnswer, onNeedsAnswer }: {
   entry: ChatOrganizationEntry; live: boolean; selected: boolean; disabled: boolean;
   onSelectSession?: (sessionId: string) => void; onOpenMenu: (sessionId: string, trigger: HTMLElement) => void;
+  needsAnswer?: boolean; onNeedsAnswer?: (sessionId: string) => void;
   controlRef: (node: HTMLButtonElement | null) => void;
 }): JSX.Element {
   const [pending, setPending] = React.useState(false);
@@ -101,6 +103,7 @@ function SessionRow({ entry, live, selected, disabled, onSelectSession, onOpenMe
         <span className="woven-navigator-session-heading">{live ? <span className="woven-navigator-session-dot" role="img" aria-label="Live session" /> : null}<span className="woven-navigator-session-title">{entry.title}</span><span className="woven-navigator-session-when">{entry.when}</span></span>
         <span className="woven-navigator-session-folder" title={entry.session.projectRoot || 'No folder'}><span aria-hidden="true">⌑</span> {entry.folderLabel}</span>
       </button>
+      {needsAnswer ? <button type="button" className="button-muted" aria-label={`Needs answer: ${entry.title}`} onClick={() => onNeedsAnswer?.(entry.sessionId)}>Needs answer</button> : null}
       <button type="button" className="woven-navigator-session-reveal" aria-label={`${pending ? 'Revealing' : error ? 'Retry revealing' : 'Reveal'} folder for ${entry.title} (${entry.sessionId})`} title={`Reveal in Finder · ${entry.session.projectRoot || 'No recorded folder'}`} aria-describedby={error ? noticeId : undefined} aria-busy={pending} disabled={pending} onClick={() => { void reveal(); }}>
         <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 7V5a1 1 0 0 1 1-1h5l2 3h9a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7Z" /><path d="M9 13h6m-3-3 3 3-3 3" /></svg>
       </button>
@@ -111,7 +114,7 @@ function SessionRow({ entry, live, selected, disabled, onSelectSession, onOpenMe
 
 const EMPTY_FOLDER_NOTICES: Readonly<Record<string, NavigatorFolderNotice>> = {};
 
-export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, onOpenSurface, sessions = EMPTY_SESSIONS, sessionSurfaces = EMPTY_SESSION_SURFACES, liveSessionId, selectedSessionId, selectionDisabled = false, sessionsLoading = false, sessionsError = null, onSelectSession, chatTitles = EMPTY_CHAT_TITLES, chatPins = EMPTY_CHAT_IDS, chatArchived = EMPTY_CHAT_IDS, chatDeleted = EMPTY_CHAT_IDS, chatGroups = EMPTY_CHAT_GROUPS, groupsCollapsed = EMPTY_CHAT_IDS, firstOperatorMessages = EMPTY_CHAT_TITLES, referenceDay = '1970-01-01', searchEpoch = '', focusSearchRequest = 0, onModalStateChange, onOrganizationChange, searchMessages, currentRoot = null, folderOrder = EMPTY_CHAT_IDS, foldersCollapsed = EMPTY_CHAT_IDS, folderNotices = EMPTY_FOLDER_NOTICES, onLocateFolder, onForgetFolder }: NavigatorProps): JSX.Element {
+export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, onOpenSurface, sessions = EMPTY_SESSIONS, sessionSurfaces = EMPTY_SESSION_SURFACES, liveSessionId, selectedSessionId, selectionDisabled = false, sessionsLoading = false, sessionsError = null, onSelectSession, chatTitles = EMPTY_CHAT_TITLES, chatPins = EMPTY_CHAT_IDS, chatArchived = EMPTY_CHAT_IDS, chatDeleted = EMPTY_CHAT_IDS, chatGroups = EMPTY_CHAT_GROUPS, groupsCollapsed = EMPTY_CHAT_IDS, firstOperatorMessages = EMPTY_CHAT_TITLES, referenceDay = '1970-01-01', searchEpoch = '', focusSearchRequest = 0, onModalStateChange, onOrganizationChange, searchMessages, currentRoot = null, folderOrder = EMPTY_CHAT_IDS, foldersCollapsed = EMPTY_CHAT_IDS, folderNotices = EMPTY_FOLDER_NOTICES, onLocateFolder, onForgetFolder, needsAnswerSessionIds = EMPTY_CHAT_IDS, onNeedsAnswer }: NavigatorProps): JSX.Element {
   void sessionSurfaces;
   void legacyHref;
   const [query, setQuery] = React.useState(''); const [messageMatchIds, setMessageMatchIds] = React.useState<string[]>([]); const [messageSearchPending, setMessageSearchPending] = React.useState(false);
@@ -181,7 +184,7 @@ export function Navigator({ activeSurface, footerSlot, onNewChat, legacyHref, on
     if (event.shiftKey && index <= 0) { event.preventDefault(); items.at(-1)?.focus(); }
     else if (!event.shiftKey && index === items.length - 1) { event.preventDefault(); items[0]?.focus(); }
   }
-  function renderRow(entry: ChatOrganizationEntry): JSX.Element { return <SessionRow key={entry.sessionId} entry={entry} live={entry.sessionId === liveSessionId} selected={entry.sessionId === selectedSessionId} disabled={selectionDisabled} onSelectSession={onSelectSession} onOpenMenu={openMenu} controlRef={node => { if (node) sessionControlRefs.current.set(entry.sessionId, node); else sessionControlRefs.current.delete(entry.sessionId); }} />; }
+  function renderRow(entry: ChatOrganizationEntry): JSX.Element { return <SessionRow key={entry.sessionId} entry={entry} needsAnswer={needsAnswerSessionIds.includes(entry.sessionId)} onNeedsAnswer={onNeedsAnswer} live={entry.sessionId === liveSessionId} selected={entry.sessionId === selectedSessionId} disabled={selectionDisabled} onSelectSession={onSelectSession} onOpenMenu={openMenu} controlRef={node => { if (node) sessionControlRefs.current.set(entry.sessionId, node); else sessionControlRefs.current.delete(entry.sessionId); }} />; }
   function renderSection(section: ChatSection): JSX.Element {
     const folderPath = section.folderPath ?? '';
     const notice = section.kind === 'folder' && folderPath ? folderNotices[folderPath] : undefined;

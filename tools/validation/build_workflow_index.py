@@ -16,6 +16,7 @@ NAME_RE = re.compile(r"^(?=.{1,64}$)[a-z0-9]+(?:-[a-z0-9]+)*$")
 SOURCES = ("project", "user", "bundled")
 ROLES = ("HELP_HUMAN", "HELPS_HUMANS", "WORKING_ITEMS", "TASK")
 CENTRAL = (
+    "create-workflow",
     "project-setup",
     "project-decomp",
     "software-decomp",
@@ -23,7 +24,7 @@ CENTRAL = (
     "research-orchestration",
     "scope-change",
 )
-# Ordered core navigation set: the six selector-attention workflows plus the
+# Ordered core navigation set: the central workflows plus the
 # three everyday project workflows the App shows at first glance.
 CORE = CENTRAL + ("task-management", "review", "reconciliation")
 CORE_DISPLAY_NAMES = {
@@ -259,7 +260,7 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
         raise ValueError("invalid library identity")
     central_names = catalog["centralWorkflowNames"]
     if not isinstance(central_names, list) or tuple(central_names) != CENTRAL:
-        raise ValueError("centralWorkflowNames must equal the ordered six selector-attention workflows")
+        raise ValueError("centralWorkflowNames must equal the ordered central workflows")
     navigation = parse_navigation(catalog["navigation"])
     methods = _load_json(workflows / "legacy-methods.json")
     required_method_keys = {"schema", "convertedWorkflowAliases", "historicalOnly", "unknownLegacyBehavior"}
@@ -328,7 +329,7 @@ def validate_and_build(root: Path, public_export: bool = False) -> dict:
         )
     actual_central = {item["name"] for item in descriptors if item["central"]}
     if actual_central != set(CENTRAL):
-        raise ValueError("central workflow set must match the six selector-attention workflows")
+        raise ValueError("central workflow set must match the central workflows")
     actual_legacy = {item["name"] for item in descriptors if item["compatibility"] == "legacy"}
     if actual_legacy != {name for name, placement in navigation.items() if placement["category"] == "superseded"}:
         raise ValueError("legacy compatibility must be reserved for superseded workflows")

@@ -138,6 +138,7 @@ describe('verify-instruction-root-integrity script', () => {
     )).toThrow('must be a normalized absolute path');
   });
 
+  // Full-library filesystem checks measure correctness, not a five-second latency budget.
   it('validates the complete v3 bundle and rejects omissions and unexpected files', async () => {
     const repoRoot = path.resolve(process.cwd(), '..', '..', '..');
     const resourcesRoot = path.join(tmpRoot, 'resources');
@@ -175,7 +176,7 @@ describe('verify-instruction-root-integrity script', () => {
     const omitted = await runV3IntegrityScript(args);
     expect(omitted.code).toBe(1);
     expect(omitted.stderr).toContain('Missing in bundle');
-  });
+  }, 15_000);
 
   it('passes when bundled files match source hashes', async () => {
     const sourceRoot = path.join(tmpRoot, 'source-root');

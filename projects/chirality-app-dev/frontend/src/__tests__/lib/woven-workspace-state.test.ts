@@ -436,7 +436,7 @@ describe('additive shell convenience fields', () => {
     expect(read({ coordinationView: 'agents' }).rightPanelView).toBe('agents');
     expect(read({ coordinationView: 'agents', rightPanelView: null }).rightPanelView).toBe('files');
     for (const rightPanelView of ['files', 'plan', 'workflows', 'skills', 'agents', 'activity', 'settings']) {
-      expect(read({ coordinationView: 'agents', rightPanelView }).rightPanelView).toBe(rightPanelView);
+      expect(read({ coordinationView: 'agents', rightPanelView }).rightPanelView).toBe(rightPanelView === 'skills' ? 'workflows' : rightPanelView);
     }
     expect(read({ rightPanelWidths: { files: 0, document: 5000, agents: 320, workflows: 480, activity: -1, session: 320.5, settings: '400', nope: 400 } }).rightPanelWidths)
       .toEqual({ files: 280, document: 2000, agents: 320, workflows: 480, activity: 280, session: 320.5 });

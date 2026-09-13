@@ -81,9 +81,9 @@ describe("Codex delegated attachment adapter", () => {
     expect(f.requests).toHaveLength(0);
   });
 
-  it("stages outside-root selections immutably and references large text and PDF without overflowing the wire", async () => {
+  it("stages contained selections immutably and references large text and PDF without overflowing the wire", async () => {
     const f = await fixture();
-    const selected = join(f.root, "selected");
+    const selected = join(f.projectRoot, "selected");
     await mkdir(selected);
     const largeText = join(selected, "large.txt");
     const pdf = join(selected, "brief.pdf");

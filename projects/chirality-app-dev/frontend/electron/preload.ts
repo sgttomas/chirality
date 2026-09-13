@@ -64,8 +64,8 @@ contextBridge.exposeInMainWorld('chirality', {
   },
   attachments: {
     /**
-     * Native multi-file picker rooted at the project. Only canonical absolute
-     * paths inside the project folder with a supported extension come back;
+     * Native multi-file picker rooted at the project. Only contained copies of explicitly selected
+     * supported files come back;
      * any other selection cancels the whole request with a reason.
      */
     selectFiles: (request: AttachmentSelectFilesRequest): Promise<AttachmentSelectFilesResult> =>

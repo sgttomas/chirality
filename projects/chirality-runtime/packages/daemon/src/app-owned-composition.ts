@@ -11,7 +11,7 @@ import {
 } from "@chirality/runtime-contracts";
 import {
   AuthRegistry, createDelegatedEngineAdapter, createDelegatedPermissionBroker, DelegatedRuntime, EngineRegistry, privateDirectory, ProjectRegistry,
-  ResidencyCoordinator, RuntimeService, SessionStore, TrustedNativePlanRegistry, TurnCoordinator, WorkerRetirementCoordinator,
+  ResidencyCoordinator, RuntimeAttachmentResolver, RuntimeService, SessionStore, TrustedNativePlanRegistry, TurnCoordinator, WorkerRetirementCoordinator,
   type DelegatedNativePlanSink, type DelegatedNativePlanWorkerBinding, type DelegatedProjectBinding, type TrustedNativePlanAdapterRegistry
 } from "@chirality/runtime-core";
 import { CodexAppServerHost, spawnCodexAppServer, type CodexAppServerTransportFactory, type CodexLogger } from "./codex-app-server-client.js";
@@ -220,7 +220,7 @@ export async function startAppOwnedRuntime(rawConfig: AppOwnedRuntimeConfig, opt
     }
   };
   const credentials = { async get() { return undefined; }, async status() { return { configured: false as const }; }, set: offline, remove: offline };
-  const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency), auth, credentials, undefined, undefined, createDelegatedPermissionBroker(delegated), defaultSessionPolicy, nativePlan, { nativeProjectDiscovery: true, ...(config.productInstructionsPath === undefined ? {} : { productInstructionsPath: config.productInstructionsPath }) });
+  const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency, new RuntimeAttachmentResolver()), auth, credentials, undefined, undefined, createDelegatedPermissionBroker(delegated), defaultSessionPolicy, nativePlan, { nativeProjectDiscovery: true, ...(config.productInstructionsPath === undefined ? {} : { productInstructionsPath: config.productInstructionsPath }) });
   const turnRegistry = new TurnRegistry(service, { sessions, logger });
   const daemon = new RuntimeDaemon({ socketPath: config.socketPath, runtimeDirectory: config.runtimeDirectory, service, turnRegistry, requests: delegated, delegated, hostedBootstrap, logger });
 

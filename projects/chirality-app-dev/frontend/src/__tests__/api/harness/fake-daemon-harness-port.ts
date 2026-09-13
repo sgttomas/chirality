@@ -182,6 +182,8 @@ export function createFakeDaemonHarnessPort(): DaemonHarnessPort {
       throw new HarnessError('ENGINE_UNAVAILABLE', 503, 'Server request answers are not configured in fake daemon');
     },
 
+    async steerReceipt(_sessionId, request) { return { operationId: request.operationId, turnId: request.expectedTurnId, status: 'unknown', message: 'No native receipt fixture.' }; },
+    async steer(_sessionId, request) { return { operationId: request.operationId, turnId: request.expectedTurnId, status: 'rejected', message: 'Test port has no native steering supplier.' }; },
     async interrupt(request) {
       getPermissionBroker().clearSession(request.sessionId, 'deny');
       await getHarnessRuntime().turnEngine.interrupt(request.sessionId);

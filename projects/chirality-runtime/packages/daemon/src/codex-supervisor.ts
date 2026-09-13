@@ -14,6 +14,9 @@ import {
   type ServerRequestOutcome,
   type SupervisorNativePlanPort,
   type SupervisorRequestPort,
+  type SupervisorSteerPort,
+  type SessionSteerRequest,
+  type SessionSteerResponse,
   type SupervisorTurnProgressPort,
   type WorkerHandle,
   type WorkerResult
@@ -92,7 +95,7 @@ function samePolicy(a: PolicySelection | undefined, b: PolicySelection): boolean
   return a !== undefined && a.approvalPolicy === b.approvalPolicy && a.sandbox === b.sandbox;
 }
 
-export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, SupervisorTurnProgressPort, SupervisorRequestPort, SupervisorNativePlanPort {
+export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, SupervisorTurnProgressPort, SupervisorRequestPort, SupervisorNativePlanPort, SupervisorSteerPort {
   private readonly entries = new Map<string, Entry>();
   private readonly byThread = new Map<string, Entry>();
   private readonly childThreads = new Map<string, string>();
@@ -316,6 +319,30 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
   async reconnect(workerId: string, generation: string): Promise<WorkerHandle> { return { ...this.entry(workerId, generation).handle }; }
   async wait(workerId: string, generation: string): Promise<WorkerResult> { return this.entry(workerId, generation).result; }
 
+  async steerTurn(workerId: string, generation: string, request: SessionSteerRequest): Promise<SessionSteerResponse> {
+    const base = { operationId: request.operationId, turnId: request.expectedTurnId };
+    const entry = this.entry(workerId, generation);
+    const providerTurnId = entry.turnId;
+    if (entry.settled || entry.envelope.clientTurnId !== request.expectedTurnId || !providerTurnId
+      || entry.hostGeneration !== this.options.host.generation || this.byThread.get(entry.threadId) !== entry) {
+      return { ...base, status: "rejected", message: "The target turn is no longer active; no input was sent." };
+    }
+    try {
+      const result = await this.options.host.request<{ turnId: string }>("turn/steer", {
+        threadId: entry.threadId, expectedTurnId: providerTurnId,
+        clientUserMessageId: request.operationId,
+        input: [{ type: "text", text: request.text, text_elements: [] }]
+      });
+      if (result?.turnId !== providerTurnId) return { ...base, providerTurnId, status: "unknown", message: "Codex did not confirm the expected turn. Input may have been received; it was not resent." };
+      return { ...base, providerTurnId, status: "accepted" };
+    } catch (error) {
+      // Only explicit request/method/parameter rejections establish non-acceptance. A
+      // timeout, closed transport or lost response can follow successful input.
+      const rejected = error instanceof RuntimeError && [-32600, -32601, -32602].includes(Number(error.details?.jsonRpcCode));
+      return { ...base, providerTurnId, status: rejected ? "rejected" : "unknown", message: rejected ? (error as Error).message : "Input delivery is unconfirmed. It may have been received; it was not resent." };
+    }
+  }
+
   /** Sends `turn/interrupt` and resolves at the turn's own terminal. Never retires. */
   async interrupt(workerId: string, generation: string): Promise<void> {
     const entry = this.entry(workerId, generation);
@@ -446,7 +473,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       const thread = record(params.thread);
       if (typeof thread.parentThreadId === "string" && typeof thread.id === "string") {
         this.childThreads.set(thread.id, thread.parentThreadId);
-        if (record(thread.status).type !== "idle") this.activeChildren.add(thread.id);
+        if (record(thread.status).type === "active") this.activeChildren.add(thread.id);
       }
     }
     if (typeof params.threadId === "string") {
@@ -485,7 +512,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       }
       return;
     }
-    if (method === "serverRequest/resolved" && params.threadId === entry.threadId) {
+    if (method === "serverRequest/resolved") {
       const requestId = params.requestId === undefined ? undefined : String(params.requestId);
       const pending = requestId === undefined ? undefined : entry.pending.get(requestId);
       if (pending && requestId !== undefined) {
@@ -500,6 +527,10 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       const turn = record(params.turn);
       if (typeof turn.id === "string") this.adoptTurn(entry, turn.id);
       if (turn.id !== entry.turnId) return;
+      const unobservedChildren = [...this.activeChildren].filter(childId => this.entryForThread(childId) === entry);
+      if (unobservedChildren.length) this.push(entry, { type: "notification", providerThreadId: entry.threadId, providerTurnId: entry.turnId ?? "",
+        method: "chirality/nativeChildren/observationEnded", params: { threadId: entry.threadId, turnId: entry.turnId,
+          agentThreadIds: unobservedChildren, reason: "parentTurnEnded", message: "These children were still active when the primary turn ended. Later child activity is not captured by this turn observer." }, occurredAt });
       this.cancelPending(entry, "cancelled");
       const status = String(turn.status);
       if (status === "completed") entry.settle({ worker: { ...entry.handle, state: "exited" }, exitCode: 0, signal: null, threadId: entry.threadId, stdout: entry.text, stderr: "" });

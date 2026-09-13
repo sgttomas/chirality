@@ -1,3 +1,4 @@
+import { deriveNativeProgress, nativeNotification, type NativeChecklist } from './native-progress';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type { TranscriptItem } from '@chirality/runtime-contracts/transcript-replay';
 import { actionSentence, taskSentence } from './activity-sentences';
@@ -12,7 +13,7 @@ import { deriveCodexNotifications, deriveSubagentActivity, deriveToolActivity, t
  * reasoning.
  */
 export type TurnActivityKind = 'tool' | 'subagent' | 'reasoning';
-export type TurnActivityStatus = ToolActivityStatus;
+export type TurnActivityStatus = ToolActivityStatus | 'waiting' | 'interrupted' | 'unknown';
 
 export type TurnActivityItem = {
   key: string;
@@ -27,6 +28,7 @@ export type TurnActivityItem = {
 
 export type TurnActivity = {
   items: TurnActivityItem[];
+  checklists?: NativeChecklist[];
   running: number;
   failed: number;
   pendingApproval: number;
@@ -77,16 +79,22 @@ export function deriveTurnActivityFromEvents(events: readonly HarnessEvent[], tu
     items.push({ key: `tool:${row.key}`, kind: 'tool', status: row.status, title: actionSentence(row), detail: clip(row.summary), timestamp: row.timestamp });
   }
   for (const row of deriveSubagentActivity(scoped)) {
-    items.push({ key: `subagent:${row.key}`, kind: 'subagent', status: row.status, title: taskSentence(row), detail: clip(row.description ?? row.summary), timestamp: row.timestamp });
+    items.push({ key: `subagent:${row.key}`, kind: 'subagent', status: row.observationEnded ? 'unknown' : row.status, title: `${taskSentence(row)}${row.observationEnded ? ' (last observed)' : ''}`, detail: [row.description, row.summary, row.observationEnded].filter(Boolean).join('\n\n') || undefined, timestamp: row.timestamp });
   }
-  for (const row of deriveCodexNotifications(scoped)) {
-    if (row.kind !== 'thinking' || !row.text?.trim()) continue;
-    items.push({ key: `reasoning:${row.key}`, kind: 'reasoning', status: 'completed', title: 'Reasoning summary', detail: clip(row.text, 400), timestamp: row.timestamp });
+  // Retained older streams may omit native IDs; their supplied summaries stay readable.
+  for (const row of deriveCodexNotifications(scoped.filter(event => { const n = nativeNotification(event); return !n?.threadId || !n.turnId; }))) {
+    if (row.kind === 'thinking' && row.text?.trim()) items.push({ key: `reasoning:${row.key}`, kind: 'reasoning', status: 'completed', title: 'Reasoning summary', detail: row.text, timestamp: row.timestamp });
   }
-  return finish(items, order);
+  const native = deriveNativeProgress(scoped);
+  for (const row of native.summaries) {
+    if (!row.text.trim()) continue;
+    items.push({ key: `reasoning:${row.key}`, kind: 'reasoning', status: row.completed ? 'completed' : 'running', title: 'Reasoning summary', detail: row.text, timestamp: row.timestamp });
+  }
+  return { ...finish(items, order), checklists: native.checklists };
+
 }
 
-const TRANSCRIPT_STATUS: Partial<Record<TranscriptItem['status'], TurnActivityStatus>> = {
+const TRANSCRIPT_STATUS: Partial<Record<TranscriptItem['status'], ToolActivityStatus>> = {
   accepted: 'queued', queued: 'queued', started: 'running', completed: 'completed', failed: 'failed', cancelled: 'failed', interrupted: 'failed'
 };
 
@@ -109,7 +117,7 @@ export function summarizeTurnActivity(activity: TurnActivity, running: boolean):
   const failed = activity.failed ? ` · ${activity.failed} failed` : '';
   if (running) {
     const latest = [...activity.items].reverse().find(item => item.status === 'running' || item.status === 'permission') ?? activity.items.at(-1);
-    const lead = latest ? `${latest.title}${latest.detail ? `: ${latest.detail}` : ''}` : 'Working';
+    const lead = latest?.title ?? 'Working';
     return count ? `${lead} · ${actions}${failed}` : 'Working';
   }
   return `Turn details · ${actions}${failed}`;

@@ -22,7 +22,7 @@ export function useConversationFileCatalog(projectRoot: string | null, streaming
     // Refresh after a turn as well as on initial entry: a tool may have created files.
     void (async () => {
       try {
-        const response = await fetch(`/api/working-root/tree?projectRoot=${encodeURIComponent(projectRoot)}&depth=3`);
+        const response = await fetch(`/api/working-root/tree?projectRoot=${encodeURIComponent(projectRoot)}&depth=4`);
         const payload = await response.json();
         if (!response.ok || !payload.root || payload.root.path !== projectRoot) throw new Error('File catalog unavailable');
         if (!cancelled) setCatalog({ root: projectRoot, paths: collectFilePaths(payload.root) });

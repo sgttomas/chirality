@@ -1,3 +1,4 @@
+import { nativeNotification, record } from './native-progress';
 import type { HarnessEvent, HarnessEventType } from '@chirality/runtime-contracts/event-schema';
 
 /**
@@ -28,7 +29,7 @@ export type ToolActivityRow = {
   eventCount: number;
 };
 
-export type SubagentActivityStatus = 'running' | 'completed' | 'failed';
+export type SubagentActivityStatus = 'running' | 'completed' | 'failed' | 'waiting' | 'interrupted' | 'unknown';
 
 export type SubagentActivityRow = {
   key: string;
@@ -38,6 +39,11 @@ export type SubagentActivityRow = {
   summary?: string;
   lastToolName?: string;
   outputArtifactPath?: string;
+  observationEnded?: string;
+  nativeThreadId?: string;
+  parentThreadId?: string;
+  agentPath?: string;
+  agentRole?: string;
   lastEventType: HarnessEventType;
   timestamp: string;
   eventCount: number;
@@ -324,7 +330,13 @@ function readRecord(value: unknown): Record<string, unknown> | undefined {
 }
 
 /** Best-effort classification when the adapter did not label the request. */
+const APPROVAL_REQUEST_METHODS = new Set([
+  'item/commandExecution/requestApproval', 'item/fileChange/requestApproval', 'item/permissions/requestApproval',
+  'execCommandApproval', 'applyPatchApproval'
+]);
+
 export function classifyServerRequestMethod(method: string): string {
+  if (APPROVAL_REQUEST_METHODS.has(method)) return 'approval';
   if (method === 'item/tool/requestUserInput') return 'userInput';
   if (method === 'mcpServer/elicitation/request') return 'elicitation';
   if (method === 'item/tool/call') return 'dynamicToolCall';
@@ -344,10 +356,11 @@ export function deriveServerRequests(events: readonly HarnessEvent[]): ServerReq
     const requestId = readString(data.requestId);
     if (!requestId) continue;
     const method = readString(data.method) ?? '';
-    const existing = rows.get(requestId);
+    const key = `${event.sessionId}:${requestId}`;
+    const existing = rows.get(key);
     if (event.type === 'codex.request') {
-      rows.set(requestId, {
-        key: requestId,
+      rows.set(key, {
+        key,
         sessionId: event.sessionId,
         requestId,
         method: method || existing?.method || '',
@@ -367,7 +380,7 @@ export function deriveServerRequests(events: readonly HarnessEvent[]): ServerReq
       // whose `codex.request` was never persisted: nothing to surface as a card.
       continue;
     }
-    rows.set(requestId, {
+    rows.set(key, {
       ...existing,
       status,
       ...(data.decision !== undefined ? { decision: data.decision } : {}),
@@ -419,9 +432,9 @@ export function readElicitationMessage(request: unknown): string {
 }
 
 function reasoningText(item: Record<string, unknown>): string | undefined {
-  const direct = readString(item.text) ?? readString(item.summary);
+  const direct = readString(item.summary);
   if (direct) return direct;
-  for (const field of ['summary', 'content']) {
+  for (const field of ['summary']) {
     const value = item[field];
     if (Array.isArray(value)) {
       const parts = value.flatMap((part) => {
@@ -475,6 +488,9 @@ export function selectPendingPermissionRequests(
 }
 
 /**
+ * Collapse legacy task lifecycle and native child evidence into one row per run.
+ * Native rows use session + actual thread identity; stock activity item IDs only
+ * deduplicate lifecycle pairs. Legacy events remain keyed by taskId.
  * Collapse the ordered subagent.* lifecycle events into one row per child run,
  * in first-seen order. Keyed by `taskId` — the SDK mapper sets `taskId` on
  * every subagent.* event, whereas `childRunId` is only present when a child-run
@@ -492,6 +508,8 @@ export function deriveSubagentActivity(events: readonly HarnessEvent[]): Subagen
     }
 
     const data = event.data ?? {};
+    // Retained stock-v2 activity uses item IDs, not legacy task identities.
+    if (event.type === 'subagent.progress' && (readString(data.agentThreadId) || record(record(record(data.codex).params).item).type === 'subAgentActivity')) continue;
     const key =
       readString(data.taskId) ??
       readString(data.childRunId) ??
@@ -518,5 +536,75 @@ export function deriveSubagentActivity(events: readonly HarnessEvent[]): Subagen
     });
   }
 
+  // Native collaboration calls describe receivers, not assignment completion.
+  const nativeStatus = (value: unknown): SubagentActivityStatus => {
+    const status = typeof value === 'string' ? value : record(value).type;
+    return status === 'completed' ? 'completed' : status === 'errored' || status === 'failed' || status === 'systemError' ? 'failed'
+      : status === 'interrupted' ? 'interrupted' : status === 'running' || status === 'active' ? 'running'
+      : status === 'pendingInit' ? 'waiting' : 'unknown';
+  };
+  const update = (event: HarnessEvent, id: string, patch: Partial<SubagentActivityRow>) => {
+    const key = `native:${event.sessionId}:${id}`;
+    const old = rows.get(key);
+    rows.set(key, { key, nativeThreadId: id, agentName: old?.agentName ?? 'subagent', status: old?.status ?? 'unknown',
+      ...old, ...patch, lastEventType: event.type, timestamp: event.timestamp, eventCount: (old?.eventCount ?? 0) + 1 });
+  };
+  const seenEvents = new Set<string>();
+  const seenActivities = new Set<string>();
+  for (const event of events) {
+    if (seenEvents.has(event.eventId)) continue;
+    seenEvents.add(event.eventId);
+    const data = event.data ?? {};
+    const retained = event.type === 'subagent.progress' ? record(record(data.codex).params) : undefined;
+    const retainedItem: Record<string, unknown> = { ...record(retained?.item) };
+    if (retained && readString(data.agentThreadId)) {
+      Object.assign(retainedItem, { type: 'subAgentActivity', agentThreadId: data.agentThreadId,
+        kind: data.kind ?? retainedItem.kind, agentPath: data.agentPath ?? retainedItem.agentPath,
+        id: data.taskId ?? retainedItem.id });
+    }
+    const n = nativeNotification(event) ?? (retained ? {
+      method: readString(record(data.codex).method), params: retained,
+      threadId: readString(retained.threadId), item: retainedItem
+    } : undefined);
+    if (!n) continue;
+    if (n.item.type === 'subAgentActivity') {
+      const id = readString(n.item.agentThreadId);
+      if (!id) continue;
+      const itemId = readString(n.item.id);
+      const pairKey = `${event.sessionId}:${id}:${itemId ?? event.eventId}`;
+      if (seenActivities.has(pairKey)) continue;
+      seenActivities.add(pairKey);
+      const kind = readString(n.item.kind);
+      // Outer item/completed merely closes the activity report, not child work.
+      const status = kind === 'started' ? 'running' : kind === 'completed' ? 'completed' : kind === 'interrupted' ? 'interrupted' : undefined;
+      update(event, id, { ...(status ? { status } : {}), ...(readString(n.item.agentPath) ? { agentPath: readString(n.item.agentPath) } : {}) });
+      continue;
+    }
+    if (n.method === 'chirality/nativeChildren/observationEnded') {
+      for (const id of readStringArray(n.params.agentThreadIds)) update(event, id, { observationEnded: readString(n.params.message) ?? 'Observation ended with the parent turn. Later child activity is not recorded here.' });
+    }
+    if (n.item.type === 'collabAgentToolCall') {
+      const states = record(n.item.agentsStates);
+      const receivers = new Set([...readStringArray(n.item.receiverThreadIds), ...Object.keys(states)]);
+      for (const id of receivers) {
+        const state = record(states[id]);
+        update(event, id, { ...(state.status ? { status: nativeStatus(state.status) } : {}),
+          ...(readString(n.item.prompt) ? { description: readString(n.item.prompt) } : {}),
+          ...(readString(state.message) ? { summary: readString(state.message) } : {}) });
+      }
+    }
+    const thread = record(n.params.thread);
+    if (n.method === 'thread/started' && n.threadId && readString(thread.parentThreadId)) {
+      update(event, n.threadId, { ...(readString(thread.agentNickname) ? { agentName: readString(thread.agentNickname) } : {}), parentThreadId: readString(thread.parentThreadId), agentRole: readString(thread.agentRole), ...(readString(thread.agentPath) ? { agentPath: readString(thread.agentPath) } : {}), ...(thread.status ? { status: nativeStatus(thread.status) } : {}) });
+    }
+    if (!n.threadId || !rows.has(`native:${event.sessionId}:${n.threadId}`)) continue;
+    if (n.method === 'thread/status/changed') {
+      const status = record(n.params.status);
+      update(event, n.threadId, { status: Array.isArray(status.activeFlags) && status.activeFlags.length ? 'waiting' : nativeStatus(n.params.status) });
+    }
+    if (n.method === 'turn/started') update(event, n.threadId, { status: 'running' });
+    if (n.method === 'turn/completed') update(event, n.threadId, { status: nativeStatus(record(n.params.turn).status) });
+    if (n.method === 'item/completed' && n.item.type === 'agentMessage' && readString(n.item.text)) update(event, n.threadId, { summary: readString(n.item.text) });
+  }
   return [...rows.values()];
 }

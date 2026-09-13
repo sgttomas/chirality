@@ -16,13 +16,14 @@ export function shouldCollapseUserMessage(text: string): boolean {
  * document-like. The speaker label and the article's accessible name carry the
  * distinction, so it never relies on colour alone.
  */
-export function ConversationMessage({ id, role, presentation, speaker, persona, streaming = false, body, activity, children }: {
+export function ConversationMessage({ id, role, presentation, speaker, persona, streaming = false, phase, body, activity, children }: {
   id: string;
   role: 'operator' | 'assistant';
   presentation?: 'woven';
   speaker: string;
   persona?: string;
   streaming?: boolean;
+  phase?: 'commentary' | 'final_answer' | null;
   /** Assistant markdown, or the user's raw text. */
   body: React.ReactNode | string | null;
   /** The per-turn activity disclosure (assistant only). */
@@ -34,7 +35,7 @@ export function ConversationMessage({ id, role, presentation, speaker, persona, 
   const userText = role === 'operator' && typeof body === 'string' ? body : null;
   const collapsible = userText !== null && shouldCollapseUserMessage(userText);
   const collapsed = collapsible && !expanded;
-  return <article id={`message-${id}`} className={`chat-bubble chat-bubble--${role}${streaming ? ' chat-bubble--streaming' : ''}${collapsed ? ' chat-bubble--collapsed' : ''}`} data-role={role} aria-label={role === 'operator' ? 'Your message' : `${speaker} reply`}>
+  return <article id={`message-${id}`} className={`chat-bubble chat-bubble--${role}${streaming ? ' chat-bubble--streaming' : ''}${collapsed ? ' chat-bubble--collapsed' : ''}`} data-role={role} data-message-phase={phase ?? undefined} aria-label={role === 'operator' ? 'Your message' : `${speaker} reply`}>
     {presentation === 'woven' ? <p className="chat-speaker" title={role === 'assistant' ? persona : undefined}>{speaker}</p> : null}
     {role === 'assistant' && activity && streaming ? activity : null}
     {body !== null ? (userText !== null

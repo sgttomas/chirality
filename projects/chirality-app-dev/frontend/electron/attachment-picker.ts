@@ -2,23 +2,22 @@
  * Native attachment picker: validation and handler factory.
  *
  * The renderer names a project root; the main process shows a native
- * multi-file open dialog under that root and returns only canonical absolute
- * paths that (a) resolve inside the canonical project root and (b) carry a
- * supported attachment extension. Everything else — a symlink pointing out of
- * the project, a file from another folder, an unsupported type — makes the
- * whole selection fail closed with `cancelled: true` and a reason, so the
- * renderer never receives a partially trusted list.
+ * multi-file dialog and copies explicitly selected files into captured project
+ * storage before returning contained paths. Runtime makes its final immutable
+ * session copy on Send and refuses raw sources outside that session's project.
  *
  * Kept free of `electron` imports; the dialog and sender check are injected so
  * the validation is unit-testable against a real temporary directory.
  */
 
+import { randomUUID } from 'node:crypto';
 import { realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 import {
-  SUPPORTED_ATTACHMENT_EXTENSIONS,
-  isSupportedAttachmentPath
+  SUPPORTED_ATTACHMENT_EXTENSIONS
 } from '../src/lib/harness/ui-attachments';
+import { assertAttachmentCount, captureAttachmentDirectory, ensureAttachmentDirectory, readAttachmentBytes, writeAttachmentCopy } from '@chirality/runtime-core';
+import { RuntimeError } from '@chirality/runtime-contracts';
 import type { IpcSenderEvent } from './ipc-sender-policy';
 import type {
   AttachmentSelectFilesRequest,
@@ -28,6 +27,7 @@ import type {
 export type AttachmentOpenDialogOptions = {
   title: string;
   buttonLabel: string;
+  message: string;
   defaultPath: string;
   properties: Array<'openFile' | 'multiSelections'>;
   filters: Array<{ name: string; extensions: string[] }>;
@@ -52,6 +52,7 @@ export function attachmentDialogOptions(projectRoot: string): AttachmentOpenDial
   return {
     title: 'Attach files',
     buttonLabel: 'Attach',
+    message: 'Selected files are copied into this project folder when attached.',
     defaultPath: projectRoot,
     properties: ['openFile', 'multiSelections'],
     filters: [{ name: 'Supported files', extensions: attachmentDialogExtensions() }]
@@ -59,14 +60,6 @@ export function attachmentDialogOptions(projectRoot: string): AttachmentOpenDial
 }
 
 export class AttachmentPickerError extends Error {}
-
-function within(root: string, candidate: string): boolean {
-  const relative = path.relative(root, candidate);
-  // Only a leading `..` path segment escapes; an in-root name such as
-  // `..notes.md` is a legitimate file.
-  const escapes = relative === '..' || relative.startsWith(`..${path.sep}`);
-  return relative !== '' && !escapes && !path.isAbsolute(relative);
-}
 
 /**
  * Validate the renderer-supplied request and resolve its project root to a
@@ -105,50 +98,33 @@ export async function resolveAttachmentProjectRoot(input: unknown): Promise<stri
   return canonical;
 }
 
-/**
- * Canonicalize each dialog selection and enforce containment and type. Fails
- * closed on the first offending path; the returned list is deduplicated and
- * keeps the dialog's order.
- */
-export async function resolveAttachmentSelections(
-  canonicalRoot: string,
-  selections: readonly string[]
-): Promise<string[]> {
-  const accepted: string[] = [];
-  for (const selection of selections) {
-    if (typeof selection !== 'string' || selection.length === 0) {
-      throw new AttachmentPickerError('Selected path is not usable.');
-    }
-    let canonical: string;
-    try {
-      canonical = await realpath(path.resolve(selection));
-    } catch {
-      throw new AttachmentPickerError(`Selected file is not accessible: ${path.basename(selection)}`);
-    }
-    if (!within(canonicalRoot, canonical)) {
-      throw new AttachmentPickerError(
-        `Attachments must be inside the project folder: ${path.basename(selection)}`
-      );
-    }
-    if (!isSupportedAttachmentPath(canonical)) {
-      throw new AttachmentPickerError(
-        `Unsupported attachment type: ${path.basename(selection)}`
-      );
-    }
-    let info: Awaited<ReturnType<typeof stat>>;
-    try {
-      info = await stat(canonical);
-    } catch {
-      throw new AttachmentPickerError(`Selected file is not accessible: ${path.basename(selection)}`);
-    }
-    if (!info.isFile()) {
-      throw new AttachmentPickerError(`Only regular files can be attached: ${path.basename(selection)}`);
-    }
-    if (!accepted.includes(canonical)) {
-      accepted.push(canonical);
-    }
+/** Copy actual dialog selections; this helper is never exposed as renderer IPC. */
+export async function copySelectedAttachmentInputs(projectRoot: string, selections: readonly string[], revalidate: () => Promise<void>): Promise<string[]> {
+  const paths = [...new Set(selections)];
+  assertAttachmentCount(paths);
+  const budget = { bytes: 0 };
+  const attachments = [];
+  for (const selected of paths) {
+    await revalidate();
+    attachments.push(await readAttachmentBytes(selected, budget));
   }
-  return accepted;
+  const guards = [revalidate];
+  const validateDestination = async () => { for (const guard of guards) await guard(); };
+  const chiralityDirectory = path.join(projectRoot, '.chirality');
+  const inputDirectory = path.join(chiralityDirectory, 'attachment-inputs');
+  for (const directory of [chiralityDirectory, inputDirectory]) {
+    await validateDestination();
+    guards.push(await ensureAttachmentDirectory(directory));
+  }
+  const copies: string[] = [];
+  for (const attachment of attachments) {
+    await validateDestination();
+    const directory = path.join(inputDirectory, randomUUID());
+    const directoryGuard = await ensureAttachmentDirectory(directory);
+    const validateCopy = async () => { await validateDestination(); await directoryGuard(); };
+    copies.push(await writeAttachmentCopy(directory, attachment.name, attachment, validateCopy));
+  }
+  return copies;
 }
 
 /** `ipcMain.handle` body for the attachment picker channel. */
@@ -159,17 +135,24 @@ export function createAttachmentSelectionHandler(deps: AttachmentPickerDependenc
     }
     try {
       const projectRoot = await resolveAttachmentProjectRoot(input);
+      const rootGuard = await captureAttachmentDirectory(projectRoot);
+      const revalidate = async () => {
+        if (!deps.authorized(event)) throw new AttachmentPickerError('Unauthorized attachment request.');
+        await rootGuard();
+        if (await resolveAttachmentProjectRoot(input) !== projectRoot) throw new AttachmentPickerError('The selected project folder changed.');
+      };
       const dialogResult = await deps.showOpenDialog(attachmentDialogOptions(projectRoot));
       if (dialogResult.canceled || dialogResult.filePaths.length === 0) {
         return { cancelled: true };
       }
-      const paths = await resolveAttachmentSelections(projectRoot, dialogResult.filePaths);
+      await revalidate();
+      const paths = await copySelectedAttachmentInputs(projectRoot, dialogResult.filePaths, revalidate);
       return { cancelled: false, paths };
     } catch (error) {
       return {
         cancelled: true,
         error:
-          error instanceof AttachmentPickerError
+          error instanceof AttachmentPickerError || error instanceof RuntimeError
             ? error.message
             : 'Unable to attach the selected files.'
       };

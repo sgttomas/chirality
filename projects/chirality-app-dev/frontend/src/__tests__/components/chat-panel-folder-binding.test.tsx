@@ -8,7 +8,7 @@ import type { SelectedSessionReplayProjection } from '../../lib/woven-dialogue/c
 const state = vi.hoisted(() => ({ root: '/chosen/subfolder', query: '', listeners: new Set<() => void>(),
   create: vi.fn(), boot: vi.fn(), getSession: vi.fn(), replay: vi.fn(), stream: vi.fn(), apply: vi.fn(), append: vi.fn(), clear: vi.fn(), hydrate: vi.fn(), streaming: vi.fn(),
   replaceMethods: vi.fn(), resolveContext: vi.fn(),
-  nativeCapability: vi.fn(), nativeRevisions: vi.fn(), nativeClarifications: vi.fn(), replyClarification: vi.fn(), exportPlan: vi.fn(),
+  nativeCapability: vi.fn(), nativeRevisions: vi.fn(), nativeClarifications: vi.fn(), replyClarification: vi.fn(), listRequests: vi.fn(), answerRequest: vi.fn(), exportPlan: vi.fn(),
   markdownProps: [] as Array<{ source: string; projectRoot?: string | null; fileCatalog?: readonly string[]; onOpenFile?: (path: string) => void }>,
   nativeListener: undefined as ((intent: { path?: string; error?: string }) => void) | undefined
 }));
@@ -34,7 +34,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
   replyNativePlanClarification: state.replyClarification,
   exportNativePlanRevision: state.exportPlan
 }));
-vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, getHarnessSession: state.getSession, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn(), getHarnessTurnState: vi.fn(async () => ({ active: false, lastSeq: 0 })), attachHarnessTurn: vi.fn(async () => undefined) }));
+vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(), createHarnessSession: state.create, bootHarnessSession: state.boot, getHarnessSession: state.getSession, replaySessionEvents: state.replay, streamHarnessTurn: state.stream, interruptHarnessSession: vi.fn(), listHarnessSessionRequests: state.listRequests, answerHarnessSessionRequest: state.answerRequest, getHarnessTurnState: vi.fn(async () => ({ active: false, lastSeq: 0 })), attachHarnessTurn: vi.fn(async () => undefined) }));
 import { ChatPanel } from '../../components/shell/chat-panel';
 import { HarnessApiClientError } from '../../lib/harness/client';
 
@@ -69,6 +69,8 @@ beforeEach(() => {
   vi.stubGlobal('window', { confirm: vi.fn(() => true), prompt: vi.fn(() => 'plans/fixture.md'), requestAnimationFrame: (callback: () => void) => { callback(); return 1; }, setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: (key: string) => values.get(key) ?? null, setItem: (key: string, value: string) => { writes.push([key, value]); values.set(key, value); }, removeItem: (key: string) => values.delete(key) }, chirality: { folders: {
     registerRecent: vi.fn(async () => ({ ok: true })), pathForFile: vi.fn(() => ''), subscribeOpen: (listener: typeof state.nativeListener) => { state.nativeListener = listener; return () => { state.nativeListener = undefined; }; }
   } } });
+  state.listRequests.mockResolvedValue({ requests: [] });
+  state.answerRequest.mockResolvedValue({ sent: true });
   state.create.mockResolvedValue({ sessionId: 'bound' });
   state.boot.mockResolvedValue({ session: { sessionId: 'bound', projectRoot: '/canonical' } });
   state.replay.mockRejectedValue(new Error('No replay fixture'));
@@ -256,7 +258,7 @@ it('enables genuine Plan controls for a trial admission and labels its empirical
   expect(tree!.root.findAllByType('button').find(button => button.children.includes('Execute plan'))!.props.disabled).toBe(false);
 });
 
-it('answers every native clarification by question id, preserves numeric request ids, and retains masked input after failure', async () => {
+it('answers every native clarification by question id, uses the native session request id, and retains masked input after failure', async () => {
   const qualification = { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const };
   const clarification = { clientTurnId: 'turn-1', providerThreadId: 'thread-1', providerTurnId: 'provider-turn-1', requestId: 7, itemId: 'item-7', isBlocking: true, autoResolutionMs: null,
     questions: [
@@ -266,6 +268,7 @@ it('answers every native clarification by question id, preserves numeric request
   state.boot.mockResolvedValue({ session: { schemaVersion: 'chirality.session/v3', sessionId: 'bound', projectRoot: '/chosen/subfolder', selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis-1' } });
   state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'qualified', qualification });
   state.nativeClarifications.mockResolvedValue({ schemaVersion: 'chirality.native-plan-clarifications/v3', status: 'qualified', qualification, clarifications: [clarification] });
+  state.listRequests.mockResolvedValue({ requests: [{ requestId: '7', method: 'item/tool/requestUserInput', params: clarification, receivedAt: '2026-09-12T00:00:00Z' }] });
   const running = deferred<void>(); state.stream.mockReturnValue(running.promise);
   await mount();
   await act(async () => tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.onChange({ target: { value: 'native-plan' } }));
@@ -281,19 +284,19 @@ it('answers every native clarification by question id, preserves numeric request
   const transcriptText = tree!.root.findByProps({ className: 'panel-body chat-transcript' }).findAllByType('p').flatMap(node => node.children).join(' ');
   expect(transcriptText).not.toContain('do-not-render');
 
-  state.replyClarification.mockRejectedValueOnce(new Error('Reply transport failed'));
+  state.answerRequest.mockRejectedValueOnce(new Error('Reply transport failed'));
   await act(async () => { form.props.onSubmit({ preventDefault: vi.fn() }); await Promise.resolve(); });
-  expect(state.replyClarification).toHaveBeenCalledWith({ sessionId: 'bound', requestId: 7, answers: {
+  expect(state.answerRequest).toHaveBeenCalledWith({ sessionId: 'bound', requestId: '7', answer: { kind: 'userInput', answers: {
     scope: { answers: ['Current project'] }, token: { answers: ['do-not-render'] }
-  } });
+  } } });
   expect(JSON.stringify(tree!.toJSON())).toContain('Reply transport failed');
   expect(tree!.root.findByProps({ type: 'password' }).props.value).toBe('do-not-render');
-  state.replyClarification.mockImplementationOnce(async () => {
+  state.answerRequest.mockImplementationOnce(async () => {
     running.resolve();
     return { schemaVersion: 'chirality.native-plan-clarification-reply/v3', sessionId: 'bound', requestId: 7, sent: true };
   });
   await act(async () => { form.props.onSubmit({ preventDefault: vi.fn() }); await Promise.resolve(); await Promise.resolve(); });
-  expect(state.replyClarification).toHaveBeenCalledTimes(2);
+  expect(state.answerRequest).toHaveBeenCalledTimes(2);
   expect(tree!.root.findByProps({ 'aria-label': 'Send' }).props.disabled).toBe(true);
 });
 
@@ -339,32 +342,15 @@ it('clears native plan actions while a different resumed chat is still loading i
   expect(tree!.root.findAllByType('button').some(button => button.children.includes('Execute plan'))).toBe(true);
 });
 
-it('ignores a late clarification reply failure after switching resumed chats', async () => {
+it('never makes a historical Plan clarification actionable in an idle resumed chat', async () => {
   const qualification = { adapterId: 'codex-app-server', providerId: 'openai', qualificationId: 'fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' as const };
-  const clarification = { clientTurnId: 'turn-a', providerThreadId: 'thread-a', providerTurnId: 'provider-turn-a', requestId: 31, itemId: 'item-a', isBlocking: true, autoResolutionMs: null,
-    questions: [{ id: 'scope-a', header: 'Session A scope', question: 'Choose A?', options: [{ label: 'A only', description: 'Use A.' }], isOther: false, isSecret: false }] };
   state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'qualified', qualification });
-  state.nativeRevisions.mockResolvedValue({ schemaVersion: 'chirality.native-plan-revisions/v3', status: 'qualified', qualification, revisions: [] });
-  state.nativeClarifications.mockImplementation((sessionId: string) => Promise.resolve({ schemaVersion: 'chirality.native-plan-clarifications/v3', status: 'qualified', qualification, clarifications: sessionId === 'session-a' ? [clarification] : [] }));
-  const lateReply = deferred<{ schemaVersion: 'chirality.native-plan-clarification-reply/v3'; sessionId: string; requestId: number; sent: true }>();
-  state.replyClarification.mockReturnValue(lateReply.promise);
-  const projectionA = resumableProjection('session-a');
-  projectionA.session!.continuation!.interactionMode = 'native-plan';
-  const projectionB = resumableProjection('session-b');
-  projectionB.session!.continuation!.interactionMode = 'native-plan';
-
-  await mount({ resumeConversation: { requestId: 1, projection: projectionA } });
-  await act(async () => { await Promise.resolve(); await Promise.resolve(); });
-  const form = tree!.root.findByProps({ className: 'native-plan-clarification' });
-  await act(async () => form.findByProps({ value: 'A only' }).props.onChange());
-  await act(async () => { form.props.onSubmit({ preventDefault: vi.fn() }); await Promise.resolve(); });
-  expect(state.replyClarification).toHaveBeenCalledWith({ sessionId: 'session-a', requestId: 31, answers: { 'scope-a': { answers: ['A only'] } } });
-
-  await act(async () => tree!.update(<ChatPanel presentation="woven" resumeConversation={{ requestId: 2, projection: projectionB }} />));
-  await act(async () => { lateReply.reject(new Error('Late session A failure')); await Promise.resolve(); await Promise.resolve(); });
-  const switchedView = JSON.stringify(tree!.toJSON());
-  expect(switchedView).not.toContain('Session A scope');
-  expect(switchedView).not.toContain('Late session A failure');
+  state.nativeClarifications.mockResolvedValue({ clarifications: [{ requestId: 31, questions: [{ id: 'q', header: 'Old question', question: 'Old pending question?' }] }] });
+  const projection = resumableProjection('session-a');
+  projection.session!.continuation!.interactionMode = 'native-plan';
+  await mount({ resumeConversation: { requestId: 1, projection } });
+  expect(tree!.root.findAllByProps({ className: 'native-plan-clarification' })).toHaveLength(0);
+  expect(state.answerRequest).not.toHaveBeenCalled();
 });
 
 it('preserves an unsupported legacy permission profile until the operator continues with Project access', async () => {
@@ -931,4 +917,84 @@ it('keeps an ambiguously delivered prompt in history without restoring its draft
     expect(JSON.stringify(tree!.toJSON())).not.toContain('"data-turn-outcome":"completed"');
     assertCanonicalUntouched();
   } finally { vi.useRealTimers(); }
+});
+
+it.each(['context', 'turn'] as const)('keeps a bound normal message for manual retry after a definitive Unknown session rejection: %s', async stage => {
+  const projection = resumableProjection('bound-retry');
+  const failure = new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'Unknown session');
+  if (stage === 'context') state.resolveContext.mockRejectedValueOnce(failure);
+  else state.stream.mockRejectedValueOnce(failure);
+  await mount({ resumeConversation: { requestId: 1, projection } });
+  await type('Preserve this correction exactly.');
+  await submit();
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Preserve this correction exactly.');
+  expect(JSON.parse(values.get(buildChatDraftStorageKey('/chosen/subfolder', 'session:bound-retry', 'CHAT'))!).draft).toBe('Preserve this correction exactly.');
+  expect(state.stream).toHaveBeenCalledTimes(stage === 'turn' ? 1 : 0);
+  expect(state.create).not.toHaveBeenCalled();
+});
+
+it('recovers a definitely unsent bound message to its owning draft when context changes before rejection', async () => {
+  const check = deferred<never>();
+  state.resolveContext.mockReturnValueOnce(check.promise);
+  await mount({ resumeConversation: { requestId: 1, projection: resumableProjection('bound-retry') } });
+  await type('Keep the original chat correction.');
+  await submit();
+  await act(async () => root('/other'));
+  await act(async () => check.reject(new HarnessApiClientError(404, 'SESSION_NOT_FOUND', 'Unknown session')));
+  const key = buildChatDraftStorageKey('/chosen/subfolder', 'session:bound-retry', 'CHAT');
+  expect(JSON.parse(values.get(key)!).draft).toBe('Keep the original chat correction.');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).not.toBe('Keep the original chat correction.');
+  expect(state.stream).not.toHaveBeenCalled();
+  expect(JSON.stringify(tree!.toJSON())).toContain('original chat');
+});
+
+it('resumes a boot-ready Codex chat after a rejected first attachment and reload before any provider thread exists', async () => {
+  const { projectOperatorSession } = await import('../../lib/woven-dialogue/operator-projection');
+  const recorded = {
+    schemaVersion: 'chirality.session/v3', sessionId: 'pre-thread-attachment', projectRoot: '/chosen/subfolder',
+    persona: 'WORKING_ITEMS', roleId: 'WORKING_ITEMS', mode: 'CHAT', status: 'idle',
+    bootedAt: '2026-09-13T00:00:00Z', bootFingerprint: 'verified-boot',
+    engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'configured-model' }
+  };
+  state.create.mockResolvedValue(recorded);
+  state.boot.mockResolvedValue({ session: recorded });
+  await mount();
+  await act(async () => tree!.root.findByProps({ 'data-add-attachment': true }).props.onClick());
+  await type('Retry the original attachment'); await submit();
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Retry the original attachment');
+  await act(async () => tree!.unmount()); tree = undefined;
+  const projection = resumableProjection(recorded.sessionId);
+  projection.session!.bootstrapConfirmed = projectOperatorSession(recorded as never, new Set([recorded.sessionId]), { observedAt: '2026-09-13' }).bootstrapConfirmed;
+  state.getSession.mockResolvedValue(recorded);
+  state.stream.mockResolvedValue(undefined);
+  await mount({ resumeConversation: { requestId: 1, projection } });
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Retry the original attachment');
+  await submit();
+  expect(state.stream).toHaveBeenCalledTimes(2);
+  expect(state.stream).toHaveBeenLastCalledWith(expect.objectContaining({ sessionId: recorded.sessionId, message: 'Retry the original attachment', attachments: ['/chosen/subfolder/docs/input.txt'] }), expect.any(Function), expect.any(AbortSignal));
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
+  expect(state.getSession).not.toHaveBeenCalled();
+});
+
+it('reconciles a lost Codex boot response from Runtime boot stamps before the first provider thread', async () => {
+  state.create.mockResolvedValue({ sessionId: 'codex-boot-response-lost', projectRoot: '/chosen/subfolder' });
+  state.boot.mockRejectedValue(new Error('boot response lost'));
+  await mount(); await type('Send only after readiness'); await submit();
+  state.getSession.mockResolvedValue({ schemaVersion: 'chirality.session/v3', roleId: 'WORKING_ITEMS', sessionId: 'codex-boot-response-lost', projectRoot: '/chosen/subfolder', status: 'idle', bootedAt: '2026-09-13', bootFingerprint: 'verified-boot', engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'configured-model' } });
+  state.stream.mockResolvedValue(undefined);
+  await submit();
+  expect(state.create).toHaveBeenCalledTimes(1); expect(state.boot).toHaveBeenCalledTimes(1);
+  expect(state.stream).toHaveBeenCalledTimes(1);
+  expect(state.stream).toHaveBeenCalledWith(expect.objectContaining({ sessionId: 'codex-boot-response-lost', message: 'Send only after readiness' }), expect.any(Function), expect.any(AbortSignal));
+});
+
+it.each([{ bootedAt: '2026-09-13' }, { bootFingerprint: 'verified-boot' }, {}])('holds a genuinely incomplete Codex boot: %j', async stamps => {
+  const projection = resumableProjection('incomplete-codex');
+  projection.session!.bootstrapConfirmed = false;
+  state.getSession.mockResolvedValue({ schemaVersion: 'chirality.session/v3', roleId: 'WORKING_ITEMS', sessionId: 'incomplete-codex', projectRoot: '/chosen/subfolder', status: 'idle', engineSelection: { adapterId: 'codex-app-server', providerId: 'openai', model: 'configured-model' }, ...stamps });
+  await mount({ resumeConversation: { requestId: 1, projection } });
+  await type('Keep this pending'); await submit();
+  expect(state.stream).not.toHaveBeenCalled(); expect(state.boot).not.toHaveBeenCalled(); expect(state.create).not.toHaveBeenCalled();
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this pending');
 });

@@ -120,21 +120,18 @@ it('lets a superseded workflow still be selected deliberately and searched for',
   act(() => tree.unmount());
 });
 
-it('shows bundled skills read-only in the Skills view and hides other skill sources and workflows', async () => {
-  const bundled = descriptor('trusted-check', 'bundled', { source: 'bundled', kind: 'skill' });
-  const project = descriptor('project-skill', 'project', { kind: 'skill' });
-  mocks.list.mockResolvedValue(response([bundled, project, core('project-setup', 0)]));
-  const onSelectedChange = vi.fn();
-  const tree = await render('skills', onSelectedChange);
+it('redirects the legacy Skills view to workflows without exposing skill cards', async () => {
+  mocks.list.mockResolvedValue(response([
+    descriptor('trusted-check', 'bundled', { source: 'bundled', kind: 'skill' }),
+    descriptor('project-skill', 'project', { kind: 'skill' }), core('project-setup', 0)
+  ]));
+  const tree = await render('skills');
   const text = JSON.stringify(tree.toJSON());
-  expect(text).toContain('trusted-check');
-  expect(text).toContain('Read-only reference');
-  expect(text).toContain('updated through App releases');
+  expect(text).not.toContain('trusted-check');
   expect(text).not.toContain('project-skill');
-  expect(text).not.toContain('project-setup');
-  expect(tree.root.findAllByType('button').some(button => button.children.includes('Use in message'))).toBe(false);
-  expect(tree.root.findAllByType('button').some(button => button.children.includes('Inspect'))).toBe(true);
-  expect(tree.root.findByProps({ 'aria-label': 'Search skills' })).toBeDefined();
+  expect(text).toContain('project-setup');
+  expect(tree.root.findByProps({ 'aria-label': 'Search workflows' })).toBeDefined();
+  act(() => tree.unmount());
 });
 
 it('keeps only the newest inspection result', async () => {
@@ -168,4 +165,32 @@ it('reloads the catalog when the panel requests a refresh', async () => {
   await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
   expect(mocks.list).toHaveBeenCalledTimes(2);
   expect(JSON.stringify(tree.toJSON())).toContain('available-again');
+});
+
+it('keeps inspection and selected methods during same-scope refresh, including catalog failure', async () => {
+  const item = descriptor('saved-flow', 'project');
+  const pending = deferred<ReturnType<typeof response>>();
+  mocks.list.mockResolvedValueOnce(response([item])).mockImplementationOnce(() => pending.promise)
+    .mockRejectedValueOnce(new Error('Refresh unavailable'));
+  mocks.inspect.mockResolvedValue({ method: item, entrypoint: { content: 'Saved workflow instructions', sha256: 'a'.repeat(64) }, resources: [] });
+  const selected = [{ kind: item.kind, source: item.source, name: item.name, sourceRootId: item.sourceRootId }];
+  const change = vi.fn();
+  const props = { projectRoot: '/project', selected, onSelectedChange: change };
+  let tree!: ReactTestRenderer;
+  await act(async () => { tree = create(<MethodLibraryView {...props} />); });
+  await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
+  await act(async () => tree.root.findAllByType('button').find(node => node.children.includes('Inspect'))!.props.onClick());
+  await act(async () => tree.update(<MethodLibraryView {...props} refresh={1} />));
+  await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
+  expect(JSON.stringify(tree.toJSON())).toContain('Saved workflow instructions');
+  expect(JSON.stringify(tree.toJSON())).not.toContain('Loading…');
+  expect(tree.root.findByProps({ 'aria-label': 'Search workflows' }).props.value).toBe('');
+  await act(async () => pending.resolve(response([item, descriptor('new-flow', 'project')])));
+  expect(JSON.stringify(tree.toJSON())).toContain('Saved workflow instructions');
+  await act(async () => tree.update(<MethodLibraryView {...props} refresh={2} />));
+  await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
+  expect(JSON.stringify(tree.toJSON())).toContain('Refresh unavailable');
+  expect(JSON.stringify(tree.toJSON())).toContain('new-flow');
+  expect(change).not.toHaveBeenCalled();
+  act(() => tree.unmount());
 });

@@ -1,0 +1,12 @@
+{
+  "projects/chirality-runtime/packages/core/src/attachment-copy.ts": "61053f696039a32bda746fb8045196ec8444b935c367bb159b7a1eb57538c72e",
+  "projects/chirality-runtime/packages/core/src/runtime-attachment-resolver.ts": "fe612aa49c917263ebab164dda973ab3003aa0b9e56eb1a3611ead879df947a2",
+  "projects/chirality-runtime/packages/core/src/index.ts": "86efb8f966c391912081c2cfc6d2edc0a8fca2749622a5c7e897b6786e1ee963",
+  "projects/chirality-runtime/tests/attachment-copy.test.ts": "598df27717d3a1227850437691fe90bf1fd4be74c8a0825efc55dec616aa34ea",
+  "projects/chirality-runtime/tests/app-owned-composition.test.ts": "c202647fa707f27c790fb31e6f77a96557d40861dac5fca5a58455c08d53506d",
+  "projects/chirality-runtime/tests/codex-attachment-adapter.test.ts": "04a5fa5731bf61744321efcf06ad55e7d27a3e9ac3a6a8ceeae0f4d0ae7648d6",
+  "projects/chirality-app-dev/frontend/electron/attachment-picker.ts": "de9c11af2a124d028e62e5f78372340ee0430c4fb767fecf0b6a3de2f0a76d6d",
+  "projects/chirality-app-dev/frontend/electron/preload.ts": "af483306fb23a8e6e7ee2ec486b0e4caf04731ee1c0c069cb66cdf2168100241",
+  "projects/chirality-app-dev/frontend/src/__tests__/electron/attachment-picker.test.ts": "1a574b2e579bbc33cefb6e4f29c440980c832fc2ceda1ba845a6248918dc6ca6",
+  "projects/chirality-app-dev/frontend/src/__tests__/components/chat-panel-native-attachments.test.tsx": "fb0f55c372740272d2a888129f36fee09ce7910f96000e0adc4d9ae2f2771029"
+}

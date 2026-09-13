@@ -10,6 +10,10 @@ import {
   RuntimeError,
   validateHostedBootstrapStatus,
   validateAnswerSessionRequestRequest,
+  validateSessionSteerRequest,
+  validateSessionSteerReceiptRequest,
+  type SessionSteerRequest,
+  type SessionSteerResponse,
   deriveTranscriptView,
   type Agent1RunRequest,
   type CreateSessionRequest,
@@ -45,6 +49,7 @@ import {
   type RuntimeService
   , ensureHostedProjectManifest
 } from "@chirality/runtime-core";
+import { NativeSteering } from "./native-steering.js";
 import { hostedProjectClientId } from "./hosted-paths.js";
 import { TurnRegistry, type TurnFrame, type TurnSubscription } from "./turn-registry.js";
 
@@ -139,6 +144,7 @@ interface DaemonGeneration {
  * composition passes the delegated runtime.
  */
 export interface DelegatedRequestPort {
+  steerTurn?(projectId: string, sessionId: string, request: SessionSteerRequest): Promise<SessionSteerResponse>;
   pendingRequests(projectId: string, sessionId: string): Promise<readonly PendingServerRequest[]>;
   answerRequest(projectId: string, sessionId: string, requestId: string, answer: ServerRequestAnswer): Promise<{ sent: true }>;
 }
@@ -189,10 +195,19 @@ export class RuntimeDaemon {
   /** Owns every active turn; survives listener generations so a restart never orphans a running turn. */
   readonly turns: TurnRegistry;
   private readonly keepaliveMs: number;
+  private readonly steering: NativeSteering;
 
   constructor(private readonly options: RuntimeDaemonOptions) {
     this.ownerFile = `${options.socketPath}.owner.json`;
     this.turns = options.turnRegistry ?? new TurnRegistry(options.service, { logger: options.logger ?? NOOP_RUNTIME_DAEMON_LOGGER });
+    this.steering = new NativeSteering({
+      journal: options.service.sessions,
+      state: (projectId, sessionId) => this.turns.state(projectId, sessionId),
+      publish: (projectId, sessionId, event) => this.turns.publishEvidence(projectId, sessionId, event),
+      dispatch: (projectId, sessionId, request) => options.requests?.steerTurn
+        ? options.requests.steerTurn(projectId, sessionId, request)
+        : Promise.resolve({ operationId: request.operationId, turnId: request.expectedTurnId, status: "rejected", message: "Native steering is unavailable in this composition." })
+    });
     this.keepaliveMs = options.sseKeepaliveMs ?? SSE_KEEPALIVE_MS;
   }
 
@@ -675,6 +690,18 @@ export class RuntimeDaemon {
       await this.authorize(request, "sessions:write", projectId);
       const body = await this.body<ReplyNativePlanClarificationRequest>(request);
       return this.json(response, 200, await this.options.service.replyNativePlanClarification(projectId, sessionId, body));
+    }
+    if (segments.length === 8 && segments[5] === "turn" && segments[6] === "steer" && segments[7] === "receipt" && method === "POST") {
+      await this.authorize(request, "sessions:write", projectId);
+      await this.options.service.sessions.get(projectId, sessionId);
+      const body = validateSessionSteerReceiptRequest(await this.body<unknown>(request));
+      return this.json(response, 200, await this.steering.receipt(projectId, sessionId, body));
+    }
+    if (segments.length === 7 && segments[5] === "turn" && segments[6] === "steer" && method === "POST") {
+      await this.authorize(request, "sessions:write", projectId);
+      await this.options.service.sessions.get(projectId, sessionId);
+      const body = validateSessionSteerRequest(await this.body<unknown>(request));
+      return this.json(response, 200, await this.steering.steer(projectId, sessionId, body));
     }
     if (segments.length === 7 && segments[5] === "turn" && segments[6] === "state" && method === "GET") {
       await this.authorize(request, "sessions:read", projectId);

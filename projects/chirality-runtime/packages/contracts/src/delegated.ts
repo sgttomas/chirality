@@ -329,3 +329,8 @@ export function policySelectionFromPermissionMode(mode: DelegatedPermissionMode 
       return { approvalPolicy: "on-request", sandbox: "workspace-write" };
   }
 }
+
+/** A supervisor can steer only its exact live Runtime worker generation. */
+export interface SupervisorSteerPort {
+  steerTurn(workerId: string, generation: string, request: import("./protocol.js").SessionSteerRequest): Promise<import("./protocol.js").SessionSteerResponse>;
+}

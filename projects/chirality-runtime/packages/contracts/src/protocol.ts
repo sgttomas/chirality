@@ -49,6 +49,10 @@ export const RUNTIME_ROUTES = {
   /** Attach to the active (or recently finished) turn owned by the Runtime; SSE. */
   sessionTurnStream: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.sessionTurn(projectId, sessionId)}/stream`,
+  sessionTurnSteer: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.sessionTurn(projectId, sessionId)}/steer`,
+  sessionTurnSteerReceipt: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.sessionTurnSteer(projectId, sessionId)}/receipt`,
   sessionTurnState: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.sessionTurn(projectId, sessionId)}/state`,
   sessionRequests: (projectId: string, sessionId: string) =>
@@ -148,6 +152,41 @@ export interface SessionTurnState {
   startedAt?: string;
   endedAt?: string;
 }
+/** Input to an existing Runtime turn. operationId is retained across uncertain acknowledgments. */
+export interface SessionSteerRequest {
+  operationId: string;
+  expectedTurnId: string;
+  text: string;
+}
+/** Receipt lookup only: this request can never submit model input. */
+export interface SessionSteerReceiptRequest {
+  operationId: string;
+  expectedTurnId: string;
+}
+export function validateSessionSteerReceiptRequest(value: unknown): SessionSteerReceiptRequest {
+  if (!plainRecord(value) || Object.keys(value).sort().join(",") !== "expectedTurnId,operationId") {
+    throw new RuntimeError("INVALID_REQUEST", "Receipt lookup requires exactly operationId and expectedTurnId", 400);
+  }
+  const valid = validateSessionSteerRequest({ ...value, text: "receipt lookup" });
+  return { operationId: valid.operationId, expectedTurnId: valid.expectedTurnId };
+}
+export interface SessionSteerResponse {
+  operationId: string;
+  turnId: string;
+  status: "accepted" | "rejected" | "unknown";
+  message?: string;
+  providerTurnId?: string;
+}
+export function validateSessionSteerRequest(value: unknown): SessionSteerRequest {
+  if (!plainRecord(value) || Object.keys(value).sort().join(",") !== "expectedTurnId,operationId,text"
+    || typeof value.operationId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/u.test(value.operationId)
+    || typeof value.expectedTurnId !== "string" || !value.expectedTurnId.trim() || value.expectedTurnId.length > 256
+    || typeof value.text !== "string" || !value.text.trim() || value.text.length > 128 * 1024) {
+    throw new RuntimeError("INVALID_REQUEST", "Steering requires a bounded operationId, expectedTurnId and nonempty text", 400);
+  }
+  return { operationId: value.operationId, expectedTurnId: value.expectedTurnId, text: value.text };
+}
+
 export interface SessionRequestsResponse {
   requests: readonly PendingServerRequest[];
 }
