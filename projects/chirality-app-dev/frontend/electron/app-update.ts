@@ -326,6 +326,23 @@ export type AppUpdateController = {
   subscribe: (listener: (state: AppUpdateState) => void) => () => void;
 };
 
+export const APP_UPDATE_CHECK_INTERVAL_MS = 6 * 60 * 60 * 1000;
+
+/** Share the manual check's bounded request and state broadcast; never install. */
+export function startAppUpdatePolling(controller: Pick<AppUpdateController, 'check'>): () => void {
+  const check = async (): Promise<void> => {
+    try {
+      await controller.check();
+    } catch {
+      // An unexpected checker failure must not break startup or stop later checks.
+    }
+  };
+  void check();
+  const timer = setInterval(() => { void check(); }, APP_UPDATE_CHECK_INTERVAL_MS);
+  timer.unref?.();
+  return () => { clearInterval(timer); };
+}
+
 const CREDENTIALISH_PATTERN = /(?:Bearer|token|credential|api[_ -]?key)\s+\S+/giu;
 const URL_PATTERN = /\bhttps?:\/\/\S+/giu;
 

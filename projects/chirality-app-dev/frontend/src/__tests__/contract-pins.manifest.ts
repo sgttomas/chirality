@@ -206,7 +206,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
   {
     file: 'electron/main.ts',
     description:
-      'Renderer network-policy hardening: no auto-update or GitHub release checks; fail-closed egress allowlist interception with redacted diagnostics (from build-network-policy.test.ts)',
+      'Renderer network-policy hardening: no automatic installer or direct renderer release fetch; metadata checks use the dedicated main-process updater and existing egress policy',
     pins: [
       { kind: 'notMatches', pattern: '\\bautoUpdater\\b' },
       { kind: 'notContains', value: 'releases/latest' },
