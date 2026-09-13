@@ -11,6 +11,7 @@ import {
   validateHostedBootstrapStatus,
   validateAnswerSessionRequestRequest,
   validateSessionSteerRequest,
+  validateSessionSteerReceiptRequest,
   type SessionSteerRequest,
   type SessionSteerResponse,
   deriveTranscriptView,
@@ -689,6 +690,12 @@ export class RuntimeDaemon {
       await this.authorize(request, "sessions:write", projectId);
       const body = await this.body<ReplyNativePlanClarificationRequest>(request);
       return this.json(response, 200, await this.options.service.replyNativePlanClarification(projectId, sessionId, body));
+    }
+    if (segments.length === 8 && segments[5] === "turn" && segments[6] === "steer" && segments[7] === "receipt" && method === "POST") {
+      await this.authorize(request, "sessions:write", projectId);
+      await this.options.service.sessions.get(projectId, sessionId);
+      const body = validateSessionSteerReceiptRequest(await this.body<unknown>(request));
+      return this.json(response, 200, await this.steering.receipt(projectId, sessionId, body));
     }
     if (segments.length === 7 && segments[5] === "turn" && segments[6] === "steer" && method === "POST") {
       await this.authorize(request, "sessions:write", projectId);

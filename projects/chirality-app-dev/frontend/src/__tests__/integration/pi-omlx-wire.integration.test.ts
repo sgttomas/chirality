@@ -282,7 +282,8 @@ describe('Pi/oMLX wire integration', () => {
       models: { kind: 'json', body: { data: [{ id: model }] } },
       completions: [toolCall(model), finalText(model, 'WIRE_PI_CHILD_OK')]
     });
-    const adapter = createAdapter({ baseUrl: () => provider.baseUrl, apiKey, projectRoot });
+    // Success-path I/O must not race the short deadline used by hung-stream tests.
+    const adapter = createAdapter({ baseUrl: () => provider.baseUrl, apiKey, projectRoot, turnTimeoutMs: 2_000 });
     const input = createInput(projectRoot, model, 'sess_pi_wire_success');
 
     await expect(adapter.preflight(input)).resolves.toBeUndefined();

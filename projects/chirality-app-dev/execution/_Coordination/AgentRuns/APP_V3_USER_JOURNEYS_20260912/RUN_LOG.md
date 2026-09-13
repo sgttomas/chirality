@@ -65,3 +65,21 @@ Baseline artifact snapshots are under
 `/Users/ryan/.claude/chirality-user-journeys-20260913/observations/`.
 The campaign findings record distinguishes completed product work from UI
 defects and pending independent evaluation. No new signed build or publication.
+
+
+## 2026-09-13T01:26:26Z — Workshop complete, candidate review and test disposition
+
+J04 completed the native question, 90-to-60-minute revision, and explicit Execute plan / Chat send path in frozen baseline development source. Agenda and worksheet saved; both passed independent substantive review. One minor worksheet wording observation is preserved in J04_ARTIFACT_REVIEW.md. The failed discovery command was `rg` finding no project AGENTS.md, followed by successful writing and validation; no artifact failure inferred. Baseline background Plan Refresh cycling and commentary concatenation were reproduced.
+
+Frozen candidate 4031c6c54 passed all 352 Runtime tests. Full frontend run returned 2204 passed, 6 failed, 4 skipped. Three reconnect failures came from a fake window without interval functions; author repaired fixture lifecycle, with 34 focused tests passing. Three timing failures passed an isolated 22-test rerun: two full-library disk-copy checks exceeded five seconds during concurrent suites, and the legacy Pi success test raced its 200 ms hung-stream deadline. Parent scoped those two filesystem tests to 15 seconds and the one success fixture to two seconds; product deadlines and actual timeout tests remain unchanged. Final integrated suite is pending the review repairs, with no concurrent full Runtime suite. Logs are in the owned fixture evidence directory.
+
+Fresh independent Astra/high review covered all 98 files in 6ac405569..4031c6c54 and returned three P2 findings: missing legacy approval cards, unreachable late steering receipt confirmation, and unhealthy unrelated roots blocking uncached session lookup. Separate authors are repairing them. Source inspection caught an additional ambiguity before sending a receipt check: repeating the old endpoint could dispatch when no intent had reached Runtime. The selected repair is a receipt-only endpoint that cannot dispatch or create intent. No account policy or permission weakened.
+
+New 367-file instruction bundle prepared for the development candidate. Prior development and installed builds, userData, source worktrees and evidence remain preserved. Fresh development process and remaining candidate journeys follow after the bounded fixes settle; no signing or publishing performed.
+
+
+## 2026-09-13T01:29:06Z — Review repairs integrated, development transition
+
+F1 approval classification, F2 receipt-only confirmation, and F3 retained-owner lookup repairs are integrated. Runtime typecheck and 11 focused receipt/daemon tests pass; App typecheck and 52 focused native tests pass; owner-routing tests31 pass. Full frontend rerun with these repairs and bounded timing-fixture corrections: 2218 passed, four skipped, 218 files passed and one skipped. Final log: /Users/ryan/.claude/chirality-user-journeys-20260913/frontend-candidate-final-tests.log. Independent repair review remains pending.
+
+Stopped the owned frozen-baseline development session18652 with its ordinary interrupt after every observed turn completed. Verified baseline Electron5544 and its Runtime5594 had exited. The installed signed App and its profile were not stopped or modified. Candidate development will use the same isolated development profile via its derived guarded launcher. Its instruction defaults differ because create-workflow was added; the earlier native inspection established this test profile used the previous unmodified defaults. Apply the new defaults through the ordinary App settings restore action for candidate method-authoring tests, preserving the automatic backup. No credential or hidden-state copying.

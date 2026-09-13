@@ -401,6 +401,13 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
     });
   }
 
+  async steerReceipt(sessionId: string, request: Parameters<DaemonHarnessPort['steerReceipt']>[1], options?: DaemonRequestOptions): ReturnType<DaemonHarnessPort['steerReceipt']> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.sessionTurnSteerReceipt(this.projectId, sessionId, request, options?.signal);
+    });
+  }
+
   async interrupt(
     request: Parameters<DaemonHarnessPort['interrupt']>[0],
     options?: DaemonRequestOptions

@@ -39,3 +39,13 @@ No authoritative snapshot acceptance, decomposition changes, lifecycle closure o
 - `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_USER_JOURNEYS_20260912/PLAN.md`: `62bd95560c979477244a5132e37343d2f31718419853aeeb7bce6c61062ac619`
 - `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_USER_JOURNEYS_20260912/NATIVE_INTERACTIONS_PROPOSAL.md`: `818b8c380d7c25c706e8e259161e8ef760bf5b4d1965473aa889fd8f31553914`
 - `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_USER_JOURNEYS_20260912/briefs/CHAT_ATTENTION_IMPLEMENTATION.md`: `889ce188972c6011f938b6dc4be863a18676cd6f0d161c58092859459bc68c0b`
+
+## Reconnect fixture repair, candidate 4031c6c54f76760baaaf3d92e2db83819ce3a8ac
+
+Parent dispatched focused remediation after the full frontend run exposed three reconnect test failures. Inspected the requested first 88 log lines through an at-sign-line filter. Root cause: reconnect tests installed an incomplete fake window without setInterval/clearInterval. Their afterEach removed window before React's error-triggered detached cleanup, producing secondary window-undefined errors. This evidence did not establish a production browser lifecycle failure.
+
+Changed only frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx for this follow-up: supply controlled browser timers, track created renderers and flush unmount cleanup before removing globals even on a failed assertion. Preserve original reconnect/replay expectations; add verification that reconnect retains exactly one discovery poll and unmount prevents subsequent calls. No production behavior was removed or disabled.
+
+APP-HOLD-1 reliance entry APP_V3_USER_JOURNEYS_20260912:CHAT_ATTENTION_RECONNECT, DEL-02-01: ALLOW / CLEAR, register SHA unchanged; scan fingerprint 0954ed105705301ccab40f3b6bcaed1fce542bc4f961055d40cc121b91b5dc29.
+
+Focused command: npx vitest run src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx src/__tests__/components/woven-dialogue-shell.test.tsx — PASS, 2 files / 34 tests, 19:22 local. No builds, live UI, Git mutations or broader suite reruns. Parent owns the separately assigned approval-filter repairs and remaining full-suite integration.

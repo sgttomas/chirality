@@ -1,6 +1,7 @@
 'use client';
 
 import { deriveTranscriptView, type TranscriptItem } from '@chirality/runtime-contracts/transcript-replay';
+import { mergeSteeringReceipt, persistSteeringReceipt, recoverSteeringReceipts, type SteeringReceipt } from '../../lib/shell/steering-receipts';
 import { nativePlanText } from '../../lib/harness/native-plan-text';
 
 import { usePathname, useSearchParams } from 'next/navigation';
@@ -14,6 +15,7 @@ import {
   createHarnessSession,
   interruptHarnessSession,
   steerHarnessSession,
+  checkHarnessSteeringReceipt,
   replaySessionEvents,
   streamHarnessTurn,
   type HarnessModelSelection,
@@ -673,11 +675,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const continuation = projection.session?.continuation;
     if (!continuation || continuation.roleId !== activePersona || continuation.projectRoot !== projectRoot) return;
     resumeRequestSeen.current = resumeConversation.requestId;
-    const recordedSteer = projection.events?.filter(event => event.type === 'codex.steer').at(-1)?.data;
-    setSteerReceipt(recordedSteer && typeof recordedSteer.operationId === 'string' && typeof recordedSteer.text === 'string'
-      ? { sessionId: projection.selectedSessionId, operationId: recordedSteer.operationId, text: recordedSteer.text,
-        status: recordedSteer.status === 'accepted' ? 'accepted' : recordedSteer.status === 'rejected' ? 'rejected' : 'unknown',
-        message: typeof recordedSteer.message === 'string' ? recordedSteer.message : undefined } : null);
+    setSteerReceipts(recoverSteeringReceipts(projection.selectedSessionId, projection.events ?? [], typeof window !== 'undefined' ? window.localStorage : undefined));
     pendingBootstrap.current = undefined;
     bindingGeneration.current += 1;
     lastInstructionSequenceRef.current = projection.instructionHistory.reduce((maximum, record) => Math.max(maximum, record.sequence), 0);
@@ -955,8 +953,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         observedEvents.set(harnessEvent.eventId, harnessEvent);
         if (harnessEvent.type === 'codex.steer') {
           const data = harnessEvent.data;
-          if (typeof data.operationId === 'string' && typeof data.text === 'string' && ['submitted', 'accepted', 'rejected', 'unknown'].includes(String(data.status))) {
-            setSteerReceipt({ sessionId: session.sessionId, operationId: data.operationId, text: data.text, status: data.status as 'submitted' | 'accepted' | 'rejected' | 'unknown', message: typeof data.message === 'string' ? data.message : undefined });
+          if (typeof data.operationId === 'string' && typeof data.expectedTurnId === 'string' && typeof data.text === 'string' && ['submitted', 'accepted', 'rejected', 'unknown'].includes(String(data.status))) {
+            recordSteeringReceipt({ sessionId: session.sessionId, operationId: data.operationId, expectedTurnId: data.expectedTurnId, text: data.text, status: data.status as SteeringReceipt['status'], message: typeof data.message === 'string' ? data.message : undefined });
             if (data.status === 'accepted') setDraft(current => current.trim() === data.text ? '' : current);
           }
         }
@@ -1303,11 +1301,42 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
   }
 
-  const [steerReceipt, setSteerReceipt] = useState<{ sessionId: string; operationId: string; text: string; status: 'submitted' | 'accepted' | 'rejected' | 'unknown'; message?: string } | null>(null);
+  const [steerReceipts, setSteerReceipts] = useState<SteeringReceipt[]>([]);
+  const sessionSteerReceipts = steerReceipts.filter(receipt => receipt.sessionId === activeSession?.sessionId);
+  const steerReceipt = sessionSteerReceipts.at(-1);
   const [steerPending, setSteerPending] = useState(false);
+  const [receiptChecking, setReceiptChecking] = useState<string | null>(null);
+  const receiptCheckInFlight = useRef(false);
   const steerOperationInFlight = useRef(false);
   const currentRuntimeTurnId = [...messages].reverse().find(message => message.role === 'assistant')?.turnId;
-  const unknownSteerDraft = steerReceipt && steerReceipt.sessionId === activeSession?.sessionId && (steerReceipt.status === 'unknown' || steerReceipt.status === 'submitted') && steerReceipt.text === draft.trim();
+  const unknownSteerDraft = sessionSteerReceipts.some(receipt => (receipt.status === 'unknown' || receipt.status === 'submitted') && receipt.text === draft.trim());
+  function recordSteeringReceipt(receipt: SteeringReceipt): void {
+    persistSteeringReceipt(receipt, typeof window !== 'undefined' ? window.localStorage : undefined);
+    setSteerReceipts(current => mergeSteeringReceipt(current, receipt));
+  }
+
+  async function checkSteeringReceipt(receipt: SteeringReceipt): Promise<void> {
+    if (receiptCheckInFlight.current) return;
+    receiptCheckInFlight.current = true;
+    setReceiptChecking(receipt.operationId);
+    try {
+      const result = await checkHarnessSteeringReceipt(receipt.sessionId, { operationId: receipt.operationId, expectedTurnId: receipt.expectedTurnId });
+      if (result.operationId !== receipt.operationId || result.turnId !== receipt.expectedTurnId) throw new Error('The returned receipt identifies another update. Delivery remains unconfirmed.');
+      recordSteeringReceipt({ ...receipt, status: result.status, message: result.message });
+      if (activeSessionIdRef.current !== receipt.sessionId) return;
+      if (result.status === 'accepted') setDraft(current => current.trim() === receipt.text ? '' : current);
+      // A completed turn no longer has a live event subscription. Reflect the
+      // receipt response in its existing message; Runtime owns durable evidence.
+      const key = `steer:${JSON.stringify([receipt.sessionId, receipt.operationId])}`;
+      const label = result.status === 'accepted' ? 'Update received' : result.status === 'rejected' ? 'Update rejected' : 'Delivery unconfirmed';
+      setMessages(current => current.map(message => ({ ...message,
+        ...(message.id === `replay-${key}` ? { receipt: label } : {}),
+        ...(message.nativeItems ? { nativeItems: message.nativeItems.map(item => item.key === key ? { ...item, status: result.status === 'accepted' ? 'accepted' : result.status === 'rejected' ? 'failed' : 'queued', summary: label } : item) } : {})
+      })));
+    } catch (error) {
+      recordSteeringReceipt({ ...receipt, message: error instanceof Error ? error.message : 'Update delivery remains unconfirmed.' });
+    } finally { receiptCheckInFlight.current = false; setReceiptChecking(null); }
+  }
 
   async function submitSteering(): Promise<void> {
     if (!activeSession || !currentRuntimeTurnId || steerOperationInFlight.current || stopRequested || reconnectAttempt !== null || unknownSteerDraft || !draft.trim()) return;
@@ -1315,15 +1344,17 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const sessionId = activeSession.sessionId;
     const text = draft.trim();
     const operationId = crypto.randomUUID();
+    const receipt: SteeringReceipt = { sessionId, operationId, expectedTurnId: currentRuntimeTurnId, text, status: 'submitted' };
     setSteerPending(true);
-    setSteerReceipt({ sessionId, operationId, text, status: 'submitted' });
+    // Save identity before the browser request: it may fail before Runtime can
+    // persist intent, and a reload must still check without re-sending text.
+    recordSteeringReceipt(receipt);
     try {
       const result = await steerHarnessSession(sessionId, { operationId, expectedTurnId: currentRuntimeTurnId, text });
-      if (activeSessionIdRef.current !== sessionId) return;
-      setSteerReceipt(current => current?.operationId === operationId && current.status === 'accepted' ? current : { sessionId, operationId, text, status: result.status, message: result.message });
-      if (result.status === 'accepted') setDraft(current => current.trim() === text ? '' : current);
+      recordSteeringReceipt({ ...receipt, status: result.status, message: result.message });
+      if (activeSessionIdRef.current === sessionId && result.status === 'accepted') setDraft(current => current.trim() === text ? '' : current);
     } catch (error) {
-      if (activeSessionIdRef.current === sessionId) setSteerReceipt(current => current?.operationId === operationId && current.status === 'accepted' ? current : { sessionId, operationId, text, status: 'unknown', message: error instanceof Error ? error.message : 'The update receipt could not be confirmed.' });
+      recordSteeringReceipt({ ...receipt, status: 'unknown', message: error instanceof Error ? error.message : 'The update receipt could not be confirmed.' });
     } finally { steerOperationInFlight.current = false; setSteerPending(false); }
   }
 
@@ -1876,6 +1907,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           {steerReceipt.status === 'accepted' ? 'Update received by the running turn.' : steerReceipt.status === 'rejected' ? 'Update rejected. Your draft is preserved.' : steerReceipt.status === 'submitted' ? 'Awaiting update receipt…' : 'Update delivery unconfirmed. Your draft is preserved; it will not be resent automatically.'}
           {steerReceipt.message ? ` ${steerReceipt.message}` : ''}
         </p> : null}
+        {sessionSteerReceipts.filter(receipt => receipt.status === 'unknown' || receipt.status === 'submitted').map(receipt => <div key={receipt.operationId} className="chat-steer-receipt">
+          {receipt !== steerReceipt ? <p>Unconfirmed update: {receipt.text}</p> : null}
+          <button type="button" className="button-muted" disabled={steerPending || receiptChecking !== null} onClick={() => void checkSteeringReceipt(receipt)}>{receiptChecking === receipt.operationId ? 'Checking delivery…' : 'Check delivery'}</button>
+        </div>)}
         {draftStorageWarning ? (
           <div className="chat-storage-warning toolkit-warning" role="status" aria-live="polite">
             <p>{draftStorageWarning}</p>

@@ -1186,7 +1186,7 @@ it('routes old and uncached sessions through their verified owner across folder 
     createSession: vi.fn().mockResolvedValue(records[i]),
     listSessions: vi.fn().mockResolvedValue([records[i]]),
     getSession: vi.fn().mockImplementation(async (_projectId, id) => {
-      if (id === records[i].sessionId || id === `${p.projectId}-child`) return { ...records[i], sessionId: id };
+      if (id === records[i].sessionId || id.startsWith(`${p.projectId}-child`)) return { ...records[i], sessionId: id };
       throw new RuntimeError('SESSION_NOT_FOUND', `Unknown session: ${id}`, 404);
     }),
     turnSession: vi.fn().mockImplementation(async () => stream()),
@@ -1196,6 +1196,7 @@ it('routes old and uncached sessions through their verified owner across folder 
     listSessionRequests: vi.fn().mockResolvedValue({ requests: [] }),
     answerSessionRequest: vi.fn().mockResolvedValue({ accepted: true }),
     sessionTurnSteer: vi.fn().mockResolvedValue({ accepted: true }),
+    sessionTurnSteerReceipt: vi.fn().mockResolvedValue({ accepted: true }),
     hostedBootstrapStatus: vi.fn().mockResolvedValue({ projectId: p.projectId })
   }));
   const bootstrap = client({
@@ -1236,8 +1237,9 @@ it('routes old and uncached sessions through their verified owner across folder 
     await port.listRequests(records[0].sessionId);
     await port.answerRequest(records[0].sessionId, 'req', { kind: 'approval', decision: 'accept' } as never);
     expect((await steerRoute.POST(request({ operationId: 'op', expectedTurnId: 'turn', text: 'steer' }), { params: Promise.resolve({ id: records[0].sessionId }) })).status).toBe(200);
+    await port.steerReceipt(records[0].sessionId, { operationId: 'op', expectedTurnId: 'turn' });
     await port.interrupt({ sessionId: records[0].sessionId });
-    for (const name of ['replaySession', 'sessionTurnState', 'attachSessionTurn', 'listSessionRequests', 'answerSessionRequest', 'sessionTurnSteer', 'interruptSession'] as const) {
+    for (const name of ['replaySession', 'sessionTurnState', 'attachSessionTurn', 'listSessionRequests', 'answerSessionRequest', 'sessionTurnSteer', 'sessionTurnSteerReceipt', 'interruptSession'] as const) {
       expect(vi.mocked(scoped[0][name]).mock.calls[0].slice(0, 2)).toEqual([projects[0].projectId, records[0].sessionId]);
       expect(scoped[1][name]).not.toHaveBeenCalled();
     }
@@ -1256,6 +1258,24 @@ it('routes old and uncached sessions through their verified owner across folder 
     await expect(port.turn({ sessionId: records[0].sessionId, message: 'blocked' })).rejects.toMatchObject({ type: 'WORKING_ROOT_CONFLICT' });
     expect(scoped[0].turnSession).toHaveBeenCalledTimes(2);
     expect(scoped[1].turnSession).toHaveBeenCalledTimes(1);
+    // F3: only the actual owner must be healthy; unrelated A probes may fail.
+    for (const [suffix, code] of [['drift', 'PROJECT_MANIFEST_DRIFT'], ['missing', 'PROJECT_NOT_FOUND']] as const) {
+      vi.mocked(scoped[0].projectStatus).mockRejectedValueOnce(new RuntimeError(code, 'unrelated A unavailable', 409));
+      const childId = `route-1-child-${suffix}`;
+      await expect(port.getSession(childId)).resolves.toMatchObject({ session: { sessionId: childId, projectId: projects[1].projectId } });
+      expect(scoped[1].getSession).toHaveBeenLastCalledWith(projects[1].projectId, childId, undefined);
+      expect(bootstrap.resolveSessionOwner).not.toHaveBeenCalled();
+    }
+    const blockedChild = 'route-1-child-own-drift';
+    vi.mocked(scoped[1].projectStatus).mockRejectedValue(new RuntimeError('PROJECT_MANIFEST_DRIFT', 'actual B drift', 409));
+    vi.mocked(bootstrap.resolveSessionOwner).mockResolvedValueOnce({ project: projects[1], session: { ...records[1], sessionId: blockedChild } });
+    await expect(port.turn({ sessionId: blockedChild, message: 'must fail' })).rejects.toMatchObject({ type: 'WORKING_ROOT_CONFLICT', message: 'actual B drift' });
+    expect(scoped[1].turnSession).toHaveBeenCalledTimes(1);
+    vi.mocked(scoped[1].projectStatus).mockResolvedValue({ project: projects[1], manifestDrift: false, adaptersEnabled: true });
+    // Auth failures are never reclassified as harmless non-owning probes.
+    vi.mocked(scoped[0].projectStatus).mockRejectedValueOnce(new RuntimeError('FORBIDDEN', 'scope denied', 403));
+    await expect(port.getSession('route-1-child-denied')).rejects.toMatchObject({ type: 'PROVIDER_AUTH_FAILURE' });
+    expect(scoped[1].getSession).not.toHaveBeenCalledWith(projects[1].projectId, 'route-1-child-denied', undefined);
     // The selected root after restart is B; historical A ownership comes from Runtime.
     hosted = setup(); await hosted.initializeProject(rootB);
     await registry.getDaemonHarnessPort().replaySession(records[0].sessionId);

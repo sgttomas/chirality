@@ -137,7 +137,7 @@ function snapshot(
 
 /**
  * The shell reads `localStorage` and installs pointer listeners on mount, so the
- * fake window carries those alongside the connectivity bridge.
+ * fake window carries those plus controlled timers and the connectivity bridge.
  */
 function installWindow(initial: RuntimeConnectivitySnapshot | null): {
   push: (next: RuntimeConnectivitySnapshot) => void;
@@ -146,6 +146,8 @@ function installWindow(initial: RuntimeConnectivitySnapshot | null): {
   const store = new Map<string, string>();
   Object.assign(globalThis, {
     window: {
+      setInterval: globalThis.setInterval,
+      clearInterval: globalThis.clearInterval,
       localStorage: {
         getItem: (key: string) => store.get(key) ?? null,
         setItem: (key: string, value: string) => {
@@ -187,6 +189,8 @@ function publishReplayState(next: SelectedSessionReplayState): void {
   }
 }
 
+const mountedTrees = new Set<ReactTestRenderer>();
+
 async function renderShell(): Promise<ReactTestRenderer> {
   let tree!: ReactTestRenderer;
   await act(async () => {
@@ -195,6 +199,7 @@ async function renderShell(): Promise<ReactTestRenderer> {
         <WovenDialogueShell defaultSurface="dialogue" />
       </RuntimeConnectivityProvider>
     );
+    mountedTrees.add(tree);
   });
   await act(async () => {});
   return tree;
@@ -208,11 +213,16 @@ function coordinationError(tree: ReactTestRenderer): string {
 
 describe('WovenDialogueShell runtime reconnect refresh', () => {
   beforeEach(() => {
+    vi.useFakeTimers();
     vi.clearAllMocks();
     state.replayListeners.clear();
   });
 
   afterEach(() => {
+    // Flush effect cleanup before removing its browser globals, including after failures.
+    act(() => { for (const tree of mountedTrees) tree.unmount(); });
+    mountedTrees.clear();
+    vi.useRealTimers();
     delete (globalThis as { window?: unknown }).window;
   });
 
@@ -254,7 +264,13 @@ describe('WovenDialogueShell runtime reconnect refresh', () => {
     await act(async () => {});
     expect(state.listHarnessSessions).toHaveBeenCalledTimes(2);
     expect(tree.root.findByProps({ 'data-chat-panel': 'mounted' })).toBe(primary);
+    // Reconnect replaced the discovery timer; it did not accumulate another loop.
+    await act(async () => { await vi.advanceTimersByTimeAsync(5000); });
+    expect(state.listHarnessSessions).toHaveBeenCalledTimes(3);
     act(() => tree.unmount());
+    mountedTrees.delete(tree);
+    await act(async () => { await vi.advanceTimersByTimeAsync(10000); });
+    expect(state.listHarnessSessions).toHaveBeenCalledTimes(3);
   });
 
   it('reloads a replay lens that was left unavailable', async () => {

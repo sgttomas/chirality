@@ -560,11 +560,23 @@ describe("Unix-domain runtime daemon", () => {
     const steering = { operationId: "route-steer-1", expectedTurnId: "expired", text: "Change direction" };
     expect((await request(socketPath, `${base}/turn/steer`, "invalid-token", "POST", steering)).status).toBe(401);
     expect((await request(socketPath, `${base}/turn/steer`, token, "POST", { ...steering, nativeThreadId: "unowned" })).status).toBe(400);
+    const receiptRequest = { operationId: steering.operationId, expectedTurnId: steering.expectedTurnId };
+    expect((await request(socketPath, `${base}/turn/steer/receipt`, "invalid-token", "POST", receiptRequest)).status).toBe(401);
+    expect((await request(socketPath, `${base}/turn/steer/receipt`, token, "POST", steering)).status).toBe(400);
+    const missingReceipt = await request(socketPath, `${base}/turn/steer/receipt`, token, "POST", receiptRequest);
+    expect(missingReceipt.status).toBe(200);
+    expect(JSON.parse(missingReceipt.body)).toMatchObject({ status: "unknown" });
+    expect((await service.sessions.replay("requests-project", session.sessionId)).filter(event => event.type === "codex.steer")).toHaveLength(0);
     const staleSteer = await request(socketPath, `${base}/turn/steer`, token, "POST", steering);
     expect(staleSteer.status).toBe(200);
     expect(JSON.parse(staleSteer.body)).toMatchObject({ status: "rejected", turnId: "expired", operationId: "route-steer-1" });
     const steeringEvents = (await service.sessions.replay("requests-project", session.sessionId)).filter(event => event.type === "codex.steer");
     expect(steeringEvents.map(event => event.data.status)).toEqual(["submitted", "rejected"]);
+    const rejectedReceipt = await request(socketPath, `${base}/turn/steer/receipt`, token, "POST", receiptRequest);
+    expect(JSON.parse(rejectedReceipt.body)).toMatchObject({ status: "rejected" });
+    expect((await request(socketPath, `${base}/turn/steer/receipt`, token, "POST", { ...receiptRequest, expectedTurnId: "wrong-turn" })).status).toBe(409);
+    expect((await request(socketPath, `/v1/projects/requests-project/sessions/missing-session/turn/steer/receipt`, token, "POST", receiptRequest)).status).toBe(404);
+
     expect((await request(socketPath, `${base}/turn/steer`, token, "POST", { ...steering, text: "Conflicting reuse" })).status).toBe(409);
 
     expect((await request(socketPath, `/v1/projects/requests-project/sessions/missing-session/requests`, token)).status).toBe(404);

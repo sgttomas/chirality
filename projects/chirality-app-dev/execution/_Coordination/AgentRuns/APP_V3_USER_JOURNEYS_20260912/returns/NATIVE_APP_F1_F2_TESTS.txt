@@ -1,0 +1,24 @@
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/chirality-ui-refinement-packaged-20260912/chirality/projects/chirality-app-dev/frontend
+
+····················································
+
+ Test Files  3 passed (3)
+      Tests  52 passed (52)
+   Start at  19:27:43
+   Duration  574ms (transform 511ms, setup 0ms, import 672ms, tests 261ms, environment 0ms)
+
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/chirality-ui-refinement-packaged-20260912/chirality/projects/chirality-app-dev/frontend
+
+···················································stderr | src/__tests__/components/chat-panel-folder-binding.test.tsx > preserves an explicit empty next-message selection when a bound turn fails
+Warning: You called act(async () => ...) without await. This could lead to unexpected testing behaviour, interleaving multiple act calls and mixing their scopes. You should - await act(async () => ...);
+
+··········································
+
+ Test Files  4 passed (4)
+      Tests  93 passed (93)
+   Start at  19:28:37
+   Duration  744ms (transform 687ms, setup 0ms, import 863ms, tests 447ms, environment 0ms)
+

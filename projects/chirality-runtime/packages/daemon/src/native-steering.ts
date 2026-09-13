@@ -1,6 +1,6 @@
 import {
-  RuntimeError, validateSessionSteerRequest,
-  type HarnessEvent, type SessionSteerRequest, type SessionSteerResponse, type SessionTurnState
+  RuntimeError, validateSessionSteerRequest, validateSessionSteerReceiptRequest,
+  type HarnessEvent, type SessionSteerReceiptRequest, type SessionSteerRequest, type SessionSteerResponse, type SessionTurnState
 } from "@chirality/runtime-contracts";
 
 export interface SteeringJournal {
@@ -33,6 +33,45 @@ export class NativeSteering {
     const result = this.execute(projectId, sessionId, request);
     this.pending.set(key, { request, result });
     void result.finally(() => { if (this.pending.get(key)?.result === result) this.pending.delete(key); }).catch(() => undefined);
+    return result;
+  }
+
+  /** Reconcile durable evidence only, including when no turn is active. Missing
+   * intent is unknown: this path never creates an intent or reaches dispatch.
+   */
+  async receipt(projectId: string, sessionId: string, input: SessionSteerReceiptRequest): Promise<SessionSteerResponse> {
+    const request = validateSessionSteerReceiptRequest(input);
+    const active = this.pending.get(JSON.stringify([projectId, sessionId, request.operationId]));
+    if (active) {
+      if (active.request.expectedTurnId !== request.expectedTurnId) throw new RuntimeError("INVALID_REQUEST", "Steering receipt does not match the pending turn", 409);
+      // Let the original outcome persist first so a late unknown response cannot
+      // overwrite a receipt confirmation emitted by this same service instance.
+      await active.result.catch(() => undefined);
+    }
+
+    const events = await this.options.journal.replay(projectId, sessionId);
+    const prior = events.filter(event => event.type === "codex.steer" && event.data.operationId === request.operationId);
+    if (!prior.length) return { operationId: request.operationId, turnId: request.expectedTurnId, status: "unknown", message: "No delivery record is available. Input was not sent by this receipt check." };
+    const first = prior[0]!;
+    if (first.data.expectedTurnId !== request.expectedTurnId || typeof first.data.text !== "string") {
+      throw new RuntimeError("INVALID_REQUEST", "Steering receipt does not match the recorded turn", 409);
+    }
+    const original = { ...request, text: first.data.text };
+    for (const event of prior) this.sameRequest(event.data, original);
+    return this.reconcile(projectId, sessionId, events, prior.at(-1)!, original);
+  }
+
+  private async reconcile(projectId: string, sessionId: string, events: readonly HarnessEvent[], last: HarnessEvent, request: SessionSteerRequest): Promise<SessionSteerResponse> {
+    // Explicit rejection is terminal receipt evidence, not an invitation to retry.
+    const nativeId = last.data.status === "rejected" ? undefined : this.confirmation(events, request, typeof last.data.providerTurnId === "string" ? last.data.providerTurnId : undefined);
+    const status = nativeId ? "accepted" : last.data.status === "accepted" || last.data.status === "rejected" ? last.data.status : "unknown";
+    const result: SessionSteerResponse = { operationId: request.operationId, turnId: request.expectedTurnId, status,
+      ...(typeof last.data.message === "string" ? { message: last.data.message } : {}),
+      ...(nativeId ? { providerTurnId: nativeId } : typeof last.data.providerTurnId === "string" ? { providerTurnId: last.data.providerTurnId } : {}) };
+    if (nativeId && last.data.status !== "accepted") {
+      result.message = "Codex input receipt was confirmed from the conversation.";
+      await this.evidence(projectId, sessionId, request, "accepted", result);
+    } else if (status === "unknown") result.message = "Input delivery remains unconfirmed. It was not resent.";
     return result;
   }
 
@@ -69,15 +108,7 @@ export class NativeSteering {
     const prior = events.filter(event => event.type === "codex.steer" && event.data.operationId === request.operationId);
     if (prior.length) {
       for (const event of prior) this.sameRequest(event.data, request);
-      const last = prior.at(-1)!;
-      const nativeId = this.confirmation(events, request, typeof last.data.providerTurnId === "string" ? last.data.providerTurnId : undefined);
-      const status = nativeId ? "accepted" : last.data.status === "accepted" || last.data.status === "rejected" ? last.data.status : "unknown";
-      const result: SessionSteerResponse = { ...base, status, ...(typeof last.data.message === "string" ? { message: last.data.message } : {}), ...(nativeId ? { providerTurnId: nativeId } : typeof last.data.providerTurnId === "string" ? { providerTurnId: last.data.providerTurnId } : {}) };
-      if (nativeId && last.data.status !== "accepted") {
-        result.message = "Codex input receipt was confirmed from the conversation.";
-        await this.evidence(projectId, sessionId, request, "accepted", result);
-      } else if (status === "unknown") result.message = "Input delivery remains unconfirmed. It was not resent.";
-      return result;
+      return this.reconcile(projectId, sessionId, events, prior.at(-1)!, request);
     }
     // Persist intent before checking ownership/dispatch. A crash anywhere after
     // this point cannot cause the same operation to be submitted twice.
@@ -90,7 +121,7 @@ export class NativeSteering {
       try { result = await this.options.dispatch(projectId, sessionId, request); }
       catch { result = { ...base, status: "unknown", message: "Input delivery is unconfirmed. It may have been received; it was not resent." }; }
       const confirmed = this.confirmation(await this.options.journal.replay(projectId, sessionId), request, result.providerTurnId);
-      if (confirmed) result = { ...base, status: "accepted", providerTurnId: confirmed };
+      if (confirmed && result.status !== "rejected") result = { ...base, status: "accepted", providerTurnId: confirmed };
     }
     await this.evidence(projectId, sessionId, request, result.status, result);
     return result;

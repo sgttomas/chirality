@@ -12,7 +12,7 @@ import type { SelectedSessionReplayProjection } from '../../lib/woven-dialogue/c
  * disconnect; `turn.interrupted` renders the moment it arrives.
  */
 const state = vi.hoisted(() => ({ root: '/chosen/subfolder', listeners: new Set<() => void>(),
-  create: vi.fn(), boot: vi.fn(), replay: vi.fn(), stream: vi.fn(), attach: vi.fn(), turnState: vi.fn(), interrupt: vi.fn(), steer: vi.fn(),
+  create: vi.fn(), boot: vi.fn(), replay: vi.fn(), stream: vi.fn(), attach: vi.fn(), turnState: vi.fn(), interrupt: vi.fn(), steer: vi.fn(), receipt: vi.fn(),
   append: vi.fn(), clear: vi.fn(), hydrate: vi.fn(), streaming: vi.fn(),
   replaceMethods: vi.fn(), resolveContext: vi.fn(), nativeCapability: vi.fn(), nativeRevisions: vi.fn(), nativeClarifications: vi.fn()
 }));
@@ -39,7 +39,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
 }));
 vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(),
   createHarnessSession: state.create, bootHarnessSession: state.boot, replaySessionEvents: state.replay, streamHarnessTurn: state.stream,
-  attachHarnessTurn: state.attach, getHarnessTurnState: state.turnState, interruptHarnessSession: state.interrupt, steerHarnessSession: state.steer, listHarnessSessionRequests: vi.fn(async () => ({ requests: [] })) }));
+  attachHarnessTurn: state.attach, getHarnessTurnState: state.turnState, interruptHarnessSession: state.interrupt, steerHarnessSession: state.steer, checkHarnessSteeringReceipt: state.receipt, listHarnessSessionRequests: vi.fn(async () => ({ requests: [] })) }));
 import { ChatPanel } from '../../components/shell/chat-panel';
 import { HarnessApiClientError } from '../../lib/harness/client';
 
@@ -549,4 +549,65 @@ it('keeps background Plan reads quiet and shows busy only for a manual refresh',
   expect(model!.refreshing).toBe(true);
   await act(async () => complete({ revisions: [] }));
   expect(model!.refreshing).toBe(false);
+});
+
+
+it('checks a late steering receipt using the original identity without submitting text again', async () => {
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  state.attach.mockImplementation((_s, _after, onEvent) => { onEvent({ event: 'transport:connected', data: {} }); return new Promise(() => {}); });
+  state.steer.mockImplementation(async (_s, request) => ({ operationId: request.operationId, turnId: request.expectedTurnId, status: 'unknown' }));
+  state.receipt.mockImplementation(async (_s, request) => ({ operationId: request.operationId, turnId: request.expectedTurnId, status: 'accepted', message: 'Confirmed from late native echo.' }));
+  await mountResumed();
+  await act(async () => tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value: 'Original correction' } }));
+  await act(async () => tree!.root.findByType('form').props.onSubmit({ preventDefault() {} }));
+  const original = state.steer.mock.calls[0][1];
+  await act(async () => tree!.root.findAllByType('button').find(button => button.children.includes('Check delivery'))!.props.onClick());
+  await flush();
+  expect(state.receipt).toHaveBeenCalledWith('resumed', { operationId: original.operationId, expectedTurnId: original.expectedTurnId });
+  expect(state.steer).toHaveBeenCalledTimes(1);
+  expect(state.stream).not.toHaveBeenCalled();
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+  expect(rendered()).toContain('Update received');
+});
+
+it('recovers a network-before-intent unknown after reload and checks safely after turn completion', async () => {
+  const saved = new Map<string, string>();
+  window.localStorage = { getItem: key => saved.get(key) ?? null, setItem: (key, value) => { saved.set(key, value); }, removeItem: key => { saved.delete(key); } } as Storage;
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  state.attach.mockImplementation((_s, _after, onEvent) => { onEvent({ event: 'transport:connected', data: {} }); return new Promise(() => {}); });
+  state.steer.mockRejectedValue(new TypeError('Network failed before server intent'));
+  state.receipt.mockImplementation(async (_s, request) => ({ operationId: request.operationId, turnId: request.expectedTurnId, status: 'unknown', message: 'No recorded intent. Nothing was sent by this check.' }));
+  await mountResumed();
+  await act(async () => tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value: 'Locally retained correction' } }));
+  await act(async () => tree!.root.findByType('form').props.onSubmit({ preventDefault() {} }));
+  const original = state.steer.mock.calls[0][1];
+  act(() => tree!.unmount()); tree = undefined;
+  state.turnState.mockResolvedValue({ active: false, turnId: 'turn-1', lastSeq: 10 });
+  await mountResumed();
+  const check = () => tree!.root.findAllByType('button').find(button => button.children.includes('Check delivery'))!;
+  await act(async () => check().props.onClick());
+  await flush();
+  expect(state.receipt).toHaveBeenLastCalledWith('resumed', { operationId: original.operationId, expectedTurnId: 'turn-1' });
+  expect(tree!.root.findByProps({ 'aria-label': 'Send' }).props.disabled).toBe(true);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Locally retained correction');
+  expect(rendered()).toContain('No recorded intent');
+  // A later explicit check may find durable confirmation, even after the turn ended.
+  state.receipt.mockImplementation(async (_s, request) => ({ operationId: request.operationId, turnId: request.expectedTurnId, status: 'accepted' }));
+  await act(async () => check().props.onClick());
+  await flush();
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('');
+  expect(state.steer).toHaveBeenCalledTimes(1);
+  expect(state.stream).not.toHaveBeenCalled();
+});
+
+it('recovers the expected Runtime turn from durable steering evidence without local receipt state', async () => {
+  const projected = projection('resumed');
+  projected.events = [persisted('steer-original', 'codex.steer', { operationId: 'original-operation', expectedTurnId: 'turn-1', text: 'Original text', status: 'unknown' })] as import('@chirality/runtime-contracts/event-schema').HarnessEvent[];
+  state.receipt.mockResolvedValue({ operationId: 'original-operation', turnId: 'turn-1', status: 'unknown' });
+  await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: projected }} />); });
+  await act(async () => tree!.root.findAllByType('button').find(button => button.children.includes('Check delivery'))!.props.onClick());
+  await flush();
+  expect(state.receipt).toHaveBeenCalledWith('resumed', { operationId: 'original-operation', expectedTurnId: 'turn-1' });
+  expect(state.steer).not.toHaveBeenCalled();
+  expect(rendered()).toContain('unconfirmed');
 });

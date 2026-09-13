@@ -233,7 +233,7 @@ function subscribeRequests(sessionId: string, listener: () => void): () => void 
         const result = await listHarnessSessionRequests(sessionId, controller.signal);
         publish(result.requests.map(request => ({
           key: `${sessionId}:${request.requestId}`, sessionId, requestId: request.requestId, method: request.method,
-          kind: request.method.endsWith('/requestApproval') ? 'approval' : classifyServerRequestMethod(request.method),
+          kind: classifyServerRequestMethod(request.method),
           request: request.params, status: 'pending' as const, timestamp: request.receivedAt
         })).filter(row => ['approval', 'userInput', 'elicitation'].includes(row.kind)));
       } catch { publish(EMPTY_REQUESTS); }

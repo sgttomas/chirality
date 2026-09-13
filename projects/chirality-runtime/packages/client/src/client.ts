@@ -41,6 +41,7 @@ import {
   type SessionTurnRequest,
   type SessionTurnState,
   type SessionSteerRequest,
+  type SessionSteerReceiptRequest,
   type SessionSteerResponse,
   type SessionRequestsResponse,
   type AnswerSessionRequestRequest,
@@ -520,6 +521,10 @@ export class RuntimeClient {
 
   sessionTurnSteer(projectId: string, sessionId: string, request: SessionSteerRequest, signal?: AbortSignal): Promise<SessionSteerResponse> {
     return this.requestJson(RUNTIME_ROUTES.sessionTurnSteer(projectId, sessionId), { method: "POST", body: request, signal });
+  }
+
+  sessionTurnSteerReceipt(projectId: string, sessionId: string, request: SessionSteerReceiptRequest, signal?: AbortSignal): Promise<SessionSteerResponse> {
+    return this.requestJson(RUNTIME_ROUTES.sessionTurnSteerReceipt(projectId, sessionId), { method: "POST", body: request, signal });
   }
 
   listSessionRequests(

@@ -51,6 +51,8 @@ export const RUNTIME_ROUTES = {
     `${RUNTIME_ROUTES.sessionTurn(projectId, sessionId)}/stream`,
   sessionTurnSteer: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.sessionTurn(projectId, sessionId)}/steer`,
+  sessionTurnSteerReceipt: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.sessionTurnSteer(projectId, sessionId)}/receipt`,
   sessionTurnState: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.sessionTurn(projectId, sessionId)}/state`,
   sessionRequests: (projectId: string, sessionId: string) =>
@@ -155,6 +157,18 @@ export interface SessionSteerRequest {
   operationId: string;
   expectedTurnId: string;
   text: string;
+}
+/** Receipt lookup only: this request can never submit model input. */
+export interface SessionSteerReceiptRequest {
+  operationId: string;
+  expectedTurnId: string;
+}
+export function validateSessionSteerReceiptRequest(value: unknown): SessionSteerReceiptRequest {
+  if (!plainRecord(value) || Object.keys(value).sort().join(",") !== "expectedTurnId,operationId") {
+    throw new RuntimeError("INVALID_REQUEST", "Receipt lookup requires exactly operationId and expectedTurnId", 400);
+  }
+  const valid = validateSessionSteerRequest({ ...value, text: "receipt lookup" });
+  return { operationId: valid.operationId, expectedTurnId: valid.expectedTurnId };
 }
 export interface SessionSteerResponse {
   operationId: string;

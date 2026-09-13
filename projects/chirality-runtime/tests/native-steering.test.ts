@@ -75,3 +75,62 @@ describe("Native steering receipt evidence", () => {
     await client.sessionTurnSteer("project name", "session/id", request);
     expect(transport).toHaveBeenCalledWith("/v1/projects/project%20name/sessions/session%2Fid/turn/steer", { method: "POST", body: request, signal: undefined });
   });
+
+describe("receipt-only reconciliation", () => {
+  const lookup = { operationId: request.operationId, expectedTurnId: request.expectedTurnId };
+  it("never creates intent or dispatches when the initial transport was lost before Runtime, even with an active turn", async () => {
+    const f = fixture();
+    expect(await f.steering.receipt("p", "s", lookup)).toMatchObject({ status: "unknown" });
+    f.events.push(confirmation()); // No intent: an echo alone cannot reconstruct the original authorized request.
+    expect(await new NativeSteering(f.options).receipt("p", "s", lookup)).toMatchObject({ status: "unknown" });
+    expect(f.events).toHaveLength(1);
+    expect(f.dispatch).not.toHaveBeenCalled();
+    expect(f.publish).not.toHaveBeenCalled();
+  });
+  it("confirms a late durable echo after unknown, turn completion and manager reload without dispatching again", async () => {
+    const f = fixture(); f.dispatch.mockRejectedValue(new Error("lost response"));
+    expect(await f.steering.steer("p", "s", request)).toMatchObject({ status: "unknown" });
+    f.stop();
+    const restarted = new NativeSteering(f.options);
+    expect(await restarted.receipt("p", "s", lookup)).toMatchObject({ status: "unknown" });
+    expect(f.events.map(event => event.data.status)).toEqual(["submitted", "unknown"]);
+    f.events.push(confirmation({ codex: { isPrimaryThread: false } }));
+    expect(await restarted.receipt("p", "s", lookup)).toMatchObject({ status: "unknown" });
+    f.events.push(confirmation());
+    expect(await restarted.receipt("p", "s", lookup)).toMatchObject({ status: "accepted", providerTurnId: "native-1" });
+    expect(f.events.at(-1)).toMatchObject({ type: "codex.steer", data: { ...request, status: "accepted" } });
+    expect(await new NativeSteering(f.options).receipt("p", "s", lookup)).toMatchObject({ status: "accepted" });
+    expect(f.dispatch).toHaveBeenCalledTimes(1);
+    expect(deriveTranscriptView(f.events).items.find(item => item.role === "user")).toMatchObject({ status: "accepted", text: request.text });
+  });
+  it("preserves explicit rejection and refuses mismatched turn identity or input-bearing receipt bodies", async () => {
+    const f = fixture(); f.stop(); await f.steering.steer("p", "s", request);
+    f.events.push(confirmation());
+    expect(await f.steering.receipt("p", "s", lookup)).toMatchObject({ status: "rejected" });
+    await expect(f.steering.receipt("p", "s", { ...lookup, expectedTurnId: "wrong-turn" })).rejects.toMatchObject({ status: 409 });
+    await expect(f.steering.receipt("p", "s", { ...lookup, text: "not allowed" } as never)).rejects.toMatchObject({ status: 400 });
+    expect(f.dispatch).not.toHaveBeenCalled();
+  });
+  it("waits for an in-flight original outcome before reconciling without creating a second dispatch", async () => {
+    const f = fixture();
+    let release!: (value: SessionSteerResponse) => void;
+    f.dispatch.mockImplementation(() => new Promise(resolve => { release = resolve; }));
+    const original = f.steering.steer("p", "s", request);
+    await vi.waitFor(() => expect(f.dispatch).toHaveBeenCalledTimes(1));
+    let checked = false;
+    const receipt = f.steering.receipt("p", "s", lookup).then(value => { checked = true; return value; });
+    await Promise.resolve(); expect(checked).toBe(false);
+    release({ operationId: lookup.operationId, turnId: lookup.expectedTurnId, status: "unknown" });
+    await original;
+    expect(await receipt).toMatchObject({ status: "unknown" });
+    expect(f.events.map(event => event.data.status)).toEqual(["submitted", "unknown"]);
+    expect(f.dispatch).toHaveBeenCalledTimes(1);
+  });
+  it("uses the encoded dedicated receipt route without including model input", async () => {
+    const { RuntimeClient } = await import("@chirality/runtime-client");
+    const client = new RuntimeClient({ socketPath: "/unused", tokenFile: "/unused" });
+    const transport = vi.spyOn(client, "requestJson").mockResolvedValue({ operationId: lookup.operationId, turnId: lookup.expectedTurnId, status: "unknown" });
+    await client.sessionTurnSteerReceipt("project name", "session/id", lookup);
+    expect(transport).toHaveBeenCalledWith("/v1/projects/project%20name/sessions/session%2Fid/turn/steer/receipt", { method: "POST", body: lookup, signal: undefined });
+  });
+});

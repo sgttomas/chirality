@@ -8,6 +8,7 @@ import {
   resetDaemonHarnessPortForTests
 } from '../../../lib/runtime-client/daemon-harness-port';
 import * as createRoute from '../../../app/api/harness/session/create/route';
+import * as steerReceiptRoute from '../../../app/api/harness/session/[id]/turn/steer/receipt/route';
 import * as steerRoute from '../../../app/api/harness/session/[id]/turn/steer/route';
 import * as turnRoute from '../../../app/api/harness/turn/route';
 
@@ -31,6 +32,7 @@ function daemonPort(
     listRequests: unimplemented,
     answerRequest: unimplemented,
     steer: unimplemented,
+    steerReceipt: unimplemented,
     interrupt: unimplemented,
     decidePermission: unimplemented,
     listAgents: unimplemented,
@@ -225,4 +227,15 @@ it('routes steering by the owning session and validates Runtime turn and operati
   const invalid = await steerRoute.POST(new Request('http://localhost/api/harness/session/s/turn/steer', { method: 'POST', body: JSON.stringify({ operationId: 'op', text: 'Missing turn' }) }), { params: Promise.resolve({ id: 's' }) });
   expect(invalid.status).toBe(400);
   expect(steer).toHaveBeenCalledTimes(1);
+});
+
+
+it('checks a receipt through the non-dispatch port method without forwarding text', async () => {
+  const steerReceipt = vi.fn(async (_sessionId, request) => ({ operationId: request.operationId, turnId: request.expectedTurnId, status: 'unknown' as const }));
+  const steer = vi.fn(unimplemented);
+  installDaemonHarnessPort(daemonPort({ steerReceipt, steer }));
+  const response = await steerReceiptRoute.POST(new Request('http://localhost/api/harness/session/s/turn/steer/receipt', { method: 'POST', body: JSON.stringify({ operationId: 'op', expectedTurnId: 'runtime-turn', text: 'Never forward this' }) }), { params: Promise.resolve({ id: 's' }) });
+  expect(response.status).toBe(200);
+  expect(steerReceipt).toHaveBeenCalledWith('s', { operationId: 'op', expectedTurnId: 'runtime-turn' }, expect.any(Object));
+  expect(steer).not.toHaveBeenCalled();
 });

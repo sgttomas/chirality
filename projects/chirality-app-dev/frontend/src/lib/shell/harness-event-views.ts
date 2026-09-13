@@ -326,7 +326,13 @@ function readRecord(value: unknown): Record<string, unknown> | undefined {
 }
 
 /** Best-effort classification when the adapter did not label the request. */
+const APPROVAL_REQUEST_METHODS = new Set([
+  'item/commandExecution/requestApproval', 'item/fileChange/requestApproval', 'item/permissions/requestApproval',
+  'execCommandApproval', 'applyPatchApproval'
+]);
+
 export function classifyServerRequestMethod(method: string): string {
+  if (APPROVAL_REQUEST_METHODS.has(method)) return 'approval';
   if (method === 'item/tool/requestUserInput') return 'userInput';
   if (method === 'mcpServer/elicitation/request') return 'elicitation';
   if (method === 'item/tool/call') return 'dynamicToolCall';

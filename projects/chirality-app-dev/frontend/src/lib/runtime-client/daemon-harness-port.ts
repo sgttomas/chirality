@@ -1,4 +1,4 @@
-import type { SessionSteerRequest, SessionSteerResponse } from '@chirality/runtime-contracts';
+import type { SessionSteerReceiptRequest, SessionSteerRequest, SessionSteerResponse } from '@chirality/runtime-contracts';
 import { relative, resolve } from 'node:path';
 
 import { HarnessError } from '@chirality/runtime-contracts/errors';
@@ -256,6 +256,7 @@ export interface DaemonHarnessPort {
     options?: DaemonRequestOptions
   ): Promise<AnswerSessionRequestResponse>;
   steer(sessionId: string, request: SessionSteerRequest, options?: DaemonRequestOptions): Promise<SessionSteerResponse>;
+  steerReceipt(sessionId: string, request: SessionSteerReceiptRequest, options?: DaemonRequestOptions): Promise<SessionSteerResponse>;
   interrupt(
     request: InterruptRequest,
     options?: DaemonRequestOptions
@@ -340,6 +341,7 @@ const unboundDaemonHarnessPort: DaemonHarnessPort = {
   listRequests: daemonClientUnavailable,
   answerRequest: daemonClientUnavailable,
   steer: daemonClientUnavailable,
+  steerReceipt: daemonClientUnavailable,
   interrupt: daemonClientUnavailable,
   decidePermission: daemonClientUnavailable,
   listAgents: daemonClientUnavailable,
@@ -412,7 +414,7 @@ const routeKinds = {
   createSession: 'rootObject', listSessions: 'root', getSession: 'session',
   deleteSession: 'session', bootSession: 'sessionObject', replaySession: 'session',
   turn: 'sessionObject', attachTurn: 'session', turnState: 'session',
-  listRequests: 'session', answerRequest: 'session', steer: 'session',
+  listRequests: 'session', answerRequest: 'session', steer: 'session', steerReceipt: 'session',
   interrupt: 'sessionObject', decidePermission: 'sessionObject', listAgents: 'selected',
   listRoles: 'root', listMethods: 'rootObject', inspectMethod: 'rootObject',
   resolveSelectedContext: 'session', replaceSelectedMethods: 'session',
@@ -434,22 +436,42 @@ function createRoutingPort(registry: HarnessPortRegistry): DaemonHarnessPort {
   const sessionPort = async (id: string, options?: DaemonRequestOptions): Promise<DaemonHarnessPort> => {
     const known = owners.get(id);
     if (known) return known.port;
+    let unavailableProbe: HarnessError | undefined;
     for (const port of new Set(registry.boundPorts?.values())) {
+      let session: SessionRecord | ReadableRuntimeSessionRecord;
       try {
-        const { session } = await port.getSession(id, options);
-        remember(id, port, session.projectRoot);
-        return port;
+        ({ session } = await port.getSession(id, options));
       } catch (error) {
-        if (!(error instanceof HarnessError) || error.type !== 'SESSION_NOT_FOUND') throw error;
+        if (!(error instanceof HarnessError)) throw error;
+        if (error.type === 'SESSION_NOT_FOUND') continue;
+        if (error.type === 'WORKING_ROOT_CONFLICT' || error.type === 'WORKING_ROOT_INACCESSIBLE') {
+          // This is only an ownership probe. An unrelated unavailable folder
+          // must not prevent another scoped port from proving the actual owner.
+          // Preserve the failure unless a verified owner is subsequently found.
+          unavailableProbe ??= error;
+          continue;
+        }
+        throw error; // Authentication, authorization and transport errors stay fatal.
       }
+      remember(id, port, session.projectRoot);
+      return port;
     }
     const recover = getHostedBootstrapPort().resolveSessionPort;
     if (recover) {
-      const port = await recover.call(getHostedBootstrapPort(), id, options);
+      let port: DaemonHarnessPort;
+      try {
+        port = await recover.call(getHostedBootstrapPort(), id, options);
+      } catch (error) {
+        if (unavailableProbe && error instanceof HarnessError && error.type === 'SESSION_NOT_FOUND') {
+          throw unavailableProbe;
+        }
+        throw error;
+      }
       const { session } = await port.getSession(id, options);
       remember(id, port, session.projectRoot);
       return port;
     }
+    if (unavailableProbe) throw unavailableProbe;
     throw new HarnessError('SESSION_NOT_FOUND', 404, `Unknown session: ${id}`);
   };
   const rootPort = async (root: string, options?: DaemonRequestOptions): Promise<DaemonHarnessPort> => {

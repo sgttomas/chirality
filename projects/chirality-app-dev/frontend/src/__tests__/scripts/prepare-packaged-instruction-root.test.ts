@@ -23,6 +23,7 @@ afterEach(async () => {
 });
 
 describe('prepare packaged instruction root', () => {
+  // Full-library filesystem checks measure correctness, not a five-second latency budget.
   it('stages the exact four-role, workflow, skill, compatibility, and tool closure', async () => {
     const outputRoot = path.join(temporaryRoot, 'instruction-root');
     await preparePackagedInstructionRoot({
@@ -117,7 +118,7 @@ describe('prepare packaged instruction root', () => {
     for (const file of manifest.files) {
       await expect(readFile(path.join(outputRoot, file.path))).resolves.toBeTruthy();
     }
-  });
+  }, 15_000);
 
   it('clears stale files before rebuilding', async () => {
     const outputRoot = path.join(temporaryRoot, 'instruction-root');
