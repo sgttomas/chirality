@@ -409,3 +409,44 @@ describe("safe developer instruction adoption", () => {
     await supervisor.close();
   });
 });
+
+describe("native steering and descendant evidence", () => {
+  it("checks Runtime/provider ownership, sends the pinned request, and distinguishes rejection from uncertain acknowledgment", async () => {
+    const host = fakeHost(); const supervisor = new CodexSupervisor({ host });
+    const worker = await supervisor.acquire("steer-worker", envelope());
+    const input = { operationId: "steer-1", expectedTurnId: "turn-a", text: "Adjust the plan" };
+    host.respond("turn/steer", () => ({ turnId: "turn-1" }));
+    expect(await supervisor.steerTurn(worker.workerId, worker.generation, { ...input, expectedTurnId: "stale" })).toMatchObject({ status: "rejected" });
+    expect(host.calls.filter(call => call.method === "turn/steer")).toHaveLength(0);
+    expect(await supervisor.steerTurn(worker.workerId, worker.generation, input)).toMatchObject({ status: "accepted", providerTurnId: "turn-1" });
+    expect(host.calls.at(-1)).toEqual({ method: "turn/steer", params: { threadId: "thread-1", expectedTurnId: "turn-1", clientUserMessageId: "steer-1", input: [{ type: "text", text: "Adjust the plan", text_elements: [] }] } });
+    const { RuntimeError } = await import("@chirality/runtime-contracts");
+    host.fail("turn/steer", new RuntimeError("ENGINE_UNAVAILABLE", "no active turn to steer", 503, { jsonRpcCode: -32600 }));
+    expect(await supervisor.steerTurn(worker.workerId, worker.generation, input)).toMatchObject({ status: "rejected" });
+    host.fail("turn/steer", new RuntimeError("ENGINE_UNAVAILABLE", "internal failure", 503, { jsonRpcCode: -32603 }));
+    expect(await supervisor.steerTurn(worker.workerId, worker.generation, input)).toMatchObject({ status: "unknown" });
+    host.fail("turn/steer", new Error("response lost"));
+    expect(await supervisor.steerTurn(worker.workerId, worker.generation, input)).toMatchObject({ status: "unknown" });
+    host.respond("turn/steer", () => ({ turnId: "wrong-native-turn" }));
+    expect(await supervisor.steerTurn(worker.workerId, worker.generation, input)).toMatchObject({ status: "unknown" });
+    host.restart();
+    expect(await supervisor.steerTurn(worker.workerId, worker.generation, input)).toMatchObject({ status: "rejected" });
+    await supervisor.close();
+  });
+  it("resolves descendant questions and records an explicit observation limit for active children at parent completion", async () => {
+    const host = fakeHost(); const supervisor = new CodexSupervisor({ host });
+    const worker = await supervisor.acquire("child-worker", envelope());
+    host.notify("thread/started", { thread: { id: "child", parentThreadId: "thread-1", status: { type: "active", activeFlags: ["waitingOnUserInput"] } } });
+    const question = host.ask({ id: 501, method: "item/tool/requestUserInput", params: { threadId: "child", turnId: "child-turn", itemId: "q", questions: [], isBlocking: false } });
+    await Promise.resolve();
+    expect(await supervisor.pendingRequests(worker.workerId, worker.generation)).toHaveLength(1);
+    host.notify("serverRequest/resolved", { threadId: "child", requestId: 501 });
+    await question;
+    expect(await supervisor.pendingRequests(worker.workerId, worker.generation)).toHaveLength(0);
+    host.notify("turn/completed", { threadId: "thread-1", turn: { id: "turn-1", status: "completed" } });
+    const progress = await drain(supervisor, worker.workerId, worker.generation);
+    expect(progress).toContainEqual(expect.objectContaining({ type: "notification", method: "chirality/nativeChildren/observationEnded", params: expect.objectContaining({ agentThreadIds: ["child"] }) }));
+    expect(progress).toContainEqual(expect.objectContaining({ type: "request-resolved", requestId: "501" }));
+    await supervisor.close();
+  });
+});

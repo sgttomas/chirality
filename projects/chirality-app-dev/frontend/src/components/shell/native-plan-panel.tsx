@@ -116,8 +116,7 @@ export function NativePlanPanel({ model, focusRevision }: { model: NativePlanPan
       <div><p className="woven-eyebrow">Plan Mode</p><h2>{current ? `Revision ${current.revision}` : 'Current plan'}</h2></div>
       <button type="button" className="button-muted" disabled={refreshing} onClick={model.onRefresh}>{refreshing ? 'Refreshing…' : 'Refresh'}</button>
     </header>
-    {clarifications.map(clarification => <NativePlanClarificationCard key={String(clarification.requestId)} clarification={clarification}
-      pending={clarificationPendingId === clarification.requestId} onReply={model.onReplyClarification} />)}
+    {clarifications.length ? <p role="status">Answer the pending questions in the conversation.</p> : null}
     {clarificationError ? <p className="panel-error" role="alert">{clarificationError}</p> : null}
     {!current ? <p>{active ? 'Describe what you want to plan in the conversation. The first revision will appear here.' : 'Switch to Plan Mode to inspect and revise a plan in this conversation.'}</p> : <>
       <p className="native-plan-sidebar-meta">Current plan · read-only</p>

@@ -1,5 +1,6 @@
 'use client';
 
+import { deriveTranscriptView, type TranscriptItem } from '@chirality/runtime-contracts/transcript-replay';
 import { nativePlanText } from '../../lib/harness/native-plan-text';
 
 import { usePathname, useSearchParams } from 'next/navigation';
@@ -12,6 +13,7 @@ import {
   getHarnessTurnState,
   createHarnessSession,
   interruptHarnessSession,
+  steerHarnessSession,
   replaySessionEvents,
   streamHarnessTurn,
   type HarnessModelSelection,
@@ -32,7 +34,7 @@ import { resolvePersona } from '../../lib/shell/persona-resolution';
 import { useHarnessEventActions, useHarnessEvents } from '../workspace/harness-events-provider';
 import { deriveTurnActivityFromEvents, deriveTurnActivityFromTranscript, type TurnActivity } from '../../lib/shell/turn-activity';
 import { selectPendingPermissionRequests, selectPendingServerRequests } from '../../lib/shell/harness-event-views';
-import { TURN_CONTINUATION_NOTE, interruptedTurnPresentation, turnOutcomeDescription, turnOutcomeLabel, turnPhaseStatusLine, type TurnOutcome, type TurnPhase } from '../../lib/shell/turn-phase';
+import { interruptedTurnPresentation, turnOutcomeDescription, turnOutcomeLabel, turnPhaseStatusLine, type TurnOutcome, type TurnPhase } from '../../lib/shell/turn-phase';
 import {
   beginPlanExecution, detectPlanExecution, planExecutionMarker, readPlanExecutionRecords, runningPlanExecution,
   settlePlanExecution, writePlanExecutionRecords, type PlanExecutionRecord
@@ -47,7 +49,7 @@ import { ChatMarkdown } from './chat-markdown';
 import { ConversationMessage } from './conversation-message';
 import { FilePicker } from './file-picker';
 import { PermissionRequests } from './permission-requests';
-import { ServerRequests } from './request-card';
+import { LiveSessionRequests } from './request-card';
 import { useRuntimeEpoch } from './runtime-connectivity-provider';
 import {
   getNativePlanCapability,
@@ -84,6 +86,9 @@ type ChatMessage = {
   turnId?: string;
   /** Activity recorded for a resumed turn (from the transcript projection). */
   recordedActivity?: TurnActivity;
+  nativeItems?: TranscriptItem[];
+  phase?: TranscriptItem['phase'];
+  receipt?: string;
 };
 
 type ActiveSession = {
@@ -407,13 +412,13 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       : isSelectionInCatalog(modelCatalog, recordedSelection) ? recordedSelection : modelCatalog.selection)
     : null;
 
-  const refreshNativePlan = useCallback(async (sessionId: string, signal?: AbortSignal): Promise<void> => {
-    setPlanRefreshing(true);
+  const refreshNativePlan = useCallback(async (sessionId: string, signal?: AbortSignal, manual = false): Promise<void> => {
+    if (manual) setPlanRefreshing(true);
     try {
       const result = await listNativePlanRevisions(sessionId, signal);
       if (!signal?.aborted && activeSessionIdRef.current === sessionId) setPlanRevisions(result.revisions);
     } finally {
-      if (!signal?.aborted && activeSessionIdRef.current === sessionId) setPlanRefreshing(false);
+      if (manual && !signal?.aborted && activeSessionIdRef.current === sessionId) setPlanRefreshing(false);
     }
   }, []);
 
@@ -668,6 +673,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const continuation = projection.session?.continuation;
     if (!continuation || continuation.roleId !== activePersona || continuation.projectRoot !== projectRoot) return;
     resumeRequestSeen.current = resumeConversation.requestId;
+    const recordedSteer = projection.events?.filter(event => event.type === 'codex.steer').at(-1)?.data;
+    setSteerReceipt(recordedSteer && typeof recordedSteer.operationId === 'string' && typeof recordedSteer.text === 'string'
+      ? { sessionId: projection.selectedSessionId, operationId: recordedSteer.operationId, text: recordedSteer.text,
+        status: recordedSteer.status === 'accepted' ? 'accepted' : recordedSteer.status === 'rejected' ? 'rejected' : 'unknown',
+        message: typeof recordedSteer.message === 'string' ? recordedSteer.message : undefined } : null);
     pendingBootstrap.current = undefined;
     bindingGeneration.current += 1;
     lastInstructionSequenceRef.current = projection.instructionHistory.reduce((maximum, record) => Math.max(maximum, record.sequence), 0);
@@ -682,7 +692,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         : undefined;
       return [{ id: `replay-${item.key}`, role: item.role === 'user' ? 'operator' as const : 'assistant' as const,
         ...(item.role === 'assistant' ? { ...(recordedRole ? { persona: recordedRole } : {}), projectRoot: continuation.projectRoot,
-          ...(item.turnId ? { turnId: item.turnId, recordedActivity: deriveTurnActivityFromTranscript(projection.transcript.items, item.turnId) } : {}) } : {}),
+          ...(item.turnId ? { turnId: item.turnId, recordedActivity: projection.events ? deriveTurnActivityFromEvents(projection.events, item.turnId) : deriveTurnActivityFromTranscript(projection.transcript.items, item.turnId) } : {}) } : {}),
+        turnId: item.turnId, phase: item.phase, receipt: item.eventType === 'codex.steer' ? (item.summary ?? (item.status === 'accepted' ? 'Update received' : item.status === 'failed' ? 'Update rejected' : 'Awaiting update receipt')) : undefined,
         text: item.text ?? '', ...(item.role === 'user' && item.attachments?.length ? { attachments: item.attachments.map(buildUiAttachment) } : {}) }];
     });
     const latestBasis = projection.instructionBases.at(-1);
@@ -721,7 +732,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     setMessages(nextMessages.length ? nextMessages : [{ id: `resumed-${projection.selectedSessionId}`, role: 'assistant', persona: continuation.roleId, projectRoot: continuation.projectRoot, text: 'Continue this conversation when you are ready.',
       ...(latestBasis ? { instructionBasis: latestBasis } : {}), instructionHistory: projection.instructionHistory }]);
     setRuntimeError(null); setRuntimeStatus(null); setFolderSyncError(null);
-    clearEvents();
+    if (projection.events) hydrateEvents([...projection.events]); else clearEvents();
     onConversationResumed?.(nextSession.sessionId);
     void recoverActiveTurn(nextSession);
   }, [resumeConversation, isRunning, activePersona, activeMode, projectRoot, clearEvents, onConversationResumed, clearNativePlanProjection]);
@@ -858,7 +869,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     return nextSession;
   }
 
-  type TurnObservationOutcome = { assistantText: string; error: HarnessApiClientError | Error | null; terminal: boolean; outcome: TurnOutcome | null; turnId?: string };
+  type TurnObservationOutcome = { rejectedBeforeStart?: boolean; assistantText: string; error: HarnessApiClientError | Error | null; terminal: boolean; outcome: TurnOutcome | null; turnId?: string };
 
   /**
    * Observe one Runtime-owned turn to its end. `start` opens the first stream
@@ -889,6 +900,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     let receivedFrames = 0;
     let streamOpened = false;
     let assistantText = '';
+    const observedEvents = new Map<string, HarnessEvent>();
+    let nativeTextObserved = false;
     let textSource: 'chat:delta' | 'message.delta' | null = null;
     let terminal = false;
     let turnIdSeen = Boolean(input.turnId);
@@ -906,7 +919,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     };
     if (turnId) setAssistant({ turnId });
     const appendText = (chunk: string, source: 'chat:delta' | 'message.delta'): void => {
-      if (!chunk) return;
+      if (!chunk || nativeTextObserved) return;
       textSource ??= source;
       if (textSource !== source) return;
       assistantText += chunk;
@@ -938,7 +951,22 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
       if (streamEvent.event === 'harness:event') {
         if (!isHarnessEvent(streamEvent.data)) return;
-        const harnessEvent = streamEvent.data;
+        const harnessEvent = { ...streamEvent.data, data: streamEvent.data.data ?? {} };
+        observedEvents.set(harnessEvent.eventId, harnessEvent);
+        if (harnessEvent.type === 'codex.steer') {
+          const data = harnessEvent.data;
+          if (typeof data.operationId === 'string' && typeof data.text === 'string' && ['submitted', 'accepted', 'rejected', 'unknown'].includes(String(data.status))) {
+            setSteerReceipt({ sessionId: session.sessionId, operationId: data.operationId, text: data.text, status: data.status as 'submitted' | 'accepted' | 'rejected' | 'unknown', message: typeof data.message === 'string' ? data.message : undefined });
+            if (data.status === 'accepted') setDraft(current => current.trim() === data.text ? '' : current);
+          }
+        }
+        const nativeItems = deriveTranscriptView([...observedEvents.values()]).items.filter(item => item.nativeItemId || item.eventType === 'codex.steer');
+        if (nativeItems.some(item => item.nativeItemId)) {
+          nativeTextObserved = true;
+          assistantText = nativeItems.filter(item => item.role === 'assistant').map(item => item.text ?? '').join('\n\n');
+          setAssistant({ text: assistantText, nativeItems });
+        }
+
         const duplicate = seen.has(harnessEvent.eventId);
         seen.add(harnessEvent.eventId);
         if (!duplicate) appendEvent(harnessEvent);
@@ -983,7 +1011,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
       if (streamEvent.event === 'chat:complete') {
         const completed = readTextField(streamEvent.data);
-        if (completed) { assistantText = completed; setAssistant({ text: assistantText }); }
+        if (completed && !nativeTextObserved) { assistantText = completed; setAssistant({ text: assistantText }); }
         return;
       }
 
@@ -1034,7 +1062,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           Boolean(caught.details && typeof caught.details === 'object' && 'transportReason' in caught.details);
         if (!input.reattach && !streamOpened && !transportFailure && attempt === 0 && open === input.start && receivedFrames === framesBefore) {
           // The first stream never opened: report it as today.
-          return { assistantText, error: caught instanceof Error ? caught : new Error(String(caught)), terminal: false, outcome: null };
+          return { assistantText, error: caught instanceof Error ? caught : new Error(String(caught)), terminal: false, outcome: null, rejectedBeforeStart: true };
         }
         if (isTurnNotActive(caught)) {
           // Nothing left to attach to: the turn ended while we were away, or
@@ -1093,7 +1121,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         // Text the Runtime recorded after the connection dropped belongs to
         // this reply: append what was missed rather than showing a torn message.
         for (const event of events) {
-          seen.add(event.eventId); appendEvent(event);
+          seen.add(event.eventId); appendEvent(event); observedEvents.set(event.eventId, event);
           if (assistantText && event.type === 'message.delta' && (!turnId || event.turnId === turnId) && !textSeen.has(event.eventId)) {
             textSeen.add(event.eventId);
             appendText(readTextField(event.data) ?? '', 'message.delta');
@@ -1112,6 +1140,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           const payload = last.data ?? {};
           error = new HarnessApiClientError(500, typeof payload.code === 'string' ? payload.code : 'SDK_FAILURE', typeof payload.message === 'string' ? payload.message : 'Turn failed.', payload.details);
         }
+        const recovered = deriveTranscriptView(scoped).items.filter(item => item.nativeItemId || item.eventType === 'codex.steer');
+        if (recovered.some(item => item.nativeItemId)) {
+          assistantText = recovered.filter(item => item.role === 'assistant').map(item => item.text ?? '').join('\n\n');
+          setAssistant({ text: assistantText, nativeItems: recovered });
+        }
         if (!assistantText) {
           const textTurnId = turnId ?? last?.turnId;
           const text = scoped.filter(event => event.type === 'message.delta' && event.turnId === textTurnId).map(event => readTextField(event.data) ?? '').join('');
@@ -1126,6 +1159,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
     const outcome: TurnOutcome | null = !terminal ? null : interruption ? interruption.outcome : outcomeUnknown ? 'unknown' : interrupted ? 'interrupted' : error ? 'failed' : 'completed';
     if (outcome) setAssistant({ outcome });
+    if (terminal && observedEvents.size) setAssistant({ recordedActivity: deriveTurnActivityFromEvents([...observedEvents.values()], turnId) });
     return { assistantText, error: interruption && interruption.outcome !== 'interrupted' ? null : error, terminal, outcome, ...(turnId ? { turnId } : {}) };
   }
 
@@ -1152,10 +1186,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     setReconnectAttempt(1);
     setRuntimeStatus('Reconnecting to the running turn...');
     setMessages((existing) => {
-      const last = existing.at(-1);
-      // The resumed transcript already ends with this turn's user message; the
-      // assistant reply streams into a fresh bubble.
-      const withoutPartial = last?.role === 'assistant' && !last.text && !last.interrupted && last.id.startsWith('replay-') ? existing.slice(0, -1) : existing;
+      // The retained stream replays this active turn from seq 0. Replace its
+      // replayed assistant/steering items instead of showing two copies.
+      const withoutPartial = existing.filter(message => state.turnId && message.turnId === state.turnId
+        ? message.role === 'operator' && !message.receipt
+        : !(message.role === 'assistant' && !message.text && !message.interrupted && message.id.startsWith('replay-')));
       return [...withoutPartial, { id: assistantId, role: 'assistant', persona: session.persona, projectRoot: session.projectRoot, text: '', ...(state.turnId ? { turnId: state.turnId } : {}) }];
     });
     try {
@@ -1268,9 +1303,35 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
   }
 
+  const [steerReceipt, setSteerReceipt] = useState<{ sessionId: string; operationId: string; text: string; status: 'submitted' | 'accepted' | 'rejected' | 'unknown'; message?: string } | null>(null);
+  const [steerPending, setSteerPending] = useState(false);
+  const steerOperationInFlight = useRef(false);
+  const currentRuntimeTurnId = [...messages].reverse().find(message => message.role === 'assistant')?.turnId;
+  const unknownSteerDraft = steerReceipt && steerReceipt.sessionId === activeSession?.sessionId && (steerReceipt.status === 'unknown' || steerReceipt.status === 'submitted') && steerReceipt.text === draft.trim();
+
+  async function submitSteering(): Promise<void> {
+    if (!activeSession || !currentRuntimeTurnId || steerOperationInFlight.current || stopRequested || reconnectAttempt !== null || unknownSteerDraft || !draft.trim()) return;
+    steerOperationInFlight.current = true;
+    const sessionId = activeSession.sessionId;
+    const text = draft.trim();
+    const operationId = crypto.randomUUID();
+    setSteerPending(true);
+    setSteerReceipt({ sessionId, operationId, text, status: 'submitted' });
+    try {
+      const result = await steerHarnessSession(sessionId, { operationId, expectedTurnId: currentRuntimeTurnId, text });
+      if (activeSessionIdRef.current !== sessionId) return;
+      setSteerReceipt(current => current?.operationId === operationId && current.status === 'accepted' ? current : { sessionId, operationId, text, status: result.status, message: result.message });
+      if (result.status === 'accepted') setDraft(current => current.trim() === text ? '' : current);
+    } catch (error) {
+      if (activeSessionIdRef.current === sessionId) setSteerReceipt(current => current?.operationId === operationId && current.status === 'accepted' ? current : { sessionId, operationId, text, status: 'unknown', message: error instanceof Error ? error.message : 'The update receipt could not be confirmed.' });
+    } finally { steerOperationInFlight.current = false; setSteerPending(false); }
+  }
+
   async function submitDraft(event: FormEvent<HTMLFormElement>): Promise<void> {
     event.preventDefault();
-    if (isRunning || folderSelectionPending || nativeSelectionActive.current || !draftIdentityReady || !isSupportedOperatorMode(operatorMode)) return;
+    if (isRunning) { await submitSteering(); return; }
+    if (unknownSteerDraft) return;
+    if (folderSelectionPending || nativeSelectionActive.current || !draftIdentityReady || !isSupportedOperatorMode(operatorMode)) return;
     const text = draft.trim();
 
     if (!text && attachments.length === 0) {
@@ -1286,6 +1347,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const submittedWithoutSession = activeSession === null;
     const submittedModelChoice = modelChoice;
     let bootedSession: ActiveSession | null = activeSession;
+    let definitelyNotStarted = true;
     // Sending the prepared "Execute plan" request is that revision's execution
     // attempt; an edited message without the marker is an ordinary turn.
     const submittedTurnId = crypto.randomUUID();
@@ -1387,6 +1449,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         setPlanExecutions(submittedExecutions);
         if (typeof window !== 'undefined') writePlanExecutionRecords(window.localStorage, session.sessionId, submittedExecutions);
       }
+      definitelyNotStarted = false;
       const outcome = await observeTurn({
         session,
         assistantId,
@@ -1423,6 +1486,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         // cannot be re-sent by accident. Session bookkeeping below still runs.
         setRuntimeError({ title: 'Turn outcome unknown', message: 'The connection to the Runtime was lost and its record does not show how this turn ended.', nextStep: 'Reopen the chat to check the recorded result. Nothing was re-sent.' });
       } else if (outcome.error) {
+        definitelyNotStarted = outcome.rejectedBeforeStart === true;
         throw outcome.error;
       }
 
@@ -1494,6 +1558,18 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       const origin = sessionCreateInFlight.current ? 'session-create' : 'session';
       sessionCreateInFlight.current = false;
       const uiError = toHarnessUiError(error, { sessionModel: bootedSession?.model, origin, bootBeforePrompt: Boolean(pendingBootstrap.current) && !bootedSession });
+      // A bound chat can lose its visible context while this pre-turn request
+      // is outstanding. Recover to its own draft key, never the newly selected
+      // chat, and only when rejection proves no turn was started.
+      if (definitelyNotStarted && !submittedWithoutSession && requestGeneration !== bindingGeneration.current && submittedDraftStorageKey && typeof window !== 'undefined') {
+        const stored = readChatDraftSnapshotFromStorage(window.localStorage, submittedDraftStorageKey);
+        if (stored.writable && !stored.snapshot.draft.trim() && stored.snapshot.attachments.length === 0) {
+          const restored = persistChatDraftSnapshotToStorage(window.localStorage, submittedDraftStorageKey, {
+            ...stored.snapshot, draft: preservedDraft, attachments: preservedAttachments, methods: preservedMethods
+          });
+          if (restored.writable) uiError.nextStep = 'Your unsent message is saved with its original chat. Reopen that chat to retry manually.';
+        }
+      }
       setRuntimeError(uiError);
       setRuntimeStatus(null);
       if (executionAttempt) {
@@ -1618,10 +1694,6 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     }
   }
 
-  // A Plan Mode clarification is the same Codex `item/tool/requestUserInput`
-  // request as a generic user-input card; the plan sidebar presents it once.
-  const clarificationRequestIds = useMemo(() => new Set(planClarifications.map(item => String(item.requestId))), [planClarifications]);
-
   // The Plan tab renders the plan; this panel owns its state and the composer
   // the actions write into. Handlers read the latest closure through a ref so
   // the model only changes when the plan does.
@@ -1629,7 +1701,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   planHandlers.current = { beginPlanRevision, beginPlanFollowUp, savePlanRevision, answerPlanClarification, refreshNativePlan };
   const activeSessionForPlan = activeSession?.sessionId;
   const stablePlanHandlers = useMemo(() => ({
-    onRefresh: () => { const id = activeSessionIdRef.current; if (id) void planHandlers.current.refreshNativePlan(id).catch(() => {}); },
+    onRefresh: () => { const id = activeSessionIdRef.current; if (id) void planHandlers.current.refreshNativePlan(id, undefined, true).catch(() => {}); },
     onRevise: (revision: number | undefined) => planHandlers.current.beginPlanRevision(revision),
     onExecute: (revision: NativePlanRevision) => planHandlers.current.beginPlanFollowUp(revision, 'execute'),
     onSaveAsWorkflow: (revision: NativePlanRevision) => planHandlers.current.beginPlanFollowUp(revision, 'workflow'),
@@ -1653,15 +1725,12 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   // scoped by turn id once the Runtime has named it.
   const liveEvents = phaseEvents;
   const liveActivity = useMemo(() => {
-    const live = messages.find(message => message.role === 'assistant' && !message.recordedActivity && (isRunning ? true : Boolean(message.turnId)));
-    const streaming = [...messages].reverse().find(message => message.role === 'assistant' && !message.recordedActivity);
-    const target = isRunning ? streaming : live;
-    if (!target || liveEvents.length === 0) return new Map<string, TurnActivity>();
+    const target = [...messages].reverse().find(message => message.role === 'assistant');
     const result = new Map<string, TurnActivity>();
     for (const message of messages) {
-      if (message.role !== 'assistant' || message.recordedActivity) continue;
-      if (message.turnId) result.set(message.id, deriveTurnActivityFromEvents(liveEvents, message.turnId));
-      else if (message === target && isRunning) result.set(message.id, deriveTurnActivityFromEvents(liveEvents));
+      if (message.role !== 'assistant') continue;
+      if (message.turnId && liveEvents.some(event => event.turnId === message.turnId)) result.set(message.id, deriveTurnActivityFromEvents(liveEvents, message.turnId));
+      else if (!message.turnId && message === target && isRunning) result.set(message.id, deriveTurnActivityFromEvents(liveEvents));
     }
     return result;
   }, [messages, liveEvents, isRunning]);
@@ -1683,6 +1752,15 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     const gap = node.scrollHeight - node.scrollTop - node.clientHeight;
     setFollowing(gap <= FOLLOW_REARM_THRESHOLD_PX);
   }, []);
+  const renderedMessages = messages.flatMap(message => message.nativeItems?.some(item => item.nativeItemId)
+    ? message.nativeItems.map((item, index) => ({ ...message, id: `${message.id}:${item.key}`, role: item.role === 'user' ? 'operator' as const : 'assistant' as const,
+      text: item.text ?? '', phase: item.phase, nativeItems: undefined,
+      recordedActivity: item.role === 'assistant' && !message.nativeItems!.slice(index + 1).some(next => next.role === 'assistant') ? (liveActivity.get(message.id) ?? message.recordedActivity) : undefined,
+      interrupted: item.role === 'assistant' && !message.nativeItems!.slice(index + 1).some(next => next.role === 'assistant') ? message.interrupted : undefined,
+      outcome: item.role === 'assistant' && !message.nativeItems!.slice(index + 1).some(next => next.role === 'assistant') ? message.outcome : undefined,
+      receipt: item.eventType === 'codex.steer' ? (item.summary ?? (item.status === 'accepted' ? 'Update received' : item.status === 'failed' ? 'Update rejected' : 'Awaiting update receipt')) : undefined }))
+    : [message]);
+  const lastAssistantIndex = renderedMessages.reduce((last, message, index) => message.role === 'assistant' ? index : last, -1);
   const messageCount = messages.length;
   const lastMessageId = messages.at(-1)?.id;
   useEffect(() => {
@@ -1738,20 +1816,23 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         {!projectRoot ? (
           <p className="panel-empty">{presentation === 'woven' ? 'Choose a folder below to start a chat.' : 'Select a Working Root before starting a harness turn.'}</p>
         ) : null}
-        {messages.map((message, index) => {
-          const isStreaming = isRunning && message.role === 'assistant' && index === messages.length - 1;
-          const activity = message.recordedActivity ?? liveActivity.get(message.id);
+        {renderedMessages.map((message, index) => {
+          const isStreaming = isRunning && message.role === 'assistant' && index === lastAssistantIndex;
+          const lastForTurn = !renderedMessages.slice(index + 1).some(item => item.role === 'assistant' && item.turnId && item.turnId === message.turnId);
+          const activity = lastForTurn ? (liveActivity.get(message.id) ?? message.recordedActivity ?? (isStreaming ? { items: [], running: 0, failed: 0, pendingApproval: 0 } : undefined)) : undefined;
           return <ConversationMessage key={message.id} id={message.id} role={message.role} presentation={presentation}
             speaker={message.role === 'operator' ? 'You' : (message.persona ?? 'Assistant').toLowerCase().split('_').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')}
-            persona={message.persona} streaming={isStreaming}
+            persona={message.persona} streaming={isStreaming} phase={message.phase}
             body={message.text ? (message.role === 'assistant'
               ? <ChatMarkdown source={message.text} projectRoot={message.projectRoot} fileCatalog={fileCatalog} onOpenFile={onOpenFile} />
               : message.text) : null}
             activity={activity && message.role === 'assistant' ? <TurnActivityDisclosure activity={activity} running={isStreaming} /> : null}>
+            {message.receipt ? <p role="status">{message.receipt}</p> : null}
+            {isStreaming && (turnPhase === 'waiting' || turnPhase === 'reconnecting' || turnPhase === 'stopping') ? <p className="chat-runtime-status" data-turn-phase={turnPhase} role="status">{phaseStatusLine}</p> : null}
             {message.attachments && message.attachments.length > 0 ? (
               <AttachmentChips items={message.attachments} />
             ) : null}
-            {message.role === 'assistant' && message.outcome && (message.outcome !== 'completed' || index === messages.length - 1)
+            {message.role === 'assistant' && message.outcome && (message.outcome !== 'completed' || index === renderedMessages.length - 1)
               ? <p className={`chat-turn-status chat-turn-status--${message.outcome}`} role="status" data-turn-outcome={message.outcome} title={message.outcomeDescription ?? turnOutcomeDescription(message.outcome)}>{turnOutcomeLabel(message.outcome)}</p>
               : message.interrupted ? <p className="chat-turn-status chat-turn-status--interrupted" role="status" data-turn-outcome="interrupted" title={turnOutcomeDescription('interrupted')}>{turnOutcomeLabel('interrupted')}</p> : null}
             {message.methods?.length ? <ul className="method-chip-list" aria-label="Selected methods">{message.methods.map(method => <li key={`${method.sourceRootId}:${method.kind}:${method.name}`} className="method-chip"><span>{method.name}</span><small>{method.source}</small></li>)}</ul> : null}
@@ -1778,7 +1859,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         </ul> : null}
         {presentation === 'woven' && !onPlanPanelChange && planPanelModel ? <NativePlanPanel model={planPanelModel} /> : null}
         <PermissionRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} />
-        <ServerRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} suppressedRequestIds={clarificationRequestIds} />
+        <LiveSessionRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} />
       </div>
       </div>
       {!following ? <button type="button" className="chat-jump-to-latest" onClick={() => { setFollowing(true); scrollToLatest('smooth'); }}>Jump to latest ↓</button> : null}
@@ -1791,6 +1872,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           flexible row was squeezed below its own padding, and its box
           overflowed on top of the Attachments row (Stage C defect). */}
       <div className="chat-composer-dock">
+        {steerReceipt && steerReceipt.sessionId === activeSession?.sessionId ? <p role="status" className="chat-steer-receipt">
+          {steerReceipt.status === 'accepted' ? 'Update received by the running turn.' : steerReceipt.status === 'rejected' ? 'Update rejected. Your draft is preserved.' : steerReceipt.status === 'submitted' ? 'Awaiting update receipt…' : 'Update delivery unconfirmed. Your draft is preserved; it will not be resent automatically.'}
+          {steerReceipt.message ? ` ${steerReceipt.message}` : ''}
+        </p> : null}
         {draftStorageWarning ? (
           <div className="chat-storage-warning toolkit-warning" role="status" aria-live="polite">
             <p>{draftStorageWarning}</p>
@@ -1858,7 +1943,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           )}
         </div>) : null}
 
-        {phaseStatusLine ? <p className="chat-runtime-status" data-turn-phase={turnPhase} role="status">{phaseStatusLine}{turnPhase !== 'idle' ? <span className="chat-runtime-status-note"> {TURN_CONTINUATION_NOTE}</span> : null}</p> : runtimeStatus ? <p className="chat-runtime-status">{runtimeStatus}</p> : null}
+        {!isRunning && runtimeStatus ? <p className="chat-runtime-status">{runtimeStatus}</p> : null}
 
         {runtimeError ? (
           <div className="chat-runtime-error">
@@ -1902,7 +1987,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           aria-label="Chat input"
           data-chat-input="primary"
           value={draft}
-          disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady}
+          disabled={!projectRoot || steerPending || folderSelectionPending || !draftIdentityReady}
           onKeyDown={event => {
             if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
               event.preventDefault(); event.currentTarget.form?.requestSubmit();
@@ -1926,7 +2011,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           aria-label="Chat input"
           data-chat-input="primary"
           value={draft}
-          disabled={!projectRoot || isRunning}
+          disabled={!projectRoot || steerPending}
           onChange={(event) => {
             setDraft(event.target.value);
             if (runtimeError) {
@@ -1941,10 +2026,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         {presentation === 'woven' ? <button type="button" className="chat-workflow-button" aria-label="Choose a workflow" title="Open workflows and skill references" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={onOpenMethods}>Workflows</button> : null}
         <button
           type="submit"
-          aria-label={isRunning ? 'Running' : 'Send'}
-          disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady || !isSupportedOperatorMode(operatorMode) || (!draft.trim() && attachments.length === 0)}
+          aria-label={isRunning ? 'Update running turn' : 'Send'}
+          disabled={!projectRoot || steerPending || unknownSteerDraft || (isRunning && (!currentRuntimeTurnId || !draft.trim() || stopRequested || reconnectAttempt !== null)) || folderSelectionPending || !draftIdentityReady || !isSupportedOperatorMode(operatorMode) || (!draft.trim() && attachments.length === 0)}
         >
-          {presentation === 'woven' ? '↑' : isRunning ? 'Running...' : 'Send'}
+          {isRunning ? (steerPending ? 'Sending…' : 'Update') : presentation === 'woven' ? '↑' : 'Send'}
         </button>
         {presentation !== 'woven' || isRunning ? (        <button
           type="button"

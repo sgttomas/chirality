@@ -556,6 +556,17 @@ describe("Unix-domain runtime daemon", () => {
     const listed = await request(socketPath, `${base}/requests`, token);
     expect(listed.status).toBe(200);
     expect(JSON.parse(listed.body)).toEqual({ requests: pending });
+    // Side input is an authorized session route, and idle sessions never send it.
+    const steering = { operationId: "route-steer-1", expectedTurnId: "expired", text: "Change direction" };
+    expect((await request(socketPath, `${base}/turn/steer`, "invalid-token", "POST", steering)).status).toBe(401);
+    expect((await request(socketPath, `${base}/turn/steer`, token, "POST", { ...steering, nativeThreadId: "unowned" })).status).toBe(400);
+    const staleSteer = await request(socketPath, `${base}/turn/steer`, token, "POST", steering);
+    expect(staleSteer.status).toBe(200);
+    expect(JSON.parse(staleSteer.body)).toMatchObject({ status: "rejected", turnId: "expired", operationId: "route-steer-1" });
+    const steeringEvents = (await service.sessions.replay("requests-project", session.sessionId)).filter(event => event.type === "codex.steer");
+    expect(steeringEvents.map(event => event.data.status)).toEqual(["submitted", "rejected"]);
+    expect((await request(socketPath, `${base}/turn/steer`, token, "POST", { ...steering, text: "Conflicting reuse" })).status).toBe(409);
+
     expect((await request(socketPath, `/v1/projects/requests-project/sessions/missing-session/requests`, token)).status).toBe(404);
     for (const body of [{ verdict: "allow" }, { answer: { kind: "approval", verdict: "maybe" } }, { answer: { kind: "userInput", answers: { q1: ["x"] } } }, { answer: { kind: "elicitation", action: "later" } }, { answer: { kind: "approval", verdict: "allow" }, extra: 1 }]) {
       const rejected = await request(socketPath, `${base}/requests/17/answer`, token, "POST", body);

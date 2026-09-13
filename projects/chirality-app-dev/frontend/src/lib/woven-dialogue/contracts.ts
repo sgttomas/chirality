@@ -1,3 +1,4 @@
+import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type { TranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import type {
   ChiralityRoleName,
@@ -105,6 +106,7 @@ export type SelectedSessionReplayProjection = {
   currency: ProjectionCurrency;
   session?: OperatorSessionProjection;
   transcript: TranscriptView;
+  events?: readonly HarnessEvent[];
   instructionHistory: readonly InstructionHistoryRecordV3[];
   instructionBases: readonly FrozenInstructionBasisV3[];
   malformedLineCount: number;

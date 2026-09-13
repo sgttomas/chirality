@@ -45,6 +45,8 @@ vi.mock('next/link', () => ({
 // test observes the shell's own composition only.
 vi.mock('../../lib/harness/client', () => ({
   listHarnessSessions: vi.fn(async () => ['primary', 'recorded', ...shellState.extraSessions].map(sessionId => ({ sessionId, persona: 'TASK', projectRoot: shellState.projectRoot, mode: 'governed', createdAt: '2026-09-05', updatedAt: '2026-09-05' }))),
+  listHarnessSessionRequests: vi.fn(async () => ({ requests: [] })),
+  answerHarnessSessionRequest: vi.fn(async () => ({ sent: true })),
   harnessApiErrorMessage: (error: unknown) => String(error),
   replaySessionEvents: vi.fn(async () => ({ events: [] }))
 }));
@@ -167,7 +169,7 @@ describe('WovenDialogueShell composition', () => {
   it('preserves controller identity and focusable composer through replay, panel controls, resize, and return', async () => {
     const focus = vi.fn();
     const persist = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => JSON.stringify({ schema: 'chirality.woven-workspace/v1', coordinationView: 'work', rightPanelView: 'agents', sessionSurfaces: { recorded: 'workbench' } }), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (callback: () => void) => callback() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => JSON.stringify({ schema: 'chirality.woven-workspace/v1', coordinationView: 'work', rightPanelView: 'agents', sessionSurfaces: { recorded: 'workbench' } }), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (callback: () => void) => callback() });
     vi.stubGlobal('document', { querySelector: () => ({ focus }) });
     shellState.mounted = 0; shellState.unmounted = 0; shellState.replayLoad.mockClear();
     let tree!: ReactTestRenderer;
@@ -230,7 +232,7 @@ describe('WovenDialogueShell composition', () => {
 
   it('persists file/document widths and expand return while primary stays mounted', async () => {
     const persist = vi.fn(); const listeners: Record<string, (event: unknown) => void> = {};
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: persist },
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: persist },
       addEventListener: (name: string, callback: (event: unknown) => void) => { listeners[name] = callback; }, removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     let tree!: ReactTestRenderer; await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
@@ -259,7 +261,7 @@ describe('WovenDialogueShell composition', () => {
 
   it('binds the loaded catalog to the current root and routes chat links through the contained file opener', async () => {
     const persist = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
     const panel = tree.root.findByType(RightPanel);
@@ -290,7 +292,7 @@ describe('WovenDialogueShell composition', () => {
   it('opens a recorded parent through the existing selection guard, preserving live-turn and primary behavior', async () => {
     shellState.extraSessions = ['parent']; shellState.replayLoad.mockClear();
     const focus = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus }) });
     let tree!: ReactTestRenderer; await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
     const input = tree.root.findByProps({ 'data-chat-input': 'primary' });
@@ -313,7 +315,7 @@ describe('WovenDialogueShell composition', () => {
 
   it('continues a compatible v3 replay in the mounted primary dialogue and leaves legacy replay read-only', async () => {
     shellState.query = '';
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (callback: () => void) => callback() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (callback: () => void) => callback() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
@@ -335,7 +337,7 @@ describe('WovenDialogueShell composition', () => {
     const persist = vi.fn();
     const listeners: Record<string, (event: unknown) => void> = {};
     vi.stubGlobal('ResizeObserver', class { constructor(callback: typeof measure) { measure = callback; } observe() {} disconnect() {} });
-    vi.stubGlobal('window', {
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval,
       localStorage: { getItem: () => JSON.stringify({ schema: 'chirality.woven-workspace/v1', navigatorWidth: 280,
         rightPanelView: 'files', openDocumentPath: 'spec.md', rightPanelWidths: { document: 480, files: 300 } }), setItem: persist },
       addEventListener: (name: string, callback: (event: unknown) => void) => { listeners[name] = callback; }, removeEventListener: vi.fn()
@@ -375,7 +377,7 @@ describe('WovenDialogueShell composition', () => {
   it('responds to measured stacked widths without removing primary, document or activity controls', async () => {
     let measure!: (entries: Array<{ contentRect: { width: number } }>) => void;
     vi.stubGlobal('ResizeObserver', class { constructor(callback: typeof measure) { measure = callback; } observe() {} disconnect() {} });
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />, { createNodeMock: element => element.type === 'section' && element.props['data-woven-surface'] ? {} : null }); });
     const primary = tree.root.findByProps({ 'data-chat-input': 'primary' });
@@ -394,7 +396,7 @@ describe('WovenDialogueShell composition', () => {
   it('provides explicit desktop reopen glyphs and full accessible names across responsive states', async () => {
     let measure!: (entries: Array<{ contentRect: { width: number } }>) => void;
     vi.stubGlobal('ResizeObserver', class { constructor(callback: typeof measure) { measure = callback; } observe() {} disconnect() {} });
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />, { createNodeMock: element => element.type === 'section' && element.props['data-woven-surface'] ? {} : null }); });
     act(() => tree.root.findByProps({ 'aria-label': 'Close Navigator' }).props.onClick());
@@ -414,7 +416,7 @@ describe('WovenDialogueShell composition', () => {
 
   it('keeps collapse, detail return and expansion as distinct real controls without remounting primary', async () => {
     const persist = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     let tree!: ReactTestRenderer; await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
     const primary = tree.root.findByProps({ 'data-chat-input': 'primary' });
     const saved = () => JSON.parse(persist.mock.calls.at(-1)![1]);
@@ -448,7 +450,7 @@ describe('WovenDialogueShell composition', () => {
   it('persists a redacted live title and rejects an older recorded-title completion', async () => {
     process.env.CHIRALITY_ANTHROPIC_API_KEY = 'configured-secret-value';
     const persist = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
     let finish!: (titles: Record<string, string>) => void;
@@ -468,7 +470,7 @@ describe('WovenDialogueShell composition', () => {
 
   it('loads recorded titles only for visible active sessions', async () => {
     shellState.extraSessions = ['visible']; shellState.titleLoad.mockClear();
-    vi.stubGlobal('window', { localStorage: { getItem: () => JSON.stringify({ schema: 'chirality.woven-workspace/v1', chatArchived: ['recorded'], chatDeleted: ['primary'] }), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => JSON.stringify({ schema: 'chirality.woven-workspace/v1', chatArchived: ['recorded'], chatDeleted: ['primary'] }), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
     const titleCalls = shellState.titleLoad.mock.calls as unknown as Array<[Array<{ sessionId: string }>]>;
@@ -478,7 +480,7 @@ describe('WovenDialogueShell composition', () => {
   });
 
   it('exposes collapsed search, guarded new-chat, expand, and account controls', async () => {
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
     act(() => tree.root.findByProps({ 'aria-label': 'Close Navigator' }).props.onClick());
@@ -492,7 +494,7 @@ describe('WovenDialogueShell composition', () => {
 
   it('owns Cmd-K while collapsed and suppresses it behind every Navigator dialog', async () => {
     const listeners: Record<string, Array<(event: any) => void>> = {}; const focus = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: (name: string, fn: (event: any) => void) => { (listeners[name] ??= []).push(fn); }, removeEventListener: (name: string, fn: (event: any) => void) => { listeners[name] = (listeners[name] ?? []).filter(item => item !== fn); }, requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: (name: string, fn: (event: any) => void) => { (listeners[name] ??= []).push(fn); }, removeEventListener: (name: string, fn: (event: any) => void) => { listeners[name] = (listeners[name] ?? []).filter(item => item !== fn); }, requestAnimationFrame: (cb: () => void) => cb() });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />, { createNodeMock: element => element.type === 'input' && element.props['aria-label'] === 'Search chats' ? { focus } : null }); });
     act(() => tree.root.findByProps({ 'aria-label': 'Close Navigator' }).props.onClick());
@@ -511,7 +513,7 @@ describe('WovenDialogueShell composition', () => {
   it('replaces cleaned-up real replay readers across StrictMode effect replay and retains title/search work', async () => {
     shellState.useRealReader = true;
     const persist = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<React.StrictMode><WovenDialogueShell defaultSurface="dialogue" /></React.StrictMode>); });
     act(() => tree.update(<React.StrictMode />));
@@ -530,7 +532,7 @@ describe('WovenDialogueShell composition', () => {
 
 it('opens Settings from the sole footer or collapsed account control without remounting the chat', async () => {
   let tree!: ReactTestRenderer;
-  vi.stubGlobal('window', { innerWidth: 1440, innerHeight: 900, addEventListener: vi.fn(), removeEventListener: vi.fn(), localStorage: { getItem: () => null, setItem: vi.fn() } });
+  vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, innerWidth: 1440, innerHeight: 900, addEventListener: vi.fn(), removeEventListener: vi.fn(), localStorage: { getItem: () => null, setItem: vi.fn() } });
   await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
   const chat = tree.root.findByProps({ 'data-chat-panel': 'mounted' });
   expect(tree.root.findByProps({ 'data-activity-strip': 'mounted' }).props['data-primary-session']).toBe('primary');
@@ -553,7 +555,7 @@ it('opens Settings from the sole footer or collapsed account control without rem
 
 it('ordinary history selection opens an eligible chat directly and pauses the old composer during loading', async () => {
   shellState.query = 'agent=HELP_HUMAN';
-  vi.stubGlobal('window', { localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+  vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => null, setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
   vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
   let tree!: ReactTestRenderer;
   await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
@@ -589,7 +591,7 @@ describe('WovenDialogueShell per-chat folders', () => {
 
   it('lists chats from other folders under their folder, opens one by re-selecting its folder, and resumes it there', async () => {
     const persist = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => stored(), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     shellState.applyProjectRoot.mockImplementation(async (path: string) => { shellState.projectRoot = path; shellState.extraSessions = ['elsewhere']; return true; });
     let tree!: ReactTestRenderer;
@@ -616,7 +618,7 @@ describe('WovenDialogueShell per-chat folders', () => {
 
   it('closes a bound chat through New chat before switching folders, and only then opens the other folder\'s chat', async () => {
     shellState.bindingLocked = true;
-    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => stored(), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     let applied = false;
     shellState.applyProjectRoot.mockImplementation(async (path: string) => { applied = true; shellState.projectRoot = path; shellState.extraSessions = ['elsewhere']; return true; });
@@ -638,7 +640,7 @@ describe('WovenDialogueShell per-chat folders', () => {
 
   it('leaves everything as it was when closing the current chat is declined', async () => {
     shellState.bindingLocked = true; shellState.newChatAccepted = false;
-    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => stored(), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
@@ -656,7 +658,7 @@ describe('WovenDialogueShell per-chat folders', () => {
 
   it('reports a chat its folder no longer lists and leaves a clean chat in that folder', async () => {
     shellState.bindingLocked = true;
-    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => stored(), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     // The folder opens, but its listing does not contain the indexed chat.
     shellState.applyProjectRoot.mockImplementation(async (path: string) => { shellState.projectRoot = path; return true; });
@@ -676,7 +678,7 @@ describe('WovenDialogueShell per-chat folders', () => {
 
   it('reports a folder that cannot be opened with Locate and Forget instead of redirecting, and Forget drops only that folder', async () => {
     const persist = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => stored(), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     shellState.applyProjectRoot.mockImplementation(async () => { shellState.workspaceError = 'Working root is not accessible'; return false; });
     let tree!: ReactTestRenderer;
@@ -710,7 +712,7 @@ describe('WovenDialogueShell per-chat folders', () => {
     // The recorded role matches the current one, so the resume reaches the panel without a role redirect.
     shellState.initialActiveSession = undefined; shellState.query = 'agent=HELP_HUMAN';
     const persist = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => stored({ lastActiveChat: { sessionId: 'recorded', projectRoot: '/repo/projects/chirality-app-dev' }, chatDocuments: { recorded: 'notes.md' } }), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => stored({ lastActiveChat: { sessionId: 'recorded', projectRoot: '/repo/projects/chirality-app-dev' }, chatDocuments: { recorded: 'notes.md' } }), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
@@ -726,7 +728,7 @@ describe('WovenDialogueShell per-chat folders', () => {
   it('does not hand an open document to a chat that never had one, and records only documents opened in that chat', async () => {
     shellState.query = 'agent=HELP_HUMAN';
     const persist = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => stored(), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
@@ -758,7 +760,7 @@ describe('WovenDialogueShell per-chat folders', () => {
   it('does not attribute a document opened while no chat was active to the chat resumed afterwards', async () => {
     shellState.query = 'agent=HELP_HUMAN';
     const persist = vi.fn();
-    vi.stubGlobal('window', { localStorage: { getItem: () => stored(), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => stored(), setItem: persist }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
@@ -787,7 +789,7 @@ describe('WovenDialogueShell per-chat folders', () => {
 
   it('does not restore a last chat recorded in a different folder, and never while a turn is running', async () => {
     shellState.initialActiveSession = undefined;
-    vi.stubGlobal('window', { localStorage: { getItem: () => stored({ lastActiveChat: { sessionId: 'elsewhere', projectRoot: otherRoot } }), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, localStorage: { getItem: () => stored({ lastActiveChat: { sessionId: 'elsewhere', projectRoot: otherRoot } }), setItem: vi.fn() }, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb() });
     vi.stubGlobal('document', { querySelector: () => ({ focus: vi.fn() }) });
     let tree!: ReactTestRenderer;
     await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
@@ -795,5 +797,66 @@ describe('WovenDialogueShell per-chat folders', () => {
     expect(shellState.replayLoad).not.toHaveBeenCalled();
     expect(shellState.applyProjectRoot).not.toHaveBeenCalled();
     act(() => tree.unmount());
+  });
+});
+
+
+describe('cross-chat attention', () => {
+  it('answers a live second-folder request without switching or stopping the running primary, then clears stale attention and cleans up', async () => {
+    vi.useFakeTimers();
+    const client = await import('../../lib/harness/client');
+    const list = vi.mocked(client.listHarnessSessions);
+    const priorList = list.getMockImplementation();
+    const requests = vi.mocked(client.listHarnessSessionRequests);
+    const answer = vi.mocked(client.answerHarnessSessionRequest);
+    let pending = true;
+    const request = { requestId: 'same-id', method: 'item/tool/requestUserInput', params: { questions: [{ id: 'choice', header: 'Choice', question: 'Which venue?' }] }, receivedAt: '2026-09-13' };
+    list.mockImplementation(async root => {
+      if (root === '/missing') throw new Error('folder unavailable');
+      return [{ sessionId: root === '/second' ? 'second' : 'primary', projectRoot: root, persona: 'TASK', mode: '', createdAt: '', updatedAt: '', status: 'running' }];
+    });
+    requests.mockImplementation(async id => {
+      if (id === 'primary') throw new Error('temporary request lookup failure');
+      return { requests: id === 'second' && pending ? [request] : [] } as never;
+    });
+    answer.mockClear();
+    answer.mockImplementation(async () => { pending = false; return { sent: true }; });
+    shellState.projectRoot = '/first'; shellState.streaming = true; shellState.initialActiveSession = 'primary'; shellState.mounted = 0; shellState.unmounted = 0; shellState.replayLoad.mockClear();
+    vi.stubGlobal('HTMLElement', class {});
+    vi.stubGlobal('document', { activeElement: null, querySelector: () => null });
+    vi.stubGlobal('window', { setInterval: globalThis.setInterval, clearInterval: globalThis.clearInterval, addEventListener: vi.fn(), removeEventListener: vi.fn(), requestAnimationFrame: (cb: () => void) => cb(), localStorage: { getItem: () => JSON.stringify({ schema: 'chirality.woven-workspace/v1', knownRoots: [{ path: '/second', lastUsedAt: '2026-09-13T00:00:00Z' }, { path: '/missing', lastUsedAt: '2026-09-12T00:00:00Z' }], chatTitles: { second: 'Venue comparison' } }), setItem: vi.fn() } });
+    let tree!: ReactTestRenderer;
+    try {
+      await act(async () => { tree = create(<WovenDialogueShell defaultSurface="dialogue" />); });
+      const needsAnswer = () => tree.root.findAllByType('button').find(button => button.props['aria-label'] === 'Needs answer: Venue comparison');
+      expect(needsAnswer()).toBeDefined();
+      expect(tree.root.findAllByType('button').find(button => button.props['data-session-id'] === 'second')?.props.disabled).toBe(true);
+      await act(async () => needsAnswer()!.props.onClick());
+      expect(tree.root.findByProps({ role: 'dialog' }).findByType('h2').children).toEqual(['Venue comparison']);
+      await act(async () => { await vi.advanceTimersByTimeAsync(5000); });
+      expect(needsAnswer()).toBeDefined(); // Missing folder lookup does not erase the second chat.
+      const field = tree.root.findByProps({ role: 'dialog' }).findByType('input');
+      await act(async () => field.props.onChange({ target: { value: 'Venue B' } }));
+      pending = false; // Another renderer resolved it after the last poll.
+      await act(async () => tree.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }));
+      expect(answer).not.toHaveBeenCalled();
+      expect(JSON.stringify(tree.toJSON())).toContain('This request is no longer pending.');
+      pending = true;
+      await act(async () => tree.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }));
+      expect(answer).toHaveBeenCalledWith({ sessionId: 'second', requestId: 'same-id', answer: { kind: 'userInput', answers: { choice: { answers: ['Venue B'] } } } });
+      expect(shellState.streaming).toBe(true); expect(shellState.mounted).toBe(1); expect(shellState.unmounted).toBe(0); expect(shellState.replayLoad).not.toHaveBeenCalled();
+      expect(tree.root.findAllByType('button').some(button => button.children.join('') === 'Stop')).toBe(false);
+      await act(async () => { await vi.advanceTimersByTimeAsync(2000); });
+      expect(needsAnswer()).toBeUndefined();
+      expect(JSON.stringify(tree.toJSON())).toContain('No pending requests for this chat.');
+      await act(async () => tree.unmount());
+      const calls = requests.mock.calls.length;
+      await act(async () => { await vi.advanceTimersByTimeAsync(10000); });
+      expect(requests).toHaveBeenCalledTimes(calls);
+    } finally {
+      if (tree) act(() => tree.unmount());
+      list.mockImplementation(priorList!); requests.mockResolvedValue({ requests: [] } as never); answer.mockResolvedValue({ sent: true });
+      shellState.streaming = false; vi.useRealTimers(); vi.unstubAllGlobals();
+    }
   });
 });

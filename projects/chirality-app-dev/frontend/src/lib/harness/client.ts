@@ -1,3 +1,4 @@
+import type { SessionSteerRequest, SessionSteerResponse } from '@chirality/runtime-contracts';
 import type { AgentRosterEntry } from './agent-roster';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type { HarnessReplaySummary } from './session-events';
@@ -550,4 +551,10 @@ async function readTurnStream(
       onEvent(parsed);
     }
   }
+}
+
+export async function steerHarnessSession(sessionId: string, request: SessionSteerRequest): Promise<SessionSteerResponse> {
+  return requestHarnessJson<SessionSteerResponse>(`/api/harness/session/${encodeURIComponent(sessionId)}/turn/steer`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(request)
+  }, 'The update receipt could not be confirmed.');
 }

@@ -44,6 +44,8 @@ import { CoordinationPanel } from './coordination-panel';
 import { RightPanel } from './right-panel';
 import { useConversationFileCatalog } from '../../lib/workspace/use-conversation-file-catalog';
 import { DialogueViewport } from './dialogue-viewport';
+import { ChatAttentionDialog, useChatAttention } from './chat-attention';
+import { useLiveSessionRequests } from '../shell/request-card';
 import { Navigator, type NavigatorFolderNotice, type WovenSurface } from './navigator';
 import { SelectedSessionReplayLens } from './selected-session-replay-lens';
 import type { QualifiedMethodReference } from '../../lib/harness/method-selection-client';
@@ -120,12 +122,20 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
       ...(current.knownRoots ?? []).filter(root => root.path !== projectRoot)
     ].slice(0, 50) }));
   }, [projectRoot, stateHydrated]);
+  const [attentionSessionId, setAttentionSessionId] = useState<string | null>(null);
   const [sessions, setSessions] = useState<SessionRecord[]>([]);
   const [referenceDay, setReferenceDay] = useState('1970-01-01');
   const [sessionsLoading, setSessionsLoading] = useState(false);
   // The folder the current `sessions` list was read for; a folder change
   // leaves the previous list on screen until the new one arrives.
   const [sessionsRoot, setSessionsRoot] = useState<string | null>(null);
+  const [otherRunningSessions, setOtherRunningSessions] = useState<SessionRecord[]>([]);
+  const primaryRequests = useLiveSessionRequests(primarySessionId ?? null, streaming);
+  const backgroundRunningSessionIds = sessionsRoot === projectRoot ? [...sessions, ...otherRunningSessions].filter(session => session.sessionId !== primarySessionId && 'status' in session && session.status === 'running').map(session => session.sessionId) : [];
+  const attention = useChatAttention([...new Set(backgroundRunningSessionIds)]);
+  const primaryNeedsAnswer = primaryRequests.length > 0;
+  const needsAnswerSessionIds = [...Object.keys(attention.rows), ...(primaryNeedsAnswer && primarySessionId ? [primarySessionId] : [])];
+
   const [sessionsError, setSessionsError] = useState<string | null>(null);
   const [sessionRefreshToken, setSessionRefreshToken] = useState(0);
   const directHistorySelection = useRef<string>();
@@ -165,12 +175,12 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     const keydown = (event: KeyboardEvent): void => {
       if (!(event.metaKey || event.ctrlKey) || event.key.toLocaleLowerCase() !== 'k') return;
       event.preventDefault();
-      if (navigatorModalOpen) return;
+      if (navigatorModalOpen || attentionSessionId) return;
       setWorkspaceState(current => ({ ...current, navigatorCollapsed: false }));
       setFocusNavigatorSearchRequest(value => value + 1);
     };
     window.addEventListener('keydown', keydown); return () => window.removeEventListener('keydown', keydown);
-  }, [navigatorModalOpen]);
+  }, [navigatorModalOpen, attentionSessionId]);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -219,6 +229,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     replayLoaderRef.current?.cancel();
     setPendingResume(undefined);
     setSessions([]);
+    setAttentionSessionId(null);
     setSessionsError(null);
     if (
       previousProjectRootRef.current &&
@@ -272,6 +283,24 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
     // the Coordination panel's hierarchy are both projections of `sessions`, so
     // one re-list repairs all three surfaces at once.
   }, [projectRoot, sessionRefreshToken, runtimeEpoch]);
+
+  useEffect(() => {
+    if (!projectRoot) return;
+    let cancelled = false;
+    let pending = false;
+    const refresh = async () => {
+      if (pending) return;
+      pending = true;
+      try {
+        const records = await listHarnessSessions(projectRoot);
+        if (!cancelled) { setSessions(records); setSessionsRoot(projectRoot); }
+      } catch { /* Preserve the other chats when a refresh is temporarily unavailable. */ }
+      finally { pending = false; }
+    };
+    const timer = window.setInterval(() => void refresh(), 5000);
+    window.addEventListener('focus', refresh);
+    return () => { cancelled = true; window.clearInterval(timer); window.removeEventListener('focus', refresh); };
+  }, [projectRoot, runtimeEpoch]);
 
   useEffect(() => {
     const reader = titleReaderRef.current as ChatReplayReader;
@@ -410,13 +439,37 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   // chats share one navigator; the live listing replaces the index for the
   // selected folder as soon as it arrives.
   const navigatorSessions = useMemo<SessionRecord[]>(() => {
-    const live = new Set(sessions.map(session => session.sessionId));
+    const visible = [...new Map([...otherRunningSessions, ...sessions].map(session => [session.sessionId, session])).values()];
+    const live = new Set(visible.map(session => session.sessionId));
     const indexed = Object.entries(workspaceState.chatIndex ?? {})
       .filter(([sessionId, entry]) => !live.has(sessionId) && entry.projectRoot !== projectRoot)
       .map(([sessionId, entry]) => ({ sessionId, projectRoot: entry.projectRoot, persona: entry.persona ?? '', mode: '', createdAt: entry.createdAt, updatedAt: entry.updatedAt }));
-    return [...sessions, ...indexed];
-  }, [sessions, workspaceState.chatIndex, projectRoot]);
+    return [...visible, ...indexed];
+  }, [sessions, otherRunningSessions, workspaceState.chatIndex, projectRoot]);
   const knownRootPaths = useMemo(() => (workspaceState.knownRoots ?? []).map(root => root.path), [workspaceState.knownRoots]);
+  const attentionRootsKey = JSON.stringify(knownRootPaths.filter(root => root !== projectRoot));
+  useEffect(() => {
+    const roots = JSON.parse(attentionRootsKey) as string[];
+    setOtherRunningSessions([]);
+    if (!roots.length) return;
+    let cancelled = false;
+    let pending = false;
+    let cursor = 0;
+    const refresh = async () => {
+      if (pending) return;
+      const root = roots[cursor++ % roots.length];
+      pending = true;
+      try {
+        const records = await listHarnessSessions(root);
+        if (!cancelled) setOtherRunningSessions(current => [...current.filter(session => session.projectRoot !== root), ...records.filter(session => 'status' in session && session.status === 'running')]);
+      } catch { /* A missing folder does not clear another folder's live attention. */ }
+      finally { pending = false; }
+    };
+    void refresh();
+    const timer = window.setInterval(() => void refresh(), 5000);
+    return () => { cancelled = true; window.clearInterval(timer); };
+  }, [attentionRootsKey, runtimeEpoch]);
+
 
   const switchToFolderChat = useCallback(async (sessionId: string, folderPath: string): Promise<void> => {
     if (typeof workspace.applyProjectRoot !== 'function') return;
@@ -839,6 +892,14 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
               liveSessionId={primarySessionId}
               selectedSessionId={selectedReplayId(replayState)}
               selectionDisabled={streaming}
+              needsAnswerSessionIds={needsAnswerSessionIds}
+              onNeedsAnswer={id => {
+                if (id === primarySessionId) {
+                  const anchor = document.getElementById(`requests-${id}`);
+                  anchor?.scrollIntoView({ block: 'nearest' });
+                  anchor?.querySelector<HTMLElement>('input, button, summary')?.focus();
+                } else setAttentionSessionId(id);
+              }}
               sessionsLoading={sessionsLoading}
               sessionsError={sessionsError}
               chatTitles={workspaceState.chatTitles ?? {}}
@@ -863,6 +924,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
             />
           ) : (
             <div className="woven-collapsed-strip" aria-label="Collapsed chat navigation">
+              {needsAnswerSessionIds.length ? <button type="button" aria-label={`${needsAnswerSessionIds.length} chats need an answer`} onClick={() => updateWorkspaceState({ navigatorCollapsed: false })}>!</button> : null}
               <button type="button" aria-label="Search chats" onClick={() => { updateWorkspaceState({ navigatorCollapsed: false }); setFocusNavigatorSearchRequest(value => value + 1); }}>⌕</button>
               <button type="button" aria-label="New chat" disabled={streaming || folderSelectionPending} onClick={() => { if (!streaming && !folderSelectionPending) setNewChatRequest(value => value + 1); }}>＋</button>
               <div className="woven-collapsed-settings">{settingsControl}</div>
@@ -946,6 +1008,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
                 else updateWorkspaceState({ coordinationCollapsed: true });
               }}
               coordination={<CoordinationPanel embedded
+              nativeEvents={events.filter(event => event.sessionId === primarySessionId)}
               activeView={coordinationView}
               replaySlot={
                 replayVisible ? (
@@ -985,6 +1048,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
           )}
         </aside>
 
+        {attention.observers}
+        {attentionSessionId ? <ChatAttentionDialog sessionId={attentionSessionId} title={workspaceState.chatTitles?.[attentionSessionId] ?? deriveChatTitle({ sessionId: attentionSessionId, persona: sessions.find(session => session.sessionId === attentionSessionId)?.persona })} rows={attention.rows[attentionSessionId] ?? []} onClose={() => setAttentionSessionId(null)} /> : null}
         <ActivityStrip primarySessionId={primarySessionId} reconnectControl={reconnectControl} running={streaming} phase={turnPhase} events={events}
           onOpenDetails={() => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'activity', coordinationCollapsed: false }); }} />
       </section>

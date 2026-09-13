@@ -65,6 +65,7 @@ export type WovenRightPanelView = 'files' | 'plan' | 'workflows' | 'skills' | 'a
 export const RIGHT_PANEL_VIEWS: readonly WovenRightPanelView[] = ['files', 'plan', 'workflows', 'skills', 'agents', 'activity', 'settings'];
 /** Future stored views must leave existing content reachable, never blank it. */
 export function resolveRightPanelView(view: WovenRightPanelView | undefined): WovenRightPanelView {
+  if (view === 'skills') return 'workflows';
   return view !== undefined && RIGHT_PANEL_VIEWS.includes(view) ? view : 'files';
 }
 export type WovenRightPanelWidthKey = WovenRightPanelView | 'document' | 'session';
@@ -326,7 +327,7 @@ function readAdditions(value: Record<string, unknown>): WovenWorkspaceAdditions 
   const pre = value.preExpandState;
   return {
     rightPanelView: Object.hasOwn(value, 'rightPanelView')
-      ? views.includes(value.rightPanelView as WovenRightPanelView) ? value.rightPanelView as WovenRightPanelView : 'files'
+      ? resolveRightPanelView(value.rightPanelView as WovenRightPanelView)
       : value.coordinationView === 'agents' ? 'agents' : 'files',
     rightPanelWidths: widths,
     rightPanelExpanded: readBoolean(value.rightPanelExpanded, false),

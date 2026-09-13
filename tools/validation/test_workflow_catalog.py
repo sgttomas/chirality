@@ -83,11 +83,11 @@ def test_root_index_is_fresh_and_classification_is_bounded():
 def test_root_navigation_partition_is_complete_and_ordered():
     index = validate_and_build(ROOT)
     workflows = {item["name"]: item for item in index["methods"] if item["kind"] == "workflow"}
-    assert len(workflows) == 71
+    assert set(workflows) == {folder.name for folder in (ROOT / "workflows").iterdir() if (folder / "WORKFLOW.md").is_file()}
     assert all("navigation" in item for item in workflows.values())
     core = sorted((item for item in workflows.values() if item["navigation"]["category"] == "core"), key=lambda item: item["navigation"]["order"])
     assert [item["name"] for item in core] == list(CORE)
-    assert [item["navigation"]["order"] for item in core] == list(range(9))
+    assert [item["navigation"]["order"] for item in core] == list(range(len(CORE)))
     assert {item["name"]: item["navigation"].get("displayName") for item in core if "displayName" in item["navigation"]} == CORE_DISPLAY_NAMES
     assert all(item["navigation"]["tier"] == "primary" and "group" not in item["navigation"] for item in core)
     specialist = [item for item in workflows.values() if item["navigation"]["category"] == "specialist"]
@@ -112,7 +112,7 @@ def test_root_navigation_partition_is_complete_and_ordered():
     assert all(item["compatibility"] == "legacy" for item in superseded.values())
     for replacement in SUPERSEDED.values():
         assert workflows[replacement]["navigation"]["category"] != "superseded"
-    assert len(core) + len(specialist) + len(superseded) == 71
+    assert len(core) + len(specialist) + len(superseded) == len(workflows)
 
 
 def test_navigation_partition_rejects_missing_extra_and_malformed_entries(tmp_path):
@@ -185,8 +185,9 @@ def test_navigation_core_is_fixed_and_display_names_are_bounded():
     with pytest.raises(ValueError, match="exactly core, specialist and superseded"):
         parse_navigation({"core": _core_navigation(), "specialist": []})
     placements = parse_navigation({"core": _core_navigation(), "specialist": [], "superseded": []})
-    assert placements["project-setup"] == {"category": "core", "tier": "primary", "order": 0}
-    assert placements["reconciliation"] == {"category": "core", "tier": "primary", "order": 8, "displayName": "Check project status"}
+    assert placements["create-workflow"] == {"category": "core", "tier": "primary", "order": 0}
+    assert placements["project-setup"] == {"category": "core", "tier": "primary", "order": 1}
+    assert placements["reconciliation"] == {"category": "core", "tier": "primary", "order": CORE.index("reconciliation"), "displayName": "Check project status"}
 
 
 def test_workflow_purpose_metadata_reaches_descriptors(tmp_path):
@@ -367,8 +368,8 @@ def test_exact_central_refs_and_public_export_exclusion():
     index = validate_and_build(ROOT)
     assert index["centralWorkflowNames"] == list(CENTRAL)
     exported = validate_and_build(ROOT, public_export=True)
-    assert len(index["methods"]) == 79
-    assert len(exported["methods"]) == 78
+    assert {(item["kind"], item["name"]) for item in index["methods"]} - {(item["kind"], item["name"]) for item in exported["methods"]} == {("skill", "chirality-change")}
+    assert len(exported["methods"]) == len(index["methods"]) - 1
     assert not any(item["kind"] == "skill" and item["name"] == "chirality-change" for item in exported["methods"])
     assert not any("chirality-change" in str(item) for item in exported.get("diagnostics", []))
 

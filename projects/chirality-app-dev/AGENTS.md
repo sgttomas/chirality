@@ -53,7 +53,8 @@ does not maintain a second Markdown parser or infer method completion from a
 loaded instruction body.
 
 Ordinary App skill discovery follows Codex's native project, user and bundled
-sources under D-GOV-43. Display each skill's actual origin. Read-only replay
+sources under D-GOV-43. Preserve each skill's actual origin. Skill browsing is
+hidden for v3.0.0; native background skill use remains available. Read-only replay
 preserves historical bytes and source-qualified identity without activating a
 skill for a new turn or silently binding a same-named definition elsewhere.
 
@@ -64,10 +65,13 @@ project, then user, then bundled definitions, while an actual selection retains
 its source-qualified identity. Old flat project workflow Markdown files remain
 ordinary documents and historical navigation targets.
 
-The central workflows are project setup, project decomposition, software
-decomposition, domain decomposition, research orchestration, and scope change.
+The central workflows are workflow creation, project setup, project
+decomposition, software decomposition, domain decomposition, research
+orchestration, and scope change.
 They receive immediate placement in selection UI because they are broadly
-useful; their presence never makes them compulsory. Skills and workflows can
+useful. Before authoring or revising a reusable workflow, agents load and follow
+the core `create-workflow` method from the selected library basis. Other central
+methods remain optional unless applicable instructions require them. Skills and workflows can
 be combined, stopped, and replaced within one conversation. Selection does not
 change a role, launch a manager, expand tools, or grant permissions.
 

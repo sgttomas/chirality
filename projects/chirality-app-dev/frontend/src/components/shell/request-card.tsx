@@ -1,15 +1,19 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useRef, useCallback, useSyncExternalStore } from 'react';
 import type { ServerRequestAnswer } from '@chirality/runtime-contracts';
-import { answerHarnessSessionRequest } from '../../lib/harness/client';
+import { answerHarnessSessionRequest, listHarnessSessionRequests } from '../../lib/harness/client';
 import {
   readElicitationMessage,
   readUserInputQuestions,
   selectPendingServerRequests,
+  deriveServerRequests,
+  derivePermissionRequests,
+  classifyServerRequestMethod,
   type ServerRequestRow,
   type UserInputQuestion
 } from '../../lib/shell/harness-event-views';
+import { record } from '../../lib/shell/native-progress';
 import { useHarnessEvents } from '../workspace/harness-events-provider';
 
 type RequestCardProps = {
@@ -19,14 +23,22 @@ type RequestCardProps = {
 };
 
 function methodLabel(row: ServerRequestRow): string {
+  if (row.kind === 'approval') return 'Approval required';
   if (row.kind === 'userInput') return 'Codex needs your input';
   if (row.kind === 'elicitation') return 'A tool server asks for confirmation';
   return row.method;
 }
 
+const questionDrafts = new Map<string, Record<string, string>>();
+const questionDraftKey = (row: ServerRequestRow) => `${row.sessionId}:${row.requestId}:${row.timestamp}`;
+
 function UserInputForm({ row, pending, onAnswer }: RequestCardProps): JSX.Element {
   const questions = useMemo(() => readUserInputQuestions(row.request), [row.request]);
-  const [values, setValues] = useState<Record<string, string>>({});
+  const [values, setValues] = useState<Record<string, string>>(() => questionDrafts.get(questionDraftKey(row)) ?? {});
+  useEffect(() => {
+    questionDrafts.set(questionDraftKey(row), Object.fromEntries(Object.entries(values).filter(([id]) => !questions.find(question => question.id === id)?.isSecret)));
+    if (questionDrafts.size > 100) questionDrafts.delete(questionDrafts.keys().next().value!);
+  }, [row.sessionId, row.requestId, row.timestamp, values, questions]);
   const complete = questions.length > 0 && questions.every((question) => Boolean(values[question.id]?.trim()));
   const answerFor = (question: UserInputQuestion): string => values[question.id]?.trim() ?? '';
   return (
@@ -110,7 +122,7 @@ export function RequestCard({ row, pending, onAnswer }: RequestCardProps): JSX.E
         <span className="permission-card-tool" title={row.method}>{methodLabel(row)}</span>
         <span className="permission-card-badge">answer required</span>
       </header>
-      {row.kind === 'userInput'
+      {row.kind === 'approval' ? <div><p>{String(record(row.request).reason ?? record(row.request).command ?? 'Codex requests permission to continue.')}</p><details><summary>Request details</summary><pre className="transcript-text">{JSON.stringify(row.request, null, 2)}</pre></details><div className="permission-card-actions"><button disabled={pending} onClick={() => onAnswer(row, { kind: 'approval', verdict: 'allow' })}>Approve</button><button disabled={pending} onClick={() => onAnswer(row, { kind: 'approval', verdict: 'deny' })}>Deny</button></div></div> : row.kind === 'userInput'
         ? <UserInputForm row={row} pending={pending} onAnswer={onAnswer} />
         : <ElicitationForm row={row} pending={pending} onAnswer={onAnswer} />}
     </article>
@@ -133,6 +145,8 @@ type RequestCardsProps = {
 export function RequestCards({ sessionId, requests, suppressedRequestIds, answer = answerHarnessSessionRequest }: RequestCardsProps): JSX.Element | null {
   const [pending, setPending] = useState<Record<string, true>>({});
   const [error, setError] = useState<string | null>(null);
+  const currentSession = useRef(sessionId);
+  currentSession.current = sessionId;
   const visible = requests.filter((row) => !suppressedRequestIds?.has(row.requestId));
   const keys = visible.map((row) => row.key).join('|');
 
@@ -156,8 +170,14 @@ export function RequestCards({ sessionId, requests, suppressedRequestIds, answer
     setPending((current) => ({ ...current, [row.key]: true }));
     setError(null);
     try {
+      if (answer === answerHarnessSessionRequest) {
+        const live = await listHarnessSessionRequests(targetSessionId);
+        if (!live.requests.some(request => request.requestId === row.requestId && request.method === row.method)) throw new Error('This request is no longer pending.');
+      }
       await answer({ sessionId: targetSessionId, requestId: row.requestId, answer: value });
+      questionDrafts.delete(questionDraftKey(row));
     } catch (caught) {
+      if (currentSession.current !== targetSessionId) return;
       setError(caught instanceof Error ? caught.message : 'Unable to send the answer.');
       setPending((current) => {
         const next = { ...current };
@@ -187,4 +207,73 @@ export function ServerRequests({ sessionId, active, suppressedRequestIds }: {
   const { events } = useHarnessEvents();
   const pending = useMemo(() => selectPendingServerRequests(events, active), [events, active]);
   return <RequestCards sessionId={sessionId} requests={pending} suppressedRequestIds={suppressedRequestIds} />;
+}
+
+/** Authorized live request listing is the actionability boundary; history alone never enables a card. */
+const EMPTY_REQUESTS: ServerRequestRow[] = [];
+type RequestSubscription = { rows: ServerRequestRow[]; listeners: Set<() => void>; stop: () => void };
+const requestSubscriptions = new Map<string, RequestSubscription>();
+
+function subscribeRequests(sessionId: string, listener: () => void): () => void {
+  let subscription = requestSubscriptions.get(sessionId);
+  if (!subscription) {
+    const controller = new AbortController();
+    const entry: RequestSubscription = { rows: EMPTY_REQUESTS, listeners: new Set(), stop: () => {} };
+    requestSubscriptions.set(sessionId, entry);
+    let pending = false;
+    const publish = (rows: ServerRequestRow[]) => {
+      if (controller.signal.aborted || JSON.stringify(rows) === JSON.stringify(entry.rows)) return;
+      entry.rows = rows;
+      for (const notify of entry.listeners) notify();
+    };
+    const refresh = async () => {
+      if (pending) return;
+      pending = true;
+      try {
+        const result = await listHarnessSessionRequests(sessionId, controller.signal);
+        publish(result.requests.map(request => ({
+          key: `${sessionId}:${request.requestId}`, sessionId, requestId: request.requestId, method: request.method,
+          kind: request.method.endsWith('/requestApproval') ? 'approval' : classifyServerRequestMethod(request.method),
+          request: request.params, status: 'pending' as const, timestamp: request.receivedAt
+        })).filter(row => ['approval', 'userInput', 'elicitation'].includes(row.kind)));
+      } catch { publish(EMPTY_REQUESTS); }
+      finally { pending = false; }
+    };
+    const timer = window.setInterval(() => void refresh(), 2000);
+    window.addEventListener?.('focus', refresh);
+    entry.stop = () => { controller.abort(); window.clearInterval(timer); window.removeEventListener?.('focus', refresh); };
+    subscription = entry;
+    void refresh();
+  }
+  subscription.listeners.add(listener);
+  return () => {
+    subscription.listeners.delete(listener);
+    if (!subscription.listeners.size) { subscription.stop(); requestSubscriptions.delete(sessionId); }
+  };
+}
+
+/** Multiple attention/inline subscribers share one authorized listing for a session. */
+export function useLiveSessionRequests(sessionId: string | null, active = true): ServerRequestRow[] {
+  const subscribe = useCallback((listener: () => void) => sessionId && active ? subscribeRequests(sessionId, listener) : () => {}, [sessionId, active]);
+  const snapshot = useCallback(() => sessionId && active ? requestSubscriptions.get(sessionId)?.rows ?? EMPTY_REQUESTS : EMPTY_REQUESTS, [sessionId, active]);
+  return useSyncExternalStore(subscribe, snapshot, () => EMPTY_REQUESTS);
+}
+
+export function LiveSessionRequests({ sessionId, active = true, showHistory = true }: { sessionId: string | null; active?: boolean; showHistory?: boolean }): JSX.Element {
+  const rows = useLiveSessionRequests(sessionId, active);
+  const { events } = useHarnessEvents();
+  const retained = useRef<{ sessionId: string | null; events: Map<string, (typeof events)[number]> }>({ sessionId, events: new Map() });
+  if (retained.current.sessionId !== sessionId) retained.current = { sessionId, events: new Map() };
+  for (const event of events) if (event.sessionId === sessionId && (event.type === 'codex.request' || event.type === 'codex.request.resolved' || event.type === 'tool.permission')) retained.current.events.set(event.eventId, event);
+  const historyEvents = [...retained.current.events.values()];
+  const history = deriveServerRequests(historyEvents);
+  const approvals = derivePermissionRequests(historyEvents).filter(row => row.requestId && row.status !== 'pending');
+  return <div id={sessionId ? `requests-${sessionId}` : undefined}>
+    <RequestCards sessionId={sessionId} requests={rows} />
+    {showHistory ? approvals.map(row => <details key={`approval:${row.key}`} className="request-card"><summary>{row.toolName} · {row.status}</summary><p>{row.reason}</p></details>) : null}
+    {showHistory ? history.filter(row => row.status !== 'pending').map(row => <details key={row.key} className="request-card"><summary>{methodLabel(row)} · {row.status}</summary>
+      {readUserInputQuestions(row.request).map(question => <p key={question.id}>{question.question}</p>)}
+      {row.decision !== undefined && !readUserInputQuestions(row.request).some(question => question.isSecret) ? <pre className="transcript-text">{JSON.stringify(row.decision, null, 2)}</pre> : null}
+    </details>) : null}
+  </div>;
 }

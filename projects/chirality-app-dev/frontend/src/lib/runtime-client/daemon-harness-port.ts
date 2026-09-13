@@ -1,4 +1,5 @@
-import { resolve } from 'node:path';
+import type { SessionSteerRequest, SessionSteerResponse } from '@chirality/runtime-contracts';
+import { relative, resolve } from 'node:path';
 
 import { HarnessError } from '@chirality/runtime-contracts/errors';
 import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
@@ -123,6 +124,8 @@ export type HostedProjectInitializationResponse = Extract<
 >;
 
 export interface HostedBootstrapPort {
+  /** Server-only recovery of an authoritative session owner after restart. */
+  resolveSessionPort?(sessionId: string, options?: DaemonRequestOptions): Promise<DaemonHarnessPort>;
   bindProject(
     projectRoot: string,
     options?: DaemonRequestOptions
@@ -252,6 +255,7 @@ export interface DaemonHarnessPort {
     answer: ServerRequestAnswer,
     options?: DaemonRequestOptions
   ): Promise<AnswerSessionRequestResponse>;
+  steer(sessionId: string, request: SessionSteerRequest, options?: DaemonRequestOptions): Promise<SessionSteerResponse>;
   interrupt(
     request: InterruptRequest,
     options?: DaemonRequestOptions
@@ -335,6 +339,7 @@ const unboundDaemonHarnessPort: DaemonHarnessPort = {
   turnState: daemonClientUnavailable,
   listRequests: daemonClientUnavailable,
   answerRequest: daemonClientUnavailable,
+  steer: daemonClientUnavailable,
   interrupt: daemonClientUnavailable,
   decidePermission: daemonClientUnavailable,
   listAgents: daemonClientUnavailable,
@@ -363,6 +368,10 @@ const unboundHostedBootstrapPort: HostedBootstrapPort = {
 
 type HarnessPortRegistry = {
   daemonPort?: DaemonHarnessPort;
+  boundPorts?: Map<string, DaemonHarnessPort>;
+  boundProjectIds?: Map<string, string>;
+  sessionOwners?: Map<string, { port: DaemonHarnessPort; projectRoot: string }>;
+  routingPort?: DaemonHarnessPort;
   daemonBinding?: DaemonProjectBinding;
   daemonEnvironmentInitialized?: boolean;
   hostedBootstrapPort?: HostedBootstrapPort;
@@ -391,7 +400,89 @@ export function getDaemonHarnessPort(): DaemonHarnessPort {
       registry.daemonBinding = { projectId, projectRoot: resolve(projectRoot) };
     }
   }
-  return registry.daemonPort ?? unboundDaemonHarnessPort;
+  if (!registry.daemonBinding) return registry.daemonPort ?? unboundDaemonHarnessPort;
+  registry.boundPorts ??= new Map([[registry.daemonBinding.projectRoot, registry.daemonPort!]]);
+  registry.boundProjectIds ??= new Map([[registry.daemonBinding.projectRoot, registry.daemonBinding.projectId]]);
+  return registry.routingPort ??= createRoutingPort(registry);
+}
+
+// Every method declares its routing input. New session endpoints must choose an
+// owner selector here; they cannot accidentally inherit the selected folder.
+const routeKinds = {
+  createSession: 'rootObject', listSessions: 'root', getSession: 'session',
+  deleteSession: 'session', bootSession: 'sessionObject', replaySession: 'session',
+  turn: 'sessionObject', attachTurn: 'session', turnState: 'session',
+  listRequests: 'session', answerRequest: 'session', steer: 'session',
+  interrupt: 'sessionObject', decidePermission: 'sessionObject', listAgents: 'selected',
+  listRoles: 'root', listMethods: 'rootObject', inspectMethod: 'rootObject',
+  resolveSelectedContext: 'session', replaceSelectedMethods: 'session',
+  getNativePlanCapability: 'session', listNativePlanRevisions: 'session',
+  listNativePlanClarifications: 'session', replyNativePlanClarification: 'session',
+  exportNativePlan: 'session', scaffold: 'executionRoot'
+} as const satisfies Record<keyof DaemonHarnessPort,
+  'rootObject' | 'root' | 'session' | 'sessionObject' | 'selected' | 'executionRoot'>;
+
+function createRoutingPort(registry: HarnessPortRegistry): DaemonHarnessPort {
+  const owners = registry.sessionOwners ??= new Map();
+  const remember = (id: string, port: DaemonHarnessPort, projectRoot: string): void => {
+    const owner = owners.get(id);
+    if (owner && owner.projectRoot !== projectRoot) {
+      throw new HarnessError('WORKING_ROOT_CONFLICT', 409, 'Session ownership changed');
+    }
+    if (!owner) owners.set(id, { port, projectRoot });
+  };
+  const sessionPort = async (id: string, options?: DaemonRequestOptions): Promise<DaemonHarnessPort> => {
+    const known = owners.get(id);
+    if (known) return known.port;
+    for (const port of new Set(registry.boundPorts?.values())) {
+      try {
+        const { session } = await port.getSession(id, options);
+        remember(id, port, session.projectRoot);
+        return port;
+      } catch (error) {
+        if (!(error instanceof HarnessError) || error.type !== 'SESSION_NOT_FOUND') throw error;
+      }
+    }
+    const recover = getHostedBootstrapPort().resolveSessionPort;
+    if (recover) {
+      const port = await recover.call(getHostedBootstrapPort(), id, options);
+      const { session } = await port.getSession(id, options);
+      remember(id, port, session.projectRoot);
+      return port;
+    }
+    throw new HarnessError('SESSION_NOT_FOUND', 404, `Unknown session: ${id}`);
+  };
+  const rootPort = async (root: string, options?: DaemonRequestOptions): Promise<DaemonHarnessPort> => {
+    const matchingRoot = [...(registry.boundPorts?.keys() ?? [])]
+      .filter(candidate => { const path = relative(candidate, root); return path === '' || (path !== '..' && !path.startsWith('../') && !path.startsWith('/')); })
+      .sort((left, right) => right.length - left.length)[0];
+    let port = matchingRoot === undefined ? undefined : registry.boundPorts?.get(matchingRoot);
+    if (!port) {
+      await getHostedBootstrapPort().bindProject(root, options);
+      port = registry.boundPorts?.get(root);
+    }
+    if (!port) throw new HarnessError('WORKING_ROOT_CONFLICT', 409, 'Project is not bound');
+    return port;
+  };
+  return Object.fromEntries(Object.entries(routeKinds).map(([name, kind]) => [name,
+    async (...args: unknown[]) => {
+      const last = args.at(-1);
+      const options = last && typeof last === 'object' && 'signal' in last ? last as DaemonRequestOptions : undefined;
+      const input = args[0] as { sessionId: string; projectRoot: string; executionRoot: string };
+      const port = kind === 'session' ? await sessionPort(args[0] as string, options)
+        : kind === 'sessionObject' ? await sessionPort(input.sessionId, options)
+        : kind === 'root' ? await rootPort(args[0] as string, options)
+        : kind === 'rootObject' ? await rootPort(input.projectRoot, options)
+        : kind === 'executionRoot' ? await rootPort(input.executionRoot, options)
+        : registry.daemonPort ?? unboundDaemonHarnessPort;
+      const result = await Reflect.apply(port[name as keyof DaemonHarnessPort], port, args);
+      if (name === 'createSession' || name === 'listSessions') {
+        const records = name === 'createSession' ? [result.session] : result.sessions;
+        for (const record of records) remember(record.sessionId, port, record.projectRoot);
+      }
+      return result;
+    }
+  ])) as unknown as DaemonHarnessPort;
 }
 
 export function getHostedBootstrapPort(): HostedBootstrapPort {
@@ -419,6 +510,10 @@ export function installDaemonHarnessPort(port: DaemonHarnessPort): void {
   registry.daemonEnvironmentInitialized = true;
   registry.daemonPort = port;
   registry.daemonBinding = undefined;
+  registry.boundPorts = undefined;
+  registry.boundProjectIds = undefined;
+  registry.sessionOwners = undefined;
+  registry.routingPort = undefined;
 }
 
 export function installBoundDaemonHarnessPort(
@@ -442,7 +537,17 @@ export function installBoundDaemonHarnessPort(
     );
   }
   registry.daemonEnvironmentInitialized = true;
-  registry.daemonPort = port;
+  registry.boundPorts ??= new Map();
+  // Reuse the verified port for this root so cached session owners remain stable.
+  registry.boundProjectIds ??= new Map();
+  const previousId = registry.boundProjectIds.get(binding.projectRoot);
+  if (previousId !== undefined && previousId !== binding.projectId) {
+    throw new HarnessError('WORKING_ROOT_CONFLICT', 409, 'Verified project ownership changed');
+  }
+  registry.boundProjectIds.set(binding.projectRoot, binding.projectId);
+  const retained = registry.boundPorts.get(binding.projectRoot);
+  registry.daemonPort = retained ?? port;
+  registry.boundPorts.set(binding.projectRoot, retained ?? port);
   registry.daemonBinding = binding;
 }
 
@@ -459,4 +564,8 @@ export function resetDaemonHarnessPortForTests(): void {
   registry.daemonBinding = undefined;
   registry.hostedBootstrapEnvironmentInitialized = false;
   registry.hostedBootstrapPort = undefined;
+  registry.boundPorts = undefined;
+  registry.boundProjectIds = undefined;
+  registry.sessionOwners = undefined;
+  registry.routingPort = undefined;
 }

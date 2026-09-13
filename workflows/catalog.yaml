@@ -5,6 +5,7 @@
     "sourceRootId": "chirality-root"
   },
   "centralWorkflowNames": [
+    "create-workflow",
     "project-setup",
     "project-decomp",
     "software-decomp",
@@ -14,6 +15,9 @@
   ],
   "navigation": {
     "core": [
+      {
+        "name": "create-workflow"
+      },
       {
         "name": "project-setup"
       },

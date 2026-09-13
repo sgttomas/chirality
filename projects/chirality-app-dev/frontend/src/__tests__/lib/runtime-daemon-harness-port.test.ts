@@ -693,7 +693,7 @@ describe('RuntimeDaemonHarnessPort', () => {
       type: 'WORKING_ROOT_CONFLICT',
       status: 409
     });
-    expect(installBoundPort).toHaveBeenCalledOnce();
+    expect(installBoundPort).toHaveBeenCalledTimes(2);
   });
 
   it('rejects a late project initialization before it can replace the newer binding', async () => {
@@ -739,6 +739,10 @@ describe('RuntimeDaemonHarnessPort', () => {
       await expect(port.getStatus(rootB)).resolves.toEqual({ registration: 'registered', projectId: 'project-b', status: statusFor('project-b') });
       expect(scopedClients.get('project-a')!.hostedBootstrapStatus).not.toHaveBeenCalled();
       expect(scopedClients.get('project-b')!.hostedBootstrapStatus).toHaveBeenCalledTimes(1);
+      // A's stale selection cannot replace B, but A's verified binding remains usable.
+      await expect(port.getStatus(rootA)).resolves.toMatchObject({ projectId: 'project-a' });
+      await expect(port.bindProject(rootA)).resolves.toMatchObject({ projectId: 'project-a' });
+      expect(installBoundPort).toHaveBeenCalledTimes(2);
     } finally {
       await rm(temporaryA, { recursive: true, force: true });
       await rm(temporaryB, { recursive: true, force: true });
@@ -790,11 +794,11 @@ describe('RuntimeDaemonHarnessPort', () => {
       resolveB(registrationB);
       await expect(selectionB).resolves.toEqual({ registration: 'registered', projectId: 'selected-b' });
       await expect(port.getStatus(rootB)).resolves.toEqual({ registration: 'registered', projectId: 'selected-b', status: statusB });
-      await expect(port.getStatus(rootA)).rejects.toMatchObject({ type: 'WORKING_ROOT_CONFLICT', status: 409 });
+      await expect(port.getStatus(rootA)).resolves.toEqual({ registration: 'registered', projectId: 'selected-a', status: consentA });
       expect(installBoundPort).toHaveBeenCalledTimes(2);
       expect(installBoundPort).toHaveBeenLastCalledWith(expect.any(RuntimeDaemonHarnessPort), { projectId: 'selected-b', projectRoot: rootB }, true);
       // The retained consent path reads status too; no consent is ever recorded.
-      expect(scopedA.hostedBootstrapStatus).toHaveBeenCalledTimes(2);
+      expect(scopedA.hostedBootstrapStatus).toHaveBeenCalledTimes(3);
       expect(scopedA.grantHostedProviderNetworkConsent).not.toHaveBeenCalled();
       expect(scopedB.hostedBootstrapStatus).toHaveBeenCalledTimes(1);
     } finally {
@@ -1161,4 +1165,107 @@ it('preserves sanitized timeout classification and boot identity without exposin
     status: 504, message: 'Session initialization timed out while waiting for Runtime.',
     details: { transportReason: 'timeout', operation: 'boot', sessionId: 'created-session' }
   });
+});
+
+
+it('routes old and uncached sessions through their verified owner across folder selection and registry restart', async () => {
+  const registry = await import('../../lib/runtime-client/daemon-harness-port');
+  const turnRoute = await import('../../app/api/harness/turn/route');
+  const steerRoute = await import('../../app/api/harness/session/[id]/turn/steer/route');
+  const temporary = await mkdtemp(join(tmpdir(), 'chirality-routing-'));
+  const { mkdir } = await import('node:fs/promises');
+  await mkdir(join(temporary, 'a')); await mkdir(join(temporary, 'b'));
+  const rootA = await realpath(join(temporary, 'a'));
+  const rootB = await realpath(join(temporary, 'b'));
+  const projects = [rootA, rootB].map((root, index) => ({ ...project,
+    projectId: `route-${index}`, canonicalRoot: root, manifestPath: join(root, 'chirality.project.json') }));
+  const records = projects.map(p => ({ ...session, projectId: p.projectId, projectRoot: p.canonicalRoot, sessionId: `${p.projectId}-session` }));
+  const stream = () => ({ cancel: vi.fn(), async *[Symbol.asyncIterator]() {} }) as unknown as RuntimeStream;
+  const scoped = projects.map((p, i) => client({
+    projectStatus: vi.fn().mockResolvedValue({ project: p, manifestDrift: false, adaptersEnabled: true }),
+    createSession: vi.fn().mockResolvedValue(records[i]),
+    listSessions: vi.fn().mockResolvedValue([records[i]]),
+    getSession: vi.fn().mockImplementation(async (_projectId, id) => {
+      if (id === records[i].sessionId || id === `${p.projectId}-child`) return { ...records[i], sessionId: id };
+      throw new RuntimeError('SESSION_NOT_FOUND', `Unknown session: ${id}`, 404);
+    }),
+    turnSession: vi.fn().mockImplementation(async () => stream()),
+    replaySession: vi.fn().mockResolvedValue({ session: records[i], events: [] }),
+    sessionTurnState: vi.fn().mockResolvedValue({ state: 'running' }),
+    attachSessionTurn: vi.fn().mockImplementation(async () => stream()),
+    listSessionRequests: vi.fn().mockResolvedValue({ requests: [] }),
+    answerSessionRequest: vi.fn().mockResolvedValue({ accepted: true }),
+    sessionTurnSteer: vi.fn().mockResolvedValue({ accepted: true }),
+    hostedBootstrapStatus: vi.fn().mockResolvedValue({ projectId: p.projectId })
+  }));
+  const bootstrap = client({
+    initializeHostedBootstrapProject: vi.fn().mockImplementation(async ({ projectRoot }) => {
+      const p = projects.find(p => p.canonicalRoot === projectRoot)!;
+      return { projectId: p.projectId, manifestHash: p.manifestHash };
+    }),
+    projectStatus: vi.fn().mockImplementation(async id => ({ project: projects.find(p => p.projectId === id)!, manifestDrift: false, adaptersEnabled: true })),
+    resolveSessionOwner: vi.fn().mockImplementation(async id => {
+      const i = records.findIndex(record => record.sessionId === id);
+      if (i < 0) throw new RuntimeError('SESSION_NOT_FOUND', `Unknown session: ${id}`, 404);
+      return { project: projects[i], session: records[i] };
+    })
+  });
+  const setup = () => {
+    registry.resetDaemonHarnessPortForTests();
+    const hosted = new RuntimeHostedBootstrapPort({ bootstrapClient: bootstrap, runtimeDirectory: '/runtime', socketPath: '/runtime/control.sock',
+      createScopedClient: ({ tokenFile }) => scoped[tokenFile.includes('route-0') ? 0 : 1], installBoundPort: registry.installBoundDaemonHarnessPort });
+    registry.installHostedBootstrapPort(hosted);
+    return hosted;
+  };
+  const request = (body: unknown) => new Request('http://localhost/api/harness/turn', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  try {
+    let hosted = setup();
+    await hosted.initializeProject(rootA);
+    await registry.getDaemonHarnessPort().createSession({ projectRoot: rootA });
+    expect((await turnRoute.POST(request({ sessionId: records[0].sessionId, message: 'first' }))).status).toBe(200);
+    await hosted.initializeProject(rootB);
+    await registry.getDaemonHarnessPort().createSession({ projectRoot: rootB });
+    expect((await turnRoute.POST(request({ sessionId: records[1].sessionId, message: 'running' }))).status).toBe(200);
+    expect((await turnRoute.POST(request({ sessionId: records[0].sessionId, message: 'correction' }))).status).toBe(200);
+    expect(scoped[0].turnSession).toHaveBeenLastCalledWith(projects[0].projectId, records[0].sessionId, { message: 'correction' }, expect.any(AbortSignal));
+    expect(scoped[1].turnSession).toHaveBeenCalledTimes(1);
+    const port = registry.getDaemonHarnessPort();
+    await port.replaySession(records[0].sessionId);
+    await port.turnState(records[0].sessionId);
+    await port.attachTurn(records[0].sessionId, 0);
+    await port.listRequests(records[0].sessionId);
+    await port.answerRequest(records[0].sessionId, 'req', { kind: 'approval', decision: 'accept' } as never);
+    expect((await steerRoute.POST(request({ operationId: 'op', expectedTurnId: 'turn', text: 'steer' }), { params: Promise.resolve({ id: records[0].sessionId }) })).status).toBe(200);
+    await port.interrupt({ sessionId: records[0].sessionId });
+    for (const name of ['replaySession', 'sessionTurnState', 'attachSessionTurn', 'listSessionRequests', 'answerSessionRequest', 'sessionTurnSteer', 'interruptSession'] as const) {
+      expect(vi.mocked(scoped[0][name]).mock.calls[0].slice(0, 2)).toEqual([projects[0].projectId, records[0].sessionId]);
+      expect(scoped[1][name]).not.toHaveBeenCalled();
+    }
+    await port.getSession('route-0-child'); // trusted scoped lookup, no cached create/list
+    expect(bootstrap.resolveSessionOwner).not.toHaveBeenCalled();
+    await expect(port.listSessions(rootA)).resolves.toMatchObject({ sessions: [records[0]] });
+    await port.createSession({ projectRoot: rootA });
+    expect(scoped[0].createSession).toHaveBeenCalledTimes(2);
+    expect(scoped[1].createSession).toHaveBeenCalledTimes(1);
+    await expect(hosted.getStatus(rootA)).resolves.toMatchObject({ projectId: projects[0].projectId });
+    vi.mocked(bootstrap.initializeHostedBootstrapProject).mockResolvedValueOnce({ projectId: projects[1].projectId, manifestHash: 'conflicting-hash' });
+    await expect(hosted.initializeProject(rootB)).rejects.toMatchObject({ type: 'WORKING_ROOT_CONFLICT' });
+    await port.turnState(records[0].sessionId); // failed replacement preserves A
+    await port.turnState(records[1].sessionId); // and B
+    vi.mocked(scoped[0].projectStatus).mockResolvedValueOnce({ project: projects[0], manifestDrift: true, adaptersEnabled: false });
+    await expect(port.turn({ sessionId: records[0].sessionId, message: 'blocked' })).rejects.toMatchObject({ type: 'WORKING_ROOT_CONFLICT' });
+    expect(scoped[0].turnSession).toHaveBeenCalledTimes(2);
+    expect(scoped[1].turnSession).toHaveBeenCalledTimes(1);
+    // The selected root after restart is B; historical A ownership comes from Runtime.
+    hosted = setup(); await hosted.initializeProject(rootB);
+    await registry.getDaemonHarnessPort().replaySession(records[0].sessionId);
+    expect(bootstrap.resolveSessionOwner).toHaveBeenCalledWith(records[0].sessionId, undefined);
+    await registry.getDaemonHarnessPort().listSessions(rootA);
+    await registry.getDaemonHarnessPort().turnState(records[0].sessionId);
+    await expect(registry.getDaemonHarnessPort().turn({ sessionId: 'missing', message: 'no' })).rejects.toMatchObject({ type: 'SESSION_NOT_FOUND' });
+    expect(scoped[1].turnSession).toHaveBeenCalledTimes(1);
+  } finally {
+    registry.resetDaemonHarnessPortForTests();
+    await rm(temporary, { recursive: true, force: true });
+  }
 });

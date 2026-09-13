@@ -239,6 +239,7 @@ export function buildSelectedSessionReplayProjection(
     currency,
     ...(session ? { session } : {}),
     transcript,
+    events: admittedEvents,
     instructionHistory: [...replay.instructionHistory],
     instructionBases: [...replay.instructionBases],
     malformedLineCount,

@@ -87,8 +87,8 @@ it('keeps six-view keyboard navigation and reveals the selected tab after change
   const state = createDefaultWovenWorkspaceState();
   await act(async () => { tree = create(<RightPanel {...props} state={state} />, { createNodeMock: element => element.props.role === 'tablist' ? tabNode : null }); });
   const key = (value: string) => tree.root.findByProps({ role: 'tablist' }).props.onKeyDown({ key: value, preventDefault: vi.fn(), currentTarget: { querySelector: () => ({ focus }) } });
-  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.props['data-view'])).toEqual(['files', 'plan', 'workflows', 'skills', 'agents', 'activity']);
-  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.children.join(''))).toEqual(['Files', 'Plan', 'Workflows', 'Skills', 'Agents', 'Activity']);
+  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.props['data-view'])).toEqual(['files', 'plan', 'workflows', 'agents', 'activity']);
+  expect(tree.root.findAllByProps({ role: 'tab' }).map(tab => tab.children.join(''))).toEqual(['Files', 'Plan', 'Workflows', 'Agents', 'Activity']);
   act(() => key('ArrowRight')); expect(onView).toHaveBeenLastCalledWith('plan');
   act(() => key('ArrowLeft')); expect(onView).toHaveBeenLastCalledWith('activity');
   act(() => key('End')); expect(onView).toHaveBeenLastCalledWith('activity');
@@ -100,7 +100,7 @@ it('keeps six-view keyboard navigation and reveals the selected tab after change
   act(() => tree.unmount());
 });
 
-it('renders the Plan tab from the host-supplied model and the Skills tab as its own read-only library view', () => {
+it('renders the Plan tab from the host-supplied model and redirects a saved Skills view to Workflows', () => {
   const state = createDefaultWovenWorkspaceState();
   const empty = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'plan' }} sessionOpen={false} />);
   expect(empty).toContain('No plan in this chat yet');
@@ -111,7 +111,8 @@ it('renders the Plan tab from the host-supplied model and the Skills tab as its 
   expect(plan).toContain('Plan one');
   expect(plan).toContain('aria-label="1 revisions"');
   const skills = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'skills' }} sessionOpen={false} />);
-  expect(skills).toContain('Library view skills');
+  expect(skills).toContain('Library view workflows');
+  expect(skills).not.toContain('right-tab-skills');
   const workflows = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'workflows' }} sessionOpen={false} />);
   expect(workflows).toContain('Library view workflows');
 });

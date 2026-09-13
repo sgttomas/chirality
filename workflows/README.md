@@ -36,7 +36,7 @@ contracts, templates, examples, or helpers. Package resources must remain
 inside the package after real-path resolution.
 
 `workflows/catalog.yaml` contains the bundled library identity and the ordered
-set of six central workflows shown by selectors. `workflows/index.json` is
+set of central workflows shown by selectors. `workflows/index.json` is
 generated from package metadata with
 `python3 tools/validation/build_workflow_index.py`. Consumers use the index or
 parse the canonical frontmatter and execution metadata themselves; Root's Python command is an

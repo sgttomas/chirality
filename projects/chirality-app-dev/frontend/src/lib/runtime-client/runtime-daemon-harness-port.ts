@@ -394,6 +394,13 @@ export class RuntimeDaemonHarnessPort implements DaemonHarnessPort {
     });
   }
 
+  async steer(sessionId: string, request: Parameters<DaemonHarnessPort['steer']>[1], options?: DaemonRequestOptions): ReturnType<DaemonHarnessPort['steer']> {
+    return mapped(async () => {
+      await this.requireConfiguredProject(options?.signal);
+      return this.client.sessionTurnSteer(this.projectId, sessionId, request, options?.signal);
+    });
+  }
+
   async interrupt(
     request: Parameters<DaemonHarnessPort['interrupt']>[0],
     options?: DaemonRequestOptions
@@ -667,6 +674,7 @@ type HostedBindingReservation =
 
 export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
   private binding?: VerifiedHostedBinding;
+  private readonly bindings = new Map<string, VerifiedHostedBinding>();
   private bindingSelectionGeneration = 0;
   private hydrationGeneration = 0;
   private pendingExplicitSelection?: number;
@@ -688,10 +696,11 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
   ): Promise<HostedProjectBindingResponse> {
     return mapped(async () => {
       const canonicalRoot = await this.canonicalRoot(projectRoot);
-      const capturedBinding = this.binding;
+      const capturedBinding = this.bindings.get(canonicalRoot);
       if (capturedBinding !== undefined) {
         this.requireSameRoot(canonicalRoot, capturedBinding);
         await this.revalidateBinding(capturedBinding, options?.signal);
+        this.installBinding(capturedBinding, true);
         return { registration: 'registered', projectId: capturedBinding.projectId };
       }
       const binding = await this.resolveAndBind(canonicalRoot, options?.signal);
@@ -833,10 +842,9 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
     canonicalRoot: string,
     signal?: AbortSignal
   ): Promise<VerifiedHostedBinding | undefined> {
-    const capturedBinding = this.binding;
+    const capturedBinding = this.bindings.get(canonicalRoot);
     if (capturedBinding !== undefined) {
-      this.requireSameRoot(canonicalRoot, capturedBinding);
-      return capturedBinding;
+      return this.revalidateBinding(capturedBinding, signal);
     }
     const reservation = this.reserveHydration();
     let registered: RegisteredProject;
@@ -879,9 +887,9 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
     capturedBinding = this.binding
   ): Promise<VerifiedHostedBinding> {
     const canonicalRoot = await this.canonicalRoot(projectRoot);
-    if (capturedBinding !== undefined) {
-      this.requireSameRoot(canonicalRoot, capturedBinding);
-      return this.revalidateBinding(capturedBinding, signal);
+    const rootBinding = this.bindings.get(canonicalRoot);
+    if (rootBinding !== undefined) {
+      return this.revalidateBinding(rootBinding, signal);
     }
     const reservation = this.reserveHydration();
     const registered = await this.options.bootstrapClient.resolveProjectByRoot(
@@ -930,6 +938,13 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
       manifestHash: registration.manifestHash,
       client
     };
+    const retained = this.bindings.get(canonicalRoot);
+    if (retained && retained.projectId !== binding.projectId) {
+      throw new RuntimeError('PROJECT_MANIFEST_DRIFT', 'Verified project ownership changed', 409);
+    }
+    // A superseded selection may still establish a valid separate folder.
+    // Retain it for later root-specific requests without replacing the selection.
+    if (!retained || this.reservationIsCurrent(reservation)) this.bindings.set(canonicalRoot, binding);
     if (!this.reservationIsCurrent(reservation)) {
       throw new RuntimeError(
         'PROJECT_MANIFEST_DRIFT',
@@ -937,13 +952,35 @@ export class RuntimeHostedBootstrapPort implements HostedBootstrapPort {
         409
       );
     }
-    this.installBoundPort?.(
-      new RuntimeDaemonHarnessPort(client, binding.projectId, binding.projectRoot),
-      { projectId: binding.projectId, projectRoot: binding.projectRoot },
-      allowReplacement
-    );
+    this.installBinding(binding, allowReplacement || this.binding !== undefined);
     this.binding = binding;
     return binding;
+  }
+
+  private installBinding(binding: VerifiedHostedBinding, allowReplacement: boolean): DaemonHarnessPort {
+    const port = new RuntimeDaemonHarnessPort(binding.client, binding.projectId, binding.projectRoot);
+    this.installBoundPort?.(port, { projectId: binding.projectId, projectRoot: binding.projectRoot }, allowReplacement);
+    return port;
+  }
+
+  async resolveSessionPort(sessionId: string, options?: DaemonRequestOptions): Promise<DaemonHarnessPort> {
+    return mapped(async () => {
+      // The existing Runtime lookup obeys the launch client's actual scopes.
+      // Re-verify its project and use a project-scoped client for the operation.
+      const owner = await this.options.bootstrapClient.resolveSessionOwner(sessionId, options?.signal);
+      const canonicalRoot = await this.canonicalRoot(owner.project.canonicalRoot);
+      let binding = this.bindings.get(canonicalRoot);
+      if (binding) {
+        await this.revalidateBinding(binding, options?.signal);
+      } else {
+        binding = await this.verifyAndBind(canonicalRoot, {
+          projectId: owner.project.projectId, manifestHash: owner.project.manifestHash
+        }, true, options?.signal);
+      }
+      const port = new RuntimeDaemonHarnessPort(binding.client, binding.projectId, binding.projectRoot);
+      await port.getSession(sessionId, options);
+      return port;
+    });
   }
 
   private reserveExplicitSelection(): Extract<HostedBindingReservation, { kind: 'explicit' }> {

@@ -45,8 +45,9 @@ that a tool is available.
 Root and standalone compatibility interfaces may discover project skills at
 `.agents/skills/<name>/SKILL.md` and user skills at
 `~/.agents/skills/<name>/SKILL.md`. In the App, skill availability follows
-Codex's native discovery of project, user, and bundled skills, and the App
-catalog displays Codex's effective skill set with each skill's origin.
+Codex's native discovery of project, user, and bundled skills. Runtime retains
+Codex's effective skill set and each skill's origin; the App hides skill browsing
+for v3.0.0 while preserving background skill use.
 Read-only replay may render preserved historical bytes and origin without
 activating a skill for a new turn, and a historical selection is never
 silently rebound to a same-named definition from another origin.
@@ -71,11 +72,12 @@ body. Routine role context does not carry full workflow bodies. Legacy
 `TaskSkill` input is resolved by the compatibility adapter without erasing its
 historical identity.
 
-The central project workflows are shown first because they are broadly
-applicable. This attention does not require their use:
+The central workflows are shown first because they are broadly applicable.
+Use is optional except for the workflow-authoring requirement below:
 
 | Undertaking | Workflow |
 |---|---|
+| Creating or revising reusable workflows | `create-workflow` |
 | Workspace initialization and setup pipelines | `project-setup` |
 | Project scope decomposition | `project-decomp` |
 | Software decomposition | `software-decomp` |
@@ -86,6 +88,11 @@ applicable. This attention does not require their use:
 Other workflows remain available through deliberate discovery. A workflow may
 compose deterministic tools and bounded TASK assignments while preserving its
 own human checkpoints and output contract.
+
+Before creating or revising a reusable workflow, including ordinary
+conversational requests, load the core `create-workflow` workflow from the
+selected library basis and follow it. Preserve its source-qualified identity;
+do not silently substitute a same-named package from another library.
 
 A user may ask in the active chat to create, save, or revise a workflow. The
 agent prepares a valid `.chirality/workflows/<name>/WORKFLOW.md` project package

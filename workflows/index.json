@@ -10,6 +10,7 @@
     "bundled"
   ],
   "centralWorkflowNames": [
+    "create-workflow",
     "project-setup",
     "project-decomp",
     "software-decomp",
@@ -693,6 +694,29 @@
     },
     {
       "kind": "workflow",
+      "name": "create-workflow",
+      "source": "bundled",
+      "sourceRootId": "chirality-root",
+      "description": "Create or revise a reusable Chirality workflow through conversation, package it in the intended library, and verify discovery and readiness for reuse.",
+      "central": true,
+      "compatibility": "canonical",
+      "executionRoleIds": [
+        "HELP_HUMAN",
+        "HELPS_HUMANS",
+        "WORKING_ITEMS",
+        "TASK"
+      ],
+      "resources": [
+        "WORKFLOW.md"
+      ],
+      "navigation": {
+        "category": "core",
+        "tier": "primary",
+        "order": 0
+      }
+    },
+    {
+      "kind": "workflow",
       "name": "dbm-concordance-seed",
       "source": "bundled",
       "sourceRootId": "chirality-root",
@@ -1131,7 +1155,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 3
+        "order": 4
       },
       "execution": {
         "schemaVersion": 1,
@@ -2378,7 +2402,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 1
+        "order": 2
       },
       "execution": {
         "schemaVersion": 1,
@@ -2408,7 +2432,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 0
+        "order": 1
       },
       "execution": {
         "schemaVersion": 1,
@@ -2488,7 +2512,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 8,
+        "order": 9,
         "displayName": "Check project status"
       },
       "execution": {
@@ -2536,7 +2560,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 4
+        "order": 5
       },
       "execution": {
         "schemaVersion": 1,
@@ -2621,7 +2645,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 7,
+        "order": 8,
         "displayName": "Review results"
       },
       "execution": {
@@ -2694,7 +2718,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 5
+        "order": 6
       },
       "execution": {
         "schemaVersion": 1,
@@ -2999,7 +3023,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 2
+        "order": 3
       },
       "execution": {
         "schemaVersion": 1,
@@ -3164,7 +3188,7 @@
       "navigation": {
         "category": "core",
         "tier": "primary",
-        "order": 6,
+        "order": 7,
         "displayName": "Manage tasks"
       },
       "execution": {

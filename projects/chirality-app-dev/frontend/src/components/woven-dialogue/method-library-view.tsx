@@ -64,7 +64,7 @@ function groupId(label: string): string {
   return `method-group-${label.replace(/\W+/g, '-').toLowerCase()}`;
 }
 
-export function MethodLibraryView({ projectRoot, selected, onSelectedChange, refresh = 0, view = 'workflows' }: {
+export function MethodLibraryView({ projectRoot, selected, onSelectedChange, refresh = 0 }: {
   projectRoot: string;
   selected: readonly QualifiedMethodReference[];
   onSelectedChange: (methods: QualifiedMethodReference[]) => void;
@@ -79,11 +79,17 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
   const [error, setError] = useState<string | null>(null);
   const inspectionGeneration = useRef(0);
   const runtimeEpoch = useRuntimeEpoch();
+  const catalogScope = useRef<{ projectRoot: string; query: string } | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
-    inspectionGeneration.current += 1;
-    setInspection(null); setInspectionPendingId(null); setMethods([]); setLoading(true); setError(null);
+    const scopeChanged = catalogScope.current?.projectRoot !== projectRoot || catalogScope.current?.query !== query;
+    catalogScope.current = { projectRoot, query };
+    if (scopeChanged) {
+      inspectionGeneration.current += 1;
+      setInspection(null); setInspectionPendingId(null); setMethods([]); setLoading(true);
+    }
+    setError(null);
     const timer = setTimeout(() => {
       void listMethods(projectRoot, query, controller.signal)
         .then(result => { if (!controller.signal.aborted) setMethods([...result.methods]); })
@@ -93,11 +99,8 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
     return () => { clearTimeout(timer); controller.abort(); };
   }, [projectRoot, query, refresh, runtimeEpoch]);
 
-  const visible = useMemo(() => methods.filter(method => (view === 'workflows'
-    ? method.kind === 'workflow'
-    : method.kind === 'skill' && method.source === 'bundled' && method.compatibility !== 'legacy') && methodMatchesQuery(method, query)), [methods, view, query]);
+  const visible = useMemo(() => methods.filter(method => method.kind === 'workflow' && methodMatchesQuery(method, query)), [methods, query]);
   const library = useMemo(() => groupWorkflowLibrary(visible), [visible]);
-  const skills = useMemo(() => [...visible].sort((a, b) => a.name.localeCompare(b.name)), [visible]);
 
   const openInspection = (method: MethodDescriptor): void => {
     const generation = inspectionGeneration.current + 1;
@@ -127,16 +130,14 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
       {extra}
     </section>;
 
-  const searchLabel = view === 'skills' ? 'Search skills' : 'Search workflows';
+  const searchLabel = 'Search workflows';
   const empty = !loading && !error && visible.length === 0;
-  return <section className="method-library" aria-label={view === 'skills' ? 'Skills' : 'Workflows'} data-library-view={view}>
+  return <section className="method-library" aria-label="Workflows" data-library-view="workflows">
     <input type="search" className="method-library-search" value={query} onChange={event => setQuery(event.target.value)} placeholder={searchLabel} aria-label={searchLabel} title={searchLabel} />
-    {view === 'skills' ? <p className="method-library-note">Reviewed skills bundled with this release. Read-only; updated through App releases.</p> : null}
     {loading ? <p role="status">Loading…</p> : null}
     {error ? <p role="alert">{error}</p> : null}
-    {empty ? <p>{query ? 'No matches.' : view === 'skills' ? 'No bundled skills are available.' : 'No workflows are available.'}</p> : null}
-    {!loading && !error && view === 'skills' && skills.length ? <ul className="method-library-list">{skills.map(card)}</ul> : null}
-    {!loading && !error && view === 'workflows' ? <>
+    {empty ? <p>{query ? 'No matches.' : 'No workflows are available.'}</p> : null}
+    {!loading ? <>
       {section('Core', library.core)}
       {library.specialist.length ? <section className="method-library-group" aria-labelledby={groupId('Specialist')}>
         <h3 id={groupId('Specialist')}>Specialist</h3>

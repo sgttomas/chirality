@@ -3,6 +3,7 @@ import {
   RuntimeError,
   type SessionTurnRequest,
   type SessionTurnState,
+  type HarnessEvent,
   type UIEvent
 } from "@chirality/runtime-contracts";
 
@@ -227,6 +228,14 @@ export class TurnRegistry {
       startedAt: record.startedAt,
       ...(record.endedAt === undefined ? {} : { endedAt: record.endedAt })
     };
+  }
+
+  /** Publishes already-persisted side input evidence without creating a turn. */
+  publishEvidence(projectId: string, sessionId: string, event: HarnessEvent): void {
+    const current = this.turns.get(this.key(projectId, sessionId));
+    if (current && current.turnId === event.turnId && event.sessionId === sessionId) {
+      this.append(current, { type: "harness:event", data: event });
+    }
   }
 
   /** Explicit Stop. Concurrent calls for the same active turn join one in-flight interruption. */

@@ -15,10 +15,11 @@ function SubagentActivityItem({ row }: { row: SubagentActivityRow }): JSX.Elemen
           {row.agentName}
         </span>
         <span className={`harness-status-badge harness-status-badge--${row.status}`}>
-          {row.status}
+          {row.status}{row.observationEnded ? ' · last observed' : ''}
         </span>
       </div>
       {row.description ? <p className="harness-stream-description">{row.description}</p> : null}
+      {row.observationEnded ? <p role="status">{row.observationEnded}</p> : null}
       {row.summary ? <p className="harness-stream-summary">{row.summary}</p> : null}
       <p className="harness-stream-meta">
         {row.lastToolName ? `last: ${row.lastToolName} · ` : ''}

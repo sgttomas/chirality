@@ -18,8 +18,7 @@
     "centralWorkflowNames": {
       "type": "array",
       "items": {"type": "string"},
-      "minItems": 6,
-      "maxItems": 6,
+      "minItems": 1,
       "uniqueItems": true
     },
     "navigation": {
@@ -29,8 +28,7 @@
       "properties": {
         "core": {
           "type": "array",
-          "minItems": 9,
-          "maxItems": 9,
+          "minItems": 1,
           "items": {
             "type": "object",
             "additionalProperties": false,

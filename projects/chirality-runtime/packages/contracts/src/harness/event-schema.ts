@@ -42,6 +42,7 @@ export const HARNESS_EVENT_TYPES = [
   'subagent.completed',
   'subagent.failed',
   'codex.notification',
+  'codex.steer',
   'codex.request',
   'codex.request.resolved',
   'coordination.notice',

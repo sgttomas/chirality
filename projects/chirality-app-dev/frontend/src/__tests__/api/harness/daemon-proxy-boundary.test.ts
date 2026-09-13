@@ -8,6 +8,7 @@ import {
   resetDaemonHarnessPortForTests
 } from '../../../lib/runtime-client/daemon-harness-port';
 import * as createRoute from '../../../app/api/harness/session/create/route';
+import * as steerRoute from '../../../app/api/harness/session/[id]/turn/steer/route';
 import * as turnRoute from '../../../app/api/harness/turn/route';
 
 function unimplemented(): never {
@@ -29,6 +30,7 @@ function daemonPort(
     turnState: unimplemented,
     listRequests: unimplemented,
     answerRequest: unimplemented,
+    steer: unimplemented,
     interrupt: unimplemented,
     decidePermission: unimplemented,
     listAgents: unimplemented,
@@ -211,4 +213,16 @@ describe('Desktop daemon harness proxy boundary', () => {
       { signal: expect.any(AbortSignal) }
     );
   });
+});
+
+
+it('routes steering by the owning session and validates Runtime turn and operation identity', async () => {
+  const steer = vi.fn(async (_sessionId, request) => ({ operationId: request.operationId, turnId: request.expectedTurnId, status: 'accepted' as const }));
+  installDaemonHarnessPort(daemonPort({ steer }));
+  const response = await steerRoute.POST(new Request('http://localhost/api/harness/session/s/turn/steer', { method: 'POST', body: JSON.stringify({ operationId: 'op', expectedTurnId: 'runtime-turn', text: 'Use this correction', providerThreadId: 'untrusted' }) }), { params: Promise.resolve({ id: 's' }) });
+  expect(response.status).toBe(200);
+  expect(steer).toHaveBeenCalledWith('s', { operationId: 'op', expectedTurnId: 'runtime-turn', text: 'Use this correction' }, expect.any(Object));
+  const invalid = await steerRoute.POST(new Request('http://localhost/api/harness/session/s/turn/steer', { method: 'POST', body: JSON.stringify({ operationId: 'op', text: 'Missing turn' }) }), { params: Promise.resolve({ id: 's' }) });
+  expect(invalid.status).toBe(400);
+  expect(steer).toHaveBeenCalledTimes(1);
 });

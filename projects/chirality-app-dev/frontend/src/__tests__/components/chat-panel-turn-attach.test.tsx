@@ -12,7 +12,7 @@ import type { SelectedSessionReplayProjection } from '../../lib/woven-dialogue/c
  * disconnect; `turn.interrupted` renders the moment it arrives.
  */
 const state = vi.hoisted(() => ({ root: '/chosen/subfolder', listeners: new Set<() => void>(),
-  create: vi.fn(), boot: vi.fn(), replay: vi.fn(), stream: vi.fn(), attach: vi.fn(), turnState: vi.fn(), interrupt: vi.fn(),
+  create: vi.fn(), boot: vi.fn(), replay: vi.fn(), stream: vi.fn(), attach: vi.fn(), turnState: vi.fn(), interrupt: vi.fn(), steer: vi.fn(),
   append: vi.fn(), clear: vi.fn(), hydrate: vi.fn(), streaming: vi.fn(),
   replaceMethods: vi.fn(), resolveContext: vi.fn(), nativeCapability: vi.fn(), nativeRevisions: vi.fn(), nativeClarifications: vi.fn()
 }));
@@ -39,7 +39,7 @@ vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
 }));
 vi.mock('../../lib/harness/client', async importOriginal => ({ ...await importOriginal<typeof import('../../lib/harness/client')>(),
   createHarnessSession: state.create, bootHarnessSession: state.boot, replaySessionEvents: state.replay, streamHarnessTurn: state.stream,
-  attachHarnessTurn: state.attach, getHarnessTurnState: state.turnState, interruptHarnessSession: state.interrupt }));
+  attachHarnessTurn: state.attach, getHarnessTurnState: state.turnState, interruptHarnessSession: state.interrupt, steerHarnessSession: state.steer, listHarnessSessionRequests: vi.fn(async () => ({ requests: [] })) }));
 import { ChatPanel } from '../../components/shell/chat-panel';
 import { HarnessApiClientError } from '../../lib/harness/client';
 
@@ -225,7 +225,7 @@ it('reports Reconnecting then Outcome unknown when the connection is lost and th
   await flush();
   expect(phases.at(-1)).toBe('reconnecting');
   expect(tree!.root.findByProps({ className: 'chat-runtime-status' }).props['data-turn-phase']).toBe('reconnecting');
-  expect(rendered()).toContain('Closing this window keeps it running; quitting Chirality stops it.');
+  expect(rendered()).not.toContain('Closing this window keeps it running; quitting Chirality stops it.');
   await act(async () => { await vi.advanceTimersByTimeAsync(1_000); });
   await flush();
   expect(rendered()).toContain('before drop');
@@ -291,7 +291,7 @@ it('returns to Working on a real reattachment with no new model output and retri
   expect(state.attach).toHaveBeenCalledTimes(2);
   expect(status()).toContain('Reconnecting');
   await act(async () => { deliver({ event: 'transport:connected', data: {} }); });
-  expect(tree!.root.findByProps({ className: 'chat-runtime-status' }).props['data-turn-phase']).toBe('working');
+  expect(tree!.root.findByProps({ className: 'turn-activity-summary' }).children.join('')).toBe('Working');
   await act(async () => { await vi.advanceTimersByTimeAsync(70_000); });
   expect(stopButtons()).toHaveLength(1);
   expect(state.stream).not.toHaveBeenCalled();
@@ -489,4 +489,64 @@ it('never adopts a recovered live turn identity or completion for a legacy idles
   expect(JSON.parse(saved)).toEqual([expect.objectContaining({ status: 'unknown' })]);
   expect(JSON.parse(saved)[0].turnId).toBeUndefined();
   expect(state.stream).not.toHaveBeenCalled();
+});
+
+
+it('keeps native commentary and final items separate and replaces their completed snapshots without legacy duplicates', async () => {
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  let deliver!: (frame: Frame) => void;
+  state.attach.mockImplementation((_s: string, _a: number, onEvent: (frame: Frame) => void) => { deliver = onEvent; return new Promise(() => {}); });
+  await mountResumed();
+  const native = (seq: number, id: string, phase: string, text: string) => harness(seq, `n${seq}`, 'codex.notification', {
+    method: 'item/completed', params: { threadId: 'primary', turnId: 'native-turn', item: { type: 'agentMessage', id, phase, text } }, codex: { isPrimaryThread: true, providerThreadId: 'primary' }
+  });
+  await act(async () => {
+    deliver(harness(1, 'legacy', 'message.delta', { text: 'joined legacy text' }));
+    deliver(native(2, 'comment', 'commentary', 'I will inspect it.'));
+    deliver(native(3, 'final', 'final_answer', 'The answer.'));
+    deliver(native(4, 'final', 'final_answer', 'The complete answer.'));
+    deliver({ event: 'chat:complete', data: { text: 'joined legacy text' } });
+  });
+  const commentary = tree!.root.findByProps({ 'data-message-phase': 'commentary' });
+  const final = tree!.root.findByProps({ 'data-message-phase': 'final_answer' });
+  expect(JSON.stringify(commentary.children.map(node => typeof node === 'string' ? node : node.props))).toContain('I will inspect it.');
+  expect(rendered()).toContain('The complete answer.');
+  expect(rendered()).not.toContain('joined legacy text');
+  expect(final.props['data-role']).toBe('assistant');
+});
+
+it.each(['accepted', 'rejected', 'unknown'] as const)('steers the owned Runtime turn and preserves unconfirmed drafts: %s', async status => {
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  state.attach.mockImplementation((_sessionId, _after, onEvent) => { onEvent({ event: 'transport:connected', data: {} }); return new Promise(() => {}); });
+  state.steer.mockImplementation(async (_sessionId, request) => ({ operationId: request.operationId, turnId: request.expectedTurnId, status }));
+  await mountResumed();
+  await act(async () => tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value: 'Use the small example.' } }));
+  await act(async () => tree!.root.findByType('form').props.onSubmit({ preventDefault() {} }));
+  await flush();
+  expect(state.steer).toHaveBeenCalledWith('resumed', { operationId: expect.any(String), expectedTurnId: 'turn-1', text: 'Use the small example.' });
+  expect(state.stream).not.toHaveBeenCalled();
+  expect(state.interrupt).not.toHaveBeenCalled();
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe(status === 'accepted' ? '' : 'Use the small example.');
+  if (status === 'unknown') expect(tree!.root.findByProps({ 'aria-label': 'Update running turn' }).props.disabled).toBe(true);
+});
+
+it('keeps background Plan reads quiet and shows busy only for a manual refresh', async () => {
+  vi.useFakeTimers();
+  state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'qualified', qualification: { adapterId: 'fixture', providerId: 'fixture', qualificationId: 'qualified-fixture', admissionSha256: 'a'.repeat(64), evidenceClass: 'native-adapter-qualified' } });
+  const projected = projection('resumed');
+  projected.session!.continuation!.interactionMode = 'native-plan';
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  state.attach.mockImplementation(() => new Promise(() => {}));
+  let model: import('../../components/shell/native-plan-panel').NativePlanPanelModel | null = null;
+  await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: projected }} onPlanPanelChange={next => { model = next; }} />); });
+  await flush();
+  expect(model!.refreshing).toBe(false);
+  let complete!: (value: unknown) => void;
+  state.nativeRevisions.mockImplementation(() => new Promise(resolve => { complete = resolve; }));
+  await act(async () => { await vi.advanceTimersByTimeAsync(1000); });
+  expect(model!.refreshing).toBe(false);
+  await act(async () => model!.onRefresh());
+  expect(model!.refreshing).toBe(true);
+  await act(async () => complete({ revisions: [] }));
+  expect(model!.refreshing).toBe(false);
 });

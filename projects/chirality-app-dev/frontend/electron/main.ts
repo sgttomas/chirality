@@ -4,7 +4,7 @@ import { app, BrowserWindow, dialog, ipcMain, shell, Menu } from 'electron';
 import { isAuthorizedSender } from './ipc-sender-policy';
 import { createDocumentHandoffHandler, validateRevealRoot, FilePolicyError } from '../src/app/api/working-root/file/file-policy';
 import { existsSync, mkdirSync, readFileSync } from 'node:fs';
-import { stat } from 'node:fs/promises';
+import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import os from 'node:os';
@@ -486,12 +486,27 @@ function runtimeServiceEnvironment(): Record<string, string> {
   return environment;
 }
 
-async function registerDirectorySelectionHandler(): Promise<void> {
-  ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
-  ipcMain.handle(SELECT_DIRECTORY_CHANNEL, async () => {
+export function createDirectorySelectionHandler(
+  preferencePath: string,
+  homePath: string,
+  showOpenDialog: typeof dialog.showOpenDialog = dialog.showOpenDialog
+): () => Promise<{ cancelled: boolean; path?: string; error?: string }> {
+  let lastSelectedPath: string | undefined;
+  return async () => {
+    if (!lastSelectedPath) {
+      try {
+        const stored: unknown = JSON.parse(await readFile(preferencePath, 'utf8'));
+        if (typeof stored === 'string' && path.isAbsolute(stored)) lastSelectedPath = stored;
+      } catch { /* A missing or unreadable preference starts at home. */ }
+    }
+    let defaultPath = homePath;
+    if (lastSelectedPath) {
+      try { if ((await stat(lastSelectedPath)).isDirectory()) defaultPath = lastSelectedPath; } catch { /* The remembered folder may have moved. */ }
+    }
     // The folder picker is the project-preparation moment: choosing a folder is
     // the whole of "creating a project" for the operator.
-    const dialogResult = await dialog.showOpenDialog({
+    const dialogResult = await showOpenDialog({
+      defaultPath,
       title: 'Choose a project folder',
       buttonLabel: 'Use this folder',
       message: 'Chirality will work in this folder and add a chirality.project.json file if one is missing.',
@@ -519,11 +534,23 @@ async function registerDirectorySelectionHandler(): Promise<void> {
       };
     }
 
+    lastSelectedPath = selectedPath;
+    try {
+      await mkdir(path.dirname(preferencePath), { recursive: true });
+      await writeFile(preferencePath, JSON.stringify(selectedPath), { mode: 0o600 });
+    } catch { /* Selection still succeeds if only preference persistence fails. */ }
     return {
       cancelled: false,
       path: selectedPath
     };
-  });
+  };
+}
+
+async function registerDirectorySelectionHandler(): Promise<void> {
+  ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
+  ipcMain.handle(SELECT_DIRECTORY_CHANNEL, createDirectorySelectionHandler(
+    path.join(app.getPath('userData'), 'selected-directory.json'), app.getPath('home')
+  ));
 }
 
 /**

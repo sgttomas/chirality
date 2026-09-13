@@ -1,3 +1,4 @@
+import { nativeNotification, record } from './native-progress';
 import type { HarnessEvent, HarnessEventType } from '@chirality/runtime-contracts/event-schema';
 
 /**
@@ -28,7 +29,7 @@ export type ToolActivityRow = {
   eventCount: number;
 };
 
-export type SubagentActivityStatus = 'running' | 'completed' | 'failed';
+export type SubagentActivityStatus = 'running' | 'completed' | 'failed' | 'waiting' | 'interrupted' | 'unknown';
 
 export type SubagentActivityRow = {
   key: string;
@@ -38,6 +39,7 @@ export type SubagentActivityRow = {
   summary?: string;
   lastToolName?: string;
   outputArtifactPath?: string;
+  observationEnded?: string;
   lastEventType: HarnessEventType;
   timestamp: string;
   eventCount: number;
@@ -344,10 +346,11 @@ export function deriveServerRequests(events: readonly HarnessEvent[]): ServerReq
     const requestId = readString(data.requestId);
     if (!requestId) continue;
     const method = readString(data.method) ?? '';
-    const existing = rows.get(requestId);
+    const key = `${event.sessionId}:${requestId}`;
+    const existing = rows.get(key);
     if (event.type === 'codex.request') {
-      rows.set(requestId, {
-        key: requestId,
+      rows.set(key, {
+        key,
         sessionId: event.sessionId,
         requestId,
         method: method || existing?.method || '',
@@ -367,7 +370,7 @@ export function deriveServerRequests(events: readonly HarnessEvent[]): ServerReq
       // whose `codex.request` was never persisted: nothing to surface as a card.
       continue;
     }
-    rows.set(requestId, {
+    rows.set(key, {
       ...existing,
       status,
       ...(data.decision !== undefined ? { decision: data.decision } : {}),
@@ -419,9 +422,9 @@ export function readElicitationMessage(request: unknown): string {
 }
 
 function reasoningText(item: Record<string, unknown>): string | undefined {
-  const direct = readString(item.text) ?? readString(item.summary);
+  const direct = readString(item.summary);
   if (direct) return direct;
-  for (const field of ['summary', 'content']) {
+  for (const field of ['summary']) {
     const value = item[field];
     if (Array.isArray(value)) {
       const parts = value.flatMap((part) => {
@@ -518,5 +521,47 @@ export function deriveSubagentActivity(events: readonly HarnessEvent[]): Subagen
     });
   }
 
+  // Native collaboration calls describe receivers, not assignment completion.
+  const nativeStatus = (value: unknown): SubagentActivityStatus => {
+    const status = typeof value === 'string' ? value : record(value).type;
+    return status === 'completed' ? 'completed' : status === 'errored' || status === 'failed' || status === 'systemError' ? 'failed'
+      : status === 'interrupted' ? 'interrupted' : status === 'running' || status === 'active' ? 'running'
+      : status === 'pendingInit' ? 'waiting' : 'unknown';
+  };
+  const update = (event: HarnessEvent, id: string, patch: Partial<SubagentActivityRow>) => {
+    const key = `native:${event.sessionId}:${id}`;
+    const old = rows.get(key);
+    rows.set(key, { key, agentName: old?.agentName ?? 'subagent', status: old?.status ?? 'unknown',
+      ...old, ...patch, lastEventType: event.type, timestamp: event.timestamp, eventCount: (old?.eventCount ?? 0) + 1 });
+  };
+  for (const event of events) {
+    const n = nativeNotification(event);
+    if (!n) continue;
+    if (n.method === 'chirality/nativeChildren/observationEnded') {
+      for (const id of readStringArray(n.params.agentThreadIds)) update(event, id, { observationEnded: readString(n.params.message) ?? 'Observation ended with the parent turn. Later child activity is not recorded here.' });
+    }
+    if (n.item.type === 'collabAgentToolCall') {
+      const states = record(n.item.agentsStates);
+      const receivers = new Set([...readStringArray(n.item.receiverThreadIds), ...Object.keys(states)]);
+      for (const id of receivers) {
+        const state = record(states[id]);
+        update(event, id, { ...(state.status ? { status: nativeStatus(state.status) } : {}),
+          ...(readString(n.item.prompt) ? { description: readString(n.item.prompt) } : {}),
+          ...(readString(state.message) ? { summary: readString(state.message) } : {}) });
+      }
+    }
+    const thread = record(n.params.thread);
+    if (n.method === 'thread/started' && n.threadId && readString(thread.parentThreadId)) {
+      update(event, n.threadId, { agentName: readString(thread.agentNickname) ?? readString(thread.agentRole) ?? 'subagent', status: nativeStatus(thread.status) });
+    }
+    if (!n.threadId || !rows.has(`native:${event.sessionId}:${n.threadId}`)) continue;
+    if (n.method === 'thread/status/changed') {
+      const status = record(n.params.status);
+      update(event, n.threadId, { status: Array.isArray(status.activeFlags) && status.activeFlags.length ? 'waiting' : nativeStatus(n.params.status) });
+    }
+    if (n.method === 'turn/started') update(event, n.threadId, { status: 'running' });
+    if (n.method === 'turn/completed') update(event, n.threadId, { status: nativeStatus(record(n.params.turn).status) });
+    if (n.method === 'item/completed' && n.item.type === 'agentMessage' && readString(n.item.text)) update(event, n.threadId, { summary: readString(n.item.text) });
+  }
   return [...rows.values()];
 }

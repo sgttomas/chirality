@@ -36,6 +36,7 @@ function daemonPort(overrides: Partial<DaemonHarnessPort>): DaemonHarnessPort {
     turnState: unimplemented,
     listRequests: unimplemented,
     answerRequest: unimplemented,
+    steer: unimplemented,
     interrupt: unimplemented,
     decidePermission: unimplemented,
     listAgents: unimplemented,

@@ -164,5 +164,5 @@ export function PermissionRequests({
     () => selectPendingPermissionRequests(events, active),
     [events, active]
   );
-  return <PermissionDecisionCards sessionId={sessionId} requests={pending} />;
+  return <PermissionDecisionCards sessionId={sessionId} requests={pending.filter(row => !row.requestId)} />;
 }

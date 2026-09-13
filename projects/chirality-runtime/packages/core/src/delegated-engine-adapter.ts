@@ -31,7 +31,7 @@ export interface DelegatedEngineAdapterOptions {
 
 const TOOL_ITEM_TYPES = new Set(["commandExecution", "fileChange", "mcpToolCall", "dynamicToolCall", "webSearch", "imageView", "imageGeneration"]);
 const APPROVAL_METHODS = new Set(["item/commandExecution/requestApproval", "item/fileChange/requestApproval", "item/permissions/requestApproval", "execCommandApproval", "applyPatchApproval"]);
-const DROPPED_NOTIFICATIONS = new Set(["item/agentMessage/delta", "item/reasoning/summaryTextDelta", "item/reasoning/textDelta", "item/reasoning/summaryPartAdded", "item/plan/delta", "turn/completed"]);
+
 
 /** Renders the runtime-resolved instruction context as plain developer instructions. */
 export function renderDeveloperInstructions(context: ResolveSelectedContextResponse | undefined): string | undefined {
@@ -256,9 +256,12 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
           if (event.type === "text") { if (event.text) yield { type: "chat:delta", data: { text: event.text } }; continue; }
           if (event.type === "notification") {
             const params = record(event.params);
-            const base = { ...codex, method: event.method, params: event.params };
-            if (DROPPED_NOTIFICATIONS.has(event.method)) continue;
-            if (event.method === "turn/started") { yield harness("turn.started", { started: true, codex: base }); continue; }
+            // Descendants are routed through the parent's Runtime session, but
+            // their native identities must never be replaced by the envelope.
+            const nativeThreadId = text(params.threadId) ?? text(record(params.thread).id) ?? codex.providerThreadId;
+            const nativeTurnId = text(params.turnId) ?? text(record(params.turn).id) ?? codex.providerTurnId;
+            const base = { ...codex, providerThreadId: nativeThreadId, providerTurnId: nativeTurnId, isPrimaryThread: nativeThreadId === provider.threadId, method: event.method, params: event.params };
+            if (event.method === "turn/started" && nativeThreadId === provider.threadId) { yield harness("turn.started", { started: true, codex: base }); continue; }
             if (event.method === "item/commandExecution/outputDelta" || event.method === "item/fileChange/outputDelta" || event.method === "item/mcpToolCall/progress") {
               yield harness("tool.progress", { toolUseId: text(params.itemId) ?? "", delta: text(params.delta, 65_536) ?? text(params.message, 65_536) ?? "", codex: base }); continue;
             }
@@ -274,7 +277,9 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
               if (item.type === "collabAgentToolCall") {
                 const receivers = Array.isArray(item.receiverThreadIds) ? item.receiverThreadIds.filter((value): value is string => typeof value === "string") : [];
                 const failed = String(item.status) === "failed";
-                yield harness(started ? "subagent.started" : failed ? "subagent.failed" : "subagent.completed", { taskId: itemId, ...(receivers[0] === undefined ? {} : { agentThreadId: receivers[0] }), agentThreadIds: receivers, tool: text(item.tool), senderThreadId: text(item.senderThreadId), ...(text(item.prompt, 4096) === undefined ? {} : { prompt: text(item.prompt, 4096) }), ...(text(item.model) === undefined ? {} : { model: text(item.model) }), status: text(item.status), codex: base });
+                yield harness(started ? "tool.started" : failed ? "tool.failed" : "tool.completed", { toolUseId: itemId, toolName: "collabAgentToolCall", agentThreadIds: receivers, tool: text(item.tool), senderThreadId: text(item.senderThreadId), status: text(item.status), summary: text(item.tool) ?? "agent interaction", codex: base });
+                // Retain all target states/results independently of call status.
+                yield harness("codex.notification", { method: event.method, params: event.params, codex: base });
                 continue;
               }
               if (item.type === "subAgentActivity") {
@@ -282,7 +287,7 @@ export function createDelegatedEngineAdapter(options: DelegatedEngineAdapterOpti
                 continue;
               }
             }
-            yield harness("codex.notification", { method: event.method, params: event.params, codex });
+            yield harness("codex.notification", { method: event.method, params: event.params, codex: base });
             continue;
           }
           if (event.type === "request") {

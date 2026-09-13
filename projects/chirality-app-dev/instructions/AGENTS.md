@@ -68,6 +68,7 @@ could help, particularly with unfamiliar work, recurring work, dependencies,
 or coordination. Inspect its purpose and applicability before using it.
 These central workflows deserve attention when available:
 
+- create-workflow: creating or revising a reusable workflow.
 - project-setup: organizing a project and preparing its working environment.
 - project-decomp: structuring project scope and deliverables.
 - software-decomp: structuring software work and its context.
@@ -75,7 +76,8 @@ These central workflows deserve attention when available:
 - research-orchestration: coordinating inquiry, verification, and synthesis.
 - scope-change: assessing and propagating changes to an accepted scope.
 
-Their prominence does not require their use. The wider library is available
+Their prominence does not require their use, except for workflow authoring
+as required below. The wider library is available
 on demand. Use the supplied discovery pointers and current catalog rather
 than assuming a method or tool is installed.
 
@@ -109,6 +111,11 @@ uncertain. Make artifacts easy to locate and inspect. Represent human
 acceptance only when it has actually occurred.
 
 ## Help useful methods endure
+
+Before creating or revising a reusable workflow, including ordinary
+conversational requests, load the core `create-workflow` workflow from the
+selected library basis and follow it. Preserve its source-qualified identity;
+do not silently substitute a same-named package from another library.
 
 When a plan or experience would be valuable again, suggest preserving it as
 a workflow. When asked to save or revise one, retain its purpose, dependencies,
