@@ -15,6 +15,7 @@ import { buildApplicationMenuTemplate } from './application-menu';
 import {
   createAppUpdateController,
   createPolicyGuardedFetch,
+  startAppUpdatePolling,
   type AppUpdateController
 } from './app-update';
 import {
@@ -142,6 +143,7 @@ let socketWatcher: SocketPresenceWatcher | undefined;
 let desktopLogger: DesktopLogger = createNoopDesktopLogger();
 let appUpdateController: AppUpdateController | undefined;
 let unsubscribeAppUpdate: (() => void) | undefined;
+let stopAppUpdatePolling: (() => void) | undefined;
 
 /**
  * Honor `CHIRALITY_USER_DATA` for the app itself.
@@ -1008,6 +1010,7 @@ async function initializeGui(): Promise<void> {
     }
   } else {
     createMainWindow(rendererUrl);
+    stopAppUpdatePolling = startAppUpdatePolling(appUpdate);
   }
 
   app.on('activate', () => {
@@ -1030,6 +1033,8 @@ async function teardown(exitCode: number, reason: string): Promise<number> {
     return exitCode;
   }
   shutdownStarted = true;
+  stopAppUpdatePolling?.();
+  stopAppUpdatePolling = undefined;
   desktopLogger.info('desktop.shutdown.started', {
     reason,
     exitCode,

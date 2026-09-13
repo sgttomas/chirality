@@ -1,6 +1,7 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { checkForAppUpdate, compareSemver, createAppUpdateController, createPolicyGuardedFetch,
-  evaluateAppUpdateSourcePolicy, parseAppUpdateFeed, parseSemver, type AppUpdateFetchResponse } from '../../../electron/app-update';
+  evaluateAppUpdateSourcePolicy, parseAppUpdateFeed, parseSemver, startAppUpdatePolling,
+  APP_UPDATE_CHECK_INTERVAL_MS, type AppUpdateFetchResponse } from '../../../electron/app-update';
 import { APP_UPDATE_FEED_URL, APP_UPDATE_RELEASE_ROOT, resolveAppUpdateSource } from '../../../electron/app-update-source';
 
 const source = resolveAppUpdateSource()!;
@@ -138,5 +139,67 @@ describe('controller browser-mediated UX', () => {
     finish(); await next;
     expect(controller.getState()).toMatchObject({ status: 'failed' });
     expect(fetchImpl).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe('automatic release checks', () => {
+  afterEach(() => { vi.clearAllTimers(); vi.useRealTimers(); });
+
+  it('checks at startup and discovers a new release on the six-hour check', async () => {
+    vi.useFakeTimers();
+    let latest = '3.0.0';
+    const fetchImpl = vi.fn(async () => response(release(latest)));
+    const openExternal = vi.fn(async () => undefined);
+    const controller = createAppUpdateController({ source, appVersion: '3.0.0',
+      platform: 'darwin', arch: 'arm64', fetchImpl, openExternal });
+    const changed = vi.fn();
+    controller.subscribe(changed);
+    const stop = startAppUpdatePolling(controller);
+    await vi.advanceTimersByTimeAsync(0);
+    expect(controller.getState().status).toBe('up-to-date');
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+
+    latest = '3.0.1';
+    await vi.advanceTimersByTimeAsync(6 * 60 * 60 * 1000 - 1);
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    await vi.advanceTimersByTimeAsync(1);
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
+    expect(changed).toHaveBeenLastCalledWith(expect.objectContaining({
+      status: 'update-available', available: expect.objectContaining({ version: '3.0.1' })
+    }));
+    expect(openExternal).not.toHaveBeenCalled();
+
+    stop();
+    await vi.advanceTimersByTimeAsync(APP_UPDATE_CHECK_INTERVAL_MS * 2);
+    expect(fetchImpl).toHaveBeenCalledTimes(2);
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it('shares an in-flight automatic request with a manual check', async () => {
+    vi.useFakeTimers();
+    let finish!: () => void;
+    const fetchImpl = vi.fn(async () => {
+      await new Promise<void>(resolve => { finish = resolve; });
+      return response(release('3.0.1'));
+    });
+    const controller = createAppUpdateController({ source, appVersion: '3.0.0',
+      platform: 'darwin', arch: 'arm64', fetchImpl, openExternal: async () => undefined });
+    const stop = startAppUpdatePolling(controller);
+    const manual = controller.check();
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+    finish();
+    expect(await manual).toMatchObject({ status: 'update-available', available: { version: '3.0.1' } });
+    stop();
+  });
+
+  it('keeps later checks scheduled after an unexpected checker failure', async () => {
+    vi.useFakeTimers();
+    const check = vi.fn().mockRejectedValueOnce(new Error('Unavailable')).mockResolvedValue(undefined);
+    const stop = startAppUpdatePolling({ check });
+    await vi.advanceTimersByTimeAsync(0);
+    expect(check).toHaveBeenCalledTimes(1);
+    await vi.advanceTimersByTimeAsync(APP_UPDATE_CHECK_INTERVAL_MS);
+    expect(check).toHaveBeenCalledTimes(2);
+    stop();
   });
 });

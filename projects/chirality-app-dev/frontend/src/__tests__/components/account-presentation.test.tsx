@@ -6,6 +6,9 @@ import { WOVEN_WORKSPACE_STORAGE_KEY } from '../../lib/woven-dialogue/woven-work
 import { ThemeControl } from '../../components/shell/theme-control';
 import { AccountRow } from '../../components/shell/account-row';
 import { AccountPopover } from '../../components/shell/account-popover';
+import { AppUpdateProvider } from '../../components/shell/app-update-provider';
+import { createAppUpdateController, startAppUpdatePolling } from '../../../electron/app-update';
+import { APP_UPDATE_RELEASE_ROOT, resolveAppUpdateSource } from '../../../electron/app-update-source';
 import { SettingsView } from '../../components/settings/settings-view';
 import { useAccountConsentController, type AccountConsentSettingsViewProps } from '../../components/settings/account-consent-settings';
 import { useRuntimeSettingsController, type RuntimeSettingsViewProps } from '../../components/settings/runtime-settings-controller';
@@ -30,6 +33,45 @@ function Preview({ port, runtime = runtimeBase }: { port: HostedEngineConsentPor
 }
 
 describe('D122 account presentation', () => {
+  it('shows update availability in the closed account row after an automatic check', async () => {
+    vi.useFakeTimers();
+    let stop: (() => void) | undefined;
+    try {
+      let latest = '3.0.0';
+      const controller = createAppUpdateController({
+        source: resolveAppUpdateSource(), appVersion: '3.0.0',
+        platform: 'darwin', arch: 'arm64', openExternal: vi.fn(async () => undefined),
+        fetchImpl: async () => ({ ok: true, status: 200, text: async () => JSON.stringify({
+          tag_name: `v${latest}`, draft: false, prerelease: false,
+          html_url: `${APP_UPDATE_RELEASE_ROOT}/tag/v${latest}`,
+          published_at: '2026-09-13T00:00:00Z', assets: []
+        }) })
+      });
+      vi.stubGlobal('window', { chirality: { appUpdate: {
+        get: async () => controller.getState(), check: () => controller.check(),
+        openDownload: () => controller.openDownload(), subscribe: controller.subscribe,
+        onShowAbout: () => () => undefined
+      } } });
+      const tree = createTree(<AppUpdateProvider>
+        <AccountRow account={accountBase} folder={null} onOpenSettings={noop} />
+      </AppUpdateProvider>);
+      await act(async () => {
+        stop = startAppUpdatePolling(controller);
+        await vi.advanceTimersByTimeAsync(0);
+      });
+      expect(text(tree.root)).not.toContain('Update available');
+      latest = '3.0.1';
+      await act(async () => { await vi.advanceTimersByTimeAsync(6 * 60 * 60 * 1000); });
+      expect(text(tree.root)).toContain('Update available');
+      expect(tree.root.findAllByProps({ 'aria-label': 'Account and settings, update available' })).toHaveLength(1);
+      expect(tree.root.findAllByProps({ role: 'dialog' })).toHaveLength(0);
+    } finally {
+      stop?.();
+      vi.clearAllTimers();
+      vi.useRealTimers();
+    }
+  });
+
   it.each(CONSENT_UX_FIXTURE_NAMES)('renders %s from a real fake port with one local-model dot and unchanged folder semantics', name => {
     const port = createFakeHostedEngineConsentPort({ initial: consentUxFixture(name) });
     const tree = createTree(<Preview port={port} />);
