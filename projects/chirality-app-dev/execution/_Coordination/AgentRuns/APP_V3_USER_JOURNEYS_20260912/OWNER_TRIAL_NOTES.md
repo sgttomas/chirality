@@ -1,30 +1,38 @@
-# Chirality 3.0.0: owner trial notes
+# Chirality 3.0.0: final release notes for the owner
 
-Status: the repaired, signed 3.0.0 candidate is ready for the owner's final
-checks. Install-over acceptance, notarization/stapling and explicit publishing
-direction remain outstanding.
+The automatic-update fix is merged and the final signed installer is built.
+The owner authorized publishing afterward. Apple notarization and stapling
+remain the owner-performed step before the draft release is published; see
+`PUBLIC_RELEASE_20260913.md` for the prepared commands and continuation.
 
-Source: `56c9f538da7f8ab355975efb0821b2b17f4a6814`. The user-journey changes
-merged through [PR #778](https://github.com/sgttomas/chirality/pull/778); the
-bounded dependency repair merged through
-[PR #779](https://github.com/sgttomas/chirality/pull/779). Both merged trees
-match their independently reviewed candidates. Final required CI passed,
-including 364 Runtime tests and 2234 frontend tests; four frontend tests remain
-explicitly skipped. Current packaging evidence is in
-`BUILD_EVIDENCE_RELEASE_20260913.md`. This record is not publishing approval.
+Source: `6f41f93e74b31796302fd45a228ebeabdcd5dd0e`, merged through
+[PR #781](https://github.com/sgttomas/chirality/pull/781). It includes the
+journey/UI work in PR778 and dependency repair in PR779. The merged tree matches
+the reviewed and tested candidate. Required CI passed with 364 Runtime tests
+and 2238 frontend tests; four frontend tests are explicitly skipped. Native
+startup showed a completed automatic check without pressing Check for Updates.
+Controlled integration establishes the future-release badge and six-hour cadence.
 
-Installer: `/Users/ryan/.claude/chirality-build-3-release-20260913-out/Chirality-3.0.0-arm64.dmg`
-(338,040,805 bytes, macOS Apple Silicon). SHA-256:
-`4078225b7cdf8520b0b7beba80aa3d96b33c68ae1657844e7caac48f0239d920`.
-The App is Developer ID signed; Gatekeeper reports Unnotarized Developer ID
-until the owner's notarization/stapling step. The installer has not been
-published or installed over the owner's application.
+Installer: `/Users/ryan/.claude/chirality-build-3-publish-20260913-out/Chirality-3.0.0-arm64.dmg`
+(338,043,892 bytes, macOS Apple Silicon). Pre-notarization SHA-256:
+`e3171754f935dcf502641781586a5befa0c76714ea4f196ed3ca0ece0f846335`.
+Do not publish that digest after stapling; compute the final checksum afterward.
 
-The earlier package remains preserved at the location in
-`BUILD_EVIDENCE_20260913.md`. It contains the superseded dependency versions;
-use the replacement above for review and any later authorized distribution.
+Developer ID signing and the packaged instruction/supplier/version checks
+passed. Actual ASAR checks confirm the new startup/six-hour/cleanup wiring and
+the retained dependency repairs. Gatekeeper currently reports Unnotarized
+Developer ID. The final DMG is not installed over the owner's App or published.
+`BUILD_EVIDENCE_FINAL_UPDATES_20260913.md` records the completed package.
+
+All earlier installers, worktrees and their historical build evidence remain
+preserved. This final installer supersedes the earlier source56c9f538d package
+because it includes the automatic-update fix.
 
 ## What changed
+
+- New releases are checked quietly at startup and every six hours while the App
+  runs. A newer stable release produces the existing visible Update available
+  indicator; downloading and installing stay explicit.
 
 - Progress stays with the active assistant response. Separate native messages,
   reasoning summaries, tool activity and the final answer retain their boundaries.
@@ -63,7 +71,7 @@ They were not observations of actual novice customers or one hundred prior chats
 The signed package receives its own build and integrity checks; development
 observations do not establish install-over preservation.
 
-## Short final check
+## Preserved installation checks
 
 Use your normal intended Chirality profile for the install-over comparison. Keep
 both installers. Do not substitute the retired R17 profile or a fresh empty profile.
@@ -83,8 +91,9 @@ artifact names are historical. Use this campaign's build record for the new one.
 4. Attach one harmless file through the native picker and ask about its contents.
    Inspect a saved result through its chat link. Check that progress, questions and
    the final answer are easy to follow.
-5. Open About and Check for Updates. It should report the public release result
-   without installing anything. Report issue should open the public GitHub issue
+5. Open About after startup. The App should already have checked the public
+   release feed automatically. Check for Updates remains available; neither
+   path installs anything. Report issue should open the public GitHub issue
    page without adding chat or account content.
 
 Existing edited instructions are preserved during an update. Settings lets you
@@ -110,6 +119,7 @@ the current product guidance automatically.
   unbound-draft folder behavior remain follow-up observations, not claims of
   newly established defects. Its historical manifest and timeout notes are
   superseded by this candidate's passing validation and scoped fixture repair.
-- Notarization/stapling, install-over acceptance, the final guidance discussion
-  and explicit publishing direction remain owner milestones. Prior installers,
-  worktrees and evidence stay preserved until verification.
+- The owner authorized publication after the automatic-update fix. Apple
+  notarization/stapling remains the owner-performed step. The earlier
+  install-over checklist remains useful evidence to collect; that acceptance is
+  not asserted here. Prior installers, worktrees and evidence remain preserved.
