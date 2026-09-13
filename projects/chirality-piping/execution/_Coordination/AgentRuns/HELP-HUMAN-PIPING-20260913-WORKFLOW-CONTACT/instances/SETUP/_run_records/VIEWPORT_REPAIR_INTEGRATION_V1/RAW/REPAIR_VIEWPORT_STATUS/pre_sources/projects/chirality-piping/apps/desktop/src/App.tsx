@@ -1974,7 +1974,7 @@ function AppSession() {
               onSelect={handleSelectEntity}
               queuedIntents={editorIntents}
               reservedIntents={queuedBatches.flatMap((entry) => entry.batch.operations)}
-              result={result}
+              result={currentSolvedResult}
               selection={selection}
             />
           </div>

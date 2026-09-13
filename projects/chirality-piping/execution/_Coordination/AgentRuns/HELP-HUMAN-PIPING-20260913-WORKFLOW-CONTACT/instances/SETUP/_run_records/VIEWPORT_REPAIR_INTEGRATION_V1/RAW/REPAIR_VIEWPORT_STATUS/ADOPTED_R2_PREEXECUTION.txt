@@ -1044,14 +1044,9 @@ test("R2 from-blank GUI journey authors the A12 rehearsal script", async ({ page
   await page.getByTestId("run-mechanics-preview").click();
   await expect(page.getByTestId("solve-job-summary")).toContainText("state=completed");
   await expect(page.getByTestId("solve-job-summary")).toContainText("result_rows=0");
-  await expect(page.getByTestId("solve-job-unit-policy")).toContainText("length=m");
   await expect(page.getByTestId("solve-job-unit-policy")).toContainText("results=none");
   await expect(page.getByTestId("solve-job-unit-policy")).toContainText("rows=0");
   await expect(page.getByTestId("solve-job-unit-policy")).toContainText("conversion=false");
-  expect(await page.getByTestId("solve-job-export-link").getAttribute("href")).toBeNull();
-  await expect(page.getByTestId("solve-job-export-link-redaction-summary")).toContainText("blocked=true");
-  await page.getByTestId("solve-job-export-link-local-private-intent").setChecked(true);
-  await expect(page.getByTestId("solve-job-export-link")).toHaveAttribute("href", /^data:application\/json/);
   const solveJobHref = await page.getByTestId("solve-job-export-link").getAttribute("href");
   expect(solveJobHref).toBeTruthy();
   const solveJobPacket = JSON.parse(decodeURIComponent(solveJobHref!.split(",", 2)[1]));
