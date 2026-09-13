@@ -316,7 +316,7 @@ export async function buildAnalysisRunPreview(
   };
 }
 
-export function bindSourceResultDimensions(
+function bindSourceResultDimensions(
   result: MechanicsResult,
 ): MechanicsResult {
   return {
