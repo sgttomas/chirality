@@ -480,7 +480,10 @@ function createRoutingPort(registry: HarnessPortRegistry): DaemonHarnessPort {
       .sort((left, right) => right.length - left.length)[0];
     let port = matchingRoot === undefined ? undefined : registry.boundPorts?.get(matchingRoot);
     if (!port) {
-      await getHostedBootstrapPort().bindProject(root, options);
+      const binding = await getHostedBootstrapPort().bindProject(root, options);
+      if (binding.registration === 'required') {
+        throw new HarnessError('WORKING_ROOT_INACCESSIBLE', 404, 'No registered project owns the requested root');
+      }
       port = registry.boundPorts?.get(root);
     }
     if (!port) throw new HarnessError('WORKING_ROOT_CONFLICT', 409, 'Project is not bound');

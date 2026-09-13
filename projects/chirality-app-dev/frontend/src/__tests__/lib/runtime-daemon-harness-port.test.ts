@@ -1289,3 +1289,44 @@ it('routes old and uncached sessions through their verified owner across folder 
     await rm(temporary, { recursive: true, force: true });
   }
 });
+
+it('keeps unregistered roots inaccessible without creating or installing, while retaining real registration conflicts', async () => {
+  const registry = await import('../../lib/runtime-client/daemon-harness-port');
+  const createRoute = await import('../../app/api/harness/session/create/route');
+  const temporary = await mkdtemp(join(tmpdir(), 'chirality-unregistered-root-'));
+  const outsideRoot = await realpath(temporary);
+  const existing = client();
+  const bootstrap = client({
+    resolveProjectByRoot: vi.fn().mockRejectedValue(new RuntimeError('PROJECT_NOT_FOUND', 'No registered project owns requested root', 404)),
+    initializeHostedBootstrapProject: vi.fn()
+  });
+  const installBoundPort = vi.fn(registry.installBoundDaemonHarnessPort);
+  const createScopedClient = vi.fn(() => client());
+  registry.resetDaemonHarnessPortForTests();
+  registry.installBoundDaemonHarnessPort(new RuntimeDaemonHarnessPort(existing, project.projectId, project.canonicalRoot), { projectId: project.projectId, projectRoot: project.canonicalRoot });
+  registry.installHostedBootstrapPort(new RuntimeHostedBootstrapPort({ bootstrapClient: bootstrap, runtimeDirectory: '/runtime', socketPath: '/runtime/control.sock', createScopedClient, installBoundPort }));
+  const attempt = () => createRoute.POST(new Request('http://localhost/api/harness/session/create', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ projectRoot: outsideRoot })
+  }));
+  try {
+    const absent = await attempt();
+    expect(absent.status).toBe(404);
+    expect(await absent.json()).toMatchObject({ error: { type: 'WORKING_ROOT_INACCESSIBLE' } });
+    expect(bootstrap.resolveProjectByRoot).toHaveBeenCalledWith(outsideRoot, expect.any(AbortSignal));
+    // An advertised registration whose trusted status differs is still a conflict.
+    vi.mocked(bootstrap.resolveProjectByRoot).mockResolvedValueOnce({ ...project, canonicalRoot: outsideRoot });
+    const conflicting = await attempt();
+    expect(conflicting.status).toBe(409);
+    expect(await conflicting.json()).toMatchObject({ error: { type: 'WORKING_ROOT_CONFLICT' } });
+    expect(bootstrap.initializeHostedBootstrapProject).not.toHaveBeenCalled();
+    expect(bootstrap.createSession).not.toHaveBeenCalled();
+    expect(existing.createSession).not.toHaveBeenCalled();
+    expect(createScopedClient).not.toHaveBeenCalled();
+    expect(installBoundPort).not.toHaveBeenCalled();
+    await expect(registry.getDaemonHarnessPort().createSession({ projectRoot: project.canonicalRoot })).resolves.toMatchObject({ session });
+    expect(existing.createSession).toHaveBeenCalledTimes(1);
+  } finally {
+    registry.resetDaemonHarnessPortForTests();
+    await rm(temporary, { recursive: true, force: true });
+  }
+});

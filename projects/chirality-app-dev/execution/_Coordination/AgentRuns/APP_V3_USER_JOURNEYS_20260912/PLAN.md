@@ -1,8 +1,8 @@
 # Chirality v3 user journey campaign
 
-Status: execution authorized and underway. The owner approved all four native
-interaction additions, including native steering. Candidate repairs are prepared;
-real baseline journeys, independent review and integrated rechecks continue.
+Status: real journeys, artifact evaluation, source repairs and direct rechecks
+are complete. PR validation and consolidated packaging are in progress. The
+owner approved all four native interaction additions, including native steering.
 RUN_LOG.md and JOURNEY_RESULTS.md carry current outcomes and limitations.
 Owner direction: simulate real professional knowledge work in parallel from
 signed-in sessions; first, tenth and hundredth use; collect failures through a

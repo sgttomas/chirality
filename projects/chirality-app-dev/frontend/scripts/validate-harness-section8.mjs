@@ -532,7 +532,7 @@ async function main() {
       });
       assert(
         [400, 403, 404].includes(rootBoundary.response.status),
-        'Unregistered shared-runtime root should fail closed'
+        `Unregistered shared-runtime root should fail closed (HTTP ${rootBoundary.response.status}; type=${/^[A-Z][A-Z0-9_]{0,79}$/.test(rootBoundary.payload?.error?.type ?? '') ? rootBoundary.payload.error.type : 'UNKNOWN'})`
       );
       assert(
         rootBoundary.payload?.error?.type === 'WORKING_ROOT_INACCESSIBLE',
