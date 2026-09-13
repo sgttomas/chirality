@@ -1,9 +1,10 @@
 # Chirality 3.0.0: final release notes for the owner
 
-The automatic-update fix is merged and the final signed installer is built.
-The owner authorized publishing afterward. Apple notarization and stapling
-remain the owner-performed step before the draft release is published; see
-`PUBLIC_RELEASE_20260913.md` for the prepared commands and continuation.
+The automatic-update fix is merged and the final installer is signed,
+notarized and stapled. The owner authorized publication and subsequently
+directed this agent to complete notarization using the existing Apple setup.
+The [public v3.0.0 release](https://github.com/sgttomas/chirality-app/releases/tag/v3.0.0)
+is live. See `PUBLIC_RELEASE_20260913.md` for the verified publication record.
 
 Source: `6f41f93e74b31796302fd45a228ebeabdcd5dd0e`, merged through
 [PR #781](https://github.com/sgttomas/chirality/pull/781). It includes the
@@ -14,15 +15,21 @@ startup showed a completed automatic check without pressing Check for Updates.
 Controlled integration establishes the future-release badge and six-hour cadence.
 
 Installer: `/Users/ryan/.claude/chirality-build-3-publish-20260913-out/Chirality-3.0.0-arm64.dmg`
-(338,043,892 bytes, macOS Apple Silicon). Pre-notarization SHA-256:
-`e3171754f935dcf502641781586a5befa0c76714ea4f196ed3ca0ece0f846335`.
-Do not publish that digest after stapling; compute the final checksum afterward.
+(338,046,035 bytes, macOS Apple Silicon). Final post-staple SHA-256:
+`8841144cbb3d90237295d0e2317f30e0bba58423d1e71a0bbf6f3b31f5821c85`.
+The adjacent `.dmg.sha256` file records that exact downloadable artifact.
 
 Developer ID signing and the packaged instruction/supplier/version checks
 passed. Actual ASAR checks confirm the new startup/six-hour/cleanup wiring and
-the retained dependency repairs. Gatekeeper currently reports Unnotarized
-Developer ID. The final DMG is not installed over the owner's App or published.
-`BUILD_EVIDENCE_FINAL_UPDATES_20260913.md` records the completed package.
+the retained dependency repairs. Apple accepted submission
+`e8a2a95a-9851-4050-a187-175b98ed7a30`; stapler validation passed, and Gatekeeper
+accepted the actual App mounted from the final DMG as Notarized Developer ID.
+The final DMG has not been installed over the owner's App by this agent.
+`BUILD_EVIDENCE_FINAL_UPDATES_20260913.md` preserves the original packaging
+result; `PUBLIC_RELEASE_20260913.md` records its subsequent notarization.
+
+Install this final download manually if your trial App already reports 3.0.0.
+The checker compares version numbers and will not offer another 3.0.0 build.
 
 All earlier installers, worktrees and their historical build evidence remain
 preserved. This final installer supersedes the earlier source56c9f538d package
@@ -119,7 +126,7 @@ the current product guidance automatically.
   unbound-draft folder behavior remain follow-up observations, not claims of
   newly established defects. Its historical manifest and timeout notes are
   superseded by this candidate's passing validation and scoped fixture repair.
-- The owner authorized publication after the automatic-update fix. Apple
-  notarization/stapling remains the owner-performed step. The earlier
+- The owner authorized publication after the automatic-update fix and later
+  authorized this agent to complete notarization, which passed. The earlier
   install-over checklist remains useful evidence to collect; that acceptance is
   not asserted here. Prior installers, worktrees and evidence remain preserved.
