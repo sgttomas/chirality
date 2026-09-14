@@ -1,6 +1,6 @@
 # Day 1 maintenance status
 
-Updated 2026-09-14T01:49:00Z. Source candidate, no public update authorized.
+Updated 2026-09-14T01:51:33Z. Source candidate, no public update authorized.
 
 ## Author returns validated by Agent 0
 
@@ -51,7 +51,11 @@ an add-in. The initial menu-based attempt could not open the copy. Agent 0 subse
 opened it through Home → Open → On My Mac and reproduced the warning. Excel’s
 recovery report identifies the table6.xml table record. Eight of its ten column
 metadata names disagree with the worksheet headers. Excel’s saved recovery copy
-retains those differences, so the exact causal operation remains unproven.
+retains those differences. A further controlled copy changed only the eight
+mismatched table-column names to the existing worksheet headers; its other 50
+ZIP member payloads and all member names were preserved. Agent 0 opened that
+copy in native Excel without the repair warning. This isolates the inconsistent
+table metadata as the cause of the warning in this supplied example.
 No Chirality workbook writer has been identified as the source; the App’s native
 opening path hands the file to Excel without rewriting it. No App permission
 weakening or automatic workbook rewrite is justified. Original files remain
@@ -96,3 +100,11 @@ Next/Electron production code build passed, as did candidate G4 and the secret
 scan (zero blocked findings). The original full frontend/Runtime suites establish
 unchanged areas; PR CI checks the combined candidate in its Linux environment.
 This final status update changes evidence only, after the reviewed source freeze.
+
+The App’s shared default guidance now calls for format-aware document validation,
+consistent Excel table headers/metadata, and a native reopen check where available.
+This is agent guidance, not a claim of automatic spreadsheet repair or a guarantee
+about every generated workbook. Existing user-edited guidance retains its normal
+preservation policy. The diagnostic copies and workbook contents are not included
+in Git or public evidence. Excel’s open and repair-report windows created for the
+test were closed; no unrelated workbook was edited.

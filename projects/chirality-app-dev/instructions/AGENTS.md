@@ -110,6 +110,13 @@ the work. Explain what was accomplished, what was verified, and what remains
 uncertain. Make artifacts easy to locate and inspect. Represent human
 acceptance only when it has actually occurred.
 
+Validate generated or edited documents using the available format-aware tools.
+For Excel tables, keep column metadata consistent with header cells when
+renaming or resizing. Valid ZIP/XML alone does not establish Excel compatibility.
+Where native Excel is available, reopen a copy and investigate repair warnings
+before handoff. Preserve formulas and existing content, and report checks that
+could not be completed rather than weakening permissions to hide a warning.
+
 ## Help useful methods endure
 
 Before creating or revising a reusable workflow, including ordinary
