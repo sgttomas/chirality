@@ -1,5 +1,11 @@
 # DEL-07-07 Memory
 
+## 2026-09-13 — approved workflow integration candidate
+
+- Native direct-solve and job-start invocation failures propagate through the existing solve failure path; browser fixture designation requires an absent Tauri host. Existing model/knowledge fixture fallback remains unchanged. Completed blocked/nonconverged diagnostic outputs stay readable while solved-only overlays, checks, comparisons, exports and report readiness require `MECHANICS_SOLVED`.
+- Frozen old-gap IPC/historical tests and focused regression evidence are in `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-WORKFLOW-CONTACT/WORKFLOW_PORTABLE_BINDING_V1.json`; native V2 single selftest passes actual shared-applier, cantilever analytical, file persistence and fresh solve checks. V1 fixture provenance failure is retained; V2 labels invented data explicitly without changing engineering values or validation policy.
+- General producer diagnostic class/remediation/provenance breadth remains open. Final integrated independent review, complete registered checks and fresh packaged GUI quit/reopen witness remain parent-owned. Lifecycle remains `IN_PROGRESS`. Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).
+
 ## 2026-07-12 - D-41 R5 T5 PDU-008 rich diagnostic display
 
 - Desktop diagnostic records may now carry class, remediation, and provenance; the diagnostic detail and filter surfaces display/use those fields when supplied, in addition to code, severity, source, affected refs, and message.
@@ -320,3 +326,7 @@ Durable context preserved after PKG-02 grounded finding resolution:
   content, private data, lifecycle transition, release-readiness claim,
   professional approval, certification, sealing, authentication, or
   code-compliance claim changed.
+
+## 2026-09-13 — Bounded technical acceptance
+
+HELP_HUMAN accepted the bounded implementation after fresh cumulative review, qualified native witnesses, complete clean registered DEC-025 and required local governance gates. Exact tested source and evidence references are in `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-WORKFLOW-CONTACT/FINAL_TECHNICAL_ACCEPTANCE_V1.json`. Earlier failed attempts and repairs remain preserved. The completed tranche verification item is removed from Remaining; other residuals and `IN_PROGRESS` remain unchanged. PR, actual-head CI and merge are pending; no whole-deliverable or project closure is claimed.

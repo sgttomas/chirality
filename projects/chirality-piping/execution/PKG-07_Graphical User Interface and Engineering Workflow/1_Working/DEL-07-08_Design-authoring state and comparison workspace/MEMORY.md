@@ -46,6 +46,12 @@ Key boundary choices:
   assumptions, privacy classification, unmatched rows, and unresolved `TBD`
   markers are preserved where supplied.
 
+## 2026-09-13 — approved workflow integration candidate
+
+- Reopened saved results are transient historical evidence with explicit integrity findings. They remain readable and preserve existing result/analysis/hash fields on an unchanged save, including missing historical manifest evidence; they do not activate current overlays, comparisons, rule checks or report readiness. Model edits and history clear computed context; a fresh solved run establishes the current input basis. No persistence or native wire schema changed.
+- Undo/redo share a synchronous operation-ownership guard, including native menu and rendered history controls. Existing model-history keyboard shortcuts do not exist; no shortcut feature or shortcut-test claim is added. Typed intents, batches and the shared Rust applier remain the mutation route.
+- Evidence and exact frozen fixture/hash/tolerance basis: `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-WORKFLOW-CONTACT/WORKFLOW_PORTABLE_BINDING_V1.json`. Final integrated review, complete registered checks and fresh packaged GUI quit/reopen witness remain parent-owned. Durable accepted-history, broader result compatibility and professional interaction work remain outside this bounded repair. Lifecycle remains `IN_PROGRESS`. Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).
+
 ## 2026-05-11 TP-RECON-01 Reconciliation
 
 Reconciled DEL-07-08 history against TP-RECON-01 Wave 3 dispatch evidence. The
@@ -158,3 +164,7 @@ Durable context preserved after PKG-02 grounded finding resolution:
   private payload, protected content, lifecycle transition, release-readiness
   claim, professional approval, certification, sealing, authentication, or
   code-compliance claim changed.
+
+## 2026-09-13 — Bounded technical acceptance
+
+HELP_HUMAN accepted the bounded implementation after fresh cumulative review, qualified native witnesses, complete clean registered DEC-025 and required local governance gates. Exact tested source and evidence references are in `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260913-WORKFLOW-CONTACT/FINAL_TECHNICAL_ACCEPTANCE_V1.json`. Earlier failed attempts and repairs remain preserved. The completed tranche verification item is removed from Remaining; other residuals and `IN_PROGRESS` remain unchanged. PR, actual-head CI and merge are pending; no whole-deliverable or project closure is claimed.
