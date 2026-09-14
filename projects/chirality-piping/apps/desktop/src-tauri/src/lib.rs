@@ -1,5 +1,6 @@
 mod atomic_report_package_save;
 mod model_document_migration;
+mod native_result_download;
 mod report_package_bridge;
 
 use model_document_migration::{
@@ -4052,10 +4053,28 @@ pub fn run_packaged_saved_edited_load_self_test() -> Result<Value, String> {
     result
 }
 
+#[tauri::command]
+async fn save_local_result_json(
+    app: AppHandle,
+    admission: tauri::State<'_, native_result_download::SaveAdmission>,
+    request: native_result_download::SaveRequest,
+) -> Result<native_result_download::SaveReceipt, native_result_download::SaveError> {
+    // The worker owns admission until completion/drop, independently of the
+    // awaiting command or frontend component lifetime.
+    let permit = admission.admit()?;
+    tauri::async_runtime::spawn_blocking(move || {
+        let _permit = permit;
+        native_result_download::save_request(request, || app.path().download_dir())
+    })
+    .await
+    .map_err(|_| native_result_download::SaveError::worker())?
+}
+
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .manage(SolveJobRegistry::default())
+        .manage(native_result_download::SaveAdmission::default())
         .menu(|handle| build_app_menu(handle))
         .on_menu_event(|app, event| {
             dispatch_native_menu_command(app, &event.id().0);
@@ -4095,7 +4114,8 @@ pub fn run() {
             list_local_libraries,
             delete_local_library,
             render_calculation_report,
-            save_report_package
+            save_report_package,
+            save_local_result_json
         ])
         .run(tauri::generate_context!())
         .expect("error while running OpenPipeStress technical preview");

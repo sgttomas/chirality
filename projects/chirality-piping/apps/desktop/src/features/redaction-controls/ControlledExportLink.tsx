@@ -1,17 +1,26 @@
-import { useMemo, useState, type AnchorHTMLAttributes, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type AnchorHTMLAttributes, type ReactNode } from "react";
 import {
   controlRouteExport,
   type RedactionExportContext
 } from "./redactionExportControls";
+
+import {
+  isNativeResultSaveRuntime,
+  saveNativeResultJson,
+  type NativeResultSaveError,
+  type NativeResultSaveReceipt
+} from "../result-export/nativeResultSave";
 
 type RouteBinding = {
   routeId: string;
   context: RedactionExportContext;
   lossless?: boolean;
   knownPrivateScalar?: boolean;
+  exactCanonicalPayload?: boolean;
 };
 
 const TEST_ID_BINDINGS: Record<string, RouteBinding> = {
+  "result-export-link": { routeId: "DOTH-JSON-001", context: "local_private", lossless: true, exactCanonicalPayload: true },
   "report-export-link": { routeId: "DREP-JSON-002", context: "public_report" },
   "report-lint-export-link": { routeId: "DREP-LINT-JSON-007", context: "public_report" },
   "rendered-report-save": { routeId: "DREP-HTML-SAVE-005", context: "public_report", lossless: true },
@@ -53,10 +62,11 @@ export function routeBindingForTestId(testId: string): RouteBinding {
 type Props = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
   href: string;
   children: ReactNode;
+  nativeCurrentBinding?: object | null;
   "data-testid"?: string;
 };
 
-export function ControlledExportLink({ href, children, ...anchorProps }: Props) {
+export function ControlledExportLink({ href, children, nativeCurrentBinding, ...anchorProps }: Props) {
   const testId = String(anchorProps["data-testid"] ?? "controlled-export-link");
   const binding = routeBindingForTestId(testId);
   const [explicitIntent, setExplicitIntent] = useState(false);
@@ -89,15 +99,77 @@ export function ControlledExportLink({ href, children, ...anchorProps }: Props) 
     binding.knownPrivateScalar && isObject(controlled.payload)
       ? controlled.payload.value
       : controlled.payload;
-  const controlledHref = controlled.blocked
-    ? undefined
+  const exactPayload = !binding.exactCanonicalPayload || sameDecodedJson(controlledPayload, decoded.payload);
+  const canonicalIntentMissing = Boolean(binding.exactCanonicalPayload && !explicitIntent);
+  const exposureBlocked = controlled.blocked || canonicalIntentMissing || !exactPayload;
+  const exposureReason = canonicalIntentMissing ? "LOCAL_PRIVATE_INTENT_REQUIRED" : controlled.blocked
+    ? controlled.summary.local_first?.reason_code ?? "EXPORT_POLICY_BLOCKED"
+    : !exactPayload ? "CANONICAL_PAYLOAD_MATERIALIZATION_CHANGED" : null;
+  const controlledHref = exposureBlocked ? undefined : binding.exactCanonicalPayload
+    ? href // original serialized canonical document; never rehash a redacted derivative
     : encodeDataHref(controlledPayload, decoded.mediaType, decoded.isJson);
+
+  const nativeCanonical = Boolean(binding.exactCanonicalPayload && isNativeResultSaveRuntime());
+  const nativeName = typeof anchorProps.download === "string" ? anchorProps.download : null;
+  const nativeReady = Boolean(controlledHref && nativeName && nativeCurrentBinding && controlled.summary.local_first);
+  const generation = useRef(0);
+  const identity = useRef<unknown[]>([]);
+  const nextIdentity = [href, nativeName, nativeCurrentBinding, explicitIntent, exposureBlocked];
+  if (nextIdentity.some((value, index) => value !== identity.current[index])) {
+    identity.current = nextIdentity;
+    generation.current += 1;
+  }
+  const mounted = useRef(true);
+  const inFlight = useRef(false);
+  const [busy, setBusy] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<{
+    generation: number;
+    outcome: "pending" | "saved" | "error";
+    receipt?: NativeResultSaveReceipt;
+    error?: NativeResultSaveError;
+  } | null>(null);
+  useEffect(() => {
+    mounted.current = true;
+    return () => { mounted.current = false; generation.current += 1; };
+  }, []);
+  const visibleStatus = saveStatus?.generation === generation.current ? saveStatus : null;
+  const saveNative = () => {
+    if (inFlight.current || !nativeReady || !explicitIntent || !controlledHref || !nativeName || !controlled.summary.local_first) return;
+    inFlight.current = true;
+    const capturedGeneration = generation.current;
+    const request = {
+      href: controlledHref,
+      file_name: nativeName,
+      screening: {
+        route_id: binding.routeId,
+        export_context: binding.context,
+        explicit_local_private_intent: explicitIntent,
+        blocked: controlled.blocked,
+        materialization_withheld: controlled.summary.materialization_withheld,
+        lossless_required: binding.lossless === true,
+        exact_payload_match: exactPayload,
+        blocking_count: controlled.summary.blocking_count
+      },
+      local_first: controlled.summary.local_first
+    };
+    setBusy(true);
+    setSaveStatus({ generation: capturedGeneration, outcome: "pending" });
+    saveNativeResultJson(request).then(receipt => {
+      if (mounted.current && generation.current === capturedGeneration) setSaveStatus({ generation: capturedGeneration, outcome: "saved", receipt });
+    }).catch((error: NativeResultSaveError) => {
+      if (mounted.current && generation.current === capturedGeneration) setSaveStatus({ generation: capturedGeneration, outcome: "error", error });
+    }).finally(() => {
+      // Stale UI generations do not release the real in-flight guard early.
+      inFlight.current = false;
+      if (mounted.current) setBusy(false);
+    });
+  };
 
   return (
     <span
       className="controlled-export-control"
-      data-local-first-blocked={String(controlled.summary.local_first?.blocked ?? true)}
-      data-local-first-reason={controlled.summary.local_first?.reason_code ?? "LOCAL_FIRST_EVIDENCE_MISSING"}
+      data-local-first-blocked={String(binding.exactCanonicalPayload ? exposureBlocked : controlled.summary.local_first?.blocked ?? true)}
+      data-local-first-reason={binding.exactCanonicalPayload && exposureReason ? exposureReason : controlled.summary.local_first?.reason_code ?? "LOCAL_FIRST_EVIDENCE_MISSING"}
       data-route-id={binding.routeId}
     >
       {binding.context === "local_private" ? (
@@ -113,8 +185,9 @@ export function ControlledExportLink({ href, children, ...anchorProps }: Props) 
       ) : null}
       <span data-testid={`${testId}-redaction-summary`}>
         decisions={controlled.summary.decision_count}; findings={controlled.summary.finding_count}; blocked=
-        {String(controlled.blocked)}
+        {String(exposureBlocked)}
       </span>
+      {binding.exactCanonicalPayload && exposureReason ? <span data-testid={`${testId}-canonical-block-reason`}>{exposureReason}</span> : null}
       <pre aria-label={`${testId} redaction decisions`} data-testid={`${testId}-redaction-decisions`}>
         {controlled.decisions
           .map(
@@ -131,7 +204,25 @@ export function ControlledExportLink({ href, children, ...anchorProps }: Props) 
           )
           .join("\n")}
       </pre>
-      {controlledHref ? (
+      {nativeCanonical ? (
+        <>
+          <button
+            type="button"
+            className={anchorProps.className}
+            title={anchorProps.title}
+            aria-label={anchorProps["aria-label"]}
+            data-testid={testId}
+            disabled={!nativeReady || busy}
+            aria-disabled={!nativeReady || busy}
+            onClick={saveNative}
+          >{children}</button>
+          <span role="status" data-testid={`${testId}-native-save-status`}>
+            {visibleStatus?.outcome === "pending" ? "Saving local result JSON…" :
+              visibleStatus?.outcome === "saved" ? `Saved ${visibleStatus.receipt!.file_name} (${visibleStatus.receipt!.byte_count} bytes).` :
+              visibleStatus?.outcome === "error" ? `Save failed (${visibleStatus.error!.stage}); cleanup=${visibleStatus.error!.cleanup}${visibleStatus.error!.partial_file_name ? `; partial file=${visibleStatus.error!.partial_file_name}` : ""}.` : busy ? "Previous authorized save is still pending." : ""}
+          </span>
+        </>
+      ) : controlledHref ? (
         <a {...anchorProps} href={controlledHref}>
           {children}
         </a>
@@ -164,4 +255,14 @@ function decodeDataHref(href: string): { payload: unknown; mediaType: string; is
 function encodeDataHref(payload: unknown, mediaType: string, isJson: boolean): string {
   const text = isJson ? `${JSON.stringify(payload, null, 2)}\n` : String(payload ?? "");
   return `data:${mediaType};charset=utf-8,${encodeURIComponent(text)}`;
+}
+
+// Exact decoded JSON equivalence checks that policy projection/intent stripping
+// changed no facts. The original href preserves the separate serialized bytes.
+function sameDecodedJson(left: unknown, right: unknown): boolean {
+  if(left===right)return true;
+  if(left===null||right===null||typeof left!=="object"||typeof right!=="object")return false;
+  if(Array.isArray(left)!==Array.isArray(right))return false;
+  const a=left as Record<string,unknown>,b=right as Record<string,unknown>;
+  const keys=Object.keys(a);return keys.length===Object.keys(b).length&&keys.every(key=>Object.hasOwn(b,key)&&sameDecodedJson(a[key],b[key]));
 }
