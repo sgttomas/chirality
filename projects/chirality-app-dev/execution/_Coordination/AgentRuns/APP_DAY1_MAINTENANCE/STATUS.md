@@ -1,6 +1,6 @@
 # Day 1 maintenance status
 
-Updated 2026-09-14T01:32:02Z. Source candidate, no public update authorized.
+Updated 2026-09-14T01:49:00Z. Source candidate, no public update authorized.
 
 ## Author returns validated by Agent 0
 
@@ -36,10 +36,10 @@ Frontend typecheck passed. Workflow metadata/index passed (80 indexed methods);
 workflow catalog and instruction-entrypoint tests: 45 passed. Controlled browser
 inspection, draft preview, feedback preserving unsent text, registration and
 catalog discovery passed against production UI/routes with a synthetic workspace
-and controlled Runtime. No account was used. Independent re-review is pending. Logs are local temporary
+and controlled Runtime. No account was used. Independent re-review passed at 245d8ce6e. Logs are local temporary
 validation output, not release evidence.
 
-## Excel diagnostic, deliberately unresolved
+## Excel diagnostic
 
 The owner supplied a historical workbook. Inspection used a scratch copy and
 left the original unchanged. ZIP CRC, XML, relationships, style/shared-string
@@ -47,17 +47,24 @@ indices and 6,382 calculation-chain references passed structural checks. It has
 11 sheets, seven tables, no external relationships or VBA, and an Office web
 extension with a hidden taskpane. Saved formula errors are present. These facts
 do not establish the opening warning or justify changing formulas or deleting
-an add-in. A native attempt could not open the scratch file because Excel's Open
-command was unavailable; the unrelated open workbook was left alone. No warning
-was reproduced and no Excel repair is claimed.
+an add-in. The initial menu-based attempt could not open the copy. Agent 0 subsequently
+opened it through Home → Open → On My Mac and reproduced the warning. Excel’s
+recovery report identifies the table6.xml table record. Eight of its ten column
+metadata names disagree with the worksheet headers. Excel’s saved recovery copy
+retains those differences, so the exact causal operation remains unproven.
+No Chirality workbook writer has been identified as the source; the App’s native
+opening path hands the file to Excel without rewriting it. No App permission
+weakening or automatic workbook rewrite is justified. Original files remain
+unchanged. Further diagnosis, if pursued, uses scratch copies only.
 
 ## Handoff
 
-Finish visible UI check, fresh independent review, required candidate checks,
-then commit/push/PR/merge under the standing Git grant. Do not package or release.
-If the Excel warning recurs, capture its exact wording or repair report against a
-copy of the affected workbook. The user withdrew their later popup clarification,
-not the Day 1 issue list.
+Visible UI checks, independent review, typecheck, production code build and
+candidate instruction checks passed. Complete normal PR CI and merge under the
+standing Git grant. Do not package or release. The current released installation
+is unchanged; these source fixes belong to the next owner-selected release cycle.
+Excel’s historical table-repair warning is recorded separately from permission
+prompts. The user withdrew their later popup clarification, not the Day 1 list.
 
 ## Independent review and repairs
 
@@ -81,3 +88,11 @@ Author dispatch and reviewer reliance checked APP-HOLD for DEL-02-01, DEL-03-03,
 DEL-04-04 and DEL-05-04; all ALLOW/CLEAR/NOT_HELD. Source remains within the
 owner-requested maintenance scope. No release, account operation or user-file
 modification occurred.
+
+Final source review: day1_independent_review returned PASS, no actionable findings,
+for 245d8ce6e against 8f27fa3d8. Both reported P2 findings and the connecting-path
+Origin defect are closed. Parent re-ran 84 affected tests and typecheck; the
+Next/Electron production code build passed, as did candidate G4 and the secret
+scan (zero blocked findings). The original full frontend/Runtime suites establish
+unchanged areas; PR CI checks the combined candidate in its Linux environment.
+This final status update changes evidence only, after the reviewed source freeze.
