@@ -75,81 +75,55 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf8baf1c55e62ffcace7a9f06f4bd9cd3f0c4beb022d3b367256b91b87513d98"
 
 [[package]]
-name = "open_pipe_stress_audit_manifest"
+name = "open_pipe_stress_frame_kernel"
 version = "0.1.0"
 
 [[package]]
-name = "open_pipe_stress_canonical_json"
+name = "open_pipe_stress_linear_supports"
 version = "0.1.0"
 dependencies = [
- "ryu",
- "serde_json",
+ "open_pipe_stress_frame_kernel",
 ]
 
 [[package]]
-name = "open_pipe_stress_pdf_emitter"
+name = "open_pipe_stress_primitive_loads"
 version = "0.1.0"
 dependencies = [
- "open_pipe_stress_protected_content_linter",
- "open_pipe_stress_report_generator",
- "open_pipe_stress_report_renderer",
- "open_pipe_stress_report_sections",
- "serde",
- "sha2",
-]
-
-[[package]]
-name = "open_pipe_stress_protected_content_linter"
-version = "0.1.0"
-
-[[package]]
-name = "open_pipe_stress_report_generator"
-version = "0.1.0"
-dependencies = [
- "serde",
-]
-
-[[package]]
-name = "open_pipe_stress_report_package"
-version = "0.1.0"
-dependencies = [
- "open_pipe_stress_audit_manifest",
- "open_pipe_stress_canonical_json",
- "open_pipe_stress_pdf_emitter",
- "open_pipe_stress_report_generator",
- "open_pipe_stress_report_renderer",
- "open_pipe_stress_report_sections",
- "open_pipe_stress_result_export",
- "serde",
- "serde_json",
- "sha2",
-]
-
-[[package]]
-name = "open_pipe_stress_report_renderer"
-version = "0.1.0"
-dependencies = [
- "open_pipe_stress_protected_content_linter",
- "open_pipe_stress_report_generator",
- "open_pipe_stress_report_sections",
- "serde",
- "sha2",
-]
-
-[[package]]
-name = "open_pipe_stress_report_sections"
-version = "0.1.0"
-dependencies = [
- "serde",
+ "open_pipe_stress_frame_kernel",
+ "open_pipe_stress_linear_supports",
 ]
 
 [[package]]
 name = "open_pipe_stress_result_export"
 version = "0.1.0"
 dependencies = [
- "open_pipe_stress_canonical_json",
  "serde_json",
+]
+
+[[package]]
+name = "open_pipe_stress_straight_pipe"
+version = "0.1.0"
+dependencies = [
+ "open_pipe_stress_frame_kernel",
+]
+
+[[package]]
+name = "open_pipe_stress_stress_benchmarks"
+version = "0.1.0"
+dependencies = [
+ "open_pipe_stress_frame_kernel",
+ "open_pipe_stress_result_export",
+ "open_pipe_stress_straight_pipe",
+ "open_pipe_stress_stress_recovery",
  "sha2",
+]
+
+[[package]]
+name = "open_pipe_stress_stress_recovery"
+version = "0.1.0"
+dependencies = [
+ "open_pipe_stress_primitive_loads",
+ "open_pipe_stress_straight_pipe",
 ]
 
 [[package]]
@@ -171,19 +145,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "ryu"
-version = "1.0.23"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9774ba4a74de5f7b1c1451ed6cd5285a32eddb5cccb8cc655a4e50009e06477f"
-
-[[package]]
 name = "serde"
 version = "1.0.228"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e"
 dependencies = [
  "serde_core",
- "serde_derive",
 ]
 
 [[package]]
@@ -261,6 +228,6 @@ checksum = "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a"
 
 [[package]]
 name = "zmij"
-version = "1.0.21"
+version = "1.0.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b8848ee67ecc8aedbaf3e4122217aff892639231befc6a1b58d29fff4c2cabaa"
+checksum = "bd2f034a4bebf216c9e4b7083603e024cf930873fd67830cfb083c9fa33129d9"

@@ -70,86 +70,87 @@ checksum = "68ab91017fe16c622486840e4c83c9a37afeff978bd239b5293d61ece587de66"
 
 [[package]]
 name = "memchr"
-version = "2.8.3"
+version = "2.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf8baf1c55e62ffcace7a9f06f4bd9cd3f0c4beb022d3b367256b91b87513d98"
+checksum = "f8ca58f447f06ed17d5fc4043ce1b10dd205e060fb3ce5b979b8ed8e59ff3f79"
 
 [[package]]
-name = "open_pipe_stress_audit_manifest"
-version = "0.1.0"
-
-[[package]]
-name = "open_pipe_stress_canonical_json"
+name = "open_pipe_stress_curved_bend"
 version = "0.1.0"
 dependencies = [
- "ryu",
- "serde_json",
+ "open_pipe_stress_frame_kernel",
 ]
 
 [[package]]
-name = "open_pipe_stress_pdf_emitter"
+name = "open_pipe_stress_frame_kernel"
+version = "0.1.0"
+
+[[package]]
+name = "open_pipe_stress_linear_supports"
 version = "0.1.0"
 dependencies = [
- "open_pipe_stress_protected_content_linter",
- "open_pipe_stress_report_generator",
- "open_pipe_stress_report_renderer",
- "open_pipe_stress_report_sections",
- "serde",
- "sha2",
+ "open_pipe_stress_frame_kernel",
 ]
 
 [[package]]
-name = "open_pipe_stress_protected_content_linter"
-version = "0.1.0"
-
-[[package]]
-name = "open_pipe_stress_report_generator"
+name = "open_pipe_stress_mechanics_benchmarks"
 version = "0.1.0"
 dependencies = [
- "serde",
-]
-
-[[package]]
-name = "open_pipe_stress_report_package"
-version = "0.1.0"
-dependencies = [
- "open_pipe_stress_audit_manifest",
- "open_pipe_stress_canonical_json",
- "open_pipe_stress_pdf_emitter",
- "open_pipe_stress_report_generator",
- "open_pipe_stress_report_renderer",
- "open_pipe_stress_report_sections",
+ "open_pipe_stress_curved_bend",
+ "open_pipe_stress_frame_kernel",
+ "open_pipe_stress_linear_supports",
+ "open_pipe_stress_primitive_loads",
  "open_pipe_stress_result_export",
- "serde",
+ "open_pipe_stress_solver_diagnostics",
+ "open_pipe_stress_straight_pipe",
+ "open_pipe_stress_user_loads",
  "serde_json",
  "sha2",
 ]
 
 [[package]]
-name = "open_pipe_stress_report_renderer"
+name = "open_pipe_stress_primitive_loads"
 version = "0.1.0"
 dependencies = [
- "open_pipe_stress_protected_content_linter",
- "open_pipe_stress_report_generator",
- "open_pipe_stress_report_sections",
- "serde",
- "sha2",
-]
-
-[[package]]
-name = "open_pipe_stress_report_sections"
-version = "0.1.0"
-dependencies = [
- "serde",
+ "open_pipe_stress_frame_kernel",
+ "open_pipe_stress_linear_supports",
 ]
 
 [[package]]
 name = "open_pipe_stress_result_export"
 version = "0.1.0"
 dependencies = [
- "open_pipe_stress_canonical_json",
  "serde_json",
- "sha2",
+]
+
+[[package]]
+name = "open_pipe_stress_solver_diagnostics"
+version = "0.1.0"
+dependencies = [
+ "open_pipe_stress_frame_kernel",
+ "open_pipe_stress_linear_supports",
+ "open_pipe_stress_primitive_loads",
+ "open_pipe_stress_sparse_direct",
+]
+
+[[package]]
+name = "open_pipe_stress_sparse_direct"
+version = "0.1.0"
+
+[[package]]
+name = "open_pipe_stress_straight_pipe"
+version = "0.1.0"
+dependencies = [
+ "open_pipe_stress_frame_kernel",
+]
+
+[[package]]
+name = "open_pipe_stress_user_loads"
+version = "0.1.0"
+dependencies = [
+ "open_pipe_stress_frame_kernel",
+ "open_pipe_stress_primitive_loads",
+ "open_pipe_stress_straight_pipe",
 ]
 
 [[package]]
@@ -163,18 +164,12 @@ dependencies = [
 
 [[package]]
 name = "quote"
-version = "1.0.46"
+version = "1.0.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dfbc457d0c7a0759a614551b11a6409e5951f6c7537be1f1b7682b9ae9230368"
+checksum = "41f2619966050689382d2b44f664f4bc593e129785a36d6ee376ddf37259b924"
 dependencies = [
  "proc-macro2",
 ]
-
-[[package]]
-name = "ryu"
-version = "1.0.23"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9774ba4a74de5f7b1c1451ed6cd5285a32eddb5cccb8cc655a4e50009e06477f"
 
 [[package]]
 name = "serde"
@@ -183,7 +178,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9a8e94ea7f378bd32cbbd37198a4a91436180c5bb472411e48b5ec2e2124ae9e"
 dependencies = [
  "serde_core",
- "serde_derive",
 ]
 
 [[package]]
@@ -208,9 +202,9 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "1.0.150"
+version = "1.0.149"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e8014e44b4736ed0538adeecded0fce2a272f22dc9578a7eb6b2d9993c74cfb9"
+checksum = "83fc039473c5595ace860d8c4fafa220ff474b3fc6bfdb4293327f1a37e94d86"
 dependencies = [
  "itoa",
  "memchr",
@@ -232,9 +226,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "2.0.118"
+version = "2.0.117"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1b9ae57f904213ebb649ce6895b8a66c66f0203b9319718f69a5612a065b1422"
+checksum = "e665b8803e7b1d2a727f4023456bbbbe74da67099c585258af0ad9c5013b9b99"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -243,9 +237,9 @@ dependencies = [
 
 [[package]]
 name = "typenum"
-version = "1.20.1"
+version = "1.20.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b6f5e870be6c3b371b77fe0ee0bafb859fa4964b4404c27de1d380043c4dda20"
+checksum = "40ce102ab67701b8526c123c1bab5cbe42d7040ccfd0f64af1a385808d2f43de"
 
 [[package]]
 name = "unicode-ident"
