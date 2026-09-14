@@ -8,8 +8,9 @@ Use this method when creating or revising a reusable workflow, including a
 request to save a useful plan from ordinary conversation. The result is a
 locatable method another person or agent can adapt to a later undertaking.
 Choose the reasoning, writing approach, plan, and delegation that suit the work;
-a small workflow can be a single file. This method adds no approval gates or
-host permissions and does not require a particular agent roster or Git process.
+a small workflow can be a single file. The human reviews the proposed method
+before it is registered for reuse. This method grants no host permissions and
+does not require a particular agent roster or Git process.
 
 ## Establish purpose and destination
 
@@ -19,9 +20,9 @@ the basis; make consequential assumptions explicit. Distinguish reusable method
 from this run's assignment, private facts, credentials, and local paths.
 
 Use the selected library basis and inspect its current descriptor and package
-before editing. Save project-specific methods at
-`<project>/.chirality/workflows/<name>/WORKFLOW.md`; save personal methods useful
-across projects at `~/.chirality/workflows/<name>/WORKFLOW.md`. Resolve the actual
+before editing. Registered project-specific methods live at
+`<project>/.chirality/workflows/<name>/WORKFLOW.md`; personal methods useful
+across projects live at `~/.chirality/workflows/<name>/WORKFLOW.md`. Resolve the actual
 project or user root from the available host context. Editing a bundled library
 is a separate library-maintenance scope; Root's bundled source is `workflows/`.
 Do not infer permission to change an installed bundle from permission to save a
@@ -59,6 +60,34 @@ Carry forward applicable domain constraints and human checkpoints; repository
 software-development governance is not a default for general App workflows.
 Use examples or supporting resources only when they improve reuse.
 
+## Review before registration
+
+Prepare a draft for the human to inspect and discuss before it enters the
+reusable library. In Chirality App, write the proposed package at
+`<project>/.chirality/workflow-drafts/<name>/WORKFLOW.md` or
+`~/.chirality/workflow-drafts/<name>/WORKFLOW.md`, with its supporting files
+inside that draft package. Use ordinary files and directories, without symbolic
+or hard links. Ordinary file permissions, including executable helpers, are
+preserved on registration; special permission bits are not. Do not write it to
+`.chirality/workflows` yet.
+The Workflows panel lists these packages under **Ready for review**. Tell the
+human where to open the draft; do not claim that it is registered.
+
+The human can read the instructions and included files, choose **Request
+changes in chat**, and guide revisions until satisfied. Keep revisions in the
+draft location. **Register workflow** publishes the exact reviewed draft; a
+changed draft requires another inspection. Existing registered names are not
+overwritten by this control: use a distinct name to preserve an existing
+workflow. Revision of a registered method is a separate explicit amendment,
+with its earlier version preserved and the exact changes accepted before any
+replacement. Do not automatically execute the newly registered workflow.
+
+When using another host without these controls, present the complete proposed
+instructions and resource inventory through an inspectable file or the
+conversation, invite feedback, and wait for explicit acceptance before
+registering through the available file tools. A request to create a workflow
+is permission to prepare it, not a substitute for reviewing the finished method.
+
 ## Package and discover
 
 The package folder and frontmatter `name` must match: 1–64 lowercase letters or
@@ -75,7 +104,7 @@ Optional resources must resolve inside the package, including through symlinks;
 link them at the point of use and load only what the stage needs.
 
 A flat Markdown document is not a discoverable package. For project and personal
-libraries, save the canonical package, then re-query the effective workflow
+libraries, after the reviewed package is registered, re-query the effective workflow
 catalog through available host capabilities and inspect its qualified entry.
 Do not claim a refresh or successful discovery without observing it. If the
 host cannot expose the catalog, report that verification as outstanding.

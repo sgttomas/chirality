@@ -109,10 +109,37 @@ it('renders the Plan tab from the host-supplied model and redirects a saved Skil
   const plan = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'plan' }} sessionOpen={false} planPanel={model} />);
   for (const label of ['Revise in chat', 'Execute plan', 'Turn into workflow', 'Save plan…']) expect(plan).toContain(label);
   expect(plan).toContain('Plan one');
-  expect(plan).toContain('aria-label="1 revisions"');
+  expect(plan).not.toContain('woven-tab-count');
   const skills = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'skills' }} sessionOpen={false} />);
   expect(skills).toContain('Library view workflows');
   expect(skills).not.toContain('right-tab-skills');
   const workflows = renderToStaticMarkup(<RightPanel {...handlers} state={{ ...state, rightPanelView: 'workflows' }} sessionOpen={false} />);
   expect(workflows).toContain('Library view workflows');
+});
+
+it('clears viewed Plan badges, counts later revisions, and keeps session read states separate', async () => {
+  const revision = (number: number) => ({ revision: number, sourceEvent: { plan: `Plan ${number}` } } as unknown as import('@chirality/runtime-contracts').NativePlanRevision);
+  const model: import('../../components/shell/native-plan-panel').NativePlanPanelModel = { sessionId: 'one', revisions: [revision(1)], clarifications: [], active: false, refreshing: false, fileCatalog: [], actionsDisabled: false,
+    onRefresh: vi.fn(), onRevise: vi.fn(), onSave: vi.fn(), onExecute: vi.fn(), onSaveAsWorkflow: vi.fn(), onReplyClarification: vi.fn() };
+  let tree!: ReactTestRenderer;
+  const state = createDefaultWovenWorkspaceState();
+  function RetainedPanel({ view = 'files', planPanel = model, collapsed = false }: { view?: 'files' | 'plan'; planPanel?: typeof model; collapsed?: boolean }) {
+    const [read, setRead] = React.useState<Record<string, number>>({});
+    const mark = React.useCallback((id: string, revision: number) => setRead(current => (current[id] ?? 0) >= revision ? current : { ...current, [id]: revision }), []);
+    return collapsed ? null : <RightPanel {...handlers} state={{ ...state, rightPanelView: view }} sessionOpen={false} planPanel={planPanel} readPlanRevisions={read} onPlanRead={mark} />;
+  }
+  const update = async (view: 'files' | 'plan', planPanel = model) => act(async () => tree.update(<RetainedPanel view={view} planPanel={planPanel} />));
+  const badges = () => tree.root.findAllByProps({ className: 'woven-tab-count' });
+  await act(async () => { tree = create(<RetainedPanel />); });
+  expect(badges()[0].props['aria-label']).toBe('1 unread plan revisions');
+  await update('plan'); expect(badges()).toHaveLength(0);
+  await update('files'); expect(badges()).toHaveLength(0);
+  await act(async () => tree.update(<RetainedPanel collapsed />));
+  await update('files'); expect(badges()).toHaveLength(0);
+  const next = { ...model, revisions: [revision(1), revision(2)] };
+  await update('files', next); expect(badges()[0].children).toEqual(['1']);
+  await update('plan', next); await update('files', next); expect(badges()).toHaveLength(0);
+  await update('files', { ...model, sessionId: 'two' }); expect(badges()).toHaveLength(1);
+  await update('files', next); expect(badges()).toHaveLength(0);
+  act(() => tree.unmount());
 });

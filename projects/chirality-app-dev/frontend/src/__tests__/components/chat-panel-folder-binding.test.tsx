@@ -74,6 +74,11 @@ beforeEach(() => {
   state.create.mockResolvedValue({ sessionId: 'bound' });
   state.boot.mockResolvedValue({ session: { sessionId: 'bound', projectRoot: '/canonical' } });
   state.replay.mockRejectedValue(new Error('No replay fixture'));
+  state.getSession.mockImplementation(async () => {
+    const replay = await Promise.resolve(state.replay.mock.results.at(-1)?.value).catch(() => undefined);
+    const session = replay?.session ?? (await state.boot.mock.results.at(-1)?.value).session;
+    return { schemaVersion: 'chirality.session/v3', selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis-initial', ...session };
+  });
   state.replaceMethods.mockImplementation(async (_sessionId: string, methods: QualifiedMethodReference[] | undefined) => ({ schemaVersion: 'chirality.selected-methods/v3', sessionId: 'bound', revision: 1, methods: methods ?? [], basisPreview: { id: 'basis-1' }, transition: { status: 'unchanged', successorAvailable: false } }));
   state.resolveContext.mockResolvedValue({ schemaVersion: 'chirality.selected-context/v3', roleId: 'HELP_HUMAN', methods: [], documents: [], dispositions: [], supplied: [], basisPreview: {}, compatibilityInputs: [], compatibilityMappings: [] });
   state.nativeCapability.mockResolvedValue({ schemaVersion: 'chirality.native-plan-capability/v3', status: 'unavailable', reason: 'fixture' });
@@ -175,7 +180,7 @@ it('merges next-message methods into the active basis without sending turn-time 
   await type('First selected message'); await submit();
   expect(state.stream).toHaveBeenLastCalledWith(expect.objectContaining({ interactionMode: 'chat', permissionMode: 'workspaceWrite' }), expect.any(Function), expect.any(AbortSignal));
   expect(state.stream.mock.calls.at(-1)?.[0]).not.toHaveProperty('methods');
-  expect(state.replaceMethods).toHaveBeenLastCalledWith('bound', [method], { boundaryConfirmed: true, selectionMode: 'merge' });
+  expect(state.replaceMethods).toHaveBeenLastCalledWith('bound', [method], { boundaryConfirmed: true, selectionMode: 'merge', expectedRevision: 0, expectedBasisId: 'basis-initial' });
   expect(tree!.root.findAllByProps({ 'aria-label': 'Methods for next turn' })).toHaveLength(0);
 
   await act(async () => tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.onChange({ target: { value: 'native-plan' } }));
@@ -217,7 +222,7 @@ it('starts Plan Mode in a new Codex chat and keeps inspect, revise, save, and ex
   await act(async () => tree!.root.findAllByType('button').find(button => button.children.includes('Turn into workflow'))!.props.onClick());
   const saveDraft = tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value;
   expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.value).toBe('chat');
-  expect(saveDraft).toContain('Limit this turn to the bounded workflow save; do not execute the plan.');
+  expect(saveDraft).toContain('.chirality/workflow-drafts/<suitable-name>/WORKFLOW.md');
   expect(saveDraft).toContain('# Approved plan');
   expect(saveDraft).not.toContain('native-item');
   expect(JSON.stringify(tree!.toJSON())).not.toContain('No assistant text was returned');
@@ -439,6 +444,38 @@ it('uses the replayed active method revision after an agent changes methods duri
   });
 });
 
+it('refreshes a post-turn basis when replay was unavailable and retains later CAS rejection', async () => {
+  const method = { kind: 'workflow' as const, name: 'create-workflow', source: 'bundled' as const, sourceRootId: 'chirality-root' };
+  state.boot.mockResolvedValue({ session: {
+    schemaVersion: 'chirality.session/v3', sessionId: 'bound', projectRoot: '/chosen/subfolder',
+    selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis-before-turn'
+  } });
+  state.stream.mockResolvedValue(undefined);
+  state.getSession.mockResolvedValue({
+    schemaVersion: 'chirality.session/v3', sessionId: 'bound', projectRoot: '/chosen/subfolder',
+    selectedMethods: [], methodSelectionRevision: 0, instructionBasisId: 'basis-accepted-turn'
+  });
+  let select!: (methods: QualifiedMethodReference[]) => void;
+  function Fixture() {
+    const [methods, setMethods] = React.useState<QualifiedMethodReference[]>([]);
+    select = setMethods;
+    return <ChatPanel presentation="woven" selectedMethods={methods} onSelectedMethodsChange={setMethods} />;
+  }
+  await act(async () => { tree = create(<Fixture />); });
+  await type('First message'); await submit();
+  await act(async () => select([method]));
+  await type('Create a workflow'); await submit();
+  expect(state.replaceMethods).toHaveBeenLastCalledWith('bound', [method], {
+    boundaryConfirmed: true, selectionMode: 'merge', expectedRevision: 0, expectedBasisId: 'basis-accepted-turn'
+  });
+  state.replaceMethods.mockRejectedValueOnce(new Error('Method selection revision changed before replacement'));
+  await act(async () => select([method]));
+  await type('Keep this draft'); await submit();
+  expect(state.stream).toHaveBeenCalledTimes(2);
+  expect(state.replaceMethods).toHaveBeenCalledTimes(2);
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this draft');
+});
+
 it('preserves methods selected for the next message while the current turn finishes', async () => {
   const pending = deferred<void>();
   state.stream.mockImplementation(() => pending.promise);
@@ -470,12 +507,16 @@ it('preserves an explicit empty next-message selection when a bound turn fails',
   await type('Bind this chat'); await submit();
   await act(async () => select([method]));
   let rejectTurn!: (error: Error) => void;
-  state.stream.mockImplementationOnce(() => new Promise<void>((_resolve, reject) => { rejectTurn = reject; }));
+  const started = deferred<void>();
+  state.stream.mockImplementationOnce(() => new Promise<void>((_resolve, reject) => { rejectTurn = reject; started.resolve(); }));
   await type('This turn will fail');
-  const submission = act(async () => { await tree!.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() }); });
-  await act(async () => select([]));
-  await act(async () => rejectTurn(new HarnessApiClientError(400, 'INVALID_REQUEST', 'Fixture turn failure')));
-  await submission;
+  await act(async () => {
+    const submission = tree!.root.findByType('form').props.onSubmit({ preventDefault: vi.fn() });
+    await started.promise;
+    select([]);
+    rejectTurn(new HarnessApiClientError(400, 'INVALID_REQUEST', 'Fixture turn failure'));
+    await submission;
+  });
   expect(tree!.root.findAllByProps({ 'aria-label': 'Methods for next turn' })).toHaveLength(0);
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('This turn will fail');
 });
@@ -507,7 +548,7 @@ it.each([true, false])('retains conversation binding across an Agent change (pro
   expect(state.apply).toHaveBeenCalledTimes(calls);
   await type('Second agent turn'); await submit();
   expect(state.create).toHaveBeenCalledTimes(1);
-  expect(state.replaceMethods).toHaveBeenLastCalledWith('bound', undefined, { roleId: 'HELPS_HUMANS', boundaryConfirmed: true });
+  expect(state.replaceMethods).toHaveBeenLastCalledWith('bound', undefined, { roleId: 'HELPS_HUMANS', boundaryConfirmed: true, expectedRevision: 0, expectedBasisId: 'basis-initial' });
   expect(binding).toHaveBeenLastCalledWith({ root: '/canonical', locked: true });
   assertCanonicalUntouched();
   await act(async () => tree!.update(<ChatPanel presentation="woven" onBindingChange={binding} newChatRequest={1} />));
@@ -523,7 +564,7 @@ it('changes roles at a confirmed boundary without booting another App session', 
   expect(state.stream).toHaveBeenCalledTimes(2);
   expect(state.create).toHaveBeenCalledTimes(1);
   expect(state.boot).toHaveBeenCalledTimes(1);
-  expect(state.replaceMethods).toHaveBeenLastCalledWith('bound', undefined, { roleId: 'HELPS_HUMANS', boundaryConfirmed: true });
+  expect(state.replaceMethods).toHaveBeenLastCalledWith('bound', undefined, { roleId: 'HELPS_HUMANS', boundaryConfirmed: true, expectedRevision: 0, expectedBasisId: 'basis-initial' });
   expect(binding).toHaveBeenLastCalledWith({ root: '/canonical', locked: true });
   expect(JSON.stringify(tree!.toJSON())).toContain('Original turn');
   assertCanonicalUntouched();
@@ -889,7 +930,7 @@ it('hands the Plan tab model to its host, keeps every plan action working from t
   expect(tree!.root.findByProps({ 'aria-label': 'Interaction mode' }).props.value).toBe('chat');
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('Execute the accepted native Plan Mode revision 2');
   await act(async () => button('Turn into workflow').props.onClick());
-  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('do not execute the plan');
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toContain('Do not register it in .chirality/workflows or execute the plan.');
   window.chirality!.plans = { chooseExportTarget: vi.fn().mockResolvedValue({ cancelled: false, targetRelativePath: 'plans/native.md' }), confirmOverwrite: vi.fn().mockResolvedValue(false) };
   await act(async () => { await button('Save plan…').props.onClick(); });
   expect(state.exportPlan).toHaveBeenLastCalledWith({ sessionId: 'bound', revision: 2, targetRelativePath: 'plans/native.md' });
@@ -997,4 +1038,18 @@ it.each([{ bootedAt: '2026-09-13' }, { bootFingerprint: 'verified-boot' }, {}])(
   await type('Keep this pending'); await submit();
   expect(state.stream).not.toHaveBeenCalled(); expect(state.boot).not.toHaveBeenCalled(); expect(state.create).not.toHaveBeenCalled();
   expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe('Keep this pending');
+});
+
+
+it('adds requested workflow feedback to the existing draft without sending or replacing it', async () => {
+  await mount(); await type('Keep my unsent notes.');
+  const feedback = { sequence: 1, projectRoot: '/chosen/subfolder', name: 'meeting-review', source: 'project' as const };
+  await act(async () => tree!.update(<ChatPanel presentation="woven" workflowFeedback={feedback} />));
+  const text = tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value;
+  expect(text).toContain('Keep my unsent notes.');
+  expect(text).toContain('.chirality/workflow-drafts/meeting-review/WORKFLOW.md');
+  expect(text).toContain('do not register it');
+  expect(state.stream).not.toHaveBeenCalled();
+  await act(async () => tree!.update(<ChatPanel presentation="woven" workflowFeedback={{...feedback, sequence: 2, projectRoot: '/other'}} />));
+  expect(tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.value).toBe(text);
 });

@@ -611,3 +611,42 @@ it('recovers the expected Runtime turn from durable steering evidence without lo
   expect(state.steer).not.toHaveBeenCalled();
   expect(rendered()).toContain('unconfirmed');
 });
+
+it.each(['accepted', 'rejected'] as const)('expires the %s update notice at turn completion while retaining durable history', async receiptStatus => {
+  let deliver!: (frame: Frame) => void; let finish!: () => void;
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-1', lastSeq: 0 });
+  state.attach.mockImplementation((_s: string, _after: number, onEvent: (frame: Frame) => void) => new Promise<void>(resolve => { deliver = onEvent; finish = resolve; onEvent({ event: 'transport:connected', data: {} }); }));
+  state.steer.mockImplementation(async (_s, request) => {
+    deliver(harness(2, 'steer-result', 'codex.steer', { ...request, status: receiptStatus }));
+    return { operationId: request.operationId, turnId: request.expectedTurnId, status: receiptStatus };
+  });
+  await mountResumed();
+  await act(async () => tree!.root.findByProps({ 'aria-label': 'Chat input' }).props.onChange({ target: { value: 'Use the small example.' } }));
+  await act(async () => tree!.root.findByType('form').props.onSubmit({ preventDefault() {} }));
+  expect(tree!.root.findByProps({ 'aria-label': 'Update running turn' }).props.className).toBe('chat-submit-update');
+  expect(tree!.root.findByType('form').findAllByProps({ className: 'chat-steer-receipt' })).toHaveLength(1);
+  await act(async () => { deliver(harness(3, 'end', 'turn.completed')); finish(); }); await flush();
+  expect(tree!.root.findAllByProps({ className: 'chat-steer-receipt' })).toHaveLength(0);
+  expect(rendered()).toContain(receiptStatus === 'accepted' ? 'Update received' : 'Update rejected');
+  expect(rendered()).toContain('Use the small example.');
+});
+
+it.each(['accepted', 'rejected'] as const)('restores %s steering as history without reviving its notice on the next turn', async receiptStatus => {
+  const { deriveTranscriptView } = await import('@chirality/runtime-contracts/transcript-replay');
+  const projected = projection('resumed');
+  projected.events = [persisted('old-update', 'codex.steer', { operationId: 'old-operation', expectedTurnId: 'turn-1', text: 'An earlier update', status: receiptStatus })] as import('@chirality/runtime-contracts/event-schema').HarnessEvent[];
+  projected.transcript = deriveTranscriptView(projected.events);
+  state.turnState.mockResolvedValue({ active: false, lastSeq: 0 });
+  await act(async () => { tree = create(<ChatPanel presentation="woven" resumeConversation={{ requestId: 1, projection: projected }} />); }); await flush();
+  expect(rendered()).toContain('An earlier update');
+  expect(rendered()).toContain(receiptStatus === 'accepted' ? 'Update received' : 'Update rejected');
+  expect(tree!.root.findAllByProps({ className: 'chat-steer-receipt' })).toHaveLength(0);
+  await act(async () => tree!.update(<ChatPanel presentation="woven" resumeConversation={{ requestId: 2, projection: projection('other') }} />)); await flush();
+  expect(rendered()).not.toContain('An earlier update');
+  state.turnState.mockResolvedValue({ active: true, turnId: 'turn-2', lastSeq: 0 });
+  state.attach.mockImplementation((_s: string, _after: number, onEvent: (frame: Frame) => void) => { onEvent({ event: 'transport:connected', data: {} }); return new Promise(() => {}); });
+  await act(async () => tree!.update(<ChatPanel presentation="woven" resumeConversation={{ requestId: 3, projection: projected }} />)); await flush();
+  expect(tree!.root.findByProps({ 'aria-label': 'Update running turn' })).toBeDefined();
+  expect(rendered()).toContain('An earlier update');
+  expect(tree!.root.findAllByProps({ className: 'chat-steer-receipt' })).toHaveLength(0);
+});

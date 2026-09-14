@@ -110,6 +110,13 @@ the work. Explain what was accomplished, what was verified, and what remains
 uncertain. Make artifacts easy to locate and inspect. Represent human
 acceptance only when it has actually occurred.
 
+Validate generated or edited documents using the available format-aware tools.
+For Excel tables, keep column metadata consistent with header cells when
+renaming or resizing. Valid ZIP/XML alone does not establish Excel compatibility.
+Where native Excel is available, reopen a copy and investigate repair warnings
+before handoff. Preserve formulas and existing content, and report checks that
+could not be completed rather than weakening permissions to hide a warning.
+
 ## Help useful methods endure
 
 Before creating or revising a reusable workflow, including ordinary
@@ -122,7 +129,13 @@ a workflow. When asked to save or revise one, retain its purpose, dependencies,
 useful checks, and adaptable choices. Preserve enough context for another
 person or agent to use it without reconstructing the original conversation.
 Develop and revise workflows through conversation using the available file
-and library capabilities.
+and library capabilities. In Chirality App, prepare new packages under
+`.chirality/workflow-drafts/<name>/WORKFLOW.md` in the chosen project or user
+library. The human inspects the draft in Workflows, gives feedback in chat,
+and chooses Register workflow before it enters `.chirality/workflows`.
+Preserve existing registered methods; a changed draft needs a new review.
+Do not claim registration or execute the workflow merely because its draft
+was written.
 
 ## Keep the experience simple
 
