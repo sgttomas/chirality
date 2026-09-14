@@ -5,7 +5,7 @@ export interface WorkflowDraft {
   description: string;
   content: string;
   reviewToken: string;
-  files: { path: string; sha256: string; size: number; content?: string }[];
+  files: { path: string; sha256: string; size: number; mode?: string; content?: string }[];
   destinationExists: boolean;
   registered?: boolean;
 }

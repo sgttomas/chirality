@@ -88,10 +88,12 @@ type Props = {
   onOpenParent?: (sessionId: string) => void;
   onWorkflowFeedback?: (request: Omit<WorkflowFeedbackRequest, 'sequence'>) => void;
   workflowFeedbackDisabled?: boolean;
+  readPlanRevisions?: Readonly<Record<string, number>>;
+  onPlanRead?: (sessionId: string, revision: number) => void;
   selectedMethods?: readonly QualifiedMethodReference[];
   onSelectedMethodsChange?: (methods: QualifiedMethodReference[]) => void;
 };
-export function RightPanel({ onWorkflowFeedback, workflowFeedbackDisabled = false, settingsView, state, sessionOpen, folderLocked = false, onFolderSelectionPending, folderMismatch = false, onView, onOpenFile, onFileCatalog, onClose, onExpand, coordination, onRefreshSessions, replayState = { status: 'IDLE' }, recordedSessionIds = [], primarySessionId, liveTurnActive = false, onOpenParent, selectedMethods = [], onSelectedMethodsChange = () => {}, planPanel = null, planFocusRevision }: Props): JSX.Element {
+export function RightPanel({ readPlanRevisions: suppliedReadPlanRevisions, onPlanRead, onWorkflowFeedback, workflowFeedbackDisabled = false, settingsView, state, sessionOpen, folderLocked = false, onFolderSelectionPending, folderMismatch = false, onView, onOpenFile, onFileCatalog, onClose, onExpand, coordination, onRefreshSessions, replayState = { status: 'IDLE' }, recordedSessionIds = [], primarySessionId, liveTurnActive = false, onOpenParent, selectedMethods = [], onSelectedMethodsChange = () => {}, planPanel = null, planFocusRevision }: Props): JSX.Element {
   const { projectRoot } = useWorkspace();
   const [refresh, setRefresh] = useState(0);
   const [completedWorkRevision, setCompletedWorkRevision] = useState(0);
@@ -107,14 +109,16 @@ export function RightPanel({ onWorkflowFeedback, workflowFeedbackDisabled = fals
   const [menuError, setMenuError] = useState<string | null>(null);
   // Future stored views must leave existing content reachable, never blank it.
   const view = resolveRightPanelView(state.rightPanelView);
-  const [readPlanRevisions, setReadPlanRevisions] = useState<Record<string, number>>({});
+  const [localReadPlanRevisions, setLocalReadPlanRevisions] = useState<Record<string, number>>({});
+  const readPlanRevisions = suppliedReadPlanRevisions ?? localReadPlanRevisions;
   const planSessionKey = planPanel?.sessionId ?? primarySessionId ?? '';
   const latestPlanRevision = Math.max(0, ...(planPanel?.revisions.map(revision => revision.revision) ?? []));
   const unreadPlanCount = view === 'plan' ? 0 : (planPanel?.revisions.filter(revision => revision.revision > (readPlanRevisions[planSessionKey] ?? 0)).length ?? 0);
   useEffect(() => {
     if (view !== 'plan' || !latestPlanRevision) return;
-    setReadPlanRevisions(current => (current[planSessionKey] ?? 0) >= latestPlanRevision ? current : { ...current, [planSessionKey]: latestPlanRevision });
-  }, [view, planSessionKey, latestPlanRevision]);
+    if (onPlanRead) onPlanRead(planSessionKey, latestPlanRevision);
+    else setLocalReadPlanRevisions(current => (current[planSessionKey] ?? 0) >= latestPlanRevision ? current : { ...current, [planSessionKey]: latestPlanRevision });
+  }, [view, planSessionKey, latestPlanRevision, onPlanRead]);
   const target = view === 'files' ? state.openDocumentPath : null;
   const detailOpen = Boolean(target || (sessionOpen && view === 'agents'));
   const sessionDetail = sessionOpen && view === 'agents';

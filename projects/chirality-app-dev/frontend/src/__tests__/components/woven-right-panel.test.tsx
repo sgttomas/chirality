@@ -123,11 +123,18 @@ it('clears viewed Plan badges, counts later revisions, and keeps session read st
     onRefresh: vi.fn(), onRevise: vi.fn(), onSave: vi.fn(), onExecute: vi.fn(), onSaveAsWorkflow: vi.fn(), onReplyClarification: vi.fn() };
   let tree!: ReactTestRenderer;
   const state = createDefaultWovenWorkspaceState();
-  const update = async (view: 'files' | 'plan', planPanel = model) => act(async () => tree.update(<RightPanel {...handlers} state={{ ...state, rightPanelView: view }} sessionOpen={false} planPanel={planPanel} />));
+  function RetainedPanel({ view = 'files', planPanel = model, collapsed = false }: { view?: 'files' | 'plan'; planPanel?: typeof model; collapsed?: boolean }) {
+    const [read, setRead] = React.useState<Record<string, number>>({});
+    const mark = React.useCallback((id: string, revision: number) => setRead(current => (current[id] ?? 0) >= revision ? current : { ...current, [id]: revision }), []);
+    return collapsed ? null : <RightPanel {...handlers} state={{ ...state, rightPanelView: view }} sessionOpen={false} planPanel={planPanel} readPlanRevisions={read} onPlanRead={mark} />;
+  }
+  const update = async (view: 'files' | 'plan', planPanel = model) => act(async () => tree.update(<RetainedPanel view={view} planPanel={planPanel} />));
   const badges = () => tree.root.findAllByProps({ className: 'woven-tab-count' });
-  await act(async () => { tree = create(<RightPanel {...handlers} state={state} sessionOpen={false} planPanel={model} />); });
+  await act(async () => { tree = create(<RetainedPanel />); });
   expect(badges()[0].props['aria-label']).toBe('1 unread plan revisions');
   await update('plan'); expect(badges()).toHaveLength(0);
+  await update('files'); expect(badges()).toHaveLength(0);
+  await act(async () => tree.update(<RetainedPanel collapsed />));
   await update('files'); expect(badges()).toHaveLength(0);
   const next = { ...model, revisions: [revision(1), revision(2)] };
   await update('files', next); expect(badges()[0].children).toEqual(['1']);

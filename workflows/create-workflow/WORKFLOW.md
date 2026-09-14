@@ -20,9 +20,9 @@ the basis; make consequential assumptions explicit. Distinguish reusable method
 from this run's assignment, private facts, credentials, and local paths.
 
 Use the selected library basis and inspect its current descriptor and package
-before editing. Save project-specific methods at
-`<project>/.chirality/workflows/<name>/WORKFLOW.md`; save personal methods useful
-across projects at `~/.chirality/workflows/<name>/WORKFLOW.md`. Resolve the actual
+before editing. Registered project-specific methods live at
+`<project>/.chirality/workflows/<name>/WORKFLOW.md`; personal methods useful
+across projects live at `~/.chirality/workflows/<name>/WORKFLOW.md`. Resolve the actual
 project or user root from the available host context. Editing a bundled library
 is a separate library-maintenance scope; Root's bundled source is `workflows/`.
 Do not infer permission to change an installed bundle from permission to save a
@@ -66,7 +66,10 @@ Prepare a draft for the human to inspect and discuss before it enters the
 reusable library. In Chirality App, write the proposed package at
 `<project>/.chirality/workflow-drafts/<name>/WORKFLOW.md` or
 `~/.chirality/workflow-drafts/<name>/WORKFLOW.md`, with its supporting files
-inside that draft package. Do not write it to `.chirality/workflows` yet.
+inside that draft package. Use ordinary files and directories, without symbolic
+or hard links. Ordinary file permissions, including executable helpers, are
+preserved on registration; special permission bits are not. Do not write it to
+`.chirality/workflows` yet.
 The Workflows panel lists these packages under **Ready for review**. Tell the
 human where to open the draft; do not claim that it is registered.
 

@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { mkdtemp, mkdir, writeFile, readFile, rm, symlink, realpath, readdir } from 'node:fs/promises';
+import { chmod, stat, mkdtemp, mkdir, writeFile, readFile, rm, symlink, realpath, readdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { discoverMethodCatalog } from '@chirality/runtime-core';
 import { listDrafts, readWorkflowDraft, registerDraft } from '../../../app/api/working-root/workflow-drafts/workflow-draft-store';
@@ -41,6 +42,45 @@ describe('workflow draft review and registration', () => {
     expect((await readWorkflowDraft(root, 'sample', 'project')).registered).toBe(true);
     await writeFile(path.join(root, '.chirality/workflows/sample/resources/guide.md'), 'Different canonical resource');
     expect((await readWorkflowDraft(root, 'sample', 'project')).registered).toBe(false);
+  });
+  it('preserves executable and read/write permissions while stripping special bits', async () => {
+    const target = await draft();
+    const helper = path.join(target, 'resources/helper.sh');
+    await writeFile(helper, '#!/bin/sh\nprintf reviewed\n');
+    await chmod(helper, 0o750);
+    await chmod(path.join(target, 'resources/guide.md'), 0o440);
+    const review = await readWorkflowDraft(root, 'sample', 'project');
+    expect(review.files.find(file => file.path === 'resources/helper.sh')?.mode).toBe('0750');
+    expect(review.files.find(file => file.path === 'resources/guide.md')?.mode).toBe('0440');
+    await registerDraft(root, 'sample', 'project', review.reviewToken);
+    const registered = path.join(root, '.chirality/workflows/sample/resources');
+    expect((await stat(path.join(registered, 'helper.sh'))).mode & 0o7777).toBe(0o750);
+    expect(execFileSync(path.join(registered, 'helper.sh'), { encoding: 'utf8' })).toBe('reviewed');
+    expect((await stat(path.join(registered, 'guide.md'))).mode & 0o7777).toBe(0o440);
+    expect((await readWorkflowDraft(root, 'sample', 'project')).registered).toBe(true);
+    await chmod(path.join(registered, 'helper.sh'), 0o640);
+    expect((await readWorkflowDraft(root, 'sample', 'project')).registered).toBe(false);
+  });
+  it('never copies setuid, setgid, or sticky bits into a registered file', async () => {
+    const target = await draft();
+    const helper = path.join(target, 'resources/helper.sh');
+    await writeFile(helper, '#!/bin/sh\nexit 0\n');
+    await chmod(helper, 0o7750);
+    const review = await readWorkflowDraft(root, 'sample', 'project');
+    expect(review.files.find(file => file.path === 'resources/helper.sh')?.mode).toBe('0750');
+    await registerDraft(root, 'sample', 'project', review.reviewToken);
+    expect((await stat(path.join(root, '.chirality/workflows/sample/resources/helper.sh'))).mode & 0o7777).toBe(0o750);
+  });
+  it('rejects a stale review when executable mode alone changes', async () => {
+    const target = await draft();
+    const helper = path.join(target, 'resources/guide.md');
+    await chmod(helper, 0o600);
+    const review = await readWorkflowDraft(root, 'sample', 'project');
+    await chmod(helper, 0o700);
+    const current = await readWorkflowDraft(root, 'sample', 'project');
+    expect(current.reviewToken).not.toBe(review.reviewToken);
+    expect(current.files.find(file => file.path === 'resources/guide.md')?.sha256).toBe(review.files.find(file => file.path === 'resources/guide.md')?.sha256);
+    await expect(registerDraft(root, 'sample', 'project', review.reviewToken)).rejects.toMatchObject({ code: 'DRAFT_CHANGED', status: 409 });
   });
   it('rejects stale review when any resource changes and preserves the draft', async () => {
     const target = await draft();

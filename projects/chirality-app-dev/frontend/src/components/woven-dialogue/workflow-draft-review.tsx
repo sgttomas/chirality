@@ -64,7 +64,7 @@ export function WorkflowDraftReview({ projectRoot, refresh, onRegistered, onFeed
       <p className="method-card-meta">{current.source === 'project' ? 'This project' : 'Your library'} · Draft</p>
       <div className="workflow-draft-content"><ChatMarkdown source={current.content} /></div>
       <details><summary>Included files ({current.files.length})</summary><ul>{current.files.map(file => <li key={file.path}>
-        <span>{file.path} · {file.size} bytes</span>
+        <span>{file.path} · {file.size} bytes{file.mode ? ` · permissions ${file.mode}` : ''}</span>
         {'content' in file && typeof file.content === 'string' && file.path !== 'WORKFLOW.md' ? <details><summary>Read file</summary><pre>{file.content}</pre></details> : null}
       </li>)}</ul></details>
       {current.destinationExists ? <p role="status">A workflow with this name is already registered. Request a distinct name to preserve the existing workflow.</p> : null}

@@ -138,6 +138,11 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const primaryNeedsAnswer = primaryRequests.length > 0;
   const needsAnswerSessionIds = [...Object.keys(attention.rows), ...(primaryNeedsAnswer && primarySessionId ? [primarySessionId] : [])];
 
+  // Keep read state outside the collapsible RightPanel.
+  const [readPlanRevisions, setReadPlanRevisions] = useState<Record<string, number>>({});
+  const markPlanRead = useCallback((sessionId: string, revision: number) => {
+    setReadPlanRevisions(current => (current[sessionId] ?? 0) >= revision ? current : { ...current, [sessionId]: revision });
+  }, []);
   const workflowFeedbackSequence = useRef(0);
   const [workflowFeedback, setWorkflowFeedback] = useState<WorkflowFeedbackRequest>();
   const [sessionsError, setSessionsError] = useState<string | null>(null);
@@ -989,7 +994,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
         >
           {workspaceState.coordinationCollapsed ? <button type="button" className="woven-region-toggle button-muted" aria-label="Open Coordination" onClick={() => updateWorkspaceState({ coordinationCollapsed: false })}>›</button> : null}
           {!workspaceState.coordinationCollapsed ? (
-            <RightPanel workflowFeedbackDisabled={replayVisible || folderSelectionPending} onWorkflowFeedback={request => { restoreExpanded(); setWorkflowFeedback({ ...request, sequence: ++workflowFeedbackSequence.current }); }} settingsView={settingsView} folderLocked={binding.locked || streaming || folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} folderMismatch={binding.locked && Boolean(binding.root && binding.root !== projectRoot)} state={workspaceState} sessionOpen={coordinationView === 'session'}
+            <RightPanel readPlanRevisions={readPlanRevisions} onPlanRead={markPlanRead} workflowFeedbackDisabled={replayVisible || folderSelectionPending} onWorkflowFeedback={request => { restoreExpanded(); setWorkflowFeedback({ ...request, sequence: ++workflowFeedbackSequence.current }); }} settingsView={settingsView} folderLocked={binding.locked || streaming || folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} folderMismatch={binding.locked && Boolean(binding.root && binding.root !== projectRoot)} state={workspaceState} sessionOpen={coordinationView === 'session'}
               replayState={replayState} recordedSessionIds={sessions.map(session => session.sessionId)}
               primarySessionId={primarySessionId} liveTurnActive={streaming} onOpenParent={sessionId => loadReplay(sessionId, true)}
               onView={(view) => {

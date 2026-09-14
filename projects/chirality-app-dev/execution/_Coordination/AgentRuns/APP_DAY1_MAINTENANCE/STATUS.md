@@ -34,7 +34,9 @@ Runtime build passed. Full Runtime: 39 files, 365 tests passed. Frontend: 222 fi
 2,281 tests passed, one file/four tests skipped under existing conditions.
 Frontend typecheck passed. Workflow metadata/index passed (80 indexed methods);
 workflow catalog and instruction-entrypoint tests: 45 passed. Controlled browser
-check and independent full-diff review remain pending. Logs are local temporary
+inspection, draft preview, feedback preserving unsent text, registration and
+catalog discovery passed against production UI/routes with a synthetic workspace
+and controlled Runtime. No account was used. Independent re-review is pending. Logs are local temporary
 validation output, not release evidence.
 
 ## Excel diagnostic, deliberately unresolved
@@ -56,3 +58,26 @@ then commit/push/PR/merge under the standing Git grant. Do not package or releas
 If the Excel warning recurs, capture its exact wording or repair report against a
 copy of the affected workbook. The user withdrew their later popup clarification,
 not the Day 1 issue list.
+
+## Independent review and repairs
+
+Fresh read-only TASK + software-code-review instance day1_independent_review used
+gpt-6-astra high under the owner’s standing bounded exception, given the new
+filesystem publication path and async UI transitions. It reviewed all 36 files
+at 463495eb1 and reported two P2 findings: read Plan badges reset on panel
+collapse, and executable helper permissions were stripped on registration.
+Agent 0 confirmed both. Plan read state now belongs to the stable shell, with a
+remount regression. The original storage author preserved ordinary file modes,
+stripped special bits, and bound modes to the reviewed inventory; executable and
+chmod-only conflict tests pass.
+
+Direct browser testing additionally found Next’s normalized Request.url rejected
+valid 127.0.0.1 origins. Registration now matches the actual Host and port, limits
+both addresses to loopback, and rejects absent/cross-site/mismatched origins.
+The fixed production route completed registration from the browser. The agent
+review is an engineering review, not personal owner approval.
+
+Author dispatch and reviewer reliance checked APP-HOLD for DEL-02-01, DEL-03-03,
+DEL-04-04 and DEL-05-04; all ALLOW/CLEAR/NOT_HELD. Source remains within the
+owner-requested maintenance scope. No release, account operation or user-file
+modification occurred.

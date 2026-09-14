@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { constants } from 'node:fs';
-import { lstat, realpath, readdir, open, mkdir, mkdtemp, writeFile, link, rm } from 'node:fs/promises';
+import { lstat, realpath, readdir, open, mkdir, mkdtemp, link, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { tmpdir } from 'node:os';
 import { discoverMethodCatalog, inspectMethod } from '@chirality/runtime-core';
@@ -28,9 +28,12 @@ async function directory(root: string, relative: string, create = false): Promis
   }
   return target;
 }
-async function capture(root: string, relative: string): Promise<Map<string, Buffer>> {
+interface CapturedFile { content: Buffer; mode: number }
+type CapturedPackage = Map<string, CapturedFile>;
+
+async function capture(root: string, relative: string): Promise<CapturedPackage> {
   const packageRoot = await directory(root, relative);
-  const result = new Map<string, Buffer>();
+  const result: CapturedPackage = new Map();
   let size = 0;
   let entries = 0;
   async function visit(relativeDirectory: string, depth: number): Promise<void> {
@@ -55,31 +58,37 @@ async function capture(root: string, relative: string): Promise<Map<string, Buff
         let offset = 0;
         while (offset < bytes.length) { const read = await handle.read(bytes, offset, bytes.length - offset, offset); if (!read.bytesRead) break; offset += read.bytesRead; }
         const after = await handle.stat();
-        if (offset !== info.size || after.mtimeMs !== info.mtimeMs || after.ctimeMs !== info.ctimeMs)
+        if (offset !== info.size || after.mtimeMs !== info.mtimeMs || after.ctimeMs !== info.ctimeMs || after.mode !== info.mode)
           fail('DRAFT_CHANGED', 409, 'Workflow draft changed while reading. Refresh its review.');
         await directory(root, [relative, relativeDirectory].filter(Boolean).join('/'));
-        result.set(resource, bytes.subarray(0, offset));
+        result.set(resource, { content: bytes.subarray(0, offset), mode: info.mode & 0o777 });
       } finally { await handle.close(); }
     }
   }
   await visit('', 0);
   return result;
 }
-function inventory(bytes: Map<string, Buffer>): WorkflowDraft['files'] {
-  return [...bytes].sort(([a], [b]) => a.localeCompare(b)).map(([file, content]) => ({ path: file, sha256: hash(content), size: content.length }));
+function inventory(bytes: CapturedPackage): WorkflowDraft['files'] {
+  return [...bytes].sort(([a], [b]) => a.localeCompare(b)).map(([file, { content, mode }]) => ({ path: file, sha256: hash(content), size: content.length, mode: mode.toString(8).padStart(4, '0') }));
 }
-function token(root: string, source: WorkflowDraftSource, name: string, bytes: Map<string, Buffer>): string {
+function token(root: string, source: WorkflowDraftSource, name: string, bytes: CapturedPackage): string {
   return hash(JSON.stringify({ root, source, name, files: inventory(bytes) }));
 }
-async function writePackage(root: string, name: string, bytes: Map<string, Buffer>): Promise<void> {
-  for (const [file, content] of bytes) {
+async function writePackage(root: string, name: string, bytes: CapturedPackage): Promise<void> {
+  for (const [file, { content, mode }] of bytes) {
     const target = path.join(root, name, file);
     await mkdir(path.dirname(target), { recursive: true });
-    await writeFile(target, content, { flag: 'wx', mode: 0o600 });
+    const handle = await open(target, 'wx', 0o600);
+    try {
+      await handle.writeFile(content);
+      // Apply ordinary permissions after writing so umask cannot remove reviewed
+      // executable bits. Never propagate setuid, setgid, or sticky bits.
+      await handle.chmod(mode & 0o777);
+    } finally { await handle.close(); }
   }
 }
-async function metadata(name: string, source: WorkflowDraftSource, bytes: Map<string, Buffer>) {
-  const entry = bytes.get('WORKFLOW.md');
+async function metadata(name: string, source: WorkflowDraftSource, bytes: CapturedPackage) {
+  const entry = bytes.get('WORKFLOW.md')?.content;
   if (!entry || entry.includes(0) || !Buffer.from(entry.toString('utf8')).equals(entry))
     fail('INVALID_DRAFT', 400, `Draft ${name} requires a UTF-8 WORKFLOW.md entrypoint.`);
   // Parse captured bounded bytes using Runtime's canonical metadata implementation.
@@ -102,7 +111,7 @@ export async function readWorkflowDraft(root: string, name: string, source: Work
   const bytes = await capture(root, `.chirality/workflow-drafts/${name}`);
   const parsed = await metadata(name, source, bytes);
   const files = inventory(bytes).map(file => {
-    const resource = bytes.get(file.path)!;
+    const resource = bytes.get(file.path)!.content;
     const content = resource.toString('utf8');
     return file.path !== 'WORKFLOW.md' && resource.length <= 512 * 1024 && !/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(content) && Buffer.from(content).equals(resource)
       ? { ...file, content } : file;

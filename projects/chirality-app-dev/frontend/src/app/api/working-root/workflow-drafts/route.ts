@@ -36,10 +36,25 @@ export async function GET(request: Request): Promise<Response> {
     return NextResponse.json({ drafts }, { headers });
   } catch (error) { return errorResponse(error); }
 }
+function hasLocalOrigin(request: Request): boolean {
+  const requested = new URL(request.url);
+  const host = request.headers.get('host') ?? requested.host;
+  const origin = request.headers.get('origin');
+  if (!origin || request.headers.get('sec-fetch-site') === 'cross-site') return false;
+  try {
+    // Next may normalize Request.url to localhost; Host retains the renderer’s
+    // actual loopback address. Match its port as well and reject rebinding hosts.
+    const expected = new URL(`${requested.protocol}//${host}`);
+    const loopback = new Set(['localhost', '127.0.0.1', '[::1]']);
+    return requested.protocol === 'http:' && loopback.has(requested.hostname)
+      && loopback.has(expected.hostname) && expected.host === host
+      && origin === expected.origin;
+  } catch { return false; }
+}
 export async function POST(request: Request): Promise<Response> {
   try {
     // Browser callers must originate from this app, including on localhost.
-    if (request.headers.get('origin') !== new URL(request.url).origin || request.headers.get('sec-fetch-site') === 'cross-site')
+    if (!hasLocalOrigin(request))
       throw new FilePolicyError('INVALID_ORIGIN', 403, 'Workflow registration requires a request from this app.');
     if (!request.headers.get('content-type')?.startsWith('application/json')) throw new FilePolicyError('INVALID_REQUEST', 400, 'Workflow registration requires JSON.');
     const reader = request.body?.getReader();

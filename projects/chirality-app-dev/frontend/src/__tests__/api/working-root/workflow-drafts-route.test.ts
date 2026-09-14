@@ -30,6 +30,17 @@ describe('workflow draft route scope and mutation checks', () => {
     expect((await POST(post(input, ''))).status).toBe(403);
     expect(mocks.register).not.toHaveBeenCalled();
   });
+  it('matches the renderer Host when Next normalizes Request.url, while rejecting other hosts and ports', async () => {
+    mocks.register.mockResolvedValue({ name: 'sample', source: 'user', path: '.chirality/workflows/sample/WORKFLOW.md' });
+    const incoming = (origin: string, host: string, site = 'same-origin') => new Request(base, {
+      method: 'POST', headers: { origin, host, 'sec-fetch-site': site, 'content-type': 'application/json' }, body: JSON.stringify(input)
+    });
+    expect((await POST(incoming('http://127.0.0.1:3000', '127.0.0.1:3000'))).status).toBe(200);
+    expect((await POST(incoming('http://127.0.0.1:4000', '127.0.0.1:3000'))).status).toBe(403);
+    expect((await POST(incoming('http://hostile.example:3000', 'hostile.example:3000'))).status).toBe(403);
+    expect((await POST(incoming('http://127.0.0.1:3000', '127.0.0.1:3000', 'cross-site'))).status).toBe(403);
+    expect(mocks.register).toHaveBeenCalledTimes(1);
+  });
   it('uses the server home for registration and forwards a readable stale review error', async () => {
     mocks.register.mockRejectedValueOnce(new FilePolicyError('DRAFT_CHANGED', 409, 'Refresh and review it again.'));
     const response = await POST(post());
