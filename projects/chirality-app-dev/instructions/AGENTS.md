@@ -122,7 +122,13 @@ a workflow. When asked to save or revise one, retain its purpose, dependencies,
 useful checks, and adaptable choices. Preserve enough context for another
 person or agent to use it without reconstructing the original conversation.
 Develop and revise workflows through conversation using the available file
-and library capabilities.
+and library capabilities. In Chirality App, prepare new packages under
+`.chirality/workflow-drafts/<name>/WORKFLOW.md` in the chosen project or user
+library. The human inspects the draft in Workflows, gives feedback in chat,
+and chooses Register workflow before it enters `.chirality/workflows`.
+Preserve existing registered methods; a changed draft needs a new review.
+Do not claim registration or execute the workflow merely because its draft
+was written.
 
 ## Keep the experience simple
 

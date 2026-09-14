@@ -1,5 +1,7 @@
 'use client';
 
+import type { WorkflowFeedbackRequest } from '../../lib/harness/workflow-feedback';
+
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   default as React,
@@ -136,6 +138,8 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
   const primaryNeedsAnswer = primaryRequests.length > 0;
   const needsAnswerSessionIds = [...Object.keys(attention.rows), ...(primaryNeedsAnswer && primarySessionId ? [primarySessionId] : [])];
 
+  const workflowFeedbackSequence = useRef(0);
+  const [workflowFeedback, setWorkflowFeedback] = useState<WorkflowFeedbackRequest>();
   const [sessionsError, setSessionsError] = useState<string | null>(null);
   const [sessionRefreshToken, setSessionRefreshToken] = useState(0);
   const directHistorySelection = useRef<string>();
@@ -843,7 +847,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
                 {replayVisible && !streaming ? <p role="status">Opening recorded chat. The current composer is paused until you open this chat or return.</p> : null}
                 <fieldset disabled={replayVisible && !streaming} style={{ border: 0, padding: 0, margin: 0, minWidth: 0, minHeight: 0, display: 'contents' }}>
                 <Suspense fallback={<p className="panel-empty">Loading primary dialogue…</p>}>
-                  <ChatPanel presentation="woven" onDraftCaptured={restoreExpanded} onActiveSessionChange={setPrimarySessionId}
+                  <ChatPanel workflowFeedback={workflowFeedback} onWorkflowFeedbackHandled={() => setWorkflowFeedback(undefined)} presentation="woven" onDraftCaptured={restoreExpanded} onActiveSessionChange={setPrimarySessionId}
                     selectedMethods={selectedMethods} onSelectedMethodsChange={setSelectedMethods}
                     onOpenMethods={() => { restoreExpanded(); updateWorkspaceState({ rightPanelView: 'workflows', coordinationCollapsed: false }); }}
                     onPlanPanelChange={setPlanPanel}
@@ -985,7 +989,7 @@ export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element
         >
           {workspaceState.coordinationCollapsed ? <button type="button" className="woven-region-toggle button-muted" aria-label="Open Coordination" onClick={() => updateWorkspaceState({ coordinationCollapsed: false })}>›</button> : null}
           {!workspaceState.coordinationCollapsed ? (
-            <RightPanel settingsView={settingsView} folderLocked={binding.locked || streaming || folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} folderMismatch={binding.locked && Boolean(binding.root && binding.root !== projectRoot)} state={workspaceState} sessionOpen={coordinationView === 'session'}
+            <RightPanel workflowFeedbackDisabled={replayVisible || folderSelectionPending} onWorkflowFeedback={request => { restoreExpanded(); setWorkflowFeedback({ ...request, sequence: ++workflowFeedbackSequence.current }); }} settingsView={settingsView} folderLocked={binding.locked || streaming || folderSelectionPending} onFolderSelectionPending={setFolderSelectionPending} folderMismatch={binding.locked && Boolean(binding.root && binding.root !== projectRoot)} state={workspaceState} sessionOpen={coordinationView === 'session'}
               replayState={replayState} recordedSessionIds={sessions.map(session => session.sessionId)}
               primarySessionId={primarySessionId} liveTurnActive={streaming} onOpenParent={sessionId => loadReplay(sessionId, true)}
               onView={(view) => {

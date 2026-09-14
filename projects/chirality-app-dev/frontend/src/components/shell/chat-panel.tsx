@@ -49,6 +49,7 @@ import { useWorkspace } from '../workspace/workspace-provider';
 import { FolderSelect, getNativeFolderBridge } from './folder-select';
 import { PersonaPicker } from './persona-picker';
 import { ChatMarkdown } from './chat-markdown';
+import { workflowFeedbackPrompt, type WorkflowFeedbackRequest } from '../../lib/harness/workflow-feedback';
 import { ConversationMessage } from './conversation-message';
 import { FilePicker } from './file-picker';
 import { PermissionRequests } from './permission-requests';
@@ -295,6 +296,8 @@ type ChatPanelProps = {
   /** Reports whether a New chat request went ahead (false when the unsent-draft confirmation was declined or a turn was running). */
   onNewChatSettled?: (started: boolean) => void;
   onDraftCaptured?: () => void;
+  workflowFeedback?: WorkflowFeedbackRequest;
+  onWorkflowFeedbackHandled?: () => void;
   onActiveSessionChange?: (sessionId: string | undefined) => void;
   onSessionBootedPrompt?: (input: { sessionId: string; prompt: string; persona: string }) => void;
   fileCatalog?: readonly string[];
@@ -312,7 +315,7 @@ type ChatPanelProps = {
   onConversationResumed?: (sessionId: string) => void;
 };
 
-export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBootedPrompt, presentation, knownRoots = NO_KNOWN_ROOTS, newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange, onNewChatSettled, fileCatalog = NO_FILE_CATALOG, onOpenFile, selectedMethods = NO_SELECTED_METHODS, onSelectedMethodsChange = IGNORE_SELECTED_METHODS, onOpenMethods, onPlanPanelChange, onOpenPlan, onTurnPhaseChange, resumeConversation, onConversationResumed }: ChatPanelProps = {}): JSX.Element {
+export function ChatPanel({ workflowFeedback, onWorkflowFeedbackHandled, onDraftCaptured, onActiveSessionChange, onSessionBootedPrompt, presentation, knownRoots = NO_KNOWN_ROOTS, newChatRequest = 0, folderSelectionPending = false, onFolderSelectionPending, onBindingChange, onNewChatSettled, fileCatalog = NO_FILE_CATALOG, onOpenFile, selectedMethods = NO_SELECTED_METHODS, onSelectedMethodsChange = IGNORE_SELECTED_METHODS, onOpenMethods, onPlanPanelChange, onOpenPlan, onTurnPhaseChange, resumeConversation, onConversationResumed }: ChatPanelProps = {}): JSX.Element {
   const { projectRoot, applyProjectRoot } = useWorkspace();
   const { optsPayload } = useToolkit();
   const { appendEvent, clearEvents, hydrateEvents, setStreaming } = useHarnessEventActions();
@@ -966,7 +969,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           nativeTextObserved = true;
           assistantText = nativeItems.filter(item => item.role === 'assistant').map(item => item.text ?? '').join('\n\n');
           setAssistant({ text: assistantText, nativeItems });
-        }
+        } else if (nativeItems.length) setAssistant({ nativeItems });
 
         const duplicate = seen.has(harnessEvent.eventId);
         seen.add(harnessEvent.eventId);
@@ -1145,7 +1148,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         if (recovered.some(item => item.nativeItemId)) {
           assistantText = recovered.filter(item => item.role === 'assistant').map(item => item.text ?? '').join('\n\n');
           setAssistant({ text: assistantText, nativeItems: recovered });
-        }
+        } else if (recovered.length) setAssistant({ nativeItems: recovered });
         if (!assistantText) {
           const textTurnId = turnId ?? last?.turnId;
           const text = scoped.filter(event => event.type === 'message.delta' && event.turnId === textTurnId).map(event => readTextField(event.data) ?? '').join('');
@@ -1306,12 +1309,12 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
 
   const [steerReceipts, setSteerReceipts] = useState<SteeringReceipt[]>([]);
   const sessionSteerReceipts = steerReceipts.filter(receipt => receipt.sessionId === activeSession?.sessionId);
-  const steerReceipt = sessionSteerReceipts.at(-1);
   const [steerPending, setSteerPending] = useState(false);
   const [receiptChecking, setReceiptChecking] = useState<string | null>(null);
   const receiptCheckInFlight = useRef(false);
   const steerOperationInFlight = useRef(false);
   const currentRuntimeTurnId = [...messages].reverse().find(message => message.role === 'assistant')?.turnId;
+  const steerReceipt = isRunning ? sessionSteerReceipts.filter(receipt => receipt.expectedTurnId === currentRuntimeTurnId).at(-1) : undefined;
   const unknownSteerDraft = sessionSteerReceipts.some(receipt => (receipt.status === 'unknown' || receipt.status === 'submitted') && receipt.text === draft.trim());
   function recordSteeringReceipt(receipt: SteeringReceipt): void {
     persistSteeringReceipt(receipt, typeof window !== 'undefined' ? window.localStorage : undefined);
@@ -1435,12 +1438,21 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       let activeRevision = session.methodSelectionRevision;
       let activeBasisId = session.instructionBasisId;
       if (preservedMethods.length > 0 || roleChanged) {
+        // A completed turn can adopt edited instructions or a different mode,
+        // changing the basis without changing the method revision. Read the
+        // current projection before forming the transition's compare-and-swap.
+        const current = await getHarnessSession(session.sessionId) as RuntimeSessionRecordV3;
+        if (current.sessionId !== session.sessionId || current.projectRoot !== session.projectRoot ||
+          current.schemaVersion !== 'chirality.session/v3' ||
+          (current.roleId !== undefined && current.roleId !== session.persona)) {
+          throw new Error('The chat context changed before the workflow could be selected. Reload the conversation and try again.');
+        }
         const replacement = await replaceSelectedMethods(session.sessionId, preservedMethods.length ? preservedMethods : undefined, {
           ...(roleChanged ? { roleId: activePersona as ChiralityRoleName } : {}),
           boundaryConfirmed: true,
           ...(preservedMethods.length ? { selectionMode: 'merge' as const } : {}),
-          ...(session.methodSelectionRevision > 0 ? { expectedRevision: session.methodSelectionRevision } : {}),
-          ...(session.instructionBasisId ? { expectedBasisId: session.instructionBasisId } : {})
+          expectedRevision: current.methodSelectionRevision,
+          expectedBasisId: current.instructionBasisId
         });
         activeMethods = replacement.methods;
         activeRevision = replacement.revision;
@@ -1651,6 +1663,19 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
   useEffect(() => () => { onTurnPhaseChange?.('idle'); }, [onTurnPhaseChange]);
   const phaseStatusLine = turnPhaseStatusLine(turnPhase, { detail: turnPhase === 'preparing' || turnPhase === 'working' ? runtimeStatus : null, reconnectAttempt: reconnectAttempt ?? undefined, pendingRequests: pendingRequestCount });
 
+  const appliedWorkflowFeedback = useRef<number>();
+  useEffect(() => {
+    if (!workflowFeedback || appliedWorkflowFeedback.current === workflowFeedback.sequence) return;
+    if (folderSelectionPending || !draftIdentityReady) return;
+    appliedWorkflowFeedback.current = workflowFeedback.sequence;
+    onWorkflowFeedbackHandled?.();
+    if (workflowFeedback.projectRoot !== projectRoot || isRunning) return;
+    const prompt = workflowFeedbackPrompt(workflowFeedback);
+    setDraft(current => current.trim() ? `${current}\n\n${prompt}` : prompt);
+    onDraftCaptured?.();
+    window.requestAnimationFrame(() => composerRef.current?.focus());
+  }, [workflowFeedback, projectRoot, isRunning, folderSelectionPending, draftIdentityReady, onDraftCaptured, onWorkflowFeedbackHandled]);
+
   function beginPlanRevision(revision: number | undefined): void {
     setInteractionMode('native-plan');
     setDraft(revision
@@ -1668,7 +1693,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
     setPreparedExecution(intent === 'execute' ? { revision: revision.revision } : null);
     setDraft(intent === 'execute'
       ? `Execute the accepted native Plan Mode revision ${revision.revision} below. Preserve its recorded constraints.\n\n${planExecutionMarker(revision.revision)}\n${recordedPlan}`
-      : `Save native Plan Mode revision ${revision.revision} below as a reusable project workflow at .chirality/workflows/<suitable-name>/WORKFLOW.md. Limit this turn to the bounded workflow save; do not execute the plan. Preserve its constraints and add valid purpose and applicability metadata.\n\n${planExecutionMarker(revision.revision)}\n${recordedPlan}`);
+      : `Use the core create-workflow method to prepare native Plan Mode revision ${revision.revision} below as a reusable project workflow draft at .chirality/workflow-drafts/<suitable-name>/WORKFLOW.md. Do not register it in .chirality/workflows or execute the plan. I will inspect the draft, provide feedback, and register it through the Workflows panel. Preserve its constraints and add valid purpose and applicability metadata.\n\n${planExecutionMarker(revision.revision)}\n${recordedPlan}`);
     onDraftCaptured?.();
     window.requestAnimationFrame(() => composerRef.current?.focus());
   }
@@ -1793,7 +1818,11 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
       interrupted: item.role === 'assistant' && !message.nativeItems!.slice(index + 1).some(next => next.role === 'assistant') ? message.interrupted : undefined,
       outcome: item.role === 'assistant' && !message.nativeItems!.slice(index + 1).some(next => next.role === 'assistant') ? message.outcome : undefined,
       receipt: item.eventType === 'codex.steer' ? (item.summary ?? (item.status === 'accepted' ? 'Update received' : item.status === 'failed' ? 'Update rejected' : 'Awaiting update receipt')) : undefined }))
-    : [message]);
+    : [...(message.nativeItems ?? []).filter(item => item.eventType === 'codex.steer').map(item => ({
+      ...message, id: `${message.id}:${item.key}`, role: 'operator' as const, text: item.text ?? '',
+      nativeItems: undefined, recordedActivity: undefined, interrupted: undefined, outcome: undefined,
+      receipt: item.summary ?? (item.status === 'accepted' ? 'Update received' : item.status === 'failed' ? 'Update rejected' : 'Awaiting update receipt')
+    })), message]);
   const lastAssistantIndex = renderedMessages.reduce((last, message, index) => message.role === 'assistant' ? index : last, -1);
   const messageCount = messages.length;
   const lastMessageId = messages.at(-1)?.id;
@@ -1913,12 +1942,8 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           flexible row was squeezed below its own padding, and its box
           overflowed on top of the Attachments row (Stage C defect). */}
       <div className="chat-composer-dock">
-        {steerReceipt && steerReceipt.sessionId === activeSession?.sessionId ? <p role="status" className="chat-steer-receipt">
-          {steerReceipt.status === 'accepted' ? 'Update received by the running turn.' : steerReceipt.status === 'rejected' ? 'Update rejected. Your draft is preserved.' : steerReceipt.status === 'submitted' ? 'Awaiting update receipt…' : 'Update delivery unconfirmed. Your draft is preserved; it will not be resent automatically.'}
-          {steerReceipt.message ? ` ${steerReceipt.message}` : ''}
-        </p> : null}
         {sessionSteerReceipts.filter(receipt => receipt.status === 'unknown' || receipt.status === 'submitted').map(receipt => <div key={receipt.operationId} className="chat-steer-receipt">
-          {receipt !== steerReceipt ? <p>Unconfirmed update: {receipt.text}</p> : null}
+          {receipt !== steerReceipt ? <p role="status">Update delivery unconfirmed: {receipt.text}{receipt.message ? ` · ${receipt.message}` : ''}</p> : null}
           <button type="button" className="button-muted" disabled={steerPending || receiptChecking !== null} onClick={() => void checkSteeringReceipt(receipt)}>{receiptChecking === receipt.operationId ? 'Checking delivery…' : 'Check delivery'}</button>
         </div>)}
         {draftStorageWarning ? (
@@ -2071,6 +2096,7 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
         {presentation === 'woven' ? <button type="button" className="chat-workflow-button" aria-label="Choose a workflow" title="Open workflows" disabled={!projectRoot || isRunning || folderSelectionPending || !draftIdentityReady} onClick={onOpenMethods}>Workflows</button> : null}
         <button
           type="submit"
+          className={isRunning ? 'chat-submit-update' : undefined}
           aria-label={isRunning ? 'Update running turn' : 'Send'}
           disabled={!projectRoot || steerPending || unknownSteerDraft || (isRunning && (!currentRuntimeTurnId || !draft.trim() || stopRequested || reconnectAttempt !== null)) || folderSelectionPending || !draftIdentityReady || !isSupportedOperatorMode(operatorMode) || (!draft.trim() && attachments.length === 0)}
         >
@@ -2087,6 +2113,10 @@ export function ChatPanel({ onDraftCaptured, onActiveSessionChange, onSessionBoo
           Stop
         </button>) : null}
         </div>
+        {steerReceipt && steerReceipt.sessionId === activeSession?.sessionId ? <p role="status" className="chat-steer-receipt">
+          {steerReceipt.status === 'accepted' ? 'Update received by the running turn.' : steerReceipt.status === 'rejected' ? 'Update rejected. Your draft is preserved.' : steerReceipt.status === 'submitted' ? 'Awaiting update receipt…' : 'Update delivery unconfirmed. Your draft is preserved; it will not be resent automatically.'}
+          {steerReceipt.message ? ` ${steerReceipt.message}` : ''}
+        </p> : null}
       </form>
       {presentation === 'woven' ? <div className="chat-context" role="group" aria-label="Chat context">
         <span>{conversationBinding ? 'Working in' : 'Start in'}</span>

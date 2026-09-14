@@ -23,10 +23,17 @@ type RequestCardProps = {
 };
 
 function methodLabel(row: ServerRequestRow): string {
-  if (row.kind === 'approval') return 'Approval required';
-  if (row.kind === 'userInput') return 'Codex needs your input';
-  if (row.kind === 'elicitation') return 'A tool server asks for confirmation';
+  if (row.kind === 'approval') return row.status === 'pending' ? 'Approval required' : 'Approval request';
+  if (row.kind === 'userInput') return row.status === 'pending' ? 'Codex needs your input' : 'Codex input request';
+  if (row.kind === 'elicitation') return row.status === 'pending' ? 'A tool server asks for confirmation' : 'Tool server confirmation';
   return row.method;
+}
+
+function supportsSessionApproval(row: ServerRequestRow): boolean {
+  if (row.method === 'item/permissions/requestApproval') return true;
+  if (!['item/commandExecution/requestApproval', 'item/fileChange/requestApproval'].includes(row.method)) return false;
+  const decisions = record(row.request).availableDecisions;
+  return Array.isArray(decisions) && decisions.includes('acceptForSession');
 }
 
 const questionDrafts = new Map<string, Record<string, string>>();
@@ -122,7 +129,7 @@ export function RequestCard({ row, pending, onAnswer }: RequestCardProps): JSX.E
         <span className="permission-card-tool" title={row.method}>{methodLabel(row)}</span>
         <span className="permission-card-badge">answer required</span>
       </header>
-      {row.kind === 'approval' ? <div><p>{String(record(row.request).reason ?? record(row.request).command ?? 'Codex requests permission to continue.')}</p><details><summary>Request details</summary><pre className="transcript-text">{JSON.stringify(row.request, null, 2)}</pre></details><div className="permission-card-actions"><button disabled={pending} onClick={() => onAnswer(row, { kind: 'approval', verdict: 'allow' })}>Approve</button><button disabled={pending} onClick={() => onAnswer(row, { kind: 'approval', verdict: 'deny' })}>Deny</button></div></div> : row.kind === 'userInput'
+      {row.kind === 'approval' ? <div><p>{String(record(row.request).reason ?? record(row.request).command ?? 'Codex requests permission to continue.')}</p><details><summary>Request details</summary><pre className="transcript-text">{JSON.stringify(row.request, null, 2)}</pre></details><div className="permission-card-actions"><button disabled={pending} onClick={() => onAnswer(row, { kind: 'approval', verdict: 'allow' })}>Approve</button>{supportsSessionApproval(row) ? <button disabled={pending} onClick={() => onAnswer(row, { kind: 'approval', verdict: 'allowForSession' })}>Allow for this session</button> : null}<button disabled={pending} onClick={() => onAnswer(row, { kind: 'approval', verdict: 'deny' })}>Deny</button></div></div> : row.kind === 'userInput'
         ? <UserInputForm row={row} pending={pending} onAnswer={onAnswer} />
         : <ElicitationForm row={row} pending={pending} onAnswer={onAnswer} />}
     </article>

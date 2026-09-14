@@ -4407,6 +4407,8 @@ button:disabled {
 }
 .chat-composer-line > button { border: 0; padding: 4px; min-height: 30px; }
 .chat-composer-line > button[type="submit"] { width: 30px; height: 30px; border-radius: 50%; flex: none; font-size: 18px; }
+.chat-composer-line > button[type="submit"].chat-submit-update { width: auto; min-width: 64px; padding: 4px 12px; border-radius: 8px; font-size: 13px; white-space: nowrap; }
+.chat-steer-receipt { margin: 4px 0; font-size: 12px; line-height: 1.4; overflow-wrap: anywhere; }
 .chat-composer-line > button:disabled { opacity: .45; }
 .method-chip-list {
   display: flex;
@@ -4646,3 +4648,14 @@ button:disabled {
 .about-version { margin: 0; font-size: 13px; }
 .about-note { margin: 0; color: var(--ink-faint); font-size: 12px; line-height: 1.45; }
 .about-actions { display: flex; justify-content: flex-end; }
+
+.method-inspection--focused { margin-top: 8px; border-top: 0; outline: none; }
+.method-inspection--focused pre { max-height: none; overflow-wrap: anywhere; }
+.workflow-draft-review { margin: 12px 0; }
+.workflow-draft-review article { outline: none; }
+.workflow-draft-review h3 { font-size: 14px; margin: 12px 0 8px; }
+.workflow-draft-review p, .workflow-draft-review li { font-size: 12px; line-height: 1.5; }
+.workflow-draft-review pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.workflow-draft-content { border: 1px solid var(--rule); border-radius: 8px; padding: 12px; margin: 12px 0; }
+.workflow-draft-content > :first-child { margin-top: 0; }
+.workflow-draft-review .method-card-actions { margin-top: 12px; flex-wrap: wrap; }

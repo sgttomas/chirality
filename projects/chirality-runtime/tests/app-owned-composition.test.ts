@@ -332,6 +332,37 @@ describe("App-owned Codex composition", () => {
     expect(f.fake().server.state.requests.filter(request => request.method === "thread/start")).toHaveLength(1);
   });
 
+  it("requires the accepted post-turn basis for workflow changes and preserves earlier supplied instructions", async () => {
+    const f = await start({ productText: "PRODUCT_ORIGINAL" });
+    const session = await f.project.createSession(f.projectId, { projectId: f.projectId });
+    await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "first" }), event => event.type === "process:exit");
+    const firstReplay = await f.project.replaySession(f.projectId, session.sessionId);
+    const frozen = firstReplay.instructionBases;
+    const beforeEdit = await f.project.getSession(f.projectId, session.sessionId);
+    await writeFile(f.config.productInstructionsPath!, "PRODUCT_EDITED");
+    await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "adopt edit" }), event => event.type === "process:exit");
+    const current = await f.project.getSession(f.projectId, session.sessionId);
+    expect(current.instructionBasisId).not.toBe(beforeEdit.instructionBasisId);
+    expect(current.methodSelectionRevision).toBe(beforeEdit.methodSelectionRevision);
+    const methods = [{ sourceRootId: "chirality-root", source: "bundled" as const, kind: "workflow" as const, name: "create-workflow" }];
+    await expect(f.project.replaceSelectedMethods(f.projectId, session.sessionId, {
+      expectedBasisId: beforeEdit.instructionBasisId, expectedRevision: beforeEdit.methodSelectionRevision,
+      boundaryConfirmed: true, selectionMode: "merge", methods
+    })).rejects.toThrow("Instruction basis changed before method replacement");
+    const replacement = await f.project.replaceSelectedMethods(f.projectId, session.sessionId, {
+      expectedBasisId: current.instructionBasisId, expectedRevision: current.methodSelectionRevision,
+      boundaryConfirmed: true, selectionMode: "merge", methods
+    });
+    expect(replacement.methods).toEqual(methods);
+    expect(replacement.transition.status).toBe("additive");
+    await collect(await f.project.turnSession(f.projectId, session.sessionId, { message: "create the workflow" }), event => event.type === "process:exit");
+    const replay = await f.project.replaySession(f.projectId, session.sessionId);
+    expect(replay.instructionBases).toEqual(expect.arrayContaining(frozen));
+    expect(frozen.some(basis => basis.suppliedEntries.some(entry => entry.content === "PRODUCT_ORIGINAL"))).toBe(true);
+    expect(replay.instructionBases.some(basis => basis.suppliedEntries.some(entry => entry.content === "PRODUCT_EDITED"))).toBe(true);
+    expect(f.fake().server.state.requests.filter(request => request.method === "thread/start")).toHaveLength(1);
+  });
+
   it("creates sessions for a project whose pre-replatform manifest never listed the Codex adapter", async () => {
     const f = await start();
     // A manifest whose enabledAdapterIds name only pre-D-GOV-43 adapters.

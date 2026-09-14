@@ -3,6 +3,8 @@ import { act, create, type ReactTestRenderer } from 'react-test-renderer';
 import { beforeEach, expect, it, vi } from 'vitest';
 import type { MethodNavigation } from '@chirality/runtime-contracts/v3';
 
+vi.mock('../../components/woven-dialogue/workflow-draft-review', () => ({ WorkflowDraftReview: () => null }));
+
 const mocks = vi.hoisted(() => ({ list: vi.fn(), inspect: vi.fn() }));
 vi.mock('../../lib/harness/method-selection-client', async importOriginal => ({
   ...await importOriginal<typeof import('../../lib/harness/method-selection-client')>(),
@@ -190,7 +192,25 @@ it('keeps inspection and selected methods during same-scope refresh, including c
   await act(async () => tree.update(<MethodLibraryView {...props} refresh={2} />));
   await act(async () => { await new Promise(resolve => setTimeout(resolve, 0)); });
   expect(JSON.stringify(tree.toJSON())).toContain('Refresh unavailable');
+  expect(JSON.stringify(tree.toJSON())).toContain('Saved workflow instructions');
+  await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('‹ Workflows'))!.props.onClick());
   expect(JSON.stringify(tree.toJSON())).toContain('new-flow');
   expect(change).not.toHaveBeenCalled();
+  act(() => tree.unmount());
+});
+
+
+it('opens inspection as the visible focused detail view with a route back to the full library', async () => {
+  const method = descriptor('inspect-me', 'project');
+  mocks.list.mockResolvedValue(response([method, ...Array.from({length: 20}, (_, index) => descriptor(`other-${index}`, 'project'))]));
+  mocks.inspect.mockResolvedValue({ method, entrypoint: { content: '# Read this method', sha256: 'a'.repeat(64) }, resources: [] });
+  const tree = await render();
+  await act(async () => tree.root.findAllByType('button').find(button => button.children.includes('Inspect'))!.props.onClick());
+  const details = tree.root.findByProps({ 'aria-label': 'inspect-me method details' });
+  expect(details.props.tabIndex).toBe(-1);
+  expect(details.findAllByType('details').find(node => node.findByType('summary').children.includes('Read instructions'))!.props.open).toBe(true);
+  expect(tree.root.findAllByProps({ 'data-method-kind': 'workflow' })).toHaveLength(0);
+  await act(async () => details.findByType('button').props.onClick());
+  expect(tree.root.findAllByProps({ 'data-method-kind': 'workflow' })).toHaveLength(21);
   act(() => tree.unmount());
 });

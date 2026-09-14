@@ -10,6 +10,8 @@ import {
 } from '../../lib/harness/method-selection-client';
 import type { MethodInspectionResponse } from '@chirality/runtime-contracts/v3';
 import { groupWorkflowLibrary, methodMatchesQuery, workflowDisplayName } from '../../lib/shell/workflow-library';
+import { WorkflowDraftReview } from './workflow-draft-review';
+import type { WorkflowFeedbackRequest } from '../../lib/harness/workflow-feedback';
 import { useRuntimeEpoch } from '../shell/runtime-connectivity-provider';
 
 export type LibraryView = 'workflows' | 'skills';
@@ -64,13 +66,17 @@ function groupId(label: string): string {
   return `method-group-${label.replace(/\W+/g, '-').toLowerCase()}`;
 }
 
-export function MethodLibraryView({ projectRoot, selected, onSelectedChange, refresh = 0 }: {
+export function MethodLibraryView({ projectRoot, selected, onSelectedChange, refresh = 0, onWorkflowFeedback, feedbackDisabled = false }: {
   projectRoot: string;
   selected: readonly QualifiedMethodReference[];
   onSelectedChange: (methods: QualifiedMethodReference[]) => void;
   refresh?: number;
   view?: LibraryView;
+  onWorkflowFeedback?: (request: Omit<WorkflowFeedbackRequest, 'sequence'>) => void;
+  feedbackDisabled?: boolean;
 }): JSX.Element {
+  const [registrationRefresh, setRegistrationRefresh] = useState(0);
+  const inspectionRef = useRef<HTMLElement>(null);
   const [query, setQuery] = useState('');
   const [methods, setMethods] = useState<MethodDescriptor[]>([]);
   const [inspection, setInspection] = useState<MethodInspectionResponse | null>(null);
@@ -97,7 +103,11 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
         .finally(() => { if (!controller.signal.aborted) setLoading(false); });
     }, query ? 150 : 0);
     return () => { clearTimeout(timer); controller.abort(); };
-  }, [projectRoot, query, refresh, runtimeEpoch]);
+  }, [projectRoot, query, refresh, runtimeEpoch, registrationRefresh]);
+
+  useEffect(() => {
+    if (inspection) { inspectionRef.current?.focus(); inspectionRef.current?.scrollIntoView?.({ block: 'start' }); }
+  }, [inspection]);
 
   const visible = useMemo(() => methods.filter(method => method.kind === 'workflow' && methodMatchesQuery(method, query)), [methods, query]);
   const library = useMemo(() => groupWorkflowLibrary(visible), [visible]);
@@ -137,7 +147,8 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
     {loading ? <p role="status">Loading…</p> : null}
     {error ? <p role="alert">{error}</p> : null}
     {empty ? <p>{query ? 'No matches.' : 'No workflows are available.'}</p> : null}
-    {!loading ? <>
+    {!inspection ? <WorkflowDraftReview projectRoot={projectRoot} refresh={refresh + registrationRefresh} onRegistered={() => setRegistrationRefresh(value => value + 1)} onFeedback={onWorkflowFeedback} feedbackDisabled={feedbackDisabled} /> : null}
+    {!loading && !inspection ? <>
       {section('Core', library.core)}
       {library.specialist.length ? <section className="method-library-group" aria-labelledby={groupId('Specialist')}>
         <h3 id={groupId('Specialist')}>Specialist</h3>
@@ -152,7 +163,8 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
       {section('Other bundled workflows', library.unplaced)}
       {library.superseded.length ? <details className="method-library-superseded"><summary>Superseded ({library.superseded.length})</summary><ul className="method-library-list">{library.superseded.map(card)}</ul></details> : null}
     </> : null}
-    {inspection ? <article className="method-inspection" aria-label={`${inspection.method.name} method details`}>
+    {inspection ? <article ref={inspectionRef} tabIndex={-1} className="method-inspection method-inspection--focused" aria-label={`${inspection.method.name} method details`}>
+      <button type="button" onClick={() => setInspection(null)}>‹ Workflows</button>
       <h3>{workflowDisplayName(inspection.method)}</h3>
       <p>{inspection.method.description}</p>
       <details><summary>Technical details</summary><dl><dt>Identifier</dt><dd><code>{inspection.method.name}</code></dd>
@@ -160,7 +172,7 @@ export function MethodLibraryView({ projectRoot, selected, onSelectedChange, ref
         <dt>Kind</dt><dd>{inspection.method.kind}</dd>
         <dt>Compatibility</dt><dd>{inspection.method.compatibility}</dd>
         <dt>Eligible roles</dt><dd>{inspection.method.executionRoleIds.join(', ') || 'None recorded'}</dd></dl></details>
-      <details><summary>Read instructions</summary><pre>{inspection.entrypoint.content}</pre><small>SHA-256 {inspection.entrypoint.sha256}</small></details>
+      <details open><summary>Read instructions</summary><pre>{inspection.entrypoint.content}</pre><small>SHA-256 {inspection.entrypoint.sha256}</small></details>
       {inspection.resources.length ? <details><summary>Included resources</summary><ul>{inspection.resources.map(resource => <li key={resource.path}>{resource.path} · {resource.sha256}</li>)}</ul></details> : null}
     </article> : null}
   </section>;

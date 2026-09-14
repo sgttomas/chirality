@@ -88,3 +88,23 @@ describe('CodexNotificationList', () => {
     expect(renderToStaticMarkup(<CodexNotificationList rows={[]} emptyMessage="No Codex notifications yet." />)).toContain('No Codex notifications yet.');
   });
 });
+
+it.each([
+  ['item/commandExecution/requestApproval', ['accept', 'acceptForSession', 'decline'], true],
+  ['item/fileChange/requestApproval', ['accept', 'acceptForSession', 'decline'], true],
+  ['item/commandExecution/requestApproval', ['accept', 'decline'], false],
+  ['item/fileChange/requestApproval', undefined, false],
+  ['item/permissions/requestApproval', undefined, true],
+  ['execCommandApproval', undefined, false],
+] as const)('offers session approval only for supported native scope: %s %j', async (method, availableDecisions, offered) => {
+  const answer = vi.fn(async () => ({ sent: true as const }));
+  const request = row({ method, kind: 'approval', request: { reason: 'Read the requested child folder', permissions: { fileSystem: { read: ['/project/child'] } }, availableDecisions } });
+  await act(async () => { tree = create(<RequestCards sessionId="s1" requests={[request]} answer={answer} />); });
+  expect(Boolean(button('Allow for this session'))).toBe(offered);
+  expect(button('Approve').props.disabled).toBe(false); expect(button('Deny').props.disabled).toBe(false);
+  if (offered) {
+    await act(async () => button('Allow for this session').props.onClick());
+    expect(answer).toHaveBeenCalledWith({ sessionId: 's1', requestId: 'req-1', answer: { kind: 'approval', verdict: 'allowForSession' } });
+    expect(request.request).toMatchObject({ permissions: { fileSystem: { read: ['/project/child'] } } });
+  }
+});
