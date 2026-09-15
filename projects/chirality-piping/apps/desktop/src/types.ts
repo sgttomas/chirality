@@ -436,12 +436,25 @@ export type AnalysisRunEnvelope = {
     run_id: string;
     run_name: string;
     run_kind: string;
+    created_at?: string | null;
     model_state_ref: ObjectRef;
+    solver_version?: { solver_name: string; solver_version: string; build_ref: ObjectRef };
+    settings_ref?: ObjectRef;
+    unit_system_ref?: ObjectRef;
     load_basis_refs: ObjectRef[];
+    diagnostics?: Array<{ source_annotation: Record<string, unknown> }>;
+    rule_pack_refs?: ObjectRef[];
+    library_refs?: ObjectRef[];
     result_refs: Array<{
       result_ref: ObjectRef;
-      result_family: string;
-      source_dimension: CanonicalResultDimension;
+      result_family: string | null;
+      source_dimension: CanonicalResultDimension | null;
+      source_row_index?: number;
+      category?: string;
+      semantic_contract?: { id: string; sha256: string; signature_id: string | null };
+      interpretation?: { status: string; findings: string[] };
+      source_annotation?: Record<string, unknown>;
+      provenance?: Record<string, unknown>;
       hash_refs: Array<{
         algorithm: "sha256";
         canonicalization: string;
@@ -470,14 +483,18 @@ export type AnalysisRunEnvelope = {
       }>;
       determinism_notes: string[];
       unresolved_tbd: string[];
+      semantic_contract?: { id: string; sha256: string };
     };
     immutability_policy: {
       run_record_is_read_only: boolean;
       mutation_policy: string;
-      new_run_required_for_change: boolean;
+      new_run_required_for_change?: boolean;
+      new_mechanics_run_required_for_record_revision?: boolean;
+      record_revision_identity?: "analysis_run_record_sha256";
       hash_invalidates_external_acceptance: boolean;
     };
     professional_boundary: Record<string, boolean>;
+    provenance?: Record<string, unknown>;
   };
 };
 
@@ -924,6 +941,24 @@ export type ModelMigrationLedgerRecord = {
   trigger: string;
   destructive_rewrite: boolean;
   professional_boundary: Record<string, boolean>;
+  hash_evidence?: {
+    schema: "model_migration_hash_evidence_v1";
+    source_payload_basis: "incoming_pre_migration_model" | "stored_pre_open_migration_model";
+    received: {
+      model_hash: unknown;
+      project_envelope_hash: unknown;
+    };
+    prior_stored: null | {
+      model_hash: unknown;
+      project_envelope_hash: unknown;
+    };
+    computed: {
+      pre_migration_model_hash: string;
+      post_migration_model_hash: string;
+      post_migration_project_envelope_hash: string;
+    };
+    received_claim_verification: "not_asserted";
+  };
 };
 
 export type LocalProjectEnvelope = {

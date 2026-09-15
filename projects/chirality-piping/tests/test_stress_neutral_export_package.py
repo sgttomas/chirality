@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 import re
 import sys
+import pytest
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,6 +25,10 @@ from core.handoff.stress_neutral import (  # noqa: E402
     canonical_json,
     render_stress_neutral_csv,
     write_stress_neutral_export_package,
+    build_stress_neutral_export_package_v0_2,
+    materialized_members_v0_2,
+    validate_stress_neutral_export_package_v0_2,
+    write_materialized_members_v0_2,
 )
 from schema_validation import (  # noqa: E402
     JsonSchemaDependencyMissing,
@@ -32,12 +37,20 @@ from schema_validation import (  # noqa: E402
     validate_schema_document,
     walk_strings,
 )
+from core.handoff.stress_neutral.package_v0_2 import (  # noqa: E402
+    _checked,
+    _manifest_seed,
+    _validate_received_csv,
+    package_projection,
+)
+from core.serialization.canonical_json.adapter import canonical_sha256_checked_v1  # noqa: E402
 
 
 SCHEMA_PATH = ROOT / "schemas" / "stress_neutral_export.schema.json"
 FIXTURE_PATH = ROOT / "fixtures" / "stress_neutral" / "invented" / "stress_neutral_export_package.json"
 CSV_FIXTURE_PATH = ROOT / "fixtures" / "stress_neutral" / "invented" / "stress_neutral_results.csv"
 SOURCE_PAYLOAD_PATH = ROOT / "fixtures" / "stress_neutral" / "invented" / "source_result_payload.json"
+V02_FIXTURE_PATH = ROOT / "fixtures" / "stress_neutral" / "invented" / "stress_neutral_export_package_v0_2.json"
 SHA256_PATTERN = re.compile(r"^sha256:[a-f0-9]{64}$")
 
 CSV_HEADER = (
@@ -147,6 +160,424 @@ def source_payload() -> dict[str, object]:
 
 def build_from_source() -> dict[str, object]:
     return build_stress_neutral_export_package(**source_payload())
+
+
+def source_payload_830() -> dict[str, object]:
+    payload = source_payload()
+    template = payload["result_rows"][0]
+    rows, stable = [], []
+    for index in range(830):
+        row = deepcopy(template)
+        row["result_id"] = f"result:stress-neutral:{index:03d}"
+        row["canonical_ref"] = ref("Result", row["result_id"])
+        row["source_result_ref"] = ref("Result", row["result_id"])
+        row["value"] = float(index)
+        if index >= 828:
+            row["row_kind"] = "diagnostic_work"
+            row["result_family"] = "diagnostic_work"
+        rows.append(row)
+        stable.append({"canonical_ref": ref("Result", row["result_id"]), "export_ref": ref("StressNeutralRow", row["result_id"]), "mapping_status": "mapped", "loss_category": "exported"})
+    payload["result_rows"] = rows
+    payload["stable_id_map"] = stable
+    return payload
+
+
+def test_v02_preserves_830_rows_and_materializes_exact_nine_members():
+    source = source_payload_830()
+    source_before = deepcopy(source)
+    received = deepcopy(source["source_hashes"])
+    package = build_stress_neutral_export_package_v0_2(**source)
+    assert package["schema_version"] == "0.2.0"
+    assert len(package["result_rows"]) == 830
+    assert len(package["stable_id_map"]) == 830
+    assert len(package["unit_preservation_witnesses"]) == 828
+    assert sum(item["code"] == "SN-UNIT-WITNESS-WITHHELD-DIAGNOSTIC-WORK" for item in package["diagnostics"]) == 2
+    aggregate = next(item for item in package["diagnostics"] if item["code"] == "SN-DECLARED-DIMENSION-WITNESS-UNAVAILABLE")
+    assert "2 retained rows" in aggregate["message"] and "828 rows" in aggregate["message"]
+    assert not any(item["code"] == "SN-UNIT-DIMENSION-MISSING" for item in package["diagnostics"])
+    exported_reason = next(item["reason"] for item in package["loss_report"] if item["category"] == "exported")
+    assert "830 received numerical rows" in exported_reason
+    assert "828 rows have accepted semantic-contract dimension witnesses and 2 rows" in exported_reason
+    assert package["validation_ready"] is False
+    assert package["validation_report"]["validation_status"] == "blocked"
+    assert package["validation_report"]["checks"] == [{
+        "check_id": "stress-neutral-boundary-diagnostics", "check_status": "blocking",
+        "diagnostic_count": 3, "blocking_count": 1, "provenance": package["provenance"],
+    }]
+    assert source == source_before
+    assert package["received_source_checksums"] == received
+    members = materialized_members_v0_2(package)
+    assert list(members) == ["manifest.json", "stress_neutral_results.csv", "result_rows.json", "unit_system_disclosure.json", "unit_preservation_witnesses.json", "stable_id_map.json", "loss_report.json", "validation_report.json", "diagnostics.json"]
+    assert all(not data.endswith(b"\n") for name, data in members.items() if name.endswith(".json"))
+    assert next(item for item in package["manifest"]["checksums"] if item["payload_ref"]["ref"] == "manifest.json")["payload_scope"] == "manifest_seed"
+    validate_stress_neutral_export_package_v0_2(package)
+    validate_instance(load_json(SCHEMA_PATH), package, schema_label=str(SCHEMA_PATH), instance_label="strict stress-neutral 0.2 package")
+
+
+@pytest.mark.parametrize(
+    "change,expected_code",
+    [
+        (lambda row: row.update(result_family="unknown"), "SN-UNIT-WITNESS-WITHHELD-UNKNOWN-SEMANTIC"),
+        (lambda row: row.update(unit="unknown-unit"), "SN-UNIT-WITNESS-WITHHELD-MISSING-SEMANTIC"),
+        (lambda row: row.update(unit="Pa"), "SN-UNIT-WITNESS-WITHHELD-CONTRADICTION"),
+    ],
+)
+def test_v02_categorizes_unknown_missing_and_contradictory_rows_separately(change, expected_code):
+    source = source_payload()
+    change(source["result_rows"][0])
+    before = deepcopy(source)
+    package = build_stress_neutral_export_package_v0_2(**source)
+    result_id = source["result_rows"][0]["result_id"]
+    findings = [item for item in package["diagnostics"] if item.get("source", {}).get("ref") == result_id]
+    assert [item["code"] for item in findings] == [expected_code]
+    assert findings[0]["severity"] == "blocking"
+    assert result_id not in {item["result_id"] for item in package["unit_preservation_witnesses"]}
+    assert source == before
+    validate_stress_neutral_export_package_v0_2(package)
+
+
+@pytest.mark.parametrize(
+    "unit,dimension",
+    [
+        ("N/m", "linear_stiffness"),
+        ("N*m/rad", "rotational_stiffness"),
+        ("N", "force"),
+        ("count", "dimensionless"),
+        ("record", "dimensionless"),
+    ],
+)
+def test_v02_other_family_uses_explicit_bound_semantics(unit, dimension):
+    source = source_payload()
+    source["result_rows"][0].update(result_family="other", unit=unit, dimension=dimension)
+    package = build_stress_neutral_export_package_v0_2(**source)
+    row = package["result_rows"][0]
+    witness = next(item for item in package["unit_preservation_witnesses"] if item["result_id"] == row["result_id"])
+    assert witness["source_quantity"] == {"value": row["value"], "unit": unit, "dimension": dimension}
+    assert witness["target_quantity"] == witness["source_quantity"]
+    assert not [item for item in package["diagnostics"] if item.get("source", {}).get("ref") == row["result_id"]]
+    validate_stress_neutral_export_package_v0_2(package)
+
+
+def test_v02_other_family_rejects_unit_dimension_contradiction():
+    source = source_payload()
+    source["result_rows"][0].update(result_family="other", unit="N/m", dimension="force")
+    package = build_stress_neutral_export_package_v0_2(**source)
+    row = package["result_rows"][0]
+    finding = next(item for item in package["diagnostics"] if item.get("source", {}).get("ref") == row["result_id"])
+    assert finding["code"] == "SN-UNIT-WITNESS-WITHHELD-CONTRADICTION"
+    assert row["result_id"] not in {item["result_id"] for item in package["unit_preservation_witnesses"]}
+    validate_stress_neutral_export_package_v0_2(package)
+
+
+def test_v02_other_family_does_not_infer_diagnostic_work_from_moment_unit():
+    source = source_payload()
+    source["result_rows"][0].update(result_family="other", unit="N*m", dimension="TBD")
+    package = build_stress_neutral_export_package_v0_2(**source)
+    row = package["result_rows"][0]
+    finding = next(item for item in package["diagnostics"] if item.get("source", {}).get("ref") == row["result_id"])
+    assert finding["code"] == "SN-UNIT-WITNESS-WITHHELD-MISSING-SEMANTIC"
+    assert finding["severity"] == "blocking"
+    assert finding["code"] != "SN-UNIT-WITNESS-WITHHELD-DIAGNOSTIC-WORK"
+
+
+@pytest.mark.parametrize("unit,dimension", [("N", "force"), ("N*m", "moment")])
+def test_v02_reaction_family_accepts_only_established_force_and_moment_pairs(unit, dimension):
+    source = source_payload()
+    source["result_rows"][0].update(result_family="reaction", unit=unit, dimension=dimension)
+    package = build_stress_neutral_export_package_v0_2(**source)
+    row = package["result_rows"][0]
+    witness = next(item for item in package["unit_preservation_witnesses"] if item["result_id"] == row["result_id"])
+    assert witness["source_quantity"] == {"value": row["value"], "unit": unit, "dimension": dimension}
+    assert witness["target_quantity"] == witness["source_quantity"]
+    validate_stress_neutral_export_package_v0_2(package)
+
+
+@pytest.mark.parametrize("unit,dimension", [("N", "moment"), ("N*m", "force")])
+def test_v02_reaction_family_withholds_cross_pair_contradictions(unit, dimension):
+    source = source_payload()
+    source["result_rows"][0].update(result_family="reaction", unit=unit, dimension=dimension)
+    package = build_stress_neutral_export_package_v0_2(**source)
+    result_id = package["result_rows"][0]["result_id"]
+    assert result_id not in {item["result_id"] for item in package["unit_preservation_witnesses"]}
+    finding = next(item for item in package["diagnostics"] if item.get("source", {}).get("ref") == result_id)
+    assert finding["code"] == "SN-UNIT-WITNESS-WITHHELD-CONTRADICTION"
+    validate_stress_neutral_export_package_v0_2(package)
+
+
+@pytest.mark.parametrize("unit,dimension", [("N", "moment"), ("N*m", "force")])
+def test_v02_rejects_rehashed_witness_over_reaction_cross_pair(unit, dimension):
+    source = source_payload()
+    source["result_rows"][0].update(result_family="reaction", unit=unit, dimension={"N": "force", "N*m": "moment"}[unit])
+    package = build_stress_neutral_export_package_v0_2(**source)
+    package["result_rows"][0]["dimension"] = dimension
+    package["csv_text"] = render_stress_neutral_csv(package["result_rows"])
+    rehash_v02(package)
+    with pytest.raises(ValueError, match="SN-UNIT-WITNESS-BINDING-MISMATCH"):
+        validate_stress_neutral_export_package_v0_2(package)
+
+
+def test_v02_diagnostic_work_with_moment_unit_remains_withheld():
+    source = source_payload()
+    source["result_rows"][0].update(row_kind="diagnostic_work", result_family="diagnostic_work", unit="N*m", dimension="moment")
+    package = build_stress_neutral_export_package_v0_2(**source)
+    result_id = package["result_rows"][0]["result_id"]
+    assert result_id not in {item["result_id"] for item in package["unit_preservation_witnesses"]}
+    finding = next(item for item in package["diagnostics"] if item.get("source", {}).get("ref") == result_id)
+    assert finding["code"] == "SN-UNIT-WITNESS-WITHHELD-DIAGNOSTIC-WORK"
+    assert finding["severity"] == "info"
+    validate_stress_neutral_export_package_v0_2(package)
+
+
+def test_v02_explicit_exported_dimension_contradiction_is_preserved_and_withheld():
+    source = source_payload()
+    source["result_rows"][0]["dimension"] = "stress"
+    before = deepcopy(source)
+    package = build_stress_neutral_export_package_v0_2(**source)
+    result_id = source["result_rows"][0]["result_id"]
+    row = next(item for item in package["result_rows"] if item["result_id"] == result_id)
+    assert row["dimension"] == "stress"
+    assert result_id not in {item["result_id"] for item in package["unit_preservation_witnesses"]}
+    finding = next(item for item in package["diagnostics"] if item.get("source", {}).get("ref") == result_id)
+    assert finding["code"] == "SN-UNIT-WITNESS-WITHHELD-CONTRADICTION"
+    assert finding["severity"] == "blocking"
+    assert source == before
+    validate_stress_neutral_export_package_v0_2(package)
+
+
+def test_v02_rejects_witness_over_explicit_exported_dimension_contradiction():
+    package = build_stress_neutral_export_package_v0_2(**source_payload())
+    package["result_rows"][0]["dimension"] = "stress"
+    package["csv_text"] = render_stress_neutral_csv(package["result_rows"])
+    rehash_v02(package)
+    with pytest.raises(ValueError, match="SN-UNIT-WITNESS-BINDING-MISMATCH"):
+        validate_stress_neutral_export_package_v0_2(package)
+
+
+def test_v02_rejects_member_and_package_tamper():
+    package = build_stress_neutral_export_package_v0_2(**source_payload())
+    package["result_rows"][0]["value"] = 999
+    try:
+        validate_stress_neutral_export_package_v0_2(package)
+    except ValueError as error:
+        assert "MEMBER-CHECKSUM-MISMATCH" in str(error)
+    else:
+        raise AssertionError("member tamper must fail")
+
+
+def test_v02_fixture_matches_builder_and_dispatch_schema():
+    fixture = load_json(V02_FIXTURE_PATH)
+    assert fixture == build_stress_neutral_export_package_v0_2(**source_payload())
+    validate_instance(load_json(SCHEMA_PATH), fixture, schema_label=str(SCHEMA_PATH), instance_label=str(V02_FIXTURE_PATH))
+
+
+def test_v02_successor_profile_identity_is_consistent_and_contradictions_are_rejected():
+    package = build_stress_neutral_export_package_v0_2(**source_payload())
+    assert package["export_profile"]["profile_id"] == "ops.stress_neutral.v2"
+    assert package["export_profile"]["profile_version"] == "0.2.0"
+    assert package["manifest"]["export_profile_ref"] == {
+        "object_type": "StressNeutralExportProfile",
+        "ref": "ops.stress_neutral.v2",
+    }
+    for profile in (
+        {"profile_id": "ops.stress_neutral.v1"},
+        {"profile_version": "0.1.0"},
+    ):
+        payload = source_payload()
+        payload["export_profile"] = profile
+        with pytest.raises(ValueError, match="SN-0.2-PROFILE-IDENTITY-MISMATCH"):
+            build_stress_neutral_export_package_v0_2(**payload)
+
+
+def test_v02_writer_materializes_exact_nine_checksum_bound_bytes(tmp_path):
+    package = build_stress_neutral_export_package_v0_2(**source_payload())
+    expected = materialized_members_v0_2(package)
+    written = write_materialized_members_v0_2(package, tmp_path)
+    assert [path.name for path in written] == list(expected)
+    assert {path.name: path.read_bytes() for path in written} == expected
+    claims = {item["payload_ref"]["ref"]: item for item in package["manifest"]["checksums"]}
+    for filename, payload in expected.items():
+        if filename != "manifest.json":
+            assert hashlib.sha256(payload).hexdigest() == claims[filename]["value"]
+        else:
+            assert claims[filename]["payload_scope"] == "manifest_seed"
+        if filename.endswith(".json"):
+            assert not payload.endswith(b"\n")
+
+
+def rehash_v02(package):
+    members = materialized_members_v0_2(package)
+    checksums = package["manifest"]["checksums"]
+    non_manifest = [item for item in checksums if item["payload_ref"]["ref"] != "manifest.json"]
+    for item in non_manifest:
+        item["value"] = hashlib.sha256(members[item["payload_ref"]["ref"]]).hexdigest()
+    manifest = next(item for item in checksums if item["payload_ref"]["ref"] == "manifest.json")
+    manifest.update(_checked(_manifest_seed(package, non_manifest), "manifest.json", "manifest_seed"))
+    by_name = {item["payload_ref"]["ref"]: item for item in checksums}
+    for member in package["manifest"]["package_members"]:
+        member["checksum"] = deepcopy(by_name[member["filename"]])
+    package["package_checksum"]["value"] = canonical_sha256_checked_v1(package_projection(package))
+
+
+@pytest.mark.parametrize(
+    "initial_change,reduced_change,expected_code",
+    [
+        (
+            lambda row: row.update(unit="unknown-unit"),
+            lambda row: row.update(unit="N", dimension="force", correlation_status="canonical_id_map"),
+            "SN-UNIT-WITNESS-WITHHELD-MISSING-SEMANTIC",
+        ),
+        (
+            lambda row: row.update(result_family="unknown"),
+            lambda row: row.update(result_family="other", dimension="TBD", correlation_status="unit_or_dimension_blocking_review_required"),
+            "SN-UNIT-WITNESS-WITHHELD-UNKNOWN-SEMANTIC",
+        ),
+        (
+            lambda row: row.update(unit="Pa"),
+            lambda row: None,
+            "SN-UNIT-WITNESS-WITHHELD-CONTRADICTION",
+        ),
+    ],
+)
+def test_v02_consumes_explicit_checksum_covered_withholding_from_reduced_rows(initial_change, reduced_change, expected_code):
+    source = source_payload()
+    initial_change(source["result_rows"][0])
+    package = build_stress_neutral_export_package_v0_2(**source)
+    row = package["result_rows"][0]
+    reduced_change(row)
+    package["csv_text"] = render_stress_neutral_csv(package["result_rows"])
+    rehash_v02(package)
+    result_id = row["result_id"]
+    assert result_id not in {item["result_id"] for item in package["unit_preservation_witnesses"]}
+    assert [item["code"] for item in package["diagnostics"] if item.get("source", {}).get("ref") == result_id] == [expected_code]
+    assert package["validation_ready"] is False
+    validate_stress_neutral_export_package_v0_2(package)
+
+
+def test_v02_received_csv_accepts_equivalent_binary64_spellings_without_rewriting_bytes():
+    source = source_payload()
+    source["result_rows"][0]["value"] = 0.000028
+    source["result_rows"][1]["value"] = 1.0
+    package = build_stress_neutral_export_package_v0_2(**source)
+    package["csv_text"] = package["csv_text"].replace(",2.8e-05,N,", ",0.000028,N,").replace(",1,Pa,", ",1.0,Pa,")
+    received_bytes = package["csv_text"].encode("ascii")
+    rehash_v02(package)
+    validate_stress_neutral_export_package_v0_2(package)
+    assert package["csv_text"].encode("ascii") == received_bytes
+    csv_claim = next(item for item in package["manifest"]["checksums"] if item["payload_ref"]["ref"] == "stress_neutral_results.csv")
+    assert csv_claim["value"] == hashlib.sha256(received_bytes).hexdigest()
+
+
+@pytest.mark.parametrize("blank_mutation", [
+    lambda text: text.replace("\n", "\n\n", 1),
+    lambda text: text + "\n",
+    lambda text: text.replace("\n", "\n   \n", 1),
+])
+def test_v02_public_validator_rejects_recomputed_blank_csv_records(blank_mutation):
+    package = build_stress_neutral_export_package_v0_2(**source_payload())
+    package["csv_text"] = blank_mutation(package["csv_text"])
+    rehash_v02(package)
+    with pytest.raises(ValueError, match="SN-CSV-ROW-BINDING-MISMATCH"):
+        validate_stress_neutral_export_package_v0_2(package)
+
+
+@pytest.mark.parametrize(
+    "numeric_text",
+    ["NaN", "Infinity", "-Infinity", "1e400", "1e-4000", "9007199254740992", "12.500000000000002", "01", "+12.5", "12.5x", ""],
+)
+def test_v02_received_csv_rejects_nonfinite_unsafe_malformed_underflow_and_unequal_values(numeric_text):
+    package = build_stress_neutral_export_package_v0_2(**source_payload())
+    text = package["csv_text"].replace(",12.5,N,", f",{numeric_text},N,")
+    with pytest.raises(ValueError, match="SN-CSV-ROW-BINDING-MISMATCH"):
+        _validate_received_csv(text, package["result_rows"])
+
+
+@pytest.mark.parametrize("mutation", [
+    lambda text: text.replace("result_id,canonical_ref", "canonical_ref,result_id", 1),
+    lambda text: "\n".join(text.splitlines()[:-1]) + "\n",
+    lambda text: text + text.splitlines()[1] + "\n",
+    lambda text: text.replace(",N,force,", ",kN,force,", 1),
+    lambda text: text.replace(",canonical_id_map\n", "\n", 1),
+    lambda text: text.replace("correlation_status\n", "correlation_status,extra\n", 1).replace("\n", ",extra\n", 1),
+])
+def test_v02_received_csv_rejects_order_partial_duplicate_extra_and_field_changes(mutation):
+    package = build_stress_neutral_export_package_v0_2(**source_payload())
+    with pytest.raises(ValueError, match="SN-CSV-ROW-BINDING-MISMATCH"):
+        _validate_received_csv(mutation(package["csv_text"]), package["result_rows"])
+
+
+@pytest.mark.parametrize("mutation,expected", [
+    (lambda p: p["unit_preservation_witnesses"][0].update(result_id="result:wrong"), "UNIT-WITNESS-BINDING"),
+    (lambda p: p["loss_report"][0]["target_artifact_ref"].update(ref="package:wrong"), "LOSS-REPORT-BINDING"),
+    (lambda p: p["source_result_ref"].update(ref="result-envelope:wrong"), "SOURCE-RESULT-REF-UNBOUND"),
+    (lambda p: p["result_rows"][1].update(result_id=p["result_rows"][0]["result_id"], canonical_ref=deepcopy(p["result_rows"][0]["canonical_ref"]), source_result_ref=deepcopy(p["result_rows"][0]["source_result_ref"])), "RESULT-ROW-IDENTITY"),
+    (lambda p: p["stable_id_map"][1].update(canonical_ref=deepcopy(p["stable_id_map"][0]["canonical_ref"])), "STABLE-ID-MAP-BINDING"),
+    (lambda p: p["stable_id_map"].pop(), "STABLE-ID-MAP-BINDING"),
+    (lambda p: p.update(csv_text=p["csv_text"].replace(",N,force,", ",kN,force,", 1)), "CSV-ROW-BINDING"),
+    (lambda p: p["validation_report"].update(validation_status="blocked"), "VALIDATION-STATUS-BINDING"),
+    (lambda p: p["validation_report"]["checks"][0].update(check_status="blocking", blocking_count=0), "VALIDATION-STATUS-BINDING"),
+    (lambda p: p.update(schema_conformant=False), "SCHEMA-CONFORMANCE-CLAIM"),
+    (lambda p: p["privacy"].update(private_payload_embedded=True), "PRIVACY-BOUNDARY"),
+    (lambda p: p["professional_boundary"].update(software_makes_approval_claim=True), "PROFESSIONAL-BOUNDARY"),
+    (lambda p: p["unit_preservation_witnesses"].pop(), "WITNESS-CATEGORY-ACCOUNTING"),
+    (lambda p: p["export_profile"]["source_basis_refs"].remove({"object_type": "ExternalReference", "ref": "fixtures/results/semantic_contract_v0_2.json"}), "SEMANTIC-CONTRACT-BINDING"),
+])
+def test_v02_recomputed_hashes_do_not_hide_relational_tamper(mutation, expected):
+    package = build_stress_neutral_export_package_v0_2(**source_payload())
+    mutation(package)
+    rehash_v02(package)
+    with pytest.raises(ValueError, match=expected):
+        validate_stress_neutral_export_package_v0_2(package)
+
+
+def test_v02_rejects_recomputed_explicit_category_reassignment():
+    package = build_stress_neutral_export_package_v0_2(**source_payload_830())
+    finding = next(item for item in package["diagnostics"] if item["code"] == "SN-UNIT-WITNESS-WITHHELD-DIAGNOSTIC-WORK")
+    finding["source"]["ref"] = package["unit_preservation_witnesses"][0]["result_id"]
+    rehash_v02(package)
+    with pytest.raises(ValueError, match="WITNESS-CATEGORY-ACCOUNTING"):
+        validate_stress_neutral_export_package_v0_2(package)
+
+
+@pytest.mark.parametrize("mutation,expected", [
+    (lambda p: p["manifest"]["checksums"][0].update(algorithm="sha512"), "CHECKSUM-METADATA"),
+    (lambda p: p["manifest"]["checksums"][1]["payload_ref"].update(ref="../escape.csv"), "BIJECTION"),
+    (lambda p: p["manifest"]["checksums"].append(deepcopy(p["manifest"]["checksums"][0])), "STRICT-INVENTORY"),
+    (lambda p: p["manifest"]["checksums"].pop(), "STRICT-INVENTORY"),
+    (lambda p: p["manifest"]["package_members"][0].update(checksum=deepcopy(p["manifest"]["checksums"][1])), "MEMBER-CHECKSUM-BINDING"),
+    (lambda p: p["package_checksum"].update(payload_scope="member_payload"), "PACKAGE-CHECKSUM-METADATA"),
+])
+def test_v02_rejects_inventory_checksum_metadata_and_binding_mutations(mutation, expected):
+    package = build_stress_neutral_export_package_v0_2(**source_payload())
+    mutation(package)
+    with pytest.raises(ValueError, match=expected):
+        validate_stress_neutral_export_package_v0_2(package)
+
+
+def test_v02_schema_rejects_unknown_and_missing_fields_across_repaired_families():
+    schema = load_json(SCHEMA_PATH)
+    valid = build_stress_neutral_export_package_v0_2(**source_payload())
+    diagnostic_source = source_payload()
+    diagnostic_source["result_rows"][0]["row_kind"] = "diagnostic_work"
+    diagnostic_source["result_rows"][0]["result_family"] = "diagnostic_work"
+    with_diagnostic = build_stress_neutral_export_package_v0_2(**diagnostic_source)
+    cases = []
+    item = deepcopy(valid); item["export_profile"]["unknown"] = True; cases.append(item)
+    item = deepcopy(valid); del item["result_rows"][0]["unit"]; cases.append(item)
+    item = deepcopy(valid); item["unit_system_disclosure"]["unknown"] = True; cases.append(item)
+    item = deepcopy(valid); del item["stable_id_map"][0]["mapping_status"]; cases.append(item)
+    item = deepcopy(valid); del item["loss_report"][0]["reason"]; cases.append(item)
+    item = deepcopy(valid); item["validation_report"]["unknown"] = True; cases.append(item)
+    item = deepcopy(with_diagnostic); item["diagnostics"][0]["unknown"] = True; cases.append(item)
+    item = deepcopy(valid); item["provenance"]["unknown"] = True; cases.append(item)
+    item = deepcopy(valid); item["received_source_checksums"][0]["unknown"] = True; cases.append(item)
+    item = deepcopy(valid); item["privacy"]["unknown"] = True; cases.append(item)
+    item = deepcopy(valid); item["professional_boundary"]["unknown"] = True; cases.append(item)
+    for case in cases:
+        try:
+            validate_instance(schema, case, schema_label=str(SCHEMA_PATH), instance_label="negative strict stress-neutral package")
+        except AssertionError:
+            continue
+        raise AssertionError("strict stress-neutral schema accepted an unknown or missing family field")
 
 
 def walk_mappings(value):
