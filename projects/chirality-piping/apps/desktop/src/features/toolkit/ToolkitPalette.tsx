@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Box, CircleDot, SlidersHorizontal, Layers, Pencil, MousePointer2, ClipboardCheck, Search, X } from "lucide-react";
 import {
   capabilityAvailability,
@@ -17,25 +17,33 @@ type Props = {
 export function ToolkitPalette({ context, onChoose }: Props) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [groupFilter, setGroupFilter] = useState<(typeof toolkitGroups)[number] | null>(null);
   const toggle = useRef<HTMLButtonElement>(null);
+  const returnFocus = useRef<HTMLButtonElement | null>(null);
   const search = useRef<HTMLInputElement>(null);
   const dialog = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!open) return;
-    search.current?.focus();
-    function dismiss(event: PointerEvent) {
-      if (event.target instanceof Node && !dialog.current?.contains(event.target) && !toggle.current?.contains(event.target)) close();
-    }
-    document.addEventListener("pointerdown", dismiss);
-    return () => document.removeEventListener("pointerdown", dismiss);
+  useLayoutEffect(() => {
+    if (open) search.current?.focus();
   }, [open]);
+  useEffect(() => {
+    function openFromShortcut(event: globalThis.KeyboardEvent) {
+      if (event.key.toLowerCase() !== "k" || (!event.metaKey && !event.ctrlKey)) return;
+      event.preventDefault();
+      returnFocus.current = toggle.current;
+      setGroupFilter(null);
+      setOpen(true);
+    }
+    window.addEventListener("keydown", openFromShortcut);
+    return () => window.removeEventListener("keydown", openFromShortcut);
+  }, []);
   const matches = toolkitCapabilities.filter((item) =>
+    (!groupFilter || item.group === groupFilter) &&
     `${item.label} ${item.group} ${item.description}`.toLowerCase().includes(query.trim().toLowerCase())
   );
 
   function close() {
     setOpen(false);
-    toggle.current?.focus();
+    returnFocus.current?.focus();
   }
 
   return (
@@ -56,16 +64,40 @@ export function ToolkitPalette({ context, onChoose }: Props) {
         type="button"
         aria-expanded={open}
         aria-controls="toolkit-commands"
+        aria-label="Find modeling commands"
+        title="Search Build, Supports, Properties, Loads, Edit, Select and View, and Review commands"
         onClick={() => {
+          returnFocus.current = toggle.current;
+          setGroupFilter(null);
           setOpen(!open);
-          if (!open) requestAnimationFrame(() => search.current?.focus());
         }}
       >
-        <Search size={16} aria-hidden="true" /> Toolkit
+        <Search size={16} aria-hidden="true" /> Commands <kbd aria-label="Command K">⌘K</kbd>
       </button>
+      <div className="toolkit-group-shortcuts" role="group" aria-label="Command groups">
+        {toolkitGroups.map((group) => (
+          <button
+            aria-pressed={open && groupFilter === group}
+            data-testid={`toolkit-group-${group.toLowerCase().replaceAll(" ", "-").replace("-and-", "-")}`}
+            key={group}
+            onClick={(event) => {
+              returnFocus.current = event.currentTarget;
+              setGroupFilter(group);
+              setQuery("");
+              setOpen(true);
+            }}
+            title={`Open ${group} commands`}
+            type="button"
+          >{group === "Select and View" ? "Select/View" : group}</button>
+        ))}
+      </div>
       {open ? (
         <>
-        <div className="toolkit-backdrop" aria-hidden="true" onPointerDown={close} />
+        <div className="toolkit-backdrop" aria-hidden="true" onPointerDown={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          close();
+        }} />
         <div id="toolkit-commands" className="toolkit-commands" ref={dialog} role="dialog" aria-label="Find a modeling tool" aria-modal="true" onKeyDown={(event) => {
           if (event.key !== "Tab") return;
           const focusable = Array.from(dialog.current?.querySelectorAll<HTMLElement>('button:not(:disabled), input, summary') ?? []);
@@ -88,6 +120,7 @@ export function ToolkitPalette({ context, onChoose }: Props) {
           </label>
           <button type="button" onClick={close} aria-label="Close toolkit"><X size={18} aria-hidden="true" /></button>
           </div>
+          {groupFilter ? <p className="toolkit-active-group" role="status">Showing {groupFilter} commands. Search stays within this group.</p> : null}
           <div className="toolkit-command-groups">
             {toolkitGroups.map((group) => {
               const entries = matches.filter((entry) => entry.group === group);

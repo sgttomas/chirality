@@ -1,3 +1,5 @@
+import { observeWorkspaceCanvasBudget } from "./features/workspace/workspaceCanvasBudget";
+import type { ViewportViewCommand } from "./features/viewport/viewportSelection";
 import { HangerSelectionPanel } from "./features/hanger-selection";
 import { SelfWeightPlanPanel } from "./features/self-weight-authoring";
 import { OfflineProposalIntakePanel } from "./features/offline-proposal-intake";
@@ -27,8 +29,15 @@ import {
   X
 } from "lucide-react";
 import { WorkspaceToolbar } from "./features/workspace/WorkspaceToolbar";
+import { DormantSection } from "./features/workspace/dormantSection";
+import {
+  readUiPreferences,
+  resolvedUiTheme,
+  updateUiPreferences,
+  writeUiPreferences
+} from "./features/workspace/uiPreferences";
 import type React from "react";
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { AccessibilityBaselinePanel } from "./features/accessibility-baseline/AccessibilityBaselinePanel";
 import { AdapterFrameworkPanel } from "./features/adapter-framework/AdapterFrameworkPanel";
 import { AgentProposalPanel } from "./features/agent-proposals/AgentProposalPanel";
@@ -52,6 +61,23 @@ import { LoadCaseManagerPanel } from "./features/load-cases/LoadCaseManagerPanel
 import { LocalFeaHandoffPanel } from "./features/local-fea-handoff/LocalFeaHandoffPanel";
 import { MissingDataBlockingPanel, countMissingDataBlockers } from "./features/missing-data/MissingDataBlockingPanel";
 import { defaultSelection } from "./features/model-workspace/modelView";
+import { modelIndexFor } from "./features/workspace/modelIndex";
+import {
+  applyDisplayedRange,
+  applyBoxSelection,
+  applySelection,
+  emptySelection,
+  entityRefFromKey,
+  primarySelection,
+  pruneSelection,
+  sameSelection,
+  singletonSelection,
+  setSelectionFocus,
+  type EntityKey,
+  type OrderedSelectionState,
+  type SelectionModifiers
+} from "./features/workspace/selectionState";
+import { publishUiModelAssignmentStarted } from "./features/workspace/uiDiagnostics";
 import { ModelTree } from "./features/model-tree/ModelTree";
 import { NativePackagePanel } from "./features/native-package/NativePackagePanel";
 import { intentKey, OperationApplyPanel } from "./features/operations/OperationApplyPanel";
@@ -72,7 +98,7 @@ import { ResultsPanel } from "./features/results/ResultsPanel";
 import { resolveDiagnosticEntitySelection, resolveEntitySelection } from "./features/results/resultInterpretation";
 import { ReviewGeometryPanel } from "./features/review-geometry/ReviewGeometryPanel";
 import { RuleCheckPanel } from "./features/rule-check/RuleCheckPanel";
-import { RuleCheckRunPanel } from "./features/rule-check/RuleCheckRunPanel";
+import { RuleCheckRunPanel, type RuleCheckRunBasis } from "./features/rule-check/RuleCheckRunPanel";
 import { RulePackManagerPanel } from "./features/rule-packs/RulePackManagerPanel";
 import { RunAuditPanel } from "./features/run-audit/RunAuditPanel";
 import { SecretPrivateLibraryPanel } from "./features/secret-private-library/SecretPrivateLibraryPanel";
@@ -82,7 +108,12 @@ import { SolvePanel } from "./features/solve/SolvePanel";
 import { StressNeutralExportPanel } from "./features/stress-neutral/StressNeutralExportPanel";
 import { TelemetryBoundaryPanel } from "./features/telemetry/TelemetryBoundaryPanel";
 import { ValidationEvidencePanel } from "./features/validation-evidence/ValidationEvidencePanel";
-import { PipeViewport, type CreationTool } from "./features/viewport/PipeViewport";
+import {
+  PipeViewport,
+  type CreationTool,
+  type ViewportExposureInteraction
+} from "./features/viewport/PipeViewport";
+import { composedVisibilityHiddenKeys } from "./features/viewport/viewportSelection";
 import {
   applyResultMatchesSubmission,
   sameSubmission,
@@ -254,6 +285,9 @@ export function commitModelAfterSolveInvalidation(
 
 const SUPPORTED_MODEL_NORMALIZATION_ID =
   "model-doc-0.1.0-to-0.2.0-additive-combination-shape-noop";
+
+// Diagnostics generations must not repeat across real same-page App remounts.
+let nextUiModelPublicationGeneration = 0;
 
 export function isSupportedChangedModelPersistenceResponse(
   envelope: LocalProjectEnvelope,
@@ -496,13 +530,60 @@ export function App() {
 }
 
 function AppSession() {
+  const [uiPreferences, setUiPreferences] = useState(readUiPreferences);
+  const [systemDark, setSystemDark] = useState(() =>
+    typeof window.matchMedia === "function" && window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
+  const resolvedTheme = resolvedUiTheme(uiPreferences.theme, systemDark);
   const [model, setModel] = useState<PreviewModel | null>(null);
   const [knowledge, setKnowledge] = useState<DesignKnowledge | null>(null);
-  const [selection, setSelection] = useState<EntityRef | null>(null);
+  const [selection, setPrimarySelection] = useState<EntityRef | null>(null);
+  const [orderedSelection, setOrderedSelection] = useState<OrderedSelectionState>(() => emptySelection());
+  const orderedSelectionRef = useRef<OrderedSelectionState>(orderedSelection);
+  const [hiddenEntityKeys, setHiddenEntityKeys] = useState<ReadonlySet<EntityKey>>(() => new Set());
+  const [isolateHiddenEntityKeys, setIsolateHiddenEntityKeys] = useState<ReadonlySet<EntityKey>>(() => new Set());
+  const [treePublication, setTreePublication] = useState<{
+    actionSequence: number;
+    publicationSequence: number;
+    query: string;
+    visibleCount: number;
+    inputAt: number | null;
+    inputEventTimeStamp: number | null;
+    publishedAt: number;
+  } | null>(null);
+  const handleTreePublication = useCallback((publication: NonNullable<typeof treePublication>) => {
+    setTreePublication(publication);
+  }, []);
+  const [projectSessionGeneration, setProjectSessionGeneration] = useState(0);
+  const projectSessionGenerationRef = useRef(0);
+  const [uiModelRevision, setUiModelRevision] = useState(0);
+  const uiModelRevisionRef = useRef(0);
+  const modelPublicationGenerationRef = useRef(0);
+  const [modelAssignment, setModelAssignment] = useState<{
+    status: "started" | "committed";
+    generation: number;
+    indexGeneration: string;
+    identityHash: string;
+    startedAt: number;
+    committedAt: number | null;
+  } | null>(null);
   const [result, setResult] = useState<MechanicsResult | null>(null);
   const [historicalRun, setHistoricalRun] = useState<HistoricalRunContext | null>(null);
   const currentSolvedResult = result?.status.mechanics === "MECHANICS_SOLVED" ? result : null;
   const [analysisRun, setAnalysisRun] = useState<AnalysisRunEnvelope | null>(null);
+  const resultBasisRef = useRef<{ value: MechanicsResult | null; sequence: number }>({ value: null, sequence: 0 });
+  if (resultBasisRef.current.value !== result) resultBasisRef.current = { value: result, sequence: resultBasisRef.current.sequence + 1 };
+  const ruleCheckRunBasis: RuleCheckRunBasis = {
+    projectSessionGeneration,
+    modelRevision: uiModelRevision,
+    resultSequence: resultBasisRef.current.sequence
+  };
+  const analysisBasisRef = useRef<{ value: AnalysisRunEnvelope | null; sequence: number }>({ value: null, sequence: 0 });
+  if (analysisBasisRef.current.value !== analysisRun) analysisBasisRef.current = { value: analysisRun, sequence: analysisBasisRef.current.sequence + 1 };
+  // Dormant output panels receive this key only when they reconcile again.
+  // Thus accepted model/result changes do not wake an inactive full-model scan,
+  // while the next activation remounts local packet/route state before paint.
+  const dormantOutputBasis = `${uiModelRevision}:${resultBasisRef.current.sequence}:${analysisBasisRef.current.sequence}`;
   const [inputManifest, setInputManifest] =
     useState<CurrentSessionInputManifestEvidence | null>(null);
   // Worst-of rule-check aggregate from the GUI run panel, lifted so it can be
@@ -534,6 +615,8 @@ function AppSession() {
   const [reportPackageBusy, setReportPackageBusy] = useState(false);
   const [reportPackageRedaction, setReportPackageRedaction] = useState<ControlledRouteExport | null>(null);
   const [reportPackageRoute, setReportPackageRoute] = useState<ReportPackageSaveRoute | null>(null);
+  const reportPackageRequestGenerationRef = useRef(0);
+  const reportPackageBusyGenerationRef = useRef<number | null>(null);
   const [operationOutcomes, setOperationOutcomes] = useState<Record<string, OperationOutcome>>({});
   const [appliedOperations, setAppliedOperations] = useState<AppliedOperationReceipt[]>([]);
   const [undoStack, setUndoStack] = useState<SessionModelCheckpoint[]>([]);
@@ -544,6 +627,7 @@ function AppSession() {
   const [batchMessage, setBatchMessage] = useState<string | null>(null);
   const [requestEpoch, setRequestEpoch] = useState(0);
   const requestEpochRef = useRef(0);
+  const getPreparationEpoch = useCallback(() => requestEpochRef.current, []);
   const [directDraftCommitToken, setDirectDraftCommitToken] = useState<string | null>(null);
   const batchSequence = useRef(0);
   const [operationBusy, setOperationBusy] = useState(false);
@@ -555,7 +639,25 @@ function AppSession() {
   // core (model tree | 3D viewport | inspector) owns the surface; workspace
   // sections are summoned from the View menu and dismissed back to the viewport.
   const [activeSection, setActiveSection] = useState<WorkspaceSectionId | null>(null);
+  const [activatedExpensiveSections, setActivatedExpensiveSections] = useState<ReadonlySet<WorkspaceSectionId>>(
+    () => new Set()
+  );
+  useEffect(() => {
+    if (!activeSection || !EXPENSIVE_LIFECYCLE_SECTIONS.has(activeSection)) return;
+    setActivatedExpensiveSections((current) => {
+      if (current.has(activeSection)) return current;
+      return new Set([...current, activeSection]);
+    });
+  }, [activeSection]);
   const [toolkitFocus, setToolkitFocus] = useState<{ testId: string; elementId?: string } | null>(null);
+  const propertyTaskRequestSequenceRef = useRef(0);
+  const [propertyTaskRequest, setPropertyTaskRequest] = useState<{
+    sequence: number;
+    target: EntityRef;
+    view: "properties" | "task";
+    focusTestId: string;
+    elementId?: string;
+  } | null>(null);
   useLayoutEffect(() => {
     if (!toolkitFocus) return;
     const target = toolkitFocus.elementId ? document.getElementById(toolkitFocus.elementId) : document.querySelector<HTMLElement>(`[data-testid="${toolkitFocus.testId}"]`);
@@ -568,12 +670,23 @@ function AppSession() {
   }, [toolkitFocus]);
   const [openMenu, setOpenMenu] = useState<MenuId | null>(null);
   const [armedCreationTool, setArmedCreationTool] = useState<CreationTool | null>(null);
+  const viewportViewCommandRef = useRef<((command: ViewportViewCommand) => void) | null>(null);
+  const workspaceShellRef = useRef<HTMLElement | null>(null);
+  const workspaceBudgetRef = useRef<HTMLDivElement | null>(null);
+  useLayoutEffect(() => {
+    const workspace = workspaceBudgetRef.current;
+    if (!model || !workspace) return;
+    return observeWorkspaceCanvasBudget(workspace);
+  }, [Boolean(model)]);
   // Viewport-first agent-mediated shell (TP-R3UX-AGENTSHELL-001): the detailed
   // tree and property inspector start tucked away so the primary screen is the
   // 3D model plus a local review-only agent workbench. The detailed rails remain
   // available from View for targeted investigation.
-  const [treeCollapsed, setTreeCollapsed] = useState(() => window.innerWidth <= 1100);
-  const [inspectorCollapsed, setInspectorCollapsed] = useState(false);
+  const [treeCollapsed, setTreeCollapsed] = useState(() => window.innerWidth < 1280);
+  const [inspectorCollapsed, setInspectorCollapsed] = useState(() => window.innerWidth < 1280);
+  const treeToggleRef = useRef<HTMLButtonElement | null>(null);
+  const inspectorToggleRef = useRef<HTMLButtonElement | null>(null);
+  const activeResizeCleanupRef = useRef<(() => void) | null>(null);
   const [operationTab, setOperationTab] = useState("review");
   const [r3JourneyState, setR3JourneyState] = useState<R3JourneyState>(() => ({
     ...INITIAL_R3_JOURNEY_STATE
@@ -606,12 +719,81 @@ function AppSession() {
     () => (currentSolvedResult && analysisRun ? buildPreviewComparison({ result: currentSolvedResult, analysisRun }) : null),
     [analysisRun, currentSolvedResult]
   );
+  const activeModelIndex = useMemo(
+    () => model ? modelIndexFor(model, projectSessionGeneration, uiModelRevision) : null,
+    [model, projectSessionGeneration, uiModelRevision]
+  );
+  const effectiveHiddenKeys = useMemo(
+    () => activeModelIndex ? composedVisibilityHiddenKeys(activeModelIndex, hiddenEntityKeys, isolateHiddenEntityKeys) : new Set([...hiddenEntityKeys, ...isolateHiddenEntityKeys]),
+    [activeModelIndex, hiddenEntityKeys, isolateHiddenEntityKeys]
+  );
+  const selectedPipeRefs = useMemo(
+    () => orderedSelection.orderedKeys.flatMap((key) => {
+      const ref = entityRefFromKey(key);
+      return ref?.type === "pipe" ? [ref.id] : [];
+    }),
+    [orderedSelection.orderedKeys]
+  );
+
+  useEffect(() => {
+    if (!activeModelIndex) return;
+    setHiddenEntityKeys((current) => {
+      const next = new Set([...current].filter((key) => activeModelIndex.entities.has(key)));
+      return next.size === current.size ? current : next;
+    });
+    setIsolateHiddenEntityKeys((current) => {
+      const next = new Set([...current].filter((key) => activeModelIndex.entities.has(key)));
+      return next.size === current.size ? current : next;
+    });
+  }, [activeModelIndex]);
+
+  useEffect(() => {
+    writeUiPreferences(uiPreferences);
+  }, [uiPreferences]);
+
+  useEffect(() => () => activeResizeCleanupRef.current?.(), []);
+
+  useEffect(() => {
+    if (typeof window.matchMedia !== "function") return;
+    const query = window.matchMedia("(prefers-color-scheme: dark)");
+    const update = () => setSystemDark(query.matches);
+    query.addEventListener?.("change", update);
+    return () => query.removeEventListener?.("change", update);
+  }, []);
+
+  function commitSelectionState(next: OrderedSelectionState, fallbackModel: PreviewModel | null = model): boolean {
+    const previous = orderedSelectionRef.current;
+    const membershipChanged = !sameSelection(previous, next);
+    if (!membershipChanged && previous.focusKey === next.focusKey && previous.rangeAnchorKey === next.rangeAnchorKey) return false;
+    orderedSelectionRef.current = next;
+    setOrderedSelection(next);
+    if (membershipChanged) {
+      invalidateDirectDraftContext();
+      if (fallbackModel) setPrimarySelection(primarySelection(next, defaultSelection(fallbackModel)));
+      else setPrimarySelection(next.primaryKey ? primarySelection(next, { type: "project", id: "" }) : null);
+    }
+    return membershipChanged;
+  }
+
+  function setSelection(next: EntityRef | null): void {
+    if (!next) {
+      const previous = orderedSelectionRef.current;
+      const empty = emptySelection(orderedSelectionRef.current.preparationEpoch + 1);
+      orderedSelectionRef.current = empty;
+      setOrderedSelection(empty);
+      setPrimarySelection(null);
+      if (!sameSelection(previous, empty)) invalidateDirectDraftContext();
+      return;
+    }
+    commitSelectionState(singletonSelection(next, orderedSelectionRef.current));
+  }
 
   useEffect(() => {
     let active = true;
     Promise.all([loadPreviewModel(), loadDesignKnowledge(), getLocalStorageCapability()]).then(
       ([loadedModel, loadedKnowledge, loadedStorageCapability]) => {
         if (!active) return;
+        advanceProjectSession();
         commitModel(loadedModel);
         setKnowledge(loadedKnowledge);
         setSelection(defaultSelection(loadedModel));
@@ -641,9 +823,27 @@ function AppSession() {
   }, [model]);
 
   function commitModel(nextModel: PreviewModel, directDraftToken: string | null = null) {
+    viewportViewCommandRef.current?.({ type: "retire-box-gesture" });
+    invalidateReportPackageComputedState();
+    const assignmentStartedAt = performance.now();
+    const modelPublicationGeneration = ++nextUiModelPublicationGeneration;
+    publishUiModelAssignmentStarted(modelPublicationGeneration, assignmentStartedAt);
+    const nextUiModelRevision = uiModelRevisionRef.current + 1;
+    const indexGeneration = `${projectSessionGenerationRef.current}:${nextUiModelRevision}`;
+    const identityHash = uiModelIdentityHash(nextModel);
+    setModelAssignment({
+      status: "started",
+      generation: modelPublicationGeneration,
+      indexGeneration,
+      identityHash,
+      startedAt: assignmentStartedAt,
+      committedAt: null
+    });
     requestEpochRef.current += 1;
     setRequestEpoch(requestEpochRef.current);
     setDirectDraftCommitToken(directDraftToken);
+    uiModelRevisionRef.current = nextUiModelRevision;
+    setUiModelRevision(nextUiModelRevision);
     currentModel.current = nextModel;
     setHistoricalRun(null);
     operationRequest.current.sequence += 1;
@@ -651,12 +851,47 @@ function AppSession() {
     directDraftReviews.current.clear();
     setOperationBusy(false);
     commitModelAfterSolveInvalidation(solveRunGate.current, modelRevision, () => {
+      modelPublicationGenerationRef.current = modelPublicationGeneration;
       activeSolveJob.current = null;
       setRunning(false);
       setSolveProof(null);
       setModelHash(null);
+      setModelAssignment({
+        status: "committed",
+        generation: modelPublicationGeneration,
+        indexGeneration,
+        identityHash,
+        startedAt: assignmentStartedAt,
+        committedAt: performance.now()
+      });
       setModel(nextModel);
     });
+  }
+
+  function preserveAndPruneSelection(nextModel: PreviewModel) {
+    const nextIndex = modelIndexFor(
+      nextModel,
+      projectSessionGenerationRef.current,
+      uiModelRevisionRef.current
+    );
+    commitSelectionState(
+      pruneSelection(
+        orderedSelectionRef.current,
+        new Set(nextIndex.entities.keys()),
+        { type: "project", id: nextModel.project.id }
+      ),
+      nextModel
+    );
+  }
+
+  function advanceProjectSession(): void {
+    viewportViewCommandRef.current?.({ type: "cancel-box-selection" });
+    invalidateReportPackageComputedState();
+    const nextGeneration = ++projectSessionGenerationRef.current;
+    setProjectSessionGeneration(nextGeneration);
+    setHiddenEntityKeys(new Set());
+    setIsolateHiddenEntityKeys(new Set());
+    setPropertyTaskRequest(null);
   }
 
   // Warm up the operation engine and report its honest route/readiness.
@@ -715,6 +950,7 @@ function AppSession() {
   async function handleRun() {
     const runGeneration = solveRunGate.current.tryStart();
     if (runGeneration === null) return;
+    invalidateReportPackageComputedState();
     ruleRevisionGate.current.invalidate();
     solveCancellationTombstones.current.set(runGeneration, {
       requested: false,
@@ -895,10 +1131,28 @@ function AppSession() {
   // result_envelope hash still binds the raw solve, so the hash-bound solve
   // envelope is never mutated. With no solved result there is no app-held
   // envelope to annotate.
-  async function handleRuleCheckAggregate(aggregate: RuleCheckStatus | null) {
+  async function handleRuleCheckAggregate(
+    aggregate: RuleCheckStatus | null,
+    renderedBasis: Readonly<{
+      projectSessionGeneration: number;
+      modelRevision: number;
+      result: MechanicsResult | null;
+      inputManifest: CurrentSessionInputManifestEvidence | null;
+    }>
+  ) {
+    const renderedBasisIsCurrent = () =>
+      projectSessionGenerationRef.current === renderedBasis.projectSessionGeneration &&
+      uiModelRevisionRef.current === renderedBasis.modelRevision &&
+      currentSolvedResultRef.current === renderedBasis.result &&
+      currentInputManifestRef.current === renderedBasis.inputManifest;
+    if (!renderedBasisIsCurrent()) return;
     if (aggregate === ruleCheckAggregate) return;
     const previousAggregate = ruleCheckAggregate;
     const revision = ruleRevisionGate.current.start();
+    // A different aggregate immediately makes the previously assembled report
+    // package stale. Clear its computed route before publishing the new rule
+    // state; the private-package intent remains an independent user choice.
+    invalidateReportPackageComputedState();
     setRuleCheckAggregate(aggregate);
     if (!currentSolvedResult || !inputManifest) return;
     const capturedResult = currentSolvedResult;
@@ -911,12 +1165,13 @@ function AppSession() {
       solveRunGate.current.current() === capturedSolveGeneration &&
       currentSolvedResultRef.current === capturedResult &&
       currentInputManifestRef.current === capturedManifest &&
-      currentModel.current?.project.id === capturedResult.model_ref;
+      currentModel.current?.project.id === capturedResult.model_ref &&
+      renderedBasisIsCurrent();
     try {
       const revisedRecord = await buildAnalysisRunPreview(capturedResult, {
           inputManifest: capturedManifest,
           ruleCheckAggregate: aggregate
-        });
+      });
       if (!stillCurrent()) return;
       setAnalysisRun(revisedRecord);
     } catch {
@@ -971,6 +1226,8 @@ function AppSession() {
       },
       ...current
     ]);
+    setActiveSection("operations");
+    setOperationTab("review");
   }
 
   function handleClearReviewQueue() {
@@ -1071,7 +1328,7 @@ function AppSession() {
         professional_boundary: outcome.professional_boundary
       }]);
       commitModel(outcome.applied_model);
-      setSelection(defaultSelection(outcome.applied_model));
+      preserveAndPruneSelection(outcome.applied_model);
       setQueuedBatches((current) => current.filter((candidate) => candidate.key !== entry.key));
       clearComputedModelState(sessionHistoryChangedSolveJob("batch", entry.batch.batch_id));
       setProposal(null);
@@ -1291,8 +1548,8 @@ function AppSession() {
     }
   }
 
-  async function handleApplyIntent(intent: EditorOperationIntent) {
-    if (!model || operationRequest.current.busy) return;
+  async function handleApplyIntent(intent: EditorOperationIntent): Promise<boolean> {
+    if (!model || operationRequest.current.busy) return false;
     const revision = modelRevision.current;
     const request = ++operationRequest.current.sequence;
     operationRequest.current.busy = true;
@@ -1301,19 +1558,19 @@ function AppSession() {
     setOperationMessage(null);
     try {
       const initialHash = await computeModelHash(model);
-      if (!stillCurrent() || !initialHash) return;
+      if (!stillCurrent() || !initialHash) return false;
       const outcome = await applyModelOperation(model, intent, initialHash);
-      if (!stillCurrent() || !currentModel.current) return;
+      if (!stillCurrent() || !currentModel.current) return false;
       const currentHash = await computeModelHash(currentModel.current);
       // The hash computation is asynchronous too; generation must still match
       // after it resolves before any outcome, receipt or checkpoint is published.
-      if (!stillCurrent() || currentHash?.value !== initialHash.value) return;
+      if (!stillCurrent() || currentHash?.value !== initialHash.value) return false;
       setOperationOutcomes((current) => ({ ...current, [intentKey(intent)]: outcome }));
       if (outcome.validation.application_status !== "applied_to_session_model" || !outcome.applied_model) {
         setOperationMessage(
           `Operation ${outcome.operation_id} was not applied (${outcome.validation.application_status}); see its diagnostics.`
         );
-        return;
+        return false;
       }
       const receipt: AppliedOperationReceipt = {
         receipt_id: `applied-${appliedOperations.length + 1}-${intentKey(intent)}`,
@@ -1347,17 +1604,13 @@ function AppSession() {
       setRedoStack([]);
       commitModel(outcome.applied_model);
       const appliedSelection = selectionForOperationOutcome(outcome);
-      if (
-        outcome.change_kind === "delete_material" ||
-        outcome.change_kind === "delete_section" ||
-        outcome.change_kind === "delete_component" ||
-        outcome.change_kind === "delete_support" ||
-        outcome.change_kind === "delete_pipe_run" ||
-        outcome.change_kind === "delete_node"
-      ) {
-        setSelection(defaultSelection(outcome.applied_model));
-      } else if (appliedSelection) {
+      // Explicit creation deliberately focuses the authored entity. Ordinary
+      // edits and deletion preserve ordered membership and prune only refs the
+      // accepted model no longer contains.
+      if (appliedSelection && /^(create_|insert_|connect_)/.test(outcome.change_kind)) {
         setSelection(appliedSelection);
+      } else {
+        preserveAndPruneSelection(outcome.applied_model);
       }
       setEditorIntents((current) => current.filter((queued) => intentKey(queued) !== intentKey(intent)));
       // Earlier solve output no longer describes the edited model document;
@@ -1372,8 +1625,10 @@ function AppSession() {
       setOperationMessage(
         `Applied ${outcome.operation_id} to the session model; previous solve results were cleared. Run a new solve, then save the project to store the edited model locally.`
       );
+      return true;
     } catch (error) {
       if (stillCurrent()) setOperationMessage(`Operation apply failed to run: ${String(error)}`);
+      return false;
     } finally {
       if (operationRequest.current.sequence === request) {
         operationRequest.current.busy = false;
@@ -1438,6 +1693,7 @@ function AppSession() {
   }
 
   function clearComputedModelState(nextSolveJob: SolveJobAuditState) {
+    invalidateReportPackageComputedState();
     ruleRevisionGate.current.invalidate();
     setHistoricalRun(null);
     setResult(null);
@@ -1449,13 +1705,33 @@ function AppSession() {
     setSolveJob(nextSolveJob);
   }
 
+  function invalidateReportPackageComputedState() {
+    reportPackageRequestGenerationRef.current += 1;
+    reportPackageBusyGenerationRef.current = null;
+    setReportPackageBusy(false);
+    setReportPackageRedaction(null);
+    setReportPackageRoute(null);
+  }
+
   function adoptNormalizedPersistenceModel(
     envelope: LocalProjectEnvelope,
     returnedHistory: HistoricalRunContext | null,
     returnedModelHash: ModelHashEvidence | null
   ) {
     commitModel(envelope.model);
-    setSelection(defaultSelection(envelope.model));
+    const normalizedIndex = modelIndexFor(
+      envelope.model,
+      projectSessionGenerationRef.current,
+      uiModelRevisionRef.current
+    );
+    commitSelectionState(
+      pruneSelection(
+        orderedSelectionRef.current,
+        new Set(normalizedIndex.entities.keys()),
+        { type: "project", id: envelope.model.project.id }
+      ),
+      envelope.model
+    );
     setUndoStack([]);
     setRedoStack([]);
     setAppliedOperations([]);
@@ -1595,9 +1871,10 @@ function AppSession() {
         ...created.summary,
         message: "Created blank local model document without fixture entities or external file copies."
       };
+      advanceProjectSession();
       commitModel(created.model);
-      epoch = requestEpochRef.current;
       setSelection(defaultSelection(created.model));
+      epoch = requestEpochRef.current;
       setUndoStack([]);
       setRedoStack([]);
       setAppliedOperations([]);
@@ -1652,9 +1929,10 @@ function AppSession() {
       }
       const restoredHistory = await buildHistoricalRunContext(opened);
       if (!stillCurrent()) return;
+      advanceProjectSession();
       commitModel(opened.model);
-      epoch = requestEpochRef.current;
       setSelection(defaultSelection(opened.model));
+      epoch = requestEpochRef.current;
       setUndoStack([]);
       setRedoStack([]);
       setAppliedOperations([]);
@@ -1681,6 +1959,7 @@ function AppSession() {
       setModelMigrationLedger(opened.model_migration_ledger ?? []);
       setProjectMessage(opened.summary.message);
       setProjectOperation(projectId ? "open_by_id" : "open");
+      setActiveSection(restoredHistory ? "results" : null);
       const recomputedHash = await computeModelHash(opened.model);
       if (!stillCurrent()) return;
       setModelHashIntegrity(deriveModelHashIntegrity(opened.model_hash ?? null, recomputedHash, opened.model.project.id));
@@ -1829,7 +2108,7 @@ function AppSession() {
     if (!item || !model) return;
     const entitySelection = resolveEntitySelection(model, item.entity_ref);
     if (entitySelection) {
-      setSelection(entitySelection);
+      handleSelectEntity(entitySelection);
     }
   }
 
@@ -1838,13 +2117,29 @@ function AppSession() {
     if (!model) return;
     const entitySelection = resolveDiagnosticEntitySelection({ model, result, knowledge, diagnosticId });
     if (entitySelection) {
-      setSelection(entitySelection);
+      handleSelectEntity(entitySelection);
     }
   }
 
-  function handleSelectEntity(entity: EntityRef) {
-    invalidateDirectDraftContext();
-    setSelection(entity);
+  function handleSelectEntity(
+    entity: EntityRef,
+    modifiers: SelectionModifiers & Readonly<{ range?: boolean }> = {},
+    displayedOrder: readonly EntityKey[] = []
+  ): OrderedSelectionState {
+    const next = modifiers.range
+      ? applyDisplayedRange(orderedSelectionRef.current, entity, displayedOrder)
+      : applySelection(orderedSelectionRef.current, entity, modifiers);
+    commitSelectionState(next);
+    return orderedSelectionRef.current;
+  }
+
+  function handleBoxSelection(
+    keys: readonly EntityKey[],
+    modifiers: SelectionModifiers
+  ): OrderedSelectionState {
+    const next = applyBoxSelection(orderedSelectionRef.current, keys, modifiers);
+    commitSelectionState(next);
+    return next;
   }
 
   function invalidateDirectDraftContext() {
@@ -1854,6 +2149,7 @@ function AppSession() {
   }
 
   function handleArmCreationTool(tool: CreationTool | null) {
+    viewportViewCommandRef.current?.({ type: "cancel-box-selection" });
     setArmedCreationTool(tool);
     if (!tool) return;
     if (tool === "load") {
@@ -1861,13 +2157,20 @@ function AppSession() {
       return;
     }
     setActiveSection(null);
-    setInspectorCollapsed(tool !== "support");
-    if (tool === "support") setToolkitFocus({ testId: "create-support-id" });
+    if (tool === "support") {
+      openWorkspaceRail("inspector");
+      if (selection) setPropertyTaskRequest({
+        sequence: ++propertyTaskRequestSequenceRef.current,
+        target: { ...selection },
+        view: "properties",
+        focusTestId: "create-support-id"
+      });
+    } else exposeViewportForNarrowInteraction(`authoring-${tool}`);
   }
 
   function handleToolkitCommand(capability: ToolkitCapability) {
     if (!selection) return;
-    const context = { selection, canUndo: undoStack.length > 0, canRedo: redoStack.length > 0, busy: operationRequest.current.busy || operationBusy, windConfigured: Boolean(selection.type === "load" && model?.load_cases.find((load) => load.id === selection.id)?.equivalent_static?.wind) };
+    const context = { selection, selectionCardinality: orderedSelectionRef.current.orderedKeys.length, canUndo: undoStack.length > 0, canRedo: redoStack.length > 0, busy: operationRequest.current.busy || operationBusy, windConfigured: Boolean(selection.type === "load" && model?.load_cases.find((load) => load.id === selection.id)?.equivalent_static?.wind) };
     if (!capabilityAvailability(capability, context).enabled) return;
     if (capability.history) {
       if (capability.history === "undo") handleUndoSessionModelEdit();
@@ -1877,34 +2180,69 @@ function AppSession() {
     }
     const route = capabilityRoute(capability, context);
     if (!route) return;
+    viewportViewCommandRef.current?.({ type: "cancel-box-selection" });
     setArmedCreationTool(route.tool ?? null);
-    if (route.tool && route.surface === "viewport") setInspectorCollapsed(true);
+    if (route.tool && route.surface === "viewport") exposeViewportForNarrowInteraction(`authoring-${route.tool}`);
     if (route.surface === "operations") {
       const tabs: Record<string, string> = { "geometry-tools": "geometry", "boundary-authoring": "supports", "hanger-selection": "supports", "self-weight-plan": "weight", "offline-proposal-intake": "agent" };
       setOperationTab(tabs[route.elementId ?? ""] ?? "review");
     }
-    if (route.surface === "inspector") { setInspectorCollapsed(false); setActiveSection(null); }
-    else if (route.surface === "tree") { setTreeCollapsed(false); setActiveSection(null); }
+    if (route.surface === "inspector") {
+      setPropertyTaskRequest({
+        sequence: ++propertyTaskRequestSequenceRef.current,
+        target: { ...selection },
+        view: route.inspectorView ?? "properties",
+        focusTestId: route.focusTestId,
+        elementId: route.elementId
+      });
+      openWorkspaceRail("inspector");
+      setActiveSection(null);
+    }
+    else if (route.surface === "tree") { openWorkspaceRail("tree"); setActiveSection(null); }
     else if (route.surface === "viewport") setActiveSection(null);
     else setActiveSection(route.surface);
-    setToolkitFocus({ testId: route.focusTestId, elementId: route.elementId });
+    if (route.surface !== "inspector") setToolkitFocus({ testId: route.focusTestId, elementId: route.elementId });
   }
 
   async function handleSaveReportPackage() {
     if (!model || !currentSolvedResult || !analysisRun || !inputManifest || running || reportPackageBusy) return;
+    const generation = ++reportPackageRequestGenerationRef.current;
+    const basis = {
+      projectSessionGeneration: projectSessionGenerationRef.current,
+      modelRevision: uiModelRevisionRef.current,
+      model,
+      result: currentSolvedResult,
+      inputManifest,
+      analysisRun,
+      comparison,
+      projectSummary,
+      ruleCheckAggregate,
+      privateIntent: reportPackagePrivateIntent
+    } as const;
+    const isCurrent = () =>
+      reportPackageRequestGenerationRef.current === generation &&
+      reportPackageBusyGenerationRef.current === generation &&
+      projectSessionGenerationRef.current === basis.projectSessionGeneration &&
+      uiModelRevisionRef.current === basis.modelRevision &&
+      currentModel.current === basis.model &&
+      currentSolvedResultRef.current === basis.result &&
+      currentInputManifestRef.current === basis.inputManifest &&
+      analysisBasisRef.current.value === basis.analysisRun;
+    reportPackageBusyGenerationRef.current = generation;
     setReportPackageBusy(true);
     setReportPackageRoute(null);
     try {
       const request = await buildReportPackageRequest({
-        model,
-        result: currentSolvedResult,
-        analysisRun,
-        inputManifest,
-        projectSummary,
-        comparison,
-        ruleCheckAggregate
+        model: basis.model,
+        result: basis.result,
+        analysisRun: basis.analysisRun,
+        inputManifest: basis.inputManifest,
+        projectSummary: basis.projectSummary,
+        comparison: basis.comparison,
+        ruleCheckAggregate: basis.ruleCheckAggregate
       });
-      const controlled = controlReportPackageRequest(request, reportPackagePrivateIntent);
+      if (!isCurrent()) return;
+      const controlled = controlReportPackageRequest(request, basis.privateIntent);
       setReportPackageRedaction(controlled);
       if (controlled.blocked || controlled.payload === null) {
         setReportPackageRoute({
@@ -1913,15 +2251,21 @@ function AppSession() {
         });
         return;
       }
-      setReportPackageRoute(await saveReportPackage(controlled));
+      const saved = await saveReportPackage(controlled);
+      if (!isCurrent()) return;
+      setReportPackageRoute(saved);
     } catch (error) {
+      if (!isCurrent()) return;
       setReportPackageRedaction(null);
       setReportPackageRoute({
         route: "redaction_blocked",
         diagnostic: formatPackageSaveError(error)
       });
     } finally {
-      setReportPackageBusy(false);
+      if (isCurrent()) {
+        reportPackageBusyGenerationRef.current = null;
+        setReportPackageBusy(false);
+      }
     }
   }
 
@@ -1949,6 +2293,7 @@ function AppSession() {
         void handleSaveProject();
         break;
       case "file.save-report-package":
+        setActiveSection("report");
         void handleSaveReportPackage();
         break;
       case "edit.undo":
@@ -1967,10 +2312,10 @@ function AppSession() {
         setActiveSection(null);
         break;
       case "view.tree":
-        setTreeCollapsed((collapsed) => !collapsed);
+        toggleWorkspaceRail("tree");
         break;
       case "view.inspector":
-        setInspectorCollapsed((collapsed) => !collapsed);
+        toggleWorkspaceRail("inspector");
         break;
       case "insert.load":
         handleArmCreationTool("load");
@@ -1988,6 +2333,7 @@ function AppSession() {
         handleArmCreationTool("component");
         break;
       case "analyze.run":
+        setActiveSection("solve");
         void handleRun();
         break;
       case "analyze.cancel":
@@ -2031,6 +2377,24 @@ function AppSession() {
     };
   }, []);
 
+  // Bubble after local React handlers so drawers and the palette can consume
+  // Escape, including when the unconsumed key originates outside the shell.
+  useEffect(() => {
+    function handleWorkspaceEscape(event: KeyboardEvent) {
+      const shell = workspaceShellRef.current;
+      if (!shell || event.key !== "Escape" || event.defaultPrevented) return;
+      viewportViewCommandRef.current?.({ type: "cancel-box-selection" });
+      setOpenMenu(null);
+      setArmedCreationTool(null);
+      setActiveSection(null);
+      setAuditDrawerOpen(false);
+      setIssuesDrawerOpen(false);
+      shell.querySelector<HTMLButtonElement>('[data-testid="workspace-select"]')?.focus();
+    }
+    window.addEventListener("keydown", handleWorkspaceEscape);
+    return () => window.removeEventListener("keydown", handleWorkspaceEscape);
+  }, []);
+
   // In the packaged Tauri shell the OS-level menu bar is the single menu, so the
   // in-DOM menu bar is suppressed to avoid a redundant second row. In the
   // browser/Playwright preview there is no native menu, so the in-DOM bar
@@ -2041,19 +2405,141 @@ function AppSession() {
     return <div className="loading-screen">Loading local OpenPipeStress preview fixture.</div>;
   }
 
+  function resizeWorkspaceRail(side: "tree" | "inspector", delta: number) {
+    setUiPreferences((current) => updateUiPreferences(current, side === "tree"
+      ? { leftRailPx: current.leftRailPx + delta }
+      : { rightRailPx: current.rightRailPx + delta }));
+  }
+
+  function handleWorkspaceSplitterKeyDown(
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    side: "tree" | "inspector"
+  ) {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    resizeWorkspaceRail(side, event.key === "ArrowLeft" ? -16 : 16);
+  }
+
+  function handleDockSplitterKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
+    if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
+    event.preventDefault();
+    setUiPreferences((current) => updateUiPreferences(current, {
+      dockPx: current.dockPx + (event.key === "ArrowUp" ? 16 : -16)
+    }));
+  }
+
+  function beginWorkspaceResize(
+    event: React.PointerEvent<HTMLButtonElement>,
+    target: "tree" | "inspector" | "dock"
+  ) {
+    event.preventDefault();
+    activeResizeCleanupRef.current?.();
+    const startX = event.clientX;
+    const startY = event.clientY;
+    const initial = uiPreferences;
+    const move = (pointer: PointerEvent) => {
+      const patch = target === "tree"
+        ? { leftRailPx: initial.leftRailPx + pointer.clientX - startX }
+        : target === "inspector"
+          ? { rightRailPx: initial.rightRailPx + startX - pointer.clientX }
+          : { dockPx: initial.dockPx + startY - pointer.clientY };
+      setUiPreferences((current) => updateUiPreferences(current, patch));
+    };
+    const finish = () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointerup", finish);
+      window.removeEventListener("pointercancel", finish);
+      if (activeResizeCleanupRef.current === finish) activeResizeCleanupRef.current = null;
+    };
+    activeResizeCleanupRef.current = finish;
+    window.addEventListener("pointermove", move);
+    window.addEventListener("pointerup", finish);
+    window.addEventListener("pointercancel", finish);
+  }
+
+  function handleNarrowDrawerKeyDown(
+    event: React.KeyboardEvent<HTMLDivElement>,
+    side: "tree" | "inspector"
+  ) {
+    if (window.innerWidth >= 1280 || (side === "tree" ? treeCollapsed : inspectorCollapsed)) return;
+    const pane = event.currentTarget;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeWorkspaceRail(side, true);
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const focusable = [...pane.querySelectorAll<HTMLElement>(
+      'button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [href], [tabindex]:not([tabindex="-1"])'
+    )].filter((element) => !element.hidden && !element.closest("[hidden]"));
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  function closeWorkspaceRail(side: "tree" | "inspector", restoreFocus = false) {
+    const toggle = side === "tree" ? treeToggleRef.current : inspectorToggleRef.current;
+    const focused = document.activeElement;
+    const pane = toggle?.closest(".workspace-pane");
+    // Move focus to the persistent opener only when the closing drawer owns
+    // focus. A viewport command that closes an overlapping drawer keeps focus
+    // on its already-visible initiating control.
+    if (restoreFocus || (focused instanceof HTMLElement && pane?.contains(focused))) toggle?.focus();
+    if (side === "tree") setTreeCollapsed(true);
+    else setInspectorCollapsed(true);
+  }
+
+  function exposeViewportForNarrowInteraction(
+    _interaction: ViewportExposureInteraction | `authoring-${CreationTool}`
+  ) {
+    if (window.innerWidth >= 1280) return;
+    // These rails are presentation overlays at narrow widths. Their mounted
+    // children and drafts remain alive; only their exposure changes.
+    closeWorkspaceRail("tree");
+    closeWorkspaceRail("inspector");
+    setActiveSection(null);
+  }
+
+  function openWorkspaceRail(side: "tree" | "inspector") {
+    const openingToggle = side === "tree" ? treeToggleRef.current : inspectorToggleRef.current;
+    const invokedFromToggle = document.activeElement === openingToggle;
+    if (window.innerWidth < 1280) {
+      if (side === "tree" && !inspectorCollapsed) closeWorkspaceRail("inspector");
+      if (side === "inspector" && !treeCollapsed) closeWorkspaceRail("tree");
+      // Close transient dock overlays while retaining their mounted draft state.
+      setActiveSection(null);
+    }
+    if (side === "tree") setTreeCollapsed(false);
+    else setInspectorCollapsed(false);
+    if (invokedFromToggle) openingToggle?.focus();
+  }
+
+  function toggleWorkspaceRail(side: "tree" | "inspector") {
+    const collapsed = side === "tree" ? treeCollapsed : inspectorCollapsed;
+    if (collapsed) openWorkspaceRail(side);
+    else closeWorkspaceRail(side);
+  }
+
   return (
     <main
       className={showInAppMenuBar ? "app-shell" : "app-shell native-menu"}
+      data-density={uiPreferences.density}
+      data-theme={resolvedTheme}
+      data-theme-preference={uiPreferences.theme}
       data-testid="desktop-preview-shell"
-      onKeyDown={(event) => {
-        if (event.key !== "Escape" || event.defaultPrevented) return;
-        setOpenMenu(null);
-        setArmedCreationTool(null);
-        setActiveSection(null);
-        setAuditDrawerOpen(false);
-        setIssuesDrawerOpen(false);
-        event.currentTarget.querySelector<HTMLButtonElement>('[data-testid="workspace-select"]')?.focus();
-      }}
+      style={{
+        "--workspace-left-rail": `${uiPreferences.leftRailPx}px`,
+        "--workspace-right-rail": `${uiPreferences.rightRailPx}px`,
+        "--workspace-dock-height": `${uiPreferences.dockPx}px`
+      } as React.CSSProperties}
+      ref={workspaceShellRef}
     >
       <header className="titlebar">
         <div>
@@ -2062,6 +2548,33 @@ function AppSession() {
         </div>
         <div className="titlebar-actions" aria-label="Local project controls">
           <details className="display-preference-control"><summary>Units</summary><DisplayUnitSelector /></details>
+          <label className="titlebar-preference">
+            <span>Theme</span>
+            <select
+              aria-label="Appearance theme"
+              onChange={(event) => setUiPreferences((current) => updateUiPreferences(current, {
+                theme: event.target.value as typeof current.theme
+              }))}
+              value={uiPreferences.theme}
+            >
+              <option value="system">System</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </label>
+          <label className="titlebar-preference">
+            <span>Density</span>
+            <select
+              aria-label="Workspace density"
+              onChange={(event) => setUiPreferences((current) => updateUiPreferences(current, {
+                density: event.target.value as typeof current.density
+              }))}
+              value={uiPreferences.density}
+            >
+              <option value="comfortable">Comfortable</option>
+              <option value="compact">Compact</option>
+            </select>
+          </label>
 
           <button type="button" onClick={handleCreateProject} disabled={projectBusy}>
             <Database size={15} aria-hidden="true" />
@@ -2071,7 +2584,7 @@ function AppSession() {
             <FilePlus size={15} aria-hidden="true" />
             New blank
           </button>
-          <button type="button" onClick={() => handleOpenProject()} disabled={projectBusy}>
+          <button data-testid="open-local-project" type="button" onClick={() => handleOpenProject()} disabled={projectBusy}>
             <FolderOpen size={15} aria-hidden="true" />
             Open local
           </button>
@@ -2138,12 +2651,12 @@ function AppSession() {
         onRedo={handleRedoSessionModelEdit}
       >
           <ToolkitPalette
-            context={{ selection, canUndo: undoStack.length > 0, canRedo: redoStack.length > 0, busy: operationRequest.current.busy || operationBusy, windConfigured: Boolean(selection.type === "load" && model.load_cases.find((load) => load.id === selection.id)?.equivalent_static?.wind) }}
+            context={{ selection, selectionCardinality: orderedSelection.orderedKeys.length, canUndo: undoStack.length > 0, canRedo: redoStack.length > 0, busy: operationRequest.current.busy || operationBusy, windConfigured: Boolean(selection.type === "load" && model.load_cases.find((load) => load.id === selection.id)?.equivalent_static?.wind) }}
             onChoose={handleToolkitCommand}
           />
       </WorkspaceToolbar>
 
-      <div className={activeSection ? "workspace" : "workspace dock-collapsed"}>
+      <div ref={workspaceBudgetRef} className={activeSection ? "workspace" : "workspace dock-collapsed"}>
         <section
           className={`modeling-workspace${treeCollapsed ? " tree-collapsed" : ""}${
             inspectorCollapsed ? " inspector-collapsed" : ""
@@ -2151,31 +2664,70 @@ function AppSession() {
           aria-label="Modeling workspace"
           data-testid="modeling-workspace"
         >
-          <div className="workspace-pane workspace-pane-tree">
+          <div className="workspace-pane workspace-pane-tree" onKeyDown={(event) => handleNarrowDrawerKeyDown(event, "tree")}>
             <button
               type="button"
               className="workspace-pane-toggle"
+              ref={treeToggleRef}
               data-testid="toggle-tree"
               aria-expanded={!treeCollapsed}
               aria-label={treeCollapsed ? "Expand model tree" : "Collapse model tree"}
               title={treeCollapsed ? "Expand model tree" : "Collapse model tree"}
-              onClick={() => setTreeCollapsed((collapsed) => !collapsed)}
+              onClick={() => toggleWorkspaceRail("tree")}
             >
               <PanelLeft size={16} aria-hidden="true" /><span className="workspace-pane-toggle-label">Model</span>
               <span className="workspace-pane-toggle-icon" aria-hidden="true">
                 {treeCollapsed ? "›" : "‹"}
               </span>
             </button>
-            <ModelTree model={model} selection={selection} onQueueIntent={handleQueueEditorIntent} onSelect={handleSelectEntity} />
+            <ModelTree
+              density={uiPreferences.density}
+              hiddenKeys={effectiveHiddenKeys}
+              model={model}
+              modelIndex={activeModelIndex ?? undefined}
+              projectSessionGeneration={projectSessionGeneration}
+              selection={selection}
+              selectionState={orderedSelection}
+              onQueueIntent={handleQueueEditorIntent}
+              onSelect={handleSelectEntity}
+              onFocusChange={(key) => commitSelectionState(setSelectionFocus(orderedSelectionRef.current, key))}
+              onFilterPublication={handleTreePublication}
+            />
           </div>
+          <button
+            aria-label="Resize model tree"
+            aria-orientation="vertical"
+            aria-valuemax={420}
+            aria-valuemin={220}
+            aria-valuenow={uiPreferences.leftRailPx}
+            className="workspace-splitter workspace-splitter-tree"
+            data-testid="resize-model-tree"
+            onKeyDown={(event) => handleWorkspaceSplitterKeyDown(event, "tree")}
+            onPointerDown={(event) => beginWorkspaceResize(event, "tree")}
+            role="separator"
+            tabIndex={0}
+            type="button"
+          />
           <div className="workspace-pane workspace-pane-viewport">
             <PipeViewport
+              viewCommandRef={viewportViewCommandRef}
               armedCreationTool={armedCreationTool}
+              assignment={modelAssignment}
               model={model}
+              modelIdentityHash={modelAssignment?.identityHash ?? null}
+              hiddenKeys={effectiveHiddenKeys}
+              explicitHiddenKeys={hiddenEntityKeys}
+              isolateHiddenKeys={isolateHiddenEntityKeys}
+              modelIndex={activeModelIndex ?? undefined}
               modelCommitToken={directDraftCommitToken}
               onAddDraft={handleAddDraftReview}
               onApplyDraft={handleApplyDraftReview}
               onArmCreationTool={handleArmCreationTool}
+              onBoxSelection={handleBoxSelection}
+              onHiddenKeysChange={setHiddenEntityKeys}
+              onIsolateKeysChange={setIsolateHiddenEntityKeys}
+              onClearVisibility={() => { setHiddenEntityKeys(new Set()); setIsolateHiddenEntityKeys(new Set()); }}
+              onViewportInteractionStart={exposeViewportForNarrowInteraction}
               onInvalidateDraft={invalidateDirectDraftContext}
               onQueueIntent={handleQueueEditorIntent}
               onSelect={handleSelectEntity}
@@ -2183,17 +2735,35 @@ function AppSession() {
               reservedIntents={queuedBatches.flatMap((entry) => entry.batch.operations)}
               result={result}
               selection={selection}
+              selectionState={orderedSelection}
+              theme={resolvedTheme}
+              treePublication={treePublication}
             />
           </div>
-          <div className="workspace-pane workspace-pane-inspector">
+          <button
+            aria-label="Resize property inspector"
+            aria-orientation="vertical"
+            aria-valuemax={520}
+            aria-valuemin={280}
+            aria-valuenow={uiPreferences.rightRailPx}
+            className="workspace-splitter workspace-splitter-inspector"
+            data-testid="resize-property-inspector"
+            onKeyDown={(event) => handleWorkspaceSplitterKeyDown(event, "inspector")}
+            onPointerDown={(event) => beginWorkspaceResize(event, "inspector")}
+            role="separator"
+            tabIndex={0}
+            type="button"
+          />
+          <div className="workspace-pane workspace-pane-inspector" onKeyDown={(event) => handleNarrowDrawerKeyDown(event, "inspector")}>
             <button
               type="button"
               className="workspace-pane-toggle"
+              ref={inspectorToggleRef}
               data-testid="toggle-inspector"
               aria-expanded={!inspectorCollapsed}
               aria-label={inspectorCollapsed ? "Expand inspector" : "Collapse inspector"}
               title={inspectorCollapsed ? "Expand inspector" : "Collapse inspector"}
-              onClick={() => setInspectorCollapsed((collapsed) => !collapsed)}
+              onClick={() => toggleWorkspaceRail("inspector")}
             >
               <PanelRight size={16} aria-hidden="true" /><span className="workspace-pane-toggle-label">Properties</span>
               <span className="workspace-pane-toggle-icon" aria-hidden="true">
@@ -2201,14 +2771,18 @@ function AppSession() {
               </span>
             </button>
             <PropertyInspector
+              getPreparationEpoch={getPreparationEpoch}
               model={model}
               onQueueIntent={handleQueueEditorIntent}
               onValidateIntent={handleValidateIntent}
               onApplyIntent={handleApplyIntent}
               operationBusy={operationBusy}
               operationOutcomes={operationOutcomes}
+              projectSessionGeneration={projectSessionGeneration}
               queuedIntents={editorIntents}
               selection={selection}
+              selectionState={orderedSelection}
+              taskRequest={propertyTaskRequest}
             />
           </div>
         </section>
@@ -2218,6 +2792,22 @@ function AppSession() {
           aria-label="Workspace sections"
           data-testid="workspace-dock"
         >
+          {activeSection ? (
+            <button
+              aria-label="Resize task dock"
+              aria-orientation="horizontal"
+              aria-valuemax={600}
+              aria-valuemin={180}
+              aria-valuenow={uiPreferences.dockPx}
+              className="workspace-dock-splitter"
+              data-testid="resize-task-dock"
+              onKeyDown={handleDockSplitterKeyDown}
+              onPointerDown={(event) => beginWorkspaceResize(event, "dock")}
+              role="separator"
+              tabIndex={0}
+              type="button"
+            />
+          ) : null}
           {activeSection ? (
             <header className="workspace-dock-header" data-testid="workspace-dock-header">
               <h2>{WORKSPACE_SECTIONS.find((candidate) => candidate.id === activeSection)?.label ?? activeSection}</h2>
@@ -2233,6 +2823,8 @@ function AppSession() {
               data-testid="workspace-section-operations"
               tabIndex={-1}
             >
+              {activeSection === "operations" || activatedExpensiveSections.has("operations") ? (
+              <DormantSection active={activeSection === "operations"} guardGeneration={requestEpoch} sessionGeneration={projectSessionGeneration}>
               <nav className="operation-tabs" aria-label="Editing and review tools">
                 {[["review", "Review changes"], ["geometry", "Geometry"], ["supports", "Supports"], ["weight", "Self weight"], ["agent", "Agent"], ["details", "Details"]].map(([id, label]) => (
                   <button type="button" key={id} aria-pressed={operationTab === id} data-testid={`operation-tab-${id}`} onClick={() => setOperationTab(id)}>{label}</button>
@@ -2267,6 +2859,7 @@ function AppSession() {
               <SelfWeightPlanPanel
                 model={model}
                 selection={selection}
+                selectedPipeRefs={selectedPipeRefs}
                 onQueueBatch={handleQueueOperationBatch}
                 busy={operationBusy}
                 requestEpoch={requestEpoch}
@@ -2283,6 +2876,7 @@ function AppSession() {
               selection={selection}
               selectedReviewTarget={selectedReviewTarget}
               statusText={r3ExitJourneyStatus({ result, ruleCheckAggregate, projectSummary })}
+              reviewActive={activeSection === "operations" && operationTab === "review"}
               onGenerateProposal={handleProposal}
               onOpenOperations={() => { setActiveSection("operations"); setOperationTab("review"); }}
               onOpenResults={() => setActiveSection("results")}
@@ -2305,6 +2899,7 @@ function AppSession() {
               <GeometryToolsPanel
                 model={model}
                 selection={selection}
+                selectedPipeRefs={selectedPipeRefs}
                 onQueueBatch={handleQueueOperationBatch}
                 busy={operationBusy}
                 requestEpoch={requestEpoch}
@@ -2388,6 +2983,7 @@ function AppSession() {
                 </div>
               </section>
               </div>
+              </DormantSection>) : null}
             </section>
 
             <section
@@ -2395,12 +2991,15 @@ function AppSession() {
               aria-label="Load Cases section"
               data-testid="workspace-section-loads"
             >
+              {activeSection === "loads" || activatedExpensiveSections.has("loads") ? (
+              <DormantSection active={activeSection === "loads"} guardGeneration={requestEpoch} sessionGeneration={projectSessionGeneration}>
               <LoadCaseManagerPanel
                 model={model}
                 onQueueIntent={handleQueueEditorIntent}
                 onSelect={handleSelectEntity}
                 selection={selection}
               />
+              </DormantSection>) : null}
             </section>
 
             <section
@@ -2409,7 +3008,10 @@ function AppSession() {
               data-testid="workspace-section-libraries"
               tabIndex={-1}
             >
+              {activeSection === "libraries" || activatedExpensiveSections.has("libraries") ? (
+              <DormantSection active={activeSection === "libraries"} sessionGeneration={projectSessionGeneration}>
               <LibraryManagerPanel model={model} onR3JourneyEvent={recordR3JourneyEvent} />
+              </DormantSection>) : null}
             </section>
 
             <section
@@ -2417,7 +3019,10 @@ function AppSession() {
               aria-label="Rule Packs section"
               data-testid="workspace-section-rule-packs"
             >
+              {activeSection === "rule-packs" || activatedExpensiveSections.has("rule-packs") ? (
+              <DormantSection active={activeSection === "rule-packs"} sessionGeneration={projectSessionGeneration}>
               <RulePackManagerPanel model={model} onR3JourneyEvent={recordR3JourneyEvent} />
+              </DormantSection>) : null}
             </section>
 
             <section
@@ -2425,6 +3030,8 @@ function AppSession() {
               aria-label="Solve section"
               data-testid="workspace-section-solve"
             >
+              {activeSection === "solve" || activatedExpensiveSections.has("solve") ? (
+              <DormantSection active={activeSection === "solve"} sessionGeneration={projectSessionGeneration}>
               <SolvePanel
                 analysisRun={analysisRun}
                 model={model}
@@ -2438,12 +3045,19 @@ function AppSession() {
               />
               <RuleCheckPanel model={model} result={currentSolvedResult} />
               <RuleCheckRunPanel
+                basis={ruleCheckRunBasis}
                 model={model}
                 result={currentSolvedResult}
-                onAggregateChange={handleRuleCheckAggregate}
+                onAggregateChange={(aggregate) => void handleRuleCheckAggregate(aggregate, {
+                  projectSessionGeneration,
+                  modelRevision: uiModelRevision,
+                  result: currentSolvedResult,
+                  inputManifest
+                })}
                 onR3JourneyEvent={recordR3JourneyEvent}
               />
               <KnowledgePanel knowledge={knowledge} result={currentSolvedResult} />
+              </DormantSection>) : null}
             </section>
 
             <section
@@ -2451,6 +3065,9 @@ function AppSession() {
               aria-label="Results section"
               data-testid="workspace-section-results"
             >
+              {activeSection === "results" || activatedExpensiveSections.has("results") ? (
+              <DormantSection active={activeSection === "results"} sessionGeneration={projectSessionGeneration}>
+              <Fragment key={`results:${dormantOutputBasis}`}>
               {historicalRun ? <HistoricalRunPanel key={historicalRun.runId} context={historicalRun} /> : <ResultsPanel
                 result={result}
                 knowledge={knowledge}
@@ -2469,6 +3086,8 @@ function AppSession() {
                 proposal={proposal}
                 selectedReviewTarget={selectedReviewTarget}
               />
+              </Fragment>
+              </DormantSection>) : null}
             </section>
 
             <section
@@ -2476,6 +3095,9 @@ function AppSession() {
               aria-label="Report section"
               data-testid="workspace-section-report"
             >
+              {activeSection === "report" || activatedExpensiveSections.has("report") ? (
+              <DormantSection active={activeSection === "report"} sessionGeneration={projectSessionGeneration}>
+              <Fragment key={`report:${dormantOutputBasis}`}>
               <RenderedReportPanel
                 model={model}
                 result={currentSolvedResult}
@@ -2502,6 +3124,8 @@ function AppSession() {
                 storageCapability={storageCapability}
               />
               <ReportLintPanel model={model} result={currentSolvedResult} analysisRun={analysisRun} />
+              </Fragment>
+              </DormantSection>) : null}
             </section>
 
             <section
@@ -2509,6 +3133,8 @@ function AppSession() {
               aria-label="Project section"
               data-testid="workspace-section-project"
             >
+              {activeSection === "project" || activatedExpensiveSections.has("project") ? (
+              <DormantSection active={activeSection === "project"} sessionGeneration={projectSessionGeneration}>
               <ProjectStorageAuditPanel
                 model={model}
                 storageCapability={storageCapability}
@@ -2534,6 +3160,7 @@ function AppSession() {
                 modelDocumentMigration={modelDocumentMigration}
                 modelMigrationLedger={modelMigrationLedger}
               />
+              </DormantSection>) : null}
             </section>
 
             <section
@@ -2541,6 +3168,9 @@ function AppSession() {
               aria-label="Exports section"
               data-testid="workspace-section-exports"
             >
+              {activeSection === "exports" || activatedExpensiveSections.has("exports") ? (
+              <DormantSection active={activeSection === "exports"} sessionGeneration={projectSessionGeneration}>
+              <Fragment key={`exports:${dormantOutputBasis}`}>
               <ResultExportPanel model={model} result={currentSolvedResult} analysisRun={analysisRun} inputManifest={inputManifest} />
               <StressNeutralExportPanel model={model} result={currentSolvedResult} analysisRun={analysisRun} />
               <PcfExportPanel model={model} result={currentSolvedResult} analysisRun={analysisRun} />
@@ -2587,6 +3217,8 @@ function AppSession() {
                 storageCapability={storageCapability}
               />
               <RedactionExportControlsPanel model={model} />
+              </Fragment>
+              </DormantSection>) : null}
             </section>
 
             <section
@@ -2594,6 +3226,8 @@ function AppSession() {
               aria-label="Audit and boundaries section"
               data-testid="workspace-section-evidence"
             >
+              {activeSection === "evidence" || activatedExpensiveSections.has("evidence") ? (
+              <DormantSection active={activeSection === "evidence"} sessionGeneration={projectSessionGeneration}>
               <RunAuditPanel model={model} result={result} analysisRun={analysisRun} />
               <ValidationEvidencePanel model={model} />
               <BuildReadinessPanel model={model} />
@@ -2601,6 +3235,7 @@ function AppSession() {
               <SecretPrivateLibraryPanel model={model} storageCapability={storageCapability} />
               <SecurityThreatModelPanel model={model} storageCapability={storageCapability} />
               <AccessibilityBaselinePanel model={model} />
+              </DormantSection>) : null}
             </section>
           </div>
         </section>
@@ -2650,9 +3285,27 @@ function AppSession() {
   );
 }
 
-// Inactive sections stay mounted (form drafts, queue previews, and audit
-// state survive navigation) and are hidden with CSS only; display:none also
-// removes them from the accessibility tree in a real browser.
+const EXPENSIVE_LIFECYCLE_SECTIONS: ReadonlySet<WorkspaceSectionId> = new Set(
+  WORKSPACE_SECTIONS.map((section) => section.id)
+);
+
+function uiModelIdentityHash(model: PreviewModel): string {
+  const text = JSON.stringify(model);
+  let first = 0x811c9dc5;
+  let second = 0x9e3779b9;
+  for (let index = 0; index < text.length; index += 1) {
+    const unit = text.charCodeAt(index);
+    first = Math.imul(first ^ unit, 0x01000193);
+    second = Math.imul(second ^ unit, 0x85ebca6b);
+  }
+  return `ui-model-fnv32x2:${(first >>> 0).toString(16).padStart(8, "0")}${
+    (second >>> 0).toString(16).padStart(8, "0")
+  }:${text.length}`;
+}
+
+// Once activated, sections stay mounted so form drafts and queue previews
+// survive navigation; expensive sections defer their first model scan until
+// the user opens them. CSS removes inactive sections from the accessibility tree.
 function dockSectionClass(sectionId: WorkspaceSectionId, activeSection: WorkspaceSectionId | null): string {
   return sectionId === activeSection ? "workspace-dock-section" : "workspace-dock-section inactive";
 }
@@ -2814,6 +3467,7 @@ function AgentWorkbenchPanel({
   selection,
   selectedReviewTarget,
   statusText,
+  reviewActive,
   onGenerateProposal,
   onOpenOperations,
   onOpenResults,
@@ -2828,6 +3482,7 @@ function AgentWorkbenchPanel({
   selection: EntityRef;
   selectedReviewTarget: SelectedReviewTarget | null;
   statusText: string;
+  reviewActive: boolean;
   onGenerateProposal: () => void;
   onOpenOperations: () => void;
   onOpenResults: () => void;
@@ -2872,7 +3527,7 @@ function AgentWorkbenchPanel({
           <Sparkles size={15} aria-hidden="true" />
           Propose
         </button>
-        <button type="button" data-testid="agent-open-operations" onClick={onOpenOperations}>
+        <button type="button" data-testid="agent-open-operations" aria-pressed={reviewActive} onClick={onOpenOperations}>
           <ClipboardCheck size={15} aria-hidden="true" />
           Review
         </button>
@@ -2954,6 +3609,7 @@ function StatusBar({
           <StatusPill
             label="Solve proof"
             value={visibleSolveProof}
+            summaryText="Run identity matches"
             testId="status-pill-solve-proof"
           />
         ) : null}
@@ -3096,10 +3752,12 @@ function IssuesHome({
   );
 }
 
-function StatusPill({ label, value, testId }: { label: string; value: string; testId: string }) {
+function StatusPill({ label, value, testId, summaryText }: {
+  label: string; value: string; testId: string; summaryText?: string;
+}) {
   return (
     <details className="status-pill" data-testid={testId}>
-      <summary><strong>{label}</strong> {readableWorkspaceStatus(value)}</summary>
+      <summary><strong>{label}</strong> {summaryText ?? readableWorkspaceStatus(value)}</summary>
       <div><strong>Recorded status</strong><code>{value}</code></div>
     </details>
   );

@@ -1,8 +1,8 @@
-import { QuantityReadout } from "../display-units";
+import { SelectionPresentationBinding } from "./selectionPresentationBinding";
+import { QuantityReadout, useDisplayQuantity } from "../display-units";
 import { Box, CircleDot, CirclePlus, GitBranch, MoveDown, Anchor } from "lucide-react";
-import { type PointerEvent as ReactPointerEvent, useEffect, useMemo, useRef, useState } from "react";
+import { type PointerEvent as ReactPointerEvent, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { convertDisplayQuantities } from "../../services/displayQuantityService";
 import {
   describeUnitBasis,
@@ -61,29 +61,124 @@ import {
   type RoutingPlane,
   type RoutingPlaneDefinition
 } from "./viewportRouting";
+import {
+  convertedSectionEnvelopeIsConsistent,
+  modelIndexFor,
+  type Bounds3,
+  type ModelIndex
+} from "../workspace/modelIndex";
+import {
+  entityKey,
+  entityRefFromKey,
+  type EntityKey,
+  type OrderedSelectionState
+} from "../workspace/selectionState";
+import {
+  authoredToLocal,
+  applyMeasurementTargetCommand,
+  boxSelectEntityKeys,
+  boxGestureContextIsCurrent,
+  claimBoxSelectionPointerDown,
+  createRenderTransform,
+  displayedBoundsForEntityKeys,
+  formatMeasurementDisplayValue,
+  fittedViewportDistance,
+  hideSelectionVisibility,
+  isolateSelectionVisibility,
+  pointPickPrimitives,
+  prioritizedLabelKeys,
+  spatialEntityKeyGroups,
+  visibilityEligibleSelectionKeys,
+  type BoxGestureContext,
+  type BoxSelectionDirection,
+  type BoxSelectionFilter,
+  type MeasurementSource,
+  type ViewportViewCommand
+} from "./viewportSelection";
+import {
+  registerInstancedSelectionPresentation,
+  registerSelectionPresentation,
+  ViewportResource,
+  type ViewportContextStatus,
+  type ViewportRendererInfo
+} from "./viewportResource";
+import {
+  clearUiDiagnosticsPublisher,
+  publishUiDiagnostics,
+  refreshUiDiagnostics,
+  type UiDiagnosticsPublication
+} from "../workspace/uiDiagnostics";
+import { VirtualTargetPicker } from "../workspace/VirtualTargetPicker";
+
+function ViewportMeasurementQuantityReadout({ label, unit, value }: { label: string; unit: string; value: number }) {
+  const display = useDisplayQuantity({ value, unit, dimension_id: "length" });
+  const rawValue = String(display.value);
+  const presentedValue = typeof display.value === "number"
+    ? formatMeasurementDisplayValue(display.value)
+    : rawValue;
+  const exactLabel = `${label}: ${presentedValue} ${display.unit}; full-precision numeric value ${rawValue} ${display.unit}.`;
+  return (
+    <span
+      aria-label={exactLabel}
+      data-display-status={display.status}
+      data-measurement-label={label}
+      data-raw-unit={display.unit}
+      data-raw-value={rawValue}
+      title={`${label} full precision: ${rawValue} ${display.unit}`}
+    >
+      {label} {presentedValue} {display.unit}
+      {display.notice ? <small role="status"> ({display.notice})</small> : null}
+    </span>
+  );
+}
 
 type Props = {
   armedCreationTool?: CreationTool | null;
+  assignment?: {
+    status: "started" | "committed";
+    generation: number;
+    indexGeneration: string;
+    identityHash: string;
+    startedAt: number;
+    committedAt: number | null;
+  } | null;
   model: PreviewModel;
+  modelIdentityHash?: string | null;
+  hiddenKeys?: ReadonlySet<EntityKey>;
+  explicitHiddenKeys?: ReadonlySet<EntityKey>;
+  isolateHiddenKeys?: ReadonlySet<EntityKey>;
+  modelIndex?: ModelIndex;
   modelCommitToken?: string | null;
+  viewCommandRef?: { current: ((command: ViewportViewCommand) => void) | null };
   onArmCreationTool?: (tool: CreationTool | null) => void;
   onAddDraft?: (submission: DraftSubmission, generation: number) => Promise<FrozenDraftReview | null>;
   onApplyDraft?: (review: FrozenDraftReview) => Promise<boolean>;
   onInvalidateDraft?: () => void;
+  onHiddenKeysChange?: (keys: ReadonlySet<EntityKey>) => void;
+  onIsolateKeysChange?: (keys: ReadonlySet<EntityKey>) => void;
+  onClearVisibility?: () => void;
+  onViewportInteractionStart?: (interaction: ViewportExposureInteraction) => void;
   onQueueIntent?: (intent: EditorOperationIntent) => void;
-  onSelect: (selection: EntityRef) => void;
+  onBoxSelection?: (
+    keys: readonly EntityKey[],
+    modifiers: { additive?: boolean; toggle?: boolean },
+    detail: { direction: BoxSelectionDirection; filter: BoxSelectionFilter; pointerDownAt: number }
+  ) => OrderedSelectionState;
+  onSelect: (selection: EntityRef, modifiers?: { additive?: boolean; toggle?: boolean }) => OrderedSelectionState;
   queuedIntents?: EditorOperationIntent[];
   reservedIntents?: ReadonlyArray<unknown>;
   result?: MechanicsResult | null;
   selection: EntityRef;
+  selectionState?: OrderedSelectionState;
+  theme?: "light" | "dark";
+  treePublication?: { actionSequence: number; publicationSequence: number; query: string; visibleCount: number; inputAt: number | null; inputEventTimeStamp: number | null; publishedAt: number } | null;
 };
 
 export type CreationTool = "node" | "pipe" | "support" | "component" | "load";
+export type ViewportExposureInteraction = "measurement" | "box-selection";
 type ViewportCommandType = "create_node" | "connect_pipe_run" | "insert_component_symbol";
 type ViewPreset = "iso" | "front" | "top";
 const VIEWPORT_DIMENSIONLESS_UNIT_VALIDATION_STATUS = "not_required_dimensionless";
-const VIEW_TARGET = { x: 3.8, y: 1.2, z: 0.7 } as const;
-const GIZMO_SIZE = 96;
 
 type ViewportSelectionTarget = {
   ref: EntityRef;
@@ -145,6 +240,19 @@ type RoutingVisualState = {
   plane: RoutingPlane;
   showGrid: boolean;
 };
+
+type ActiveViewportDiagnostics = Exclude<UiDiagnosticsPublication["viewport"], { status: "unavailable" }>;
+type BoxPublication = Readonly<{
+  actionSequence: number;
+  direction: BoxSelectionDirection;
+  filter: BoxSelectionFilter;
+  orderedKeys: readonly EntityKey[];
+  primaryKey: EntityKey | null;
+  pointerDownAt: number;
+  publishedAt: number;
+  afterSubmissionSequence: number;
+  renderSubmissionSequence: number;
+}>;
 
 type UnitOption = Pick<UnitCatalogEntry, "symbol" | "unit_id">;
 
@@ -212,28 +320,80 @@ type DeformationOverlay = {
 
 export function PipeViewport({
   armedCreationTool = null,
+  assignment = null,
   model,
+  modelIdentityHash = null,
+  hiddenKeys = new Set(),
+  explicitHiddenKeys = hiddenKeys,
+  isolateHiddenKeys = new Set(),
+  modelIndex,
   modelCommitToken = null,
+  viewCommandRef,
   onArmCreationTool = () => {},
   onAddDraft,
   onApplyDraft,
   onInvalidateDraft = () => {},
+  onHiddenKeysChange = () => {},
+  onIsolateKeysChange = () => {},
+  onClearVisibility = () => {},
+  onViewportInteractionStart = () => {},
   onQueueIntent,
+  onBoxSelection = () => Object.freeze({ orderedKeys: [], primaryKey: null, rangeAnchorKey: null, focusKey: null, preparationEpoch: 0 }),
   onSelect,
   queuedIntents = [],
   reservedIntents = [],
   result = null,
-  selection
+  selection,
+  selectionState,
+  theme = "light",
+  treePublication = null
 }: Props) {
   const hostRef = useRef<HTMLDivElement | null>(null);
+  const viewportResourceRef = useRef<ViewportResource | null>(null);
+  const selectionPresentationBindingRef = useRef(new SelectionPresentationBinding());
+  const mainFrameRef = useRef({
+    generation: null as number | null,
+    sequence: 0,
+    submittedAt: null as number | null,
+    opportunityAt: null as number | null,
+    rendererInfo: null as ViewportRendererInfo | null
+  });
+  const diagnosticsSelectionRef = useRef<{
+    actionSequence: number;
+    generation: number;
+    selection: ActiveViewportDiagnostics["selection"];
+    inspector: ActiveViewportDiagnostics["inspector"];
+  } | null>(null);
+  const diagnosticsBoxRef = useRef<{
+    generation: number;
+    publication: BoxPublication;
+    box: Exclude<ActiveViewportDiagnostics["box"], { status: "unavailable" }>;
+  } | null>(null);
+  const diagnosticsInspectorPublicationSequenceRef = useRef(0);
+  const diagnosticsPublisherRegisteredRef = useRef(false);
   const draftProjectorRef = useRef<DraftProjector | null>(null);
   const cameraStateRef = useRef<{
     position: [number, number, number];
     target: [number, number, number];
   } | null>(null);
   const lastPresetRef = useRef<ViewPreset | null>(null);
+  const fittedSessionGenerationRef = useRef<number | null>(null);
   const pickRef = useRef<((event: { clientX: number; clientY: number }) => EntityRef | null) | null>(null);
-  const pointerGestureRef = useRef<{ gesture: PointerGesture; target: Element } | null>(null);
+  const pointerGestureRef = useRef<{ gesture: PointerGesture; target: Element; pointerDownAt: number } | null>(null);
+  const boxGestureRef = useRef<{
+    context: BoxGestureContext;
+    pointerId: number;
+    startX: number;
+    startY: number;
+    currentX: number;
+    currentY: number;
+    pointerDownAt: number;
+    filter: BoxSelectionFilter;
+    modifiers: { additive?: boolean; toggle?: boolean };
+    target: Element;
+  } | null>(null);
+  const boxActionSequenceRef = useRef(0);
+  const selectionActionSequenceRef = useRef(0);
   const placementGenerationRef = useRef(new RoutingPlacementGate());
   const routingVisualUpdaterRef = useRef<((state: RoutingVisualState) => void) | null>(null);
   const routingVisualStateRef = useRef<RoutingVisualState>({ anchor: null, ghost: null, plane: "XZ", showGrid: false });
@@ -261,18 +421,210 @@ export function PipeViewport({
   const [pointerGhost, setPointerGhost] = useState<PointerGhost | null>(null);
   const [placementMessage, setPlacementMessage] = useState<string | null>(null);
   const [webglAvailable, setWebglAvailable] = useState<boolean | null>(null);
+  const [viewportContextStatus, setViewportContextStatus] = useState<ViewportContextStatus>("ready");
   const [viewPreset, setViewPreset] = useState<ViewPreset>("iso");
   const [showLabels, setShowLabels] = useState(true);
   const [showLoads, setShowLoads] = useState(true);
   const [showGrid, setShowGrid] = useState(true);
-  const selectionTargets = useMemo(() => viewportSelectionTargets(model), [model]);
+  const [boxSelectActive, setBoxSelectActive] = useState(false);
+  const [boxSelectionFilter, setBoxSelectionFilter] = useState<BoxSelectionFilter>("all");
+  const [boxRect, setBoxRect] = useState<{ left: number; top: number; right: number; bottom: number } | null>(null);
+  const [boxPublication, setBoxPublication] = useState<BoxPublication | null>(null);
+  const [measurementActive, setMeasurementActive] = useState(false);
+  const [measurementSource, setMeasurementSource] = useState<MeasurementSource | null>(null);
+  const measurementGateRef = useRef(0);
+  const [measurementReadout, setMeasurementReadout] = useState<{
+    status: "idle" | "pending" | "available" | "unavailable";
+    values: ReadonlyMap<string, number>;
+    reason: string;
+  }>({ status: "idle", values: new Map(), reason: "Choose two authored nodes or one authored pipe." });
+  const [geometryMode, setGeometryMode] = useState<"schematic" | "actual-od">("schematic");
+  const [viewCommandStatus, setViewCommandStatus] = useState("No view command dispatched.");
+  const [odGeneration, setOdGeneration] = useState(0);
+  const odGenerationRef = useRef(0);
+  const odRequestGateRef = useRef(0);
+  const actualOdCacheRef = useRef<{
+    key: string;
+    value: { radii: ReadonlyMap<EntityKey, number>; status: "available" | "partial-unavailable" | "unavailable"; reason: string };
+  } | null>(null);
+  const [actualOd, setActualOd] = useState<{
+    radii: ReadonlyMap<EntityKey, number>;
+    status: "not-requested" | "pending" | "available" | "partial-unavailable" | "unavailable";
+    reason: string;
+  }>({ radii: new Map(), status: "not-requested", reason: "Actual OD has not been requested." });
+  const activeModelIndex = useMemo(
+    () => modelIndex ?? modelIndexFor(model, 0, 0),
+    [model, modelIndex]
+  );
+  const renderTransformResolution = useMemo(() => {
+    try {
+      return { transform: createRenderTransform(activeModelIndex.geometryBounds), issue: null as string | null };
+    } catch (error: unknown) {
+      return {
+        transform: createRenderTransform(null),
+        issue: error instanceof Error ? error.message : "Viewport geometry cannot be represented safely."
+      };
+    }
+  }, [activeModelIndex]);
+  const renderTransform = renderTransformResolution.transform;
+  const orderedSelectionKeys = useMemo(
+    () => selectionState?.orderedKeys ?? Object.freeze([entityKey(selection)]),
+    [selection.id, selection.type, selectionState]
+  );
+  const orderedSelectionKeySet = useMemo(
+    () => new Set(orderedSelectionKeys),
+    [orderedSelectionKeys]
+  );
+  const visibilitySelectionKeys = useMemo(
+    () => visibilityEligibleSelectionKeys(activeModelIndex, orderedSelectionKeys),
+    [activeModelIndex, orderedSelectionKeys]
+  );
+  const visibilitySelectionReason = visibilitySelectionKeys.length > 0
+    ? null
+    : "Select at least one visible, valid node, pipe, support, or component.";
+  const [hoveredEntityKey, setHoveredEntityKey] = useState<EntityKey | null>(null);
+  useEffect(() => {
+    setHoveredEntityKey((current) => current && !hiddenKeys.has(current) ? current : null);
+  }, [activeModelIndex.sessionGeneration, hiddenKeys]);
+  const selectedHiddenCount = useMemo(
+    () => orderedSelectionKeys.reduce((count, key) => count + (hiddenKeys.has(key) ? 1 : 0), 0),
+    [hiddenKeys, orderedSelectionKeys]
+  );
+  const primarySelectionKey = selectionState?.primaryKey ?? entityKey(selection);
+  // Labels retain their project fallback; explicit empty ordered selection does not.
+  const orderedPrimarySelectionKey = selectionState === undefined
+    ? entityKey(selection)
+    : selectionState.primaryKey;
+  const [selectionPublication, setSelectionPublication] = useState<{
+    actionSequence: number;
+    inputKind: "programmatic" | "external" | "pointer" | "label";
+    pointerDownAt: number | null;
+    orderedKeys: readonly EntityKey[];
+    primaryKey: EntityKey | null;
+    publishedAt: number;
+    afterSubmissionSequence: number;
+  }>(() => ({
+    actionSequence: ++selectionActionSequenceRef.current,
+    inputKind: "programmatic",
+    pointerDownAt: null as number | null,
+    orderedKeys: orderedSelectionKeys,
+    primaryKey: orderedPrimarySelectionKey,
+    publishedAt: performance.now(),
+    afterSubmissionSequence: viewportResourceRef.current?.submissionSequence ?? 0
+  }));
+  useEffect(() => {
+    if (selectionPublication.primaryKey === orderedPrimarySelectionKey &&
+        selectionPublication.orderedKeys.length === orderedSelectionKeys.length &&
+        selectionPublication.orderedKeys.every((key, index) => key === orderedSelectionKeys[index])) return;
+    const publication = {
+      actionSequence: ++selectionActionSequenceRef.current,
+      inputKind: "external" as const,
+      pointerDownAt: null,
+      orderedKeys: orderedSelectionKeys,
+      primaryKey: orderedPrimarySelectionKey,
+      publishedAt: performance.now(),
+      afterSubmissionSequence: viewportResourceRef.current?.submissionSequence ?? 0
+    };
+    diagnosticsStateRef.current.selectionPublication = publication;
+    setSelectionPublication(publication);
+  }, [orderedSelectionKeys, orderedPrimarySelectionKey, selectionPublication]);
+  const labelKeys = useMemo(
+    () => prioritizedLabelKeys(activeModelIndex, {
+      primaryKey: primarySelectionKey,
+      hoverKey: hoveredEntityKey,
+      selectedKeys: orderedSelectionKeys,
+      hiddenKeys
+    }),
+    [activeModelIndex, hiddenKeys, hoveredEntityKey, orderedSelectionKeys, primarySelectionKey]
+  );
+  const selectionTargets = useMemo(
+    () => viewportSelectionTargets(activeModelIndex, labelKeys),
+    [activeModelIndex, labelKeys]
+  );
+  const diagnosticsStateRef = useRef({
+    assignment,
+    identityHash: modelIdentityHash,
+    index: activeModelIndex,
+    projectId: model.project.id,
+    labelsEnabled: showLabels,
+    labelCount: labelKeys.length,
+    boxPublication,
+    geometryMode,
+    odGeneration,
+    odStatus: actualOd.status,
+    treePublication,
+    orderedSelectionKeys,
+    primarySelectionKey,
+    inspectorSelection: selection,
+    selectionPublication
+  });
+  diagnosticsStateRef.current = {
+    assignment,
+    identityHash: modelIdentityHash,
+    index: activeModelIndex,
+    projectId: model.project.id,
+    labelsEnabled: showLabels,
+    labelCount: labelKeys.length,
+    boxPublication,
+    geometryMode,
+    odGeneration,
+    odStatus: actualOd.status,
+    treePublication,
+    orderedSelectionKeys,
+    primarySelectionKey,
+    inspectorSelection: selection,
+    selectionPublication
+  };
   const deformation = useMemo(() => buildDeformationOverlay(model, result), [model, result]);
+  const localNodeMap = useMemo(
+    () => new Map(
+      model.nodes
+        .filter((node) => !activeModelIndex.invalidGeometry.has(entityKey({ type: "node", id: node.id })))
+        .map((node) => [node.id, authoredToLocal(node.position, renderTransform.origin)] as const)
+    ),
+    [activeModelIndex, model, renderTransform]
+  );
   const visibleIntents = onQueueIntent ? viewportIntents(queuedIntents) : localIntents;
   const pendingViewportIntents = [...reservedIntents, ...queuedIntents, ...localIntents];
   const routeNodeMap = useMemo(
     () => new Map(model.nodes.map((node) => [node.id, node.position] as const)),
     [model]
   );
+  const nodeTargetOptions = useMemo(() => model.nodes.map((node) => ({
+    value: node.id,
+    label: node.label || node.id
+  })), [model.nodes]);
+  const materialTargetOptions = useMemo(() => (model.materials ?? []).map((material) => ({
+    value: material.id,
+    label: material.label || material.id
+  })), [model.materials]);
+  const connectedPipeTargetOptions = useMemo(() => model.pipe_segments
+    .filter((pipe) => pipe.from === componentDraft.node || pipe.to === componentDraft.node)
+    .map((pipe) => ({ value: pipe.id, label: pipe.label || pipe.id, keywords: [pipe.from, pipe.to] })),
+  [componentDraft.node, model.pipe_segments]);
+  const measurementPoints = useMemo<readonly Vec3[]>(() => {
+    if (!measurementSource) return [];
+    if (measurementSource.kind === "nodes") {
+      return measurementSource.keys.flatMap((key) => {
+        const indexed = activeModelIndex.entities.get(key);
+        return indexed?.ref.type === "node" && indexed.anchor && !indexed.geometryIssue ? [indexed.anchor as Vec3] : [];
+      });
+    }
+    const indexed = activeModelIndex.entities.get(measurementSource.key);
+    if (indexed?.ref.type !== "pipe" || indexed.geometryIssue) return [];
+    const pipe = indexed.record as PreviewModel["pipe_segments"][number];
+    const from = routeNodeMap.get(pipe.from);
+    const to = routeNodeMap.get(pipe.to);
+    return from && to ? [from, to] : [];
+  }, [activeModelIndex, measurementSource, routeNodeMap]);
+  const measurementTargetSummary = measurementSource?.kind === "pipe"
+    ? `pipe: ${entityRefFromKey(measurementSource.key)?.id ?? "unavailable"}`
+    : measurementSource?.kind === "nodes"
+      ? measurementSource.keys.map((key) => {
+          const ref = entityRefFromKey(key);
+          return ref ? `${ref.type}: ${ref.id}` : "unavailable";
+        }).join(" → ")
+      : "No authored targets";
   const resolvedFrom = routeNodeMap.get(pipeDraft.from) ?? null;
   const routeGhost = armedCreationTool !== "pipe"
     ? null
@@ -355,7 +707,6 @@ export function PipeViewport({
     "rotational_stiffness",
     "N*m/rad"
   );
-
   useEffect(() => {
     let cancelled = false;
     loadUnitCatalog()
@@ -373,6 +724,111 @@ export function PipeViewport({
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (geometryMode !== "actual-od") return;
+    const cacheKey = `${activeModelIndex.generation}:${defaultLengthUnit}`;
+    if (actualOdCacheRef.current?.key === cacheKey) {
+      setActualOd(actualOdCacheRef.current.value);
+      return;
+    }
+    const requestToken = ++odRequestGateRef.current;
+    const generation = ++odGenerationRef.current;
+    setOdGeneration(generation);
+    const plan = actualOdConversionPlan(activeModelIndex, model, defaultLengthUnit);
+    if (plan.requests.length === 0) {
+      const value = { radii: new Map<EntityKey, number>(), status: "unavailable" as const, reason: plan.reason };
+      actualOdCacheRef.current = { key: cacheKey, value };
+      setActualOd(value);
+      return;
+    }
+    setActualOd({ radii: new Map(), status: "pending", reason: "Validating pipe outside diameters through the unit service…" });
+    convertDisplayQuantities(plan.requests).then((results) => {
+      if (odRequestGateRef.current !== requestToken) return;
+      const converted = new Map(results.flatMap((result) =>
+        result.status === "converted" && result.unit === defaultLengthUnit && Number.isFinite(result.value) && result.value > 0
+          ? [[result.id, result.value] as const]
+          : []
+      ));
+      const radii = new Map<EntityKey, number>();
+      let rejected = plan.invalidCount;
+      for (const [key, requestIds] of plan.requestByPipe) {
+        const diameter = converted.get(requestIds.outsideDiameter);
+        const wall = converted.get(requestIds.wallThickness);
+        const inlineDiameter = converted.get(requestIds.inlineOutsideDiameter);
+        const inlineWall = converted.get(requestIds.inlineWallThickness);
+        if (diameter === undefined || wall === undefined || inlineDiameter === undefined || inlineWall === undefined ||
+            !convertedSectionEnvelopeIsConsistent(diameter, wall, inlineDiameter, inlineWall)) rejected += 1;
+        else radii.set(key, diameter / 2);
+      }
+      const value = {
+        radii,
+        status: (radii.size === 0 ? "unavailable" : rejected > 0 ? "partial-unavailable" : "available") as "available" | "partial-unavailable" | "unavailable",
+        reason: rejected > 0
+          ? `${rejected} pipe span${rejected === 1 ? "" : "s"} retained centerline because OD conversion or binding validation was unavailable.`
+          : `${radii.size} straight pipe span${radii.size === 1 ? "" : "s"} uses validated outside diameter.`
+      };
+      actualOdCacheRef.current = { key: cacheKey, value };
+      setActualOd(value);
+    }).catch((error: unknown) => {
+      if (odRequestGateRef.current !== requestToken) return;
+      const value = {
+        radii: new Map(),
+        status: "unavailable" as const,
+        reason: error instanceof Error ? `Outside-diameter conversion unavailable: ${error.message}` : "Outside-diameter conversion unavailable."
+      };
+      actualOdCacheRef.current = { key: cacheKey, value };
+      setActualOd(value);
+    });
+    return () => {
+      odRequestGateRef.current += 1;
+    };
+  }, [activeModelIndex, defaultLengthUnit, geometryMode, model]);
+
+  useEffect(() => {
+    const requestToken = ++measurementGateRef.current;
+    if (measurementPoints.length !== 2) {
+      setMeasurementReadout({
+        status: measurementSource ? "unavailable" : "idle",
+        values: new Map(),
+        reason: measurementSource
+          ? "Measurement source is deleted, ambiguous, or no longer has valid authored endpoints."
+          : "Choose two authored nodes or one authored pipe."
+      });
+      return;
+    }
+    const [from, to] = measurementPoints;
+    const values = {
+      distance: Math.hypot(to.x - from.x, to.y - from.y, to.z - from.z),
+      dx: to.x - from.x,
+      dy: to.y - from.y,
+      dz: to.z - from.z
+    };
+    setMeasurementReadout({ status: "pending", values: new Map(), reason: "Converting authored measurement through the unit service…" });
+    convertDisplayQuantities(Object.entries(values).map(([id, value]) => ({
+      id: `viewport-measurement-${id}`,
+      value,
+      from_unit: defaultLengthUnit,
+      to_unit: defaultLengthUnit,
+      dimension_id: "length"
+    }))).then((results) => {
+      if (measurementGateRef.current !== requestToken) return;
+      const converted = new Map(results.flatMap((result) =>
+        result.status === "converted" && result.unit === defaultLengthUnit && Number.isFinite(result.value)
+          ? [[result.id.replace("viewport-measurement-", ""), result.value] as const]
+          : []
+      ));
+      if (["distance", "dx", "dy", "dz"].some((id) => !converted.has(id))) {
+        setMeasurementReadout({ status: "unavailable", values: new Map(), reason: "Measurement conversion returned an incomplete or mismatched unit result." });
+        return;
+      }
+      setMeasurementReadout({ status: "available", values: converted, reason: "View-only measurement from authored coordinates." });
+    }).catch((error: unknown) => {
+      if (measurementGateRef.current !== requestToken) return;
+      setMeasurementReadout({ status: "unavailable", values: new Map(), reason: error instanceof Error ? error.message : "Measurement conversion unavailable." });
+    });
+    return () => { measurementGateRef.current += 1; };
+  }, [defaultLengthUnit, measurementPoints, measurementSource]);
 
   useEffect(() => {
     clearPointerPlacement();
@@ -412,7 +868,7 @@ export function PipeViewport({
   useEffect(() => {
     clearPointerPlacement();
     invalidateDraftReview("The affected selection changed. Add again to review the current draft.");
-  }, [selection.id, selection.type]);
+  }, [selection.id, selection.type, selectionState?.preparationEpoch]);
 
   useEffect(() => {
     routingVisualUpdaterRef.current?.(routingVisualStateRef.current);
@@ -421,7 +877,50 @@ export function PipeViewport({
   useEffect(() => {
     const host = hostRef.current;
     if (!host) return;
-    if (!hasWebGL()) {
+    let resource: ViewportResource;
+    try {
+      resource = new ViewportResource(host, {
+        onContextStatus: setViewportContextStatus,
+        onRestore: () => viewportResourceRef.current?.invalidate(),
+        onCameraChange: (current) => {
+          cameraStateRef.current = {
+            position: [current.camera.position.x, current.camera.position.y, current.camera.position.z],
+            target: [current.controls.target.x, current.controls.target.y, current.controls.target.z]
+          };
+        },
+        onAfterMainFrame: (current, submittedAt, submissionSequence, rendererInfo) => {
+          const diagnostics = diagnosticsStateRef.current;
+          const generation = diagnostics.assignment?.status === "committed" &&
+              diagnostics.assignment.indexGeneration === diagnostics.index.generation
+            ? diagnostics.assignment.generation
+            : null;
+          selectionPresentationBindingRef.current.afterFrame(current.contextSnapshot.generation, generation, submissionSequence);
+          mainFrameRef.current = {
+            generation,
+            sequence: submissionSequence,
+            submittedAt,
+            opportunityAt: null,
+            rendererInfo
+          };
+          publishViewportDiagnostics(current);
+        },
+        onNextPaintOpportunity: (current, opportunityAt, submissionSequence) => {
+          const frame = mainFrameRef.current;
+          const diagnostics = diagnosticsStateRef.current;
+          const currentAssignment = diagnostics.assignment;
+          if (currentAssignment?.status !== "committed" || frame.sequence !== submissionSequence || frame.generation === null ||
+              frame.generation !== currentAssignment.generation ||
+              currentAssignment.indexGeneration !== diagnostics.index.generation) return;
+          mainFrameRef.current = { ...frame, opportunityAt };
+          publishViewportDiagnostics(current);
+        },
+        onOwnedRafCountChange: (current) => {
+          publishViewportDiagnostics(current);
+        },
+        onResourceStateChange: (current, retired) => publishViewportDiagnostics(current, !retired)
+      });
+    } catch {
+      releaseViewportDiagnosticsPublisher();
       setWebglAvailable(false);
       draftProjectorRef.current = null;
       routingVisualUpdaterRef.current = null;
@@ -433,233 +932,502 @@ export function PipeViewport({
       return () => {
         draftProjectorRef.current = null;
         host.replaceChildren();
+        releaseViewportDiagnosticsPublisher();
       };
     }
     setWebglAvailable(true);
-
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xf6f7f4);
-    const camera = new THREE.PerspectiveCamera(42, host.clientWidth / host.clientHeight, 0.1, 1000);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(host.clientWidth, host.clientHeight);
-    host.replaceChildren(renderer.domElement);
-    draftProjectorRef.current = (event, plane) => raycastDraftPoint(event, renderer.domElement, camera, plane);
-
-    // Interactive orbit/pan/zoom. Camera state is preserved across the scene
-    // rebuilds that fire on model/selection/deformation changes, so picking an
-    // entity no longer snaps the view back; clicking a view-preset button (which
-    // changes viewPreset) deliberately re-frames the model.
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.08;
-    const presetChanged = lastPresetRef.current !== viewPreset;
-    if (presetChanged || !cameraStateRef.current) {
-      applyViewPreset(camera, viewPreset);
-      controls.target.set(VIEW_TARGET.x, VIEW_TARGET.y, VIEW_TARGET.z);
-    } else {
-      const saved = cameraStateRef.current;
-      camera.position.set(saved.position[0], saved.position[1], saved.position[2]);
-      controls.target.set(saved.target[0], saved.target[1], saved.target[2]);
-    }
+    viewportResourceRef.current = resource;
+    // Register stable lazy factories once. Product callbacks update only
+    // bounded refs; diagnostics materialization happens on an explicit pull.
+    publishViewportDiagnostics(resource);
+    resource.setOrigin(renderTransform.origin);
+    fitViewportCamera(resource, viewPreset, renderTransform.localBounds);
+    fittedSessionGenerationRef.current = activeModelIndex.sessionGeneration;
     lastPresetRef.current = viewPreset;
-    controls.update();
-    const persistCameraState = () => {
-      cameraStateRef.current = {
-        position: [camera.position.x, camera.position.y, camera.position.z],
-        target: [controls.target.x, controls.target.y, controls.target.z]
-      };
+    draftProjectorRef.current = (event, plane) => resource.projectToAuthoredPlane(
+      event,
+      plane.normal,
+      plane.fixedValue
+    );
+    pickRef.current = (event) => resource.pick(event);
+    resource.invalidate();
+
+    return () => {
+      pickRef.current = null;
+      draftProjectorRef.current = null;
+      routingVisualUpdaterRef.current = null;
+      viewportResourceRef.current = null;
+      try {
+        resource.dispose();
+      } finally {
+        releaseViewportDiagnosticsPublisher();
+      }
     };
-    controls.addEventListener("change", persistCameraState);
+  }, []);
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.72));
-    const key = new THREE.DirectionalLight(0xffffff, 1.2);
-    key.position.set(4, 9, 7);
-    scene.add(key);
+  useEffect(() => {
+    selectionPresentationBindingRef.current.clear();
+    mainFrameRef.current = {
+      generation: assignment?.generation ?? null,
+      sequence: 0,
+      submittedAt: null,
+      opportunityAt: null,
+      rendererInfo: null
+    };
+  }, [activeModelIndex.generation, assignment?.generation]);
 
-    const nodeMap = new Map(model.nodes.map((node) => [node.id, node.position]));
-    if (showGrid) scene.add(referenceGround(model));
+  function releaseViewportDiagnosticsPublisher(): void {
+    selectionPresentationBindingRef.current.clear();
+    diagnosticsPublisherRegisteredRef.current = false;
+    clearUiDiagnosticsPublisher();
+  }
 
-    // Pickable meshes (raycast click-to-select) and the 3D anchor positions used
-    // to keep the entity labels pinned to their part as the camera orbits.
+  function publishViewportDiagnostics(resource: ViewportResource, includeProjection = true): void {
+    if (!diagnosticsPublisherRegisteredRef.current) {
+      diagnosticsPublisherRegisteredRef.current = true;
+      publishUiDiagnostics(
+      () => {
+        const diagnostics = diagnosticsStateRef.current;
+        const currentAssignment = diagnostics.assignment;
+        if (currentAssignment?.status !== "committed" ||
+            currentAssignment.indexGeneration !== diagnostics.index.generation) {
+          return {
+            model: {
+              projectId: diagnostics.projectId,
+              generation: null,
+              indexGeneration: diagnostics.index.generation,
+              projectSessionGeneration: diagnostics.index.sessionGeneration,
+              identityHash: diagnostics.identityHash,
+              assignment: { status: "idle" as const, generation: null, startedAt: null, committedAt: null }
+            },
+            tree: { status: "unavailable" as const },
+            viewport: { status: "unavailable" as const }
+          };
+        }
+        const generation = currentAssignment.generation;
+        const now = performance.now();
+        if (diagnosticsSelectionRef.current?.generation !== generation ||
+            diagnosticsSelectionRef.current.actionSequence !== diagnostics.selectionPublication.actionSequence ||
+            diagnosticsSelectionRef.current.inspector.ref?.type !== diagnostics.inspectorSelection.type ||
+            diagnosticsSelectionRef.current.inspector.ref?.id !== diagnostics.inspectorSelection.id) {
+          const orderedRefs = Object.freeze(diagnostics.selectionPublication.orderedKeys.flatMap((key) => {
+            const ref = entityRefFromKey(key);
+            return ref ? [Object.freeze({ type: ref.type, id: ref.id })] : [];
+          }));
+          const primary = diagnostics.selectionPublication.primaryKey
+            ? entityRefFromKey(diagnostics.selectionPublication.primaryKey)
+            : null;
+          const publishedAt = now;
+          diagnosticsSelectionRef.current = {
+            actionSequence: diagnostics.selectionPublication.actionSequence,
+            generation,
+            selection: Object.freeze({
+              actionSequence: diagnostics.selectionPublication.actionSequence,
+              generation,
+              inputKind: diagnostics.selectionPublication.inputKind,
+              pointerDownAt: diagnostics.selectionPublication.pointerDownAt,
+              orderedRefs,
+              primaryRef: primary ? Object.freeze({ type: primary.type, id: primary.id }) : null,
+              publishedAt: diagnostics.selectionPublication.publishedAt,
+              renderSubmissionSequence: 0
+            }),
+            inspector: Object.freeze({
+              generation,
+              ref: Object.freeze({
+                type: diagnostics.inspectorSelection.type,
+                id: diagnostics.inspectorSelection.id
+              }),
+              publicationSequence: ++diagnosticsInspectorPublicationSequenceRef.current,
+              publishedAt
+            })
+          };
+        }
+        const selectionEvidence = diagnosticsSelectionRef.current!;
+        const currentFrame = mainFrameRef.current;
+        const resourceGeneration = resource.contextSnapshot.generation;
+        const renderedSelection = selectionPresentationBindingRef.current.current(resourceGeneration, generation, currentFrame.sequence);
+        const selectionSubmission = currentFrame.generation === generation
+          ? selectionPresentationBindingRef.current.qualifyingSubmission(resourceGeneration, generation, currentFrame.sequence,
+              diagnostics.selectionPublication.afterSubmissionSequence, diagnostics.selectionPublication.orderedKeys)
+          : 0;
+        if (selectionEvidence.selection.renderSubmissionSequence !== selectionSubmission) {
+          selectionEvidence.selection = Object.freeze({ ...selectionEvidence.selection, renderSubmissionSequence: selectionSubmission });
+        }
+        const authoredCamera = resource.localToAuthored(resource.camera.position);
+        const authoredTarget = resource.localToAuthored(resource.controls.target);
+        const rect = resource.renderer.domElement.getBoundingClientRect();
+        const rendererInfo = currentFrame.rendererInfo ?? Object.freeze({
+          geometries: 0, textures: 0, calls: 0, triangles: 0, points: 0, lines: 0
+        });
+        if (diagnostics.boxPublication &&
+            (diagnosticsBoxRef.current?.generation !== generation ||
+              diagnosticsBoxRef.current.publication !== diagnostics.boxPublication)) {
+          const orderedRefs = Object.freeze(diagnostics.boxPublication.orderedKeys.flatMap((key) => {
+            const ref = entityRefFromKey(key);
+            return ref ? [Object.freeze({ type: ref.type, id: ref.id })] : [];
+          }));
+          const primary = diagnostics.boxPublication.primaryKey
+            ? entityRefFromKey(diagnostics.boxPublication.primaryKey)
+            : null;
+          diagnosticsBoxRef.current = {
+            generation,
+            publication: diagnostics.boxPublication,
+            box: Object.freeze({
+              actionSequence: diagnostics.boxPublication.actionSequence,
+              generation,
+              direction: diagnostics.boxPublication.direction,
+              filter: diagnostics.boxPublication.filter,
+              orderedRefs,
+              primaryRef: primary ? Object.freeze({ type: primary.type, id: primary.id }) : null,
+              publishedAt: diagnostics.boxPublication.publishedAt,
+              renderSubmissionSequence: 0
+            })
+          };
+        }
+        const boxEvidence = diagnostics.boxPublication ? diagnosticsBoxRef.current!.box : null;
+        const boxSubmission = diagnostics.boxPublication && currentFrame.generation === generation
+          ? selectionPresentationBindingRef.current.qualifyingSubmission(resourceGeneration, generation, currentFrame.sequence,
+              diagnostics.boxPublication.afterSubmissionSequence, diagnostics.boxPublication.orderedKeys)
+          : 0;
+        const currentBoxEvidence = boxEvidence && boxEvidence.renderSubmissionSequence !== boxSubmission
+          ? Object.freeze({ ...boxEvidence, renderSubmissionSequence: boxSubmission }) : boxEvidence;
+        if (currentBoxEvidence && diagnosticsBoxRef.current && currentBoxEvidence !== boxEvidence) {
+          diagnosticsBoxRef.current.box = currentBoxEvidence;
+        }
+        return {
+          model: {
+            projectId: diagnostics.projectId,
+            generation,
+            indexGeneration: diagnostics.index.generation,
+            projectSessionGeneration: diagnostics.index.sessionGeneration,
+            identityHash: currentAssignment.identityHash,
+            assignment: {
+              status: "committed" as const,
+              generation,
+              startedAt: currentAssignment.startedAt,
+              committedAt: currentAssignment.committedAt!
+            }
+          },
+          tree: diagnostics.treePublication ? {
+            generation,
+            publicationSequence: diagnostics.treePublication.publicationSequence,
+            query: diagnostics.treePublication.query,
+            visibleCount: diagnostics.treePublication.visibleCount,
+            publishedAt: diagnostics.treePublication.publishedAt
+          } : { status: "unavailable" as const },
+          viewport: {
+            generation,
+            canvas: {
+              cssLeft: rect.left,
+              cssTop: rect.top,
+              cssWidth: rect.width,
+              cssHeight: rect.height,
+              dpr: resource.renderer.getPixelRatio(),
+              bufferWidth: resource.renderer.domElement.width,
+              bufferHeight: resource.renderer.domElement.height
+            },
+            camera: {
+              sequence: resource.cameraSequence,
+              kind: "perspective" as const,
+              position: [authoredCamera.x, authoredCamera.y, authoredCamera.z] as const,
+              target: [authoredTarget.x, authoredTarget.y, authoredTarget.z] as const,
+              up: [resource.camera.up.x, resource.camera.up.y, resource.camera.up.z] as const,
+              fovDegrees: resource.camera.fov,
+              near: resource.camera.near,
+              far: resource.camera.far,
+              aspect: resource.camera.aspect,
+              localRenderOrigin: [resource.origin.x, resource.origin.y, resource.origin.z] as const
+            },
+            mainRender: {
+              submissionSequence: currentFrame.sequence,
+              generation,
+              reason: currentFrame.sequence === 0 ? "pending" : "invalidation",
+              submittedAt: currentFrame.submittedAt,
+              selectionPresentation: renderedSelection ? Object.freeze({
+                resourceGeneration: renderedSelection.resourceGeneration,
+                modelGeneration: renderedSelection.modelGeneration,
+                revision: renderedSelection.revision,
+                appliedAfterSubmissionSequence: renderedSelection.appliedAfterSubmissionSequence,
+                renderedSubmissionSequence: renderedSelection.renderedSubmissionSequence,
+                orderedRefs: Object.freeze(renderedSelection.orderedKeys.flatMap((key) => {
+                  const ref = entityRefFromKey(key);
+                  return ref ? [Object.freeze({ type: ref.type, id: ref.id })] : [];
+                }))
+              }) : null,
+              nextPaintOpportunity: currentFrame.opportunityAt === null
+                ? null
+                : {
+                    submissionSequence: currentFrame.sequence,
+                    generation,
+                    at: currentFrame.opportunityAt
+                  }
+            },
+            selection: selectionEvidence.selection,
+            inspector: selectionEvidence.inspector,
+            filter: diagnostics.treePublication ? {
+              actionSequence: diagnostics.treePublication.actionSequence,
+              generation,
+              query: diagnostics.treePublication.query,
+              visibleCount: diagnostics.treePublication.visibleCount,
+              inputAt: diagnostics.treePublication.inputAt,
+              inputEventTimeStamp: diagnostics.treePublication.inputEventTimeStamp,
+              publishedAt: diagnostics.treePublication.publishedAt,
+              renderSubmissionSequence: currentFrame.generation === generation && currentFrame.submittedAt !== null &&
+                currentFrame.submittedAt >= diagnostics.treePublication.publishedAt ? currentFrame.sequence : 0
+            } : { status: "unavailable" as const },
+            box: currentBoxEvidence ?? { status: "unavailable" as const },
+            labels: {
+              enabled: diagnostics.labelsEnabled,
+              renderedCount: diagnostics.labelsEnabled ? diagnostics.labelCount : 0,
+              budget: 80
+            },
+            geometry: { mode: diagnostics.geometryMode, odGeneration: diagnostics.odGeneration, odStatus: diagnostics.odStatus },
+            resources: {
+              rendererInfo,
+              ownedPendingRafCount: resource.pendingAppOwnedRafCount,
+              owned: resource.ownershipSnapshot,
+              context: resource.contextSnapshot
+            }
+          },
+        };
+      },
+      () => {
+        const diagnostics = diagnosticsStateRef.current;
+        const currentAssignment = diagnostics.assignment;
+        if (currentAssignment?.status !== "committed" ||
+            currentAssignment.indexGeneration !== diagnostics.index.generation) {
+          throw new Error("UI diagnostics projection requested before a committed model assignment.");
+        }
+        if (!resource.projectionAvailable) {
+          throw new Error("UI diagnostics projection requested without a current viewport context.");
+        }
+        resource.camera.updateMatrixWorld();
+        const viewProjection = new THREE.Matrix4()
+          .multiplyMatrices(resource.camera.projectionMatrix, resource.camera.matrixWorldInverse);
+        const rect = resource.renderer.domElement.getBoundingClientRect();
+        return {
+          modelGeneration: currentAssignment.generation,
+          cameraSequence: resource.cameraSequence,
+          renderOrigin: resource.origin,
+          viewProjectionMatrix: viewProjection.toArray(),
+          canvasCss: { left: rect.left, top: rect.top, width: rect.width, height: rect.height },
+          canvasDevice: { width: resource.renderer.domElement.width, height: resource.renderer.domElement.height }
+        };
+      }
+      );
+    }
+    const diagnosticState = diagnosticsStateRef.current;
+    const currentAssignment = diagnosticState.assignment;
+    if (currentAssignment?.status !== "committed" ||
+        currentAssignment.indexGeneration !== diagnosticState.index.generation) return;
+    refreshUiDiagnostics(includeProjection, currentAssignment.generation);
+  }
+
+  useEffect(() => {
+    const resource = viewportResourceRef.current;
+    if (!resource) return;
+    resource.setOrigin(renderTransform.origin);
+    const modelObjects: THREE.Object3D[] = [];
     const pickables: THREE.Object3D[] = [];
-    const anchorPositions: Array<{
-      id: string;
-      position: THREE.Vector3;
-      offsetPct: number;
-    }> = [];
-    const tag = (object: THREE.Object3D, ref: EntityRef, position: Vec3) => {
-      object.userData.entityRef = ref;
-      pickables.push(object);
-      // Co-located entities (a support/component sits on its node) would stack
-      // their labels at the same screen point; nudge them apart vertically.
-      const offsetPct = ref.type === "support" ? 8 : ref.type === "component" ? -8 : 0;
-      anchorPositions.push({
-        id: ref.id,
-        position: new THREE.Vector3(position.x, position.y, position.z),
-        offsetPct
-      });
-    };
+    const pipeInstances = instancedPipeMeshes(
+      model,
+      localNodeMap,
+      activeModelIndex,
+      geometryMode === "actual-od" ? actualOd.radii : new Map()
+    );
+    modelObjects.push(...pipeInstances);
+    modelObjects.push(...instancedNodeMeshes(model, localNodeMap, activeModelIndex));
+    modelObjects.push(...instancedSupportMeshes(model, localNodeMap, activeModelIndex));
+    modelObjects.push(...instancedComponentMeshes(model, localNodeMap, activeModelIndex));
+    const referenceGround = referenceGroundFromBounds(renderTransform.localBounds);
+    referenceGround.name = "viewport-reference-ground";
+    modelObjects.push(referenceGround);
+    resource.setPickables(pickables);
+    resource.setPointPrimitives(activeModelIndex, pointPickPrimitives(activeModelIndex, model, renderTransform.origin));
+    resource.setActualOdRadiusByPipe(geometryMode === "actual-od" ? actualOd.radii : new Map());
+    resource.replaceLayer(resource.modelLayer, modelObjects);
+    applySelectionPresentation(resource, orderedSelectionKeys);
+  }, [activeModelIndex, actualOd, geometryMode, localNodeMap, model, renderTransform]);
 
-    for (const segment of model.pipe_segments) {
-      const from = nodeMap.get(segment.from);
-      const to = nodeMap.get(segment.to);
-      if (!from || !to) continue;
-      const mesh = pipeMesh(from, to, selection.id === segment.id);
-      tag(mesh, { type: "pipe", id: segment.id }, midpoint(from, to));
-      scene.add(mesh);
-    }
+  useEffect(() => {
+    const resource = viewportResourceRef.current;
+    if (!resource) return;
+    const resultObjects: THREE.Object3D[] = [];
     if (deformation.state === "available") {
-      for (const segment of model.pipe_segments) {
-        const from = deformation.nodePositions.get(segment.from);
-        const to = deformation.nodePositions.get(segment.to);
-        if (!from || !to) continue;
-        scene.add(deformedPipeMesh(from, to, selection.id === segment.id));
-      }
-      for (const node of model.nodes) {
-        const position = deformation.nodePositions.get(node.id);
-        if (!position) continue;
-        scene.add(deformationMarker(position, selection.id === node.id));
-      }
+      const deformedPipes = instancedDeformedPipeMesh(model, deformation.nodePositions, renderTransform.origin, activeModelIndex);
+      resultObjects.push(...deformedPipes);
+      const deformedNodes = instancedDeformationMarkerMesh(model, deformation.nodePositions, renderTransform.origin, activeModelIndex);
+      resultObjects.push(...deformedNodes);
     }
-    for (const node of model.nodes) {
-      const mesh = marker(node.position, selection.id === node.id ? 0xf08c22 : 0x2f6f73, 0.095);
-      tag(mesh, { type: "node", id: node.id }, node.position);
-      scene.add(mesh);
-    }
-    for (const support of model.supports) {
-      const node = nodeMap.get(support.node);
-      if (!node) continue;
-      const mesh = supportMesh(node, selection.id === support.id);
-      tag(mesh, { type: "support", id: support.id }, { x: node.x, y: node.y - 0.26, z: node.z });
-      scene.add(mesh);
-    }
-    for (const component of model.components) {
-      const node = nodeMap.get(component.node);
-      if (!node) continue;
-      const mesh = componentMesh(component, node, selection.id === component.id);
-      tag(mesh, { type: "component", id: component.id }, { x: node.x, y: node.y + 0.2, z: node.z });
-      scene.add(mesh);
-    }
-    if (showLoads) {
-      for (const arrow of buildLoadArrows(model, nodeMap)) scene.add(arrow);
-    }
+    resource.replaceLayer(resource.resultLayer, resultObjects);
+    applySelectionPresentation(resource, orderedSelectionKeys);
+  }, [activeModelIndex, deformation, model, renderTransform]);
 
-    const routingGrid = routeConstructionGrid(model);
+  useEffect(() => {
+    const resource = viewportResourceRef.current;
+    if (!resource) return;
+    resource.replaceLayer(resource.authoredLoadLayer, buildLoadArrows(model, localNodeMap, activeModelIndex));
+  }, [activeModelIndex, localNodeMap, model]);
+
+  useEffect(() => {
+    const resource = viewportResourceRef.current;
+    if (!resource) return;
+    resource.setAuxiliaryVisibility(showGrid, showLoads);
+  }, [showGrid, showLoads]);
+
+  useEffect(() => {
+    const resource = viewportResourceRef.current;
+    if (!resource) return;
+
+    const routingGrid = routeConstructionGridFromBounds(renderTransform.localBounds);
     const routingGhost = routeGhostLine();
     const routingMarker = marker({ x: 0, y: 0, z: 0 }, 0xf08c22, 0.105);
     routingGrid.visible = false;
     routingGhost.visible = false;
     routingMarker.visible = false;
-    scene.add(routingGrid, routingGhost, routingMarker);
     routingVisualUpdaterRef.current = (state) => {
-      updateRouteConstructionGrid(routingGrid, state.anchor, state.plane, state.showGrid);
-      updateRouteGhostObjects(routingGhost, routingMarker, state.ghost);
+      const localAnchor = state.anchor ? authoredToLocal(state.anchor, renderTransform.origin) : null;
+      const localGhost = state.ghost ? {
+        ...state.ghost,
+        from: authoredToLocal(state.ghost.from, renderTransform.origin),
+        to: authoredToLocal(state.ghost.to, renderTransform.origin)
+      } : null;
+      updateRouteConstructionGrid(routingGrid, localAnchor, state.plane, state.showGrid);
+      updateRouteGhostObjects(routingGhost, routingMarker, localGhost);
+      resource.invalidate();
     };
     routingVisualUpdaterRef.current(routingVisualStateRef.current);
+    resource.replaceLayer(resource.routingLayer, [routingGrid, routingGhost, routingMarker]);
+  }, [renderTransform]);
 
-    // Raycast picking: clicking a mesh selects its entity (primary selection).
-    const raycaster = new THREE.Raycaster();
-    pickRef.current = (event) => {
-      const fraction = eventPositionFraction(renderer.domElement, event);
-      const pointer = new THREE.Vector2(fraction.x * 2 - 1, -(fraction.y * 2 - 1));
-      raycaster.setFromCamera(pointer, camera);
-      for (const hit of raycaster.intersectObjects(pickables, true)) {
-        let object: THREE.Object3D | null = hit.object;
-        while (object) {
-          const ref = object.userData?.entityRef as EntityRef | undefined;
-          if (ref) return ref;
-          object = object.parent;
-        }
-      }
-      return null;
-    };
-
-    // Orientation gizmo: a small second scene showing the world X/Y/Z axes,
-    // viewed from the same direction as the main camera so it rotates with the
-    // orbit. Rendered into its own corner canvas.
-    const gizmoHost = gizmoHostRef.current;
-    let gizmoRenderer: THREE.WebGLRenderer | null = null;
-    let gizmoScene: THREE.Scene | null = null;
-    let gizmoCamera: THREE.PerspectiveCamera | null = null;
-    if (gizmoHost) {
-      gizmoRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      gizmoRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      gizmoRenderer.setSize(GIZMO_SIZE, GIZMO_SIZE);
-      gizmoHost.replaceChildren(gizmoRenderer.domElement);
-      gizmoScene = new THREE.Scene();
-      gizmoScene.add(buildOrientationGizmo());
-      gizmoCamera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+  useEffect(() => {
+    const resource = viewportResourceRef.current;
+    if (!resource) return;
+    const anchorPositions: Array<{
+      key: EntityKey;
+      position: THREE.Vector3;
+      offsetPct: number;
+    }> = [];
+    for (const key of labelKeys) {
+      const indexed = activeModelIndex.entities.get(key);
+      if (!indexed?.anchor) continue;
+      const position = authoredToLocal(indexed.anchor, renderTransform.origin);
+      if (indexed.ref.type === "support") position.y -= 0.26;
+      if (indexed.ref.type === "component") position.y += 0.2;
+      anchorPositions.push({
+        key,
+        position: new THREE.Vector3(position.x, position.y, position.z),
+        offsetPct: indexed.ref.type === "support" ? 8 : indexed.ref.type === "component" ? -8 : 0
+      });
     }
-
-    const renderGizmo = () => {
-      if (!gizmoRenderer || !gizmoScene || !gizmoCamera) return;
-      const offset = camera.position.clone().sub(controls.target);
-      if (offset.lengthSq() === 0) offset.set(0, 0, 1);
-      gizmoCamera.position.copy(offset.normalize().multiplyScalar(3.2));
-      gizmoCamera.up.copy(camera.up);
-      gizmoCamera.lookAt(0, 0, 0);
-      gizmoRenderer.render(gizmoScene, gizmoCamera);
-    };
-
-    // Keep the (toggleable) entity labels pinned to their part: project each
-    // anchor to screen space every frame so the label tracks the 3D position
-    // through orbit/pan/zoom instead of floating at a fixed screen spot.
     const updateLabelAnchors = () => {
       const layer = selectionLayerRef.current;
-      if (!layer) return;
-      for (const { id, position, offsetPct } of anchorPositions) {
-        const button = layer.querySelector<HTMLElement>(`[data-testid="viewport-select-${id}"]`);
-        if (!button) continue;
-        const projected = position.clone().project(camera);
-        const behind = projected.z > 1;
-        button.style.display = behind ? "none" : "";
-        if (behind) continue;
-        button.style.left = `${clamp((projected.x * 0.5 + 0.5) * 100, 2, 98)}%`;
-        button.style.top = `${clamp((-projected.y * 0.5 + 0.5) * 100 + offsetPct, 2, 98)}%`;
+      if (!layer) {
+        diagnosticsStateRef.current.labelCount = 0;
+        return;
       }
+      const buttons = new Map(
+        [...layer.querySelectorAll<HTMLElement>("[data-entity-key]")]
+          .map((button) => [button.dataset.entityKey, button] as const)
+      );
+      const width = Math.max(1, layer.clientWidth || resource.renderer.domElement.clientWidth);
+      const height = Math.max(1, layer.clientHeight || resource.renderer.domElement.clientHeight);
+      const occupied: Array<{ left: number; right: number; top: number; bottom: number }> = [];
+      let visibleCount = 0;
+      for (const { key, position, offsetPct } of anchorPositions) {
+        const button = buttons.get(key);
+        if (!button) continue;
+        const projected = position.clone().project(resource.camera);
+        const outsideFrustum = projected.x < -1 || projected.x > 1 || projected.y < -1 || projected.y > 1 ||
+          projected.z < -1 || projected.z > 1;
+        if (outsideFrustum) {
+          button.style.display = "none";
+          continue;
+        }
+        const x = clamp((projected.x * 0.5 + 0.5) * width, 29, Math.max(29, width - 29));
+        const y = clamp((-projected.y * 0.5 + 0.5) * height + offsetPct * height / 100, 13, Math.max(13, height - 13));
+        const box = { left: x - 31, right: x + 31, top: y - 15, bottom: y + 15 };
+        const overlaps = occupied.some((placed) =>
+          box.left < placed.right && box.right > placed.left && box.top < placed.bottom && box.bottom > placed.top
+        );
+        button.style.display = overlaps ? "none" : "";
+        if (overlaps) continue;
+        occupied.push(box);
+        visibleCount += 1;
+        button.style.left = `${x}px`;
+        button.style.top = `${y}px`;
+      }
+      diagnosticsStateRef.current.labelCount = visibleCount;
     };
+    resource.setLabelUpdater(updateLabelAnchors);
+    updateLabelAnchors();
+    resource.invalidate();
+    return () => resource.setLabelUpdater(null);
+  }, [activeModelIndex, labelKeys, renderTransform, showLabels]);
 
-    const resize = () => {
-      const { clientWidth, clientHeight } = host;
-      if (clientWidth <= 0 || clientHeight <= 0) return;
-      camera.aspect = clientWidth / clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(clientWidth, clientHeight);
-      renderer.render(scene, camera);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-    // Rails and the analysis dock resize the host without resizing the window.
-    const resizeObserver = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(resize);
-    resizeObserver?.observe(host);
+  useEffect(() => {
+    const resource = viewportResourceRef.current;
+    if (resource) applySelectionPresentation(resource, orderedSelectionKeys);
+  }, [orderedSelectionKeys]);
 
-    let frame = 0;
-    const animate = () => {
-      frame = requestAnimationFrame(animate);
-      controls.update();
-      renderer.render(scene, camera);
-      renderGizmo();
-      updateLabelAnchors();
-    };
-    animate();
+  useEffect(() => {
+    viewportResourceRef.current?.setVisibilityPresentation(hiddenKeys);
+  }, [activeModelIndex.generation, hiddenKeys]);
 
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("resize", resize);
-      resizeObserver?.disconnect();
-      controls.removeEventListener("change", persistCameraState);
-      controls.dispose();
-      pickRef.current = null;
-      draftProjectorRef.current = null;
-      routingVisualUpdaterRef.current = null;
-      renderer.dispose();
-      gizmoRenderer?.dispose();
-      if (gizmoHost) gizmoHost.replaceChildren();
-      host.replaceChildren();
-    };
-  }, [model, selection, deformation, viewPreset, showLoads, showGrid]);
+  useLayoutEffect(() => {
+    if (!viewCommandRef) return;
+    viewCommandRef.current = dispatchViewportViewCommand;
+    return () => { viewCommandRef.current = null; };
+  });
+
+  useLayoutEffect(() => () => {
+    if (boxGestureRef.current) releaseBoxCandidate(boxGestureRef.current.pointerId);
+  }, []);
+
+  useLayoutEffect(() => {
+    retireBoxGesture();
+  }, [model, activeModelIndex.generation]);
+
+  useLayoutEffect(() => {
+    cancelBoxSelection();
+  }, [activeModelIndex.sessionGeneration]);
+
+  useEffect(() => {
+    setMeasurementSource(null);
+    setMeasurementActive(false);
+    setBoxSelectActive(false);
+    setBoxRect(null);
+    setGeometryMode("schematic");
+  }, [activeModelIndex.sessionGeneration]);
+
+  useLayoutEffect(() => {
+    if (armedCreationTool !== null || draftReviewBusy) cancelBoxSelection();
+  }, [armedCreationTool, draftReviewBusy]);
+
+  useEffect(() => {
+    if (armedCreationTool !== null) setMeasurementActive(false);
+  }, [armedCreationTool]);
+
+  useEffect(() => {
+    viewportResourceRef.current?.setThemePresentation(theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const resource = viewportResourceRef.current;
+    if (!resource || fittedSessionGenerationRef.current === activeModelIndex.sessionGeneration) return;
+    fitViewportCamera(resource, viewPreset, renderTransform.localBounds);
+    fittedSessionGenerationRef.current = activeModelIndex.sessionGeneration;
+    lastPresetRef.current = viewPreset;
+    resource.invalidate();
+  }, [activeModelIndex.sessionGeneration, renderTransform.localBounds, viewPreset]);
+
+  useEffect(() => {
+    const resource = viewportResourceRef.current;
+    if (!resource || lastPresetRef.current === viewPreset) return;
+    fitViewportCamera(resource, viewPreset, renderTransform.localBounds);
+    lastPresetRef.current = viewPreset;
+    resource.invalidate();
+  }, [renderTransform.localBounds, viewPreset]);
 
   function addIntent(commandType: ViewportCommandType) {
     const intent = buildIntent(
@@ -866,7 +1634,10 @@ export function PipeViewport({
     setPipeEndpointPickMode((current) => (current === mode ? null : mode));
   }
 
-  function chooseViewportTarget(target: ViewportSelectionTarget) {
+  function chooseViewportTarget(
+    target: ViewportSelectionTarget,
+    modifiers: { additive?: boolean; toggle?: boolean } = {}
+  ) {
     if (draftReviewBusy) return;
     if (pipeEndpointPickMode && target.kind === "node") {
       invalidateDraftReview();
@@ -874,10 +1645,15 @@ export function PipeViewport({
       setPipeDraft((current) => nextPipeDraftWithEndpoint(current, mode, target.ref.id));
       setPipeEndpointPickMode(mode === "from" ? "to" : null);
     }
+    if (measurementActive && !(armedCreationTool === "pipe" && pipeEndpointPickMode)) {
+      dispatchViewportViewCommand({ type: "apply-measurement-target", ref: target.ref });
+      return;
+    }
     if (armedCreationTool === "component" && target.kind === "node") {
       setComponentDraft((current) => componentDraftForNode(model, current, target.ref.id));
     }
-    onSelect(target.ref);
+    const next = onSelect(target.ref, modifiers);
+    publishSelectionAction(next, "label", null);
   }
 
   function clearPointerPlacement(message: string | null = null) {
@@ -891,6 +1667,7 @@ export function PipeViewport({
     if (draftReviewBusy) return;
     if (event.button !== 0 && event.button !== undefined) return;
     if (event.isPrimary === false) return;
+    setHoveredEntityKey(null);
     releasePointerCandidate();
     const pointerId = finitePointerEventNumber(event.pointerId, 1);
     const clientX = finitePointerEventNumber(event.clientX, 0);
@@ -898,21 +1675,86 @@ export function PipeViewport({
     const target = event.target as Element & { setPointerCapture?: (pointerId: number) => void };
     pointerGestureRef.current = {
       gesture: startPointerGesture(pointerId, clientX, clientY),
-      target
+      target,
+      pointerDownAt: performance.now()
     };
     target.setPointerCapture?.(pointerId);
   }
 
+  function handleViewportPointerDownCapture(event: ReactPointerEvent<HTMLDivElement>) {
+    if (draftReviewBusy) return;
+    const canvasTarget = event.target instanceof HTMLCanvasElement;
+    if (!claimBoxSelectionPointerDown({
+      button: event.button,
+      isPrimary: event.isPrimary,
+      canvasTarget,
+      preventDefault: () => event.preventDefault(),
+      stopPropagation: () => event.stopPropagation()
+    }, {
+      active: boxSelectActive,
+      authoringActive: armedCreationTool !== null
+    })) return;
+
+    // Box owns this primary gesture. Retire any sub-EPS OrbitControls tail
+    // before the selection rectangle can cause a presentation redraw.
+    viewportResourceRef.current?.cancelNavigation();
+    setHoveredEntityKey(null);
+    releasePointerCandidate();
+    const pointerId = finitePointerEventNumber(event.pointerId, 1);
+    const clientX = finitePointerEventNumber(event.clientX, 0);
+    const clientY = finitePointerEventNumber(event.clientY, 0);
+    const target = event.target as HTMLCanvasElement & { setPointerCapture?: (pointerId: number) => void };
+    const rect = target.getBoundingClientRect();
+    const startX = clientX - rect.left;
+    const startY = clientY - rect.top;
+    boxGestureRef.current = {
+      context: { model, indexGeneration: activeModelIndex.generation, sessionGeneration: activeModelIndex.sessionGeneration },
+      pointerId,
+      startX,
+      startY,
+      currentX: startX,
+      currentY: startY,
+      pointerDownAt: performance.now(),
+      filter: boxSelectionFilter,
+      modifiers: { additive: event.shiftKey, toggle: event.ctrlKey || event.metaKey },
+      target
+    };
+    setBoxRect({ left: startX, top: startY, right: startX, bottom: startY });
+    target.setPointerCapture?.(pointerId);
+  }
+
   function handleViewportPointerMove(event: ReactPointerEvent<HTMLDivElement>) {
+    const boxCandidate = boxGestureRef.current;
+    if (boxCandidate && boxCandidate.pointerId === finitePointerEventNumber(event.pointerId, 1)) {
+      if (!boxCandidateIsCurrent(boxCandidate.context)) {
+        retireBoxGesture();
+        return;
+      }
+      const canvas = viewportResourceRef.current?.renderer.domElement;
+      const rect = canvas?.getBoundingClientRect();
+      if (rect) {
+        boxCandidate.currentX = finitePointerEventNumber(event.clientX, rect.left) - rect.left;
+        boxCandidate.currentY = finitePointerEventNumber(event.clientY, rect.top) - rect.top;
+        setBoxRect({ left: boxCandidate.startX, top: boxCandidate.startY, right: boxCandidate.currentX, bottom: boxCandidate.currentY });
+      }
+      return;
+    }
     const candidate = pointerGestureRef.current;
     const pointerId = finitePointerEventNumber(event.pointerId, 1);
     if (candidate) {
+      setHoveredEntityKey(null);
       candidate.gesture = updatePointerGesture(
         candidate.gesture,
         pointerId,
         finitePointerEventNumber(event.clientX, 0),
         finitePointerEventNumber(event.clientY, 0)
       );
+    }
+    if (!candidate && armedCreationTool === null && event.target instanceof HTMLCanvasElement) {
+      const hovered = pickRef.current?.(event) ?? null;
+      const nextKey = hovered ? entityKey(hovered) : null;
+      setHoveredEntityKey((current) => current === nextKey ? current : nextKey);
+      viewportResourceRef.current?.invalidate();
     }
     if (
       draftReviewBusy ||
@@ -932,10 +1774,16 @@ export function PipeViewport({
   }
 
   function handleViewportPointerLeave() {
+    setHoveredEntityKey(null);
     setPointerGhost((current) => current?.provenance === "hover" ? null : current);
   }
 
   function handleViewportPointerCancel(event: ReactPointerEvent<HTMLDivElement>) {
+    if (boxGestureRef.current?.pointerId === finitePointerEventNumber(event.pointerId, 1)) {
+      releaseBoxCandidate(boxGestureRef.current.pointerId);
+      setBoxRect(null);
+      return;
+    }
     const candidate = pointerGestureRef.current;
     const pointerId = finitePointerEventNumber(event.pointerId, 1);
     if (candidate && candidate.gesture.pointerId === pointerId) {
@@ -947,6 +1795,11 @@ export function PipeViewport({
   }
 
   function handleViewportLostPointerCapture(event: ReactPointerEvent<HTMLDivElement>) {
+    if (boxGestureRef.current?.pointerId === finitePointerEventNumber(event.pointerId, 1)) {
+      boxGestureRef.current = null;
+      setBoxRect(null);
+      return;
+    }
     const candidate = pointerGestureRef.current;
     const pointerId = finitePointerEventNumber(event.pointerId, 1);
     if (candidate && candidate.gesture.pointerId === pointerId) {
@@ -957,6 +1810,49 @@ export function PipeViewport({
   }
 
   function handleViewportPointerUp(event: ReactPointerEvent<HTMLDivElement>) {
+    const boxCandidate = boxGestureRef.current;
+    if (boxCandidate && boxCandidate.pointerId === finitePointerEventNumber(event.pointerId, 1)) {
+      if (!boxCandidateIsCurrent(boxCandidate.context)) {
+        retireBoxGesture();
+        return;
+      }
+      const resource = viewportResourceRef.current;
+      const endX = boxCandidate.currentX;
+      const endY = boxCandidate.currentY;
+      const direction: BoxSelectionDirection = endX >= boxCandidate.startX ? "left-to-right" : "right-to-left";
+      const hits = resource ? boxSelectEntityKeys(activeModelIndex, model, {
+        camera: resource.camera,
+        canvas: resource.renderer.domElement,
+        renderOrigin: renderTransform.origin,
+        rect: { left: boxCandidate.startX, top: boxCandidate.startY, right: endX, bottom: endY },
+        direction,
+        filter: boxCandidate.filter,
+        hiddenKeys
+      }) : Object.freeze([]);
+      const next = onBoxSelection(hits, boxCandidate.modifiers, {
+        direction,
+        filter: boxCandidate.filter,
+        pointerDownAt: boxCandidate.pointerDownAt
+      });
+      publishSelectionAction(next, "pointer", boxCandidate.pointerDownAt, false);
+      const publication = {
+        actionSequence: ++boxActionSequenceRef.current,
+        direction,
+        filter: boxCandidate.filter,
+        orderedKeys: next.orderedKeys,
+        primaryKey: next.primaryKey,
+        pointerDownAt: boxCandidate.pointerDownAt,
+        publishedAt: performance.now(),
+        afterSubmissionSequence: resource?.submissionSequence ?? 0,
+        renderSubmissionSequence: 0
+      };
+      diagnosticsStateRef.current.boxPublication = publication;
+      setBoxPublication(publication);
+      releaseBoxCandidate(boxCandidate.pointerId);
+      setBoxRect(null);
+      resource?.invalidate();
+      return;
+    }
     const candidate = pointerGestureRef.current;
     const pointerId = finitePointerEventNumber(event.pointerId, 1);
     const clientX = finitePointerEventNumber(event.clientX, 0);
@@ -974,6 +1870,10 @@ export function PipeViewport({
     }
     const picked = pickRef.current?.(event);
     if (picked) {
+      if (measurementActive && !(armedCreationTool === "pipe" && pipeEndpointPickMode)) {
+        dispatchViewportViewCommand({ type: "apply-measurement-target", ref: picked });
+        return;
+      }
       if (armedCreationTool === "pipe" && pipeEndpointPickMode && picked.type === "node") {
         invalidateDraftReview();
         setPipeDraft((current) => nextPipeDraftWithEndpoint(current, pipeEndpointPickMode, picked.id));
@@ -982,7 +1882,11 @@ export function PipeViewport({
       if (armedCreationTool === "component" && picked.type === "node") {
         setComponentDraft((current) => componentDraftForNode(model, current, picked.id));
       }
-      onSelect(picked);
+      const next = onSelect(picked, {
+        additive: event.shiftKey,
+        toggle: event.ctrlKey || event.metaKey
+      });
+      publishSelectionAction(next, "pointer", candidate?.pointerDownAt ?? performance.now());
       return;
     }
     if (armedCreationTool === "node") {
@@ -1023,6 +1927,63 @@ export function PipeViewport({
       // A browser may have already released capture while unmounting the canvas.
     }
     pointerGestureRef.current = null;
+  }
+
+  function applySelectionPresentation(resource: ViewportResource, keys: readonly EntityKey[]): void {
+    const diagnostics = diagnosticsStateRef.current;
+    const currentAssignment = diagnostics.assignment;
+    const generation = currentAssignment?.status === "committed" && currentAssignment.indexGeneration === diagnostics.index.generation
+      ? currentAssignment.generation : null;
+    selectionPresentationBindingRef.current.apply(resource, generation, keys);
+  }
+
+  function publishSelectionAction(
+    next: OrderedSelectionState,
+    inputKind: "pointer" | "label",
+    pointerDownAt: number | null,
+    invalidate = true
+  ) {
+    const publication = {
+      actionSequence: ++selectionActionSequenceRef.current,
+      inputKind,
+      pointerDownAt,
+      orderedKeys: next.orderedKeys,
+      primaryKey: next.primaryKey,
+      publishedAt: performance.now(),
+      afterSubmissionSequence: viewportResourceRef.current?.submissionSequence ?? 0
+    };
+    diagnosticsStateRef.current.selectionPublication = publication;
+    setSelectionPublication(publication);
+    if (invalidate) viewportResourceRef.current?.invalidate();
+  }
+
+  function boxCandidateIsCurrent(context: BoxGestureContext): boolean {
+    return boxSelectActive && !draftReviewBusy && armedCreationTool === null &&
+      boxGestureContextIsCurrent(context, {
+        model, indexGeneration: activeModelIndex.generation, sessionGeneration: activeModelIndex.sessionGeneration
+      });
+  }
+
+  function retireBoxGesture(): void {
+    if (boxGestureRef.current) releaseBoxCandidate(boxGestureRef.current.pointerId);
+    setBoxRect(null);
+  }
+
+  function cancelBoxSelection(): void {
+    retireBoxGesture();
+    setBoxSelectActive(false);
+  }
+
+  function releaseBoxCandidate(pointerId: number) {
+    const candidate = boxGestureRef.current;
+    if (!candidate) return;
+    boxGestureRef.current = null;
+    const target = candidate.target as Element & { hasPointerCapture?: (id: number) => boolean; releasePointerCapture?: (id: number) => void };
+    try {
+      if (!target.hasPointerCapture || target.hasPointerCapture(pointerId)) target.releasePointerCapture?.(pointerId);
+    } catch {
+      // Pointer capture may already be released by the browser.
+    }
   }
 
   function projectRoutePoint(event: { clientX: number; clientY: number }, from: Vec3): Vec3 | null {
@@ -1105,10 +2066,102 @@ export function PipeViewport({
   const constructionPlaneReadout = resolvedFrom
     ? `Construction plane: ${routingPlane} · ${routingPlaneDefinition(routingPlane, resolvedFrom).fixedAxis.toUpperCase()}=${formatDraftCoordinate(routingPlaneDefinition(routingPlane, resolvedFrom).fixedValue)} ${defaultLengthUnit} · through ${pipeDraft.from}`
     : "Construction plane: unavailable · choose a resolved From node";
+  const fitSelectionBounds = displayedBoundsForEntityKeys(
+    activeModelIndex,
+    orderedSelectionKeys,
+    hiddenKeys,
+    geometryMode === "actual-od" ? actualOd.radii : new Map()
+  );
+
+  function fitDisplayedBounds(label: string, authoredBounds: Bounds3 | null) {
+    const localBounds = authoredBounds ? {
+      min: authoredToLocal(authoredBounds.min, renderTransform.origin),
+      max: authoredToLocal(authoredBounds.max, renderTransform.origin)
+    } : null;
+    const resource = viewportResourceRef.current;
+    if (resource) {
+      fitViewportCamera(resource, viewPreset, localBounds);
+      resource.invalidate();
+    }
+    setViewCommandStatus(resource
+      ? `${label} applied to the displayed geometry envelope.`
+      : `${label} requested; the 3D renderer is unavailable.`);
+  }
+
+  function dispatchViewportViewCommand(command: ViewportViewCommand) {
+    if (command.type === "retire-box-gesture") {
+      retireBoxGesture();
+      return;
+    }
+    if (command.type === "cancel-box-selection") {
+      cancelBoxSelection();
+      return;
+    }
+    if (command.type === "set-box-select") {
+      if (!command.active) cancelBoxSelection();
+      if (command.active) onViewportInteractionStart("box-selection");
+      if (command.active) viewportResourceRef.current?.cancelNavigation();
+      setBoxSelectActive(command.active);
+      if (command.active) setMeasurementActive(false);
+      setViewCommandStatus(`Box Select ${command.active ? "enabled" : "disabled"}.`);
+      return;
+    }
+    if (command.type === "set-selection-filter") {
+      setBoxSelectionFilter(command.filter);
+      setViewCommandStatus(`Selection filter set to ${command.filter}.`);
+      return;
+    }
+    if (command.type === "set-geometry-mode") {
+      setGeometryMode(command.mode);
+      setViewCommandStatus(command.mode === "actual-od" ? "Actual OD geometry requested." : "Schematic geometry enabled.");
+      return;
+    }
+    if (command.type === "set-measurement") {
+      if (command.active) onViewportInteractionStart("measurement");
+      setMeasurementActive(command.active);
+      if (command.active) cancelBoxSelection();
+      setViewCommandStatus(`Measurement ${command.active ? "enabled" : "disabled"}.`);
+      return;
+    }
+    if (command.type === "apply-measurement-target") {
+      setMeasurementSource((current) => {
+        const result = applyMeasurementTargetCommand(activeModelIndex, current, command.ref);
+        setPlacementMessage(result.message);
+        setViewCommandStatus(result.message);
+        return result.source;
+      });
+      return;
+    }
+    if (command.type === "hide-selection") {
+      if (visibilitySelectionReason) { setViewCommandStatus(visibilitySelectionReason); return; }
+      onHiddenKeysChange(hideSelectionVisibility(explicitHiddenKeys, visibilitySelectionKeys));
+      setViewCommandStatus(`${visibilitySelectionKeys.length} selected item${visibilitySelectionKeys.length === 1 ? "" : "s"} hidden.`);
+      return;
+    }
+    if (command.type === "isolate-selection") {
+      if (visibilitySelectionReason) { setViewCommandStatus(visibilitySelectionReason); return; }
+      onIsolateKeysChange(isolateSelectionVisibility(activeModelIndex, visibilitySelectionKeys));
+      setViewCommandStatus(`${visibilitySelectionKeys.length} selected item${visibilitySelectionKeys.length === 1 ? "" : "s"} isolated with authored context.`);
+      return;
+    }
+    if (command.type === "show-all") {
+      onClearVisibility();
+      setViewCommandStatus("All eligible model geometry shown.");
+      return;
+    }
+    const radii = geometryMode === "actual-od" ? actualOd.radii : new Map<EntityKey, number>();
+    const keys = command.type === "fit-selection" ? orderedSelectionKeys : activeModelIndex.visibilityEligibleKeys;
+    const mask = command.type === "fit-model" ? new Set<EntityKey>() : hiddenKeys;
+    fitDisplayedBounds(
+      command.type === "fit-model" ? "Fit Model" : command.type === "fit-selection" ? "Fit Selection" : "Fit Visible",
+      displayedBoundsForEntityKeys(activeModelIndex, keys, mask, radii)
+    );
+  }
 
   return (
     <div className="viewport-shell">
       <div className="viewport-toolbar">
+        <div className="viewport-toolbar-controls" role="group" aria-label="Viewport controls">
         <span>3D Centerline</span>
         <details
           className={`viewport-deformation-status ${deformation.state}`}
@@ -1151,12 +2204,68 @@ export function PipeViewport({
             Grid
           </button>
         </div>
-        <span>Selected: {selection.id}</span>
+        <div className="viewport-selection-tools" role="group" aria-label="Viewport selection tools">
+          <button
+            aria-pressed={boxSelectActive}
+            className={boxSelectActive ? "active" : ""}
+            data-testid="viewport-box-select"
+            onClick={() => dispatchViewportViewCommand({ type: "set-box-select", active: !boxSelectActive })}
+            type="button"
+          >Box Select</button>
+          <label><span className="visually-hidden">Selection filter</span>
+            <select
+              aria-label="Selection filter"
+              data-testid="viewport-selection-filter"
+              onChange={(event) => dispatchViewportViewCommand({ type: "set-selection-filter", filter: event.target.value as BoxSelectionFilter })}
+              value={boxSelectionFilter}
+            >
+              <option value="all">All</option><option value="pipes">Pipes</option><option value="nodes">Nodes</option>
+              <option value="supports">Supports</option><option value="components">Components</option>
+            </select>
+          </label>
+          <button onClick={() => dispatchViewportViewCommand({ type: "hide-selection" })} disabled={Boolean(visibilitySelectionReason)} title={visibilitySelectionReason ?? "Hide selected geometry."} type="button">Hide</button>
+          <button onClick={() => dispatchViewportViewCommand({ type: "isolate-selection" })} disabled={Boolean(visibilitySelectionReason)} title={visibilitySelectionReason ?? "Isolate selected geometry with authored context."} type="button">Isolate</button>
+          <button onClick={() => dispatchViewportViewCommand({ type: "show-all" })} disabled={explicitHiddenKeys.size === 0 && isolateHiddenKeys.size === 0} title={explicitHiddenKeys.size === 0 && isolateHiddenKeys.size === 0 ? "All eligible entities are already shown." : "Show every eligible entity."} type="button">Show All</button>
+          <button data-testid="viewport-fit-model" onClick={() => dispatchViewportViewCommand({ type: "fit-model" })} type="button">Fit Model</button>
+          <button onClick={() => dispatchViewportViewCommand({ type: "fit-visible" })} type="button">Fit Visible</button>
+          <button data-testid="viewport-fit-selection" onClick={() => dispatchViewportViewCommand({ type: "fit-selection" })} disabled={!fitSelectionBounds} title={fitSelectionBounds ? "Fit currently visible selected geometry." : "No visible valid selected geometry can be fitted."} type="button">Fit Selection</button>
+        </div>
+        <div className="viewport-geometry-tools" role="group" aria-label="Viewport geometry">
+          <button aria-pressed={geometryMode === "schematic"} data-testid="viewport-geometry-schematic" onClick={() => dispatchViewportViewCommand({ type: "set-geometry-mode", mode: "schematic" })} type="button">Schematic</button>
+          <button aria-pressed={geometryMode === "actual-od"} data-testid="viewport-geometry-actual-od" onClick={() => dispatchViewportViewCommand({ type: "set-geometry-mode", mode: "actual-od" })} type="button">Actual OD</button>
+          <button aria-pressed={measurementActive} onClick={() => dispatchViewportViewCommand({ type: "set-measurement", active: !measurementActive })} type="button">Measure</button>
+        </div>
+        </div>
+        <div className="viewport-toolbar-status-strip" aria-label="Viewport status">
+          <span
+            className="viewport-toolbar-selection-status"
+            title={`Selected ${selection.type}: ${selection.id}`}
+          >Selected: {selection.id}</span>
+          {selectedHiddenCount > 0 ? <span role="status" title={`${selectedHiddenCount} selected item${selectedHiddenCount === 1 ? " is" : "s are"} hidden`}>{selectedHiddenCount} selected item{selectedHiddenCount === 1 ? " is" : "s are"} hidden</span> : null}
+          <span role="status" data-testid="viewport-od-status" title={geometryMode === "actual-od" ? actualOd.reason : "Schematic centerline geometry"}>{geometryMode === "actual-od" ? actualOd.reason : "Schematic centerline geometry"}</span>
+          <span role="status" aria-label="View command status" data-testid="viewport-view-command-status" title={viewCommandStatus}>{viewCommandStatus}</span>
+          {viewportContextStatus !== "ready" ? (
+            <span role="status" data-testid="viewport-context-status" title={viewportContextStatus === "lost" ? "3D context lost; rendering paused." : "Restoring 3D resources…"}>
+              {viewportContextStatus === "lost" ? "3D context lost; rendering paused." : "Restoring 3D resources…"}
+            </span>
+          ) : null}
+          {activeModelIndex.invalidGeometry.size > 0 ? (
+            <span role="status" data-testid="viewport-invalid-geometry" title={`${activeModelIndex.invalidGeometry.size} item${activeModelIndex.invalidGeometry.size === 1 ? "" : "s"} excluded: ${activeModelIndex.invalidGeometry.values().next().value}`}>
+              {activeModelIndex.invalidGeometry.size} item{activeModelIndex.invalidGeometry.size === 1 ? "" : "s"} excluded: {activeModelIndex.invalidGeometry.values().next().value}
+            </span>
+          ) : null}
+          {renderTransformResolution.issue ? (
+            <span role="status" data-testid="viewport-render-transform-status" title={`Viewport geometry excluded: ${renderTransformResolution.issue}`}>
+              Viewport geometry excluded: {renderTransformResolution.issue}
+            </span>
+          ) : null}
+        </div>
       </div>
-      <div className="viewport-frame">
+      <div className={`viewport-frame${boxSelectActive ? " box-select-active" : ""}`}>
         <div
           className="viewport-canvas"
           data-testid="viewport-canvas"
+          onPointerDownCapture={handleViewportPointerDownCapture}
           onPointerDown={handleViewportPointerDown}
           onPointerMove={handleViewportPointerMove}
           onPointerLeave={handleViewportPointerLeave}
@@ -1175,16 +2284,22 @@ export function PipeViewport({
             ref={selectionLayerRef}
           >
             {selectionTargets.map((target) => {
-              const active = selection.id === target.ref.id;
+              const active = selectionContainsKey(orderedSelectionKeySet, target.ref);
               return (
                 <button
                   aria-label={`Select ${target.label} in viewport`}
                   aria-pressed={active}
                   className={`viewport-select-target ${target.kind} ${active ? "active" : ""}`}
+                  data-entity-key={entityKey(target.ref)}
                   data-testid={`viewport-select-${target.ref.id}`}
                   disabled={draftReviewBusy}
-                  key={`${target.ref.type}:${target.ref.id}`}
-                  onClick={() => chooseViewportTarget(target)}
+                  key={entityKey(target.ref)}
+                  onPointerEnter={() => setHoveredEntityKey(entityKey(target.ref))}
+                  onPointerLeave={() => setHoveredEntityKey(null)}
+                  onClick={(event) => chooseViewportTarget(target, {
+                    additive: event.shiftKey,
+                    toggle: event.ctrlKey || event.metaKey
+                  })}
                   style={{
                     left: `${target.screen.x}%`,
                     top: `${target.screen.y}%`
@@ -1199,7 +2314,19 @@ export function PipeViewport({
             })}
           </div>
         ) : null}
-        <div className="viewport-axis-triad" aria-label="Orientation gizmo" data-testid="viewport-axis-triad">
+        {boxRect ? (
+          <div
+            aria-hidden="true"
+            className="viewport-box-rect"
+            style={{
+              left: Math.min(boxRect.left, boxRect.right),
+              top: Math.min(boxRect.top, boxRect.bottom),
+              width: Math.abs(boxRect.right - boxRect.left),
+              height: Math.abs(boxRect.bottom - boxRect.top)
+            }}
+          />
+        ) : null}
+        <div className="viewport-axis-triad" aria-label="Orientation gizmo showing X, Y, Z axes" data-testid="viewport-axis-triad" role="img">
           <div className="viewport-gizmo-host" ref={gizmoHostRef} aria-hidden="true" />
         </div>
         <div className="viewport-view-cube" aria-label="View controls" data-testid="viewport-view-cube">
@@ -1209,8 +2336,8 @@ export function PipeViewport({
           <button type="button" aria-pressed={viewPreset === "top"} onClick={() => setViewPreset("top")}>
             Top
           </button>
-          <button type="button" aria-pressed={viewPreset === "iso"} onClick={() => setViewPreset("iso")}>
-            Iso
+          <button type="button" data-testid="viewport-view-isometric" aria-pressed={viewPreset === "iso"} onClick={() => setViewPreset("iso")}>
+            Isometric
           </button>
         </div>
         <div className="viewport-scale-bar" data-testid="viewport-scale-bar">
@@ -1294,7 +2421,7 @@ export function PipeViewport({
         >
           Queue preview
         </button>
-        <span data-testid="command-selection-readout">
+        <span aria-label="Selection summary" role="status" data-testid="command-selection-readout">
           Selected {selection.type}: {selection.id}; {visibleIntents.length} queued
         </span>
         <span className="command-hint" data-testid="viewport-orbit-hint">
@@ -1302,6 +2429,19 @@ export function PipeViewport({
         </span>
         </div></details>
       </section>
+      {measurementPoints.length > 0 || measurementReadout.status === "unavailable" ? (
+        <div className="viewport-measurement-strip" role="status" data-testid="viewport-measurement-readout">
+          <strong>Measure · {measurementTargetSummary}</strong>
+          <span>{measurementReadout.status === "available"
+            ? <>
+                <ViewportMeasurementQuantityReadout label="Distance" unit={defaultLengthUnit} value={measurementReadout.values.get("distance")!} /> ·
+                <ViewportMeasurementQuantityReadout label="ΔX" unit={defaultLengthUnit} value={measurementReadout.values.get("dx")!} /> ·
+                <ViewportMeasurementQuantityReadout label="ΔY" unit={defaultLengthUnit} value={measurementReadout.values.get("dy")!} /> ·
+                <ViewportMeasurementQuantityReadout label="ΔZ" unit={defaultLengthUnit} value={measurementReadout.values.get("dz")!} />
+              </>
+            : measurementReadout.reason}</span>
+        </div>
+      ) : null}
       <section
         className={`viewport-intents${viewportIntentPanelActive ? " active" : " collapsed"}`}
         aria-label="Viewport editor intents"
@@ -1442,19 +2582,7 @@ export function PipeViewport({
                   Pick
                 </button>
               </div>
-              <select
-                aria-label="New pipe from node"
-                data-testid="viewport-create-pipe-from"
-                onChange={(event) => updatePipeDraft("from", event.target.value)}
-                value={pipeDraft.from}
-              >
-                <option value="">From node</option>
-                {model.nodes.map((node) => (
-                  <option key={node.id} value={node.id}>
-                    {node.label} ({node.id})
-                  </option>
-                ))}
-              </select>
+              <VirtualTargetPicker label="New pipe from node" testId="viewport-create-pipe-from" options={nodeTargetOptions} value={pipeDraft.from} onChange={(value) => updatePipeDraft("from", value)} />
             </div>
             <fieldset className="viewport-end-mode" data-testid="viewport-route-end-mode">
               <legend>End mode</legend>
@@ -1482,19 +2610,7 @@ export function PipeViewport({
                   Pick
                 </button>
               </div>
-              <select
-                aria-label="New pipe to node"
-                data-testid="viewport-create-pipe-to"
-                onChange={(event) => updatePipeDraft("to", event.target.value)}
-                value={pipeDraft.to}
-              >
-                <option value="">To node</option>
-                {model.nodes.map((node) => (
-                  <option key={node.id} value={node.id}>
-                    {node.label} ({node.id})
-                  </option>
-                ))}
-              </select>
+              <VirtualTargetPicker label="New pipe to node" testId="viewport-create-pipe-to" options={nodeTargetOptions} value={pipeDraft.to} onChange={(value) => updatePipeDraft("to", value)} />
             </div>
             <div className="viewport-new-endpoint" hidden={routeEndMode !== "new"} data-testid="viewport-route-new-endpoint">
               <strong>New endpoint</strong>
@@ -1550,22 +2666,7 @@ export function PipeViewport({
               <label><span>Coordinate unit</span><select aria-label="Route end coordinate unit" data-testid="viewport-route-end-unit" value={newEndDraft.coordinateUnit} onChange={(event) => updateNewEndDraft("coordinateUnit", event.target.value)}>{nodeLengthUnitOptions.map((option) => <option key={option.symbol} value={option.symbol}>{option.symbol}</option>)}</select></label>
               <label><span>Provenance</span><input aria-label="Route end provenance" data-testid="viewport-route-end-provenance" value={newEndDraft.provenance} onChange={(event) => updateNewEndDraft("provenance", event.target.value)} /></label>
             </div>
-            <label>
-              <span>Material</span>
-              <select
-                aria-label="New pipe material"
-                data-testid="viewport-create-pipe-material"
-                onChange={(event) => updatePipeDraft("material", event.target.value)}
-                value={pipeDraft.material}
-              >
-                <option value="">Material</option>
-                {(model.materials ?? []).map((material) => (
-                  <option key={material.id} value={material.id}>
-                    {material.label} ({material.id})
-                  </option>
-                ))}
-              </select>
-            </label>
+            <VirtualTargetPicker label="New pipe material" testId="viewport-create-pipe-material" options={materialTargetOptions} value={pipeDraft.material} onChange={(value) => updatePipeDraft("material", value)} />
             <label>
               <span>OD</span>
               <input
@@ -1716,50 +2817,10 @@ export function PipeViewport({
                 {creatableComponentKinds.map((kind) => <option key={kind} value={kind}>{kind}</option>)}
               </select>
             </label>
-            <label>
-              <span>Node</span>
-              <select
-                aria-label="New component node"
-                data-testid="viewport-create-component-node"
-                onChange={(event) =>
-                  setComponentDraft((current) => componentDraftForNode(model, current, event.target.value))
-                }
-                value={componentDraft.node}
-              >
-                {model.nodes.map((node) => (
-                  <option key={node.id} value={node.id}>{node.label} ({node.id})</option>
-                ))}
-              </select>
-            </label>
-            <label>
-              <span>{componentDraft.kind === "tee" ? "Header pipe" : "Realized pipe"}</span>
-              <select
-                aria-label={componentDraft.kind === "tee" ? "New tee header pipe" : "New component realized pipe"}
-                data-testid="viewport-create-component-pipe"
-                onChange={(event) => updateComponentDraft("primaryPipeRef", event.target.value)}
-                value={componentDraft.primaryPipeRef}
-              >
-                <option value="">Select connected pipe</option>
-                {model.pipe_segments
-                  .filter((pipe) => pipe.from === componentDraft.node || pipe.to === componentDraft.node)
-                  .map((pipe) => <option key={pipe.id} value={pipe.id}>{pipe.label} ({pipe.id})</option>)}
-              </select>
-            </label>
+            <VirtualTargetPicker label="New component node" testId="viewport-create-component-node" options={nodeTargetOptions} value={componentDraft.node} onChange={(value) => setComponentDraft((current) => componentDraftForNode(model, current, value))} />
+            <VirtualTargetPicker label={componentDraft.kind === "tee" ? "New tee header pipe" : "New component realized pipe"} testId="viewport-create-component-pipe" options={connectedPipeTargetOptions} value={componentDraft.primaryPipeRef} onChange={(value) => updateComponentDraft("primaryPipeRef", value)} />
             {componentDraft.kind === "tee" ? (
-              <label>
-                <span>Branch pipe</span>
-                <select
-                  aria-label="New tee branch pipe"
-                  data-testid="viewport-create-component-secondary-pipe"
-                  onChange={(event) => updateComponentDraft("secondaryPipeRef", event.target.value)}
-                  value={componentDraft.secondaryPipeRef}
-                >
-                  <option value="">Select connected branch pipe</option>
-                  {model.pipe_segments
-                    .filter((pipe) => pipe.from === componentDraft.node || pipe.to === componentDraft.node)
-                    .map((pipe) => <option key={pipe.id} value={pipe.id}>{pipe.label} ({pipe.id})</option>)}
-                </select>
-              </label>
+              <VirtualTargetPicker label="New tee branch pipe" testId="viewport-create-component-secondary-pipe" options={connectedPipeTargetOptions} value={componentDraft.secondaryPipeRef} onChange={(value) => updateComponentDraft("secondaryPipeRef", value)} />
             ) : null}
             {componentDraft.kind === "bend" ? (
               <>
@@ -1958,16 +3019,35 @@ function creationToolStatusLabel(tool: CreationTool | null): string {
   return "Model focus";
 }
 
-function applyViewPreset(camera: THREE.PerspectiveCamera, preset: ViewPreset) {
+function fitViewportCamera(resource: ViewportResource, preset: ViewPreset, bounds: Bounds3 | null) {
+  // Programmatic camera commands establish a new pose; retained user-input
+  // damping must not be applied on top of it.
+  resource.cancelNavigation();
+  const center = bounds
+    ? {
+        x: bounds.min.x / 2 + bounds.max.x / 2,
+        y: bounds.min.y / 2 + bounds.max.y / 2,
+        z: bounds.min.z / 2 + bounds.max.z / 2
+      }
+    : { x: 0, y: 0, z: 0 };
+  const extent = bounds
+    ? Math.max(bounds.max.x - bounds.min.x, bounds.max.y - bounds.min.y, bounds.max.z - bounds.min.z, 1)
+    : 4;
+  const distance = fittedViewportDistance(bounds, preset, resource.camera.fov, resource.camera.aspect);
   if (preset === "front") {
-    camera.position.set(3.8, 1.2, 11);
+    resource.camera.position.set(center.x, center.y, center.z + distance);
   } else if (preset === "top") {
-    camera.position.set(3.8, 12, 0.7);
+    resource.camera.position.set(center.x, center.y + distance, center.z);
   } else {
-    camera.position.set(7.6, 7, 8);
+    const diagonal = distance / Math.sqrt(3);
+    resource.camera.position.set(center.x + diagonal, center.y + diagonal, center.z + diagonal);
   }
-  camera.lookAt(3.8, 1.2, 0.7);
-  camera.updateProjectionMatrix();
+  resource.controls.target.set(center.x, center.y, center.z);
+  resource.camera.near = Math.max(0.001, distance / 100_000);
+  resource.camera.far = Math.max(1_000, distance + extent * 8);
+  resource.camera.lookAt(center.x, center.y, center.z);
+  resource.camera.updateProjectionMatrix();
+  resource.markCameraProjectionChanged();
 }
 
 function emptyPipeDraft(lengthUnit: string): PipeDraft {
@@ -2124,6 +3204,77 @@ function formatDraftCoordinate(value: number): string {
   return String(Object.is(rounded, -0) ? 0 : rounded);
 }
 
+function actualOdConversionPlan(
+  index: ModelIndex,
+  model: PreviewModel,
+  modelLengthUnit: string
+): {
+  requests: Array<{ id: string; value: number; from_unit: string; to_unit: string; dimension_id: string }>;
+  requestByPipe: ReadonlyMap<EntityKey, {
+    outsideDiameter: string;
+    wallThickness: string;
+    inlineOutsideDiameter: string;
+    inlineWallThickness: string;
+  }>;
+  invalidCount: number;
+  reason: string;
+} {
+  const requests: Array<{ id: string; value: number; from_unit: string; to_unit: string; dimension_id: string }> = [];
+  const requestByQuantity = new Map<string, string>();
+  const requestByPipe = new Map<EntityKey, {
+    outsideDiameter: string;
+    wallThickness: string;
+    inlineOutsideDiameter: string;
+    inlineWallThickness: string;
+  }>();
+  let invalidCount = 0;
+  const requestId = (value: number, fromUnit: string) => {
+    const signature = JSON.stringify([value, fromUnit, modelLengthUnit]);
+    const existing = requestByQuantity.get(signature);
+    if (existing) return existing;
+    const id = `viewport-actual-od-${requestByQuantity.size + 1}`;
+    requestByQuantity.set(signature, id);
+    requests.push({ id, value, from_unit: fromUnit, to_unit: modelLengthUnit, dimension_id: "length" });
+    return id;
+  };
+  for (const pipe of model.pipe_segments) {
+    const key = entityKey({ type: "pipe", id: pipe.id });
+    const binding = index.sectionBindings.get(key);
+    if (!binding || binding.issue || index.invalidGeometry.has(key)) {
+      invalidCount += 1;
+      continue;
+    }
+    const outsideDiameter = binding.record.outside_diameter;
+    const wallThickness = binding.record.wall_thickness;
+    const inlineOutsideDiameter = pipe.section.outside_diameter;
+    const inlineWallThickness = pipe.section.wall_thickness;
+    if (!outsideDiameter || !wallThickness || !(outsideDiameter.value > 0) || !(wallThickness.value > 0) ||
+        !inlineOutsideDiameter || !inlineWallThickness || !(inlineOutsideDiameter.value > 0) || !(inlineWallThickness.value > 0) ||
+        !Number.isFinite(outsideDiameter.value) || !Number.isFinite(wallThickness.value) ||
+        !Number.isFinite(inlineOutsideDiameter.value) || !Number.isFinite(inlineWallThickness.value) ||
+        !outsideDiameter.unit.trim() || !wallThickness.unit.trim() ||
+        !inlineOutsideDiameter.unit.trim() || !inlineWallThickness.unit.trim() ||
+        !modelLengthUnit.trim() || modelLengthUnit === "TBD") {
+      invalidCount += 1;
+      continue;
+    }
+    requestByPipe.set(key, {
+      outsideDiameter: requestId(outsideDiameter.value, outsideDiameter.unit),
+      wallThickness: requestId(wallThickness.value, wallThickness.unit),
+      inlineOutsideDiameter: requestId(inlineOutsideDiameter.value, inlineOutsideDiameter.unit),
+      inlineWallThickness: requestId(inlineWallThickness.value, inlineWallThickness.unit)
+    });
+  }
+  return {
+    requests,
+    requestByPipe,
+    invalidCount,
+    reason: invalidCount > 0
+      ? `${invalidCount} pipe span${invalidCount === 1 ? "" : "s"} has no consistent explicit OD/wall binding.`
+      : "No pipe spans expose an explicit OD/wall binding."
+  };
+}
+
 function raycastDraftPoint(
   event: { clientX: number; clientY: number },
   canvas: HTMLCanvasElement,
@@ -2166,63 +3317,19 @@ function ViewportTargetIcon({ kind }: { kind: ViewportSelectionTarget["kind"] })
   return <Box size={13} aria-hidden="true" />;
 }
 
-function viewportSelectionTargets(model: PreviewModel): ViewportSelectionTarget[] {
-  const nodeMap = new Map(model.nodes.map((node) => [node.id, node.position]));
-  const rawTargets: Array<
-    Omit<ViewportSelectionTarget, "screen"> & {
-      position: Vec3;
-      offsetY: number;
-    }
-  > = [
-    ...model.nodes.map((node) => ({
-      ref: { type: "node" as const, id: node.id },
-      label: node.label,
-      kind: "node" as const,
-      position: node.position,
-      offsetY: 0
-    })),
-    ...model.pipe_segments.flatMap((pipe) => {
-      const from = nodeMap.get(pipe.from);
-      const to = nodeMap.get(pipe.to);
-      if (!from || !to) return [];
-      return [
-        {
-          ref: { type: "pipe" as const, id: pipe.id },
-          label: pipe.label,
-          kind: "pipe" as const,
-          position: midpoint(from, to),
-          offsetY: 0
-        }
-      ];
-    }),
-    ...model.supports.flatMap((support) => {
-      const node = nodeMap.get(support.node);
-      if (!node) return [];
-      return [
-        {
-          ref: { type: "support" as const, id: support.id },
-          label: support.label,
-          kind: "support" as const,
-          position: node,
-          offsetY: 8
-        }
-      ];
-    }),
-    ...model.components.flatMap((component) => {
-      const node = nodeMap.get(component.node);
-      if (!node) return [];
-      return [
-        {
-          ref: { type: "component" as const, id: component.id },
-          label: component.label,
-          kind: "component" as const,
-          position: node,
-          offsetY: -8
-        }
-      ];
-    })
-  ];
-
+function viewportSelectionTargets(index: ModelIndex, keys: readonly EntityKey[]): ViewportSelectionTarget[] {
+  const rawTargets = keys.flatMap((key) => {
+    const entity = index.entities.get(key);
+    if (!entity?.anchor || !["node", "pipe", "support", "component"].includes(entity.ref.type)) return [];
+    const kind = entity.ref.type as ViewportSelectionTarget["kind"];
+    return [{
+      ref: entity.ref,
+      label: entity.label,
+      kind,
+      position: entity.anchor as Vec3,
+      offsetY: kind === "support" ? 8 : kind === "component" ? -8 : 0
+    }];
+  });
   const bounds = selectionBounds(rawTargets.map((target) => target.position));
   return rawTargets.map(({ position, offsetY, ...target }) => ({
     ...target,
@@ -2230,11 +3337,15 @@ function viewportSelectionTargets(model: PreviewModel): ViewportSelectionTarget[
   }));
 }
 
+function selectionContainsKey(keys: ReadonlySet<EntityKey>, ref: EntityRef): boolean {
+  return keys.has(entityKey(ref));
+}
+
 function midpoint(from: Vec3, to: Vec3): Vec3 {
   return {
-    x: (from.x + to.x) / 2,
-    y: (from.y + to.y) / 2,
-    z: (from.z + to.z) / 2
+    x: from.x / 2 + to.x / 2,
+    y: from.y / 2 + to.y / 2,
+    z: from.z / 2 + to.z / 2
   };
 }
 
@@ -2573,6 +3684,254 @@ function pipeMesh(from: Vec3, to: Vec3, active: boolean) {
   return mesh;
 }
 
+function spatialGroups<T>(index: ModelIndex, entries: ReadonlyMap<EntityKey, T>): T[][] {
+  const groups: T[][] = [];
+  for (const chunkKeys of index.spatialChunks.map((chunk) => chunk.entityKeys)) {
+    const group = chunkKeys.flatMap((key) => {
+      const entry = entries.get(key);
+      return entry === undefined ? [] : [entry];
+    });
+    if (group.length > 0) groups.push(group);
+  }
+  return groups;
+}
+
+function spatialMultiGroups<T>(index: ModelIndex, entries: ReadonlyMap<EntityKey, readonly T[]>): T[][] {
+  const groups: T[][] = [];
+  const entityTypes = new Set([...entries.keys()].flatMap((key) => {
+    const indexed = index.entities.get(key);
+    return indexed && ["pipe", "node", "support", "component"].includes(indexed.ref.type)
+      ? [indexed.ref.type as "pipe" | "node" | "support" | "component"]
+      : [];
+  }));
+  const chunkGroups = [...entityTypes].flatMap((type) => spatialEntityKeyGroups(index, type));
+  for (const chunkKeys of chunkGroups) {
+    const group = chunkKeys.flatMap((key) => entries.get(key) ?? []);
+    if (group.length > 0) groups.push(group);
+  }
+  return groups;
+}
+
+function instancedPipeMeshes(
+  model: PreviewModel,
+  nodes: ReadonlyMap<string, Vec3>,
+  modelIndex: ModelIndex,
+  actualRadii: ReadonlyMap<EntityKey, number>
+): THREE.InstancedMesh[] {
+  const validByKey = new Map(model.pipe_segments.flatMap((pipe) => {
+    const from = nodes.get(pipe.from);
+    const to = nodes.get(pipe.to);
+    const key = entityKey({ type: "pipe", id: pipe.id });
+    if (!from || !to || modelIndex.invalidGeometry.has(key)) return [];
+    const direction = new THREE.Vector3(to.x - from.x, to.y - from.y, to.z - from.z);
+    const length = direction.length();
+    return Number.isFinite(length) && length > 0 ? [[key, { pipe, from, to, direction, length }] as const] : [];
+  }));
+  if (validByKey.size === 0) return [];
+  const geometry = new THREE.CylinderGeometry(1, 1, 1, 10, 1, false);
+  const material = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.2, roughness: 0.58 });
+  return spatialGroups(modelIndex, validByKey).map((valid) => {
+    const mesh = new THREE.InstancedMesh(geometry, material, valid.length);
+    const matrix = new THREE.Matrix4();
+    const quaternion = new THREE.Quaternion();
+    const up = new THREE.Vector3(0, 1, 0);
+    const scale = new THREE.Vector3();
+    const center = new THREE.Vector3();
+    valid.forEach(({ pipe, from, to, direction, length }, instance) => {
+      quaternion.setFromUnitVectors(up, direction.normalize());
+      center.set(from.x / 2 + to.x / 2, from.y / 2 + to.y / 2, from.z / 2 + to.z / 2);
+      const radius = actualRadii.get(entityKey({ type: "pipe", id: pipe.id })) ?? 0.052;
+      scale.set(radius, length, radius);
+      matrix.compose(center, quaternion, scale);
+      mesh.setMatrixAt(instance, matrix);
+      mesh.setColorAt(instance, new THREE.Color(0x4f6f73));
+    });
+    mesh.instanceMatrix.needsUpdate = true;
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    registerInstancedSelectionPresentation(
+      mesh,
+      valid.map(({ pipe }) => entityKey({ type: "pipe", id: pipe.id })),
+      0x4f6f73
+    );
+    return mesh;
+  });
+}
+
+function instancedNodeMeshes(
+  model: PreviewModel,
+  nodes: ReadonlyMap<string, Vec3>,
+  index: ModelIndex
+): THREE.InstancedMesh[] {
+  const validByKey = new Map(model.nodes.flatMap((node) => {
+    const key = entityKey({ type: "node", id: node.id });
+    return nodes.has(node.id) && !index.invalidGeometry.has(key) ? [[key, node] as const] : [];
+  }));
+  if (validByKey.size === 0) return [];
+  const geometry = new THREE.SphereGeometry(0.095, 12, 8);
+  const material = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.48 });
+  return spatialGroups(index, validByKey).map((valid) => {
+    const mesh = new THREE.InstancedMesh(geometry, material, valid.length);
+    const matrix = new THREE.Matrix4();
+    valid.forEach((node, instance) => {
+      const position = nodes.get(node.id)!;
+      matrix.makeTranslation(position.x, position.y, position.z);
+      mesh.setMatrixAt(instance, matrix);
+      mesh.setColorAt(instance, new THREE.Color(0x2f6f73));
+    });
+    mesh.instanceMatrix.needsUpdate = true;
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    registerInstancedSelectionPresentation(mesh, valid.map((node) => entityKey({ type: "node", id: node.id })), 0x2f6f73);
+    return mesh;
+  });
+}
+
+function instancedSupportMeshes(
+  model: PreviewModel,
+  nodes: ReadonlyMap<string, Vec3>,
+  index: ModelIndex
+): THREE.InstancedMesh[] {
+  const validByKey = new Map(model.supports.flatMap((support) => {
+    const key = entityKey({ type: "support", id: support.id });
+    if (index.invalidGeometry.has(key)) return [];
+    const node = nodes.get(support.node);
+    return node ? [[key, { support, node }] as const] : [];
+  }));
+  if (validByKey.size === 0) return [];
+  const geometry = new THREE.ConeGeometry(0.18, 0.34, 4);
+  const material = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.7 });
+  const quaternion = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI / 4);
+  const scale = new THREE.Vector3(1, 1, 1);
+  return spatialGroups(index, validByKey).map((valid) => {
+    const mesh = new THREE.InstancedMesh(geometry, material, valid.length);
+    const matrix = new THREE.Matrix4();
+    valid.forEach(({ support, node }, instance) => {
+      matrix.compose(new THREE.Vector3(node.x, node.y - 0.26, node.z), quaternion, scale);
+      mesh.setMatrixAt(instance, matrix);
+      mesh.setColorAt(instance, new THREE.Color(0x6b7d49));
+    });
+    mesh.instanceMatrix.needsUpdate = true;
+    if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+    registerInstancedSelectionPresentation(mesh, valid.map(({ support }) => entityKey({ type: "support", id: support.id })), 0x6b7d49);
+    return mesh;
+  });
+}
+
+function instancedComponentMeshes(
+  model: PreviewModel,
+  nodes: ReadonlyMap<string, Vec3>,
+  index: ModelIndex
+): THREE.InstancedMesh[] {
+  const groups = new Map<string, Map<EntityKey, PreviewComponent>>();
+  for (const component of model.components) {
+    const key = entityKey({ type: "component", id: component.id });
+    if (!nodes.has(component.node) || index.invalidGeometry.has(key)) continue;
+    const kind = isBendComponent(component) ? "bend" : isBranchComponent(component) ? "branch" : isExpansionJointComponent(component) ? "expansion" : "rigid";
+    const kindEntries = groups.get(kind) ?? new Map<EntityKey, PreviewComponent>();
+    kindEntries.set(key, component);
+    groups.set(kind, kindEntries);
+  }
+  const output: THREE.InstancedMesh[] = [];
+  for (const [kind, entries] of groups) {
+    const geometry = kind === "bend"
+      ? new THREE.TorusGeometry(0.24, 0.027, 8, 18, Math.PI * 0.75)
+      : kind === "branch"
+        ? new THREE.CylinderGeometry(0.055, 0.055, 0.44, 10)
+        : kind === "expansion"
+          ? new THREE.CylinderGeometry(0.11, 0.11, 0.34, 12)
+          : new THREE.BoxGeometry(0.24, 0.24, 0.24);
+    const color = kind === "branch" ? 0x24705a : kind === "expansion" ? 0x6f5a92 : 0x1f6f73;
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.16, roughness: 0.52 });
+    for (const components of spatialGroups(index, entries)) {
+      const mesh = new THREE.InstancedMesh(geometry, material, components.length);
+      const matrix = new THREE.Matrix4();
+      components.forEach((component, instance) => {
+        const node = nodes.get(component.node)!;
+        matrix.makeTranslation(node.x, node.y + 0.2, node.z);
+        mesh.setMatrixAt(instance, matrix);
+        mesh.setColorAt(instance, new THREE.Color(color));
+      });
+      mesh.instanceMatrix.needsUpdate = true;
+      if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+      registerInstancedSelectionPresentation(
+        mesh,
+        components.map((component) => entityKey({ type: "component", id: component.id })),
+        color
+      );
+      output.push(mesh);
+    }
+  }
+  return output;
+}
+
+function instancedDeformedPipeMesh(
+  model: PreviewModel,
+  positions: ReadonlyMap<string, Vec3>,
+  origin: Readonly<Vec3>,
+  index: ModelIndex
+): THREE.InstancedMesh[] {
+  const validByKey = new Map(model.pipe_segments.flatMap((pipe) => {
+    const key = entityKey({ type: "pipe", id: pipe.id });
+    const from = positions.get(pipe.from);
+    const to = positions.get(pipe.to);
+    if (!from || !to || index.invalidGeometry.has(key)) return [];
+    const localFrom = authoredToLocal(from, origin);
+    const localTo = authoredToLocal(to, origin);
+    const direction = new THREE.Vector3(localTo.x - localFrom.x, localTo.y - localFrom.y, localTo.z - localFrom.z);
+    const length = direction.length();
+    return length > 0 && Number.isFinite(length)
+      ? [[key, { pipe, from: localFrom, to: localTo, direction, length }] as const]
+      : [];
+  }));
+  if (!validByKey.size) return [];
+  const geometry = new THREE.CylinderGeometry(1, 1, 1, 10);
+  const material = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0x03433f, opacity: 0.82, roughness: 0.42, transparent: true });
+  return spatialGroups(index, validByKey).map((valid) => {
+    const mesh = new THREE.InstancedMesh(geometry, material, valid.length);
+    const matrix = new THREE.Matrix4();
+    const quaternion = new THREE.Quaternion();
+    const up = new THREE.Vector3(0, 1, 0);
+    valid.forEach(({ from, to, direction, length }, instance) => {
+      quaternion.setFromUnitVectors(up, direction.normalize());
+      matrix.compose(
+        new THREE.Vector3(from.x / 2 + to.x / 2, from.y / 2 + to.y / 2, from.z / 2 + to.z / 2),
+        quaternion,
+        new THREE.Vector3(0.032, length, 0.032)
+      );
+      mesh.setMatrixAt(instance, matrix);
+      mesh.setColorAt(instance, new THREE.Color(0x0f8f85));
+    });
+    registerInstancedSelectionPresentation(mesh, valid.map(({ pipe }) => entityKey({ type: "pipe", id: pipe.id })), 0x0f8f85);
+    return mesh;
+  });
+}
+
+function instancedDeformationMarkerMesh(
+  model: PreviewModel,
+  positions: ReadonlyMap<string, Vec3>,
+  origin: Readonly<Vec3>,
+  index: ModelIndex
+): THREE.InstancedMesh[] {
+  const validByKey = new Map(model.nodes.flatMap((node) => {
+    const key = entityKey({ type: "node", id: node.id });
+    return positions.has(node.id) && !index.invalidGeometry.has(key) ? [[key, node] as const] : [];
+  }));
+  if (!validByKey.size) return [];
+  const geometry = new THREE.SphereGeometry(0.055, 10, 7);
+  const material = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0x03433f, opacity: 0.86, roughness: 0.44, transparent: true });
+  return spatialGroups(index, validByKey).map((valid) => {
+    const mesh = new THREE.InstancedMesh(geometry, material, valid.length);
+    const matrix = new THREE.Matrix4();
+    valid.forEach((node, instance) => {
+      const position = authoredToLocal(positions.get(node.id)!, origin);
+      matrix.makeTranslation(position.x, position.y, position.z);
+      mesh.setMatrixAt(instance, matrix);
+      mesh.setColorAt(instance, new THREE.Color(0x0f8f85));
+    });
+    registerInstancedSelectionPresentation(mesh, valid.map((node) => entityKey({ type: "node", id: node.id })), 0x0f8f85);
+    return mesh;
+  });
+}
+
 function marker(position: Vec3, color: number, radius: number) {
   return new THREE.Mesh(
     new THREE.SphereGeometry(radius, 24, 16),
@@ -2581,6 +3940,22 @@ function marker(position: Vec3, color: number, radius: number) {
     .translateX(position.x)
     .translateY(position.y)
     .translateZ(position.z);
+}
+
+function routeConstructionGridFromBounds(bounds: Bounds3 | null): THREE.GridHelper {
+  const span = bounds
+    ? Math.max(bounds.max.x - bounds.min.x, bounds.max.y - bounds.min.y, bounds.max.z - bounds.min.z)
+    : 0;
+  const size = Math.max(8, Math.ceil(span * 1.5));
+  const grid = new THREE.GridHelper(size, Math.max(8, Math.min(40, Math.round(size * 2))), 0x2f6f73, 0x9bb7b4);
+  const materials = Array.isArray(grid.material) ? grid.material : [grid.material];
+  for (const material of materials) {
+    material.transparent = true;
+    material.opacity = 0.44;
+    material.depthWrite = false;
+  }
+  grid.renderOrder = 1;
+  return grid;
 }
 
 function routeConstructionGrid(model: PreviewModel): THREE.GridHelper {
@@ -2855,6 +4230,22 @@ function referenceGround(model: PreviewModel): THREE.GridHelper {
   const size = Math.max(maxX - minX, maxZ - minZ, 1) * 1.6;
   const divisions = Math.max(4, Math.min(20, Math.round(size)));
   const helper = new THREE.GridHelper(size, divisions, 0xb6bfb9, 0xdce1db);
+  helper.position.set(minX / 2 + maxX / 2, minY - 0.02, minZ / 2 + maxZ / 2);
+  const material = helper.material as THREE.Material & { opacity: number };
+  material.transparent = true;
+  material.opacity = 0.55;
+  return helper;
+}
+
+function referenceGroundFromBounds(bounds: Bounds3 | null): THREE.GridHelper {
+  const minX = bounds?.min.x ?? 0;
+  const maxX = bounds?.max.x ?? 1;
+  const minY = bounds?.min.y ?? 0;
+  const minZ = bounds?.min.z ?? 0;
+  const maxZ = bounds?.max.z ?? 1;
+  const size = Math.max(maxX - minX, maxZ - minZ, 1) * 1.6;
+  const divisions = Math.max(4, Math.min(20, Math.round(size)));
+  const helper = new THREE.GridHelper(size, divisions, 0xb6bfb9, 0xdce1db);
   helper.position.set((minX + maxX) / 2, minY - 0.02, (minZ + maxZ) / 2);
   const material = helper.material as THREE.Material & { opacity: number };
   material.transparent = true;
@@ -2864,38 +4255,94 @@ function referenceGround(model: PreviewModel): THREE.GridHelper {
 
 // Real 3D load arrows anchored to the loaded node or element midpoint and
 // oriented along the load's global direction, so they move with the model.
-function buildLoadArrows(model: PreviewModel, nodeMap: Map<string, Vec3>): THREE.Object3D[] {
+function buildLoadArrows(
+  model: PreviewModel,
+  nodeMap: Map<string, Vec3>,
+  index: ModelIndex
+): THREE.Object3D[] {
   const pipeMidpoints = new Map<string, Vec3>();
   for (const segment of model.pipe_segments) {
     const from = nodeMap.get(segment.from);
     const to = nodeMap.get(segment.to);
     if (from && to) pipeMidpoints.set(segment.id, midpoint(from, to));
   }
-  const arrows: THREE.Object3D[] = [];
+  const supportNodes = new Map(model.supports.map((support) => [support.id, support.node] as const));
+  const arrows: Array<{ anchor: Vec3; direction: THREE.Vector3; color: number; ownerKey: EntityKey }> = [];
   for (const loadCase of model.load_cases) {
     for (const primitive of loadCase.primitive_loads ?? []) {
       const record = primitive as Record<string, unknown>;
-      const anchor = loadAnchor(record, nodeMap, pipeMidpoints);
+      const ownedAnchor = loadAnchor(record, nodeMap, pipeMidpoints, supportNodes);
       const direction = globalDirectionVector(record);
-      if (!anchor || !direction) continue;
+      if (!ownedAnchor || !direction || index.invalidGeometry.has(ownedAnchor.ownerKey)) continue;
       const isMoment = String(record.dimension ?? "").includes("moment");
       const color = isMoment ? 0x7b4ea3 : 0xd9822b;
-      const origin = new THREE.Vector3(anchor.x, anchor.y, anchor.z);
-      arrows.push(new THREE.ArrowHelper(direction, origin, 0.9, color, 0.28, 0.16));
+      arrows.push({ anchor: ownedAnchor.anchor, direction, color, ownerKey: ownedAnchor.ownerKey });
     }
   }
-  return arrows;
+  const arrowsByOwner = new Map<EntityKey, typeof arrows>();
+  for (const arrow of arrows) arrowsByOwner.set(arrow.ownerKey, [...(arrowsByOwner.get(arrow.ownerKey) ?? []), arrow]);
+  const spatialArrowGroups = spatialMultiGroups(index, arrowsByOwner);
+  const output: THREE.Object3D[] = [];
+  for (const color of [0x7b4ea3, 0xd9822b]) {
+    if (!arrows.some((arrow) => arrow.color === color)) continue;
+    const shaftGeometry = new THREE.CylinderGeometry(0.025, 0.025, 1, 8);
+    const headGeometry = new THREE.ConeGeometry(0.12, 1, 8);
+    const material = new THREE.MeshBasicMaterial({ color });
+    for (const group of spatialArrowGroups) {
+      const entries = group.filter((arrow) => arrow.color === color);
+      if (!entries.length) continue;
+      const shaft = new THREE.InstancedMesh(shaftGeometry, material, entries.length);
+      const head = new THREE.InstancedMesh(headGeometry, material, entries.length);
+      const matrix = new THREE.Matrix4();
+      const quaternion = new THREE.Quaternion();
+      const up = new THREE.Vector3(0, 1, 0);
+      entries.forEach(({ anchor, direction }, instance) => {
+        quaternion.setFromUnitVectors(up, direction);
+        matrix.compose(
+          new THREE.Vector3(anchor.x, anchor.y, anchor.z).addScaledVector(direction, 0.3),
+          quaternion,
+          new THREE.Vector3(1, 0.6, 1)
+        );
+        shaft.setMatrixAt(instance, matrix);
+        matrix.compose(
+          new THREE.Vector3(anchor.x, anchor.y, anchor.z).addScaledVector(direction, 0.76),
+          quaternion,
+          new THREE.Vector3(1, 0.28, 1)
+        );
+        head.setMatrixAt(instance, matrix);
+      });
+      shaft.instanceMatrix.needsUpdate = true;
+      head.instanceMatrix.needsUpdate = true;
+      const ownershipKeys = entries.map((entry) => entry.ownerKey);
+      registerInstancedSelectionPresentation(shaft, ownershipKeys, color);
+      registerInstancedSelectionPresentation(head, ownershipKeys, color);
+      output.push(shaft, head);
+    }
+  }
+  return output;
 }
 
 function loadAnchor(
   primitive: Record<string, unknown>,
   nodeMap: Map<string, Vec3>,
-  pipeMidpoints: Map<string, Vec3>
-): Vec3 | null {
+  pipeMidpoints: Map<string, Vec3>,
+  supportNodes: ReadonlyMap<string, string>
+): { anchor: Vec3; ownerKey: EntityKey } | null {
   const target = primitive.target as Record<string, unknown> | undefined;
   if (!target) return null;
-  if (target.type === "node" && typeof target.node === "string") return nodeMap.get(target.node) ?? null;
-  if (target.type === "element" && typeof target.pipe === "string") return pipeMidpoints.get(target.pipe) ?? null;
+  if (target.type === "node" && typeof target.node === "string") {
+    const anchor = nodeMap.get(target.node);
+    return anchor ? { anchor, ownerKey: entityKey({ type: "node", id: target.node }) } : null;
+  }
+  if (target.type === "element" && typeof target.pipe === "string") {
+    const anchor = pipeMidpoints.get(target.pipe);
+    return anchor ? { anchor, ownerKey: entityKey({ type: "pipe", id: target.pipe }) } : null;
+  }
+  if (target.type === "support" && typeof target.support === "string") {
+    const nodeId = supportNodes.get(target.support);
+    const anchor = nodeId ? nodeMap.get(nodeId) : null;
+    return anchor ? { anchor, ownerKey: entityKey({ type: "support", id: target.support }) } : null;
+  }
   return null;
 }
 
@@ -3074,18 +4521,6 @@ function formatStatus(value: string): string {
 
 function formatNumber(value: number): string {
   return value.toFixed(6).replace(/0+$/u, "").replace(/\.$/u, "");
-}
-
-function hasWebGL() {
-  if (navigator.userAgent.toLowerCase().includes("jsdom")) {
-    return false;
-  }
-  try {
-    const canvas = document.createElement("canvas");
-    return Boolean(canvas.getContext("webgl") || canvas.getContext("experimental-webgl"));
-  } catch {
-    return false;
-  }
 }
 
 function finitePointerEventNumber(value: number, fallback: number): number {
