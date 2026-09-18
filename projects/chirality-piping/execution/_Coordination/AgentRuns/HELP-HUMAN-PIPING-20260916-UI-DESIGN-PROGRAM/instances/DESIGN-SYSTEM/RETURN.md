@@ -1,8 +1,10 @@
-# RETURN — DESIGN-SYSTEM-03 · Design system V1.2
+# RETURN — DESIGN-SYSTEM-03 and DESIGN-SYSTEM-04 · Design system V1.2, then V1.3
 
 Instance: DESIGN-SYSTEM (HELPS_HUMANS design manager, child of ROOT). Brief:
 `../../briefs/DESIGN-SYSTEM-03_revision.md`, sealed. Date: 2026-09-18. For ROOT's
-acceptance. This file replaces the DESIGN-SYSTEM-02 return.
+acceptance. This file replaces the DESIGN-SYSTEM-02 return. Sections 1 to 7 are the
+DESIGN-SYSTEM-03 return with ROOT's two corrections; §8 is the DESIGN-SYSTEM-04 return
+(V1.3), and the hash table below carries the current values first.
 
 ## 1 What was read
 
@@ -26,14 +28,14 @@ All in place under this directory; nothing outside it was written.
 
 | File | Change | sha256 |
 |---|---|---|
-| `DESIGN_SYSTEM_V1.md` | V1.2. Every change is a numbered row of §9, rows 50 to 87, and rows 88 and 89 for correction 1; rows 1 to 49 are byte-identical to V1.1 and rows 1 to 87 to V1.2 as first returned (both checked by hash). The §9 heading now covers V1 to V1.1 and V1.1 to V1.2. Ends with the fence line. | `efa22d497772e717b4cc19bc2a703ed765d0ac158fa177efbf39f373e0acfc1f` (after correction 2; after correction 1 `1a7ffe40…`; as first returned `2e0db6bc…`) |
+| `DESIGN_SYSTEM_V1.md` | **Now V1.3 with row 111, `20b100bd9c979a9341b96431387bbf8ca45b01f10debfe0964b7a4f2d5c02e7e` (§8, §9; V1.3 as accepted `f4769893…`).** At V1.2: Every change is a numbered row of §9, rows 50 to 87, and rows 88 and 89 for correction 1; rows 1 to 49 are byte-identical to V1.1 and rows 1 to 87 to V1.2 as first returned (both checked by hash). The §9 heading now covers V1 to V1.1 and V1.1 to V1.2. Ends with the fence line. | `efa22d497772e717b4cc19bc2a703ed765d0ac158fa177efbf39f373e0acfc1f` (after correction 2; after correction 1 `1a7ffe40…`; as first returned `2e0db6bc…`) |
 | `tokens.json` | 1.2. Adds `canvas.edgeAlt`, the toast, HUD and run log values, the `labels` table (eight rows) and `agentCardClasses` (five words); the name is the product's name alone. Every colour value of 1.1 is unchanged (diffed). | `00c1afe97365973e6c05a2a5d938a25c46022a55c3cbc8d04ff3a9d2d68cf1e9` |
-| `specimen.html` | V1.2, one self-contained file, inline styles and script, no network reference, light and dark. | `219fa8ee78c44507fcfc0b6a199298c8f4a4026abe798f4166eeda2eb607941b` (after correction 1; as first returned `c390e7e6…`) |
+| `specimen.html` | **Now V1.3, `f9ce15a26331177bdf78cf6dfb3e5ff568ef0756c02b17333ebc5b6807273a99` (§8).** At V1.2: one self-contained file, inline styles and script, no network reference, light and dark. | `219fa8ee78c44507fcfc0b6a199298c8f4a4026abe798f4166eeda2eb607941b` (after correction 1; as first returned `c390e7e6…`) |
 | `tools/palette.mjs` | the new tokens and groups; `--write` reproduces `tokens.json` byte for byte (checked) | `de73ecb9…` |
 | `tools/contrast.mjs` | six pairings for the edge lines on the result scale: 152 pairings | `7a3f2653…` |
 | `tools/gen.mjs`, `tools/splice.mjs` | generate the label table and splice it into §2.3 between markers | `f936d18a…`, `34e986a1…` |
-| `tools/agree.mjs` | V1.2 checks, §3 below; after correction 1 also rows 88 and 89 present, rows 1 to 87 unchanged by hash, and the stale band's removed clause absent; after correction 2 also row 90 present, rows 1 to 89 unchanged by hash, and the two removed framings absent | `e02a7180…` |
-| `tools/render.mjs` | V1.2 checks; takes a relative specimen path; takes the Playwright location at run time (`--playwright-from <dir>` or `PLAYWRIGHT_FROM`), default the relative path to the piping project as before | `b886e708…` |
+| `tools/agree.mjs` | **Now `ef312774a7050a0a5bab3508de8698612f1ab338559442c767cc01f61877b54f` (§9; at V1.3's acceptance `0df98d6b…`).** V1.2 checks, §3 below; after correction 1 also rows 88 and 89 present, rows 1 to 87 unchanged by hash, and the stale band's removed clause absent; after correction 2 also row 90 present, rows 1 to 89 unchanged by hash, and the two removed framings absent | `e02a7180…` |
+| `tools/render.mjs` | **Now `0fb28c40cbf9293cb4d43331b4edcc9abc1840a1820917fe240e7192a392d14c` (§8).** V1.2 checks; takes a relative specimen path; takes the Playwright location at run time (`--playwright-from <dir>` or `PLAYWRIGHT_FROM`), default the relative path to the piping project as before | `b886e708…` |
 
 No file in the instance carries an absolute machine path; `agree.mjs` now walks the
 instance and fails if one appears. The retired strings are built by concatenation inside
@@ -214,5 +216,98 @@ unchanged by hash. `tokens.json` and `specimen.html` are unchanged.
 `tools/agree.mjs` requires row 90, checks rows 1 to 89 by hash, and fails if either removed
 framing returns. Re-run: gen, splice, agree: `problems: []`, 90 change-log rows. The render
 check was not re-run for this correction because the specimen did not change (same hash).
+
+## 8 DESIGN-SYSTEM-04 · V1.3 · the owner's direction on the contradictions
+
+Brief `../../briefs/DESIGN-SYSTEM-04_contradictions.md`, sealed; its SHA-256 was verified
+before starting (`90506b29…3a55c`, as ROOT gave it). Read first: ROOT's record
+`../ROOT/OWNER_DIRECTION_2026-09-18_CONTRADICTIONS.md`; then `../UX-SPEC/RETURN.md` §6,
+`../MOCKS/MOCKS_V3.md` §6, Q-26 and D3-1, and the specification's text for the six
+functions (§2.6, §2.7, §3.6, §4.2, §4.5, §5.2, §5.3, §7.5, §7.6). While I worked, ROOT sent
+a supplement: the owner ruled the three items the brief's item 8 had left open (15 A,
+C-20 A, C-23 B); they are applied in this pass and §8 of the document lists none of them
+as open. I did not touch the UX-SPEC instance.
+
+| Brief item | §9 row |
+|---|---|
+| 1. Additions: units selector's third choice (9) · View tool's menu (10) · Stress cell as fourth expansion owner (11) · "All kinds" (12) · run menu and the wrapped header (C-17, Q-26) · drawer's Filter menu (C-24) | 91 · 92 · 93 · 94 · 95 · 96 |
+| 2. Readings as the rule: Review rail item (1) · report readiness (2) · Run button and run log (4) · "current" (13) | 97 · 98 · 99 · 100 |
+| 3. The split's drag limit (16) | 101 |
+| 4. "Apply" (5) | 102 |
+| 5. Run 03 (C-25) | 103 |
+| 6. G-22 sentence at the column and the glyphs (8) | 104 |
+| 7. §8 item 17's cross-reference (14): wrong for the specification's V1, moot from its V1.1 on; the item says so | 105 |
+| Supplement: tooltip form (15 A) · paste band's faces (C-20 A) · three chips on Review (C-23 B) | 106 · 107 · 108 |
+| §8 of the document · specimen and tools | 109 · 110 |
+
+Files changed: `DESIGN_SYSTEM_V1.md` (V1.3), `specimen.html` (V1.3), `tools/agree.mjs`,
+`tools/render.mjs`, this file. `tokens.json` is unchanged at 1.2
+(`00c1afe9…`): no addition needed a value; the menus' widths (240, 220, 280), the 80 px
+units button and the header's wrap are stated in the prose, as the component sizes of
+V1.2 that are not tokens are.
+
+Checks, all after the last edit: gen, splice, agree: `problems: []`, 110 change-log rows,
+28 label chips. `agree.mjs` now also checks rows 1 to 90 by hash, that rows 91 on cite
+every contradiction the brief and the supplement name, that "Commit" is no button's face,
+tooltip or label in the specimen, that no specimen tooltip writes a key outside
+parentheses and no button face carries a key, and that no Historical example reads Run 02;
+I ran it against a copy with those faults injected and it reported each. The retired
+strings are still absent. Render at 1440 and 720, light and dark: no request, no console
+issue, no overflow, chips equal to the table, six menus at their stated widths, the 737 px
+header on two lines, the drawer's header on one line (28 px), the edit chip reading Apply
+and Cancel, the paste band reading names only. I read the screenshots of what I added
+(sections 5, 8, 9 and 10) and fixed what they showed: the stress components were hatched
+under a row that was not; the View menu at 220 px truncated its longest entry and is
+240 px; the units button at 72 px crowded "Entered" and is 80 px.
+
+What did not apply cleanly, and uncertainties:
+
+1. The brief's item 8 said to list 15, C-20 and C-23 as open; ROOT's supplement reversed
+   that, and the supplement is followed.
+2. ROOT's supplement names "§5.5's status bar text" for C-23. The status bar is specified
+   in §5.2, which is fixed; §5.5 had no such text, so one sentence was added to its header
+   paragraph.
+3. Tooltip form: I also moved the joined row's caption key ("⎋ closes") into the close
+   control's tooltip, because a caption that shows a bare key is the same fault. The hint
+   strip keeps its list of accelerators: it is not a tooltip and §7.6 gives it that job.
+   The Checked tooltips and other tooltips that name no act are unchanged.
+4. Copy I chose, for the owner or ROOT to replace: "As entered" (menu) and "Entered"
+   (button); "Box selects" for the box selection's filter group; "Filter" and "Filter · 2";
+   "Clear filters"; "Runs" as the run menu's tooltip; the run menu's words Current, Stale,
+   Historical, Failed; "Run log · Run 03" as the Run button's tooltip while the click opens
+   the log; "Stress components". The specification names the functions and not these
+   strings.
+5. "As entered" with a column whose rows were entered in different units: I specified
+   that the header drops its unit and the cells carry theirs. The specification says only
+   that the choice exists; this is my addition of the least that makes the header honest.
+6. Settled (§9 below): the owner confirmed the six additions. As first returned: the six additions rest on ROOT's reading (the document's §8 item 19); "Apply" is ROOT's
+   word (item 20).
+7. The report-readiness row was added to the run-standing table, which is not a change-log
+   row, so rows 1 to 90 are untouched.
+
+## 9 Follow-up to V1.3: the owner's confirmation of the six additions
+
+ROOT accepted V1.3 and relayed the owner's confirmation ("Keep the six functions; the
+design system additions are fine."). I verified it in the last section of
+`../ROOT/OWNER_DIRECTION_2026-09-18_CONTRADICTIONS.md`. The document's §8 item 19 is
+closed accordingly and §9 row 111 records it; rows 1 to 110 are unchanged by hash, and
+`tools/agree.mjs` now requires row 111 and pins rows 1 to 110. Nothing else was touched:
+`specimen.html` and `tokens.json` keep their hashes. Re-run: gen, splice, agree:
+`problems: []`, 111 change-log rows. The render check was not re-run because the specimen
+did not change.
+
+## 10 Correction after REVIEW-04: finding T-3
+
+Verified in `../REVIEW/REVIEW-04_RETURN.md` (T-3, accepted by ROOT). The owner's
+confirmation predates V1.3's text, so it covers the six functions and their addition to
+this system, not the copy I chose for them. The document's §8 item 19 now says so where
+the closure is asserted, and §9 row 112 records it; row 111 is not rewritten, and
+`tools/agree.mjs` pins rows 1 to 111 by hash and requires row 112. The copy stays mine and
+open to replacement, as §8 item 4 of this return lists. Agreement check: `problems: []`,
+112 rows. Not changed: `specimen.html`, `tokens.json`, the other tools; gen and splice
+were not needed and the render check was not re-run. Current hashes: `DESIGN_SYSTEM_V1.md`
+`5aef3bdf5746b0f93f9419b4c7ad459eb634a71db28a846f19133b225f277c81`, `tools/agree.mjs`
+`84bb30448eb68f510b218602d52175f3dd0fbb7ccad602d694f7a049303d5a27`; the table in §2 carries
+the values as of §9.
 
 Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).
