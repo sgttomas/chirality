@@ -222,4 +222,26 @@ Correction after REVIEW-01, 2026-09-18. As first written, the RESEARCH-G accepta
 
 Return of REVIEW-01, retained at `../instances/REVIEW/REVIEW-01_RETURN.md` as the child's final message, reviewed SHA `cd3dba125da109f1cc50314874725c154296ef0a`, verdict FINDINGS: one major (the counts above, corrected), two minor (the class 3 searches wording, corrected above; the return's own retention path not yet existing, resolved by retaining it), one trivial (a product identifier's spelling echoed in RESEARCH-G's prose, left as the child wrote it). Checks 1, 3, 4 and 5 (no invented ruling, attribution kept apart, history preserved, no circular prerequisite) passed, with every hash cited in the reconciliation record, D-72 and the observation brief, the three new hashes of this index, the merge SHAs, the PR numbers and the arithmetic recomputed; hashes in this index's earlier sections were outside the review's scope. The corrections went back to the same reviewer, whose backcheck of `202651a09ce87c8d87332f83f2d6e78595ca07db` passed all four items with one trivial finding against its own first return (five hashes in the reconciliation table, not six), recorded in the retained return.
 
+## Successor ROOT, 2026-09-18: the revision pass, sealed brief by brief
+
+Sealed after the owner ruled D-71 in part and answered the frames' questions in session (owner message of 2026-09-18T13:32:54.672Z, SHA-256 `711ca05ef7cb9bcaf6b7f0e6812ad002be58d8f9793aa68a08d0f19bceaf7944`, recorded in the D-71 ruling record). Item 7 of D-71, the Checked mark's classification, is still with the owner and is carried unchanged through the pass. Mechanism, parentage and write-scope assertion as for RESEARCH-G; the briefs run in sequence because each revises from the one before.
+
+| Brief | Sealed SHA-256 | Launched (UTC) | Model requested | Role | Return |
+|---|---|---|---|---|---|
+| `DESIGN-SYSTEM-03_revision.md` | `e0af1bda062a3ad6c67693ef394c6825cecbea4a3268ebcd4bd6bdf2e2b61be2` | 2026-09-18T13:37Z | `fable` (Claude Fable 5.1) | HELPS_HUMANS design manager, working alone | `../instances/DESIGN-SYSTEM/` (V1.2 in place) |
+
+## Successor ROOT, 2026-09-18: independent review of the ruling records, sealed before launch
+
+A fresh read-only reviewer over the ruling-records candidate `fe0b86e12`, excluding the sealed design brief; its central test is whether every statement about what the owner ruled is supported by the hash-bound verbatim message. Mechanism and parentage as REVIEW-01; the return is the child's final message, retained by ROOT at `../instances/REVIEW/REVIEW-02_RETURN.md`.
+
+| Brief | Sealed SHA-256 | Launched (UTC) | Model requested | Role | Return |
+|---|---|---|---|---|---|
+| `REVIEW-02_ruling_records_review.md` | `e742f2e8ac46d0bbe0a1db4e96fec857aedb8154162de7dcffb9d9364a1b80f7` | 2026-09-18T14:05Z | `opus` (Claude Opus 5) | TASK, read-only reviewer, working alone | `../instances/REVIEW/REVIEW-02_RETURN.md` |
+
+Return of REVIEW-02, retained at `../instances/REVIEW/REVIEW-02_RETURN.md` (ROOT's transcription of the child's final message), reviewed SHA `fe0b86e12319265155aa87c9d0e293d13036e913`, verdict FINDINGS: one major (the SCA-010 bundle would have renamed a path to a preserved historical file; verified by ROOT and corrected to 23 replacements and one exception), six minor and five trivial, each with ROOT's disposition in the retained return. The owner's remaining rulings (D-71 item 7, D-72 item 5, SCA-010) arrived while the review ran and are recorded in commit `733c24397`; the corrections and those addenda go back to the same reviewer for a backcheck.
+
+Message to the running DESIGN-SYSTEM-03 child, 2026-09-18 about 14:03Z, by the host's message-to-agent mechanism, after its brief was sealed: two later owner rulings to apply under the same rules, write scope and acceptance. First, the maturity sentence is removed entirely (the owner: "No, remove "Technical preview — not a released product." in all instances of it."), superseding ruling 2 of the sealed brief, with the acceptance search extended to find no "Technical preview" and no "not a released product". Second, the Checked mark is ruled option A with the addendum's exact words, superseding ruling 7 of the sealed brief. The sealed brief's bytes and hash are unchanged; this paragraph is the record of the supplement.
+
+Backcheck of REVIEW-02 at `48d3d3af68d54cd92ac70281035e92db1d49140e`: all twelve first-pass findings cleared; four minor and three trivial stale-pointer findings, corrected in the next commit and recorded in the retained return. The final commit carries only those corrections and this record.
+
 The returns are research inputs to the design program. They are not accepted findings, not decomposition truth and not product claims. Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).
