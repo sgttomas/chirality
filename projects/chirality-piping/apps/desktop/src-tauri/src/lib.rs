@@ -196,7 +196,7 @@ async fn save_report_package(
         .dialog()
         .file()
         .set_file_name(&package.container_file_name)
-        .add_filter("OpenPipeStress Project Package", &["opsproj"])
+        .add_filter("SWBPIPE Project Package", &["opsproj"])
         .blocking_save_file();
     let Some(selected) = selected else {
         return Ok(ReportPackageSaveReceipt {
@@ -551,7 +551,112 @@ fn app_store_path(app: &AppHandle) -> Result<PathBuf, String> {
         .app_local_data_dir()
         .map_err(|error| error.to_string())?;
     fs::create_dir_all(&dir).map_err(|error| error.to_string())?;
+    // DEC-101 persistence compatibility: the bundle identifier was renamed, and
+    // the local data directory is keyed by it. Carry a store left under the
+    // former identifier forward once. A failed carry-forward never blocks
+    // startup: the product falls through to an empty store at the new location.
+    if let Err(error) = carry_forward_legacy_project_store(&dir) {
+        eprintln!("legacy project store was not carried forward: {error}");
+    }
     Ok(dir.join(PROJECT_STORE_FILE))
+}
+
+/// The bundle identifier the product carried before the DEC-101 rename.
+const LEGACY_BUNDLE_IDENTIFIER: &str = "org.openpipestress.technical-preview";
+const STORE_SIDECAR_SUFFIXES: [&str; 2] = ["-wal", "-shm"];
+
+fn store_sidecar_path(store: &Path, suffix: &str) -> PathBuf {
+    let mut name = store.as_os_str().to_os_string();
+    name.push(suffix);
+    PathBuf::from(name)
+}
+
+/// Pure decision over paths: the legacy store to copy from, or `None`.
+/// `None` when the new location already holds a store (never overwritten),
+/// when the new directory has no parent, when the new directory is itself the
+/// legacy directory, or when no legacy store exists. The legacy directory is
+/// the new directory's sibling named by the former identifier, so no platform
+/// path is hard-coded.
+fn legacy_project_store_source(new_dir: &Path) -> Option<PathBuf> {
+    if new_dir.join(PROJECT_STORE_FILE).exists() {
+        return None;
+    }
+    let legacy_dir = new_dir.parent()?.join(LEGACY_BUNDLE_IDENTIFIER);
+    if legacy_dir == new_dir {
+        return None;
+    }
+    let legacy_store = legacy_dir.join(PROJECT_STORE_FILE);
+    legacy_store.is_file().then_some(legacy_store)
+}
+
+const CARRY_FORWARD_TEMPORARY_SUFFIX: &str = ".carry-forward-partial";
+
+/// Carries a legacy store forward when `legacy_project_store_source` says so.
+/// The legacy store is opened read-only and SQLite writes one consistent copy
+/// with `VACUUM INTO` a temporary sibling, which is then renamed into place.
+/// The read takes a proper lock, so a store in WAL mode (including one the
+/// former app still has open) is carried with its committed, uncheckpointed
+/// rows, and no sidecar file is ever copied. The legacy store is never moved,
+/// deleted or modified, and its journal mode is not changed. A store already
+/// at the new location is never overwritten. Returns whether a store was
+/// carried forward.
+fn carry_forward_legacy_project_store(new_dir: &Path) -> Result<bool, String> {
+    let Some(legacy_store) = legacy_project_store_source(new_dir) else {
+        return Ok(false);
+    };
+    let new_store = new_dir.join(PROJECT_STORE_FILE);
+    let temporary = store_sidecar_path(&new_store, CARRY_FORWARD_TEMPORARY_SUFFIX);
+
+    // Leftovers of a killed earlier attempt. No main store exists at the new
+    // location (the decision function checked), so a temporary file or a
+    // sidecar here is never user data, and a stale sidecar must not be paired
+    // with the fresh main file.
+    let mut leftovers = vec![temporary.clone()];
+    for suffix in STORE_SIDECAR_SUFFIXES {
+        leftovers.push(store_sidecar_path(&new_store, suffix));
+        leftovers.push(store_sidecar_path(&temporary, suffix));
+    }
+    leftovers.push(store_sidecar_path(&temporary, "-journal"));
+    for leftover in &leftovers {
+        if leftover.exists() {
+            fs::remove_file(leftover).map_err(|error| error.to_string())?;
+        }
+    }
+
+    let outcome = (|| -> Result<(), String> {
+        let legacy = Connection::open_with_flags(
+            &legacy_store,
+            rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY | rusqlite::OpenFlags::SQLITE_OPEN_NO_MUTEX,
+        )
+        .map_err(|error| error.to_string())?;
+        legacy
+            .busy_timeout(std::time::Duration::from_secs(5))
+            .map_err(|error| error.to_string())?;
+        let target = temporary
+            .to_str()
+            .ok_or_else(|| "the new store path is not valid UTF-8".to_string())?;
+        legacy
+            .execute("VACUUM INTO ?1", [target])
+            .map_err(|error| error.to_string())?;
+        drop(legacy);
+        if new_store.exists() {
+            return Err("a store appeared at the new location during the copy".to_string());
+        }
+        fs::rename(&temporary, &new_store).map_err(|error| error.to_string())
+    })();
+    if let Err(error) = outcome {
+        // Remove only what this attempt created; the legacy store and any store
+        // at the new location are never touched.
+        for leftover in &leftovers {
+            if leftover != &store_sidecar_path(&new_store, "-wal")
+                && leftover != &store_sidecar_path(&new_store, "-shm")
+            {
+                let _ = fs::remove_file(leftover);
+            }
+        }
+        return Err(error);
+    }
+    Ok(true)
 }
 
 const STORE_SCHEMA_TARGET_VERSION: i64 = 11;
@@ -853,7 +958,7 @@ fn project_name_from_model(model: &Value) -> String {
         .and_then(|project| project.get("name"))
         .and_then(Value::as_str)
         .filter(|name| !name.trim().is_empty())
-        .unwrap_or("Untitled OpenPipeStress Project")
+        .unwrap_or("Untitled SWBPIPE Project")
         .trim()
         .to_string()
 }
@@ -3721,7 +3826,7 @@ fn dispatch_native_menu_command<R: tauri::Runtime>(app: &tauri::AppHandle<R>, co
 fn build_app_menu<R: tauri::Runtime>(
     handle: &tauri::AppHandle<R>,
 ) -> tauri::Result<tauri::menu::Menu<R>> {
-    let app_menu = SubmenuBuilder::new(handle, "OpenPipeStress")
+    let app_menu = SubmenuBuilder::new(handle, "SWBPIPE")
         .about(None)
         .separator()
         .quit()
@@ -4258,7 +4363,178 @@ pub fn run() {
             save_local_result_json
         ])
         .run(tauri::generate_context!())
-        .expect("error while running OpenPipeStress technical preview");
+        .expect("error while running SWBPIPE");
+}
+
+#[cfg(test)]
+mod legacy_store_carry_forward_tests {
+    use super::*;
+
+    fn unique_root(label: &str) -> PathBuf {
+        let root = std::env::temp_dir().join(format!(
+            "swbpipe-carry-forward-{label}-{}-{}",
+            std::process::id(),
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .expect("clock")
+                .as_nanos()
+        ));
+        fs::create_dir_all(&root).expect("root");
+        root
+    }
+
+    fn dirs(root: &Path) -> (PathBuf, PathBuf) {
+        let new_dir = root.join("com.swbpipe.desktop");
+        let legacy_dir = root.join(LEGACY_BUNDLE_IDENTIFIER);
+        fs::create_dir_all(&new_dir).expect("new dir");
+        fs::create_dir_all(&legacy_dir).expect("legacy dir");
+        (new_dir, legacy_dir)
+    }
+
+    /// A legacy store in WAL mode whose rows are committed but not
+    /// checkpointed. The returned connection stays open, as the former app's
+    /// would, so the rows live only in the -wal file.
+    fn legacy_wal_store(legacy_dir: &Path, rows: &[&str]) -> (PathBuf, Connection) {
+        let legacy_store = legacy_dir.join(PROJECT_STORE_FILE);
+        let writer = Connection::open(&legacy_store).expect("legacy open");
+        writer
+            .execute_batch("PRAGMA journal_mode = WAL; PRAGMA wal_autocheckpoint = 0; CREATE TABLE marker (name TEXT NOT NULL);")
+            .expect("legacy schema");
+        for row in rows {
+            writer
+                .execute("INSERT INTO marker (name) VALUES (?1)", [row])
+                .expect("legacy row");
+        }
+        let wal = store_sidecar_path(&legacy_store, "-wal");
+        assert!(fs::metadata(&wal).expect("wal exists").len() > 0, "rows must be uncheckpointed");
+        (legacy_store, writer)
+    }
+
+    fn marker_rows(store: &Path) -> Vec<String> {
+        let reader = Connection::open_with_flags(store, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)
+            .expect("read new store");
+        let mut statement = reader.prepare("SELECT name FROM marker ORDER BY rowid").expect("prepare");
+        let rows = statement
+            .query_map([], |row| row.get::<_, String>(0))
+            .expect("query")
+            .collect::<Result<Vec<_>, _>>()
+            .expect("rows");
+        rows
+    }
+
+    #[test]
+    fn new_store_present_copies_nothing_and_is_never_overwritten() {
+        let root = unique_root("a");
+        let (new_dir, legacy_dir) = dirs(&root);
+        fs::write(new_dir.join(PROJECT_STORE_FILE), b"new").expect("new store");
+        let (_legacy_store, _writer) = legacy_wal_store(&legacy_dir, &["legacy"]);
+        // A sidecar beside an existing new store belongs to that store and stays.
+        let new_wal = store_sidecar_path(&new_dir.join(PROJECT_STORE_FILE), "-wal");
+        fs::write(&new_wal, b"new-wal").expect("new wal");
+
+        assert_eq!(legacy_project_store_source(&new_dir), None);
+        assert_eq!(carry_forward_legacy_project_store(&new_dir), Ok(false));
+        assert_eq!(fs::read(new_dir.join(PROJECT_STORE_FILE)).expect("read"), b"new");
+        assert_eq!(fs::read(&new_wal).expect("read wal"), b"new-wal");
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn new_absent_and_legacy_present_carries_uncheckpointed_wal_rows_and_leaves_legacy_byte_identical() {
+        let root = unique_root("b");
+        let (new_dir, legacy_dir) = dirs(&root);
+        let (legacy_store, writer) = legacy_wal_store(&legacy_dir, &["first", "second"]);
+        let legacy_wal = store_sidecar_path(&legacy_store, "-wal");
+        let main_before = fs::read(&legacy_store).expect("legacy main");
+        let wal_before = fs::read(&legacy_wal).expect("legacy wal");
+
+        assert_eq!(legacy_project_store_source(&new_dir), Some(legacy_store.clone()));
+        assert_eq!(carry_forward_legacy_project_store(&new_dir), Ok(true));
+
+        let new_store = new_dir.join(PROJECT_STORE_FILE);
+        assert_eq!(marker_rows(&new_store), vec!["first".to_string(), "second".to_string()]);
+        assert!(!store_sidecar_path(&new_store, CARRY_FORWARD_TEMPORARY_SUFFIX).exists());
+        // The legacy main file and its write-ahead log are byte-identical, and
+        // the legacy store is still in WAL mode with its rows readable.
+        assert_eq!(fs::read(&legacy_store).expect("legacy main after"), main_before);
+        assert_eq!(fs::read(&legacy_wal).expect("legacy wal after"), wal_before);
+        let mode: String = writer
+            .query_row("PRAGMA journal_mode", [], |row| row.get(0))
+            .expect("journal mode");
+        assert_eq!(mode, "wal");
+        // A second call finds the new store and carries nothing.
+        assert_eq!(carry_forward_legacy_project_store(&new_dir), Ok(false));
+        drop(writer);
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn both_absent_copies_nothing() {
+        let root = unique_root("c");
+        let new_dir = root.join("com.swbpipe.desktop");
+        fs::create_dir_all(&new_dir).expect("new dir");
+        assert_eq!(legacy_project_store_source(&new_dir), None);
+        assert_eq!(carry_forward_legacy_project_store(&new_dir), Ok(false));
+        assert!(!new_dir.join(PROJECT_STORE_FILE).exists());
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn leftovers_of_a_killed_attempt_neither_corrupt_nor_block_the_carry_forward() {
+        let root = unique_root("d");
+        let (new_dir, legacy_dir) = dirs(&root);
+        let (_legacy_store, writer) = legacy_wal_store(&legacy_dir, &["kept"]);
+        let new_store = new_dir.join(PROJECT_STORE_FILE);
+        // A stale WAL and shared-memory file with no main store, and a partial
+        // temporary file: none of them is user data.
+        let stale_wal = store_sidecar_path(&new_store, "-wal");
+        let stale_shm = store_sidecar_path(&new_store, "-shm");
+        let stale_temporary = store_sidecar_path(&new_store, CARRY_FORWARD_TEMPORARY_SUFFIX);
+        fs::write(&stale_wal, b"stale write-ahead log from a killed attempt").expect("stale wal");
+        fs::write(&stale_shm, b"stale shm").expect("stale shm");
+        fs::write(&stale_temporary, b"partial").expect("stale temporary");
+
+        assert_eq!(carry_forward_legacy_project_store(&new_dir), Ok(true));
+        assert!(!stale_temporary.exists());
+        assert_ne!(
+            fs::read(&stale_wal).unwrap_or_default(),
+            b"stale write-ahead log from a killed attempt".to_vec()
+        );
+        assert_eq!(marker_rows(&new_store), vec!["kept".to_string()]);
+        let check = Connection::open(&new_store).expect("open new store");
+        let integrity: String = check
+            .query_row("PRAGMA integrity_check", [], |row| row.get(0))
+            .expect("integrity");
+        assert_eq!(integrity, "ok");
+        drop(writer);
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn an_unreadable_legacy_store_fails_without_leaving_files_or_touching_the_legacy_store() {
+        let root = unique_root("f");
+        let (new_dir, legacy_dir) = dirs(&root);
+        let legacy_store = legacy_dir.join(PROJECT_STORE_FILE);
+        fs::write(&legacy_store, b"this is not a sqlite database file at all").expect("legacy bytes");
+
+        assert!(carry_forward_legacy_project_store(&new_dir).is_err());
+        assert!(!new_dir.join(PROJECT_STORE_FILE).exists());
+        assert!(!store_sidecar_path(&new_dir.join(PROJECT_STORE_FILE), CARRY_FORWARD_TEMPORARY_SUFFIX).exists());
+        assert_eq!(
+            fs::read(&legacy_store).expect("legacy after"),
+            b"this is not a sqlite database file at all"
+        );
+        let _ = fs::remove_dir_all(root);
+    }
+
+    #[test]
+    fn legacy_directory_is_the_new_directorys_sibling_and_never_itself() {
+        let root = unique_root("e");
+        let legacy_dir = root.join(LEGACY_BUNDLE_IDENTIFIER);
+        fs::create_dir_all(&legacy_dir).expect("legacy dir");
+        assert_eq!(legacy_project_store_source(&legacy_dir), None);
+        let _ = fs::remove_dir_all(root);
+    }
 }
 
 #[cfg(test)]
@@ -4420,17 +4696,17 @@ mod tests {
             serde_json::from_str(&std::fs::read_to_string(fixture_path).expect("fixture read"))
                 .expect("fixture parses");
         let provenance = json!({
-            "source_name": "Invented OpenPipeStress renderer test",
+            "source_name": "Invented SWBPIPE renderer test",
             "source_location": "apps/desktop/src-tauri/src/lib.rs",
             "source_license": "project_fixture",
-            "contributor": "OpenPipeStress",
+            "contributor": "SWBPIPE",
             "contributor_certification": "Invented non-engineering data only.",
             "redistribution_status": "invented_non_engineering_example",
             "review_status": "accepted",
             "privacy_classification": "invented_public_example"
         });
         let input = json!({
-            "report_title": "Invented Calculation Report (Technical Preview)",
+            "report_title": "Invented Calculation Report",
             "calculation_report": fixture["calculation_report"],
             "report_sections": {
                 "report_section_id": "invented-report-sections-001",
@@ -4622,10 +4898,10 @@ mod tests {
 
     fn provenance(source_location: &str) -> Value {
         json!({
-            "source_name": "OpenPipeStress A12 from-blank rehearsal",
+            "source_name": "SWBPIPE A12 from-blank rehearsal",
             "source_location": source_location,
             "source_license": "project_fixture",
-            "contributor": "OpenPipeStress",
+            "contributor": "SWBPIPE",
             "contributor_certification": "Invented non-engineering data only.",
             "redistribution_status": "invented_non_engineering_example",
             "review_status": "accepted",
@@ -4776,7 +5052,7 @@ mod tests {
                     "limitation_id": format!("limitation:{run_id}:technical-preview"),
                     "source": {"ref_type": "report_renderer", "ref_id": format!("report:{run_id}")},
                     "affected_scope": {"ref_type": "model", "ref_id": model_id},
-                    "statement": "Technical-preview output over invented user-local data; not validated engineering output.",
+                    "statement": "Output over invented user-local data; not validated engineering output.",
                     "effect": {
                         "mechanics_solve_qualified": true,
                         "user_rule_check_qualified": false,
@@ -4798,7 +5074,7 @@ mod tests {
         });
 
         json!({
-            "report_title": format!("{project_name} - Calculation Report (Technical Preview)"),
+            "report_title": format!("{project_name} - Calculation Report"),
             "calculation_report": fixture["calculation_report"].clone(),
             "report_sections": report_sections,
             "result_rows": [report_row_from_result(first_result)]
@@ -7065,7 +7341,7 @@ mod tests {
                     "source_name": "Invented source",
                     "source_location": "tests",
                     "source_license": "public test license",
-                    "contributor": "OpenPipeStress",
+                    "contributor": "SWBPIPE",
                     "contributor_certification": "invented non-engineering value",
                     "redistribution_status": "private_only",
                     "review_status": "accepted"
@@ -7149,7 +7425,7 @@ mod tests {
                     "source_name": "Invented source",
                     "source_location": "tests",
                     "source_license": "private test basis",
-                    "contributor": "OpenPipeStress",
+                    "contributor": "SWBPIPE",
                     "contributor_certification": "invented non-engineering value",
                     "redistribution_status": "private_only",
                     "review_status": "accepted"
@@ -7168,7 +7444,7 @@ mod tests {
                     "source_name": "Invented source",
                     "source_location": "tests",
                     "source_license": "unknown",
-                    "contributor": "OpenPipeStress",
+                    "contributor": "SWBPIPE",
                     "contributor_certification": "invented non-engineering value",
                     "redistribution_status": "protected_suspected",
                     "review_status": "accepted"
