@@ -54,6 +54,9 @@ candidate_paths:
   - projects/chirality-piping/docs/
   - projects/chirality-piping/tests/
   - projects/chirality-piping/tools/release/
+  - projects/chirality-piping/.github/ISSUE_TEMPLATE/
+  - projects/chirality-piping/README.md
+  - projects/chirality-piping/CONTRIBUTING.md
   - projects/chirality-piping/execution/_ScopeChange/_LATEST.md
   - projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/
 
