@@ -23,7 +23,7 @@
     "DS5-REVIEW": {
       "role": "TASK Type 2 read-only reviewer, fresh context",
       "model": "opus",
-      "status": "returned: FINDINGS (one minor actionable before merge, one trivial); backcheck pending",
+      "status": "returned: FINDINGS (one minor actionable before merge, one trivial); the backcheck of correction 1 has not run (amendment parked, DS5-D3)",
       "sealed": "2026-09-19T01:46Z",
       "briefSha256": "d2ab26f0b484f94b086e3a9059cef6900e92d15e1bda261b4d44a536dad19fcb",
       "brief": "briefs/DS5-REVIEW_independent_review.md",
@@ -51,17 +51,19 @@
     "DESIGN-SYSTEM-05-CORRECTION-2": {
       "role": "the owning child (DESIGN-SYSTEM-05), resumed by message",
       "model": "fable",
-      "status": "sealed",
+      "status": "sealed, not executed: parked with the branch (DS5-D3); the child changed no file",
       "sealed": "2026-09-19T04:01Z",
       "briefSha256": "f08cdbea5efd228a1484a8f0266c55d95b03df6ac25c8e98d747f59730e0815d",
       "brief": "briefs/DESIGN-SYSTEM-05_correction_2.md",
       "returnSha256": null,
       "dependsOn": [
         "DESIGN-SYSTEM-05-CORRECTION-1"
-      ]
+      ],
+      "pauseNote": "returns/DESIGN-SYSTEM-05_CORRECTION_2_PAUSE_NOTE.md",
+      "pauseNoteSha256": "db6a737f62fede4540d3fdedc51f1abf6cb8e0938a6f5166b6615dd34802bb38"
     }
   },
-  "current_frontier": "Correction 1 returned and checked by ROOT; one observation of the child's (check boxes and switches under a washed row or menu item are covered by the rule but not held by the tools) becomes correction 2; then the same reviewer backchecks both; then the pull request, CI and merge; then the product slice that adopts tokens.json 1.3.",
+  "current_frontier": "Parked on 2026-09-19 under the owner's re-sequencing (control layer first): candidate ff4c71689 with correction 1 applied and checked by ROOT, correction 2 sealed and not executed, the reviewer's backcheck not run, one new finding (marks and offers on a pressed zebra row read 2.9985:1 in light). Branch pushed for custody; no pull request. The closing visual pass reopens it.",
   "decisions": [
     {
       "id": "DS5-D1",
@@ -78,6 +80,14 @@
       "date": "2026-09-19T04:01Z",
       "decision": "the sweep lists the check box's and the switch's pairs under a washed row or menu item, so the tools hold what the control rule already covers; no token change; the alternative (no pressed wash on such a row) is not taken",
       "record": "HANDOFF.md; briefs/DESIGN-SYSTEM-05_correction_2.md"
+    },
+    {
+      "id": "DS5-D3",
+      "by": "ROOT (HELP_HUMAN, Agent 0)",
+      "openTo": "the owner",
+      "date": "2026-09-19T05:12Z",
+      "decision": "the amendment is parked with its branch and not merged now; the closing visual pass takes up correction 2, the pressed-row finding, DS5-D1, DS5-D2 and the text contrast target as one package; the token adoption slice waits with it",
+      "record": "HANDOFF.md"
     }
   ]
 }
