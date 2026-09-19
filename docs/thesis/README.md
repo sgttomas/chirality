@@ -55,6 +55,17 @@ knowledge—a property termed configurational multiplicity. This prose remains
 a candidate pending separate owner review. The approval of D-GOV-19 did not
 authenticate the thesis, which remains CITED/REVIEWED and nonbinding.
 
+*Revision note dated 2026-09-19.* Two subsections were added to Chapter 9 at
+the owner's direction in a working session: §9.3.7 (convergent practice: the
+four structures of the architecture as the structures large-project delivery
+already converged on) and §9.4.8 (a second accountable professional, outside
+software, as future work). Both are agent-drafted (Claude Fable 5.1), carry no
+citations yet and are UNWARRANTED until a verified pass adds sources; the
+observation they record is the owner's. They do not change the thesis's
+status, which remains CITED/REVIEWED and nonbinding. A dated illustrated draft
+of the four structures is at `plans/four_graphs_of_knowledge_work_2026-09-19.html`,
+with an agent-facing note beside it.
+
 An owner-revision backlog for the thesis is catalogued in `plans/consistency_audit_2026-07-01.md` (2026-07-01).
 
 *Revision note dated 2026-07-02.* An owner-directed reconciliation pass was applied across the document set: Appendix A regenerated from the live `docs/CONTRACT.md` (27 K-* invariants); mutable registry counts removed from prose; APEGA and Engineers Canada AI-guidance currency updates (Chapters 2, 6, 9); claim-strength language normalized to Chapter 8's stated enforcement model; epistemic-labeling attribution aligned with D-GOV-08; Chapter 2 vocabulary and citation-binding corrections; glossary and cross-reference fixes. The thesis remains CITED/REVIEWED, not AUTHENTICATED.

@@ -187,6 +187,100 @@ the accountability gap. Smith's reckoning/judgment distinction (§3.6.4)
 difference between producing information and accepting responsibility for
 reliance on it.
 
+### 9.3.7 Convergent Practice: Large-Project Delivery as Prior Art
+
+*Subsection added 2026-09-19. Agent-drafted (Claude Fable 5.1) from an
+observation the owner made in a working session and from that session's
+record. It cites no sources yet and is therefore UNWARRANTED in the sense of
+`docs/TYPES.md` §10.4; candidates for a verified pass are named at its end.*
+
+The literature this thesis reviews approaches the problem from agent
+architectures, LLM reliability, safety-critical software, professional
+regulation and epistemology (Chapter 2). It does not review the body of
+practice that has the longest record of solving the underlying problem:
+the delivery of large capital projects, in which complex, interdependent
+work is carried out by many distinct agents — human ones — and a named
+professional answers for the result. The owner's observation is that the
+structures Chirality makes explicit are the structures that practice already
+converged on, and that this is the stronger warrant for the claim that they
+belong to knowledge work as such rather than to this system.
+
+The correspondence is direct. Section 4.3.4 describes two of four structures,
+the ANCHOR tree and the EXECUTION DAG. The owner's fuller account has four,
+each answering a question no other answers:
+
+| Structure | Question | In this architecture | In project delivery practice |
+|---|---|---|---|
+| Tree (structure and working memory) | What is this made of? | The decomposition; the deliverable folder and its minimum fileset (§4.3.3) | The work breakdown structure and its dictionary: every work package with its scope, basis, references, interfaces and status |
+| Directed acyclic graph (production and dependencies) | What must come before what? | EXECUTION-class edges; the session work graph; one worktree per concurrent line of work | The logic-tied network schedule |
+| Network (topic query and long-term memory) | What bears on what, and who decided it? | Decision registers, rulings, owner-direction records, provenance (Chapter 5) | Document control: the decision log, technical queries and their answers, deviations and concessions, transmittals recording who issued what, at which revision, superseding what |
+| Attention (decomposition and synthesis) | How does all of this become one thing? | The model with files, tools and instructions; the decomposition workflows | Front-end definition: scoping, basis of design, constructability review, the bid breakdown |
+
+Two readings of the dependency graph, which the owner states as "blocker
+sub-set analysis is execution sequencing truth" and "full graph closure is
+audit truth", are likewise standing practice: the near-critical activities
+tell a superintendent what to do this week, and the fully closed network is
+what a planner or a claims analyst audits. The remaining machinery maps as
+closely. Independent review by a fresh context is the squad check or
+independent design verification. The scope-change workflow is management of
+change. A validation level set per item by its consequence, never lowered by
+whoever performs the work, and recorded with the acceptance, is the hold and
+witness point of an inspection and test plan set by quality or safety class.
+Letting production run ahead of the decomposition and reconciling afterwards
+is as-builting, a planned phase with a known cost and not a lapse of
+discipline. The authentication gate (§6.5.5) is the engineer of record's
+stamp.
+
+Three differences are what make the architecture necessary rather than
+redundant. First, forgetting is total. Project institutions carry much of
+their structure tacitly, in people who remain; an agent has no tacit memory,
+so everything the institution leaves implicit must be written or it does not
+exist. The architecture is not a different structure for agents but the same
+structure made fully explicit, which human delivery has never had to do.
+Second, the economics of attention invert. In human delivery, synthesis is
+scarce and checking is comparatively cheap; with agents, synthesis is
+abundant and the scarce resource is the accountable professional's
+understanding. The structures are unchanged, but the design pressure moves to
+the acceptance edge, which sharpens the concern of §9.2.6 and §9.3.5: the
+quality of such a system can be stated as how much warranted confidence it
+produces per unit of the accountable person's attention, with a validation
+level setting how much of that confidence a given piece of work requires.
+Third, the failure modes coincide. A work-package dictionary nobody reads, a
+schedule that is not updated while the project runs from the weekly meeting,
+a decision whose approver cannot be found, a scope decomposed without
+consulting lessons learned: each has an exact counterpart in agent work, and
+in the session from which this subsection derives an agent committed all four
+in one day, each traceable to exactly one of the four structures. That
+failures sort this cleanly by structure is evidence that the structures are
+properties of the work and not habits of the workers.
+
+The correspondence also locates the contribution. Software practitioners who
+arrive independently at agent hierarchies, worktrees and dependency traversal
+recover the mechanics without the accountability layer, because in software
+accountability is largely collective and reversible. Practitioners of project
+delivery hold that layer and, so far, mostly use language models as drafting
+aids rather than as participants in the management system. The architecture
+is built from the acceptance edge backwards, which is why its rules concern
+authority, provenance and claims, and why they held when the owner
+deliberately relaxed prescribed procedure in the implementation work of
+September 2026.
+
+Two limits follow. The system's own vocabulary is a third language, spoken
+fluently by neither community; the translation in the table above is likely
+to be the more effective introduction for a project engineer, who already
+believes the part that is hardest to teach. And the architecture has so far
+been exercised by a single accountable professional, who stands at every
+acceptance and steering edge. That is a constraint on throughput and an
+untested assumption (§9.4.8).
+
+*Sources to be added in a verified pass; none is cited here and no specific
+claim above rests on one:* the project-management and cost-engineering bodies
+of knowledge on work breakdown structures and network scheduling; the
+construction-industry research on front-end planning; quality-management
+standards on quality plans and inspection and test plans; process-safety
+practice on management of change; and document-control practice in capital
+projects.
+
 ---
 
 ## 9.4 Future Work
@@ -223,6 +317,23 @@ The current architecture assumes sequential agent execution within a single user
 ### 9.4.7 Extension to Other Agent Platforms
 
 The governance architecture is currently coupled to the Chirality desktop application and its specific agent runtime. Demonstrating that the same invariant system, write scope model, and epistemic architecture can govern agents on other platforms (e.g., LangChain, AutoGen, Claude Code) would validate the claim that the contribution is architectural, not implementation-specific.
+
+### 9.4.8 A Second Accountable Professional, Outside Software
+
+*Subsection added 2026-09-19. Agent-drafted (Claude Fable 5.1).*
+
+The claim of §9.3.7 is about knowledge work as such, and the architecture has
+been exercised by one accountable professional, largely on software. The most
+informative available test is a second accountable professional working a
+loop, ideally from project delivery and ideally on work that is not software
+(a proposal, an investigation, a calculation package), without the owner
+translating. The observations of interest are whether the four structures and
+their failure signatures appear unprompted, how much of that professional's
+attention each unit of warranted confidence costs, and whether the
+validation-level setting is usable by someone who did not design it. Either
+outcome would be informative. This differs from §9.4.6, which concerns
+concurrent execution; the question here is whether the structures are
+recognized and relied upon by a practitioner other than their author.
 
 ---
 
