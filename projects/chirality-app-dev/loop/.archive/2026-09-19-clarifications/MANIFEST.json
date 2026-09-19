@@ -1,0 +1,21 @@
+{
+  "basis": "2fabfcda85bbb7f89f17c2365d8046e025bcf292",
+  "status": "historical snapshot; not active instructions",
+  "files": [
+    {
+      "source": "projects/chirality-app-dev/AGENTS.md",
+      "snapshot": "AGENTS.pre-clarification.md",
+      "sha256": "977fdb3b6ee9f1b9bcadd3fc2ba05373acdf66c50bd20cf409f9b99137093733"
+    },
+    {
+      "source": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "snapshot": "loop_LOOP_INIT.pre-clarification.md",
+      "sha256": "8fc53fad42d144e25be44f8d2838d45d57abda19373672006d2ccf4e7187d875"
+    },
+    {
+      "source": "projects/chirality-app-dev/init/dev-loop-init-prompt.md",
+      "snapshot": "init_dev-loop-init-prompt.pre-clarification.md",
+      "sha256": "d4bea52c90bbd87df40382d4197ca60fa9e1070404287112db2068c63d0cfc54"
+    }
+  ]
+}

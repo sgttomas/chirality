@@ -146,9 +146,7 @@ by itself require another manager. Software activations use
 its applicable checks. A profile does not expand authority or waive a gate.
 
 Every slice requires fresh-context independent review of its complete frozen
-diff before merge, with actionable findings repaired and backchecked. This
-includes instruction and owner-direction changes; proportionate review and
-affected-correction backchecks are described in `loop/LOOP_INIT.md`. For
+diff before merge, with actionable findings repaired and backchecked. For
 product source (`frontend/src/**` outside `__tests__/**`, `frontend/electron/**`,
 `frontend/packages/**`, `frontend/scripts/**`, build/packaging configuration),
 retain the fresh read-only `TASK + software-code-review` path before final

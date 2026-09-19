@@ -7230,3 +7230,13 @@
   - Checks: validation and independent review records retained in the owning run; frontend/native gates not applicable because no product source changed. Required actual-candidate CI remains a merge gate.
   - Model-Attribution: HELP_HUMAN ROOT gpt-6-astra/high; fresh direct TASK reviewer gpt-6-astra/high, with launch and return evidence in the run. Delegation and nondelegation instruction-asserted.
   - Gate-Outcome: `EXECUTED` — bounded instruction amendment under owner direction. No product development, reconciliation, lifecycle change or release acceptance. Owner will supply phase steering.
+
+- **2026-09-19 — Receipt 263** (owner-approved loop clarifications).
+  - Receipt-ID: `Receipt-263`
+  - Examined-Through: `2fabfcda85bbb7f89f17c2365d8046e025bcf292`
+  - Parent-Receipt: `Receipt-262`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; verbatim approval and accepted scope in `../chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260919-LOOP-CLARIFICATIONS/OWNER_DIRECTION.md`.
+  - Pointers: `../chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260919-LOOP-CLARIFICATIONS/OWNER_DIRECTION.md`; same run `WORK_GRAPH.json`, review and check evidence; `execution/_Coordination/NOTICE_2026-09-19_LOOP_CLARIFICATIONS.md`.
+  - Checks: pre-append receipt checks passed; scoped validation, independent review and actual-candidate CI recorded in the owning run and PR before merge. No product/native evidence is claimed.
+  - Model-Attribution: HELP_HUMAN Astra/high; fresh direct TASK Astra/high review, parentage and instruction-asserted boundaries in the owning run.
+  - Gate-Outcome: `EXECUTED` — shared instruction clarification only. Protected criteria, product decisions, DAG, lifecycle, release and holds unchanged. Owner will supply reconciliation steering; product development remains paused.
