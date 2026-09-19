@@ -203,8 +203,9 @@ work is carried out by many distinct agents — human ones — and a named
 professional answers for the result. The owner's observation (recorded verbatim in
 `plans/evidence/2026-09-19_owner_words_four_graph_structures.md`) is that the
 structures Chirality makes explicit are the structures that practice already
-converged on, and that this is the stronger warrant for the claim that they
-belong to knowledge work as such rather than to this system.
+converged on, and that these structures underlying knowledge work as such was
+always the owner's claim. Reading the first as the stronger support for the
+second is this subsection's inference, not the owner's statement.
 
 The correspondence is direct. Section 4.3.4 describes two of four structures,
 the ANCHOR tree and the EXECUTION DAG. The owner's fuller account has four,

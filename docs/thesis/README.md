@@ -64,7 +64,9 @@ software). The owner's words are recorded in
 `plans/evidence/2026-09-19_owner_words_four_graph_structures.md`. The Status
 table above still names the models that first drafted Chapters 4 and 9; the
 passages dated 2026-09-19 in them were drafted by Claude Fable 5.1 and were
-independently reviewed by Claude Opus 5 before merge. Both are agent-drafted (Claude Fable 5.1), carry no
+checked before merge by an independent agent review (Claude Opus 5), which is
+an editorial and consistency check and confers no warrant state under
+`docs/TYPES.md` §10.4. Both are agent-drafted (Claude Fable 5.1), carry no
 citations yet and are UNWARRANTED until a verified pass adds sources; the
 observation they record is the owner's. Chapter 4 was revised the same day so that it no
 longer describes only two of the four structures: a paragraph in §4.1, a note
