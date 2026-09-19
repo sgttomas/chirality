@@ -36,17 +36,20 @@
     "DESIGN-SYSTEM-05-CORRECTION-1": {
       "role": "the owning child (DESIGN-SYSTEM-05), resumed by message",
       "model": "fable",
-      "status": "sealed",
+      "status": "returned",
       "sealed": "2026-09-19T02:04Z",
       "briefSha256": "3157a9f7e44e780786342565ef1a18998db673877b71c5c2601d881c19f7719b",
       "brief": "briefs/DESIGN-SYSTEM-05_correction_1.md",
-      "returnSha256": null,
+      "returnSha256": "5191b92244e41975422a84dd660dbb1dcd91005abbda30f529d04cba91903ddf",
       "dependsOn": [
         "DS5-REVIEW"
-      ]
+      ],
+      "returned": "2026-09-19T04:01Z",
+      "return": "returns/DESIGN-SYSTEM-05_CORRECTION_1_RETURN.md",
+      "modelThatRan": "Claude Fable 5.1 (claude-fable-5-1), by its own statement"
     }
   },
-  "current_frontier": "The independent review returned FINDINGS (one minor, one trivial), both about what the document says; correction 1 is sealed and goes to the owning child; then the same reviewer backchecks; then the pull request, CI and merge; then the product slice that adopts tokens.json 1.3.",
+  "current_frontier": "Correction 1 returned and checked by ROOT; one observation of the child's (check boxes and switches under a washed row or menu item are covered by the rule but not held by the tools) becomes correction 2; then the same reviewer backchecks both; then the pull request, CI and merge; then the product slice that adopts tokens.json 1.3.",
   "decisions": [
     {
       "id": "DS5-D1",

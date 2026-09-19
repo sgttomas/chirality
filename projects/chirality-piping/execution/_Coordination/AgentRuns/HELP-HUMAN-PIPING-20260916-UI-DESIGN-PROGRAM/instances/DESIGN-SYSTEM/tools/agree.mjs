@@ -9,6 +9,10 @@
 // DESIGN-SYSTEM-05; the two rules of contrast.mjs (the control rule, the disabled ink) with no failure; the control
 // rule's table in the document equal to a fresh generation; and, in the specimen's stylesheet, that every rule which
 // draws a control's boundary draws it in border.control, every latched form in pressed.ink, and none in border.strong.
+// Correction 1 to V1.4 adds: rows 1 to 120 unchanged and rows 121 on citing the correction and both findings of the
+// independent review; the Disabled cell state saying what the row sits on; in the specimen, the disabled row drawn one
+// way (the ink, by the disabled-row rule, with no fill, no inline style and no band); and every control that carries the
+// boundary and is washed given a fill of its own, one of surface.panel, surface.sunken and surface.raised.
 //   node agree.mjs <DESIGN_SYSTEM_V1.md> <tokens.json> <specimen.html>
 import fs from "node:fs"; import crypto from "node:crypto"; import path from "node:path"; import { fileURLToPath } from "node:url";
 import { pairs, computeRows, toMarkdown, toSweepMarkdown, ruleFailures } from "./contrast.mjs";
@@ -118,6 +122,14 @@ const v14 = log.split("\n").filter(l => { const m = l.match(/^\| (\d+) \| /); re
 const items = new Set([...v14.matchAll(/brief (?:DESIGN-SYSTEM-05 )?items? (\d)(?: and (\d))?/g)].flatMap(m => [m[1], m[2]].filter(Boolean)));
 for (let i = 1; i <= 5; i++) if (!items.has(String(i))) push("V1.4 rows do not cite brief item " + i);
 if (!v14.includes("D-68")) push("V1.4 rows do not cite D-68");
+// correction 1 to V1.4: rows 121 on, rows 1 to 120 unchanged, the correction and both findings cited
+if (logRows.length < 123) push("section 9 lacks correction 1's rows 121 to 123");
+const first120 = log.split("\n").filter(l => { const m = l.match(/^\| (\d+) \| /); return m && Number(m[1]) <= 120; }).join("\n");
+if (crypto.createHash("sha256").update(first120).digest("hex") !== "d79d46b07122251a6d455c891cc9fc00fefa1f34e821b706f051e8221e0d2bde") push("section 9 rows 1 to 120 differ from V1.4 as reviewed");
+const c1 = log.split("\n").filter(l => { const m = l.match(/^\| (\d+) \| /); return m && Number(m[1]) >= 121; }).join("\n");
+const c1src = c1.split("\n").map(l => l.replace(/ \|$/, "").split(" | ").pop()).join("\n"); // the Source cell of each row
+if (!/correction 1/i.test(c1src)) push("rows 121 on do not cite correction 1 as their source");
+for (const n of [1, 2]) if (!new RegExp("\\bfinding " + n + "\\b").test(c1src)) push("rows 121 on do not cite finding " + n + " as a row's source");
 const v13 = log.split("\n").filter(l => { const m = l.match(/^\| (\d+) \| /); return m && Number(m[1]) >= 91; }).join("\n");
 for (const n of [1, 2, 4, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16]) if (!new RegExp("contradiction " + n + "\\b").test(v13)) push("V1.3 rows do not cite contradiction " + n);
 for (const c of ["C-17", "C-20", "C-23", "C-24", "C-25"]) if (!v13.includes(c)) push("V1.3 rows do not cite " + c);
@@ -150,6 +162,14 @@ for (const sel of [".btn.latched", '.hud button[aria-pressed="true"]', ".chip.on
 if (!rule(".outline div.on")?.body.includes("var(--selection-bar)")) push("specimen outline's selected row has no selection bar");
 if (/stroke="var\(--border-strong\)"/.test(S)) push("specimen figure strokes a control in border.strong");
 if (/class="chip (solved|incomplete|failed|review)">(All|Open|Resolved|Mine)\b/.test(S)) push("a filter chip that is chosen sits on a status fill");
+// correction 1 to V1.4: the disabled row is drawn one way, and a washed control has a fill of its own among the three
+if (!D.includes("| Disabled | `text.disabled` on the row surface and nothing else;")) push("doc's Disabled cell state does not say what the row sits on");
+const demoRow = rule(".rowdemo .dis"); if (!demoRow || !demoRow.body.includes("var(--text-disabled)") || /background/.test(demoRow.body)) push("specimen's row demo draws the disabled row with a fill, or without the disabled ink");
+const offRow = rule("table.ds tr.offrow td"); if (!offRow || !offRow.body.includes("var(--text-disabled)") || /background/.test(offRow.body)) push("specimen has no disabled-row rule, or the rule draws a fill");
+if (!/<tr class="offrow">/.test(S)) push("specimen draws no disabled row");
+if (/<td\b[^>]*style="[^"]*--text-disabled/.test(S)) push("specimen draws a disabled cell by an inline style, outside the disabled-row rule");
+for (const m of S.matchAll(/<tr class="([^"]*)"/g)) { const c = m[1].split(/\s+/); if (c.includes("offrow") && (c.includes("sel") || c.includes("prop"))) push("specimen draws a disabled row on a band"); }
+for (const sel of [".seg", ".btn", ".input", ".combo", ".search", ".sendrow", ".stepper", ".maprow .m .sel", ".iconbtn.raised", ".lenfield"]) { const r = rule(sel); if (!r || !/background: var\(--surface-(panel|sunken|raised)\)/.test(r.body)) push("specimen's washed control has no fill of its own among the three: " + sel); }
 
 // ---- the label table (section 2.3) and the label chips ----
 const docLabels = (D.match(/<!-- GENERATED:LABEL_TABLE:BEGIN -->\n([\s\S]*?)\n<!-- GENERATED:LABEL_TABLE:END -->/) || [])[1];

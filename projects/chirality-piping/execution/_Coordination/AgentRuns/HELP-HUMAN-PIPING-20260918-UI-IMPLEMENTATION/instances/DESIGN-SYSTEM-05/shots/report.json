@@ -2,7 +2,7 @@
   "1440-light": {
     "scrollWidth": 1440,
     "innerWidth": 1440,
-    "scrollHeight": 16142,
+    "scrollHeight": 16252,
     "colorScheme": "light",
     "bg": "rgb(238, 240, 243)",
     "textPrimary": "#22272c",
@@ -129,7 +129,7 @@
     "v14": {
       "heading": "SWBPIPE design system · specimen V1.4",
       "strip": true,
-      "stripRows": 11,
+      "stripRows": 12,
       "theme": "light",
       "readings": 317,
       "byKind": {
@@ -175,6 +175,16 @@
         "ratio": 2.56
       },
       "disabledUnderStated": [],
+      "disabledCellSamples": 13,
+      "disabledCellLowest": {
+        "where": "a row · surface.panel, surface.rowAlt strip · A-05",
+        "ratio": 2.92,
+        "onRowSurface": true
+      },
+      "disabledCellsUnderStated": [],
+      "disabledCellsOffRowSurface": [],
+      "washedControls": 87,
+      "washedWithoutOwnFill": [],
       "latchedBoundaries": 23,
       "tabsOn": 3,
       "checkBoxes": 10,
@@ -196,7 +206,7 @@
   "1440-dark": {
     "scrollWidth": 1440,
     "innerWidth": 1440,
-    "scrollHeight": 16142,
+    "scrollHeight": 16252,
     "colorScheme": "dark",
     "bg": "rgb(27, 30, 34)",
     "textPrimary": "#e5e8ec",
@@ -323,7 +333,7 @@
     "v14": {
       "heading": "SWBPIPE design system · specimen V1.4",
       "strip": true,
-      "stripRows": 11,
+      "stripRows": 12,
       "theme": "dark",
       "readings": 317,
       "byKind": {
@@ -369,6 +379,16 @@
         "ratio": 3.02
       },
       "disabledUnderStated": [],
+      "disabledCellSamples": 13,
+      "disabledCellLowest": {
+        "where": "a row · surface.panel, surface.rowAlt strip · A-05",
+        "ratio": 3.37,
+        "onRowSurface": true
+      },
+      "disabledCellsUnderStated": [],
+      "disabledCellsOffRowSurface": [],
+      "washedControls": 87,
+      "washedWithoutOwnFill": [],
       "latchedBoundaries": 23,
       "tabsOn": 3,
       "checkBoxes": 10,
@@ -390,7 +410,7 @@
   "720-light": {
     "scrollWidth": 720,
     "innerWidth": 720,
-    "scrollHeight": 22529,
+    "scrollHeight": 22674,
     "colorScheme": "light",
     "bg": "rgb(238, 240, 243)",
     "textPrimary": "#22272c",
@@ -517,7 +537,7 @@
     "v14": {
       "heading": "SWBPIPE design system · specimen V1.4",
       "strip": true,
-      "stripRows": 11,
+      "stripRows": 12,
       "theme": "light",
       "readings": 317,
       "byKind": {
@@ -563,6 +583,16 @@
         "ratio": 2.56
       },
       "disabledUnderStated": [],
+      "disabledCellSamples": 13,
+      "disabledCellLowest": {
+        "where": "a row · surface.panel, surface.rowAlt strip · A-05",
+        "ratio": 2.92,
+        "onRowSurface": true
+      },
+      "disabledCellsUnderStated": [],
+      "disabledCellsOffRowSurface": [],
+      "washedControls": 87,
+      "washedWithoutOwnFill": [],
       "latchedBoundaries": 23,
       "tabsOn": 3,
       "checkBoxes": 10,
@@ -584,7 +614,7 @@
   "720-dark": {
     "scrollWidth": 720,
     "innerWidth": 720,
-    "scrollHeight": 22529,
+    "scrollHeight": 22674,
     "colorScheme": "dark",
     "bg": "rgb(27, 30, 34)",
     "textPrimary": "#e5e8ec",
@@ -711,7 +741,7 @@
     "v14": {
       "heading": "SWBPIPE design system · specimen V1.4",
       "strip": true,
-      "stripRows": 11,
+      "stripRows": 12,
       "theme": "dark",
       "readings": 317,
       "byKind": {
@@ -757,6 +787,16 @@
         "ratio": 3.02
       },
       "disabledUnderStated": [],
+      "disabledCellSamples": 13,
+      "disabledCellLowest": {
+        "where": "a row · surface.panel, surface.rowAlt strip · A-05",
+        "ratio": 3.37,
+        "onRowSurface": true
+      },
+      "disabledCellsUnderStated": [],
+      "disabledCellsOffRowSurface": [],
+      "washedControls": 87,
+      "washedWithoutOwnFill": [],
       "latchedBoundaries": 23,
       "tabsOn": 3,
       "checkBoxes": 10,

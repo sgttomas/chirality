@@ -5,6 +5,7 @@
 // begins with "control" is what identifies a control or shows its state and reads 3:1 or better in
 // both themes; a "text (disabled)" row reads 2.5:1 or better in light and 3:1 or better in dark, and
 // the disabled ink stays 1.2:1 or more short of the muted ink. The run exits 1 when a rule fails.
+// Correction 1 to V1.4 changes no pair and no ratio: the sweep's disabled row is named for the table row that cannot be chosen as well.
 // `sweep` is the control rule's table for the document (section 5): one row per component part,
 // every pair of it a row of `pairs`.
 //   node contrast.mjs <tokens.json> <out.md>
@@ -183,7 +184,7 @@ export const sweep = [
   { c: "Status chip with its popover, the Issues count (§2.3, §5.2)", w: "the label on the chip's fill; the count's glyph", t: "status.*Ink, issue.blocking, issue.warning",
     p: [["status.incompleteInk", "status.incompleteFill"], ["status.solvedInk", "status.solvedFill"], ["status.failedInk", "status.failedFill"], ["status.reviewInk", "status.reviewFill"], ["issue.blocking", "surface.base"], ["issue.warning", "surface.base"]] },
   { c: "Select-all control: the gutter's header cell (§5.1)", w: "nothing is drawn; the cell is the target", t: "", p: [], outside: "nothing to measure; whether it needs a drawn form is the pointer rule's question, not this rule's" },
-  { c: "Disabled control of any kind (§1.3)", w: "its label and glyph", t: "text.disabled",
+  { c: "Disabled control of any kind, and a table row that cannot be chosen (§1.3, §5.1)", w: "its label, its glyph, the row's text", t: "text.disabled",
     p: on("text.disabled", ["disabled.fill", "surface.panel", "surface.base", "surface.sunken", "surface.header", "surface.raised", "surface.rowAlt"]), outside: "inactive, which the criterion exempts; the disabled ink has its own rule (§2.9)" },
   { c: "Hairlines: between regions and rows, around a card, a popover, an informing chip and an icon-only button", w: "the 1 px line", t: "border.hairline",
     p: on("border.hairline", ["surface.panel", "surface.base"]), outside: "separates and identifies nothing: a chip is identified by its label and an icon-only button by its glyph" },

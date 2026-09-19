@@ -18,6 +18,10 @@
 // the compass's stroked buttons) against its own fill and against the surface around it, as WCAG 2.x ratios, with
 // the lowest reading and every reading under 3:1; that no control's boundary resolves to border.strong; and the
 // ink of every disabled sample against its fill, held to the ratio stated in contrast.mjs. Exits 1 if any fails.
+// Correction 1 to V1.4 adds, counted apart from the disabled controls: the ink of every cell of a row that cannot be
+// chosen (the table's Disabled state) against the fill it shows, held to the same stated ratio, and that the fill is a
+// row surface (surface.panel or surface.rowAlt), never a band or a wash; and that every control which carries the
+// boundary and is washed has an opaque fill of its own, one of surface.panel, surface.sunken and surface.raised.
 import { pathToFileURL } from "node:url";
 import { createRequire } from "node:module";
 import fs from "node:fs";
@@ -121,10 +125,22 @@ for (const width of [1440, 720]) {
           const disabled = [];
           for (const el of qa2('.btn[disabled], .btn.disabled, .combo.disabled, .iconbtn[disabled], .hud button[disabled], .menu .mi.dis, .rail .it.off')) { if (!shown(el)) continue; const fill = fillOf(el); disabled.push({ where: where(el), ratio: Math.round(ratio(solid(getComputedStyle(el).color, fill), fill) * 100) / 100 }); }
           const stated = theme === "dark" ? rules.disabledDark : rules.disabledLight;
+          // correction 1: the Disabled cell state, counted apart. A cell of a row that cannot be chosen shows the row surface and nothing else.
+          const tokRgb = (k) => solid(tok.color[k][theme], [255, 255, 255]).map(Math.round).join(",");
+          const rowSurfaces = [tokRgb("surface.panel"), tokRgb("surface.rowAlt")];
+          const cells = [];
+          for (const el of qa2("table.ds tr.offrow td, .rowdemo .dis")) { if (!shown(el) || !el.textContent.trim()) continue; const fill = fillOf(el); cells.push({ where: where(el), ratio: Math.round(ratio(solid(getComputedStyle(el).color, fill), fill) * 100) / 100, onRowSurface: rowSurfaces.includes(fill.map(Math.round).join(",")) }); }
+          // correction 1: a control that carries the boundary and is washed has a fill of its own, one of three
+          const ownFills = [tokRgb("surface.panel"), tokRgb("surface.sunken"), tokRgb("surface.raised")];
+          const washedSel = ['.seg', '.btn:not(.primary):not(.text):not(.latched):not([disabled]):not(.disabled)', '.input', '.combo:not(.disabled)', '.search', '.sendrow', '.stepper', '.maprow .m .sel', '.iconbtn.raised', '.lenfield'];
+          const washed = [];
+          for (const sel of washedSel) for (const el of qa2(sel)) { if (!shown(el)) continue; const c = parse(getComputedStyle(el).backgroundColor); washed.push({ sel, where: where(el), ok: !!c && c.a === 1 && ownFills.includes(c.rgb.map(Math.round).join(",")) }); }
           const byKind = {}; for (const r of held) byKind[r.kind] = (byKind[r.kind] || 0) + 1;
           return { heading: document.querySelector("h1").textContent, strip: !!document.getElementById("controls"), stripRows: qa2("#controls .ctl .srf").length, theme,
             readings: held.length, byKind, lowest, under3: under, boundariesInBorderStrong: held.filter(r => r.strong).map(r => r.where),
             disabledSamples: disabled.length, disabledStated: stated, disabledLowest: [...disabled].sort((a, b) => a.ratio - b.ratio)[0], disabledUnderStated: disabled.filter(d => d.ratio < stated),
+            disabledCellSamples: cells.length, disabledCellLowest: [...cells].sort((a, b) => a.ratio - b.ratio)[0] || null, disabledCellsUnderStated: cells.filter(c => c.ratio < stated), disabledCellsOffRowSurface: cells.filter(c => !c.onRowSurface).map(c => c.where),
+            washedControls: washed.length, washedWithoutOwnFill: washed.filter(w => !w.ok).map(w => w.sel + " · " + w.where),
             latchedBoundaries: qa2('.btn.latched, .iconbtn.latched, .chip.on, .hud button[aria-pressed="true"]').filter(shown).length, tabsOn: qa2(".tab.on").length, checkBoxes: qa2(".cb").length, radios: qa2(".rb").length, grips: qa2(".splitdemo .split i").length, outlineBar: getComputedStyle(document.querySelector(".outline div.on")).boxShadow !== "none" };
           function qa2(s) { return [...document.querySelectorAll(s)]; }
         })()
@@ -152,6 +168,6 @@ fs.writeFileSync(path.join(outDir, "report.json"), JSON.stringify(report, null, 
 console.log(JSON.stringify(report, null, 1));
 // V1.4: the control rule and the disabled ink as the browser resolved them, one line per rendering
 let bad = 0;
-for (const [key, r] of Object.entries(report)) { const v = r.v14; const n = v.under3.length + v.boundariesInBorderStrong.length + v.disabledUnderStated.length; bad += n;
-  console.log(`V1.4 ${key}: ${v.readings} readings of what identifies a control, lowest ${v.lowest.ratio}:1 (${v.lowest.kind}, against ${v.lowest.against}), under 3:1: ${v.under3.length}, in border.strong: ${v.boundariesInBorderStrong.length}; disabled samples ${v.disabledSamples}, lowest ${v.disabledLowest.ratio}:1 against the stated ${v.disabledStated}:1, under it: ${v.disabledUnderStated.length}`); }
+for (const [key, r] of Object.entries(report)) { const v = r.v14; const n = v.under3.length + v.boundariesInBorderStrong.length + v.disabledUnderStated.length + v.disabledCellsUnderStated.length + v.disabledCellsOffRowSurface.length + v.washedWithoutOwnFill.length + (v.disabledCellSamples ? 0 : 1); bad += n;
+  console.log(`V1.4 ${key}: ${v.readings} readings of what identifies a control, lowest ${v.lowest.ratio}:1 (${v.lowest.kind}, against ${v.lowest.against}), under 3:1: ${v.under3.length}, in border.strong: ${v.boundariesInBorderStrong.length}; disabled samples ${v.disabledSamples}, lowest ${v.disabledLowest.ratio}:1 against the stated ${v.disabledStated}:1, under it: ${v.disabledUnderStated.length}; disabled cells, counted apart, ${v.disabledCellSamples}, lowest ${v.disabledCellLowest ? v.disabledCellLowest.ratio : "none"}:1, under the stated ratio: ${v.disabledCellsUnderStated.length}, off the row surface: ${v.disabledCellsOffRowSurface.length}; washed controls ${v.washedControls}, without a fill of their own among the three: ${v.washedWithoutOwnFill.length}; blocked requests ${r.blockedRequests.length}, console issues ${r.consoleIssues.length}`); }
 process.exitCode = bad ? 1 : 0;

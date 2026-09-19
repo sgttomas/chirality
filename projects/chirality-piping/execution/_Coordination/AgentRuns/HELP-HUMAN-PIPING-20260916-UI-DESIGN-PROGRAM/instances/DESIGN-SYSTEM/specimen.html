@@ -545,6 +545,7 @@ table.ds td.edit input { width: 100%; height: 26px; border: 0; padding: 0 30px 0
 table.ds td.edit .unit { position: absolute; right: 8px; top: 0; line-height: 26px; font-size: 11px; color: var(--text-muted); pointer-events: none; }
 table.ds td.invalid { box-shadow: inset 0 0 0 2px var(--issue-blocking); }
 table.ds td.stale { background-image: repeating-linear-gradient(45deg, transparent 0 4px, var(--stale-stripe) 4px 5px) !important; }
+table.ds tr.offrow td, table.ds tr.offrow td.sec { color: var(--text-disabled); } /* V1.4 correction 1: the Disabled state is a whole row's; such a row is never selected, carries no proposal and takes no wash */
 table.ds tr.draft td { color: var(--text-muted); }
 table.ds tr.draft td.gut::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-left: 3px dashed var(--draft-bar); }
 table.ds tr.draft td .typed { color: var(--accent-text); font-weight: 500; }
@@ -634,7 +635,7 @@ table.ds tr.draft td .typed { color: var(--accent-text); font-weight: 500; }
 .legend .l { font-size: 12px; color: var(--text-secondary); display: flex; justify-content: space-between; align-items: center; min-height: 20px; }
 .legend .unsolved { width: 14px; height: 10px; background: var(--canvas-unsolved); opacity: .6; border-radius: 1px; display: inline-block; }
 .legend .ghost { width: 14px; height: 0; border-top: 1px dashed var(--canvas-deformGhost); display: inline-block; vertical-align: middle; }
-.stepper { display: inline-flex; border: 1px solid var(--border-control); border-radius: var(--radius-control); overflow: hidden; }
+.stepper { display: inline-flex; border: 1px solid var(--border-control); border-radius: var(--radius-control); overflow: hidden; background: var(--surface-sunken); } /* V1.4 correction 1: a washed control has a fill of its own; a stepper is a field */
 .stepper span { padding: 0 6px; height: 20px; line-height: 20px; }
 .stepper span + span { border-left: 1px solid var(--border-control); }
 
@@ -793,7 +794,7 @@ table.ds tr.addrow td { color: var(--text-muted); }
 .rowdemo .sel { background: var(--selection-band); }
 .rowdemo .sel::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--selection-bar); }
 .rowdemo .foc { box-shadow: inset 0 0 0 2px var(--focus-ring); }
-.rowdemo .dis { color: var(--text-disabled); background: var(--disabled-fill); }
+.rowdemo .dis { color: var(--text-disabled); } /* V1.4 correction 1: a disabled row is the ink on the row surface: no fill, no band, no wash */
 
 /* canvas figure */
 .figure svg { width: 100%; height: auto; display: block; background: var(--canvas-bg); border-radius: var(--radius-control); border: 1px solid var(--border-hairline); }
@@ -1012,12 +1013,13 @@ footer.spec { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--b
   </div>
   <div class="grid2" style="margin-top:12px">
     <div>
-      <h4 style="margin-top:0">Disabled · the ink, the fill, the dropped boundary, no wash, the reason in the tooltip</h4>
+      <h4 style="margin-top:0">Disabled · the ink, the fill, the dropped boundary, no wash, the reason in the tooltip; a row that cannot be chosen is the ink on the row surface, with no band, no wash and its reason in the row</h4>
       <div class="ctl">
         <div class="srf" style="background:var(--surface-panel)"><span class="lab"><code>surface.panel</code></span><button class="btn" disabled title="Run is unavailable — Section missing at node 20, Material missing at node 20"><svg class="ic"><use href="#i-run"/></svg>Run</button><span class="combo disabled" title="Envelope is on: the governing case per row">Case: all</span><button class="iconbtn" title="Nothing to redo" disabled><svg class="ic"><use href="#i-redo"/></svg></button><span class="muted">muted text beside it</span><span class="sec">an enabled glyph's ink</span></div>
         <div class="srf" style="background:var(--surface-base)"><span class="lab"><code>surface.base</code></span><button class="btn" disabled title="Run is unavailable — Section missing at node 20, Material missing at node 20"><svg class="ic"><use href="#i-run"/></svg>Run</button><button class="iconbtn" title="Nothing to undo" disabled><svg class="ic"><use href="#i-undo"/></svg></button><span class="muted">muted text beside it</span></div>
         <div class="srf" style="background:var(--surface-header)"><span class="lab"><code>surface.header</code></span><span class="combo disabled" title="Envelope is on: the governing case per row">Case: all</span><button class="btn compact" disabled title="Needs a current run">Print</button><span class="muted">muted text beside it</span></div>
         <div class="srf" style="background:var(--surface-raised)"><span class="lab"><code>surface.raised</code></span><button class="btn" disabled title="Needs a current run">Save</button><button class="iconbtn" title="Send (⌘↩)" disabled><svg class="ic"><use href="#i-send"/></svg></button><span class="muted">muted text beside it</span></div>
+        <div class="srf" style="background:var(--surface-panel)"><span class="lab">a row · <code>surface.panel</code>, <code>surface.rowAlt</code></span><div class="tblwrap fit"><table class="ds" aria-label="Rows that cannot be chosen, sample" style="width:auto"><tbody><tr><td>A-06</td><td class="n">15 %</td><td class="sec">within</td><td><button class="btn compact text">Select</button></td></tr><tr class="offrow"><td>A-05</td><td class="n">30 %</td><td>over the row's max variation, 25 %</td><td></td></tr><tr class="offrow"><td>A-04</td><td class="n">47 %</td><td>hot load over the working range</td><td></td></tr></tbody></table></div><span class="muted">muted text beside it</span></div>
       </div>
     </div>
     <div>
@@ -1279,7 +1281,7 @@ footer.spec { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--b
           <tbody>
             <tr><td>A-07</td><td class="n">26.0</td><td class="n">4.51</td><td class="n">4.20</td><td class="n">7 %</td><td class="sec">within</td><td><button class="btn compact text">Select</button></td></tr>
             <tr><td>A-06</td><td class="n">52.0</td><td class="n">4.82</td><td class="n">4.20</td><td class="n">15 %</td><td class="sec">within</td><td><button class="btn compact text">Select</button></td></tr>
-            <tr><td style="color:var(--text-disabled)">A-05</td><td class="n" style="color:var(--text-disabled)">105.0</td><td class="n" style="color:var(--text-disabled)">5.46</td><td class="n" style="color:var(--text-disabled)">4.20</td><td class="n" style="color:var(--text-disabled)">30 %</td><td style="color:var(--text-disabled)">over the row's max variation, 25 %</td><td></td></tr>
+            <tr class="offrow"><td>A-05</td><td class="n">105.0</td><td class="n">5.46</td><td class="n">4.20</td><td class="n">30 %</td><td>over the row's max variation, 25 %</td><td></td></tr>
           </tbody>
         </table>
       </div></td></tr>

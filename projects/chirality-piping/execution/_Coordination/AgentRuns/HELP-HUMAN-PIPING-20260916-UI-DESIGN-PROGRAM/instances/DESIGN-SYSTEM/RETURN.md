@@ -5,8 +5,10 @@ Instance: DESIGN-SYSTEM (HELPS_HUMANS design manager, child of ROOT). Brief:
 acceptance. This file replaces the DESIGN-SYSTEM-02 return. Sections 1 to 7 are the
 DESIGN-SYSTEM-03 return with ROOT's two corrections; §8 is the DESIGN-SYSTEM-04 return
 (V1.3), and the hash table below carries the current values first. §11 is the
-DESIGN-SYSTEM-05 addendum (V1.4): it carries the current hashes, and the table in §2
-stands as it was at V1.3.
+DESIGN-SYSTEM-05 addendum (V1.4): it carried the hashes of the revision as returned, and
+the table in §2 stands as it was at V1.3. §12 is correction 1 to V1.4, made after the
+independent review: it carries the current hashes of the five files the correction
+changed, and §11 stands as it was returned.
 
 ## 1 What was read
 
@@ -535,5 +537,162 @@ have no hover rule, and draw no splitter grip and no drag handle.
    state carrier.
 9. `tools/render.mjs` now imports `rules` from `tools/contrast.mjs`, so the two hold the
    same ratios; its readings cover the specimen's samples, not the product.
+
+## 12 DESIGN-SYSTEM-05 · correction 1 to V1.4 · the disabled row, and the boundary's wash pairs
+
+ROOT's sealed correction 1
+(`../../../HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/lanes/DESIGN-SYSTEM-05/briefs/DESIGN-SYSTEM-05_correction_1.md`,
+SHA-256 `3157a9f7…f7719b`, verified before acting) carries the two findings of the independent
+review of V1.4
+(`../../../HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/lanes/DESIGN-SYSTEM-05/reviews/DS5-REVIEW_RETURN.md`,
+SHA-256 `f1744ee7…6ce8fc70`, verified and read whole). Model: Claude Fable 5.1
+(`claude-fable-5-1`), one agent, no delegation. ROOT paused the work once at a clean point
+and resumed it. One context compaction occurred, after the last edit to the document, the
+specimen and the tools and after the render check, and before the final run of the two
+tools: work resumed from the files on disk and a transcript summary, and both tools were
+run again after it, with the hashes below confirmed against the files. `tokens.json` is
+unchanged (`0e01828c…d18c00`), rows 1 to 120 of the document's §9 are byte-identical to the
+committed revision, the revision stays V1.4, and the correction is rows 121 to 123. §7, the
+owner's rulings and §8 item 6 are untouched.
+
+**Finding 1, decided: a disabled cell is a whole row's state, the ink on the row surface.**
+The table's Disabled state is `text.disabled` on the row surface and nothing else, for a row
+that cannot be chosen; such a row is never selected, carries no proposal and takes no wash,
+and gives its reason in its own text. Why, in the design's terms: a cell has no fill of its
+own (the Entered state is the ink on the row surface and nothing else, and the states that
+have a fill name it), so by §1.3's own division it is a control with no fill and takes the
+bare ink; the frames draw it so (`table.ds tr.offrow`, the hanger selection's sizes that
+cannot be offered), which is the one place the design uses the state; a fill across a row is
+a band in this system; and the reason, which is read in the row, reads better on the row
+surface (3.06:1 and 3.46:1 on `surface.panel`, 2.92:1 and 3.37:1 on `surface.rowAlt`) than on
+`disabled.fill` (2.56:1 and 3.19:1). The design does not need such a row to be selectable:
+the sizes are library rows in a table with no gutter, so there is no row selector; no
+proposal lands on a library row; the reason is text in the row; and an eligible row's one
+control is its "Select" text button. Both backgrounds the statement allows are rows of
+§2.9's disabled pairs and within the stated ratio by the tool's measurement, so the pair list
+does not change. The three that fall short are excluded by the statement: `selection.band`
+(2.60:1 and 2.55:1), `proposal.band` (2.67:1 and 2.87:1) and a hovered row (2.73:1 and
+2.88:1 on the panel).
+
+§1.3's list of the disabled controls with no fill gains the row and is stated as closed, with
+what each kind sits on, and §2.9 now says itself that the ink meets `disabled.fill` and six
+surfaces and nothing else: neither `selection.band` nor `canvas.bg`.
+
+**Finding 2, decided: a rule, and the tools hold it.** The boundary's wash pairs are those of
+a control's own fill: a control that carries the boundary and is washed has a fill of its
+own, one of `surface.panel`, `surface.sunken` and `surface.raised`, and the wash is drawn over
+that fill and never over the bare surface of its region. It is a rule and not only the
+table's scope because §1.3 lets a wash be drawn over a surface while the control rule holds
+under the washes: on a washed `surface.base` the pressed boundary would read 2.99:1 in light,
+and on a washed canvas 2.91:1. The active tab and the active segment keep their state fill
+under the pointer, as §1.3 already says of a state fill; an empty check box, a radio button,
+a switch's track and a splitter's grip are not washed themselves. Checking it was cheap, so
+both `tools/agree.mjs` (the stylesheet) and the render check (the resolved styles) fail on
+its breach. One control of the specimen breached it: the legend's stepper had no fill, and
+takes `surface.sunken`, as every field does.
+
+**Files changed**, all in this directory; `tokens.json`, `tools/palette.mjs`, `tools/gen.mjs` and
+`tools/splice.mjs` are unchanged and keep §11's hashes:
+
+| File | Change | sha256 |
+|---|---|---|
+| `DESIGN_SYSTEM_V1.md` | the status line; §1.3 (the closed list, with the row); §2.9 (what the disabled ink is drawn on; whose fills the boundary's wash pairs are); §5 (the rule as a bullet of the control rule; the generated table's disabled row renamed, through the tools); §5.1 (the Disabled cell state; the hanger selection names it); §8 (three sentences for a later frames pass); §9 (the introduction; rows 121 to 123) | `447031fa0db2db3967686b538f2dd62f433937c376e107d07245d7ac23af76f0` |
+| `specimen.html` | the row demo's disabled row loses its fill; one `table.ds tr.offrow` rule, as the frames name it, and the hanger selection's A-05 row takes it in place of inline styles; the Disabled strip gains rows that cannot be chosen on `surface.panel` and `surface.rowAlt`; the stepper takes `surface.sunken` | `2f09f63dc39b4b4d4ed847c5cadf634c52d8320eeb92247582233fdf2628fdf1` |
+| `tools/contrast.mjs` | the sweep's disabled row is named for the table row as well; no pair and no ratio changes (214 pairs, 29 sweep rows) | `89ee8f98335d6161bc3707d76f6381a58c3cb268544331a92f326f0551ba4fac` |
+| `tools/agree.mjs` | rows 1 to 120 by hash, 123 rows, rows 121 on citing correction 1 and, as a row's source, each finding; the Disabled state's wording; the disabled-row rule with no fill, no inline-styled disabled cell, no disabled row on a band; each washed control's rule giving one of the three fills | `e01f7c92f36e1d619f25f42fd06cd428a29ff832cb4f0f865b41cc66ec09d06b` |
+| `tools/render.mjs` | the disabled cells counted apart from the disabled controls, held to the stated ratio and to the row surface; every washed control with an opaque fill of its own among the three; the summary line gains those counts, the blocked requests and the console issues; exits 1 on a breach or when no disabled cell is sampled | `1583cda6a1632623ac45316890e8d122de68d4aa3e3a4da48e899f8aafd46ae0` |
+| `RETURN.md` | this section, and one sentence of the head | |
+
+**What I ran**, from this directory, after the last edit to the file each checks (`<out>` and
+`<tmp>` are temporary directories outside the repository):
+
+1. `node tools/palette.mjs --write <out>/tokens.json` and `cmp` with `tokens.json`: equal byte
+   for byte.
+2. `node tools/contrast.mjs tokens.json <out>/contrast_table.md`: exit 0; 214 pairs; control
+   rule 29 sweep rows, 21 held, lowest 3.17:1 light and 3.14:1 dark; disabled ink 7 rows,
+   lowest 2.56:1 light and 3.02:1 dark; rule failures 0. The table is byte-identical to the
+   document's block.
+3. `node tools/gen.mjs tokens.json <out>/gen`, then
+   `node tools/splice.mjs <out>/gen specimen.html DESIGN_SYSTEM_V1.md`; a second splice
+   leaves both files byte-identical.
+4. `node tools/agree.mjs DESIGN_SYSTEM_V1.md tokens.json specimen.html`: exit 0,
+   `problems: []`; 100 colour tokens, 99 plain tokens, 214 contrast rows and pairs, 28 label
+   chips, 123 change-log rows. Against copies with ten faults injected one at a time (the row
+   demo back on `disabled.fill`; the disabled-row rule given a fill; a disabled cell drawn by
+   an inline style; a disabled row that is also selected; the stepper without its fill; a
+   bordered button on the bare base; the Disabled state without what it sits on; a word
+   changed in row 115; row 121 without its finding; row 123 removed) it named each, and the unmodified
+   files pass. V1.4's fault script still catches its fourteen faults; two of them (a word
+   changed in row 100, row 118 without its citation) now trip the pin of rows 1 to 120 as
+   well.
+5. `node tools/render.mjs specimen.html <tmp>/shots`: exit 0; Chromium, every request that
+   is not the file blocked, no server and no port. In all four renderings: 317 readings of
+   what identifies a control, lowest 3.16:1, none under 3:1, none in `border.strong`; 24
+   disabled controls, lowest 2.56:1 light and 3.02:1 dark, none under the stated ratio; 13
+   disabled cells, counted apart (the hanger selection's A-05 row, the strip's two rows, the
+   row demo), lowest 2.92:1 light and 3.37:1 dark, both on `surface.rowAlt`, none under the
+   stated ratio and none off the row surface; 87 washed controls, none without a fill of its
+   own among the three; no blocked request, no console issue, no overflow, smallest font
+   11 px, 100 token rows, 214 contrast rows. Of the report's 552 facts, 512 equal the
+   committed report's; the rest are the page's height, the strip's row count and the new
+   facts. The same check run on V1.4's specimen as committed exits 1: it names the row demo's
+   disabled row off the row surface and three steppers with no fill, and finds one disabled
+   cell.
+6. Which sections' pixels change. Section 1 grows by 110 px, so every later section sits
+   110 px lower on the page, and a plain comparison shows a few pixels of rasterisation
+   difference in most of them. Against V1.4's specimen padded by a 110 px spacer before
+   section 2, so that every section sits at the same page offset in both, sections 2 to 7 and
+   9 to 12 are pixel-identical in both themes, and only sections 1 (the row demo, the two
+   steppers of the Controls strips, the Disabled strip) and 8 (the legend's stepper) differ.
+   I read both in both themes. Retained in the implementation run's folder for this lane,
+   `../../../HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/DESIGN-SYSTEM-05/shots/`:
+   `report.json` and the 1440 px screenshots of sections 1 and 8 in light and dark, in place
+   of those retained before; the section 12 screenshots retained before are removed from the
+   folder, because that section's pixels do not change, and every other rendering went to a
+   temporary directory.
+7. `git status` and `git diff --stat`, read-only. I ran no state-changing git command,
+   started no server, and ran no product build or test.
+
+The scratch record is `scratch/correction_1_checks.txt` in the same folder, with the three
+scripts that produced it.
+
+**An observation for ROOT to dispose of.** The sweep lists a check box and a switch at rest
+only. A check box in a table row, or in a column menu's option, sits on the row's or the menu
+item's wash when the pointer is there, and the control rule's words ("against everything it
+sits on … under the hover and pressed washes") cover that, so the rule as written already
+reaches these readings; what does not reach them is the table and the tools, which hold
+listed pairs only. By the tool's arithmetic, outside the pair list, they all pass:
+`border.control` 3.51:1 and 4.00:1 on a hovered `surface.rowAlt` row and 3.26:1 and 3.53:1 on
+a pressed one; `accent.fill`, the checked box, 4.37:1 to 4.58:1 (light) and 3.46:1 to 3.96:1
+(dark) under the hover wash on `surface.panel`, `surface.rowAlt` and `surface.raised`, and
+4.05:1 to 4.22:1 (light) and 3.02:1 to 3.46:1 (dark) under the pressed wash, the lowest being
+3.02:1 in dark on a pressed `surface.raised` menu row (3.03:1 with an unrounded composite).
+My recommendation is that the sweep should list them, because 3.02:1 is the thinnest margin
+the rule has and nothing holds it if `accent.fill`, `surface.raised` or `pressed.wash` moves.
+It is eight pairs through `tools/contrast.mjs`, with no token change; it would move the
+stated dark lowest from 3.14:1 (a pressed raised button) to 3.02:1 (a checked box on a
+pressed menu row), change the check box's row of §5's table, one sentence of §2.9 and the
+rendering of the specimen's section 12. I did not do it, because the correction limits
+finding 2 to the clause and the rule, and because it changes a stated number that ROOT
+should see first. The other disposition is to say that a row or a menu item that holds a
+check box takes the hover wash and not the pressed one, which removes the 3.02:1 reading
+and leaves 3.46:1; that is a design statement, and I did not make it either.
+
+**What I did not check, and what I saw and did not change:**
+
+1. The frames: I read the frames' stylesheet and the one frame that draws the disabled row
+   (`s8_table_light`), and changed nothing there. `.iconbtn.off` has a `disabled.fill` in the
+   frames while §1.3 gives an icon-only button no fill; both forms are within the seven
+   disabled pairs, and §8 now names it for a later frames pass. It is outside the two
+   findings, in the sentence that finding 1 closes.
+2. Whether a stale hatch can fall on a disabled row. The hatch is drawn over result cells;
+   the sizes are library rows; the document does not say, and a ratio over a pattern is not
+   a number this tool computes.
+3. The legend's Play button overlaps the stepper's lower edge by a pixel in the specimen, as
+   it did before the correction; I left it.
+4. The product, the specification and the frames are untouched; `apps/desktop/**` was not
+   read for this correction. The render check reads the specimen's samples, not the product.
+5. I did not re-run the first pass's measurement and frames scripts; nothing they read has
+   changed.
 
 Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).

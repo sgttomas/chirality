@@ -1,0 +1,136 @@
+Scratch: the checks of correction 1 to DESIGN-SYSTEM-05 (design system V1.4). Scratch output; the record is DESIGN_SYSTEM_V1.md and RETURN.md section 12.
+
+1. Injected faults, one at a time, against copies of the corrected files (scratch/scripts/faults_correction_1.mjs; agree.mjs must name each):
+
+caught   none (the files as they are) -> exit 0, 0 problem(s)
+caught   specimen: the row demo's disabled row back on disabled.fill -> exit 1, 1 problem(s): specimen's row demo draws the disabled row with a fill, or without the disabled ink
+caught   specimen: the disabled-row rule given a fill -> exit 1, 1 problem(s): specimen has no disabled-row rule, or the rule draws a fill
+caught   specimen: a disabled cell drawn by an inline style again -> exit 1, 1 problem(s): specimen draws a disabled cell by an inline style, outside the disabled-row rule
+caught   specimen: a disabled row that is also selected -> exit 1, 1 problem(s): specimen draws a disabled row on a band
+caught   specimen: the stepper loses its fill -> exit 1, 1 problem(s): specimen's washed control has no fill of its own among the three: .stepper
+caught   specimen: a bordered button on the bare base -> exit 1, 1 problem(s): specimen's washed control has no fill of its own among the three: .btn
+caught   document: the Disabled cell state without what it sits on -> exit 1, 1 problem(s): doc's Disabled cell state does not say what the row sits on
+caught   document: a word changed in row 115 -> exit 1, 1 problem(s): section 9 rows 1 to 120 differ from V1.4 as reviewed
+caught   document: row 121 no longer cites finding 1 -> exit 1, 1 problem(s): rows 121 on do not cite finding 1 as a row's source
+caught   document: row 123 removed -> exit 1, 1 problem(s): section 9 lacks correction 1's rows 121 to 123
+every fault caught; the unmodified files pass
+
+2. The V1.4 fault script (scratch/scripts/faults.mjs) run again against the corrected files:
+
+15 of 15 lines caught (the first is the unmodified files passing)
+every fault caught; the unmodified files pass
+Two lines differ from the V1.4 record (agree_injected_faults.txt): the faults in row 100 and in row 118 now also trip the pin of rows 1 to 120.
+
+3. The render check on the corrected specimen (tools/render.mjs, exit 0), one line per rendering:
+
+V1.4 1440-light: 317 readings of what identifies a control, lowest 3.16:1 (boundary .combo:not(.disabled), against its own fill), under 3:1: 0, in border.strong: 0; disabled samples 24, lowest 2.56:1 against the stated 2.5:1, under it: 0; disabled cells, counted apart, 13, lowest 2.92:1, under the stated ratio: 0, off the row surface: 0; washed controls 87, without a fill of their own among the three: 0; blocked requests 0, console issues 0
+V1.4 1440-dark: 317 readings of what identifies a control, lowest 3.16:1 (boundary .iconbtn.raised, against its own fill), under 3:1: 0, in border.strong: 0; disabled samples 24, lowest 3.02:1 against the stated 3:1, under it: 0; disabled cells, counted apart, 13, lowest 3.37:1, under the stated ratio: 0, off the row surface: 0; washed controls 87, without a fill of their own among the three: 0; blocked requests 0, console issues 0
+V1.4 720-light: 317 readings of what identifies a control, lowest 3.16:1 (boundary .combo:not(.disabled), against its own fill), under 3:1: 0, in border.strong: 0; disabled samples 24, lowest 2.56:1 against the stated 2.5:1, under it: 0; disabled cells, counted apart, 13, lowest 2.92:1, under the stated ratio: 0, off the row surface: 0; washed controls 87, without a fill of their own among the three: 0; blocked requests 0, console issues 0
+V1.4 720-dark: 317 readings of what identifies a control, lowest 3.16:1 (boundary .iconbtn.raised, against its own fill), under 3:1: 0, in border.strong: 0; disabled samples 24, lowest 3.02:1 against the stated 3:1, under it: 0; disabled cells, counted apart, 13, lowest 3.37:1, under the stated ratio: 0, off the row surface: 0; washed controls 87, without a fill of their own among the three: 0; blocked requests 0, console issues 0
+
+4. The corrected render check run on V1.4's specimen as committed before the correction (exit 1): it names the row demo's disabled row on disabled.fill and the three steppers with no fill, and it finds one disabled cell where the corrected specimen gives it thirteen:
+
+V1.4 1440-light: 317 readings of what identifies a control, lowest 3.16:1 (boundary .combo:not(.disabled), against its own fill), under 3:1: 0, in border.strong: 0; disabled samples 24, lowest 2.56:1 against the stated 2.5:1, under it: 0; disabled cells, counted apart, 1, lowest 2.56:1, under the stated ratio: 0, off the row surface: 1; washed controls 87, without a fill of their own among the three: 3; blocked requests 0, console issues 0
+V1.4 1440-dark: 317 readings of what identifies a control, lowest 3.16:1 (boundary .iconbtn.raised, against its own fill), under 3:1: 0, in border.strong: 0; disabled samples 24, lowest 3.02:1 against the stated 3:1, under it: 0; disabled cells, counted apart, 1, lowest 3.19:1, under the stated ratio: 0, off the row surface: 1; washed controls 87, without a fill of their own among the three: 3; blocked requests 0, console issues 0
+off the row surface: ["s1 · row · disabled"]
+washed, without a fill of its own: [".stepper · surface.panel strip", ".stepper · surface.raised strip", ".stepper · s8 (the legend)"]
+
+5. Which sections' pixels change (scratch/scripts/pixdiff.py, 1440 px, both themes).
+5a. The corrected rendering against the rendering of V1.4 as committed. Section 1 grows by 110 px, so every later section sits 110 px lower on the page; the counts below outside sections 1 and 8 are rasterisation differences of the same drawing at another page offset, as 5b shows:
+
+1440-dark-s1.png: size (1440, 1559) -> (1440, 1669)
+1440-dark-s1.png: 92445 px differ (17771 by more than 16/255, max 147), bbox (32, 639, 1408, 1559), image (1440, 1559)
+1440-dark-s10.png: 1 px differ (0 by more than 16/255, max 1), bbox (1075, 201, 1076, 202), image (1440, 1001)
+1440-dark-s11.png: 1035 px differ (87 by more than 16/255, max 62), bbox (157, 304, 1406, 693), image (1440, 699)
+1440-dark-s12.png: 9 px differ (0 by more than 16/255, max 1), bbox (34, 57, 1406, 72), image (1440, 662)
+1440-dark-s2.png: 10 px differ (0 by more than 16/255, max 1), bbox (730, 716, 1406, 1228), image (1440, 2449)
+1440-dark-s3.png: 101 px differ (7 by more than 16/255, max 35), bbox (50, 196, 974, 579), image (1440, 735)
+1440-dark-s4.png: identical pixels
+1440-dark-s5.png: 285 px differ (5 by more than 16/255, max 38), bbox (41, 289, 1351, 3166), image (1440, 3215)
+1440-dark-s6.png: identical pixels
+1440-dark-s7.png: 31 px differ (0 by more than 16/255, max 3), bbox (49, 228, 335, 310), image (1440, 1009)
+1440-dark-s8.png: 1670 px differ (0 by more than 16/255, max 15), bbox (31, 68, 809, 1044), image (1440, 1169)
+1440-dark-s9.png: 130 px differ (0 by more than 16/255, max 8), bbox (47, 236, 1339, 1257), image (1440, 1785)
+1440-dark-switched-light-top.png: 3675 px differ (3470 by more than 16/255, max 20), bbox (742, 883, 960, 900), image (1440, 900)
+1440-light-s1.png: size (1440, 1559) -> (1440, 1669)
+1440-light-s1.png: 82110 px differ (31463 by more than 16/255, max 159), bbox (32, 639, 1408, 1559), image (1440, 1559)
+1440-light-s10.png: 0 px differ (0 by more than 16/255, max 0), bbox (1076, 708, 1394, 709), image (1440, 1001)
+1440-light-s11.png: 997 px differ (100 by more than 16/255, max 60), bbox (165, 304, 1406, 693), image (1440, 699)
+1440-light-s12.png: 5 px differ (0 by more than 16/255, max 1), bbox (34, 58, 1406, 72), image (1440, 662)
+1440-light-s2.png: 8 px differ (0 by more than 16/255, max 2), bbox (730, 716, 1406, 1228), image (1440, 2449)
+1440-light-s3.png: 109 px differ (8 by more than 16/255, max 41), bbox (50, 196, 1189, 579), image (1440, 735)
+1440-light-s4.png: identical pixels
+1440-light-s5.png: 259 px differ (9 by more than 16/255, max 44), bbox (41, 289, 1351, 3166), image (1440, 3215)
+1440-light-s6.png: identical pixels
+1440-light-s7.png: 29 px differ (0 by more than 16/255, max 3), bbox (51, 228, 335, 310), image (1440, 1009)
+1440-light-s8.png: 1633 px differ (0 by more than 16/255, max 8), bbox (33, 68, 809, 1044), image (1440, 1169)
+1440-light-s9.png: 104 px differ (0 by more than 16/255, max 8), bbox (47, 236, 1339, 1258), image (1440, 1785)
+1440-light-switched-dark-top.png: 3650 px differ (0 by more than 16/255, max 6), bbox (742, 883, 960, 900), image (1440, 900)
+
+5b. The corrected rendering against V1.4 as committed with a 110 px spacer before section 2, so that every later section sits at the same page offset in both. Only sections 1 and 8 differ (and the top-of-page capture, which shows the row demo):
+
+1440-dark-s1.png: 238289 px differ (26532 by more than 16/255, max 202), bbox (32, 639, 1408, 1665), image (1440, 1669)
+1440-dark-s10.png: identical pixels
+1440-dark-s11.png: identical pixels
+1440-dark-s12.png: identical pixels
+1440-dark-s2.png: identical pixels
+1440-dark-s3.png: identical pixels
+1440-dark-s4.png: identical pixels
+1440-dark-s5.png: identical pixels
+1440-dark-s6.png: identical pixels
+1440-dark-s7.png: identical pixels
+1440-dark-s8.png: 1536 px differ (0 by more than 16/255, max 15), bbox (728, 68, 809, 90), image (1440, 1169)
+1440-dark-s9.png: identical pixels
+1440-dark-switched-light-top.png: 3675 px differ (3470 by more than 16/255, max 20), bbox (742, 883, 960, 900), image (1440, 900)
+1440-light-s1.png: 227924 px differ (39306 by more than 16/255, max 202), bbox (32, 639, 1408, 1665), image (1440, 1669)
+1440-light-s10.png: identical pixels
+1440-light-s11.png: identical pixels
+1440-light-s12.png: identical pixels
+1440-light-s2.png: identical pixels
+1440-light-s3.png: identical pixels
+1440-light-s4.png: identical pixels
+1440-light-s5.png: identical pixels
+1440-light-s6.png: identical pixels
+1440-light-s7.png: identical pixels
+1440-light-s8.png: 1504 px differ (0 by more than 16/255, max 8), bbox (728, 68, 809, 90), image (1440, 1169)
+1440-light-s9.png: identical pixels
+1440-light-switched-dark-top.png: 3650 px differ (0 by more than 16/255, max 6), bbox (742, 883, 960, 900), image (1440, 900)
+
+6. Pairs the tool does not list, by the tool's own arithmetic (scratch/scripts/probe_pairs.mjs), light / dark. The first two groups are the observation in the correction's return (a check box or a switch under the wash of the row or menu item around it; a boundary on a washed base or canvas, which the rule of section 5 forbids); the third is the disabled ink where it is and is not drawn:
+
+border.control on hover.wash/surface.panel                     3.68 / 4.12
+border.control on pressed.wash/surface.panel                   3.39 / 3.60
+border.control on hover.wash/surface.rowAlt                    3.51 / 4.00
+border.control on pressed.wash/surface.rowAlt                  3.26 / 3.53
+border.control on hover.wash/surface.raised                    3.68 / 3.60
+border.control on pressed.wash/surface.raised                  3.39 / 3.14
+border.control on hover.wash/surface.header                    3.30 / 3.84
+border.control on pressed.wash/surface.header                  3.04 / 3.39
+border.control on hover.wash/surface.base                      3.23 / 4.70
+border.control on pressed.wash/surface.base                    2.99 / 4.13
+border.control on hover.wash/canvas.bg                         3.14 / 4.83
+border.control on pressed.wash/canvas.bg                       2.91 / 4.26
+accent.fill on hover.wash/surface.panel                        4.58 / 3.96
+accent.fill on pressed.wash/surface.panel                      4.22 / 3.46
+accent.fill on hover.wash/surface.rowAlt                       4.37 / 3.85
+accent.fill on pressed.wash/surface.rowAlt                     4.05 / 3.39
+accent.fill on hover.wash/surface.raised                       4.58 / 3.46
+accent.fill on pressed.wash/surface.raised                     4.22 / 3.02
+accent.fill on hover.wash/surface.header                       4.11 / 3.69
+accent.fill on pressed.wash/surface.header                     3.79 / 3.26
+text.disabled on surface.panel                                 3.06 / 3.46
+text.disabled on surface.rowAlt                                2.92 / 3.37
+text.disabled on disabled.fill                                 2.56 / 3.19
+text.disabled on selection.band                                2.60 / 2.55
+text.disabled on proposal.band                                 2.67 / 2.87
+text.disabled on hover.wash/surface.panel                      2.73 / 2.88
+text.disabled on hover.wash/surface.rowAlt                     2.61 / 2.80
+text.disabled on canvas.bg                                     2.60 / 4.01
+
+7. After the one context compaction of the correction (it fell after the last edit to the document, the specimen and the tools, and after the render check of item 3), run again from the files on disk with every output in a temporary directory outside the repository:
+
+palette.mjs --write: tokens.json reproduced byte for byte
+contrast.mjs: exit 0; pairs 214; sweep rows 29, held 21, lowest held 3.17 light and 3.14 dark; disabled ink rows 7, lowest 2.56 light and 3.02 dark; rule failures 0
+gen.mjs then splice.mjs: exit 0; DESIGN_SYSTEM_V1.md and specimen.html byte-identical after the splice
+agree.mjs: exit 0, problems []; 100 colour tokens, 99 plain tokens, 214 contrast rows and pairs, 28 label chips, 123 change-log rows
+render.mjs: exit 0; the four summary lines equal item 3's; report.json and the four retained screenshots (sections 1 and 8, 1440 px, light and dark) are byte-identical to this run's
