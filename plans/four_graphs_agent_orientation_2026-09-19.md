@@ -23,6 +23,8 @@ Any piece of work here can be seen four ways. Each view answers a different ques
 
 **Attention.** Decomposition and synthesis read everything against everything until a root and its levels emerge. It is the step a model does natively, and it is only as good as what it was given. Query the network first, so that a new decomposition does not repeat or contradict a decision already made. State what you rejected and why, not only what you chose.
 
+Footnote: attention is all the *model* needs. The work also needs a tree, a graph and a memory, and a person at two edges of the loop. Being good at this step says nothing about whether the other three were respected.
+
 ## How they connect
 
 Decomposition produces the tree. The tree's dependencies seed the production graph. Production generates evidence and decisions, which belong in long-term memory. Memory is what the next decomposition queries first. It is a loop across passes and acyclic within one.
