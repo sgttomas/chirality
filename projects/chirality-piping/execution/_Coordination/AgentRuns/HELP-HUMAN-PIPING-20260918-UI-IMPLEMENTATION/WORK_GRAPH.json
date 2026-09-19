@@ -118,7 +118,7 @@
     "A1F-FOLLOWUPS": {
       "role": "TASK Type 2 implementer",
       "model": "fable",
-      "status": "reviewed_pass_swept_pass",
+      "status": "merged",
       "briefSha256": "5b08732e0e667a50e3b838b78941d1358febea65e93379464070d3e553b24cfa",
       "brief": "briefs/A1F-FOLLOWUPS_identifier_notices_documents.md",
       "returnSha256": "d36704cc405e9b64a31996d4a87f93cfa049e342197907d9ce45f89051c272f7",
@@ -133,6 +133,12 @@
         "commit": "06454cd36904f542f22959a7fd67b210fd45b5b9",
         "status": "pass",
         "summarySha256": "bf1993759dc1aaabcfc7425a8a44614ec81550592fcc10f94a63c2ca4485c357"
+      },
+      "merge": {
+        "pullRequest": 802,
+        "mergeCommit": "8e4c5df6ec84928ca343224e5244ccdae5771cd4",
+        "ciHead": "e989522aacfee98fa9a4ab7207c06ffbe1852c43",
+        "mergedAt": "2026-09-19T00:47:54Z"
       }
     },
     "A1F-REVIEW": {
@@ -150,16 +156,19 @@
     "DESIGN-SYSTEM-05": {
       "role": "HELPS_HUMANS Type 1 design manager, working alone",
       "model": "fable",
-      "status": "launched",
+      "status": "returned",
       "launched": "2026-09-19T00:07Z",
       "briefSha256": "322ca33b2f191f4cb812155e4e2631f8938239551a84f200a4c7144b4c5e7c11",
       "brief": "lanes/DESIGN-SYSTEM-05/briefs/DESIGN-SYSTEM-05_control_contrast.md",
       "laneRecords": "lanes/DESIGN-SYSTEM-05/INDEX.md",
       "branch": "codex/swbpipe-design-system-v14-20260918",
-      "returnSha256": null,
+      "returnSha256": "0f324a149a7f2e353a62cfc5dd3c70e2416fd46bc6708154d60b39f552c25b34",
       "dependsOn": [
         "B1-TOKENS merged 4dcab7505"
-      ]
+      ],
+      "return": "lanes/DESIGN-SYSTEM-05/returns/DESIGN-SYSTEM-05_RETURN.md",
+      "model_ran": "Claude Fable 5.1",
+      "rootDecision": "DS5-D1 (disabled ink lifted; ROOT's decision, open to the owner): lanes/DESIGN-SYSTEM-05/HANDOFF.md"
     }
   },
   "edges": [
@@ -180,7 +189,7 @@
       "A1-REVIEW"
     ]
   ],
-  "current_frontier": "A1 follow-ups reviewed (PASS) and swept (pass) on 06454cd36, which contains origin/main with slice B1. Next: pull request, CI, merge. Running from origin/main 4dcab7505, each in its own worktree with ROOT's records under lanes/: the shell lane (first slice B2), the canvas lane (first slice C1 and the second-profile proposal), and the design-system contrast amendment.",
+  "current_frontier": "A1 follow-ups merged (PR #802, 8e4c5df6e). DESIGN-SYSTEM-05 returned and read; next its independent review, pull request, CI and merge, then the product slice adopting tokens.json 1.3. Shell lane: slice B2 with its manager for the slice return, then ROOT's Opus review, sweep, PR and merge, then the named handler fix slice. Canvas lane: slice C1 with its implementer; the second-profile and edge-line proposals are being drafted.",
   "frontier_history": [
     {
       "until": "2026-09-18T19:41Z",
@@ -193,6 +202,10 @@
     {
       "until": "A1 review",
       "frontier": "Tranche A1 integrated as one candidate commit. Next: independent Opus code review of the frozen diff, then the DEC-025 sweep, then the pull request."
+    },
+    {
+      "until": "A1 follow-ups merged",
+      "frontier": "A1 follow-ups reviewed (PASS) and swept (pass) on 06454cd36, which contains origin/main with slice B1. Next: pull request, CI, merge. Running from origin/main 4dcab7505, each in its own worktree with ROOT's records under lanes/: the shell lane (first slice B2), the canvas lane (first slice C1 and the second-profile proposal), and the design-system contrast amendment."
     }
   ],
   "base_note": "base is the commit Tranche B opened from; slice B1 merged at 4dcab750501d039af5b2973991cbe0f3f423b80a"

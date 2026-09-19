@@ -93,4 +93,8 @@ DEC-025 sweep for the A1 follow-ups, on the clean commit `06454cd36904f542f22959
 
 Each of the three works in its own git worktree. The `lanes/` folders are written on those branches and reach `main` with each branch's first pull request; until then the rows above are the only record of them on this branch. Mechanism for all three: Claude Code `Agent` tool, general-purpose type, background; the two lane managers dispatch their own Type 2 children, and ROOT dispatches every independent review.
 
+The A1 follow-ups merged on 2026-09-19T00:47Z: PR #802, merge commit `8e4c5df6ec84928ca343224e5244ccdae5771cd4`; both required checks passed on head `e989522aacfee98fa9a4ab7207c06ffbe1852c43`.
+
+DESIGN-SYSTEM-05 returned on 2026-09-19; its return, ROOT's reading, ROOT's decision on the disabled ink (open to the owner) and the brief and return of its independent review are in `../lanes/DESIGN-SYSTEM-05/INDEX.md` and `../lanes/DESIGN-SYSTEM-05/HANDOFF.md`. A nested child's completion is delivered by the host to ROOT, so ROOT relays each one verbatim, by file and hash, to the manager that owns it, and the manager retains it (`../HANDOFF_STATE.md`).
+
 Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).
