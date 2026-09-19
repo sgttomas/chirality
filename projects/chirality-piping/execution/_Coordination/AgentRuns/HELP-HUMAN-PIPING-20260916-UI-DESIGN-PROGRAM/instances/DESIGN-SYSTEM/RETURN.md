@@ -4,7 +4,9 @@ Instance: DESIGN-SYSTEM (HELPS_HUMANS design manager, child of ROOT). Brief:
 `../../briefs/DESIGN-SYSTEM-03_revision.md`, sealed. Date: 2026-09-18. For ROOT's
 acceptance. This file replaces the DESIGN-SYSTEM-02 return. Sections 1 to 7 are the
 DESIGN-SYSTEM-03 return with ROOT's two corrections; §8 is the DESIGN-SYSTEM-04 return
-(V1.3), and the hash table below carries the current values first.
+(V1.3), and the hash table below carries the current values first. §11 is the
+DESIGN-SYSTEM-05 addendum (V1.4): it carries the current hashes, and the table in §2
+stands as it was at V1.3.
 
 ## 1 What was read
 
@@ -309,5 +311,229 @@ were not needed and the render check was not re-run. Current hashes: `DESIGN_SYS
 `5aef3bdf5746b0f93f9419b4c7ad459eb634a71db28a846f19133b225f277c81`, `tools/agree.mjs`
 `84bb30448eb68f510b218602d52175f3dd0fbb7ccad602d694f7a049303d5a27`; the table in §2 carries
 the values as of §9.
+
+## 11 DESIGN-SYSTEM-05 · V1.4 · the control boundary and the disabled ink
+
+Brief `../../../HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/lanes/DESIGN-SYSTEM-05/briefs/DESIGN-SYSTEM-05_control_contrast.md`,
+sealed; its SHA-256 was verified before starting (`322ca33b…5e7c11`, as ROOT gave it).
+Model: Claude Fable 5.1 (`claude-fable-5-1`), one agent, no delegation. Three context
+compactions occurred; each time work resumed from the files on disk and a transcript
+summary, and every check below was run after the last edit to the file it checks. Edits to the document, the specimen and the
+tools were anchored replacements, each anchor required to occur exactly once; nothing
+generated was edited by hand.
+
+Read first, all read-only: the brief; the first slice's return
+(`../../../HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/B1-TOKENS/RETURN.md`,
+"Where the design could not be followed") and its review's observations; the owner's
+ruling D-68 (`../../../../_DECISIONS/D-68_RULING_2026-09-15.md`); the product's resolved-style
+check and the two values its stylesheet keeps without a token, to see what the product
+measures and against what; and the frames' stylesheet and the nineteen frame files
+(`../MOCKS/frames/`), for the list below. I wrote in this directory and in
+`../../../HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/DESIGN-SYSTEM-05/` only.
+
+| Brief item | §9 row |
+|---|---|
+| 1. The control-boundary token · every boundary that identifies a control moved to it, each listed | 113 · 114 |
+| 2. The sweep of the same criterion: the other failures, fixed with no further token · the wash rule · what is outside the rule, each with its reason | 115 · 116 · 117 |
+| 3. `text.disabled`: measured on everything it is drawn on, the pairs in §2.9, the recommendation | 118 |
+| 4. Records: §2.2, §2.9, §8 item 6, §9, the specimen, the generated tables, the tools | 119 · 120 |
+| 5. Not in this pass, and the frames that draw a control boundary in `border.strong` | 119 (§8's last paragraph) and the list below |
+
+**What changed in `tokens.json` (1.2 to 1.3).** `border.control` added, `#777e85` light and
+`#90969c` dark (OKLCH lightness 0.59 and 0.67 at the neutral hue); `text.disabled` from
+`#a6abb1` / `#5f6469` to `#8f949a` / `#767b80`; the plain width `border.control` 1; the
+version and one sentence of the note. 340 of 347 leaves are equal to 1.2 and the seven that
+differ are these; `palette.mjs --write` reproduces the file byte for byte.
+
+**The boundary's value.** It is set by the pressed moment: the lowest readings are 3.17:1 in
+light (a pressed field, `pressed.wash` over `surface.sunken`) and 3.14:1 in dark (a pressed
+raised button). One step lighter (0.01 in lightness) still passes, at 3.04:1 and 3.02:1; I
+kept one step of margin. Holding the rule at rest and under hover only would buy 0.03 in
+lightness in light and 0.04 in dark, which is not worth a second rule. The product's kept
+`--ui-border` (`#71838d` / `#70828c`) was not adopted: measured on this system's surfaces it
+reads 3.24:1 or better at rest and 2.91:1 and 2.35:1 on a pressed sunken and a pressed raised
+fill in dark.
+
+**What the sweep decided, beyond moving boundaries.** Each is a row of the table in the
+document's §5 and of §9; each is the least that gives the state a carrier.
+
+1. What identifies a control is its boundary where it has one, and otherwise its label or
+   its glyph. An icon-only button and a chip are identified by the glyph and the label; the
+   hairline around them is ornament and outside the rule. This is my reading of the
+   criterion, stated in the rule so that it can be challenged in one place.
+2. The latched toggle keeps a boundary, in `pressed.ink`; V1.3 made it transparent and left
+   a fill of 1.11:1 to 1.82:1 as the edge. The segmented control's active segment gains a
+   `border.control` boundary; its fill is 1.07:1 on the trough.
+3. A chip that is a control and is on or chosen takes the latched form. The specimen drew
+   the chosen filter chip on a status fill (1.02:1 on the drawer's header in light) and the
+   frames draw it on the selection band (1.05:1).
+4. The check box and the tab were drawn by the frames and not specified here. The frames'
+   forms are adopted: the empty box's outline moves to `border.control` and the checked box
+   keeps `accent.fill` with the check in `text.inverse`; the active tab is `text.primary` on
+   `surface.header` inside `border.control`, in every strip, the agent column's included.
+5. The wash is never drawn over a band or a state fill. With it, the origin glyph on a
+   selected row measured 2.89:1 and 2.71:1; without it, 3.23:1 and 3.24:1. No token moved.
+6. The two offers under the pointer were "faint" with no token and are `text.muted`; the
+   drag handle is `text.secondary`; the splitter, which had no drawn form, is the regions'
+   hairline with a grip 3 px by 24 px in `border.control`.
+7. Outside the rule, each with its reason in the table: hairlines, frames, a fill that is
+   not the carrier of its state, the display-only expression's frame, a disabled control,
+   and the select-all control, which draws nothing.
+
+**The disabled ink: the recommendation, for ROOT to decide.** Lift to `#8f949a` / `#767b80`.
+Measured, light then dark: on `disabled.fill` 2.56:1 and 3.19:1; on the surfaces 2.68:1 to
+3.06:1 and 3.02:1 to 3.92:1; beside `text.muted` 1.24:1 and 1.27:1; beside `text.secondary`
+2.05:1 and 2.00:1. The stated ratio, which the tools hold: 2.5:1 or better in light and 3:1
+or better in dark on everything the ink is drawn on, and 1.2:1 or more short of
+`text.muted`.
+
+| Option | Light | on `disabled.fill` | on the surfaces | beside `text.muted` | Dark | on `disabled.fill` | on the surfaces | beside `text.muted` |
+|---|---|---|---|---|---|---|---|---|
+| keep 1.2 | `#a6abb1` | 1.94:1 | 2.03:1 to 2.31:1 | 1.64:1 | `#5f6469` | 2.28:1 | 2.16:1 to 2.80:1 | 1.78:1 |
+| lift (recommended, 1.3) | `#8f949a` | 2.56:1 | 2.68:1 to 3.06:1 | 1.24:1 | `#767b80` | 3.19:1 | 3.02:1 to 3.92:1 | 1.27:1 |
+| 3:1 everywhere in light | `#82878c` | 3.03:1 | 3.17:1 to 3.62:1 | 1.04:1 | as the lift | | | |
+| the product's kept ink | `#667680` | 3.94:1 | 4.12:1 to 4.70:1 | stronger than muted | `#9baab2` | 5.71:1 | 5.40:1 to 7.00:1 | stronger than muted |
+
+Why the lift stops at 2.5:1 in light: `text.muted` is itself 3.17:1 on `disabled.fill`, so
+an ink at 3:1 there is the muted ink to within 1.04:1, and the product's kept ink is
+stronger than muted text, so it reads as enabled. 3:1 everywhere in light needs
+`text.muted` to move first, which belongs with the text target (§8 item 6 of the
+document). What carries the state besides ink is in the document's §1.3: `disabled.fill`,
+the boundary dropping from `border.control` to `border.hairline`, no wash, the reason in the
+tooltip; the cursor carries nothing, because it is the default arrow over every control.
+To decide otherwise: restore or change the two values in `tools/palette.mjs` (the 1.2
+values are in the comment above the line) and the note's sentence there, set
+`rules.disabledLight` and `rules.disabledDark` in `tools/contrast.mjs` to the ratio
+decided, change the sentences that quote the values (the status line, §2.2's note, §2.9's
+`text.disabled` finding, §8 item 6, §9 rows 118 and 120), and rerun the chain below; the
+specimen needs no edit by hand.
+
+**Files changed**, all in this directory:
+
+| File | Change | sha256 |
+|---|---|---|
+| `DESIGN_SYSTEM_V1.md` | V1.4: status, §1.2, §1.3, §2.2's note, §2.9 (method, findings, 214 generated rows), §4, §5 (the control rule and its generated table), §5.2, §5.5, §5.6, §8 (item 6 restated; what a frames pass must follow), §9 rows 113 to 120; rows 1 to 112 unchanged by hash | `8940ce589947536e18be2d11dd9818c98848a841783e125dbdc5efee9548a9c0` |
+| `tokens.json` | 1.3, as above | `0e01828c4e7739313a47b5f71ac3c9fa3cf21aae3d07648eadc805fd82d18c00` |
+| `specimen.html` | V1.4: the control rules moved to `border.control`; the latched boundary (button, icon button, HUD tool, chip); the active segment's boundary; the tab strip in the tab's form; chips that are on in the latched form; the outline's bar; the compass's buttons and its length field's boundary under the ring; the wash over a button's own fill and over no band or state fill; a disabled icon-only button in `text.disabled` with no wash, which V1.3's specimen left in the enabled ink; a strip of the controls on every surface they sit on, the disabled forms, the splitter and the glyphs | `434a3fff6945afc3a45d7d97f3430d44e3449b895eaeba6c20e17920f23fec3f` |
+| `tools/palette.mjs` | builds 1.3; the 1.2 values of `text.disabled` kept in a comment | `4f9b74e7d63c390341c3b61e735390d5aeb65052840c4c45c0c8160661c89009` |
+| `tools/contrast.mjs` | 214 pairs (62 added); the sweep (29 rows, 21 held to the rule, 8 outside it); `rules`; `sweepRows`, `toSweepMarkdown`, `ruleFailures`; exits 1 when a rule fails | `ca38b109504f831f71c791327d05792d580df9575478a67e8e5a0f3392bb5563` |
+| `tools/gen.mjs`, `tools/splice.mjs` | generate `control_sweep.md` and splice it between the `GENERATED:CONTROL_SWEEP` markers of §5 | `af708b626a9a5a6c5b74ac96852bbdc6a1bae85db9760958cc28f6fc09796e21`, `56538c093d75c582b3870cc26187db795dee352777e3c80dbdb9013a85ceb1a6` |
+| `tools/agree.mjs` | checks V1.4, 1.3 and "specimen V1.4"; rows 1 to 112 by hash, 120 rows, rows 113 on citing the brief's items 1 to 5 and D-68; no rule failure; §5's table equal to a fresh generation; in the specimen's stylesheet every control boundary in `border.control`, every latched form with a `pressed.ink` boundary, none in `border.strong`; no chosen filter chip on a status fill; no figure stroke in `border.strong` | `a7ca5882507c647183fbf0428c14b547f860c8f7ffa5a533564e5db6cc9e30b0` |
+| `tools/render.mjs` | measures, as the browser resolves them, what identifies every control sample against its own fill and the surface around it (boundaries, the primary and the checked fills, switch tracks and thumbs, the splitter's grips, the compass's strokes) and the ink of every disabled sample against its fill; exits 1 when a reading is under 3:1, a boundary resolves to `border.strong`, or a disabled ink is under the stated ratio | `f43ba4d27f1b61ac06da82697a5e674443d2ff5c02d1a052aafb53fa8dd69661` |
+| `RETURN.md` | this section; the table in §2 stands as it was at V1.3 | |
+
+**What I ran**, from this directory, all after the last edit (`<out>` is a scratch directory
+outside the repository):
+
+1. `node tools/palette.mjs --write <out>/tokens.json` and `cmp` with `tokens.json`: equal
+   byte for byte. The categorical validator is not supplied, as before; the result ramp and
+   the categorical set are unchanged.
+2. `node tools/contrast.mjs tokens.json <out>/contrast_table.md`: 214 pairs; control rule
+   29 sweep rows, 21 held, lowest 3.17:1 light and 3.14:1 dark; disabled ink 7 rows, lowest
+   2.56:1 light and 3.02:1 dark; rule failures 0; exit 0.
+3. `node tools/gen.mjs tokens.json <out>/gen`, then
+   `node tools/splice.mjs <out>/gen specimen.html DESIGN_SYSTEM_V1.md`; a second splice
+   leaves both files byte-identical.
+4. `node tools/agree.mjs DESIGN_SYSTEM_V1.md tokens.json specimen.html`: `problems: []`; 100
+   colour tokens, 99 plain tokens, 214 contrast rows and pairs, 28 label chips, 120
+   change-log rows. I ran it against copies with fourteen faults injected, one at a time (a
+   boundary token at `border.strong`'s value, the disabled ink at 1.2's value and then onto
+   the muted ink, a button and a switch track in `border.strong`, a latched toggle with no
+   boundary, a compass button stroked in `border.strong`, a chosen chip on a status fill,
+   the outline's row without its bar, a V1.3 heading, a word changed in row 100, a reading
+   changed in §5's table, row 118 without its citation, a value changed in §2.9's table):
+   it named each, and the unmodified files pass.
+5. `node tools/render.mjs specimen.html <shots>`, where `<shots>` is
+   `../../../HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/DESIGN-SYSTEM-05/shots`:
+   Chromium, every request that is not the file blocked, no server and no port; 1440 and
+   720 wide, light and dark by system preference and by the manual switch; exit 0. In all
+   four: no request attempted, no console error or warning, no horizontal overflow,
+   smallest font 11 px, 100 token rows, 214 contrast rows, and every V1.1 to V1.3 fact as
+   it was. The V1.4 facts: 317 readings of what identifies a control, the lowest 3.16:1 in
+   both themes (a pressed combobox in light, a pressed raised button in dark), none under
+   3:1, no boundary resolving to `border.strong`; 24 disabled samples, the lowest 2.56:1 in
+   light and 3.02:1 in dark, none under the stated ratio. The browser's 3.16:1 against the
+   tool's 3.17:1 and 3.14:1 is rounding: the tool rounds a composited wash to whole channel
+   values, as V1.3 did, and the render check does not. The same tool run on V1.3's specimen
+   reports 128 of 160 readings under 3:1, 120 of them boundaries in `border.strong`, and
+   disabled ink at 1.94:1 and 2.16:1. I read the screenshots of sections 1, 5, 9, 10 and 11
+   in both themes and fixed what they showed: a cell of the new strip took the data bar's
+   width because it shared the class name `bar`; the Borders sample's third line wrapped
+   away from its name; the render check read a checked box's boundary against its own
+   fill.
+6. `git status` and `git diff --stat`, read-only: changes in this directory and the
+   instance folder only. I ran no state-changing git command, started no server, and ran no
+   product build or test.
+
+Scratch output is under the instance folder's `scratch/`: the V1.3 and V1.4 readings of the
+same pairs and the options table, the token diff, the injected-fault run, the render tool's
+readings of V1.3's specimen, the frames scan, and the three scripts that produced them.
+
+**The frames that draw a control boundary in `border.strong`**, for a later frames pass.
+In `../MOCKS/frames/mocks.css` nineteen rules use `border.strong`. Thirteen selectors, twelve
+rules counting the switch's two as one, draw a control's boundary and move: `.seg`, `.btn`,
+`.input`, `.combo`, `.switch i` with `.tblhead .switch.off i`, `.search`, `.lenfield`,
+`.tabs .tab.on`, `.maprow .m .sel`, `.pop .row .k`, `.iconbtn.raised`, `.sendrow`. Six frame a
+region and stay: `.stage`, `.lights i`, `.bar b`, `.expand .block`, `.card .asked`,
+`.content .live`. By frame (counts are occurrences in the markup; `index.html` draws none):
+
+- Every one of the eighteen stage frames: `.seg` twice, bordered `.btn` (5 to 12), `.combo`
+  (1 to 4), `.search` once.
+- `.tabs .tab.on`: every stage frame except `s9_table_dark` and `s9_table_light`.
+- The off switch's track: `s7_both_dark`, `s7_both_light`, `s7_both_light_historical`.
+- `.input`: `s7_table_light`. `.pop .row .k`, three empty boxes that move and two checked
+  that keep their form: `s7_table_light`.
+- `.lenfield` and three `.iconbtn.raised`: `s2_model_dark`, `s2_model_light`.
+- `.maprow .m .sel` (11): `s3_table_light`. `.sendrow`: `s4_both_light_slideover`,
+  `s8_table_light`.
+
+The other forms V1.4 changes, which the same pass would follow: the view switch's active
+segment gains its boundary (`.seg [aria-pressed="true"]` and the mock bar's, every stage
+frame); `.btn.latched` gains the `pressed.ink` boundary (`s4_both_light`,
+`s4_both_light_column`, `s4_both_light_slideover` twice, `s8_table_light`), as do the latched
+HUD tool (`s2_model_dark`, `s2_model_light`, `s7_both_dark`, `s7_both_light`) and `.iconbtn.on`
+(`s7_both_light_historical`); `.chip.outline.on` takes the latched form in place of the
+selection band (`s6_both_light`, `s9_table_dark`, `s9_table_light`); the agent column's active
+tab takes the tab's form (`s4_both_light_slideover`, `s8_table_light`); `.outline div.on` gains
+the bar (`s9_table_dark`, `s9_table_light`); and the disabled ink comes with 1.3. The frames
+have no hover rule, and draw no splitter grip and no drag handle.
+
+**What did not apply cleanly, uncertainties, and what I saw and did not change:**
+
+1. The criterion is about what is needed to identify a control. Where a control has a
+   visible label, a strict reading could put its boundary outside the criterion too. I held
+   every boundary of a field and of a bordered button to the rule: a field has nothing else
+   that says where it is, and the first slice's check measures a button's boundary.
+2. The anatomy added here is the least the sweep needed and is mine, open to replacement:
+   the splitter's grip and its size, the tab's form in the agent column, the latched
+   boundary, the active segment's boundary, the latched form for a chip that is on, the
+   offers' ink. "Changed since: Run 03" is drawn latched in the specimen on my reading that
+   a set comparison is on. The specimen draws the drag handle as six dots; §3.2 has no
+   drag-handle glyph and no lock glyph, and I did not add to §3.2.
+3. The latched and unlatched forms differ mainly by hue; the open panel, and for a tool the
+   hint strip, also say which is on. That is success criterion 1.4.1's question and outside
+   this pass.
+4. Text is outside this pass: the labels in `text.muted` that belong to controls read
+   3.53:1 and 4.70:1 (the palette field's placeholder, on `surface.sunken`) and 3.79:1 and
+   4.41:1 ("Add row", on the panel), and wait for the text target.
+   §12 of the specimen keeps the product's sentence "Findings only. No conformance is
+   claimed; the target is set by the project authority."; the page's own footer now says
+   that two rules are held.
+5. Target size is outside this pass: the 22 px icon buttons and the 16 px check box are
+   under the 24 px the product's check asks of a target unless the cell or the row is the
+   target.
+6. The select-all control draws nothing; whether it needs a drawn form is the pointer
+   rule's question. Column resize handles have no drawn form in this system. The Run
+   button's progress fill is not a token; the stop glyph and the run log carry that state.
+7. The review of the first slice found (its F2) that one variable of the product draws both
+   the hairlines and three frames that §1.2 assigns to `border.strong`; splitting it is the
+   product's work, and V1.4 keeps `border.strong` for exactly such frames.
+   `status.solvedFill` equals `surface.base` in light, which is why a chip on it has no
+   edge there; it informs and is outside the rule.
+8. The specimen's text button takes no wash, as at V1.3, because its transparent fill
+   follows the hover rule in the stylesheet; I left it, since it is not a boundary or a
+   state carrier.
+9. `tools/render.mjs` now imports `rules` from `tools/contrast.mjs`, so the two hold the
+   same ratios; its readings cover the specimen's samples, not the product.
 
 Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).

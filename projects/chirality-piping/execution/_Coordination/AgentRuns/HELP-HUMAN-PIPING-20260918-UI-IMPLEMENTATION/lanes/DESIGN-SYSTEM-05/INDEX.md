@@ -10,8 +10,12 @@ Slice B1 (`../../instances/B1-TOKENS/RETURN.md`, `CORRECTION_1_RETURN.md`) and i
 
 | Brief | SHA-256 | Sealed | Model requested | Role | Return |
 |---|---|---|---|---|---|
-| `briefs/DESIGN-SYSTEM-05_control_contrast.md` | `322ca33b2f191f4cb812155e4e2631f8938239551a84f200a4c7144b4c5e7c11` | 2026-09-19T00:06Z | `fable` (Claude Fable 5.1) | HELPS_HUMANS Type 1 design manager, working alone, no delegation | pending |
+| `briefs/DESIGN-SYSTEM-05_control_contrast.md` | `322ca33b2f191f4cb812155e4e2631f8938239551a84f200a4c7144b4c5e7c11` | 2026-09-19T00:06Z | `fable` (Claude Fable 5.1) | HELPS_HUMANS Type 1 design manager, working alone, no delegation | `returns/DESIGN-SYSTEM-05_RETURN.md`, SHA-256 `0f324a149a7f2e353a62cfc5dd3c70e2416fd46bc6708154d60b39f552c25b34`, retained 2026-09-19T01:43Z; model that ran: Claude Fable 5.1 (`claude-fable-5-1`), by its own statement |
 
 Mechanism: Claude Code `Agent` tool, general-purpose type, background. The child works in ROOT's first worktree on branch `codex/swbpipe-design-system-v14-20260918`, cut from `origin/main` at `4dcab750501d039af5b2973991cbe0f3f423b80a`. It runs no state-changing git command; ROOT commits. After its return: ROOT reads the change, decides the disabled-ink recommendation as ROOT's decision open to the owner, dispatches an independent read-only review, and takes the amendment to its own pull request. The product adopts `tokens.json` 1.3 afterwards in a small slice of its own.
+
+## What ROOT retained of the child's output
+
+The child's folder `../../instances/DESIGN-SYSTEM-05/` holds its scratch output (`scratch/`: the measurements of V1.3 against V1.4, the scan of the frames, the token diff, the injected-fault record of `agree.mjs`, the render check run on V1.3's specimen, and the three scripts that made them) and, under `shots/`, the render check's `report.json` with four of the 52 screenshots it rendered: the 1440 px renderings of the specimen's section 1 (which holds the new Controls panel) and section 12 (the contrast findings), in light and dark. The other 48 (12 MB) are not committed; `node tools/render.mjs specimen.html <out dir>` from the design system's folder reproduces them.
 
 Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).

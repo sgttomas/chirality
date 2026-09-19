@@ -1,0 +1,16 @@
+caught   none (the files as they are) -> exit 0, 0 problem(s)
+caught   tokens: border.control light set to border.strong's value -> exit 1, 16 problem(s): doc value differs for border.control || doc colour tables differ from a fresh generation || specimen light block --border-control: #777e85 vs #b3b8be
+caught   tokens: text.disabled light back to the 1.2 value -> exit 1, 14 problem(s): doc value differs for text.disabled || doc colour tables differ from a fresh generation || specimen light block --text-disabled: #8f949a vs #a6abb1
+caught   tokens: text.disabled light raised onto text.muted -> exit 1, 8 problem(s): doc value differs for text.disabled || doc colour tables differ from a fresh generation || specimen light block --text-disabled: #8f949a vs #7f868d
+caught   specimen: .btn boundary drawn in border.strong -> exit 1, 2 problem(s): specimen draws a control in border.strong: .btn || specimen rule does not draw border.control: .btn
+caught   specimen: the off track drawn in border.strong -> exit 1, 2 problem(s): specimen draws a control in border.strong: .switch i || specimen rule does not draw border.control: .switch i
+caught   specimen: the latched toggle loses its boundary -> exit 1, 1 problem(s): specimen latched form has no pressed.ink boundary: .btn.latched
+caught   specimen: a compass button stroked in border.strong -> exit 1, 1 problem(s): specimen figure strokes a control in border.strong
+caught   specimen: a chosen filter chip back on a status fill -> exit 1, 1 problem(s): a filter chip that is chosen sits on a status fill
+caught   specimen: the outline's selected row loses its bar -> exit 1, 1 problem(s): specimen outline's selected row has no selection bar
+caught   specimen: the heading still V1.3 -> exit 1, 1 problem(s): specimen still names V1.3 or tokens.json 1.2
+caught   document: a word changed in row 100 -> exit 1, 3 problem(s): section 9 rows 1 to 110 differ from V1.3 as accepted || section 9 rows 1 to 111 differ from the state before REVIEW-04's correction || section 9 rows 1 to 112 differ from V1.3 as accepted
+caught   document: a reading changed in the control rule's table -> exit 1, 1 problem(s): doc control rule table differs from a fresh generation
+caught   document: row 118 no longer cites the brief's item 3 -> exit 1, 1 problem(s): V1.4 rows do not cite brief item 3
+caught   document: a contrast row's value changed -> exit 1, 1 problem(s): contrast table differs: fresh 214 rows, doc 214
+every fault caught; the unmodified files pass

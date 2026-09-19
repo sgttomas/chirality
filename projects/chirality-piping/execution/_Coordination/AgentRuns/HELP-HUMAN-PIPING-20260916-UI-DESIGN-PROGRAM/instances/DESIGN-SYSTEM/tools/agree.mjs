@@ -1,13 +1,17 @@
-// Agreement check, V1.3 (the document and specimen are V1.3; tokens.json stays 1.2): tokens.json is the source; the document's colour tables and contrast table, the
+// Agreement check, V1.4 (the document and specimen are V1.4; tokens.json is 1.3): tokens.json is the source; the document's colour tables and contrast table, the
 // specimen's three CSS variable blocks, its embedded token JSON and its embedded pair list must all carry
 // the same names and values; the prose must carry the plain tokens it quotes; the change log must cite every
 // decision, frame decision, departure and token gap, and for V1.2 every ruling, question, gap and R item, with
 // rows 1 to 49 unchanged from V1.1; the label table in the document must equal a fresh generation and every
 // label chip in the specimen must be a row of it; agent cards carry one of the five class words; no deliverable
 // carries a retired string, an external reference or a machine path.
+// V1.4 adds: rows 1 to 112 of the change log unchanged from V1.3 and rows 113 on citing every item of the brief
+// DESIGN-SYSTEM-05; the two rules of contrast.mjs (the control rule, the disabled ink) with no failure; the control
+// rule's table in the document equal to a fresh generation; and, in the specimen's stylesheet, that every rule which
+// draws a control's boundary draws it in border.control, every latched form in pressed.ink, and none in border.strong.
 //   node agree.mjs <DESIGN_SYSTEM_V1.md> <tokens.json> <specimen.html>
 import fs from "node:fs"; import crypto from "node:crypto"; import path from "node:path"; import { fileURLToPath } from "node:url";
-import { pairs, computeRows, toMarkdown } from "./contrast.mjs";
+import { pairs, computeRows, toMarkdown, toSweepMarkdown, ruleFailures } from "./contrast.mjs";
 import { cssFrom, colourTablesFrom, labelTableFrom } from "./gen.mjs";
 const [doc, tok, spec] = process.argv.slice(2);
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -73,9 +77,10 @@ for (const [phrase, ok] of [
   ["320 px wide (`layout.toast.width`)", L["toast.width"] === 320], ["8 px (`layout.toast.inset`)", L["toast.inset"] === 8],
   ["360 px wide (`layout.runlog.width`)", L["runlog.width"] === 360], ["Duration: 6 s, or 10 s", T.motion["toast.ms"] === 6000 && T.motion["toastAction.ms"] === 10000],
 ]) { if (!D.includes(phrase)) push("doc phrase not found: " + phrase); if (!ok) push("tokens.json disagrees with: " + phrase); }
-if (!D.includes("Status: V1.3")) push("doc status line is not V1.3");
-if (T.version !== "1.2") push("tokens.json version is not 1.2");
-if (!S.includes("specimen V1.3")) push("specimen heading is not V1.3");
+if (!D.includes("Status: V1.4")) push("doc status line is not V1.4");
+if (T.version !== "1.3") push("tokens.json version is not 1.3");
+if (!S.includes("specimen V1.4")) push("specimen heading is not V1.4");
+if (S.includes("specimen V1.3") || /<code>tokens\.json<\/code> 1\.2/.test(S)) push("specimen still names V1.3 or tokens.json 1.2");
 if (!S.includes(`version ${T.version}`)) push("specimen CSS comment does not carry the token version");
 const dl = T.color["result.scale.7"].dark, edge = T.color["canvas.edge"].dark;
 if (!D.includes(dl) || !D.includes(edge)) push("doc 2.6 does not quote the re-anchored top step and the edge value");
@@ -105,6 +110,14 @@ if (crypto.createHash("sha256").update(first110).digest("hex") !== "459c050a4992
 if (logRows.length < 112) push("section 9 lacks row 112, the scope of the owner's confirmation");
 const first111 = log.split("\n").filter(l => { const m = l.match(/^\| (\d+) \| /); return m && Number(m[1]) <= 111; }).join("\n");
 if (crypto.createHash("sha256").update(first111).digest("hex") !== "6d2b7d6d21b25e212fde99f5a1630a2a24c110c2b89777dc73d5737571e15578") push("section 9 rows 1 to 111 differ from the state before REVIEW-04's correction");
+// V1.4: rows 113 on, rows 1 to 112 unchanged, every item of the brief DESIGN-SYSTEM-05 cited
+if (logRows.length < 120) push("section 9 lacks the V1.4 rows 113 to 120");
+const first112 = log.split("\n").filter(l => { const m = l.match(/^\| (\d+) \| /); return m && Number(m[1]) <= 112; }).join("\n");
+if (crypto.createHash("sha256").update(first112).digest("hex") !== "8929d9431fbc0e351eba39a03b83d81ca72c63d9c6524addbad3d866e1b95641") push("section 9 rows 1 to 112 differ from V1.3 as accepted");
+const v14 = log.split("\n").filter(l => { const m = l.match(/^\| (\d+) \| /); return m && Number(m[1]) >= 113; }).join("\n");
+const items = new Set([...v14.matchAll(/brief (?:DESIGN-SYSTEM-05 )?items? (\d)(?: and (\d))?/g)].flatMap(m => [m[1], m[2]].filter(Boolean)));
+for (let i = 1; i <= 5; i++) if (!items.has(String(i))) push("V1.4 rows do not cite brief item " + i);
+if (!v14.includes("D-68")) push("V1.4 rows do not cite D-68");
 const v13 = log.split("\n").filter(l => { const m = l.match(/^\| (\d+) \| /); return m && Number(m[1]) >= 91; }).join("\n");
 for (const n of [1, 2, 4, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16]) if (!new RegExp("contradiction " + n + "\\b").test(v13)) push("V1.3 rows do not cite contradiction " + n);
 for (const c of ["C-17", "C-20", "C-23", "C-24", "C-25"]) if (!v13.includes(c)) push("V1.3 rows do not cite " + c);
@@ -121,6 +134,22 @@ const qq = expand(cited12(/\bQ-(\d+)/g), v12, /Q-(\d+) to Q-(\d+)/g); for (let i
 const g12 = expand(cited12(/\bG-(\d+)/g), v12, /G-(\d+) to G-(\d+)/g); for (let i = 7; i <= 12; i++) if (!g12.has(String(i))) push("V1.2 rows do not cite G-" + i);
 const rr = cited12(/\bR-(\d+)/g); for (const i of [4, 5, 6]) if (!rr.has(String(i))) push("V1.2 rows do not cite R-" + i);
 for (const s of ["s1", "s2", "s3", "s4_both", "s4_table", "s5", "s6", "s7_both", "s7_table", "s8_table", "s8_model", "s9"]) if (!log.includes("§2 " + s) && !log.includes("§2 (" + s)) push("section 9 does not cite MOCKS_V1 §2 " + s);
+
+// ---- V1.4: the two rules, the control rule's table, and the boundaries the specimen's stylesheet draws ----
+for (const f of ruleFailures(T)) push("rule failure: " + f);
+const docSweep = (D.match(/<!-- GENERATED:CONTROL_SWEEP:BEGIN -->\n([\s\S]*?)\n<!-- GENERATED:CONTROL_SWEEP:END -->/) || [])[1];
+if (docSweep !== toSweepMarkdown(T)) push("doc control rule table differs from a fresh generation");
+if (/\| FAIL \|/.test(docSweep || "")) push("doc control rule table carries a failing row");
+const css = ((S.match(/<style>([\s\S]*?)<\/style>/) || [])[1] || "").replace(/\/\*[\s\S]*?\*\//g, "");
+const cssRules = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)].map(m => ({ sel: m[1].trim(), body: m[2] }));
+const rule = (sel) => cssRules.find(r => r.sel.split(",").map(s => s.trim()).includes(sel));
+const controlSel = /(^|[\s,>])\.(seg|btn|input|combo|search|sendrow|stepper|switch|cb|rb|tab|iconbtn|lenfield|chip\.on)\b|\.maprow \.m \.sel|\.hud button/;
+for (const r of cssRules) if (controlSel.test(r.sel) && r.body.includes("--border-strong")) push("specimen draws a control in border.strong: " + r.sel);
+for (const sel of [".seg", '.seg button[aria-pressed="true"]', ".btn", ".input", ".combo", ".search", ".sendrow", ".stepper", ".stepper span + span", ".maprow .m .sel", ".switch i", ".cb", ".tab.on", ".iconbtn.raised", ".lenfield"]) { const r = rule(sel); if (!r || !r.body.includes("var(--border-control)")) push("specimen rule does not draw border.control: " + sel); }
+for (const sel of [".btn.latched", '.hud button[aria-pressed="true"]', ".chip.on", ".iconbtn.latched"]) { const r = rule(sel); if (!r || !/border(-color)?: [^;]*var\(--pressed-ink\)/.test(r.body)) push("specimen latched form has no pressed.ink boundary: " + sel); }
+if (!rule(".outline div.on")?.body.includes("var(--selection-bar)")) push("specimen outline's selected row has no selection bar");
+if (/stroke="var\(--border-strong\)"/.test(S)) push("specimen figure strokes a control in border.strong");
+if (/class="chip (solved|incomplete|failed|review)">(All|Open|Resolved|Mine)\b/.test(S)) push("a filter chip that is chosen sits on a status fill");
 
 // ---- the label table (section 2.3) and the label chips ----
 const docLabels = (D.match(/<!-- GENERATED:LABEL_TABLE:BEGIN -->\n([\s\S]*?)\n<!-- GENERATED:LABEL_TABLE:END -->/) || [])[1];

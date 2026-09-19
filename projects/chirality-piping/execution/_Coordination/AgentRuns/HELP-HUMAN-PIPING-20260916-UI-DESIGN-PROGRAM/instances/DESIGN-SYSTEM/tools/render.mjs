@@ -13,10 +13,16 @@
 // agent card classes, the edge steps, and that the rendered text carries none of the retired strings.
 // V1.3 adds: the menus and their widths, the run text button, the wrapped 737 px header, the stress components
 // block, the drawer's one-line header, the units buttons, the edit chip's and the paste band's button faces.
+// V1.4 adds the control rule as the browser resolves it: for every control sample on the page, the colour of what
+// identifies it (its boundary, its fill where it has no boundary, a switch's track and thumb, the splitter's grip,
+// the compass's stroked buttons) against its own fill and against the surface around it, as WCAG 2.x ratios, with
+// the lowest reading and every reading under 3:1; that no control's boundary resolves to border.strong; and the
+// ink of every disabled sample against its fill, held to the ratio stated in contrast.mjs. Exits 1 if any fails.
 import { pathToFileURL } from "node:url";
 import { createRequire } from "node:module";
 import fs from "node:fs";
 import path from "node:path";
+import { rules } from "./contrast.mjs";
 const args = process.argv.slice(2); const fromAt = args.indexOf("--playwright-from");
 const from = fromAt >= 0 ? args.splice(fromAt, 2)[1] : process.env.PLAYWRIGHT_FROM;
 const require = createRequire(from ? pathToFileURL(path.join(path.resolve(from), "package.json")) : new URL("../../../../../../../package.json", import.meta.url));
@@ -37,7 +43,7 @@ for (const width of [1440, 720]) {
     page.on("pageerror", (e) => errors.push("pageerror: " + e.message));
     await page.goto(file, { waitUntil: "load" });
     await page.waitForTimeout(150);
-    const facts = await page.evaluate(() => {
+    const facts = await page.evaluate((rules) => {
       const cs = getComputedStyle(document.documentElement);
       const small = [...document.querySelectorAll("body *")].filter(e => e.children.length === 0 && e.textContent.trim() && getComputedStyle(e).display !== "none").map(e => parseFloat(getComputedStyle(e).fontSize));
       const tok = JSON.parse(document.getElementById("tokens").textContent);
@@ -91,9 +97,39 @@ for (const width of [1440, 720]) {
             };
           })(),
           expected: { staleBand: tok.color["stale.band"][theme], pressedFill: tok.color["pressed.fill"][theme], captionStale: tok.color["rail.captionStale"][theme], barTrack: tok.color["bar.track"][theme] }
-        }
+        },
+        v14: (() => {
+          const parse = (s) => { s = s || ""; if (s[0] === "#") return { rgb: [1, 3, 5].map(i => parseInt(s.slice(i, i + 2), 16)), a: 1 }; const m = s.match(/rgba?\(([^)]+)\)/); if (!m) return null; const p = m[1].split(/[,\s\/]+/).filter(Boolean).map(Number); return { rgb: p.slice(0, 3), a: p.length > 3 ? p[3] : 1 }; };
+          const over = (c, b) => c.rgb.map((x, i) => c.a * x + (1 - c.a) * b[i]);
+          const lum = (rgb) => { const [r, g, b] = rgb.map(x => { x /= 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+          const ratio = (a, b) => { const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x); return (hi + 0.05) / (lo + 0.05); };
+          // the opaque colour an element shows as its fill: its own wash and background over those of its ancestors
+          const fillOf = (el) => { const stack = []; for (let n = el; n; n = n.parentElement) { const s = getComputedStyle(n); const g = s.backgroundImage.startsWith("linear-gradient(") ? parse(s.backgroundImage) : null; if (g) stack.push(g); const c = parse(s.backgroundColor); if (c && c.a > 0) { stack.push(c); if (c.a === 1) break; } } let acc = [255, 255, 255]; for (const c of stack.reverse()) acc = over(c, acc); return acc; };
+          const solid = (s, under) => { const c = parse(s); return c ? over(c, under) : null; };
+          const shown = (el) => el.getClientRects().length > 0;
+          const where = (el) => { const srf = el.closest(".srf"); const lab = srf && srf.querySelector(".lab"); const sec = (() => { let n = el; while (n && n.parentElement && n.parentElement.tagName !== "MAIN") n = n.parentElement; while (n && n.tagName !== "H2") n = n.previousElementSibling; return n ? n.id : ""; })(); return (lab ? lab.textContent.trim() + " strip" : sec) + " · " + (el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 24); };
+          const readings = []; const strong = solid(tok.color["border.strong"][theme], [255, 255, 255]).map(Math.round).join(",");
+          const take = (kind, el, mark, fills) => { for (const [against, fill] of fills) readings.push({ kind, where: where(el), against, ratio: Math.round(ratio(mark, fill) * 100) / 100, strong: mark.map(Math.round).join(",") === strong }); };
+          const bounded = ['.seg', '.seg button[aria-pressed="true"]', '.btn:not(.primary):not(.text):not([disabled]):not(.disabled)', '.input', '.combo:not(.disabled)', '.search', '.sendrow', '.stepper', '.maprow .m .sel', '.cb:not(.on)', '.rb:not(.on)', '.tab.on', '.iconbtn.raised', '.iconbtn.latched', '.lenfield', '.chip.on', '.hud button[aria-pressed="true"]'];
+          for (const sel of bounded) for (const el of qa2(sel)) { if (!shown(el)) continue; const own = fillOf(el); take("boundary " + sel, el, solid(getComputedStyle(el).borderTopColor, own), [["its own fill", own], ["the surface around it", fillOf(el.parentElement)]]); }
+          for (const el of qa2(".btn.primary:not([disabled])")) if (shown(el)) take("fill .btn.primary", el, fillOf(el), [["the surface around it", fillOf(el.parentElement)]]);
+          for (const el of qa2(".cb.on, .rb.on")) if (shown(el)) { const own = fillOf(el); take("fill " + (el.classList.contains("cb") ? ".cb.on" : ".rb.on"), el, own, [["the surface around it", fillOf(el.parentElement)], ["the check or the dot on it", solid(getComputedStyle(el).color, own)]]); }
+          for (const el of qa2(".switch i")) { if (!shown(el)) continue; const track = fillOf(el); take("track .switch" + (el.parentElement.classList.contains("on") ? ".on" : ""), el.parentElement, track, [["the surface around it", fillOf(el.parentElement)], ["its thumb", solid(getComputedStyle(el, "::after").backgroundColor, track)]]); }
+          for (const el of qa2(".splitdemo .split i")) { const sp = el.parentElement; const sides = [sp.previousElementSibling, sp.nextElementSibling].flatMap(n => n.classList.contains("col") ? [...n.querySelectorAll(".rg")] : [n]); take("grip " + sp.className, el, fillOf(el), sides.map(n => [n.textContent.trim(), fillOf(n)])); }
+          for (const el of qa2('.figure rect[stroke="var(--border-control)"]')) { const s = getComputedStyle(el); const around = fillOf(el.ownerSVGElement); const own = solid(s.fill, around); take("stroke compass", el.parentElement, solid(s.stroke, own), [["its own fill", own], ["the canvas", around]]); }
+          const held = readings; const under = held.filter(r => r.ratio < rules.control); const lowest = [...held].sort((a, b) => a.ratio - b.ratio)[0];
+          const disabled = [];
+          for (const el of qa2('.btn[disabled], .btn.disabled, .combo.disabled, .iconbtn[disabled], .hud button[disabled], .menu .mi.dis, .rail .it.off')) { if (!shown(el)) continue; const fill = fillOf(el); disabled.push({ where: where(el), ratio: Math.round(ratio(solid(getComputedStyle(el).color, fill), fill) * 100) / 100 }); }
+          const stated = theme === "dark" ? rules.disabledDark : rules.disabledLight;
+          const byKind = {}; for (const r of held) byKind[r.kind] = (byKind[r.kind] || 0) + 1;
+          return { heading: document.querySelector("h1").textContent, strip: !!document.getElementById("controls"), stripRows: qa2("#controls .ctl .srf").length, theme,
+            readings: held.length, byKind, lowest, under3: under, boundariesInBorderStrong: held.filter(r => r.strong).map(r => r.where),
+            disabledSamples: disabled.length, disabledStated: stated, disabledLowest: [...disabled].sort((a, b) => a.ratio - b.ratio)[0], disabledUnderStated: disabled.filter(d => d.ratio < stated),
+            latchedBoundaries: qa2('.btn.latched, .iconbtn.latched, .chip.on, .hud button[aria-pressed="true"]').filter(shown).length, tabsOn: qa2(".tab.on").length, checkBoxes: qa2(".cb").length, radios: qa2(".rb").length, grips: qa2(".splitdemo .split i").length, outlineBar: getComputedStyle(document.querySelector(".outline div.on")).boxShadow !== "none" };
+          function qa2(s) { return [...document.querySelectorAll(s)]; }
+        })()
       };
-    });
+    }, rules);
     const key = `${width}-${scheme}`;
     report[key] = { ...facts, blockedRequests: net, consoleIssues: errors };
     for (const id of sections) {
@@ -114,3 +150,8 @@ for (const width of [1440, 720]) {
 await browser.close();
 fs.writeFileSync(path.join(outDir, "report.json"), JSON.stringify(report, null, 2));
 console.log(JSON.stringify(report, null, 1));
+// V1.4: the control rule and the disabled ink as the browser resolved them, one line per rendering
+let bad = 0;
+for (const [key, r] of Object.entries(report)) { const v = r.v14; const n = v.under3.length + v.boundariesInBorderStrong.length + v.disabledUnderStated.length; bad += n;
+  console.log(`V1.4 ${key}: ${v.readings} readings of what identifies a control, lowest ${v.lowest.ratio}:1 (${v.lowest.kind}, against ${v.lowest.against}), under 3:1: ${v.under3.length}, in border.strong: ${v.boundariesInBorderStrong.length}; disabled samples ${v.disabledSamples}, lowest ${v.disabledLowest.ratio}:1 against the stated ${v.disabledStated}:1, under it: ${v.disabledUnderStated.length}`); }
+process.exitCode = bad ? 1 : 0;

@@ -5,10 +5,11 @@
 //   colour_tables.md    the document's section 2.2 tables, one per token group
 //   contrast_table.md   the document's section 2.9 table
 //   label_table.md         the document's section 2.3 table of status and evidence labels (V1.2, ruling 4)
+//   control_sweep.md    the document's section 5 table of the control rule, component by component (V1.4)
 //   node gen.mjs <tokens.json> <out dir>
 import fs from "node:fs";
 import path from "node:path";
-import { pairs, computeRows, toMarkdown } from "./contrast.mjs";
+import { pairs, computeRows, toMarkdown, toSweepMarkdown, ruleFailures } from "./contrast.mjs";
 
 export function cssFrom(T) {
   const v = (k) => "--" + k.replace(/\./g, "-");
@@ -86,5 +87,7 @@ if (process.argv[1] && /gen\.mjs$/.test(process.argv[1])) {
   fs.writeFileSync(path.join(outDir, "colour_tables.md"), colourTablesFrom(T) + "\n");
   fs.writeFileSync(path.join(outDir, "contrast_table.md"), toMarkdown(computeRows(T)) + "\n");
   fs.writeFileSync(path.join(outDir, "label_table.md"), labelTableFrom(T) + "\n");
+  fs.writeFileSync(path.join(outDir, "control_sweep.md"), toSweepMarkdown(T) + "\n");
+  const failures = ruleFailures(T); if (failures.length) { console.error("rule failures:\n  " + failures.join("\n  ")); process.exitCode = 1; }
   console.log("generated in", outDir, "| colour tokens", Object.keys(T.color).length, "| pairs", pairs.length, "| version", T.version);
 }

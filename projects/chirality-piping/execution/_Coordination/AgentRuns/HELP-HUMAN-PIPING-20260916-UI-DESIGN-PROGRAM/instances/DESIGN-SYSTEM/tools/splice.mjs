@@ -7,6 +7,7 @@
 // Document markers:  <!-- GENERATED:COLOUR_TABLES:BEGIN --> … <!-- GENERATED:COLOUR_TABLES:END -->
 //                    <!-- GENERATED:CONTRAST_TABLE:BEGIN --> … <!-- GENERATED:CONTRAST_TABLE:END -->
 //                    <!-- GENERATED:LABEL_TABLE:BEGIN --> … <!-- GENERATED:LABEL_TABLE:END -->   (V1.2)
+//                    <!-- GENERATED:CONTROL_SWEEP:BEGIN --> … <!-- GENERATED:CONTROL_SWEEP:END --> (V1.4)
 import fs from "node:fs";
 import path from "node:path";
 const [gen, spec, doc] = process.argv.slice(2);
@@ -31,6 +32,7 @@ if (doc) {
   d = between(d, "<!-- GENERATED:COLOUR_TABLES:BEGIN -->", "<!-- GENERATED:COLOUR_TABLES:END -->", read("colour_tables.md"));
   d = between(d, "<!-- GENERATED:CONTRAST_TABLE:BEGIN -->", "<!-- GENERATED:CONTRAST_TABLE:END -->", read("contrast_table.md"));
   d = between(d, "<!-- GENERATED:LABEL_TABLE:BEGIN -->", "<!-- GENERATED:LABEL_TABLE:END -->", read("label_table.md"));
+  d = between(d, "<!-- GENERATED:CONTROL_SWEEP:BEGIN -->", "<!-- GENERATED:CONTROL_SWEEP:END -->", read("control_sweep.md"));
   fs.writeFileSync(doc, d);
   console.log("spliced document", doc, "| bytes", d.length);
 }

@@ -8,15 +8,28 @@
     "DESIGN-SYSTEM-05": {
       "role": "HELPS_HUMANS Type 1 design manager, working alone",
       "model": "fable",
-      "status": "launched",
+      "status": "returned",
       "launched": "2026-09-19T00:06Z",
       "briefSha256": "322ca33b2f191f4cb812155e4e2631f8938239551a84f200a4c7144b4c5e7c11",
       "brief": "briefs/DESIGN-SYSTEM-05_control_contrast.md",
-      "returnSha256": null,
+      "returnSha256": "0f324a149a7f2e353a62cfc5dd3c70e2416fd46bc6708154d60b39f552c25b34",
       "dependsOn": [
         "B1-TOKENS merged 4dcab7505"
-      ]
+      ],
+      "returned": "2026-09-19T01:43Z",
+      "return": "returns/DESIGN-SYSTEM-05_RETURN.md",
+      "modelThatRan": "Claude Fable 5.1 (claude-fable-5-1), by its own statement"
     }
   },
-  "current_frontier": "Launched; awaiting the return."
+  "current_frontier": "Returned and read by ROOT; the disabled-ink decision recorded as ROOT's; next the independent read-only review, then the pull request, CI and merge; then the product slice that adopts tokens.json 1.3.",
+  "decisions": [
+    {
+      "id": "DS5-D1",
+      "by": "ROOT (HELP_HUMAN, Agent 0)",
+      "openTo": "the owner",
+      "date": "2026-09-19T01:43Z",
+      "decision": "text.disabled is lifted to #8f949a (light) and #767b80 (dark), as the child recommended",
+      "record": "HANDOFF.md"
+    }
+  ]
 }

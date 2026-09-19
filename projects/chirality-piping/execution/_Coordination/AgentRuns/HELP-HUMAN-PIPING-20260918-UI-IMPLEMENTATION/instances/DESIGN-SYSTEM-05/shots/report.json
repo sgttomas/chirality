@@ -1,0 +1,778 @@
+{
+  "1440-light": {
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "scrollHeight": 16142,
+    "colorScheme": "light",
+    "bg": "rgb(238, 240, 243)",
+    "textPrimary": "#22272c",
+    "tokRows": 100,
+    "tokCount": 100,
+    "tokVersion": "1.3",
+    "ctRows": 214,
+    "pairsEmbedded": 214,
+    "minFont": 11,
+    "fontsBelow11": 0,
+    "overflowing": [],
+    "v11": {
+      "heading": "SWBPIPE design system · specimen V1.4",
+      "staleband": true,
+      "stalebandBg": "rgb(254, 246, 231)",
+      "caseAllDisabled": true,
+      "caseAllText": "Case: all",
+      "latched": 7,
+      "latchedBg": "rgb(212, 230, 255)",
+      "draftRow": true,
+      "draftBar": "dashed",
+      "draftGhost": true,
+      "draftGhostWidth": "1.5",
+      "hintStrip": true,
+      "geoStrips": 4,
+      "runlog": true,
+      "banner": true,
+      "railCaptionStale": "rgb(125, 80, 2)",
+      "signoffRow": true,
+      "reportPreview": true,
+      "barTrack": "rgb(224, 227, 230)",
+      "combinationEditor": true,
+      "v12": {
+        "labelChips": 28,
+        "labelChipsEqualTable": true,
+        "labelTableRows": 8,
+        "wrappedHud": {
+          "w": 154,
+          "h": 64,
+          "tools": 10,
+          "first": "Fit (F)"
+        },
+        "narrowHudInside": true,
+        "toastWidth": 320,
+        "toastExpected": 320,
+        "reviewHeaderIcons": [
+          true,
+          true,
+          true
+        ],
+        "exportIsPlain": true,
+        "accentButtonsOnReviewHeader": 0,
+        "histband": "Historical saved run · Run a fresh solve to establish current results.",
+        "runIdentityButtons": 4,
+        "legendNoteCards": 2,
+        "agentClasses": [
+          "Check",
+          "Draft",
+          "Evidence summary",
+          "Open issue",
+          "Proposal"
+        ],
+        "agentClassChips": [
+          "Check",
+          "Open issue",
+          "Draft",
+          "Proposal",
+          "Evidence summary"
+        ],
+        "edgeSteps": [
+          "step 1 · canvas.edge 3.91:1",
+          "step 2 · canvas.edge 3.08:1",
+          "step 3 · canvas.edgeAlt 3.18:1",
+          "step 4 · canvas.edgeAlt 4.21:1",
+          "step 5 · canvas.edgeAlt 5.54:1",
+          "step 6 · canvas.edgeAlt 7.37:1",
+          "step 7 · canvas.edgeAlt 9.74:1"
+        ],
+        "edgeNote": true,
+        "addRow": true,
+        "selGroupButtons": 5,
+        "editChip": true,
+        "sendControl": true,
+        "issueRowTruncates": true,
+        "v13": {
+          "menus": [
+            "Runs 280",
+            "View 240",
+            "View, colour by disabled 240",
+            "Display units 140",
+            "Filter 220",
+            "Kind 200"
+          ],
+          "runTextButtons": 4,
+          "wrappedHeaderLines": 69,
+          "stressComponents": true,
+          "drawerHeadOneLine": 28,
+          "unitsButtons": [
+            "SI 80",
+            "SI 80",
+            "US 80",
+            "Entered 80"
+          ],
+          "editChipButtons": [
+            "Apply",
+            "Cancel"
+          ],
+          "pasteButtons": [
+            "Paste 3 rows",
+            "Cancel"
+          ],
+          "commitAsCopy": 0,
+          "reviewWhenChips": 3
+        },
+        "retiredFound": []
+      },
+      "expected": {
+        "staleBand": "#fef6e7",
+        "pressedFill": "#d4e6ff",
+        "captionStale": "#7d5002",
+        "barTrack": "#e0e3e6"
+      }
+    },
+    "v14": {
+      "heading": "SWBPIPE design system · specimen V1.4",
+      "strip": true,
+      "stripRows": 11,
+      "theme": "light",
+      "readings": 317,
+      "byKind": {
+        "boundary .seg": 12,
+        "boundary .seg button[aria-pressed=\"true\"]": 12,
+        "boundary .btn:not(.primary):not(.text):not([disabled]):not(.disabled)": 96,
+        "boundary .input": 6,
+        "boundary .combo:not(.disabled)": 36,
+        "boundary .search": 4,
+        "boundary .sendrow": 2,
+        "boundary .stepper": 6,
+        "boundary .maprow .m .sel": 14,
+        "boundary .cb:not(.on)": 10,
+        "boundary .rb:not(.on)": 4,
+        "boundary .tab.on": 6,
+        "boundary .iconbtn.raised": 10,
+        "boundary .iconbtn.latched": 4,
+        "boundary .lenfield": 2,
+        "boundary .chip.on": 16,
+        "boundary .hud button[aria-pressed=\"true\"]": 12,
+        "fill .btn.primary": 9,
+        "fill .cb.on": 10,
+        "fill .rb.on": 4,
+        "track .switch": 12,
+        "track .switch.on": 14,
+        "grip split v": 6,
+        "grip split h": 2,
+        "stroke compass": 8
+      },
+      "lowest": {
+        "kind": "boundary .combo:not(.disabled)",
+        "where": "surface.panel strip · pressed",
+        "against": "its own fill",
+        "ratio": 3.16,
+        "strong": false
+      },
+      "under3": [],
+      "boundariesInBorderStrong": [],
+      "disabledSamples": 24,
+      "disabledStated": 2.5,
+      "disabledLowest": {
+        "where": "s1 · Run",
+        "ratio": 2.56
+      },
+      "disabledUnderStated": [],
+      "latchedBoundaries": 23,
+      "tabsOn": 3,
+      "checkBoxes": 10,
+      "radios": 4,
+      "grips": 3,
+      "outlineBar": true
+    },
+    "blockedRequests": [],
+    "consoleIssues": [],
+    "manualSwitchTo": {
+      "other": "dark",
+      "attr": "dark",
+      "bg": "rgb(27, 30, 34)",
+      "cs": "dark",
+      "pressed": "false,false,true",
+      "stepColours": "rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255) rgb(13, 26, 26) rgb(13, 26, 26) rgb(13, 26, 26)"
+    }
+  },
+  "1440-dark": {
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "scrollHeight": 16142,
+    "colorScheme": "dark",
+    "bg": "rgb(27, 30, 34)",
+    "textPrimary": "#e5e8ec",
+    "tokRows": 100,
+    "tokCount": 100,
+    "tokVersion": "1.3",
+    "ctRows": 214,
+    "pairsEmbedded": 214,
+    "minFont": 11,
+    "fontsBelow11": 0,
+    "overflowing": [],
+    "v11": {
+      "heading": "SWBPIPE design system · specimen V1.4",
+      "staleband": true,
+      "stalebandBg": "rgb(54, 44, 28)",
+      "caseAllDisabled": true,
+      "caseAllText": "Case: all",
+      "latched": 7,
+      "latchedBg": "rgb(37, 73, 116)",
+      "draftRow": true,
+      "draftBar": "dashed",
+      "draftGhost": true,
+      "draftGhostWidth": "1.5",
+      "hintStrip": true,
+      "geoStrips": 4,
+      "runlog": true,
+      "banner": true,
+      "railCaptionStale": "rgb(233, 202, 137)",
+      "signoffRow": true,
+      "reportPreview": true,
+      "barTrack": "rgb(60, 64, 69)",
+      "combinationEditor": true,
+      "v12": {
+        "labelChips": 28,
+        "labelChipsEqualTable": true,
+        "labelTableRows": 8,
+        "wrappedHud": {
+          "w": 154,
+          "h": 64,
+          "tools": 10,
+          "first": "Fit (F)"
+        },
+        "narrowHudInside": true,
+        "toastWidth": 320,
+        "toastExpected": 320,
+        "reviewHeaderIcons": [
+          true,
+          true,
+          true
+        ],
+        "exportIsPlain": true,
+        "accentButtonsOnReviewHeader": 0,
+        "histband": "Historical saved run · Run a fresh solve to establish current results.",
+        "runIdentityButtons": 4,
+        "legendNoteCards": 2,
+        "agentClasses": [
+          "Check",
+          "Draft",
+          "Evidence summary",
+          "Open issue",
+          "Proposal"
+        ],
+        "agentClassChips": [
+          "Check",
+          "Open issue",
+          "Draft",
+          "Proposal",
+          "Evidence summary"
+        ],
+        "edgeSteps": [
+          "step 1 · canvas.edge 4.81:1",
+          "step 2 · canvas.edge 3.64:1",
+          "step 3 · canvas.edgeAlt 3.00:1",
+          "step 4 · canvas.edgeAlt 3.90:1",
+          "step 5 · canvas.edgeAlt 4.95:1",
+          "step 6 · canvas.edgeAlt 6.19:1",
+          "step 7 · canvas.edgeAlt 7.63:1"
+        ],
+        "edgeNote": true,
+        "addRow": true,
+        "selGroupButtons": 5,
+        "editChip": true,
+        "sendControl": true,
+        "issueRowTruncates": true,
+        "v13": {
+          "menus": [
+            "Runs 280",
+            "View 240",
+            "View, colour by disabled 240",
+            "Display units 140",
+            "Filter 220",
+            "Kind 200"
+          ],
+          "runTextButtons": 4,
+          "wrappedHeaderLines": 69,
+          "stressComponents": true,
+          "drawerHeadOneLine": 28,
+          "unitsButtons": [
+            "SI 80",
+            "SI 80",
+            "US 80",
+            "Entered 80"
+          ],
+          "editChipButtons": [
+            "Apply",
+            "Cancel"
+          ],
+          "pasteButtons": [
+            "Paste 3 rows",
+            "Cancel"
+          ],
+          "commitAsCopy": 0,
+          "reviewWhenChips": 3
+        },
+        "retiredFound": []
+      },
+      "expected": {
+        "staleBand": "#362c1c",
+        "pressedFill": "#254974",
+        "captionStale": "#e9ca89",
+        "barTrack": "#3c4045"
+      }
+    },
+    "v14": {
+      "heading": "SWBPIPE design system · specimen V1.4",
+      "strip": true,
+      "stripRows": 11,
+      "theme": "dark",
+      "readings": 317,
+      "byKind": {
+        "boundary .seg": 12,
+        "boundary .seg button[aria-pressed=\"true\"]": 12,
+        "boundary .btn:not(.primary):not(.text):not([disabled]):not(.disabled)": 96,
+        "boundary .input": 6,
+        "boundary .combo:not(.disabled)": 36,
+        "boundary .search": 4,
+        "boundary .sendrow": 2,
+        "boundary .stepper": 6,
+        "boundary .maprow .m .sel": 14,
+        "boundary .cb:not(.on)": 10,
+        "boundary .rb:not(.on)": 4,
+        "boundary .tab.on": 6,
+        "boundary .iconbtn.raised": 10,
+        "boundary .iconbtn.latched": 4,
+        "boundary .lenfield": 2,
+        "boundary .chip.on": 16,
+        "boundary .hud button[aria-pressed=\"true\"]": 12,
+        "fill .btn.primary": 9,
+        "fill .cb.on": 10,
+        "fill .rb.on": 4,
+        "track .switch": 12,
+        "track .switch.on": 14,
+        "grip split v": 6,
+        "grip split h": 2,
+        "stroke compass": 8
+      },
+      "lowest": {
+        "kind": "boundary .iconbtn.raised",
+        "where": "canvas.bg strip · ",
+        "against": "its own fill",
+        "ratio": 3.16,
+        "strong": false
+      },
+      "under3": [],
+      "boundariesInBorderStrong": [],
+      "disabledSamples": 24,
+      "disabledStated": 3,
+      "disabledLowest": {
+        "where": "canvas.bg strip · ",
+        "ratio": 3.02
+      },
+      "disabledUnderStated": [],
+      "latchedBoundaries": 23,
+      "tabsOn": 3,
+      "checkBoxes": 10,
+      "radios": 4,
+      "grips": 3,
+      "outlineBar": true
+    },
+    "blockedRequests": [],
+    "consoleIssues": [],
+    "manualSwitchTo": {
+      "other": "light",
+      "attr": "light",
+      "bg": "rgb(238, 240, 243)",
+      "cs": "light",
+      "pressed": "false,true,false",
+      "stepColours": "rgb(13, 26, 26) rgb(13, 26, 26) rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255)"
+    }
+  },
+  "720-light": {
+    "scrollWidth": 720,
+    "innerWidth": 720,
+    "scrollHeight": 22529,
+    "colorScheme": "light",
+    "bg": "rgb(238, 240, 243)",
+    "textPrimary": "#22272c",
+    "tokRows": 100,
+    "tokCount": 100,
+    "tokVersion": "1.3",
+    "ctRows": 214,
+    "pairsEmbedded": 214,
+    "minFont": 11,
+    "fontsBelow11": 0,
+    "overflowing": [],
+    "v11": {
+      "heading": "SWBPIPE design system · specimen V1.4",
+      "staleband": true,
+      "stalebandBg": "rgb(254, 246, 231)",
+      "caseAllDisabled": true,
+      "caseAllText": "Case: all",
+      "latched": 7,
+      "latchedBg": "rgb(212, 230, 255)",
+      "draftRow": true,
+      "draftBar": "dashed",
+      "draftGhost": true,
+      "draftGhostWidth": "1.5",
+      "hintStrip": true,
+      "geoStrips": 4,
+      "runlog": true,
+      "banner": true,
+      "railCaptionStale": "rgb(125, 80, 2)",
+      "signoffRow": true,
+      "reportPreview": true,
+      "barTrack": "rgb(224, 227, 230)",
+      "combinationEditor": true,
+      "v12": {
+        "labelChips": 28,
+        "labelChipsEqualTable": true,
+        "labelTableRows": 8,
+        "wrappedHud": {
+          "w": 154,
+          "h": 64,
+          "tools": 10,
+          "first": "Fit (F)"
+        },
+        "narrowHudInside": true,
+        "toastWidth": 320,
+        "toastExpected": 320,
+        "reviewHeaderIcons": [
+          true,
+          true,
+          true
+        ],
+        "exportIsPlain": true,
+        "accentButtonsOnReviewHeader": 0,
+        "histband": "Historical saved run · Run a fresh solve to establish current results.",
+        "runIdentityButtons": 4,
+        "legendNoteCards": 2,
+        "agentClasses": [
+          "Check",
+          "Draft",
+          "Evidence summary",
+          "Open issue",
+          "Proposal"
+        ],
+        "agentClassChips": [
+          "Check",
+          "Open issue",
+          "Draft",
+          "Proposal",
+          "Evidence summary"
+        ],
+        "edgeSteps": [
+          "step 1 · canvas.edge 3.91:1",
+          "step 2 · canvas.edge 3.08:1",
+          "step 3 · canvas.edgeAlt 3.18:1",
+          "step 4 · canvas.edgeAlt 4.21:1",
+          "step 5 · canvas.edgeAlt 5.54:1",
+          "step 6 · canvas.edgeAlt 7.37:1",
+          "step 7 · canvas.edgeAlt 9.74:1"
+        ],
+        "edgeNote": true,
+        "addRow": true,
+        "selGroupButtons": 5,
+        "editChip": true,
+        "sendControl": true,
+        "issueRowTruncates": true,
+        "v13": {
+          "menus": [
+            "Runs 280",
+            "View 240",
+            "View, colour by disabled 240",
+            "Display units 140",
+            "Filter 220",
+            "Kind 200"
+          ],
+          "runTextButtons": 4,
+          "wrappedHeaderLines": 69,
+          "stressComponents": true,
+          "drawerHeadOneLine": 28,
+          "unitsButtons": [
+            "SI 80",
+            "SI 80",
+            "US 80",
+            "Entered 80"
+          ],
+          "editChipButtons": [
+            "Apply",
+            "Cancel"
+          ],
+          "pasteButtons": [
+            "Paste 3 rows",
+            "Cancel"
+          ],
+          "commitAsCopy": 0,
+          "reviewWhenChips": 3
+        },
+        "retiredFound": []
+      },
+      "expected": {
+        "staleBand": "#fef6e7",
+        "pressedFill": "#d4e6ff",
+        "captionStale": "#7d5002",
+        "barTrack": "#e0e3e6"
+      }
+    },
+    "v14": {
+      "heading": "SWBPIPE design system · specimen V1.4",
+      "strip": true,
+      "stripRows": 11,
+      "theme": "light",
+      "readings": 317,
+      "byKind": {
+        "boundary .seg": 12,
+        "boundary .seg button[aria-pressed=\"true\"]": 12,
+        "boundary .btn:not(.primary):not(.text):not([disabled]):not(.disabled)": 96,
+        "boundary .input": 6,
+        "boundary .combo:not(.disabled)": 36,
+        "boundary .search": 4,
+        "boundary .sendrow": 2,
+        "boundary .stepper": 6,
+        "boundary .maprow .m .sel": 14,
+        "boundary .cb:not(.on)": 10,
+        "boundary .rb:not(.on)": 4,
+        "boundary .tab.on": 6,
+        "boundary .iconbtn.raised": 10,
+        "boundary .iconbtn.latched": 4,
+        "boundary .lenfield": 2,
+        "boundary .chip.on": 16,
+        "boundary .hud button[aria-pressed=\"true\"]": 12,
+        "fill .btn.primary": 9,
+        "fill .cb.on": 10,
+        "fill .rb.on": 4,
+        "track .switch": 12,
+        "track .switch.on": 14,
+        "grip split v": 6,
+        "grip split h": 2,
+        "stroke compass": 8
+      },
+      "lowest": {
+        "kind": "boundary .combo:not(.disabled)",
+        "where": "surface.panel strip · pressed",
+        "against": "its own fill",
+        "ratio": 3.16,
+        "strong": false
+      },
+      "under3": [],
+      "boundariesInBorderStrong": [],
+      "disabledSamples": 24,
+      "disabledStated": 2.5,
+      "disabledLowest": {
+        "where": "s1 · Run",
+        "ratio": 2.56
+      },
+      "disabledUnderStated": [],
+      "latchedBoundaries": 23,
+      "tabsOn": 3,
+      "checkBoxes": 10,
+      "radios": 4,
+      "grips": 3,
+      "outlineBar": true
+    },
+    "blockedRequests": [],
+    "consoleIssues": [],
+    "manualSwitchTo": {
+      "other": "dark",
+      "attr": "dark",
+      "bg": "rgb(27, 30, 34)",
+      "cs": "dark",
+      "pressed": "false,false,true",
+      "stepColours": "rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255) rgb(13, 26, 26) rgb(13, 26, 26) rgb(13, 26, 26)"
+    }
+  },
+  "720-dark": {
+    "scrollWidth": 720,
+    "innerWidth": 720,
+    "scrollHeight": 22529,
+    "colorScheme": "dark",
+    "bg": "rgb(27, 30, 34)",
+    "textPrimary": "#e5e8ec",
+    "tokRows": 100,
+    "tokCount": 100,
+    "tokVersion": "1.3",
+    "ctRows": 214,
+    "pairsEmbedded": 214,
+    "minFont": 11,
+    "fontsBelow11": 0,
+    "overflowing": [],
+    "v11": {
+      "heading": "SWBPIPE design system · specimen V1.4",
+      "staleband": true,
+      "stalebandBg": "rgb(54, 44, 28)",
+      "caseAllDisabled": true,
+      "caseAllText": "Case: all",
+      "latched": 7,
+      "latchedBg": "rgb(37, 73, 116)",
+      "draftRow": true,
+      "draftBar": "dashed",
+      "draftGhost": true,
+      "draftGhostWidth": "1.5",
+      "hintStrip": true,
+      "geoStrips": 4,
+      "runlog": true,
+      "banner": true,
+      "railCaptionStale": "rgb(233, 202, 137)",
+      "signoffRow": true,
+      "reportPreview": true,
+      "barTrack": "rgb(60, 64, 69)",
+      "combinationEditor": true,
+      "v12": {
+        "labelChips": 28,
+        "labelChipsEqualTable": true,
+        "labelTableRows": 8,
+        "wrappedHud": {
+          "w": 154,
+          "h": 64,
+          "tools": 10,
+          "first": "Fit (F)"
+        },
+        "narrowHudInside": true,
+        "toastWidth": 320,
+        "toastExpected": 320,
+        "reviewHeaderIcons": [
+          true,
+          true,
+          true
+        ],
+        "exportIsPlain": true,
+        "accentButtonsOnReviewHeader": 0,
+        "histband": "Historical saved run · Run a fresh solve to establish current results.",
+        "runIdentityButtons": 4,
+        "legendNoteCards": 2,
+        "agentClasses": [
+          "Check",
+          "Draft",
+          "Evidence summary",
+          "Open issue",
+          "Proposal"
+        ],
+        "agentClassChips": [
+          "Check",
+          "Open issue",
+          "Draft",
+          "Proposal",
+          "Evidence summary"
+        ],
+        "edgeSteps": [
+          "step 1 · canvas.edge 4.81:1",
+          "step 2 · canvas.edge 3.64:1",
+          "step 3 · canvas.edgeAlt 3.00:1",
+          "step 4 · canvas.edgeAlt 3.90:1",
+          "step 5 · canvas.edgeAlt 4.95:1",
+          "step 6 · canvas.edgeAlt 6.19:1",
+          "step 7 · canvas.edgeAlt 7.63:1"
+        ],
+        "edgeNote": true,
+        "addRow": true,
+        "selGroupButtons": 5,
+        "editChip": true,
+        "sendControl": true,
+        "issueRowTruncates": true,
+        "v13": {
+          "menus": [
+            "Runs 280",
+            "View 240",
+            "View, colour by disabled 240",
+            "Display units 140",
+            "Filter 220",
+            "Kind 200"
+          ],
+          "runTextButtons": 4,
+          "wrappedHeaderLines": 69,
+          "stressComponents": true,
+          "drawerHeadOneLine": 28,
+          "unitsButtons": [
+            "SI 80",
+            "SI 80",
+            "US 80",
+            "Entered 80"
+          ],
+          "editChipButtons": [
+            "Apply",
+            "Cancel"
+          ],
+          "pasteButtons": [
+            "Paste 3 rows",
+            "Cancel"
+          ],
+          "commitAsCopy": 0,
+          "reviewWhenChips": 3
+        },
+        "retiredFound": []
+      },
+      "expected": {
+        "staleBand": "#362c1c",
+        "pressedFill": "#254974",
+        "captionStale": "#e9ca89",
+        "barTrack": "#3c4045"
+      }
+    },
+    "v14": {
+      "heading": "SWBPIPE design system · specimen V1.4",
+      "strip": true,
+      "stripRows": 11,
+      "theme": "dark",
+      "readings": 317,
+      "byKind": {
+        "boundary .seg": 12,
+        "boundary .seg button[aria-pressed=\"true\"]": 12,
+        "boundary .btn:not(.primary):not(.text):not([disabled]):not(.disabled)": 96,
+        "boundary .input": 6,
+        "boundary .combo:not(.disabled)": 36,
+        "boundary .search": 4,
+        "boundary .sendrow": 2,
+        "boundary .stepper": 6,
+        "boundary .maprow .m .sel": 14,
+        "boundary .cb:not(.on)": 10,
+        "boundary .rb:not(.on)": 4,
+        "boundary .tab.on": 6,
+        "boundary .iconbtn.raised": 10,
+        "boundary .iconbtn.latched": 4,
+        "boundary .lenfield": 2,
+        "boundary .chip.on": 16,
+        "boundary .hud button[aria-pressed=\"true\"]": 12,
+        "fill .btn.primary": 9,
+        "fill .cb.on": 10,
+        "fill .rb.on": 4,
+        "track .switch": 12,
+        "track .switch.on": 14,
+        "grip split v": 6,
+        "grip split h": 2,
+        "stroke compass": 8
+      },
+      "lowest": {
+        "kind": "boundary .iconbtn.raised",
+        "where": "canvas.bg strip · ",
+        "against": "its own fill",
+        "ratio": 3.16,
+        "strong": false
+      },
+      "under3": [],
+      "boundariesInBorderStrong": [],
+      "disabledSamples": 24,
+      "disabledStated": 3,
+      "disabledLowest": {
+        "where": "canvas.bg strip · ",
+        "ratio": 3.02
+      },
+      "disabledUnderStated": [],
+      "latchedBoundaries": 23,
+      "tabsOn": 3,
+      "checkBoxes": 10,
+      "radios": 4,
+      "grips": 3,
+      "outlineBar": true
+    },
+    "blockedRequests": [],
+    "consoleIssues": [],
+    "manualSwitchTo": {
+      "other": "light",
+      "attr": "light",
+      "bg": "rgb(238, 240, 243)",
+      "cs": "light",
+      "pressed": "false,true,false",
+      "stepColours": "rgb(13, 26, 26) rgb(13, 26, 26) rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255) rgb(255, 255, 255)"
+    }
+  }
+}
