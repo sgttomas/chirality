@@ -23,7 +23,10 @@ m2_gate:
     decomposition over the application file directory, a structuring of that
     knowledge into the corresponding graph structures, and a BM25 and vector
     store search tool an agent calls through a workflow or skill; and to
-    create a pull request and merge. The thesis is nonbinding and is not a
+    create a pull request and merge. The owner's words are recorded verbatim in
+    plans/evidence/2026-09-19_owner_words_four_graph_structures.md. Section
+    9.4.8 of the thesis is an agent-proposed future-work item that follows
+    from the directed text and was not itself directed. The thesis is nonbinding and is not a
     governance surface (its README, Warrant Status). This manifest records
     the gate and grants no authority (K-AUTH-1).
   authorized_by: Ryan Tufts
@@ -63,6 +66,7 @@ candidate_paths:
   - docs/governance_harness/tranche_manifests/ROOT-THESIS-FOUR-STRUCTURES-20260919.yaml
   - plans/four_graphs_of_knowledge_work_2026-09-19.html
   - plans/four_graphs_agent_orientation_2026-09-19.md
+  - plans/evidence/2026-09-19_owner_words_four_graph_structures.md
 
 scope_limits:
   - >-

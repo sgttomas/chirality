@@ -55,11 +55,16 @@ knowledge—a property termed configurational multiplicity. This prose remains
 a candidate pending separate owner review. The approval of D-GOV-19 did not
 authenticate the thesis, which remains CITED/REVIEWED and nonbinding.
 
-*Revision note dated 2026-09-19.* Two subsections were added to Chapter 9 at
-the owner's direction in a working session: §9.3.7 (convergent practice: the
-four structures of the architecture as the structures large-project delivery
-already converged on) and §9.4.8 (a second accountable professional, outside
-software, as future work). Both are agent-drafted (Claude Fable 5.1), carry no
+*Revision note dated 2026-09-19.* Two subsections were added to Chapter 9 in a working session: §9.3.7, which
+records the owner's observation that the four structures of the architecture
+are the structures large-project delivery already converged on and which the
+owner directed into the thesis, and §9.4.8, an agent-proposed future-work
+item that follows from it (a second accountable professional, outside
+software). The owner's words are recorded in
+`plans/evidence/2026-09-19_owner_words_four_graph_structures.md`. The Status
+table above still names the models that first drafted Chapters 4 and 9; the
+passages dated 2026-09-19 in them were drafted by Claude Fable 5.1 and were
+independently reviewed by Claude Opus 5 before merge. Both are agent-drafted (Claude Fable 5.1), carry no
 citations yet and are UNWARRANTED until a verified pass adds sources; the
 observation they record is the owner's. Chapter 4 was revised the same day so that it no
 longer describes only two of the four structures: a paragraph in §4.1, a note

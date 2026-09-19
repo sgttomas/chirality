@@ -10,7 +10,7 @@ Any piece of work here can be seen four ways. Each view answers a different ques
 |---|---|---|---|
 | Structure and working memory | tree | What is this made of? | git: the project's decomposition and its deliverable folders |
 | Production and dependencies | directed acyclic graph | What must come before what? | the run's work graph; the project DAG; one git worktree per concurrent line of work |
-| Topic query and long-term memory | network | What bears on what, and who decided it? | decision registers, rulings, gap lists, owner-direction records; today reached by file search |
+| Topic query and long-term memory | network | What bears on what, and who decided it? | versioned files: decision registers, rulings, gap lists, owner-direction records; reached today by file search; intended: a rebuildable graph projection and a BM25-plus-vector index over the same files, called through a workflow or skill, never a separate source of truth |
 | Attention and decomposition | attention: many inputs to one | How does all of this become one thing? | the model, with files, tools and instructions; the decomposition workflows |
 
 ## How to use each
@@ -40,7 +40,7 @@ The owner owns two edges of that loop: what production is allowed to put into me
 
 ## The measure
 
-Agreed with the owner in session on 2026-09-19: the quality of the system is how much warranted confidence it produces per unit of the owner's attention, and a validation level sets how much of that confidence a given piece of work needs.
+Adopted by the owner in session on 2026-09-19 (verbatim in `plans/evidence/2026-09-19_owner_words_four_graph_structures.md`): the quality of the system is how much warranted confidence it produces per unit of the owner's attention, and a validation level sets how much of that confidence a given piece of work needs.
 
 What follows for an agent:
 
