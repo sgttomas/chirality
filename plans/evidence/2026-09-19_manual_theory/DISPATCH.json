@@ -1,0 +1,11 @@
+{
+  "parent": "/root",
+  "source_child": "/root/manual_source_check",
+  "configured_model": "gpt-6-astra",
+  "configured_reasoning": "low",
+  "basis": "35d8b93aed1831c7579986d305b383521ca47c80",
+  "brief_sha256": "f361ebe50442d6da5ae141e6c9e4914c6be06215145ba437a6fe39ef018f2df4",
+  "prepared_utc": "2026-09-19T23:20:37.819946+00:00",
+  "mechanism": "delegated-harness-native",
+  "enforcement": "instruction-asserted read-only and nondelegation; no serving-model attestation"
+}
