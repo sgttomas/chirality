@@ -1,0 +1,63 @@
+{
+  "basis": "35d8b93aed1831c7579986d305b383521ca47c80",
+  "scope": "Theory-first explanatory manual draft; no live instruction or product change",
+  "parent": "/root",
+  "nodes": [
+    {
+      "id": "source_check",
+      "role": "TASK Type 2",
+      "model": "gpt-6-astra",
+      "reasoning": "low",
+      "state": "returned; source-attribution correction retained and applied",
+      "depends_on": [],
+      "writes": []
+    },
+    {
+      "id": "theory",
+      "owner": "Agent0",
+      "state": "complete draft; author outline and full-draft coherence checks recorded",
+      "depends_on": [],
+      "integration_inputs": [
+        "source_check"
+      ],
+      "writes": [
+        "docs/ai_software_project_management/"
+      ],
+      "coherence_checks": [
+        "outline",
+        "complete draft",
+        "post-review integrated draft"
+      ]
+    },
+    {
+      "id": "independent_review",
+      "role": "TASK Type 2",
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "state": "briefed",
+      "depends_on": [
+        "source_check",
+        "theory"
+      ],
+      "writes": []
+    },
+    {
+      "id": "closeout",
+      "owner": "Agent0",
+      "state": "pending",
+      "depends_on": [
+        "independent_review"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "item": "Chirality worked-example findings",
+      "until": "Theory expectations and case-reading method frozen, then a separate evidence reconstruction"
+    },
+    {
+      "item": "External corroboration/generalization",
+      "until": "A sourced research pass; no empirical or regulatory validation claimed now"
+    }
+  ]
+}
