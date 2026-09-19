@@ -40,13 +40,16 @@ m2_gate:
   owner_direction:
     directed_by: Ryan Tufts
     direction_date: 2026-09-19
-    approved_source_sha: PENDING_REVIEWED_CANDIDATE
+    approved_source_sha: a92a28f534452321c0fbe207811639130d0e72ab
     note: >-
       Merge proceeds under the owner's standing Git authorization of
       2026-09-12 (Root AGENTS.md, Execution and governance) and the owner's
       direction in session to create a pull request and merge. The
       approved_source_sha names the independently reviewed candidate; later
-      commits on the branch are review dispositions and this manifest only.
+      commits on the branch are merges of main and this manifest's pin only.
+      Independent read-only review by Claude Opus 5: FINDINGS (2 blocking, 11
+      minor, 6 trivial), all applied; backcheck: all closed, four new (3 minor,
+      1 trivial), all applied; second backcheck: PASS at the pinned commit.
       No owner review of the text is implied.
 
 m6_notice:
