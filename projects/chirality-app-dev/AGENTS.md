@@ -125,72 +125,55 @@ for required Codex capability.
 
 ## Project-Wide Execution Discipline
 
-Use a recorded work graph for every multi-agent tranche. The human may
-prescribe the graph or delegate selection to HELP_HUMAN or a directly invoked
-WORKING_ITEMS instance. Terminal fan-out/fan-in is appropriate for independent
-children; supervised many-to-many agency is appropriate when active findings
-may affect siblings. Mixed sequential/concurrent stages are allowed.
+The recurrent discovery, planning, delegation, checking and integration procedure
+lives in `loop/LOOP_INIT.md`. The thin `init/dev-loop-init-prompt.md` launcher
+selects it. Current state belongs in the owning run and its work graph; priorities
+and phase transitions come from owner steering. Do not copy run-specific lane
+names, model assignments or next actions into these standing instructions.
 
-**Delegation posture (work-type conditioned).** "Every multi-agent tranche"
-does not mean every tranche is multi-agent. The package `WORKING_ITEMS`
-instance sizes delegation to the target:
+Choose agent types by responsibility and delegation needs, not task complexity
+or reasoning effort. Root role instructions govern delegation. No package-per-
+manager roster or separate closeout agent is compulsory. HELP_HUMAN owns
+cross-undertaking dependencies and shared-surface integration; each manager or
+direct specialist has an explicit bounded assignment. Children return to their
+parent; Type 2 instances do not delegate.
 
-- *Independent-review path (default for product source).* Any tranche that
-  changes product source — `frontend/src/**` outside `__tests__/**`,
-  `frontend/electron/**`, `frontend/packages/**`, `frontend/scripts/**`, or
-  build/packaging configuration — dispatches at least one **fresh, read-only**
-  `TASK + software-code-review` child over 100% of the frozen diff before the
-  registered checks are treated as final and before push. The reviewer has no
-  write target and is not the implementer's context. A `PASS` with no
-  actionable finding is required to publish; findings are remediated and
-  re-reviewed. Registered checks (typecheck, Vitest, build/premerge, D-APP-36
-  render bar) remain the deterministic gates; review is additional, not a
-  substitute.
-- *Single-manager path (permitted).* Tranches confined to one deliverable that
-  change only automated tests, evidence, `_run_records`, deliverable state,
-  coordination, docs, or governance/control-plane surfaces — no product source
-  — may be executed directly by the `WORKING_ITEMS` instance under the
-  registered checks and APP-HOLD-1 preflight; the receipt plus deliverable-local
-  state are the record and no AgentRuns package is owed. The manager may still
-  choose the review path when a tests-only tranche asserts a product invariant
-  for the first time or its correctness is not self-evident from the checks.
-- *Multi-agent path (record contract).* Whenever children are dispatched, the
-  tranche uses the recorded work graph and freezes, under
-  `execution/_Coordination/AgentRuns/<RUN_ID>/`: activation or plan, work graph,
-  one sealed launch brief per child, each child's return and status, the manager
-  return, and a handoff state — the existing App convention, unchanged.
-  Registered-check JSON, runtime events, and summaries are written once per run,
-  not per child, unless a child's own return contract requires them.
+Concurrent writes must be disjoint or serialized under an identified integration
+owner. Shared reads are allowed. Honour cross-package verification ownership
+named in deliverable contracts through the existing notice route; it does not
+by itself require another manager. Software activations use
+`software-workflow.json` under `../../docs/SOFTWARE_WORKFLOW_PROFILE.md` and
+its applicable checks. A profile does not expand authority or waive a gate.
 
-Cross-package verification ownership named in a deliverable's `Remaining` (for
-example DEL-09-03 for test-expansion claims) is honoured on either path by the
-existing notice route; it does not by itself require the multi-agent path.
+Every slice requires fresh-context independent review of its complete frozen
+diff before merge, with actionable findings repaired and backchecked. For
+product source (`frontend/src/**` outside `__tests__/**`, `frontend/electron/**`,
+`frontend/packages/**`, `frontend/scripts/**`, build/packaging configuration),
+retain the fresh read-only `TASK + software-code-review` path before final
+registered checks and push. The reviewer did not implement the change and has
+no write scope. Registered checks remain additional requirements.
 
-HELP_HUMAN owns cross-package dependencies and shared-surface ownership. Each
-WORKING_ITEMS instance owns exactly one package and coordinates its
-deliverable-scoped Agent 2 children. Shared reads are allowed. Concurrent
-writes must be disjoint; overlapping writes are serialized against an
-accepted predecessor or assigned to one integration owner. Agent 1 and Agent 2
-siblings do not message or delegate directly; coordination flows through the
-parent and preserves claim status and evidence.
+Never weaken a test or move a tolerance, oracle or limit to obtain a pass.
+Preserve a protected check that conflicts with the design, bring the owner the
+measured conflict and recommendation, and block the affected acceptance or
+merge. Check delegated changes for this failure mode. Observed test results,
+agent review, Git integration and owner acceptance are distinct. Explicit holds
+remain until their owning authority lifts them.
 
-Software package activations use `software-workflow.json` under the root
-`../../docs/SOFTWARE_WORKFLOW_PROFILE.md` contract. WORKING_ITEMS selects the
-appropriate `software-*` TASK skill and registered checks; the profile does not
-expand project authority or replace the validation and owner gates below.
+Write only inside the authorised undertaking and its required evidence and
+coordination scope. Root governance, roles, skills and tools require explicit
+owner direction. Preserve unrelated dirty files and parked work: do not fix,
+stage or revert them as part of ordinary closeout.
 
-Agents may write inside the selected tranche scope, required evidence and
-coordination artifacts, and project-local plans created under the issue-plan
-rule below. Do not write root governance files, root agent instructions, root
-skills, or root tools unless the human explicitly directs that governance
-work.
-
-Host-capability execution. Some registered checks and evidence surfaces cannot run inside the session's sandbox because the sandbox denies process spawning, Mach bootstrap, network, or keychain access — packaged Electron launches, browser-driven proofs, LaunchAgent drills, and keychain-backed probes are the standing examples. For such a surface, the executing agent requests sandbox escalation for the exact command and runs it itself in the session; the human approves or declines per command. A sandbox denial is not an environment class to record and move past, and it is not a reason to park, hand off, waive, or infer a pass. Park with HOST_RERUN_REQUIRED only when the escalation request itself is declined, and record the exact command that was declined. Escalated runs are recorded once per run in the run record with the command, the reason escalation was required, and the result. A failure whose cause is a missing local profile or binding (for example the registered premerge's absent runtime-daemon bindings) is a different class: record it as such and defer to PR CI as today. Root harness CI is additional evidence where it exists; it does not replace a required host surface unless the owning decision says so.
-
-There may be other agents working in this monorepo with disjoint write scopes.
-Treat unrelated dirty files outside the selected tranche scope as external
-state. Do not fix, stage, revert, or interpret them unless the human directs
-that work.
+Host-capability execution uses the current host's actual tools and permissions.
+Use its supported approval mechanism when a required command needs additional
+permission. If execution is unavailable or declined, retain the exact command,
+reason and outstanding verification as `HOST_RERUN_REQUIRED`; never claim a
+pass or silently waive the check. A missing build/profile binding is a distinct
+failure, not a sandbox denial. CI does not replace a required native witness
+unless the owning criterion permits it. D-APP-127's affected-check rule replaces
+the retired A1 re-stage requirement and daemon/LaunchAgent proof subjects;
+applicable production packaging and native checks remain required.
 
 ## APP-HOLD-1 Reliance Preflight
 
@@ -208,50 +191,14 @@ must agree. Register rows distinguish `HOLD`, `STRUCTURAL_BOOTSTRAP`, and
 hold. APP-HOLD-1 has no generic runtime exception input and does not infer
 exceptions from owner prose.
 
-D-APP-104 adds one mechanically bounded structural admission for the
-not-yet-contracted `DEL-09-07`. It applies only to `operation=dispatch`, only
-to package `PKG-09`, and only to these two stable entry-path tokens:
-
-- `SCA-APP-009:GATE5:PREPARATION:CANDIDATE_MIRROR`
-- `SCA-APP-009:GATE5:PREPARATION:ACTUAL_WORKTREE`
-
-The guard returns `admission_kind=STRUCTURAL_BOOTSTRAP` only while the live
-decomposition and companion-register SHA-256 values equal the exact approved
-SCA-APP-009 postimages, `_ScopeChange/_LATEST.md` still equals its exact old
-preimage, `ScopeOfWork.md` is absent, and the exact DEL-09-07 folder is absent
-or contains only regular, non-symlink instances of the five authorized
-PREPARATION files. Pointer movement, contract appearance, authority drift, an
-unexpected or nested path, or a symlink expires the admission automatically.
-The row authorizes no PREPARATION act, scope amendment, repin, audit waiver,
-or sixth Scope of Work; it only allows the separately owner-authorized
-preflight for those two dispatch contexts. Row retirement after expiry is a
-separate maintenance act. D-APP-107 retires that expired live row after
-SCA-APP-009 pointer movement; D-APP-104 and its proposal remain immutable history.
-Any other override still requires a separately
-accepted and applied App-loop amendment to the live register, tool, and
-instruction surfaces before the prohibited act begins.
-
-D-APP-107 supplies the exact DEL-09-07 / PKG-09 `SOW_INITIALIZATION`
-preflight for PROJECT_SETUP Phase 2.2 (`TASK + scope-of-work`, `MODE=INIT`):
-
-`python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path PROJECT_SETUP:SCOPE_OF_WORK:INIT --target DEL-09-07`
-
-This admits only the separately owner-directed initialization while the exact
-ScopeOfWork is absent, the accepted decomposition/companion and post-SCA-009
-pointer hashes match, and all five scaffold input hashes match. The folder
-may additionally contain a regular `_run_records/` evidence subtree; symlinks,
-traversal, missing inputs, special files, or other root entries block dispatch.
-The caller must bind the scope-of-work skill's exact contract/evidence write
-targets and preserve underscore files. The token identifies the declared
-entry; it does not authenticate an agent role or authorize product work.
-
-When a contract appears at the exact path with the exact package/target,
-the initialization admission is consumed. Ordinary scan/register checks
-then govern, including reviewer preflight; there is no second initialization
-evaluation or permanent bootstrap collision. Malformed contracts, HELD
-bases, and register mismatches still block. An ordinary `CLEAR` result means
-the declared basis resolves, not that the contract is accepted. This admission
-grants no reliance, lifecycle promotion, acceptance, repinning, or product act.
+The DEL-09-07 structural-bootstrap admission from D-APP-104 expired and was
+retired by D-APP-107. D-APP-127 subsequently superseded D-APP-107 in whole and
+removed its initialization admission with the retired LaunchAgent installer.
+Those records and guard compatibility code remain historical evidence; they
+are not active dispatch instructions. The generic APP-HOLD-1 check above
+continues to govern live targets. No other override is inferred: a new
+exception requires a separately accepted and applied amendment to the live
+register, tool and instruction surfaces before the prohibited act.
 
 The prohibition binds held contracts regardless of entry path. WORKING_ITEMS
 preflight is the primary enforcement mechanism, not the source or limit of
@@ -266,57 +213,25 @@ through the active manager.
 
 ## Closeout And Git Discipline
 
-When a tranche is complete, validated, and project closeout rules allow it,
-the package `WORKING_ITEMS` instance returns a closeout handoff to HELP_HUMAN
-or the human. Git/file-state closeout uses the project-scoped
-`chirality-change` skill through an eligible HELPS_HUMANS, WORKING_ITEMS, or
-bounded TASK role, or is performed inline under the same checklist. Selecting
-the skill does not expand the role's existing host, brief, write, review, or
-command authority. Closeout may commit and push the validated tranche as the
-ordinary terminal action when git state allows closeout;
-per-run `APPROVE:` tokens are not required for scoped closeout commit/push.
+Use the project-scoped `chirality-change` skill or the same checklist inline,
+within existing role and write authority. Inspect Git state, validation and
+review coverage; stage only the authorised diff and evidence; verify upstream
+and the actual candidate before publishing. Branch creation, commit, push, PR
+and merge use standing owner Git authority when its conditions hold, without
+new per-run approval tokens. Explicit holds and later owner directions prevail.
 
-If a TASK closeout assignment is unavailable, perform the closeout checklist
-inline:
-
-- inspect root git status;
-- confirm validation evidence and skipped-check notes;
-- stage only files in the selected tranche write scope, required
-  evidence/coordination artifacts, and any explicitly created governance-issue
-  plan;
-- do not stage unrelated dirty files;
-- commit the scoped tranche when validation and staging are clean;
-- fetch or otherwise verify upstream state before pushing;
-- push only when the upstream branch can be fast-forwarded to the local scoped
-  commit.
-
-Branch creation is routine. Creating the tranche's task branch (and, when
-isolation is warranted, its worktree lane) from a verified clean basis on the
-integration branch — clean status, no in-progress Git operation, base SHA
-recorded — is an ordinary Step 0/Step 4 act and requires no `APPROVE:` token,
-whether performed by the loop session or by a dispatched TASK instance.
-The closeout return records the branch name and base SHA. Basing a lane on a
-dirty worktree, or any switch that would discard or carry uncommitted work,
-remains non-routine under the `chirality-change` skill. Owner direction 2026-07-19
-(recorded in App `loop/LOOP_RECEIPTS.md` Receipt-74), applied to this loop by
-owner direction 2026-08-15; scoped commit/push closeout follows the checklist
-above and likewise needs no per-run `APPROVE:` token.
-
-If the remote branch has advanced and local `HEAD` does not already include
-it, stop and surface the conflict. Do not merge, rebase, force push, or judge
-another agent's work during ordinary closeout.
+Preserve other contributors' changes when integrating upstream. Re-review the
+resulting candidate and repeat checks invalidated by the change. Escalate
+substantive conflicts beyond existing authority; do not discard unrelated work
+or force-push another contributor's branch. Record branch and basis identities
+in the owning run. A dirty checkout is not permission to carry unrelated changes
+into a new branch.
 
 Git closeout is source-control hygiene. It is not lifecycle issuance, release
 readiness, professional approval, certification, sealing, authentication, or
-code-compliance acceptance.
-
-## Issue-Plan Rule
-
-If concrete, actionable issues are discovered that would improve the agentic
-development loop, project governance, agents, or skills, record them in at
-most one timestamped plan under `{WORKING_ROOT}/plans/` for the session. Do
-not create a plan merely to satisfy this instruction when no actionable issue
-was found.
+code-compliance acceptance. The loop's work graph records new actionable issues
+and deferrals; a second mandatory issue plan or session workplan is unnecessary.
+Preserve existing plans and their historical citations.
 
 ## Shared Runtime Boundary
 

@@ -1,0 +1,65 @@
+{
+  "schema": "ad-hoc-work-graph/v1",
+  "run": "HELP-HUMAN-APP-20260919-LOOP-WORKGRAPH",
+  "basis": "d55432eecd27ac441114369ffbdb4262bf503092",
+  "scope": "App instruction maintenance only; no phase transition",
+  "phase_basis": {
+    "decomposition": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "dependencies": "execution/_Reconciliation/DepClosure/_LATEST.md",
+    "deliverable_binding": "unverified; cross-cutting loop maintenance, no deliverable claim"
+  },
+  "nodes": [
+    {
+      "id": "instructions",
+      "state": "drafted",
+      "depends_on": [],
+      "blockers": [],
+      "semantic_changes": [
+        "session graph replaces session workplan",
+        "owner-directed phase transitions",
+        "responsibility-based delegation",
+        "source-backed D-APP-127 retirement propagation",
+        "stable procedure separated from state and steering"
+      ],
+      "departures": [
+        "Supersedes deliverable-only session selection and compulsory package manager arrangement under owner direction."
+      ],
+      "evidence": [
+        "OWNER_DIRECTION.md",
+        "../../../../loop/.archive/2026-09-19-workgraph-transition/MANIFEST.json"
+      ]
+    },
+    {
+      "id": "review_checks",
+      "state": "pending",
+      "depends_on": [
+        "instructions"
+      ],
+      "blockers": [],
+      "semantic_changes": []
+    },
+    {
+      "id": "integration",
+      "state": "pending",
+      "depends_on": [
+        "review_checks"
+      ],
+      "blockers": [],
+      "semantic_changes": []
+    }
+  ],
+  "deferred": [
+    {
+      "item": "Authority corpus reports pre-existing drift in CONTRACT, SPEC and PRD",
+      "retires_when": "Owner-directed reconciliation resolves applicable corpus basis; no repin in this amendment"
+    },
+    {
+      "item": "App product work and phase reconciliation",
+      "retires_when": "Owner supplies phase steering"
+    },
+    {
+      "item": "Legacy task-management launcher",
+      "retires_when": "Separately authorised entrypoint maintenance; left unchanged"
+    }
+  ]
+}
