@@ -11,7 +11,7 @@
   "nodes": [
     {
       "id": "instructions",
-      "state": "drafted",
+      "state": "implemented",
       "depends_on": [],
       "blockers": [],
       "semantic_changes": [
@@ -32,16 +32,22 @@
     },
     {
       "id": "review_checks",
-      "state": "pending",
+      "state": "source review passed; metadata backcheck pending",
       "depends_on": [
         "instructions"
       ],
       "blockers": [],
-      "semantic_changes": []
+      "semantic_changes": [],
+      "evidence": [
+        "_run_records/REVIEW_RETURN_1.md",
+        "_run_records/REVIEW_RETURN_2.md",
+        "_run_records/repaired-checks/CHECKS.json",
+        "_run_records/PRESERVATION_CHECKS.json"
+      ]
     },
     {
       "id": "integration",
-      "state": "pending",
+      "state": "candidate ready for final metadata review and actual-head CI",
       "depends_on": [
         "review_checks"
       ],
@@ -62,5 +68,6 @@
       "item": "Legacy task-management launcher",
       "retires_when": "Separately authorised entrypoint maintenance; left unchanged"
     }
-  ]
+  ],
+  "integration_record": "PR review/checks/merge record is the terminal Git disposition; this graph does not claim merge before it occurs."
 }
