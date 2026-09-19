@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "lane": "DESIGN-SYSTEM-05",
+  "parentGraph": "../../WORK_GRAPH.json",
+  "base": "4dcab750501d039af5b2973991cbe0f3f423b80a",
+  "branch": "codex/swbpipe-design-system-v14-20260918",
+  "nodes": {
+    "DESIGN-SYSTEM-05": {
+      "role": "HELPS_HUMANS Type 1 design manager, working alone",
+      "model": "fable",
+      "status": "launched",
+      "launched": "2026-09-19T00:06Z",
+      "briefSha256": "322ca33b2f191f4cb812155e4e2631f8938239551a84f200a4c7144b4c5e7c11",
+      "brief": "briefs/DESIGN-SYSTEM-05_control_contrast.md",
+      "returnSha256": null,
+      "dependsOn": [
+        "B1-TOKENS merged 4dcab7505"
+      ]
+    }
+  },
+  "current_frontier": "Launched; awaiting the return."
+}
