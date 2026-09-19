@@ -7224,7 +7224,7 @@
   - Receipt-ID: `Receipt-262`
   - Examined-Through: `d55432eecd27ac441114369ffbdb4262bf503092`
   - Parent-Receipt: `Receipt-261`
-  - Owner-Direction: verbatim source and interpretation in `execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260919-LOOP-WORKGRAPH/OWNER_DIRECTION.md`.
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; verbatim source and interpretation in `execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260919-LOOP-WORKGRAPH/OWNER_DIRECTION.md`.
   - Pointers: same run's `WORK_GRAPH.json`; `execution/_Coordination/NOTICE_2026-09-19_APP_LOOP_WORKGRAPH.md`; prior bytes in `loop/.archive/2026-09-19-workgraph-transition/`.
   - Stale-Map-Delta: D-APP-127 retirements applied to live instructions; pre-existing authority-corpus drift retained for owner-directed reconciliation, without repinning.
   - Checks: validation and independent review records retained in the owning run; frontend/native gates not applicable because no product source changed. Required actual-candidate CI remains a merge gate.

@@ -1,0 +1,14 @@
+corpus current_version: v23
+  [MATCH] docs/DIRECTIVE.md            snapshot=50b816d5be74 live=50b816d5be74
+  [DRIFT] docs/CONTRACT.md             snapshot=fa8fc9dcc2f0 live=57411f8df49e
+  [DRIFT] docs/SPEC.md                 snapshot=01e1c75cdf7b live=8b0d805b6abc
+  [MATCH] docs/TYPES.md                snapshot=334bd49602a6 live=334bd49602a6
+  [MATCH] docs/PLAN.md                 snapshot=5e9cb5e553a8 live=5e9cb5e553a8
+  [DRIFT] docs/PRD.md                  snapshot=8649ccba8f68 live=17ca3f3c2b86
+  [MATCH] workflows/software-decomp/WORKFLOW.md snapshot=fd79f8001404 live=fd79f8001404
+  [MATCH] workflows/software-decomp/resources/contract.md snapshot=f6f159169c00 live=f6f159169c00
+  [MATCH] workflows/software-decomp/resources/method.md snapshot=1442f0cee8b5 live=1442f0cee8b5
+  [MATCH] workflows/domain-engine/WORKFLOW.md snapshot=922b6dadbc8a live=922b6dadbc8a
+  [MATCH] workflows/domain-engine/resources/contract.md snapshot=414cccf98053 live=414cccf98053
+  [MATCH] workflows/domain-engine/resources/method.md snapshot=e3bbb3e344c7 live=e3bbb3e344c7
+DRIFT: 3 ref(s) changed since v23; run `bump` to mint a new version.

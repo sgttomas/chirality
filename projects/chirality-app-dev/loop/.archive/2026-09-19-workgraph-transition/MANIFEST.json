@@ -16,6 +16,11 @@
       "source": "projects/chirality-app-dev/execution/_Coordination/_LATEST.md",
       "snapshot": "COORDINATION_LATEST.pre-transition.md",
       "sha256": "97a677a441c6acbc41c7eb83708975ca24067bd143ed8a5b7718bdcf7ddec194"
+    },
+    {
+      "source": "projects/chirality-app-dev/execution/_Coordination/_COORDINATION.md",
+      "snapshot": "COORDINATION.pre-transition.md",
+      "sha256": "c5f5cd999cfe2424a1925c130dc1ee16be8cea4b8f83a4d14d94f10532aff05e"
     }
   ]
 }

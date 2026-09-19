@@ -1,0 +1,29 @@
+........................................................................ [ 15%]
+...............................................F........................ [ 30%]
+........................................................................ [ 46%]
+........................................................................ [ 61%]
+........................................................................ [ 76%]
+........................................................................ [ 92%]
+....................................                                     [100%]
+=================================== FAILURES ===================================
+____ test_live_self_check_reports_root_ratified_governance_and_exits_clean _____
+
+live_self_check = (Report(command='self-check', findings=[Finding(severity=<Severity.BLOCK: 'BLOCK'>, code='APP_DEV_RECEIPT_CONTRACT', d...-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them aut …[truncated]']), None)
+
+    @live
+    def test_live_self_check_reports_root_ratified_governance_and_exits_clean(live_self_check):
+        report, _ = live_self_check
+        for name in ("DIRECTIVE.md", "CONTRACT.md", "SPEC.md", "TYPES.md"):
+            fact = _fact(report, f"root_governance.{name}")
+            assert "RATIFIED" in fact.value
+            assert "2026-07-11" in fact.value
+        from harness_common import Severity, compute_exit_code
+>       assert compute_exit_code(report.findings) == 0
+E       assert 1 == 0
+E        +  where 1 = <function compute_exit_code at 0x109056340>([Finding(severity=<Severity.BLOCK: 'BLOCK'>, code='APP_DEV_RECEIPT_CONTRACT', dimension='receipt-contract', message="I...pen_pipe_stress.validation.json', source_line=5, invariant='SPEC-0.2.4', invariant_ratification='N_A', caveat=''), ...])
+E        +    where [Finding(severity=<Severity.BLOCK: 'BLOCK'>, code='APP_DEV_RECEIPT_CONTRACT', dimension='receipt-contract', message="I...pen_pipe_stress.validation.json', source_line=5, invariant='SPEC-0.2.4', invariant_ratification='N_A', caveat=''), ...] = Report(command='self-check', findings=[Finding(severity=<Severity.BLOCK: 'BLOCK'>, code='APP_DEV_RECEIPT_CONTRACT', di...-11, in-session, Ryan Tufts): "You can now take all the `docs/` out of the DRAFT state, making them aut …[truncated]']).findings
+
+tools/practitioner_harness/test_live_baseline.py:281: AssertionError
+=========================== short test summary info ============================
+FAILED tools/practitioner_harness/test_live_baseline.py::test_live_self_check_reports_root_ratified_governance_and_exits_clean
+1 failed, 467 passed in 58.17s

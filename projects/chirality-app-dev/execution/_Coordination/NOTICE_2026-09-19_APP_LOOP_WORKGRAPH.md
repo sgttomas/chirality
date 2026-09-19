@@ -12,9 +12,10 @@ phase DAG without changing it. Owner steering controls phase transitions.
 `_LATEST.md` supplies current discovery, including the owner's development pause.
 The stable init and packaged product instructions are unchanged.
 
-The old three files are preserved byte-for-byte under
+The four prior instruction/navigation files are preserved byte-for-byte under
 `loop/.archive/2026-09-19-workgraph-transition/` with source hashes. Historical
-rulings, plans and receipts are not rewritten. The new receipt points to this
+rulings, plans and receipts are not rewritten. The active `_COORDINATION.md` navigation is aligned; its old ruled discovery
+paragraph remains explicitly historical and superseded. The new receipt points to this
 run; it does not qualify or reopen historical work.
 
 D-APP-127's existing retirement of DEL-09-07 initialization admission and A1 /
