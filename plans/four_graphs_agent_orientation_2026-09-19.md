@@ -11,7 +11,7 @@ Any piece of work here can be seen four ways. Each view answers a different ques
 | Structure and working memory | tree | What is this made of? | git: the project's decomposition and its deliverable folders |
 | Production and dependencies | directed acyclic graph | What must come before what? | the run's work graph; the project DAG; one git worktree per concurrent line of work |
 | Topic query and long-term memory | network | What bears on what, and who decided it? | decision registers, rulings, gap lists, owner-direction records; today reached by file search |
-| Attention and decomposition | many-to-one crossing | How does all of this become one thing? | the model, with files, tools and instructions; the decomposition workflows |
+| Attention and decomposition | attention: many inputs to one | How does all of this become one thing? | the model, with files, tools and instructions; the decomposition workflows |
 
 ## How to use each
 
@@ -21,7 +21,7 @@ Any piece of work here can be seen four ways. Each view answers a different ques
 
 **Network.** Decisions, rulings, constraints, gaps and the owner's directions cut across the tree: one of them can bear on many nodes. Before you decide or decompose, look up what already bears on the question. The edges that matter most are provenance: who decided this, in what words, when, and what it supersedes. Record the owner's words verbatim; label your reading and your decisions as yours; a later owner statement governs an earlier one. Never write your inference in the owner's voice. Facts in a record are easy to verify and provenance is not, so an error here survives audits and the next agent obeys it.
 
-**Crossing.** Decomposition and synthesis read everything against everything until a root and its levels emerge. It is the step a model does natively, and it is only as good as what it was given. Query the network first, so that a new decomposition does not repeat or contradict a decision already made. State what you rejected and why, not only what you chose.
+**Attention.** Decomposition and synthesis read everything against everything until a root and its levels emerge. It is the step a model does natively, and it is only as good as what it was given. Query the network first, so that a new decomposition does not repeat or contradict a decision already made. State what you rejected and why, not only what you chose.
 
 ## How they connect
 
@@ -34,7 +34,7 @@ The owner owns two edges of that loop: what production is allowed to put into me
 - Tree: notes and evidence accumulate in deliverable folders nobody read. Someone will have to find and re-file them.
 - Graph: state lives in handoff prose and the work graph is out of date. The next session plans from the wrong picture.
 - Network: an agent's conclusion appears in a later document as the owner's direction, every hash around it verifies, and the next agent follows it.
-- Crossing: a fluent plan that contradicts a recorded decision, because nothing was looked up first.
+- Attention: a fluent plan that contradicts a recorded decision, because nothing was looked up first.
 
 ## The measure
 
