@@ -55,6 +55,34 @@ knowledge—a property termed configurational multiplicity. This prose remains
 a candidate pending separate owner review. The approval of D-GOV-19 did not
 authenticate the thesis, which remains CITED/REVIEWED and nonbinding.
 
+*Revision note dated 2026-09-19.* Two subsections were added to Chapter 9 in a working session: §9.3.7, which
+records the owner's observation that the four structures of the architecture
+are the structures large-project delivery already converged on and which the
+owner directed into the thesis, and §9.4.8, an agent-proposed future-work
+item that follows from it (a second accountable professional, outside
+software). The owner's words are recorded in
+`plans/evidence/2026-09-19_owner_words_four_graph_structures.md`. The Status
+table above still names the models that first drafted Chapters 4 and 9; the
+passages dated 2026-09-19 in them were drafted by Claude Fable 5.1 and were
+checked before merge by an independent agent review (Claude Opus 5), which is
+an editorial and consistency check and confers no warrant state under
+`docs/TYPES.md` §10.4. Both are agent-drafted (Claude Fable 5.1), carry no
+citations yet and are UNWARRANTED until a verified pass adds sources; the
+observation they record is the owner's. Chapter 4 was revised the same day so that it no
+longer describes only two of the four structures: a paragraph in §4.1, a note
+in §4.2.1, a new §4.3.5 (the four structures, where each is realized, the two
+readings of the dependency graph, provenance as the network's key edges, a
+statement that today the folder structure and file versions alone carry all
+four, the owner's intended development (a knowledge decomposition over the
+file directory, a structuring of its yield into the corresponding graphs, and
+a BM25 and vector-store search tool called through a workflow or skill, all
+as rebuildable projections of the versioned files), and the loop with the
+human on two of its edges) and a paragraph in §4.10. §4.3.4 and
+the normative edge classes of `docs/TYPES.md` §3 are unchanged. They do not change the thesis's
+status, which remains CITED/REVIEWED and nonbinding. A dated illustrated draft
+of the four structures is at `plans/four_graphs_of_knowledge_work_2026-09-19.html`,
+with an agent-facing note beside it.
+
 An owner-revision backlog for the thesis is catalogued in `plans/consistency_audit_2026-07-01.md` (2026-07-01).
 
 *Revision note dated 2026-07-02.* An owner-directed reconciliation pass was applied across the document set: Appendix A regenerated from the live `docs/CONTRACT.md` (27 K-* invariants); mutable registry counts removed from prose; APEGA and Engineers Canada AI-guidance currency updates (Chapters 2, 6, 9); claim-strength language normalized to Chapter 8's stated enforcement model; epistemic-labeling attribution aligned with D-GOV-08; Chapter 2 vocabulary and citation-binding corrections; glossary and cross-reference fixes. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
