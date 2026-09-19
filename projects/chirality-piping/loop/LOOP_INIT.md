@@ -1,127 +1,43 @@
-# Work Loop — session init
+# Piping development — session entry
 
-You are resuming, as the next bounded operator, the work loop that lives in
-this file's directory. The loop's goal and owner intent are recorded in its
-standing plan (step 2) — pursue them as far as live authority permits. Each
-iteration starts by discovering the live lawful work surface; make it
-explicit, work the widest lawful tranche(s), and stop at owner gates.
+Resolve `REPO_ROOT` with `git rev-parse --show-toplevel` and `WORKING_ROOT` as
+`{REPO_ROOT}/projects/chirality-piping`. Read root `AGENTS.md`, the active role
+instructions and `{WORKING_ROOT}/AGENTS.md`.
 
-Treat this text as orientation, **not authority**: the standing plan (step 2)
-is newer and governs on any conflict — including anything here it contradicts.
-This init deliberately restates no facts, rulings, counts, SHAs, or lane
-names, so it does not go stale and any loop can reuse it verbatim; the
-load-bearing state is re-derived at Step 0.
+## Recurrent instructions
 
-## 1. Bootstrap
+The standing development procedure is in the project `AGENTS.md`. Read the
+current committed standing plan for its procedural pointer and retained
+boundaries: enumerate direct `loop/WORKPLAN_*.md` entries in committed `HEAD`,
+sort paths bytewise and select the last. Require a regular blob with mode
+`100644`, and read its committed bytes with `git show HEAD:<selected-path>`.
+If selection or reading fails, report the failure rather than falling back to
+an older plan. Uncommitted candidates and `.archive/` copies are not selectable.
 
-- Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`; work from there.
-- The loop's standing surfaces resolve relative to this file's own directory.
+## State pointers and discovery
 
-## 2. Hand off to the plan
+Use the owner's assignment to identify the owning run. Read its work graph,
+latest handoff, recorded directions and applicable plan/specifications. Inspect
+named branch and worktree state, including unmerged work, before proposing new
+implementation. When no run is identified, validate `loop/LOOP_RECEIPTS.md` with
+`tools/validation/validate_piping_loop_receipts.py --repo-root .`, then use its
+latest applicable pointers to discover the current run records and coordination
+notices. A receipt is navigation and history, not an instruction to repeat its
+completed work. Report the proposed continuation; do not restart historical
+work by default. A failed receipt check blocks reliance on that cursor, not
+independent work with a verified basis.
 
-The standing plan is the protocol, selected only from committed `HEAD`; an
-untracked, staged-only, or worktree-only filename is never selectable. From
-the repository root, enumerate `HEAD` entries under
-`projects/chirality-piping/loop/`, retain basenames matching
-`^WORKPLAN_.*\.md$`, sort paths bytewise (`LC_ALL=C`), and select the last.
-Require exactly one `HEAD` tree entry for the selected path with mode `100644`
-and type `blob`, then read the plan bytes only with
-`git show "HEAD:$SELECTED_PLAN"`. Do not read or execute the worktree copy.
-If enumeration, regular-blob validation, or committed-byte reading fails,
-stop before Step 0 and report the loader failure. Do not silently select an
-older plan after any failure. A candidate outside `loop/WORKPLAN_*.md` is
-never selectable.
+## Steering
 
-The selected committed plan's **Step 0 (Discover)** runs before anything
-else. The plan carries the loop's recorded owner intent,
-protocol, standing constraints, and pointer indexes ONLY — no status, no
-history. Current state is re-derived from the live sources the plan names
-(registers, profile, git, harness commands); the handoff context (owner
-directions, gate outcomes, stale-map deltas) lives in the latest receipts in
-`LOOP_RECEIPTS.md` beside this file, whose local rules govern what a receipt
-may contain. Before using any receipt as a cursor or handoff basis, run the
-receipt validator named by the standing plan; a structural failure blocks use
-of the ledger until repaired through its governed path.
+Apply the owner's current directions and any per-run steer, including an
+owner-supplied handoff prompt, the launcher's steer or the owning run's direction
+record. Keep specific priorities, lane and worktree identities,
+active handoff paths, pause conditions and next actions in those state or
+steering records, not in these recurrent instructions. Distinguish a recorded
+owner direction from the previous agent's recommendation.
 
-## 3. First return from Step 0
-
-Your first substantive output is a live orientation return, not a copied plan
-or a recap of this file. It should name:
-
-- the live git state and newest applicable receipt;
-- the latest owner directions and register/profile gates that matter now;
-- the widest lawful tranche(s) currently open;
-- any lane that is parked, and the owner action that would unpark it.
-
-If the live state says the loop is parked pending owner direction, stop after
-that orientation return unless the owner has already provided new direction in
-the current session.
-
-## 4. The stance to carry into Step 0 (the hard-won lesson)
-
-The plan, the receipts, and any dated assessment are **maps with per-claim
-citations — not authority**. The recurring failure mode in this archive is a
-fluent draft grounded on stale facts. So:
-
-- Before you rely on any derivative statement — a map's claim, a receipt's
-  pointer, **or your own tasking and this init text** — open its cited source
-  in the live tree and confirm it still holds. On disagreement the **live tree
-  wins** — record the delta in your loop receipt, never by editing the map.
-  (Execution agents have repeatedly caught errors in their own instructions
-  this way; the discipline applies to prompts, not just files.)
-- New owner rulings since the last receipt are how work unlocks. Check every
-  decision register the plan names, every iteration.
-- Be ambitious inside the lawful surface: select the **widest lawful
-  tranche(s) now**, re-derived, not pre-assumed.
-
-## 5. Default posture (a per-run steer may override; the gate may not)
-
-- **Pacing:** continue until every lawful path of advancement is exhausted
-  except human decision; park gated items and keep independent lawful work
-  moving toward the loop's goals.
-- **Terminus:** when only human-decision items remain, present them as a
-  decision slate and stop — never manufacture lower-value work to stay busy.
-- **Adopted briefs:** an adopted-but-unexecuted brief is live authority —
-  execute it (branch-first, with the plan's work-type checks) unless this
-  run's steer says otherwise.
-
-## 6. The one gate you cannot cross
-
-**Adoption, ruling, and direction are the owner's acts** (K-AUTH-1; D-GOV-04)
-— no command and no agent performs them. For deliverable work, generate
-CANDIDATE brief(s); for coordination/control work, present a decision slate
-(options + non-binding recommendation + on-ruling mechanism). Surface what you
-would do once each is adopted/ruled, and **stop there** for the owner. Only
-after the owner acts do you execute inside the fence, run the plan's
-work-type checks, append one versioned minimal receipt to `LOOP_RECEIPTS.md`
-beside this file (per its local rules: exact cursor, claim-calibrated chat
-transcriptions only when needed, pointers, gate outcome, pass/fail-only check
-summary), and rerun the receipt validator so the next iteration starts clean.
-
-## 7. Session constraints and any per-run steer
-
-Immutable receipts that say a steer overrides “LOOP_INIT §7 defaults” refer to
-the conventions section as numbered when those steers were recorded. Those
-historical section references do not override the current plan or canonical
-runtime instructions.
-
-Loop execution obligations are discharged through canonical Agent 1 execution,
-not as permissions of the entry session; if the required executable child depth
-is unavailable, the affected stage defers. For a `DEC-082`/`DEC-083` exercise,
-the loop session holds the Step 2 disposition judgment while execution,
-rationale-artifact writes, and independent verification are delegated; the
-rationale artifact and receipt separately attribute the judgment holder,
-executor, and verifier.
-
-Beginning with Receipt 46, every versioned receipt has exactly one
-`Model-Attribution` record naming the model or capability actually used for
-each session or delegated role, or pointing to the owning run record that does.
-Any mid-task model or capability change is explicit; silent substitution is not
-valid closeout.
-
-Standing constraints and the loop protocol live in the plan — follow them as
-written.
-
-If the owner appended a steer for this run (the launcher's `Steer` line, their
-message, or a line below), honor it on top of the plan and over §5's defaults;
-the plan still governs the protocol, the fences, and the gate above.
+Return a short orientation and the proposed next bounded work. Apply the
+project's discovery, strategy, testing, review and integration requirements.
+Continue under existing authority and an applicable approved strategy; bring
+the owner only consequential choices or unresolved authority conflicts. A
+handoff's procedural habit does not create a new owner gate.
