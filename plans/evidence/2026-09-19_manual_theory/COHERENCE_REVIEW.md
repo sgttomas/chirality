@@ -42,6 +42,17 @@ review. Parent retains responsibility for the argument and final integration.
 
 ## Final checkpoint
 
-Pending the fresh independent review. Agent 0 will inspect every finding's
-disposition and reread the integrated draft before closeout. The PR terminal
-record will retain that result without claiming owner acceptance of the text.
+The first independent review passed with no actionable findings. Agent 0 then
+asked whether the interaction among the four structures needed fuller treatment;
+the reviewer agreed it was useful strengthening, not a blocking defect. Agent 0
+wrote two paragraphs in theory §4 distinguishing conceptual recurrence from
+operational LOOP_INIT and recorded proposals/failures from accepted reliance.
+The reviewer did not edit the manuscript. REVIEW_ADVICE.md preserves the advice.
+
+Agent 0 reread the full theory, worked-example method and reading map after that
+addition. The purposes, vocabulary, eight propositions and prospective contrary
+evidence remain consistent; no product-case verdict or new operational authority
+is introduced. The addition makes the transition between structure and action
+clearer without requiring every phase to use a loop. Final independent backcheck
+of the addition and evidence remains a merge prerequisite. The PR terminal
+record will retain it without claiming owner acceptance of the text.

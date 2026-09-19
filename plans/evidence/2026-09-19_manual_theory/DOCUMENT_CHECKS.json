@@ -1,0 +1,100 @@
+{
+  "candidate": "3142dca024c89dde53240e52c52338838e15bb5c",
+  "relative_links": [
+    {
+      "file": "docs/ai_software_project_management/01_theory.md",
+      "target": "README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/01_theory.md",
+      "target": "../CYCLE_DRIVEN_RESOLUTION.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/01_theory.md",
+      "target": "../../AGENTS.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/01_theory.md",
+      "target": "../../plans/evidence/2026-09-19_owner_words_four_graph_structures.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/01_theory.md",
+      "target": "02_worked_example_method.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "01_theory.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "02_worked_example_method.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "../../plans/evidence/2026-09-19_manual_theory/OWNER_DIRECTION.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "../thesis/03_philosophical_framework.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "../thesis/04_architecture.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "../thesis/07_se_design_analysis.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "../thesis/09_discussion.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "../../plans/evidence/2026-09-19_owner_words_four_graph_structures.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "../CYCLE_DRIVEN_RESOLUTION.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "../../AGENTS.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "../thesis/README.md#warrant-status",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/README.md",
+      "target": "../../plans/evidence/2026-09-19_manual_theory/",
+      "result": "pass"
+    },
+    {
+      "file": "docs/ai_software_project_management/02_worked_example_method.md",
+      "target": "01_theory.md",
+      "result": "pass"
+    }
+  ],
+  "owner_transcription_hashes": {
+    "count": 6,
+    "result": "pass"
+  },
+  "method": "Resolve each Markdown link against its file directory; verify target exists and any explicit heading anchor. Recompute SHA-256 over each retained quote between its fences, without the closing delimiter newline."
+}

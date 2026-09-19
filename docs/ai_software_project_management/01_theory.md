@@ -129,6 +129,20 @@ neural attention algorithm formally represents project judgment. A model may
 generate decompositions and comparisons; the people responsible for the project
 interpret their significance and exercise the authority allocated to them.
 
+The views participate in successive passes through an undertaking. Attention
+to sources and prior decisions supports a decomposition; the resulting tree
+locates units whose relationships inform the production graph. Execution adds
+observations, proposals, failures and decisions to the network of records.
+Subsequent interpretation can draw on that expanded basis when refining the
+work. This account develops the connection proposed in thesis §4.3.5.
+
+That recurrence is a relationship among activities, not a requirement to invoke
+`LOOP_INIT` during every phase. Human steering shapes the purpose and
+consequential changes; acceptance identifies what may be relied upon within
+its stated scope. Raw observations and rejected proposals can remain useful
+records without acquiring acceptance. The cycle therefore carries both learning
+and unresolved questions, rather than only completed or accepted outputs.
+
 **Proposition P2 — completeness requires relationships among the views.** A
 locally coherent activity can still fail the undertaking when it neglects a
 necessary relationship in another view. Examples to investigate include a
