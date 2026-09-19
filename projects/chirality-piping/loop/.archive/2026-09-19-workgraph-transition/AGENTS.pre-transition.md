@@ -1,55 +1,35 @@
-# Piping development — recurrent loop
+---
+doc_id: OPS-AGENTS
+doc_kind: governance.agent_index
+status: active
+created: 2026-04-30
+revised: 2026-09-19
+---
 
-This file holds the recurrent procedure and discovery guidance. Current work
-and status belong in the owning run; priorities and phase transitions come from
-the owner's steering. Historical dated `WORKPLAN_*.md` files remain at their
-cited paths but are not selected or executed as loop instructions.
+# AGENTS — SWBPIPE Project Instructions
 
-Resolve `REPO_ROOT` with `git rev-parse --show-toplevel` and `WORKING_ROOT` as
-`{REPO_ROOT}/projects/chirality-piping`. Read root `AGENTS.md`, the active role
-instructions and `{WORKING_ROOT}/AGENTS.md` for project-specific constraints.
+Accepted by the owner on 2026-09-19; these project instructions replace the
+previous standing development-loop procedure.
+Root `AGENTS.md` and the selected `agents/AGENT_*.md` package govern agent roles
+and delegation. Applicable owner directions govern the work; an agent's plan,
+handoff or interpretation does not create owner authority.
 
-## Discovery and steering
+## Paths and knowledge sources
 
-Use the owner's assignment to identify the owning run. Read its work graph,
-latest handoff, recorded directions and applicable plan/specifications. Inspect
-named branch and worktree state, including unmerged work, before proposing new
-implementation. When no run is identified, validate `loop/LOOP_RECEIPTS.md` with
-`tools/validation/validate_piping_loop_receipts.py --repo-root .`, then use its
-latest applicable pointers to discover the current run records and coordination
-notices. A receipt is navigation and history, not an instruction to repeat its
-completed work. Report the proposed continuation; do not restart historical
-work by default. A failed receipt check blocks reliance on that cursor, not
-independent work with a verified basis.
+Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`. Set `WORKING_ROOT` to
+`{REPO_ROOT}/projects/chirality-piping`. Use these anchors or repository-relative
+paths in durable instructions and briefs, not machine-specific absolute paths.
 
-Apply the owner's current directions and any per-run steer, including an
-owner-supplied handoff prompt, the launcher's steer or the owning run's direction
-record. Keep specific priorities, lane and worktree identities,
-active handoff paths, pause conditions and next actions in those state or
-steering records, not in these recurrent instructions. Distinguish a recorded
-owner direction from the previous agent's recommendation.
+The external engineering corpus `domains/piping-design/` has vetted prose,
+concepts and design guidance, but its extracted equation artifacts are
+unreviewed `pdf2md`/OCR extractions pending the maintainer's manual review.
+Consumers may cite the prose for concepts, terminology and approach. Never
+present an extracted equation as authoritative; report the artifact's review
+status. Never use those equation artifacts as references for physics-model
+builds, solver/kernel work or analytical verification. Use the maintainer's
+vetted engineering sources. This preserves DEC-043.
 
-Return a short orientation and the proposed next bounded work. Apply the
-project's discovery, strategy, testing, review and integration requirements.
-Continue under existing authority and an applicable approved strategy; bring
-the owner only consequential choices or unresolved authority conflicts. A
-handoff's procedural habit does not create a new owner gate.
-
-## Stable source pointers
-
-Resolve these paths relative to `WORKING_ROOT` as needed for the assignment:
-
-- Owner decisions: `execution/_Coordination/_DECISIONS/_REGISTER.md` and its
-  cited rulings; coordination notices and run records under
-  `execution/_Coordination/`.
-- Project DAG: the accepted snapshot named by `execution/_DAG/_LATEST.md`.
-- Deliverable basis: `execution/_Decomposition/SOFTWARE_DECOMP.md` and relevant
-  deliverable specifications, contracts and Remaining entries.
-- Product requirements and checks: `docs/PRD.md`, `software-workflow.json`.
-- Session continuity: `loop/LOOP_RECEIPTS.md` and the owning run's work graph
-  and handoff. Receipts and notices are pointers and evidence, not authority.
-
-## Organise the undertaking
+## Discover and organise the work
 
 Begin with the owner's assignment, the owning run's work graph, latest handoff,
 recorded owner directions and relevant specifications. Verify their material
@@ -70,24 +50,12 @@ changes, departures from specification, deferred work and when it retires, and
 evidence pointers. Derive handoffs from this graph. Keep one canonical copy of
 evidence in the owning run, with hash references where needed.
 
-The project DAG describes project-wide deliverables and dependencies. Its
-structure is expected to remain relatively stable while being rebuilt for each
-project phase under owner direction. The owner steers phase transitions; agents
-do not infer or initiate them from apparent progress.
-
-The session work graph translates that broader structure into executable work
-at the detail needed for the undertaking. It replaces the session workplan;
-no separate workplan or dated workplan selector is required. Maintain traceable
-links to the current phase's accepted DAG and relevant deliverables, marking
-uncertain mappings as provisional. Record newly discovered dependencies,
-departures and gaps for the next owner-directed reconciliation. The session
-graph does not silently amend the project DAG or close deliverable commitments.
-
-Keep run evidence in its owning run rather than guessing a deliverable home.
+This graph is built from the code and the undertaking. It is not the repository's
+deliverable DAG. Record tentative deliverable bindings as unverified; do not
+guess a deliverable home for evidence or infer lifecycle completion from merged
+code. Reconcile deliverable scope and status when the owner directs that work.
 Existing deliverables, decisions and approved dependency snapshots remain valid
-in their own domains. Reconcile scope and status, and rebuild the project DAG,
-when the owner directs that phase work. No DAG rebuild is required at session
-entry or merely because a work graph changes.
+in their own domains; changing the planning surface does not amend them.
 
 Discover enough to propose a delegation and model strategy before substantial
 implementation or agent launches. Explain what Agent 0 will do, delegated
@@ -98,7 +66,7 @@ changes. An already approved applicable strategy satisfies this step. Read-only
 discovery, preparation of the proposal and bounded decision packages may proceed
 before that agreement. Cost estimates are not required.
 
-## Delegation and coordination
+## Delegation and evidence
 
 Choose agent types by responsibility and delegation needs, not task complexity
 or reasoning level. Use managers when coordinated implementation and repair
@@ -114,13 +82,20 @@ validates their returns. Retain returns verbatim with hashes and actual model
 and reasoning settings, plus findings, substitutions and dispositions. Record
 host enforcement limits honestly. Type 2 instances do not delegate.
 
+Keep model allocation in the approved run strategy and actual execution records,
+not these standing instructions (D-GOV-17 M1-D). A model or harness change must
+not silently change role, authority or scope. Reuse transcript parsers, launch
+scripts and attribution conventions only when they work in the current host.
+Preserve their evidence purpose using available tools; attribute commits
+truthfully. Do not copy another harness's model or co-author identity.
+
 Parallelise work with clear dependencies and disjoint writes. Give shared files
 one integration owner. Serialize access to native/browser state and other shared
 test resources when concurrent use would invalidate results. Intervene when
 repeated repair attempts yield no new evidence; change the diagnosis or split
 the problem instead of repeating an unproductive approach.
 
-## Decisions
+## Decisions and boundaries
 
 Use engineering judgment inside the authorised scope. Established exemplars
 and consistency in ontology, epistemology, praxeology and axiology inform that
@@ -133,6 +108,21 @@ A departure that conflicts with an explicit owner decision or protected criterio
 requires an owner decision before it takes effect. Do not manufacture approvals
 from silence. Record the owner's words verbatim and distinguish them from agent
 interpretations and decisions.
+
+The domain, privacy, claims, lifecycle and scope-gated integration boundaries
+in F-PIP-1 through F-PIP-4 remain subject to their owning rulings. Their retained
+definitions are in `loop/WORKPLAN_2026-07-18b_piping_loop.md`, under "Standing
+constraints — fences"; later owner rulings govern explicit amendments. Replacing
+the old loop procedure does not waive those boundaries. It supersedes F-PIP-5's
+deliverable-only work-selection procedure with the run graph described above.
+Do not edit historical fence definitions or infer release/issuance authority.
+
+Write only inside the authorised scope, including required run evidence. Root
+governance, agents, workflows, skills and tools need explicit authority for that
+work. Do not alter other projects or stage, revert or repair unrelated state.
+For authorised dependency-register work, use the canonical type system and the
+approved snapshot named by `execution/_DAG/_LATEST.md`; preserve legacy labels
+as provenance rather than re-emitting them as current enums.
 
 ## Build and test through user workflows
 
@@ -159,18 +149,6 @@ visual pass. Report unavailable or blocked scenarios explicitly. Scale the
 scenario set to the slice; it is not a demand to run every scenario on every
 edit. Agent-driven behavioural testing does not substitute for independent
 practitioner usability work or lift its holds.
-
-## Reproducible evidence
-
-For empirical claims, retain sufficient non-secret evidence for another
-person or agent to check and, where feasible, reproduce the result: input and
-candidate identities, relevant tool versions and environment, commands and
-arguments, expected and observed outcomes, and the necessary raw outputs.
-Keep a bounded rerun method and hash references to canonical evidence. Scale
-this record to the claim; ordinary documentation edits do not require a product
-qualification package. If required evidence cannot be retained or reproduced,
-state the limitation and withhold the unsupported claim. Never preserve secrets
-or private user models to satisfy an evidence requirement.
 
 ## Protected checks, review and integration
 
