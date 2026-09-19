@@ -61,7 +61,13 @@ four structures of the architecture as the structures large-project delivery
 already converged on) and §9.4.8 (a second accountable professional, outside
 software, as future work). Both are agent-drafted (Claude Fable 5.1), carry no
 citations yet and are UNWARRANTED until a verified pass adds sources; the
-observation they record is the owner's. They do not change the thesis's
+observation they record is the owner's. Chapter 4 was revised the same day so that it no
+longer describes only two of the four structures: a paragraph in §4.1, a note
+in §4.2.1, a new §4.3.5 (the four structures, where each is realized, the two
+readings of the dependency graph, provenance as the network's key edges, a
+query store admitted only as a derived index over versioned files, and the
+loop with the human on two of its edges) and a paragraph in §4.10. §4.3.4 and
+the normative edge classes of `docs/TYPES.md` §3 are unchanged. They do not change the thesis's
 status, which remains CITED/REVIEWED and nonbinding. A dated illustrated draft
 of the four structures is at `plans/four_graphs_of_knowledge_work_2026-09-19.html`,
 with an agent-facing note beside it.
