@@ -214,22 +214,9 @@ instances do not delegate. A manager is useful for coupled repair cycles;
 a bounded specialist may report directly to Agent 0. Neither role type nor
 reasoning effort is a proxy for task complexity.
 
-For a small read-only assignment, a launch message retained verbatim before
-dispatch may itself be the sealed brief. Keep the same necessary purpose,
-context identity, parent/role, tools and read-only boundary, expected return and
-checks; no separate elaborate brief file is required. Preserve its hash and
-return in the owning run. Scale the detail to the assignment, not its role type.
-
 Disclose departures from specification, rationale and reversal method. An
 explicit owner decision cannot be contradicted by an agent's preference.
 Bring consequential decisions as packages with evidence and a recommendation.
-
-An explicit ruling, a specifically adopted choice or a protected criterion
-cannot be reversed by an agent. Other implementation departures may be decided
-within delegated discretion and disclosed with their rationale and reversal
-method. An approved specification is not automatically optional: read its terms
-and the owner's direction to distinguish fixed requirements from implementation
-discretion. Bring a conflict with a fixed requirement to the owner before acting.
 
 ### Step 3 — Gate
 
@@ -259,31 +246,11 @@ observed outcomes, candidate/environment and evidence; fix defects and rerun
 affected scenarios. Behavioural checks do not establish owner or usability
 acceptance. Reconciliation work does not itself authorise product repairs.
 
-When changed behaviour depends on native-host integration, verify it in the
-native application; browser evidence alone does not establish that behaviour.
-Identify the affected native scenarios in the slice's verification brief and
-report any unavailable witness explicitly. This does not require a full native
-sweep for every unrelated change.
-
 Run §8 checks and satisfy §9 for evidence claims. Never weaken a protected
 check to obtain a pass. Apply independent review and APP-HOLD-1 as required by
 `AGENTS.md`. Product checks run on a clean candidate before merge; required CI
 and review must cover the actual merging revision. Later edits need additional
 review coverage and checks whose applicability changed.
-
-Here a slice means a proposed mergeable change, including instructions and
-owner-direction records; a read-only dispatch is not itself a slice. Scale review
-depth to what the change can break. Small changes can have small independent
-reviews; backcheck the affected correction and its consequences rather than
-repeating the whole investigation without cause. This does not permit skipping
-required review, leaving a finding unchecked or treating later bytes as reviewed.
-
-During long work, keep the graph current and create useful recoverable Git
-checkpoints at meaningful boundaries. Label incomplete work and unverified
-checks explicitly; do not weaken a check to make a checkpoint green. After an
-involuntary stop, inspect the branch, index and working tree before resuming:
-a checkpoint or handoff may not include the last edits. This is not a requirement
-to commit after every edit or to discard work that has not yet passed checks.
 
 ### Step 5 — Closeout or pause
 
@@ -294,8 +261,7 @@ assignment; a merge does not discharge those commitments automatically. Preserve
 lifecycle gates and `Checking Approval SHA` discipline. Use traceable pointers
 rather than copying evidence into guessed deliverable locations.
 
-At a meaningful pause or closure, append a short receipt pointing to the owning
-run and continuation work under `LOOP_RECEIPTS.md`'s rules; rerun its validator.
+Append a bounded receipt under `LOOP_RECEIPTS.md`'s rules and rerun its validator.
 Use scoped PRs at meaningful integration boundaries; no fixed one-commit-per-
 iteration or whole-backlog exhaustion requirement applies. Standing Git authority
 permits merge after actual-candidate CI and independent review pass, subject to

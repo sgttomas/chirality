@@ -131,7 +131,7 @@ Steer (this run): <none>
 
 ## 5. Piping work loop launcher (chirality-piping development) — ACTIVE
 
-Paste-ready as written; replace `<none>` with a per-run steer if you want one.
+Add the owner's session steering in place of `<none>` before launching.
 
 <init-prompt>
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
@@ -144,8 +144,8 @@ Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
 
 Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
 
-Read `{WORKING_ROOT}/loop/LOOP_INIT.md` and follow it: pursue the loop's
-inherent goals as far as live authority permits.
+Read `{WORKING_ROOT}/loop/LOOP_INIT.md` and follow it within the owner's
+steering and live authority.
 
 Steer (this run): <none>
 </init-prompt>
@@ -153,7 +153,7 @@ Steer (this run): <none>
 Entry is typed: the launcher selects `HELP_HUMAN` under the owner's
 instruction-separation direction (recorded verbatim in
 `projects/chirality-piping/execution/_Coordination/AgentRuns/INSTRUCTION-SEPARATION-20260717/RUN_RECORD.md`).
-The goal, protocol, fences, and pointer index live in
+The recurrent procedure, fences, and pointer index live in
 `projects/chirality-piping/loop/LOOP_INIT.md`; follow its live discovery
 pointers and receipt references. This supersedes the older
 status-laden entry (`execution/_Coordination/NEXT_INSTANCE_PROMPT.md`), which
@@ -163,7 +163,7 @@ remains as a historical map.
 
 ## 6. App-dev work loop launcher (chirality-app-dev development) — ACTIVE
 
-Paste-ready as written; replace `<none>` with a per-run steer if you want one.
+Add the owner's session steering in place of `<none>` before launching.
 
 <init-prompt>
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
@@ -175,14 +175,13 @@ Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
 
 Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
 
-Read `{WORKING_ROOT}/loop/LOOP_INIT.md` and follow it: pursue the loop's
-inherent goals as far as live authority permits.
+Read `{WORKING_ROOT}/loop/LOOP_INIT.md` and follow it within the owner's
+steering and live authority.
 
 Steer (this run): <none>
 </init-prompt>
 
-Same thin-launcher rationale as §3: the goal, protocol, fences, and pointer
-index live in `projects/chirality-app-dev/loop/LOOP_INIT.md`; follow its
+The recurrent procedure, fences, and pointer index live in `projects/chirality-app-dev/loop/LOOP_INIT.md`; follow its
 live discovery pointers and receipt references. This supersedes the older
 status-laden entry (`execution/_Coordination/NEXT_INSTANCE_PROMPT.md`), which
 remains as a historical map.
