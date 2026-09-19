@@ -1,0 +1,13 @@
+{
+  "parent": "/root",
+  "role": "TASK Type 2",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "high",
+  "mechanism": "delegated-harness-native",
+  "enforcement": "instruction-asserted read-only and nondelegation; no filesystem isolation",
+  "candidate": "774d9aabf996edc8e0a61fa7eb1d69eb9b9501fc",
+  "launch_prepared_utc": "2026-09-19T21:14:50.489400+00:00",
+  "brief_sha256": "21df0d8be5d12974e16d45faea35ea30a00a64bbf7c83506bb109b8b0309a69b",
+  "write_scope": [],
+  "return_requirement": "verbatim return plus SHA-256 retained by parent"
+}

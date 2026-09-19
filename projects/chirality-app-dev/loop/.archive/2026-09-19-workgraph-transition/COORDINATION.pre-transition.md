@@ -2,7 +2,7 @@
 
 **Epistemic status (rewritten 2026-07-10 at owner adoption, K-AUTH-1).** This file is
 now a ruled-record surface and pointer, not the operative protocol. The
-development-loop instructions live in `loop/LOOP_INIT.md`. This
+development-loop instructions live in the newest `WORKPLAN_*.md` under `loop/`. This
 file carries only the rules and records that decision packets, register rows, and
 receipts name it for. It must never accumulate status, queues, or counts; the
 pre-2026-07-10 text is preserved in git history.
@@ -11,16 +11,7 @@ Path anchors: resolve `REPO_ROOT` with `git rev-parse --show-toplevel`; set
 `WORKING_ROOT` to `{REPO_ROOT}/projects/chirality-app-dev`; paths below are relative
 to `WORKING_ROOT`.
 
-## Work discovery (historical ruled record; procedural application superseded)
-
-The paragraph below preserves the 2026-07-10 ruling as history. Its dated
-workplan selector and deliverable-only session planning are superseded for
-current procedure by the owner-directed amendment recorded in
-`AgentRuns/HELP-HUMAN-APP-20260919-LOOP-WORKGRAPH/OWNER_DIRECTION.md` and the
-application notice `NOTICE_2026-09-19_APP_LOOP_WORKGRAPH.md`. Current discovery
-uses `loop/LOOP_INIT.md`, owner steering and the session work graph, traceable
-to the accepted phase DAG. This does not revive any ruled-shut lane or remove
-deliverable gates. The original text is not an executable session instruction.
+## Work discovery (ruled record)
 
 The plans-as-queue convention is retired (owner adoption 2026-07-10, verbatim in
 `loop/LOOP_RECEIPTS.md` Receipt 5): work is discovered from deliverable-local
@@ -80,30 +71,28 @@ and correct the guidance surface. Do not silently rewrite authority.
 
 ## Active Development Loop
 
-The recurrent procedure lives in `loop/LOOP_INIT.md`; current discovery is
-through `_LATEST.md` and the owning run. The session work graph supplies
-executable detail, while the owner steers priorities and phase transitions.
-It does not replace decomposition truth or authoritative deliverable state.
-Historical references to this record's older protocol sections resolve to the
-revision cited at the time, retained in Git and the loop archive; they do not
-reactivate a dated workplan selector.
+The operative loop — intake, selection, bounded `TASK` workers, validation gates,
+`chirality-change` closeout, and the hard fences — is absorbed into the newest `WORKPLAN_*.md`
+under `loop/` as of 2026-07-10 (owner-adopted, K-AUTH-1). Historical references to
+this file's Baseline Intake, Active Development Loop, Subagent Use, Git And Validation
+Closeout, and Human-Ruling Stops sections resolve to that plan's protocol steps and
+fence list. The pre-2026-07-10 text is in git history at this path.
 
 ## Pointers
 
-- Session entry: `init/dev-loop-init-prompt.md` → `loop/LOOP_INIT.md` → owner-named
-  run or applicable discovery/receipt pointers.
-- Session plan: owning run work graph; deliverable basis remains
-  `execution/PKG-*/1_Working/DEL-*/_STATUS.md` (`## Remaining`) and its contracts.
+- Session entry: `init/dev-loop-init-prompt.md` → `loop/LOOP_INIT.md` → the newest
+  `loop/WORKPLAN_*.md` → `loop/LOOP_RECEIPTS.md`.
+- Work surface: `execution/PKG-*/1_Working/DEL-*/_STATUS.md` (`## Remaining`).
 - Decision register: `execution/_Coordination/_DECISIONS/_REGISTER.md`.
 - Discovery pointer: `execution/_Coordination/_LATEST.md`.
-- Codex host re-platform (D-GOV-43, topology A2, 2026-09-12): architecture history
+- Codex host re-platform (D-GOV-43, topology A2, 2026-09-12): implementation entry
   `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md`;
   App application record `_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`.
-  The current Shared Runtime Boundary in `{WORKING_ROOT}/AGENTS.md` reflects
-  the application-owned Runtime service child, not the retired per-user daemon.
+  The "Shared Runtime Boundary" wording in `{WORKING_ROOT}/AGENTS.md` (per-user daemon as
+  sole owner) is read with that record until the instruction surface is revised.
 - Role posture: `{REPO_ROOT}/AGENTS.md`, the active role instruction under
   `{REPO_ROOT}/agents/`, and `{WORKING_ROOT}/AGENTS.md`. New chats default to
-  HELP_HUMAN; delegation follows the agreed strategy and canonical role rules;
+  HELP_HUMAN; implementation uses WORKING_ITEMS with bounded TASK executors;
   Git closeout uses the project-scoped `chirality-change` skill.
 - Landed-work narrative: `plans/PLAN_COMPLETION_LOG.md` (history, never a queue).
 - `execution/_Coordination/NEXT_INSTANCE_PROMPT.md`: dated historical map (pre-loop

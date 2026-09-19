@@ -1,0 +1,1 @@
+INVALID OWNER_DIRECTION_STATUS /Users/ryan/.codex/worktrees/8728/chirality-picking-stability-20260918/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md:7227: Owner-Direction must include 'CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING'
