@@ -9,20 +9,31 @@ changes require acknowledged handoffs; silence transfers nothing.
 
 | Worktree / branch | Owner and current scope |
 |---|---|
-| b3d208ad-bb6f-4bed-aaab-c567e28cbe23/chirality / codex/swbpipe-continuation-20260919 | ROOT: shared records, graph, decisions, independent reviews and final integration. Current checkpoint includes reviewed CI strategy, owner-approved dist parity and combined verification. |
-| swbpipe-wt2 / codex/swbpipe-b3a-i1-20260920 | ROOT integration: new codex/swbpipe-b3a-i1-20260920 branch, clean combined source candidate 46436a60. Corrected candidate passed fresh complete sweep and whole-merge review; final publication/CI pending. Original failed sweep remains preserved. Former PR825 branch retained at 64260a3c; merged main 7e6a7f25. |
-| swbpipe-wt3 / codex/swbpipe-b-shell-20260918 | B3A manager Astra/high with fresh TASK Astra/low; saved-model marker, solver fallback and native title scope. Product d2ef1684 and native journey independently checked; final packet 9b3b86dd. Two legacy App.test display assertions now match the existing owner ruling; final dada3482 packet independently passed. No B3B changes. |
-| swbpipe-wt4 / codex/swbpipe-b-canvas-20260918 | I1 manager returned clean 045acae7; instrument-only repair, inherited work preserved. Fresh independent Astra/xhigh review PASS. C3 read-only preparation complete; implementation unstarted. |
-| chirality-runtime-application-tools/chirality / codex/runtime-application-tools | Peer owns reusable Runtime. Generic tools PR824 merged 21175b5d, reviewed cb08dbe2f; no Piping adapter/adoption in that work. |
+| ROOT / codex/swbpipe-continuation-20260919 | HELP_HUMAN: graph, shared note, owner decisions, independent review and integration; current MVP publishing discussion. |
+| swbpipe-wt2 / codex/swbpipe-ci-economy-20260920 | ROOT integration; code/P2 backcheck passed at a635. Native tail fa9 and edge test repair fb72 integrated. Full sweep stopped early on3unit failures; tests-only repairs and final backcheck/sweep/hosted gates remain. |
+| swbpipe-wt3 / codex/swbpipe-b-shell-20260918 | B3B manager Astra/high; normal/probe native packet fa9 returned, all resources released. Three-file App test-only repair active after diagnosed stale setups; no product change authorized. |
+| swbpipe-wt4 / codex/swbpipe-b-canvas-20260918 | C3 final9fb4b88b:16 connected cases/picking69/protected83 complete. Differential edge test repair fb72 passes24cases, product unchanged. C4 preparation returned; affected label choices pending. |
+| chirality-runtime-application-tools/chirality / codex/runtime-application-tools | Peer owns reusable Runtime. Generic tools PR824 merged21175b5d, reviewedcb08dbe2f; no Piping adapter/adoption. |
 
-The owner resumed Piping repair/merge, CI economy and authorized UI continuation.
-B3 tooltip/Close repair passes code/native/affected checks. A full local sweep then
-found a separate tiny roundoff difference against a legacy exact dist assertion.
-The owner approved parity with the existing source predicate and bounded reruns.
-The exact patch is applied and independently checked; all 53 dist cases and the
-remaining build passed. Original failed sweep stays failed; unchanged passing
-surfaces are reused under this PR825-only ruling. Focused hosted CI passed 68 cases; PR825 merged as 7e6a7f25. The merge preceded desktop-check completion; same-head success is verified in MERGE_OBSERVATION.json. B3A is active and I1 has returned for review.
-Design-system 4dddd4412 stays parked. Graph and decision package own detailed state.
+B3 PR825 and B3A/I1 PR826 are merged. Freshly fetched main is88c6c746.
+PR826's clean local sweep, independent reviews and all same-head hosted checks
+passed. Owner UI merges preceded desktop CI completion; Root issued no merge
+command. Main protection requires only harness. Installed Codex calls
+gh --auto --merge; no forced CI success or cancellation was found. Canonical
+observations are under _run_records/PR826_CI and AUTO_MERGE_DIAGNOSIS.
+This is not a future check waiver or authorization to change protection.
+
+Peer acknowledged Piping ROOT's sole ownership of Piping CI economy:
+cheap selection on every PR, explicit N/A for unrelated changes, affected
+coverage, conservative full fallback and manual full milestones. Other-project
+CI and protections remain unchanged. See _run_records/CI_PEER_ACK.md.
+
+Owner corrected the initial optional-agent answer: agent control of SWBPIPE is
+needed before planned CAEPIPE validation, with Computer Use for CAEPIPE. The owner selected Codex as first controller; embedded Runtime follows. The leads
+are preparing the bounded integration and actual tool/host qualification. Other
+release details remain under discussion; concrete scopes/interfaces/order still
+must be agreed before integration writes. See OWNER_MVP_AGENT_CORRECTION_2026-09-20.md.
+Design-system4dddd441 remains parked; WORK_GRAPH.json owns detailed slice state.
 
 Piping retains domain schemas/tools, live controller, UI and future Tauri adapter.
 Peer is the agreed generic Runtime-contract writer. No Root/shared-doctrine or
@@ -32,15 +43,56 @@ completed generic Runtime work; that grants no Piping adoption.
 
 ## Resources and sequence
 
-Final B3A native witness, ROOT own look and complete corrected local sweep are finished. PID 38905 is absent; original System/Comfortable preference is restored. Test ports/lock are being checked clear at publication. ROOT owns final checks/CI; B3B/C3 implementation has not begun. Peer acknowledged no conflicting reservations and will signal new use. Reserve
-source/dist 5174/5175 (one worker / run lock), ROOT 5183/5184, canvas 5185/5186 and Tauri 5173;
-share one native/CUA foreground slot. B3A native verification uses one uniquely named disposable project row in the actual app store, preserving every other row and settings; this is project-level isolation, not a separate store/profile. Future integration profiles/private sockets must be agreed before writes. Use invented fixtures, never private user models. No builds/tests alongside later authorized D-72 timing.
+C3 explicitly released source5174 and the shared E2E lock after all16 unique
+connected cases passed. The normal226b native witness and ROOT own look are
+complete. The isolated Save-busy probe and final original-bundle check passed and all
+native/build/CUA resources were released. The clean full sweep then stopped at
+unit tests: Rust/Python passed,1488unit passed/3failed, browser/dist/build not run.
+Only isolated unit repair work is active; no browser/native/full sweep is running.
+The corrected full clean143 sweep and independent backcheck passed; collection and hosted checkpoint remain.
+Peer reports no competing desktop or port reservation.
 
-B3 is merged. Prefer finishing B3A/B3B dirty/save/busy behavior before an explicitly authorized
-Piping integration tranche; whole closing appearance pass need not block adoption.
-Before writes agree exact revision, interfaces, error behavior, scope and resource
-order. Peer acknowledged this sequence. Substantive disagreements go to the owner;
-none is currently open between the leads.
+Reserve source/dist5174/5175, ROOT5183/5184, canvas5185/5186 and Tauri5173;
+share one native foreground slot. Native uses invented fixtures and a uniquely
+named disposable project row in the actual shared store, preserving other
+rows/settings. This is project-row isolation, not a separate store/profile.
+Future integration profiles/private sockets must be agreed before writes.
+No builds/tests alongside later authorized D-72 timing.
+
+Finish B3B's persistence/native boundary before a separately authorized Piping
+integration tranche; the whole closing appearance pass need not block adoption.
+Before writes agree exact revisions, interfaces, errors, disjoint scopes and
+resource order. Ownership changes need acknowledged handoffs; substantive
+disagreements return to the owner.
+
+## Conditional first-controller transport
+
+Owner selected a development Codex controller first, with an embedded Runtime
+agent later. Peer subsequently reported the owner's stateless V2 MCP condition;
+the MCP transport remains conditional on actual modern2026-07-28 client evidence.
+The exact bundled Codex0.155.0-alpha.9.2 probe sent legacy initialize2025-06-18
+and stopped at the strict modern server rejection. No modern call was reached.
+ROOT independently inspected the retained result/wire. The owner accepted
+a small JSON CLI first, as retained in OWNER_CLI_PROTOCOL_DISPOSITION_PEER_2026-09-20.md; any
+later MCP adapter must still meet the V2 condition. This is no silent downgrade.
+Proposed shape: Codex → local stdio MCP facade → private local Piping
+app bridge → live workspace controller. Piping ROOT retains all controller,
+bridge, facade, fixtures and Piping-document writes; Runtime lead provides
+read-only contract/protocol review. No shared Root/Runtime product writes or ownership transfer is presently needed.
+Peer owns the completed isolated actual-client compatibility evidence and read-only domain-interface review.
+The exact domain contract is PIPING_LIVE_CONTROL_CONTRACT_DRAFT.md, now revision2
+addressing lost acknowledgements, cancellation, attribution and publication.
+Peer contract backcheck and bounded live-binding activation precede writes. See
+OWNER_CODEX_VALIDATION_CONTROLLER_2026-09-20.md and
+_run_records/RUNTIME_TRANSPORT_ACK_2026-09-20.md.
+
+Use transport-neutral inspect/preview/submit/status handlers; bridge-issued
+connection/request identity does not imply verified Codex thread/turn identity.
+The same Codex session retains its own CUA provider; do not export private
+desktop endpoints or claim that a separate embedded agent inherits it. The
+actual Mac/Windows guest and provider still need a bounded harmless witness.
+No VM/CAEPIPE installation, configuration, license/access or correlation run
+has occurred. Existing human Apply and live-state checks remain.
 
 ## Interface assessment and first target
 
@@ -82,3 +134,5 @@ consent/residency gate; preserve public-commit/IP and telemetry boundaries.
 No deliverable reconciliation, DAG rebuild, product acceptance or release.
 
 Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).
+
+Canonical peer protocol evidence is merged through PR827/main55932683; exact origin and hashes: _run_records/MCP_V2_CANONICAL_EVIDENCE_POINTER.md. The owner reports oMLX availability only; no model selection or local-provider qualification is inferred.

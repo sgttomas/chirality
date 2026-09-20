@@ -1,45 +1,19 @@
 name: Piping Desktop E2E
 
+# A cheap selector runs on every PR so the stable check can report a validated
+# not-applicable result for unrelated monorepo changes.
 on:
   pull_request:
-    # Explicit allowlist of this job's real inputs. `projects/chirality-piping/**`
-    # also matched governance records (execution/, plans/, docs/, governance/,
-    # provenance/, loop/, NOTICE_*.md), so record-only pull requests paid for a
-    # ~25 minute, 342-test browser suite that could not observe their change.
-    # Inputs include selection policy, setup and regression tests:
-    #   package.json / package-lock.json  -> `npm ci`, the setup-node cache key,
-    #                                        and the pinned Playwright resolve step
-    #   apps/**                           -> the desktop workspace: src, e2e specs,
-    #                                        playwright + vite + tsconfig, index.html,
-    #                                        public/, scripts/build-wasm-engine.mjs,
-    #                                        src-tauri (window matrix the lanes use)
-    #   core/**                           -> the two wasm crates built by
-    #                                        `npm run build:wasm:desktop`
-    #                                        (model_operations/operation_applier,
-    #                                        loads/self_weight_wasm) and their whole
-    #                                        path-dependency closure, which reaches
-    #                                        core/product_physics, core/solver/**,
-    #                                        core/loads/**, core/units and
-    #                                        core/serialization/canonical_json
-    #   fixtures/**                       -> JSON fixtures the e2e specs import
-    #                                        (fixtures/product_preview/*.json)
-    #   schemas/**                        -> src/App.tsx imports
-    #                                        schemas/model_operation.schema.json
-    # Desktop E2E stays required evidence for user-visible desktop changes
-    # (projects/chirality-piping/AGENTS.md, DEC-025 host-capability surfaces), so
-    # add a path here whenever a new input can change product behaviour.
-    paths:
-      - ".github/workflows/piping-desktop-e2e.yml"
-      - ".github/actions/setup-piping-e2e/**"
-      - "projects/chirality-piping/tools/ci/**"
-      - "projects/chirality-piping/tests/test_ci_e2e_plan.py"
-      - "projects/chirality-piping/package.json"
-      - "projects/chirality-piping/package-lock.json"
-      - "projects/chirality-piping/apps/**"
-      - "projects/chirality-piping/core/**"
-      - "projects/chirality-piping/fixtures/**"
-      - "projects/chirality-piping/schemas/**"
+    types: [opened, synchronize, reopened]
+  # Metadata edits/labels do not launch a run or a competing stable check.
+  # After retargeting a PR, deliberately dispatch full coverage with the new
+  # target base SHA, or update/reopen the PR to validate its current event base.
   workflow_dispatch:
+    inputs:
+      target_base:
+        description: "Target base commit SHA for a retarget/integration proof (optional)"
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -74,7 +48,7 @@ jobs:
         id: plan
         env:
           EVENT: ${{ github.event_name }}
-          BASE: ${{ github.event.pull_request.base.sha }}
+          BASE: ${{ github.event.pull_request.base.sha || inputs.target_base }}
           HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
           PR: ${{ github.event.pull_request.number }}
         run: >-
@@ -92,6 +66,7 @@ jobs:
   barrier:
     name: Accessibility barrier and selected coverage
     needs: selection
+    if: needs.selection.outputs.mode != 'not-applicable'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:

@@ -669,7 +669,7 @@ test("Box Select keeps the camera and authored projection invariant for plain, S
 for (const theme of APPEARANCE_THEMES) {
   for (const density of APPEARANCE_DENSITIES) {
     for (const viewport of APPEARANCE_VIEWPORTS) {
-      test(`task and analysis dock preserve usable canvas ${theme} ${density} ${viewport.width}x${viewport.height}`, async ({ page }, testInfo) => {
+      test(`task and analysis dock preserve usable canvas ${theme} ${density} ${viewport.width}x${viewport.height}`, { tag: "@explicit-viewport" }, async ({ page }, testInfo) => {
         await page.setViewportSize(viewport);
         await page.goto("/");
         await setAppearance(page, theme, density);
@@ -1355,7 +1355,7 @@ test("node visibility owns attached symbols while connected spans remain indepen
   await activateWithKeyboard(page, page.getByRole("button", { name: "Isolate", exact: true }));
   await expect(await revealTreeRow(page, "node", node.id)).toContainText("Hidden");
   await expect(await revealTreeRow(page, "node", isolatePeer.id)).not.toContainText("Hidden");
-  await expect(await revealTreeRow(page, "pipe", other.id)).toContainText("Hidden");
+  await expect(await revealTreeRow(page, "pipe", other.id)).not.toContainText("Hidden");
   await activateWithKeyboard(page, page.getByRole("button", { name: "Show All", exact: true }));
   await expect(await revealTreeRow(page, "node", node.id)).not.toContainText("Hidden");
   await expect(await revealTreeRow(page, "pipe", other.id)).not.toContainText("Hidden");
@@ -1365,7 +1365,7 @@ test("node visibility owns attached symbols while connected spans remain indepen
   await expect(await revealTreeRow(page, "support", support.id)).not.toContainText("Hidden");
   await expect(await revealTreeRow(page, "node", node.id)).not.toContainText("Hidden");
   await expect(await revealTreeRow(page, "component", component.id)).not.toContainText("Hidden");
-  await expect(await revealTreeRow(page, "pipe", other.id)).toContainText("Hidden");
+  await expect(await revealTreeRow(page, "pipe", other.id)).not.toContainText("Hidden");
   await activateWithKeyboard(page, page.getByRole("button", { name: "Show All", exact: true }));
   expect(await currentModelHashThroughVisibleExport(page)).toBe(hashBefore);
 });

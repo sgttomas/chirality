@@ -175,3 +175,29 @@ I1 is frozen clean at 045acae749fe1acc95bce221cdb58c2db4a7064c with its complete
 ## B3A/I1 ready for publication validation
 
 The combined clean candidate 70b24a4b passed the fresh complete five-surface sweep, after an early failed sweep exposed two stale App.test fallback expectations. Their exact display-only amendment follows existing owner item 2; all solved-only and geometry checks remain. Separate slice reviews and fresh whole-merge review passed. Native ordinary journeys are bound to d2ef and the repaired binary; controlled tests cover races. Final records backcheck and full hosted CI remain before merge. B3B/C3 preparations are complete and retained; implementation has not started. No deliverable reconciliation, DAG rebuild, Runtime adoption or qualification is claimed.
+
+## PR826 integrated; next coherent batch active
+
+B3A/I1 merged as 88c6c746 from fixed 713568e8. The owner used Codex auto-merge at17:48:22Z; desktop CI continued and passed18:00:32Z. ROOT issued no merge command. Main only requires harness in GitHub; this is diagnosed, not a future waiver or protection-setting change. Whole-merge/source/evidence reviews and the fresh local sweep passed; canonical final CI observation is in ROOT continuation _run_records/PR826_CI.
+
+Owner authorized effective test/CI/cadence reductions. B3B, C3 and CI economy form the next planned coherent batch; focused development and one final integration validation avoid per-helper PR/full-sweep events. Managers retain sole source ownership, temporary E2E scope was handed back, and shared interfaces are acknowledged. Canvas cleanup/browser work needed an explicit followup_task after an idle handoff; it is now resumed and not yet claimed complete. Current frontier and exact sources are in WORK_GRAPH.json. All product/Runtime/DAG/qualification holds remain.
+
+## B3B/C3/CI convergence and MVP discussion
+
+ROOT integrated the batch at52142dbd. Fresh independent whole-range review found one P2: the newly added C3/B3B specs were omitted by affected CI routing. Correctiond361bc59 includes them in authoring/layout and results/persistence respectively;29 policy tests pass. Combined source226b1db5 includes canvas's new-test navigation corrections. P2 and subsequent bytes still require bounded independent backcheck.
+
+All16 unique connected B3B/C3/legacy scenarios now pass across recorded affected-first runs. Earlier CSS and test-navigation failures remain failed evidence. Native manager received the explicit resource handback and exact226b source for one combined build/witness. Final clean sweep and hosted current-candidate checks remain ahead.
+
+Owner asked to sharpen the publishing MVP and expressly affirmed that implementation can justify preferable paths and PRD amendments. ROOT's MVP_PUBLISHING_DISCUSSION.md is a proposed journey-based product boundary, not an accepted amendment. Whether one live agent-assisted journey is required is open in the owner discussion; unaffected UI work continues. No DAG rebuild or deliverable reconciliation begins.
+
+## Current supersession and resource state
+
+The previous entry's open agent question is resolved by the owner's correction: agent control of SWBPIPE enables planned CAEPIPE validation. Owner subsequently selected Codex as the first controller, with embedding later, and CAEPIPE on this Mac through a Windows environment. Exact words are in continuation OWNER_MVP_AGENT_CORRECTION_2026-09-20.md and OWNER_CODEX_VALIDATION_CONTROLLER_2026-09-20.md. The sealed next-controls preparation brief keeps its historical optional-agent sentence; NEXT_CONTROLS_CONTEXT_ADDENDUM.md explicitly supersedes that context.
+
+C3 browser resources are released; all16 unique focused cases passed. Normal native226b witness and ROOT own look are complete; the shell manager currently owns native/build/CUA for the isolated Save-busy probe and final original-bundle check. Code/test P2 backcheck passes at a635; two narrow records corrections are addressed in the current shared note and _run_records/C3_SOURCE_INSPECTION_QUALIFICATION.md, retaining raw evidence unchanged. Final records backcheck, clean sweep/current collection and hosted proof remain.
+
+## Corrected complete validation checkpoint
+
+Candidate143c8633 passed the fresh complete clean sweep in1031.087seconds: Rust allregisteredpass; Python1134 with304warnings/7subtests;91unitfiles/1491tests;source415pass/20existing-skips;dist53pass;buildpass. Original faileda635 sweep stays failed. Canonical records are in ROOT continuation _run_records/B3B_C3_CI_SWEEP_143 and _run_records/B3B_C3_CI_SWEEP_A635. Independent final113path backcheck PASS closes all P2/P3 findings; normal and isolated-probe native evidence remains bound to unchanged product inputs. Final current collection/records-tail check and published-head hosted checks remain before the single integration PR can merge.
+
+The owner accepted CLI-first through the peer lead, preserving a future-MCP statelessV2 condition. The canonical actual-client incompatibility packet is merged as PR827/main55932683; the Root pointer retains exact origin/hashes. Current live-control contract remains a proposal until its bounded activation; no live bridge or Runtime adoption has been implemented.
