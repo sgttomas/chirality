@@ -66,6 +66,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
+          # Keep ancestry checks without downloading all historical evidence blobs.
+          filter: blob:none
       - name: Test selection policy
         run: python3 -m unittest discover -s projects/chirality-piping/tests -p test_ci_e2e_plan.py -v
       - name: Plan complete PR diff
@@ -97,6 +99,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
+          # Keep ancestry checks without downloading all historical evidence blobs.
+          filter: blob:none
       - uses: actions/download-artifact@v4
         with:
           name: piping-e2e-selection
@@ -137,6 +141,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
+          # Keep ancestry checks without downloading all historical evidence blobs.
+          filter: blob:none
       - uses: actions/download-artifact@v4
         with:
           name: piping-e2e-selection
