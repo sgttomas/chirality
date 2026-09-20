@@ -1,0 +1,35 @@
+{
+  "started": "2026-09-20T19:58:54.261325+00:00",
+  "binary": "/Applications/ChatGPT.app/Contents/Resources/codex",
+  "version": "codex-cli 0.155.0-alpha.9.2",
+  "network": "denied by sandbox",
+  "home": "fresh scratch",
+  "targetProtocol": "2026-07-28",
+  "modelTurns": 0,
+  "initialize": {
+    "id": 1,
+    "result": {
+      "userAgent": "chirality_mcp_v2_compatibility/0.155.0-alpha.9.2 (Mac OS 26.6.2; arm64) unknown (chirality_mcp_v2_compatibility; 0.0.0)",
+      "codexHome": "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-mcp-v2-2ajwqpg0/codex-home",
+      "platformFamily": "unix",
+      "platformOs": "macos"
+    }
+  },
+  "threadStart": {
+    "error": {
+      "code": -32603,
+      "message": "error creating thread: Fatal error: Failed to initialize session: required MCP servers failed to initialize: chirality_v2_probe: handshaking with MCP server failed: JSON-RPC error: -32601: This fixture accepts stateless MCP 2026-07-28 only; legacy initialize is unsupported.({\"supported\":[\"2026-07-28\"]}): JSON-RPC error: -32601: This fixture accepts stateless MCP 2026-07-28 only; legacy initialize is unsupported.({\"supported\":[\"2026-07-28\"]})"
+    },
+    "id": 2
+  },
+  "mcpMethods": [
+    "initialize"
+  ],
+  "legacyInitializeObserved": true,
+  "modernRequests": 0,
+  "result": "INCOMPATIBLE_LEGACY_HANDSHAKE",
+  "remaining": "Tool call, reconnect, isolation and cancellation not reached. No legacy success or downgrade accepted.",
+  "exitCode": 0,
+  "ended": "2026-09-20T19:58:55.145273+00:00",
+  "binarySha256": "9280c0754e8f1f6b72f495d30c8c82a006dbc4995bf0492916fa0901f6bfd1f9"
+}
