@@ -2,31 +2,25 @@
 
 This pointer is for discovery only. It is not substitute authority. Per
 `_COORDINATION.md` (record-keeping rule 5), it must not accumulate state
-history: current status is always re-derived from the decision register, each
-plan file's own rows/status, and `../../loop/LOOP_RECEIPTS.md`.
+history: current status is always re-derived from the decision register, the owning run's work graph, and `../../loop/LOOP_RECEIPTS.md`.
 
-Session entry (current convention, owner direction of record 2026-07-04 —
-`loop/LOOP_RECEIPTS.md` Receipt 0):
+Session entry:
 
-- `../../loop/LOOP_INIT.md` -> newest `loop/WORKPLAN_*.md` -> `loop/LOOP_RECEIPTS.md`
-
-Active coordination surfaces:
-
-- `execution/_Coordination/_COORDINATION.md`
-- `execution/_Coordination/_DECISIONS/_REGISTER.md` — the register's own rows
-  (not this pointer) are the owner-gated surface; check it every session for
-  rulings and open rows.
-
-Work discovery (owner-adopted 2026-07-10; queue convention retired):
-
-- Deliverable-driven: `execution/PKG-*/1_Working/DEL-*/_STATUS.md`
-  `## Remaining` sections are the work surface, selected per the newest
-  `loop/WORKPLAN_*.md`. No successor queue plan will be authored. Which rehomed
-  lanes are live is the owner's ruling — `D-APP-53` (RULED Option A 2026-07-10,
-  `_DECISIONS/D-APP-53_RULING_2026-07-10.md`: the dependency-row reconciliation
-  lane, executed the same day — see the packet's §7/§8 notes and the accepted
-  DepClosure snapshot; Option C/D lanes were NOT unlocked); honor every
-  `(gated: ...)` suffix.
+- `init/dev-loop-init-prompt.md` -> `loop/LOOP_INIT.md` -> owner-named run,
+  or applicable receipt and coordination pointers. No dated workplan selector.
+- Current owner direction and amendment record:
+  `execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260919-LOOP-WORKGRAPH/OWNER_DIRECTION.md`
+  and `WORK_GRAPH.json` beside it. The owner reports v3.0.0 published and pauses
+  further development until owner-steered reconciliation. This loop amendment
+  is not that reconciliation and creates no product implementation queue.
+- `execution/_Coordination/_COORDINATION.md` and
+  `execution/_Coordination/_DECISIONS/_REGISTER.md`: inspect applicable rulings
+  and open rows, not a copied status summary here.
+- Accepted phase dependency basis:
+  `execution/_Reconciliation/DepClosure/_LATEST.md`; decomposition and
+  deliverable `Remaining` entries remain their authoritative scope sources.
+  The session work graph supplies executable detail with traceable or explicitly
+  provisional mappings. The owner steers phase transitions and DAG rebuilding.
 
 Queue and plan history (non-governing; each plan's own status field and
 `plans/PLAN_COMPLETION_LOG.md` govern):
@@ -58,7 +52,8 @@ Historical session entry:
 Current architecture basis (D-GOV-43, topology A2, 2026-09-12):
 
 - `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md`
-  (implementation entry), `PACKAGING_PROCEDURE.md` and `NATIVE_CHECKLIST.md`
+  (architecture history, not an instruction to resume implementation),
+  `PACKAGING_PROCEDURE.md` and `NATIVE_CHECKLIST.md`
   in the same directory; application record
   `execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`;
   loop notice `execution/_Coordination/NOTICE_2026-09-12_ROOT_D-GOV-43_CODEX_HOST_REPLATFORM.md`.

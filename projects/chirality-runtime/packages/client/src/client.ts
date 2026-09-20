@@ -47,6 +47,11 @@ import {
   type AnswerSessionRequestRequest,
   type AnswerSessionRequestResponse,
   type ServerRequestAnswer
+  , type ApplicationToolRegistrationRequest
+  , type ApplicationToolCatalog
+  , type ApplicationToolBinding
+  , type ApplicationToolInvocation
+  , type ApplicationToolCompletionRequest
   , type RolesResponse
   , type MethodsResponse
   , type MethodInspectionResponse
@@ -353,6 +358,27 @@ export class RuntimeClient {
       signal
     });
     return response.sessions;
+  }
+
+  /** Host-only. Bind after createSession and before boot/first turn; the descriptor catalog is immutable. */
+  registerApplicationTools(projectId: string, sessionId: string, request: ApplicationToolRegistrationRequest, signal?: AbortSignal): Promise<ApplicationToolBinding> {
+    return this.requestJson(RUNTIME_ROUTES.applicationTools(projectId, sessionId), { method: "PUT", body: request, signal });
+  }
+
+  applicationTools(projectId: string, sessionId: string, signal?: AbortSignal): Promise<{ catalog?: ApplicationToolCatalog; binding?: ApplicationToolBinding }> {
+    return this.requestJson(RUNTIME_ROUTES.applicationTools(projectId, sessionId), { signal });
+  }
+
+  releaseApplicationTools(projectId: string, sessionId: string, bindingId: string, signal?: AbortSignal): Promise<{ released: true }> {
+    return this.requestJson(RUNTIME_ROUTES.applicationTools(projectId, sessionId), { method: "DELETE", body: { bindingId }, signal });
+  }
+
+  listApplicationToolCalls(projectId: string, sessionId: string, bindingId: string, signal?: AbortSignal): Promise<{ calls: ApplicationToolInvocation[] }> {
+    return this.requestJson(`${RUNTIME_ROUTES.applicationToolCalls(projectId, sessionId)}?bindingId=${encodeURIComponent(bindingId)}`, { signal });
+  }
+
+  completeApplicationToolCall(projectId: string, sessionId: string, invocationId: string, request: ApplicationToolCompletionRequest, signal?: AbortSignal): Promise<{ state: "completed" | "already-completed" }> {
+    return this.requestJson(RUNTIME_ROUTES.applicationToolResult(projectId, sessionId, invocationId), { method: "POST", body: request, signal });
   }
 
   async createSession(

@@ -1,0 +1,99 @@
+{
+  "candidate": "bc1f06fec4669a469c0c5fcd95af79be3e4e04b8",
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python": "Python 3.13.14",
+    "pytest": "pytest 9.1.1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "other_environment": "inherited host environment; secret values intentionally not retained"
+  },
+  "checks": [
+    {
+      "name": "self-check",
+      "argv": [
+        "/Users/ryan/dev/chirality/.venv/bin/python",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": "{REPO_ROOT}",
+      "start_utc": "2026-09-19T21:18:20.902331+00:00",
+      "exit_code": 0,
+      "stdout": "self-check.stdout.txt",
+      "stderr": "self-check.stderr.txt",
+      "stdout_sha256": "fb273bec4c6416fccaf949f6f9282532ab97189878ea972227d023a96f64070e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "receipt",
+      "argv": [
+        "/Users/ryan/dev/chirality/.venv/bin/python",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": "{REPO_ROOT}",
+      "start_utc": "2026-09-19T21:18:50.182096+00:00",
+      "exit_code": 0,
+      "stdout": "receipt.stdout.txt",
+      "stderr": "receipt.stderr.txt",
+      "stdout_sha256": "fda6df2dccca39176e46fdc668ed137a359021217b7ba42073991d26c1b91bb7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "path-anchors",
+      "argv": [
+        "/Users/ryan/dev/chirality/.venv/bin/python",
+        "tools/validation/validate_path_anchors.py",
+        "."
+      ],
+      "cwd": "{REPO_ROOT}",
+      "start_utc": "2026-09-19T21:18:53.602053+00:00",
+      "exit_code": 0,
+      "stdout": "path-anchors.stdout.txt",
+      "stderr": "path-anchors.stderr.txt",
+      "stdout_sha256": "2c73af5cc1eeb554c98845181bd18b7ceafeaaf043209655d32d444cba061090",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "manifest",
+      "argv": [
+        "/Users/ryan/dev/chirality/.venv/bin/python",
+        "tools/validation/validate_instruction_tranche_manifest.py",
+        "--base",
+        "origin/main",
+        "--head",
+        "HEAD",
+        "--added-manifests-only"
+      ],
+      "cwd": "{REPO_ROOT}",
+      "start_utc": "2026-09-19T21:19:03.195536+00:00",
+      "exit_code": 0,
+      "stdout": "manifest.stdout.txt",
+      "stderr": "manifest.stderr.txt",
+      "stdout_sha256": "486e714fbaa4042a0c63335c268e5a5354e3f3fbe7d46a7f1103c0c9a4b2507e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "pytest",
+      "argv": [
+        "/Users/ryan/dev/chirality/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness",
+        "tools/validation/test_validate_app_dev_loop_receipts.py",
+        "tools/validation/test_validate_instruction_tranche_manifest.py",
+        "tools/validation/test_validate_instruction_entrypoints.py",
+        "tools/validation/test_validate_path_anchors.py"
+      ],
+      "cwd": "{REPO_ROOT}",
+      "start_utc": "2026-09-19T21:19:03.490662+00:00",
+      "exit_code": 0,
+      "stdout": "pytest.stdout.txt",
+      "stderr": "pytest.stderr.txt",
+      "stdout_sha256": "06c71f9c810467f39150e4c488810f62beaca2077c7eab422c73a190c7a23a09",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limits": "Recheck after receipt and coordination repair. Initial failures preserved. Unchanged entrypoint and baseline corpus checks remain in initial-checks."
+}

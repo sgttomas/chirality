@@ -63,6 +63,12 @@ export const RUNTIME_ROUTES = {
     `${RUNTIME_ROUTES.session(projectId, sessionId)}/context/resolve`,
   sessionMethods: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.session(projectId, sessionId)}/methods`,
+  applicationTools: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.session(projectId, sessionId)}/application-tools`,
+  applicationToolCalls: (projectId: string, sessionId: string) =>
+    `${RUNTIME_ROUTES.applicationTools(projectId, sessionId)}/calls`,
+  applicationToolResult: (projectId: string, sessionId: string, invocationId: string) =>
+    `${RUNTIME_ROUTES.applicationToolCalls(projectId, sessionId)}/${encodeURIComponent(invocationId)}/result`,
   nativePlanCapability: (projectId: string, sessionId: string) =>
     `${RUNTIME_ROUTES.session(projectId, sessionId)}/native-plan/capability`,
   nativePlanRevisions: (projectId: string, sessionId: string) =>
