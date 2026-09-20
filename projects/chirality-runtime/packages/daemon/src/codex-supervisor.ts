@@ -1,6 +1,10 @@
 import { createHash, randomUUID } from "node:crypto";
 import {
   RuntimeError,
+  canonicalApplicationJson,
+  type ApplicationJson,
+  type ApplicationToolBinding,
+  type DynamicToolSpec,
   type DelegatedHarnessProcessSupervisorPort,
   type DelegatedTurnProgressEvent,
   type InstructionHistoryInjection,
@@ -21,6 +25,7 @@ import {
   type WorkerHandle,
   type WorkerResult
 } from "@chirality/runtime-contracts";
+import type { ApplicationToolCall, ApplicationToolRegistry } from "./application-tools.js";
 import { parseCodexTurnEnvelope, type CodexTurnEnvelope } from "@chirality/runtime-core";
 import { JSON_RPC_METHOD_NOT_FOUND, NOOP_CODEX_LOGGER, type CodexAppServerExit, type CodexAppServerHost, type CodexLogger, type CodexNotification, type CodexServerRequest, type CodexServerRequestOutcome } from "./codex-app-server-client.js";
 
@@ -50,13 +55,25 @@ export interface CodexSupervisorOptions {
   /** Bound on queued progress events per turn before the oldest are dropped with a warning. */
   maxQueuedProgress?: number;
   instructionUnloadTimeoutMs?: number;
+  applicationTools?: Pick<ApplicationToolRegistry, "prepareTurn" | "call" | "cancelCall" | "finishTurn">;
 }
 
 interface PendingRequestEntry {
   request: PendingServerRequest;
   settle(outcome: CodexServerRequestOutcome): void;
 }
+interface ApplicationOwnership {
+  binding: ApplicationToolBinding;
+  tools: DynamicToolSpec[];
+  envelope: CodexTurnEnvelope;
+  hostGeneration: number;
+  finished: boolean;
+  removeAbortListener?: () => void;
+  pending: Map<string, { threadId: string; turnId: string; cancel(): void }>;
+  seen: Set<string>;
+}
 interface Entry {
+  application?: ApplicationOwnership;
   handle: WorkerHandle;
   envelope: CodexTurnEnvelope;
   instructionHistoryInjection?: InstructionHistoryInjection;
@@ -100,6 +117,8 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
   private readonly byThread = new Map<string, Entry>();
   private readonly childThreads = new Map<string, string>();
   private readonly activeChildren = new Set<string>();
+  private readonly childTurns = new Map<string, { turnId: string; owner: Entry }>();
+  private readonly applicationOwnerships = new Set<ApplicationOwnership>();
   private readonly acquiringThreads = new Set<string>();
   private readonly closedThreads = new Set<string>();
   private readonly pendingUnloads = new Set<string>();
@@ -108,6 +127,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
   private readonly retirements = new Map<string, Promise<void>>();
   private readonly acquiring = new Set<string>();
   private closed = false;
+  private providerExitEpoch = 0;
   private readonly logger: CodexLogger;
   private readonly unsubscribe: (() => void)[] = [];
   constructor(private readonly options: CodexSupervisorOptions) {
@@ -137,9 +157,26 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       this.acquiringThreads.add(envelope.resumeThreadId);
     }
     this.acquiring.add(workerId);
+    let application: ApplicationOwnership | undefined;
     try {
       const host = this.options.host;
       const hostGeneration = host.generation;
+      const providerExitEpoch = this.providerExitEpoch;
+      if (this.options.applicationTools && envelope.sessionId) {
+        const prepared = await this.options.applicationTools.prepareTurn(envelope.projectId, envelope.sessionId, envelope.clientTurnId);
+        if (prepared) {
+          application = { ...prepared, envelope, hostGeneration, finished: false, pending: new Map(), seen: new Set() };
+          this.applicationOwnerships.add(application);
+          if (signal) {
+            const owned = application;
+            const abort = () => this.finishApplication(owned, "turn acquisition aborted");
+            signal.addEventListener("abort", abort, { once: true });
+            application.removeAbortListener = () => signal.removeEventListener("abort", abort);
+          }
+        }
+      }
+      signal?.throwIfAborted();
+      if (this.closed || host.generation !== hostGeneration || providerExitEpoch !== this.providerExitEpoch) throw unavailable("Provider changed during application tool preparation");
       const model = envelope.model;
       const instructionDigest = createHash("sha256").update(JSON.stringify([envelope.developerInstructions ?? null, envelope.nativeRoleConfig ?? null])).digest("hex");
       let threadId: string;
@@ -179,7 +216,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
         this.threads.set(threadId, state);
         this.logger.warn("codex.thread.resumed", { threadId, workerId });
       } else if (state === undefined) {
-        const started = await host.request<{ thread: { id: string }; model: string }>("thread/start", { cwd: envelope.cwd, developerInstructions: envelope.developerInstructions ?? null, ...(envelope.nativeRoleConfig === undefined ? {} : { config: envelope.nativeRoleConfig }), approvalPolicy: envelope.policy.approvalPolicy, sandbox: envelope.policy.sandbox, ...(model === undefined ? {} : { model }), ephemeral: false, serviceName: "chirality" });
+        const started = await host.request<{ thread: { id: string }; model: string }>("thread/start", { cwd: envelope.cwd, developerInstructions: envelope.developerInstructions ?? null, ...(envelope.nativeRoleConfig === undefined ? {} : { config: envelope.nativeRoleConfig }), approvalPolicy: envelope.policy.approvalPolicy, sandbox: envelope.policy.sandbox, ...(model === undefined ? {} : { model }), ephemeral: false, serviceName: "chirality", ...(application === undefined ? {} : { dynamicTools: application.tools }) });
         threadId = started.thread.id; threadModel = started.model;
         state = { instructionDigest, lastPolicy: { ...envelope.policy }, model: threadModel, hostGeneration };
         this.threads.set(threadId, state);
@@ -188,7 +225,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
         threadModel = state.model;
       }
       signal?.throwIfAborted();
-      if (this.closed) throw unavailable("Codex supervisor is closed");
+      if (this.closed || application?.finished || host.generation !== hostGeneration) throw unavailable("Codex supervisor or application turn is no longer active");
       if (this.byThread.has(threadId)) throw unavailable("Codex thread already has a live turn");
       const requestedMode: "plan" | "default" = envelope.interactionMode === "native-plan" ? "plan" : "default";
       if (state.lastMode !== requestedMode) {
@@ -196,6 +233,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
         state.lastMode = requestedMode;
       }
       signal?.throwIfAborted();
+      if (this.closed || application?.finished || host.generation !== hostGeneration || providerExitEpoch !== this.providerExitEpoch) throw unavailable("Provider changed during turn acquisition");
       const policyChanged = !samePolicy(state.lastPolicy, envelope.policy);
       state.lastPolicy = { ...envelope.policy };
       if (model !== undefined) state.model = model;
@@ -213,7 +251,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       const result = new Promise<WorkerResult>(resolve => { settle = resolve; });
       let adopt!: (turnId: string | undefined) => void;
       const turnIdReady = new Promise<string | undefined>(resolve => { adopt = resolve; });
-      const entry: Entry = { handle, envelope, ...(state.instructionHistoryInjection === undefined ? {} : { instructionHistoryInjection: state.instructionHistoryInjection }), threadId, turnId: undefined, turnIdReady, adopt, deferred: [], hostGeneration, progress: [], nativePlanEvents: [], pending: new Map(), text: "", emittedByItem: new Map(), result, settle: value => { if (entry.settled) return; entry.settled = true; entry.handle.state = "exited"; entry.adopt(undefined); settle(value); }, settled: false };
+      const entry: Entry = { handle, envelope, ...(application === undefined ? {} : { application }), ...(state.instructionHistoryInjection === undefined ? {} : { instructionHistoryInjection: state.instructionHistoryInjection }), threadId, turnId: undefined, turnIdReady, adopt, deferred: [], hostGeneration, progress: [], nativePlanEvents: [], pending: new Map(), text: "", emittedByItem: new Map(), result, settle: value => { if (entry.settled) return; entry.settled = true; this.finishApplication(entry.application, "turn ended"); entry.application = undefined; entry.handle.state = "exited"; entry.adopt(undefined); settle(value); }, settled: false };
       this.entries.set(workerId, entry);
       this.byThread.set(threadId, entry);
       let started: { turn: { id: string; status: string } };
@@ -230,6 +268,9 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       }
       this.adoptTurn(entry, started.turn.id);
       return { ...handle };
+    } catch (error) {
+      this.finishApplication(application, "turn acquisition failed");
+      throw error;
     } finally { this.acquiring.delete(workerId); if (envelope.resumeThreadId !== undefined) this.acquiringThreads.delete(envelope.resumeThreadId); }
   }
 
@@ -347,6 +388,8 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
   async interrupt(workerId: string, generation: string): Promise<void> {
     const entry = this.entry(workerId, generation);
     if (entry.settled) return;
+    this.finishApplication(entry.application, "turn interrupted");
+    entry.application = undefined;
     // Stop during the turn/start round trip waits for the turn identity (the
     // response or the turn/started adoption) instead of sending an empty id.
     const turnId = entry.turnId ?? await entry.turnIdReady;
@@ -377,6 +420,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
 
   async close(): Promise<void> {
     this.closed = true;
+    for (const ownership of this.applicationOwnerships) this.finishApplication(ownership, "supervisor closed");
     for (const fn of this.unsubscribe.splice(0)) fn();
     await Promise.all([...this.entries.values()].map(entry => this.retire(entry.handle.workerId, entry.handle.generation).catch(() => undefined)));
   }
@@ -388,7 +432,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
     entry.adopt(turnId);
     const deferred = entry.deferred.splice(0);
     this.push(entry, { type: "started", providerThreadId: entry.threadId, providerTurnId: turnId, ...(entry.instructionHistoryInjection === undefined ? {} : { instructionHistoryInjection: entry.instructionHistoryInjection }) });
-    for (const event of deferred) this.push(entry, { ...event, providerTurnId: turnId } as DelegatedTurnProgressEvent);
+    for (const event of deferred) this.push(entry, { ...event, providerTurnId: event.providerTurnId || turnId } as DelegatedTurnProgressEvent);
   }
 
   // Progress and native plan ports.
@@ -479,7 +523,7 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
     if (typeof params.threadId === "string") {
       if (method === "thread/closed") {
         this.closedThreads.add(params.threadId); this.threads.delete(params.threadId);
-        this.activeChildren.delete(params.threadId); this.closeWaiters.get(params.threadId)?.();
+        this.activeChildren.delete(params.threadId); this.cancelChildTools(params.threadId); this.childTurns.delete(params.threadId); this.closeWaiters.get(params.threadId)?.();
       }
       if (this.childThreads.has(params.threadId)) {
         if (method === "turn/started" || (method === "thread/status/changed" && record(params.status).type === "active")) this.activeChildren.add(params.threadId);
@@ -488,6 +532,16 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
     }
     const entry = this.entryForThread(params.threadId ?? record(params.thread).id ?? record(params.thread).parentThreadId);
     if (entry === undefined) return;
+    if (entry.application && !entry.application.finished && this.childThreads.has(String(params.threadId))) {
+      const childId = String(params.threadId);
+      if (method === "turn/started" && typeof record(params.turn).id === "string" && (this.childTurns.get(childId)?.turnId !== record(params.turn).id || this.childTurns.get(childId)?.owner !== entry)) {
+        this.cancelChildTools(childId);
+        this.childTurns.set(childId, { turnId: record(params.turn).id as string, owner: entry });
+      }
+      if ((method === "turn/completed" && this.childTurns.get(childId)?.turnId === record(params.turn).id) || (method === "thread/status/changed" && ["idle", "systemError", "notLoaded"].includes(String(record(params.status).type)))) {
+        this.cancelChildTools(childId); this.childTurns.delete(childId);
+      }
+    }
     const occurredAt = new Date().toISOString();
     this.push(entry, { type: "notification", providerThreadId: entry.threadId, providerTurnId: entry.turnId ?? "", method, params: notification.params, occurredAt });
     if (method === "item/agentMessage/delta" && params.threadId === entry.threadId && typeof params.delta === "string" && params.delta.length > 0) {
@@ -513,6 +567,10 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       return;
     }
     if (method === "serverRequest/resolved") {
+      if (typeof params.requestId === "string" || typeof params.requestId === "number") {
+        const call = entry.application?.pending.get(JSON.stringify([typeof params.requestId, params.requestId]));
+        if (call && call.threadId === params.threadId) call.cancel();
+      }
       const requestId = params.requestId === undefined ? undefined : String(params.requestId);
       const pending = requestId === undefined ? undefined : entry.pending.get(requestId);
       if (pending && requestId !== undefined) {
@@ -552,6 +610,9 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
     }
   }
   private handleExit(exit: CodexAppServerExit, generation: number): void {
+    this.providerExitEpoch += 1;
+    for (const ownership of this.applicationOwnerships) if (ownership.hostGeneration === generation) this.finishApplication(ownership, "provider exited");
+    this.childTurns.clear();
     this.activeChildren.clear(); this.childThreads.clear(); this.closedThreads.clear(); this.pendingUnloads.clear();
     for (const finish of this.closeWaiters.values()) finish();
     const reason = `codex app-server exited during the turn (code ${exit.code ?? "null"}, signal ${exit.signal ?? "null"})`;
@@ -562,7 +623,76 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       entry.settle(this.failedResult(entry, reason));
     }
   }
+  private finishApplication(ownership: ApplicationOwnership | undefined, reason: string): void {
+    if (!ownership || ownership.finished) return;
+    ownership.finished = true;
+    ownership.removeAbortListener?.();
+    this.applicationOwnerships.delete(ownership);
+    for (const [threadId, child] of this.childTurns) if (child.owner.application === ownership) this.childTurns.delete(threadId);
+    for (const pending of ownership.pending.values()) pending.cancel();
+    this.options.applicationTools!.finishTurn(ownership.envelope.projectId, ownership.envelope.sessionId!, ownership.envelope.clientTurnId, reason);
+  }
+  private cancelChildTools(threadId: string): void {
+    for (const ownership of this.applicationOwnerships) {
+      for (const pending of ownership.pending.values()) if (pending.threadId === threadId) pending.cancel();
+    }
+  }
+  private async handleApplicationTool(request: CodexServerRequest): Promise<CodexServerRequestOutcome> {
+    const params = record(request.params);
+    const entry = this.entryForThread(params.threadId);
+    const providerThreadId = typeof params.threadId === "string" ? params.threadId : "";
+    const providerTurnId = typeof params.turnId === "string" ? params.turnId : "";
+    const evidence = { providerThreadId, providerTurnId, requestId: String(request.id), method: request.method };
+    if (entry) this.push(entry, { type: "request", ...evidence, params: request.params, occurredAt: new Date().toISOString() });
+    const resolved = (result: unknown, outcome: ServerRequestOutcome = "answered") => {
+      if (entry) this.push(entry, { type: "request-resolved", ...evidence, outcome, decision: result, decidedBy: "runtime", occurredAt: new Date().toISOString() });
+      return { result };
+    };
+    const failure = (text: string) => ({ success: false, contentItems: [{ type: "inputText", text }] });
+    const ownership = entry?.application;
+    if (!entry || !ownership || !this.options.applicationTools) return resolved(failure(this.options.applicationTools ? "No active application tool binding" : "Chirality registers no dynamic tools"));
+    if ((typeof request.id !== "string" && (typeof request.id !== "number" || !Number.isFinite(request.id))) || !providerThreadId || !providerTurnId || typeof params.callId !== "string" || !params.callId || typeof params.tool !== "string" || !params.tool || (params.namespace !== null && typeof params.namespace !== "string") || !Object.hasOwn(params, "arguments")) return resolved(failure("Malformed application tool request"));
+    try { canonicalApplicationJson(params.arguments); } catch { return resolved(failure("Malformed application tool arguments")); }
+    const knownTool = ownership.tools.some(spec => spec.type === "function" ? params.namespace === null && spec.name === params.tool : spec.name === params.namespace && spec.tools.some(tool => tool.name === params.tool));
+    if (!knownTool) return resolved(failure("Unknown application tool"));
+    const key = JSON.stringify([typeof request.id, request.id]);
+    const callKey = JSON.stringify([providerThreadId, providerTurnId, params.callId]);
+    if (ownership.seen.has(key) || ownership.seen.has(callKey)) return resolved(failure("Duplicate application tool request"));
+    ownership.seen.add(key); ownership.seen.add(callKey);
+    return new Promise<CodexServerRequestOutcome>(resolve => {
+      let done = false;
+      const finish = (result: unknown, outcome: ServerRequestOutcome = "answered") => {
+        if (done) return;
+        done = true; ownership.pending.delete(key); resolve(resolved(result, outcome));
+      };
+      const callInput: ApplicationToolCall = { bindingId: ownership.binding.bindingId,
+        runtimeProjectId: entry.envelope.projectId, runtimeSessionId: entry.envelope.sessionId!, runtimeTurnId: entry.envelope.clientTurnId,
+        providerThreadId, providerTurnId, requestId: request.id, callId: params.callId as string,
+        namespace: params.namespace as string | null, tool: params.tool as string, arguments: params.arguments as ApplicationJson
+      };
+      ownership.pending.set(key, { threadId: providerThreadId, turnId: providerTurnId, cancel: () => {
+        this.options.applicationTools!.cancelCall(callInput, "provider call cancelled");
+        finish(failure("Application tool call cancelled"), "cancelled");
+      } });
+      // Reserve cancellation ownership before awaiting provider identity: a
+      // resolved request or terminal may arrive while turn/start is in flight.
+      const dispatch = async () => {
+        if (entry.turnId === undefined) await entry.turnIdReady;
+        if (done) return;
+        const child = this.childTurns.get(providerThreadId);
+        const correctTurn = providerThreadId === entry.threadId ? providerTurnId === entry.turnId : child?.owner === entry && child.turnId === providerTurnId;
+        if (ownership.finished || entry.settled || entry.application !== ownership || entry.hostGeneration !== this.options.host.generation || !correctTurn) {
+          ownership.seen.delete(key); ownership.seen.delete(callKey);
+          finish(failure("Foreign or stale application tool request"));
+          return;
+        }
+        finish(await this.options.applicationTools!.call(callInput));
+      };
+      void dispatch().catch(() => finish(failure("Application tool call failed"), "failed"));
+    });
+  }
   private async handleServerRequest(request: CodexServerRequest): Promise<CodexServerRequestOutcome> {
+    if (request.method === DYNAMIC_TOOL_METHOD) return this.handleApplicationTool(request);
     const params = record(request.params);
     const method = request.method;
     const requestId = String(request.id);
@@ -572,11 +702,6 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
       if (entry) this.push(entry, { type: "request-resolved", providerThreadId: entry.threadId, providerTurnId: entry.turnId ?? "", requestId, method, outcome, ...(decision === undefined ? {} : { decision }), decidedBy, occurredAt: new Date().toISOString() });
     };
     if (entry) this.push(entry, { type: "request", providerThreadId: entry.threadId, providerTurnId: entry.turnId ?? "", requestId, method, params: request.params, occurredAt });
-    if (method === DYNAMIC_TOOL_METHOD) {
-      const result = { success: false, contentItems: [{ type: "inputText", text: "Chirality registers no dynamic tools" }] };
-      resolved("answered", result, "runtime");
-      return { result };
-    }
     const answerable = APPROVAL_REQUEST_METHODS.has(method) || method === USER_INPUT_METHOD || method === ELICITATION_METHOD;
     if (!answerable || entry === undefined) {
       if (UNSUPPORTED_METHODS.has(method) || !answerable) this.logger.warn("codex.server-request.unsupported", { method, id: request.id });

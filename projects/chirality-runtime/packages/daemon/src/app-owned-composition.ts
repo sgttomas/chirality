@@ -21,6 +21,7 @@ import { CodexSupervisor } from "./codex-supervisor.js";
 import { HostedBootstrapController } from "./hosted-bootstrap.js";
 import { NOOP_RUNTIME_DAEMON_LOGGER, RuntimeDaemon, describeRuntimeFailure, type RuntimeDaemonLogger } from "./runtime-daemon.js";
 import { TurnRegistry } from "./turn-registry.js";
+import { ApplicationToolRegistry } from "./application-tools.js";
 
 /**
  * The App-owned Codex composition (SPIKE_DESIGN section 7): one stock
@@ -74,6 +75,7 @@ export interface AppOwnedRuntime {
   host: CodexAppServerHost;
   hostedBootstrap: HostedBootstrapController;
   turnRegistry: TurnRegistry;
+  applicationTools: ApplicationToolRegistry;
   effectiveHome: CodexEffectiveHomeReport;
   socketPath: string;
   clientTokenFile: string;
@@ -161,11 +163,12 @@ export async function startAppOwnedRuntime(rawConfig: AppOwnedRuntimeConfig, opt
     transportFactory: options.transportFactory ?? (() => spawnCodexAppServer({ executablePath: config.codex.executablePath, effectiveHome: config.codex.effectiveHome, cwd: config.runtimeDirectory, onStderr: line => logger.warn("codex.app-server.stderr", { line: line.slice(0, 512) }) }))
   });
   await host.start();
-  const supervisor = new CodexSupervisor({ host, logger: codexLogger(logger) });
   const login = new CodexLogin({ host, logger: codexLogger(logger) });
 
   const projects = new ProjectRegistry(config.runtimeDirectory, { ...process.env, [CHIRALITY_INSTRUCTION_ROOT_ENV]: config.instructionRoot });
   const sessions = new SessionStore(config.runtimeDirectory, projects);
+  const applicationTools = new ApplicationToolRegistry({ sessions });
+  const supervisor = new CodexSupervisor({ host, logger: codexLogger(logger), applicationTools });
   // A fresh service owns no turns: sessions a hard-killed or crashed service left
   // `running` settle now, so no relaunch refuses them with SESSION_TURN_IN_PROGRESS.
   for (const status of await projects.list().catch(() => [])) {
@@ -222,7 +225,7 @@ export async function startAppOwnedRuntime(rawConfig: AppOwnedRuntimeConfig, opt
   const credentials = { async get() { return undefined; }, async status() { return { configured: false as const }; }, set: offline, remove: offline };
   const service = new RuntimeService(projects, sessions, engines, residency, new TurnCoordinator(projects, sessions, engines, residency, new RuntimeAttachmentResolver()), auth, credentials, undefined, undefined, createDelegatedPermissionBroker(delegated), defaultSessionPolicy, nativePlan, { nativeProjectDiscovery: true, ...(config.productInstructionsPath === undefined ? {} : { productInstructionsPath: config.productInstructionsPath }) });
   const turnRegistry = new TurnRegistry(service, { sessions, logger });
-  const daemon = new RuntimeDaemon({ socketPath: config.socketPath, runtimeDirectory: config.runtimeDirectory, service, turnRegistry, requests: delegated, delegated, hostedBootstrap, logger });
+  const daemon = new RuntimeDaemon({ socketPath: config.socketPath, runtimeDirectory: config.runtimeDirectory, service, turnRegistry, requests: delegated, delegated, hostedBootstrap, applicationTools, applicationToolHostClientId: APP_HOST_CLIENT_ID, logger });
 
   let closing: Promise<void> | undefined;
   const close = (): Promise<void> => {
@@ -236,6 +239,7 @@ export async function startAppOwnedRuntime(rawConfig: AppOwnedRuntimeConfig, opt
       await step("hosted-bootstrap", () => hostedBootstrap.close());
       login.close();
       await step("supervisor", () => supervisor.close());
+      applicationTools.close();
       await step("app-server", () => host.close());
       if (failures.length > 0) throw failures[0];
     })();
@@ -252,5 +256,5 @@ export async function startAppOwnedRuntime(rawConfig: AppOwnedRuntimeConfig, opt
     await close().catch(() => undefined);
     throw error;
   }
-  return { daemon, service, delegated, login, supervisor, host, hostedBootstrap, turnRegistry, effectiveHome, socketPath: config.socketPath, clientTokenFile: config.clientTokenFile, close };
+  return { daemon, service, delegated, login, supervisor, host, hostedBootstrap, turnRegistry, applicationTools, effectiveHome, socketPath: config.socketPath, clientTokenFile: config.clientTokenFile, close };
 }
