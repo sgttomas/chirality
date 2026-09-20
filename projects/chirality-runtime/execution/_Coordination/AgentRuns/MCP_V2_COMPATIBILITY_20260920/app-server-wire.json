@@ -1,0 +1,73 @@
+[
+  {
+    "direction": "driver-to-app-server",
+    "frame": {
+      "id": 1,
+      "method": "initialize",
+      "params": {
+        "clientInfo": {
+          "name": "chirality_mcp_v2_compatibility",
+          "version": "0.0.0"
+        },
+        "capabilities": {
+          "experimentalApi": true
+        }
+      }
+    }
+  },
+  {
+    "direction": "app-server-to-driver",
+    "frame": {
+      "id": 1,
+      "result": {
+        "userAgent": "chirality_mcp_v2_compatibility/0.155.0-alpha.9.2 (Mac OS 26.6.2; arm64) unknown (chirality_mcp_v2_compatibility; 0.0.0)",
+        "codexHome": "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-mcp-v2-2ajwqpg0/codex-home",
+        "platformFamily": "unix",
+        "platformOs": "macos"
+      }
+    }
+  },
+  {
+    "direction": "app-server-to-driver",
+    "frame": {
+      "method": "remoteControl/status/changed",
+      "params": {
+        "status": "disabled",
+        "serverName": "Ryans-MacBook-Pro.local",
+        "installationId": "a8265cc3-44b3-46e7-9ff2-9c65c7f9dd03",
+        "environmentId": null
+      },
+      "emittedAtMs": 1789934334379
+    }
+  },
+  {
+    "direction": "driver-to-app-server",
+    "frame": {
+      "method": "initialized",
+      "params": {}
+    }
+  },
+  {
+    "direction": "driver-to-app-server",
+    "frame": {
+      "id": 2,
+      "method": "thread/start",
+      "params": {
+        "cwd": "/private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-mcp-v2-2ajwqpg0/cwd",
+        "ephemeral": true,
+        "approvalPolicy": "never",
+        "sandbox": "read-only"
+      }
+    }
+  },
+  {
+    "direction": "app-server-to-driver",
+    "frame": {
+      "error": {
+        "code": -32603,
+        "message": "error creating thread: Fatal error: Failed to initialize session: required MCP servers failed to initialize: chirality_v2_probe: handshaking with MCP server failed: JSON-RPC error: -32601: This fixture accepts stateless MCP 2026-07-28 only; legacy initialize is unsupported.({\"supported\":[\"2026-07-28\"]}): JSON-RPC error: -32601: This fixture accepts stateless MCP 2026-07-28 only; legacy initialize is unsupported.({\"supported\":[\"2026-07-28\"]})"
+      },
+      "id": 2
+    }
+  }
+]
