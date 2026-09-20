@@ -79,7 +79,7 @@
     "B-SHELL": {
       "role": "WORKING_ITEMS Type 1 lane manager",
       "model": "current WORKING_ITEMS gpt-6-astra/high; historical Fable allocation preserved separately",
-      "status": "B3 merged; retained Astra/high manager now executes bounded B3A in wt3, B3B not started.",
+      "status": "Active B3 manager /root/b3_manager in preserved wt3; original B3 completed locally, bounded hosted tooltip repair now active. No B3A/B3B started.",
       "briefSha256": "00c98ec0f77363d3bf498c4729185b4761f77e7178853277996352b4b59c4b75",
       "brief": "briefs/B-SHELL_shell_lane.md",
       "returnSha256": null,
@@ -111,12 +111,12 @@
         "model": "fable",
         "status": "paused clean, confirmed by ROOT: branch codex/swbpipe-b-shell-20260918 at a9be4aaefa432e1eed56e87482391e90958cb087, pushed; contains origin/main at d20eb1294 (not PR #807). Merged: B2 (PR #803), B2F and B2G (PR #805). In progress: B3. The managers of 2026-09-18 and 2026-09-19 cannot be resumed from another session; instances/B-SHELL/LANE_LOG.md ends with a section for a fresh start."
       },
-      "currentExecutionNode": "B3A-CODEX-MANAGER"
+      "currentExecutionNode": "B3-CODEX-MANAGER"
     },
     "B-CANVAS": {
       "role": "WORKING_ITEMS Type 1 lane manager",
-      "model": "current WORKING_ITEMS gpt-6-astra/high; historical Fable allocation retained separately",
-      "status": "I1 frozen and returned at 045acae749fe1acc95bce221cdb58c2db4a7064c; independent review active. C3 awaits integration and bounded activation.",
+      "model": "fable",
+      "status": "paused clean, confirmed by ROOT: branch codex/swbpipe-b-canvas-20260918 at f6c0bab8e8893237f83f57656b98039d68efb2b4, pushed; contains origin/main at d20eb1294 and slice C2's commits (merged as PR #807; merge main first). Merged: C1 (PR #806), C2 (PR #807). In progress: I1, a labelled pause point. instances/B-CANVAS/LANE_LOG.md has a PAUSE STATUS section for a fresh start; two of its carried items are overtaken by ROOT's B3 rulings (--shell-canvas-foot-inset is removed by B3; the routing block moves in B3, not B5).",
       "briefSha256": "df89f5b622a63f206ccc0f879e7255642e4b9ee16174faf84e539ab51bc12084",
       "brief": "briefs/B-CANVAS_canvas_lane.md",
       "returnSha256": null,
@@ -139,12 +139,7 @@
       ],
       "dependsOnNote": [
         "B1-TOKENS merged 4dcab7505"
-      ],
-      "historicalPreCodexState": {
-        "model": "fable",
-        "status": "paused clean, confirmed by ROOT: branch codex/swbpipe-b-canvas-20260918 at f6c0bab8e8893237f83f57656b98039d68efb2b4, pushed; contains origin/main at d20eb1294 and slice C2's commits (merged as PR #807; merge main first). Merged: C1 (PR #806), C2 (PR #807). In progress: I1, a labelled pause point. instances/B-CANVAS/LANE_LOG.md has a PAUSE STATUS section for a fresh start; two of its carried items are overtaken by ROOT's B3 rulings (--shell-canvas-foot-inset is removed by B3; the routing block moves in B3, not B5)."
-      },
-      "currentExecutionNode": "I1-CODEX-MANAGER"
+      ]
     },
     "B1-REVIEW": {
       "role": "TASK Type 2 software-code-review, read-only",
@@ -599,7 +594,7 @@
       "role": "slice",
       "lane": "B-SHELL",
       "title": "the unsaved-edits mark; the 'Solver \u00b7 Not solved' fallback chip",
-      "status": "product frozen at 80b9efb48c31da0d8dc58a2d728db56adcf17d22; final focused checks and native witness pending",
+      "status": "planned, authorized by the owner 2026-09-19",
       "dependsOn": [
         "B3"
       ],
@@ -729,25 +724,21 @@
       "role": "slice",
       "lane": "B-CANVAS",
       "title": "repair of the benchmark first profile's four defects (instrument code only)",
-      "status": "frozen clean at 045acae749fe1acc95bce221cdb58c2db4a7064c; fresh independent complete-diff review active; not merged",
+      "status": "in progress, paused: committed as a labelled pause point 240a246f3, not a candidate; checked in part by the manager (fixtures, samples and the manifest byte-identical; the generator's --check mode reproduces the frozen bytes and writes nothing; picking 69); the whole diff not yet read; full lanes not run on the committed head",
       "dependsOn": [
         "C2"
       ],
       "authority": "OWNER_DIRECTION_2026-09-19_SECTION7_DECISIONS.md group 3(b); the lane's proposal P4 accepted by ROOT; sequenced before C3 by ROOT, not by the owner",
       "brief": "instances/B-CANVAS/briefs/I1-REPAIR.md (on the lane branch)",
-      "preparationSourceAudit": {
-        "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/I1_PREPARATION_SOURCE_AUDIT.json",
-        "result": "Nine historical preimages hash-matched read-only; subsequently retained with custody in I1-CODEX/_run_records/protocol-history. Original checkout unchanged."
-      },
-      "openForRootHistorical": [
+      "openForRoot": [
         "defect 2: a header comment or retirement to history",
         "whether the nine protocol-history files are preserved in the repository",
         "seventeen hash literals bind artifacts never committed"
       ],
-      "dispositions": "Historical helper header retained; nine exact preimages recovered as run evidence; seventeen historical uncommitted pin limitations remain. See I1-CODEX/MANAGER_RETURN.md.",
-      "candidate": "045acae749fe1acc95bce221cdb58c2db4a7064c",
-      "return": "instances/I1-CODEX/MANAGER_RETURN.md",
-      "returnSha256": "8fdd8093fcaa5c2f6716555c5151e4f2e01110f328c21e19296808a261967f6a"
+      "preparationSourceAudit": {
+        "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/I1_PREPARATION_SOURCE_AUDIT.json",
+        "result": "ROOT read-only found all9 historical preimages in preserved old worktree, hash-matched; no I1 implementation or launch yet"
+      }
     },
     "C3": {
       "role": "slice",
@@ -1220,88 +1211,6 @@
         "status": "provisional/unmapped",
         "basis": "owner-authorized typed UI gap; reconcile only in later owner-directed phase"
       }
-    },
-    "B3A-CODEX-MANAGER": {
-      "role": "WORKING_ITEMS Type1",
-      "parent": "ROOT",
-      "actualAgent": "/root/b3_manager",
-      "modelRequested": "gpt-6-astra",
-      "reasoningRequested": "high",
-      "actualMechanism": "collaboration.followup_task to existing Astra/high manager",
-      "status": "product frozen at 80b9efb48c31da0d8dc58a2d728db56adcf17d22; final source rechecks then native witness",
-      "scope": "B3A",
-      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B3A_MANAGER_BRIEF.md",
-      "briefSha256": "98986a724525d0e5d3fe1465b6ad2185d8d436fccd56f9f9494d24f417d195f2",
-      "suppliedBasis": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B3A_LAUNCH_BASIS/INPUTS.json",
-      "main": "7e6a7f2578e5df12ea891c2d604d0cd48e869934",
-      "children": [
-        {
-          "actualAgent": "/root/b3_manager/b3a_implementation",
-          "role": "TASK Type 2",
-          "model": "gpt-6-astra",
-          "reasoning": "low",
-          "briefSha256": "29c38d450b7f166d77b2c2758e2d0ff0bda9ef1cf86eab52074b3db7f0f2376b",
-          "status": "implementation returned"
-        }
-      ],
-      "candidate": "80b9efb48c31da0d8dc58a2d728db56adcf17d22"
-    },
-    "I1-CODEX-MANAGER": {
-      "role": "WORKING_ITEMS Type1",
-      "parent": "ROOT",
-      "actualAgent": "/root/i1_manager",
-      "modelRequested": "gpt-6-astra",
-      "reasoningRequested": "high",
-      "actualMechanism": "collaboration.spawn_agent, fork_turns none",
-      "status": "complete; clean frozen I1 return; no C3 work",
-      "scope": "I1",
-      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/I1_MANAGER_BRIEF.md",
-      "briefSha256": "6ec8561aef37e9b36be999db87fea8730b6500732eae475e3176b8b74fd5cf12",
-      "suppliedBasis": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/I1_LAUNCH_BASIS/INPUTS.json",
-      "main": "7e6a7f2578e5df12ea891c2d604d0cd48e869934",
-      "children": [
-        {
-          "actualAgent": "/root/i1_manager/instrument_worker",
-          "role": "TASK Type 2",
-          "model": "gpt-6-astra",
-          "reasoning": "low",
-          "brief": "instances/I1-CODEX/WORKER_BRIEF.md",
-          "briefSha256": "34131646c0b79f7a2f05184ddbd6cab28e97bce9c8936a5ee844080d88443fac",
-          "returnSha256": "546c354318381e58396f8c279ef07cdabacb28d6920fae632c5be07e2e423c68",
-          "status": "complete"
-        }
-      ],
-      "candidate": "045acae749fe1acc95bce221cdb58c2db4a7064c",
-      "return": "instances/I1-CODEX/MANAGER_RETURN.md",
-      "returnSha256": "8fdd8093fcaa5c2f6716555c5151e4f2e01110f328c21e19296808a261967f6a"
-    },
-    "I1-CODEX-REVIEW": {
-      "role": "TASK Type 2 independent complete-diff reviewer",
-      "parent": "ROOT",
-      "actualAgent": "/root/i1_code_review",
-      "modelRequested": "gpt-6-astra",
-      "reasoningRequested": "xhigh",
-      "actualMechanism": "collaboration.spawn_agent, fork_turns none",
-      "status": "active read-only",
-      "candidate": "045acae749fe1acc95bce221cdb58c2db4a7064c",
-      "base": "7e6a7f2578e5df12ea891c2d604d0cd48e869934",
-      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/I1_INDEPENDENT_REVIEW_BRIEF.md",
-      "briefSha256": "b33f5fb9c62e0b753d16f527c266afc2e3981f1e7674b21bd3ff7f1bc3e47696",
-      "enforcement": "Instruction-enforced read-only on unrestricted host; no UI/tests/Git mutation/delegation"
-    },
-    "B3A-CODEX-REVIEW": {
-      "role": "TASK Type 2 independent complete-diff reviewer",
-      "parent": "ROOT",
-      "actualAgent": "/root/b3a_code_review",
-      "modelRequested": "gpt-6-astra",
-      "reasoningRequested": "xhigh",
-      "actualMechanism": "collaboration.spawn_agent, fork_turns none",
-      "status": "active read-only product review; final evidence follows",
-      "candidate": "80b9efb48c31da0d8dc58a2d728db56adcf17d22",
-      "base": "7e6a7f2578e5df12ea891c2d604d0cd48e869934",
-      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B3A_INDEPENDENT_REVIEW_BRIEF.md",
-      "briefSha256": "ad366d67b2fc0bd64682d84ec75ae3432ac55746df5b5c26e0ef2a24ef6e2fbb",
-      "enforcement": "Instruction-enforced read-only on unrestricted host; no UI/tests/Git mutation/delegation"
     }
   },
   "edges": [
@@ -1460,25 +1369,9 @@
     [
       "ROOT",
       "B3-FIDELITY-CODEX"
-    ],
-    [
-      "ROOT",
-      "B3A-CODEX-MANAGER"
-    ],
-    [
-      "ROOT",
-      "I1-CODEX-MANAGER"
-    ],
-    [
-      "ROOT",
-      "I1-CODEX-REVIEW"
-    ],
-    [
-      "ROOT",
-      "B3A-CODEX-REVIEW"
     ]
   ],
-  "current_frontier": "B3 merged and selected CI green. I1 frozen at 045acae7 and B3A product frozen at 80b9efb4; separate fresh independent reviews active. B3A native witness holds CUA; ROOT prepares combined integration and one clean complete sweep after release. Runtime adoption and owner-held later product choices remain pending.",
+  "current_frontier": "B3 merged and final selected CI verified. Activate prepared B3A shell work and I1 canvas-instrument completion in disjoint lanes; preserve owner-held later product rulings and Runtime adoption boundary.",
   "frontier_history": [
     {
       "until": "2026-09-18T19:41Z",
@@ -1683,8 +1576,8 @@
     "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/RUNTIME_COORDINATION_STATUS.md",
     "editor": "ROOT only",
     "peerThread": "01a07cd1-86da-7d30-9b17-e2cbbad3f10a",
-    "state": "B3 merged 7e6a7f25; B3A and I1 active under approved strategy. Runtime adoption remains discussion only.",
-    "originMainRevalidated": "7e6a7f2578e5df12ea891c2d604d0cd48e869934",
+    "state": "B3 merged7e6a7f25, selected CI green; preparing authorized B3A/I1 activation. Runtime adoption remains discussion only.",
+    "originMainRevalidated": "21175b5d3668f29acd408812d95a33ed4f14bfc8",
     "peerProposedContract": "cb08dbe2fbeaf5a34a0abfa2f1d599c7c5bd6b2f",
     "peerPr": "https://github.com/sgttomas/chirality/pull/824",
     "peerAcknowledgment": "Direct task reply acknowledged sole editor, disjoint scope, resources, DEC-051 correction and B3/B3A/B3B adoption sequence.",
@@ -1738,9 +1631,8 @@
   },
   "continuationPlan": {
     "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/NEXT_CONTROL_LAYER_PHASE.md",
-    "state": "B3 merged; bounded B3A/I1 activated with separate frozen candidates and independent reviews.",
+    "state": "prepared; post-B3 dispatch waits for B3 merge",
     "phase": "existing UI implementation; no DAG rebuild/reconciliation",
-    "sequenceCorrections": "B3B after B3A; B4 after B3B; B7 after G-11 as recorded shell order. G17 explicitly scheduled after G11/B7 without new scope.",
-    "integrationBatchNote": "If B3A and I1 are both frozen and independently reviewed at the same milestone, ROOT may integrate their disjoint scopes into one candidate and run one complete clean sweep plus full default hosted coverage. Each slice retains separate review and evidence. No gate waiver."
+    "sequenceCorrections": "B3B after B3A; B4 after B3B; B7 after G-11 as recorded shell order. G17 explicitly scheduled after G11/B7 without new scope."
   }
 }
