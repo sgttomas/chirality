@@ -80,6 +80,7 @@ jobs:
           --event "$EVENT" --base "$BASE" --head "$HEAD" --pr "$PR"
           --output piping-e2e-plan.json
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: piping-e2e-selection
           path: piping-e2e-plan.json
@@ -101,7 +102,15 @@ jobs:
           name: piping-e2e-selection
       - uses: ./.github/actions/setup-piping-e2e
       - name: Run accessibility first, then any reduced selection
-        run: python3 projects/chirality-piping/tools/ci/e2e_plan.py run --plan piping-e2e-plan.json --stage barrier
+        run: python3 projects/chirality-piping/tools/ci/e2e_plan.py run --plan piping-e2e-plan.json --stage barrier --evidence-dir piping-e2e-collection/barrier
+      - name: Retain candidate collection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: piping-e2e-collection-barrier-${{ github.run_id }}-${{ github.run_attempt }}
+          path: piping-e2e-collection/barrier
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload failure artifacts
         if: failure()
         uses: actions/upload-artifact@v4
@@ -135,7 +144,15 @@ jobs:
       - name: Run isolated source remainder shard
         env:
           SHARD: ${{ matrix.shard }}
-        run: python3 projects/chirality-piping/tools/ci/e2e_plan.py run --plan piping-e2e-plan.json --stage remainder --shard "$SHARD"
+        run: python3 projects/chirality-piping/tools/ci/e2e_plan.py run --plan piping-e2e-plan.json --stage remainder --shard "$SHARD" --evidence-dir "piping-e2e-collection/shard-$SHARD"
+      - name: Retain candidate shard collection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: piping-e2e-collection-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: piping-e2e-collection/shard-${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 14
       - name: Upload failure artifacts
         if: failure()
         uses: actions/upload-artifact@v4
