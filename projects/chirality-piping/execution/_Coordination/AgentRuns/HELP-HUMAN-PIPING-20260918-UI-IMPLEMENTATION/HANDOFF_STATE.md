@@ -115,3 +115,49 @@ Run `HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION`, ROOT (HELP_HUMAN, Agent 0). 
 - 2026-09-19, late: at the owner's word ("why not just incorporate what's needed into `SESSION_HANDOFF_2026-09-19B.md` so it's sufficient for its purposes and doesn't point to obsolete files with contradictory statements in it", said in session), `instances/ROOT/SESSION_HANDOFF_2026-09-19B.md` was revised to stand on its own: it now carries the conventions, the locations and the known traps, and describes the two-lane organization as the earlier sessions' practice and not the owner's direction. `SESSION_HANDOFF_2026-09-19.md` and `SUCCESSOR_PROMPT_2026-09-19.md` carry a superseded notice and are kept as history. `SUCCESSOR_PROMPT_2026-09-19B.md` was replaced earlier the same evening with the owner's own edited text (pull request #811); its sentence "The handoff continues SESSION_HANDOFF_2026-09-19.md beside it." now points to a superseded file; the owner asked in session whether it was needed, ROOT answered that it was not, and the reading list the owner then showed ROOT omits it (the owner sends whatever version the owner chooses). This revision was checked independently before it merged (Claude Opus 5, read-only, narrow; its instruction was ROOT's launch message and its return is summarized in the pull request): nine findings, none blocking, all applied, among them two more places where ROOT's decision read as the owner's (the routing block pulled forward into B3; "it restricts nothing else"). No backcheck was run.
 
 Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).
+
+## 2026-09-19 — Codex continuation discovery; awaiting agreement
+
+Live origin/main and both unmerged lanes revalidated. No agents launched and no product changes made. The current frontier is WORK_GRAPH.json; the reviewable owner package is `instances/ROOT/CONTINUATION_2026-09-19_CODEX/DECISION_AND_STRATEGY.md`, with raw state observations in `DISCOVERY.json` and current owner text in `OWNER_STEER.md` beside it. B3 remains first. D1/D2/D3 remain pending before dependent implementation; strategy agreement precedes agent launches and substantial implementation. Native menu/minimum/title-bar evidence is owed. Records are prepared locally, uncommitted and not independently reviewed. Parked design and lane branches unchanged; no deliverable reconciliation or DAG rebuild.
+
+## Owner approval — Codex continuation
+
+The owner agreed to the proposed strategy and all three dispositions. Verbatim approval and adopted-package hash: `instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_APPROVAL.md`. B3 manager brief sealed; actual launch belongs in WORK_GRAPH.json. D1 is overlay with complete clearance, not padding. D2 table-first inspector lending; D3 Both-only assertion replacement. B3 native evidence and independent complete-candidate review remain required.
+
+## Model steering — new deployments
+
+Owner directs all new Sol-designated workers to gpt-6-astra/low. Authority: `instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_MODEL_DIRECTION.md`; execution instructions: B3 manager addendum 2 and ORCHESTRATION_PLAN amendment 2. Existing instance attribution stays historical; current bounded tasks can finish. No new Sol launch or new assignment by reuse. Product work continues B3 first.
+
+## 2026-09-20 — owner pause before B3 merge
+
+Owner: “Pause your work”. All bounded agents have returned. B3 PR #825 is open at `002dff0f244976f98b36517d920b3761f6f88704`; local product/native/review/sweep and final repository checks passed. Harness CI passed; desktop CI was still running at pause. No merge or new implementation is authorized while paused. The local CI watcher was stopped; hosted CI remains running. Native, browser and test resources are released.
+
+ROOT preserves the publication-review return, final repository logs and these pause records locally, uncommitted and awaiting scoped review on resume. Shell lane remains clean at `c613922f`; canvas remains preserved at `f6c0bab8e`; design remains parked. No B3A/B3B/I1 continuation agent was launched. Resume from WORK_GRAPH.json after live Git/PR/CI revalidation. Runtime coordination is discussion only for Piping; its shared note has one editor, ROOT. No deliverable reconciliation or DAG rebuild.
+
+Owner's later direction: “Merge the PR and then I'll tell you when you resume.” This permits PR825 merge after its remaining CI gate, while every other work stream stays paused. No new agent launches or implementation are started.
+
+CI finished on PR825 head `002dff0f`: desktop FAILURE, 408 passed / 20 skipped / 2 failed. Both failures are `covered pages exclude retained stage controls from Tab and accessibility`, blocked at `b3-accessibility.spec.ts:79` by `agent-strip-reason` intercepting the Close pointer click. Raw failed-job output and hashes are retained in continuation `_run_records/PR825_CI_FAILURE/`. Harness passed. ROOT did not merge, repair, rerun CI or launch agents; the owner pause remains. The requested merge needs a bounded B3 repair and applicable backcheck/verification first.
+
+Renewed owner pause: “that's great, but I still need you to pause work for a moment.  Then I will tell you to resume.” ROOT stops here. The bounded repair/reduced-CI direction is retained, but B3_CI_REPAIR_MANAGER_BRIEF.md (SHA25614b3fe08cb8c169f3fd56491c7c650991a9f46d9af80e3c654c65a1fed55411e) is prepared and unlaunched. No product or CI workflow change, agent launch, rerun or merge has occurred. All work waits for explicit owner resume. Local records remain uncommitted.
+
+## 2026-09-20 — resumed repair, CI strategy and authorized UI continuation
+
+OWNER_RESUME_2026-09-20.md retains explicit owner resume/repair/merge/CI-economy/continuation direction. B3 manager reactivated with sealed brief/addendum; pinned Playwright Chromium reproduces actual Agent tooltip interception of Close. New Astra/low CI inventory and separate CI implementer have disjoint scopes; ROOT owns CI integration/manifest and shared records. CI strategy uses early interaction coverage, conservative reductions and isolated full-run shards; tests/limits and local clean DEC025 stay intact. Work graph has current state. Remaining product rulings and Runtime adoption remain pending, not inferred from resume.
+
+## 2026-09-20 — repaired product, reviewed CI, new dist assertion ruling pending
+
+Tooltip product3861b614 and manager packetf7dcbf02 independently passed; actual native pointer/escape and ROOT own look passed, with pure native hover explicitly unobserved. CI strategy7174f78b passed independent backcheck after removing unsafe instrument routing, binding target-base ancestry and validating actual collected test identities. ROOT's three checkout blob-filter additions were separately reviewed; they preserve full ancestry/current checkout.
+
+Clean pinned-Chromium sweep06548567 passed Rust, Python, unit and full source surfaces, then failed one dist wheel-target exact-equality assertion on a binary64-scale difference. The source twin already uses a finite16EPS scale-aware predicate from merged306a74ba9d; the dist twin remains exact. No protected assertion has changed. The exact unapplied parity patch and proposal to reuse unchanged passing surfaces are in continuation B3_DIST_ROUNDOFF_DECISION.md and B3_DIST_WHEEL_PARITY.patch.txt; raw failure evidence is under _run_records/B3_DIST_ROUNDOFF. Owner ruling is pending via active asynchronous question. The failed sweep remains failed.
+
+B3A and I1 manager briefs are drafted but unlaunched. ROOT located all9historical I1 preimages and verified their pins read-only; no I1 implementation began. Current gate and scope state is WORK_GRAPH.json.
+
+## Current checkpoint — owner ruling pending
+
+Product/CI strategy and all new evidence corrections have independent PASS returns. The single dist wheel-target parity proposal is technically reviewed but unapplied; the asynchronous owner question remains unanswered. Failed sweep065 is not promoted. Raw CI evidence was relocated byte-for-byte under its instance _run_records, with EVIDENCE_LOCATIONS mapping; harness now passes and confirmed self-check has no raw-path findings. No workers/apps/servers/tests remain running. B3A/I1 briefs remain drafts and their activation awaits B3 merge. Next on ruling: record exact disposition, apply only authorized patch, complete specified verification and final candidate CI, merge825, then activate the prepared disjoint UI work. The final checkpoint record tail itself remains a local checkpoint until publication backcheck.
+
+## Owner approval — parity and bounded reruns
+
+The owner approved parity with the existing source test and bounded reruns. Exact supplied text and scope are in continuation OWNER_DIST_PARITY_APPROVAL.md. The reviewed patch is applied with expected dist SHA256 f6def858ca800f0f65fa338a92847e6ad8e0b11052dc6063f56d31d809cca4f3. Original failed065 sweep remains failed. Next: full corrected dist/build, unchanged-input binding, affected CI-policy checks, independent backchecks and selected hosted CI; then merge825 and activate B3A/I1. No other test or general sweep requirement changes.
+
+Bounded reruns completed on clean7a37a8f2: corrected complete dist and production build pass; affected CI policy tests pass. COMBINED_VERIFICATION.json binds unchanged product/source/domain inputs to failed065's passing surfaces, preserving its failed verdict. Current peer note and graph now reflect approval/application and released rerun resources. Final current-head collection/records checks and selected hosted CI remain before merge.

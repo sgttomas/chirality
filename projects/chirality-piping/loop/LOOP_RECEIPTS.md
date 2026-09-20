@@ -3268,3 +3268,33 @@
   - Checks: pre-append receipt checks passed; scoped validation, independent review and actual-candidate CI recorded in the owning run and PR before merge. No product/native evidence is claimed.
   - Model-Attribution: HELP_HUMAN Astra/high; fresh direct TASK Astra/high review, parentage and instruction-asserted boundaries in the owning run.
   - Gate-Outcome: `EXECUTED` — shared instruction clarification only. Protected criteria, product decisions, DAG, lifecycle, release and holds unchanged. UI successor owes strategy agreement, product decision package and B3 native checks.
+
+- **2026-09-19 — Receipt 150** (UI continuation discovery and owner decision package).
+  - Receipt-ID: `Receipt-150`
+  - Examined-Through: `c459a0fa15e8d33613b6b95f529b5d369c707874`
+  - Parent-Receipt: `Receipt-149`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; current owner words retained in `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_STEER.md`.
+  - Pointers: same run `WORK_GRAPH.json`, `HANDOFF_STATE.md` and `instances/ROOT/CONTINUATION_2026-09-19_CODEX/DECISION_AND_STRATEGY.md`; `DISCOVERY.json` beside the package retains live-state observations and source hashes.
+  - Checks: pre-append receipt validation passed; Git and source discovery only. No fresh product or native test pass, independent review, CI or merge claimed.
+  - Model-Attribution: HELP_HUMAN GPT-6 Astra; proposed allocation and context provenance in the package; no child launched.
+  - Gate-Outcome: `AWAITING_OWNER` — requested strategy agreement before agent launches/substantial implementation, and three pending product dispositions before dependent work or B3 merge. Preparation records remain uncommitted. No product, deliverable reconciliation, DAG, lifecycle, release or usability-hold change. Standard F-PIP-2/DEC-081 fence applies.
+
+- **2026-09-20 — Receipt 151** (owner pause before B3 merge).
+  - Receipt-ID: `Receipt-151`
+  - Examined-Through: `f7274d30b89991391bcfa2dab9d922e72f53213d`
+  - Parent-Receipt: `Receipt-150`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; “Pause your work”, then “Merge the PR and then I'll tell you when you resume.” Active-chat supplied text, not transport bytes; narrow merge exception recorded in the owning work graph.
+  - Pointers: `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.json`; same run `HANDOFF_STATE.md`, `instances/B3-CODEX/RETURN.md`, and `instances/ROOT/CONTINUATION_2026-09-19_CODEX/RUNTIME_COORDINATION_STATUS.md`; PR #825.
+  - Checks: bounded B3 local product/native checks, independent review and clean five-surface sweep passed; final repository checks passed with retained warnings. Harness CI passed; desktop CI was in progress at pause and then failed; the requested merge remains blocked, with raw failure evidence in continuation `_run_records/PR825_CI_FAILURE/`. Canonical counts, candidate bindings and native limits remain in the run. These pause records are uncommitted and not yet independently reviewed.
+  - Model-Attribution: HELP_HUMAN Astra/high-or-greater; WORKING_ITEMS Astra/high; actual child allocations and independent reviews retained in the run. New formerly-Sol workers use Astra/low; historical settings unchanged. All bounded assignments returned.
+  - Gate-Outcome: `EXECUTED` — owner-requested pause and state preservation only. B3 PR remains open; the later owner direction authorizes this PR merge only, but its failed CI gate prevents merge. No repair or rerun was made; further implementation remains paused. No Piping Runtime adoption, ownership transfer, deliverable reconciliation, DAG rebuild, lifecycle, release or usability-hold change. Standard F-PIP-2/DEC-081 fence applies.
+
+- **2026-09-20 — Receipt 152** (B3 repair and CI strategy; protected dist assertion ruling pending).
+  - Receipt-ID: `Receipt-152`
+  - Examined-Through: `d300af0f3573f58841163c6367a8ffbb5f950247`
+  - Parent-Receipt: `Receipt-151`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING; explicit resume, PR repair/merge, CI-economy and subsequent authorized-work direction in the owning run's `instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_RESUME_2026-09-20.md`.
+  - Pointers: `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/WORK_GRAPH.json`; same run `HANDOFF_STATE.md`; continuation `B3_DIST_ROUNDOFF_DECISION.md`, unapplied `B3_DIST_WHEEL_PARITY.patch.txt`, independent review returns and raw failed-sweep evidence; `instances/CI-STRATEGY-CODEX/EVIDENCE_LOCATIONS.json` resolves relocated raw reports.
+  - Checks: tooltip product/native repair, CI policy repair, evidence review and governance checks pass at their bound scopes. Clean sweep's source and earlier surfaces passed; dist has a retained exact-equality failure and the final production-build surface was not run. Exact results and limitations remain in the owning artifacts. No corrected dist or new hosted pass is claimed.
+  - Model-Attribution: HELP_HUMAN/WORKING_ITEMS Astra high-or-greater; new bounded implementation/inventory TASK workers Astra/low; independent code/records reviewers Astra/xhigh. Parentage, briefs and returns retained in the run.
+  - Gate-Outcome: `AWAITING_OWNER` — proposed dist/source predicate parity and optional one-time reuse of unchanged passing verification need the named ruling. The patch remains unapplied, the failed sweep remains failed, and PR825 remains unmerged. Next-slice drafts are prepared but unlaunched. No Runtime adoption, deliverable reconciliation, DAG rebuild, lifecycle, release or usability-hold change. Standard F-PIP-2/DEC-081 fence applies.

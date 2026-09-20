@@ -6,7 +6,7 @@ on:
     # also matched governance records (execution/, plans/, docs/, governance/,
     # provenance/, loop/, NOTICE_*.md), so record-only pull requests paid for a
     # ~25 minute, 342-test browser suite that could not observe their change.
-    # Every path below is read by a step of `desktop-e2e`:
+    # Inputs include selection policy, setup and regression tests:
     #   package.json / package-lock.json  -> `npm ci`, the setup-node cache key,
     #                                        and the pinned Playwright resolve step
     #   apps/**                           -> the desktop workspace: src, e2e specs,
@@ -30,6 +30,9 @@ on:
     # add a path here whenever a new input can change product behaviour.
     paths:
       - ".github/workflows/piping-desktop-e2e.yml"
+      - ".github/actions/setup-piping-e2e/**"
+      - "projects/chirality-piping/tools/ci/**"
+      - "projects/chirality-piping/tests/test_ci_e2e_plan.py"
       - "projects/chirality-piping/package.json"
       - "projects/chirality-piping/package-lock.json"
       - "projects/chirality-piping/apps/**"
@@ -47,143 +50,141 @@ concurrency:
   group: piping-desktop-e2e-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+env:
+  CI: "true"
+  PLAYWRIGHT_HTML_OPEN: never
+  PLAYWRIGHT_WORKERS: "1"
+
 jobs:
-  desktop-e2e:
-    name: Desktop E2E (source mode)
+  selection:
+    name: Select source coverage
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          # Keep ancestry checks without downloading all historical evidence blobs.
+          filter: blob:none
+      - name: Test selection policy
+        run: python3 -m unittest discover -s projects/chirality-piping/tests -p test_ci_e2e_plan.py -v
+      - name: Plan complete PR diff
+        id: plan
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          PR: ${{ github.event.pull_request.number }}
+        run: >-
+          python3 projects/chirality-piping/tools/ci/e2e_plan.py plan
+          --event "$EVENT" --base "$BASE" --head "$HEAD" --pr "$PR"
+          --output piping-e2e-plan.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: piping-e2e-selection
+          path: piping-e2e-plan.json
+          if-no-files-found: error
+          retention-days: 14
+
+  barrier:
+    name: Accessibility barrier and selected coverage
+    needs: selection
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    env:
-      CI: "true"
-      PLAYWRIGHT_HTML_OPEN: never
-      PLAYWRIGHT_WORKERS: "1"
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
         with:
-          node-version: "24"
-          cache: npm
-          cache-dependency-path: projects/chirality-piping/package-lock.json
-
-      - name: Setup pinned Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          # Keep ancestry checks without downloading all historical evidence blobs.
+          filter: blob:none
+      - uses: actions/download-artifact@v4
         with:
-          toolchain: 1.97.1
-          targets: wasm32-unknown-unknown
-
-      - name: Cache pinned wasm-bindgen CLI
-        id: wasm-bindgen-cache
-        uses: actions/cache@v4
+          name: piping-e2e-selection
+      - uses: ./.github/actions/setup-piping-e2e
+      - name: Run accessibility first, then any reduced selection
+        run: python3 projects/chirality-piping/tools/ci/e2e_plan.py run --plan piping-e2e-plan.json --stage barrier --evidence-dir piping-e2e-collection/barrier
+      - name: Retain candidate collection
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          path: ~/.cargo/bin/wasm-bindgen
-          key: ${{ runner.os }}-wasm-bindgen-cli-0.2.123
-
-      - name: Install pinned wasm-bindgen CLI
-        if: steps.wasm-bindgen-cache.outputs.cache-hit != 'true'
-        run: cargo install wasm-bindgen-cli --version 0.2.123 --locked
-
-      - name: Cache Cargo registry and WASM target
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo/registry/
-            projects/chirality-piping/core/model_operations/operation_applier/target
-          key: ${{ runner.os }}-rust-1.97.1-${{ hashFiles('projects/chirality-piping/core/model_operations/operation_applier/Cargo.lock', 'projects/chirality-piping/core/loads/self_weight_wasm/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-rust-1.97.1-
-
-      - name: Install project dependencies
-        run: npm ci
-        working-directory: projects/chirality-piping
-
-      # The desktop build is deliberately offline. Populate the complete
-      # locked graphs, including host/transitive dependencies, before building.
-      - name: Fetch complete locked WASM dependency graphs
-        run: |
-          cargo fetch --locked --manifest-path core/model_operations/operation_applier/Cargo.toml
-          cargo fetch --locked --manifest-path core/loads/self_weight_wasm/Cargo.toml
-        working-directory: projects/chirality-piping
-
-      - name: Build desktop WASM engine
-        run: npm run build:wasm:desktop
-        working-directory: projects/chirality-piping
-
-      - name: Resolve pinned Playwright version
-        id: playwright-version
-        shell: bash
-        run: |
-          set -euo pipefail
-          version="$(node -p "require('./package-lock.json').packages['node_modules/@playwright/test'].version")"
-          test -n "${version}"
-          echo "version=${version}" >> "${GITHUB_OUTPUT}"
-        working-directory: projects/chirality-piping
-
-      - name: Cache Playwright Chromium
-        id: playwright-cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
-
-      - name: Configure canonical Ubuntu package sources
-        shell: bash
-        run: |
-          set -euo pipefail
-          source /etc/os-release
-          test -n "${VERSION_CODENAME}"
-          test -f /usr/share/keyrings/ubuntu-archive-keyring.gpg
-          sudo tee /etc/apt/sources.list.d/ubuntu.sources >/dev/null <<EOF
-          Types: deb
-          URIs: https://archive.ubuntu.com/ubuntu/
-          Suites: ${VERSION_CODENAME} ${VERSION_CODENAME}-updates ${VERSION_CODENAME}-backports
-          Components: main restricted universe multiverse
-          Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-
-          Types: deb
-          URIs: https://security.ubuntu.com/ubuntu/
-          Suites: ${VERSION_CODENAME}-security
-          Components: main restricted universe multiverse
-          Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-          EOF
-
-      - name: Install Chromium system dependencies
-        if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
-        working-directory: projects/chirality-piping
-
-      - name: Install Chromium and system dependencies
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
-        working-directory: projects/chirality-piping
-
-      - name: List source-mode desktop tests
-        run: >-
-          ../../node_modules/.bin/playwright test --list
-          --project=chromium-desktop
-          --project=chromium-compact
-        working-directory: projects/chirality-piping/apps/desktop
-
-      # The registered 120s ceiling is measured on local hosts; a fresh,
-      # serial hosted-Ubuntu runner needs 180s for the existing full journey.
-      - name: Run source-mode desktop tests
-        run: >-
-          ../../node_modules/.bin/playwright test
-          --project=chromium-desktop
-          --project=chromium-compact
-          --timeout=180000
-          --reporter=list,html
-        working-directory: projects/chirality-piping/apps/desktop
-
-      - name: Upload Playwright failure artifacts
+          name: piping-e2e-collection-barrier-${{ github.run_id }}-${{ github.run_attempt }}
+          path: piping-e2e-collection/barrier
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload failure artifacts
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: piping-desktop-e2e-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          name: piping-desktop-e2e-barrier-failure-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             projects/chirality-piping/apps/desktop/playwright-report
             projects/chirality-piping/apps/desktop/test-results
           if-no-files-found: warn
           retention-days: 14
+
+  remainder:
+    name: Source remainder (${{ matrix.shard }}/4)
+    needs: [selection, barrier]
+    if: needs.selection.outputs.mode == 'full'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: true
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          # Keep ancestry checks without downloading all historical evidence blobs.
+          filter: blob:none
+      - uses: actions/download-artifact@v4
+        with:
+          name: piping-e2e-selection
+      - uses: ./.github/actions/setup-piping-e2e
+      - name: Run isolated source remainder shard
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: python3 projects/chirality-piping/tools/ci/e2e_plan.py run --plan piping-e2e-plan.json --stage remainder --shard "$SHARD" --evidence-dir "piping-e2e-collection/shard-$SHARD"
+      - name: Retain candidate shard collection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: piping-e2e-collection-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: piping-e2e-collection/shard-${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: piping-desktop-e2e-shard-${{ matrix.shard }}-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            projects/chirality-piping/apps/desktop/playwright-report
+            projects/chirality-piping/apps/desktop/test-results
+          if-no-files-found: warn
+          retention-days: 14
+
+  desktop-e2e:
+    name: Desktop E2E (source mode)
+    needs: [selection, barrier, remainder]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Require all planned coverage
+        env:
+          MODE: ${{ needs.selection.outputs.mode }}
+          SELECTION: ${{ needs.selection.result }}
+          BARRIER: ${{ needs.barrier.result }}
+          REMAINDER: ${{ needs.remainder.result }}
+        run: >-
+          python3 projects/chirality-piping/tools/ci/e2e_plan.py aggregate
+          --mode "$MODE" --selection "$SELECTION" --barrier "$BARRIER" --remainder "$REMAINDER"
