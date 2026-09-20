@@ -12,6 +12,8 @@ import {
   validateAnswerSessionRequestRequest,
   validateSessionSteerRequest,
   validateSessionSteerReceiptRequest,
+  validateApplicationToolRegistration,
+  validateApplicationToolCompletion,
   type SessionSteerRequest,
   type SessionSteerResponse,
   deriveTranscriptView,
@@ -52,6 +54,7 @@ import {
 import { NativeSteering } from "./native-steering.js";
 import { hostedProjectClientId } from "./hosted-paths.js";
 import { TurnRegistry, type TurnFrame, type TurnSubscription } from "./turn-registry.js";
+import type { ApplicationToolRegistry } from "./application-tools.js";
 
 const JSON_LIMIT_BYTES = 1024 * 1024;
 const STOP_GRACE_MS = 2_000;
@@ -163,6 +166,9 @@ export interface RuntimeDaemonOptions {
   turnRegistry?: TurnRegistry;
   /** Pending Codex server requests and their answers (`GET/POST .../requests`). */
   requests?: DelegatedRequestPort;
+  /** Application-owned tool endpoints are available only to this configured host principal. */
+  applicationTools?: ApplicationToolRegistry;
+  applicationToolHostClientId?: string;
   delegated?: DelegatedControlPort;
   hostedBootstrap?: {
     /** Each operation revalidates project registration/root/drift and retires stale admission. */
@@ -651,6 +657,33 @@ export class RuntimeDaemon {
     }
     const sessionId = segments[4];
     if (sessionId === undefined) throw new RuntimeError("NOT_FOUND", "Route not found", 404);
+    if (segments[5] === "application-tools") {
+      const principal = await this.authorize(request, method === "GET" ? "sessions:read" : "sessions:write", projectId);
+      const tools = this.options.applicationTools;
+      if (!tools || !this.options.applicationToolHostClientId) throw new RuntimeError("ENGINE_UNAVAILABLE", "Application tool hosting is unavailable in this Runtime composition", 503);
+      if (principal.clientId !== this.options.applicationToolHostClientId) throw new RuntimeError("FORBIDDEN", "Application tool hosting requires the owning application client", 403);
+      await this.options.service.sessions.get(projectId, sessionId);
+      if (segments.length === 6 && method === "GET") return this.json(response, 200, await tools.binding(projectId, sessionId));
+      if (segments.length === 6 && method === "PUT") {
+        const body = validateApplicationToolRegistration(await this.body<unknown>(request));
+        return this.json(response, 200, await tools.register(projectId, sessionId, body));
+      }
+      if (segments.length === 6 && method === "DELETE") {
+        const body = await this.body<{ bindingId?: unknown }>(request);
+        if (!body || typeof body !== "object" || Array.isArray(body) || Object.keys(body).join(",") !== "bindingId" || typeof body.bindingId !== "string" || !body.bindingId || body.bindingId.length > 256) throw new RuntimeError("INVALID_REQUEST", "Application tool release requires exactly a bindingId", 400);
+        return this.json(response, 200, await tools.release(projectId, sessionId, body.bindingId));
+      }
+      if (segments.length === 7 && segments[6] === "calls" && method === "GET") {
+        const bindingId = new URL(request.url ?? "/", "http://chirality.invalid").searchParams.get("bindingId");
+        if (!bindingId || bindingId.length > 256) throw new RuntimeError("INVALID_REQUEST", "Application tool calls require a bindingId", 400);
+        return this.json(response, 200, { calls: tools.listCalls(projectId, sessionId, bindingId) });
+      }
+      if (segments.length === 9 && segments[6] === "calls" && segments[8] === "result" && method === "POST") {
+        const body = validateApplicationToolCompletion(await this.body<unknown>(request));
+        return this.json(response, 200, tools.complete(projectId, sessionId, segments[7]!, body));
+      }
+      throw new RuntimeError("NOT_FOUND", "Application tool route not found", 404);
+    }
     if (segments.length === 5) {
       if (method === "GET") {
         await this.authorize(request, "sessions:read", projectId);
