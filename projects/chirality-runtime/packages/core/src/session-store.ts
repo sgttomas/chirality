@@ -3,6 +3,9 @@ import { readdir, readFile, realpath, rename, rm, stat, truncate } from "node:fs
 import { basename, join, resolve } from "node:path";
 import {
   RuntimeError,
+  canonicalApplicationJson,
+  validateApplicationToolCatalog,
+  type ApplicationToolCatalog,
   type ChiralityRoleName,
   type CreateSessionRequest,
   type HarnessEvent,
@@ -120,6 +123,37 @@ export class SessionStore {
   async get(projectId: string, sessionId: string): Promise<RuntimeSessionRecord> {
     assertSafeIdentifier(sessionId, "sessionId");
     return withSessionLock(`${projectId}\0${sessionId}`, () => this.getUnlocked(projectId, sessionId));
+  }
+
+  /** Application descriptors are immutable provider-thread context, separate from live handler bindings. */
+  async getApplicationToolCatalog(projectId: string, sessionId: string): Promise<ApplicationToolCatalog | undefined> {
+    return withSessionLock(`${projectId}\0${sessionId}`, async () => {
+      await this.getUnlocked(projectId, sessionId);
+      const raw = await readJsonIfExists<unknown>(join(this.sessionDirectory(projectId, sessionId), "application-tools.json"), undefined);
+      return raw === undefined ? undefined : validateApplicationToolCatalog(raw);
+    });
+  }
+
+  /** Stock Codex 0.154 accepts dynamicTools on thread/start, not on thread/resume. */
+  async registerApplicationToolCatalog(projectId: string, sessionId: string, catalog: ApplicationToolCatalog): Promise<ApplicationToolCatalog> {
+    const proposed = validateApplicationToolCatalog(catalog);
+    return withSessionLock(`${projectId}\0${sessionId}`, async () => {
+      const current = await this.getUnlocked(projectId, sessionId);
+      const file = join(this.sessionDirectory(projectId, sessionId), "application-tools.json");
+      const raw = await readJsonIfExists<unknown>(file, undefined);
+      if (raw !== undefined) {
+        const existing = validateApplicationToolCatalog(raw);
+        if (canonicalApplicationJson(existing) !== canonicalApplicationJson(proposed)) {
+          throw new RuntimeError("INVALID_REQUEST", "Application tool definitions and workspace identity are fixed for this conversation. Start a new conversation to change them.", 409, { reason: "APPLICATION_TOOL_CATALOG_IMMUTABLE" });
+        }
+        return existing;
+      }
+      if (current.status !== "idle" || current.bootedAt || current.engineSessionId || current.adapterSession?.engineSessionId || current.adapterSession?.lastRuntimeTurnId) {
+        throw new RuntimeError("INVALID_REQUEST", "Register application tools before the conversation is booted or used. Start a new conversation for these tools.", 409, { reason: "APPLICATION_TOOL_CATALOG_TOO_LATE" });
+      }
+      await atomicWriteJson(file, proposed);
+      return proposed;
+    });
   }
 
   private async getUnlocked(projectId: string, sessionId: string): Promise<RuntimeSessionRecord> {

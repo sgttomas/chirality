@@ -59,6 +59,16 @@ crash, and stops it deliberately on quit. Closing or hiding a window is not
 quitting. Unexpected termination is never presented as completion; the
 session store carries an honest continuation state for reopening.
 
+## Application-owned tools
+
+An owning application can register dynamic tool descriptions before a new
+conversation starts, receive calls through the authenticated host API, and
+return results. The catalog is immutable for that conversation; handlers
+explicitly rebind after restart. Runtime supplies transport and lifecycle while
+the application owns argument/domain validation, live state and human acceptance.
+See [Application tools](docs/APPLICATION_TOOLS.md) for the interface and limits.
+SWBPIPE client adoption and its live domain adapter remain separate work.
+
 ## Development
 
 Requires Node.js 22.19 or newer.
