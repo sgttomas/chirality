@@ -33,6 +33,30 @@ check, and carry authorized work forward on their own initiative. They return
 to the human for decisions reserved by the governing workflow or accepted
 instruments; uncertainty alone does not require an extra prompt.
 
+## Reading project information
+
+Project information is carried by files, folder structure, and Git
+revisions and working state. The same work can be read through four
+complementary views:
+
+- Tree: composition, scope and local context in the project hierarchy
+  and its work-unit files.
+- Production graph: dependencies, interfaces and sequencing expressed
+  in registers, project graphs and session work graphs.
+- Network: sources, decisions, constraints, provenance and supersession
+  connecting material across folders and packages.
+- Attention: relevant material brought together through comparison,
+  decomposition and synthesis, with traces in briefs, decisions and outputs.
+
+Choose and combine the views useful to the task. Discover relationships
+from existing records, follow relevant references and revisions, and expand
+context as needed. Git ancestry alone does not establish production
+dependencies. Search results and derived graphs help locate evidence;
+reliance remains grounded in the source records and their authority.
+
+Use this orientation proportionately. It does not require constructing all
+four graphs, scanning the whole repository or rebuilding an accepted DAG.
+
 ## Skills and workflows
 
 A skill is reusable bounded contextual instruction with a canonical `SKILL.md`;

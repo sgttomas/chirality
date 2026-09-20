@@ -3,9 +3,10 @@
 You are resuming, as the next bounded operator, the work loop that lives in
 this file's directory. This file carries the protocol, the fences, the
 checks, and the pointer index. It carries **no status, no history, and no
-work**. Work lives only in the deliverable folders
-`execution/PKG-*/1_Working/DEL-*/`, in each `_STATUS.md` `## Remaining`
-section; current state is re-derived from the live tree every iteration.
+work**. Current work lives in the owning run and its session work graph,
+with traceable links to the accepted phase DAG and relevant deliverables.
+Priorities and phase transitions come from the owner. Revalidate state against
+the live tree; do not restart historical work by default.
 This text is orientation, **not authority**: owner rulings and directions
 authorize work; sources govern on any disagreement.
 
@@ -19,7 +20,11 @@ authorize work; sources govern on any disagreement.
 
 ## 2. Where live work is re-derived (pointer index; never a status surface)
 
-- **Work surface:** `execution/PKG-*/1_Working/DEL-*/` — `_STATUS.md`
+- **Session discovery:** the owner-named run, its work graph, handoff and
+  recorded directions; otherwise discover applicable run pointers through
+  `execution/_Coordination/_LATEST.md` and validated `LOOP_RECEIPTS.md`.
+  Inspect named branches and worktrees, including unmerged and parked work.
+- **Deliverable basis:** `execution/PKG-*/1_Working/DEL-*/` — `_STATUS.md`
   (lifecycle + `## Remaining`), `MEMORY.md`, `ScopeOfWork.md` or legacy
   four-document kits, `Dependencies.csv` / `_DEPENDENCIES.md`,
   `_run_records/**`.
@@ -57,18 +62,19 @@ authorize work; sources govern on any disagreement.
 - **Historical archive (never selection surfaces):** `plans/**`
   (`plans/PLAN_COMPLETION_LOG.md` holds landed narrative) ·
   `execution/_Coordination/NEXT_INSTANCE_PROMPT.md` · every retired
-  workplan under `plans/workplans/` (D-APP-114: no committed overlay; the
-  loop runs on the deliverables alone).
+  workplan under `plans/workplans/`. D-APP-114 retired the committed overlay;
+  the owner-authorised session work graph now replaces the session workplan.
 
 ## 3. Standing constraints — hard fences (all iterations; always stop for a human ruling)
 
-- **F-APP-1 (provider/network):** Codex is the sole current MVP engine under
-  the recorded owner release direction. Its supplier/account admission,
-  per-root consent, credential custody and exact accepted endpoint/command-
-  network safeguards remain required under K-NET-1 and Runtime-owned
-  contracts. No other provider expansion, remote MCP, plugin or broad
-  tool-search enablement is authorized by this direction. Historical
-  Anthropic/Pi provider rules do not require enabling those engines.
+- **F-APP-1 (provider/network):** Codex remains the sole current MVP engine.
+  Apply the current Runtime-owned network, tool and credential contracts as
+  amended by D-GOV-43/A2 and D-APP-127. Retired hosted admission, per-root
+  consent and supplier containment are not current proof prerequisites. Codex
+  owns login/logout and its credentials in the App's effective Codex home;
+  the App must not read, copy or relay those credentials or affect other
+  clients' credentials. This loop grants no provider expansion, remote MCP,
+  plugin or broad tool-search enablement beyond separately accepted scope.
 - **F-APP-2 (release/distribution):** no signing, notarization, publication,
   external distribution, or release-readiness / professional / certification
   claims.
@@ -78,33 +84,52 @@ authorize work; sources govern on any disagreement.
   surfaces, and never advances integration level, live binding, or
   apply-class tool exposure on its own authority.
 - **F-APP-4 (issuance):** no `CHECKING -> ISSUED` lifecycle issuance.
-- **F-APP-5 (single-surface rule; owner-adopted 2026-07-10):** work items
-  live in deliverable folders (`_STATUS.md` `## Remaining`); owner decisions
-  live in `execution/_Coordination/_DECISIONS/_REGISTER.md`; no new standing
-  plan, queue, register, or status surface is created without an owner
-  ruling. `plans/` is a historical archive; never select work from it.
+- **F-APP-5 (truth and planning surfaces):** authoritative deliverable scope,
+  lifecycle and dependencies remain in their governed sources; owner decisions
+  remain in the decision register and applicable owner-direction records.
+  The session work graph is the executable plan, not a replacement for those
+  sources. It neither issues deliverables nor silently changes the phase DAG.
+  Historical plans remain readable; do not select new work from them.
 - **Fresh-ruling stops** (carried from the pre-consolidation coordination
   record): provider execution outside the current Codex MVP direction and
-  its accepted supplier/account/containment scope; write/edit/bash/
+  its current accepted Runtime/network/credential scope; write/edit/bash/
   tool-execution exposure beyond the current approved item; changes to the
   project-truth model for sessions, transcripts, chats, runtime logs, or
   completion logs; professional-boundary or release-readiness posture.
 
-Any change to fence wording is an owner act.
+Changing a fence requires owner authority. This loop grants no new release
+act; later specific owner rulings retain their effects and historical releases
+are not undone by F-APP-2. Do not infer another release from a prior one.
 
-## 4. The workplan is an optional overlay
+## 4. Phase DAG, session work graph and strategy
 
-A `WORKPLAN_*.md` beside this file narrows and orders. It never holds a
-`Remaining` item, never widens authority, and never relaxes a fence or gate
-named here; a clause that would is void and is reported as a stale-map
-delta. When the plan is silent, this file governs. (D-APP-105.)
+The project DAG describes project-wide deliverables and dependencies. It is
+expected to remain relatively stable within each project phase and to be rebuilt
+or reconciled when the owner directs the next phase. Agents do not infer or
+initiate a phase transition from apparent progress. Use the accepted dependency
+snapshot and decomposition in §2; no DAG rebuild is required at session entry.
 
-Plan selection is from committed `HEAD`, never the working tree (D-APP-64):
-the Step 0 line below selects the bytewise-last `loop/WORKPLAN_*.md` in the
-`HEAD` tree and reads it with `git show`. An untracked, staged-only, or
-worktree-only file is never selectable. No committed plan means the loop
-runs on the deliverables alone and the receipt says so (D-APP-106). Ruled
-plans are immutable; a change is a new dated file.
+Maintain the undertaking's work graph under
+`execution/_Coordination/AgentRuns/<RUN_ID>/`. Choose a useful structure: each
+slice's state, dependencies, blockers, named semantic changes, departures from
+specification, deferred work and its retirement condition, and evidence pointers.
+Link to the current phase's accepted DAG and relevant deliverables, marking
+uncertain mappings provisional. Record discoveries for the next owner-directed
+reconciliation rather than silently amending the DAG or guessing an evidence
+home. Keep one canonical copy of run evidence and derive handoffs from the graph.
+
+The graph replaces the session workplan. There is no dated workplan selector,
+compulsory separate issue plan, or requirement to recreate a standing queue.
+Existing plans, receipts and ruled snapshots retain their historical meaning.
+
+Discover enough to propose the delegation and model strategy before substantial
+implementation or launching agents. Explain Agent 0's work, delegated
+responsibilities, model/effort choices, parallel work, write scopes and
+integration/review ownership. Use previous experience where useful; cost
+estimates are not required. Obtain the owner's agreement, then proceed within
+it and revisit material changes. An already approved applicable strategy
+satisfies this requirement. Read-only discovery and preparation of the strategy
+and bounded decision packages may proceed beforehand.
 
 ## 5. The loop protocol (every iteration)
 
@@ -115,12 +140,11 @@ Run from `REPO_ROOT`:
 ```bash
 git status --short && git log --oneline -20
 python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .
-p=$(git ls-tree --name-only HEAD projects/chirality-app-dev/loop/ | grep -E '/WORKPLAN_.*\.md$' | LC_ALL=C sort | tail -1); [ -n "$p" ] && git show "HEAD:$p" || echo "no committed plan: deliverables alone"
 head -51 projects/chirality-app-dev/loop/LOOP_RECEIPTS.md && tail -60 projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
-grep -nE "^\| D-APP-[0-9]+ \|([^|]*\|){2} (AWAITING_RULING|NOT_PREPARED)" projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md
+rg -n "^\| D-APP-[0-9]+ \|([^|]*\|){2} (AWAITING_RULING|NOT_PREPARED)" projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md
 ls projects/chirality-app-dev/execution/_Coordination/NOTICE_* 2>/dev/null
 cd projects/chirality-app-dev && PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status; cd -
-grep -l '^## Remaining' projects/chirality-app-dev/execution/PKG-*/1_Working/DEL-*/_STATUS.md
+rg -l '^## Remaining' projects/chirality-app-dev/execution/PKG-*/1_Working/DEL-*/_STATUS.md
 PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py status --project chirality-app-dev
 PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check
 ```
@@ -129,41 +153,46 @@ Rules the output does not show you:
 
 - A receipt-validator failure blocks use of the ledger until it is repaired
   through its governed path.
-- Rulings newer than the last receipt, and routed Root notices, are how work
-  unlocks; this loop never writes Root surfaces.
+- Check applicable owner steering, newer rulings and routed notices. This
+  loop does not itself grant writes to Root surfaces.
 - Verify before relying: plans, receipts, dated assessments, and your own
   tasking are maps with citations. Open the cited source; on disagreement
-  the live tree wins and the delta goes in the receipt, never into the map.
-- If the plan or a `Remaining` item pins a reference by hash, recompute it
+  repository evidence establishes what exists; it does not overrule owner
+  direction. Preserve dated records and point to corrections in the owning run.
+- If a relied-on brief or `Remaining` item pins a reference by hash, recompute it
   and stop on a mismatch.
 - A `_STATUS.md` without a `## Remaining` section has no recorded open scope.
-- A tranche that will touch `frontend/` declares at Step 0 the A1 re-stage
-  consequence (`plans/steers/chirality_app_v3_app_ruling_record_a1_2026-08-23.md`
-  lines 28-36) in its run record and the receipt's `Checks` record.
+- For frontend, configuration and packaging work, identify checks whose
+  earlier evidence the change invalidates. D-APP-127 replaces A1 re-staging
+  with the affected-check rule; applicable S-8 production-path native evidence
+  and packaging requirements remain in their owning records.
+- Material conflicts in authority, scope or candidate identity block the
+  affected action. Report minor documentary drift and correct it within scope
+  while independent work proceeds. Do not reproduce work already in a lane.
 
-### Step 1 — Select, from `## Remaining` sections only
+### Step 1 — Select within the owner-directed undertaking
 
-A `Remaining` item (deliverable `_STATUS.md`, §2) is selectable when it
-carries no `(gated: ...)`, `(stage-gated: ...)`, or `NOT_SELECTABLE_UNTIL:`
-marker, or its named gate or act is observable. Owner acts, rulings, and
-routed Root notices are observable only on `origin/main` (after
-`git fetch`). A predecessor item is observable once its commit, checks, and
-run record are on the run's branch (Step 4), so a chain of dependent items
-proceeds within one run without a merge between links. Blockedness beyond
-gates is re-derived from the item's own `Depends` line, the deliverable's
-`Dependencies.csv` / `_DEPENDENCIES.md`, and the accepted DepClosure
-snapshot (§2), never from a hand-maintained summary. A register row blocks
-an item only when it is `ACTIVE`, of type `PREREQUISITE`, its
-`SatisfactionStatus` is `TBD`, `PENDING`, or `IN_PROGRESS`, and the item's
-`Depends` line names its target; `INTERFACE`, `HANDOVER`, `CONSTRAINT`, and
-`ENABLES` rows order work and never block; `SATISFIED`, `WAIVED`, and
-`NOT_APPLICABLE` never block. Precedence: (a) repair
-failing validation on landed work; (b) work that discharges a gate
-prerequisite; (c) owner-directed over agent-inferred; (d) the plan's focus
-and order; (e) the highest-value ungated item. Apply CONTRACT **K-ENGINE-6**
-to every item: standalone-harness or feature-parity work is off-strategy.
-Never manufacture work outside recorded `Remaining` scope or revive a
-ruled-shut item (a revival takes a new register row).
+Use the owner's scope and priorities, the verified work graph, and relevant
+accepted deliverable obligations. An open Remaining item is evidence of work,
+not permission to restart a phase or expand the undertaking. Never revive a
+ruled-shut item without the required owner act. Apply CONTRACT **K-ENGINE-6**:
+standalone-harness or feature-parity work is off-strategy.
+
+Preserve named `(gated: ...)`, `(stage-gated: ...)` and `NOT_SELECTABLE_UNTIL:`
+conditions. Verify the required act at its specified source; a condition that
+requires a merged ruling still requires it. Record current in-session owner
+direction verbatim without pretending it was already merged. A predecessor
+commit, its checks and its run record may establish a dependent step on the
+same branch unless the specific gate requires a merge.
+
+For deliverable dependency selection, re-derive blockedness from the item's
+`Depends` line, `Dependencies.csv` / `_DEPENDENCIES.md` and the accepted
+DepClosure snapshot, not a hand-maintained summary. A row blocks only when it
+is `ACTIVE`, type `PREREQUISITE`, has `SatisfactionStatus` `TBD`, `PENDING` or
+`IN_PROGRESS`, and the item's `Depends` names its target. `INTERFACE`,
+`HANDOVER`, `CONSTRAINT` and `ENABLES` rows order work; `SATISFIED`, `WAIVED`
+and `NOT_APPLICABLE` do not block. A provisional graph mapping cannot bypass
+an applicable dependency or APP-HOLD-1 check.
 
 Judgment-shaped forks are triaged under the D-APP-64 §5 contract (fast-reject
 boundary first, then the selection method and attribution schema); D-APP-60
@@ -175,9 +204,32 @@ Material or hard-to-reverse forks (a fence question, a K-ENGINE-6 strategy
 fork, a costly public-contract or data-migration change, an item marked as
 needing its own packet) get a `PROPOSAL` packet in the decision register.
 Ordinary forks inside the fences are decided by the agent and recorded per
-D-APP-64 §5.3. Deliverable work gets CANDIDATE brief(s); coordination work
-gets a decision slate (options, non-binding recommendation, on-ruling
-mechanism).
+D-APP-64 §5.3. Seal delegated briefs before launch: objective, parent, role, context and
+hashes, tools, write scope, constraints, outputs and checks. Retain child
+returns verbatim with hashes, actual model/effort, substitutions and disposition.
+Record enforcement limits truthfully; harness-specific transcript scripts,
+launch mechanics and commit trailers do not transfer automatically. A parent
+launches and supervises its children and validates their returns. Type 2
+instances do not delegate. A manager is useful for coupled repair cycles;
+a bounded specialist may report directly to Agent 0. Neither role type nor
+reasoning effort is a proxy for task complexity.
+
+For a small read-only assignment, a launch message retained verbatim before
+dispatch may itself be the sealed brief. Keep the same necessary purpose,
+context identity, parent/role, tools and read-only boundary, expected return and
+checks; no separate elaborate brief file is required. Preserve its hash and
+return in the owning run. Scale the detail to the assignment, not its role type.
+
+Disclose departures from specification, rationale and reversal method. An
+explicit owner decision cannot be contradicted by an agent's preference.
+Bring consequential decisions as packages with evidence and a recommendation.
+
+An explicit ruling, a specifically adopted choice or a protected criterion
+cannot be reversed by an agent. Other implementation departures may be decided
+within delegated discretion and disclosed with their rationale and reversal
+method. An approved specification is not automatically optional: read its terms
+and the owner's direction to distinguish fixed requirements from implementation
+discretion. Bring a conflict with a fixed requirement to the owner before acting.
 
 ### Step 3 — Gate
 
@@ -190,67 +242,98 @@ Record every gate outcome, including no-ops and their reason.
 
 ### Step 4 — Execute and check
 
-One branch per run, cut from `origin/main`. Iterate Steps 0 to 5 on it:
-one commit and one receipt per iteration, the branch pushed after every
-closeout. Within an iteration, independent nodes run concurrently under one
-recorded work graph with disjoint write loci (`AGENTS.md`); dependent nodes
-run in later iterations of the same run. Open one PR when the run reaches
-terminus (§7) or when the next lawful step needs a merged act. Agents may merge
-under Root `docs/PRD_ROOT.md` §5.3.1's standing owner authorization after required
-CI and independent review cover the actual candidate with no blocking findings.
-Explicit holds and later owner directions prevail; a rejected commit's item
-returns to Step 0 on the next run. Write scope stays inside
-`projects/chirality-app-dev/**` unless the owner grants wider scope. An
-adopted-but-unexecuted brief is live authority. Run the checks for the work
-type (§8) and, for evidence items, meet the §9 bar. The independent-review
-path, the APP-HOLD-1 preflight, the host-capability rule, and git closeout
-discipline are in `AGENTS.md` beside this project.
+Use scoped branches and worktrees appropriate to the undertaking. Preserve
+unmerged work and record basis and candidate identities. Parallelise disjoint
+writes with explicit dependencies; serialize shared-file integration and native
+or browser resources when concurrent use would invalidate evidence. If repeated
+repair attempts yield no new evidence, change the diagnosis rather than repeat
+them indefinitely. Execute only within authorised scope.
 
-### Step 5 — Closeout
+Exercise changed user workflows as soon as they are operable using native
+computer use, real pointer/keyboard input or suitable automation alongside code
+tests. Extend connected scenarios as functionality permits: project and chat
+creation, role/method selection, turns, tool review, interruption, retry,
+attachments, save/reopen and recovery, including keyboard and window-size
+behaviour where touched. Scale the scenarios to the change. Record expected and
+observed outcomes, candidate/environment and evidence; fix defects and rerun
+affected scenarios. Behavioural checks do not establish owner or usability
+acceptance. Reconciliation work does not itself authorise product repairs.
 
-Write deliverable-local state: `_STATUS.md` (`Remaining` updated to what
-landed and what remains; lifecycle transitions only through ruled gates;
-`**Checking Approval SHA**` discipline intact), `MEMORY.md`,
-`_run_records/**`; landed narrative goes to `plans/PLAN_COMPLETION_LOG.md`.
-Append one receipt to `LOOP_RECEIPTS.md` per its rules (the run's first
-receipt names the base commit; each later one chains to the previous) and
-rerun the receipt validator before commit. Commit, push, and start the next
-iteration at Step 0 on the same branch.
+When changed behaviour depends on native-host integration, verify it in the
+native application; browser evidence alone does not establish that behaviour.
+Identify the affected native scenarios in the slice's verification brief and
+report any unavailable witness explicitly. This does not require a full native
+sweep for every unrelated change.
 
-## 6. First return from Step 0
+Run §8 checks and satisfy §9 for evidence claims. Never weaken a protected
+check to obtain a pass. Apply independent review and APP-HOLD-1 as required by
+`AGENTS.md`. Product checks run on a clean candidate before merge; required CI
+and review must cover the actual merging revision. Later edits need additional
+review coverage and checks whose applicability changed.
 
-Your first substantive output in a run is a live orientation return, not a
-recap of this file: the git state and newest applicable receipt; the owner
-directions and register gates that matter now; the plan's focus, if any;
-the widest lawful tranche(s) open; any parked lane and the owner act that
-unparks it.
-If the loop is parked pending owner direction, stop there.
+Here a slice means a proposed mergeable change, including instructions and
+owner-direction records; a read-only dispatch is not itself a slice. Scale review
+depth to what the change can break. Small changes can have small independent
+reviews; backcheck the affected correction and its consequences rather than
+repeating the whole investigation without cause. This does not permit skipping
+required review, leaving a finding unchecked or treating later bytes as reviewed.
 
-## 7. Default posture (a per-run steer may override; the gate may not)
+During long work, keep the graph current and create useful recoverable Git
+checkpoints at meaningful boundaries. Label incomplete work and unverified
+checks explicitly; do not weaken a check to make a checkpoint green. After an
+involuntary stop, inspect the branch, index and working tree before resuming:
+a checkpoint or handoff may not include the last edits. This is not a requirement
+to commit after every edit or to discard work that has not yet passed checks.
 
-- Select the widest lawful tranche(s), re-derived each iteration; execute
-  independent nodes concurrently; a failed check is a repair loop, not a
-  terminal state; each ordinary iteration reduces at least one accepted
-  deliverable obligation. Continue iterating on the run's branch until
-  every lawful path of advancement is exhausted except human decision; only
-  then open the PR. Pressure never weakens a gate, evidence bar, fence,
-  ownership boundary, or write locus (Root R17-E as carried by A12).
-- When only owner decisions remain, present a slate and stop; never
-  manufacture lower-value work to stay busy.
-- Truthful attribution: agent decisions are recorded as the agent's own;
-  never write a ruling record or `RULED` row for an act that did not occur.
+### Step 5 — Closeout or pause
+
+Update the owning work graph, retain canonical evidence and a concise handoff
+with remaining work, blockers and rerun requirements. Update deliverable scope,
+status or the phase DAG only within an authorised reconciliation or deliverable
+assignment; a merge does not discharge those commitments automatically. Preserve
+lifecycle gates and `Checking Approval SHA` discipline. Use traceable pointers
+rather than copying evidence into guessed deliverable locations.
+
+At a meaningful pause or closure, append a short receipt pointing to the owning
+run and continuation work under `LOOP_RECEIPTS.md`'s rules; rerun its validator.
+Use scoped PRs at meaningful integration boundaries; no fixed one-commit-per-
+iteration or whole-backlog exhaustion requirement applies. Standing Git authority
+permits merge after actual-candidate CI and independent review pass, subject to
+explicit holds. `chirality-change` and project `AGENTS.md` govern safe closeout.
+Do not reinterpret old verdicts or claim a merged slice is an accepted deliverable.
+
+## 6. First return from discovery
+
+Give a concise live orientation: Git state, applicable run and receipt, owner
+directions and gates, significant discrepancies, next bounded work and proposed
+strategy. Distinguish owner direction, agent decisions and historical advice.
+If parked pending owner direction, report that condition without manufacturing
+implementation work. Continue under an applicable approved strategy and existing
+authority; do not ask again for routine choices already covered.
+
+## 7. Default posture
+
+Complete the authorised undertaking, not every discoverable project obligation.
+Maintain the graph while implementing, testing, repairing and integrating.
+Bring unresolved consequential choices to the owner with a recommendation;
+do not keep busy around an owner gate. Phase transitions remain owner-directed.
+
+Pressure never weakens a gate, evidence bar, fence, ownership boundary or write
+scope. Attribute agent judgments as such; never write a ruling or `RULED` row
+for an owner act that did not occur. Specific steering and state pointers belong
+in run records and discovery surfaces, not these recurrent instructions.
 
 ## 8. Checks by work type
 
 | Work type | Required before push | Notes |
 |---|---|---|
 | Any tranche | repo-wide `self-check` exit 0; practitioner-harness pytest at closeout; receipt validator pass before and after appending | Cosmetic whitespace is not a commit or merge gate. |
-| Product source (`frontend/src/**` outside `__tests__/**`, `frontend/electron/**`, `frontend/packages/**`, `frontend/scripts/**`, build/packaging config) | typecheck + vitest + build/premerge gates (`docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, `docs/BUILD_AND_RELEASE.md`); independent review per `AGENTS.md`; A1 re-stage declaration | Stop the dev server before build/package/premerge commands; build, premerge, and render-bar runs need host escalation per `AGENTS.md` where the sandbox denies them. |
+| Product source (`frontend/src/**` outside `__tests__/**`, `frontend/electron/**`, `frontend/packages/**`, `frontend/scripts/**`, build/packaging config) | typecheck + vitest + build/premerge gates (`docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, `docs/BUILD_AND_RELEASE.md`); independent review per `AGENTS.md`; affected-check assessment under D-APP-127 | Stop the dev server before build/package/premerge commands; use available host permissions for build, premerge and render-bar runs; record unavailable required evidence. |
 | UI work | the above plus the D-APP-36 render bar (`docs/ISSUE_READINESS_PROFILES.md` §4) | Evidence per `docs/ui/UI_POLISH_EXECUTION_PLAN.md`. |
 | Authority docs (`docs/DIRECTIVE.md`, `CONTRACT.md`, `SPEC.md`, `TYPES.md`) | D-APP-38 corpus reconciliation (`execution/_Reconciliation/References/reconcile_authority_corpus.py`) | Drift is repair-first. |
 | Governance / control-plane only | record that frontend gates were skipped because no runtime source changed | |
-| Any dispatch | APP-HOLD-1 preflight (`AGENTS.md`) | Every time. |
-| Host-only surfaces | per-command escalation per `AGENTS.md` "Host-capability execution" | Park `HOST_RERUN_REQUIRED` only when escalation is declined. |
+| Deliverable reliance, dispatch, CHECKING promotion or accepted-dependency consumption | APP-HOLD-1 preflight (`AGENTS.md`) | Every applicable act, regardless of entry path. Do not invent a deliverable target for instruction-only work. |
+| Host-only surfaces | supported host approval mechanism where required, per `AGENTS.md` | Unavailable or declined execution remains `HOST_RERUN_REQUIRED`, not a pass. |
 
 ## 9. Evidence contract for empirical, fixture, conformance, and gate-evidence items (A12; Root R17 N3)
 
@@ -266,8 +349,10 @@ recomputed, the claim stays unavailable; a prose summary is not evidence.
 ## 10. Per-run steer
 
 If the owner appended a steer for this run (the launcher's `Steer` line,
-their message, or a line below), honor it over §7's defaults and on top of
-the plan; this file still governs the protocol, the fences, and the gate.
+their message, or the owning run's direction record), apply it to priorities,
+scope and phase. Keep run-specific steering out of this recurrent file. Owner
+direction can amend procedure explicitly; it does not silently erase protected
+checks or holds. Historical procedural habits are not new approval gates.
 Historical receipts cite the section numbers of the revision current when
 they were written: "LOOP_INIT §7 defaults" is the former session-conventions
 section quoted verbatim in D-APP-61; §1 to §10 of receipts before D-APP-112

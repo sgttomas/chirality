@@ -1,0 +1,137 @@
+{
+  "reviewer": "/root/app_loop_workgraph_review",
+  "configured_model": "gpt-6-astra",
+  "configured_reasoning": "high",
+  "parent": "/root",
+  "enforcement": "instruction-asserted read-only/nondelegation; no independent serving-model attestation",
+  "files": [
+    {
+      "path": "_run_records/PRESERVATION_CHECKS.json",
+      "sha256": "3757d3e9c5b2f45dc6ced892376299addd43d73582a725469ea7883ab6b99e28"
+    },
+    {
+      "path": "_run_records/REVIEW_LAUNCH.json",
+      "sha256": "f17803434e9cc220c5086bf628debdeba8d5afb44ba7a057abc810cb03de0572"
+    },
+    {
+      "path": "_run_records/REVIEW_RETURN_1.md",
+      "sha256": "00ee335be75efc5fb60a0d17d4aba750e9ec939db7b766fff451cce3d5d8881e"
+    },
+    {
+      "path": "_run_records/REVIEW_RETURN_2.md",
+      "sha256": "6339069a422c87939a55da0ac77a35fcba47cbdc62f9cb73ab8258a4bfc76dbc"
+    },
+    {
+      "path": "_run_records/initial-checks/CHECKS.json",
+      "sha256": "298deb85c21cf5b9559f0d0c1aeae3beed9addbedbed5f2a2544e1724fbce2b7"
+    },
+    {
+      "path": "_run_records/initial-checks/corpus-status.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/initial-checks/corpus-status.stdout.txt",
+      "sha256": "a46670594639115d50ddb896d14a3bf62bbf6c25d6f69924bc597c195563e012"
+    },
+    {
+      "path": "_run_records/initial-checks/entrypoints.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/initial-checks/entrypoints.stdout.txt",
+      "sha256": "70bcdd6f6c5126a99bb34b0f1b9168a75ab909ccbba18301379bb398f2e63dcf"
+    },
+    {
+      "path": "_run_records/initial-checks/harness-status.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/initial-checks/harness-status.stdout.txt",
+      "sha256": "1bb49488aa0337861be514a8dca569d99a3e245248a3f665a23a70b565a29bf4"
+    },
+    {
+      "path": "_run_records/initial-checks/manifest.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/initial-checks/manifest.stdout.txt",
+      "sha256": "a9566e7146acc883c301c2ae6d9f942d883d0389baca045dee144cdd2a45376b"
+    },
+    {
+      "path": "_run_records/initial-checks/path-anchors.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/initial-checks/path-anchors.stdout.txt",
+      "sha256": "2c73af5cc1eeb554c98845181bd18b7ceafeaaf043209655d32d444cba061090"
+    },
+    {
+      "path": "_run_records/initial-checks/pytest.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/initial-checks/pytest.stdout.txt",
+      "sha256": "ba34c108d3323f6811eb97e255673afabd0225ce61375f78d8a38e55a10acffa"
+    },
+    {
+      "path": "_run_records/initial-checks/receipt.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/initial-checks/receipt.stdout.txt",
+      "sha256": "e6e35b28f912b2a6861518e5e37455aa6b48baef68f8d5c88eb543faac42a3d0"
+    },
+    {
+      "path": "_run_records/initial-checks/self-check.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/initial-checks/self-check.stdout.txt",
+      "sha256": "3750545b162d7bbb0c570c3049f1f6281614eb8b1a49b551bc4b16e3ae2048d2"
+    },
+    {
+      "path": "_run_records/repaired-checks/CHECKS.json",
+      "sha256": "1d88abf71487626b5a571f9b1a7363f0c913b4da5aeb6dce859d207a5dc1c659"
+    },
+    {
+      "path": "_run_records/repaired-checks/manifest.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/repaired-checks/manifest.stdout.txt",
+      "sha256": "486e714fbaa4042a0c63335c268e5a5354e3f3fbe7d46a7f1103c0c9a4b2507e"
+    },
+    {
+      "path": "_run_records/repaired-checks/path-anchors.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/repaired-checks/path-anchors.stdout.txt",
+      "sha256": "2c73af5cc1eeb554c98845181bd18b7ceafeaaf043209655d32d444cba061090"
+    },
+    {
+      "path": "_run_records/repaired-checks/pytest.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/repaired-checks/pytest.stdout.txt",
+      "sha256": "06c71f9c810467f39150e4c488810f62beaca2077c7eab422c73a190c7a23a09"
+    },
+    {
+      "path": "_run_records/repaired-checks/receipt.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/repaired-checks/receipt.stdout.txt",
+      "sha256": "fda6df2dccca39176e46fdc668ed137a359021217b7ba42073991d26c1b91bb7"
+    },
+    {
+      "path": "_run_records/repaired-checks/self-check.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "_run_records/repaired-checks/self-check.stdout.txt",
+      "sha256": "fb273bec4c6416fccaf949f6f9282532ab97189878ea972227d023a96f64070e"
+    }
+  ]
+}

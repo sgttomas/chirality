@@ -1,0 +1,13 @@
+{
+  "parent": "/root",
+  "task": "/root/manual_theory_review",
+  "role": "TASK Type 2",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "candidate": "3142dca024c89dde53240e52c52338838e15bb5c",
+  "prepared_utc": "2026-09-19T23:29:40.143713+00:00",
+  "brief_sha256": "c482e0b6a24209262f8452af272f3ae2d9b5ecb1abc2d8a3fb82fee703d1de97",
+  "mechanism": "delegated-harness-native",
+  "write_scope": [],
+  "limits": "instruction-asserted read-only and no delegation; fresh context; no independent serving-model attestation"
+}

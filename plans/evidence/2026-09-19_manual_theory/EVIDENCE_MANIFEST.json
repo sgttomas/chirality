@@ -1,0 +1,61 @@
+{
+  "basis": "35d8b93aed1831c7579986d305b383521ca47c80",
+  "files": [
+    {
+      "path": "CHECKS.json",
+      "sha256": "7f6f5368466a6800e4e633e852a872d936e5f4f944129968ed028e5d472ab2c6"
+    },
+    {
+      "path": "CLOSEOUT.md",
+      "sha256": "ec51899fa1b322625805a47934d428bb0f74ecb7f570ada6862f11f01028d75d"
+    },
+    {
+      "path": "COHERENCE_REVIEW.md",
+      "sha256": "a12f3da3befe6c92a40adbcc11d37d42ce0d7e7e7e59da3b28e4af3b64eb75c3"
+    },
+    {
+      "path": "DISPATCH.json",
+      "sha256": "dd54e67d10dca4fe0cc8edb9d73cfd5e1fec8d5742a48d44442ce1a4ce6edea3"
+    },
+    {
+      "path": "DOCUMENT_CHECKS.json",
+      "sha256": "f0eab0890a0e519c03d9f4464c1ea062ae30bbe7b16cc7695c2b50c2f2a12218"
+    },
+    {
+      "path": "OWNER_DIRECTION.md",
+      "sha256": "e667271db2f194853ce466101b5f55cb7aa1cbbafd632889a52827be7acdfd2d"
+    },
+    {
+      "path": "REVIEW_ADVICE.md",
+      "sha256": "b79a75d52de5d5e70ed41b827889d422142a8a9b75c126c44c72a66784bd009a"
+    },
+    {
+      "path": "REVIEW_BRIEF.md",
+      "sha256": "c482e0b6a24209262f8452af272f3ae2d9b5ecb1abc2d8a3fb82fee703d1de97"
+    },
+    {
+      "path": "REVIEW_LAUNCH.json",
+      "sha256": "96144c185f7c95e446e058f027b4d3dd4cf2ecb516605016473b2560ed179034"
+    },
+    {
+      "path": "REVIEW_RETURN.md",
+      "sha256": "fe12bd244dae3757a5df2f17b0dd928da8b618a03ab2f854a1fc853e70d7ec3c"
+    },
+    {
+      "path": "SOURCE_BRIEF.md",
+      "sha256": "f361ebe50442d6da5ae141e6c9e4914c6be06215145ba437a6fe39ef018f2df4"
+    },
+    {
+      "path": "SOURCE_CORRECTION.md",
+      "sha256": "d26e74e23971e64fbdd136c66fc1b31518189ea8cf128b94cc97bbf283755e03"
+    },
+    {
+      "path": "SOURCE_RETURN.md",
+      "sha256": "79d904ff532688a979d2dd03752855971b66376873fb0408669abc83dea50553"
+    },
+    {
+      "path": "WORK_GRAPH.json",
+      "sha256": "7b49ea221d5d1f9774d9b7d39a61e90e728a7fda35f7ddf66a7c1c6db480101f"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "basis": "35d8b93aed1831c7579986d305b383521ca47c80",
+  "scope": "Theory-first explanatory manual draft; no live instruction or product change",
+  "parent": "/root",
+  "nodes": [
+    {
+      "id": "source_check",
+      "role": "TASK Type 2",
+      "model": "gpt-6-astra",
+      "reasoning": "low",
+      "state": "returned; source-attribution correction retained and applied",
+      "depends_on": [],
+      "writes": []
+    },
+    {
+      "id": "theory",
+      "owner": "Agent0",
+      "state": "theory draft complete; author reviewed outline, full draft and integrated addition",
+      "depends_on": [],
+      "integration_inputs": [
+        "source_check"
+      ],
+      "writes": [
+        "docs/ai_software_project_management/"
+      ],
+      "coherence_checks": [
+        "outline",
+        "complete draft",
+        "post-review integrated draft"
+      ]
+    },
+    {
+      "id": "independent_review",
+      "role": "TASK Type 2",
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "state": "initial whole-diff PASS; final addition/evidence backcheck pending",
+      "depends_on": [
+        "source_check",
+        "theory"
+      ],
+      "writes": []
+    },
+    {
+      "id": "closeout",
+      "owner": "Agent0",
+      "state": "awaiting final review and actual-candidate CI",
+      "depends_on": [
+        "independent_review"
+      ]
+    }
+  ],
+  "deferred": [
+    {
+      "item": "Chirality worked-example findings",
+      "until": "Theory expectations and case-reading method frozen, then a separate evidence reconstruction"
+    },
+    {
+      "item": "External corroboration/generalization",
+      "until": "A sourced research pass; no empirical or regulatory validation claimed now"
+    }
+  ],
+  "terminal_record": "PR retains final independent review, CI and merge disposition; source closeout is not owner acceptance of the theory."
+}
