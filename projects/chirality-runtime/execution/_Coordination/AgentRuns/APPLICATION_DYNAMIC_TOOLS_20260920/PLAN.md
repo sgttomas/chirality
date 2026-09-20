@@ -44,3 +44,11 @@ Implementation is present in portable contracts, SessionStore catalog persistenc
 - Piping's peer clarified DEC-051 permits owner-configured provider transmission without a new app opt-in/residency gate. This implementation introduces no such gate. D-58/DEC-091 and DEC-042 successor/client adoption and live binding remain with Piping. Its B3/B3A/B3B work and native slot remain untouched.
 
 Next: fresh independent full-diff review, affected fixes/backchecks if needed, required PR CI (including App compatibility), and normal merge. No release or real SWBPIPE activation. Application-specific skill/workflow authoring remains with the Piping lead after the initial ad hoc journey is proved; Runtime supports existing discovery and does not author a second domain instruction system.
+
+## Independent review and repair
+
+Fresh read-only application_tools_independent_review used gpt-6-astra high under the owner's standing bounded exception for consequential concurrency review. Its full da95ec194 diff review found one P1: a tool request resolved while awaiting initial provider-turn identity could dispatch after adoption because cancellation tracking began too late. Scope validation passed; no other confirmed defect. Direct unsupported user-data mutation did not justify restoring retired tamper/admission machinery.
+
+The separate supervisor author reserved cancellation ownership before that await and made the resumed continuation inert after cancellation. Six real-registry regressions cover request resolution, provider exit, interrupt, abort, retirement and close before primary adoption; each prevents late dispatch. Parent inspected the exact repair. The author reports 83 affected tests and Runtime typecheck passed. Independent backcheck of the repaired committed candidate is next, followed by required CI. No source push or merge preceded that review boundary.
+
+The Piping lead reviewed the proposed interface and reported no consumer-fit blocker, separately from independent code review or Piping adoption. It will derive workspace identity from trusted binding context, preserve basis/revision/hash and proposal status in Piping, return queued promptly from submit, and retain domain receipts independently of transient Runtime call records. Its B3 and native reservations continue.

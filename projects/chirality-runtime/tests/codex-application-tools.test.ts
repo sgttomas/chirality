@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
-import type { ApplicationToolBinding, ApplicationToolResult, DynamicToolSpec } from "@chirality/runtime-contracts";
+import type { ApplicationToolBinding, ApplicationToolCatalog, ApplicationToolResult, DynamicToolSpec, RuntimeSessionRecord } from "@chirality/runtime-contracts";
 import type { CodexTurnEnvelope } from "@chirality/runtime-core";
+import { ApplicationToolRegistry } from "../packages/daemon/src/application-tools.js";
 import { CodexSupervisor, type CodexSupervisorHost, type CodexSupervisorOptions } from "../packages/daemon/src/codex-supervisor.js";
 import type { CodexAppServerExit, CodexNotification, CodexServerRequest, CodexServerRequestHandler, CodexServerRequestOutcome } from "../packages/daemon/src/codex-app-server-client.js";
 /** Scripted host: records requests, answers from a table, and lets the test raise notifications and server requests. */
@@ -207,6 +208,47 @@ describe("application tools on the Codex supervisor", () => {
     await interrupted;
     expect(await supervisor.wait(worker.workerId, worker.generation)).toMatchObject({ signal: "SIGTERM" });
     await supervisor.close(); expect(applicationTools.finishTurn).toHaveBeenCalledTimes(1);
+  });
+
+  it.each(["resolved", "exit", "interrupt", "abort", "retire", "close"])("never dispatches a call cancelled by %s before primary adoption (real registry)", async action => {
+    let catalog: ApplicationToolCatalog | undefined;
+    const applicationTools = new ApplicationToolRegistry({ sessions: {
+      get: async () => ({ status: "idle" } as RuntimeSessionRecord),
+      getApplicationToolCatalog: async () => catalog,
+      registerApplicationToolCatalog: async (_projectId, _sessionId, value) => { catalog = structuredClone(value); return structuredClone(value); }
+    } });
+    const registered = await applicationTools.register("project", "session", { applicationId: "application", workspaceId: "workspace", workspaceGeneration: "g1", timeoutMs: 1000, tools });
+    const call = vi.spyOn(applicationTools, "call");
+    const host = fakeHost(), supervisor = new CodexSupervisor({ host, applicationTools }), abort = new AbortController();
+    let release!: (value: unknown) => void;
+    host.respond("turn/start", () => new Promise(resolve => { release = resolve; }));
+    const acquiring = supervisor.acquire("w1", envelope(), abort.signal);
+    await vi.waitFor(() => expect(release).toBeTypeOf("function"));
+    const [handle] = await supervisor.inventory();
+    const answer = host.ask(request());
+    let interrupted: Promise<void> | undefined;
+    if (action === "resolved") host.notify("serverRequest/resolved", { threadId: "thread-1", requestId: 42 });
+    if (action === "exit") host.exit({ code: 1, signal: null });
+    if (action === "interrupt") interrupted = supervisor.interrupt(handle!.workerId, handle!.generation);
+    if (action === "abort") abort.abort();
+    if (action === "retire") await supervisor.retire(handle!.workerId, handle!.generation);
+    if (action === "close") await supervisor.close();
+    // Cancellation resolves before turn/start does; the registry has no work.
+    expect(await answer).toMatchObject({ result: { success: false } });
+    expect(applicationTools.listCalls("project", "session", registered.bindingId)).toEqual([]);
+    expect(call).not.toHaveBeenCalled();
+    release({ turn: { id: "turn-1", status: "inProgress" } });
+    const worker = await acquiring;
+    await Promise.resolve();
+    expect(call).not.toHaveBeenCalled();
+    expect(applicationTools.listCalls("project", "session", registered.bindingId)).toEqual([]);
+    if (action !== "retire" && action !== "close") {
+      const events = await supervisor.drainTurnProgress(worker.workerId, worker.generation);
+      expect(events.filter(event => event.type === "request-resolved")).toEqual([expect.objectContaining({ requestId: "42", providerThreadId: "thread-1", providerTurnId: "turn-1", outcome: "cancelled" })]);
+    }
+    complete(host);
+    await interrupted;
+    await supervisor.close(); applicationTools.close();
   });
 
 });

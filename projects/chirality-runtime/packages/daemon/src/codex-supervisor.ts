@@ -653,12 +653,6 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
     if (!entry || !ownership || !this.options.applicationTools) return resolved(failure(this.options.applicationTools ? "No active application tool binding" : "Chirality registers no dynamic tools"));
     if ((typeof request.id !== "string" && (typeof request.id !== "number" || !Number.isFinite(request.id))) || !providerThreadId || !providerTurnId || typeof params.callId !== "string" || !params.callId || typeof params.tool !== "string" || !params.tool || (params.namespace !== null && typeof params.namespace !== "string") || !Object.hasOwn(params, "arguments")) return resolved(failure("Malformed application tool request"));
     try { canonicalApplicationJson(params.arguments); } catch { return resolved(failure("Malformed application tool arguments")); }
-    // A server request can precede the turn/start response; only authoritative
-    // turn/started or the response may adopt the primary provider identity.
-    if (entry.turnId === undefined) await entry.turnIdReady;
-    const child = this.childTurns.get(providerThreadId);
-    const correctTurn = providerThreadId === entry.threadId ? providerTurnId === entry.turnId : child?.owner === entry && child.turnId === providerTurnId;
-    if (ownership.finished || entry.settled || entry.application !== ownership || entry.hostGeneration !== this.options.host.generation || !correctTurn) return resolved(failure("Foreign or stale application tool request"));
     const knownTool = ownership.tools.some(spec => spec.type === "function" ? params.namespace === null && spec.name === params.tool : spec.name === params.namespace && spec.tools.some(tool => tool.name === params.tool));
     if (!knownTool) return resolved(failure("Unknown application tool"));
     const key = JSON.stringify([typeof request.id, request.id]);
@@ -680,7 +674,21 @@ export class CodexSupervisor implements DelegatedHarnessProcessSupervisorPort, S
         this.options.applicationTools!.cancelCall(callInput, "provider call cancelled");
         finish(failure("Application tool call cancelled"), "cancelled");
       } });
-      void this.options.applicationTools!.call(callInput).then(result => finish(result), () => finish(failure("Application tool call failed"), "failed"));
+      // Reserve cancellation ownership before awaiting provider identity: a
+      // resolved request or terminal may arrive while turn/start is in flight.
+      const dispatch = async () => {
+        if (entry.turnId === undefined) await entry.turnIdReady;
+        if (done) return;
+        const child = this.childTurns.get(providerThreadId);
+        const correctTurn = providerThreadId === entry.threadId ? providerTurnId === entry.turnId : child?.owner === entry && child.turnId === providerTurnId;
+        if (ownership.finished || entry.settled || entry.application !== ownership || entry.hostGeneration !== this.options.host.generation || !correctTurn) {
+          ownership.seen.delete(key); ownership.seen.delete(callKey);
+          finish(failure("Foreign or stale application tool request"));
+          return;
+        }
+        finish(await this.options.applicationTools!.call(callInput));
+      };
+      void dispatch().catch(() => finish(failure("Application tool call failed"), "failed"));
     });
   }
   private async handleServerRequest(request: CodexServerRequest): Promise<CodexServerRequestOutcome> {
