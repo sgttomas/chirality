@@ -1,0 +1,152 @@
+{
+ "version": 2,
+ "runId": "HELP-HUMAN-PIPING-20260921-RECONCILIATION",
+ "undertaking": "Whole-corpus reconciliation of Piping deliverables against what transpired in the code (root workflow `reconciliation`).",
+ "base": "00115c71931bcae79909602d653740d3bb72dfa1",
+ "baseNote": "Piping tree object 38cbfc64be7e55126c90b82a266846815aa52efb, identical to the PR #834 merge 620ff6387b211c774c0de7dabec0a170acdf6017.",
+ "selectionAuthority": "D-73 RULED 2026-09-21 (../../_DECISIONS/D-73_RULING_2026-09-21.md; DEC-110): R0-R4 only; takes effect for dispatch once merged to main.",
+ "parent": "owner",
+ "rootModel": "claude-opus-5, high reasoning (owner direction 1)",
+ "modelPolicy": {
+  "allRoles": "opus-5, high reasoning",
+  "authority": "OWNER_DIRECTIONS.md Direction 1"
+ },
+ "concurrency": {
+  "cap": 16,
+  "counts": "every live agent at any nesting depth, including Agent 0",
+  "revisable": "by the owner mid-run; re-read before each sub-batch",
+  "authority": "OWNER_DIRECTIONS.md Directions 1 and 4"
+ },
+ "ownerDirections": [
+  {
+   "record": "OWNER_DIRECTIONS.md",
+   "sha256": "037387060e0f8b0092d8b6b3cee9baf4991e67113c0dc63c93882afd76590b6b",
+   "custody": "stored-transcript extraction, not transport bytes"
+  },
+  {
+   "record": "instances/ROOT/ENTRY_BRIEF_2026-09-21.md",
+   "sha256": "3767db254c5608611607c8d773826e467add5a7e7d6c49e0b9907f88e7af7823"
+  },
+  {
+   "record": "PLAN.md",
+   "sha256": "18d3960ed8078806b60f66bfbf7e623f2f7735d225fa5dc661247ef730d96381",
+   "note": "Agent 0 plan, owner-approved 2026-09-21T16:15:18Z"
+  }
+ ],
+ "nodes": {
+  "ROOT": {
+   "role": "HELP_HUMAN Agent 0",
+   "model": "claude-opus-5",
+   "reasoning": "high",
+   "status": "active: drafting activation",
+   "mechanism": "this Claude Code session"
+  },
+  "ACT": {
+   "title": "D-73 activation packet, profile, ruling, review, merge",
+   "status": "ruled; reviewed PASS; checks pass; PR and merge pending",
+   "dependsOn": [],
+   "write": [
+    "execution/_Coordination/_DECISIONS/D-73_*",
+    "execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "docs/RECONCILIATION_PROFILE.md",
+    "execution/_Decomposition/SOFTWARE_DECOMP.md §12 (DEC-110 on ruling)",
+    "this run record"
+   ]
+  },
+  "ACT-REVIEW": {
+   "title": "Fresh read-only review of the complete activation diff",
+   "status": "complete: review FINDINGS applied; backcheck 1 N-1 applied; backcheck 2 VERDICT: PASS through 20192a20c",
+   "role": "TASK (review, read-only)",
+   "model": "claude-opus-5",
+   "reasoning": "high",
+   "dependsOn": [
+    "ACT"
+   ],
+   "note": "only pre-merge launch",
+   "brief": "briefs/ACT-REVIEW_brief.md",
+   "briefSha256": "17a385b4af98a008148a142cb548f753cd3f2ebcb6f368a7e4ad9ecfd599c796",
+   "return": "returns/ACT-REVIEW_return.md",
+   "returnSha256": "23bf30491fa678f47ea93107d6b24d42f74cce4576b8f5ab7b11a59b6600bb3f",
+   "actualAgent": "ae985ad18ea2bd25b",
+   "mechanism": "harness-native Agent tool, subagent_type general-purpose, foreground, parent ROOT (D-GOV-35)",
+   "modelRequested": "opus (claude-opus-5)",
+   "reasoningRequested": "high (inherited from session; the host takes no per-call reasoning setting)",
+   "enforcement": "read-only and non-delegation are instruction-asserted, not host-enforced; reviewer reported working tree unchanged",
+   "backcheck1Return": "returns/ACT-REVIEW_backcheck1_return.md",
+   "backcheck1ReturnSha256": "22f829c1ecfc23686edd37a6abf368c49eae967d6ab7e7d48917cf606b3c3469",
+   "returnCustody": "returns extracted verbatim from the parent session transcript (tool result; task-notification result), not the child's own transcript",
+   "backcheck2Return": "returns/ACT-REVIEW_backcheck2_return.md",
+   "backcheck2ReturnSha256": "de8270ff6db978f101d7be6657da1931357fe3d281f6822b5e8c9d5cb97b530a",
+   "reviewedCandidate": "20192a20c (subsequent commits are records-only and listed in the PR)"
+  },
+  "R0": {
+   "title": "Freeze basis, run tooling, gate transcript, 8-deliverable calibration, candidate conventions",
+   "status": "planned",
+   "dependsOn": [
+    "ACT merged to main"
+   ]
+  },
+  "R1": {
+   "title": "Read-only inventories incl. owner-free reverse capability inventory",
+   "status": "planned",
+   "dependsOn": [
+    "R0 conventions ruled"
+   ]
+  },
+  "R2": {
+   "title": "Package waves W1 PKG-00..03, W2 PKG-04..06, W3 PKG-08..12, W4 PKG-13..17, W5 PKG-07",
+   "status": "planned",
+   "dependsOn": [
+    "R1"
+   ]
+  },
+  "R3": {
+   "title": "Cross-package synthesis, final unmapped set, cause clustering",
+   "status": "planned",
+   "dependsOn": [
+    "R2"
+   ]
+  },
+  "R4": {
+   "title": "Owner decision gate on cause classes",
+   "status": "planned",
+   "dependsOn": [
+    "R3"
+   ]
+  },
+  "R5-R6": {
+   "title": "Repair tranches and closing backcheck",
+   "status": "not authorized: D-73 Item 4 O-A; needs a separate owner authorization after R4",
+   "dependsOn": [
+    "R4"
+   ]
+  }
+ },
+ "edges": [
+  [
+   "owner",
+   "ROOT"
+  ],
+  [
+   "ROOT",
+   "ACT-REVIEW"
+  ]
+ ],
+ "current_frontier": "Activation PR: open, CI, merge. Then R0 from merged main.",
+ "openWithOwner": [],
+ "holdsPreserved": [
+  "Piping development pause (owner, 2026-09-21)",
+  "PDU-045/PDU-046 usability holds",
+  "C4 label and live-control decisions",
+  "D-68/D-72 criteria",
+  "ISSUED DEL-01-01 change path"
+ ],
+ "externalState": {
+  "doNotTouch": [
+   "branch codex/swbpipe-continuation-20260919 (holds Receipt-161)",
+   "all other sessions' worktrees, including the dirty swbpipe-b3b busy probe"
+  ]
+ },
+ "claimFence": "Standard claim fence applies (F-PIP-2; claims taxonomy per DEC-081).",
+ "surfaceBoundary": "D-73 packet Item 5a-5d"
+}
