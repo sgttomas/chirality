@@ -64,15 +64,17 @@ class PolicyTests(unittest.TestCase):
 
     def test_shared_unknown_ci_dependencies_and_model_inputs_are_full(self):
         for path in ['package.json', '.github/workflows/piping-desktop-e2e.yml',
+                     '.github/workflows/piping-e2e-cache.yml',
                      '.github/actions/setup-piping-e2e/action.yml', ci.PROJECT + 'tools/ci/e2e_plan.py',
                      ci.PROJECT + 'tools/ci/e2e_duration_hints.json', ci.PROJECT + 'package-lock.json',
                      ci.PROJECT + 'schemas/model.json', ci.PROJECT + 'core/solver/a.rs',
                      ci.DESKTOP + 'playwright.config.ts', ci.DESKTOP + 'src/App.tsx',
                      ci.DESKTOP + 'src/features/workspace/workspaceSession.ts',
                      ci.DESKTOP + 'src/features/workspace/table/EngineeringTable.tsx', ci.PROJECT + 'unknown.ts']:
+            previous = self.git('rev-parse', 'HEAD')
             self.write(path)
             self.commit()
-            self.assertEqual(self.plan()['mode'], 'full', path)
+            self.assertEqual(self.plan(base=previous)['mode'], 'full', path)
 
     def test_complete_pr_diff_prevents_last_commit_underselection(self):
         self.write(ci.DESKTOP + 'src/App.tsx')

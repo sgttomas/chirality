@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { attachBrowserIdentity, currentModelHashThroughVisibleExport, gotoRoutedFixture } from "./ui-foundation-workflows";
+import { attachBrowserIdentity, currentModelHashThroughVisibleExport, gotoModel, readFixture, gotoRoutedFixture } from "./ui-foundation-workflows";
 import { ensureTreeExpanded, openWorkspaceSection, showModelTree } from "./workspace-driver";
 
 // One connected journey per configured source viewport; no explicit-size repetition.
@@ -356,3 +356,292 @@ for (const policy of ["direct", "review"] as const) {
     });
   }
 }
+
+// Real operation/conversion services; only the public synthetic starting model
+// and delivery timing of conversion results are controlled by this scenario.
+test("B4 Materials preserve mixed-unit editing, delayed review sort, history and saved ownership", async ({ page, browser }, info) => {
+  await attachBrowserIdentity(browser, info);
+  const { model } = await readFixture("precision-origin-base.model.json");
+  const material = model.materials[0]; const firstId = material.id; const secondId = "material:B4-second";
+  model.materials = [{ ...material, elastic_modulus: { value: 200000, unit: "MPa" } },
+    { ...material, id: secondId, label: "Synthetic second material", elastic_modulus: { value: 100000000000, unit: "Pa" } }];
+  // Delay delivery after the existing Rust conversion has finished. No factors,
+  // replacement conversion answers, or model mutation are injected.
+  await page.route("**/src/services/displayQuantityService.ts", async (route) => {
+    const response = await route.fetch(); const source = await response.text();
+    expect(source).toContain("export async function convertDisplayQuantities(");
+    await route.fulfill({ response, body: source.replace("export async function convertDisplayQuantities(", "async function originalConvertDisplayQuantities(") + `
+export async function convertDisplayQuantities(items) {
+  const result = await originalConvertDisplayQuantities(items);
+  const gate = window.__b4MaterialConversionGate;
+  if (gate && gate.hold && items.some(item => item.id.includes('material') && item.id.includes('elastic'))) {
+    await new Promise(resolve => gate.pending.push(resolve));
+  }
+  return result;
+}
+` });
+  });
+  await page.addInitScript(() => { (window as any).__b4MaterialConversionGate = { hold: false, pending: [] }; });
+  await gotoModel(page, model);
+  await page.getByTestId("view-switch-table").click(); await ensureTreeExpanded(page); await page.getByTestId("layout-mode-grid").click(); await page.getByTestId("entity-grid-type-materials").click();
+  const direct = page.getByTestId("material-engineering-table"); const elastic = direct.getByTestId(`table-cell-${firstId}-elastic`);
+  await expect(elastic.locator("..")).toHaveAttribute("aria-readonly", "false");
+  await expect(elastic.locator("..").locator(".engineering-table-unit")).toHaveText("MPa");
+  await direct.getByRole("button", { name: "Sort Elastic", exact: true }).click();
+  await expect(direct.getByRole("rowheader").first()).toHaveText(secondId);
+  await elastic.dblclick(); const edit = direct.getByRole("textbox"); await edit.fill("0"); await direct.getByRole("button", { name: "Apply", exact: true }).click();
+  await expect(edit).toHaveAttribute("aria-invalid", "true"); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
+  await edit.fill("210000"); await direct.getByRole("button", { name: "Cancel", exact: true }).click(); await expect(elastic).toHaveText("200000");
+  await elastic.dblclick(); await edit.fill("210000"); await direct.getByRole("button", { name: "Apply", exact: true }).click(); await expect(elastic).toHaveText("210000");
+  await expect(page.getByTestId("project-edited")).toBeVisible(); await page.getByTestId("workspace-undo").click(); await expect(elastic).toHaveText("200000");
+  await page.getByTestId("workspace-redo").click(); await expect(elastic).toHaveText("210000");
+  await page.getByTestId("material-grid-review-disclosure").click(); const review = page.getByTestId("material-engineering-table-review");
+  await review.getByRole("button", { name: "Sort Elastic", exact: true }).click(); await review.getByRole("button", { name: "Sort Elastic", exact: true }).click(); await expect(review.getByRole("rowheader").first()).toHaveText(firstId);
+  const reviewCell = review.getByTestId(`review-cell-${firstId}-elastic`); await reviewCell.dblclick(); const input = review.getByRole("textbox");
+  const retainedInput = await input.elementHandle();
+  await page.evaluate(() => { (window as any).__b4MaterialConversionGate.hold = true; });
+  await input.press("ControlOrMeta+a"); await input.press("5"); await input.press("0"); await input.press("ArrowLeft");
+  await expect(input).toHaveValue("50"); await expect(input).toBeFocused();
+  await expect(review.getByRole("status")).toContainText("sort unavailable"); await expect(review.getByRole("rowheader").first()).toHaveText(firstId);
+  await expect.poll(() => page.evaluate(() => (window as any).__b4MaterialConversionGate.pending.length)).toBeGreaterThan(0);
+  expect(await input.evaluate((node, original) => node === original, retainedInput)).toBe(true);
+  expect(await input.evaluate((node: HTMLInputElement) => [node.selectionStart, node.selectionEnd])).toEqual([1, 1]);
+  // Descending completion physically moves the active row while its native
+  // editor, selection and text-Undo stack must remain owned and intact.
+  await page.evaluate(() => { const gate = (window as any).__b4MaterialConversionGate; gate.hold = false; gate.pending.splice(0).forEach((resolve: () => void) => resolve()); });
+  await expect(review.getByRole("rowheader").first()).toHaveText(secondId); await expect(input).toBeFocused();
+  expect(await input.evaluate((node, original) => node === original, retainedInput)).toBe(true);
+  expect(await input.evaluate((node: HTMLInputElement) => [node.selectionStart, node.selectionEnd])).toEqual([1, 1]);
+  await input.press("3"); await expect(input).toHaveValue("530"); await input.press("ControlOrMeta+z"); await expect(input).toHaveValue("50");
+  await expect(elastic).toHaveText("210000");
+  await review.getByRole("button", { name: "Keep draft", exact: true }).click(); await expect(review.getByText("Draft retained; model unchanged.")).toBeVisible();
+  await page.getByTestId("entity-grid-type-nodes").click(); await page.getByTestId("entity-grid-type-materials").click(); await expect(reviewCell).toHaveText("50");
+  await review.getByTestId(`review-cell-${secondId}-label`).dblclick(); await review.getByRole("textbox").fill("retained second"); await review.getByRole("button", { name: "Keep draft", exact: true }).click();
+  const filter = page.getByTestId("model-tree-filter-input"); await filter.fill(firstId);
+  await page.getByTestId("queue-entity-grid-intents").click(); await expect(page.getByTestId("operation-apply-row-editor-intent-1")).toContainText('"unit":"MPa"');
+  await page.getByTestId("apply-intent-editor-intent-1").click(); await expect(page.getByTestId("operation-apply-summary")).toContainText("2 applied");
+  await showModelTree(page); await filter.fill(""); await expect(review.getByTestId(`review-cell-${secondId}-label`)).toHaveText("retained second");
+  await page.getByTestId("clear-entity-grid-drafts").click(); await expect(review.getByTestId(`review-cell-${secondId}-label`)).toHaveText("Synthetic second material");
+  await page.getByTestId("material-grid-review-disclosure").click(); await expect(elastic).toHaveText("50");
+  const geometry = await direct.evaluate((root) => {
+    const box = (element: Element) => { const r = element.getBoundingClientRect(); return { x: r.x, y: r.y, width: r.width, height: r.height, bottom: r.bottom }; };
+    return { pane: box(root.closest(".shell-table-pane")!), header: box(root.querySelector(".engineering-table-header")!), body: box(root.querySelector(".engineering-table-body-slot")!), footer: box(root.querySelector(".engineering-table-footer")!), units: [...root.querySelectorAll(".engineering-table-unit")].map((unit) => ({ text: unit.textContent, ...box(unit), client: unit.clientWidth, scroll: unit.scrollWidth })) };
+  });
+  expect(geometry.body.height).toBeGreaterThan(0); expect(geometry.footer.bottom).toBeLessThanOrEqual(geometry.pane.bottom); expect(geometry.header.bottom).toBeLessThanOrEqual(geometry.body.y);
+  for (const unit of geometry.units) { expect(unit.width).toBeGreaterThan(0); expect(unit.scroll).toBeLessThanOrEqual(unit.client); }
+  await info.attach("materials-contained-units", { body: JSON.stringify(geometry, null, 2), contentType: "application/json" });
+  await openWorkspaceSection(page, "project"); await page.getByRole("button", { name: "Save local", exact: true }).click(); await expect(page.getByTestId("local-project-message")).toContainText("Saved local browser-preview project");
+  await showModelTree(page); await page.getByTestId("material-grid-review-disclosure").click();
+  await page.evaluate(() => { (window as any).__b4MaterialConversionGate.hold = true; });
+  await reviewCell.dblclick(); await review.getByRole("textbox").fill("70");
+  await expect.poll(() => page.evaluate(() => (window as any).__b4MaterialConversionGate.pending.length)).toBeGreaterThan(0);
+  await page.getByTestId("entity-grid-type-nodes").click();
+  const nodeLabel = page.getByTestId(`table-cell-${model.nodes[0].id}-label`); await nodeLabel.dblclick(); const nodeEditor = page.getByTestId("engineering-table").getByRole("textbox"); await nodeEditor.fill(" ");
+  await page.evaluate(() => { const gate = (window as any).__b4MaterialConversionGate; gate.pending.splice(0).forEach((resolve: () => void) => resolve()); });
+  await expect(nodeEditor).toBeFocused(); await expect(nodeEditor).toHaveValue(" "); await page.getByTestId("engineering-table").getByRole("button", { name: "Cancel", exact: true }).click();
+  await page.getByTestId("entity-grid-type-materials").click(); await reviewCell.dblclick(); await review.getByRole("textbox").fill("80");
+  await expect.poll(() => page.evaluate(() => (window as any).__b4MaterialConversionGate.pending.length)).toBeGreaterThan(0);
+  await openWorkspaceSection(page, "project"); await page.getByRole("button", { name: "Open local", exact: true }).click(); await expect(page.getByTestId("local-project-message")).toContainText("Opened local browser-preview project");
+  await showModelTree(page); await page.getByTestId("layout-mode-grid").click(); await page.getByTestId("entity-grid-type-materials").click(); await expect(elastic).toHaveText("50"); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
+  if (await page.getByTestId("material-grid-review-disclosure").getAttribute("aria-expanded") === "true") await page.getByTestId("material-grid-review-disclosure").click();
+  await direct.getByTestId(`table-cell-${firstId}-label`).dblclick(); const newEditor = direct.getByRole("textbox"); await newEditor.press("R"); await newEditor.press("S");
+  await page.evaluate(() => { const gate = (window as any).__b4MaterialConversionGate; gate.hold = false; gate.pending.splice(0).forEach((resolve: () => void) => resolve()); });
+  await expect(newEditor).toHaveValue("RS"); await expect(newEditor).toBeFocused(); await direct.getByRole("button", { name: "Cancel", exact: true }).click();
+  await page.screenshot({ path: info.outputPath("b4-materials-reopened.png") });
+});
+
+test("B4 Materials stable editor owns character starts, virtual scrolling, filtering and resize", async ({ page, browser }, info) => {
+  await attachBrowserIdentity(browser, info);
+  const { model } = await readFixture("precision-origin-base.model.json"); const material = model.materials[0];
+  model.materials = Array.from({ length: 140 }, (_, index) => ({ ...material, id: index === 0 ? material.id : `material:B4-${index}`, label: `Synthetic material ${index}` }));
+  await gotoModel(page, model); await page.getByTestId("view-switch-table").click(); await ensureTreeExpanded(page); await page.getByTestId("layout-mode-grid").click(); await page.getByTestId("entity-grid-type-materials").click();
+  const table = page.getByTestId("material-engineering-table"); const cell = table.getByTestId(`table-cell-${material.id}-elastic`);
+  await expect(cell.locator("..")).toHaveAttribute("aria-readonly", "false");
+  await cell.focus(); await page.keyboard.press("x"); const editor = table.getByRole("textbox"); await expect(editor).toBeFocused();
+  await page.keyboard.press("y"); await expect(editor).toHaveValue("xy"); expect(await editor.evaluate((input: HTMLInputElement) => [input.selectionStart, input.selectionEnd])).toEqual([2, 2]);
+  await page.keyboard.press("ArrowLeft"); const retained = await editor.elementHandle();
+  const originalViewport = page.viewportSize()!; await page.setViewportSize({ ...originalViewport, height: originalViewport.height + 80 });
+  await expect(editor).toBeFocused(); expect(await editor.evaluate((input: HTMLInputElement) => [input.selectionStart, input.selectionEnd])).toEqual([1, 1]);
+  const aligned = async () => editor.evaluate((input) => {
+    const anchor = input.closest(".engineering-table")!.querySelector("[data-editor-anchor]")!; const a = anchor.getBoundingClientRect(), e = input.getBoundingClientRect();
+    return { dx: e.x - a.x, dy: e.y - a.y, dw: e.width - a.width, dh: e.height - a.height };
+  });
+  await expect.poll(aligned).toEqual({ dx: 0, dy: 0, dw: 0, dh: 0 });
+  await openWorkspaceSection(page, "libraries");
+  await page.setViewportSize({ ...originalViewport, height: originalViewport.height + 120 });
+  await page.getByTestId("workspace-dock-close").click();
+  const pageReturn = await table.evaluate((root) => {
+    const input = root.querySelector<HTMLInputElement>("input")!; const anchor = root.querySelector("[data-editor-anchor]")!;
+    return { inputVisibility: getComputedStyle(input).visibility, value: input.value, owner: document.activeElement?.outerHTML.slice(0, 300),
+      input: input.getBoundingClientRect().toJSON(), anchor: anchor.getBoundingClientRect().toJSON(), ancestorInert: Boolean(root.closest("[inert]")) };
+  });
+  await info.attach("material-page-inert-return", { body: JSON.stringify(pageReturn, null, 2), contentType: "application/json" });
+  await expect(editor).toBeVisible(); await expect(editor).toHaveValue("xy");
+  await expect.poll(aligned).toEqual({ dx: 0, dy: 0, dw: 0, dh: 0 });
+  expect(await editor.evaluate((node, original) => node === original, retained)).toBe(true);
+  await expect(editor).not.toBeFocused(); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
+  const rows = page.getByTestId("material-engineering-table-rows"); await hoverTableBody(page, rows); await page.mouse.wheel(0, 2200);
+  await expect.poll(() => rows.evaluate((element) => element.scrollTop)).toBeGreaterThan(1000);
+  expect(await retained!.evaluate((input) => input.isConnected)).toBe(true);
+  await expect(editor).toHaveValue("xy");
+  // The clipped editor cannot intercept header/footer pointer controls.
+  const hits = await table.evaluate((root) => [".engineering-table-header", ".engineering-table-footer"].map((selector) => {
+    const element = root.querySelector(selector)!; const r = element.getBoundingClientRect(); const hit = document.elementFromPoint(r.left + 12, r.top + r.height / 2);
+    return Boolean(hit && element.contains(hit));
+  })); expect(hits).toEqual([true, true]);
+  const filter = page.getByTestId("model-tree-filter-input"); await filter.fill("material:B4-139"); await expect(rows.locator('[role="row"]')).toHaveCount(2);
+  expect(await editor.evaluate((node, original) => node === original, retained)).toBe(true); await expect(editor).toHaveValue("xy");
+  await expect.poll(aligned).toEqual({ dx: 0, dy: 0, dw: 0, dh: 0 });
+  await page.getByTestId("entity-grid-type-nodes").click(); await expect(editor).toBeHidden(); await page.getByTestId("entity-grid-type-materials").click(); await expect(editor).toHaveValue("xy");
+  await expect(page.getByTestId("entity-grid-type-materials")).toBeFocused();
+  await table.getByRole("button", { name: "Cancel", exact: true }).click(); await expect(editor).toHaveCount(0); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
+  await filter.fill(""); await cell.focus(); await page.keyboard.press("Enter"); await expect(editor).toBeFocused();
+  expect(await editor.evaluate((input: HTMLInputElement) => [input.selectionStart, input.selectionEnd])).toEqual([0, String(material.elastic_modulus.value).length]);
+  await table.getByRole("button", { name: "Cancel", exact: true }).click(); await cell.dblclick(); await expect(editor).toBeFocused();
+  expect(await editor.evaluate((input: HTMLInputElement) => [input.selectionStart, input.selectionEnd])).toEqual([0, String(material.elastic_modulus.value).length]);
+  await table.getByRole("button", { name: "Cancel", exact: true }).click(); await page.setViewportSize(originalViewport);
+  await info.attach("material-editor-clipping", { body: JSON.stringify({ headerFooterHitOwnership: hits }), contentType: "application/json" });
+});
+
+test("B4 Materials Apply Tab keeps the first Shear character while another quantity reconverts", async ({ page, browser }, info) => {
+  await attachBrowserIdentity(browser, info);
+  const { model } = await readFixture("precision-origin-base.model.json"); const material = model.materials[0]; const firstId = material.id; const secondId = "material:B4-P2-second";
+  model.materials = [{ ...material, elastic_modulus: { value: 200000, unit: "MPa" } },
+    { ...material, id: secondId, elastic_modulus: { value: 100000000000, unit: "Pa" } }];
+  await page.route("**/src/services/displayQuantityService.ts", async (route) => {
+    const response = await route.fetch(); const source = await response.text(); expect(source).toContain("export async function convertDisplayQuantities(");
+    await route.fulfill({ response, body: source.replace("export async function convertDisplayQuantities(", "async function originalConvertDisplayQuantities(") + `
+export async function convertDisplayQuantities(items) {
+  const result = await originalConvertDisplayQuantities(items);
+  const gate = window.__b4MaterialP2Gate;
+  if (gate.hold && items.some(item => item.id.includes('material') && item.id.includes('elastic'))) await new Promise(resolve => gate.pending.push(resolve));
+  return result;
+}
+` });
+  });
+  await page.addInitScript(() => { (window as any).__b4MaterialP2Gate = { hold: false, pending: [] }; });
+  await gotoModel(page, model); await page.getByTestId("view-switch-table").click(); await ensureTreeExpanded(page); await page.getByTestId("layout-mode-grid").click(); await page.getByTestId("entity-grid-type-materials").click();
+  const table = page.getByTestId("material-engineering-table"); const elastic = table.getByTestId(`table-cell-${firstId}-elastic`); const shear = table.getByTestId(`table-cell-${firstId}-shear`);
+  await expect(elastic.locator("..")).toHaveAttribute("aria-readonly", "false"); await expect(shear.locator("..")).toHaveAttribute("aria-readonly", "false");
+  await table.getByRole("button", { name: "Sort Elastic", exact: true }).click(); await expect(table.getByRole("rowheader").first()).toHaveText(secondId);
+  await elastic.dblclick(); await table.getByRole("textbox").fill("210000");
+  await page.evaluate(() => { (window as any).__b4MaterialP2Gate.hold = true; });
+  await page.keyboard.press("Tab"); await expect(elastic).toHaveText("210000"); await expect(shear).toBeFocused();
+  await expect.poll(() => page.evaluate(() => (window as any).__b4MaterialP2Gate.pending.length)).toBeGreaterThan(0);
+  await expect(table.getByRole("status").filter({ hasText: "Quantity sort unavailable" })).toContainText("sort unavailable"); await expect(table.getByRole("rowheader").first()).toHaveText(firstId);
+  await expect(page.getByTestId("workspace-undo")).toBeEnabled();
+  // No locator focus/fill repair: this is the first actual key after Apply+Tab.
+  await page.keyboard.press("8");
+  const firstKey = await table.evaluate((root) => ({ editorValue: root.querySelector<HTMLInputElement>("input")?.value ?? null,
+    activeTag: document.activeElement?.tagName, activeColumn: (document.activeElement as HTMLElement)?.dataset.columnKey,
+    shearReadonly: root.querySelector('[data-column-key="shear"]')?.parentElement?.getAttribute("aria-readonly") }));
+  await info.attach("material-p2-first-key", { body: JSON.stringify(firstKey), contentType: "application/json" });
+  const input = table.getByRole("textbox", { name: `${firstId} Shear [${material.shear_modulus.unit}]` });
+  await expect(input).toHaveValue("8"); await expect(input).toBeFocused();
+  await page.keyboard.press("7"); await expect(input).toHaveValue("87");
+  expect(await input.evaluate((node: HTMLInputElement) => [node.selectionStart, node.selectionEnd])).toEqual([2, 2]);
+  await expect(table.getByRole("status").filter({ hasText: "Quantity sort unavailable" })).toContainText("sort unavailable");
+  await table.getByRole("button", { name: "Cancel", exact: true }).click(); await expect(shear).toHaveText(String(material.shear_modulus.value));
+  await page.evaluate(() => { const gate = (window as any).__b4MaterialP2Gate; gate.hold = false; gate.pending.splice(0).forEach((resolve: () => void) => resolve()); });
+  await expect(table.getByRole("rowheader").first()).toHaveText(secondId);
+  // Exactly one accepted model operation; cancelled Shear entry adds no history.
+  await page.getByTestId("workspace-undo").click(); await expect(elastic).toHaveText("200000"); await expect(shear).toHaveText(String(material.shear_modulus.value)); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
+});
+
+// Original failing diagnostic bytes are retained at 3ba8b70; this regression
+// keeps the same decisive keys/oracles while observing the stationary host.
+test("B4 diagnostic Node sorted review preserves text Undo after an active row crosses downward", async ({ page, browser }, info) => {
+  await attachBrowserIdentity(browser, info);
+  const { model } = await readFixture("precision-origin-base.model.json");
+  model.nodes.forEach((node: { position: { x: number } }, index: number) => { node.position.x = index === 0 ? 2 : index === 1 ? 15 : 100 + index; });
+  const firstId = model.nodes[0].id; const secondId = model.nodes[1].id;
+  await gotoModel(page, model); const hashBefore = await currentModelHashThroughVisibleExport(page);
+  await page.getByTestId("view-switch-table").click(); await ensureTreeExpanded(page); await page.getByTestId("layout-mode-grid").click(); await page.getByTestId("node-grid-review-disclosure").click();
+  const table = page.getByTestId("engineering-table-review"); const cell = table.getByTestId(`review-cell-${firstId}-x`);
+  await table.getByRole("button", { name: "Sort X", exact: true }).click();
+  await cell.focus(); await page.keyboard.press("1"); await table.getByRole("button", { name: "Keep draft", exact: true }).click();
+  await expect(cell).toHaveText("1"); await expect(page.getByTestId("entity-grid-change-count")).toHaveText("1 changed cells");
+  await cell.dblclick(); const input = table.getByRole("textbox", { name: `${firstId} X [${model.project.units.length}]` }); await page.keyboard.press("ArrowRight");
+  const originalInput = await input.elementHandle();
+  // Read-only DOM observation distinguishes actual active-host movement from
+  // reorderings that move only its neighbours; no production behavior is hooked.
+  const movement = await table.evaluateHandle((root, rowId) => {
+    const rowButton = [...root.querySelectorAll('[role="rowheader"] button')].find((button) => button.textContent === rowId)!;
+    const wrapper = rowButton.closest("[data-virtual-index]")!; const input = root.querySelector("input")!;
+    const counts = { removed: 0, added: 0, inputHostRemoved: 0, inputHostAdded: 0 };
+    const observer = new MutationObserver((records) => records.forEach((record) => {
+      counts.removed += [...record.removedNodes].filter((node) => node === wrapper).length;
+      counts.added += [...record.addedNodes].filter((node) => node === wrapper).length;
+      counts.inputHostRemoved += [...record.removedNodes].filter((node) => node === input || node.contains(input)).length;
+      counts.inputHostAdded += [...record.addedNodes].filter((node) => node === input || node.contains(input)).length;
+    }));
+    observer.observe(root, { childList: true, subtree: true });
+    return { counts, observer };
+  }, firstId);
+  const snapshot = () => table.evaluate((root, original) => {
+    const current = root.querySelector<HTMLInputElement>("input");
+    return { value: current?.value, sameInput: current === original, focused: document.activeElement === current,
+      caret: current ? [current.selectionStart, current.selectionEnd] : null,
+      rowOrder: [...root.querySelectorAll('[role="rowheader"] button')].map((button) => button.textContent),
+      inputY: current?.getBoundingClientRect().y };
+  }, originalInput);
+  const before = await snapshot();
+  await page.keyboard.press("9"); const afterCrossing = await snapshot();
+  await page.keyboard.press("ControlOrMeta+z"); const afterUndo = await snapshot();
+  const hostMoves = await movement.evaluate((state) => { state.observer.disconnect(); return state.counts; }); await movement.dispose();
+  const canonicalX = await page.getByTestId(`table-cell-${firstId}-x`).textContent();
+  const history = { undoDisabled: await page.getByTestId("workspace-undo").isDisabled(), redoDisabled: await page.getByTestId("workspace-redo").isDisabled(), editedMarkers: await page.getByTestId("project-edited").count() };
+  await page.screenshot({ path: info.outputPath("node-sorted-review-after-undo.png") });
+  // Export is passive with respect to canonical model state; it occurs only
+  // after the decisive focus/caret/Undo snapshots and may close the review editor.
+  const hashAfterStaging = await currentModelHashThroughVisibleExport(page);
+  await page.getByTestId("clear-entity-grid-drafts").click(); await expect(page.getByTestId("entity-grid-change-count")).toHaveText("0 changed cells");
+  await table.getByRole("button", { name: /Sorted by X/ }).click();
+  await page.getByTestId("node-grid-review-disclosure").click();
+  const canonicalAfterClear = await page.getByTestId(`table-cell-${firstId}-x`).textContent();
+  const observation = { firstId, secondId, before, afterCrossing, afterUndo, hostMoves, canonicalX, canonicalAfterClear, hashBefore, hashAfterStaging, history };
+  await info.attach("node-sorted-review-undo-observation", { body: JSON.stringify(observation, null, 2), contentType: "application/json" });
+  // Preserve full observation and test-owned cleanup before the expected Undo
+  // oracle, so a failure still proves movement and canonical non-mutation.
+  expect(before.value).toBe("1"); expect(before.caret).toEqual([1, 1]); expect(before.rowOrder.slice(0, 2)).toEqual([firstId, secondId]);
+  expect(afterCrossing.value).toBe("19"); expect(afterCrossing.rowOrder.slice(0, 2)).toEqual([secondId, firstId]);
+  expect(hostMoves.removed).toBeGreaterThan(0); expect(hostMoves.added).toBeGreaterThan(0);
+  expect(hostMoves.inputHostRemoved).toBe(0); expect(hostMoves.inputHostAdded).toBe(0);
+  expect(afterCrossing.sameInput).toBe(true); expect(afterCrossing.focused).toBe(true); expect(afterCrossing.caret).toEqual([2, 2]);
+  expect(afterUndo.sameInput).toBe(true); expect(afterUndo.focused).toBe(true);
+  expect(canonicalX).toBe("2"); expect(canonicalAfterClear).toBe("2"); expect(hashAfterStaging).toBe(hashBefore);
+  expect(history).toEqual({ undoDisabled: true, redoDisabled: true, editedMarkers: 0 });
+  expect(afterUndo.value).toBe("1"); expect(afterUndo.caret).toEqual([1, 1]); expect(afterUndo.rowOrder.slice(0, 2)).toEqual([firstId, secondId]);
+});
+
+test("B4 Node review retained editor stays contained through hidden families and page resize", async ({ page, browser }, info) => {
+  await attachBrowserIdentity(browser, info); const model = await gotoRoutedFixture(page, "ui-foundation-1000.model.json");
+  await page.getByTestId("view-switch-table").click(); await ensureTreeExpanded(page); await page.getByTestId("layout-mode-grid").click(); await page.getByTestId("node-grid-review-disclosure").click();
+  const table = page.getByTestId("engineering-table-review"); const first = model.nodes[0];
+  await table.getByTestId(`review-cell-${first.id}-x`).dblclick(); const input = table.getByRole("textbox"); await input.fill("retained Node draft"); const originalInput = await input.elementHandle();
+  // Footer focus is an existing non-committing boundary. Leave the editor open
+  // there before changing family, so the hidden layer is actually retained.
+  await table.getByRole("button", { name: "Cancel", exact: true }).focus();
+  await page.getByTestId("entity-grid-type-materials").click(); await expect(input).toBeHidden();
+  const materialTable = page.getByTestId("material-engineering-table"); const materialCell = materialTable.getByTestId(`table-cell-${model.materials[0].id}-label`); const materialLabel = await materialCell.textContent();
+  await materialCell.dblclick(); const materialInput = materialTable.getByRole("textbox"); await expect(materialInput).toBeFocused(); await page.keyboard.press("Q"); await expect(materialInput).toHaveValue("Q");
+  await materialTable.getByRole("button", { name: "Cancel", exact: true }).click(); await expect(materialCell).toHaveText(materialLabel!); await expect(page.getByTestId("workspace-undo")).toBeDisabled();
+  await page.getByTestId("entity-grid-type-nodes").click(); await expect(page.getByTestId("entity-grid-type-nodes")).toBeFocused(); await expect(input).toBeVisible(); await expect(input).toHaveValue("retained Node draft");
+  const rows = page.getByTestId("engineering-table-review-rows"); await hoverTableBody(page, rows); await page.mouse.wheel(0, 2500);
+  await expect.poll(() => rows.evaluate((body) => body.scrollTop)).toBeGreaterThan(1000);
+  expect(await originalInput!.evaluate((element) => element.isConnected)).toBe(true);
+  const hits = await table.evaluate((root) => [".engineering-table-header", ".engineering-table-footer"].map((selector) => {
+    const element = root.querySelector(selector)!; const r = element.getBoundingClientRect(); const hit = document.elementFromPoint(r.left + 12, r.top + r.height / 2); return Boolean(hit && element.contains(hit));
+  })); expect(hits).toEqual([true, true]);
+  const filter = page.getByTestId("model-tree-filter-input"); await filter.fill(model.nodes.at(-1).id); await expect(rows.locator('[role="row"]')).toHaveCount(2);
+  expect(await input.evaluate((element, original) => element === original, originalInput)).toBe(true); await expect(input).toHaveValue("retained Node draft");
+  const viewport = page.viewportSize()!; await openWorkspaceSection(page, "libraries"); await page.setViewportSize({ ...viewport, height: viewport.height + 80 }); await page.getByTestId("workspace-dock-close").click();
+  await expect(input).toBeVisible(); await expect(input).not.toBeFocused(); await expect(input).toHaveValue("retained Node draft");
+  const alignment = await input.evaluate((element) => {
+    const owner = element.closest(".engineering-table")!.querySelector(`[aria-owns="${element.id}"]`)!; const a = owner.querySelector("[data-editor-anchor]")!.getBoundingClientRect(); const e = element.getBoundingClientRect();
+    return { dx: e.x - a.x, dy: e.y - a.y, dw: e.width - a.width, dh: e.height - a.height };
+  }); expect(alignment).toEqual({ dx: 0, dy: 0, dw: 0, dh: 0 });
+  await filter.fill(""); await page.getByTestId("clear-entity-grid-drafts").click(); await expect(table.getByRole("textbox")).toHaveCount(0); await expect(page.getByTestId("entity-grid-change-count")).toHaveText("0 changed cells");
+  await expect(page.getByTestId(`table-cell-${first.id}-x`)).toHaveText(String(first.position.x)); await expect(page.getByTestId("workspace-undo")).toBeDisabled(); await page.setViewportSize(viewport);
+  await info.attach("node-review-retained-host", { body: JSON.stringify({ headerFooterHits: hits, pageReturnAlignment: alignment }), contentType: "application/json" });
+});

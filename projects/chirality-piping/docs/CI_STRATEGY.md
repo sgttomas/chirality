@@ -50,9 +50,12 @@ or an incomplete appearance matrix. Removed repetitions map to their retained
 same-title desktop counterparts in the implementation evidence.
 
 Full CI starts with accessibility. Four isolated runners then execute exact
-Playwright 1.60 `--test-list` partitions with one worker each. Duration hints come
-from completed PR826 source logs and are checked into `tools/ci/e2e_duration_hints.json`;
-new or untimed tests use a conservative 30-second scheduling weight. These values
+Playwright 1.60 `--test-list` partitions with one worker each. Duration hints use successful PR832 source logs, with earlier provenance retained,
+and are checked into `tools/ci/e2e_duration_hints.json`. Reporter tags are resolved
+through the canonical collected identities. The data includes 435 observed passing
+durations, with positive scheduling floors for 20 existing skips and one passing
+case rounded to zero milliseconds. Those floors are not measured execution times. New or untimed tests use a conservative 30-second
+scheduling weight. These values
 are scheduling hints, not acceptance limits or a speed guarantee. Assignment is
 deterministic, using the lightest estimated bin first. Files/projects remain
 atomic except the independently set-up UI-foundation and workspace-layout cases;
@@ -70,7 +73,7 @@ the stable aggregate; only explicitly unneeded jobs may skip.
 
 ## Full checkpoints and integration
 
-Manual `workflow_dispatch` is the deliberate full integration-milestone mechanism
+Manual `workflow_dispatch` in **Piping Desktop E2E** is the deliberate full integration-milestone mechanism
 and always selects full source coverage. Broad-risk and CI-policy changes also
 select full automatically. There is no label-triggered or unconditional nightly run.
 
@@ -99,3 +102,18 @@ integration. Full local source/dist, native witness and governed qualification
 requirements remain distinct from this hosted source check. Fewer internal-worker
 PRs do not weaken review or merge checks, and an early owner merge is not a waiver.
 Branch protections, other project workflows and repository permissions are unchanged.
+
+## Dependency cache preparation
+
+**Piping E2E dependency cache** reuses the existing pinned setup action on trusted
+`main` when dependency/bootstrap inputs change, or by manual dispatch on `main`.
+It is restricted to `sgttomas/chirality`; the public projection omits Piping.
+Its separate concurrency group cannot cancel source validation. It prepares
+dependencies and WASM without running another browser suite or emitting the
+**Desktop E2E (source mode)** check. It does not replace any validation gate.
+
+This addresses observed PR-scoped cache misses; actual main cache creation and
+later consumer hits must be observed before claiming a timing improvement.
+Cross-host browser tests use the host's native text-editing shortcut, such as
+Playwright `ControlOrMeta+z` for text Undo; native macOS accelerator witnesses
+remain distinct.

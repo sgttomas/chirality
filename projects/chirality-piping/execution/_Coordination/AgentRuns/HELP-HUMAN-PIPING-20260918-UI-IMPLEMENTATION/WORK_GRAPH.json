@@ -598,7 +598,7 @@
     "B3A": {
       "role": "slice",
       "lane": "B-SHELL",
-      "title": "the unsaved-edits mark; the 'Solver \u00b7 Not solved' fallback chip",
+      "title": "the unsaved-edits mark; the 'Solver · Not solved' fallback chip",
       "status": "merged as 88c6c746; all local and hosted checks subsequently passed; technical integration only",
       "dependsOn": [
         "B3"
@@ -635,7 +635,7 @@
       "role": "slice",
       "lane": "B-SHELL",
       "title": "the table component through the one operation route",
-      "status": "B4.1 merged; B4.2 Node fields/common review renderer reviewed and native-tested at bounded scopes, final publication gates pending",
+      "status": "B4.1/B4.2 merged; Materials and related Node-review repair have scoped source/native passes and await combined publication gates; full B4/fit remains open",
       "dependsOn": [
         "B3B"
       ],
@@ -648,7 +648,7 @@
           "item": "Retire duplicate Node bulk grid after equivalent label/provenance and multi-change review capability reaches common table grammar",
           "retireAt": "later B4 increment before claiming full B4/MVP table completion",
           "evidence": "B4_1_COMPATIBILITY_DISPOSITION.md; independent equivalence review required",
-          "state": "implemented and independently reviewed in producta064; publication pending",
+          "state": "retired in merged PR832; Node direct/review use one renderer, other families remain legacy",
           "retirementEvidence": "instances/B4-2-CODEX/RETURN.md and B4-2-REVIEW node; common core renders both Node policies, other families still legacy"
         },
         {
@@ -662,11 +662,20 @@
           "retireAt": "full B4/closing fit verification; current internal increment keeps the stated evidence limitation",
           "evidence": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_2_ROOT_NATIVE_FINAL/RETURN.md",
           "state": "verification limit; no product defect inferred from unavailable method"
+        },
+        {
+          "item": "Check Node review text-Undo while a draft changes active sort order; Node still uses inline editor and the Materials probe showed Chromium history loss on actual ancestor movement",
+          "state": "confirmed failure repaired and independently source-reviewed; affected native/ROOT own look passed; final combined acceptance gates remain",
+          "retireAt": "bounded B4 follow-up before claiming complete common-table/MVP keyboard coverage",
+          "basis": "B4-3 architecture/undo-dom probe plus unchanged Node review sorting path; no Node repair authorized by the Materials brief",
+          "diagnosticBrief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_NODE_SORT_UNDO_DIAGNOSTIC_BRIEF.md",
+          "diagnosticBriefSha256": "8866966443b009b1aace77d127eded2088fcd7e2e0a2d33b203b36aa06f4b847",
+          "next": "Close the reviewed correction through the combined PR; do not infer full B4/MVP keyboard or fit completion."
         }
       ],
       "remainderPreparationBrief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_REMAINDER_PREPARATION_BRIEF.md",
       "remainderPreparationBriefSha256": "cf1ea19b9ef79493cb3399785745789d035f8bdc05dd9dd604ffdeae432d235c",
-      "remainderPreparationState": "initial recommendation implemented in B4.2; next separate Materials/Sections assessment returned, unactivated",
+      "remainderPreparationState": "Materials recommendation activated under B4.3; Sections remains preparation for a later bounded brief",
       "remainderPreparationBasis": {
         "source": "ed8cc27fdb37b8df2f20eb5f877aacb61bfd7db1",
         "workerReturnSha256": "f7aa44110af6fbef5564ad98b1cc80b95a892d2b0d888acb52a479663b9e2bca",
@@ -2184,7 +2193,7 @@
       "branch": "codex/swbpipe-b4-node-integration-20260920",
       "candidate": "d3db83b494cd00e9f8978a99f02a83bf626bd1fb",
       "base": "86e49b3a285f6022a8a56b3721612c7b5a7d8752",
-      "status": "complete clean host sweep and combined review pass; metadata publication review/actual-head CI pending",
+      "status": "merged PR832/c9f19195 after all8 actual-head checks pass at8077",
       "dependsOn": [
         "B4-2-CODEX-MANAGER"
       ],
@@ -2217,6 +2226,51 @@
         "summarySha256": "e9ccd70add091ce58d8dff9470a3c5a8a28e9e027f85615833da926675ee2d5c",
         "preflightSummary": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_2_FINAL_CHECKS/SUMMARY.json",
         "preflightSummarySha256": "711eddfd0fc8ea63f5e4c6da38894a4864991b6d1ffb80f2d8a8b8dae8fc18fc"
+      },
+      "publication": {
+        "pr": 832,
+        "url": "https://github.com/sgttomas/chirality/pull/832",
+        "head": "8077032231ded1cc5d206becd03a18e43e6f3bb2",
+        "tree": "7c136c19617267c05fb17d8bad0f8a9fb90b837c",
+        "state": "merged",
+        "base": "86e49b3a285f6022a8a56b3721612c7b5a7d8752",
+        "observationsPolicy": "Keep PR head fixed; final record checks/review and CI observations live on ROOT record branch and PR record, without bookkeeping synchronizations restarting CI.",
+        "correctedRunId": 35567286692,
+        "correctedHarnessRunId": 35567286700,
+        "merge": "c9f19195214b2e097980dde5e0d5fccbfba8e34c",
+        "mergedAt": "2026-09-21T06:30:27Z",
+        "observation": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/PR832_CI/MERGE_OBSERVATION.json",
+        "observationSha256": "5b40a21955768f7a4887702740357ea6f5baa666cf7f819c80606929fb46f30e"
+      },
+      "publicationReview": {
+        "state": "PASS complete34-path metadata tail and separately sealed actual-head gate observations",
+        "reviewer": "/root/b3b_c3_ci_review",
+        "model": "gpt-6-astra",
+        "reasoning": "xhigh",
+        "mechanism": "collaboration.followup_task",
+        "candidate": "d02bb99092bf39e7e6d1554a68e77f94f349ab36",
+        "launch": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_2_PUBLICATION_REVIEW_LAUNCH.md",
+        "launchSha256": "42f1821a858940aa87a00953e66c388ae280ee64283b630d19a108ae0d5460ed",
+        "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_2_PUBLICATION_REVIEW_RETURN.md",
+        "returnSha256": "b265c427ca91865f016ef8b25a3899fa1a3b177706e9453c3f63e3b27efd6872",
+        "gateSummary": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_2_PUBLICATION_CHECKS/SUMMARY.json",
+        "gateSummarySha256": "35bee08e6c0fca5196bf9cd188ddc0472650e78f91e896a71bb3e7d55890ae3b"
+      },
+      "ciFailure": {
+        "runId": 35565467253,
+        "attempt": 1,
+        "jobId": 106227494409,
+        "head": "d02bb99092bf39e7e6d1554a68e77f94f349ab36",
+        "diagnosis": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/PR832_CI_FAILURE/DIAGNOSIS.md",
+        "failure": "native input Undo test hardcodes Meta on Linux",
+        "scope": "one test-driver key expression; expected assertions and all product bytes unchanged",
+        "repairCandidate": "8077032231ded1cc5d206becd03a18e43e6f3bb2",
+        "affectedLocal": "2 cases pass; one per configured profile; prior zero-collection error retained",
+        "repairReview": {
+          "state": "PASS one-path repair and explicit local-equivalence reassessment; no fresh8077 sweep claim",
+          "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/PR832_UNDO_REPAIR_REVIEW_RETURN.md",
+          "sha256": "3019c46a71e782feac7d75ad38d2c62087d449bba912a68b03791bb35150c448"
+        }
       }
     },
     "PR829-RESUME-RECORDS-REVIEW": {
@@ -2271,7 +2325,7 @@
       "model": "gpt-6-astra",
       "reasoning": "high",
       "mechanism": "actual collaboration.send_message while native TASK executes independently; no preparation child",
-      "status": "returned; separate Materials increment recommended, then Sections; no implementation activated",
+      "status": "returned, clarified and activated for Materials only after PR832 merge; Sections awaits later brief",
       "basis": "97c03e3b26db1d49cc1f36ce627d19db8a56541c/producta183",
       "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_3_FAMILY_PREPARATION_BRIEF.md",
       "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_FAMILY_PREPARATION_RETURN.md",
@@ -2297,6 +2351,313 @@
         "addendum": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_3_MATERIALS_PREPARATION_ADDENDUM.md",
         "addendumSha256": "47f67d1fef4ed3e789ebab7fd75b87e69c4636b3863586341749f3f01039cf32"
       }
+    },
+    "CI-CACHE-WARMING": {
+      "role": "ROOT bounded CI maintenance",
+      "parent": "ROOT",
+      "status": "source review complete; P3 CLOSED by independent bounded backcheck; ready for later coherent fan-in, final combined/CI and actual main-cache observations still required",
+      "owner": "HELP_HUMAN /root, GPT-6 Astra high-or-greater, direct executor",
+      "basis": "9bff54a7e836b187576059b8dd57491028fdb437",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/CI_CACHE_FOLLOWUP.md",
+      "briefSha256": "2cfdbf972f97a9022bcb20f215302217d42899e6ae19019c88707ee9b642b63d",
+      "ownerAuthority": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_CI_ECONOMY_DIRECTION_2026-09-20.md",
+      "peerAck": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/CI_CACHE_DISCOVERY/PEER_OWNERSHIP_ACK.md",
+      "scope": "new internal-main setup-only workflow, bounded policy test/documentation/tranche; reuse existing shared action unchanged",
+      "remaining": "source, local checks, independent review, next coherent integration; actual main cache-write and later consumer hit remain postmerge observations",
+      "maintainedPaths": [
+        ".github/workflows/piping-e2e-cache.yml",
+        "docs/governance_harness/tranche_manifests/PIPING-CI-CACHE-WARMING-20260921.yaml",
+        "projects/chirality-piping/tests/test_ci_e2e_plan.py",
+        "projects/chirality-piping/docs/CI_STRATEGY.md",
+        "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-21_CI_CACHE_WARMING.md"
+      ],
+      "review": {
+        "agent": "/root/ci_cache_review",
+        "model": "gpt-6-astra",
+        "reasoning": "xhigh",
+        "role": "fresh independent TASK Type2",
+        "mechanism": "collaboration.spawn_agent fork_turns none",
+        "candidate": "18abc04ae793648ef3f571f3b7fc8d9cc60b57ea",
+        "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/CI_CACHE_REVIEW_RETURN.md",
+        "returnSha256": "499479e64cad68bfc5a0dc8268880e64f7b2df02d4724009600b3ff17a698ea4"
+      },
+      "backcheck": {
+        "candidate": "764a75eb271e3b4aa746045c321f84554b64f09a",
+        "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/CI_CACHE_P3_BACKCHECK_RETURN.md",
+        "returnSha256": "af062577713d20c7c3ba715892677c57f54991d1d437c5402781f3bbfdb131bb"
+      },
+      "state": "cache/P3 and duration-data/docs/tranche independent backchecks PASS; ready for combined candidate gates and actual main-cache observations",
+      "durationRefresh": {
+        "authority": "owner effective-CI direction; ROOT bounded follow-up",
+        "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/CI_DURATION_REFRESH_ADDENDUM.md",
+        "recordSha256": "dd2ba4ebf43a8d966c9a2d20972cacd3eafd806e4ec2ccb6370bc6c09b9fc07d",
+        "hintSha256": "ec333f0b55433efc6f093f7b4635fb7fd8259ca00586fc3fdf6575207bd6b7fa",
+        "method": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/CI_HINT_REFRESH/refresh.py",
+        "methodSha256": "8ffb6050586f39770ca134e0f3162eeb30afc58efbf6bab5a8ea9163568e5ba0",
+        "replay": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/CI_HINT_REFRESH/REPLAY.json",
+        "replaySha256": "5188981dce66c56c9cffb7ada9d04a622271c52252ce678829bb4a0b28a3b8db",
+        "checks": "31 policy tests pass after retaining existing positive weight for one0ms-rounded report; initial2 errors retained; historical455-identity coverage/barrier unchanged",
+        "limits": "historical duration sums under alternate partitioning, not future CI timing; new Materials/Node cases retain30second fallback",
+        "review": {
+          "state": "PASS, no actionable findings",
+          "actualAgent": "/root/ci_cache_review",
+          "role": "independent TASK",
+          "model": "gpt-6-astra",
+          "reasoning": "xhigh",
+          "mechanism": "ROOT retained reviewer followup",
+          "candidate": "cafc84827a71be6172c1811dcae1c2aaa3e65d7c",
+          "launch": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/CI_HINT_REFRESH_REVIEW_LAUNCH.md",
+          "launchSha256": "b9f19203cecb5f1d9ceb3db08ec31bc7fa43c39fad4ccd9f08faeb33da1bfe86",
+          "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/CI_HINT_REFRESH_REVIEW_RETURN.md",
+          "returnSha256": "3e918a6fcc6e22231571981b7b265fa3a42c0b0002ea846738db57405ef82d4c",
+          "provenance": "collection/plan fromd02bb990; durations/source bodies from80770322. Independent review verified only in-body portable Undo key differs, identity/config/grouping compatible; not a fresh8077 collection."
+        }
+      }
+    },
+    "B4-3-CODEX-MANAGER": {
+      "role": "WORKING_ITEMS Type1",
+      "parent": "ROOT",
+      "actualAgent": "/root/b3_manager",
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "state": "all Materials/Node implementation and scoped native work returned; source and resources handed to ROOT for final integration",
+      "basis": "c9f19195214b2e097980dde5e0d5fccbfba8e34c",
+      "branch": "codex/swbpipe-b4-materials-20260921",
+      "checkout": "existing swbpipe-wt3, prior branch/head preserved",
+      "scope": "prepared Materials UI/table adapters and bounded tests/evidence only",
+      "activation": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_3_MATERIALS_ACTIVATION_2026-09-21.md",
+      "activationSha256": "3316bb1f1b61e847741d17b21311395fdacc5b34dcad1c12af71bd95260a2894",
+      "mechanism": "ROOT collaboration.followup_task; manager actual collaboration.spawn_agent of /root/b3_manager/b4_3_materials",
+      "worker": {
+        "agent": "/root/b3_manager/b4_3_materials",
+        "role": "TASK Type2",
+        "model": "gpt-6-astra",
+        "reasoning": "low",
+        "brief": "instances/B4-3-CODEX/TASK_BRIEF.md",
+        "briefSha256": "8976eefebd04818fd86fcbeddae46283f0e3c36dd6987e7838355600419c3df0",
+        "launchInputs": "instances/B4-3-CODEX/_run_records/LAUNCH_INPUTS.json",
+        "launchInputsSha256": "191f7ff6f8f2f0d3a09c9c91c381bfeebe3f3ad1ed3df7df507b0e02cf9e8d54"
+      },
+      "browserHandoff": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_BROWSER_HANDOFF.md",
+      "sourceCandidate": "75fa863ea5cfee9bfe8f5a6ebf0f31047663e4e5",
+      "evidenceCandidate": "2bbb8ce4f4d9a8230b710d15a278f2176f86d99b",
+      "dependsOn": [
+        "B4-2-INTEGRATION"
+      ],
+      "p2ActualLaunch": {
+        "mechanism": "manager retained TASK followup under sealed p2 addendum",
+        "brief": "instances/B4-3-CODEX/_run_records/p2/TASK_ADDENDUM.md",
+        "briefSha256": "ad4e687c2e640af0856a228d9f04e4d6ef00a34d350a373f1e6422760bd384f0",
+        "inputs": "instances/B4-3-CODEX/_run_records/p2/INPUTS.json",
+        "inputsSha256": "68f38af40e415a030f217bde04c8543b1af960cb9274f0a8ae80c9fbebd8ec24",
+        "scope": "existing5 projection/adapter/tests paths; no core/engine/VirtualList extension",
+        "source": "75fa863ea5cfee9bfe8f5a6ebf0f31047663e4e5",
+        "evidence": "2bbb8ce4f4d9a8230b710d15a278f2176f86d99b"
+      },
+      "nativePreparation": {
+        "state": "native return sealed and ROOT own look PASS; PID16639 quit and process-only absence verified",
+        "record": "instances/B4-3-CODEX/_run_records/NATIVE_PLAN_DRAFT.md",
+        "sha256": "dc789da88f84713e6a0f4c774aae029c680f06a9217ad94d261776e48014ffb8",
+        "scope": "one uninstrumented build; verified invented baseline; one synthetic Material through existing Inspector create; mixed-unit sort/textUndo, pointer/field/page lifecycle and baseline restoration; no store actions",
+        "activation": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_3_NATIVE_ACTIVATION.md",
+        "activationSha256": "4dbb1017d7f2adc8815d3e3e7ecb4246ba542ba8682afb8ea60b6a1ef8c10104",
+        "actualAgent": "/root/b3_manager/b4_1_native",
+        "model": "gpt-6-astra",
+        "reasoning": "low",
+        "addendum": "instances/B4-3-CODEX/_run_records/NATIVE_ADDENDUM.md",
+        "addendumSha256": "1beaac9a28706741fb0226919b0c04d802f9440f1a8b78e2cbe08673d7d514bc",
+        "inputs": "instances/B4-3-CODEX/_run_records/NATIVE_INPUTS.json",
+        "inputsSha256": "5dc84dd3b9ad4cf5e79a303ede122a5798be04c74991f356381f2c96e2c4045c",
+        "evidenceCommit": "53acac28c4e8554c708d860062fe95408e5ee1de",
+        "return": "instances/B4-3-CODEX/_run_records/NATIVE_RETURN.md",
+        "returnSha256": "5517d9c74cc0fa1e9b1781394c3d8414bb46b7633a104d8555f8facbd797d65c",
+        "managerHandoffSha256": "9e198e0aaa80f1f4b56220756a7b69f91357fb38325c27beb6303a77cf6b3c57",
+        "rootReturn": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_ROOT_NATIVE/RETURN.md",
+        "rootReturnSha256": "e06a5049b68a56c6e064b4855bd887a2e1c32e5b73bd5ff7331d7660c08ac4d8",
+        "rootManifestSha256": "c8187cc76c653efa9696574ddf9db70c7a1c31f8ea569629b75180c66cad2aed",
+        "limits": "canonical model restored by Undo; owned redo history remains until Quit. Native no controlled pending-conversion/exact caret-index/converted-readout/Both+Inspector-open claim."
+      }
+    },
+    "B4-3-REVIEW": {
+      "role": "fresh independent TASK Type2",
+      "parent": "ROOT",
+      "actualAgent": "/root/b4_3_code_review",
+      "model": "gpt-6-astra",
+      "reasoning": "xhigh",
+      "mechanism": "actual collaboration.spawn_agent fork_turns none",
+      "source": "6cd07a792a3e1efdd204f75b80f26f0a65e2de2e",
+      "evidence": "daf8d966cc46ebb11f92dd8415d1f427fd9b2e71",
+      "state": "initial source review plus independent P2 backcheck PASS; native/final combined gates remain",
+      "launch": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_SOURCE_REVIEW_LAUNCH.md",
+      "launchSha256": "6881b98e7afee243acbbf1374900b054a0b0183ec9111d3221c8204083938070",
+      "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_INITIAL_SOURCE_REVIEW_RETURN.md",
+      "returnSha256": "f04de2848b917dac3cd25fcfa13ffcc2faa389e75b583530966293ce0dec994e",
+      "repairDisposition": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_3_P2_REPAIR_DISPOSITION.md",
+      "repairDispositionSha256": "611c121ff6db0676c31241fb38beb42009395c603512f4e8f1c8bc515f41c498",
+      "backcheck": {
+        "mechanism": "ROOT collaboration.followup_task to retained independent reviewer",
+        "source": "75fa863ea5cfee9bfe8f5a6ebf0f31047663e4e5",
+        "evidence": "2bbb8ce4f4d9a8230b710d15a278f2176f86d99b",
+        "launch": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_P2_BACKCHECK_LAUNCH.md",
+        "launchSha256": "de8db6399506d2fd40dbe9c5b4bdbc9f074dba9112579e0f46ef4a2a2646f2a2",
+        "state": "PASS; P2 closed; no new actionable findings",
+        "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_P2_BACKCHECK_RETURN.md",
+        "returnSha256": "c3f1371babff15cf0c14eb7cfde81aad7ace82e0685e6ea3bfeae18e02f0c600"
+      },
+      "nativeEvidenceReview": {
+        "launch": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_NATIVE_REVIEW_LAUNCH.md",
+        "launchSha256": "a85442e7d2e7b226f81be94d61b59652925c523763eabeb01910c8d59a2492be",
+        "candidate": "8883aca03c091b57ee37fe6d3923650ca1755a44",
+        "state": "PASS; scoped native evidence/ROOT claims supported",
+        "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_NATIVE_REVIEW_RETURN.md",
+        "returnSha256": "6e5e341c7a66dc1b31517a4a696e43d128b0231ea346110c9a4c4b3d4ccf701c"
+      }
+    },
+    "B4-NODE-SORT-UNDO-DIAG": {
+      "role": "TASK Type2 diagnosis",
+      "parent": "B4-3-CODEX-MANAGER",
+      "actualAgent": "/root/b3_manager/b4_3_materials",
+      "model": "gpt-6-astra",
+      "reasoning": "low",
+      "mechanism": "manager actual retained TASK followup after ROOT native release",
+      "state": "source backcheck PASS; native witness and ROOT own look PASS at recorded scopes; final combined review/sweep/CI remain",
+      "basis": "53acac28c4e8554c708d860062fe95408e5ee1de / production75fa",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_NODE_SORT_UNDO_DIAGNOSTIC_BRIEF.md",
+      "briefSha256": "8866966443b009b1aace77d127eded2088fcd7e2e0a2d33b203b36aa06f4b847",
+      "addendum": "instances/B4-3-CODEX/_run_records/node-sort-undo/TASK_ADDENDUM.md",
+      "addendumSha256": "18389b7f0217f09dc481322d2f34e2359a1232f49eeda77a4eca6d302dbb0b5b",
+      "inputs": "instances/B4-3-CODEX/_run_records/node-sort-undo/INPUTS.json",
+      "inputsSha256": "d2f5bed1f3b4641e10b439d26dbf6fe6b292f081b9cc759b728577099a237ca8",
+      "scope": "diagnostic records and B4 spec test-only; one source desktop profile under shared lock; no product/build/native/full suite",
+      "dependsOn": [
+        "B4-3-REVIEW"
+      ],
+      "repairDisposition": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_NODE_SORT_UNDO_REPAIR_DISPOSITION.md",
+      "repairDispositionSha256": "e118a18dd98e823cb6a14af275d0e7a60c6206cf73f3ef5b988b9d62e7543950",
+      "diagnosticCandidate": "3ba8b70f9cf3b89ac77a77a4a967f372df27865d",
+      "diagnosticReturn": "instances/B4-3-CODEX/_run_records/node-sort-undo/WORKER_RETURN.md",
+      "diagnosticReturnSha256": "66f7120fcd40f29f9bcef376a9cd056605f912ac14f1fe5e745ccdc96400c49a",
+      "preparedNativePlan": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_NODE_REVIEW_NATIVE_PLAN.md",
+      "preparedNativePlanSha256": "6cff53379abcee57fd79ec834a01dc783633793f916d06668dedf8bad9eb21a1",
+      "source": "15186ef0973c0ba7f654743ed0f19913b0361c57",
+      "evidence": "9d642e9064e852b1f5db177de13337ad797c38a4",
+      "repairAddendum": "instances/B4-3-CODEX/_run_records/node-sort-undo-repair/TASK_ADDENDUM.md",
+      "repairAddendumSha256": "71b8d64b6ca65ca801ae5088d95da1d5cd1452da9bca5512ae875cba47b6ef41",
+      "repairInputsSha256": "bcf7eff842c35c349378b9b4aface1315140976f10bf897c4145a1eaa6bad278",
+      "sourceReviewLaunch": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_NODE_REPAIR_REVIEW_LAUNCH.md",
+      "sourceReviewLaunchSha256": "1234425272e75c2880c66ddb3cdf55d21b4663102d42e78ab3a2f291bb281e41",
+      "sourceReviewReturn": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_NODE_REPAIR_REVIEW_RETURN.md",
+      "sourceReviewReturnSha256": "c24e81d2b25976eac6fc2001061feb39a42ded3262c04be9e30ce01a9f04cd02",
+      "native": {
+        "state": "worker native packet and ROOT own look complete; PID22492 quit/process-only absent",
+        "activation": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_NODE_NATIVE_ACTIVATION.md",
+        "activationSha256": "bb470948d3b111e31f22262d0f0bb3540b38bdd791d9d9716ad6822d8be1d273",
+        "addendum": "instances/B4-3-CODEX/_run_records/node-sort-undo-native/TASK_ADDENDUM.md",
+        "addendumSha256": "adbfc43a1ae0822aeebbc6f757d9278bb4b0d182a916e3cceaa548706abad5ef",
+        "inputsSha256": "977060147dd03905a788bb73e81d570d46338b3db7b817d5a393b807ec3e85b7",
+        "scope": "review-only invented baseline; natural blur may Keep/close; no model Apply/store/preferences/creation; live handback before ROOT Quit",
+        "actualAgent": "/root/b3_manager/b4_1_native",
+        "parent": "B4-3-CODEX-MANAGER",
+        "mechanism": "manager retained native TASK followup, not a descendant of the diagnosis TASK",
+        "evidence": "dd8be5928c10000c4f93aaa13c572f576366ddd3",
+        "returnSha256": "e23034bc3bf9dea7391254150dcee0ac81b1c476017afe7f5c1eba5889122296",
+        "manifestSha256": "90df6708a4f7e5feca22dcffee19120cc37ca2db2565d4cfa5571d736152210b",
+        "rootReturn": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_NODE_ROOT_NATIVE/RETURN.md",
+        "rootReturnSha256": "6217c6096aa359d85c906eced206146083bd4aace68e3fe4f3fcc8cfb1cb86db",
+        "rootManifestSha256": "6ca0153857dc9505e824df011eac2086a69d9cb15f286587e10a1f915e2795bc",
+        "limits": "natural family blur Keeps/closes editor; no exact native caret index/full-model hash/result-invalidation/whole-fit claim; review-only model/history remained unedited"
+      }
+    },
+    "B4-3-INTEGRATION": {
+      "role": "ROOT integration",
+      "parent": "ROOT",
+      "state": "complete combined independent review PASS through164314; full clean3bdf sweep/preflight PASS; publication metadata and actual-head hosted CI next",
+      "branch": "codex/swbpipe-b4-materials-integration-20260921",
+      "candidate": "3bdf6141aa5efd16c18b61d1cf49045f8ce4faf8",
+      "desktopTree": "569bb433ce914ef5f96234bc1ddfbb4a82700924",
+      "scope": "reviewed Materials and cache maintenance plus truthful run evidence; Node diagnosis before final freeze",
+      "remaining": [
+        "bounded publication-metadata backcheck and applicable actual-head gates",
+        "draftPR then all actual-head hosted checks before merge",
+        "main-cache creation and later consumer-hit observations"
+      ],
+      "dependsOn": [
+        "B4-3-CODEX-MANAGER",
+        "B4-3-REVIEW",
+        "CI-CACHE-WARMING"
+      ],
+      "packagingCorrection": {
+        "finding": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_COMBINED_PACKAGING_FINDING.json",
+        "repair": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/PR832_TRACE_RETENTION_REPAIR.json",
+        "scope": "three original manifest-bound PR832 ZIPs, exact bytes/CRC verified; no product/test change",
+        "candidate": "58118d17c5b76414591dcc9b7f0c44f68e40d8f2",
+        "state": "independent tracked-blob backcheck PASS/closed",
+        "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_PACKAGING_BACKCHECK_RETURN.md",
+        "returnSha256": "0e5862e1835300ed9691d7df6bbfca1a65b6de174fa1d0a8f055cc323dc26ec1"
+      },
+      "preflight": {
+        "candidate": "3bdf6141aa5efd16c18b61d1cf49045f8ce4faf8",
+        "summary": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_PREFLIGHT_3BDF/SUMMARY.json",
+        "summarySha256": "86100fee609741c7e3260cf0f1f4803dec11ca78aa80a793942cc215f7ca7317",
+        "state": "all7stages pass;379harness; claims/receipts/G4; baseline self-check;465exact identities/0omitted, collection-only"
+      },
+      "combinedReview": {
+        "agent": "/root/b4_3_code_review",
+        "model": "gpt-6-astra",
+        "reasoning": "xhigh",
+        "launch": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_COMBINED_REVIEW_LAUNCH.md",
+        "launchSha256": "79127ed8ea780bb40dfcfa77593a27f82db0638d78cbe34114b82a7649d52e7b",
+        "state": "PASS, all findings closed",
+        "reviewedThrough": "164314e78dec39de990b252d68908b6cd1224c47",
+        "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_COMBINED_REVIEW_RETURN.md",
+        "returnSha256": "17e848a782f0e85a4ebd5723640aed28c4582184086c4b2bf1189825065baf6e",
+        "scope": "complete473-path diff including evidence tails; source unchanged from3bdf/15186"
+      },
+      "sweep": {
+        "candidate": "3bdf6141aa5efd16c18b61d1cf49045f8ce4faf8",
+        "summary": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_3_SWEEP_3BDF/SUMMARY.json",
+        "summarySha256": "5135362f45d18bc8975050d3e00ab3a43f3f57df67425889f34ea48862b7c0e4",
+        "status": "all5surfaces PASS; clean unchanged before/after",
+        "wrapperSeconds": 1101.0424986253493,
+        "registeredSeconds": 1096.693,
+        "counts": {
+          "rust": "all registered crate commands exit0; no aggregate count invented",
+          "python": {
+            "passed": 1136,
+            "warnings": 304,
+            "subtestsPassed": 7
+          },
+          "desktop": {
+            "files": 98,
+            "passed": 1598
+          },
+          "sourceBrowser": {
+            "passed": 445,
+            "existingSkipped": 20,
+            "collectedInPreflight": 465
+          },
+          "distBrowser": {
+            "passed": 53
+          },
+          "productionBuild": "PASS"
+        }
+      }
+    },
+    "B4-4-SECTIONS-PREPARATION": {
+      "role": "WORKING_ITEMS Type1 read-only preparation",
+      "parent": "ROOT",
+      "actualAgent": "/root/b3_manager",
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "mechanism": "ROOT actual retained manager followup; no child",
+      "basis": "3bdf6141 / desktop15186; clean sourcewt3dd8be592",
+      "state": "returned; no implementation activated during current closeout",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_4_SECTIONS_PREPARATION_BRIEF.md",
+      "briefSha256": "35c1943905973ad33d315df68d824da68a3a8a77f7dd2cf1d88cdcfb43b3af57",
+      "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_4_SECTIONS_PREPARATION_RETURN.md",
+      "returnSha256": "5041095436e1460396fa2c7dacd0383fd8f1b16f266dcb7dfcf24a3ccc5aa2d2",
+      "rootCheck": "all21consulted hash references match. Recommendation is agent preparation, not owner ruling. Qualified full-height route wording means observed development-tested route only; no formal qualification is established.",
+      "next": "prepare bounded Sections/common enum brief after current merge; preserve sequential coupled-geometry semantics and no automatic Grid atomic-batch/reordering change"
     }
   },
   "edges": [
@@ -2575,9 +2936,29 @@
     [
       "ROOT",
       "B4-3-FAMILY-PREPARATION"
+    ],
+    [
+      "ROOT",
+      "B4-3-CODEX-MANAGER"
+    ],
+    [
+      "ROOT",
+      "B4-3-REVIEW"
+    ],
+    [
+      "ROOT",
+      "B4-3-INTEGRATION"
+    ],
+    [
+      "B4-3-CODEX-MANAGER",
+      "B4-NODE-SORT-UNDO-DIAG"
+    ],
+    [
+      "ROOT",
+      "B4-4-SECTIONS-PREPARATION"
     ]
   ],
-  "current_frontier": "B4.2 complete clean host sweep and independent combined review PASS at d3db83/producta064. Prepare metadata-only publication candidate, bounded final records review and all actual-head CI before one PR merge. Materials brief/addendum prepared but unactivated; C4/CLI and remaining B4 fit/qualification limits unchanged.",
+  "current_frontier": "Publish the reviewed Materials/Node-review/CI batch after bounded metadata backcheck; actual-head hosted CI remains the merge gate. Full local sweep and complete combined review pass. Then Sections activation may be prepared under existing B4 authority; C4/live CLI decisions and qualification holds remain.",
   "frontier_history": [
     {
       "until": "2026-09-18T19:41Z",
@@ -2776,7 +3157,12 @@
         "scopeNodes": [
           "B4-1-INTEGRATION",
           "B4-2-INTEGRATION",
-          "B4-3-FAMILY-PREPARATION"
+          "B4-3-FAMILY-PREPARATION",
+          "B4-3-CODEX-MANAGER",
+          "B4-3-REVIEW",
+          "B4-NODE-SORT-UNDO-DIAG",
+          "B4-3-INTEGRATION",
+          "B4-4-SECTIONS-PREPARATION"
         ]
       }
     }
@@ -2858,23 +3244,23 @@
   "currentOwnerQuestions": {
     "C4": "two label dispositions pending; package instances/ROOT/CONTINUATION_2026-09-19_CODEX/C4_LABEL_DECISION_PACKAGE.md",
     "liveControl": "bounded activation pending for peer-reviewed proposal instances/ROOT/CONTINUATION_2026-09-19_CODEX/LIVE_CONTROL_ACTIVATION_PROPOSAL.md",
-    "scope": "No silence-as-approval; unaffected authorized B4.2 proceeds"
+    "scope": "No silence-as-approval; unaffected authorized B4 work proceeds"
   },
   "liveContinuationState": {
-    "root": "1520ccdd3b6345c67ddfcc64a3aa91feb7ba6a4f plus validation staging records",
-    "originMain": "86e49b3a285f6022a8a56b3721612c7b5a7d8752",
+    "root": "a40a415baaf1f5c6e7f017a02e994db35bd2854a fast-forward adopted; product now reviewed15186, with this metadata-only frontier correction",
+    "originMain": "c9f19195214b2e097980dde5e0d5fccbfba8e34c",
     "integrationBranch": {
-      "branch": "codex/swbpipe-b4-node-integration-20260920",
-      "head": "d3db83b494cd00e9f8978a99f02a83bf626bd1fb",
-      "state": "complete clean host sweep and combined review pass; metadata publication review/actual-head CI pending"
+      "branch": "codex/swbpipe-b4-materials-integration-20260921",
+      "head": "a40a415baaf1f5c6e7f017a02e994db35bd2854a",
+      "state": "clean composed source; final metadata freeze and gates next"
     },
-    "shell": "clean c578/producta064; all manager/worker execution returned",
+    "shell": "clean native taildd8be592, desktop exactly reviewed15186; manager/source held",
     "canvas": "fb720420 preserved; C4 preparation returned",
     "design": "4dddd441 parked unchanged",
     "nativeProbe": "isolated226b probe retains two authorized source edits and two untracked dependency entries; preserved, never fan-in",
-    "resources": "sweep ended; process-only checks found no Piping native/test/build processes or5173/5174/5175 listeners; shared E2E lock absent; resources released",
-    "recordStatus": "metadata publication candidate preparation; final records review and CI pending",
-    "observedAt": "2026-09-21T05:33:42.980853+00:00"
+    "resources": "full sweep ended PASS; source5174/dist5175/Tauri5173 listeners/shared lock absent, both owned native PIDs quit. Peer resource reservation released.",
+    "recordStatus": "complete combined review PASS through164314, all local required checks PASS; publication metadata/hosted CI remain",
+    "observedAt": "2026-09-21T10:29:42.700950+00:00"
   },
   "historicalPauses": [
     {
