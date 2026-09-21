@@ -79,6 +79,32 @@ SHA-256: `1655aed0a99f348fba2b6b2fcc2e35e4623c187f38f36f31350e9d719ce7aba4`
 
 SHA-256: `ee3c2f6c5af71780e2ae8cbdbcef2c683b3ee06bf32dd315a4716b6c0f6815fc`
 
+## r0_gate_scope_question
+
+> Before I rule, are any other surfaces good candidates for inclusion at this R0 gate?
+
+SHA-256: `7fae0c784badbddaa7881b0025e69a25d84297082e762d4854e63c729813d217`
+
+## r0_gate_governance_workflow
+
+> Items 1-2 can be addressed through a governance audit workflow, I believe?
+
+SHA-256: `783db874fc7c8209be8b32c311ff64749887a61b934e6b83c44828b55df886d1`
+
+## ruling_r0_gate
+
+> Add items 3-7 in the manner you indicated.  R0 gate: A as recommended; B option 2; C as recommended
+
+SHA-256: `0f41325e1a73a617efab38aa9d017350cda5913b6947826d4aff00db3ae9fea0`
+
+## ruling_r0_gate_governance_items
+
+> Neither
+
+SHA-256: `9957d09c21ebc6cad181d56bc43cbd9bde18999c98bd708a416c29fcd3705b7f`
+
+Context for `ruling_r0_gate_governance_items`: the owner's selection in a structured question from HELP_HUMAN, "Which governance items join the scope extension alongside items 3-7?", with the options "1a and 1b+2 (Recommended)", "1a only" and "Neither".
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the

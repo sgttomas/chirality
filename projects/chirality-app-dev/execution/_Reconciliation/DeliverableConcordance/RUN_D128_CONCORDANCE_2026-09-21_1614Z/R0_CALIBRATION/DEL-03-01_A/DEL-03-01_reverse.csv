@@ -1,0 +1,62 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-HARNESS-001,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-002,NOT_MINE,,"Browser turn-stream client; route/SSE client owned by DEL-03-03, not the engine contract."
+CAP-HARNESS-003,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-004,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-005,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-006,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-007,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-008,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-009,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-010,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-011,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-012,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-013,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-014,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-015,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-016,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-017,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-018,NOT_MINE,,"Boot readiness predicate uses the EngineDescriptor boot field but is session-boot UI logic, not the port or conformance suite."
+CAP-HARNESS-019,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-020,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-021,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-022,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-023,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-024,PARTIAL,DEL-03-01#CLM-009.12,"DEL-03-01 claims only the thin-route/transport rule for /api/harness/turn; the SSE proxy implementation (keepalive, seq ids) belongs to the API/SSE adapter deliverable."
+CAP-HARNESS-025,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-026,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-027,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-028,NOT_MINE,,"Provider mode selection is SDK/provider configuration (PKG-04), not the engine contract."
+CAP-HARNESS-029,CLAIMED_BY,DEL-03-01#CLM-005.1,"Engine registry, legacy adapter port and deterministic stub engine are the App-side port/stub construct of CLM-005 (stub retained for tests, REQ-009)."
+CAP-HARNESS-030,NOT_MINE,,TurnEngine lifecycle is out of scope per SoW CLM-008 (owned by DEL-03-02).
+CAP-HARNESS-031,NOT_MINE,,"Claude SDK adapter implementation is a conformance subject, not owned (SoW excludes SDK-specific translation)."
+CAP-HARNESS-032,NOT_MINE,,SDK message mapping implementation is excluded by SoW CLM-008 (DEL-04-03).
+CAP-HARNESS-033,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-034,NOT_MINE,,"Pi adapter is a conformance subject (D-APP-72 scope), not owned here."
+CAP-HARNESS-035,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-036,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-037,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-038,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-039,NOT_MINE,,Harness-to-UI event bridge implementation; DEL-03-01 only fixes the public event names (CLM-009.11).
+CAP-HARNESS-040,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-041,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-042,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-043,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-044,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-045,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-046,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-047,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-048,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-049,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-050,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-051,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-052,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-053,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-054,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-055,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-056,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-057,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-058,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+CAP-HARNESS-059,PARTIAL,DEL-03-01#CLM-019,agent-runtime-contract.ts is the evidenceFile of section9.runtime_engine_contract (DEL-03-01 Section 9 linkage record); the child-run record contract itself belongs to the delegation deliverables.
+CAP-HARNESS-060,NOT_MINE,,Outside the engine port and conformance scope of DEL-03-01.
+#END
