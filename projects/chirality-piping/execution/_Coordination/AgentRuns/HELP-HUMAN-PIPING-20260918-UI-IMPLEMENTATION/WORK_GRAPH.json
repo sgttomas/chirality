@@ -8,7 +8,7 @@
     "ROOT": {
       "role": "HELP_HUMAN Type 0",
       "model": "GPT-6 Astra",
-      "status": "active: owner-adopted B3 implementation, independent reviews, integration and run evidence; peer Runtime coordination discussion only",
+      "status": "owner-directed graceful pause at current B4.1 PR: final publication checks/CI/merge if passing and handoff only",
       "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/DECISION_AND_STRATEGY.md"
     },
     "A1-LINT": {
@@ -79,7 +79,7 @@
     "B-SHELL": {
       "role": "WORKING_ITEMS Type 1 lane manager",
       "model": "current WORKING_ITEMS gpt-6-astra/high; historical Fable allocation preserved separately",
-      "status": "B3 merged; retained Astra/high manager now executes bounded B3A in wt3, B3B not started.",
+      "status": "B4.1 source/evidence handed back and verified; read-only remainder preparation returned; manager/workers idle for owner pause",
       "briefSha256": "00c98ec0f77363d3bf498c4729185b4761f77e7178853277996352b4b59c4b75",
       "brief": "briefs/B-SHELL_shell_lane.md",
       "returnSha256": null,
@@ -111,7 +111,7 @@
         "model": "fable",
         "status": "paused clean, confirmed by ROOT: branch codex/swbpipe-b-shell-20260918 at a9be4aaefa432e1eed56e87482391e90958cb087, pushed; contains origin/main at d20eb1294 (not PR #807). Merged: B2 (PR #803), B2F and B2G (PR #805). In progress: B3. The managers of 2026-09-18 and 2026-09-19 cannot be resumed from another session; instances/B-SHELL/LANE_LOG.md ends with a section for a fresh start."
       },
-      "currentExecutionNode": "B3A-CODEX-MANAGER"
+      "currentExecutionNode": "B4-1-CODEX-MANAGER"
     },
     "B-CANVAS": {
       "role": "WORKING_ITEMS Type 1 lane manager",
@@ -619,32 +619,64 @@
       "role": "slice",
       "lane": "B-SHELL",
       "title": "the native menu disabled during a busy project request (with its src-tauri part); a landed save re-derives the integrity record as verified at save",
-      "status": "ready for source-control integration: native/probe/code/backcheck/full clean sweep pass; publication tail/hosted checks pending",
+      "status": "merged in PR828; bounded code/review/local/native/hosted evidence at recorded scopes; no product qualification inferred",
       "dependsOn": [
         "B3A"
       ],
       "authority": "OWNER_DIRECTION_2026-09-19_EIGHT_UX_ITEMS.md items 3 and 4",
-      "returnsToOwnerIf": "'verified at save' needs a persisted field (then it is a typed-interface gap)"
+      "returnsToOwnerIf": "'verified at save' needs a persisted field (then it is a typed-interface gap)",
+      "merged": {
+        "pr": 828,
+        "head": "127677e1fff8b6c68044dfe0ed8475e3d1dd63d4",
+        "merge": "fd195cf4287e84572a12183169478a6f7ddf6a92"
+      }
     },
     "B4": {
       "role": "slice",
       "lane": "B-SHELL",
       "title": "the table component through the one operation route",
-      "status": "planned",
+      "status": "internal B4.1 locally verified, publication closeout only; full B4 remainder held for owner resume",
       "dependsOn": [
         "B3B"
       ],
       "preparation": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_PREPARATION_RETURN.md",
-      "preparationSha256": "85e355482e5de78dd1107d88aaa1ca5de29fbbd89a9eef9ba965f0a544f4acac"
+      "preparationSha256": "85e355482e5de78dd1107d88aaa1ca5de29fbbd89a9eef9ba965f0a544f4acac",
+      "activation": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_1_MANAGER_BRIEF.md",
+      "activationSha256": "33090ae5e7cc98589685578c16a605158c29123b5cbd2b4054b98aea4bd64446",
+      "defers": [
+        {
+          "item": "Retire duplicate Node bulk grid after equivalent label/provenance and multi-change review capability reaches common table grammar",
+          "retireAt": "later B4 increment before claiming full B4/MVP table completion",
+          "evidence": "B4_1_COMPATIBILITY_DISPOSITION.md; independent equivalence review required"
+        },
+        {
+          "item": "Short collapsible drawers (Model and narrow Both) retain whole-pane scrolling; adaptive full-height Both/Table repair does not establish stationary chrome at their127px minimum host",
+          "retireAt": "later B4 compact Model-drawer presentation before full B4/MVP table closure",
+          "evidence": "instances/B4-1-CODEX/_run_records/vertical-scroll-repair/MANAGER_COMPACT_SCOPE.md",
+          "rationale": "Existing drawer measurements: default host227px; minimum127px; expanded439px desktop/319px compact. Preserve accepted pane budgets and all controls; do not create zero-height body. This bounds the increment, not a proof that every compact design is impossible."
+        }
+      ],
+      "remainderPreparationBrief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_REMAINDER_PREPARATION_BRIEF.md",
+      "remainderPreparationBriefSha256": "cf1ea19b9ef79493cb3399785745789d035f8bdc05dd9dd604ffdeae432d235c",
+      "remainderPreparationState": "returned and clarified; B4.2 implementation NOT launched; owner pause now holds further work",
+      "remainderPreparationBasis": {
+        "source": "ed8cc27fdb37b8df2f20eb5f877aacb61bfd7db1",
+        "workerReturnSha256": "f7aa44110af6fbef5564ad98b1cc80b95a892d2b0d888acb52a479663b9e2bca",
+        "authority": "ROOT dispatch under the sealed prepared brief; source writer handed back and independent source review passed",
+        "actualMechanism": "collaboration.send_message to active retained /root/b3_manager; begins after evidence checkpoint",
+        "scope": "manager read-only next table plan; native coordination is separate ongoing work; no B5/CLI implementation"
+      }
     },
     "B5": {
       "role": "slice",
       "lane": "B-SHELL",
       "title": "the docked inspector's remainder and the slide-over",
-      "status": "planned",
+      "status": "planned; read-only inventory complete, writes await B4 predecessor and shared-writer handback",
       "dependsOn": [
         "B4"
-      ]
+      ],
+      "preparation": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B5_INSPECTOR_PREPARATION_RETURN.md",
+      "preparationSha256": "5d0ea8d573960f408a87b86e3a20504eaa6d6f2146b30038b6706d4e6fc453ae"
     },
     "B6": {
       "role": "slice",
@@ -775,21 +807,27 @@
       "role": "slice",
       "lane": "B-CANVAS",
       "title": "isolate as dimming, a stated pick rule, a total hidden count (G-30)",
-      "status": "ready for source-control integration: connected16/picking69/protected83, full sweep and differential edge repair reviewed; no timed qualification",
+      "status": "merged in PR828; bounded code/review/local/native/hosted evidence at recorded scopes; no product qualification inferred",
       "dependsOn": [
         "I1"
-      ]
+      ],
+      "merged": {
+        "pr": 828,
+        "head": "127677e1fff8b6c68044dfe0ed8475e3d1dd63d4",
+        "merge": "fd195cf4287e84572a12183169478a6f7ddf6a92"
+      }
     },
     "C4": {
       "role": "slice",
       "lane": "B-CANVAS",
       "title": "the label budget with All, Budget and Off",
-      "status": "prepared; Off/mandatory-label capacity tensions pending ROOT verification/disposition before dependent implementation; first-profile/second-profile holds intact",
+      "status": "prepared; two owner questions pending: Off inspection context and capacity/non-overlap conflict; dependent implementation held",
       "dependsOn": [
         "C3"
       ],
       "preparation": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/C4_PREPARATION_RETURN.md",
-      "preparationSha256": "b5294fef754bb3a820e30b32912caf4f6b45d507c5e98fa53a3f559a011d8fdb"
+      "preparationSha256": "b5294fef754bb3a820e30b32912caf4f6b45d507c5e98fa53a3f559a011d8fdb",
+      "decisionPackage": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/C4_LABEL_DECISION_PACKAGE.md"
     },
     "C5": {
       "role": "slice",
@@ -1492,7 +1530,7 @@
       "actualAgent": "/root/ci_strategy",
       "model": "gpt-6-astra",
       "reasoning": "low",
-      "status": "reviewed;435actual IDs partition exactly once;23duplicate repetitions removed; lean/affected/full routing verified; hosted full milestone pending",
+      "status": "merged in PR828; bounded code/review/local/native/hosted evidence at recorded scopes; no product qualification inferred",
       "branch": "codex/swbpipe-ci-economy-20260920",
       "base": "88c6c7463199d1d69caebde04678fa74facca78f",
       "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/CI_ECONOMY_IMPLEMENTATION_BRIEF.md",
@@ -1500,14 +1538,19 @@
       "scope": "Piping workflow/router, duration hints, policy tests, explicit-viewport annotations/config, docs and sweep docstring; no product or protection writes",
       "return": "instances/CI-ECONOMY-CODEX/RETURN.md",
       "correction": "instances/CI-ECONOMY-CODEX/metadata-repair/RETURN.md",
-      "observed": "26 policy tests; collection421 unique scenarios (23 duplicate executions removed), lean46, full exact partitions; no browser execution or hosted proof yet"
+      "observed": "26 policy tests; collection421 unique scenarios (23 duplicate executions removed), lean46, full exact partitions; no browser execution or hosted proof yet",
+      "merged": {
+        "pr": 828,
+        "head": "127677e1fff8b6c68044dfe0ed8475e3d1dd63d4",
+        "merge": "fd195cf4287e84572a12183169478a6f7ddf6a92"
+      }
     },
     "B3B-C3-CI-INTEGRATION": {
       "role": "ROOT integration",
       "parent": "ROOT",
-      "status": "independent113path backcheck PASS; complete clean143 sweep PASS; final collection/publication records/hosted gates pending",
+      "status": "merged PR828 after independent publication review and all9actual-head checks passed",
       "base": "88c6c7463199d1d69caebde04678fa74facca78f",
-      "candidate": "d7b8269b819946eb6f28cb93d37e70a8fef7bfed",
+      "candidate": "127677e1fff8b6c68044dfe0ed8475e3d1dd63d4",
       "branch": "codex/swbpipe-ci-economy-20260920",
       "dependsOn": [
         "B3B",
@@ -1554,7 +1597,19 @@
         "harness": "379pass after6record portability repairs; initial378pass/1fail retained",
         "selfCheck": "0active-absolute-path findings,0BLOCK; baseline4REVIEW/112WARN retained",
         "receiptClaimsTests": "32pass",
-        "hosted": "not started"
+        "hosted": "pass; full mode, source415pass20existing skips,1040seconds; run35538747925"
+      },
+      "merge": "fd195cf4287e84572a12183169478a6f7ddf6a92",
+      "pr": "https://github.com/sgttomas/chirality/pull/828",
+      "hosted": {
+        "run": 35538747925,
+        "conclusion": "success",
+        "head": "127677e1fff8b6c68044dfe0ed8475e3d1dd63d4",
+        "seconds": 1040,
+        "canonical": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/PR828_CI",
+        "mergeAfterAllChecks": true,
+        "rootIssuedMerge": true,
+        "headAndMergeTreesEqual": true
       }
     },
     "B3B-C3-CI-REVIEW": {
@@ -1564,7 +1619,7 @@
       "model": "gpt-6-astra",
       "reasoning": "xhigh",
       "mechanism": "Codex delegated-harness-native; fresh context",
-      "status": "complete113path delta PASS at143; all P2/P3 findings closed; later record/collection tail remains",
+      "status": "complete through actual published127677: independent complete code/evidence coverage plus38path records-only publication tail PASS; all findings closed",
       "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/supplied-context/B3B_C3_CI_INDEPENDENT_REVIEW_BRIEF/supplied.txt",
       "briefSha256": "c13a05c9c8c2efdc00735347825c9883753cbaf960847bf25a495a6604f86cff",
       "candidate": "52142dbdaec190f3a7fdb47a4f937c3e23720824",
@@ -1577,7 +1632,12 @@
       "finalReturn": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B3B_C3_FINAL_BACKCHECK_RETURN.md",
       "finalReturnSha256": "b92f2e1a3fa1eb7cdece6f80fa7a5fad5fb41aa38339862059ebeba503b68504",
       "briefOriginalPath": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B3B_C3_CI_INDEPENDENT_REVIEW_BRIEF.md",
-      "portableBrief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B3B_C3_CI_INDEPENDENT_REVIEW_BRIEF.md"
+      "portableBrief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B3B_C3_CI_INDEPENDENT_REVIEW_BRIEF.md",
+      "publicationCandidate": "127677e1fff8b6c68044dfe0ed8475e3d1dd63d4",
+      "publicationBrief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B3B_C3_PUBLICATION_BACKCHECK_BRIEF.md",
+      "publicationBriefSha256": "9b60d76a77f2f0767d27b8f0f4ec2276c9a2d5451178d3a63a99a0e8faf35b6b",
+      "publicationReturn": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B3B_C3_PUBLICATION_BACKCHECK_RETURN.md",
+      "publicationReturnSha256": "aa8050fe20ab00631040bb767feba42eb2e6f4187e2368ede01d1dbcc0db9447"
     },
     "MVP-PUBLISHING-DISCUSSION": {
       "role": "ROOT product discussion with bounded TASK inventory",
@@ -1595,6 +1655,377 @@
       "returnSha256": "0a488f8093501ebc002d72e10cf1a260fb389acf71d2beba30fa91c29a6f7238",
       "ownerDisposition": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_MVP_AGENT_CORRECTION_2026-09-20.md",
       "controllerDisposition": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_CODEX_VALIDATION_CONTROLLER_2026-09-20.md"
+    },
+    "B4-1-CODEX-MANAGER": {
+      "role": "WORKING_ITEMS Type1",
+      "parent": "ROOT",
+      "actualAgent": "/root/b3_manager",
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "mechanism": "Codex delegated-harness-native retained manager; new bounded TASK",
+      "status": "sourceed8 independently reviewed; native vertical TASK PASS and ROOT own look/scrollbar-Z-Cancel PASS; clean evidencec0 handed back; remainder preparation read-only active",
+      "base": "fd195cf4287e84572a12183169478a6f7ddf6a92",
+      "branch": "codex/swbpipe-b-shell-20260918",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_1_MANAGER_BRIEF.md",
+      "briefSha256": "33090ae5e7cc98589685578c16a605158c29123b5cbd2b4054b98aea4bd64446",
+      "child": "/root/b3_manager/b4_1_table",
+      "childModel": "gpt-6-astra",
+      "childReasoning": "low",
+      "childBrief": "instances/B4-1-CODEX/WORKER_BRIEF.md",
+      "childBriefSha256": "56df2fc1dec4fffac347042287cc90f9b50f548df24fa810d2d456e4fef43578",
+      "childInputsSha256": "58a86b65a5d125e481ceb0e46a05090cd2befeaaee25f9bd46f43ef0ef0b8d6a",
+      "writeLease": "shell/controller/table; exact sealed brief; no native or external live transport; no shared Root graph writes",
+      "resourceState": "all Piping native processes closed and native/CUA released/acknowledged; source/dist5174/5175/shared E2E lock reserved for clean sweep; manager read-only preparation only",
+      "enforcement": "instruction-asserted; host unrestricted; Type2 no delegation",
+      "compatibilityDisposition": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_1_COMPATIBILITY_DISPOSITION.md",
+      "compatibilityDispositionSha256": "f317cddf86edc5faf672629f70c0575d26ff77e2b3b494d7e167687e42865827",
+      "sourceCandidate": "ed8cc27fdb37b8df2f20eb5f877aacb61bfd7db1",
+      "nativeChild": "/root/b3_manager/b4_1_native",
+      "nativeModel": "gpt-6-astra",
+      "nativeReasoning": "low",
+      "nativeBrief": "instances/B4-1-CODEX/NATIVE_BRIEF.md",
+      "nativeBriefSha256": "ceda51d41a8efc48c2096c4e5094cc7293a57dfd46679b5b71985951b5044413",
+      "nativeInputsSha256": "aec14f6cccde4511a2c08acf5cb6929b4a58e57b5ddd9b2132fe3d78261609e3",
+      "nativeRepairAddendum": "instances/B4-1-CODEX/NATIVE_REPAIR_ADDENDUM.md",
+      "nativeRepairAddendumSha256": "9360e7b8573c0489d1c490c803f4bdca828838d57017dde27d84a59c93c61132",
+      "nativeHistory": [
+        {
+          "source": "840a21647983948c2f9930dd2fc56afb9e5d3eff",
+          "verdict": "Cancel failure3times; other bounded actions passed; fit partial/unmeasured logical dimensions",
+          "binarySha256": "7affe9aeee64aaad357475d84d2ff44ebebca9b1bde4620ba9b9fc0d4b96786b",
+          "pid": 25376,
+          "record": "instances/B4-1-CODEX/NATIVE_RETURN.md",
+          "returnSha256": "56efa211650e91c1632cdc93053f692b8167c2569556dc99f2971bd54b3b6c41",
+          "cleanup": "identity-bound CmdQ then process-only absence; no app AX after quit",
+          "storedRowsTouched": false
+        }
+      ],
+      "nativeRepair": {
+        "source": "6dd0e466f4432f21d3ce6913782b95f9a325f700",
+        "binarySha256": "15ff259be73d115b28321def1042c0eb70f3d4d5f61d47143e2d1d146e1fa4c5",
+        "pid": 28041,
+        "return": "instances/B4-1-CODEX/NATIVE_REPAIR_RETURN.md",
+        "returnSha256": "8173d0123ac11e82331cb1752c0a50f4de94aa7436484881c43a9c32355a42c8",
+        "manifestSha256": "3320e4fae62ca302e2efb9a6923b110369030d3538837938c700b8ccbebcefba",
+        "outcome": "Cancel/Apply/abandoned-pointer/ordinary-blur and keyboard actions passed at stated scopes; actual pointer horizontal fit not established",
+        "rootOwnLook": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_1_ROOT_FIT_OBSERVATION_6DD.md",
+        "rootOwnLookSha256": "2af54e986c3dfb71d88a886f0762bda42f84dda8c0c533e3aa3605355709d458"
+      },
+      "evidenceCheckpoint": "c8f8e503383e15b42b171c4957c6f458d3697150",
+      "managerReturnSha256": "0712071fecbcf6d52ea185253239f95fd98d9fe942d8f28a05003ddcbb54c12f",
+      "managerManifestSha256": "db73c04504c01d56fbeb5acbdc0e17376a4c577e0607bb0d3fa9c9eba02143ac",
+      "ownerScrollCorrection": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_NATIVE_SCROLL_CORRECTION_2026-09-20.md",
+      "ownerScrollAxis": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_NATIVE_SCROLL_AXIS_2026-09-20.md",
+      "ownerScrollAxisSha256": "b9bb903ed29992c09fac30e3f8b763e5d59e1fbb49ca28fd62f13d1142653e73",
+      "verticalRepairDisposition": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_1_VERTICAL_SCROLL_REPAIR_DISPOSITION.md",
+      "verticalRepairDispositionSha256": "b125b5b7b5fefa7011e504c891f440edcd22801f361ccd8778d770de28a072b6",
+      "ownerScrollCorrectionSha256": "acd20574c524233075b2a516c9c2d9126518c0d348fb6be8440a304fd081a3a3",
+      "verticalRepairScope": "ModelTree, EngineeringTable, styles, focused tests; narrow App boundedGrid presentation prop only; existing Model drawer remains unchanged",
+      "native1adCleanup": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_1_NATIVE_1AD_CLEANUP.md",
+      "native1adCleanupSha256": "01b5f99fe7466c193dd02ba94816e802ddf1c9b4e97cbe07867628851c2bacaa",
+      "drawerMeasurement": "instances/B4-1-CODEX/_run_records/vertical-scroll-repair/drawer-before/measurements.json",
+      "drawerMeasurementSha256": "4cf4149b4702b9f0d1eebd6fe41e4d19f106a90c01c123268fbaf3ca18aab1ed",
+      "drawerDisposition": "instances/B4-1-CODEX/_run_records/vertical-scroll-repair/MANAGER_COMPACT_SCOPE.md",
+      "drawerDispositionSha256": "8bb081a66efb826154b29cdff63cb14a6e158888ed7fcb1128cd348752ef4f14",
+      "verticalSourceFreeze": "instances/B4-1-CODEX/_run_records/vertical-scroll-repair/SOURCE_FREEZE.json",
+      "verticalSourceFreezeSha256": "f2c9969e3d74598add1dcb5278dd6aed3a9ade6493bc348051f90ea928fa9d43",
+      "nativeFit1ad": {
+        "source": "1ad964e30b08bed57bba8f08e3a75e8c883c8b0b",
+        "pid": 31977,
+        "binarySha256": "ea99cc46b4e8d5c58a668cd288a923ef36cecc609130cad61c4feda196113168",
+        "return": "instances/B4-1-CODEX/NATIVE_FIT_RETURN.md",
+        "returnSha256": "3d9a07471123897ae9bd31060cf8d1f71c3d9d1c56cc33c3f3412f3f792c804b",
+        "state": "old app quit after clean-state check; prior pointer-scroll method limits retained; owner vertical correction supersedes initial full-fit closure; new ed8 native witness pending"
+      },
+      "nativeVerticalPlan": "instances/B4-1-CODEX/_run_records/vertical-scroll-repair/MANAGER_NATIVE_PLAN.md",
+      "nativeVerticalPlanSha256": "fdfde38bc6c5434d50b41c25c69dee62f0eb18f438e775072970aca5575cd9e9",
+      "nativeVerticalAddendum": "instances/B4-1-CODEX/_run_records/vertical-scroll-repair/NATIVE_ADDENDUM.md",
+      "nativeVerticalAddendumSha256": "ca4b48ff3442f1f1cc52a179ca652cbadf7765c02d64e6f80301b5cfa731bfe8",
+      "nativeVerticalInputs": "instances/B4-1-CODEX/_run_records/vertical-scroll-repair/NATIVE_INPUTS.json",
+      "nativeVerticalInputsSha256": "43932e26b5fd07ca59d2190df627fc6fdc278ab570793c2189ee50b7af32b480",
+      "nativeVerticalLaunch": "instances/B4-1-CODEX/_run_records/vertical-scroll-repair/NATIVE_LAUNCH.json",
+      "nativeVerticalLaunchSha256": "4517888d6b0cf7d7ee585c11f89ed81fd8695c1b7b9832f1d83c9132af87cf3d",
+      "verticalEvidenceCheckpoint": "c0a3314e2b141d8f93b90364250d2bffa89433f7",
+      "verticalEvidenceManifest": "instances/B4-1-CODEX/_run_records/VERTICAL_EVIDENCE_MANIFEST.json",
+      "verticalEvidenceManifestSha256": "e253948a89428c8c6627a83ce5a34be59d6760005cd7f44d64e0cf9d89f77a67",
+      "verticalManagerReturn": "instances/B4-1-CODEX/_run_records/vertical-scroll-repair/MANAGER_RETURN.md",
+      "verticalManagerReturnSha256": "98993dd15e31e01582ef1f3f38bec6690411ae051dd7244d02e42b0665534afe",
+      "nativeVertical": {
+        "source": "ed8cc27fdb37b8df2f20eb5f877aacb61bfd7db1",
+        "pid": 43662,
+        "binarySha256": "a21fe722e419c51b87d8fe6929441d512f44685cbc306b912e424ed29fa8e87d",
+        "return": "instances/B4-1-CODEX/_run_records/vertical-scroll-repair/NATIVE_RETURN.md",
+        "returnSha256": "fa9d6ba6dadfe4f32707af80b3dfb03f28a8bca456d0a18eb100758db7087b50",
+        "manifestSha256": "394347916a9722ffcb2138fa52e33685d7f20b06e3282cda87bf44a1dce010e0",
+        "verdict": "bounded verticalPASS in observed non-collapsible contexts; actual small reviewoverflow, retained drafts, pointerCancel/Apply/UndoRedo; no native large/drawer/exact-size qualification",
+        "rootOwnLook": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_1_ROOT_VERTICAL_NATIVE_ED8/RETURN.md",
+        "rootOwnLookManifest": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_1_ROOT_VERTICAL_NATIVE_ED8/MANIFEST.json",
+        "cleanup": "ROOT restored canonical model, closed drafts/review/inspector, CmdQ; process-only ps43662 exit1/empty, no postQuitAX",
+        "rootOwnLookSha256": "1893918ff08ad8803e8d9478a93d1e5b104c1697b36df9fe2293e829b381620b",
+        "rootOwnLookManifestSha256": "108baac42d08da425d5f4a29ae26b8ca9cdb89c85ca64dbdfcabd5f56912080e",
+        "newHorizontalScope": "ROOT observed visible scrollbar thumb drag exposeZ with fixed filter/families, physical Z4.4 entry and Cancel to0 without model/history change. ed8 only; no new horizontal-wheel claim and earlier failures remain."
+      }
+    },
+    "LIVE-CONTROL-PREPARATION": {
+      "role": "ROOT proposed stage with bounded TASK inventory and peer fit review",
+      "parent": "ROOT",
+      "status": "prepared; peer fit review closed; exact bounded owner activation requested and pending; no integration writes",
+      "dependsOn": [
+        "B3B",
+        "B4"
+      ],
+      "dependencyNote": "Native/CLI disjoint work may run alongside B4.1 only after activation and wire freeze; same shell writer integrates controller after B4.1 handback",
+      "basis": "fd195cf4287e84572a12183169478a6f7ddf6a92",
+      "inventoryAgent": "/root/ci_inventory",
+      "model": "gpt-6-astra",
+      "reasoning": "low",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/LIVE_CONTROL_ACTIVATION_INVENTORY_BRIEF.md",
+      "briefSha256": "7dba40bcb500e47bd2eb70a76b93f7f0e1a46a02e258f7acf1f95d5aa38cb6f1",
+      "inventoryReturn": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/LIVE_CONTROL_ACTIVATION_INVENTORY_RETURN.md",
+      "returnSha256": "c87335d45c5862a50cca5a828c135bc03b7f1560a951d18b72e17aa3bb8479b4",
+      "proposal": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/LIVE_CONTROL_ACTIVATION_PROPOSAL.md",
+      "proposalSha256": "cb79b7e31d03718adda3107d19c6600f02043410cb28611caaf00d9845ef782e",
+      "contract": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/PIPING_LIVE_CONTROL_CONTRACT_DRAFT.md",
+      "contractSha256": "b1de9c7518cf99f3e99cd83c6b940c977d18bc5eeeac1a824739413cdc92942b",
+      "peerReview": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/RUNTIME_ACTIVATION_REVIEW_CUSTODY.json",
+      "acceptance": "single and atomic batched coordinate changes; visible existing human Apply; published model/history/outcome; Undo/stale/retry; actual human-prompted Codex witness distinct from automated verification",
+      "mapping": "provisional to agent tools/live workspace; no formal deliverable closure or DAG amendment",
+      "wireDraft": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/LIVE_CONTROL_WIRE_V1_DRAFT.md",
+      "wireDraftSha256": "1b213df9055811140f3f5e0cff22d67116fa3615f67f2e15fcdbb75852bfe2f3"
+    },
+    "MVP-COMPARISON-PREPARATION": {
+      "role": "TASK Type2 bounded read-only capability inventory",
+      "parent": "ROOT",
+      "actualAgent": "/root/ci_inventory",
+      "model": "gpt-6-astra",
+      "reasoning": "low",
+      "mechanism": "Codex delegated-harness-native retained TASK",
+      "status": "complete read-only inventory; ROOT checked key source seam; no installed-package witness or scope adoption",
+      "basis": "fd195cf4287e84572a12183169478a6f7ddf6a92",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/MVP_COMPARISON_CAPABILITY_BRIEF.md",
+      "briefSha256": "451f93b27742e5bc081a24e1df3e25fdea69b7b47b64badee222e4e6f93832f4",
+      "purpose": "Distinguish reachable single-run load-basis comparison from proposed immutable baseline/alternative model/run comparison; source-grounded next scope only",
+      "authorityLimit": "No broader States/Comparison adoption, phase transition, PRD amendment, DAG rebuild or deliverable reconciliation",
+      "enforcement": "instruction-asserted; host unrestricted",
+      "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/MVP_COMPARISON_CAPABILITY_RETURN.md",
+      "returnSha256": "16d87b5bc42698571b08d8ba007762893696fbfeef5e79724df514f0a63e45b9",
+      "finding": "Desktop supports single-run fixed load-basis comparison and overwriting project save; separate model-state/run comparison engines are unwired in inspected desktop path"
+    },
+    "MVP-BASELINE-COMPARISON-PROPOSAL": {
+      "role": "provisional future capability gap",
+      "parent": "ROOT",
+      "status": "proposal only; no implementation or broader States/Comparison adoption",
+      "source": "PRD23/24 proposed publication journey and bounded current-source inventory",
+      "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/MVP_COMPARISON_CAPABILITY_RETURN.md",
+      "recommendedMinimum": "One immutable named baseline plus working alternative in one project lineage, preserved model/run/input basis, explicit same-entity/load-basis correspondence, honest unmatched/incompatible output, save/reopen of both inputs",
+      "relationships": "Touches future persistence, comparison and result-standing work; exact dependency/deliverable mapping remains provisional until owner-directed scope disposition",
+      "blockingCurrentWork": false,
+      "authorityLimit": "Do not infer DEC-042 scope/stage adoption, PRD amendment, DAG rebuild or deliverable reconciliation"
+    },
+    "PR828-CLOSEOUT-REVIEW": {
+      "role": "TASK Type2 independent records backcheck",
+      "parent": "ROOT",
+      "actualAgent": "/root/b3b_c3_ci_review",
+      "model": "gpt-6-astra",
+      "reasoning": "xhigh",
+      "status": "PASS complete30path records-only candidatef50435cef; B4 source excluded",
+      "candidate": "f50435cef3b9f7f6ff2ed4b33b6e6236668155bd",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/PR828_CLOSEOUT_B4_PREP_REVIEW_BRIEF.md",
+      "briefSha256": "d87893406b9030800e0cc61c701ea86cbefc82a0d640424593b340cfc9ca6636",
+      "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/PR828_CLOSEOUT_B4_PREP_REVIEW_RETURN.md",
+      "returnSha256": "79362f6b4a937bf64b09d50926cb25150b7e86ee4a357c4d469d4f6ab7346b13"
+    },
+    "CI-DURATION-CALIBRATION": {
+      "role": "ROOT bounded scheduling-data update",
+      "parent": "ROOT",
+      "status": "independent complete7path backcheck PASS at2a6b; exact replay435IDs,29policycases/7subtests pass; next actual candidate collection/CI pending",
+      "authority": "Owner directed effective CI/test-time reductions; no new acceptance threshold or skipped test",
+      "sourceRun": 35538747925,
+      "sourceHead": "127677e1fff8b6c68044dfe0ed8475e3d1dd63d4",
+      "changedSource": "tools/ci/e2e_duration_hints.json relative to WORKING_ROOT",
+      "hintsSha256": "3ec74a15f33615dbfd8f7530972e3ddb9a25ccfdd30266cee4234e97f41af175",
+      "evidence": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/CI_DURATION_REPLAY",
+      "note": "Known observed skips previously inherited30second unknown cost. Updated pass durations plus explicit0.05second skip floor balance replayed remainder costs; allnew identities retain30second fallback. Not a measured future walltime or performance qualification.",
+      "reviewBrief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/CI_DURATION_HINTS_BACKCHECK_BRIEF.md",
+      "reviewBriefSha256": "9c0b3ee56184a48fe30918f80f9c5a1c227009865c5c27d431a403d0c498fc50",
+      "reviewReturn": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/CI_DURATION_HINTS_BACKCHECK_RETURN.md",
+      "reviewReturnSha256": "a0d6b72a6773c7cba6586cba746defb4dd058b18ce52a6115ca6b1b8cdd5c345"
+    },
+    "B4-1-REVIEW": {
+      "role": "TASK Type2 independent source review",
+      "parent": "ROOT",
+      "actualAgent": "/root/b4_1_code_review",
+      "model": "gpt-6-astra",
+      "reasoning": "xhigh",
+      "mechanism": "Codex delegated-harness-native fresh context; same-model independence",
+      "status": "PASS complete14-path vertical source backcheck c8..ed8; source coverage current throughed8; native/final gates pending",
+      "initialCandidate": "87faf4b240d1be8b197843cd869b22408e85be3b",
+      "initialVerdict": "Not ready:2newP2 plus known Tab defect",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_1_INDEPENDENT_REVIEW_BRIEF.md",
+      "briefSha256": "708d04fbaa223d8519ea15361ed146a6b7e24213973a07834909d92721a0aae4",
+      "initialReturn": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_1_INITIAL_REVIEW_RETURN.md",
+      "initialReturnSha256": "a64b34fb9d0da2f4afbcf57323ee9660d22fdf76f9a7c344db5e17fb997fd34c",
+      "backchecks": [
+        {
+          "candidate": "840a21647983948c2f9930dd2fc56afb9e5d3eff",
+          "verdict": "PASS3path repair; initial3P2 closed, native not yet exercised",
+          "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_1_BACKCHECK_840_BRIEF.md",
+          "briefSha256": "aa82e434aea6c0b2735f3cd4425e25637a4b5f7fc2da31b38580664cfdf774d5",
+          "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_1_BACKCHECK_840_RETURN.md",
+          "returnSha256": "7304a7cfc19b3addd0257ca5f44ea8752affa62b79c024ea2f42f1de666284ed"
+        },
+        {
+          "candidate": "6dd0e466f4432f21d3ce6913782b95f9a325f700",
+          "verdict": "PASS3path native Cancel repair source; actual rebuilt native witness still required",
+          "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_1_NATIVE_CANCEL_BACKCHECK_BRIEF.md",
+          "briefSha256": "4790c1f3d7446c2f2f22700754d7f3c45659ac6c9d010c7334a824c37d091419",
+          "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_1_NATIVE_CANCEL_BACKCHECK_RETURN.md",
+          "returnSha256": "a56afb0cc282c4de4aa424d7d99b02eb24f1120470e23d6b76d5cff4dbe752cc"
+        },
+        {
+          "candidate": "1ad964e30b08bed57bba8f08e3a75e8c883c8b0b",
+          "verdict": "PASS2path horizontal containment backcheck;12unique browser passes; native vertical behavior subsequently reopened by owner correction",
+          "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_1_POINTER_FIT_BACKCHECK_BRIEF.md",
+          "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_1_POINTER_FIT_BACKCHECK_RETURN.md",
+          "briefSha256": "dfdaecb9ce5cfc463851abe2a6068525ba55f8d97edb90710c801c57098437ab",
+          "returnSha256": "4a23a98a5ce9ddf0a5a362066916c8225c5db3fca5ba07db7cd8d3f95ae86590"
+        },
+        {
+          "candidate": "ed8cc27fdb37b8df2f20eb5f877aacb61bfd7db1",
+          "verdict": "PASS complete14paths;153focused+17selectedApp,16unique browser passes and2 repeated strengthened resize checks; native/final gates excluded",
+          "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_1_VERTICAL_SOURCE_BACKCHECK_BRIEF.md",
+          "briefSha256": "cb7df6c061182da06af9964937e9fd39f2fac8cabc7c07bad62b7a34bc3bda6d",
+          "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_1_VERTICAL_SOURCE_BACKCHECK_RETURN.md",
+          "returnSha256": "31bbbb3c75c19a4999593fb7db4121c2ed4f0c8b31ed6b613f72b128f402ccda"
+        }
+      ],
+      "activeBrief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_1_VERTICAL_SOURCE_BACKCHECK_BRIEF.md",
+      "activeBriefSha256": "cb7df6c061182da06af9964937e9fd39f2fac8cabc7c07bad62b7a34bc3bda6d",
+      "activeCandidate": "ed8cc27fdb37b8df2f20eb5f877aacb61bfd7db1"
+    },
+    "B4-1-INTEGRATION": {
+      "role": "ROOT integration",
+      "parent": "ROOT",
+      "branch": "codex/swbpipe-b4-controls-20260920",
+      "status": "full47ad sweep/source/native/combined review PASS;19path412 publication tail review and five record gates PASS; only review/check receipts appended before PR; actual-head CI/merge then pause",
+      "candidate": "47ad675c9dd013007c587ce6325003c990b2359c",
+      "base": "fd195cf4287e84572a12183169478a6f7ddf6a92",
+      "sourceCandidate": "ed8cc27fdb37b8df2f20eb5f877aacb61bfd7db1",
+      "ciMapCommit": "ab3b057e4",
+      "ciMap": "Independent exact2file backcheck PASS atab3b057e4f5a5b01fdbfa1b8e50381522cb1b369;31policy cases pass. New B4 spec follows authoring/layout and new shared-table remains full.",
+      "dependsOn": [
+        "B4",
+        "CI-DURATION-CALIBRATION"
+      ],
+      "scopeNote": "Internal B4.1 increment, not full B4; remaining table grammar and duplicate-grid retirement remain",
+      "ciMapReview": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/CI_B4_CONSUMER_MAP_BACKCHECK_RETURN.md",
+      "ciMapReviewSha256": "58e5b650acda19d55f1a7f3e64a6a7f01e3e38a93ceb2333626f56bcac81beab",
+      "earlyRepositoryChecks": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_EARLY_REPOSITORY_CHECKS_55EA/SUMMARY.json",
+      "earlyRepositoryChecksSha256": "394ac52a2947690722f7e3a21fb3931c9941784c9d7a96ee2df770816df85c99",
+      "collection": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_COLLECTION_DA504/SUMMARY.json",
+      "collectionSha256": "a5b198115f94d101fdc85ab4683bedbeceded75b5f83c269c5bf7bb7794c545f",
+      "collectionScope": "445 identities in full mode, zero omitted/duplicate,30barrier+108/58/63/186 shards; collection-only, no test execution",
+      "preflight": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_PREFLIGHT_47AD/SUMMARY.json",
+      "preflightSha256": "d31ae6bbbd35e8337c88f87a4bd5e9833b92d03c7f74293afdcee84f8560c3c9",
+      "sweepStart": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_SWEEP_47AD/START.json",
+      "sweepStartSha256": "5e4514e47e8f06240ead49ade9ffb1f79cddd89e5e89875c1f4ac313a2f94243",
+      "sweepStatus": "PASS at clean unchanged47ad; five registered surfaces pass",
+      "sweepSummary": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_SWEEP_47AD/SUMMARY.json",
+      "sweepSummarySha256": "9eceee2c9e500723e96a22db812cab62065fa866cf76aa8a0d90bc672eea2455",
+      "publicationRecordBasis": "412bc565c110de96ce62597200e6102a484e292e",
+      "publicationChecks": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_PUBLICATION_CHECKS_412/SUMMARY.json",
+      "publicationChecksSha256": "ccc1e9154b1a4c4ef866f30246e89d726d7a0dd32ebb0a35e07ac14646320c35"
+    },
+    "B5-PREPARATION-CODEX": {
+      "role": "TASK Type2 read-only preparation",
+      "parent": "ROOT",
+      "actualAgent": "/root/ci_inventory",
+      "model": "gpt-6-astra",
+      "reasoning": "low",
+      "mechanism": "Codex delegated-harness-native retained TASK; no descendants",
+      "status": "returned; ROOT inspected source-grounded recommendation; no B5 writes activated",
+      "basis": "c8f8e503383e15b42b171c4957c6f458d3697150",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B5_INSPECTOR_PREPARATION_BRIEF.md",
+      "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B5_INSPECTOR_PREPARATION_RETURN.md",
+      "recommendation": "First B5 increment: live single-node Identity/Geometry with existing operation route, preserve frozen Task and rich drafts. B4 full predecessor remains; coordinate shared writer handback before B5 writes.",
+      "boundary": "read-only committed source; no tests/build/UI/Git mutations or delegation; unrestricted host, limits instructional",
+      "briefSha256": "1bfa98e5ad409c67d64fb06e973d793b6247f57a88ae19b5d7c37787b9b636ac",
+      "returnSha256": "5d0ea8d573960f408a87b86e3a20504eaa6d6f2146b30038b6706d4e6fc453ae"
+    },
+    "B4-VERTICAL-RECORDS-REVIEW": {
+      "role": "TASK Type2 independent records review",
+      "parent": "ROOT",
+      "actualAgent": "/root/b3b_c3_ci_review",
+      "model": "gpt-6-astra",
+      "reasoning": "xhigh",
+      "mechanism": "Codex delegated-harness-native retained independent TASK",
+      "status": "PASS complete12path records delta4537ab1b..53b0dd687; subsequent cleanup/source/native/final gates excluded",
+      "candidate": "53b0dd68756512a48a9361f2e2e5ee5371a48240",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_VERTICAL_RECORDS_BACKCHECK_BRIEF.md",
+      "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_VERTICAL_RECORDS_BACKCHECK_RETURN.md",
+      "briefSha256": "6e60be559f2b89f6c3b45e916a609db647f6ada8a0829e47775d45a0c4b15e69",
+      "returnSha256": "a5fedcaed29129046c393aac195d566b95bbcb6da61f48b5e5c0c3a4c8364245"
+    },
+    "B4-EARLY-RECORDS-REVIEW": {
+      "role": "TASK Type2 independent records review",
+      "parent": "ROOT",
+      "actualAgent": "/root/b3b_c3_ci_review",
+      "model": "gpt-6-astra",
+      "reasoning": "xhigh",
+      "mechanism": "Codex delegated-harness-native retained independent TASK",
+      "status": "PASS complete12path early-records delta53b0..08326; later source/native/publication excluded",
+      "candidate": "08326b77d2a710689216d83b832eab6bb1409f28",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_EARLY_RECORDS_REVIEW_BRIEF.md",
+      "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_EARLY_RECORDS_REVIEW_RETURN.md",
+      "briefSha256": "131ed05f0166f2b1f0f77786428bd4f34bb3a93b5564cc37188b29e96e43b028",
+      "returnSha256": "81a173683ba18fd54736130db9d3a64e5ac5fa8cf9b059e366421230e1e6ea33"
+    },
+    "B4-COMBINED-CANDIDATE-REVIEW": {
+      "role": "TASK Type2 independent combined integration/evidence review",
+      "parent": "ROOT",
+      "actualAgent": "/root/b3b_c3_ci_review",
+      "model": "gpt-6-astra",
+      "reasoning": "xhigh",
+      "mechanism": "Codex delegated-harness-native retained independent TASK",
+      "status": "PASS640path candidate integration/evidence; full sweep/final tail/actual-head CI pending",
+      "candidate": "47ad675c9dd013007c587ce6325003c990b2359c",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_COMBINED_CANDIDATE_REVIEW_BRIEF.md",
+      "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_COMBINED_CANDIDATE_REVIEW_RETURN.md",
+      "briefSha256": "fb79d3b434a30895b42d6fd0b584451188737f351e9df35250c772179faae49c",
+      "returnSha256": "d5605dbbde6f5b00abf190d7f057a001d42c8d14e0b238d1c11a58394570b4a0"
+    },
+    "B4-REMAINDER-PREPARATION": {
+      "role": "WORKING_ITEMS Type1 read-only preparation",
+      "parent": "ROOT",
+      "actualAgent": "/root/b3_manager",
+      "model": "gpt-6-astra",
+      "reasoning": "high",
+      "mechanism": "collaboration.send_message while active, then bounded followup_task clarification; no child launched",
+      "status": "returned; manager idle under owner pause; implementation unlaunched",
+      "basis": "ed8cc27fdb37b8df2f20eb5f877aacb61bfd7db1 / clean c0a3314e2b141d8f93b90364250d2bffa89433f7",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_REMAINDER_PREPARATION_BRIEF.md",
+      "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_REMAINDER_PREPARATION_RETURN.md",
+      "clarificationLaunch": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_REMAINDER_CLARIFICATION_LAUNCH.txt",
+      "clarificationReturn": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_REMAINDER_CLARIFICATION_RETURN.md",
+      "recommendation": "Next B4.2: Node Label/string Provenance plus shared direct/review renderer; preserve legacy Queue before-value/visible-only and blank-toTBD behavior visibly, separate Keep draft from model Apply; no next activation before resume.",
+      "briefSha256": "cf1ea19b9ef79493cb3399785745789d035f8bdc05dd9dd604ffdeae432d235c",
+      "returnSha256": "065aeb1bc0bcb74752612fbc7f27913aa7f7ae104a75071867822dc2ddbde4ef",
+      "clarificationLaunchSha256": "a3782470d39e671b9517007032fdb3993f1cc5cc4073429b1c3e0bfdd87cbfeb",
+      "clarificationReturnSha256": "765e619dc83014bd8d451188c787d8152b01ed116e873a76e003492d5a89e8e2"
+    },
+    "B4-PUBLICATION-TAIL-REVIEW": {
+      "role": "TASK Type2 independent publication-tail backcheck",
+      "parent": "ROOT",
+      "actualAgent": "/root/b3b_c3_ci_review",
+      "model": "gpt-6-astra",
+      "reasoning": "xhigh",
+      "mechanism": "Codex delegated-harness-native retained independent TASK",
+      "status": "PASS complete19path47ad..412; reviewer now idle for owner pause",
+      "candidate": "412bc565c110de96ce62597200e6102a484e292e",
+      "brief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B4_PUBLICATION_TAIL_REVIEW_BRIEF.md",
+      "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_PUBLICATION_TAIL_REVIEW_RETURN.md",
+      "briefSha256": "36422a3cefe700700b62b9d7442de61692169a7dfbdd3e6943138412560e4f22",
+      "returnSha256": "62b0ed89357a25cd22032dbfbf6aa228ff4746304fc00f5106b560d7ce71d5cf"
     }
   },
   "edges": [
@@ -1793,9 +2224,65 @@
     [
       "ROOT",
       "CI-ECONOMY-CODEX"
+    ],
+    [
+      "ROOT",
+      "B4-1-CODEX-MANAGER"
+    ],
+    [
+      "ROOT",
+      "LIVE-CONTROL-PREPARATION"
+    ],
+    [
+      "ROOT",
+      "MVP-COMPARISON-PREPARATION"
+    ],
+    [
+      "ROOT",
+      "MVP-BASELINE-COMPARISON-PROPOSAL"
+    ],
+    [
+      "ROOT",
+      "PR828-CLOSEOUT-REVIEW"
+    ],
+    [
+      "ROOT",
+      "CI-DURATION-CALIBRATION"
+    ],
+    [
+      "ROOT",
+      "B4-1-REVIEW"
+    ],
+    [
+      "ROOT",
+      "B4-1-INTEGRATION"
+    ],
+    [
+      "ROOT",
+      "B5-PREPARATION-CODEX"
+    ],
+    [
+      "ROOT",
+      "B4-VERTICAL-RECORDS-REVIEW"
+    ],
+    [
+      "ROOT",
+      "B4-EARLY-RECORDS-REVIEW"
+    ],
+    [
+      "ROOT",
+      "B4-COMBINED-CANDIDATE-REVIEW"
+    ],
+    [
+      "ROOT",
+      "B4-REMAINDER-PREPARATION"
+    ],
+    [
+      "ROOT",
+      "B4-PUBLICATION-TAIL-REVIEW"
     ]
   ],
-  "current_frontier": "Publication preparation passes after6record portability repairs; product inputs remain identical to passed143 sweep. Final records/collection backcheck then one draftPR/full hosted milestone, merge only after applicable checks. B4.1 prepared; C4 label rulings pending. CLI-first contract adopted at high level, bounded activation still under preparation.",
+  "current_frontier": "Owner graceful pause: current B4.1 publication only. Complete local/native/source/combined/tail reviews and record gates pass; add final review/check receipts, open PR, merge only after all applicable actual-head CI succeeds, then pause. Every implementation/manager worker is idle; no next work starts.",
   "frontier_history": [
     {
       "until": "2026-09-18T19:41Z",
@@ -1824,6 +2311,10 @@
     {
       "until": "2026-09-19 Codex continuation discovery",
       "frontier": "Paused at the owner's word on 2026-09-19, near the weekly usage limit; handed off by instances/ROOT/SESSION_HANDOFF_2026-09-19B.md. Merged: PRs #800 to #803, then #805 (B2F and B2G), #806 (C1), #807 (C2), #808 (records). main is at f42cadba4 before the pull request that carries this graph. In progress and paused clean: B3 (shell branch at a9be4aaef; next instrument B3-FLOORS, sealed; one owner answer blocks its merge) and I1 (canvas branch at f6c0bab8e; a pause point to be read whole, checked and returned). Then B3A, B3B, B4 to B7 with G-11 after B6; C3 to C5; the second profile's freeze package with the casing; the closing visual pass; D-72 qualification; Tranche A2. Nothing is running: no agent, no sweep, no server, no browser-test lock."
+    },
+    {
+      "until": "2026-09-20 PR828 merge",
+      "frontier": "Publication preparation passes after6record portability repairs; product inputs remain identical to passed143 sweep. Final records/collection backcheck then one draftPR/full hosted milestone, merge only after applicable checks. B4.1 prepared; C4 label rulings pending. CLI-first contract adopted at high level, bounded activation still under preparation."
     }
   ],
   "base_note": "base is the commit Tranche B opened from; slice B1 merged at 4dcab750501d039af5b2973991cbe0f3f423b80a",
@@ -2000,8 +2491,8 @@
     "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/RUNTIME_COORDINATION_STATUS.md",
     "editor": "ROOT only",
     "peerThread": "01a07cd1-86da-7d30-9b17-e2cbbad3f10a",
-    "state": "Owner CLI-first recommendation accepted through peer; futureMCP remainsstrictV2. Canonical failed client probe merged827. Contract revision2 and concrete live-binding activation under preparation; no integration writes.",
-    "originMainRevalidated": "55932683916fd1cd0ca047a0a76c32adaf9b65ab",
+    "state": "CLI-first method chosen; peer fit review closed; bounded live-binding activation pending; no integration writes or ownership transfer",
+    "originMainRevalidated": "fd195cf4287e84572a12183169478a6f7ddf6a92",
     "peerProposedContract": "cb08dbe2fbeaf5a34a0abfa2f1d599c7c5bd6b2f",
     "peerPr": "https://github.com/sgttomas/chirality/pull/824",
     "peerAcknowledgment": "Direct task reply acknowledged sole editor, disjoint scope, resources, DEC-051 correction and B3/B3A/B3B adoption sequence.",
@@ -2010,35 +2501,22 @@
       "text": "Use what is the most effective. If there's a way to more directly interact with the command layer, that could provide a significant speed advantage.",
       "source": "dev - app direct task message reporting owner words; no Piping integration write authorization inferred",
       "application": "prefer shared typed command/controller API where effective; retain actor/basis/review/history semantics; literal input events do not establish human acceptance"
-    }
+    },
+    "currentContract": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/PIPING_LIVE_CONTROL_CONTRACT_DRAFT.md",
+    "peerFitReview": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/RUNTIME_ACTIVATION_REVIEW_CUSTODY.json",
+    "nativeHandoff": "ROOT released native/CUA after restored-model cleanup/ps43662 absence; peer acknowledged release/no claim and source/dist/E2E reservation, with no competing heavy work."
   },
   "pause": {
-    "ownerText": "Pause your work",
+    "ownerText": "with the impending PR, use this as an opportunity to gracefully pause your work until I say resume.",
     "source": "active chat; supplied text, not transport bytes",
-    "recordedAt": "2026-09-20T07:42:01.208428+00:00",
-    "state": "resumed by explicit owner direction",
-    "previousFrontier": "B3 local work and independent review complete; clean9cf sweep PASS. ROOT completing closeout records/harness validation, actual PR CI and merge. B3A/B3B remain next authorized UI work; Runtime adoption/command adapter remains separately owner-steered. No deliverable reconciliation/DAG rebuild.",
-    "candidate": "002dff0f244976f98b36517d920b3761f6f88704",
-    "pr": "https://github.com/sgttomas/chirality/pull/825",
-    "ciAtPause": {
-      "harness": "PASS",
-      "desktopSource": "IN_PROGRESS"
-    },
-    "agents": "all bounded assignments returned; no new agents launched",
-    "resources": "no local app/test/server process; local CI watcher stopped; hosted CI left running",
-    "resume": "Wait for explicit owner resume. Repair manager brief14b3fe08 is prepared and unlaunched. No product or CI workflow edits, new agents, reruns or merge have occurred.",
-    "mergeExceptionOwnerText": "Merge the PR and then I'll tell you when you resume.",
-    "ciFinal": {
-      "harness": "PASS",
-      "desktopSource": "FAILURE",
-      "passed": 408,
-      "skipped": 20,
-      "failed": 2,
-      "evidence": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/PR825_CI_FAILURE/MANIFEST.json"
-    },
-    "boundedException": "Owner asks one-time reduced CI to complete PR825; ROOT applies to bounded tooltip/Close repair and necessary CI routing only, then pause. OWNER_CI_REPAIR_DIRECTION.md.",
-    "latestOwnerText": "that's great, but I still need you to pause work for a moment.  Then I will tell you to resume.",
-    "resumeRecord": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_RESUME_2026-09-20.md"
+    "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_GRACEFUL_PAUSE_2026-09-20.md",
+    "recordSha256": "86a9634e9913c8599ab34e4c5dcb8bf3889ef95c59aef411b51c9d0172cfe8f8",
+    "recordedAt": "2026-09-21T02:43:07.088986+00:00",
+    "state": "graceful current-PR closeout only, then paused until explicit resume",
+    "allowedCloseout": "publication records, final checks/backcheck, current B4.1 PR/actual-head CI and merge if passing, pause handoff",
+    "blockedCheckDisposition": "preserve any blocking check and pause with PR open; no new repair tranche",
+    "nextWork": "B4.2 and all other new implementation/preparation unlaunched or held; no ownership transfer",
+    "localResources": "full sweep finished; native apps closed and source/dist ports/shared lock released"
   },
   "historicalOpenWithOwner": {
     "blocking": [
@@ -2062,5 +2540,56 @@
     "integrationBatchDisposition": "ROOT scheduling change from P4 own-PR recommendation: combine disjoint I1/B3A reviewed work in one PR to avoid duplicate complete sweeps under current owner CI-economy/continuation direction. Separate independent slice review and combined full validation remain; no owner product ruling or protected check changes.",
     "preparedNextBrief": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/B3B_MANAGER_BRIEF_DRAFT.md",
     "canvasPreparation": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/C3_PREPARATION_RETURN.md"
-  }
+  },
+  "currentOwnerQuestions": {
+    "C4": "two label dispositions pending; package instances/ROOT/CONTINUATION_2026-09-19_CODEX/C4_LABEL_DECISION_PACKAGE.md",
+    "liveControl": "bounded activation pending for peer-reviewed proposal instances/ROOT/CONTINUATION_2026-09-19_CODEX/LIVE_CONTROL_ACTIVATION_PROPOSAL.md",
+    "scope": "No silence-as-approval; unaffected B4.1 continues"
+  },
+  "liveContinuationState": {
+    "root": "b13fa91e7351640003f34c796bb81a70bec3b693 plus in-progress sweep/review records",
+    "originMain": "fd195cf4287e84572a12183169478a6f7ddf6a92",
+    "integrationBranch": {
+      "branch": "codex/swbpipe-b4-controls-20260920",
+      "head": "47ad675c9dd013007c587ce6325003c990b2359c",
+      "state": "ROOT-owned local combined candidate; old PR828 branch127677 preserved"
+    },
+    "shell": "clean evidencec0, producted8 unchanged; manager read-only remainder preparation",
+    "canvas": "fb720420 preserved; C4 preparation returned",
+    "design": "4dddd441 parked unchanged",
+    "nativeProbe": "separate two-edit worktree preserved; never fan-in",
+    "resources": "no Piping native/browser/test/server process or port/lock claim; local sweep complete; no new worker",
+    "recordStatus": "publication/pause tail awaiting scoped checks and independent backcheck",
+    "observedAt": "2026-09-21T02:43:07.089363+00:00"
+  },
+  "historicalPauses": [
+    {
+      "ownerText": "Pause your work",
+      "source": "active chat; supplied text, not transport bytes",
+      "recordedAt": "2026-09-20T07:42:01.208428+00:00",
+      "state": "resumed by explicit owner direction",
+      "previousFrontier": "B3 local work and independent review complete; clean9cf sweep PASS. ROOT completing closeout records/harness validation, actual PR CI and merge. B3A/B3B remain next authorized UI work; Runtime adoption/command adapter remains separately owner-steered. No deliverable reconciliation/DAG rebuild.",
+      "candidate": "002dff0f244976f98b36517d920b3761f6f88704",
+      "pr": "https://github.com/sgttomas/chirality/pull/825",
+      "ciAtPause": {
+        "harness": "PASS",
+        "desktopSource": "IN_PROGRESS"
+      },
+      "agents": "all bounded assignments returned; no new agents launched",
+      "resources": "no local app/test/server process; local CI watcher stopped; hosted CI left running",
+      "resume": "Wait for explicit owner resume. Repair manager brief14b3fe08 is prepared and unlaunched. No product or CI workflow edits, new agents, reruns or merge have occurred.",
+      "mergeExceptionOwnerText": "Merge the PR and then I'll tell you when you resume.",
+      "ciFinal": {
+        "harness": "PASS",
+        "desktopSource": "FAILURE",
+        "passed": 408,
+        "skipped": 20,
+        "failed": 2,
+        "evidence": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/PR825_CI_FAILURE/MANIFEST.json"
+      },
+      "boundedException": "Owner asks one-time reduced CI to complete PR825; ROOT applies to bounded tooltip/Close repair and necessary CI routing only, then pause. OWNER_CI_REPAIR_DIRECTION.md.",
+      "latestOwnerText": "that's great, but I still need you to pause work for a moment.  Then I will tell you to resume.",
+      "resumeRecord": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_RESUME_2026-09-20.md"
+    }
+  ]
 }

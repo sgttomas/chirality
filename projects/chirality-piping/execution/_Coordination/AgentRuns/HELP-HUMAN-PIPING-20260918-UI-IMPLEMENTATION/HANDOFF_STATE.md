@@ -2,7 +2,9 @@
 
 Run `HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION`, ROOT (HELP_HUMAN, Agent 0). Working surface; superseded lines are struck, not deleted.
 
-**Start here (2026-09-19):** `instances/ROOT/SESSION_HANDOFF_2026-09-19.md` is the state of the run for whoever continues it, under the plan's amendment 1 (the control layer first). This file stays the dated log.
+~~**Start here (2026-09-19):** `instances/ROOT/SESSION_HANDOFF_2026-09-19.md` is the state of the run for whoever continues it, under the plan's amendment 1 (the control layer first). This file stays the dated log.~~
+
+**Current entry (2026-09-20, owner graceful pause at B4.1 PR):** `instances/ROOT/CONTINUATION_2026-09-19_CODEX/PAUSE_HANDOFF_2026-09-20.md` and `WORK_GRAPH.json`. Finish only current PR closeout, then wait for explicit resume. Earlier dated entries below remain historical.
 
 ## Where the run stands
 
@@ -201,3 +203,19 @@ C3 browser resources are released; all16 unique focused cases passed. Normal nat
 Candidate143c8633 passed the fresh complete clean sweep in1031.087seconds: Rust allregisteredpass; Python1134 with304warnings/7subtests;91unitfiles/1491tests;source415pass/20existing-skips;dist53pass;buildpass. Original faileda635 sweep stays failed. Canonical records are in ROOT continuation _run_records/B3B_C3_CI_SWEEP_143 and _run_records/B3B_C3_CI_SWEEP_A635. Independent final113path backcheck PASS closes all P2/P3 findings; normal and isolated-probe native evidence remains bound to unchanged product inputs. Final current collection/records-tail check and published-head hosted checks remain before the single integration PR can merge.
 
 The owner accepted CLI-first through the peer lead, preserving a future-MCP statelessV2 condition. The canonical actual-client incompatibility packet is merged as PR827/main55932683; the Root pointer retains exact origin/hashes. Current live-control contract remains a proposal until its bounded activation; no live bridge or Runtime adoption has been implemented.
+
+## PR828 merged; B4.1 active and CLI activation prepared
+
+ROOT merged PR828 after all nine actual-head checks succeeded. Published head127677 and mergefd195cf4 have identical trees. Full hosted source coverage passed in1040seconds; canonical raw log, PR/run state and merge observation are in continuation _run_records/PR828_CI. Final publication-tail review PASS is retained verbatim in _run_records/B3B_C3_PUBLICATION_BACKCHECK_RETURN.md. No original failed evidence, protected check or repository protection was changed.
+
+The B4 manager verified clean wt3 and fast-forwarded to fd195cf4, then launched fresh Astra/low TASK /root/b3_manager/b4_1_table. It owns only the sealed B4.1 table/core/Node UI/controller scope. Existing bulk-draft guarantees triggered a design checkpoint. ROOT authorized temporary direct/bulk editor coexistence with preserved assertions and a later retirement obligation; guarded integration is active. C4 label choices remain with the owner. Shared browser/native resources are released; isolated unit/type work may proceed.
+
+The peer-reviewed CLI activation now includes single and atomic multi-operation proposals and a real human-prompted Codex/CLI/live App witness with actual human review/Apply. Both peer findings are closed. Owner activation remains pending via the concrete proposal; no live binding or Runtime adoption is inferred from the earlier controller/transport choice. B4.1 shared-controller handback precedes frontend wiring. Same-running-session recovery is explicit; durable restart recovery, embedded Runtime, MCP and the Windows/CAEPIPE phase remain separate. Exact latest states, hashes and provisional mappings are in WORK_GRAPH.json. Post-merge records will receive scoped review with the next coherent batch, not a separate bookkeeping PR.
+
+## B4.1 source reviewed; native Cancel repair under verification
+
+Initial87faf source review found two P2 focus/selection defects alongside the observed final-editor Tab failure. All three were repaired and independently backchecked at840a; new4 and legacy6 browser cases passed. Actual native WebKit then showed physical Cancel applying valid drafts three times. This failed840a record remains immutable. Minimal own-footer pointer-down default prevention and stronger valid-Cancel tests are source-reviewed at6dd;31core tests/TS and affected4browser cases pass. The old native process was quit and verified absent. One repaired uninstrumented6dd native build/witness now owns the shared foreground/CUA slot; physical Cancel and previously unobserved horizontal reachability/fit remain decisive before merge. ROOT own look and final combined gates are outstanding.
+
+Local integration branch codex/swbpipe-b4-controls-20260920 in wt2 isf4c1773; it includes6dd and the reviewed duration hints. The new B4 spec is also mapped to authoring/layout CI,31policy cases pass; that mapping and final combined records need independent coverage. No PR/full sweep has been started for these helper checkpoints. All original failures and reviews remain distinct. C4 rulings and bounded CLI activation are still pending; source-control progress does not infer either.
+
+- 2026-09-20, B4.1 verified at clean47ad: source/native/combined reviews and full local sweep passed. Owner requests graceful pause at the impending PR. Final metadata/hosted CI/merge only remain; no next implementation starts. Canonical pause direction, evidence and resume frontier are in continuation `OWNER_GRACEFUL_PAUSE_2026-09-20.md` and `PAUSE_HANDOFF_2026-09-20.md`; the work graph records final PR disposition.
