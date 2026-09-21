@@ -1,0 +1,62 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-HARNESS-001,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-002,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-003,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-004,NOT_MINE,,Approval answering is DEL-06-01 approval mediation; DEL-06-04 forward rows cite it only as the Codex-path substitute for the write gate
+CAP-HARNESS-005,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-006,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-007,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-008,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-009,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-010,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-011,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-012,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-013,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-014,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-015,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-016,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-017,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-018,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-019,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-020,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-021,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-022,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-023,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-024,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-025,PARTIAL,DEL-06-04#CLM-009.3,instructionRootContainsPath is consumed by the instruction-root write deny; resolution itself belongs to DEL-07-01 (DEP-06-04-008)
+CAP-HARNESS-026,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-027,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-028,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-029,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-030,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-031,PARTIAL,DEL-06-04#CLM-009.8,sdk-options-builder wires allowedTools/disallowedTools/canUseTool/hooks so allowedTools is not the boundary; the adapter as a whole is not DEL-06-04
+CAP-HARNESS-032,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-033,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-034,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-035,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-036,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-037,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-038,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-039,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-040,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-041,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-042,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-043,PARTIAL,DEL-06-04#CLM-009.7,Explicit hard-deny precedence and write-callback path deny are DEL-06-04 requirements; overlay mode mapping and canUseTool are DEL-06-01
+CAP-HARNESS-044,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-045,CLAIMED_BY,DEL-06-04#CLM-009.2,"Write-path containment, instruction-root and symlink policy is the DEL-06-04 path policy helper (also REQ-003/004 and CLM-032)"
+CAP-HARNESS-046,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-047,PARTIAL,DEL-06-04#CLM-009.1,"Write/edit PreToolUse gate, exact-edit check and write provenance are DEL-06-04; Bash and lifecycle hook parts are DEL-06-05/DEL-06-06"
+CAP-HARNESS-048,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-049,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-050,PARTIAL,DEL-06-04#CLM-027,Only the scaffold_preview non-mutating classification is a DEL-06-04 concern; read tools are DEL-06-03
+CAP-HARNESS-051,CLAIMED_BY,DEL-06-04#CLM-009.10,Mutating MCP parity through the same permission/path/evidence policy is DEL-06-04 REQ-010
+CAP-HARNESS-052,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-053,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-054,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-055,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-056,PARTIAL,DEL-06-04#CLM-032,"D-APP-68 assigns managed-child declared read/write path enforcement to DEL-06-04; launch, records and handoff are DEL-08-04"
+CAP-HARNESS-057,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-058,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-059,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+CAP-HARNESS-060,NOT_MINE,,Outside DEL-06-04 write/edit path-gate scope
+#END

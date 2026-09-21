@@ -26,12 +26,15 @@ fa, fb = os.path.join(A, "DEL-03-01_claims.csv"), os.path.join(B, "DEL-03-01_cla
 ra, rb = rows(fa), rows(fb)
 ga, gb = group(ra), group(rb)
 keys = sorted(set(ga) | set(gb))
-common = [k for k in keys if k in ga and k in gb]
+LOCAL = re.compile(r"#(REGISTER|STATE)-\d+$")
+runlocal = sorted(k for k in keys if LOCAL.search(k))
+common = [k for k in keys if k in ga and k in gb and not LOCAL.search(k)]
 out.append("# DOUBLE_BLIND_COMPARISON — DEL-03-01 (F-03A vs F-03B)\n")
 out.append("> Script-derived by `R0_CALIBRATION/_scripts/double_blind.py`. Agent measurement, not a ruling.\n")
 out.append(f"- A ledger: `DEL-03-01_A/DEL-03-01_claims.csv` sha256 `{sha(fa)}`; rows {len(ra)}; base keys {len(ga)}")
 out.append(f"- B ledger: `DEL-03-01_B/DEL-03-01_claims.csv` sha256 `{sha(fb)}`; rows {len(rb)}; base keys {len(gb)}")
 out.append(f"- Base keys in both: {len(common)}; only A: {sorted(set(ga)-set(gb))}; only B: {sorted(set(gb)-set(ga))}\n")
+out.append(f"- Indexed base keys compared: {len(common)}. Run-local keys (REGISTER-n/STATE-n) are numbered independently by each worker, so they are excluded from agreement and listed in §6.")
 out.append("Comparison unit: the base key (`.n` split suffix removed). Two readings agree on a field when the *set* of values across that base key's rows is identical; a secondary 'overlap' measure counts keys whose value sets intersect.\n")
 out.append("## 1. Field agreement on base keys\n")
 out.append("| Field | Exact agreement | Overlap agreement | Keys compared |\n|---|---|---|---|")
@@ -84,11 +87,32 @@ for k in common:
     for f in FIELDS:
         if k in dis[f]:
             out.append(f"| {k} | {f} | {' / '.join(vals(ga[k], f))} | {' / '.join(vals(gb[k], f))} |")
-for k in sorted(set(ga) ^ set(gb)):
+for k in sorted((set(ga) ^ set(gb)) - set(runlocal)):
     out.append(f"| {k} | presence | {'present' if k in ga else 'absent'} | {'present' if k in gb else 'absent'} |")
 out.append("\n### 5.2 Reverse responses\n")
 out.append("| CapabilityID | A | B |\n|---|---|---|")
 for c in rdis:
     out.append(f"| {c} | {xa[c]['Response']} {xa[c]['ClaimKey']} | {xb[c]['Response']} {xb[c]['ClaimKey']} |")
+out.append("\n## 6. Run-local rows (not key-comparable)\n")
+out.append("| Worker | Key | ClaimType | Disposition | CauseTag | DeclaredState (first 90 chars) |\n|---|---|---|---|---|---|")
+for lab, g in (("A", ga), ("B", gb)):
+    for k in runlocal:
+        for r in g.get(k, []):
+            out.append(f"| {lab} | {r['ClaimKey']} | {r['ClaimType']} | {r['Disposition']} | {r['CauseTag']} | {r['DeclaredState'][:90].replace('|','/')} |")
+out.append("\n## 7. Row-level agreement where both split a key identically\n")
+same = [k for k in common if sorted(r["ClaimKey"] for r in ga[k]) == sorted(r["ClaimKey"] for r in gb[k]) and len(ga[k]) > 1]
+tot = sum(len(ga[k]) for k in same)
+for f in FIELDS:
+    ag = sum(1 for k in same for ra_, rb_ in zip(sorted(ga[k], key=lambda r: r["ClaimKey"]), sorted(gb[k], key=lambda r: r["ClaimKey"])) if ra_[f] == rb_[f])
+    out.append(f"- {f}: {ag}/{tot} sub-rows agree across {len(same)} identically split keys (sub-row numbering is worker-local; low agreement here may reflect different split boundaries)")
+single = [k for k in common if len(ga[k]) == 1 and len(gb[k]) == 1]
+out.append("\n## 8. Strict agreement on keys neither worker split\n")
+out.append(f"Keys unsplit by both: {len(single)}.\n")
+out.append("| Field | Agreement |\n|---|---|")
+for f in FIELDS:
+    ag = sum(ga[k][0][f] == gb[k][0][f] for k in single)
+    out.append(f"| {f} | {ag}/{len(single)} ({100*ag/max(len(single),1):.0f}%) |")
+ag = sum((ga[k][0]["Disposition"] == "ALIGNED") == (gb[k][0]["Disposition"] == "ALIGNED") for k in single)
+out.append(f"| ALIGNED vs non-ALIGNED | {ag}/{len(single)} |")
 open(os.path.join(R0, "DOUBLE_BLIND_COMPARISON.md"), "w").write("\n".join(out) + "\n")
 print("\n".join(out[:25]))
