@@ -1,0 +1,17 @@
+ClaimKey,PackageID,DeliverableID,UnitKind,LocalID,SourceFile,SourceLine,Section,Label,SubItems
+DEL-09-04#CLM-013,PKG-09,DEL-09-04,CLM,CLM-013,ScopeOfWork.md,205,Production and Verification Method — Praxeology,Procedure: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity,
+DEL-09-04#CLM-014,PKG-09,DEL-09-04,CLM,CLM-014,ScopeOfWork.md,212,Production and Verification Method — Praxeology,Purpose,
+DEL-09-04#CLM-015,PKG-09,DEL-09-04,CLM,CLM-015,ScopeOfWork.md,219,Production and Verification Method — Praxeology,Prerequisites,
+DEL-09-04#CLM-016,PKG-09,DEL-09-04,CLM,CLM-016,ScopeOfWork.md,233,Production and Verification Method — Praxeology,Steps,
+DEL-09-04#CLM-017,PKG-09,DEL-09-04,CLM,CLM-017,ScopeOfWork.md,266,Production and Verification Method — Praxeology,Verification,
+DEL-09-04#CLM-018,PKG-09,DEL-09-04,CLM,CLM-018,ScopeOfWork.md,282,Production and Verification Method — Praxeology,Records,VER-001
+DEL-09-04#CLM-019,PKG-09,DEL-09-04,CLM,CLM-019,ScopeOfWork.md,304,Governing Values and Decisions — Axiology,Guidance: DEL-09-04 macOS DMG Packaging and Instruction Root Integrity,
+DEL-09-04#CLM-020,PKG-09,DEL-09-04,CLM,CLM-020,ScopeOfWork.md,311,Governing Values and Decisions — Axiology,Purpose,
+DEL-09-04#CLM-021,PKG-09,DEL-09-04,CLM,CLM-021,ScopeOfWork.md,318,Governing Values and Decisions — Axiology,Principles,
+DEL-09-04#CLM-022,PKG-09,DEL-09-04,CLM,CLM-022,ScopeOfWork.md,329,Governing Values and Decisions — Axiology,Considerations,
+DEL-09-04#CLM-023,PKG-09,DEL-09-04,CLM,CLM-023,ScopeOfWork.md,341,Governing Values and Decisions — Axiology,Trade-offs,
+DEL-09-04#CLM-024,PKG-09,DEL-09-04,CLM,CLM-024,ScopeOfWork.md,353,Governing Values and Decisions — Axiology,Examples,
+DEL-09-04#CLM-025,PKG-09,DEL-09-04,CLM,CLM-025,ScopeOfWork.md,360,Governing Values and Decisions — Axiology,Conflict Table (for human ruling),
+DEL-09-04#REM-1,PKG-09,DEL-09-04,REM,REM-1,_STATUS.md,105,## Remaining,**DEL-09-04-V3-01** (`NOT_SELECTABLE_UNTIL: the re-platformed Runtime service child and stock Codex integration build,
+DEL-09-04#REM-2,PKG-09,DEL-09-04,REM,REM-2,_STATUS.md,114,## Remaining,**DEL-09-04-V3-02** (`NOT_SELECTABLE_UNTIL: DEL-02-01-V3-04 selected`) — `build/icon.icns` replacement with packaging-,
+#END

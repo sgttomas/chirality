@@ -1,0 +1,324 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-BUILD-001,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-002,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-003,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-004,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-005,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-006,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-007,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-008,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-009,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-010,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-011,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-012,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-013,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-014,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-015,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-016,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-017,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-018,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-019,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-020,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-021,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-022,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-023,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-024,PARTIAL,DEL-09-02#CLM-010.13,Owns the wrapper's Section 9 summary/manifest consistency check and section9Policy (RQ-013/RQ-014). The wrapper as a whole is ADQ-14 release-quality evidence scope.
+CAP-BUILD-025,PARTIAL,DEL-09-02#CLM-010.12,Owns the Section 9 report-only step and the Section 8-first ordering (RQ-012). The Section 8 validation itself belongs to DEL-09-01.
+CAP-BUILD-026,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-027,CLAIMED_BY,DEL-09-02#CLM-010.1,"Section 9 runner and manifest are this deliverable's registry, runner and summary (OUT-001; RQ-001, RQ-013 to RQ-016)."
+CAP-BUILD-028,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-029,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-030,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-031,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-032,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-033,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-034,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-035,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-036,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-037,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-038,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-039,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-040,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-BUILD-041,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-001,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-002,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-003,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-004,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-005,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-006,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-007,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-008,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-009,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-010,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-011,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-012,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-013,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-014,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-015,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-016,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-017,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-018,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-019,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-020,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-021,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-022,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-023,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-024,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-025,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-026,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-027,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-028,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-029,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-030,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-031,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-032,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-033,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-034,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ELECTRON-035,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-HARNESS-001,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-002,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-003,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-004,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-005,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-006,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-007,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-008,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-009,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-010,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-011,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-012,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-013,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-014,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-015,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-016,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-017,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-018,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-019,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-020,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-021,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-022,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-023,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-024,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-025,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-026,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-027,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-028,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-029,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-030,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-031,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-032,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-033,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-034,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-035,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-036,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-037,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-038,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-039,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-040,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-041,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-042,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-043,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-044,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-045,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-046,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-047,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-048,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-049,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-050,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-051,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-052,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-053,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-054,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-055,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-056,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-057,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-058,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-059,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-HARNESS-060,NOT_MINE,,Implementation module owned by its feature deliverable. DEL-09-02 only validates some such modules through Section 9 fixtures and excludes feature implementation (CLM-009).
+CAP-ROUTES-001,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-002,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-003,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-004,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-005,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-006,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-007,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-008,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-009,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-010,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-011,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-012,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-013,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-014,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-015,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-016,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-017,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-018,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-019,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-020,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-021,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-022,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-023,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-024,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-025,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-026,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-027,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-028,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-029,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-030,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-031,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-032,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-033,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-034,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-035,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-036,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-037,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-038,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-039,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-040,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-041,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-042,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-043,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-ROUTES-044,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-001,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-002,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-003,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-004,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-005,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-006,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-007,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-008,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-009,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-010,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-011,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-012,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-013,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-014,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-015,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-016,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-017,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-018,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-019,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-020,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-021,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-022,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-023,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-024,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-025,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-026,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-027,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-028,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-029,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-030,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-031,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-032,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-033,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-034,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-035,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-036,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-037,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-038,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-039,NOT_MINE,,Engine conformance harness belongs to the engine-contract deliverable. DEL-09-02 only references it (CLM-010.2).
+CAP-RTCONTRACT-040,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-041,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-042,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-043,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-044,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-045,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-046,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-047,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-048,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-049,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-050,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-051,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-052,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCONTRACT-053,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-001,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-002,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-003,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-004,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-005,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-006,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-007,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-008,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-009,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-010,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-011,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-012,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-013,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-014,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-015,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-016,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-017,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-018,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-019,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-020,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-021,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-022,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-023,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-024,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-025,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-026,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-027,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-028,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-029,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-030,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-031,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-032,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-033,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-034,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-035,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-036,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-037,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-038,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-039,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-040,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-041,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-042,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-043,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-044,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-045,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-046,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-047,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-048,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-049,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-RTCORE-050,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-001,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-002,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-003,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-004,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-005,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-006,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-007,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-008,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-009,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-010,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-011,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-012,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-013,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-014,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-015,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-016,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-017,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-018,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-019,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-020,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-021,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-022,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-023,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-024,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-025,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-026,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-027,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-028,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-029,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-030,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-031,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-032,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-033,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-034,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-035,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-036,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-037,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-038,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+CAP-WORKSPACE-039,NOT_MINE,,"Outside the Section 9 validation-registry, runner and summary scope."
+#END
