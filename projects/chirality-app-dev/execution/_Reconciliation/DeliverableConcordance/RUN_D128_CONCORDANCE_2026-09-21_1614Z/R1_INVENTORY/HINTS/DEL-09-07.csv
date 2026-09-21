@@ -1,0 +1,9 @@
+ClaimKey,Token,HitPath,HitLine
+DEL-09-07#SEC-1,,,
+DEL-09-07#SEC-2,DEL-02-06,projects/chirality-app-dev/frontend/src/app/globals.css,1913
+DEL-09-07#SEC-2,DEL-09-05,projects/chirality-app-dev/frontend/scripts/verify-version-identity.mjs,12
+DEL-09-07#SEC-2,REQ-002,projects/chirality-app-dev/frontend/src/__tests__/components/api-key-settings-storage-states.test.ts,13
+DEL-09-07#SEC-2,REQ-002,projects/chirality-app-dev/frontend/src/components/settings/api-key-settings.tsx,12
+DEL-09-07#SEC-3,,,
+DEL-09-07#SEC-4,,,
+#END

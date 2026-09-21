@@ -1,0 +1,62 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-HARNESS-001,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-002,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-003,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-004,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-005,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-006,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-007,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-008,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-009,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-010,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-011,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-012,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-013,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-014,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-015,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-016,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-017,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-018,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-019,PARTIAL,DEL-08-04#CLM-010.3,Toolkit subagent governance flags and approvalRef are governance-metadata inputs consumed by the gate; toolkit UI and presets are not DEL-08-04's
+CAP-HARNESS-020,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-021,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-022,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-023,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-024,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-025,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-026,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-027,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-028,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-029,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-030,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-031,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-032,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-033,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-034,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-035,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-036,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-037,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-038,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-039,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-040,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-041,PARTIAL,DEL-08-04#CLM-010.5,AGENT_TYPE/AGENT_CLASS parsing feeds parent-relative child resolution; instruction conformance validation is owned elsewhere
+CAP-HARNESS-042,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-043,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-044,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-045,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-046,PARTIAL,DEL-08-04#CLM-010.7,Managed-child Bash scopes enforce child restriction (R07); the general shell policy and timeouts belong to the tool-governance deliverable
+CAP-HARNESS-047,PARTIAL,DEL-08-04#CLM-010.8,Subagent preflight denial and fail-closed hook outcome serve R08; general tool-audit hooks are not DEL-08-04's
+CAP-HARNESS-048,NOT_MINE,,Child-output artifacts closed through DEL-08-05 (ADQ-12)
+CAP-HARNESS-049,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-050,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-051,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-052,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-053,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-054,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-055,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+CAP-HARNESS-056,CLAIMED_BY,DEL-08-04#SEC-1.1,"delegate_agent admission bridge (hierarchy, allowlist, sealed brief, approvals, sibling-overlap fail-close) is DEL-08-04's managed-delegation output; launch records/handoff shared with DEL-08-05"
+CAP-HARNESS-057,NOT_MINE,,Coordination notices/updates/acknowledgments are child-run evidence under K-SUBAGENT-3 (DEL-08-05); DEL-08-04 claims admission only
+CAP-HARNESS-058,CLAIMED_BY,DEL-08-04#CLM-003.1,evaluateSubagentGovernance fail-closed gate and retired SDK Agent bridge are DEL-08-04 attributes (governance gate; executable integration point)
+CAP-HARNESS-059,PARTIAL,DEL-08-04#CLM-010.11,DEL-08-04 owns the handoff fields (R11); child-run record persistence and validation belong to DEL-08-05
+CAP-HARNESS-060,NOT_MINE,,No DEL-08-04 claim covers this harness capability
+#END
