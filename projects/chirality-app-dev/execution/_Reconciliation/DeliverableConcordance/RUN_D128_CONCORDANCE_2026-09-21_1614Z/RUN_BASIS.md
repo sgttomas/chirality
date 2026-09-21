@@ -141,3 +141,36 @@
 - **Briefs** are stored under `BRIEFS/` with their SHA-256 in `RUN_STATE.jsonl`.
 - **Exit.** R0 ends with `R0_CALIBRATION/R0_CALIBRATION_REPORT.md` and the owner gate. No
   deliverable is edited.
+
+## Addendum 1 — R0 gate (appended 2026-09-21)
+
+- **R0 gate ruled.** D-APP-129
+  (`execution/_Coordination/_DECISIONS/D-APP-129_RULING_R0_GATE_RUN_D128_2026-09-21.md`).
+  - A: all calibration §7 verdicts adopted. `CONVENTIONS.md` is now the rulebook, and
+    `CONVENTIONS_CANDIDATE.md` is the historical R0 edition.
+  - B: the done declaration stays CONTEXT; Q-01..Q-13 go to R4. This amends D-APP-128
+    §5.5.3.
+  - C: R2 scale-out as proposed, with the named questions R4-Q1..Q3.
+  - D: scope extension to items 3–7. The governing documents and the invariant coverage
+    register are excluded.
+- **§4 fence amended by the adopted PostReleaseBasis rule.** Children may run
+  **read-only** `git log`, `git show` and `git blame -L` against the frozen reading tree.
+  No other git use is permitted, and none against the working repository.
+- **Claim index regenerated.** It gained an additive `SubItems` column to implement the
+  adopted splitting rule ("R1 should emit REQ, AC and VER bullets as index units").
+  - The 1,746 keys are unchanged.
+  - 120 units list 208 sub-items.
+  - The validator's `V-SUBITEMS` check requires at least one row per listed sub-item.
+  - R0 ledgers predate this and are not re-graded.
+- **HELP_HUMAN accepts four integration interpretations** from
+  `R0_GATE_INTEGRATION_NOTES.md` §3:
+  1. A missing forward row cannot be added by errata; it goes to `reverse_notes`.
+  2. `CONTEXT_CLAIM` dispositions follow the adopted text literally.
+  3. `NOT_AUDITABLE` rows are exempt from the `CTX:`/`GOV:` prefix.
+  4. Code reached from nothing takes `REACH=LEGACY_ONLY`, with `UNREACHED` in Notes. The
+     tag vocabulary is not widened.
+- **Not implemented.** MR-9's optional old-ID mapping column; the rule itself is adopted
+  unchanged.
+- **Extension index.** `R1_INVENTORY/EXTENSION_INDEX.csv` holds 221 units: DEC 38, DOC
+  (item 4) 58, SOW 84, PRODAGENTS 9, harness developer docs 32. D-APP-116..119 are
+  `AWAITING_RULING`, so they are not DEC units.

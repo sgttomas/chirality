@@ -83,6 +83,27 @@ def remaining_units(path, del_id):
     return rows
 
 
+SUBITEM = re.compile(r"^(?:> )?(?:- \*\*|\| *)((?:REQ|AC|VER)-\d{3})\b")
+
+
+def attach_subitems(path, rows):
+    """Append the REQ/AC/VER items defined inside each SoW unit's line span (R0 §7.2 splitting rule)."""
+    lines = open(path, encoding="utf-8").read().split("\n")
+    starts = sorted(r[5] for r in rows)
+    out = []
+    for r in rows:
+        nxt = min([x for x in starts if x > r[5]] or [len(lines) + 1])
+        # a unit's span ends at the next unit start or the next ## heading
+        end = next((i for i in range(r[5], nxt - 1) if lines[i].startswith("## ")), nxt - 1)
+        subs = []
+        for l in lines[r[5]:end]:
+            m = SUBITEM.match(l)
+            if m and m.group(1) not in subs:
+                subs.append(m.group(1))
+        out.append(r + ("|".join(subs),))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--project-root", required=True)
@@ -92,15 +113,16 @@ def main():
     for d in sorted(glob.glob(os.path.join(a.project_root, "execution/PKG-*/1_Working/DEL-*"))):
         del_id = os.path.basename(d)[:9]
         pkg = os.path.basename(os.path.dirname(os.path.dirname(d)))[:6]
-        for key, kind, local, sec, label, line in sow_units(os.path.join(d, "ScopeOfWork.md"), del_id):
-            out.append([key, pkg, del_id, kind, local, "ScopeOfWork.md", line, sec, label])
+        sow = os.path.join(d, "ScopeOfWork.md")
+        for key, kind, local, sec, label, line, subs in attach_subitems(sow, sow_units(sow, del_id)):
+            out.append([key, pkg, del_id, kind, local, "ScopeOfWork.md", line, sec, label, subs])
         for key, kind, local, sec, label, line in remaining_units(os.path.join(d, "_STATUS.md"), del_id):
-            out.append([key, pkg, del_id, kind, local, "_STATUS.md", line, sec, label])
+            out.append([key, pkg, del_id, kind, local, "_STATUS.md", line, sec, label, ""])
     keys = [r[0] for r in out]
     assert len(keys) == len(set(keys)), "duplicate claim keys"
     with open(a.out, "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["ClaimKey", "PackageID", "DeliverableID", "UnitKind", "LocalID", "SourceFile", "SourceLine", "Section", "Label"])
+        w.writerow(["ClaimKey", "PackageID", "DeliverableID", "UnitKind", "LocalID", "SourceFile", "SourceLine", "Section", "Label", "SubItems"])
         w.writerows(out)
     kinds = {}
     for r in out:
