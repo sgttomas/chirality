@@ -15,6 +15,9 @@ from the public bundle and its method-discovery list.
 Private-project CI workflows are also excluded when their working directories
 do not exist in the public tree. The public init prompt is generated as a
 framework-only launcher rather than retaining private loop entrypoints.
+Piping's desktop E2E and dependency-cache workflows, together with their
+setup action, are excluded from this projection because it excludes the
+Piping workspace they execute against.
 Public governance decisions, their handoff, and `human_actors.md` remain in
 scope because authority verification depends on them; private-project TRB
 briefs and the practitioner-development backlog are explicitly excluded.
