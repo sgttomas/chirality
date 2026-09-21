@@ -2804,8 +2804,8 @@
       "parent": "ROOT",
       "branch": "codex/swbpipe-b4-sections-integration-20260921",
       "checkout": "wt2",
-      "head": "9d55bce37a3e683d6a1e026920855270b8929113",
-      "state": "full local sweep and complete independent candidate review passed; publication metadata review/actual-head cheap checks and hostedCI remain before merge",
+      "head": "339be6c9ee6616dfd60952957ee193f897bd05aa",
+      "state": "draftPR834 opened; all local/source/publication review and actual-head cheap checks pass, hostedCI running",
       "source": "db35d7582e61d69ad415df7cdf4132b91e710dd8",
       "dependsOn": [
         "B4-4-CODEX-MANAGER",
@@ -2825,6 +2825,17 @@
         "status": "PASS unchanged clean head",
         "counts": "1138Python(+304warnings/7subtests),1621desktop/100files,455source passes/20same skips,53dist; Rust/build exit0",
         "wallSeconds": 1190.997144833
+      },
+      "pullRequest": "https://github.com/sgttomas/chirality/pull/834",
+      "publicationReview": {
+        "return": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_4_PUBLICATION_REVIEW_RETURN.md",
+        "sha256": "22e55fe02766f81547fceb854fb34e8002cf8b8b907b86725565f5e6e62147ad",
+        "state": "PASS exact4recordtail, productunchanged9d55"
+      },
+      "publicationChecks": {
+        "summary": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_4_PUBLICATION_CHECKS/SUMMARY.json",
+        "sha256": "9fcc72f5f0d1c3a74720ef91973d905f14f939b10e785ec0f34f79ea75735549",
+        "state": "all5pass on clean339be,475identities/0omitted"
       }
     },
     "B4-4-SOURCE-REVIEW": {
@@ -3187,7 +3198,7 @@
       "B4-4-CODEX-MANAGER"
     ]
   ],
-  "current_frontier": "Sections complete source/native/sweep/combined review PASS. Freeze publication records, review bounded tail and validate actual head, then draftPR/hostedCI/merge. No new implementation started; compact drawer fit prepared next and owner holds unchanged.",
+  "current_frontier": "DraftPR834 published at339be, local sweep/native/independent publication review and actualhead cheapchecks pass; hostedCI pending before ready/merge. No source edits or new implementation. Compact fit prepared next; helddecisions unchanged.",
   "frontier_history": [
     {
       "until": "2026-09-18T19:41Z",
@@ -3481,20 +3492,20 @@
     "originMain": "fd002217f067020d44deaee22866e14eed81173f",
     "integrationBranch": {
       "branch": "codex/swbpipe-b4-sections-integration-20260921",
-      "head": "9d55bce37a3e683d6a1e026920855270b8929113",
-      "state": "clean9d55 registered sweep PASS, five surfaces; final complete review and publication tail/CI pending"
+      "head": "339be6c9ee6616dfd60952957ee193f897bd05aa",
+      "state": "draftPR834 opened; all local/source/publication review and actual-head cheap checks pass, hostedCI running"
     },
     "shell": "Sections source db35 and native evidence0d19 frozen inwt3; manager/TASK/native returned and no source writes active. Prior Materialsdd8 branch preserved.",
     "canvas": "fb720420 preserved; C4 preparation returned",
     "design": "4dddd441 parked unchanged",
     "nativeProbe": "isolated226b probe retains two authorized source edits and two untracked dependency entries; preserved, never fan-in",
     "resources": "Native/browser/full-sweep host resources released to peer after successful sweep; no local workload active",
-    "recordStatus": "Sections complete local verification and independent review passed; final publication tail/checks and hostedCI/merge pending",
+    "recordStatus": "DraftPR834 actualhead339be; local/review gates satisfied, hostedCI pending. ROOT keeps observation records off PRhead to avoid redundantCI.",
     "observedAt": "2026-09-21T14:19:18.467158+00:00",
     "integration": {
       "branch": "codex/swbpipe-b4-sections-integration-20260921",
-      "head": "9d55bce37a3e683d6a1e026920855270b8929113",
-      "state": "clean9d55 registered sweep PASS, five surfaces; final complete review and publication tail/CI pending"
+      "head": "339be6c9ee6616dfd60952957ee193f897bd05aa",
+      "state": "draftPR834 opened; all local/source/publication review and actual-head cheap checks pass, hostedCI running"
     },
     "preservedMaterialsIntegration": {
       "branch": "codex/swbpipe-b4-materials-integration-20260921",

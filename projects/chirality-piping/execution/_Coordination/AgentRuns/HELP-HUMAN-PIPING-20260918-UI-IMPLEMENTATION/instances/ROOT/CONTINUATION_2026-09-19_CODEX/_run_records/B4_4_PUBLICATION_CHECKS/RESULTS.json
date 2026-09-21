@@ -1,0 +1,80 @@
+[
+  {
+    "name": "claims",
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+      "tools/validation/validate_claims_language.py",
+      "--repo-root",
+      "."
+    ],
+    "cwd": "/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-wt2",
+    "exit": 0,
+    "seconds": 0.6293217500000001
+  },
+  {
+    "name": "receipts",
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+      "tools/validation/validate_piping_loop_receipts.py",
+      "--repo-root",
+      "."
+    ],
+    "cwd": "/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-wt2",
+    "exit": 0,
+    "seconds": 2.047776917
+  },
+  {
+    "name": "tranche",
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+      "tools/validation/validate_instruction_tranche_manifest.py",
+      "--base",
+      "fd002217f067020d44deaee22866e14eed81173f",
+      "--head",
+      "339be6c9ee6616dfd60952957ee193f897bd05aa",
+      "--added-manifests-only"
+    ],
+    "cwd": "/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-wt2",
+    "exit": 0,
+    "seconds": 0.29464504199999997
+  },
+  {
+    "name": "ci-plan",
+    "command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+      "tools/ci/e2e_plan.py",
+      "plan",
+      "--event",
+      "pull_request",
+      "--base",
+      "fd002217f067020d44deaee22866e14eed81173f",
+      "--head",
+      "339be6c9ee6616dfd60952957ee193f897bd05aa",
+      "--output",
+      "/tmp/swbpipe-b44-339be-publication/ci-plan.json"
+    ],
+    "cwd": "/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-wt2/projects/chirality-piping",
+    "exit": 0,
+    "seconds": 0.11865020900000012
+  },
+  {
+    "name": "exact-collection",
+    "command": [
+      "sh",
+      "/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-wt2/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION/tools/with_e2e_lock.sh",
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+      "tools/ci/e2e_plan.py",
+      "run",
+      "--plan",
+      "/tmp/swbpipe-b44-339be-publication/ci-plan.json",
+      "--stage",
+      "barrier",
+      "--list",
+      "--evidence-dir",
+      "/tmp/swbpipe-b44-339be-publication/collection"
+    ],
+    "cwd": "/Users/ryan/dev/chirality/.claude/worktrees/swbpipe-wt2/projects/chirality-piping",
+    "exit": 0,
+    "seconds": 3.505161584
+  }
+]
