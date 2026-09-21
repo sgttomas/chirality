@@ -330,3 +330,33 @@ Owner direction `r2_absence_not_evidence` (OWNER_DIRECTION.md, SHA-256 `344ed714
   affected rows are dispositioned from them. An answer the owner cannot give stays `UNKNOWN`.
 - **Distribution.** Relayed to the PKG-09 manager (the only manager running) for workers not yet
   sealed and for its verifiers.
+
+## Addendum 11: PR #840 review repairs (appended 2026-09-21)
+
+HELP_HUMAN (A0) repairs after the fresh-context review of PR #840. None is an owner direction.
+
+- **Re-seal of DEL-04-05 (scanner hygiene).** Row `DEL-04-05#CLM-009.8` quoted a placeholder
+  credential URL (`https` + `://user:pw@api.anthropic.com`). The repository secret scanner
+  (`frontend/scripts/scan-secret-evidence.mjs`, URL-credential pattern) flags it, so it would turn
+  "Harness pre-merge" red on main. HELP_HUMAN rewrote only the scheme separator, to
+  `https[:]//user:pw@api.anthropic.com`. No other byte changed, and the row's meaning is unchanged.
+  - Sealed SHA-256 `06247159ecc67149aa1295cb42d2263a68486ee1569d498dd06d2979abace20d` →
+    re-sealed `277a6777a1867def62fae5c1fbe6e2f3f8692566f7794fa06fa11e441ced39d4`.
+  - The ledger, all 7 reverse-area checks and the errata re-validate PASS 0/0.
+  - PKG-04's `PACKAGE_SUMMARY.md`, `VERIFICATION.md`, `STATE.jsonl` and reverse notes keep the
+    original SHA as historical record. R3 treats this addendum as the mapping.
+- **Labels.** Two addenda contain HELP_HUMAN design alongside owner direction:
+  - Addendum 9: "pre-answered", and the proposed repair direction ("deliverable and DIRECTIVE
+    text change, code stands"). The owner's recorded words establish only that D-GOV-43
+    superseded those texts, and the sequence Codex-hosted first, local models later, API no
+    sooner. The R4-Q6 packet will put the owner's recorded answer to the owner for confirmation,
+    together with HELP_HUMAN's proposed row population and repair direction, which the owner may
+    change.
+  - Addendum 10: the `UNKNOWN` + `OWNER_CHECK` mechanism and the R3 questionnaire. The owner's
+    words establish the principle, and the requirement to check with the owner first.
+- **Cross-reference and test.** CONVENTIONS §2.4 rule 3 now points to the Addendum 8 reading. The
+  validator test for MR-11 (AUTHORITY_CONFLICT needs R4 or R4-Qn) now covers R4-Q4, R4-Q5 and R4-Q6.
+- **Merge inputs.** `R2/EXT/SOW_A` and `SOW_B` (and the split halves in PKG-01, 02 and 09) are
+  merge inputs, not ledgers of record. They fail coverage when validated alone, by design; each
+  merged ledger passes.
+- **WORK_GRAPH.json** is restored to its original formatting, with "5 double-blinds".

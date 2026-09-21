@@ -164,7 +164,7 @@ claims:
 3. **R4-Q1 is cited by evidence, not by opinion.** Cite `R4-Q1` in HumanDecisionNeeded on every
    row where the only code meeting the claim is tagged `REACH=LEGACY_ONLY`, whether the row is
    judged on the live path or at module level. Rows met by `LIVE` code, and rows with no code
-   evidence, do not cite R4-Q1 for this reason.
+   evidence, do not cite R4-Q1 for this reason. [A0] Reading (RUN_BASIS Addendum 8): `TEST_ONLY` code does not meet a product claim, so a claim met only by `LEGACY_ONLY` code apart from tests cites R4-Q1.
 4. **Record the other reading.** On a product-behaviour row met only by legacy code, add
    `ALSO_MODULE:<verdict>` to Notes, giving the verdict a module-level reading would have
    produced.
