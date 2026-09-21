@@ -8,6 +8,11 @@
 
 Retired 2026-09-12 with `APP-HOLD-1`. The two-job runtime-control installer, migration and rollback served the per-user LaunchAgent daemon, which D-GOV-43 retires from the App path: the App starts, owns and stops the Runtime service as a child process, so no installer, staging, effective-state inspection or rollback transaction exists to build. The live `APP-HOLD-1-INIT-DEL-09-07` row was removed from `execution/_Coordination/APP_HOLD_REGISTER.csv` (the loop's retirement mechanism, as D-APP-107 retired the D-APP-104 row); no ordinary hold replaces it. `ScopeOfWork.md`, the four-document kit, D-APP-104 and D-APP-107 are preserved unchanged as history. No implementation, lifecycle promotion, release or Root act.
 
+## Remaining
+
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
+
 ## History
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-09-12 — Retired in place under D-GOV-43 item 7 (D-APP-127); lifecycle state unchanged (OPEN), no work is seated and none will be.
 - 2026-09-04 — State set to OPEN (PREPARATION)
