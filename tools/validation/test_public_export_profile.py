@@ -45,6 +45,11 @@ def test_public_export_excludes_private_runtime_surfaces(tmp_path: Path) -> None
     assert index['schema'] == 'chirality-method-index/v1'
     assert not any(item.get('kind') == 'skill' and item.get('name') == 'chirality-change' for item in index['methods'])
     assert not (stage / ".github/workflows/harness-premerge.yml").exists()
+    assert not (stage / ".github/workflows/piping-desktop-e2e.yml").exists()
+    assert not (stage / ".github/workflows/piping-e2e-cache.yml").exists()
+    assert not (stage / ".github/actions/setup-piping-e2e").exists()
+    assert (stage / ".github/workflows/desktop-release-template.yml").is_file()
+    assert (stage / ".github/workflows/governance-harness.yml").is_file()
     assert not any((stage / "docs/governance_harness/briefs").glob("*"))
     assert not (stage / "tools/practitioner_harness/BACKLOG.md").exists()
 

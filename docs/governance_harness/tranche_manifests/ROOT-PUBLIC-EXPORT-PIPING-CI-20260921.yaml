@@ -1,0 +1,27 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-PUBLIC-EXPORT-PIPING-CI-20260921
+title: Exclude Piping-only CI from the Chirality App public export
+date: 2026-09-21
+basis: 620ff6387b211c774c0de7dabec0a170acdf6017
+instruction_surface_paths:
+  - tools/validation/test_public_export_profile.py
+  - docs/governance_harness/tranche_manifests/ROOT-PUBLIC-EXPORT-PIPING-CI-20260921.yaml
+m2_gate:
+  authorization: >-
+    Ryan Tufts requested repair of the public-export mismatch and instructed
+    HELP_HUMAN to merge the fix through a PR, using a Terra subagent at high
+    reasoning for the work.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-21
+  integration_owner: HELP_HUMAN
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    Export filtering and its regression coverage change no role instructions,
+    authority-corpus pins, canonical Piping workflows, or project interfaces.
+scope_limits:
+  - Exclude Piping-only CI from the App projection and regenerate export metadata.
+  - Preserve canonical CI, product behavior, permissions, and release artifacts.

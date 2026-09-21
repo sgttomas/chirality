@@ -12,7 +12,7 @@ Generated from the public `chirality` source profile `exports/chirality-app`.
 | Path | Files |
 |---|---:|
 | `.agents` | 17 |
-| `.github` | 5 |
+| `.github` | 3 |
 | `.gitignore` | 1 |
 | `AGENTS.md` | 1 |
 | `CLAUDE.md` | 1 |
@@ -20,7 +20,7 @@ Generated from the public `chirality` source profile `exports/chirality-app`.
 | `README.md` | 1 |
 | `agents` | 5 |
 | `desktop` | 582 |
-| `docs` | 237 |
+| `docs` | 239 |
 | `init` | 1 |
 | `runtime` | 152 |
 | `tools` | 394 |
