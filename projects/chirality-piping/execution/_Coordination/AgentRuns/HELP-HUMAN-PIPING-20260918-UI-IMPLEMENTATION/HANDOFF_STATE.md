@@ -1,3 +1,5 @@
+**Current resume entry:** owner explicitly resumed after PR829. Read `WORK_GRAPH.json`, continuation `OWNER_RESUME_AFTER_PR829_2026-09-20.md` and `B4_2_MANAGER_BRIEF.md`. Prior pause handoff remains historical.
+
 # Handoff state
 
 Run `HELP-HUMAN-PIPING-20260918-UI-IMPLEMENTATION`, ROOT (HELP_HUMAN, Agent 0). Working surface; superseded lines are struck, not deleted.
@@ -219,3 +221,9 @@ Initial87faf source review found two P2 focus/selection defects alongside the ob
 Local integration branch codex/swbpipe-b4-controls-20260920 in wt2 isf4c1773; it includes6dd and the reviewed duration hints. The new B4 spec is also mapped to authoring/layout CI,31policy cases pass; that mapping and final combined records need independent coverage. No PR/full sweep has been started for these helper checkpoints. All original failures and reviews remain distinct. C4 rulings and bounded CLI activation are still pending; source-control progress does not infer either.
 
 - 2026-09-20, B4.1 verified at clean47ad: source/native/combined reviews and full local sweep passed. Owner requests graceful pause at the impending PR. Final metadata/hosted CI/merge only remain; no next implementation starts. Canonical pause direction, evidence and resume frontier are in continuation `OWNER_GRACEFUL_PAUSE_2026-09-20.md` and `PAUSE_HANDOFF_2026-09-20.md`; the work graph records final PR disposition.
+
+- 2026-09-20, PR829 merged15e8b7a72 after all8 actual-head checks succeeded; merged and candidate trees identical. Owner pause is now effective until explicit resume. Current pause handoff and `_run_records/PR829_CI/MERGE_OBSERVATION.json` in the continuation retain final source/CI/resource state. All local workers and runtime resources are idle; next implementation remains unstarted.
+
+## B4.2 current validation cursor after explicit resume
+
+Owner resume and its exact record are in continuation OWNER_RESUME_AFTER_PR829_2026-09-20.md. The prior pause is historical. B4.2 Node Label/string Provenance/common direct-review renderer, R1 passive-read correction and native character-start correction are frozen as producta064. Clean combined candidated3db83b494cd00e9f8978a99f02a83bf626bd1fb includes main86e49b3 and final native/ROOT own-look evidence. Native82749 was quit and verified absent; all workers are returned except the read-only combined reviewer. Cheap gates, complete clean host sweep and combined review pass at their recorded scopes; metadata publication review and hosted CI are pending. Work graph is the current cursor. Both+Inspector-open Provenance pointer exposure and compact drawer fit retain their stated limits. B4.3 Materials is prepared, not activated; live CLI/C4 owner decisions remain pending. No DAG/deliverable reconciliation or qualification.
