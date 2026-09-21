@@ -2,7 +2,7 @@
   "schema": "ad-hoc-work-graph/v1",
   "run": "HELP-HUMAN-APP-20260921-CONCORDANCE",
   "basis": "00115c71931bcae79909602d653740d3bb72dfa1",
-  "scope": "Whole-corpus post-v3 deliverable concordance of the App (54 deliverables) under the Root reconciliation workflow; activation pending D-APP-128",
+  "scope": "Whole-corpus post-v3 deliverable concordance of the App (54 deliverables) under the Root reconciliation workflow; activated by D-APP-128 (RULED 2026-09-21)",
   "plan_of_record": "PLAN_OF_RECORD.md",
   "phase_basis": {
     "decomposition": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
@@ -28,7 +28,7 @@
     },
     {
       "id": "P_activation_packet",
-      "state": "packet drafted; register row AWAITING_RULING; 54 bootstrap items seeded (gated: D-APP-128); registered checks PASS",
+      "state": "done: packet, register row and 54 bootstrap items (seeded gated, since flipped by the ruling); registered checks PASS",
       "depends_on": [
         "step0_piping_orientation"
       ],
@@ -80,9 +80,8 @@
       "depends_on": [
         "P_ruling_and_merge"
       ],
-      "blockers": [
-        "overlap with R0 gate only if D-APP-128 section 6.6 is ruled as recommended"
-      ]
+      "blockers": [],
+      "note": "D-APP-128 section 6.6 ruled: may run while the R0 gate is pending"
     },
     {
       "id": "R1b_reverse_pass",

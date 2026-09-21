@@ -241,9 +241,9 @@ Each of the 54 `_STATUS.md` receives, under `## Remaining`:
 The literal `<commit SHA>` is supplied at ruling time.
 
 - **Where the item goes:**
-  - 51 files: appended to the existing section.
-  - `DEL-03-04`: the sole `None.` line is replaced, since that line marks an empty
-    section.
+  - 50 files: appended to the existing section.
+  - `DEL-03-04` and `DEL-00-02`: the sole `None.` / `- None.` line is replaced, since it
+    marks an empty section (DEL-00-02 corrected after fresh-context review).
   - `DEL-07-03` and `DEL-09-07`: a new `## Remaining` section is added before
     `## History`, following the July precedent.
 - **History line.** Each file gets one non-state-bearing `History` line: "Remaining
