@@ -635,7 +635,7 @@
       "role": "slice",
       "lane": "B-SHELL",
       "title": "the table component through the one operation route",
-      "status": "B4.1/B4.2/Materials merged; B4.4 Sections source/native/sweep complete, final review/publication CI pending; wider B4 and compact fit remain open",
+      "status": "B4.1/B4.2/Materials/Sections and their bounded repairs merged. Wider B4 and compact-fit scope remain open; owner pause effective.",
       "dependsOn": [
         "B3B"
       ],
@@ -2690,7 +2690,7 @@
       "model": "gpt-6-astra",
       "reasoning": "high",
       "mechanism": "ROOT actual retained manager followup",
-      "state": "native/ROOT own-look complete, source held; worker and manager returned",
+      "state": "Sections merged; manager and TASKs returned, paused with no new assignment",
       "basis": "fd002217f067020d44deaee22866e14eed81173f",
       "branch": "codex/swbpipe-b4-sections-20260921",
       "checkout": "existingwt3 after clean verification; old Materials branch preserved",
@@ -2792,7 +2792,7 @@
     "B4-4-CI-COVERAGE": {
       "role": "ROOT maintained CI mapping",
       "parent": "ROOT",
-      "state": "three-path mapping52ff4fac0, 33policy passes on216c27; additive coverage independently reviewed in original14-path source return; final combined/CI gates pending",
+      "state": "merged viaPR834, independently reviewed additive mapping; actual-head fullCI passed",
       "basis": "fd002217f067020d44deaee22866e14eed81173f",
       "candidate": "216c27af5c0fa25bae4d8670137a5ac5a65a714b",
       "scope": "authoring/layout selection includes b4-sections.spec.ts; no gate/selector-mode/oracle reduction",
@@ -2805,7 +2805,7 @@
       "branch": "codex/swbpipe-b4-sections-integration-20260921",
       "checkout": "wt2",
       "head": "339be6c9ee6616dfd60952957ee193f897bd05aa",
-      "state": "draftPR834 opened; all local/source/publication review and actual-head cheap checks pass, hostedCI running",
+      "state": "PR834 merged after all8actual-head checks passed; candidate/merge trees identical; owner pause effective",
       "source": "db35d7582e61d69ad415df7cdf4132b91e710dd8",
       "dependsOn": [
         "B4-4-CODEX-MANAGER",
@@ -2836,7 +2836,11 @@
         "summary": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/B4_4_PUBLICATION_CHECKS/SUMMARY.json",
         "sha256": "9fcc72f5f0d1c3a74720ef91973d905f14f939b10e785ec0f34f79ea75735549",
         "state": "all5pass on clean339be,475identities/0omitted"
-      }
+      },
+      "merge": "620ff6387b211c774c0de7dabec0a170acdf6017",
+      "ciRun": 35614512716,
+      "hostedSource": "455passes/20existing skips;1044seconds workflow; four expected primary cache keys restored",
+      "mergeObservation": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/_run_records/PR834_CI/MERGE_OBSERVATION.json"
     },
     "B4-4-SOURCE-REVIEW": {
       "role": "independent TASK Type2",
@@ -3198,7 +3202,7 @@
       "B4-4-CODEX-MANAGER"
     ]
   ],
-  "current_frontier": "Owner requests pause after PR834 merges. Finish existing hostedCI/merge and graceful records/receipt only; then remain paused until explicit resume. Compact fit stays prepared and owner-held decisions unchanged.",
+  "current_frontier": "PAUSED by owner after PR834 merge620ff6387. Wait for explicit resume. Compact Model/narrow-Both drawer fit is prepared next, then Pipes; no activation. C4/liveCLI decisions and qualification/reconciliation holds unchanged.",
   "frontier_history": [
     {
       "until": "2026-09-18T19:41Z",
@@ -3444,12 +3448,18 @@
     "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_PAUSE_AFTER_PR834_2026-09-21.md",
     "recordSha256": "01b6db91a17b3c9f24386942cf546dea497b9adab27d8306dd7af73e6967f7a7",
     "recordedAt": "2026-09-21T14:56:26.043169+00:00",
-    "state": "requested, effective after PR834 merge and graceful closeout",
+    "state": "paused after PR834 merge; wait for explicit owner resume",
     "allowedCloseout": "existing PR834 actual-head gates, merge when passing, traceable evidence/receipt and pause handoff",
     "pr": "https://github.com/sgttomas/chirality/pull/834",
     "candidate": "339be6c9ee6616dfd60952957ee193f897bd05aa",
     "nextWork": "compact drawer fit remains prepared, no new implementation or agent activation",
-    "resources": "no local app/test/browser/build activity; all delegated instances returned"
+    "resources": "all local Piping apps/tests/builds/browser/CUA released; delegates returned; no new implementation",
+    "merge": "620ff6387b211c774c0de7dabec0a170acdf6017",
+    "ci": "all8 actual-head checks SUCCESS before ROOT merge",
+    "handoff": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/PAUSE_HANDOFF_PR834_2026-09-21.md",
+    "handoffSha256": "14450eb4390c02b0a47f982319cb94b7bf80e3429a90a558cb478ca1dc596957",
+    "receipt": "Receipt-161",
+    "receiptValidation": "VALID append-only contract, Examined-Through620ff6387 is ancestor after ROOT adopted main"
   },
   "historicalOpenWithOwner": {
     "blocking": [
@@ -3480,24 +3490,24 @@
     "scope": "No silence-as-approval; unaffected authorized B4 work proceeds"
   },
   "liveContinuationState": {
-    "root": "ROOT records branch codex/swbpipe-continuation-20260919; productdb35 independently reviewed with native/own-look complete. Frozen clean validation candidate9d55; current selectors may advance without rewriting historical returns.",
-    "originMain": "fd002217f067020d44deaee22866e14eed81173f",
+    "root": "ROOT records branch adopted mergedPR834; postpublication evidence and owner pause/receipt retained here without a separate bookkeepingPR.",
+    "originMain": "620ff6387b211c774c0de7dabec0a170acdf6017",
     "integrationBranch": {
       "branch": "codex/swbpipe-b4-sections-integration-20260921",
       "head": "339be6c9ee6616dfd60952957ee193f897bd05aa",
-      "state": "draftPR834 opened; all local/source/publication review and actual-head cheap checks pass, hostedCI running"
+      "state": "PR834 merged; preserve publication head339be"
     },
     "shell": "Sections source db35 and native evidence0d19 frozen inwt3; manager/TASK/native returned and no source writes active. Prior Materialsdd8 branch preserved.",
     "canvas": "fb720420 preserved; C4 preparation returned",
     "design": "4dddd441 parked unchanged",
     "nativeProbe": "isolated226b probe retains two authorized source edits and two untracked dependency entries; preserved, never fan-in",
-    "resources": "Native/browser/full-sweep host resources released to peer after successful sweep; no local workload active",
-    "recordStatus": "DraftPR834 actualhead339be; local/review gates satisfied, hostedCI pending. ROOT keeps observation records off PRhead to avoid redundantCI.",
-    "observedAt": "2026-09-21T14:19:18.467158+00:00",
+    "resources": "all local Piping resources released; owner pause effective, no active agent work or CI watcher after closeout",
+    "recordStatus": "PR834 merged after all8checks; tree parity verified; receipt161 valid and owner pause effective. Postpublication records remain on ROOT continuity branch.",
+    "observedAt": "2026-09-21T15:10:26.199020+00:00",
     "integration": {
       "branch": "codex/swbpipe-b4-sections-integration-20260921",
       "head": "339be6c9ee6616dfd60952957ee193f897bd05aa",
-      "state": "draftPR834 opened; all local/source/publication review and actual-head cheap checks pass, hostedCI running"
+      "state": "PR834 merged; preserve publication head339be"
     },
     "preservedMaterialsIntegration": {
       "branch": "codex/swbpipe-b4-materials-integration-20260921",
