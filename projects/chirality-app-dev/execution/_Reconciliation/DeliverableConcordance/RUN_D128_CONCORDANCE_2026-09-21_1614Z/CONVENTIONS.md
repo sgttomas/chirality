@@ -190,6 +190,22 @@ Meaningful only on `REMAINING_WORK` rows:
 MR-8 (iv): a claim true only of a recorded snapshot (for example "REF-006 MATCH at v23") is
 a REGISTER row (MR-5), not `STALE_SPECIFICATION`.
 
+**Tie-break between `STALE_SPECIFICATION` and `REMAINING_STATE_MISMATCH`** [A0: owner direction
+`r2_tiebreak_adopt`, RUN_BASIS Addendum 5]:
+
+1. Use `STALE_SPECIFICATION` when the text states a present fact that is now false (a hash
+   recorded as `MATCH`, a path called "current", a dependency marked `SATISFIED`, a file said
+   to exist). The rule is the same for SoW, `_STATUS`, register and references text.
+2. Use `REMAINING_STATE_MISMATCH` only for (a) an item in `## Remaining`, or a `REMAINING_WORK`
+   row, whose open or done status is contradicted by the evidence; or (b) register
+   bookkeeping that is behind but says nothing false about the product or its references
+   (a `Last Updated` date, a `TBD` placeholder, a lagging status field).
+3. MR-8(iv) clarified: a claim tied to a named snapshot ("MATCH at v23") stays a REGISTER row.
+   Text that restates it as current ("is MATCH") without naming the snapshot takes
+   `STALE_SPECIFICATION` and points to the REGISTER row (`SEE:`).
+4. If both still fit, choose the verdict whose repair is a change to deliverable text, and
+   record the other in Notes as `ALSO:<verdict>`.
+
 ### 2.7 Register defects (MR-5 REVISE, R0 §7.1)
 
 Register defects become `REGISTER-n` rows (`ClaimType = REGISTER_DEFECT`).

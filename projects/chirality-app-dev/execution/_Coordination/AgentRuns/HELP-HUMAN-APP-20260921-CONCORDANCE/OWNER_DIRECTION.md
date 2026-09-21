@@ -121,6 +121,14 @@ SHA-256: `264bea63de073570aa8b9c51b836016dbc6d28be0c0a086260e271aafe46a3bd`
 
 Context for `r2_tiebreak_q4`: the owner's answer to HELP_HUMAN's report on PKG-06 and PKG-08 (2026-09-21 ~20:05Z). It asks for (1) draft wording of a STALE_SPECIFICATION / REMAINING_STATE_MISMATCH tie-break rule, to be approved by the owner before adoption, and (2) adds the PKG-08 candidate question as named question R4-Q4 (applied as RUN_BASIS Addendum 4).
 
+## r2_tiebreak_adopt
+
+> Approved, adopt it and launch PKG-05.  Allow both claims to stand for those 2 instances outside the rule and I'll make a determination later when I can pay closer attention to the surrounding context.
+
+SHA-256: `97b37a0e13a635793a63bb551d330177796eff7261ce73fce9a18f435d56a370`
+
+Context for `r2_tiebreak_adopt`: approves the tie-break wording HELP_HUMAN drafted under `r2_tiebreak_q4` (applied as RUN_BASIS Addendum 5 and CONVENTIONS §2.6). "Those 2 instances" are the DEL-06-02 double-blind keys where the workers split between IMPLEMENTED_DIFFERENTLY and STALE_SPECIFICATION (CLM-005, CLM-032).
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the

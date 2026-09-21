@@ -227,3 +227,17 @@ fourth named R4 question, proposed by the PKG-08 manager:
   `R4-Q4`, and a test covers it (76 tests pass).
 - Ledgers sealed before this addendum keep plain `R4` on such rows; R3 maps them to R4-Q4 when
   it clusters. Nobody edits a sealed ledger for this.
+
+## Addendum 5: STALE_SPECIFICATION / REMAINING_STATE_MISMATCH tie-break (appended 2026-09-21)
+
+Owner direction `r2_tiebreak_adopt` (OWNER_DIRECTION.md, SHA-256 `97b37a0e…6a370`) adopts the
+tie-break rule now in CONVENTIONS §2.6. It answers the DEL-06-02 double-blind result (Disposition
+agreement 19/35), where most splits fell between these two verdicts.
+
+- **Scope.** Forward passes not yet sealed at adoption, and every later wave. Sealed ledgers are
+  not edited; R3 applies the rule when it clusters and records each re-mapping it makes.
+- **Owner-deferred items.** DEL-06-02#CLM-005 and DEL-06-02#CLM-032, where the double-blind
+  workers split between `IMPLEMENTED_DIFFERENTLY` and `STALE_SPECIFICATION`, are outside the
+  rule. Both workers' verdicts stand side by side (worker A's ledger of record and worker B's
+  ledger in `R2/PKG-06/DEL-06-02_B/`). R3 must not resolve them and carries both to R4 as
+  owner-deferred items; the owner will decide after reviewing the surrounding context.
