@@ -1,7 +1,7 @@
 # RUN_D128 — Conventions (adopted R2 rulebook)
 
-> **Status: ADOPTED** by the owner's R0 gate ruling of 2026-09-21, being transcribed as
-> **D-APP-129**. Ruling items: **A** adopt every verdict in
+> **Status: ADOPTED** by the owner's R0 gate ruling of 2026-09-21, recorded as
+> **D-APP-129** (`execution/_Coordination/_DECISIONS/D-APP-129_RULING_R0_GATE_RUN_D128_2026-09-21.md`). Ruling items: **A** adopt every verdict in
 > `R0_CALIBRATION/R0_CALIBRATION_REPORT.md` §7 as written; **B** the v3 done-declaration
 > candidate is CONTEXT only; **C** the R2 operating plan; **D** the scope extension.
 > This file is self-contained: R2 workers need no other convention text.
@@ -74,8 +74,10 @@ Extension ledgers (§8) use the same header and different key and file names.
 - **Splitting.** (ClaimKey splitting REVISE, R0 §7.2) Split one unit into sub-rows
   `…#CLM-007.1`, `.2`, … **only when the unit holds separately numbered REQ-, AC- or VER-
   items, or a table of independently dispositionable rows.** Report your split rate in the
-  notes. (R1 is asked to emit REQ, AC and VER bullets as index units in a later index
-  revision; until then, split to reach them.)
+  notes. [A0] The claim index's `SubItems` column lists the REQ/AC/VER items defined inside
+  each unit (120 units, 208 items; `RUN_BASIS.md` Addendum 1). A unit listing k ≥ 2 items
+  needs at least k rows (validator `V-SUBITEMS`); give each listed item its own `.n` row and
+  name the item in Notes.
 - **Run-local keys.** Rows the index does not know get run-local keys, **numbered per
   deliverable**:
   - `REGISTER-n` for register defects (MR-5);
@@ -100,12 +102,12 @@ Extension ledgers (§8) use the same header and different key and file names.
 | `DeclaredState` | What the deliverable asserts is true now (short). (CAND §2) |
 | `RecordedRemaining`, `RemainingSource`, `RemainingGate` | For REM rows: verbatim item, its source, and verbatim gate suffixes concatenated (MR-6). Otherwise `NONE_RECORDED`. (CAND §2) |
 | `MechanicallyUnblocked` | §2.5. (`MechanicallyUnblocked` rename ADOPT, R0 §7.2) |
-| `ImplementationEvidence` | Repo-relative path + symbol/line; or `documentary claim` + exact doc sections (MR-10); or `NONE_FOUND` after a stated search. (CAND §2) **Reachability** (ImplementationEvidence reachability REVISE, R0 §7.2): for every row whose evidence is code, append `REACH=LIVE`, `REACH=LEGACY_ONLY` or `REACH=TEST_ONLY` to ImplementationEvidence, determined statically from a product entry point. A requirement met only on a `LEGACY_ONLY` path is judged on the live path: `PARTIALLY_IMPLEMENTED` if the live path covers part of it, `IMPLEMENTED_DIFFERENTLY` if the live path uses another mechanism, `DOCUMENTED_UNIMPLEMENTED` if the live path lacks it. A claim about the retained module itself is judged at module level and carries the REACH tag. [INTEG] Use the evidence pack's `REACHABILITY.csv` (§9) as the static map; when several code paths are cited with different reach, tag each (`… a.ts:10 REACH=LIVE; b.ts:4 REACH=LEGACY_ONLY`). A value that begins `NONE_FOUND` (a search statement) needs no tag. |
+| `ImplementationEvidence` | Repo-relative path + symbol/line; or `documentary claim` + exact doc sections (MR-10); or `NONE_FOUND` after a stated search. (CAND §2) **Reachability** (ImplementationEvidence reachability REVISE, R0 §7.2): for every row whose evidence is code, append `REACH=LIVE`, `REACH=LEGACY_ONLY` or `REACH=TEST_ONLY` to ImplementationEvidence, determined statically from a product entry point. A requirement met only on a `LEGACY_ONLY` path is judged on the live path: `PARTIALLY_IMPLEMENTED` if the live path covers part of it, `IMPLEMENTED_DIFFERENTLY` if the live path uses another mechanism, `DOCUMENTED_UNIMPLEMENTED` if the live path lacks it. A claim about the retained module itself is judged at module level and carries the REACH tag. [INTEG] Use the evidence pack's `REACHABILITY.csv` (§9) as the static map; when several code paths are cited with different reach, tag each (`… a.ts:10 REACH=LIVE; b.ts:4 REACH=LEGACY_ONLY`). A value that begins `NONE_FOUND` (a search statement) needs no tag. [A0] Code reached from no product entry takes `REACH=LEGACY_ONLY` with `UNREACHED` in Notes (`RUN_BASIS.md` Addendum 1). |
 | `VerificationEvidence` | `GATE-TRANSCRIPT(APP@00115c719)` or `GATE-TRANSCRIPT(RUNTIME@00115c719)` **plus** the named test file and case; or an MR-10 token (§2.4); or `NONE_FOUND`. Never run a test suite. (CAND §2; MR-3 replacement ADOPT, R0 §7.1) |
 | `LifecycleState` | From `_STATUS.md` (`IN_PROGRESS` / `OPEN`). (CAND §2) |
 | `AssessmentEvidence` | (MR-1 REVISE, R0 §7.1) AssessmentEvidence carries exactly one of `OVERTAKEN` · `STILL CURRENT` · `NOT APPLICABLE`, and no other token's phrase anywhere in the cell. `NOT APPLICABLE` only when the INSP-03 assessment reached no conclusion on this claim. A recorded MATCH or PASS that no longer reproduces at the frozen basis is `OVERTAKEN`. `STALE_ASSESSMENT` is reserved for rows where the overtaken conclusion is the operative defect. Where the assessment predates the SoW, cite the old REQ-ID it discussed, or write "no direct conclusion" (MR-9 ADOPT, R0 §7.1). |
 | `DirectionEvidence` | (DirectionEvidence REVISE, R0 §7.2) DirectionEvidence cites the explaining record with a class prefix: `CTX:<path §>` for a CONTEXT source, or `GOV:<ruling>` when a GOVERNING ruling itself explains the divergence. Before writing `NONE_FOUND`, the worker must search `_DECISIONS/_REGISTER.md` and the CONTEXT sources, and name the search in Notes. CONTEXT still never changes a Disposition. [INTEG] On `ALIGNED` and `NOT_AUDITABLE` rows (no divergence to explain) write `NOT_APPLICABLE` (CAND §2). Every other row starts `CTX:` or `GOV:`, or is exactly `NONE_FOUND`. Several records: `CTX:a; GOV:b` (the first must carry a prefix; give each one its own). |
-| `PostReleaseBasis` | (PostReleaseBasis REVISE, R0 §7.2) The manager supplies, in each brief, the paths touched by `da95ec194`, `cb08dbe2f`, `9ecbdecdf` and `ccb95e06a` (§9 `TOUCHED_PATHS.csv`). For a cited file on that list, the worker runs read-only `git -C <frozen> blame -L` on the relied-on lines, and sets `YES` if any line blames to one of the four commits. Otherwise `NO`. Line citations inside touched files are taken at the frozen basis. [INTEG] Read-only `git -C <frozen> blame -L` on those lines is the only git a worker runs. |
+| `PostReleaseBasis` | (PostReleaseBasis REVISE, R0 §7.2) The manager supplies, in each brief, the paths touched by `da95ec194`, `cb08dbe2f`, `9ecbdecdf` and `ccb95e06a` (§9 `TOUCHED_PATHS.csv`). For a cited file on that list, the worker runs read-only `git -C <frozen> blame -L` on the relied-on lines, and sets `YES` if any line blames to one of the four commits. Otherwise `NO`. Line citations inside touched files are taken at the frozen basis. [A0] Git permitted to children is read-only `git -C <frozen> log`, `show` and `blame -L` against the frozen tree only (`RUN_BASIS.md` Addendum 1); nothing against the working repository. |
 | `Disposition` | §2.6. |
 | `CauseTag` | §4. `NONE` only on `ALIGNED` and `NOT_AUDITABLE` rows. (CAND §2) |
 | `Confidence` | `HIGH` · `MEDIUM` · `LOW`. LOW rows must contain `LEAST-CONFIDENT:` in Notes, with the alternative reading. (CAND §2) |
@@ -308,7 +310,8 @@ python3 <RUN>/_scripts/validate_ledger.py capabilities <files…>_capabilities.c
 - **Out of bounds:** do not read `projects/chirality-runtime/execution/**`, or any other
   project's execution tree.
 - **Write only your assigned output paths.** No edits anywhere else, no test runs, no
-  installs. No git, except read-only `git -C <frozen> blame -L` for PostReleaseBasis (§2.3).
+  installs. Git only as read-only `git -C <frozen> log`, `show` and `blame -L` against the
+  frozen tree (§2.3; `RUN_BASIS.md` Addendum 1).
 
 ## 8. Scope-extension units (Ruling D)
 
@@ -364,15 +367,15 @@ coverage checklist. [INTEG] Unit definitions used by the index:
     (validator warning `W-AUDIT-ONLY`).
 - Validator: the same `ledger` mode; coverage is checked against `EXTENSION_INDEX.csv`
   (`DEC` ← item 3, `SOW` ← item 5, `DOC-<DOCID>` ← that DOCID's units).
-- [INTEG] Wave placement is set by the R2 plan (§10); the default is the governance-and-docs
-  wave (wave 4) for items 4, 6 and 7, and a manager of HELP_HUMAN's choosing for items 3
-  and 5, which cut across packages.
+- [A0] Wave placement (D-APP-129 item D and §10): item 4 is audited **with the PKG-09 wave
+  (wave 5)**. Items 3, 5, 6 and 7 run under one extension manager (`EXT`) that HELP_HUMAN
+  dispatches alongside wave 5.
 
 ## 9. Evidence pack (Ruling C; R0 report §9)
 
 Each R2 WORKING_ITEMS manager builds **one evidence pack** for its package before
 dispatching workers, and puts its path into every worker brief. It contains the five items
-of report §9. [INTEG] File names and formats, so every manager builds it identically:
+of report §9. [INTEG] `[A0]` marks HELP_HUMAN post-review corrections. File names and formats, so every manager builds it identically:
 
 - **Location:** `<RUN>/R2/<PKG-ID>/EVIDENCE_PACK/` (extension managers:
   `<RUN>/R2/EXT/EVIDENCE_PACK/`). Items 1, 2 and 5 are corpus-wide and may be copied
@@ -383,7 +386,7 @@ of report §9. [INTEG] File names and formats, so every manager builds it identi
 | # | File | Header | Content and method |
 |---|---|---|---|
 | 1 | `TOUCHED_PATHS.csv` | `Path,Commit,StartLine,EndLine` | The post-release touched-path list with line ranges. For each path changed by `da95ec194`, `cb08dbe2f`, `9ecbdecdf` or `ccb95e06a` (`git -C <frozen> show --name-only --format= <commit>`) that exists at the frozen basis, one row per maximal run of consecutive lines that `git -C <frozen> blame --line-porcelain 00115c719 -- <path>` attributes to that commit. Line numbers are at the frozen basis. Deleted paths get one row with `StartLine = EndLine = 0`. Sort: Path, StartLine. |
-| 2 | `REACHABILITY.csv` | `Path,Reach,EntryPoint,ImportChain,Basis` | The static reachability map. One row per module under `frontend/src/**`, `frontend/electron/**` and `frontend/app/**`. `Reach` ∈ `LIVE` (reached by static imports from a product entry point: `frontend/app/api/**` routes, `frontend/app/**` pages, `frontend/electron/main.ts`), `LEGACY_ONLY` (reached only through the retained Claude SDK / Pi path, seeded from the `LEGACY-IN-PROCESS:` notes in `R0_CALIBRATION/SURFACES/HARNESS_capabilities.csv` and re-verified from imports), `TEST_ONLY` (reached only from tests) or `UNREACHED`. `ImportChain` is the shortest chain `entry>…>path`. `Basis` = `REACHABILITY(static)@00115c719`. Sort: Path. |
+| 2 | `REACHABILITY.csv` | `Path,Reach,EntryPoint,ImportChain,Basis` | The static reachability map. One row per module under `frontend/src/**` and `frontend/electron/**`, plus `projects/chirality-runtime/packages/*/src/**` (runtime modules are `LIVE` when reached from LIVE App code via `@chirality/runtime-*` imports or from the runtime-service entry the App packages) [A0]. `Reach` ∈ `LIVE` (reached by static imports from a product entry point: `frontend/src/app/api/**` routes, `frontend/src/app/**` pages, `frontend/electron/main.ts`), `LEGACY_ONLY` (reached only through the retained Claude SDK / Pi path, seeded from the `LEGACY-IN-PROCESS:` notes in `R0_CALIBRATION/SURFACES/HARNESS_capabilities.csv` and re-verified from imports), `TEST_ONLY` (reached only from tests) or `UNREACHED`. `ImportChain` is the shortest chain `entry>…>path`. `Basis` = `REACHABILITY(static)@00115c719`. Sort: Path. |
 | 3 | `REFERENCE_HASHES.csv` | `DeliverableID,Document,RecordedSha256,RecordedVerdict,RecomputedSha256,Match` | Hash recomputes of CONTRACT, SPEC and PRD versus each deliverable's `_REFERENCES.md`. `Document` ∈ `CONTRACT`, `SPEC`, `PRD`. `RecordedVerdict` is the `_REFERENCES.md` verdict (e.g. `MATCH`) or `NOT_RECORDED`. `RecomputedSha256` is `shasum -a 256` of `projects/chirality-app-dev/docs/<Document>.md` at the frozen basis. `Match` ∈ `YES`, `NO`, `NOT_RECORDED`. Workers cite it as `HASH-RECOMPUTE@00115c719`. Sort: DeliverableID, Document. |
 | 4 | `DECISION_HITS.csv` | `DeliverableID,DecisionID,Kind,Source,Path,Line,RegisterState` | Per-deliverable decision-register and D-GOV hits. Every `D-APP-nn` and `D-GOV-nn` string in the deliverable's folder (`Source = DELIVERABLE`), plus every register row or ruling record naming the deliverable ID (`Source = REGISTER` or `RULING`). `Kind` ∈ `D-APP`, `D-GOV`. `RegisterState` is the App register State cell for D-APP IDs (first word, e.g. `RULED`, `AWAITING_RULING`) and `ROOT` for D-GOV. Sort: DeliverableID, DecisionID, Path, Line. |
 | 5 | `D-APP-127_APPLICATION_MAP.csv` | `DeliverableID,Carrier,Revised,Evidence` | The D-APP-127 application map. For each deliverable and each carrier `_STATUS.md`, `ScopeOfWork.md`, `_CONTEXT.md`, `Dependencies.csv`, `_REFERENCES.md`: `Revised` ∈ `YES` (the carrier cites D-APP-127 or D-GOV-43 and states the applied effect), `PARTIAL`, `NO`, `ABSENT` (no such file). `Evidence` is `path:line` of the citation, or `NONE_FOUND`. Sort: DeliverableID, Carrier. |
@@ -404,12 +407,15 @@ of report §9. [INTEG] File names and formats, so every manager builds it identi
 - **Wave order** (report §9), clustered by shared evidence:
   1. legacy-harness cluster (PKG-04, 06, 08, 10), reusing the HARNESS reverse pass;
   2. engine, runtime and session (PKG-03, 05);
-  3. shell and UI (PKG-02, 07), with a new reverse-pass area for
-     `frontend/src/components/**` and `lib/runtime-client/**`;
+  3. shell and UI (PKG-02, 07);
   4. governance and docs (PKG-00, 01);
-  5. release and installer (PKG-09), which carries the retired-deliverable handling.
-  - Add reverse-pass areas for `frontend/electron/**` and
-    `projects/chirality-runtime/packages/**` before PKG-09 and PKG-03.
+  5. release and installer (PKG-09), which carries the retired-deliverable handling, with the
+     extension ledgers (§8).
+  - [A0, D-APP-129 ruling C] **The remaining 10 reverse-pass areas run first, under their
+    own manager (R1b), before any wave**: ELECTRON, BUILD, ROUTES, SHELL, WOVEN, WORKSPACE,
+    SETTINGS, RTCORE, RTCONTRACT, INSTRUCTIONS (HARNESS was done in R0). This supersedes the
+    report's placement of new areas within waves. At most 3 managers run concurrently;
+    HELP_HUMAN schedules packages in the order above as manager slots free.
 - **Double-blind rule** (Double-blind ADOPT, R0 §7.2; report §9): one double-blind
   deliverable per wave — two independent workers, compared by
   `R0_CALIBRATION/_scripts/double_blind.py`.

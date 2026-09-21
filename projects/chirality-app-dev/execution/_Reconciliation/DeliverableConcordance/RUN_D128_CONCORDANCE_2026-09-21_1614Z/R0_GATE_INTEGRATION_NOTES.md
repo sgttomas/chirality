@@ -168,3 +168,18 @@ rows), not as the new tokens.
 
 These failures are expected. They are the new rules applied to ledgers written under the
 candidate conventions, and they are not findings against the R0 workers.
+
+
+## Post-integration note (HELP_HUMAN, 2026-09-21)
+
+This file records the integration step as returned. Since then, HELP_HUMAN has made these changes:
+
+- D-APP-129 is recorded and RULED.
+- `claim_index.py` gained the `SubItems` column, which closes §3.5's sub-item emission.
+- The validator gained `V-SUBITEMS`; pytest now has 75 cases.
+- `CONVENTIONS.md` received `[A0]` corrections after the fresh-context review of PR #838:
+  - the item 4 wave;
+  - reverse-pass areas first (ruling C);
+  - the reachability entry points;
+  - the git allowance;
+  - the SubItems and UNREACHED rules.
