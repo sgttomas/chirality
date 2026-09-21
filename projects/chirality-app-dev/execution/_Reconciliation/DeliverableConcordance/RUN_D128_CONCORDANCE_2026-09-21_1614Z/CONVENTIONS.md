@@ -138,6 +138,28 @@ Extension ledgers (§8) use the same header and different key and file names.
   Done-declaration questions Q-01..Q-13 are not HumanDecisionNeeded tokens (Ruling B:
   CONTEXT only); mention them in Notes if relevant.
 
+**Legacy-versus-live subject test (R4-Q1)** [A0: owner direction `r2_r4q1_subject_test`,
+RUN_BASIS Addendum 6]. It makes precise the §2.3 ImplementationEvidence rule on module-level
+claims:
+
+1. **Decide the subject from the claim text, not from where the code lives.** The subject is
+   *product behaviour* if the claim names the App, the system, the user, a session, a turn or
+   an agent run; states an observable outcome (something allowed, blocked, recorded, shown or
+   sent); or states a guarantee or control (permission, path containment, hooks, redaction,
+   approval), even when the text also names the component meant to provide it. The subject
+   is *the module* only if the claim names a specific code unit (class, function, file, tool
+   or API) and describes only that unit's own contract (inputs, outputs, structure), with no
+   outcome the product can observe.
+2. **If the text supports both readings, treat it as product behaviour** and judge it on the
+   live path (§2.3).
+3. **R4-Q1 is cited by evidence, not by opinion.** Cite `R4-Q1` in HumanDecisionNeeded on every
+   row where the only code meeting the claim is tagged `REACH=LEGACY_ONLY`, whether the row is
+   judged on the live path or at module level. Rows met by `LIVE` code, and rows with no code
+   evidence, do not cite R4-Q1 for this reason.
+4. **Record the other reading.** On a product-behaviour row met only by legacy code, add
+   `ALSO_MODULE:<verdict>` to Notes, giving the verdict a module-level reading would have
+   produced.
+
 **VerificationEvidence tokens** (MR-10 REVISE, R0 §7.1). Non-behavioural claims use:
 
 - `DOC-BASIS(D-APP-nn)`; `RUN-INSPECTION@00115c719`; `RULING-RECORD(D-APP-nn)`;

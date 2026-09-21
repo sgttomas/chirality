@@ -129,6 +129,14 @@ SHA-256: `97b37a0e13a635793a63bb551d330177796eff7261ce73fce9a18f435d56a370`
 
 Context for `r2_tiebreak_adopt`: approves the tie-break wording HELP_HUMAN drafted under `r2_tiebreak_q4` (applied as RUN_BASIS Addendum 5 and CONVENTIONS §2.6). "Those 2 instances" are the DEL-06-02 double-blind keys where the workers split between IMPLEMENTED_DIFFERENTLY and STALE_SPECIFICATION (CLM-005, CLM-032).
 
+## r2_r4q1_subject_test
+
+> Approved, adopt it and send it to the running managers
+
+SHA-256: `75a027b0140020bb7a6a8c8339b1e9c63c5bb33c625dcb6ec833ff6e959978a0`
+
+Context for `r2_r4q1_subject_test`: approves, as drafted, the legacy-versus-live subject test for R4-Q1 that HELP_HUMAN wrote at the owner's request ("Yes, draft the R4-Q1 subject test."), after PKG-04's DEL-04-03 attempts disagreed on R4-Q1 rows (20, 4, 1). Applied as RUN_BASIS Addendum 6 and CONVENTIONS §2.4.
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the

@@ -241,3 +241,18 @@ agreement 19/35), where most splits fell between these two verdicts.
   rule. Both workers' verdicts stand side by side (worker A's ledger of record and worker B's
   ledger in `R2/PKG-06/DEL-06-02_B/`). R3 must not resolve them and carries both to R4 as
   owner-deferred items; the owner will decide after reviewing the surrounding context.
+
+## Addendum 6: legacy-versus-live subject test for R4-Q1 (appended 2026-09-21)
+
+Owner direction `r2_r4q1_subject_test` (OWNER_DIRECTION.md, SHA-256 `75a027b0…978a0`) adopts
+the subject test now in CONVENTIONS §2.4. It answers PKG-04's finding that three independent
+DEL-04-03 attempts cited R4-Q1 on 20, 4 and 1 rows, depending on whether the worker read a
+requirement as product behaviour or as about the retained module.
+
+- **Scope.** Forward passes not yet sealed at adoption, and every later wave. Sealed ledgers are
+  not edited. R3 re-derives R4-Q1 on sealed rows by rule 3, by script from the REACH tags, and
+  records each change it makes.
+- **Expected effect.** Legacy-heavy packages show more R4-Q1 rows and fewer ALIGNED rows than a
+  module-level reading gives. Every such row waits on the owner's R4-Q1 ruling.
+- **Verifiers** grade new ledgers against the test. Where rule 1 still leaves the subject
+  genuinely open, rule 2 decides it, so CONTESTED on subject grounds should become rare.
