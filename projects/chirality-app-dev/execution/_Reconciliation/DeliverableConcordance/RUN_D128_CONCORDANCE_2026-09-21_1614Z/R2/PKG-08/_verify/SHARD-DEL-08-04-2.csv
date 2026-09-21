@@ -1,0 +1,27 @@
+Unit,Class,ClaimKey,CapabilityID,ErrataField,Reason
+DEL-08-04,b,DEL-08-04#CLM-020,,,15% of 7 unselected ALIGNED (n=2)
+DEL-08-04,e,DEL-08-04#SEC-1,,ImplementationEvidence,errata row
+DEL-08-04,e,DEL-08-04#SEC-2.1,,ImplementationEvidence,errata row
+DEL-08-04,e,DEL-08-04#CLM-003.2,,ImplementationEvidence,errata row
+DEL-08-04,e,DEL-08-04#CLM-003.2,,Notes,errata row
+DEL-08-04,e,DEL-08-04#CLM-033,,ImplementationEvidence,errata row
+DEL-08-04,e,DEL-08-04#CLM-010.1,,Notes,errata row
+DEL-08-04,e,DEL-08-04#CLM-010.2,,ImplementationEvidence,errata row
+DEL-08-04,e,DEL-08-04#CLM-016.2,,ImplementationEvidence,errata row
+DEL-08-04,e,DEL-08-04#CLM-016.3,,ImplementationEvidence,errata row
+DEL-08-04,e,DEL-08-04#CLM-016.7,,ImplementationEvidence,errata row
+DEL-08-04,e,DEL-08-04#REM-2,,ImplementationEvidence,errata row
+DEL-08-04,e,DEL-08-04#SEC-2.3,,Disposition,errata row
+DEL-08-04,e,DEL-08-04#SEC-2.3,,CauseTag,errata row
+DEL-08-04,e,DEL-08-04#SEC-2.3,,DirectionEvidence,errata row
+DEL-08-04,e,DEL-08-04#SEC-2.3,,RemainingWork,errata row
+DEL-08-04,e,DEL-08-04#CLM-016.4,,Disposition,errata row
+DEL-08-04,e,DEL-08-04#CLM-016.4,,CauseTag,errata row
+DEL-08-04,e,DEL-08-04#CLM-016.4,,DirectionEvidence,errata row
+DEL-08-04,e,DEL-08-04#CLM-016.4,,RemainingWork,errata row
+DEL-08-04,c,DEL-08-04#CLM-010.2,CAP-HARNESS-043,,PARTIAL 20% of 23 (n=5)
+DEL-08-04,c,DEL-08-04#CLM-003.2,CAP-HARNESS-056,,CLAIMED_BY 20% of 23 (n=5)
+DEL-08-04,c,DEL-08-04#CLM-016.1,CAP-RTCORE-024,,PARTIAL 20% of 23 (n=5)
+DEL-08-04,c,DEL-08-04#CLM-016.3,CAP-RTCORE-037,,PARTIAL 20% of 23 (n=5)
+DEL-08-04,c,DEL-08-04#SEC-2.2,CAP-WORKSPACE-038,,PARTIAL 20% of 23 (n=5)
+#END
