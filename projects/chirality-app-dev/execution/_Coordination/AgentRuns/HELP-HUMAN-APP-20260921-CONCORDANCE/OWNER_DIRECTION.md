@@ -153,6 +153,14 @@ SHA-256: `9ebeaaa187e2a15851b454fb217838d09cf1e97d2f5a54a6bcc8923897127430`
 
 Context for `r2_r4q6_answer`: the owner's reply to HELP_HUMAN's proposed R4-Q6 (whether the unamended App DIRECTIVE §2.8, §2.10, §4.1, §4.2 and K-PERM-1/6 still bind the Codex-hosted App, or D-GOV-43 superseded them). HELP_HUMAN reads it as (1) adding R4-Q6 and (2) the owner's answer to it: superseded. The owner also gave a sequence: the Codex-hosted App first, local-model hosting later, and an API-hosted path no sooner than after that. This transcribes direction; it is not a register ruling. Applied as RUN_BASIS Addendum 9.
 
+## r2_absence_not_evidence
+
+> yeah notarization was done for `v3.0.1` as it was for `v3.0.0` , we can address that when it comes up.  But a lack of evidence is not evidence of lack.  Check with me first about what I did and didn't see happen.
+
+SHA-256: `344ed714809e8c59291634bac0196b5a770df60ea52ed265ef2d68d66c38fc50`
+
+Context for `r2_absence_not_evidence`: the owner's reply to HELP_HUMAN's report of the EXT audit. That report relayed EXT findings that release steps including "v3.0.1 notarization" never ran, based on the absence of records within the evidence roots. The owner states that v3.0.1 was notarized, as v3.0.0 was, and directs that absence of a record not be taken as absence of the event: HELP_HUMAN is to check with the owner about what the owner did and did not see happen. Applied as RUN_BASIS Addendum 10.
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the

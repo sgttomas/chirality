@@ -305,3 +305,28 @@ Owner direction `r2_r4q6_answer` (OWNER_DIRECTION.md, SHA-256 `9ebeaaa1…27430`
   which stay with their own clusters and R4-Q1/Q3/Q5.
 - CONVENTIONS §2.4 and §10 list R4-Q6. The validator accepts it, including for AUTHORITY_CONFLICT,
   and a test covers it. Sealed ledgers keep plain `R4`; R3 maps them.
+
+## Addendum 10: absence is not evidence of absence; owner check before conclusions (appended 2026-09-21)
+
+Owner direction `r2_absence_not_evidence` (OWNER_DIRECTION.md, SHA-256 `344ed714…8fc50`).
+
+- **Owner statement of fact, recorded as CONTEXT.** v3.0.1 was notarized, as v3.0.0 was. It is not
+  applied to any row now; the owner will address it when it comes up (R3/R4).
+- **Rule (CONVENTIONS §2.6).** A claim about whether an action or event happened outside the code,
+  where the only evidence is the absence of a record within the evidence roots, takes `UNKNOWN`
+  with `OWNER_CHECK: <question>` in Notes. Positive evidence either way still counts. Code-presence
+  findings are unaffected.
+- **HELP_HUMAN correction.** HELP_HUMAN's EXT report relayed "15 rows record processes that never
+  ran" (including v3.0.1 notarization) as if established. They rest on missing records, and are
+  treated as owner-check candidates, not findings.
+- **Sealed ledgers** are not edited. R3 identifies every sealed row whose conclusion rests only on
+  an absent record of an off-code event. It does so by script (for example `NONE_FOUND` evidence
+  on process or event claims, and "never ran / not performed / no record" phrasing), plus the
+  managers' OWNER_CHECK candidate lists and the EXT release-doc rows. It re-maps those rows to
+  `UNKNOWN` + `OWNER_CHECK`, and records each re-mapping.
+- **Owner check before R4 packets.** R3 compiles all OWNER_CHECK questions into one
+  `R3/OWNER_CHECK.md` questionnaire, grouped by event. HELP_HUMAN puts it to the owner **before**
+  building the R4 packets. The owner's answers are recorded verbatim as owner direction, and the
+  affected rows are dispositioned from them. An answer the owner cannot give stays `UNKNOWN`.
+- **Distribution.** Relayed to the PKG-09 manager (the only manager running) for workers not yet
+  sealed and for its verifiers.

@@ -218,6 +218,19 @@ Meaningful only on `REMAINING_WORK` rows:
 - `NOT_AUDITABLE`: `CONTEXT_CLAIM` rows with nothing to check; say why in Notes.
   (NOT_AUDITABLE ADOPT, R0 §7.2)
 
+**Absence is not evidence of absence** [A0: owner direction `r2_absence_not_evidence`, RUN_BASIS
+Addendum 10]. A claim may be about whether an action or event happened outside the code:
+notarization, signing, publication, a release or CI job run, an attestation, a manual or human
+step, or a credentialed operation. If the only evidence is that no record exists within the
+evidence roots:
+- the Disposition is `UNKNOWN`, never `DOCUMENTED_UNIMPLEMENTED`, and never wording such as
+  "never ran";
+- Notes carry `OWNER_CHECK: <one-line question for the owner>`.
+
+Positive evidence either way counts as usual, for example a failed job log or a script that
+hard-fails. Code-presence findings are unaffected: whether code exists and is reached is judged
+from the code.
+
 MR-8 (iv): a claim true only of a recorded snapshot (for example "REF-006 MATCH at v23") is
 a REGISTER row (MR-5), not `STALE_SPECIFICATION`.
 
