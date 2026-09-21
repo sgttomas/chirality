@@ -8,7 +8,7 @@
 
 ## Remaining
 - Define the concrete path-glob syntax and hook API and close DEP-10-02-005 — no live evidence exists yet (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed DEP-10-02-003) (stage-gated: F-APP-3 / PKG-10 future-boundary lane; needs its own decision packet before code)
-- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)

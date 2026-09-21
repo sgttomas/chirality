@@ -14,7 +14,7 @@
   and PEC PRD v2 §15 remain the owners of the one-daemon/no-dual-loop and
   human-only-act restrictions (gated: PEC-owned evidence and separate App
   owner acceptance).
-- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
 
 ## History
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

@@ -8,7 +8,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
 
 ## History
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.

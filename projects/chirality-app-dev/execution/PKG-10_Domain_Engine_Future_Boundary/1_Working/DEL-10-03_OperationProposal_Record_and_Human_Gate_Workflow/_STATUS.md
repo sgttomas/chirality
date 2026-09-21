@@ -9,7 +9,7 @@
 
 ## Remaining
 - Land the open_pipe_stress-scoped proposal transport (domain_proposal_validate live via operation_applier.validate) — already inside the D-APP-50 ruling's grant (source: D-APP-53 packet §4 / D-APP-50 ruling; Receipt 4) (stage-gated: piping-side operation_applier.validate transport soundness)
-- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2; four documents non-empty)

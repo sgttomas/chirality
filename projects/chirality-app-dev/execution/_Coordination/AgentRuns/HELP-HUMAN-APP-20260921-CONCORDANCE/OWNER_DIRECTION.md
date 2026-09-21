@@ -73,6 +73,12 @@ SHA-256: `8804d47a64a3753ec13b5796037344d5357bbbde848b1f2216a5a3f4fa2b94fd`
 
 SHA-256: `1655aed0a99f348fba2b6b2fcc2e35e4623c187f38f36f31350e9d719ce7aba4`
 
+## ruling_d_app_128
+
+> First pull origin/main into this worktree and use that as your baseline.  I accept the changes you identified since the v3.0.1 release.  Then D-APP-128: Option A; §6 as recommended.
+
+SHA-256: `ee3c2f6c5af71780e2ae8cbdbcef2c683b3ee06bf32dd315a4716b6c0f6815fc`
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the

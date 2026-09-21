@@ -26,7 +26,7 @@ remains:
   navigator result is re-evidenced against the successor packaging/runtime
   identity bytes. This is a non-blocking rerun advisory until that trigger
   fires. (gated: accepted and landed D-APP-88 distinct-helper implementation)
-- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1/P2)

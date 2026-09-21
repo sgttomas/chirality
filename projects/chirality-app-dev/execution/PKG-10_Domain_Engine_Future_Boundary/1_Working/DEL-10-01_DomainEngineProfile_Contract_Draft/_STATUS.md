@@ -11,7 +11,7 @@
 
 - Register PEC as a shared-runtime project client while preserving profile-owned deterministic acts, RBAC, data boundaries, human gates, and scratch/demo-only pilot authority (gated: D-T0-23/D-PEC-56 migration).
 - Advance the domain engine beyond the currently authorized staged, read-only boundary only through a new owner ruling that names the next tier-0 capability and its verification evidence. Preserve the F-APP-3 stepwise lane, keep apply-class exposure excluded unless separately ruled, and coordinate the bounded contracts in DEL-10-02..DEL-10-05 (governed by D-APP-50 and D-APP-53; gated: new owner ruling).
-- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2; four documents present and non-empty)
