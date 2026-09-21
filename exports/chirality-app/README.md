@@ -1,7 +1,9 @@
 # Chirality App Public Export
 
 This export profile builds the curated `chirality-app` desktop release
-repository from the public canonical `chirality` source tree.
+repository from the public canonical `chirality` source tree. It projects the
+public desktop application source to `desktop/` and the generic runtime to
+`runtime/`, keeping both separate from the framework projection at the root.
 
 The projection is allowlist-based. Non-release projects, domain repositories,
 migration records, historical plans, source corpora, archives, dependency
@@ -18,8 +20,9 @@ scope because authority verification depends on them; private-project TRB
 briefs and the practitioner-development backlog are explicitly excluded.
 
 D-GOV-20 adds the generic `runtime/` workspace, bundled CLI, provider-neutral
-contracts, and safe engine adapters to the public boundary. Export policy
-continues to exclude credentials,
+contracts, and safe engine adapters to the public boundary. The public desktop
+application source is projected from `projects/chirality-app-dev/frontend/`.
+Export policy continues to exclude credentials,
 user-data and machine-registration state, logs, downloaded models, private PEC
 or Piping adapters, and private project manifests/evidence.
 
