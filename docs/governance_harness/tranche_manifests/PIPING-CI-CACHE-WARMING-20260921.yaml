@@ -1,6 +1,6 @@
 schema: instruction-tranche-manifest/v1
 tranche_id: PIPING-CI-CACHE-WARMING-20260921
-title: Prepare reusable Piping browser dependency caches on main
+title: Prepare reusable Piping browser caches and observed scheduling data
 date: 2026-09-21
 basis: 9bff54a7e836b187576059b8dd57491028fdb437
 instruction_surface_paths:
@@ -13,7 +13,9 @@ m2_gate:
     the Piping UI run's OWNER_CI_ECONOMY_DIRECTION_2026-09-20.md. This bounded
     follow-up prepares dependency caches on trusted main without removing tests,
     changing coverage gates, modifying the shared setup action, or changing
-    repository permissions/protection. Peer dev - app acknowledged ROOT as sole
+    repository permissions/protection. The same follow-up refreshes Piping-only
+    duration hints from the completed PR832 run without changing selection,
+    grouping, fallback/skip weights, timeouts or test oracles. Peer dev - app acknowledged ROOT as sole
     writer for the new Piping-specific workflow and its bounded associated work.
   authorized_by: Ryan Tufts
   authorization_date: 2026-09-20
@@ -36,3 +38,4 @@ candidate_paths:
   - projects/chirality-piping/tests/test_ci_e2e_plan.py
   - projects/chirality-piping/docs/CI_STRATEGY.md
   - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-21_CI_CACHE_WARMING.md
+  - projects/chirality-piping/tools/ci/e2e_duration_hints.json
