@@ -184,12 +184,12 @@ def test_mr11_authority_conflict_needs_r4(env):
 
 # ---------------------------------------------------------------- HumanDecisionNeeded
 
-@pytest.mark.parametrize("val", ["NO", "R4", "R4-Q1", "R4-Q2", "R4-Q3", "R4-Q4", "R4-Q5", "D-APP-117", "D-GOV-43", "R4-Q1; D-APP-127"])
+@pytest.mark.parametrize("val", ["NO", "R4", "R4-Q1", "R4-Q2", "R4-Q3", "R4-Q4", "R4-Q5", "R4-Q6", "D-APP-117", "D-GOV-43", "R4-Q1; D-APP-127"])
 def test_hdn_passes(env, val):
     assert "HDN" not in rules(run_ledger(env, [divergent(HumanDecisionNeeded=val)]))
 
 
-@pytest.mark.parametrize("val", ["R4-Q6", "maybe", "NO; R4", "Q-01"])
+@pytest.mark.parametrize("val", ["R4-Q7", "maybe", "NO; R4", "Q-01"])
 def test_hdn_fails(env, val):
     assert "HDN" in rules(run_ledger(env, [divergent(HumanDecisionNeeded=val)]))
 

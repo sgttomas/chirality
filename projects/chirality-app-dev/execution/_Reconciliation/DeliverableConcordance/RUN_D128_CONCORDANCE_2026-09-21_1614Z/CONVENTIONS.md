@@ -122,7 +122,7 @@ Extension ledgers (§8) use the same header and different key and file names.
 - `NO`;
 - an existing decision ID, `D-APP-nn` or `D-GOV-nn` [INTEG: D-GOV per MR-7];
 - `R4`: needs an owner ruling not yet framed;
-- one of the **named R4 questions** (Ruling C; R4-Q4 and R4-Q5 added by Addenda 4 and 7). Cite the named question instead of
+- one of the **named R4 questions** (Ruling C; R4-Q4, R4-Q5 and R4-Q6 added by Addenda 4, 7 and 9). Cite the named question instead of
   plain `R4` whenever the row turns on it:
   - `R4-Q1`: the legacy in-process harness versus the live Codex path, i.e. whether retained
     harness code is history, compatibility or obligation (K-PATH, K-ROOT, K-HOOK, SPEC
@@ -137,6 +137,12 @@ Extension ledgers (§8) use the same header and different key and file names.
   - `R4-Q5` [A0: owner direction `r2_r4q5`, RUN_BASIS Addendum 7]: Codex event payloads,
     stored as received (amended CONTRACT K-EVENT-1/K-EVENT-6, SPEC §11) or translated
     (unamended K-ENGINE-4, SPEC §10.3)?
+  - `R4-Q6` [A0: owner direction `r2_r4q6_answer`, RUN_BASIS Addendum 9]: do the unamended App
+    DIRECTIVE clauses (§2.8, §2.10, §4.1, §4.2) and CONTRACT K-PERM-1/K-PERM-6 still bind the
+    Codex-hosted App, or did D-GOV-43 supersede them? Covers the Anthropic API-key UI, the live
+    "Full access" option and the unfiltered `~/.codex` link. The owner has answered it
+    (Addendum 9), but the answer becomes GOVERNING only when the R4 ruling records it. Until then,
+    dispositions follow §1 and §2.6 unchanged.
 - [INTEG] Several values are `;`-separated (e.g. `D-APP-117; R4-Q1`); `NO` stands alone.
   Done-declaration questions Q-01..Q-13 are not HumanDecisionNeeded tokens (Ruling B:
   CONTEXT only); mention them in Notes if relevant.
@@ -469,5 +475,5 @@ of report §9. [INTEG] `[A0]` marks HELP_HUMAN post-review corrections. File nam
   shards; selection class (a) = all LOW, self-flagged, `AUTHORITY_CONFLICT`, `UNKNOWN`,
   `REMAINING_WORK` and errata rows, plus 30% of other non-ALIGNED rows.
 - **R4 citations** (Ruling C): rows turning on the framed questions cite `R4-Q1`,
-  `R4-Q2`, `R4-Q3`, `R4-Q4` or `R4-Q5` (§2.4) instead of plain `R4`. The done-declaration's Q-01..Q-13 go to
+  `R4-Q2`, `R4-Q3`, `R4-Q4`, `R4-Q5` or `R4-Q6` (§2.4) instead of plain `R4`. The done-declaration's Q-01..Q-13 go to
   R4 separately (Ruling B).

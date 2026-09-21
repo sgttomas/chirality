@@ -55,7 +55,7 @@ VOCAB_COLS = {"ClaimType": CLAIM_TYPES, "Disposition": DISPOSITIONS, "AuthorityT
 
 DECISION = r"D-(?:APP|GOV)-\d+"
 LATEST = re.compile(rf"^(?:NONE_FOUND|{DECISION}(?: \(context\))?)$")
-HDN_TOKEN = re.compile(rf"^(?:NO|R4|R4-Q[1-5]|{DECISION})$")
+HDN_TOKEN = re.compile(rf"^(?:NO|R4|R4-Q[1-6]|{DECISION})$")
 MOOT = re.compile(r"MOOT:(\S*)")
 MOOT_OK = re.compile(rf"^{DECISION}$")
 SEE = re.compile(r"SEE:(\S+)")
@@ -285,9 +285,9 @@ def check_row(r, loc, cls, doc_audit_only, rep):
     else:
         parts = [p.strip() for p in hdn.split(";")]
         if not all(HDN_TOKEN.match(p) for p in parts) or ("NO" in parts and len(parts) > 1):
-            rep.err("HDN", f"{loc}: HumanDecisionNeeded {hdn!r} must be NO, or ';'-separated R4, R4-Q1..R4-Q5, D-APP-nn, D-GOV-nn")
+            rep.err("HDN", f"{loc}: HumanDecisionNeeded {hdn!r} must be NO, or ';'-separated R4, R4-Q1..R4-Q6, D-APP-nn, D-GOV-nn")
     # MR-11 AUTHORITY_CONFLICT
-    if disp == "AUTHORITY_CONFLICT" and not re.search(r"(?:^|;)\s*R4(?:-Q[1-5])?\s*(?:;|$)", hdn):
+    if disp == "AUTHORITY_CONFLICT" and not re.search(r"(?:^|;)\s*R4(?:-Q[1-6])?\s*(?:;|$)", hdn):
         rep.err("MR-11", f"{loc}: AUTHORITY_CONFLICT requires HumanDecisionNeeded R4 or R4-Qn")
     for col in ("NormativeSource", "ImplementationEvidence", "VerificationEvidence", "RemainingWork"):
         if not r[col].strip():

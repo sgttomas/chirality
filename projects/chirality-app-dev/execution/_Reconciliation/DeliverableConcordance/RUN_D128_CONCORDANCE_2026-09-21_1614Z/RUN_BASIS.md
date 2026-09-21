@@ -281,3 +281,27 @@ say how to treat a claim met partly by `LEGACY_ONLY` code and partly by `TEST_ON
   otherwise only by test code cites R4-Q1.
 - **Distribution.** Sent to the PKG-09, PKG-01 and EXT managers for workers not yet sealed. R3 applies
   it to every sealed ledger by script from the REACH tags, together with rule 3.
+
+## Addendum 9: named question R4-Q6 and the owner's recorded answer (appended 2026-09-21)
+
+Owner direction `r2_r4q6_answer` (OWNER_DIRECTION.md, SHA-256 `9ebeaaa1…27430`).
+
+- **R4-Q6.** Do the unamended App DIRECTIVE clauses (§2.8, §2.10, §4.1, §4.2) and CONTRACT
+  K-PERM-1/K-PERM-6 still bind the Codex-hosted App, or did D-GOV-43 supersede them? It covers the
+  Anthropic API-key UI, the live "Full access" option and the unfiltered `~/.codex` link. Proposed
+  by the PKG-01 manager and broadened by HELP_HUMAN to the DIRECTIVE-versus-D-GOV-43 cluster (also
+  PKG-02 DEL-02-05 and PKG-04 DEL-04-01/04-05).
+- **The owner's answer, recorded ahead of R4.** D-GOV-43 superseded those governance texts, so that
+  the Codex-hosted App publishes first. Local-model hosting comes later, and an API-hosted path no
+  sooner than after that.
+- **Status.** This is an owner direction in session, not yet a register ruling. Per the authority
+  map (§5) and CONVENTIONS §1, R2 dispositions are unchanged: AUTHORITY_CONFLICT rows stay as sealed
+  and cite R4-Q6. The R4 ruling record transcribes this answer as its R4-Q6 clause, with the affected
+  row population. R3 builds that packet as **pre-answered**: its purpose is to confirm the row
+  population and the repair direction (deliverable and DIRECTIVE text change, code stands), not to
+  re-ask the question.
+- **Scope of the answer as HELP_HUMAN reads it.** It resolves authority and sequence only. It does not
+  itself rule on the separate live-path findings (event redaction, protected paths, human gate),
+  which stay with their own clusters and R4-Q1/Q3/Q5.
+- CONVENTIONS §2.4 and §10 list R4-Q6. The validator accepts it, including for AUTHORITY_CONFLICT,
+  and a test covers it. Sealed ledgers keep plain `R4`; R3 maps them.

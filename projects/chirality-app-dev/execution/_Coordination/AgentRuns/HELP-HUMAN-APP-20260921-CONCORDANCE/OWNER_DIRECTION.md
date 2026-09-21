@@ -145,6 +145,14 @@ SHA-256: `fb0fbf2fe681c9820cf76a594289121acde36ea501a42afac5d4ae215461a83b`
 
 Context for `r2_r4q5`: approves HELP_HUMAN's recommendation, after PKG-03 returned, to add named question R4-Q5 on the Codex event-payload conflict (15 AUTHORITY_CONFLICT rows in PKG-03; also seen in R0 and PKG-06). Applied as RUN_BASIS Addendum 7.
 
+## r2_r4q6_answer
+
+> D-GOV-43 superseded the governance files for the very purpose of publishing this Codex-hosted App first, and in the future local-model hosting, and API after that or no sooner at least.
+
+SHA-256: `9ebeaaa187e2a15851b454fb217838d09cf1e97d2f5a54a6bcc8923897127430`
+
+Context for `r2_r4q6_answer`: the owner's reply to HELP_HUMAN's proposed R4-Q6 (whether the unamended App DIRECTIVE §2.8, §2.10, §4.1, §4.2 and K-PERM-1/6 still bind the Codex-hosted App, or D-GOV-43 superseded them). HELP_HUMAN reads it as (1) adding R4-Q6 and (2) the owner's answer to it: superseded. The owner also gave a sequence: the Codex-hosted App first, local-model hosting later, and an API-hosted path no sooner than after that. This transcribes direction; it is not a register ruling. Applied as RUN_BASIS Addendum 9.
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the
