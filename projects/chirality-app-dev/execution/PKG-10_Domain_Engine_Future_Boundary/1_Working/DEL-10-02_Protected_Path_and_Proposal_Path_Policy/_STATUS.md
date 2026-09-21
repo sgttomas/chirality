@@ -8,6 +8,7 @@
 
 ## Remaining
 - Define the concrete path-glob syntax and hook API and close DEP-10-02-005 — no live evidence exists yet (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed DEP-10-02-003) (stage-gated: F-APP-3 / PKG-10 future-boundary lane; needs its own decision packet before code)
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
@@ -25,3 +26,4 @@
 - 2026-07-12 - D-APP-56 R5 P43 applied UPD-092 as an append-only INSP-03 superseding annotation; apply exposure remains excluded; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-149; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

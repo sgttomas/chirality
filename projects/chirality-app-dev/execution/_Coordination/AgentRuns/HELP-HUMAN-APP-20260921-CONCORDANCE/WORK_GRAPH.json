@@ -1,0 +1,145 @@
+{
+  "schema": "ad-hoc-work-graph/v1",
+  "run": "HELP-HUMAN-APP-20260921-CONCORDANCE",
+  "basis": "00115c71931bcae79909602d653740d3bb72dfa1",
+  "scope": "Whole-corpus post-v3 deliverable concordance of the App (54 deliverables) under the Root reconciliation workflow; activated by D-APP-128 (RULED 2026-09-21)",
+  "plan_of_record": "PLAN_OF_RECORD.md",
+  "phase_basis": {
+    "decomposition": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "dependencies": "execution/_Reconciliation/DepClosure/_LATEST.md",
+    "deliverable_binding": "all 54 execution/PKG-*/1_Working/DEL-* via the D-APP-128 bootstrap Remaining items"
+  },
+  "topology": {
+    "mechanism": "Claude Code harness-native descendants (D-GOV-35); nested spawn verified 2026-09-21",
+    "roles": "HELP_HUMAN (Agent 0) -> one WORKING_ITEMS manager per package -> TASK workers; TASK does not delegate",
+    "max_concurrent_agents_including_agent0": 16,
+    "model": "Opus 5, effort high (owner-preset session; children inherit); actual model recorded per dispatch"
+  },
+  "nodes": [
+    {
+      "id": "step0_piping_orientation",
+      "state": "done",
+      "depends_on": [],
+      "blockers": [],
+      "evidence": [
+        "OWNER_DIRECTION.md#plan_amendment_step0"
+      ],
+      "note": "Orientation prompt delivered to owner in chat; not committed; grants nothing to any piping session."
+    },
+    {
+      "id": "P_activation_packet",
+      "state": "done: packet, register row and 54 bootstrap items (seeded gated, since flipped by the ruling); registered checks PASS",
+      "depends_on": [
+        "step0_piping_orientation"
+      ],
+      "blockers": [],
+      "evidence": [
+        "../../_DECISIONS/D-APP-128_PACKET_WHOLE_CORPUS_CONCORDANCE_ACTIVATION_2026-09-21.md",
+        "_run_records/STAGE_P_CHECKS.json",
+        "_run_records/STAGE_P_RULING_CHECKS.json"
+      ]
+    },
+    {
+      "id": "P_ruling_and_merge",
+      "state": "ruled 2026-09-21 (Option A; section 6 as recommended); ruling record, register flip and 54 gate flips on branch; awaiting fresh-context review and merge",
+      "depends_on": [
+        "P_activation_packet"
+      ],
+      "blockers": [
+        "fresh-context review",
+        "CI",
+        "merge to main"
+      ],
+      "note": "Ruling record, register flip, 54 gate flips and pinned SHA; fresh-context review; merge to main before any dispatch.",
+      "evidence": [
+        "../../_DECISIONS/D-APP-128_RULING_2026-09-21.md",
+        "OWNER_DIRECTION.md#ruling_d_app_128"
+      ]
+    },
+    {
+      "id": "R0_freeze_calibrate",
+      "state": "not started",
+      "depends_on": [
+        "P_ruling_and_merge"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "R0_owner_gate",
+      "state": "not started",
+      "depends_on": [
+        "R0_freeze_calibrate"
+      ],
+      "blockers": [
+        "owner rulings: conventions, done declaration, scale-out"
+      ]
+    },
+    {
+      "id": "R1a_deterministic_inventory",
+      "state": "not started",
+      "depends_on": [
+        "P_ruling_and_merge"
+      ],
+      "blockers": [],
+      "note": "D-APP-128 section 6.6 ruled: may run while the R0 gate is pending"
+    },
+    {
+      "id": "R1b_reverse_pass",
+      "state": "not started",
+      "depends_on": [
+        "R0_owner_gate",
+        "R1a_deterministic_inventory"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "R2_package_concordance",
+      "state": "not started",
+      "depends_on": [
+        "R0_owner_gate",
+        "R1b_reverse_pass"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "R3_synthesis",
+      "state": "not started",
+      "depends_on": [
+        "R2_package_concordance"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "R4_owner_decision_gate",
+      "state": "not started",
+      "depends_on": [
+        "R3_synthesis"
+      ],
+      "blockers": [
+        "owner rulings (later D-APP row)"
+      ]
+    },
+    {
+      "id": "R5_authorized_repairs",
+      "state": "not started",
+      "depends_on": [
+        "R4_owner_decision_gate"
+      ],
+      "blockers": []
+    },
+    {
+      "id": "R6_backcheck_close",
+      "state": "not started",
+      "depends_on": [
+        "R5_authorized_repairs"
+      ],
+      "blockers": []
+    }
+  ],
+  "deferred": [
+    {
+      "item": "Authority corpus drift in CONTRACT, SPEC and PRD (deferred by HELP-HUMAN-APP-20260919-LOOP-WORKGRAPH)",
+      "retires_when": "Carried into this run's authority map as a finding; disposition at R4"
+    }
+  ]
+}

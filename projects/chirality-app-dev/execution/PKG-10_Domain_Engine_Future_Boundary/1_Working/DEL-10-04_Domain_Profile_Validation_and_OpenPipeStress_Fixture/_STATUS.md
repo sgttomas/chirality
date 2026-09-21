@@ -8,8 +8,10 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
 
 ## History
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-07-20 - D-APP-70 Option A mapped the two CQ-F1 PEC evidence-driver paths to DEL-10-04 primary while retaining DEL-10-03's proposal-tool verification interest and F-APP-3; the CQ-F1 Remaining entry was closed without authorizing an apply surface or hard-fence crossing; no source, lifecycle, Approval SHA, SOW, or dependency change.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents; P1/P2 complete, four documents non-empty)
 - 2026-05-20 - State set to OPEN (PREPARATION)

@@ -7,6 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
 
 ## History
 - 2026-05-24 - State set to OPEN (ORCHESTRATOR / PKG-00 control-package scaffold)
@@ -23,3 +24,4 @@
 - 2026-07-12 - D-APP-56 R5 P42 applied UPD-081 and UPD-082; D53A/current-snapshot and SCC-002 descriptor repairs complete; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
 - 2026-07-19 - D-APP-68 ruling 1 reconciled live D53A/SAFE_MOVES CLM wording; no Remaining, approval SHA, or lifecycle change; state remains IN_PROGRESS.
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
