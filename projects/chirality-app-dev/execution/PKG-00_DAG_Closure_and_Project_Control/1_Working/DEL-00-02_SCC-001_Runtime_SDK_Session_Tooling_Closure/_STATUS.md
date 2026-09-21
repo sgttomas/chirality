@@ -8,6 +8,7 @@
 
 ## Remaining
 - None.
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
 
 ## History
 - 2026-05-24 - State set to OPEN (ORCHESTRATOR / PKG-00 control-package scaffold)
@@ -27,3 +28,4 @@
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
 - 2026-07-18 - D-APP-65 assigned ResponsibleParty to Ryan Tufts (K-AUTH-1), demonstrator scope, superseding the D-APP-56 R4-P47 deferral; the assignment names the accountable human only — issuance-gate sign-off coordination with DEL-01-03 remains a future act. No state or lifecycle change.
 - 2026-07-19 - D-APP-68 ruling 1 reconciled live D53A/SAFE_MOVES, ResponsibleParty, and Records-source CLM wording; no Remaining, approval SHA, or lifecycle change; state remains IN_PROGRESS.
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

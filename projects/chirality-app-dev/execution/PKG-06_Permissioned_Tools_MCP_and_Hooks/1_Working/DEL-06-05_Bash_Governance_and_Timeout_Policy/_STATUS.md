@@ -7,6 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
 
 ## History
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
@@ -22,3 +23,4 @@
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-129; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
 - 2026-07-19 - D-APP-68 items 3 and 6 managed-child Bash gate and `120000`/`600000` ms timeout policy recorded; no lifecycle, Approval SHA, or Remaining change; state remains IN_PROGRESS.
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

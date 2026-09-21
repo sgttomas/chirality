@@ -9,6 +9,7 @@
 
 ## Remaining
 - Land the open_pipe_stress-scoped proposal transport (domain_proposal_validate live via operation_applier.validate) — already inside the D-APP-50 ruling's grant (source: D-APP-53 packet §4 / D-APP-50 ruling; Receipt 4) (stage-gated: piping-side operation_applier.validate transport soundness)
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents P1/P2; four documents non-empty)
@@ -29,3 +30,4 @@
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
 - 2026-07-18 - D-APP-52 live-LLM demonstration executed as the owner's in-session act (owner at screen, short-lived key never persisted): a live claude-sonnet-5 harness session called domain_propose_operation (propose + refresh) and domain_proposal_validate (twice) against a D-PEC-06-guarded scratch pec server; no accept/screen/apply, force never used; scratch DB deleted after capture. Evidence: Evidence_DAPP52_LIVE_LLM_DEMO_2026-07-18.md + Evidence_DAPP52_LIVE_LLM_DEMO_2026-07-18_summary.json. The "Run the D-APP-52 live-LLM demonstration" Remaining item is discharged and removed; DEP-10-03-004 ruling and open_pipe_stress transport items unchanged. Mechanics by run DAPP52_LIVE_DEMONSTRATION_2026-07-18; no state change.
 - 2026-07-18 - D-APP-65 ruled the DEP-10-03-004 question: D-APP-50/51/52 are precursors to, not the accepted amendment authorizing, domain-engine operation-workflow implementation; the amendment remains a future owner act and the dependency row remains PENDING by design as the defined future gate (F-APP-3 reaffirmed). The "Resolve DEP-10-03-004" Remaining item is discharged; the open_pipe_stress transport item stays. No state or lifecycle change.
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

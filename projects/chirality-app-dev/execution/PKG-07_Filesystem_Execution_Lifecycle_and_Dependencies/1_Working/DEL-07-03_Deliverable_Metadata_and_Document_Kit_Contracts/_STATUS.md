@@ -6,6 +6,10 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+## Remaining
+
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
+
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
@@ -25,3 +29,4 @@
 - 2026-09-05 - DEL-07-03-V3-01 implementation recorded on run branch with fresh review r2 PASS and actual validation evidence; owner merge pending and Remaining retained without duplicate authoring. Premerge actual missing-binding failure deferred to PR CI; lifecycle and Checking Approval SHA unchanged. See `_run_records/TASK_RUN_2026-09-05_APP_LOOP_SHELL_WORKFLOW_CONTRACT.md`.
 
 - 2026-09-06 - DEL-07-03-V3-01 removed from Remaining under its existing “merged with review PASS” condition: PR #733 merged as `8e649eaa51c98459234512b87a3cf9042365dbd7`, exact head `5ffafd710430bf053d5cfaf11129ccc1aa3130e5`, fresh workflow-review-r2 CODE_REVIEW_PASS, and exact-head Harness Pre-merge Validation / governance-harness CI success. Grammar-only record reconciliation; lifecycle and Checking Approval SHA unchanged. See `_run_records/TASK_RUN_2026-09-06_APP_SHELL_RESUME_WORKFLOW_RECONCILIATION.md`. Caller vocabulary, authenticated file writes, canonical filesystem handling, stale-content refusal, and runtime steering remain downstream obligations. No dependency satisfaction or package closure is asserted.
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

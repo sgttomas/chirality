@@ -7,6 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
@@ -26,3 +27,4 @@
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
 - 2026-07-19 - D-APP-68 rulings 1–2 reconciled live SOW-v1/REF-007 and dependency-source CLM locations; no Remaining, approval SHA, or lifecycle change; state remains IN_PROGRESS.
 - 2026-09-04 - D-APP-108 seating pass: the plain-language copy table in `plans/shell-redesign_2026-09-04/03_TARGET_SPEC.md` §10 (SHA-256 `d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45`) is recorded as a candidate amendment to this deliverable's boundary copy, offered and not adopted; DEL-02-01-V3-01's copy pass leaves the professional-boundary copy unchanged. No item seated; no lifecycle, Checking Approval SHA, or dependency change.
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

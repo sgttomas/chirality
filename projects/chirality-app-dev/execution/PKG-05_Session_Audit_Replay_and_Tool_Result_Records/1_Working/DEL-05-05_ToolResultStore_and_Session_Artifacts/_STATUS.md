@@ -12,8 +12,10 @@
   Implementation awaits the later owner ruling on D-APP-116 (gated: D-APP-116);
   the proposed Root-owned storage/cleanup contract and App scope alignment
   remain separately governed prerequisites, not authority created by this packet.
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
 
 ## History
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-09-05 - D-APP-102 packet preparation completed as proposal D-APP-116; implementation remains owner-gated. No lifecycle or Checking Approval SHA change.
 - 2026-09-05 - Remaining marker normalized under D-APP-114 (`SELECTABLE` packet preparation; no scope change).
 - 2026-08-17 - D-APP-102 authorized one bounded planning node to prepare the

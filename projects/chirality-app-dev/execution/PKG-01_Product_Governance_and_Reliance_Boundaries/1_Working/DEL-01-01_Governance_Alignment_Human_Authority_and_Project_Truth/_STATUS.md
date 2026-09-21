@@ -7,6 +7,7 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1_P2)
@@ -26,3 +27,4 @@
 - 2026-07-19 - D-APP-68 rulings 1–2 reconciled live SOW-v1, ResponsibleParty/artifact, and dependency-source CLM wording; no Remaining, approval SHA, or lifecycle change; state remains IN_PROGRESS.
 - 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; v3 Remaining items seeded (1, of which 1 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-09-03 - DEL-01-01-V3-01 executed (v3 pathway development node E; selectable under A12, owner dev-slate selection of 2026-09-03): `Evidence_AT-053_Governed_Basis_2026-09-03.md` and `Evidence_AT-053_Governed_Basis_2026-09-03.json` produced at basis `0c683fb1657706316272951e4c3a0f7781b46009` on branch `codex/app-v3-nodeE-at053-evidence-2026-09-03`, content commit `b5c8fa0679ddab88a04c71ec96225921f5391d66`; run record `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_E_2026-09-03/` (generator `build_at053_evidence.py`, verifier `verify_citations.py`, `CHECKS.json`). Checks: `git diff --check`, repo-wide harness self-check and pytest, APP-HOLD-1 dispatch preflight and register-match scan, D-APP-38 corpus status (v20, no drift), generator `--check`, citation verifier, and the receipt validator — all pass; frontend gates skipped because no product source changed. The record is App evidence for the G0.5/G1 REVIEW, not a verdict; it is revised if the G1 REVIEW returns a gap. Item removed from Remaining. No lifecycle, Checking Approval SHA, dependency, release, or Root change.
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

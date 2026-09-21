@@ -7,9 +7,10 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-None.
+- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision <commit SHA>) (gated: D-APP-128)
 
 ## History
+- 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-09-12 - D-GOV-43 application (`execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md`): the executed daemon stop/restart drain proof (2026-08-15) is preserved as history; on the A2 path interruption is the Runtime service's native interrupt with the interrupt-versus-retirement regression named in `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/HANDOFF.md` section 3, explicit Stop remains the interrupt endpoint, and a renderer disconnect is not an interrupt. S-7 (interruption and denied approval) is the acceptance check. Remaining stays `None.`; no lifecycle, Checking Approval SHA or product change.
 - 2026-09-03 - Restored the structurally required `## Remaining` section with `None.` so deliverable-local discovery can represent the already-cleared scope; Current State, lifecycle, Checking Approval SHA, and dependencies are unchanged.
 - 2026-08-15 - Added and independently reviewed an App-owned integration proof that an accepted turn interrupted while a model activation drains across daemon stop/restart replays exactly one durable terminal outcome; removed the completed Remaining item. Verification ownership remains with DEL-09-03; state remains IN_PROGRESS.
