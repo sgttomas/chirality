@@ -1,0 +1,38 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: PIPING-CI-CACHE-WARMING-20260921
+title: Prepare reusable Piping browser dependency caches on main
+date: 2026-09-21
+basis: 9bff54a7e836b187576059b8dd57491028fdb437
+instruction_surface_paths:
+  - .github/workflows/piping-e2e-cache.yml
+  - docs/governance_harness/tranche_manifests/PIPING-CI-CACHE-WARMING-20260921.yaml
+m2_gate:
+  authorization: >-
+    Owner Ryan Tufts directed effective CI and integration economy: "Make those
+    changes where you find them effective." The exact direction is retained in
+    the Piping UI run's OWNER_CI_ECONOMY_DIRECTION_2026-09-20.md. This bounded
+    follow-up prepares dependency caches on trusted main without removing tests,
+    changing coverage gates, modifying the shared setup action, or changing
+    repository permissions/protection. Peer dev - app acknowledged ROOT as sole
+    writer for the new Piping-specific workflow and its bounded associated work.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-20
+  integration_owner: HELP_HUMAN Agent 0, GPT-6 Astra
+  merge_gate: owner-authorized-pr
+  self_merge: true
+m6_notice:
+  disposition: routed
+  routed_to:
+    - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-21_CI_CACHE_WARMING.md
+  rationale: >-
+    Piping owns this CI follow-up. The peer acknowledged the new workflow scope
+    and canonical-repository/main restriction; existing Root/App/Runtime
+    workflows and public exporter are unchanged. Actual cache writes and later
+    consumer hits remain observations to establish after integration, not
+    inferred qualification or receiving-loop acceptance.
+candidate_paths:
+  - .github/workflows/piping-e2e-cache.yml
+  - docs/governance_harness/tranche_manifests/PIPING-CI-CACHE-WARMING-20260921.yaml
+  - projects/chirality-piping/tests/test_ci_e2e_plan.py
+  - projects/chirality-piping/docs/CI_STRATEGY.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-21_CI_CACHE_WARMING.md
