@@ -113,6 +113,14 @@ SHA-256: `1d76a2731c7288920e91e984b1ad1e3b6dc08cfbc50d7baa33660bb77480225f`
 
 Context for `r2_rerun_rule`: the owner's answer to HELP_HUMAN's wave 1 status proposal (2026-09-21 ~19:50Z) to keep the >10% fresh-worker rerun threshold for verdict errors only, and to record verifier refutations of other fields as corrections, not reruns, with every refuted row still reported for R3. Applied as RUN_BASIS Addendum 3.
 
+## r2_tiebreak_q4
+
+> Yes, write the tie-break wording and add R4-Q4
+
+SHA-256: `264bea63de073570aa8b9c51b836016dbc6d28be0c0a086260e271aafe46a3bd`
+
+Context for `r2_tiebreak_q4`: the owner's answer to HELP_HUMAN's report on PKG-06 and PKG-08 (2026-09-21 ~20:05Z). It asks for (1) draft wording of a STALE_SPECIFICATION / REMAINING_STATE_MISMATCH tie-break rule, to be approved by the owner before adoption, and (2) adds the PKG-08 candidate question as named question R4-Q4 (applied as RUN_BASIS Addendum 4).
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the

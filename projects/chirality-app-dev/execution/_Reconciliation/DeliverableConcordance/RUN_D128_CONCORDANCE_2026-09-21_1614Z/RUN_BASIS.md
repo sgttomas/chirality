@@ -214,3 +214,16 @@ managers still running and for every later wave.
     marked superseded in STATE.jsonl.
   - Any verdict-field refutations in an earlier attempt are listed in VERIFICATION.md, so R3
     can compare the attempts.
+
+## Addendum 4: named question R4-Q4 (appended 2026-09-21)
+
+Owner direction `r2_tiebreak_q4` (OWNER_DIRECTION.md, SHA-256 `264bea63…6a3bd`) adds a
+fourth named R4 question, proposed by the PKG-08 manager:
+
+- **R4-Q4:** is the 2026-09-09 v3 four-role adoption (`9b005c23a`) a governing amendment of
+  SPEC §7 and §13 and the persona and matrix contracts? App PRD, SPEC and CONTRACT were not
+  amended.
+- CONVENTIONS §2.4 and §10 now list it. The validator (`HDN_TOKEN`, MR-11 check) accepts
+  `R4-Q4`, and a test covers it (76 tests pass).
+- Ledgers sealed before this addendum keep plain `R4` on such rows; R3 maps them to R4-Q4 when
+  it clusters. Nobody edits a sealed ledger for this.
