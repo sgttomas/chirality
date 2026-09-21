@@ -3198,7 +3198,7 @@
       "B4-4-CODEX-MANAGER"
     ]
   ],
-  "current_frontier": "DraftPR834 published at339be, local sweep/native/independent publication review and actualhead cheapchecks pass; hostedCI pending before ready/merge. No source edits or new implementation. Compact fit prepared next; helddecisions unchanged.",
+  "current_frontier": "Owner requests pause after PR834 merges. Finish existing hostedCI/merge and graceful records/receipt only; then remain paused until explicit resume. Compact fit stays prepared and owner-held decisions unchanged.",
   "frontier_history": [
     {
       "until": "2026-09-18T19:41Z",
@@ -3439,25 +3439,17 @@
     "nativeHandoff": "Piping released native/CUA/build; peer acknowledged no competing workload. Source/dist5174/5175/sharedE2E reserved for upcoming full sweep."
   },
   "pause": {
-    "ownerText": "with the impending PR, use this as an opportunity to gracefully pause your work until I say resume.",
-    "source": "active chat; supplied text, not transport bytes",
-    "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_GRACEFUL_PAUSE_2026-09-20.md",
-    "recordSha256": "86a9634e9913c8599ab34e4c5dcb8bf3889ef95c59aef411b51c9d0172cfe8f8",
-    "recordedAt": "2026-09-21T02:43:07.088986+00:00",
-    "state": "resumed by explicit owner direction after PR829",
-    "allowedCloseout": "publication records, final checks/backcheck, current B4.1 PR/actual-head CI and merge if passing, pause handoff",
-    "blockedCheckDisposition": "preserve any blocking check and pause with PR open; no new repair tranche",
-    "nextWork": "B4.2 and all other new implementation/preparation unlaunched or held; no ownership transfer",
-    "localResources": "full sweep finished; native apps closed and source/dist ports/shared lock released",
-    "pr": "https://github.com/sgttomas/chirality/pull/829",
-    "candidate": "8f24efd6ece5869a538ca20894d1ae78e59df618",
-    "ci": "all8 actual-head checks SUCCESS before ROOT merge",
-    "merge": "15e8b7a72ce0ed440f1f46b9b6ca83503af9c02c",
-    "resources": "all local Piping apps/tests/servers/ports/locks released; no CI watcher or new implementation",
-    "resume": "explicit resume received; prior pause/closeout remains historical, new scoped B4.2 activated",
-    "resumeOwnerText": "You may resume.",
-    "resumeRecord": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_RESUME_AFTER_PR829_2026-09-20.md",
-    "resumeRecordSha256": "a6bddcb4a67b3aedd55c200815f14512a9df95de2b74cd3a41596acdda2dad4d"
+    "ownerText": "pause your work once this PR is merged.",
+    "source": "active chat; verbatim supplied text",
+    "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_PAUSE_AFTER_PR834_2026-09-21.md",
+    "recordSha256": "01b6db91a17b3c9f24386942cf546dea497b9adab27d8306dd7af73e6967f7a7",
+    "recordedAt": "2026-09-21T14:56:26.043169+00:00",
+    "state": "requested, effective after PR834 merge and graceful closeout",
+    "allowedCloseout": "existing PR834 actual-head gates, merge when passing, traceable evidence/receipt and pause handoff",
+    "pr": "https://github.com/sgttomas/chirality/pull/834",
+    "candidate": "339be6c9ee6616dfd60952957ee193f897bd05aa",
+    "nextWork": "compact drawer fit remains prepared, no new implementation or agent activation",
+    "resources": "no local app/test/browser/build activity; all delegated instances returned"
   },
   "historicalOpenWithOwner": {
     "blocking": [
@@ -3541,6 +3533,27 @@
       "boundedException": "Owner asks one-time reduced CI to complete PR825; ROOT applies to bounded tooltip/Close repair and necessary CI routing only, then pause. OWNER_CI_REPAIR_DIRECTION.md.",
       "latestOwnerText": "that's great, but I still need you to pause work for a moment.  Then I will tell you to resume.",
       "resumeRecord": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_RESUME_2026-09-20.md"
+    },
+    {
+      "ownerText": "with the impending PR, use this as an opportunity to gracefully pause your work until I say resume.",
+      "source": "active chat; supplied text, not transport bytes",
+      "record": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_GRACEFUL_PAUSE_2026-09-20.md",
+      "recordSha256": "86a9634e9913c8599ab34e4c5dcb8bf3889ef95c59aef411b51c9d0172cfe8f8",
+      "recordedAt": "2026-09-21T02:43:07.088986+00:00",
+      "state": "resumed by explicit owner direction after PR829",
+      "allowedCloseout": "publication records, final checks/backcheck, current B4.1 PR/actual-head CI and merge if passing, pause handoff",
+      "blockedCheckDisposition": "preserve any blocking check and pause with PR open; no new repair tranche",
+      "nextWork": "B4.2 and all other new implementation/preparation unlaunched or held; no ownership transfer",
+      "localResources": "full sweep finished; native apps closed and source/dist ports/shared lock released",
+      "pr": "https://github.com/sgttomas/chirality/pull/829",
+      "candidate": "8f24efd6ece5869a538ca20894d1ae78e59df618",
+      "ci": "all8 actual-head checks SUCCESS before ROOT merge",
+      "merge": "15e8b7a72ce0ed440f1f46b9b6ca83503af9c02c",
+      "resources": "all local Piping apps/tests/servers/ports/locks released; no CI watcher or new implementation",
+      "resume": "explicit resume received; prior pause/closeout remains historical, new scoped B4.2 activated",
+      "resumeOwnerText": "You may resume.",
+      "resumeRecord": "instances/ROOT/CONTINUATION_2026-09-19_CODEX/OWNER_RESUME_AFTER_PR829_2026-09-20.md",
+      "resumeRecordSha256": "a6bddcb4a67b3aedd55c200815f14512a9df95de2b74cd3a41596acdda2dad4d"
     }
   ]
 }

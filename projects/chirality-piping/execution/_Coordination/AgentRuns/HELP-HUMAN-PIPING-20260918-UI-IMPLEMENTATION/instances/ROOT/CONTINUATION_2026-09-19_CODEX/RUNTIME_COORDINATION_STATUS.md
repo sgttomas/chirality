@@ -28,3 +28,5 @@ Source5174/dist5175 use swbpipe-e2e.lock; ROOT5183/5184, canvas5185/5186 and Tau
 No silence grants ownership, product choices, acceptance, release, usability/performance qualification or deliverable/DAG reconciliation. Substantive scope/design disagreements return to the owner. Standard F-PIP-2/DEC-081 claim fence applies.
 
 Sections contract clarification: existing atomic batches validate submitted operations in order before one final publication; coupled OD/wall order can matter. Grid Queue remains individual intents. Peer acknowledged preserving this order through preview, frozen proposal, approval, application and idempotency association. Atomic publication does not mean permutation-equivalent validation. This preserves existing semantics and does not expand the pending initial Node-coordinate CLI projection into Sections.
+
+Owner has requested a pause after PR834 merges. ROOT will finish current CI/merge and graceful closeout, then remain paused until explicit resume. No next implementation or new resource reservation.
