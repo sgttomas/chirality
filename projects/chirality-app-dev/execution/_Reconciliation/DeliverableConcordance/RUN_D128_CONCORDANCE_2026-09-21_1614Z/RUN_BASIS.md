@@ -268,3 +268,16 @@ R4 question, proposed after PKG-03:
   AUTHORITY_CONFLICT (MR-11), and a test covers it.
 - Ledgers sealed before this addendum keep plain `R4` on such rows (PKG-03 has 15; R0 and PKG-06
   also have some); R3 maps them to R4-Q5 when it clusters. Nobody edits a sealed ledger for this.
+
+## Addendum 8: HELP_HUMAN reading of Addendum 6 rule 3 (appended 2026-09-21)
+
+This is a HELP_HUMAN (A0) clarification, not an owner direction; the owner may reverse it at any time.
+PKG-07's DEL-07-02 double-blind split on R4-Q1 (worker A 0 rows, worker B 22) because rule 3 did not
+say how to treat a claim met partly by `LEGACY_ONLY` code and partly by `TEST_ONLY` code
+(`scaffold.ts`).
+
+- **Reading.** Cite R4-Q1 only when `LEGACY_ONLY` code is the only code meeting the claim on the
+  product path. `TEST_ONLY` code does not meet a product claim, so a claim met by legacy code and
+  otherwise only by test code cites R4-Q1.
+- **Distribution.** Sent to the PKG-09, PKG-01 and EXT managers for workers not yet sealed. R3 applies
+  it to every sealed ledger by script from the REACH tags, together with rule 3.

@@ -1,0 +1,324 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-BUILD-001,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-002,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-003,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-004,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-005,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-006,NOT_MINE,,"Packaged instruction-root staging is packaging completeness, excluded by CLM-009 and owned by DEL-08-01; no organisation-layer staging found."
+CAP-BUILD-007,NOT_MINE,,"Packaged instruction-root integrity is release/packaging conformance (DEL-08-01 per CLM-009 and _STATUS Depends), not runtime write protection."
+CAP-BUILD-008,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-009,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-010,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-011,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-012,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-013,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-014,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-015,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-016,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-017,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-018,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-019,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-020,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-021,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-022,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-023,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-024,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-025,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-026,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-027,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-028,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-029,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-030,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-031,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-032,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-033,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-034,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-035,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-036,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-037,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-038,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-039,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-040,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-BUILD-041,NOT_MINE,,"Build, packaging, signing or proof tooling; no working-root validation or instruction-root write-protection behaviour."
+CAP-ELECTRON-001,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-002,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-003,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-004,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-005,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-006,CLAIMED_BY,DEL-07-01#CLM-005,Instruction-root resolver with CHIRALITY_INSTRUCTION_ROOT override and packaged Resources is the CLM-005 resolver component (evidence main.ts:408-425).
+CAP-ELECTRON-007,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-008,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-009,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-010,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-011,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-012,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-013,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-014,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-015,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-016,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-017,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-018,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-019,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-020,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-021,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-022,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-023,PARTIAL,DEL-07-01#CLM-025,"Recent-folder registration validates the root with validateRevealRoot (not inside the instruction root); the root-check part bears on the CLM-025 one-containment-model principle, the menu convenience is shell-owned."
+CAP-ELECTRON-024,PARTIAL,DEL-07-01#CLM-025,"Document handoff re-validates containment through file-policy.ts; containment part relates to CLM-025, the handoff feature belongs to the document-viewer deliverable."
+CAP-ELECTRON-025,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-026,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-027,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-028,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-029,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-030,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-031,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-032,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-033,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-034,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-ELECTRON-035,NOT_MINE,,Electron main-process capability outside working-root validation and instruction-root protection.
+CAP-HARNESS-001,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-002,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-003,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-004,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-005,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-006,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-007,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-008,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-009,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-010,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-011,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-012,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-013,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-014,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-015,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-016,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-017,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-018,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-019,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-020,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-021,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-022,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-023,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-024,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-025,CLAIMED_BY,DEL-07-01#CLM-005,Instruction-root resolution and containment check (instruction-root.ts) is the CLM-005 resolver; also cited by CLM-011.3.
+CAP-HARNESS-026,CLAIMED_BY,DEL-07-01#CLM-004,"Working-root admission (absolute, outside instruction root, existing R/W directory) is Conditions rows 1-3, dispositioned per item in CLM-011.1-.3."
+CAP-HARNESS-027,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-028,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-029,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-030,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-031,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-032,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-033,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-034,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-035,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-036,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-037,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-038,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-039,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-040,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-041,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-042,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-043,PARTIAL,DEL-07-01#CLM-011.6,Permission overlay carried the legacy hard instruction-root deny under permissive modes (INSP-03 evidence for REQ-07-01-006); the overlay itself is broader write/permission governance.
+CAP-HARNESS-044,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-045,CLAIMED_BY,DEL-07-01#CLM-011.5,Tool path containment (project root versus instruction root) is REQ-07-01-005 path policy helper; LEGACY_ONLY as in the ledger.
+CAP-HARNESS-046,PARTIAL,DEL-07-01#CLM-011.4,Shell policy blocks instruction-root redirection (legacy); general shell governance is DEL-06-04 scope per CLM-009 exclusion.
+CAP-HARNESS-047,PARTIAL,DEL-07-01#CLM-011.8,Hooks failing closed is REQ-07-01-008; the audit-evidence recording is DEL-06-04 write-surface scope.
+CAP-HARNESS-048,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-049,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-050,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-051,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-052,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-053,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-054,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-055,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-056,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-057,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-058,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-059,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-HARNESS-060,NOT_MINE,,"Harness client or legacy engine capability unrelated to root validation, containment or instruction-root protection."
+CAP-ROUTES-001,PARTIAL,DEL-07-01#CLM-011.11,"Session creation consumes the selected projectRoot; the normalized-root reuse question is CLM-011.11, session creation itself is owned elsewhere."
+CAP-ROUTES-002,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-003,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-004,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-005,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-006,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-007,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-008,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-009,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-010,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-011,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-012,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-013,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-014,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-015,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-016,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-017,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-018,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-019,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-020,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-021,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-022,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-023,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-024,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-025,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-026,CLAIMED_BY,DEL-07-01#CLM-011.11,The /api/working-root/validate endpoint is the REQ-07-01-011 exposure; its checks are dispositioned in CLM-011.1-.3.
+CAP-ROUTES-027,PARTIAL,DEL-07-01#CLM-011.11,Tree route normalizes the root with filesystem.ts rather than the full validator (the reuse gap in CLM-011.11); tree listing is a DEL-02-03 feature.
+CAP-ROUTES-028,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-029,PARTIAL,DEL-07-01#CLM-011.11,Scope route normalizes the root with filesystem.ts rather than the full validator (CLM-011.11 gap); scope scan itself is not DEL-07-01.
+CAP-ROUTES-030,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-031,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-032,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-033,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-034,PARTIAL,DEL-07-01#CLM-025,"Document preview relies on file-policy.ts realpath containment, one of the App root/containment models in CLM-025; preview is the viewer deliverable's."
+CAP-ROUTES-035,PARTIAL,DEL-07-01#CLM-025,Handoff policy re-validation uses the same file-policy.ts containment (CLM-025); handoff actions are not DEL-07-01.
+CAP-ROUTES-036,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-037,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-038,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-039,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-040,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-041,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-042,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-043,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-ROUTES-044,NOT_MINE,,"Route capability outside root validation, path containment and instruction-root protection."
+CAP-RTCONTRACT-001,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-002,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-003,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-004,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-005,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-006,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-007,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-008,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-009,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-010,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-011,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-012,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-013,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-014,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-015,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-016,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-017,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-018,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-019,PARTIAL,DEL-07-01#CLM-011.6,PolicySelection mapping (bypass -> danger-full-access) is the live mechanism that decides instruction-root write protection (CLM-011.4-.6 conflict); the mapping is owned by the permission-mode deliverable.
+CAP-RTCONTRACT-020,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-021,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-022,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-023,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-024,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-025,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-026,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-027,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-028,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-029,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-030,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-031,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-032,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-033,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-034,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-035,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-036,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-037,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-038,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-039,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-040,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-041,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-042,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-043,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-044,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-045,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-046,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-047,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-048,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-049,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-050,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-051,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-052,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCONTRACT-053,NOT_MINE,,Runtime contract surface with no root-validation or instruction-root protection content.
+CAP-RTCORE-001,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-002,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-003,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-004,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-005,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-006,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-007,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-008,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-009,PARTIAL,DEL-07-01#CLM-011.11,"Hosted project registration binds the chat root through the Runtime registry, the other normalizer named in CLM-011.11."
+CAP-RTCORE-010,PARTIAL,DEL-07-01#CLM-011.3,"Registry root resolution rejects overlapping runtime instruction and working roots (project-registry.ts:100-121), cited in CLM-011.3; registry authorization and listing are not DEL-07-01."
+CAP-RTCORE-011,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-012,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-013,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-014,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-015,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-016,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-017,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-018,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-019,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-020,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-021,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-022,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-023,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-024,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-025,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-026,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-027,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-028,PARTIAL,DEL-07-01#CLM-011.5,"Supervisor thread/turn start passes sandboxPolicy (workspaceWrite writableRoots=[cwd]), the live containment mechanism cited in CLM-011.5; thread lifecycle is the engine deliverable's."
+CAP-RTCORE-029,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-030,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-031,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-032,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-033,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-034,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-035,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-036,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-037,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-038,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-039,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-040,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-041,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-042,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-043,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-044,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-045,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-046,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-047,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-048,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-049,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-RTCORE-050,NOT_MINE,,"Runtime core capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-001,PARTIAL,DEL-07-01#CLM-011.11,Selection validates via POST /api/working-root/validate and stores the normalized root (REQ-07-01-011 part); selection UI is DEL-02-03.
+CAP-WORKSPACE-002,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-003,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-004,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-005,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-006,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-007,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-008,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-009,PARTIAL,DEL-07-01#CLM-011.11,normalizeProjectRoot is the weaker normalizer (no instruction-root or R/W check) identified in CLM-011.11; typed workspace errors are not DEL-07-01.
+CAP-WORKSPACE-010,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-011,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-012,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-013,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-014,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-015,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-016,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-017,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-018,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-019,PARTIAL,DEL-07-01#CLM-025,Deliverable-path realpath containment for contract routes is a further App containment model relevant to CLM-025; the contract routes belong to DEL-07-04/05.
+CAP-WORKSPACE-020,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-021,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-022,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-023,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-024,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-025,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-026,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-027,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-028,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-029,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-030,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-031,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-032,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-033,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-034,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-035,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-036,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-037,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-038,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+CAP-WORKSPACE-039,NOT_MINE,,"Workspace/presentation capability outside root validation, containment and instruction-root protection."
+#END
