@@ -1,0 +1,20 @@
+ClaimKey,PackageID,DeliverableID,UnitKind,LocalID,SourceFile,SourceLine,Section,Label,SubItems
+DEL-09-05#SEC-1,PKG-09,DEL-09-05,SEC,SEC-1,ScopeOfWork.md,12,Current Codex MVP conformity,,
+DEL-09-05#CLM-001,PKG-09,DEL-09-05,CLM,CLM-001,ScopeOfWork.md,27,Deliverable Definition — Ontology,Datasheet: DEL-09-05 CI Artifact and Release Verification Workflow,
+DEL-09-05#CLM-002,PKG-09,DEL-09-05,CLM,CLM-002,ScopeOfWork.md,34,Deliverable Definition — Ontology,Identification,
+DEL-09-05#CLM-003,PKG-09,DEL-09-05,CLM,CLM-003,ScopeOfWork.md,52,Deliverable Definition — Ontology,Attributes,
+DEL-09-05#CLM-004,PKG-09,DEL-09-05,CLM,CLM-004,ScopeOfWork.md,69,Deliverable Definition — Ontology,Conditions,
+DEL-09-05#CLM-005,PKG-09,DEL-09-05,CLM,CLM-005,ScopeOfWork.md,83,Deliverable Definition — Ontology,Construction,
+DEL-09-05#CLM-006,PKG-09,DEL-09-05,CLM,CLM-006,ScopeOfWork.md,96,Deliverable Definition — Ontology,References,
+DEL-09-05#CLM-007,PKG-09,DEL-09-05,CLM,CLM-007,ScopeOfWork.md,111,Deliverable Definition — Ontology,D-APP-56 R5 P45 current-state reconciliation (2026-07-12),
+DEL-09-05#CLM-034,PKG-09,DEL-09-05,CLM,CLM-034,ScopeOfWork.md,117,Deliverable Definition — Ontology,"Applied decomposition v3 carrier assignment (SCA-APP-008 Gate 5, 2026-09-03)",
+DEL-09-05#CLM-008,PKG-09,DEL-09-05,CLM,CLM-008,ScopeOfWork.md,131,Completion and Reliance Basis — Epistemology,Specification: DEL-09-05 CI Artifact and Release Verification Workflow,
+DEL-09-05#CLM-009,PKG-09,DEL-09-05,CLM,CLM-009,ScopeOfWork.md,138,Completion and Reliance Basis — Epistemology,Scope,
+DEL-09-05#CLM-010,PKG-09,DEL-09-05,CLM,CLM-010,ScopeOfWork.md,161,Completion and Reliance Basis — Epistemology,Requirements,
+DEL-09-05#CLM-011,PKG-09,DEL-09-05,CLM,CLM-011,ScopeOfWork.md,184,Completion and Reliance Basis — Epistemology,Standards,
+DEL-09-05#CLM-012,PKG-09,DEL-09-05,CLM,CLM-012,ScopeOfWork.md,197,Completion and Reliance Basis — Epistemology,Verification,
+DEL-09-05#CLM-013,PKG-09,DEL-09-05,CLM,CLM-013,ScopeOfWork.md,220,Completion and Reliance Basis — Epistemology,Evidence Matrix,
+DEL-09-05#CLM-014,PKG-09,DEL-09-05,CLM,CLM-014,ScopeOfWork.md,243,Completion and Reliance Basis — Epistemology,Documentation,
+DEL-09-05#CLM-015,PKG-09,DEL-09-05,CLM,CLM-015,ScopeOfWork.md,263,Completion and Reliance Basis — Epistemology,D-APP-56 R5 P45 current-state reconciliation (2026-07-12),
+DEL-09-05#CLM-016,PKG-09,DEL-09-05,CLM,CLM-016,ScopeOfWork.md,270,Completion and Reliance Basis — Epistemology,D-APP-56 CI ownership amendment (2026-07-12),REQ-001|REQ-002|REQ-003|REQ-004|AC-001|AC-002
+#END

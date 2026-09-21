@@ -1,0 +1,4 @@
+ClaimKey,Field,SealedValue,ProposedValue,Evidence
+DEL-08-05#CLM-018.1,Disposition,PARTIALLY_IMPLEMENTED,DOCUMENTED_UNIMPLEMENTED,"projects/chirality-runtime/packages/core/src/runtime-service.ts:664-670 runAgent1 throws REQUIRED_DELEGATION_MISSING when no Agent1RunPort is configured; projects/chirality-runtime/packages/daemon/src/app-owned-composition.ts supplies none (CAP-RTCORE-024 and CAP-RTCONTRACT-048 STATE=DISABLED). The only managed-class AgentRun writer is therefore unreachable in the product, and no native-class writer exists, so no REQ-001 record is produced on the live path."
+DEL-08-05#CLM-018.1,Confidence,LOW,MEDIUM,"The LEAST-CONFIDENT alternative (DOCUMENTED_UNIMPLEMENTED) is confirmed by the disabled runs path above; residual uncertainty is only whether a future composition passes an Agent1RunPort."
+#END

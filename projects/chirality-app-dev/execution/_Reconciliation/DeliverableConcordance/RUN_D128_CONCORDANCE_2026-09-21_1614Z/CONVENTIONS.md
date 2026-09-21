@@ -122,7 +122,7 @@ Extension ledgers (§8) use the same header and different key and file names.
 - `NO`;
 - an existing decision ID, `D-APP-nn` or `D-GOV-nn` [INTEG: D-GOV per MR-7];
 - `R4`: needs an owner ruling not yet framed;
-- one of the three **named R4 questions** (Ruling C). Cite the named question instead of
+- one of the **named R4 questions** (Ruling C; R4-Q4, R4-Q5 and R4-Q6 added by Addenda 4, 7 and 9). Cite the named question instead of
   plain `R4` whenever the row turns on it:
   - `R4-Q1`: the legacy in-process harness versus the live Codex path, i.e. whether retained
     harness code is history, compatibility or obligation (K-PATH, K-ROOT, K-HOOK, SPEC
@@ -130,9 +130,44 @@ Extension ledgers (§8) use the same header and different key and file names.
   - `R4-Q2`: the Codex engine never run through the K-ENGINE-2 conformance suite;
   - `R4-Q3`: the actor check on the legacy `status_transition` tool, which the agent
     supplies itself.
+  - `R4-Q4` [A0: owner direction `r2_tiebreak_q4`, RUN_BASIS Addendum 4]: whether the
+    2026-09-09 v3 four-role adoption (`9b005c23a`; alias map, default role, retired agent
+    matrix and Pipeline surface, new agent-file header format) is a governing amendment of
+    SPEC §7 and §13 and the persona and matrix contracts, which were not amended.
+  - `R4-Q5` [A0: owner direction `r2_r4q5`, RUN_BASIS Addendum 7]: Codex event payloads,
+    stored as received (amended CONTRACT K-EVENT-1/K-EVENT-6, SPEC §11) or translated
+    (unamended K-ENGINE-4, SPEC §10.3)?
+  - `R4-Q6` [A0: owner direction `r2_r4q6_answer`, RUN_BASIS Addendum 9]: do the unamended App
+    DIRECTIVE clauses (§2.8, §2.10, §4.1, §4.2) and CONTRACT K-PERM-1/K-PERM-6 still bind the
+    Codex-hosted App, or did D-GOV-43 supersede them? Covers the Anthropic API-key UI, the live
+    "Full access" option and the unfiltered `~/.codex` link. The owner has answered it
+    (Addendum 9), but the answer becomes GOVERNING only when the R4 ruling records it. Until then,
+    dispositions follow §1 and §2.6 unchanged.
 - [INTEG] Several values are `;`-separated (e.g. `D-APP-117; R4-Q1`); `NO` stands alone.
   Done-declaration questions Q-01..Q-13 are not HumanDecisionNeeded tokens (Ruling B:
   CONTEXT only); mention them in Notes if relevant.
+
+**Legacy-versus-live subject test (R4-Q1)** [A0: owner direction `r2_r4q1_subject_test`,
+RUN_BASIS Addendum 6]. It makes precise the §2.3 ImplementationEvidence rule on module-level
+claims:
+
+1. **Decide the subject from the claim text, not from where the code lives.** The subject is
+   *product behaviour* if the claim names the App, the system, the user, a session, a turn or
+   an agent run; states an observable outcome (something allowed, blocked, recorded, shown or
+   sent); or states a guarantee or control (permission, path containment, hooks, redaction,
+   approval), even when the text also names the component meant to provide it. The subject
+   is *the module* only if the claim names a specific code unit (class, function, file, tool
+   or API) and describes only that unit's own contract (inputs, outputs, structure), with no
+   outcome the product can observe.
+2. **If the text supports both readings, treat it as product behaviour** and judge it on the
+   live path (§2.3).
+3. **R4-Q1 is cited by evidence, not by opinion.** Cite `R4-Q1` in HumanDecisionNeeded on every
+   row where the only code meeting the claim is tagged `REACH=LEGACY_ONLY`, whether the row is
+   judged on the live path or at module level. Rows met by `LIVE` code, and rows with no code
+   evidence, do not cite R4-Q1 for this reason. [A0] Reading (RUN_BASIS Addendum 8): `TEST_ONLY` code does not meet a product claim, so a claim met only by `LEGACY_ONLY` code apart from tests cites R4-Q1.
+4. **Record the other reading.** On a product-behaviour row met only by legacy code, add
+   `ALSO_MODULE:<verdict>` to Notes, giving the verdict a module-level reading would have
+   produced.
 
 **VerificationEvidence tokens** (MR-10 REVISE, R0 §7.1). Non-behavioural claims use:
 
@@ -183,8 +218,37 @@ Meaningful only on `REMAINING_WORK` rows:
 - `NOT_AUDITABLE`: `CONTEXT_CLAIM` rows with nothing to check; say why in Notes.
   (NOT_AUDITABLE ADOPT, R0 §7.2)
 
+**Absence is not evidence of absence** [A0: owner direction `r2_absence_not_evidence`, RUN_BASIS
+Addendum 10]. A claim may be about whether an action or event happened outside the code:
+notarization, signing, publication, a release or CI job run, an attestation, a manual or human
+step, or a credentialed operation. If the only evidence is that no record exists within the
+evidence roots:
+- the Disposition is `UNKNOWN`, never `DOCUMENTED_UNIMPLEMENTED`, and never wording such as
+  "never ran";
+- Notes carry `OWNER_CHECK: <one-line question for the owner>`.
+
+Positive evidence either way counts as usual, for example a failed job log or a script that
+hard-fails. Code-presence findings are unaffected: whether code exists and is reached is judged
+from the code.
+
 MR-8 (iv): a claim true only of a recorded snapshot (for example "REF-006 MATCH at v23") is
 a REGISTER row (MR-5), not `STALE_SPECIFICATION`.
+
+**Tie-break between `STALE_SPECIFICATION` and `REMAINING_STATE_MISMATCH`** [A0: owner direction
+`r2_tiebreak_adopt`, RUN_BASIS Addendum 5]:
+
+1. Use `STALE_SPECIFICATION` when the text states a present fact that is now false (a hash
+   recorded as `MATCH`, a path called "current", a dependency marked `SATISFIED`, a file said
+   to exist). The rule is the same for SoW, `_STATUS`, register and references text.
+2. Use `REMAINING_STATE_MISMATCH` only for (a) an item in `## Remaining`, or a `REMAINING_WORK`
+   row, whose open or done status is contradicted by the evidence; or (b) register
+   bookkeeping that is behind but says nothing false about the product or its references
+   (a `Last Updated` date, a `TBD` placeholder, a lagging status field).
+3. MR-8(iv) clarified: a claim tied to a named snapshot ("MATCH at v23") stays a REGISTER row.
+   Text that restates it as current ("is MATCH") without naming the snapshot takes
+   `STALE_SPECIFICATION` and points to the REGISTER row (`SEE:`).
+4. If both still fit, choose the verdict whose repair is a change to deliverable text, and
+   record the other in Notes as `ALSO:<verdict>`.
 
 ### 2.7 Register defects (MR-5 REVISE, R0 §7.1)
 
@@ -423,6 +487,6 @@ of report §9. [INTEG] `[A0]` marks HELP_HUMAN post-review corrections. File nam
 - **Verifier** (report §9): shards of at most 50 items; one shared grading key across
   shards; selection class (a) = all LOW, self-flagged, `AUTHORITY_CONFLICT`, `UNKNOWN`,
   `REMAINING_WORK` and errata rows, plus 30% of other non-ALIGNED rows.
-- **R4 citations** (Ruling C): rows turning on the three framed questions cite `R4-Q1`,
-  `R4-Q2` or `R4-Q3` (§2.4) instead of plain `R4`. The done-declaration's Q-01..Q-13 go to
+- **R4 citations** (Ruling C): rows turning on the framed questions cite `R4-Q1`,
+  `R4-Q2`, `R4-Q3`, `R4-Q4`, `R4-Q5` or `R4-Q6` (§2.4) instead of plain `R4`. The done-declaration's Q-01..Q-13 go to
   R4 separately (Ruling B).

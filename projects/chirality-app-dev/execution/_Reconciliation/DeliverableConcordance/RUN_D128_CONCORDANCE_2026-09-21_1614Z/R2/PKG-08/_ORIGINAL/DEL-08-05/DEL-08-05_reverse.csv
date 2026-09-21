@@ -1,0 +1,328 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-BUILD-001,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-002,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-003,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-004,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-005,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-006,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-007,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-008,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-009,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-010,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-011,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-012,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-013,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-014,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-015,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-016,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-017,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-018,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-019,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-020,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-021,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-022,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-023,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-024,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-025,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-026,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-027,NOT_MINE,,Section 9 contract-evidence check is DEL-09-02 scope.
+CAP-BUILD-028,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-029,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-030,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-031,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-032,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-033,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-034,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-035,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-036,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-037,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-038,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-039,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-040,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-BUILD-041,NOT_MINE,,"Build, packaging, release-proof or legacy proof tooling; no child-run record or child-output artifact behavior."
+CAP-ELECTRON-001,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-002,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-003,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-004,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-005,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-006,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-007,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-008,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-009,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-010,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-011,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-012,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-013,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-014,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-015,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-016,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-017,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-018,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-019,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-020,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-021,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-022,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-023,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-024,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-025,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-026,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-027,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-028,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-029,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-030,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-031,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-032,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-033,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-034,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-ELECTRON-035,NOT_MINE,,"Electron main-process host, IPC, renderer security or credential surface; not a DEL-08-05 record/artifact behavior."
+CAP-HARNESS-001,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-002,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-003,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-004,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-005,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-006,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-007,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-008,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-009,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-010,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-011,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-012,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-013,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-014,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-015,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-016,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-017,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-018,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-019,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-020,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-021,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-022,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-023,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-024,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-025,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-026,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-027,NOT_MINE,,Redaction utility owned by run-logger/key deliverables; DEL-08-05 cites it for REQ-009.
+CAP-HARNESS-028,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-029,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-030,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-031,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-032,PARTIAL,DEL-08-05#CLM-012.4,Child-run evidence and subagent.* lifecycle emission in the mapper is DEL-08-05 REQ-004 scope (LEGACY_ONLY); SDK tool/hook mapping belongs to other deliverables.
+CAP-HARNESS-033,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-034,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-035,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-036,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-037,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-038,NOT_MINE,,"Legacy events.jsonl store and replay are owned by the session/event-store deliverables; DEL-08-05 only restates append/replay for child events (CLM-003.2, CLM-012.6)."
+CAP-HARNESS-039,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-040,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-041,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-042,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-043,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-044,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-045,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-046,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-047,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-048,PARTIAL,DEL-08-05#CLM-003.3,Oversized child output under artifacts/subagents (16/512 KiB) is DEL-08-05 per D-APP-56 R4-P32/D-APP-68 disp. 5; ordinary tool-result artifacts are DEL-05-05 resultBudget.
+CAP-HARNESS-049,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-050,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-051,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-052,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-053,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-054,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-055,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-HARNESS-056,PARTIAL,DEL-08-05#CLM-003.1,Managed-child orchestration records and parent/declared-context linkage are DEL-08-05 (D-APP-68 disp. 3); delegate_agent admission and launch lock are DEL-08-04.
+CAP-HARNESS-057,PARTIAL,DEL-08-05#CLM-012.13,Coordination-aware persistence and replay lineage of notices/updates/acks is DEL-08-05 (D-APP-68 disp. 3); the tool surface and admission are DEL-08-04.
+CAP-HARNESS-058,NOT_MINE,,Subagent governance gates and bridge are DEL-08-04 admission scope (CLM-011 exclusion).
+CAP-HARNESS-059,CLAIMED_BY,DEL-08-05#CLM-006,Provider-neutral ChildRunRecord contract and validation is the DEL-08-05 primary record target (LEGACY_ONLY).
+CAP-HARNESS-060,NOT_MINE,,Legacy/in-process harness capability outside child-run records and child-output artifacts.
+CAP-RTCONTRACT-001,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-002,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-003,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-004,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-005,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-006,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-007,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-008,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-009,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-010,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-011,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-012,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-013,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-014,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-015,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-016,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-017,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-018,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-019,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-020,NOT_MINE,,Session replay contract is session-store scope; DEL-08-05 relies on malformed-line tolerance (CLM-004.4) only.
+CAP-RTCONTRACT-021,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-022,NOT_MINE,,Event vocabulary/envelope owned by the event-schema deliverable; DEL-08-05 cites it (CLM-007) for subagent.* types only.
+CAP-RTCONTRACT-023,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-024,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-025,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-026,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-027,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-028,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-029,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-030,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-031,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-032,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-033,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-034,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-035,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-036,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-037,PARTIAL,DEL-08-05#CLM-018.2,NativeChildSelectedRole/nativeChild association supplies native lineage metadata that DEL-08-05 v3 REQ-002 must record; tool definitions themselves are not DEL-08-05.
+CAP-RTCONTRACT-038,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-039,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-040,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-041,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-042,NOT_MINE,,Tool descriptor registry (including Agent descriptor emits) is DEL-05-05 scope.
+CAP-RTCONTRACT-043,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-044,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-045,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-046,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-047,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-048,PARTIAL,DEL-08-05#CLM-018.1,Agent 2 delegation return records (AgentRun evidence) are DEL-08-05 v3 REQ-001 scope; the runs route and delegation mechanics are DEL-08-04/Runtime. STATE=DISABLED per capability notes.
+CAP-RTCONTRACT-049,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-050,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-051,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-052,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCONTRACT-053,NOT_MINE,,"Runtime contract surface not owned by DEL-08-05 (session, turn, engine, account or tool contracts)."
+CAP-RTCORE-001,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-002,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-003,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-004,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-005,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-006,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-007,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-008,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-009,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-010,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-011,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-012,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-013,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-014,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-015,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-016,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-017,NOT_MINE,,Live event journal/replay is owned by the Runtime session-store deliverables; DEL-08-05 relies on it (CLM-012.6) but does not own it.
+CAP-RTCORE-018,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-019,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-020,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-021,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-022,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-023,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-024,PARTIAL,DEL-08-05#CLM-018.1,GovernedAgent1RunCoordinator writes checkout AgentRun records (DEL-08-05 v3 REQ-001); route is DISABLED (runtime-service.ts:664-670) and admission is DEL-08-04.
+CAP-RTCORE-025,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-026,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-027,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-028,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-029,PARTIAL,DEL-08-05#CLM-012.4,"Native child thread tracking (childThreads, observationEnded) is the live-path observation that CLM-012.4 judges against subagent.* lifecycle; notification pass-through is DEL-03/DEL-05 scope."
+CAP-RTCORE-030,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-031,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-032,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-033,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-034,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-035,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-036,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-037,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-038,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-039,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-040,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-041,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-042,NOT_MINE,,Native role configuration for Codex children is DEL-08-04 class-aware routing / role-entry scope.
+CAP-RTCORE-043,PARTIAL,DEL-08-05#CLM-018.3,instruction-asserted calibration and nativeDescendant flag in role evidence satisfy DEL-08-05 v3 REQ-003 in part; role policy itself is DEL-08-04/role-entry scope.
+CAP-RTCORE-044,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-045,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-046,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-047,NOT_MINE,,"OS process descendant census for worker supervision, not agent descendant records."
+CAP-RTCORE-048,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-049,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-RTCORE-050,NOT_MINE,,Runtime core/daemon behavior not owned by DEL-08-05.
+CAP-SETTINGS-001,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-002,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-003,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-004,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-005,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-006,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-007,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-008,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-009,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-010,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-011,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-012,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-013,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-014,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-015,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-016,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-017,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-018,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-019,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-020,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-021,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-022,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-023,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-024,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-025,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-026,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-027,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-028,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-029,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-030,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-031,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-032,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-033,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-034,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-035,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-036,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-037,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-038,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-039,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-040,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-041,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SETTINGS-042,NOT_MINE,,"Settings, account, consent, register or proxy surface; DEL-08-05 owns none of it."
+CAP-SHELL-001,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-002,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-003,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-004,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-005,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-006,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-007,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-008,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-009,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-010,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-011,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-012,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-013,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-014,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-015,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-016,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-017,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-018,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-019,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-020,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-021,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-022,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-023,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-024,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-025,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-026,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-027,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-028,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-029,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-030,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-031,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-032,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-033,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-034,NOT_MINE,,Per-turn activity presentation; not a record/artifact owner.
+CAP-SHELL-035,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-036,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-037,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-038,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-039,NOT_MINE,,Subagent activity derivation is presentation (DEL-02-02); consumes DEL-08-05 records.
+CAP-SHELL-040,NOT_MINE,,Children list presentation is DEL-02-02 scope.
+CAP-SHELL-041,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-042,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-043,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-044,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+CAP-SHELL-045,NOT_MINE,,"Shell/presentation surface; descendant presentation belongs to DEL-02-02 (Work/Agents), not DEL-08-05 records."
+#END

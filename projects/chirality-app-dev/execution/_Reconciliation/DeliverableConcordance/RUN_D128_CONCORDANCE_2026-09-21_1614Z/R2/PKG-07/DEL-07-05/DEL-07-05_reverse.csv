@@ -1,0 +1,313 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-BUILD-001,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-002,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-003,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-004,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-005,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-006,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-007,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-008,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-009,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-010,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-011,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-012,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-013,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-014,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-015,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-016,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-017,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-018,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-019,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-020,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-021,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-022,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-023,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-024,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-025,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-026,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-027,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-028,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-029,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-030,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-031,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-032,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-033,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-034,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-035,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-036,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-037,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-038,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-039,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-040,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-BUILD-041,NOT_MINE,,"build/packaging/verification script; no Dependencies.csv reader, writer or linter behaviour"
+CAP-ELECTRON-001,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-002,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-003,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-004,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-005,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-006,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-007,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-008,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-009,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-010,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-011,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-012,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-013,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-014,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-015,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-016,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-017,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-018,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-019,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-020,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-021,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-022,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-023,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-024,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-025,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-026,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-027,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-028,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-029,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-030,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-031,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-032,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-033,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-034,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-ELECTRON-035,NOT_MINE,,Electron main-process capability; not the dependency register slice
+CAP-HARNESS-001,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-002,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-003,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-004,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-005,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-006,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-007,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-008,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-009,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-010,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-011,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-012,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-013,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-014,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-015,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-016,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-017,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-018,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-019,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-020,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-021,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-022,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-023,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-024,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-025,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-026,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-027,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-028,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-029,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-030,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-031,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-032,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-033,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-034,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-035,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-036,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-037,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-038,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-039,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-040,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-041,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-042,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-043,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-044,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-045,NOT_MINE,,legacy file-tool path containment policy; hook/containment owner is PKG-06/DEL-07-01
+CAP-HARNESS-046,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-047,NOT_MINE,,legacy tool hooks; hook owner is PKG-06
+CAP-HARNESS-048,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-049,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-050,PARTIAL,DEL-07-05#CLM-012.14,deps_read is one of four read tools; MCP dependency tool policy is REQ-014 (legacy-only; the other tools belong to DEL-07-02/03/04)
+CAP-HARNESS-051,PARTIAL,DEL-07-05#CLM-012.14,deps_write half is REQ-014; status_transition belongs to DEL-07-04
+CAP-HARNESS-052,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-053,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-054,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-055,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-056,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-057,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-058,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-059,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-HARNESS-060,NOT_MINE,,harness/session capability outside the Dependencies.csv register slice
+CAP-ROUTES-001,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-002,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-003,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-004,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-005,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-006,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-007,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-008,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-009,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-010,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-011,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-012,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-013,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-014,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-015,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-016,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-017,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-018,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-019,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-020,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-021,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-022,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-023,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-024,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-025,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-026,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-027,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-028,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-029,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-030,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-031,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-032,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-033,CLAIMED_BY,DEL-07-05#CLM-012.13,GET/PUT /api/working-root/deliverable/dependencies is REQ-013
+CAP-ROUTES-034,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-035,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-036,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-037,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-038,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-039,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-040,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-041,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-042,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-043,NOT_MINE,,route or page not serving the dependency register
+CAP-ROUTES-044,NOT_MINE,,route or page not serving the dependency register
+CAP-RTCORE-001,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-002,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-003,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-004,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-005,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-006,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-007,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-008,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-009,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-010,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-011,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-012,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-013,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-014,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-015,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-016,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-017,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-018,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-019,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-020,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-021,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-022,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-023,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-024,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-025,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-026,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-027,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-028,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-029,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-030,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-031,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-032,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-033,NOT_MINE,,application-owned dynamic tools; no dependency tool is registered at the frozen basis
+CAP-RTCORE-034,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-035,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-036,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-037,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-038,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-039,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-040,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-041,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-042,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-043,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-044,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-045,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-046,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-047,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-048,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-049,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-RTCORE-050,NOT_MINE,,Runtime core capability; the Runtime has no dependency-register surface
+CAP-SETTINGS-001,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-002,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-003,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-004,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-005,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-006,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-007,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-008,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-009,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-010,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-011,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-012,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-013,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-014,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-015,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-016,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-017,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-018,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-019,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-020,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-021,CLAIMED_BY,DEL-07-05#CLM-012.1,"register reader (readDependencyRegister, parseCsv) is REQ-001"
+CAP-SETTINGS-022,CLAIMED_BY,DEL-07-05#CLM-012.12,validated serialization and lifecycle-preserving write is REQ-012 (writer)
+CAP-SETTINGS-023,CLAIMED_BY,DEL-07-05#CLM-006,v3.1 core/extension columns and enum vocabularies are the CLM-006 schema contract
+CAP-SETTINGS-024,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-025,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-026,NOT_MINE,,atomic-write utility shared by status and dependency writes; generic filesystem primitive
+CAP-SETTINGS-027,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-028,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-029,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-030,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-031,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-032,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-033,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-034,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-035,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-036,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-037,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-038,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-039,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-040,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-041,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-SETTINGS-042,NOT_MINE,,settings/runtime-client capability outside the dependency register slice
+CAP-WORKSPACE-001,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-002,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-003,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-004,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-005,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-006,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-007,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-008,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-009,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-010,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-011,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-012,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-013,NOT_MINE,,document-kit contract scan (missing _DEPENDENCIES etc.) belongs to the metadata/document-kit deliverable
+CAP-WORKSPACE-014,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-015,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-016,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-017,NOT_MINE,,reference source-hash warnings belong to the reference-hash tooling deliverable
+CAP-WORKSPACE-018,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-019,PARTIAL,DEL-07-05#CLM-012.15,containment covers the dependency routes (REQ-015) but is shared with status/content routes owned elsewhere
+CAP-WORKSPACE-020,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-021,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-022,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-023,CLAIMED_BY,DEL-07-05#CLM-012.1,readDeliverableDependencies with explicit register-absence warnings is the REQ-001 reader path
+CAP-WORKSPACE-024,CLAIMED_BY,DEL-07-05#CLM-012.12,"writeDeliverableDependencies (host ID, transitions, leaf-symlink refusal, atomic write) is the REQ-012 writer path"
+CAP-WORKSPACE-025,PARTIAL,DEL-07-05#CLM-012.13,only fetchDeliverableDependencies is the dependency API client; status wrappers belong to DEL-07-04
+CAP-WORKSPACE-026,NOT_MINE,,blocker presentation for the retired Pipeline/Workbench UI (noted under CLM-012.18); UI slice
+CAP-WORKSPACE-027,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-028,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-029,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-030,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-031,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-032,NOT_MINE,,retired Pipeline deliverable contracts panel; UI presentation owned by the shell packages
+CAP-WORKSPACE-033,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-034,NOT_MINE,,retired Workbench dependency view; UI presentation owned by the shell packages
+CAP-WORKSPACE-035,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-036,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-037,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-038,NOT_MINE,,workspace capability outside the dependency register reader/writer
+CAP-WORKSPACE-039,NOT_MINE,,workspace capability outside the dependency register reader/writer
+#END

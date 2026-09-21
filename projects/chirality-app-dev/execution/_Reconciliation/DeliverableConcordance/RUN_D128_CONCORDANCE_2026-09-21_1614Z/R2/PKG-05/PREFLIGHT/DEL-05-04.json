@@ -1,0 +1,25 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "RECONCILIATION:D-APP-128:R2",
+  "operation": "dispatch",
+  "register_sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c",
+  "repo_head": "c16c9fd851ad61f50c8c836a62ef18d09baa2ef1",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-05-04",
+      "entry_path": "RECONCILIATION:D-APP-128:R2",
+      "hold_status": "NOT_HELD",
+      "operation": "dispatch",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "1271bd34db8af1c4060878958c013fe9565438278e88bbc3daa9bb674a532206",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-05-04"
+  ],
+  "verdict": "ALLOW"
+}

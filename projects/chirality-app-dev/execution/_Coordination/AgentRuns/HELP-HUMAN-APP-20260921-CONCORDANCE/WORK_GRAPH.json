@@ -58,7 +58,7 @@
     },
     {
       "id": "R0_freeze_calibrate",
-      "state": "not started",
+      "state": "done: frozen basis 00115c719, gate transcripts, calibration of 8 deliverables + HARNESS reverse area (PR #836/#838)",
       "depends_on": [
         "P_ruling_and_merge"
       ],
@@ -66,7 +66,7 @@
     },
     {
       "id": "R0_owner_gate",
-      "state": "not started",
+      "state": "done: ruled D-APP-129 (A calibration verdicts; B done declaration CONTEXT; C R2 plan; D scope extension items 3-7)",
       "depends_on": [
         "R0_freeze_calibrate"
       ],
@@ -76,7 +76,7 @@
     },
     {
       "id": "R1a_deterministic_inventory",
-      "state": "not started",
+      "state": "done: CLAIM_INDEX 1,746 units, EXTENSION_INDEX 221 units, inventories and hints",
       "depends_on": [
         "P_ruling_and_merge"
       ],
@@ -85,7 +85,7 @@
     },
     {
       "id": "R1b_reverse_pass",
-      "state": "not started",
+      "state": "done: 11 capability files (incl. re-tagged HARNESS), shared evidence pack",
       "depends_on": [
         "R0_owner_gate",
         "R1a_deterministic_inventory"
@@ -94,7 +94,7 @@
     },
     {
       "id": "R2_package_concordance",
-      "state": "not started",
+      "state": "done 2026-09-21T22:49:10Z: 54/54 deliverables (11 packages) + EXT 221/221; 5 double-blinds; RUN_BASIS Addenda 3-10 adopted in R2; awaiting R2 PR review and merge",
       "depends_on": [
         "R0_owner_gate",
         "R1b_reverse_pass"
@@ -103,7 +103,7 @@
     },
     {
       "id": "R3_synthesis",
-      "state": "not started",
+      "state": "next",
       "depends_on": [
         "R2_package_concordance"
       ],

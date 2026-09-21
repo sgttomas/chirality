@@ -1,0 +1,411 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-BUILD-001,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-002,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-003,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-004,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-005,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-006,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-007,PARTIAL,DEL-01-02#CLM-006.4,"Instruction-root integrity evidence is cited for section9.instruction_root_protection_hook under RB-FILESYSTEM; release-time check, not runtime write protection."
+CAP-BUILD-008,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-009,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-010,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-011,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-012,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-013,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-014,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-015,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-016,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-017,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-018,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-019,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-020,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-021,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-022,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-023,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-024,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-025,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-026,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-027,PARTIAL,DEL-01-02#CLM-011.1,The Section 9 contract-evidence check runs the IDs the validation index maps to boundaries; the script itself belongs to DEL-09-02.
+CAP-BUILD-028,PARTIAL,DEL-01-02#CLM-006.12,The register cites scan-secret-evidence.mjs as an RB-REDACTION surface.
+CAP-BUILD-029,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-030,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-031,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-032,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-033,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-034,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-035,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-036,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-037,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-038,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-039,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-040,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-BUILD-041,NOT_MINE,,Build/packaging capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-001,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-002,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-003,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-004,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-005,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-006,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-007,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-008,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-009,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-010,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-011,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-012,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-013,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-014,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-015,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-016,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-017,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-018,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-019,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-020,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-021,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-022,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-023,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-024,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-025,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-026,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-027,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-028,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-029,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-030,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-031,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-032,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-033,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-034,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-ELECTRON-035,NOT_MINE,,Electron host capability; no DEL-01-02 reliance-boundary row owns it.
+CAP-HARNESS-001,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-002,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-003,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-004,PARTIAL,DEL-01-02#CLM-006.3,Answering Codex approval requests is the live half of RB-PERMISSION.
+CAP-HARNESS-005,PARTIAL,DEL-01-02#CLM-006.3,The allow/deny permission decision client is the live RB-PERMISSION verdict path.
+CAP-HARNESS-006,PARTIAL,DEL-01-02#CLM-018.6,Replay of the audit mirror is the RBR-006 replay-validation surface.
+CAP-HARNESS-007,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-008,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-009,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-010,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-011,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-012,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-013,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-014,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-015,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-016,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-017,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-018,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-019,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-020,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-021,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-022,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-023,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-024,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-025,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-026,PARTIAL,DEL-01-02#CLM-006.4,Working-root admission outside the instruction root is part of the RB-FILESYSTEM root-separation semantic.
+CAP-HARNESS-027,PARTIAL,DEL-01-02#CLM-006.12,Configured-key redaction is the RB-REDACTION run-logger surface; live use is labels only.
+CAP-HARNESS-028,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-029,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-030,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-031,PARTIAL,DEL-01-02#CLM-006.7,Claude SDK options building (settingSources) is the legacy RB-SETTINGS surface.
+CAP-HARNESS-032,PARTIAL,DEL-01-02#CLM-018.5,SDK message mapping is the legacy RBR-005 adapter-metadata surface.
+CAP-HARNESS-033,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-034,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-035,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-036,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-037,PARTIAL,DEL-01-02#CLM-006.6,FileSessionManager is the legacy RB-TRANSCRIPT linkage surface named by the register.
+CAP-HARNESS-038,PARTIAL,DEL-01-02#CLM-006.2,Project-local events.jsonl log is the legacy RB-AUDIT surface the SoW still names.
+CAP-HARNESS-039,PARTIAL,DEL-01-02#CLM-018.5,Harness-to-UI event bridge is the legacy UIEvent/HarnessEvent separation surface.
+CAP-HARNESS-040,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-041,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-042,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-043,PARTIAL,DEL-01-02#CLM-006.3,Permission overlay is the legacy RB-PERMISSION hard-deny surface.
+CAP-HARNESS-044,PARTIAL,DEL-01-02#CLM-006.3,Human permission broker is a legacy RB-PERMISSION surface named in the register.
+CAP-HARNESS-045,PARTIAL,DEL-01-02#CLM-006.4,Tool path containment is the legacy RB-FILESYSTEM surface.
+CAP-HARNESS-046,PARTIAL,DEL-01-02#CLM-013,Shell command policy is the legacy Bash mode-gating surface the reconciliation text describes.
+CAP-HARNESS-047,PARTIAL,DEL-01-02#CLM-006.11,Pre/post tool hooks failing closed are the legacy RB-HOOKS surface.
+CAP-HARNESS-048,PARTIAL,DEL-01-02#CLM-006.12,Tool result artifacts are cited under section9.tool_result_budget for RB-AUDIT/RB-REDACTION.
+CAP-HARNESS-049,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-050,PARTIAL,DEL-01-02#CLM-018.15,Chirality MCP read tools are the legacy K-MCP-1 surface for RBR-015.
+CAP-HARNESS-051,PARTIAL,DEL-01-02#CLM-006.5,The status_transition MCP tool is named in RB-LIFECYCLE (status transition API/MCP).
+CAP-HARNESS-052,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-053,PARTIAL,DEL-01-02#CLM-013,section9.domain_profile_validation evidence module; the reconciliation text says it is implemented and registered.
+CAP-HARNESS-054,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-055,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-056,PARTIAL,DEL-01-02#CLM-006.8,Managed delegate_agent delegation is the legacy RB-SUBAGENT surface.
+CAP-HARNESS-057,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-058,PARTIAL,DEL-01-02#CLM-006.8,evaluateSubagentGovernance is the RB-SUBAGENT surface named by the SoW.
+CAP-HARNESS-059,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-HARNESS-060,NOT_MINE,,Harness client/legacy capability outside the DEL-01-02 boundary rows.
+CAP-ROUTES-001,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-002,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-003,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-004,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-005,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-006,PARTIAL,DEL-01-02#CLM-018.6,Session event replay route serves the audit mirror.
+CAP-ROUTES-007,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-008,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-009,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-010,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-011,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-012,PARTIAL,DEL-01-02#CLM-006.3,Pending Codex requests route is the live approval path.
+CAP-ROUTES-013,PARTIAL,DEL-01-02#CLM-006.3,Tool permission decision route is the live verdict path.
+CAP-ROUTES-014,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-015,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-016,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-017,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-018,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-019,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-020,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-021,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-022,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-023,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-024,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-025,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-026,PARTIAL,DEL-01-02#CLM-006.4,Instruction-root overlap check on working-root selection supports RB-FILESYSTEM root separation.
+CAP-ROUTES-027,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-028,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-029,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-030,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-031,PARTIAL,DEL-01-02#CLM-006.5,Status read over canonical _STATUS.md is part of RB-LIFECYCLE.
+CAP-ROUTES-032,PARTIAL,DEL-01-02#CLM-006.5,Status transition route with actor rules and approvalSha is the RB-LIFECYCLE / RB-HUMAN-GATE surface.
+CAP-ROUTES-033,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-034,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-035,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-036,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-037,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-038,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-039,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-040,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-041,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-042,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-043,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-ROUTES-044,NOT_MINE,,API/page route outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-001,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-002,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-003,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-004,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-005,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-006,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-007,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-008,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-009,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-010,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-011,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-012,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-013,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-014,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-015,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-016,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-017,PARTIAL,DEL-01-02#CLM-006.3,Pending Codex server-request contract underlies the live approval path.
+CAP-RTCONTRACT-018,PARTIAL,DEL-01-02#CLM-006.3,Session permission decision contract.
+CAP-RTCONTRACT-019,PARTIAL,DEL-01-02#CLM-006.4,Permission-mode to Codex approval policy and sandbox mapping is the live filesystem/shell containment control.
+CAP-RTCONTRACT-020,PARTIAL,DEL-01-02#CLM-018.6,Session replay contract for the audit mirror.
+CAP-RTCONTRACT-021,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-022,PARTIAL,DEL-01-02#CLM-018.5,HarnessEvent vocabulary and envelope (UIEvent/HarnessEvent separation).
+CAP-RTCONTRACT-023,PARTIAL,DEL-01-02#CLM-018.5,UIEvent stream DTOs (UIEvent/HarnessEvent separation).
+CAP-RTCONTRACT-024,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-025,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-026,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-027,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-028,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-029,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-030,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-031,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-032,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-033,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-034,PARTIAL,DEL-01-02#CLM-006.10,Application-owned dynamic tools contract is part of live tool exposure.
+CAP-RTCONTRACT-035,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-036,PARTIAL,DEL-01-02#CLM-006.1,AgentEnginePort is the RB-ENGINE product-owned port.
+CAP-RTCONTRACT-037,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-038,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-039,PARTIAL,DEL-01-02#CLM-006.1,Engine conformance harness is the RB-ENGINE/RBR-004 verification surface (TEST_ONLY).
+CAP-RTCONTRACT-040,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-041,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-042,PARTIAL,DEL-01-02#CLM-006.10,Tool descriptor registry is the legacy RB-TOOL-SURFACE surface the register cites.
+CAP-RTCONTRACT-043,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-044,PARTIAL,DEL-01-02#CLM-018.15,Chirality MCP tool-name vocabulary (legacy K-MCP-1 surface).
+CAP-RTCONTRACT-045,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-046,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-047,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-048,PARTIAL,DEL-01-02#CLM-006.8,Governed Agent 1 run with Agent 2 delegation (disabled) is the managed RB-SUBAGENT path.
+CAP-RTCONTRACT-049,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-050,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-051,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-052,NOT_MINE,,Runtime contract surface outside the DEL-01-02 boundary rows.
+CAP-RTCONTRACT-053,PARTIAL,DEL-01-02#STATE-1,Claude engine adapter is the path _CONTEXT.md still calls current.
+CAP-RTCORE-001,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-002,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-003,PARTIAL,DEL-01-02#STATE-1,Codex registered as the sole engine contradicts the Claude-current statement.
+CAP-RTCORE-004,PARTIAL,DEL-01-02#CLM-006.7,Stock app-server spawned with the effective CODEX_HOME is the live settings-source posture.
+CAP-RTCORE-005,PARTIAL,DEL-01-02#CLM-006.7,"Effective Codex home shares the user's ~/.codex configuration, the live counterpart of settings isolation."
+CAP-RTCORE-006,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-007,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-008,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-009,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-010,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-011,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-012,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-013,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-014,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-015,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-016,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-017,PARTIAL,DEL-01-02#CLM-006.2,Event journal and replay is the live RB-AUDIT store.
+CAP-RTCORE-018,PARTIAL,DEL-01-02#CLM-018.6,Crash/shutdown settlement gives accepted turns a terminal outcome (RBR-006).
+CAP-RTCORE-019,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-020,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-021,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-022,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-023,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-024,PARTIAL,DEL-01-02#CLM-006.8,Governed Agent 1 runs (disabled; agent1-run-coordinator TEST_ONLY) were cited as live subagent governance.
+CAP-RTCORE-025,PARTIAL,DEL-01-02#CLM-006.1,Delegated Codex engine adapter implements AgentEnginePort on the live path.
+CAP-RTCORE-026,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-027,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-028,PARTIAL,DEL-01-02#CLM-006.6,Thread start/resume keeps the Codex thread as adapter metadata beside the canonical Runtime record.
+CAP-RTCORE-029,PARTIAL,DEL-01-02#CLM-018.5,Unchanged notification pass-through is the R4-Q5 payload question.
+CAP-RTCORE-030,PARTIAL,DEL-01-02#CLM-006.3,Codex approval requests with method-specific decisions and request/resolved evidence.
+CAP-RTCORE-031,PARTIAL,DEL-01-02#CLM-006.3,Permission decision route forwarded to the matching Codex approval.
+CAP-RTCORE-032,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-033,PARTIAL,DEL-01-02#CLM-006.10,Application-owned dynamic tools on the live tool surface.
+CAP-RTCORE-034,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-035,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-036,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-037,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-038,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-039,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-040,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-041,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-042,PARTIAL,DEL-01-02#CLM-006.8,Native role configuration for Codex children is the live descendant mechanism.
+CAP-RTCORE-043,PARTIAL,DEL-01-02#CLM-007.1,"Role policy evidence records declared settings, not proof of containment: bears on the P0 enforcement posture."
+CAP-RTCORE-044,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-045,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-046,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-047,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-048,PARTIAL,DEL-01-02#STATE-1,"Compatibility session policy selecting claude-agent-sdk (legacy, disabled)."
+CAP-RTCORE-049,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-RTCORE-050,NOT_MINE,,Runtime core capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-001,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-002,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-003,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-004,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-005,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-006,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-007,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-008,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-009,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-010,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-011,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-012,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-013,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-014,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-015,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-016,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-017,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-018,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-019,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-020,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-021,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-022,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-023,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-024,PARTIAL,DEL-01-02#CLM-006.5,_STATUS.md parsing is the canonical lifecycle source of RB-LIFECYCLE.
+CAP-SETTINGS-025,PARTIAL,DEL-01-02#CLM-006.5,Lifecycle transition with actor requirements (RB-LIFECYCLE / RB-HUMAN-GATE).
+CAP-SETTINGS-026,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-027,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-028,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-029,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-030,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-031,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-032,PARTIAL,DEL-01-02#CLM-006.3,Server-request and permission proxy on the live approval path.
+CAP-SETTINGS-033,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-034,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-035,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-036,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-037,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-038,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-039,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-040,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-041,NOT_MINE,,Settings/proxy capability outside the DEL-01-02 boundary rows.
+CAP-SETTINGS-042,PARTIAL,DEL-01-02#STATE-2,The deprecated harness-contract facade MEMORY.md calls current.
+CAP-SHELL-001,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-002,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-003,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-004,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-005,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-006,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-007,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-008,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-009,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-010,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-011,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-012,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-013,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-014,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-015,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-016,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-017,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-018,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-019,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-020,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-021,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-022,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-023,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-024,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-025,PARTIAL,DEL-01-02#CLM-013,"Permissions control selects approval policy/sandbox (default workspaceWrite), the live shell posture."
+CAP-SHELL-026,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-027,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-028,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-029,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-030,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-031,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-032,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-033,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-034,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-035,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-036,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-037,PARTIAL,DEL-01-02#CLM-006.3,Tool permission approval cards surface Codex approvals as tool.permission events.
+CAP-SHELL-038,PARTIAL,DEL-01-02#CLM-006.3,Server request cards answer Codex requests (approval-adjacent).
+CAP-SHELL-039,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-040,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-041,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-042,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-043,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-044,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-SHELL-045,NOT_MINE,,Shell/UI capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-001,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-002,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-003,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-004,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-005,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-006,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-007,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-008,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-009,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-010,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-011,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-012,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-013,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-014,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-015,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-016,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-017,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-018,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-019,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-020,PARTIAL,DEL-01-02#CLM-006.5,Deliverable lifecycle status read (RB-LIFECYCLE).
+CAP-WORKSPACE-021,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-022,PARTIAL,DEL-01-02#CLM-006.5,Deliverable lifecycle transition write (RB-LIFECYCLE).
+CAP-WORKSPACE-023,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-024,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-025,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-026,PARTIAL,DEL-01-02#CLM-006.9,Client approvalSha requirement for CHECKING/ISSUED (disabled surface) presents the human-gate rule.
+CAP-WORKSPACE-027,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-028,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-029,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-030,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-031,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-032,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-033,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-034,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-035,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-036,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-037,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-038,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+CAP-WORKSPACE-039,NOT_MINE,,Workspace capability outside the DEL-01-02 boundary rows.
+#END

@@ -1,0 +1,86 @@
+Unit,Class,ClaimKey,CapabilityID,ErrataField,Reason
+DEL-04-02,a,DEL-04-02#CLM-028,,,LOW;self-flag
+DEL-04-02,n,DEL-04-02#CLM-001,,,30% of 33 other non-ALIGNED (n=10)
+DEL-04-02,n,DEL-04-02#CLM-002,,,30% of 33 other non-ALIGNED (n=10)
+DEL-04-02,n,DEL-04-02#CLM-003,,,30% of 33 other non-ALIGNED (n=10)
+DEL-04-02,n,DEL-04-02#CLM-004,,,30% of 33 other non-ALIGNED (n=10)
+DEL-04-02,n,DEL-04-02#CLM-005,,,30% of 33 other non-ALIGNED (n=10)
+DEL-04-02,n,DEL-04-02#CLM-006,,,30% of 33 other non-ALIGNED (n=10)
+DEL-04-02,n,DEL-04-02#CLM-015,,,30% of 33 other non-ALIGNED (n=10)
+DEL-04-02,n,DEL-04-02#CLM-016,,,30% of 33 other non-ALIGNED (n=10)
+DEL-04-02,n,DEL-04-02#CLM-021,,,30% of 33 other non-ALIGNED (n=10)
+DEL-04-02,n,DEL-04-02#REGISTER-1,,,30% of 33 other non-ALIGNED (n=10)
+DEL-04-02,b,DEL-04-02#CLM-007,,,15% of 14 ALIGNED (n=3)
+DEL-04-02,b,DEL-04-02#CLM-010.11,,,15% of 14 ALIGNED (n=3)
+DEL-04-02,b,DEL-04-02#CLM-010.13,,,15% of 14 ALIGNED (n=3)
+DEL-04-02,c,DEL-04-02#CLM-010.1,CAP-HARNESS-019,,PARTIAL 20% of 15 (n=3)
+DEL-04-02,c,DEL-04-02#CLM-010.10,CAP-HARNESS-060,,PARTIAL 20% of 15 (n=3)
+DEL-04-02,c,DEL-04-02#CLM-010.12,CAP-RTCONTRACT-045,,PARTIAL 20% of 15 (n=3)
+DEL-04-02,e,DEL-04-02#CLM-010.1,,ImplementationEvidence,errata row
+DEL-04-02,e,DEL-04-02#CLM-028,,ImplementationEvidence,errata row
+DEL-04-02,e,DEL-04-02#CLM-028,,Disposition,errata row
+DEL-04-02,e,DEL-04-02#CLM-028,,Confidence,errata row
+DEL-04-02,e,DEL-04-02#CLM-028,,Notes,errata row
+DEL-04-02,e,DEL-04-02#CLM-010.10,,ImplementationEvidence,errata row
+DEL-04-03,a,DEL-04-03#CLM-004.5,,,LOW;self-flag
+DEL-04-03,a,DEL-04-03#CLM-009.3,,,LOW;self-flag
+DEL-04-03,a,DEL-04-03#CLM-009.12,,,LOW;self-flag
+DEL-04-03,n,DEL-04-03#CLM-001,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-002,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-003,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-004.4,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-004.6,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-009.2,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-018,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-021,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-023,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-024,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-026,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#CLM-027,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,n,DEL-04-03#STATE-2,,,30% of 41 other non-ALIGNED (n=13)
+DEL-04-03,b,DEL-04-03#CLM-004.2,,,15% of 9 ALIGNED (n=2)
+DEL-04-03,b,DEL-04-03#CLM-004.3,,,15% of 9 ALIGNED (n=2)
+DEL-04-03,c,DEL-04-03#CLM-010,CAP-BUILD-027,,PARTIAL 20% of 14 (n=3)
+DEL-04-03,c,DEL-04-03#CLM-004.2,CAP-RTCONTRACT-036,,PARTIAL 20% of 14 (n=3)
+DEL-04-03,c,DEL-04-03#CLM-008,CAP-RTCONTRACT-051,,PARTIAL 20% of 14 (n=3)
+DEL-04-03,e,DEL-04-03#CLM-004.6,,ImplementationEvidence,errata row
+DEL-04-03,e,DEL-04-03#CLM-010,,ImplementationEvidence,errata row
+DEL-04-03,e,DEL-04-03#CLM-010,,Notes,errata row
+DEL-04-03,e,DEL-04-03#CLM-012,,ImplementationEvidence,errata row
+DEL-04-03,e,DEL-04-03#CLM-012,,Notes,errata row
+DEL-04-05,a,DEL-04-05#CLM-009.9,,,LOW;self-flag
+DEL-04-05,a,DEL-04-05#CLM-009.10,,,LOW;self-flag
+DEL-04-05,a,DEL-04-05#CLM-009.14,,,LOW;self-flag
+DEL-04-05,a,DEL-04-05#CLM-024,,,AUTHORITY_CONFLICT
+DEL-04-05,a,DEL-04-05#CLM-026,,,LOW;self-flag;AUTHORITY_CONFLICT
+DEL-04-05,a,DEL-04-05#CLM-030,,,LOW;self-flag
+DEL-04-05,a,DEL-04-05#REM-1,,,REMAINING_WORK
+DEL-04-05,a,DEL-04-05#STATE-3,,,LOW;self-flag
+DEL-04-05,n,DEL-04-05#CLM-001,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-002,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-003,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-004,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-005,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-006,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-007,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-009.1,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-009.15,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-010,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-011,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-012,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-019,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#CLM-028,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,n,DEL-04-05#REGISTER-1,,,30% of 50 other non-ALIGNED (n=15)
+DEL-04-05,b,DEL-04-05#CLM-009.2,,,15% of 5 ALIGNED (n=1)
+DEL-04-05,c,DEL-04-05#CLM-009.8,CAP-ELECTRON-019,,PARTIAL 20% of 18 (n=4)
+DEL-04-05,c,DEL-04-05#CLM-009.4,CAP-ELECTRON-032,,CLAIMED_BY 20% of 18 (n=4)
+DEL-04-05,c,DEL-04-05#CLM-009.4,CAP-ELECTRON-033,,PARTIAL 20% of 18 (n=4)
+DEL-04-05,c,DEL-04-05#CLM-009.5,CAP-HARNESS-031,,PARTIAL 20% of 18 (n=4)
+DEL-04-05,e,DEL-04-05#CLM-003,,ImplementationEvidence,errata row
+DEL-04-05,e,DEL-04-05#CLM-005,,ImplementationEvidence,errata row
+DEL-04-05,e,DEL-04-05#CLM-009.1,,ImplementationEvidence,errata row
+DEL-04-05,e,DEL-04-05#CLM-009.2,,ImplementationEvidence,errata row
+DEL-04-05,e,DEL-04-05#CLM-009.3,,ImplementationEvidence,errata row
+DEL-04-05,e,DEL-04-05#CLM-027,,ImplementationEvidence,errata row
+DEL-04-05,e,DEL-04-05#STATE-1,,ImplementationEvidence,errata row
+DEL-04-05,e,DEL-04-05#STATE-3,,ImplementationEvidence,errata row

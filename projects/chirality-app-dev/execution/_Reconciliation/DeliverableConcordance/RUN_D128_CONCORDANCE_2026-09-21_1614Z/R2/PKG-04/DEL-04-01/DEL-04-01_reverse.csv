@@ -1,0 +1,293 @@
+CapabilityID,Response,ClaimKey,Rationale
+CAP-BUILD-001,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-002,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-003,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-004,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-005,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-006,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-007,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-008,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-009,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-010,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-011,NOT_MINE,,Codex vendor-tree staging is packaging (PKG-09); only the pin verification (CAP-BUILD-012) bears on SOW-079 evidence.
+CAP-BUILD-012,PARTIAL,DEL-04-01#STATE-1,"Codex pin verification is packaging tooling, but it is the only live evidence of the pinned Codex adoption that SOW-079 assigns to DEL-04-01 as adoption evidence; STATE-1 records that no DEL-04-01 record exists."
+CAP-BUILD-013,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-014,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-015,NOT_MINE,,Cited in CLM-003/STATE-2 only as evidence that the SDK is excluded from the packaged bundle; the verifier is PKG-09 release tooling.
+CAP-BUILD-016,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-017,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-018,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-019,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-020,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-021,PARTIAL,DEL-04-01#CLM-010.2,"Owns only the @anthropic-ai/claude-agent-sdk 0.3.150 pin (REQ-002, now devDependency); the rest of the pin/override posture, including the @openai/codex pin, is packaging/supply scope."
+CAP-BUILD-022,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-023,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-024,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-025,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-026,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-027,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-028,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-029,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-030,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-031,CLAIMED_BY,DEL-04-01#CLM-013.8,"Scripted packaged Claude SDK proof is the VER-008/REQ-011 packaging-probe tooling this deliverable's evidence rests on; REACH=LEGACY_ONLY, STATE=DISABLED (A2 boundary forbids the SDK), matching the ledger's 'historical proof' reading."
+CAP-BUILD-032,CLAIMED_BY,DEL-04-01#CLM-010.11,"Live packaged read-tool proof produced Evidence_DAPP52_PACKAGED_LIVE_PROOF (REQ-011); REACH=LEGACY_ONLY, STATE=DISABLED."
+CAP-BUILD-033,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-034,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-035,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-036,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-037,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-038,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-039,NOT_MINE,,Build/packaging/release tooling owned by PKG-09 or the originating feature deliverable; DEL-04-01 is a documentary probe/decision slice with no build ownership.
+CAP-BUILD-040,NOT_MINE,,"Live-LLM pec demo (D-APP-52 PACK2) exercises the PEC proposal tools, not a DEL-04-01 probe topic; PEC tooling ownership lies with the domain/PEC deliverables."
+CAP-BUILD-041,CLAIMED_BY,DEL-04-01#CLM-010.3,"run-dapp52-live-sdk-probe.mjs is the D-APP-52 PACK1 probe (header names DEL-04-01) capturing query() sequence, errors and interrupt; REACH=LEGACY_ONLY UNREACHED, manual."
+CAP-HARNESS-001,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-002,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-003,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-004,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-005,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-006,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-007,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-008,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-009,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-010,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-011,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-012,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-013,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-014,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-015,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-016,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-017,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-018,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-019,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-020,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-021,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-022,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-023,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-024,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-025,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-026,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-027,PARTIAL,DEL-04-01#CLM-010.12,REQ-012 redaction evidence cites redactConfiguredApiKeys (REACH=LIVE); the logger itself is not this deliverable's product. Capability notes that live redaction has no key source populated.
+CAP-HARNESS-028,NOT_MINE,,"Key-aware provider selection is D-APP-18 default-provider implementation, not the probe; owned by the provider deliverable."
+CAP-HARNESS-029,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-030,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-031,PARTIAL,DEL-04-01#CLM-004.1,"Deliverable owns the settings-isolation/permission conditions the adapter must meet; the adapter implementation is excluded (CLM-009) and routed to DEL-04-02. REACH=LEGACY_ONLY, STATE=DISABLED."
+CAP-HARNESS-032,PARTIAL,DEL-04-01#CLM-010.3,Deliverable owns the mapping-feasibility probe (REQ-003/004); mapper implementation is routed downstream (DEL-04-03). REACH=LEGACY_ONLY.
+CAP-HARNESS-033,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-034,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-035,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-036,NOT_MINE,,"Provider credential lookup is key-bridge implementation, excluded by CLM-009 ('provider key bridge')."
+CAP-HARNESS-037,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-038,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-039,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-040,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-041,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-042,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-043,PARTIAL,DEL-04-01#CLM-010.6,Deliverable owns the permission-behavior probe (REQ-006); overlay implementation belongs to downstream PKG-04/PKG-06 deliverables. REACH=LEGACY_ONLY.
+CAP-HARNESS-044,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-045,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-046,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-047,NOT_MINE,,Hooks cited only as REQ-006 probe evidence; hook implementation is owned by the permission/hook deliverables.
+CAP-HARNESS-048,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-049,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-050,NOT_MINE,,"MCP read tools implement Chirality tools; REQ-007 only probes in-process MCP feasibility (createSdkMcpServer), tool ownership is PKG-06."
+CAP-HARNESS-051,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-052,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-053,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-054,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-055,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-056,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-057,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-058,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-059,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-HARNESS-060,NOT_MINE,,Legacy in-process harness or live renderer client behavior owned by other PKG-04/05/06/08 deliverables; DEL-04-01 excludes implementation (CLM-009).
+CAP-RTCONTRACT-001,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-002,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-003,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-004,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-005,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-006,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-007,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-008,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-009,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-010,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-011,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-012,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-013,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-014,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-015,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-016,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-017,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-018,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-019,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-020,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-021,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-022,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-023,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-024,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-025,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-026,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-027,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-028,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-029,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-030,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-031,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-032,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-033,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-034,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-035,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-036,PARTIAL,DEL-04-01#CLM-024,"Principle 1 and the CLM-003 product boundary require Chirality to own AgentEnginePort; the contract itself is owned by the engine-contract deliverables. REACH=LIVE, TYPE-ONLY."
+CAP-RTCONTRACT-037,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-038,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-039,NOT_MINE,,"Engine conformance harness is conformance-suite ownership (R4-Q2 domain), not this probe."
+CAP-RTCONTRACT-040,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-041,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-042,NOT_MINE,,"Claude SDK tool descriptor registry is tool-surface ownership (PKG-06), not the adoption decision."
+CAP-RTCONTRACT-043,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-044,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-045,PARTIAL,DEL-04-01#CLM-010.2,"CLAUDE_AGENT_SDK_PACKAGE_VERSION restates the version pin the adoption decision fixes; REACH=LEGACY_ONLY, STATE=DISABLED. Not cited by the ledger but inside REQ-002's subject."
+CAP-RTCONTRACT-046,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-047,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-048,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-049,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-050,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-051,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-052,NOT_MINE,,Runtime contract surface owned by engine/session/runtime deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCONTRACT-053,PARTIAL,DEL-04-01#STATE-2,"engine-claude is the 'first Root-runtime adapter' of the _CONTEXT scope that STATE-2 finds stale; REACH=LEGACY_ONLY UNREACHED, STATE=DISABLED. Adapter implementation is Root/Runtime-owned."
+CAP-RTCORE-001,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-002,PARTIAL,DEL-04-01#STATE-1,Pinned codex --version gate is part of the App Server supply/version behavior SOW-079 assigns to DEL-04-01 for observation; composition is Runtime-owned. REACH=LIVE.
+CAP-RTCORE-003,PARTIAL,DEL-04-01#CLM-003,"Codex registered as sole engine is the live fact on one side of the CLM-003 authority conflict; engine composition is owned elsewhere (PKG-03/05). REACH=LIVE, STATE=ENABLED."
+CAP-RTCORE-004,PARTIAL,DEL-04-01#STATE-1,Stock codex app-server host pinned to @openai/codex@0.154.0 is the App Server behavior SOW-079 asks DEL-04-01 to observe and evidence; host implementation is Runtime-owned. REACH=LIVE.
+CAP-RTCORE-005,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-006,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-007,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-008,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-009,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-010,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-011,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-012,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-013,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-014,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-015,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-016,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-017,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-018,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-019,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-020,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-021,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-022,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-023,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-024,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-025,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-026,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-027,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-028,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-029,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-030,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-031,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-032,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-033,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-034,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-035,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-036,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-037,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-038,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-039,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-040,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-041,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-042,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-043,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-044,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-045,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-046,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-047,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-048,NOT_MINE,,Compatibility session policy selecting claude-agent-sdk is provider-selection logic (REACH=LEGACY_ONLY UNREACHED); not a probe artifact.
+CAP-RTCORE-049,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-RTCORE-050,NOT_MINE,,Runtime core/daemon behavior owned by Runtime-facing deliverables; not a DEL-04-01 probe or decision topic.
+CAP-SETTINGS-001,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-002,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-003,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-004,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-005,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-006,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-007,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-008,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-009,NOT_MINE,,"Anthropic/oMLX API key settings UI (STATE=DISABLED) belongs to the provider-settings deliverable, not the probe."
+CAP-SETTINGS-010,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-011,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-012,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-013,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-014,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-015,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-016,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-017,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-018,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-019,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-020,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-021,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-022,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-023,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-024,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-025,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-026,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-027,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-028,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-029,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-030,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-031,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-032,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-033,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-034,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-035,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-036,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-037,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-038,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-039,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-040,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-041,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SETTINGS-042,NOT_MINE,,"Settings, credential, register or port-proxy behavior owned by other deliverables (PKG-02/04/07); DEL-04-01 records no settings UI or proxy claim."
+CAP-SHELL-001,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-002,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-003,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-004,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-005,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-006,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-007,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-008,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-009,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-010,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-011,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-012,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-013,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-014,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-015,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-016,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-017,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-018,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-019,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-020,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-021,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-022,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-023,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-024,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-025,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-026,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-027,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-028,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-029,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-030,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-031,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-032,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-033,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-034,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-035,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-036,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-037,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-038,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-039,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-040,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-041,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-042,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-043,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-044,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+CAP-SHELL-045,NOT_MINE,,Shell and chat UI behavior (SCA-APP-010) owned by PKG-02/07 deliverables; unrelated to the SDK probe and adoption decision.
+#END
