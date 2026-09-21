@@ -368,8 +368,9 @@ coverage checklist. [INTEG] Unit definitions used by the index:
 - Validator: the same `ledger` mode; coverage is checked against `EXTENSION_INDEX.csv`
   (`DEC` ← item 3, `SOW` ← item 5, `DOC-<DOCID>` ← that DOCID's units).
 - [A0] Wave placement (D-APP-129 item D and §10): item 4 is audited **with the PKG-09 wave
-  (wave 5)**. Items 3, 5, 6 and 7 run under one extension manager (`EXT`) that HELP_HUMAN
-  dispatches alongside wave 5.
+  (wave 5)**. All extension ledgers (items 3, 4, 5, 6 and 7) are written under one extension
+  manager (`EXT`, brief `BRIEFS/R2_EXT_MANAGER.md`) that HELP_HUMAN dispatches alongside the
+  PKG-09 manager in wave 5.
 
 ## 9. Evidence pack (Ruling C; R0 report §9)
 
@@ -378,8 +379,8 @@ dispatching workers, and puts its path into every worker brief. It contains the 
 of report §9. [INTEG] `[A0]` marks HELP_HUMAN post-review corrections. File names and formats, so every manager builds it identically:
 
 - **Location:** `<RUN>/R2/<PKG-ID>/EVIDENCE_PACK/` (extension managers:
-  `<RUN>/R2/EXT/EVIDENCE_PACK/`). Items 1, 2 and 5 are corpus-wide and may be copied
-  byte-for-byte from the first manager's pack; their SHA-256 must then match.
+  `<RUN>/R2/EXT/EVIDENCE_PACK/`). Items 1, 2 and 5 are corpus-wide: [A0] the R1b manager builds them once at
+  `<RUN>/R2/_shared/EVIDENCE_PACK/`, and each package manager copies them byte-for-byte; their SHA-256 must then match.
 - **All CSVs:** UTF-8, header row, data rows, final `#END` record, repo-relative paths,
   rows sorted by the listed key columns, built from the frozen tree at `00115c719`.
 

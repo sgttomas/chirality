@@ -174,3 +174,14 @@
 - **Extension index.** `R1_INVENTORY/EXTENSION_INDEX.csv` holds 221 units: DEC 38, DOC
   (item 4) 58, SOW 84, PRODAGENTS 9, harness developer docs 32. D-APP-116..119 are
   `AWAITING_RULING`, so they are not DEC units.
+
+## Addendum 2: attribution correction (appended 2026-09-21)
+
+- Addendum 1 attributed the whole §4 git amendment to the adopted PostReleaseBasis rule. That
+  attribution is only partly right:
+  - the PostReleaseBasis rule covers read-only `git blame -L`;
+  - allowing read-only `git log` and `git show` against the frozen tree is HELP_HUMAN's own
+    run-protocol choice, made so the evidence pack can be built.
+- Neither D-APP-128 nor D-APP-129 limits child git, and the allowance stays read-only and
+  confined to the frozen tree.
+- Recorded after the PR #838 backcheck.
