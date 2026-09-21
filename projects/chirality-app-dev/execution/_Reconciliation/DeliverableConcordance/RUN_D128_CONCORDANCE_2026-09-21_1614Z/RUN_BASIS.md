@@ -185,3 +185,32 @@
 - Neither D-APP-128 nor D-APP-129 limits child git, and the allowance stays read-only and
   confined to the frozen tree.
 - Recorded after the PR #838 backcheck.
+
+## Addendum 3: R2 rerun threshold counts verdict errors only (appended 2026-09-21)
+
+Owner direction `r2_rerun_rule` (OWNER_DIRECTION.md, SHA-256 `1d76a273…0225f`). It replaces
+the rerun criterion in `BRIEFS/R2_PACKAGE_MANAGER.md` step 7 from this point on, for wave 1
+managers still running and for every later wave.
+
+- **Verdict fields.** A ledger row's `Disposition` (including an errata row that changes
+  one), and a reverse-file `Response` (`CLAIMED_BY` / `PARTIAL` / `NOT_MINE`, including the
+  claim it names).
+- **Rerun trigger.** A structural failure, or more than 10% of checked distinct rows REFUTED
+  on a verdict field. Rows refuted only on other fields do not count toward the threshold.
+- **Corrections instead of reruns.** Each refutation on any other field (evidence citations
+  and line anchors, REACH, AuthorityTier, CauseTag, DirectionEvidence, LatestDecision,
+  PostReleaseBasis, HumanDecisionNeeded, Notes, and so on) is recorded, by script from the
+  verifier shard, in `<RUN>/R2/<PKG>/CORRECTIONS.csv` with the columns
+  `ClaimKey,Field,SealedValue,CorrectedValue,VerifierShard,Evidence`. Nobody edits the sealed
+  ledger. R3 applies CORRECTIONS.csv after errata, and the package summary shows the
+  corrected figures next to the sealed ones.
+- **Reporting is unchanged.** Every REFUTED and CONTESTED item, whatever the field, stays in
+  VERIFICATION.md with its evidence.
+- **Wave 1 transition.**
+  - A rerun that is already running finishes and is verified under this rule.
+  - No new rerun starts on field-only refutations.
+  - Where a deliverable has more than one completed attempt, the ledger of record is the
+    most recent attempt that passes under this rule. Earlier attempts stay where they are,
+    marked superseded in STATE.jsonl.
+  - Any verdict-field refutations in an earlier attempt are listed in VERIFICATION.md, so R3
+    can compare the attempts.

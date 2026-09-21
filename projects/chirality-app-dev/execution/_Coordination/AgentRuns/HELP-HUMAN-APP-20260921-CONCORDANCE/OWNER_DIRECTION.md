@@ -105,6 +105,14 @@ SHA-256: `9957d09c21ebc6cad181d56bc43cbd9bde18999c98bd708a416c29fcd3705b7f`
 
 Context for `ruling_r0_gate_governance_items`: the owner's selection in a structured question from HELP_HUMAN, "Which governance items join the scope extension alongside items 3-7?", with the options "1a and 1b+2 (Recommended)", "1a only" and "Neither".
 
+## r2_rerun_rule
+
+> Yes, apply that from wave 2 and give the instructions to the current workers too.
+
+SHA-256: `1d76a2731c7288920e91e984b1ad1e3b6dc08cfbc50d7baa33660bb77480225f`
+
+Context for `r2_rerun_rule`: the owner's answer to HELP_HUMAN's wave 1 status proposal (2026-09-21 ~19:50Z) to keep the >10% fresh-worker rerun threshold for verdict errors only, and to record verifier refutations of other fields as corrections, not reruns, with every refuted row still reported for R3. Applied as RUN_BASIS Addendum 3.
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the
