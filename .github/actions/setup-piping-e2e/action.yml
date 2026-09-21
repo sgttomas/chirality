@@ -106,4 +106,3 @@ runs:
       shell: bash
       run: npx playwright install --with-deps chromium
       working-directory: projects/chirality-piping
-

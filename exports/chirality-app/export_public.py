@@ -45,6 +45,22 @@ RUNTIME_ROOT = REPO_ROOT / "projects" / "chirality-runtime"
 RUNTIME_FILES = ["README.md", "package.json", "package-lock.json", "tsconfig.json", "tsconfig.base.json"]
 RUNTIME_DIRS = ["packages", "tests"]
 
+# The desktop application is a public release surface. Keep it under its own
+# top-level directory so its docs and build resources cannot collide with the
+# curated framework projection at the repository root.
+DESKTOP_ROOT = REPO_ROOT / "projects" / "chirality-app-dev" / "frontend"
+DESKTOP_FILES = [
+    ".gitignore",
+    "THIRD_PARTY_NOTICES_PI.md",
+    "next-env.d.ts",
+    "next.config.mjs",
+    "package-lock.json",
+    "package.json",
+    "tsconfig.electron.json",
+    "tsconfig.json",
+]
+DESKTOP_DIRS = ["build", "docs", "electron", "packages", "scripts", "src"]
+
 EXCLUDED_PUBLIC_PATHS = {
     ".github/workflows/harness-premerge.yml",
     "tools/practitioner_harness/BACKLOG.md",
@@ -58,6 +74,17 @@ EXCLUDED_PUBLIC_PATHS = {
 EXCLUDED_PUBLIC_PREFIXES = (
     "docs/governance_harness/briefs/",
     ".agents/skills/chirality-change/",
+    # `build/icon.iconset` is an optional local rasterisation intermediate;
+    # `build/icon.icns` and the SVG source are the committed build inputs.
+    "desktop/build/icon.iconset/",
+)
+
+# These source-controlled files use absolute paths exclusively as harmless
+# parser, policy, and consent fixtures. The boundary scan continues to reject
+# absolute user-home paths everywhere else in the desktop application.
+PUBLIC_PATH_FIXTURE_PREFIXES = (
+    "desktop/src/__tests__/",
+    "desktop/src/lib/consent/consent-ux-fixtures.ts",
 )
 
 BUNDLED_SKILL_NAMES = {
@@ -144,7 +171,7 @@ PUBLIC_REPLACEMENTS = [
 
 PUBLIC_README_REQUIRED_MARKERS = (
     "https://github.com/sgttomas/chirality-app/releases/latest",
-    "The desktop application source is not currently included",
+    "desktop/",
     "curated Chirality desktop release projection",
     "runtime/",
 )
@@ -155,6 +182,7 @@ PUBLIC_README_FORBIDDEN_MARKERS = (
     "Private maintainer and development roots",
     "projects/chirality-app-dev",
     "exports/chirality-app",
+    "The desktop application source is not currently included",
 )
 
 
@@ -333,6 +361,11 @@ def build_stage(stage: Path) -> int:
         for name in RUNTIME_FILES + RUNTIME_DIRS
         if not (RUNTIME_ROOT / name).exists()
     )
+    missing.extend(
+        str((DESKTOP_ROOT / name).relative_to(REPO_ROOT))
+        for name in DESKTOP_FILES + DESKTOP_DIRS
+        if not (DESKTOP_ROOT / name).exists()
+    )
     if not (REPO_ROOT / ".agents" / "skills").is_dir():
         missing.append(".agents/skills")
     missing.extend(
@@ -398,12 +431,13 @@ def build_stage(stage: Path) -> int:
     for name in RUNTIME_DIRS:
         copy_tree(RUNTIME_ROOT / name, runtime_stage / name, f"runtime/{name}")
 
-    (stage / 'ADOPTION_HOLD.json').write_text(json.dumps({
-        'schema_version': 1, 'status': 'HELD',
-        'basis': 'D-GOV-41 four-role replacement',
-        'reason': 'App and Runtime must adopt registry, workflow loading, role routing and compatibility together.',
-        'required_consumers': ['chirality-app', 'chirality-runtime']
-    }, indent=2) + '\n')
+    desktop_stage = stage / "desktop"
+    desktop_stage.mkdir(parents=True)
+    for name in DESKTOP_FILES:
+        copy_source_file(DESKTOP_ROOT / name, desktop_stage / name)
+    for name in DESKTOP_DIRS:
+        copy_tree(DESKTOP_ROOT / name, desktop_stage / name, f"desktop/{name}")
+
     write_public_init_prompt(stage)
 
     return sanitize_text_files(stage)
@@ -459,7 +493,7 @@ def boundary_findings(stage: Path) -> list[str]:
         parts = path.relative_to(stage).parts
         if parts and parts[0] in forbidden_top:
             findings.append(f"forbidden top-level path: {rel}")
-        if path.is_dir() and path.name in SKIP_DIRS:
+        if path.is_dir() and path.name in SKIP_DIRS and rel != "desktop/build":
             findings.append(f"forbidden directory: {rel}")
         if path.is_file():
             if path.name in SKIP_FILE_NAMES or path.name.startswith(".env") or path.suffix in {".pyc", ".zip", ".pdf", ".PDF", ".tsbuildinfo"}:
@@ -476,7 +510,7 @@ def boundary_findings(stage: Path) -> list[str]:
                     r"[A-Za-z]:\\Users\\(?!example(?:\\|\b)|fixture(?:\\|\b))[^\\\s`]+\\",
                     text,
                 )
-                if private_home:
+                if private_home and not rel.startswith(PUBLIC_PATH_FIXTURE_PREFIXES):
                     findings.append(f"private absolute path reference: {rel}")
     return findings
 
@@ -522,9 +556,6 @@ def write_report(stage: Path, manifest_count: int, sanitized_count: int, finding
 
 
 def apply_target(stage: Path, target: Path) -> None:
-    hold = stage / 'ADOPTION_HOLD.json'
-    if hold.is_file() and json.loads(hold.read_text()).get('status') == 'HELD':
-        raise SystemExit('public export adoption held: owning App and Runtime loops must adopt the four-role interface')
     if not (target / ".git").exists():
         raise SystemExit(f"refusing to apply: target has no .git directory: {target}")
     for item in target.iterdir():

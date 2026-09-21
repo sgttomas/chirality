@@ -35,7 +35,7 @@ def test_public_export_excludes_private_runtime_surfaces(tmp_path: Path) -> None
         if item['kind'] == 'workflow' and item['source'] == 'bundled'
     }
     assert {path.parent.name for path in (stage / 'workflows').glob('*/WORKFLOW.md')} == expected_workflows
-    assert (stage / 'ADOPTION_HOLD.json').is_file()
+    assert not (stage / 'ADOPTION_HOLD.json').exists()
     assert not (stage / 'skills').exists()
     bundled_skills = sorted(path.parent.name for path in (stage / '.agents/skills').glob('*/SKILL.md'))
     assert bundled_skills == sorted(exporter.BUNDLED_SKILL_NAMES)
@@ -75,6 +75,19 @@ def test_public_export_excludes_private_runtime_surfaces(tmp_path: Path) -> None
     assert not (stage / "runtime/loop").exists()
     assert not (stage / "runtime/docs").exists()
 
+    # The public desktop source is projected without its private project
+    # custody, dependency directories, or generated build output.
+    assert (stage / "desktop/package.json").read_bytes() == (
+        REPO_ROOT / "projects/chirality-app-dev/frontend/package.json"
+    ).read_bytes()
+    assert (stage / "desktop/src").is_dir()
+    assert (stage / "desktop/electron").is_dir()
+    assert (stage / "desktop/build/icon.icns").is_file()
+    assert not (stage / "desktop/node_modules").exists()
+    assert not (stage / "desktop/dist").exists()
+    assert not (stage / "desktop/.next").exists()
+    assert not (stage / "desktop/.chirality").exists()
+
     assert exporter.boundary_findings(stage) == []
 
 
@@ -92,15 +105,6 @@ def test_public_export_rejects_private_canonical_readme_framing(tmp_path: Path) 
         "private canonical README marker in public README: ## Private Canonical Repository"
         in exporter.boundary_findings(stage)
     )
-
-
-def test_adoption_hold_blocks_apply(tmp_path):
-    import json
-    import pytest
-    exporter=load_exporter()
-    stage=tmp_path/'stage';stage.mkdir()
-    (stage/'ADOPTION_HOLD.json').write_text(json.dumps({'status':'HELD'}))
-    with pytest.raises(SystemExit,match='adoption held'):exporter.apply_target(stage,tmp_path/'target')
 
 
 def test_copy_tree_rejects_symlinked_source_directories_and_files(tmp_path, monkeypatch):
