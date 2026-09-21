@@ -256,3 +256,15 @@ requirement as product behaviour or as about the retained module.
   module-level reading gives. Every such row waits on the owner's R4-Q1 ruling.
 - **Verifiers** grade new ledgers against the test. Where rule 1 still leaves the subject
   genuinely open, rule 2 decides it, so CONTESTED on subject grounds should become rare.
+
+## Addendum 7: named question R4-Q5 (appended 2026-09-21)
+
+Owner direction `r2_r4q5` (OWNER_DIRECTION.md, SHA-256 `fb0fbf2f…1a83b`) adds a fifth named
+R4 question, proposed after PKG-03:
+
+- **R4-Q5:** are Codex event payloads stored as received (amended CONTRACT K-EVENT-1/K-EVENT-6,
+  SPEC §11) or translated (unamended K-ENGINE-4, SPEC §10.3)?
+- CONVENTIONS §2.4 and §10 now list it. The validator accepts `R4-Q5`, including for
+  AUTHORITY_CONFLICT (MR-11), and a test covers it.
+- Ledgers sealed before this addendum keep plain `R4` on such rows (PKG-03 has 15; R0 and PKG-06
+  also have some); R3 maps them to R4-Q5 when it clusters. Nobody edits a sealed ledger for this.

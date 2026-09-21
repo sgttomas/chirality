@@ -137,6 +137,14 @@ SHA-256: `75a027b0140020bb7a6a8c8339b1e9c63c5bb33c625dcb6ec833ff6e959978a0`
 
 Context for `r2_r4q1_subject_test`: approves, as drafted, the legacy-versus-live subject test for R4-Q1 that HELP_HUMAN wrote at the owner's request ("Yes, draft the R4-Q1 subject test."), after PKG-04's DEL-04-03 attempts disagreed on R4-Q1 rows (20, 4, 1). Applied as RUN_BASIS Addendum 6 and CONVENTIONS §2.4.
 
+## r2_r4q5
+
+> Yes, add R4-Q5 and send it to the running managers
+
+SHA-256: `fb0fbf2fe681c9820cf76a594289121acde36ea501a42afac5d4ae215461a83b`
+
+Context for `r2_r4q5`: approves HELP_HUMAN's recommendation, after PKG-03 returned, to add named question R4-Q5 on the Codex event-payload conflict (15 AUTHORITY_CONFLICT rows in PKG-03; also seen in R0 and PKG-06). Applied as RUN_BASIS Addendum 7.
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the
