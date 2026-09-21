@@ -1,0 +1,21 @@
+ClaimKey,PackageID,DeliverableID,UnitKind,LocalID,SourceFile,SourceLine,Section,Label,SubItems
+DEL-02-01#SEC-1,PKG-02,DEL-02-01,SEC,SEC-1,ScopeOfWork.md,28,SCA-APP-004 Gate-5 Current Contract (Controlling until SCA-APP-010),Current responsibility,
+DEL-02-01#SEC-2,PKG-02,DEL-02-01,SEC,SEC-2,ScopeOfWork.md,52,SCA-APP-004 Gate-5 Current Contract (Controlling until SCA-APP-010),Current acceptance obligations,
+DEL-02-01#SEC-3,PKG-02,DEL-02-01,SEC,SEC-3,ScopeOfWork.md,84,SCA-APP-010 Gate-5 Current Contract (Controlling),Current responsibility,
+DEL-02-01#SEC-4,PKG-02,DEL-02-01,SEC,SEC-4,ScopeOfWork.md,102,SCA-APP-010 Gate-5 Current Contract (Controlling),Current acceptance obligations,
+DEL-02-01#SEC-5,PKG-02,DEL-02-01,SEC,SEC-5,ScopeOfWork.md,111,SCA-APP-010 Gate-5 Current Contract (Controlling),Seating and rulings,
+DEL-02-01#CLM-001,PKG-02,DEL-02-01,CLM,CLM-001,ScopeOfWork.md,123,Deliverable Definition — Ontology,Datasheet: DEL-02-01 Woven Dialogue Shell and Compatibility Navigation,
+DEL-02-01#CLM-002,PKG-02,DEL-02-01,CLM,CLM-002,ScopeOfWork.md,130,Deliverable Definition — Ontology,Identification,
+DEL-02-01#CLM-003,PKG-02,DEL-02-01,CLM,CLM-003,ScopeOfWork.md,148,Deliverable Definition — Ontology,Attributes,
+DEL-02-01#CLM-004,PKG-02,DEL-02-01,CLM,CLM-004,ScopeOfWork.md,166,Deliverable Definition — Ontology,Conditions,
+DEL-02-01#CLM-005,PKG-02,DEL-02-01,CLM,CLM-005,ScopeOfWork.md,180,Deliverable Definition — Ontology,Construction,
+DEL-02-01#CLM-006,PKG-02,DEL-02-01,CLM,CLM-006,ScopeOfWork.md,193,Deliverable Definition — Ontology,References,
+DEL-02-01#CLM-007,PKG-02,DEL-02-01,CLM,CLM-007,ScopeOfWork.md,205,Deliverable Definition — Ontology,D-APP-56 R5 P45 current-state reconciliation (2026-07-12),
+DEL-02-01#CLM-008,PKG-02,DEL-02-01,CLM,CLM-008,ScopeOfWork.md,213,Completion and Reliance Basis — Epistemology,Specification: DEL-02-01 Desktop Shell and Matrix Navigation,
+DEL-02-01#CLM-009,PKG-02,DEL-02-01,CLM,CLM-009,ScopeOfWork.md,220,Completion and Reliance Basis — Epistemology,Scope,
+DEL-02-01#CLM-010,PKG-02,DEL-02-01,CLM,CLM-010,ScopeOfWork.md,243,Completion and Reliance Basis — Epistemology,Requirements,
+DEL-02-01#CLM-011,PKG-02,DEL-02-01,CLM,CLM-011,ScopeOfWork.md,262,Completion and Reliance Basis — Epistemology,Standards,
+DEL-02-01#CLM-012,PKG-02,DEL-02-01,CLM,CLM-012,ScopeOfWork.md,275,Completion and Reliance Basis — Epistemology,Verification,REQ-001|REQ-004|REQ-007|REQ-010|REQ-011
+DEL-02-01#CLM-013,PKG-02,DEL-02-01,CLM,CLM-013,ScopeOfWork.md,288,Completion and Reliance Basis — Epistemology,Documentation,
+DEL-02-01#CLM-014,PKG-02,DEL-02-01,CLM,CLM-014,ScopeOfWork.md,303,Completion and Reliance Basis — Epistemology,D-APP-56 R5 P45 current-state reconciliation (2026-07-12),
+DEL-02-01#CLM-015,PKG-02,DEL-02-01,CLM,CLM-015,ScopeOfWork.md,310,Completion and Reliance Basis — Epistemology,D-APP-56 shell ownership amendment (2026-07-12),AC-001
