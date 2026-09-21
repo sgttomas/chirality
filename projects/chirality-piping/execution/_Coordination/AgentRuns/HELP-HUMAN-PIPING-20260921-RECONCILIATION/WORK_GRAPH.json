@@ -20,7 +20,7 @@
  "ownerDirections": [
   {
    "record": "OWNER_DIRECTIONS.md",
-   "sha256": "037387060e0f8b0092d8b6b3cee9baf4991e67113c0dc63c93882afd76590b6b",
+   "sha256": "574f98b336848f474744805135e0754bf97d9b59f388a4acba1cb45be9cb072d",
    "custody": "stored-transcript extraction, not transport bytes"
   },
   {
@@ -31,6 +31,11 @@
    "record": "PLAN.md",
    "sha256": "18d3960ed8078806b60f66bfbf7e623f2f7735d225fa5dc661247ef730d96381",
    "note": "Agent 0 plan, owner-approved 2026-09-21T16:15:18Z"
+  },
+  {
+   "record": "RECON_2026-09-21_WHOLE_CORPUS/R0_CALIBRATION/R0_RULING.md",
+   "sha256": "a922f21f3831bf5f46fbb61a5787e9d37339716bb20667a8848ad5c9e71236f3",
+   "note": "R0 ruling and addendum (owner items)"
   }
  ],
  "nodes": {
@@ -43,7 +48,7 @@
   },
   "ACT": {
    "title": "D-73 activation packet, profile, ruling, review, merge",
-   "status": "ruled; reviewed PASS; checks pass; PR and merge pending",
+   "status": "merged: PR #837 at e631e078643f317c4ed5d8c3284f13d3db8eecd7 (trees identical to reviewed head); addendum on gate evidence pending with R0 PR",
    "dependsOn": [],
    "write": [
     "execution/_Coordination/_DECISIONS/D-73_*",
@@ -65,30 +70,32 @@
    "note": "only pre-merge launch",
    "brief": "briefs/ACT-REVIEW_brief.md",
    "briefSha256": "17a385b4af98a008148a142cb548f753cd3f2ebcb6f368a7e4ad9ecfd599c796",
-   "return": "returns/ACT-REVIEW_return.md",
+   "return": "_run_records/returns/ACT-REVIEW_return.md",
    "returnSha256": "23bf30491fa678f47ea93107d6b24d42f74cce4576b8f5ab7b11a59b6600bb3f",
    "actualAgent": "ae985ad18ea2bd25b",
    "mechanism": "harness-native Agent tool, subagent_type general-purpose, foreground, parent ROOT (D-GOV-35)",
    "modelRequested": "opus (claude-opus-5)",
    "reasoningRequested": "high (inherited from session; the host takes no per-call reasoning setting)",
    "enforcement": "read-only and non-delegation are instruction-asserted, not host-enforced; reviewer reported working tree unchanged",
-   "backcheck1Return": "returns/ACT-REVIEW_backcheck1_return.md",
+   "backcheck1Return": "_run_records/returns/ACT-REVIEW_backcheck1_return.md",
    "backcheck1ReturnSha256": "22f829c1ecfc23686edd37a6abf368c49eae967d6ab7e7d48917cf606b3c3469",
    "returnCustody": "returns extracted verbatim from the parent session transcript (tool result; task-notification result), not the child's own transcript",
-   "backcheck2Return": "returns/ACT-REVIEW_backcheck2_return.md",
+   "backcheck2Return": "_run_records/returns/ACT-REVIEW_backcheck2_return.md",
    "backcheck2ReturnSha256": "de8270ff6db978f101d7be6657da1931357fe3d281f6822b5e8c9d5cb97b530a",
    "reviewedCandidate": "20192a20c (subsequent commits are records-only and listed in the PR)"
   },
   "R0": {
    "title": "Freeze basis, run tooling, gate transcript, 8-deliverable calibration, candidate conventions",
-   "status": "planned",
+   "status": "calibration complete; owner ruled R0; bound conventions, extractor v2, canonical table, evidence map, validator v2 built; R0 PR review pending",
    "dependsOn": [
     "ACT merged to main"
-   ]
+   ],
+   "evidence": "execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/",
+   "ruling": "RECON_2026-09-21_WHOLE_CORPUS/R0_CALIBRATION/R0_RULING.md"
   },
   "R1": {
    "title": "Read-only inventories incl. owner-free reverse capability inventory",
-   "status": "planned",
+   "status": "complete: 598 capabilities, 12 inventories pass hardened checker; indexes, authority map, routing built",
    "dependsOn": [
     "R0 conventions ruled"
    ]
@@ -120,6 +127,31 @@
    "dependsOn": [
     "R4"
    ]
+  },
+  "R0-PR-REVIEW": {
+   "role": "TASK (review, read-only)",
+   "model": "claude-opus-5",
+   "reasoning": "high (inherited)",
+   "parent": "ROOT",
+   "actualAgent": "a547c67e11adf28f7",
+   "mechanism": "harness-native Agent tool, general-purpose, background (D-GOV-35)",
+   "brief": "briefs/R0-PR-REVIEW_brief.md",
+   "briefSha256": "6d642bb757550cfe91d26f53a67612c3c877269fff04ebf8d36801a175402c5d",
+   "return": "_run_records/returns/R0-PR-REVIEW_return.md",
+   "returnSha256": "67fb54b0f92a6671e7da2ffe12f08e0e0e0c0071b03db758d24775fc84730ebc",
+   "status": "backcheck 6 PASS (review closed); PR #839 opened",
+   "backcheck1Return": "_run_records/returns/R0-PR-REVIEW_backcheck1_return.md",
+   "backcheck1ReturnSha256": "f8b92cd69be29dd254265d0173b12e6e269325a0450b2687966db45ae1f5eb61",
+   "backcheck2Return": "_run_records/returns/R0-PR-REVIEW_backcheck2_return.md",
+   "backcheck2ReturnSha256": "7d6e6e1ac6bde46a3f314532fce5b3a7daeaced71fc9b1e48ae843d8620b4773",
+   "backcheck3Return": "_run_records/returns/R0-PR-REVIEW_backcheck3_return.md",
+   "backcheck3ReturnSha256": "a4019dfcc5cf1c76680b8c292a832196aa35e8d8c6ec413fd6b680e723c276f8",
+   "backcheck4Return": "_run_records/returns/R0-PR-REVIEW_backcheck4_return.md",
+   "backcheck4ReturnSha256": "b2749149ad27bd736fad100544031af9488fa43e79bd44dee1d7665105994072",
+   "backcheck5Return": "_run_records/returns/R0-PR-REVIEW_backcheck5_return.md",
+   "backcheck5ReturnSha256": "4ff0f6b29cad68fc20a7713311df8a62c3d0c4336e4a63fdeecf8f9e67f84613",
+   "backcheck6Return": "_run_records/returns/R0-PR-REVIEW_backcheck6_return.md",
+   "backcheck6ReturnSha256": "3ced732fd5ed6f74b7d3a6411df0567742d0a68baa150a904471bddcd01ed275"
   }
  },
  "edges": [
@@ -130,9 +162,13 @@
   [
    "ROOT",
    "ACT-REVIEW"
+  ],
+  [
+   "ROOT",
+   "R0-PR-REVIEW"
   ]
  ],
- "current_frontier": "Activation PR: open, CI, merge. Then R0 from merged main.",
+ "current_frontier": "R0/R1 PR #839: CI, merge. Then R2 wave 1 (WAVE_PLAN.md): PKG-07 and PKG-16 managers.",
  "openWithOwner": [],
  "holdsPreserved": [
   "Piping development pause (owner, 2026-09-21)",
