@@ -86,6 +86,8 @@ Verification hooks: `projects/chirality-runtime/packages/contracts/src/harness/e
 
 Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
+D-APP-118 (2026-09-22) retires the former `@chirality/harness-contract` facade and its dedicated rollback support. The supported contract source is the Runtime package above; no facade retention or export-identity test remains a completion requirement. Historical source pins and the other live conformance obligations retain their separate evidence boundaries.
+
 ### CLM-006 — References
 
 > ##### References

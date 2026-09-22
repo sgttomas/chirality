@@ -1,0 +1,4 @@
+stderr | src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > maps 'malformed SSE JSON' to one redacted canonical failure and releases the turn
+Could not parse message into JSON: [REDACTED_PROVIDER_PAYLOAD]
+From chunk: [REDACTED_PROVIDER_PAYLOAD]
+

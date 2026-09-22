@@ -2,9 +2,6 @@
   "name": "chirality-frontend",
   "version": "3.0.1",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "description": "Frontend workspace bootstrap for Chirality desktop runtime",
   "author": "Chirality Project",
   "main": "dist-electron/main.js",
@@ -24,9 +21,8 @@
     "harness:validate:agentsdk-packaged-proof": "node ./scripts/verify-packaged-agent-sdk-runtime.mjs",
     "harness:validate:agentsdk-packaged-live-read-tool": "node ./scripts/run-live-packaged-agent-sdk-read-tool-proof.mjs",
     "harness:validate:pi-packaged-proof": "node ./scripts/run-packaged-pi-runtime-proof.mjs",
-    "harness:validate:contract-deps": "node ./scripts/assert-harness-contract-deps.mjs",
     "harness:generate-tool-catalog": "node ./scripts/generate-tool-catalog.mjs",
-    "validate:release-quality": "npm run harness:validate:contract-deps && node ./scripts/validate-release-quality-evidence.mjs",
+    "validate:release-quality": "node ./scripts/validate-release-quality-evidence.mjs",
     "instruction-root:integrity": "node ./scripts/verify-instruction-root-integrity.mjs",
     "instruction-root:prepare": "node ./scripts/prepare-packaged-instruction-root.mjs --source-root ../../.. --docs-root ../../../docs --output-root node_modules/.cache/chirality-instruction-root",
     "proof:secret-scan": "node ./scripts/scan-secret-evidence.mjs",

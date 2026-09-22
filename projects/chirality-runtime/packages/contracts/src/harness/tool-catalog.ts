@@ -98,7 +98,7 @@ export function renderHarnessToolCatalog(): string {
 
 **Status:** Generated governance/runtime support artifact
 **Registry version:** \`${HARNESS_TOOL_REGISTRY_VERSION}\`
-**Source:** \`frontend/packages/harness-contract/src/tool-descriptor.ts\`
+**Source:** \`projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts\`
 **Regenerate:** \`npm run harness:generate-tool-catalog\`
 
 This catalog is generated from \`HARNESS_TOOL_DESCRIPTORS\`. Do not edit

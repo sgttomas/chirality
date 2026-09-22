@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-09-22T16:00:52.025Z",
+  "profile": "runtime-premerge-evidence",
+  "status": "fail",
+  "releaseClaim": false,
+  "section9Policy": {
+    "standaloneSection9IsBlockingForThisWrapper": true,
+    "premergeSection9IsReportOnly": true
+  },
+  "commands": [
+    {
+      "id": "full_test",
+      "status": "fail",
+      "command": "npm run test -- --testTimeout=15000 --reporter=default --reporter=json --outputFile.json=/private/var/folders/0s/50y7rb796d1bqdxmpcz6qg800000gn/T/chirality-full-test-1Gsfu6/vitest-report.json",
+      "exitCode": 1,
+      "startedAt": "2026-09-22T16:00:32.602Z",
+      "endedAt": "2026-09-22T16:00:43.032Z",
+      "durationMs": 10430,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/full_test.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/full_test.stderr.log"
+    },
+    {
+      "id": "typecheck",
+      "status": "pass",
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "startedAt": "2026-09-22T16:00:43.037Z",
+      "endedAt": "2026-09-22T16:00:49.320Z",
+      "durationMs": 6283,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/typecheck.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/typecheck.stderr.log"
+    },
+    {
+      "id": "section9",
+      "status": "fail",
+      "command": "in-process validate-harness-section9.mjs (reuse full_test)",
+      "exitCode": 1,
+      "startedAt": "2026-09-22T16:00:49.320Z",
+      "endedAt": "2026-09-22T16:00:49.325Z",
+      "durationMs": 5,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/section9.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/section9.stderr.log"
+    },
+    {
+      "id": "premerge",
+      "status": "pass",
+      "command": "in-process validate-harness-premerge.mjs (reuse section9)",
+      "exitCode": 0,
+      "startedAt": "2026-09-22T16:00:49.325Z",
+      "endedAt": "2026-09-22T16:00:52.023Z",
+      "durationMs": 2698,
+      "stdoutLog": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/premerge.stdout.log",
+      "stderrLog": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/premerge.stderr.log"
+    }
+  ],
+  "summaryConsistency": {
+    "id": "summary.consistency",
+    "status": "pass",
+    "checks": [
+      {
+        "id": "summary.section9",
+        "status": "pass",
+        "artifactPath": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json",
+        "errors": []
+      },
+      {
+        "id": "summary.section8",
+        "status": "pass",
+        "artifactPath": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json",
+        "errors": []
+      }
+    ]
+  },
+  "artifacts": {
+    "releaseQualitySummary": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json",
+    "section8Summary": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json",
+    "section9Summary": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json",
+    "section9Manifest": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/manifest.json"
+  },
+  "boundaries": [
+    "No release publication authorization.",
+    "No lifecycle issuance.",
+    "No professional approval.",
+    "No certification, sealing, authentication, notarization, code-compliance acceptance, or release-readiness claim."
+  ]
+}
