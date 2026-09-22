@@ -161,6 +161,16 @@ SHA-256: `344ed714809e8c59291634bac0196b5a770df60ea52ed265ef2d68d66c38fc50`
 
 Context for `r2_absence_not_evidence`: the owner's reply to HELP_HUMAN's report of the EXT audit. That report relayed EXT findings that release steps including "v3.0.1 notarization" never ran, based on the absence of records within the evidence roots. The owner states that v3.0.1 was notarized, as v3.0.0 was, and directs that absence of a record not be taken as absence of the event: HELP_HUMAN is to check with the owner about what the owner did and did not see happen. Applied as RUN_BASIS Addendum 10.
 
+## r3_owner_check_answers
+
+> 1-7 yes, 8 I don't know what that is, 9 no. 10-12 yes, 13 onwards I'm not sure but if it's in the instructive there's a good chance it was. The process was lengthy.
+
+SHA-256: `d1578523f46ac15c6f31a3147745f137b4290d4518adaf45c1d2d16308c50f2a`
+
+Context for `r3_owner_check_answers`: the owner's answers to the 20 questions of `RUN_D128.../R3/OWNER_CHECK.md` (OC-01..OC-20), as HELP_HUMAN put them in chat on 2026-09-22. HELP_HUMAN's reading, recorded in RUN_BASIS Addendum 13:
+- OC-01..OC-07 yes; OC-08 don't know (the owner does not recognise attestation or SBOM); OC-09 no; OC-10..OC-12 yes;
+- OC-13..OC-20 don't know. For these the owner adds that "if it's in the instructive there's a good chance it was", which HELP_HUMAN reads as "if the instructions called for it". This is recorded as the owner's belief, not as a yes.
+
 ## Plan approval
 
 The owner approved the session execution plan (plan-mode approval act, after the
