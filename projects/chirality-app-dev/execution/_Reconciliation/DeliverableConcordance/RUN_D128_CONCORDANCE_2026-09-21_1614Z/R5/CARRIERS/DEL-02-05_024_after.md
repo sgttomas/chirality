@@ -1,0 +1,10 @@
+### Current acceptance obligations
+
+1. Present one app-wide account using Codex-held credentials and Codex's login/logout flow. The effective home shares user configuration/resources by reference while keeping authentication private to Chirality. Per-root hosted consent and unchanged root-private login semantics are superseded by D-APP-127; user-selected project/turn permission policy remains explicit.
+2. The inherited Q7 account-row requirement (local-model-server status only, no OpenAI/API status indicator) remains a separately identified presentation conflict against the later shell/account direction. Its resolution must cite the actual owner direction; it is not silently decided by this custody repair.
+3. The account row and right-panel Settings retain their accepted presentation loci. Account/runtime feedback and appearance controls must be truthful; fixture/unavailable state does not establish live readiness. Legacy key-storage panels, per-root account groups, supplier qualification and G3/G-CSP/G4 are not current live-login prerequisites under D-APP-127. Surviving attachment, renderer, credential separation and secret-protection guarantees remain required.
+4. Live-login evidence follows the production S-8 check and the affected-check rule after invalidating source, configuration or packaging changes. The retired Root DEL-02-09 shared-login admission is not an awaited dependency. This wording does not supply a missing native result.
+5. The inherited Agent 0/1/2 entry and exact `role not mechanically enforced` / `Opt-in Preview` labels remain separately tracked for source-faithful reconciliation with the current four-role instructions. Current instruction applicability does not certify acceptance of a new authority-corpus candidate or waive role/write-scope accountability.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131. Verification hook: production S-8 in `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/NATIVE_CHECKLIST.md`; unresolved Q7/role and native-result keys remain in the R5 accounting.
+

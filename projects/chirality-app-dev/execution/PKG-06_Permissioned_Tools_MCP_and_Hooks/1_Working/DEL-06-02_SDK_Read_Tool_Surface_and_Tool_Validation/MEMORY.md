@@ -8,3 +8,5 @@
 - 2026-07-12 - D-APP-56 R5 P40 executed UPD-071: REF-006 current-state kit/register wording now agrees with D-APP-38 MATCH; dated source-warning and assessment history is preserved. No lifecycle transition.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-06-02; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
 - 2026-07-19 - D-APP-68 chronology item 3 assigned DEL-06-02 the four coordination MCP descriptors, canonical/allowed names, aliases, schemas, catalog entries, and registry validation, while preserving DEL-06-03's in-process composition ownership. No runtime or lifecycle change occurred.
+
+- 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.

@@ -28,24 +28,21 @@ evidence remain dated compatibility history and are not deleted.
 
 ### Current responsibility
 
-`DEL-05-02 HarnessEvent Schema and Append-Only JSONL` (DATA_MODEL_CHANGE, applied decomposition row L337):
+Consume Runtime-owned event records for App audit and replay without owning the generic writer. Preserve accepted-turn and terminal evidence and keep Codex notifications inspectable as received, including unfamiliar methods. The event vocabulary is open under D-GOV-43 and D-APP-127; the retired Root DEL-02-10 and closed schema are not current admission gates.
 
-Consume Root-owned daemon `HarnessEvent` records for App audit/replay surfaces
-and verify accepted-turn and terminal-event persistence without owning the
-generic event schema or writer; consume the additive `proposal.*` event types
-for replay and the proposal card once Root accepts them (SOW-082).
+The App remains responsible for the accepted proposal interaction and its audit/replay meaning (SOW-082). Retiring the old schema gate does not certify proposal-event implementation or remove any unfulfilled user-facing guarantee.
 
-Applied row notes: App event-consumption and conformance slice; generic
-persistence remains Root-owned.
+Verification hooks: `frontend/src/__tests__/lib/harness-event-views-codex.test.ts`, `projects/chirality-runtime/tests/turn-hardening.test.ts`, and `projects/chirality-runtime/tests/app-owned-composition.test.ts`.
 
-Applied row outputs: App runtime-event compatibility fixtures; accepted-turn and
-terminal persistence conformance tests; daemon evidence samples.
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ### Current acceptance obligations
 
-1. Root-owned daemon `HarnessEvent` records are consumed for App audit and replay surfaces without owning the generic schema or writer.
-2. `proposal.offered`, `proposal.accepted`, `proposal.adjusted`, and `proposal.declined` are additive candidates against the closed schema v2 (K-EVENT-3) and are consumed only after Root DEL-02-10 acceptance is routed back (OI-008).
-3. Accepted-turn and terminal-event persistence conformance is verified with malformed-tail tolerance preserved.
+1. Runtime event records are consumed for App audit and replay without creating a second generic schema or writer.
+2. The App preserves the accepted offer/accept/adjust/decline proposal audit meaning where that interaction is supported. Former `proposal.*` candidates and Root DEL-02-10 approval are historical implementation and ownership evidence; they do not restrict the open Codex event stream. Unfulfilled proposal behavior stays in Remaining.
+3. Accepted-turn and terminal-event persistence conformance is verified with malformed-tail tolerance preserved; unknown Codex notifications remain inspectable and the surviving secret-protection obligation remains visible.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ### Seating and rulings
 

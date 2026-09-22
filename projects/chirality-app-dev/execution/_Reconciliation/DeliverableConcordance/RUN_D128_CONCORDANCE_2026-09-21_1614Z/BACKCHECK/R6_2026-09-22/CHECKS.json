@@ -1,0 +1,52 @@
+{
+  "verdict": "PASS",
+  "source_rows": 3568,
+  "changed_source_rows": 138,
+  "changed_sow_source_rows": 91,
+  "changed_status_source_rows": 47,
+  "changed_units": 61,
+  "changed_status_units": 47,
+  "changed_sow_files": 31,
+  "source_key_multiset": "EXACT",
+  "negative_controls": [
+    "missing_rejected",
+    "duplicate_rejected"
+  ],
+  "all_sow_inverse_reconstruction": "54/54 EXACT",
+  "remaining_deliverables": 54,
+  "remaining_items": 111,
+  "lifecycle_and_approval_sha": "UNCHANGED",
+  "historical_status_bytes": "PRESERVED",
+  "immutable_discovery": [
+    {
+      "Stage": "R0_CALIBRATION",
+      "Files": 74,
+      "Result": "UNCHANGED"
+    },
+    {
+      "Stage": "R0_DONE_DECLARATION",
+      "Files": 1,
+      "Result": "UNCHANGED"
+    },
+    {
+      "Stage": "R1_INVENTORY",
+      "Files": 73,
+      "Result": "UNCHANGED"
+    },
+    {
+      "Stage": "R2",
+      "Files": 1051,
+      "Result": "UNCHANGED"
+    },
+    {
+      "Stage": "R3",
+      "Files": 131,
+      "Result": "UNCHANGED"
+    },
+    {
+      "Stage": "R4",
+      "Files": 116,
+      "Result": "UNCHANGED"
+    }
+  ]
+}

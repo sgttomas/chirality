@@ -10,3 +10,5 @@
 - 2026-07-12 - D-APP-56 R4-P32 recorded the child-output partition: DEL-08-05 owns `artifacts/subagents/` and its thresholds; DEL-05-05 retains `descriptor.resultBudget`. No lifecycle transition occurred.
 
 - 2026-09-05 - Prepared D-APP-116 under D-APP-102: recommends explicit cleanup with manifest/deletion metadata through the Root daemon, followed by gated App consumption/conformance. Alternative retains D-APP-42. Recommendation is agent judgment, not owner selection; no runtime implementation, contract repin, lifecycle change or full-policy acceptance. Packet and source identities are in APP_LOOP_SHELL_2026-09-05/instances/pkg05_packet and the decision packet; later owner ruling and Root routing remain.
+
+- 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.

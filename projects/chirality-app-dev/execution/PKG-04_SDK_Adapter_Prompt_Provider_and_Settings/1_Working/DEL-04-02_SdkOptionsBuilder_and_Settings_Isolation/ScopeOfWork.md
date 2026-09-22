@@ -123,27 +123,22 @@ isolation.
 
 ### CLM-009 — Scope
 
-> ##### Scope
->
-> This deliverable specifies the `SdkOptionsBuilder` backend feature slice for constructing deterministic Claude Agent SDK options from Chirality-owned runtime state and policy. It covers:
->
-> - runtime option fallback resolution for model, tools, max turns, mode, and persona;
-> - shipped SDK settings isolation;
-> - registered SDK built-in and Chirality MCP tool option mapping;
-> - safe visible metadata for tool/settings posture;
-> - max-turn option propagation;
-> - tests for settings isolation and options/tool mapping.
->
-> Exclusions:
->
-> - `PersonaComposer` content assembly is owned by DEL-04-04, though this builder consumes its output.
-> - SDK message to `UIEvent`/`HarnessEvent` mapping is owned by DEL-04-03.
-> - provider key/base URL handoff is owned by DEL-04-05.
-> - full permission overlay, hooks, write/bash enablement, and subagent execution gates deepen in PKG-06 and PKG-08; this deliverable must accept policy inputs without weakening those later boundaries.
-> - Chirality event-store internals beyond safe metadata handoff are outside PKG-04 scope.
->
-> Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-04-02; `docs/SPEC.md` Sections 12-15.
->
+The retained Claude options builder is compatibility evidence for earlier
+options, settings, tool mapping, metadata and max-turn work. Current App
+integration must honor the user's Codex configuration and selected approval /
+sandbox policy, preserve safe metadata, and exclude credentials from project
+records (D-GOV-43 items 3, 4, 8 and 9; D-APP-127; K-ENGINE-3; K-KEY-1).
+The former empty Claude settings-source mechanism does not restrict Codex's
+native discovery or shared user configuration.
+
+Verification hooks: Runtime `tests/codex-effective-home.test.ts` and
+`tests/codex-supervisor.test.ts`, plus applicable re-platform native checks.
+Legacy evidence remains in the R5 PKG04 manifest.
+
+Instruction composition, App event mapping and credential-boundary work
+remain in DEL-04-04, DEL-04-03 and DEL-04-05. Generic implementation stays
+Runtime-owned; PKG-06/PKG-08 control guarantees and event-store ownership are
+unchanged. Unmet live controls remain open.
 
 ### CLM-010 — Requirements
 
@@ -372,12 +367,14 @@ isolation.
 
 ### CLM-023 — Purpose
 
-> ##### Purpose
->
-> `SdkOptionsBuilder` exists to keep SDK request construction deterministic, explicit, and governed while Chirality adopts the Claude Agent SDK as a replaceable implementation substrate. It should translate Chirality-owned session state, resolved runtime options, prompt/tool policy, settings posture, and resume metadata into SDK-facing options without allowing SDK defaults or ambient settings to redefine product behavior.
->
-> Sources: `docs/DIRECTIVE.md` Section 2.8; `docs/CONTRACT.md` Section 1.4; `docs/SPEC.md` Sections 12-15; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-04-02.
->
+Runtime option composition must make the effective configuration and chosen
+policy inspectable without promoting convenience state into project authority.
+D-GOV-43 items 3 and 4 and D-APP-127 govern the Codex path. Claude fallback
+chains and settings isolation are compatibility history.
+
+Verify current configuration and policy through the hooks in CLM-009.
+`frontend/src/__tests__/lib/sdk-options-builder.test.ts` remains historical
+builder evidence and does not qualify the live path.
 
 ### CLM-024 — Principles
 

@@ -1,0 +1,13 @@
+# App R5/R6 handoff — D-APP-131
+
+The bounded repair tranche is executed and deterministically backchecked; final independent-review and Git/CI status is carried by Root `execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/`. This handoff does not assert a merge, product acceptance or whole-corpus repair completion.
+
+Applied: 61 claim blocks in 31 SoWs, representing 91 original R3 keys, plus 47 changed pre-existing Remaining references and all 54 audit-bootstrap/residual control sections. All 3,568 discovery rows remain exactly accounted. Sixteen historical conversion evidence records recovered; P-08 maps 32 keys to 15 retained conformance conditions. Prior owner acts are applied without duplicate question gates; true reserved decisions, unknown native results and unmet controls remain visible.
+
+Upstream: `R0_CALIBRATION/`, `R1_INVENTORY/`, `R2/`, `R3/` and `R4/` at their original recorded basis. Current derivative: this folder. Exact repaired source binding: `SOURCE_STATE.csv`, `CHANGED_CLAIM_REEXTRACTION.csv`, R5 `ALL_CHANGED_CLAIM_MANIFEST.csv` and `STATUS_REPAIR_MANIFEST.csv`. Original evidence and status histories remain intact.
+
+Current work is selected only from deliverable `_STATUS.md ## Remaining`. Each residual item points to exact R5 source-key evidence; no plan or this handoff is a second queue. The remaining work includes additional claim-level carrier/corpus application, precise scope ownership, current verification, redaction/human-gate/scaffold implementation and the specific reserved owner decisions. The 107 reverse capabilities remain classified evidence awaiting the §3.1 ownership test, not 107 automatically created requirements. Future instruction/workflow improvements are proposals in LESSONS.md.
+
+Lifecycle: 53 IN_PROGRESS plus retired DEL-09-07 OPEN, unchanged. No dependency acceptance, checking-entry declaration, issuing, professional reliance, signing, publication, new release or unknown inspection result is conferred. A new implementation/authority/candidate change reopens only affected evidence and requires a fresh claim/source-bound backcheck. Historical conversion PASS and source-equal test reports do not automatically transfer to changed candidates.
+
+Next holder: WORKING_ITEMS for bounded record/evidence/implementation follow-through under the existing Remaining items; HELP_HUMAN for real authority and cross-loop decisions; the owner for specifically reserved human acts. Root owns the current review/check/merge closeout. `LESSONS.md` records both supplied feedback perspectives and the corrections learned during this R5.

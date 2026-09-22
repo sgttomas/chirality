@@ -47,21 +47,17 @@ This Scope of Work defines `DEL-04-05` in service of project scope [SOW-019, SOW
 
 ### CLM-003 — Attributes
 
-> ##### Attributes
->
-> | Attribute | Value | Source |
-> |---|---|---|
-> | API key precedence | UI safeStorage key first, then `ANTHROPIC_API_KEY`, then `CHIRALITY_ANTHROPIC_API_KEY`. | `docs/SPEC.md` Section 12.3; `docs/PRD.md` Section 8.5 FR-030 |
-> | API key state class | Non-project convenience state; not project truth. | `docs/CONTRACT.md` K-KEY-1; `docs/SPEC.md` Section 16.2 |
-> | API key storage target | Electron `app.getPath('userData')/credentials/api-key.enc` when UI storage is used. | `docs/SPEC.md` Section 16.2 |
-> | API key status values | `ui`, `env`, or `none`. | `docs/SPEC.md` Section 16.2 |
-> | Allowed Anthropic base URL | `https://api.anthropic.com` with no credentials and port empty or 443. | `docs/PRD.md` Section 8.5 FR-032 |
-> | Renderer network policy | Allow loopback and Anthropic API path; cancel non-allowlisted outbound requests. | `docs/SPEC.md` Section 16.3; `docs/PRD.md` Section 8.5 FR-033 |
-> | Node/SDK network policy | Node/SDK provider calls must not silently broaden network policy. | `docs/SPEC.md` Section 16.3 |
-> | Provider error classes | Auth, rate limit, timeout, API error, network error, invalid base URL, policy violation. | `docs/PRD.md` Section 8.5 FR-034 |
-> | SDK boundary | Provider integration is wrapped by the SDK-backed turn boundary, isolated in `TurnEngine`, `sdk-options-builder`, and `sdk-message-mapper`. | `docs/PRD.md` Section 8.5 FR-035 |
-> | Redaction scope | Provider errors, SDK errors, logs, runtime events, and SDK stderr/debug output must redact secrets. | `docs/CONTRACT.md` K-EVENT-6; `docs/PLAN.md` Section 6.3; `docs/PRD.md` FR-075 |
->
+| Attribute | Required boundary | Verification / authority |
+|---|---|---|
+| Credential custody | Codex owns credential material in Chirality's effective home. The App must not read, copy or relay it, and sign-in/out must leave other Codex clients' authentication unchanged. | D-GOV-43 items 3 and 6; D-APP-127; the re-platform run's S-8 native check. |
+| Private state | Credentials and authentication ceremony data are non-project state and must not enter durable events, project files, logs or tool artifacts. Safe account/status projection exposes no key material. | `docs/CONTRACT.md` K-KEY-1 and K-EVENT-6; secret-evidence and redaction checks. |
+| Network boundary | App transport uses the governed endpoint policy; Codex command network follows the user's selected configuration and sandbox policy. Neither this attribute nor compatibility code grants additional network scope. | D-GOV-43 item 4; `docs/CONTRACT.md` K-NET-1; endpoint-policy tests and applicable native evidence. |
+| Failure handling | Provider-boundary outcomes must remain truthful, typed where required by their contract, and redacted. A historical Anthropic failure fixture is not live Codex evidence. | `docs/CONTRACT.md` K-EVENT-6 and K-KEY-1; `frontend/src/__tests__/lib/redaction-path-matrix.test.ts`; live-path evidence remains separately required. |
+| Historical provider mechanics | Anthropic key precedence, storage path, status vocabulary, base URL and seven-class failure taxonomy describe retained compatibility evidence. | Current Codex-only basis in `docs/CONTRACT.md`; exact prior attributes and evidence paths preserved in R5 PKG04. |
+
+No native check outcome or residual closure is asserted here. Engine-neutral
+security requirements elsewhere in this document remain subject to their
+owning contracts and claim-level verification.
 
 ### CLM-004 — Conditions
 
@@ -79,18 +75,17 @@ This Scope of Work defines `DEL-04-05` in service of project scope [SOW-019, SOW
 
 ### CLM-005 — Construction
 
-> ##### Construction
->
-> | Construct | Expected Content |
-> |---|---|
-> | Provider wrapper | A provider boundary that resolves API key source, validates Anthropic base URL, supplies SDK environment only for the active turn, normalizes provider/SDK failures, and emits redacted details. Exact module name: TBD. |
-> | Key handoff tests | Tests proving UI key precedence, environment fallback order, absence of working-root writes, and redacted SDK environment/log/event handoff. Exact test paths: TBD. |
-> | Base URL/network tests | Tests proving only `https://api.anthropic.com` with no credentials and empty/443 port is accepted, renderer outbound requests are loopback or current shipped Anthropic path only, and Node/SDK calls do not broaden policy. Exact test paths: TBD. |
-> | Redaction fixtures | Fixtures covering key material, provider error messages, SDK stderr/debug output, and policy-denial metadata. Exact fixture shape: TBD. |
-> | Status metadata | Safe status source values are `ui`, `env`, or `none`; no key value is recorded. |
->
-> ASSUMPTION: "Provider wrapper" may be implemented as an SDK adapter helper, a `TurnEngine` collaborator, or a dedicated provider module. The decomposition names the artifact but the source corpus does not prescribe the exact file path.
->
+Current evidence must establish Codex credential custody, separated
+authentication, secret-free App projections and the governing network policy.
+Verification hooks: Runtime `tests/codex-effective-home.test.ts`, the
+re-platform `NATIVE_CHECKLIST.md` S-8 native witness, and App secret/redaction
+checks under K-KEY-1 and K-EVENT-6. Configuration fixtures do not establish
+native sign-in/sign-out behavior; unknown results remain unknown.
+
+The R5 PKG04 manifest preserves earlier wrapper/key/base-URL mechanisms and
+fixtures as compatibility evidence. D-GOV-43 and D-APP-127 do not require
+recreating Anthropic storage, daemon custody or SDK key handoff. Secret
+protection, typed failure obligations and network controls remain current.
 
 ### CLM-006 — References
 
@@ -115,26 +110,17 @@ This Scope of Work defines `DEL-04-05` in service of project scope [SOW-019, SOW
 
 ### CLM-008 — Scope
 
-> ##### Scope
->
-> This deliverable covers the security and provider-boundary behavior for Anthropic SDK execution in PKG-04:
->
-> - API key precedence and SDK environment handoff.
-> - Anthropic base URL validation.
-> - Renderer and Node/SDK network policy bridge.
-> - Provider and SDK error classification with redaction.
-> - Tests and fixtures demonstrating the above behavior.
->
-> This deliverable excludes:
->
-> - General SDK option construction and settings isolation except where required for safe provider handoff; those are primarily DEL-04-02.
-> - Provider/SDK message mapping except where provider errors cross into stable runtime/UI events; that is primarily DEL-04-03.
-> - UI API key settings behavior except for the stored-key precedence contract; that is shared with DEL-02-05.
-> - Redacted run logger ownership except for provider-boundary fixtures and requirements; that is shared with DEL-05-03.
-> - Project event-store internals beyond redacted metadata handoff, per `_CONTEXT.md`.
->
-> Sources: `_CONTEXT.md` "Deliverable Scope"; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` row `DEL-04-05`.
->
+This slice participates in the App credential, provider and network boundary
+under D-GOV-43 (A2), D-APP-127, K-KEY-1, K-EVENT-6 and K-NET-1. It must
+respect Codex custody, separated authentication, redacted status/failure
+projection and the applicable App/Codex network policies. Anthropic key
+precedence and SDK handoff are compatibility evidence. Verify current behavior
+through CLM-003/CLM-005's named checks; unmet live guarantees remain open.
+
+Options stay in DEL-04-02, App mapping in DEL-04-03, account/Settings
+presentation in DEL-02-05 and run logging in DEL-05-03. Runtime retains generic
+authentication implementation and canonical event storage. This application
+of accepted direction does not retire the deliverable or allocate new scope.
 
 ### CLM-009 — Requirements
 
@@ -397,12 +383,14 @@ This Scope of Work defines `DEL-04-05` in service of project scope [SOW-019, SOW
 
 ### CLM-024 — Purpose
 
-> ##### Purpose
->
-> This deliverable keeps Anthropic provider access inside Chirality-owned runtime governance while adopting the Claude Agent SDK as the preferred engine substrate. It protects API keys, constrains network access, keeps provider/SDK details behind adapter boundaries, and gives downstream validation clear evidence for key precedence, base URL policy, network policy, and redacted failure handling.
->
-> Sources: `docs/DIRECTIVE.md` Section 2.8; `docs/CONTRACT.md` Sections 1.4 and 1.9; `docs/SPEC.md` Sections 12 and 16; decomposition row `DEL-04-05`.
->
+Protect private authentication state and preserve a truthful, redacted App
+boundary for provider activity. Codex is the sole current MVP engine and
+credential custodian (D-GOV-43; D-APP-127; current CONTRACT basis); the earlier
+Claude/Anthropic default is compatibility history.
+
+No secret exposure or unrecorded policy expansion is permitted. CLM-003 and
+CLM-005 name verification hooks for current credential/network behavior;
+historical key-precedence, base-URL and SDK-error fixtures do not qualify it.
 
 ### CLM-025 — Principles
 

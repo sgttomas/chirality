@@ -1,0 +1,3 @@
+Base/current identity: 5/5 before snapshots equal named base Git bytes.
+Named full-path test/evidence references:
+Existing untouched reference failures, if any, are not repaired by this tranche.

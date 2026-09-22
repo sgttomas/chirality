@@ -71,17 +71,15 @@ This Scope of Work defines `DEL-03-03` in service of project scope [SOW-011, SOW
 > | Source-state status | `docs/PRD.md` is reconciled under the current D-APP-38 authority corpus; PRD-derived route/SSE details are accepted for this tranche. | `_REFERENCES.md` REF-006; D-APP-38 |
 >
 
-### CLM-005 — Construction
+### CLM-005 — Route and stream compatibility
 
-> ##### Construction
->
-> | Component | Construction Notes | Source |
-> |---|---|---|
-> | Route adapter layer | Keep `/api/harness/turn` as SSE transport adapter; runtime policy belongs behind `TurnEngine` and engine contract services. | `docs/SPEC.md` Section 10.4; `docs/PRD.md` Section 8.12 FR-071 |
-> | SSE encoder/fixture layer | Preserve named SSE events listed in SPEC/TYPES/PRD; additional tool progress events require UI compatibility handling. | `docs/SPEC.md` Section 11; `docs/PRD.md` Section 9.3 |
-> | UI/runtime mapper boundary | Map SDK messages into browser `UIEvent`s and richer persisted `HarnessEvent`s without exposing SDK message names as public UI contract. | `docs/PRD.md` Sections 8.12 FR-116 and 9.3 |
-> | Test artifacts | Build route adapter tests, SSE compatibility fixtures, and UI event contract docs. Exact fixture payloads are TBD pending current implementation capture. | `_CONTEXT.md` Anticipated Artifacts; `docs/PRD.md` Section 12.6 |
->
+Harness routes must remain thin, validated clients of the App-owned Runtime service. Their compatibility obligation concerns the supported App operations and inspectable outcomes, with live Codex notifications preserved through the full protocol. Compatibility does not require manufacturing every legacy SDK event name or translating away an unknown Codex notification.
+
+The stream must preserve ordering and replay identity, expose failures, and permit detach/reattach without turning a renderer disconnect into a turn interrupt. Runtime owns turn coordination. Route presence alone does not establish operation completeness: the live scaffold route's missing composition remains a P-15 residual, and fake-port tests do not establish a live fixture capture.
+
+Verification hooks: `frontend/src/__tests__/api/harness/turn-registry-routes.test.ts`, `frontend/src/__tests__/lib/runtime-daemon-harness-port.test.ts`, and `projects/chirality-runtime/tests/daemon.test.ts`. `RouteAdapterTestIndex.md` and the R3 rows preserve missing-fixture evidence separately.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ### CLM-006 — References
 

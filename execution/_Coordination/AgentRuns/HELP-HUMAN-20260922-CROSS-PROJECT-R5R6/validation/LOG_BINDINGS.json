@@ -1,0 +1,50 @@
+[
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/pytest.log",
+    "sha256": "e21cda76c1357b76b6313fb41ec03cfb9af0c1ff94b94e500fdf5ef6f34a59bd"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/final-pytest.log",
+    "sha256": "04e849bc3dc848e4c9197a78ced71613c121a2eea80301d5c306f7b3260a2720"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/receipt-test-backcheck.log",
+    "sha256": "b3c6d297213161e00e1a637448f58db3b0f6eda7016dc0e8718751df5df94714"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/receipt-selfcheck-backcheck.log",
+    "sha256": "c637fe70d2040ed5e46b58a9f4441663c6576d99e7898263c22530558910d6db"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/receipts.log",
+    "sha256": "167c765da37b50b2d40c723c849bc1dae3a787985981c2e525639b964c991c76"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/claims-language.log",
+    "sha256": "c2bd9c6e5ed2111583bde81e89ab2427cef056e6ab91504f0e5051bb0726c638"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/piping-backcheck.log",
+    "sha256": "129e56169aaf03f90441aa25356ba89c575fb2c1f93e7afe460ee2a6a9ccf26d"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/piping-accounting.log",
+    "sha256": "95d146f3bd5b5c3d5c3dee1c2f02177a730f3adb9e4632c5968bcde6c5db01ac"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/piping-mirrors.log",
+    "sha256": "f5fdeef90dd805f21cf89dd2e82c38144ad8df4d01b6fdb0294aab5a80d73c36"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/gates.log",
+    "sha256": "02ef198ca71b3d832101ae4e4fd358f9e4c65732da5f0bc0d77b8f2bdd7ab0b6"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/secret-scan.log",
+    "sha256": "2c6af022ef82d018e6039f32aa062e65ff077787d6c993d6e81762780cfe6014"
+  },
+  {
+    "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/validation/app-backcheck.log",
+    "sha256": "176b892cfb2437c5e899068533f106f7e74816b4c23d6a7938c8dd0afa87c3df"
+  }
+]

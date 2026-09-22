@@ -11,9 +11,15 @@ package_objective_refs: [OBJ-008]
 
 ## Current Codex MVP conformity
 
-This carrier adopts the owner-directed current-release basis in App CONTRACT/SPEC/PRD: Codex is the sole MVP engine. Historical Anthropic/Claude/Pi-specific descriptions below are compatibility history and do not require enabling or qualifying an unused engine. Accepted Codex supplier/account identity-currentness, credential custody, per-root consent, containment and exact K-NET-1 endpoint/command-network safeguards remain required. Provider service traffic and renderer egress are separate surfaces; admitting a supplier endpoint does not authorize renderer or tool traffic. Existing secret protection and attachment controls remain mandatory. No supplier/native/publication acceptance is created here.
+Codex is the sole MVP engine. Under D-GOV-43 topology A2 and D-APP-127, the App owns its Runtime service child and Runtime owns the stock Codex App Server child. Hosted supplier admission, per-root account consent, the LaunchAgent, packaged-basis hashing and supplier-containment evidence are retired subjects; they are not present-day qualification gates.
 
-Current MVP PDF behavior is the accepted S0/default-app fallback. Historical S1/built-in multi-page PDF requirements below are inapplicable to this release; retain the applicable S0 response, containment, nonce/window/IPC/egress controls and actual packaged default-app PDF observations. Do not infer native PASS from source tests or waive current security evidence. This is conformity to the already settled fallback scope, not a new PDF scope decision.
+The App must preserve Codex-held credential custody and separation from other Codex clients, user-selected approval and sandbox policy, truthful event/approval presentation, and applicable renderer, attachment, secret-protection and package-executability controls. Historical Anthropic/Claude/Pi descriptions remain compatibility evidence and do not qualify the live Codex path.
+
+The accepted S0/default-app PDF fallback remains the current MVP basis; S1 built-in multi-page PDF criteria remain inapplicable to this release. Applicable attachment budgets, containment, nonce/window/IPC, renderer-egress and packaged default-app observations remain required. No native PASS is inferred from source tests.
+
+Verification hooks: `execution/_Coordination/AgentRuns/APP_V3_CODEX_HOST_REPLATFORM_20260912/PACKAGING_PROCEDURE.md` and `NATIVE_CHECKLIST.md` in the same folder, plus `frontend/package.json` registered packaging/security commands. These procedures supersede the retired Stage 9–13 spine; repeat affected checks when source, configuration or packaging changes invalidate earlier evidence. No publication or product acceptance follows from this text repair.
+
+Basis: D-GOV-43 / topology A2 and D-APP-127; claim-level application D-APP-131.
 
 ## Purpose and Objective Traceability
 

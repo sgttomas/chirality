@@ -10,3 +10,5 @@
 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-129: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-19 - D-APP-68 chronology items 3 and 6 assigned DEL-06-05 the managed-child Bash full-project-root read-plus-write scope gate and ratified the live `120000` ms default / `600000` ms maximum timeout policy. Arbitrary Bash remains serialized. Numeric-timeout TBD wording was superseded; unrelated TBDs remain. No runtime or lifecycle change occurred.
+
+- 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.

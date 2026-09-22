@@ -1,15 +1,17 @@
 # Status: DEL-04-01
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-09-03
+**Last Updated:** 2026-09-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Run claim-level concordance per the reconciliation method (source: Root workflows/reconciliation/ and docs/DELIVERABLE_CONCORDANCE_METHOD.md with plans/PLAN_2026-07-10_deliverable_implementation_reconciliation.md as amended by the D-APP-128 delta list, at pinned main revision 00115c719)
+
+- **DEL-04-01-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 2 authority application, 1 changed claim followthrough, 7 implementation or evidence, 17 record repair. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-04-01.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
 
 ## History
+- 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`. The SCA-APP-008 Carrier Map WP-02 App Server supply/protocol/config/role probe is not covered by this deliverable's unchanged first-adapter row text, so no v3 Remaining item is seated; the obligation is recorded as `SCOPE_AMENDMENT_REQUIRED` in `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md`. The Electron 43.2.0 drift observation is carried by the A11 E2 concordance tranche. No implementation, lifecycle, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-08-16 - The promoted Root Claude and Pi wrappers are now the adapters registered by the packaged runtime host while the existing App turn implementations and capability descriptors remain unchanged. Focused/live shared-daemon tests preserve Anthropic `0.93.0` / `0.3.150`, Pi `0.82.0`, and selected-model attribution; the final unsigned package proves Root adapter/client/daemon sources in Desktop and a client-only Root CLI. Fresh independent review returned PASS with no findings. The exact packaged-runtime Remaining item was removed; state remains IN_PROGRESS and lifecycle, Checking Approval SHA, provider scope, and release posture are unchanged.
