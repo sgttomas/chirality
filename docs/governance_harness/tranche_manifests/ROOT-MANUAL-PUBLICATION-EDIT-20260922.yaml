@@ -1,0 +1,43 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-MANUAL-PUBLICATION-EDIT-20260922
+title: Focused publication edit of the management manual and operational companion
+date: 2026-09-22
+basis: 0a258f145eac41a62de02b06f032ccbc183838ec
+
+instruction_surface_paths:
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.docx
+  - docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md
+  - docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.html
+  - docs/alignment-manual/README.md
+  - docs/alignment-manual/render_manual.py
+  - docs/governance_harness/tranche_manifests/ROOT-MANUAL-PUBLICATION-EDIT-20260922.yaml
+
+m2_gate:
+  authorization: >-
+    Ryan Tufts directs, "Do that focused editorial revision as you've indicated."
+    The full active-chat directive of 2026-09-22 is quoted in
+    plans/evidence/2026-09-22_manual_publication_edit/BRIEF.md. It directs cleanup
+    of private revision references and notes to the authors while preserving
+    the voice and visual character of exemplary mid-century technical references.
+    The primary binds this to supplied v3, internally named v4 book outputs,
+    and a verified operational companion v2. Source originals remain read-only.
+    This records authorized editorial work, not acceptance or public release.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-22
+  integration_owner: >-
+    WORKING_ITEMS /root/closeout_manager under HELP_HUMAN /root; sole Git
+    mutation owner after the root marks the final candidate ready
+  merge_gate: owner-authorized-pr
+  self_merge: true
+
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    The tranche edits explanatory publications and their format/navigation
+    support. It changes no live workflow, AGENTS entry, authority corpus,
+    adopted project contract or live pointer. No pinned consumer requiring a
+    notice has been identified. Neither the outputs nor their Git integration
+    establish governed acceptance, downstream adoption or public release.

@@ -1,0 +1,21 @@
+{
+  "schema": "manual-publication-edit-git-setup/v1",
+  "basis": "0a258f145eac41a62de02b06f032ccbc183838ec",
+  "branch": "codex/management-manual-publication-edit-20260922",
+  "previous_branch": "codex/management-manual-v2-formats-20260922",
+  "origin_refreshed": true,
+  "clean_before_and_after_branch_creation": true,
+  "root_notified_before_authoring": true,
+  "external_originals_copied": false,
+  "external_originals_modified": false,
+  "git_hold": "No commit/push before root final-ready signal; standing owner grant governs subsequent ordinary closeout.",
+  "mechanism": "Native WORKING_ITEMS /root/closeout_manager under HELP_HUMAN /root; existing isolated worktree; no child delegation by this manager.",
+  "enforcement": "Unrestricted host filesystem, network enabled, approval policy never. Role/brief limits are instruction-based.",
+  "G4_schema_check": {
+    "exit_code": 0,
+    "summary": [
+      "G4 PASS (CI mode): 95 tranche manifest(s) under docs/governance_harness/tranche_manifests are schema-valid (instruction-tranche-manifest/v1)"
+    ],
+    "limit": "Schema only; final complete candidate range remains to be checked."
+  }
+}

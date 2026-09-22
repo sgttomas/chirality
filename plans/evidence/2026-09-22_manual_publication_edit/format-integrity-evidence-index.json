@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "sealed_utc": "2026-09-22T18:49:57.106133+00:00",
+  "reviewer": "/root/format_integrity_review",
+  "files": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-check.py",
+      "sha256": "756ad9df5d9dfda9dd47631cc703435a83d5cdd6576fe4a04588baaf24b4d067",
+      "bytes": 15495
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-final-summary.json",
+      "sha256": "582b2e2d28f0526c5aa19764a7a6f9e655093ad0ba7d07c049bb40f0f98a6eb0",
+      "bytes": 3037
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-final.json",
+      "sha256": "449b3fde7967e4f90f1192e2462008e31018391762288d6bcdb28dbd1a43118e",
+      "bytes": 265718
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-first-pass.json",
+      "sha256": "6f367fefc9989e2c8927f7b41cf5cb25fedbecf7c8b518728c0f415b6dcbeef0",
+      "bytes": 215629
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-pixel-binding.json",
+      "sha256": "a32d280973d03981277459b4cd3071351d3ee7c883530710842f34d77021b3a6",
+      "bytes": 42611
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-review.md",
+      "sha256": "53ec332c55a0d19e86bc9d690bdd4e15f99b4e5b2cf28555a4b3f98b33016dbd",
+      "bytes": 11594
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-run-context.json",
+      "sha256": "733f080046c9c92b7547043c9122511bb7c8be7dfea26a16b6f0dc3dc8e7b7d4",
+      "bytes": 5458
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-integrity-source-preservation.json",
+      "sha256": "96df8fa026801c31a203287fcb1e309d3dd19c881f751e83262b4bfdb8467bd5",
+      "bytes": 8580
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "completed_utc": "2026-09-22T18:48:36.457759+00:00",
+  "files": {
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.md": {
+      "sha256": "2d9638c50a948623e7b94e7544308c1bd411765e679873a6911cdf09a8e37ca6",
+      "bytes": 471515
+    },
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.docx": {
+      "sha256": "084fe225407be696e8a525c48315bd7725031d6c18decdc9ed21713c66b80f36",
+      "bytes": 286825
+    },
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf": {
+      "sha256": "ae8585916f3eea365e112fb7b8fe6a72edfafe9a75dea312e029bf9f71164411",
+      "bytes": 1562096
+    }
+  },
+  "checks": {
+    "approved_markdown_hash": true,
+    "ordered_body_units": true,
+    "heading_text_levels": true,
+    "tables_exact": true,
+    "repeated_table_headers": true,
+    "specimens_exact": true,
+    "pdf_all_content_present": true,
+    "only_expected_repeated_table_headers": true,
+    "word_source_links_preserved": true,
+    "pdf_external_targets_preserved": true,
+    "word_bookmark_targets": true,
+    "toc_folios_and_destinations": true,
+    "printed_folios": true,
+    "pdf_outline_hierarchy": true,
+    "caption_specimen_colocation": true,
+    "embedded_image_identity": true,
+    "no_comments_or_tracked_changes": true,
+    "no_inactive_hyperlink_relationships": true,
+    "no_document_settings_session_history": true,
+    "final3_final2_pixel_identity": true,
+    "app_statistics": true,
+    "unique_bookmark_ids": true,
+    "pdf_only_link_annotations": true,
+    "unchanged_during_review_md": true,
+    "unchanged_during_review_docx": true,
+    "unchanged_during_review_pdf": true,
+    "original_source_inputs_preserved": true
+  },
+  "nonblocking_observations": [
+    "Reference style definitions retain 161 and 157 non-text w:rsid bookkeeping elements respectively; no document/settings session identifiers, textual revision history, comments, tracked changes, or inactive private hyperlinks remain."
+  ],
+  "app_statistics_independently_counted": {
+    "Pages": 162,
+    "Words": 67775,
+    "Characters": 399101,
+    "CharactersWithSpaces": 467932,
+    "Paragraphs": 1719
+  },
+  "reviewer": "/root/format_integrity_review",
+  "limits": "No full prose reread, live website test, interactive Microsoft Word run, or independent whole-book visual reread. Full visual evidence belongs to the named readers and root.",
+  "external_evidence": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-visual-coverage.json",
+      "sha256": "1ff10187099d92c42016e485381cb48555be3cb9c1b26d508a112c7617faa7ab"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_manual_publication_edit/format-root-visual-review.json",
+      "sha256": "d6d86da8ff1d4c4b6b5cb1a118ed2a1f3d8bac7e221d26d34221ce19a261613e"
+    }
+  ],
+  "checker_sha256": "756ad9df5d9dfda9dd47631cc703435a83d5cdd6576fe4a04588baaf24b4d067"
+}

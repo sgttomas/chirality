@@ -1,0 +1,98 @@
+{
+  "date": "2026-09-22",
+  "review_kind": "author self-check; substantive operations backchecked independently at 8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da; final one-label parity/hash binding requested",
+  "candidate": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v2.md",
+  "candidate_sha256": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d",
+  "words_v1": 13228,
+  "words_v2": 15001,
+  "growth_words": 1773,
+  "v1_preserved_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+  "v1_hash_matches_initial_evidence": true,
+  "supplied_book_hash_matches": true,
+  "undefined_reference_labels": [],
+  "duplicate_explicit_anchors": [],
+  "unresolved_internal_anchors": [],
+  "unexpected_missing_local_targets": [],
+  "pending_parent_book_target": [],
+  "recorded_sources_changed_since_manifest": [],
+  "application_note_rows": [
+    "1.A",
+    "2.A",
+    "2.B",
+    "3.A",
+    "3.B",
+    "3.C",
+    "3.D",
+    "3.E",
+    "4.A",
+    "4.B",
+    "4.C",
+    "5.A",
+    "5.B",
+    "5.C"
+  ],
+  "application_note_coverage_exact": true,
+  "appendix_and_main_passages_covered": true,
+  "old_v2_companion_references": 0,
+  "help_interfaces": [
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stdout": "usage: validate_scope_of_work.py [-h] [--isolated-migration]\n                                 [--migration-authority MIGRATION_AUTHORITY]\n                                 [--json]\n                                 target\n\nValidate candidate ScopeOfWork.md documents and resolve deliverable format.\n\npositional arguments:\n  target                ScopeOfWork.md or its deliverable directory\n\noptions:\n  -h, --help            show this help message and exit\n  --isolated-migration\n  --migration-authority MIGRATION_AUTHORITY\n  --json\n",
+      "stderr": "",
+      "claim": "interface help only; no production operation performed"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/scope_of_work/derive_review_checklist.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stdout": "usage: derive_review_checklist.py [-h] [--isolated-migration]\n                                  [--migration-authority MIGRATION_AUTHORITY]\n                                  [--output OUTPUT]\n                                  target\n\nDerive a stable REVIEW acceptance checklist from validated ScopeOfWork AC\nrecords.\n\npositional arguments:\n  target                ScopeOfWork.md or its deliverable directory\n\noptions:\n  -h, --help            show this help message and exit\n  --isolated-migration\n  --migration-authority MIGRATION_AUTHORITY\n  --output OUTPUT       Write checklist JSON here instead of stdout\n",
+      "stderr": "",
+      "claim": "interface help only; no production operation performed"
+    },
+    {
+      "argv": [
+        "python3",
+        "tools/taskmgmt/taskmgmt.py",
+        "federation",
+        "--help"
+      ],
+      "exit_code": 0,
+      "stdout": "usage: taskmgmt.py federation [-h] --register REGISTER [--out OUT]\n\noptions:\n  -h, --help           show this help message and exit\n  --register REGISTER\n  --out OUT\n",
+      "stderr": "",
+      "claim": "interface help only; no production operation performed"
+    }
+  ],
+  "scope_limit": "No production suites, Task Management sweep, graph build, project lifecycle check, method activation, consumer adoption or rendering was run by this author. No Git mutation. Parent owns independent backcheck and publisher rerender.",
+  "author_validation": "PASS",
+  "prior_candidate_sha256": "8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da",
+  "review_repair_checks": {
+    "default_federation_output_no_arbitrary_out": true,
+    "exact_destination_ignore_verification": true,
+    "ignore_not_inferred_from_directory": true,
+    "arbitrary_out_ignore_not_enforced": true,
+    "selected_modes_only": true,
+    "actual_no_mode_default": true
+  },
+  "interface_evidence_reused": "Prior --help witnesses retained: this repair changes no CLI interface or command arguments beyond omitting an existing optional --out. The default output expression was read directly at tools/taskmgmt/taskmgmt.py:844–849.",
+  "title_label_cleanup": {
+    "exactly_one_occurrence": true,
+    "line": 5,
+    "old_label": "Project Management for Human–Agent Teams, Consolidated v4",
+    "new_label": "Project Management for Human–Agent Teams",
+    "link_target_unchanged": "Project_Management_for_Human_Agent_Teams_Consolidated_v4.md",
+    "round_trip_identity": true,
+    "changed_content_lines": 2,
+    "preimage_sha256": "8e0782a12c9cd845d46b912c2c0dd34d90ea331b2cebd922add27fa356de86da",
+    "postimage_sha256": "6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d",
+    "operational_content_unchanged": true,
+    "version_and_source_basis_unchanged": true
+  }
+}

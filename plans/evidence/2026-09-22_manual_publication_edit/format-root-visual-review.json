@@ -1,0 +1,330 @@
+{
+  "reviewer": "/root",
+  "role": "HELP_HUMAN",
+  "type": 0,
+  "method": "Individual tools.view_image calls at original detail; each of physical pages 141 through 163 was visually inspected in full.",
+  "render_directory": "/tmp/manual-v4-20260922/fidelity/b_render",
+  "pages": [
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163
+  ],
+  "image_sha256": {
+    "page-141.png": "74fe43c5cfc9b87638d0c6e1ba06148f38619f911d41cddddadd99abbeeca905",
+    "page-142.png": "f00eec2562bc185ddf5362835a467cc9bd09570c2cba422d293870082847d32e",
+    "page-143.png": "ca618c7f0800a91124228367faffdea81f132560f8de586e52ccbb13ebc2acdb",
+    "page-144.png": "3def3d8d25b7a24d8a964d2cf79b59a9022d671728ad0bf21d3fae5a7fb2c7ec",
+    "page-145.png": "12f4f48a4d094009b24d7cab94cc602ce4540a4db767bc8813b8f0599924c829",
+    "page-146.png": "9ddb83d6f8728bdbe210306df5119b4192a08500d6ff09cb6ec923dea2e383da",
+    "page-147.png": "7326e65d302b69d03d4e7aac3dc48b6e5df7df8fe8f561b8c621c75deda3cabe",
+    "page-148.png": "e3971e72f68514799f537b72a37d58fbcf7790d5f69a8fb7150994292e330e2f",
+    "page-149.png": "50425bfc1e99e4ab97019f4361ee61a6182403533877143699f9b5b2b2ee178f",
+    "page-150.png": "a0ab64ffcdefb9a022bb831e3a05d0f3969666022d8ebc3dfb3b78145802e0d7",
+    "page-151.png": "19468a36033147f88a0d5545d1a8fb88d986ca3a169ced0a440964ed5fc02721",
+    "page-152.png": "1c59971033131596422104ff232acaec4cebbd2a1c2da09dfa926176e1ee0686",
+    "page-153.png": "0dcbd00a8282be0a8a9684457978ca7e5ac806575f2eab216204c81b7083d1c7",
+    "page-154.png": "0a8a2a3831b3191750afe28cd51aab336d88e93637980ae45c680816f8f91493",
+    "page-155.png": "9efc37591d25585fcb2550dc15ac5e0616e8b6812f68f3258c6dca0a3d0ff050",
+    "page-156.png": "06f0f4b415b31debbca40794c8d18024bc31cebca09466dbe2b64951c4eb4c4e",
+    "page-157.png": "98860c290aa2011db6ccec0fc91423e6342d7484e6d992d20e6d434fc5fdaf6e",
+    "page-158.png": "82d2660e7bea0cf8cc381143acedde8f575056283c22417025d1152ff8a054c0",
+    "page-159.png": "ab55ed35ecd3db259dc6c014e2a13ceb7f363d2c3fc153bf17ab5c335020df60",
+    "page-160.png": "245feecec0f150280ec4bdcb1e3fb2d1da48da2ed9a50dc1936022f1e9e9a8d9",
+    "page-161.png": "e93f967b6f8ad2ffa4544e3bc86542006f0bef0c9f62d2990c129c3b5702dbcb",
+    "page-162.png": "f075d9b151d4fdbcb068db755308291632323e1f787666a02508e67f015f4e33",
+    "page-163.png": "17c654312736190e3f6111e585fe7da075734450a85ee15483f8c00ab5fad4b3"
+  },
+  "observations": [
+    "No clipping, overlap, broken glyphs, detached captions, unreadable specimens or table defects observed.",
+    "Figures 5.6, 5.7 and A.1 are contained and readable; vocabulary table headers repeat and rows remain complete.",
+    "Chapter 6, Chapter 7, vocabulary, appendix and references open on new pages, consistent with the reference layout.",
+    "Short concluding pages 148, 154 and 162 are section endings; no missing content or blank page is implied.",
+    "Visible repeated-header omissions in some tool displays are display deduplication: all 23 actual PNG header pixel regions are identical, all 23 footer-label regions are identical, and PDF header text is present throughout.",
+    "Actual printed folios 140 through 162 verified in PDF text and individual page views."
+  ],
+  "findings": [],
+  "final_binding": {
+    "render_directory": "/tmp/manual-v4-20260922/final2",
+    "pdf_sha256": "1fd2057ac3834190dc2b5d6097a2fc3b3d344834b32b1347296e036853fa5c65",
+    "page_count": 162,
+    "result": "PASS for final physical pages 144\u2013162: all pixels outside the changed footer-folio digits are byte-identical to individually reviewed baseline pages 145\u2013163. Correct new printed folios 143\u2013161 independently verified in PDF text. Final pages 141\u2013143 are assigned to the formatter\u2019s reflow readers.",
+    "pages": [
+      {
+        "final_physical_page": 144,
+        "reviewed_baseline_page": 145,
+        "pixel_difference_bbox": [
+          1304,
+          1908,
+          1318,
+          1927
+        ],
+        "sha256": "9ac69ec0af2785b478b9ee60d34920b06dc1147de7a3698318efa3a6c584732a",
+        "printed_folio": 143
+      },
+      {
+        "final_physical_page": 145,
+        "reviewed_baseline_page": 146,
+        "pixel_difference_bbox": [
+          1304,
+          1908,
+          1318,
+          1927
+        ],
+        "sha256": "6f5f3a16731b3bde32c4f2315bf33fb4a6e4ad2179558a8d17c83970c0a359b8",
+        "printed_folio": 144
+      },
+      {
+        "final_physical_page": 146,
+        "reviewed_baseline_page": 147,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "34eb42ca45dcb46a4cdafeac9c7abb0931b7975bfc56f7d2750560fe2acb9f37",
+        "printed_folio": 145
+      },
+      {
+        "final_physical_page": 147,
+        "reviewed_baseline_page": 148,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "7f6c2c3c7a9dcfe4f4b7ae6a5a9304e403896ac7c82d6a7f5b851c35e3335cc9",
+        "printed_folio": 146
+      },
+      {
+        "final_physical_page": 148,
+        "reviewed_baseline_page": 149,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "611e949bb060cbb1a0b14ac52d17a932131b41375488740b8b04d06daa8e3788",
+        "printed_folio": 147
+      },
+      {
+        "final_physical_page": 149,
+        "reviewed_baseline_page": 150,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "d2f244520b3e1376f3cc8991c9acf6fba018d79580a4faabb70af350880a1d4e",
+        "printed_folio": 148
+      },
+      {
+        "final_physical_page": 150,
+        "reviewed_baseline_page": 151,
+        "pixel_difference_bbox": [
+          1291,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "a5d50b1f7216d5875c870ba870ef927c3e9e95b776afc8a871f82488d1c52c20",
+        "printed_folio": 149
+      },
+      {
+        "final_physical_page": 151,
+        "reviewed_baseline_page": 152,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "b9cbc4b290514cf6ea3e71d1274cdadcc6dfe89f3063730cb771c414e58c3fa5",
+        "printed_folio": 150
+      },
+      {
+        "final_physical_page": 152,
+        "reviewed_baseline_page": 153,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1926
+        ],
+        "sha256": "fa6fdac6eb705c65fb662e89dfc772cad8784f5f48372ffe4e3b2d01e0953b99",
+        "printed_folio": 151
+      },
+      {
+        "final_physical_page": 153,
+        "reviewed_baseline_page": 154,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "4255c726caf214fdaf0f0a6dacf64045b8ecdb49c6471bbe852928a47bf43807",
+        "printed_folio": 152
+      },
+      {
+        "final_physical_page": 154,
+        "reviewed_baseline_page": 155,
+        "pixel_difference_bbox": [
+          1304,
+          1908,
+          1318,
+          1927
+        ],
+        "sha256": "4b252e7e253c01474d8ca66a426da1f120ada20bff5309eb8a1954e2924ef923",
+        "printed_folio": 153
+      },
+      {
+        "final_physical_page": 155,
+        "reviewed_baseline_page": 156,
+        "pixel_difference_bbox": [
+          1304,
+          1908,
+          1318,
+          1927
+        ],
+        "sha256": "2ad9e191af6473e514cb3d26a35125b023b12bdf2a5cd7cf00beeccbc478f110",
+        "printed_folio": 154
+      },
+      {
+        "final_physical_page": 156,
+        "reviewed_baseline_page": 157,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "ead72ea05cb99bbc9e02bd8880fecd3d5fed96f042b58e2644692fef4303dd78",
+        "printed_folio": 155
+      },
+      {
+        "final_physical_page": 157,
+        "reviewed_baseline_page": 158,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "39d3c9ab7ba1e75367dd16f77a6c8f67ef4a51429addde844293650726ee0f8d",
+        "printed_folio": 156
+      },
+      {
+        "final_physical_page": 158,
+        "reviewed_baseline_page": 159,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "784a9d0ed046490403c57ba97dc5a19b18da973e999ec1d5b34d842ad879aeba",
+        "printed_folio": 157
+      },
+      {
+        "final_physical_page": 159,
+        "reviewed_baseline_page": 160,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "9839be92eaa2a39df978bd8a7c99df19215345482acf8643e1f0d6fcb2649e30",
+        "printed_folio": 158
+      },
+      {
+        "final_physical_page": 160,
+        "reviewed_baseline_page": 161,
+        "pixel_difference_bbox": [
+          1291,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "7805fabbb115e7a9a7a8852fa00180364b9e0c4a733062fc738bf067f089ba3e",
+        "printed_folio": 159
+      },
+      {
+        "final_physical_page": 161,
+        "reviewed_baseline_page": 162,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1927
+        ],
+        "sha256": "5e1a88aad323f9749510d29ca5fa975b9e1b3953633697d17381f6d7c0e030bf",
+        "printed_folio": 160
+      },
+      {
+        "final_physical_page": 162,
+        "reviewed_baseline_page": 163,
+        "pixel_difference_bbox": [
+          1305,
+          1908,
+          1317,
+          1926
+        ],
+        "sha256": "1aa74880cc19b3eeaf000e1442383913dd8dcd760d7b690307bed4f0fafb563f",
+        "printed_folio": 161
+      }
+    ]
+  },
+  "canonical_final_binding": {
+    "result": "PASS",
+    "pdf_path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v4.pdf",
+    "pdf_sha256": "ae8585916f3eea365e112fb7b8fe6a72edfafe9a75dea312e029bf9f71164411",
+    "final_render_directory": "/tmp/manual-v4-20260922/final3",
+    "reviewed_physical_pages": [
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162
+    ],
+    "basis": "Every final3 image in this range exactly matches its final2 image hash preserved above. The canonical PDF exactly matches the final3 render PDF. Other final ranges and updated Contents are covered by the formatter\u2019s TASK reviewers."
+  }
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.md",
+    "baseline_sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+    "current_sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+    "unchanged": true,
+    "category": "external_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.docx",
+    "baseline_sha256": "72071478c4ce5e9813971c797c0943648dfb9107e1adc3849389854908e2e369",
+    "current_sha256": "72071478c4ce5e9813971c797c0943648dfb9107e1adc3849389854908e2e369",
+    "unchanged": true,
+    "category": "external_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.pdf",
+    "baseline_sha256": "9c986ef3b3d041b453545ec76db888ca6302ed3ee68bf70a5b142bdfc4a86267",
+    "current_sha256": "9c986ef3b3d041b453545ec76db888ca6302ed3ee68bf70a5b142bdfc4a86267",
+    "unchanged": true,
+    "category": "external_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/PM_Manual_v3_Editorial_Review.pdf",
+    "baseline_sha256": "1b27c6f71111383d95e0f66a0c71771f0d3469bc170cc2b9dfc51fb25beabfd4",
+    "current_sha256": "1b27c6f71111383d95e0f66a0c71771f0d3469bc170cc2b9dfc51fb25beabfd4",
+    "unchanged": true,
+    "category": "external_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html",
+    "baseline_sha256": "f743bb5ed751329007b89d9385dfb2c6dcf7525925a2040e288f0a1fae530ead",
+    "current_sha256": "f743bb5ed751329007b89d9385dfb2c6dcf7525925a2040e288f0a1fae530ead",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+    "baseline_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+    "current_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/MANUAL_REVIEW_v1.md",
+    "baseline_sha256": "04494eecd470f868796892415d547f3441a410e7fd68081d9eba4e0a3149239a",
+    "current_sha256": "04494eecd470f868796892415d547f3441a410e7fd68081d9eba4e0a3149239a",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+    "baseline_sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+    "current_sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+    "baseline_sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+    "current_sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+    "baseline_sha256": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39",
+    "current_sha256": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.docx",
+    "baseline_sha256": "076dbf426edf0afa42f9989296b4b3882a5a1b8542da0134ba5a26b66812ee00",
+    "current_sha256": "076dbf426edf0afa42f9989296b4b3882a5a1b8542da0134ba5a26b66812ee00",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+    "baseline_sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+    "current_sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.pdf",
+    "baseline_sha256": "fe2cb359afab4b154ff414cc1957ae7329c1d52f89252ca75dbde9b116cf6fae",
+    "current_sha256": "fe2cb359afab4b154ff414cc1957ae7329c1d52f89252ca75dbde9b116cf6fae",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/README.md",
+    "baseline_sha256": "9babc3d10fa429e97e70cde35b334d55a10b27c9d6719bab6453faf332322259",
+    "current_sha256": "e2957e1d54de2fd4a967200a63c1e3b19e7e82a4bf080797e2f83a9d56f10e83",
+    "unchanged": false,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": "README navigation is being intentionally updated by other workers"
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/assets/Figure_1_1.png",
+    "baseline_sha256": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1",
+    "current_sha256": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/render_manual.py",
+    "baseline_sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+    "current_sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/requirements.txt",
+    "baseline_sha256": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+    "current_sha256": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": true,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+    "baseline_sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+    "current_sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": false,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_WORKING_ITEMS.md",
+    "baseline_sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+    "current_sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": false,
+    "scope_note": null
+  },
+  {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/chirality-change/SKILL.md",
+    "baseline_sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+    "current_sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+    "unchanged": true,
+    "category": "repository_inputs",
+    "publication_input": false,
+    "scope_note": null
+  }
+]

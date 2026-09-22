@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="render_manual.py; markdown-it-py 4.2.0">
+<meta name="source-sha256" content="6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d">
+<meta name="source-basis-date" content="2026-09-22">
+<meta name="source-basis-revision" content="0a258f145eac41a62de02b06f032ccbc183838ec">
+<title>Chirality Agent User Manual · Chirality</title>
+<style>
+:root {
+  color-scheme: light;
+  --paper: #ffffff;
+  --canvas: #eeeeee;
+  --ink: #111111;
+  --muted: #505050;
+  --line: #cccccc;
+  --accent: #111111;
+  --tint: #eeeeee;
+  font-family: "Liberation Serif", "Times New Roman", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 2rem; }
+body { margin: 0; color: var(--ink); background: var(--canvas); }
+a { color: var(--accent); text-underline-offset: .17em; }
+a:hover { text-decoration-thickness: .14em; }
+a:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #111111;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.skip-link {
+  position: fixed; top: .6rem; left: .6rem; z-index: 100;
+  padding: .6rem 1rem; background: var(--paper); border: 2px solid var(--accent);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+.masthead { border-bottom: 1px solid var(--ink); background: var(--paper); }
+.masthead-inner {
+  max-width: 70rem; margin: auto; padding: 1.05rem 2.5rem;
+  display: flex; flex-wrap: wrap; gap: .35rem 1.2rem;
+  align-items: baseline; justify-content: center; text-align: center;
+}
+.brand { font-size: .92rem; font-weight: 700; letter-spacing: .12em; }
+.masthead-label { color: var(--ink); font-size: .77rem; text-transform: uppercase; letter-spacing: .025em; }
+.layout {
+  max-width: 70rem; margin: auto; padding: 0 2.5rem;
+  display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2.5rem;
+}
+.sidebar {
+  position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto; padding: 2rem .8rem 2rem 0;
+  scrollbar-width: thin;
+}
+.nav-label, .eyebrow {
+  margin: 0 0 .85rem; color: var(--muted); font-size: .73rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+}
+.contents { list-style: none; padding: 0; margin: 0; }
+.contents li { margin: .15rem 0; }
+.contents a {
+  display: block; padding: .34rem .65rem; border-left: 2px solid transparent;
+  color: var(--muted); text-decoration: none; font-size: .86rem; line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.contents a:hover, .contents a:focus-visible {
+  color: var(--accent); background: var(--tint); border-left-color: var(--accent);
+}
+.nav-help { border-top: 1px solid var(--line); padding-top: 1rem; margin-top: 1.3rem; }
+.nav-help p, .nav-help a { font-size: .75rem; color: var(--muted); }
+.nav-help p { margin: .5rem 0; }
+kbd { font: inherit; padding: .05rem .25rem; border: 1px solid var(--line); border-radius: .2rem; }
+main { min-width: 0; max-width: 48.5rem; padding: 2rem 0 3rem; }
+.document-meta {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.5rem; margin: 0 0 1.5rem;
+  font-size: .73rem; color: var(--muted);
+}
+.document-meta div { min-width: 0; }
+.document-meta dt { font-weight: 700; letter-spacing: .025em; }
+.document-meta dd { margin: .15rem 0 0; overflow-wrap: anywhere; }
+.document-meta code { font-size: .9em; background: none; padding: 0; }
+.fingerprint { grid-column: 1 / -1; }
+.paper {
+  min-width: 0; padding: 3.4rem 3rem 3rem;
+  background: var(--paper); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .04);
+}
+article { max-width: 68ch; margin: auto; overflow-wrap: anywhere; }
+article > :first-child { margin-top: 0; }
+h1, h2, h3, h4, h5, h6 { color: #000000; line-height: 1.22; text-wrap: balance; scroll-margin-top: 2rem; }
+h1 {
+  max-width: 19ch; margin: 0 auto 1.65rem; font-size: clamp(2.05rem, 3.8vw, 2.8rem);
+  text-align: center; text-transform: uppercase; letter-spacing: .015em;
+}
+article > h1 + p { margin-bottom: 2.4rem; text-align: center; font-size: .82rem; line-height: 1.45; }
+h2 { font-size: 1.5rem; margin: 3.4rem 0 1.1rem; }
+h3 { font-size: 1.13rem; margin: 2rem 0 .7rem; }
+h4, h5, h6 { font-size: 1.02rem; margin: 1.65rem 0 .6rem; }
+p { margin: 0 0 .78rem; }
+article p { text-align: justify; text-justify: inter-word; hyphens: auto; }
+ul, ol { padding-left: 1.5rem; }
+li { padding-left: .2rem; margin: .35rem 0; }
+li > p { margin: .6rem 0; }
+hr { max-width: 75%; border: 0; border-top: 1px solid var(--ink); margin: 2.5rem auto; }
+blockquote {
+  margin: 1.4rem 1.25rem; padding: 0; background: none; border: 0;
+}
+blockquote > :last-child { margin-bottom: 0; }
+code, pre { font-family: "Liberation Mono", "SFMono-Regular", Consolas, monospace; font-size: .83em; hyphens: none; }
+code { background: #f1f1f1; padding: .08em .2em; overflow-wrap: anywhere; }
+pre {
+  max-width: 100%; overflow-x: auto; padding: 1rem 1.15rem; margin: 1.4rem 0;
+  color: #111111; background: #f6f6f6; border: 1px solid var(--line);
+  line-height: 1.5; tab-size: 4;
+}
+pre code { background: none; padding: 0; border-radius: 0; font-size: 1em; overflow-wrap: normal; }
+.table-scroll { max-width: 100%; overflow-x: auto; margin: 1.5rem 0; }
+table { width: 100%; min-width: 30rem; border-collapse: collapse; font-size: .87rem; line-height: 1.4; }
+th, td { padding: .65rem .75rem; text-align: left; vertical-align: top; border: 1px solid #b8b8b8; }
+th { color: #000000; background: #eeeeee; font-weight: 700; }
+tbody tr { background: #ffffff; }
+img, svg { max-width: 100%; height: auto; }
+a[id], a[name] { scroll-margin-top: 2rem; }
+p:has(> a[id]:only-child):empty { margin: 0; }
+p:has(> a[id]:only-child) { margin: 0; }
+h2:target, h3:target, h4:target { text-decoration: underline; text-decoration-color: #777777; text-decoration-thickness: .08em; text-underline-offset: .2em; }
+.mobile-toc { display: none; }
+.document-footer { margin-top: 1.5rem; color: var(--muted); font-size: .73rem; }
+.document-footer p { margin: .4rem 0; }
+@media (max-width: 65rem) {
+  .layout { padding: 0 1.5rem; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 1.5rem; }
+  .masthead-inner { padding: 1rem 1.5rem; }
+  .paper { padding: 2.6rem 2rem; }
+}
+@media (max-width: 54rem) {
+  html { scroll-padding-top: 4.5rem; }
+  .layout { display: block; padding: 0 1rem; }
+  .sidebar { display: none; }
+  .masthead-inner { padding: .85rem 1rem; gap: .2rem 1rem; }
+  .mobile-toc {
+    display: block; position: sticky; top: 0; z-index: 10;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .mobile-toc summary { padding: .75rem 1rem; cursor: pointer; color: var(--accent); font-weight: 700; font-size: .85rem; }
+  .mobile-toc nav { max-height: 65vh; overflow-y: auto; padding: 0 .5rem 1rem; }
+  .mobile-toc .contents a { padding: .55rem; }
+  main { padding-top: 1.25rem; }
+  .paper { padding: 2.2rem 1.4rem; }
+  article p { text-align: left; }
+  article > h1 + p { text-align: center; }
+  h2, h3, h4, h5, h6, a[id], a[name] { scroll-margin-top: 4.5rem; }
+  h2 { margin-top: 2.7rem; font-size: 1.4rem; }
+  .document-meta { gap: .75rem 1rem; }
+}
+@media (max-width: 25rem) {
+  :root { font-size: 17px; }
+  .layout { padding: 0 .5rem; }
+  .paper { padding: 1.4rem 1rem; }
+  .document-meta { padding: 0 .5rem; }
+}
+@media print {
+  @page { size: 6.75in 9.25in; margin: .68in .65in .67in .72in; }
+  :root { font-size: 10.5pt; line-height: 1.2; color-scheme: light; }
+  body, .paper { color: #111; background: white; }
+  .masthead, .sidebar, .mobile-toc, .skip-link, .back-top { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  main { max-width: none; padding: 0; }
+  .paper { padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  article { max-width: none; }
+  article p { margin-bottom: 4.6pt; text-align: justify; }
+  .document-meta { padding: 0 0 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid #bbb; }
+  h1 { font-size: 26pt; }
+  h2 { font-size: 18pt; margin-top: 1.8rem; }
+  h3 { font-size: 12pt; }
+  h4, h5, h6 { font-size: 11pt; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  p, li { orphans: 3; widows: 3; }
+  a { color: inherit; text-decoration: underline; }
+  .table-scroll { overflow: visible; border: 0; }
+  table { min-width: 0; table-layout: auto; font-size: 9pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  th, td { padding: .45rem; }
+  pre { overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; border-color: #bbb; font-size: 8pt; line-height: 1.3; }
+  pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  blockquote { break-inside: avoid; background: white; }
+  .document-footer { border-top: 1px solid #bbb; padding-top: .75rem; }
+}
+</style>
+</head>
+<body id="manual-top">
+<a class="skip-link" href="#manual-content">Skip to manual</a>
+<header class="masthead">
+  <div class="masthead-inner"><span class="brand">CHIRALITY</span><span class="masthead-label">Agent user manual · offline reading edition</span></div>
+</header>
+<details class="mobile-toc">
+  <summary>Contents · 22 sections</summary>
+  <nav aria-label="Sections on small screens"><ol class="contents"><li><a href="#contents">Contents</a></li>
+<li><a href="#1-use-the-guide-at-the-right-scale">1. Use the guide at the right scale</a></li>
+<li><a href="#2-enter-or-resume-an-undertaking">2. Enter or resume an undertaking</a></li>
+<li><a href="#3-choose-responsibilities-and-execution-resources">3. Choose responsibilities and execution resources</a></li>
+<li><a href="#4-read-paths-records-and-authority">4. Read paths, records, and authority</a></li>
+<li><a href="#5-understand-the-development-route">5. Understand the development route</a></li>
+<li><a href="#6-form-the-basis-decompose-and-set-up">6. Form the basis, decompose, and set up</a></li>
+<li><a href="#7-work-from-deliverable-contracts">7. Work from deliverable contracts</a></li>
+<li><a href="#8-read-dependencies-and-resolve-cycles">8. Read dependencies and resolve cycles</a></li>
+<li><a href="#9-construct-and-traverse-a-local-work-graph">9. Construct and traverse a local work graph</a></li>
+<li><a href="#10-commission-and-coordinate-bounded-work">10. Commission and coordinate bounded work</a></li>
+<li><a href="#11-implement-verify-review-and-integrate">11. Implement, verify, review, and integrate</a></li>
+<li><a href="#12-reconcile-the-records-with-the-result">12. Reconcile the records with the result</a></li>
+<li><a href="#13-handle-decisions-change-and-unresolved-concerns">13. Handle decisions, change, and unresolved concerns</a></li>
+<li><a href="#14-enter-chirality-app-development">14. Enter Chirality App development</a></li>
+<li><a href="#15-enter-piping-development">15. Enter Piping development</a></li>
+<li><a href="#16-enter-runtime-development">16. Enter Runtime development</a></li>
+<li><a href="#17-enter-pec-development">17. Enter PEC development</a></li>
+<li><a href="#18-recover-hand-off-and-close-an-undertaking">18. Recover, hand off, and close an undertaking</a></li>
+<li><a href="#19-create-or-improve-reusable-methods">19. Create or improve reusable methods</a></li>
+<li><a href="#20-worked-operational-examples">20. Worked operational examples</a></li>
+<li><a href="#21-source-map-and-terminology">21. Source map and terminology</a></li></ol></nav>
+</details>
+<div class="layout">
+<aside class="sidebar">
+  <nav aria-label="Sections">
+    <p class="nav-label">In this manual</p>
+    <ol class="contents"><li><a href="#contents">Contents</a></li>
+<li><a href="#1-use-the-guide-at-the-right-scale">1. Use the guide at the right scale</a></li>
+<li><a href="#2-enter-or-resume-an-undertaking">2. Enter or resume an undertaking</a></li>
+<li><a href="#3-choose-responsibilities-and-execution-resources">3. Choose responsibilities and execution resources</a></li>
+<li><a href="#4-read-paths-records-and-authority">4. Read paths, records, and authority</a></li>
+<li><a href="#5-understand-the-development-route">5. Understand the development route</a></li>
+<li><a href="#6-form-the-basis-decompose-and-set-up">6. Form the basis, decompose, and set up</a></li>
+<li><a href="#7-work-from-deliverable-contracts">7. Work from deliverable contracts</a></li>
+<li><a href="#8-read-dependencies-and-resolve-cycles">8. Read dependencies and resolve cycles</a></li>
+<li><a href="#9-construct-and-traverse-a-local-work-graph">9. Construct and traverse a local work graph</a></li>
+<li><a href="#10-commission-and-coordinate-bounded-work">10. Commission and coordinate bounded work</a></li>
+<li><a href="#11-implement-verify-review-and-integrate">11. Implement, verify, review, and integrate</a></li>
+<li><a href="#12-reconcile-the-records-with-the-result">12. Reconcile the records with the result</a></li>
+<li><a href="#13-handle-decisions-change-and-unresolved-concerns">13. Handle decisions, change, and unresolved concerns</a></li>
+<li><a href="#14-enter-chirality-app-development">14. Enter Chirality App development</a></li>
+<li><a href="#15-enter-piping-development">15. Enter Piping development</a></li>
+<li><a href="#16-enter-runtime-development">16. Enter Runtime development</a></li>
+<li><a href="#17-enter-pec-development">17. Enter PEC development</a></li>
+<li><a href="#18-recover-hand-off-and-close-an-undertaking">18. Recover, hand off, and close an undertaking</a></li>
+<li><a href="#19-create-or-improve-reusable-methods">19. Create or improve reusable methods</a></li>
+<li><a href="#20-worked-operational-examples">20. Worked operational examples</a></li>
+<li><a href="#21-source-map-and-terminology">21. Source map and terminology</a></li></ol>
+  </nav>
+  <div class="nav-help">
+    <p>Find a term with <kbd>⌘ F</kbd> or <kbd>Ctrl F</kbd>. Use your browser’s print command for a paper copy.</p>
+    <p><a href="CHIRALITY_AGENT_USER_MANUAL_v2.md">Markdown source</a> · <a href="#manual-top">Back to start ↑</a></p>
+  </div>
+</aside>
+<main id="manual-content" tabindex="-1">
+  <dl class="document-meta">
+    <div><dt>Source basis dated</dt><dd>22 September 2026</dd></div>
+    <div><dt>Repository basis</dt><dd><code>0a258f145eac41a62de02b06f032ccbc183838ec</code></dd></div>
+    <div class="fingerprint"><dt>Markdown source · SHA-256</dt><dd><a href="CHIRALITY_AGENT_USER_MANUAL_v2.md">CHIRALITY_AGENT_USER_MANUAL_v2.md</a><br><code>6739f5a559c5bae3efcdd8623457e48677fd92e21106410cba5e8e57310ddb1d</code></dd></div>
+  </dl>
+  <div class="paper">
+    <article aria-labelledby="chirality-agent-user-manual">
+<!-- BEGIN MARKDOWN CONTENT -->
+<h1 id="chirality-agent-user-manual">Chirality Agent User Manual</h1>
+<p>Version 2 · 22 September 2026 · repository source basis <code>0a258f145eac41a62de02b06f032ccbc183838ec</code></p>
+<p>An operational companion to <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v4.md"><em>Project Management for Human–Agent Teams</em></a>, for agents developing projects in the Chirality repository.</p>
+<p><strong>Status:</strong> explanatory documentation. This manual supplies navigation, working explanations, and illustrative examples. It does not amend instructions, adopt a workflow, activate project work, change a lifecycle state, accept a product, or authorize release. Follow the actual human direction, applicable adopted instructions, selected method, brief, and host permissions. Recheck the linked live sources when using a later checkout. The project entry sections lead to maintained instructions and pointers. Recover their current targets and later owner directions before selecting work; dated evidence does not supply a standing work queue. <a href="../../AGENTS.md">Root entry</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a></p>
+<h2 id="contents">Contents</h2>
+<ol>
+<li><a href="#use-the-guide">Use the guide at the right scale</a></li>
+<li><a href="#entry">Enter or resume an undertaking</a></li>
+<li><a href="#roles">Choose responsibilities and execution resources</a></li>
+<li><a href="#records">Read paths, records, and authority</a></li>
+<li><a href="#phases">Understand the development route</a></li>
+<li><a href="#formation">Form the basis, decompose, and set up</a></li>
+<li><a href="#deliverables">Work from deliverable contracts</a></li>
+<li><a href="#dependencies">Read dependencies and resolve cycles</a></li>
+<li><a href="#local-graph">Construct and traverse a local work graph</a></li>
+<li><a href="#delegation">Commission and coordinate bounded work</a></li>
+<li><a href="#implementation">Implement, verify, review, and integrate</a></li>
+<li><a href="#reconciliation">Reconcile the records with the result</a></li>
+<li><a href="#change">Handle decisions, change, and unresolved concerns</a></li>
+<li><a href="#app">Enter Chirality App development</a></li>
+<li><a href="#piping">Enter Piping development</a></li>
+<li><a href="#runtime">Enter Runtime development</a></li>
+<li><a href="#pec">Enter PEC development</a></li>
+<li><a href="#recovery">Recover, hand off, and close an undertaking</a></li>
+<li><a href="#authoring">Create or improve reusable methods</a></li>
+<li><a href="#examples">Worked operational examples</a></li>
+<li><a href="#sources">Source map and terminology</a></li>
+</ol>
+<p><a id="use-the-guide"></a></p>
+<h2 id="1-use-the-guide-at-the-right-scale">1. Use the guide at the right scale</h2>
+<p>Begin with the result the human wants and the undertaking already in progress. Determine whether the assignment is project formation, an existing project's development, a bounded maintenance change, an inquiry, or separately authorized Root governance work. These can share tools and records without sharing every stage or checkpoint. A small authorized documentation correction does not require a new PRD, a new decomposition, a project-wide dependency audit, or a replacement work graph. A new product with unsettled scope needs more basis work before production can be meaningfully bounded. <a href="../../AGENTS.md">Root entry</a> · <a href="../../agents/AGENT_WORKING_ITEMS.md">WORKING_ITEMS</a></p>
+<p>Use the human-facing manual for the management argument: establish intent, make the basis usable, organize contributions, examine them, preserve their consequences, and deliver an identified result. Use this guide to find the repository instruments that implement those ideas. Use the owning project's live entry to decide what applies now. The human manual explains general practice and illustrative cases; a method described there does not become operational merely by being described. <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v4.md">Human manual</a></p>
+<p>Three questions keep the work proportional:</p>
+<ol>
+<li><strong>What decision or operation is next?</strong> Read enough to support it, including consequential inputs and downstream effects.</li>
+<li><strong>What could make its result unusable?</strong> Select the checks, review, and evidence that detect those failures.</li>
+<li><strong>What must another participant recover?</strong> Preserve the basis, actual outcome, remaining obligations, and next safe action without duplicating the entire history.</li>
+</ol>
+<p>This is a working aid, not another mandatory form. Root explicitly permits ad hoc plans and ordinary conversational briefs. A workflow is optional unless the assignment or an accepted instrument requires it; creating or revising a reusable workflow is the important exception, discussed in <a href="#authoring">section 19</a>. An agent may act and make routine choices within clear authorization. It should prepare consequential human decisions, rather than multiply prompts for each tool result or harmless implementation detail. <a href="../../AGENTS.md">Root entry</a> · <a href="../../workflows/create-workflow/WORKFLOW.md">Create a workflow</a></p>
+<p>Keep four distinctions visible throughout the work:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 1; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Distinction</th>
+<th>Operational consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Description and authority</td>
+<td>A report of what code does cannot replace an accepted requirement.</td>
+</tr>
+<tr>
+<td>Preparation and execution</td>
+<td>A launch brief proves that instructions were prepared; an actual child record establishes that work ran.</td>
+</tr>
+<tr>
+<td>Evidence and acceptance</td>
+<td>A passing check supports a bounded claim; the applicable human act governs acceptance.</td>
+</tr>
+<tr>
+<td>Source integration and release</td>
+<td>Commit, push, PR, and merge concern Git state; none independently issues a deliverable or publishes a product.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>These distinctions are grounded in the <a href="../CONTRACT.md">invariant catalog</a>, <a href="../governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md">delegation decision D-GOV-35</a>, and <a href="../../.agents/skills/chirality-change/SKILL.md">Chirality change conventions</a>. They allow extensive autonomous preparation and execution while preserving the decisions the human has retained.</p>
+<p>The common route in this guide applies across project types. The exact product, source boundaries, domain constraints, checks, and adoption state remain local. In particular, current App and Piping use a selected local work graph; Runtime and PEC retain different continuation rules. Do not export one project's newest loop into its siblings without their adoption. <a href="../../projects/chirality-app-dev/loop/LOOP_INIT.md">App loop</a> · <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a> · <a href="../../projects/chirality-runtime/loop/LOOP_INIT.md">Runtime loop</a> · <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop</a></p>
+<p><a id="entry"></a></p>
+<h2 id="2-enter-or-resume-an-undertaking">2. Enter or resume an undertaking</h2>
+<p>Resolve the checkout before interpreting paths. A linked worktree has its own <code>REPO_ROOT</code>; a path copied from another session may point to a different checkout. Establish the project and active role, read the applicable entry instructions, and recover the current undertaking before creating replacement work. Only then decide which deeper records and methods are needed. <a href="../SPEC.md">SPEC §0.2</a> · <a href="../../AGENTS.md">Root entry</a></p>
+<p>The following shell block is a read-only orientation example for an agent with shell access. It does not fetch remote state or execute project gates. Select the real project folder; <code>chirality-app-dev</code> is only the example value.</p>
+<pre><code class="language-sh">REPO_ROOT=&quot;$(git rev-parse --show-toplevel)&quot;
+WORKING_ROOT=&quot;$REPO_ROOT/projects/chirality-app-dev&quot;
+git -C &quot;$REPO_ROOT&quot; status --short --branch
+git -C &quot;$REPO_ROOT&quot; rev-parse HEAD
+git -C &quot;$REPO_ROOT&quot; worktree list
+cat &quot;$REPO_ROOT/AGENTS.md&quot;
+cat &quot;$REPO_ROOT/agents/AGENT_HELP_HUMAN.md&quot;
+cat &quot;$WORKING_ROOT/AGENTS.md&quot;
+cat &quot;$WORKING_ROOT/loop/LOOP_INIT.md&quot;
+</code></pre>
+<p>A HELP_HUMAN instance whose effective ceiling does not permit shell execution asks an authorized actor to perform the Git observations or uses available read capabilities. The presence of a shell example never changes that ceiling. Record a tool or permission gap accurately rather than claiming that the displayed commands ran. <a href="../../agents/registry.json">Role registry</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a></p>
+<p>For an existing project, recover five things before dispatch: the intended outcome and latest steering; the live authority and accepted basis; the continuation cursor selected by the project; the actual code/file state; and the active ownership of files and shared resources. A completed child may have left an unmerged patch. An interrupted test may still own an application window. A current pointer can name an ongoing governed program whose phase rules are narrower than ordinary development. <a href="../../projects/chirality-app-dev/loop/LOOP_INIT.md">App loop</a> · <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a> · <a href="../../projects/chirality-runtime/loop/LOOP_INIT.md">Runtime loop</a> · <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop</a></p>
+<p>For App and Piping, read the graph selected by <code>loop/LOOP_INIT.md</code>, then any linked phase cursor, owner direction, and handoff. Compare material statements with the branch, working tree, named unmerged worktrees, and referenced evidence. Preserve useful completed results. A missing graph target is a recovery problem; it is not equivalent to a pointer deliberately set to <code>none</code>. A completed graph stays selected until a successor undertaking is chosen. <a href="../../projects/chirality-app-dev/loop/LOOP_INIT.md">App loop</a> · <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a></p>
+<p>For Runtime, start with migration acceptance and the authority/decomposition pointers, then <code>execution/_Coordination/HANDOFF_STATE.md</code> and the newest loop receipt. For PEC, perform its prescribed discovery and re-derive selectable work from deliverable Remaining sections, gates, and exact ruled packets. Neither project inherits App/Piping's removal of routine receipts. <a href="../../projects/chirality-runtime/loop/LOOP_INIT.md">Runtime loop</a> · <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop</a></p>
+<p>A useful first return is short but decisive: “The selected undertaking is X, based on Y. The working tree contains Z. A is ready within the current scope; B waits for the named owner act. I will continue with A and preserve B.” Where no lawful production activation exists, identify the useful readiness preparation already authorized and the exact decision that blocks production. Avoid describing a missing input as a blanket inability to investigate or prepare. <a href="../../agents/AGENT_WORKING_ITEMS.md">WORKING_ITEMS</a> · <a href="../../projects/chirality-runtime/loop/LOOP_INIT.md">Runtime loop</a></p>
+<p>An illustrative launcher for the current App entry is:</p>
+<pre><code class="language-text">Resolve REPO_ROOT with git rev-parse --show-toplevel.
+Set WORKING_ROOT to {REPO_ROOT}/projects/chirality-app-dev.
+Read {REPO_ROOT}/AGENTS.md and agents/AGENT_HELP_HUMAN.md.
+Act as HELP_HUMAN for WORKING_ROOT.
+Read the project AGENTS.md and loop/LOOP_INIT.md.
+Recover the selected undertaking and follow its live authority.
+Steer for this run: continue the authorized verification work;
+retain all existing holds and return any design-changing finding.
+</code></pre>
+<p>The wording illustrates an assignment, not a reusable workflow or current owner instruction. Substitute the actual project and steering. Do not treat a blank steer as cancellation of existing directions, or a new conversation as release of a pause. Where continuing intent is genuinely unclear, first recover enough state to make the human's choice concrete. <a href="../../workflows/construct-local-work-graph/WORKFLOW.md">Construct a local work graph</a> · <a href="../../agents/AGENT_HELP_HUMAN.md">HELP_HUMAN</a></p>
+<p><a id="roles"></a></p>
+<h2 id="3-choose-responsibilities-and-execution-resources">3. Choose responsibilities and execution resources</h2>
+<p>Chirality has four standing roles. A role describes a contribution, a workflow describes a method, a brief describes this assignment, and the host supplies actual capabilities. Do not create an expanded permanent roster merely because the work has many specialties. Put the specialty in the bounded assignment and its context. <a href="../../AGENTS.md">Root entry</a> · <a href="../../agents/registry.json">Role registry</a></p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 2; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th style="text-align:right">Type</th>
+<th>Use it for</th>
+<th>Required relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HELP_HUMAN</td>
+<td style="text-align:right">0</td>
+<td>Alignment, continuity, cross-undertaking coordination, and preparing consequential choices with the human.</td>
+<td>Coordinates managers and may directly dispatch a bounded Type 2 contribution.</td>
+</tr>
+<tr>
+<td>HELPS_HUMANS</td>
+<td style="text-align:right">1</td>
+<td>Conceiving and designing projects, workflows, tools, and their boundaries.</td>
+<td>Returns a sufficiently understood design and open questions for implementation; may delegate bounded execution.</td>
+</tr>
+<tr>
+<td>WORKING_ITEMS</td>
+<td style="text-align:right">1</td>
+<td>Organizing implementation, assigning bounded work, checking interfaces, and integrating the undertaking.</td>
+<td>Owns the combined result; returns design-changing findings through the human or HELP_HUMAN.</td>
+</tr>
+<tr>
+<td>TASK</td>
+<td style="text-align:right">2</td>
+<td>One bounded contribution under its brief and selected method, if any.</td>
+<td>Returns work, evidence, and coordination needs to its caller; does not delegate.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Read the <a href="../../agents/registry.json">active role instruction</a>, not every role body on routine entry. Wider consultation is appropriate for comparison or coordination when needed, with origins and hashes recorded in governed evidence. A fresh named child receives the intended full role and its bounded brief. A full-history fork preserves context; it does not by itself establish a different role or a fresh independent reviewer. <a href="../../AGENTS.md">Root entry</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a></p>
+<p>The registry gives HELP_HUMAN a read-only managed ceiling: <code>read</code>, <code>delegate_agent</code>, and <code>send_agent_update</code>, with <code>write_scope: none</code>. Its responsibility for continuity does not authorize direct file edits. Route graph maintenance, decision transcription, and other writes to an authorized recorder or manager with exact targets. A manager's own ceiling also does not grant unrestricted writes; its brief must supply them. <a href="../../agents/registry.json">Role registry</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract, structured brief compatibility</a></p>
+<p>Native delegation needs equally accurate description. D-GOV-35 distinguishes Chirality-managed <code>delegate_agent</code> sessions from delegated-harness-native descendants. Native descent alone assigns no Chirality role, proves no non-delegation enforcement, and creates no acceptance authority. If the native host exposes broad tools while role and brief restrictions are instruction-asserted, report that fact. Never describe the host as mechanically enforcing a restriction merely because the agent followed it. Conversely, broad filesystem capability is not permission to exceed the assignment. <a href="../governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md">D-GOV-35</a> · <a href="../../AGENTS.md">Root entry</a></p>
+<p>Choose the arrangement around coordination needs. A small read-only comparison may go directly from HELP_HUMAN to TASK. An undertaking with implementation, evolving inputs, repairs, review, and integration usually benefits from WORKING_ITEMS. Several independent scopes can share a manager; a problem spanning Packages can require one coherent undertaking. A Package does not automatically require its own manager, nor does a graph node require a separate agent. <a href="../../agents/AGENT_HELP_HUMAN.md">HELP_HUMAN</a> · <a href="../../agents/AGENT_WORKING_ITEMS.md">WORKING_ITEMS</a> · <a href="../../projects/chirality-app-dev/AGENTS.md">App project instructions</a></p>
+<p>Model and reasoning settings are separate from role and Type. A difficult bounded review can require more capability than routine coordination. Consider the question, context, uncertainty, consequences, available checks, and total effort through repair and integration. Follow the current project convention and per-run steering; record actual model identity only when exposed by the host. App and Piping retain model allocation in run strategy and evidence, while PEC retains a distinct historical model convention that must be read in its own instructions. No role number is a capability ranking. <a href="../../projects/chirality-app-dev/AGENTS.md">App execution attribution</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping execution attribution</a> · <a href="../../projects/pec/AGENTS.md">PEC session convention</a></p>
+<p><a id="records"></a></p>
+<h2 id="4-read-paths-records-and-authority">4. Read paths, records, and authority</h2>
+<p><code>REPO_ROOT</code> is the active checkout. <code>WORKING_ROOT</code> is the selected project or domain workspace. <code>INSTRUCTION_ROOT</code> is the runtime-declared shared instruction surface. <code>EXECUTION_ROOT</code> and other tokens resolve from the anchors defined in SPEC and the project. In-tree projects may read shared instructions outside their working root; those reads confer no permission to edit the shared surface. External v2 working repositories use a physically disjoint instruction root under their registration contract. <a href="../SPEC.md">SPEC §§0.2–0.3</a></p>
+<p>Normalize <code>ScopePath</code> and every write target to real absolute paths and verify containment in the authorized working root. Include generated files, evidence, caches with consequential effects, and helper outputs in the assessment. A symlink or <code>..</code> must not escape the boundary. Root instruction and governance maintenance is separately authorized work, not an ordinary project's side effect and not a revival of retired Root product execution. Durable instructions use anchors or relative paths; machine-absolute paths belong only in run evidence where they record actual execution. <a href="../SPEC.md">SPEC §0.2</a> · <a href="../CONTRACT.md">CONTRACT K-WRITE-2</a> · <a href="../DIRECTIVE.md">DIRECTIVE §2.6</a></p>
+<p>Use each record for the kind of truth it owns:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 3; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Record</th>
+<th>Use</th>
+<th>Do not infer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Human ruling and decision register</td>
+<td>Exact accepted choice, subject, conditions, and publication/adoption requirements.</td>
+<td>A tracking row or agent transcription is itself a fresh ruling.</td>
+</tr>
+<tr>
+<td>PRD and accepted decomposition</td>
+<td>Purpose, scope, objectives, allocation, identity, and accepted boundaries.</td>
+<td>Every aspirational PRD sentence is an activated implementation tranche.</td>
+</tr>
+<tr>
+<td><code>ScopeOfWork.md</code> or valid active legacy kit</td>
+<td>The deliverable's production target and evaluation relationships.</td>
+<td>Current code overrides an unsatisfied requirement.</td>
+</tr>
+<tr>
+<td><code>_STATUS.md</code></td>
+<td>Canonical lifecycle and, where adopted, current Remaining obligations.</td>
+<td>Lifecycle is a percentage or automatically changes when tests pass.</td>
+</tr>
+<tr>
+<td><code>Dependencies.csv</code>, <code>_DEPENDENCIES.md</code></td>
+<td>Local dependency declarations, identities, provenance, and satisfaction.</td>
+<td>A central graph image is a substitute source of dependency truth.</td>
+</tr>
+<tr>
+<td>Local work graph</td>
+<td>Selected route, executable contributions, prerequisites, results, and recovery.</td>
+<td>It creates scope, overrides holds, or accepts a phase.</td>
+</tr>
+<tr>
+<td>Run evidence and snapshots</td>
+<td>What was supplied, done, observed, checked, and accepted at an identified boundary.</td>
+<td>Historical success establishes current success without checking intervening changes.</td>
+</tr>
+<tr>
+<td>Memory, plans, summaries, maps</td>
+<td>Context, reasons, navigation, and historical explanation.</td>
+<td>They supersede the current authority or select work contrary to the adopted loop.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The source-of-truth rules are in <a href="../CONTRACT.md">CONTRACT</a>, <a href="../SPEC.md">SPEC</a>, and the <a href="../DELIVERABLE_CONCORDANCE_METHOD.md">concordance method</a>. A useful index leads back to those records. It is acceptable to use search, a graph projection, or a generated status report to locate them; it is not acceptable to silently promote the projection into authority.</p>
+<p>Read status statements at their actual scope. A source may be ratified Root governance, a prospective interface authorized for implementation, a project adoption record, a candidate implementation, or frozen historical evidence. The shared runtime-contract header carries a prospective/adoption qualification; establish each consumer's actual adoption from its owning records and later scoped acts. The current decomposition standard identifies its v3 grouped-checkpoint amendment as prospective and names the earlier ratified edition. A visible latest file is therefore not sufficient evidence that an active project has adopted its procedure, and an older header does not cancel a later accepted adoption. <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a> · <a href="../DECOMPOSITION_STANDARD.md">Decomposition standard</a></p>
+<p>Use the four project views proportionately. The tree locates the work and its identity; the production graph shows required relationships; the source/decision network exposes warrants and supersession; the attention view gathers what matters for the present question. Follow a reference when its meaning affects the next operation. There is no standing requirement to construct all four views or scan the entire repository. Git ancestry locates revisions; it does not prove production dependence. <a href="../../AGENTS.md">Root entry</a></p>
+<p>When sources disagree, identify the actual contradiction, their status and revisions, the work affected, and the decision needed. Continue independently authorized work whose basis is sound. Do not resolve a live authority conflict by choosing whichever text is easiest to implement, newest by timestamp, or closest to the current directory. <a href="../CONTRACT.md">CONTRACT K-CONFLICT-1</a> · <a href="../DELIVERABLE_CONCORDANCE_METHOD.md">Concordance method</a></p>
+<p><a id="phases"></a></p>
+<h2 id="5-understand-the-development-route">5. Understand the development route</h2>
+<p>The human manual describes a six-part route: conceptual work, FEED, 30%, 60%, 90%, and 100% delivery. These names explain how the character of the work changes. They are not arithmetic measurements, automatic software statuses, or a requirement to restart every phase when maintaining an established project. Enter the verified current position and reopen only decisions whose basis or consequences have changed. <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v4.md">Human manual §§1.7, 4.12, 5.11–6</a> · <a href="../../AGENTS.md">Root entry</a></p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 4; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Phase in the explanatory route</th>
+<th>Work emphasized</th>
+<th>Useful basis for the next undertaking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conceptual</td>
+<td>Align intent, understand the product, identify constraints, develop the PRD or appropriate basis document.</td>
+<td>Identified accepted direction, clear unresolved questions, and a usable basis for division.</td>
+</tr>
+<tr>
+<td>FEED</td>
+<td>Decompose accepted scope and prepare the project workspace and production contracts.</td>
+<td>Stable identities, scope coverage, usable deliverable definitions, and declared coordination.</td>
+</tr>
+<tr>
+<td>Work toward 30%</td>
+<td>Establish the means of execution, declare dependencies, examine coupling, resolve ordering, and construct the first usable objective-relative DAG.</td>
+<td>The accepted graph basis, resolved or explicitly held coupling, and an executable route.</td>
+</tr>
+<tr>
+<td>Work toward 60%</td>
+<td>Develop technical details and interfaces through local undertakings; revise the project graph when warranted by scope/decomposition change.</td>
+<td>A clearer route to completion with sufficiently developed relationships and recorded design decisions.</td>
+</tr>
+<tr>
+<td>Work toward 90%</td>
+<td>Carry the details into produced deliverables over longer horizons, integrate, reconcile, verify, and account for residual work.</td>
+<td>An identified candidate and evidence for concentrated product examination.</td>
+</tr>
+<tr>
+<td>After 90%, toward 100% and delivery</td>
+<td>Move from produced deliverables into concentrated product examination and debugging, then into the organization's 100% publication/delivery pipeline. Testing has also occurred throughout earlier development.</td>
+<td>Delivered identity, continuing obligations, recipient information, and the applicable human acts.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This table is an explanation of the <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v4.md">human manual</a>, not a new gate definition. A real project can have uneven maturity: one interface may be settled while another Package still needs design. Do not force all deliverables into the same maturity claim or assume that closing a local undertaking advances the project. Stage gates remain human-managed milestones under the project's own records. <a href="../SPEC.md">SPEC §3.3</a> · <a href="../TYPES.md">TYPES §5.2</a></p>
+<p>Deliverable lifecycle is a separate axis. The shared sequence is <code>OPEN → INITIALIZED → SEMANTIC_READY → IN_PROGRESS → CHECKING → ISSUED</code>, with the semantic step optional where inapplicable. The state says which production and change-control regime applies; it does not report “60% complete.” Read <code>_STATUS.md</code> and the adopted transition rules, including any project-specific semantics. <a href="../SPEC.md">SPEC §3</a></p>
+<p>Where the concordance lifecycle applies, <code>IN_PROGRESS</code> is the honest state whenever warranted open work remains, including work awaiting an owner act. Entry to <code>CHECKING</code> needs warranted-empty Remaining, a candidate-specific checking basis, and a human declaration freezing the candidate. Evidence must support the emptiness. Removing list entries or closing all known graph nodes cannot prove that no obligation was omitted. During checking, append review evidence to the appropriate records rather than editing frozen claim surfaces. A required correction returns through the human-authorized reversal; <code>ISSUED</code> changes use governed scope change. <a href="../SPEC.md">SPEC §3.4</a> · <a href="../DELIVERABLE_CONCORDANCE_METHOD.md">Concordance §4</a></p>
+<p>The practical distinction matters in reports. “Implementation and focused regression checks complete; native recovery witness remains” is a useful assignment result. It is not a declaration that the deliverable is ready for checking. “The PR merged” identifies source integration. It is not professional acceptance or publication. “The graph is complete” concerns the graph's stated undertaking and conditions. Its scope may be much smaller than a project milestone. <a href="../../.agents/skills/chirality-change/SKILL.md">Chirality change conventions</a> · <a href="../../workflows/construct-local-work-graph/WORKFLOW.md">Construct a local work graph</a></p>
+<p>Delivery likewise follows an actual arrangement, not a universal invented final workflow. Identify the recipient, delivered version, accepted scope, required packaging or transmittal, verification, operational responsibilities, and remaining obligations from the project. Prepare the package before seeking the reserved release or acceptance act. Preserve a prior authorized release as history without inferring authority for another. <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v4.md">Human manual, chapter 6</a> · <a href="../../projects/chirality-app-dev/AGENTS.md">App development boundaries</a> · <a href="../../AGENTS.md">Root entry</a></p>
+<p><a id="formation"></a></p>
+<h2 id="6-form-the-basis-decompose-and-set-up">6. Form the basis, decompose, and set up</h2>
+<p>For a new undertaking, HELPS_HUMANS helps turn intention into a concrete account the human can inspect. Identify the product, intended users, purpose, conditions of use, constraints, required outcomes, interfaces, exclusions, and open choices. Preserve the distinction between the human's commitment and the agent's interpretation. A PRD should be clear enough to support its next use; it need not pretend every technical question has been answered. Label uncertainty and explain what would resolve it. <a href="../../agents/AGENT_HELPS_HUMANS.md">HELPS_HUMANS</a> · <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v4.md">Human manual, chapters 1–2</a></p>
+<p>Prepare a source map before substantial drafting. For each significant statement, establish what the source may support: a governing requirement, an accepted decision, observed behavior, a proposed direction, or background explanation. Read the actual source where its meaning matters. A title, search result, extracted snippet, or old summary may identify the material without establishing the claim. Keep unresolved conflicts visible instead of blending incompatible positions into confident prose. <a href="../DIRECTIVE.md">DIRECTIVE §§2.4–2.5</a> · <a href="../CONTRACT.md">CONTRACT K-PROV-1, K-INVENT-1, K-CONFLICT-1</a></p>
+<p>No <code>software-prd</code> workflow is registered in the Root catalog at this manual's source basis. Conduct PRD formation through the authorized design brief and adopted project method, or prepare a reusable method through <code>create-workflow</code> if asked. The registered <code>dbm-publisher</code> has a different purpose: publication from an accepted DOMAIN root, with its own admission and human decisions. Its source discipline can inform other writing, but its registration supplies no generic PRD method or automatic prerequisite. Establish availability and applicability from the effective catalog and actual package. <a href="../../workflows/index.json">Workflow index</a> · <a href="../../workflows/dbm-publisher/WORKFLOW.md">Design Basis Memorandum publication</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a></p>
+<p>Before decomposition, identify the accepted basis and exact applicable protocol. The repository contains <code>project-decomp</code> for project scope, <code>software-decomp</code> for software, and <code>domain-decomp</code> for knowledge domains. Their current packages express grouped checkpoints, while the current decomposition standard explicitly retains a prospective-status warning and identifies the earlier ratified edition. Use the project's adopted edition and recorded authority. Do not silently substitute the latest package into an in-flight accepted method. <a href="../DECOMPOSITION_STANDARD.md">Decomposition standard</a> · <a href="../../workflows/project-decomp/WORKFLOW.md">Project decomposition</a> · <a href="../../workflows/software-decomp/WORKFLOW.md">Software decomposition</a> · <a href="../../workflows/domain-decomp/WORKFLOW.md">Domain decomposition</a></p>
+<p>The practical decomposition work is to normalize scope, relate it to objectives, propose coherent flat partitions, define bounded production units and anticipated artifacts, and verify coverage. Preserve stable IDs. A Package boundary must express a useful responsibility, not merely a document chapter or temporary agent allocation. A deliverable should be small enough to understand and examine as a contribution while retaining the interfaces and work needed to make it usable. Do not invent scope to make an elegant tree or discard difficult items to make coverage appear complete. <a href="../DECOMPOSITION_STANDARD.md">Decomposition standard</a> · <a href="../CONTRACT.md">CONTRACT K-HIER-1, K-ID-1</a></p>
+<p>Prepare the material before each required checkpoint: proposed basis or structure, source mappings, coverage results, ambiguous allocations, exceptions, and a recommendation. The human decides an inspectable package. A deterministic finding normally routes correction within authorized preparation; it does not independently create another human gate. Conversely, a passed ledger validator cannot accept the meaning or boundary of the decomposition. <a href="../../AGENTS.md">Root entry</a> · <a href="../../workflows/project-decomp/WORKFLOW.md">Project decomposition</a></p>
+<p>Where the grouped-checkpoint edition is adopted, each accepted group is retained in an immutable <code>checkpoint_snapshots/</code> package containing <code>DECISION.md</code>, <code>ACCEPTED_MANIFEST.csv</code>, and <code>HANDOFF_STATE.md</code>. The manifest binds artifact paths, package roles, and hashes; the handoff names the upstream basis, derivative and closure position, rerun needs, and blockers. Complete the snapshot before advancing its authorized pointer. Later stages consume it, and <code>_LATEST_ACCEPTED.md</code> leads to the final accepted working package and companion registers. These method-specific transfers do not require a new handoff at every development session. <a href="../../workflows/project-decomp/resources/contract.md">Project decomposition contract</a> · <a href="../../workflows/software-decomp/resources/contract.md">Software decomposition contract</a> · <a href="../DECOMPOSITION_STANDARD.md">Decomposition standard</a></p>
+<p>After acceptance, <code>project-setup</code> inspects the existing workspace, accepted decomposition, coordination representation, and selected activation scope. It can coordinate scaffolding, production contracts, semantic work, dependency extraction, and other selected setup stages. Existing partially completed setup is recovered from what actually exists. Use accepted choices already in the coordination record rather than asking the human to repeat them. The workflow does not justify running every optional pipeline. <a href="../../workflows/project-setup/WORKFLOW.md">Project setup</a> · <a href="../../workflows/project-setup/resources/contract.md">Setup contract</a></p>
+<p>The <code>preparation</code> skill is structural. It creates accepted folders and source-faithful control files idempotently and reports exact created and skipped paths. Populate only files created in that invocation; existing empty or deficient files require a separately authorized repair. The minimum deliverable fileset includes <code>_CONTEXT.md</code>, <code>_DEPENDENCIES.md</code>, <code>_STATUS.md</code>, <code>_REFERENCES.md</code>, and a placeholder <code>_SEMANTIC.md</code>. Only a newly created status file is initialized to <code>OPEN</code>; optional <code>_MEMORY.md</code> requires a selected, authorized path. Missing accepted metadata is a missing input. Preparation records supplied declarations but does not invent <code>Dependencies.csv</code>. New PROJECT/SOFTWARE production belongs to <code>scope-of-work</code>, <code>MODE=INIT</code>; legacy setup examples do not authorize new four-document production. <a href="../../.agents/skills/preparation/SKILL.md">Preparation skill</a> · <a href="../../workflows/project-setup/resources/contract.md">Setup contract</a> · <a href="../../workflows/scope-of-work/WORKFLOW.md">Scope-of-work workflow</a></p>
+<p>Coordination mode is consequential. <code>NOT_TRACKED</code> means dependency coordination occurs outside the files: report no computed ready/blocked judgment from an incomplete graph. <code>DECLARED</code> means the recorded critical edges are a partial view. <code>FULL_GRAPH</code> means declarations are intended to cover the selected graph semantics, with closure and cycle treatment needed before computing its blockers. A dependency graph is also not automatically a schedule: scheduling needs its own accepted basis, duration posture, calendar, and hard/soft relationship rules. <a href="../../workflows/project-setup/resources/contract.md">Setup contract</a></p>
+<p><a id="deliverables"></a></p>
+<h2 id="7-work-from-deliverable-contracts">7. Work from deliverable contracts</h2>
+<p>Locate a deliverable through its stable ID and accepted decomposition, then read the current production format and control records. At <code>INITIALIZED</code> or later, PROJECT/SOFTWARE production has exactly one valid canonical format: a valid <code>ScopeOfWork.md</code>, or the complete retained four-document kit under the authorized legacy transition. Both complete formats are a temporary isolated migration state only with exact migration authority; they are not a normal accepted baseline. Partial or invalid production is a concrete defect to report. <a href="../SPEC.md">SPEC §2</a> · <a href="../DELIVERABLE_SCOPE_OF_WORK_STANDARD.md">Scope-of-Work standard</a></p>
+<p>The Scope-of-Work standard's activation is conditional on D-GOV-16. Its recorded owner ruling approves the exact successor standard and transition, while retaining implementation and migration boundaries. This illustrates how to read a conditional header: follow the named act, then determine the applicable project adoption and source state. Do not infer a blanket conversion mandate from the schema's availability. <a href="../governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md">D-GOV-16</a> · <a href="../DELIVERABLE_SCOPE_OF_WORK_STANDARD.md">Scope-of-Work standard</a></p>
+<p>Read <code>ScopeOfWork.md</code> as a production contract. It connects the deliverable's contribution to project scope and Package objectives; defines outputs and behavior; states requirements and completion criteria; names production and verification methods; records governing decisions; and binds these through the Output and Evaluation Matrix. Its philosophical labels help distinguish the questions each section answers. They do not substitute for concrete requirements and evidence. <a href="../DELIVERABLE_SCOPE_OF_WORK_STANDARD.md">Scope-of-Work standard §§3–5</a></p>
+<p>The <code>SOW_V1</code> frontmatter declares <code>schema: chirality-deliverable-sow/v1</code>, <code>deliverable_id</code>, <code>package_id</code>, <code>decomposition_basis</code>, and non-empty <code>project_scope_refs</code> and <code>package_objective_refs</code>. Use the active decomposition's identity widths. The six required level-two headings, in order, are <strong>Purpose and Objective Traceability</strong>; <strong>Deliverable Definition — Ontology</strong>; <strong>Completion and Reliance Basis — Epistemology</strong>; <strong>Production and Verification Method — Praxeology</strong>; <strong>Governing Values and Decisions — Axiology</strong>; and <strong>Output and Evaluation Matrix</strong>. Copy the exact form from the standard and validate it with the adopted consumer. <code>MODE=INIT</code> authors the production contract directly; it does not create a conversion evidence candidate or run conversion parity. The default <code>NO_STATUS_TOUCH</code> preserves <code>_STATUS.md</code>; recording a lifecycle transition requires its own authorized act. <a href="../DELIVERABLE_SCOPE_OF_WORK_STANDARD.md">Scope-of-Work standard §3</a> · <a href="../../workflows/scope-of-work/resources/brief.md">Scope-of-work brief</a> · <a href="../../workflows/scope-of-work/resources/tools.md">Scope-of-work tools</a></p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 5; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Identifier</th>
+<th>Meaning</th>
+<th>How it is used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OUT-*</code></td>
+<td>Expected output</td>
+<td>Locate the artifact or behavior and the scope/objective it serves.</td>
+</tr>
+<tr>
+<td><code>CLM-*</code></td>
+<td>Descriptive claim</td>
+<td>Examine the stated condition and its warrant.</td>
+</tr>
+<tr>
+<td><code>REQ-*</code></td>
+<td>Requirement</td>
+<td>Preserve the obligation when implementation falls short.</td>
+</tr>
+<tr>
+<td><code>AC-*</code></td>
+<td>Acceptance criterion</td>
+<td>Retain exact identity and wording in compiled review material.</td>
+</tr>
+<tr>
+<td><code>VER-*</code></td>
+<td>Verification method</td>
+<td>Establish which examination addresses the criterion.</td>
+</tr>
+<tr>
+<td><code>AX-*</code></td>
+<td>Governing value, rationale, or authority constraint</td>
+<td>Follow the decision or constraint that governs choices.</td>
+</tr>
+<tr>
+<td><code>TBD-*</code>, <code>CON-*</code></td>
+<td>Unresolved information or conflict</td>
+<td>Assign investigation or obtain the owning decision.</td>
+</tr>
+<tr>
+<td><code>REM-*</code></td>
+<td>Remaining item</td>
+<td>Keep it in <code>_STATUS.md</code>, linked to the production target.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Local statement IDs use exactly three decimal digits, as in <code>- **REQ-017** — The output shall …</code>, and are unique within one contract. The prefix catalog is maintained in <code>tools/scope_of_work/id_catalog.json</code>. For a cross-deliverable reference, use a qualified citation such as <code>DEL-01-02/REQ-003</code>; the slash spelling is canonical in the current workflow. The standard also retains the hyphen-qualified form. A bare <code>REQ-003</code> means the local contract's requirement and can silently misdirect a reader or parser when used for an upstream obligation. Preserve accepted IDs through edits. <a href="../../workflows/scope-of-work/WORKFLOW.md">Scope-of-work workflow</a> · <a href="../DELIVERABLE_SCOPE_OF_WORK_STANDARD.md">Scope-of-Work standard §4</a></p>
+<p>The matrix has six columns: <strong>Output; Objective refs; Requirement/claim refs; Acceptance refs; Verification refs; Evidence expectation</strong>. Every declared <code>OUT-*</code>, <code>AC-*</code>, and <code>VER-*</code> appears in at least one row. Every output cites project scope and Package objectives; every criterion is linked to a method or explicit <code>HUMAN_REVIEW: &lt;method&gt;</code>. Follow each row through the required conditions, methods, and evidence expectation. Check the pairing, not only that every ID appears somewhere. The workflow permits grouped acceptance criteria only when each inherits the same verification-method set; a row that combines unrelated criteria and methods can falsely imply coverage. A boundary exclusion also needs an owner for the excluded acts and a cited claim carrying that ownership. “This deliverable does not do X” is incomplete if X remains necessary and nobody owns it. <a href="../../workflows/scope-of-work/WORKFLOW.md">Scope-of-work workflow</a></p>
+<p>Compile review criteria with the registered deterministic checklist tool when the method calls for it. It retains source order, exact text, qualified identity, source location, contract hash, and the linked method or explicit human review. Do not create a second paraphrased acceptance namespace. The compiler establishes fidelity of the checklist; review establishes what the candidate supports, and the applicable human act establishes acceptance. <a href="../DELIVERABLE_SCOPE_OF_WORK_STANDARD.md">Scope-of-Work standard §§4, 10</a></p>
+<p>These are command templates from the repository root; supply the actual production contract and an authorized evidence destination:</p>
+<pre><code class="language-text">python3 tools/scope_of_work/validate_scope_of_work.py &lt;ScopeOfWork.md&gt; --json
+python3 tools/scope_of_work/derive_review_checklist.py &lt;ScopeOfWork.md&gt; \
+  --output &lt;review-checklist.json&gt;
+</code></pre>
+<p>The validator reads the contract; the second command writes the derivative to the named destination. Regenerate the checklist after contract changes and reassess earlier findings against the new candidate. Boundary exclusions also require the selected workflow's owner-resolution check and semantic treatment of cases its tool cannot check. A checklist or structural pass does not replace that examination. <a href="../../workflows/scope-of-work/resources/tools.md">Scope-of-work tools</a> · <a href="../../workflows/scope-of-work/resources/checks.md">Scope-of-work checks</a></p>
+<p><code>_STATUS.md ## Remaining</code> records the current gap against the target where adopted. State the unsatisfied condition, affected contract reference, needed contribution, dependencies, and evidence that permits closure. Distinguish missing production, missing verification, an unresolved decision, and a documentation discrepancy. If a repair is complete but its backcheck remains, the obligation is still open at that extent. Removing an item requires support for its actual closure condition. <a href="../DELIVERABLE_CONCORDANCE_METHOD.md">Concordance §§2, 4</a> · <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">Bounded reconciliation</a></p>
+<p>Keep control files separate. <code>_CONTEXT.md</code> preserves identity and decomposition traceability; <code>_REFERENCES.md</code> locates sources; dependency records state relationships; Memory provides useful rationale or continuation context. Read <code>_MEMORY.md</code> and any compatibility <code>MEMORY.md</code> according to what the folder actually uses. None independently changes scope or lifecycle. Do not recreate retired legacy production files while reconciling a converted deliverable. <a href="../SPEC.md">SPEC §2</a> · <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">Bounded reconciliation</a></p>
+<p>Format conversion is a special bounded operation. It preserves content and lifecycle, isolates the temporary dual format, maps source ranges, verifies parity, creates a clean finalized contract, and integrates an atomic replacement. Semantic changes are conflicts for their owning decision process. An <code>ISSUED</code> deliverable needs the separately specified human representation-replacement approval. The on-demand <code>ScopeOfWork.html</code> derivative is non-authoritative and is not tracked per deliverable. These rules do not prohibit a separately authorized documentation manual having its own HTML edition. <a href="../DELIVERABLE_SCOPE_OF_WORK_STANDARD.md">Scope-of-Work standard §§6–10</a></p>
+<p><a id="dependencies"></a></p>
+<h2 id="8-read-dependencies-and-resolve-cycles">8. Read dependencies and resolve cycles</h2>
+<p>A dependency is a specific relationship supported by source evidence. Begin with the declared coordination mode and the graph objective. Build-order, runtime calls, information flow, deployment, and knowledge relationships are different semantics. A graph can be correct for one and misleading for another. Record the objective before treating arrows as ordering instructions. <a href="../CYCLE_DRIVEN_RESOLUTION.md">Cycle-driven resolution §§1–3</a> · <a href="../../workflows/project-setup/resources/contract.md">Setup contract</a></p>
+<p>The local dependency records remain authoritative under K-DEP-1. Project DAGs and closure snapshots are approved or derived views for stated purposes; they do not create a second central dependency database. Inspect the selected project snapshot through its live pointer and verify its source basis. A newly opened session does not warrant rebuilding a still-current accepted DAG. Re-derivation is event-driven by decomposition revision or scope change under the doctrine and the project's adopted triggers. <a href="../CONTRACT.md">CONTRACT K-DEP-1</a> · <a href="../CYCLE_DRIVEN_RESOLUTION.md">Cycle-driven resolution §4</a></p>
+<p><code>dependency-extract</code> works locally in two passes: definition anchors to existing tree/requirement identities, then execution relationships. It produces <code>Dependencies.csv</code> and <code>_DEPENDENCIES.md</code>; it does not restructure decomposition or build the whole project graph. Preserve evidence location, stable row identity, direction, explicitness, confidence, extraction history, and fulfillment state. Unresolved targets remain <code>UNKNOWN</code> or <code>TBD</code>; do not manufacture a deliverable to make an edge resolve. <a href="../../workflows/dependency-extract/WORKFLOW.md">Dependency extraction</a></p>
+<p>In the v3.1 register, <code>ANCHOR</code> rows retain definition and requirement traceability; <code>EXECUTION</code> rows carry production relationships. <code>Direction</code> is relative to the register owner: <code>UPSTREAM</code> means it needs a contribution from the target; <code>DOWNSTREAM</code> means it supplies a contribution to the target. <code>FirstSeen</code>, <code>LastSeen</code>, and extraction <code>Status</code> describe source presence; <code>RequiredMaturity</code>, <code>ProposedMaturity</code>, and <code>SatisfactionStatus</code> describe the required condition, proposal, and fulfillment. Preserve declared rows and matched identities; retire unseen extracted rows rather than deleting them. Non-gating graph candidates do not use <code>Status=CANDIDATE</code>. Extraction leaves source documents, decomposition, and <code>_REFERENCES.md</code> read-only. <a href="../../workflows/dependency-extract/WORKFLOW.md">Dependency extraction</a></p>
+<p>Read extraction status separately from satisfaction. <code>ACTIVE</code> means a relationship is currently observed; it does not mean fulfilled. <code>RETIRED</code> preserves a formerly extracted relationship; it is not a lifecycle state. <code>SatisfactionStatus</code> records whether the input remains pending, is in progress, is satisfied, or has another permitted disposition. An <code>IN_PROGRESS</code> dependency field is a different vocabulary from a deliverable's <code>IN_PROGRESS</code> lifecycle. Normalize legacy labels only under authorized writes and preserve their origin. <a href="../../workflows/dependency-extract/WORKFLOW.md">Dependency extraction</a> · <a href="../SPEC.md">SPEC §3.4</a></p>
+<p>Readiness follows the project rule. For example, App and PEC use a conjunction involving an active <code>PREREQUISITE</code>, an unsatisfied status, and the selected item's <code>Depends</code> line naming the target. Their other relationship types do not automatically block. Do not export that exact rule to another project without its adoption, and do not use any topology calculation to bypass a named owner gate or reliance hold. <a href="../../projects/chirality-app-dev/AGENTS.md">App selection rules</a> · <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop §5</a></p>
+<p>A strongly connected component, or SCC, identifies a set with circular ordering under the selected semantics. Its condensation is acyclic, but collapsing the picture does not settle the underlying production decision. Unresolved cycle-participating edges stay non-gating: they cannot drive dispatch readiness, blocker queues, wave placement, schedules, or implementation-readiness claims. Keep independent work available from a verified basis. <a href="../CYCLE_DRIVEN_RESOLUTION.md">Cycle-driven resolution §2</a></p>
+<p>The doctrine names four moves. <strong>Decompose</strong> separates an overly broad node, often an interface from implementation. <strong>Invert</strong> places dependence behind a contract. <strong>Merge</strong> treats the coupled work as one indivisible unit. <strong>Cut</strong> reclassifies an edge as outside the graph's objective. Record the rationale for every remedy. Decompose and invert are design refinements agents may propose; cut and merge encode interpretive authority and are human-gated. Use a short note for an obvious bounded refinement and a decision packet for contested or objective-dependent choices. <a href="../CYCLE_DRIVEN_RESOLUTION.md">Cycle-driven resolution §§2–3</a></p>
+<p>An acyclic graph is not proof of a complete or useful graph. Verify inventory coverage, missing targets, edge meanings, and relevant external inputs before drawing a readiness conclusion. An omitted dependency can make the topology look cleaner while making execution less reliable. A large SCC should direct attention to decomposition and meaning; it is not a reason for a tool to auto-cut relationships until the drawing passes. <a href="../CYCLE_DRIVEN_RESOLUTION.md">Cycle-driven resolution</a> · <a href="../../workflows/dependency-extract/WORKFLOW.md">Dependency extraction</a></p>
+<p><code>audit-dep-closure</code> freezes an independent scope inventory and the graph filters before analysis. Its default topology uses active <code>EXECUTION</code> relationships targeting Deliverables; other target types remain relevant to the wider dependency account. Missing or invalid registers remain in the coverage denominator. The read-only examination returns a new immutable snapshot with input and tool identities, effective settings, findings, limitations, and a rerun method. <code>scc-resolution-case</code> can organize a bounded case under an existing PKG-00 control deliverable. That method writes case evidence, while the owning workflows amend product contracts, decomposition, and dependency registers. Case closure needs a cited subsequent DepClosure result. Neither method creates the missing project structure or grants a graph amendment. <a href="../../workflows/audit-dep-closure/resources/contract.md">Dependency closure contract</a> · <a href="../../workflows/scc-resolution-case/WORKFLOW.md">SCC resolution case</a></p>
+<p><a id="local-graph"></a></p>
+<h2 id="9-construct-and-traverse-a-local-work-graph">9. Construct and traverse a local work graph</h2>
+<p>In the adopted App and Piping loop, <code>chirality-root:bundled:workflow:construct-local-work-graph</code> turns an intended outcome and route through the established project DAG into executable contributions. Keep one graph for the undertaking across sessions. It can contain design, inquiry, implementation, verification, independent review, integration, and reconciliation. It is an executable plan, not a replacement scope register or another lifecycle authority. <a href="../../workflows/construct-local-work-graph/WORKFLOW.md">Construct a local work graph</a> · <a href="../../projects/chirality-app-dev/loop/LOOP_INIT.md">App loop</a> · <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a></p>
+<p>Start by recovering intent. Identify the wanted result, priorities, approach, exclusions, completion conditions, and their sources in steering or decisions. Interpret clear direction without requiring the human to supply node IDs or a finished specification. Clarify only gaps that materially change scope, ordering, effort, or completion. Preserve a pause. If the same undertaking continues, revise its useful graph instead of creating another because the conversation is new. <a href="../../workflows/construct-local-work-graph/WORKFLOW.md">Construct a local work graph §1</a></p>
+<p>Select the smallest coherent route. Locate the deliverables serving the outcome, follow upstream to required inputs, and follow downstream far enough to understand affected consumers. Read current contracts, Remaining, dependencies, relevant decisions, implementation, tests, and consequential unmerged changes. A desired result without a sound deliverable mapping needs an explicit mapping investigation or scope decision; forcing it into a convenient folder conceals the problem. <a href="../../workflows/construct-local-work-graph/WORKFLOW.md">Construct a local work graph §§2–3</a></p>
+<p>Where the concordance method owns information homes, executable deliverable residuals still come from their Remaining records, with ruled program work under its activation. The local graph composes and elaborates that authorized work into useful outcomes. It may expose a new gap requiring a warranted Remaining update or a decision, but cannot originate new production scope merely by adding a node. Historical plans remain context; they do not become alternative queues. <a href="../DELIVERABLE_CONCORDANCE_METHOD.md">Concordance §§2, 6</a> · <a href="../../projects/chirality-app-dev/AGENTS.md">App F-APP-5</a></p>
+<p>Give every executable node a meaningful result, stable ID, deliverable mapping, required inputs, write boundary, completion check, current state, and evidence or blocker. Dependencies name the particular condition a node needs: an adopted interface, a checked artifact, a human decision, a review, or an updated record. Keep ownership and informational links distinguishable from prerequisites. “Work on Package 4” does not define a return the parent can assess. <a href="../../workflows/construct-local-work-graph/WORKFLOW.md">Construct a local work graph §§3–4</a></p>
+<p>An illustrative route for a save-recovery capability is:</p>
+<pre><code class="language-text">Clarify recovery contract
+          |
+          v
+Implement bounded recovery --&gt; independent review --&gt; repair/backcheck
+          |                                         |
+          v                                         v
+Exercise connected native journey -------------&gt; integrate/check
+                                                    |
+                                                    v
+                                      Reconcile affected deliverables
+                                                    |
+                                                    v
+                                      Return the bounded undertaking
+</code></pre>
+<p>The diagram is illustrative. Its exact ordering, review stage, authority, and checks must come from the real brief and project. For example, an unavailable native witness can keep its node open while an independently useful code contribution proceeds; it cannot be relabeled complete to finish the diagram. <a href="../../projects/chirality-app-dev/AGENTS.md">App checks</a> · <a href="../../workflows/construct-local-work-graph/WORKFLOW.md">Construct a local work graph</a></p>
+<p>Plan bounded reconciliation throughout the route, after stable coherent results and before work that relies on the updated record. Implementation and reconciliation have distinct completion conditions. A graph that ends at “merge code” can omit document consequences and verification residuals even though the implementation itself is useful. Reconciliation can run alongside independent implementation with disjoint writes. <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">Bounded reconciliation</a> · <a href="../../workflows/construct-local-work-graph/WORKFLOW.md">Construct a local work graph §4</a></p>
+<p>For a new graph, the method prefers <code>execution/_Coordination/WorkGraphs/&lt;undertaking&gt;/WORK_GRAPH.md</code>. Preserve a useful existing location or representation, including JSON. Record its actual project-relative path in the loop pointer. An authorized recorder updates the pointer if it is outside the coordinator's write ceiling. One maintainer incorporates child returns against the latest graph so concurrent edits do not erase each other. <a href="../../workflows/construct-local-work-graph/WORKFLOW.md">Construct a local work graph §5</a></p>
+<p>The template's states are <code>PLANNED</code>, <code>READY</code>, <code>ACTIVE</code>, <code>BLOCKED</code>, <code>UNCERTAIN</code>, and <code>COMPLETE</code>. Retain any existing adopted schema and explain what its states mean. A status label needs grounds: the input satisfying readiness, the operation currently active, the exact blocked act, or the evidence meeting completion. Keep source revision, uncommitted/unmerged work, active workers, resource ownership, holds, and next safe actions in recovery information. <a href="../../workflows/construct-local-work-graph/resources/work-graph-template.md">Graph template</a></p>
+<p>Walk the route before dispatch. Check executable cycles, omitted verification, shared assumptions, interface ownership, and integration capacity. Then advance ready authorized work without requesting approval for every routine node. Bring consequential choices through their owning process. A completed graph remains selected and visible; it does not start another phase, release a product, or issue a deliverable. <a href="../../projects/chirality-app-dev/loop/LOOP_INIT.md">App loop</a> · <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a></p>
+<p><a id="delegation"></a></p>
+<h2 id="10-commission-and-coordinate-bounded-work">10. Commission and coordinate bounded work</h2>
+<p>A useful brief gives an executor enough purpose to make sound local choices and enough boundary to avoid inventing authority. It states the result and its use; accepted basis; relevant sources and scope; exact allowed writes; exclusions; required checks; expected return; parent; and return path. Small read-only work can use the retained launch message itself. Larger or governed work needs the structured record required by its method. Do not duplicate forms solely to make a small task look formal. <a href="../../AGENTS.md">Root entry</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a> · <a href="../../projects/chirality-app-dev/AGENTS.md">App instructions</a></p>
+<p>For <code>software-bounded-implementation</code>, the required brief names <code>ScopePath</code>, selected <code>Workflow</code>, <code>PackageID</code>, <code>DeliverableIDs</code>, <code>Objective</code>, <code>AcceptedBasis</code>, <code>AllowedWriteTargets</code>, <code>EXCLUSIONS</code>, <code>AcceptanceCriteria</code>, <code>ExpectedReturn</code>, <code>PROFILE_PATH</code>, and <code>ApplyEdits: true</code>. The profile identifies registered checks; the brief supplies the applicable execution authorization. If write authority is absent, the executor returns a proposal rather than applying changes. <a href="../../workflows/software-bounded-implementation/resources/brief.md">Bounded implementation brief</a></p>
+<p>Before launch, preserve the supplied basis and actual method identity. Under governed delegation, sealing and the applicable human authorization are requirements; a nonempty approval-reference field does not establish that approval occurred. Cite an existing applicable owner act when it already authorizes the assignment. Do not manufacture a new permission ceremony or invent approval-token syntax. If a particular workflow reserves a fresh gate, prepare its concrete decision package before pausing at that gate. <a href="../CONTRACT.md">CONTRACT K-SEAL-1</a> · <a href="../../.agents/skills/chirality-change/SKILL.md">Chirality change conventions</a></p>
+<p>Record actual parentage and mechanism. Distinguish a managed child session from a native descendant, a prepared brief from an executing child, and intended model allocation from observed model identity. Retain the actual supplied role, sources, selected methods/resources, revisions or hashes, relevant permissions, substitutions, and enforcement limits. A same-model independent review may still be useful, but must not be described as model diversity. <a href="../governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md">D-GOV-35</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping review rules</a></p>
+<p>Give concurrent workers disjoint writes or explicit serialized ownership. Include generated artifacts, shared configuration, graphs, and evidence destinations. Separate files do not guarantee technical independence: two workers can implement incompatible assumptions about the same interface. Bind the shared contract and revision in both briefs and identify the owner of any change. A common test database, browser, native application, or port can also require serialized use even when source changes are independent. <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract, coordination and evidence</a> · <a href="../../projects/chirality-app-dev/AGENTS.md">App instructions</a></p>
+<p>TASK reports findings to its parent. The parent assesses consequences and relays the relevant information to affected workers, with its standing intact: observation, hypothesis, proposal, or accepted decision. A changed file on disk does not prove that a running child received amended instructions. Supply a versioned brief amendment through the available mechanism and establish its receipt before relying on affected continuation. Preserve prior basis and history. <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a> · <a href="../../agents/AGENT_TASK.md">TASK</a></p>
+<p>On return, examine artifacts and evidence against the brief. Check scope, changed paths, fulfilled criteria, missed interfaces, unresolved findings, and the contribution's fit with the receiving state. Distinguish usable partial work from completion. A manager who silently fills gaps in a child's report can obscure what the child actually did; retain the original return and record the parent's assessment and any authorized repair separately. <a href="../../agents/AGENT_WORKING_ITEMS.md">WORKING_ITEMS</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a></p>
+<p>Adjust delegation when evidence calls for it. Repeated repair attempts without new information need a changed diagnosis or narrower question. A queue of unexamined returns needs review and integration capacity before more production. When uncertain shared definitions dominate, concentrate that design work; when established interfaces permit independence, increase useful concurrency. These are implementation choices within the approved strategy, not reasons to invent standing staffing quotas. <a href="../../projects/chirality-piping/AGENTS.md">Piping instructions</a> · <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v4.md">Human manual §§4.3, 4.6, 5.4</a></p>
+<p><a id="implementation"></a></p>
+<h2 id="11-implement-verify-review-and-integrate">11. Implement, verify, review, and integrate</h2>
+<p>Start implementation from the accepted objective, current candidate, explicit write fence, exclusions, and checking basis. Inspect the smallest coherent implementation and test surface. Make the change needed to establish the behavior, including source, tests, configuration, or documentation when their relationship requires it. Preserve unrelated user work. A local repair does not authorize unrelated dependency or public-contract changes, migrations, release, or operations excluded by its brief or method. Authorized registered setup may proceed within those boundaries. <a href="../../workflows/software-bounded-implementation/WORKFLOW.md">Bounded implementation</a> · <a href="../../.agents/skills/chirality-change/SKILL.md">Chirality change conventions</a></p>
+<p>Use tests to examine the requirement, not to invent it. Identify the expected result and its source. Protect adopted tolerances, oracles, limits, and checks when they conflict with implementation. A known failure disappears illegitimately if its criterion is removed or weakened. Diagnose the discrepancy, preserve the measured result, and bring a protected-criterion conflict to the owner with a recommendation. Hold the affected acceptance or merge while independent work proceeds. <a href="../../projects/chirality-app-dev/AGENTS.md">App review rules</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping software checks</a></p>
+<p>Select verification from the actual affected behavior and project requirements. The project-local <code>software-workflow.json</code> supplies registered command arrays, working directories, always-checks, and path mappings. The selector proposes affected checks; it does not execute them or prove coverage. Consider indirect consumers and mandatory project checks that path matching may not capture. An empty selection or exit-zero result supports no broader conclusion than the operation actually performed. <a href="../SOFTWARE_WORKFLOW_PROFILE.md">Software profile contract</a></p>
+<p>This copyable inspection example asks which checks the current App profile selects for a hypothetical project-relative source path. It changes no product files and does not run the selected checks:</p>
+<pre><code class="language-sh">REPO_ROOT=&quot;$(git rev-parse --show-toplevel)&quot;
+cd &quot;$REPO_ROOT&quot;
+python3 tools/software_workflow/select_affected_checks.py \
+  projects/chirality-app-dev/software-workflow.json frontend/src/example.ts
+</code></pre>
+<p>Replace the example with the complete actual changed-path list. The command interface was checked with <code>--help</code> during preparation of this manual. The check runner is a separate operation. The following is deliberately a template, not a command to execute unchanged:</p>
+<pre><code class="language-text">python3 tools/software_workflow/run_registered_checks.py \
+  &lt;project/software-workflow.json&gt; \
+  --check &lt;explicit-authorized-check-id&gt; \
+  --output &lt;authorized-evidence-path.json&gt;
+</code></pre>
+<p>Supply each authorized check explicitly; omitting <code>--check</code> causes the current runner to run all registered checks. The output path also needs authorization. The bounded implementation method prohibits unregistered install, release, network, and destructive commands. A missing prerequisite should return as a specific preparation need or revised assignment, not an improvised command outside that method. <a href="../../tools/software_workflow/run_registered_checks.py">Registered runner</a> · <a href="../../workflows/software-bounded-implementation/resources/tools.md">Implementation tool policy</a></p>
+<p>A registered check may own a bounded service lifecycle. The runner can allocate a loopback port, start the service, wait for readiness, inject declared environment values, run the check, and shut down the service. Preserve the distinction between service setup failure, timeout, and a product check failure. An App premerge command run without its required service is not the registered check. Coordinate ordinary dev servers with build and premerge operations so shared output directories are not written concurrently. <a href="../SOFTWARE_WORKFLOW_PROFILE.md">Software profile, managed service</a> · <a href="../../projects/chirality-app-dev/software-workflow.json">App profile</a> · <a href="../../projects/chirality-app-dev/AGENTS.md">App checks</a></p>
+<p>Exercise the actual consumer route as soon as it becomes operable. For an interactive change, inspect resulting model, history, and persisted state as well as visible feedback. Relevant journeys can include editing, invalid input, cancellation, apply/reject, undo/redo, save/reopen, interruption, and recovery. For a service, examine the request, response, state changes, failure behavior, and subsequent consumer operation. Component tests and connected checks answer different questions. <a href="../../projects/chirality-app-dev/AGENTS.md">App development checks</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping software checks</a></p>
+<p>Use native application evidence for a native-host claim where the owning criterion requires it. Browser evidence can support browser behavior but cannot silently substitute. Agent-operated exercises can provide reproducible observations; they do not lift practitioner-usability holds or supply professional acceptance. If the host cannot run a required check, retain the exact command, reason, candidate, and outstanding verification. In App this is recorded as <code>HOST_RERUN_REQUIRED</code>; a missing profile binding is a different failure. <a href="../../projects/chirality-app-dev/AGENTS.md">App host-capability rule</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping software checks</a></p>
+<p>Evidence should make the observation reconstructible at the claimed scope. Identify inputs, candidate, relevant configuration, tool/environment versions, command or actions, expected outcome, observed outcome, exit status, and needed raw output. Retain non-secret bytes and a bounded rerun method where required. Record skipped, unavailable, interrupted, failed, and passed separately. Use one canonical copy with references from the graph or deliverable. Formatting a result does not upgrade its warrant. <a href="../../projects/chirality-app-dev/AGENTS.md">App evidence contract</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping evidence contract</a></p>
+<p>Review the complete frozen candidate independently before a mergeable slice integrates. The reviewer did not implement the change and receives the requirements, full diff, relevant evidence, and limits. App product source retains its explicit fresh read-only <code>TASK + software-code-review</code> path. Examine changes to tests and criteria as closely as production code. Repair actionable findings, preserve disagreements and their grounds, and backcheck the changed content and affected consequences. A review of an earlier revision does not cover later edits automatically. <a href="../../projects/chirality-app-dev/AGENTS.md">App review rules</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping review rules</a> · <a href="../../.agents/skills/software-code-review/SKILL.md">Software code review skill</a></p>
+<p>Before Git closeout, inspect the receiving state, current diff, index, upstream changes, and owned file set. Recheck interactions introduced by integration. For <code>sgttomas/chirality</code>, standing owner authorization permits commit, push, PR creation/update, and merge within authorized scope once required CI and independent review cover the actual candidate with no unresolved blockers. Explicit holds and later owner directions prevail. Use configured identity and truthful attribution; do not imply personal owner review. This authority grants no product acceptance, release, or protection bypass. <a href="../../AGENTS.md">Root entry</a> · <a href="../PRD_ROOT.md#531-merge-gate-policy--the-d-8-successor">PRD Root merge policy</a> · <a href="../../.agents/skills/chirality-change/SKILL.md">Chirality change conventions</a></p>
+<p><a id="reconciliation"></a></p>
+<h2 id="12-reconcile-the-records-with-the-result">12. Reconcile the records with the result</h2>
+<p><code>chirality-root:bundled:workflow:bounded-reconciliation</code> provides ordinary production work on the affected records. Its output includes the warranted document changes when the assignment authorizes them. Identify one deliverable or a small connected group, the stable result to compare, actual candidate and evidence, governing decisions, named document sections, and permitted writes. Read current controlling amendments before relying on older text. If the mapping is uncertain, return that specific question. <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">Bounded reconciliation §§1–2</a></p>
+<p>Compare in both directions. Follow the document's affected claims into the implementation and evidence: is the described behavior present, is the constraint enforced, and was the claimed check performed? Then follow the bounded implementation result back into the documents: did it settle a TBD, change an interface, reveal a limitation, satisfy a prerequisite, or leave an unrecorded consequence? A future requirement can legitimately remain unimplemented. A resolved setup assumption should not remain current merely because it was once true. <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">Bounded reconciliation §3</a></p>
+<p>Classify the response before editing:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 6; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Warranted response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Current description lags established behavior</td>
+<td>Update the description and evidence within authorized scope.</td>
+</tr>
+<tr>
+<td>Implementation does not meet a requirement</td>
+<td>Preserve the requirement; record and route the concrete production gap.</td>
+</tr>
+<tr>
+<td>Accepted decision changes the intended design</td>
+<td>Apply its exact consequences to the named carriers, retaining its basis.</td>
+</tr>
+<tr>
+<td>Evidence is missing</td>
+<td>Preserve the limitation and assign the required examination.</td>
+</tr>
+<tr>
+<td>Proposed departure or conflicting authority</td>
+<td>Prepare the specific proposal or decision; do not silently normalize it.</td>
+</tr>
+<tr>
+<td>Current records already match</td>
+<td>Return a supported no-change result at the inspected scope.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>These are actions under the <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">bounded reconciliation method</a>, not a new taxonomy that replaces a formal program's controlled dispositions.</p>
+<p>Keep claims at the level the project needs to preserve. Root concordance Revision 2 gives three tests: changing the statement would require a decision; another deliverable, user, project, or governing document relies on it; or named verification can check it. A statement failing all three is implementation detail, kept in code, tests, or developer documentation and cited as supporting evidence when useful. A decision-bound mechanism still belongs on the claim surface. Borderline cases remain visible for human ruling. <a href="../DELIVERABLE_CONCORDANCE_METHOD.md">Concordance §3.1</a></p>
+<p>For example, “a failed save preserves the prior accepted document” is a stable product obligation. The name of a private helper used to implement it usually is not. A storage representation depended on by another consumer may itself be an adopted interface requirement. The distinction turns on the statement's consequences and warrant, not whether its vocabulary sounds technical. Granularity repair cannot erase a requirement or reverse a decision simply because the code now differs. <a href="../DELIVERABLE_CONCORDANCE_METHOD.md">Concordance §3.1</a></p>
+<p>D-GOV-44's Revision 2 applies through its stated effective and adoption rules. In-flight programs keep their selected kernel/workflow bytes until their own authorized adoption. A new Root principle and a receiving notice do not silently revise a running program's repair posture. The App September 21 program's later owner rider was explicitly separated from publication of the principle. Follow that program's actual records before acting. <a href="../governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md">D-GOV-44</a></p>
+<p>Make authorized document edits and check them together. Update fulfilled Remaining conditions only with support. Keep structured dependencies and their summary consistent when both are affected. Preserve IDs, source references, future scope, historical text, and other contributors' changes. Lifecycle, acceptance, identity, formal dependency-basis, and pinned-authority changes retain separate authority. Code repair is a separate node unless the brief explicitly includes it. A report-only return leaves application outstanding when writes were authorized and required. <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">Bounded reconciliation §§4–5</a></p>
+<p>Before saving, compare each target with the version inspected and recheck an affected comparison if the code or evidence basis changed. A supported no-change result can complete the bounded comparison; missing inputs or blocked inspection leave it incomplete. Return exact proposed edits when writes are outside the assignment, with their application still outstanding. <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">Bounded reconciliation §§4–5</a></p>
+<p>A formal corpus concordance program is a larger selected method with activation, frozen discovery, calibration, bounded waves, independent verification, cross-Package synthesis, human dispositions, authorized repairs, and post-repair backcheck. It does not run merely because a small code slice needs document upkeep. Under the shared method, activation and its record land on the required common baseline before dispatch; discovery remains separate from repair; the pinned method does not drift as later files change. <a href="../DELIVERABLE_CONCORDANCE_METHOD.md">Concordance §§3, 5–7</a> · <a href="../../workflows/reconciliation/WORKFLOW.md">Reconciliation workflow</a></p>
+<p>The unit of formal comparison is the claim. One deliverable can contain aligned claims, stale wording, unimplemented obligations, and uncertain evidence simultaneously. Derive summaries from the accepted claim rows. Each wave receives structural validation and independent examination under the calibrated conventions; defective ledgers are rerun through fresh bounded work, with earlier findings retained. A discovery backcheck does not verify later repairs. <a href="../DELIVERABLE_CONCORDANCE_METHOD.md">Concordance method</a> · <a href="../../workflows/reconciliation/resources/contract.md">Reconciliation contract</a></p>
+<p>The representation-migration profile has a narrowly bounded allowance to avoid redundant third-layer member reproduction. Use its complete selected contract to establish eligibility: complete deterministic member checks and independent member verification remain, as do full aggregate, manifest, and simulation coverage, exception reproduction, the prescribed deterministic clean sample, and fail-closed escalation. This allowance does not authorize general sampling of production or professional review. <a href="../../workflows/reconciliation/resources/contract.md">Reconciliation contract</a> · <a href="../../workflows/reconciliation/resources/method.md">Reconciliation method, R2</a></p>
+<p>Formal R6 backcheck creates a new derivative bound to the repaired source state and preserves the discovery snapshot. Re-extract changed claim references and prove exact multiset equality to the authorized repair manifest, accounting explicitly for authorized no-change rows. The final Remaining census includes every deliverable, with <code>NONE</code> where warranted, and retains held or deferred repairs, stale derivatives, blockers, lifecycle posture, and rerun needs. The handoff reports evidence coherence at that scope, not issuance or professional approval. A continuing run uses its adopted contract and pins even when a later shared edition is available. <a href="../../workflows/reconciliation/resources/contract.md">Reconciliation contract</a> · <a href="../../workflows/reconciliation/resources/method.md">Reconciliation method, R6</a></p>
+<p><a id="change"></a></p>
+<h2 id="13-handle-decisions-change-and-unresolved-concerns">13. Handle decisions, change, and unresolved concerns</h2>
+<p>First identify what changed. A local implementation choice, an observed defect, a stale description, an unresolved design question, a changed accepted commitment, and a new human priority require different responses. Record the affected statement or interface, candidate, observation, consequence, and proposed next step. Exercise ordinary discretion inside the brief. An explicit adopted choice, protected criterion, owner-held act, or material scope change needs its owning decision before reversal. <a href="../../agents/AGENT_WORKING_ITEMS.md">WORKING_ITEMS</a> · <a href="../../projects/chirality-app-dev/AGENTS.md">App selection and decisions</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping decisions</a></p>
+<p>Prepare human decisions as concrete reviewable packages. Explain the current basis, finding, alternatives, recommendation, affected scope, risks, reversibility, and what each choice enables. Include the proposed text or artifact when feasible. Name the actual act requested: choosing an interface, accepting an amendment, opening a fence, freezing a candidate, or authorizing release. Do not smuggle several different acts into a generic “approve.” Preserve the human's words and distinguish them from the agent's interpretation; silence is no ruling. <a href="../../AGENTS.md">Root entry</a> · <a href="../CONTRACT.md">CONTRACT K-AUTH-1, K-BIND-1</a></p>
+<p>For accepted decomposition change, use the selected applicable <code>scope-change</code> method. Its current package groups preparation around the requested change and impact, the exact amendment and propagation plan, and the independently examined poststate. Preserve stable identity and lineage. Apply only accepted changes, route remediation to the owners of affected surfaces, regenerate or explicitly account for derivatives, and return unresolved obligations. Use the project's adopted checkpoint edition rather than imposing a new one from this guide. <a href="../../workflows/scope-change/WORKFLOW.md">Scope change</a> · <a href="../DECOMPOSITION_STANDARD.md">Decomposition standard</a></p>
+<p>Follow consequences through consumers. An upstream amendment can affect local context, contracts, dependency records, graph snapshots, active briefs, and earlier verification. A graph helps locate relationships; it does not decide the impact. Under the invariant catalog, changed governed inputs create dirtiness and downstream staleness for human triage. Preserve earlier evidence as history and explain whether a current claim needs rework, review, or a supported no-impact disposition. <a href="../CONTRACT.md">CONTRACT K-STALE-1, K-STALE-2, K-VAL-1</a></p>
+<p>Instruction changes need their own authorized scope and tranche manifest. A designated current-graph pointer update inside an authorized undertaking is navigation maintenance; changing loop behavior is an instruction amendment. Notify affected loops whose pinned authority corpus or mirrors are changed. A notice communicates a change; the receiver decides adoption and updates its own basis. Do not write sibling records or re-pin their contracts under a general desire for consistency. <a href="../../AGENTS.md">Root entry</a> · <a href="../../.agents/skills/chirality-change/SKILL.md">Chirality change conventions</a></p>
+<p>Keep ordinary pending work in its owning execution arrangement. Waiting for a review slot, input, or planned later node is not last-resort deferral. First seek an appropriate node in the current authorized undertaking. A concern without a current home—because ownership, scope, or an external precursor remains unresolved—may be preserved as a Task Management candidate with its source and allocation condition. The human manual's distinction helps avoid hiding active obligations in a distant register. <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v4.md">Human manual §5.6</a> · <a href="../../workflows/task-management/WORKFLOW.md">Task Management workflow</a></p>
+<p>Task Management makes concerns visible for human disposition and routes resulting work to its owner. An Action Item register does not replace deliverable Remaining, a work graph, a decision register, or a scope-change workflow, and has no execution-progress state. Recording an unallocated concern preserves the obligation without accepting it, reducing scope, setting priority authority, or changing lifecycle. Warranted Remaining stays open until fulfilled or changed by its owning authority. <a href="../../workflows/task-management/WORKFLOW.md">Task Management workflow</a> · <a href="../CONTRACT.md">CONTRACT §1.14</a></p>
+<p><a id="task-management"></a></p>
+<h3 id="run-an-invoked-task-management-sweep">Run an invoked Task Management sweep</h3>
+<p>When the human invokes <code>chirality-root:bundled:workflow:task-management</code>, WORKING_ITEMS loads its <a href="../../workflows/task-management/resources/contract.md">contract</a> and the resources for the requested mode. The following procedure belongs to that invocation. It creates no routine development-entry read, sweep, schedule, or gate; ordinary authorized development can proceed without invoking it. The parent manager retains local register writes and may assign bounded harvesting or checking to TASK.</p>
+<p>Perform federation before each requested mode, then carry out only the selected modes and their authorized follow-up described below. If no mode is named, follow federation with the register's open-row state and any staleness or closure-echo findings, then await direction. <a href="../../workflows/task-management/resources/contract.md">Task Management contract, federation preflight</a> · <a href="../../workflows/task-management/resources/method.md">Task Management method, inputs</a></p>
+<ol>
+<li>
+<p><strong>Establish federation coverage before any mode.</strong> Resolve the invoking loop's canonical register and survey every canonical Git-tracked register in the sanctioned Root, project, domain, and Domain Engine coordination shapes. Validate inputs before relying on rows. Derive relationships from <code>ActionItemID</code>, <code>SourceRef</code>, <code>NoticeRef</code>, <code>ElevatedTo</code>, <code>Status</code>, and <code>Disposition</code>, not <code>Notes</code> prose. The current helper includes canonical <code>REGISTER_CLOSED.csv</code> siblings in register identity; archiving does not erase prior dispositions. Report the complete inventory, exclusions, errors, and <code>COMPLETE</code> or <code>PARTIAL</code> coverage. <code>PARTIAL</code> cannot support global absence or closure; independent local work may continue with that limitation. An operational failure is reported separately. If the helper is unavailable, perform and record the same read-only survey manually rather than skipping it. <a href="../../workflows/task-management/resources/contract.md">Task Management contract, federation preflight</a> · <a href="../../tools/taskmgmt/taskmgmt.py">Task Management utility</a></p>
+<p>The command below is a template from the repository root. Omitting <code>--out</code> uses <code>&lt;register-home&gt;/.candidates/federation.json</code>. Authorize that destination and verify that it is gitignored before running; the directory's name alone does not establish this. The projection must remain rebuildable and gitignored. Any explicit <code>--out</code> destination needs the same checks, because the utility does not enforce Git ignoring. The helper reads register truth and writes only its derivative; neither that output nor exit zero makes a disposition.</p>
+<pre><code class="language-text">python3 tools/taskmgmt/taskmgmt.py federation \
+  --register &lt;invoking-loop-register.csv&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Harvest explicit candidates.</strong> Permitted structured sources include unresolved decision rows, notice ledgers, review findings, holds, handoff blockers, packet open questions or conflicts, TBD registers, ranked review actions, and run-record <code>NEEDS_HUMAN_RULING:</code>, <code>MISSING:</code>, or <code>TM-CANDIDATE:</code> markers. Planned work, slates, work graphs, and deliverable Remaining are excluded. Preserve an unallocated concern explicitly when discovered instead of expecting a sweep to infer it from a task list. Free-text scanning requires explicit per-document mode. Harvesting proposes candidates; only the human's promotion ruling creates rows. <a href="../../workflows/task-management/resources/contract.md">Task Management contract, modes</a></p>
+</li>
+<li>
+<p><strong>Examine currency and deferred triggers.</strong> Compare cited <code>SourceSha</code> and <code>EvidenceSha</code> with their actual sources. Report changed or missing closure evidence and open-source echoes for human triage; do not silently re-close a row or edit its cited source. For every reviewed live <code>DEFERRED</code> row, evaluate its exact <code>Trigger</code> against committed state, including the receiving loop when relevant, and use one of the classifications below. An unlanded sibling closeout is not trigger evidence. Owning lifecycle and source records take precedence over unchanged register wording. <a href="../../workflows/task-management/resources/contract.md">Task Management contract, modes</a></p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 7; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Classification</th>
+<th>Required return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TRIGGER_FIRED</code></td>
+<td>Cite evidence that the recorded condition holds and propose the warranted disposition. If the underlying concern survives in another linked row, identify that survivor rather than claiming the concern resolved.</td>
+</tr>
+<tr>
+<td><code>ACTIVATABLE</code></td>
+<td>Name the instrument whose bounded work could fire the condition and prepare an undispatched draft handoff within the register home. Classification authorizes neither dispatch nor routing.</td>
+</tr>
+<tr>
+<td><code>STILL_BLOCKED</code></td>
+<td>Identify the required external human or authority event; propose sharper prospective trigger text when the existing condition is vague.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li>
+<p><strong>Present triage and record the actual ruling.</strong> Keep proposals distinguishable from decisions. Each row cites its source and hash; closure cites evidence and hash or an explicit no-artifact rationale. Accountable ownership is human-only. WORKING_ITEMS records authorized changes only in the invoking loop's register; children never write register rows, and unruled proposals leave existing rows unchanged. A cross-loop relation creates no automatic receiving row. <a href="../../workflows/task-management/resources/contract.md">Task Management contract, invariants and delegation</a></p>
+</li>
+<li>
+<p><strong>Route the ruled work through its owner.</strong> Prefer the owning deliverable-amendment process, then scope-change intake, then an appropriately bounded TASK assignment. Direct non-register execution requires the contract's exceptional in-session human grant naming the exact item and target within the invoking loop. Cross-loop work goes through ordinary notices and the human or HELP_HUMAN to the owning instance, with linked rows rather than a move or foreign write. A notice communicates the request; the receiver's accepted allocation and production records establish its executable route. <a href="../../workflows/task-management/resources/contract.md">Task Management contract, resolution paths</a></p>
+</li>
+<li>
+<p><strong>Close the invocation through its own record contract.</strong> A register-changing session reports exact row changes and their human basis, staleness and closure-echo deltas, and routing candidates. Its ordinary closeout appends the required receipt in the owning loop's format, naming modes, delta counts, and exact prepared-package, notice, and report paths. That receipt supplies discovery without adding priority or dispatch authority. Method-specific receipts remain required where ordinary graph continuation otherwise needs none. <a href="../../workflows/task-management/resources/contract.md">Task Management contract, closeout</a></p>
+</li>
+</ol>
+<p>The human may choose to run child-loop sweeps before Root after their closeouts land, so cross-loop review sees committed results. This is a scheduling practice, not a condition of valid development. <a href="../../workflows/task-management/resources/method.md">Task Management method</a></p>
+<p><a id="app"></a></p>
+<h2 id="14-enter-chirality-app-development">14. Enter Chirality App development</h2>
+<p>Use <code>projects/chirality-app-dev</code> as <code>WORKING_ROOT</code>, its <code>AGENTS.md</code> for repository-development constraints, and <code>init/dev-loop-init-prompt.md</code> → <code>loop/LOOP_INIT.md</code> for entry. <code>instructions/AGENTS.md</code> is the guidance shipped to App users; it has a different applicability from the repository-development entry. The source basis for implementation is the PRD, accepted decomposition and scope changes, live DepClosure pointer, relevant deliverable contracts, decisions, and actual brief. <a href="../../projects/chirality-app-dev/AGENTS.md">App project instructions</a> · <a href="../../projects/chirality-app-dev/loop/LOOP_INIT.md">App loop</a></p>
+<p>Resolve the current graph from <code>loop/LOOP_INIT.md</code>, then follow its linked phase cursor, handoff, selected method, and latest owner directions. If it selects a whole-corpus concordance run, that run retains its pins and phase gates. A decision book or prepared bundle is not a ruling on its individual repair packets; read the applicable decisions before repair dispatch. The shared local-graph methods do not resume a pause, replace the run's contract, or select a later phase. <a href="../../projects/chirality-app-dev/loop/LOOP_INIT.md">App loop</a> · <a href="../../projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md">App local-method notice</a> · <a href="../../workflows/reconciliation/resources/contract.md">Reconciliation contract</a></p>
+<p>Before relying on, dispatching, promoting, or consuming an accepted dependency for an App deliverable, run APP-HOLD-1 for the exact target and act. The following is a template from the App working root; choose the actual permitted operation and declared entry path:</p>
+<pre><code class="language-text">python3 execution/_Scripts/app_hold.py check \
+  --operation &lt;reliance|dispatch|checking-promotion|accepted-dependency-consumption&gt; \
+  --entry-path &lt;actual-entry-path&gt; --target &lt;DEL-ID&gt;
+</code></pre>
+<p>The pipe-separated operation field denotes alternatives, not a literal shell argument. A missing preflight, held target, malformed basis/admission, or register/scan disagreement blocks the act. Historical DEL-09-07 admissions are not current reusable exceptions. The check never authorizes an authority-corpus re-pin. <a href="../../projects/chirality-app-dev/AGENTS.md">APP-HOLD-1 rules</a> · <a href="../../projects/chirality-app-dev/execution/_Scripts/app_hold.py">App hold tool</a></p>
+<p>Source principally lives under <code>frontend/src</code>, <code>frontend/electron</code>, <code>frontend/packages</code>, and <code>frontend/scripts</code>; the frontend workspace contains its tests and build configuration. Current App and Runtime manifests require Node <code>&gt;=22.19.0</code>; the older App build guide's <code>&gt;=20</code> statement is stale at this basis. Read the current executable manifest and disclose discrepancies rather than installing from an outdated prose requirement. <a href="../../projects/chirality-app-dev/frontend/package.json">App package manifest</a> · <a href="../../projects/chirality-runtime/package.json">Runtime package manifest</a> · <a href="../../projects/chirality-app-dev/docs/BUILD_AND_RELEASE.md">App build guide</a></p>
+<p>The registered App checks include <code>frontend-test</code>, <code>frontend-typecheck</code>, <code>frontend-build</code>, <code>frontend-premerge</code>, <code>harness-self-check</code>, <code>harness-pytest</code>, and <code>app-hold-integrity</code>. Project instructions additionally specify their applicable closeout, product-source, UI, native-host, packaging, and corpus-reconciliation obligations. Stop the ordinary dev server before build/package/premerge operations. The registered premerge check owns a stub service and <code>HARNESS_BASE_URL</code>; calling its npm script alone does not supply that setup. <a href="../../projects/chirality-app-dev/software-workflow.json">App profile</a> · <a href="../../projects/chirality-app-dev/AGENTS.md">App checks</a></p>
+<p><code>npm test</code>, <code>npm run typecheck</code>, and <code>npm run build</code> are declared in the frontend manifest; use them only as selected authorized checks. Packaging is separate: <code>desktop:prepare</code> prepares/builds inputs, while <code>desktop:pack</code> and <code>desktop:dist</code> consume prepared inputs and perform their declared verifiers. Their existence grants no signing, notarization, distribution, or release authority. Retained compatibility scripts do not establish another qualified MVP engine. Codex remains the App target, with application-owned Runtime hosting the stock Codex App Server under the current accepted boundaries. <a href="../../projects/chirality-app-dev/frontend/package.json">App package manifest</a> · <a href="../../projects/chirality-app-dev/AGENTS.md">App development boundaries</a> · <a href="../../projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/PRD_REVISION.md">Runtime PRD revision</a></p>
+<p><a id="piping"></a></p>
+<h2 id="15-enter-piping-development">15. Enter Piping development</h2>
+<p>Use <code>projects/chirality-piping</code>, its project <code>AGENTS.md</code>, and <code>init/dev-loop-init-prompt.md</code> → <code>loop/LOOP_INIT.md</code>. Follow <code>docs/PRD.md</code>, <code>execution/_Decomposition/SOFTWARE_DECOMP.md</code>, applicable amendments, and <code>execution/_DAG/_LATEST.md</code> for the actual source basis. Older README or workplan selectors cannot displace the current entry. However, live instructions explicitly retain F-PIP-1 through F-PIP-4 by reference to the historical workplan's fence section; its old F-PIP-5 selection procedure is superseded. Historical location and live incorporation are different facts. <a href="../../projects/chirality-piping/AGENTS.md">Piping instructions</a> · <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a></p>
+<p>Recover the graph selected by the live loop, then its linked resume procedure, phase events, handoff, and later owner directions. When a summary and its events disagree, establish what actually ran and which candidate was examined before continuing. A selected reconciliation program retains its activation, method pins, evidence restrictions, and separate repair authority. Apply the selected run's actual testing instructions; the general development commands below cannot override a narrower audit brief. <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a> · <a href="../../workflows/reconciliation/resources/contract.md">Reconciliation contract</a></p>
+<p>The principal product surfaces are <code>core/</code> Rust crates, <code>apps/desktop/</code> frontend and native Tauri shell, and <code>tests/</code> plus <code>validation/</code> benchmarks, hand calculations, and witnesses. Deliverable production and evidence remain under the execution hierarchy and owning run locations. There is no project-root Cargo workspace manifest at this basis: select the affected crate manifest or the maintained runner's discovered set. Frontend build or browser testing does not establish a native packaged witness. <a href="../../projects/chirality-piping/package.json">Piping package manifest</a> · <a href="../../plans/evidence/2026-09-22_alignment_manual/project-piping-notes.md">Piping operational source map</a></p>
+<p>The profile registers <code>desktop-test</code>, <code>desktop-build</code>, <code>piping-pytest</code>, <code>evidence-sweep</code>, and shared harness checks. Project npm scripts expose <code>build:wasm:desktop</code>, <code>test:desktop</code>, and <code>build:desktop</code>. Standalone desktop tests need the generated WASM when absent. Product-code merges additionally require the DEC-025 sweep on a clean candidate, applicable CI, and fresh independent review of the complete candidate. Select work and commands from the actual brief and instructions; a partial capability sweep cannot establish the full gate. <a href="../../projects/chirality-piping/software-workflow.json">Piping profile</a> · <a href="../../projects/chirality-piping/package.json">Piping package manifest</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping software checks</a></p>
+<p>The domain boundary is critical. <code>domains/piping-design/</code> includes vetted conceptual prose, but extracted equation artifacts remain unreviewed OCR/pdf2md material pending the maintainer's manual review. They may not supply authoritative equations for physics models, solver/kernel work, or analytical verification. Use the maintainer's vetted engineering sources and report review status. Keep software verification, engineering validation, practitioner usability, code-compliance claims, professional reliance, lifecycle issuance, and release distinct. <a href="../../projects/chirality-piping/AGENTS.md">Piping knowledge-source and claim fences</a></p>
+<p>After an authorized coherent result, reconcile the affected Scope of Work, Remaining, dependency, and evidence statements. Preserve future requirements and any accepted bespoke representation in the selected corpus; do not convert formats incidentally. Current graph/result records can carry continuity without duplicate session receipts, while historical receipt integrity checks and method-specific handoffs remain applicable. <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping reconciliation continuity</a></p>
+<p><a id="runtime"></a></p>
+<h2 id="16-enter-runtime-development">16. Enter Runtime development</h2>
+<p>Use <code>projects/chirality-runtime/AGENTS.md</code> and its <code>loop/LOOP_INIT.md</code>. Recover the accepted ownership through <code>execution/_Coordination/MIGRATION_ACCEPTANCE_2026-09-06.md</code>, then <code>docs/PRD_AUTHORITY.md</code>, <code>docs/PRD.md</code>, and <code>execution/_Decomposition/_AUTHORITY.md</code>. Read <code>HANDOFF_STATE.md</code>, the newest receipt, and later linked amendments together. An old candidate label does not nullify a later owner act; migration acceptance does not activate every carrier or release every hold. <a href="../../projects/chirality-runtime/AGENTS.md">Runtime entry</a> · <a href="../../projects/chirality-runtime/loop/LOOP_INIT.md">Runtime loop</a></p>
+<p>The seven-carrier register and SCA-003-era records preserve a frozen accepted basis. The September 12 D-GOV-43/SCA-004 packet overlays that reading: it retires six carriers in place, revises retained stewardship, closes the obsolete held bindings through a purpose change, and preserves the separately disposed R16-B relationship. Some PRD, Scope-of-Work, register, and pointer bytes stay unchanged because Root pins them. Read the overlay and status histories; do not “repair” their old counts or frozen text merely to match a newer summary. Closure by retirement does not assert that the old held empirical acts were performed. <a href="../../projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/PRD_REVISION.md">Runtime PRD revision</a> · <a href="../../projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/Impact_Assessment.md">Runtime impact assessment</a></p>
+<p>The current architectural reading is an application-owned Runtime service hosting stock Codex. The App is its production consumer. Retained daemon package names, compatibility providers, and historical supplier/LaunchAgent proof records do not revive a separate daemon deployment, qualify another MVP engine, or authorize a client integration. Runtime owns its product contracts and services; shared instruction/tool changes route to Root, and client changes route to the owning project. PEC compatibility remains an opportunity to verify, not an MVP prerequisite silently declared satisfied. <a href="../../projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/PRD_REVISION.md">Runtime PRD revision</a> · <a href="../../projects/chirality-runtime/AGENTS.md">Runtime entry</a></p>
+<p>Source is principally in the <code>contracts</code>, <code>core</code>, <code>daemon</code>, <code>client</code>, and <code>cli</code> packages, all under <code>packages/</code>; inspect their actual roots and dependencies before editing. Tests live in the maintained test surfaces, with frozen execution evidence kept outside the executable test inventory. The project manifest declares Node <code>&gt;=22.19.0</code>, <code>npm run typecheck</code>, <code>npm test</code>, and <code>npm run build</code>. The profile registers <code>typecheck</code> and <code>unit</code> as always-checks. A connecting App/Runtime change also needs verification of the real client path; two component passes do not establish integration. <a href="../../projects/chirality-runtime/package.json">Runtime package manifest</a> · <a href="../../projects/chirality-runtime/software-workflow.json">Runtime profile</a> · <a href="../../.agents/skills/chirality-change/SKILL.md">Chirality change conventions</a></p>
+<p>For an authorized shell-equipped actor, these are read-only sourced posture views from the checkout, not acceptance operations:</p>
+<pre><code class="language-sh">python3 tools/practitioner_harness/harness.py status --project runtime
+python3 tools/practitioner_harness/harness.py drift --project runtime
+</code></pre>
+<p>The full live Runtime entry also specifies remote refresh and Git observations for actual execution. Do not claim fresh remote state from these two views alone. Its first return identifies divergence, local changes, accepted authority, current lifecycle/holds, exact task boundaries, available checks, prerequisites, and the next lawful manager action. <a href="../../projects/chirality-runtime/loop/LOOP_INIT.md">Runtime loop</a> · <a href="../../tools/practitioner_harness/README.md">Practitioner harness</a></p>
+<p>Runtime's September 22 local-method notice is intake only. It does not adopt App/Piping's graph or receipt changes. Preserve a durable project handoff under the governing run's closeout contract and record actual checks. Runtime explicitly claims no receipt validator or automatic receipt-format enforcement; do not invent one. <a href="../../projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md">Runtime local-method notice</a> · <a href="../../projects/chirality-runtime/loop/LOOP_INIT.md">Runtime loop</a></p>
+<p><a id="pec"></a></p>
+<h2 id="17-enter-pec-development">17. Enter PEC development</h2>
+<p>PEC is the coordination plane: a rebuildable, non-authoritative projection of governed file truth with an ephemeral presence layer. It dispatches nothing, arbitrates nothing, and has no ruling-write path. Its value must survive graceful absence: no governed act may require PEC. Read the product's current exact source and owner records; do not treat an advisory PEC result as authority. <a href="../../projects/pec/AGENTS.md">PEC instructions</a></p>
+<p>The live entry is <code>projects/pec/loop/LOOP_INIT.md</code>, reached through the project's current launcher and <code>AGENTS.md</code>. The loop's full Step 0 refreshes remote references, validates receipts, checks retired-workplan absence, reads decision/profile/decomposition/hold sources, and discovers actual Remaining surfaces. Do not substitute a general quick-start command block for this adopted procedure during execution. The retained <code>_DomainEngines/pec</code> paths in old citations resolve through D-PEC-80's relocation maps; they are not a second live loop. <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop</a></p>
+<p>Select work from deliverable <code>_STATUS.md ## Remaining</code> and the exact scope of its grant. A missing Remaining section means no recorded selectable scope, not completion and not permission to invent an assignment. The loop permits an explicitly scoped owner request for preparation or correction without a Remaining item, but that exception does not authorize production or bypass a merged owner prerequisite. Owner acts and hold releases required by the loop are observed on fetched <code>origin/main</code>; predecessor work on the run branch is a different condition. <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop §5</a></p>
+<p>The write fences are unusually specific. Default project-local surfaces are bounded coordination, the listed instruction surface, and the one-time status pointer allowance. Every other write—including new v2 source, scaffolding, manifests, and configuration—requires an owner-ruled D-PEC packet naming exact paths, acts, verification, and rollback. Existing code or a valid PRD grants no broader implementation permission. Instruction changes also retain Root's applicable scope requirements. <a href="../../projects/pec/AGENTS.md">PEC write fences</a> · <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop §3</a></p>
+<p>The old <code>core</code>, <code>server</code>, <code>web</code>, <code>agent-sidecar</code>, <code>tools</code>, <code>fixtures</code>, and prototype workspace manifests are a frozen reference corpus. Read and cite them; do not edit, delete, or repurpose them as live v2 implementation. Do not run the old server or a mutating CLI against a non-scratch database. V2 carries useful machinery as cited patterns under its exact packets. It remains content-minimal: paths, counts, SHAs, states, and hashes, not file or diff contents. Runtime retains session/delegation/turn ownership; PEC creates no second execution loop. <a href="../../projects/pec/AGENTS.md">PEC frozen-corpus and data rules</a></p>
+<p>Before dispatch, review, fan-in, production reliance, consumption, or promotion, perform the reliance-hold preflight for the actual target and operation. Its interface is:</p>
+<pre><code class="language-text">python3 execution/_Scripts/pec_reliance_hold.py \
+  --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv \
+  --target &lt;exact-project-relative-target&gt; \
+  --operation &lt;actual-intended-operation&gt;
+</code></pre>
+<p>The tool supports <code>historical-read-only-inspection</code>, <code>exact-correction-preparation</code>, <code>candidate-validation</code>, <code>dispatch-for-production</code>, <code>rely-for-production</code>, <code>consume</code>, and <code>promote</code>. Use the intended act, not a less restrictive label. Missing or malformed hold data fails closed. A successful historical inspection preflight authorizes only that checked inspection. <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop §8</a> · <a href="../../projects/pec/execution/_Scripts/pec_reliance_hold.py">PEC hold tool</a></p>
+<p>Current bounded v2 code exists under <code>v2/src/pec_v2</code>, with API contracts, configuration, standard-library tests, posture tools, and documentation in adjacent v2 folders. Older “implementation does not exist” prose is dated product-stage history. Later exact packet evidence establishes particular work without proving full product readiness. Similarly, an adopted candidate PRD postimage is not necessarily applied to the live PRD. Read the controlling act and actual files. <a href="../../plans/evidence/2026-09-22_alignment_manual/project-pec-notes.md">PEC operational source map and currency review</a></p>
+<p>The current software profile registers <code>v2-api-contract</code>, <code>v2-loop-registry</code>, <code>v2-store-guard</code>, <code>v2-core-posture</code>, and <code>harness-self-check</code>. Use an explicitly compatible Python and the exact packet's finite checks; a legacy prototype npm CI pass does not prove that v2 checks ran. Required system kill/parity evidence remains unmet when unavailable, not an invented pass. Existing role/model conventions and stale launcher references need owning-loop compatibility treatment; a newer Root notice alone does not silently migrate PEC's accepted method. <a href="../../projects/pec/software-workflow.json">PEC profile</a> · <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop §8</a> · <a href="../../plans/evidence/2026-09-22_alignment_manual/project-pec-notes.md">PEC operational review</a></p>
+<p>PEC retains one branch per run, one commit and receipt per iteration, a validated receipt chain, and a PR at terminus or when a merged prerequisite is needed. The September 22 notice leaves its accepted basis unchanged. Keep those outputs while App/Piping use their graph-based continuity. Close out only exact granted scope and preserve human-gated lifecycle, artifact acceptance, release, and professional reliance as separate acts. <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop §§5–7</a> · <a href="../../projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md">PEC local-method notice</a></p>
+<p><a id="recovery"></a></p>
+<h2 id="18-recover-hand-off-and-close-an-undertaking">18. Recover, hand off, and close an undertaking</h2>
+<p>Recover from the actual state before repeating work. Inspect the selected cursor, branch and worktrees, staged and unstaged changes, outputs, still-running workers, and shared resources. Determine what happened after the last recorded update. Preserve incomplete but useful work and verify its evidence. Establish that prior workers have stopped or explicitly transfer ownership before reassigning their files or application state. An interruption is not a reason to discard a partial result or report an unobserved test as failed. <a href="../../projects/chirality-app-dev/loop/LOOP_INIT.md">App loop §0</a> · <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop §0</a></p>
+<p>If a pointer is missing or contradictory, search the pertinent records and history for the intended target. Do not select a convenient alternative until its relationship to the undertaking is established. In App or Piping, a historical receipt used as a recovery cursor needs its integrity validator. The following are alternatives for the respective project, from the checkout; they are not mandatory additions to every ordinary graph continuation:</p>
+<pre><code class="language-sh">python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .
+python3 tools/validation/validate_piping_loop_receipts.py --repo-root .
+</code></pre>
+<p>A failed cursor cannot support reliance. Independently verified work can continue from a separate sound basis. Validation establishes structural evidence, not authentication of owner prose. PEC has its own live receipt-validation obligation; Runtime explicitly has no corresponding validator claim. <a href="../../projects/chirality-app-dev/loop/LOOP_INIT.md">App loop</a> · <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a> · <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop</a> · <a href="../../projects/chirality-runtime/loop/LOOP_INIT.md">Runtime loop</a></p>
+<p>Use the existing continuation home. For App/Piping development, the current graph and linked results may already contain everything a successor needs; no separate handoff or receipt is required solely because a session ends. A selected formal workflow may still require a handoff, snapshot, or receipt. Runtime and PEC retain their own closeout contracts. Preserve the real method rather than adopting one universal documentation ritual. <a href="../../projects/chirality-app-dev/AGENTS.md">App instructions</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping instructions</a> · <a href="../../projects/chirality-runtime/loop/LOOP_INIT.md">Runtime loop</a> · <a href="../../projects/pec/loop/LOOP_INIT.md">PEC loop</a></p>
+<p>A dependable continuation account identifies the intended result, checked revision, local or unmerged changes, accepted inputs, completed contributions, evidence, unresolved checks/findings, active operations and ownership, holds, next safe action, and rerun triggers. Link detail instead of copying it. Before retiring a temporary worktree, retain evidence and results at a location the successor can actually read. Do not point to a deleted output and call the work recoverable. <a href="../../workflows/construct-local-work-graph/WORKFLOW.md">Construct a local work graph §5</a> · <a href="../../.agents/skills/chirality-change/SKILL.md">Chirality change conventions</a></p>
+<p>Close the undertaking against its stated conditions, including integration, required review, verification, and planned reconciliation. If the human explicitly reduces or otherwise bounds the conclusion, retain that decision and surviving obligations. Return the result at the scope it establishes. A completed contribution can be fit for the next use while leaving a deliverable or product incomplete. Warranted Remaining stays open; a deferred concern retains its owner and allocation condition. <a href="../../agents/AGENT_WORKING_ITEMS.md">WORKING_ITEMS</a> · <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">Bounded reconciliation §5</a></p>
+<p>For delivery, identify the exact delivered candidate and applicable human approval, recipient, package, operating limits, and continuing responsibilities. Preserve the difference between build output, transmitted artifact, and accepted baseline. Safety-significant, contractual, and professional work remains subject to its domain authority. Chirality's professional-responsibility model reserves approval, issuance, signature, seal, and reliance decisions to the accountable human; an agent never claims those acts for itself. This manual does not establish jurisdiction-specific legal or code compliance. <a href="../DIRECTIVE.md">DIRECTIVE §3</a> · <a href="../CONTRACT.md">CONTRACT K-AUTH-1</a> · <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v4.md">Human manual, chapter 6</a></p>
+<p><a id="authoring"></a></p>
+<h2 id="19-create-or-improve-reusable-methods">19. Create or improve reusable methods</h2>
+<p>Keep roles, workflows, skills, tools, briefs, and plans distinct. A workflow is reusable method guidance in a canonical <code>WORKFLOW.md</code> package. A skill is bounded reusable instruction in <code>SKILL.md</code>. A deterministic tool performs an operation; it neither confers permission nor accepts its subject. A brief binds the present work. An ad hoc plan can be useful without being registered as a reusable workflow. Repetition is a reason to consider method development, not authority to amend an active method silently. <a href="../../AGENTS.md">Root entry</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a></p>
+<p>Discover before loading. Inspect the effective catalog's name, description, origin, compatibility, and collision status, then load only the selected entrypoint and stage resources. Unqualified workflow lookup uses project, user, then bundled precedence. Preserve the full selected identity—kind, source, source-root ID, and name—through execution and replay. For example, the current App/Piping loop explicitly selects the bundled <code>chirality-root</code> local-graph methods. A later same-name discovery cannot replace that selection silently. <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract, libraries and catalogs</a> · <a href="../../workflows/index.json">Workflow index</a></p>
+<p>For setup, retain the effective <code>preparation</code> <strong>skill</strong> and its actual origin. The Root index also carries a workflow with that basename; preserving the kind prevents an accidental substitution. In the App, available skills come from Codex's native discovery, including project, user, and bundled origins. An index entry or a historical selection does not establish the bytes supplied to the present run. Root reference tools and current source packages likewise do not prove a consumer's adoption or production qualification. <a href="../../AGENTS.md">Root entry</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a> · <a href="../../workflows/project-setup/WORKFLOW.md">Project setup</a></p>
+<p>Legacy <code>TaskSkill</code> and unqualified converted workflow names use the explicit compatibility mapping. A source-qualified workflow identity preserves its historical workflow and bypasses that alias conversion. Retired named agents are mapped through compatibility records; they are not reintroduced as standing roles. Record what was supplied and what resolved. If historical bytes cannot be recovered, report that limit instead of replaying today's same-name file as though it were the original. <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract, workflow packages</a></p>
+<p>Before creating or revising any reusable workflow, load <code>create-workflow</code> from the intended library basis. Establish purpose, applicability, inputs, outputs, decisions, checks, recovery, and destination. A small method may need one file. Keep run-specific private facts and permissions in briefs. A project/user method request does not authorize changing the bundled library. Use existing revision mechanisms and preserve prior content before an accepted replacement. <a href="../../AGENTS.md">Root entry</a> · <a href="../../workflows/create-workflow/WORKFLOW.md">Create a workflow</a></p>
+<p>In the App authoring path, prepare <code>.chirality/workflow-drafts/&lt;name&gt;/WORKFLOW.md</code> under the project or user root, with needed resources inside the draft package. The human inspects it, requests changes in chat, and registers the reviewed bytes through the Workflows panel. Do not write straight into the live catalog as a substitute for review, claim an unobserved registration, or automatically run the new method. Another host presents the complete method and resource inventory for explicit acceptance before registration through available tools. <a href="../../workflows/create-workflow/WORKFLOW.md">Create a workflow</a></p>
+<p>Validate metadata, folder/name agreement, resource containment, links, and intended source identity; walk through a representative success and interruption. Distinguish that walkthrough from execution evidence. Bundled Root authoring separately updates the catalog and generated index under its authorized scope and checks. Runtime discovery or reference-tool success does not establish production provider qualification. Skills and tools need the same care with provenance, scope, actual availability, and applicable ownership, even though their packaging differs. <a href="../../workflows/create-workflow/WORKFLOW.md">Create a workflow</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a></p>
+<p>Domain methods deserve their own source treatment. <code>domain-decomp</code> preserves source admission, fidelity, atomization, category/knowledge-type meaning, disagreement, and independent examination. DOMAIN/KTY material is outside the PROJECT/SOFTWARE Scope-of-Work conversion standard. Research work should identify its accepted snapshot, retrieval basis, bounded question, independently checked evidence, and recoverable return through the selected method. Neither a retrieved passage nor a generated knowledge artifact becomes a validated engineering equation by being indexed. <a href="../../workflows/domain-decomp/WORKFLOW.md">Domain decomposition</a> · <a href="../../workflows/research-orchestration/WORKFLOW.md">Research orchestration</a> · <a href="../DELIVERABLE_SCOPE_OF_WORK_STANDARD.md">Scope-of-Work standard §1</a> · <a href="../../projects/chirality-piping/AGENTS.md">Piping source rules</a></p>
+<p><a id="examples"></a></p>
+<h2 id="20-worked-operational-examples">20. Worked operational examples</h2>
+<p>The following examples are constructed teaching cases. They report no real authorization, execution, test, acceptance, or current project status. Their purpose is to show how to make the next contribution concrete without requiring the human to fill a form. Apply the actual sources cited in the preceding sections.</p>
+<h3 id="a-small-documentation-correction">A small documentation correction</h3>
+<p>The human asks to fix a broken guide link. Recover the relevant instruction and link target, inspect the existing diff, and make the authorized bounded edit. Check the resulting link and any affected document rendering. Obtain the independent candidate review and applicable repository closeout checks required for the slice. Do not open a new product PRD or rebuild its DAG. If inspection reveals that the proposed target is obsolete, repair the link to the supported current entry or return that concrete ambiguity with evidence. <a href="../../AGENTS.md">Root entry</a> · <a href="../../.agents/skills/chirality-change/SKILL.md">Chirality change conventions</a></p>
+<p>An appropriate return might read:</p>
+<blockquote>
+<p>Updated the guide's entry link to the live project launcher and preserved the historical reference in its source note. The link and rendered heading resolve. Independent review found no blocking issue on the submitted revision. This documentation change does not alter the project's selected undertaking or instructions.</p>
+</blockquote>
+<p>The actual return should link the changed artifact and identify actual verification. Do not copy this sample's claimed results into a real run without performing them.</p>
+<h3 id="a-bounded-implementation-brief">A bounded implementation brief</h3>
+<p>Suppose the human has authorized repair of a save operation that overwrites intervening edits. The parent first reads the adopted save contract, current implementation, failing observation, consumer interface, and applicable holds. It prepares this kind of assignment, with actual IDs, paths, and checks substituted:</p>
+<pre><code class="language-text">Objective: Preserve intervening edits when applying a prepared proposal.
+Basis: The adopted revision-comparison contract and identified failing case.
+Scope: The save/apply boundary and its focused regression coverage.
+Writes: Exact implementation and test files; one evidence result location.
+Exclusions: No storage-format change, lifecycle edit, or unrelated UI cleanup.
+Checks: Registered focused checks plus the required connected journey.
+Return: Diff, tested candidate, observed outcomes, evidence, and residuals.
+Parent: The implementation manager; return interface changes before applying.
+</code></pre>
+<p>This concise human-readable explanation complements any required structured fields. If the diagnosis shows the interface itself cannot express the needed condition, the child returns that design question. It does not silently change every caller or weaken the expected preservation behavior. <a href="../../workflows/software-bounded-implementation/WORKFLOW.md">Bounded implementation</a> · <a href="../../workflows/software-bounded-implementation/resources/brief.md">Implementation brief</a></p>
+<h3 id="a-decision-package-the-human-can-act-on">A decision package the human can act on</h3>
+<p>Suppose two deliverables cannot be ordered because each needs an unresolved contract from the other. Prepare the source-linked SCC and a remedy before asking for a decision:</p>
+<blockquote>
+<p>The export writer needs an accepted schema; the schema task currently waits for the writer's implementation evidence. I propose separating the schema definition from its implementation validation. The definition would supply the writer, and a later validation task would check their combined result. The attached draft shows the affected claims, edges, and checks. This preserves both obligations and leaves the existing implementation usable. The decision requested is acceptance of this exact scope/dependency amendment under the project's process; implementation would then continue from the revised basis.</p>
+</blockquote>
+<p>The real packet identifies exact candidate bytes, alternatives, consequences, and the reserved act. If the remedy is a cut or merge, obtain the doctrine's human decision. A graph visualization alone is insufficient. <a href="../CYCLE_DRIVEN_RESOLUTION.md">Cycle-driven resolution</a> · <a href="../../workflows/scope-change/WORKFLOW.md">Scope change</a></p>
+<h3 id="a-repair-that-is-useful-but-incomplete">A repair that is useful but incomplete</h3>
+<p>The implementation passes its focused tests, but native interruption recovery remains unobserved. Report the code result and keep the evidence node open. Reconcile any stale “not implemented” wording only to the extent supported, while retaining the required native observation in Remaining. A good return names the next action instead of declaring the whole feature passed. <a href="../../projects/chirality-app-dev/AGENTS.md">App evidence rules</a> · <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">Bounded reconciliation</a></p>
+<blockquote>
+<p>The repair and focused regression checks are complete on the identified candidate. Independent review and the affected backcheck found no blocking issue. The required native interruption scenario could not run in this host and remains recorded with its exact command and starting conditions. The implementation is ready for that examination; no checking promotion or release is claimed.</p>
+</blockquote>
+<h3 id="a-stale-continuation-summary">A stale continuation summary</h3>
+<p>The graph says “review next,” while its linked event log records a review and subsequent correction. Read the governing resume method, inspect the actual patch and review return, and determine whether the correction was backchecked. Preserve the review as evidence of its original candidate. Update continuation through the authorized maintainer only after recovering the actual result. Do not repeat review blindly or conclude that the later correction inherited the earlier pass. Use the selected run's recovery procedure to resolve that discrepancy. <a href="../../projects/chirality-piping/loop/LOOP_INIT.md">Piping loop</a> · <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">Bounded reconciliation</a></p>
+<p><a id="sources"></a></p>
+<h2 id="21-source-map-and-terminology">21. Source map and terminology</h2>
+<p>The version and repository revision identify this guide's documentation basis. The <a href="../../plans/evidence/2026-09-22_manual_publication_edit/operations-sources.json">operational source manifest</a> records the checked instruction, workflow, schema, and command origins and hashes. The linked live project entries govern recovery and selection; dated project reports supply evidence of their own inspection scope. No project-wide status census, consumer adoption, or production activation is established by this guide. These source records support navigation and explanation, not new project authority.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Table 8; scroll horizontally if needed">
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Primary navigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Runtime entry, roles, authority, permission intersections</td>
+<td><a href="../../AGENTS.md">Root entry</a>, <a href="../../agents/registry.json">role registry</a>, <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a>, <a href="../CONTRACT.md">CONTRACT</a></td>
+</tr>
+<tr>
+<td>Paths, lifecycle, dependency representation</td>
+<td><a href="../SPEC.md">SPEC</a>, <a href="../TYPES.md">TYPES</a>, <a href="../CYCLE_DRIVEN_RESOLUTION.md">cycle doctrine</a></td>
+</tr>
+<tr>
+<td>Formation and setup</td>
+<td><a href="../DECOMPOSITION_STANDARD.md">decomposition standard</a>, <a href="../../workflows/index.json">workflow index</a>, <a href="../../workflows/project-setup/WORKFLOW.md">project setup</a></td>
+</tr>
+<tr>
+<td>Production and examination</td>
+<td><a href="../DELIVERABLE_SCOPE_OF_WORK_STANDARD.md">Scope-of-Work standard</a>, <a href="../SOFTWARE_WORKFLOW_PROFILE.md">software profile</a>, <a href="../DELIVERABLE_CONCORDANCE_METHOD.md">concordance method</a></td>
+</tr>
+<tr>
+<td>Repeated development</td>
+<td><a href="../../workflows/construct-local-work-graph/WORKFLOW.md">construct local graph</a>, <a href="../../workflows/bounded-reconciliation/WORKFLOW.md">bounded reconciliation</a>, each project's live loop</td>
+</tr>
+<tr>
+<td>Change, integration, residual concerns</td>
+<td><a href="../../workflows/scope-change/WORKFLOW.md">scope change</a>, <a href="../../workflows/task-management/WORKFLOW.md">Task Management</a>, <a href="../../.agents/skills/chirality-change/SKILL.md">Chirality change</a></td>
+</tr>
+<tr>
+<td>Professional and domain limits</td>
+<td><a href="../DIRECTIVE.md">DIRECTIVE</a>, the actual project rules, accepted domain sources and responsible human's decisions</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Undertaking</strong> means an identified body of work with a purpose and completion conditions; it can span sessions and Packages. <strong>Session</strong> means an interaction period in its actual host. <strong>Candidate</strong> means the particular source/artifact state being examined. <strong>Snapshot</strong> preserves identified material at a governed boundary. <strong>Derivative</strong> is a generated or interpreted view whose sources and status must remain explicit. <strong>Hold</strong> is a restriction on a named act; ordinary progress does not dissolve it. <strong>Acceptance</strong> is the applicable human act about an identified subject. <a href="../../AGENTS.md">Root entry</a> · <a href="../CONTRACT.md">CONTRACT</a> · <a href="../AGENT_WORKFLOW_RUNTIME.md">Runtime contract</a></p>
+<p>The human-facing manual uses <strong>reckoning</strong> for agent interpretation, comparison, inference, and selection, reserving <strong>judgment</strong> for the accountable human. Some operational role files use “judgment” in its ordinary task-performance sense. Read both without attributing professional or acceptance authority to the agent. <strong>Verification</strong> examines conformity to stated criteria; <strong>validation</strong> examines fitness for the intended use. State exactly what each check supports, who examines its adequacy, and what remains. <a href="Project_Management_for_Human_Agent_Teams_Consolidated_v4.md">Human manual, preface and §1.5</a> · <a href="../DIRECTIVE.md">DIRECTIVE §3</a></p>
+<!-- END MARKDOWN CONTENT -->
+    </article>
+  </div>
+  <footer class="document-footer">
+    <p>Complete rendering of the linked Markdown source. Document content and source links are preserved. This file needs no network connection to read.</p>
+    <p>Generated with markdown-it-py 4.2.0. The source basis above identifies this edition; consult current project records before acting.</p>
+    <p class="back-top"><a href="#manual-top">Back to start ↑</a></p>
+  </footer>
+</main>
+</div>
+<script>
+const mobileContents = document.querySelector('.mobile-toc');
+mobileContents.addEventListener('click', (event) => {
+  if (event.target.closest('a[href^="#"]')) mobileContents.open = false;
+});
+</script>
+</body>
+</html>

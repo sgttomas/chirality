@@ -1,0 +1,117 @@
+{
+  "date": "2026-09-22",
+  "assignment": "Opening publication edit: title, Preface, Chapters 1–2, source lines 1–1237",
+  "mechanism": "native collaboration.spawn_agent",
+  "agent": "/root/publication_editor/opening_editor",
+  "role": "TASK Type 2",
+  "parent": "/root/publication_editor",
+  "grandparent": "/root",
+  "delegation_created": false,
+  "host_permissions": "unrestricted filesystem; role and write restrictions asserted by instructions",
+  "source_is_data": true,
+  "source": {
+    "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.md",
+    "sha256_before": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+    "sha256_after": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+    "continuous_read_ranges": [
+      [
+        1,
+        180
+      ],
+      [
+        181,
+        360
+      ],
+      [
+        361,
+        540
+      ],
+      [
+        541,
+        730
+      ],
+      [
+        731,
+        920
+      ],
+      [
+        921,
+        1100
+      ],
+      [
+        1101,
+        1237
+      ]
+    ],
+    "includes_chapter_3_boundary_only": true
+  },
+  "context_files": [
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "read": "full"
+    },
+    {
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "read": "full"
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/opening-review.md",
+      "sha256": "69daa5df8b94f5eead2b4f26ee06662c5322e3c5adaac61e5fbc5c6f8898b331",
+      "read": "full"
+    }
+  ],
+  "message_basis": "Native parent assignment and later steering: publication cleanup, functional loop, small-project rationale, stale-proposal progression, root-verified external title/scope data, plain author credit, and final bibliography coordination.",
+  "selected_skill_bodies": [],
+  "selected_workflow_bodies": [],
+  "outputs": [
+    {
+      "path": "/tmp/publication-opening.md",
+      "sha256": "b9a540cc06d38463bc40d29b96cf6522318389df48dbff4da38b553a9b7e6fc5",
+      "bytes": 154960
+    },
+    {
+      "path": "/tmp/opening-reference-map.md",
+      "sha256": "40b6eae120229f9ca92bf1d7272fe6fd7f9a793b81b9b86bcba7f2016bda35f7",
+      "bytes": 15963
+    },
+    {
+      "path": "/tmp/publication-opening-return.md",
+      "sha256": "df754ed19203928fff9fc4c825840f1f1b255a3fb434938827cc123db4c2bb63",
+      "bytes": 7698
+    }
+  ],
+  "checks": {
+    "unique_anchors": 26,
+    "unexpected_missing_internal_anchors": [],
+    "balanced_code_fences": true,
+    "remaining_citation_groups": [
+      "[10, 11]",
+      "[11]",
+      "[SMITH]",
+      "[13]"
+    ],
+    "remaining_figure_numbers": [
+      "1.1",
+      "1.2",
+      "2.1",
+      "2.2",
+      "2.3",
+      "2.4",
+      "2.5",
+      "2.6"
+    ],
+    "source_unmodified": true,
+    "image_available_at_destination": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/assets/Figure_1_1.png",
+    "table_column_structure": "four tables checked; each header and row has a consistent column count",
+    "retained_words_in_exact_paragraph_blocks_ignoring_citation_only_changes": 16095
+  },
+  "limits": [
+    "External source verification conveyed by parent from root, not independently browsed by this executor.",
+    "No image or document visual QA.",
+    "Global citation remap, later chapter/Appendix A/bibliography anchors and cross-figure references remain assembly tasks.",
+    "No Git operations; no source, operator manual, DOCX or PDF edits."
+  ],
+  "status": "bounded editorial draft complete; assembly checks returned to parent"
+}

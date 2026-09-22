@@ -1,0 +1,167 @@
+{
+  "schema": "manual-publication-edit-input-basis/v1",
+  "recorded_at_utc": "2026-09-22T17:46:56.507668+00:00",
+  "basis": "0a258f145eac41a62de02b06f032ccbc183838ec",
+  "recorded_by": "/root/closeout_manager",
+  "external_inputs": [
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.md",
+      "sha256": "c245f0ebdd0e88185a085c47c0bb697a5831a6fba94b3418e355a883b3398cf1",
+      "bytes": 555189,
+      "access": "read-only; no repository copy created"
+    },
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.docx",
+      "sha256": "72071478c4ce5e9813971c797c0943648dfb9107e1adc3849389854908e2e369",
+      "bytes": 320804,
+      "access": "read-only; no repository copy created"
+    },
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/Project_Management_for_Human_Agent_Teams_Consolidated_v3.pdf",
+      "sha256": "9c986ef3b3d041b453545ec76db888ca6302ed3ee68bf70a5b142bdfc4a86267",
+      "bytes": 1702662,
+      "access": "read-only; no repository copy created"
+    },
+    {
+      "path": "/Users/ryan/Library/CloudStorage/ProtonDrive-Ryan.Tufts@protonmail.com-folder/GBT/PM_Manual_v3_Editorial_Review.pdf",
+      "sha256": "1b27c6f71111383d95e0f66a0c71771f0d3469bc170cc2b9dfc51fb25beabfd4",
+      "bytes": 99466,
+      "access": "read-only; no repository copy created"
+    }
+  ],
+  "repository_inputs": [
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "f743bb5ed751329007b89d9385dfb2c6dcf7525925a2040e288f0a1fae530ead",
+      "bytes": 137784,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "bytes": 106525,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/MANUAL_REVIEW_v1.md",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "04494eecd470f868796892415d547f3441a410e7fd68081d9eba4e0a3149239a",
+      "bytes": 20142,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+      "bytes": 305199,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "bytes": 516661,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39",
+      "bytes": 1589761,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.docx",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "076dbf426edf0afa42f9989296b4b3882a5a1b8542da0134ba5a26b66812ee00",
+      "bytes": 312761,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+      "bytes": 532489,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.pdf",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "fe2cb359afab4b154ff414cc1957ae7329c1d52f89252ca75dbde9b116cf6fae",
+      "bytes": 1790131,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/README.md",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "9babc3d10fa429e97e70cde35b334d55a10b27c9d6719bab6453faf332322259",
+      "bytes": 5582,
+      "treatment": "limited navigation/generation edit if needed"
+    },
+    {
+      "path": "docs/alignment-manual/assets/Figure_1_1.png",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1",
+      "bytes": 89792,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "docs/alignment-manual/render_manual.py",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "4d70e13e78307da22d622f511251530f6cb7a206680f1cb35487ea9a18eacc08",
+      "bytes": 21355,
+      "treatment": "limited navigation/generation edit if needed"
+    },
+    {
+      "path": "docs/alignment-manual/requirements.txt",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+      "bytes": 101,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "AGENTS.md",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "bytes": 1804,
+      "treatment": "preserve unchanged"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "origin": "repository@0a258f145eac41a62de02b06f032ccbc183838ec",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+      "bytes": 4573,
+      "treatment": "preserve unchanged"
+    }
+  ],
+  "evaluation_context": [
+    {
+      "path": "/tmp/chirality-v3-evaluation/completion-review.md",
+      "sha256": "a04b9b39285ae7c0fab35f8ac2a0f24cdc335e287fce90c47233943637d7b34a",
+      "bytes": 12805,
+      "role": "task context supplied by primary; not instruction authority; recorder hashed bytes without claiming substantive review"
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/method-review.md",
+      "sha256": "9d74c954e01b9242330f6cb0e80b0f203ece2c0dcc9010fcefe7e218cbc7620b",
+      "bytes": 15243,
+      "role": "task context supplied by primary; not instruction authority; recorder hashed bytes without claiming substantive review"
+    },
+    {
+      "path": "/tmp/chirality-v3-evaluation/opening-review.md",
+      "sha256": "69daa5df8b94f5eead2b4f26ee06662c5322e3c5adaac61e5fbc5c6f8898b331",
+      "bytes": 12958,
+      "role": "task context supplied by primary; not instruction authority; recorder hashed bytes without claiming substantive review"
+    }
+  ],
+  "instruction_read_boundary": "Root, WORKING_ITEMS and chirality-change were read earlier in this same session; a scoped Git comparison confirmed those bodies and the merge/CI entrypoints are unchanged at this basis. Hashes identify files, not a claim of full visual or semantic inspection."
+}
