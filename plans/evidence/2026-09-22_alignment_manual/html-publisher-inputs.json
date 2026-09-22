@@ -1,0 +1,97 @@
+{
+  "date": "2026-09-22",
+  "agent": "/root/html_publisher",
+  "role": "TASK (Type 2)",
+  "parent": "/root",
+  "mechanism": "delegated-harness-native Codex collaboration agent",
+  "delegated_further": false,
+  "brief": "Build deterministic offline HTML renderer, manual directory README, one root README navigation link, and final manual HTML from guide_author source; record checks. No Git mutation.",
+  "enforcement": "Shared unrestricted host; scope restrictions are instruction-based. Source author owns guide Markdown; parent owns integration and final browser inspection.",
+  "selected_workflows": [],
+  "selected_skills": [
+    {
+      "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md",
+      "sha256": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e",
+      "origin": "bundled PDF skill 26.904.11930"
+    }
+  ],
+  "instruction_inputs": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "sha256": "968abf747afd6f5ac059f8b6e780844fadb8a6d27cba73f57cab26209527f379",
+      "origin": "current undertaking run evidence"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/INPUTS.json",
+      "sha256": "84b54ed0634fde2afd05467ceec5fc7efa1535b1670ca6deaae61b09442f4944",
+      "origin": "current undertaking run evidence"
+    }
+  ],
+  "navigation_input": {
+    "path": "README.md",
+    "sha256_before": "baa2ca6d2a5b55b85b17fe481c5dd1c6fe5261ae32738447b0ed59390252f4a6",
+    "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8"
+  },
+  "runtime": {
+    "python": "3.13.14",
+    "markdown-it-py": "4.2.0",
+    "mdurl": "0.1.2"
+  },
+  "tools_used": [
+    "functions.exec",
+    "exec_command",
+    "apply_patch",
+    "write_stdin",
+    "collaboration.send_message",
+    "collaboration.wait_agent",
+    "mcp__codex_app__load_workspace_dependencies"
+  ],
+  "network_used": "No external network calls. A parent-authorized 127.0.0.1-only preview listener was started, then stopped immediately when the parent reported the CUA URL policy boundary; no HTTP or browser requests were made by this agent.",
+  "git_operations": [
+    "read-only git rev-parse HEAD",
+    "read-only git diff --check restricted to assigned paths (passed; untracked content checked separately)"
+  ],
+  "basis_revision": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "status": "Production HTML and README complete; parity, links, anchors, asset and deterministic-output checks pass. Bounded non-browser print QA could not proceed because native Pango is unavailable in checked paths.",
+  "verification_script": "plans/evidence/2026-09-22_alignment_manual/html-publisher-check.py",
+  "source_inputs": [
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "origin": "guide_author frozen source, received through parent on 2026-09-22"
+    }
+  ],
+  "output_hashes": {
+    "docs/alignment-manual/render_manual.py": "caaa10a48f51b79f451b238327cdd57bed9a89de6c97b2c29db3851300dc1e4e",
+    "docs/alignment-manual/requirements.txt": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+    "docs/alignment-manual/README.md": "732499bb3548d55d277759c1cb106ddf6230e2c5cf7d48058571be4691fdeee6",
+    "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html": "77bbc449bca0daa3ba4dd3644119a6deaedff3f89f606b26824a0bce504339b5",
+    "README.md": "c42e7936491f10a462b9db058d22875f7812f95aff87f09e4cf51b9ae9cbeca6",
+    "plans/evidence/2026-09-22_alignment_manual/html-publisher-check.py": "d4c6964b8febb3d30b6f8a4723b5f163ca1ae076da46585b73c01a40dce181e3"
+  },
+  "generation_command": "python3 docs/alignment-manual/render_manual.py --basis-date 2026-09-22 --basis-revision 9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "check_commands": [
+    "python3 docs/alignment-manual/render_manual.py --basis-date 2026-09-22 --basis-revision 9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8 --check",
+    "python3 plans/evidence/2026-09-22_alignment_manual/html-publisher-check.py"
+  ],
+  "preview": {
+    "host": "127.0.0.1",
+    "port": 62702,
+    "session_id": 31946,
+    "state": "Stopped with SIGINT; process exited",
+    "http_requests_by_this_agent": 0,
+    "reason_stopped": "Parent reported CUA blocked file:// under URL security policy and explicitly forbade alternate browser routes; preview stopped rather than used as a workaround."
+  },
+  "visual_boundary": "No static print-layout, live desktop/mobile browser, responsive interaction, or browser print-preview result is established by this attempt. See html-publisher-offline-qa.json.",
+  "updated_utc": "2026-09-22T08:50:04.266235+00:00"
+}

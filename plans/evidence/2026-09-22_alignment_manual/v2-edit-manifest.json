@@ -1,0 +1,465 @@
+{
+  "schema": "alignment-manual-editorial-revision/v1",
+  "date": "2026-09-22",
+  "basis_revision": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "input": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+  "input_sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+  "output": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+  "output_sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+  "original_lines": 3731,
+  "output_lines": 3789,
+  "original_words": 73108,
+  "output_words": 74806,
+  "line_replacements": 64,
+  "unchanged_original_line_count": 3667,
+  "operations": [
+    {
+      "group": "M01",
+      "v1_line": 5,
+      "old": "Consolidated manuscript · Edition 1 · September 2026",
+      "new": "Consolidated manuscript · Edition 2 · September 2026",
+      "reason": "Increment the manuscript without changing the preserved original."
+    },
+    {
+      "group": "M01",
+      "v1_line": 7,
+      "old": "From the theory and practice of Ryan Tufts. Prepared with ChatGPT for author review.",
+      "new": "From the theory and practice of Ryan Tufts. Prepared with ChatGPT for author review.\n\nEdition 2 is a repository application revision prepared with Codex for author review. It preserves the original argument and examples while clarifying current source standing, project entry, and compatibility. The [review](MANUAL_REVIEW_v1.md) records the assessment and changes; the [agent user manual](CHIRALITY_AGENT_USER_MANUAL_v1.md) is a separate operational companion derived from current sources. See the [edition index](README.md) for the preserved originals and available formats.",
+      "reason": "Make revision purpose, attribution and companion navigation explicit."
+    },
+    {
+      "group": "M01",
+      "v1_line": 11,
+      "old": "- [Preface](#h_preface)",
+      "new": "- [Preface](#h_preface)\n\n- [Repository application and source standing](#h_repository_application)",
+      "reason": "Add navigation for the new dated application note."
+    },
+    {
+      "group": "M02",
+      "v1_line": 41,
+      "old": "Actual projects use their adopted instructions, permissions, obligations, and workflows. This manuscript neither registers nor executes the referenced methods. The companion editorial report records the consolidation assessment separately.",
+      "new": "Actual projects use their adopted instructions, permissions, obligations, and workflows. This manuscript neither registers nor executes the referenced methods. This edition's [review record](MANUAL_REVIEW_v1.md) identifies the repository sources examined and the limits of that comparison.\n\n<a id=\"h_repository_application\"></a>\n\n## Repository application and source standing\n\nThis edition was compared with Chirality at revision `9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8` on 22 September 2026. It explains that identified repository basis; later work begins from the selected project's current instructions and owner directions. The [agent user manual](CHIRALITY_AGENT_USER_MANUAL_v1.md) turns the account into entry, delegation, execution, review, and continuation procedures. It remains a derivative guide, with the cited sources governing their own scope.\n\nThe App and Piping persistent local-graph loops are now maintained repository instructions. Root registers `chirality-root:bundled:workflow:construct-local-work-graph` and `chirality-root:bundled:workflow:bounded-reconciliation`; their [implementation record](../../execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md) distinguishes source integration from project work. The adopted loops recover an existing graph, construct or revise it from the user's intent where needed, advance ready work, verify results, reconcile affected Deliverable documents, and preserve continuation.\n\n| Project | Entry at the examined basis | Application limit |\n|---|---|---|\n| App | [App loop](../../projects/chirality-app-dev/loop/LOOP_INIT.md), its current graph, and [project instructions](../../projects/chirality-app-dev/AGENTS.md) | The selected September 21 whole-corpus reconciliation run retains its pinned method, phase cursor, and owner gates. |\n| Piping | [Piping loop](../../projects/chirality-piping/loop/LOOP_INIT.md), its current graph, and [project instructions](../../projects/chirality-piping/AGENTS.md) | The selected September 21 reconciliation run likewise keeps its own basis and gates. |\n| Runtime | [Runtime loop](../../projects/chirality-runtime/loop/LOOP_INIT.md), accepted carrier authority, handoff, and latest receipt | No App/Piping loop replacement or inferred DAG priority is adopted by the new-method notice. |\n| PEC | [PEC loop](../../projects/pec/loop/LOOP_INIT.md), Deliverable `Remaining`, owner packets, and its receipt rules | The shared-method notice does not replace PEC's selection procedure or open its implementation fences. |\n\nA new loop entry does not switch a continuing whole-corpus run to bounded reconciliation, resume a pause, or waive a selected workflow's handoff and receipt contract. The current pointer locates work; its contents and dated claims still require comparison with actual work and governing decisions. The initial development sequence and percentage-labelled phases in this manual express the author's framework, not the current stage or measured completion of a repository project.\n\nThe original source notes retain author attributions, archive names, external consultation dates, and domain examples as supplied in Edition 1. The original source archives and earlier editorial report are not included in this repository edition; their bytes and consultation history were not reconstructed by this review. Located repository counterparts are identified separately in the [review and source evidence](MANUAL_REVIEW_v1.md#sources-and-provenance). In particular, Chapter 2's `software-prd` is a proposed authoring method, not an entry found in the examined Root workflow catalog. Current shared publication, project adoption, run activation, actual execution, and human acceptance remain separate facts.",
+      "reason": "Replace unsupported packaging claim and establish dated project-specific applicability and source standing."
+    },
+    {
+      "group": "M03",
+      "v1_line": 245,
+      "old": "The normal sequence is therefore shared intent, PRD development and acceptance, decomposition, and project setup. Production implementation begins after these foundations have been established. An isolated prototype or investigation can inform them while conception remains open; its earlier use does not give it the standing of a production contribution. [1, 2, 5]",
+      "new": "The normal sequence is therefore shared intent, PRD development and acceptance, decomposition, and project setup. Production implementation begins after these foundations have been established. An isolated prototype or investigation can inform them while conception remains open; its earlier use does not give it the standing of a production contribution. [1, 2, 5]\n\nThis is the initial course for the development undertaking described here. In an existing project, recover the accepted basis and completed preparation before deciding what remains to do. A repair, continuation, or bounded change does not restart conception and setup merely because it begins in a new conversation. Reopen only the affected decisions and follow the owning project's current activation and change rules.",
+      "reason": "Prevent the new-project sequence from becoming a mandatory restart for existing authorized work."
+    },
+    {
+      "group": "M04",
+      "v1_line": 291,
+      "old": "The method uses four roles in three modes: HELP_HUMAN as Agent 0; HELPS_HUMANS and WORKING_ITEMS as the two Agent 1 roles; and TASK as Agent 2. These form the complete role repertoire for the method. Additional subject matter is handled through assignments, context, workflows, skills, and tools. The number of instances and the arrangement of their work can change without creating another kind of agent.",
+      "new": "The method uses four roles in three Types: HELP_HUMAN is Type 0, HELPS_HUMANS and WORKING_ITEMS are Type 1, and TASK is Type 2; Agent 0, 1, and 2 are shorthand for these Types. These form the complete role repertoire for the method. Additional subject matter is handled through assignments, context, workflows, skills, and tools. The number of instances and the arrangement of their work can change without creating another kind of agent.",
+      "reason": "Align Type vocabulary with the four-role responsibility model."
+    },
+    {
+      "group": "M05",
+      "v1_line": 341,
+      "old": "A composition tree and a dependency graph give different information about the same deliverable. The tree shows which package contains B. The dependency graph shows what B needs and which other work uses its result. Contributions in different packages may have a close production relationship. Contributions in one package may be sufficiently independent to proceed separately. The organisation of execution should take account of both relationships.",
+      "new": "A composition tree and a dependency graph give different information about the same deliverable. The tree shows which package contains B. The dependency graph shows what B needs and which other work uses its result. Contributions in different packages may have a close production relationship. Contributions in one package may be sufficiently independent to proceed separately. The organisation of execution should take account of both relationships.\n\nTwo further views help recover what the work means. A source and decision network connects claims to evidence, constraints, provenance, and supersession across folders. An attention view brings material relevant to a present question together through comparison, decomposition, and synthesis, leaving traces in briefs, decisions, and outputs. Use the views that answer the question; this does not require constructing four graphs or surveying the whole repository. Git ancestry records change history but does not by itself establish production dependency or accepted authority. [5]",
+      "reason": "Connect the manual graph account to Root's complementary source-network and attention views."
+    },
+    {
+      "group": "M02",
+      "v1_line": 438,
+      "old": "The proposed development loops share the six numbered sections shown in Figure 1.4. Their project pointers and current graph selections differ. The sequence below applies to traversal after the phase DAG is established. Directed dependency and SCC work before that point follows the owner’s steer and the selected resolution method. [1, 6, 9]",
+      "new": "At the repository basis examined for this edition, the App and Piping development loops use the six numbered sections shown in Figure 1.4. Their project pointers and selected graphs differ. Existing runs retain their selected methods, pinned basis, phase cursors, and owner gates until their own adoption. The sequence below applies to traversal after the phase DAG is established. Directed dependency and SCC work before that point follows the owner's steer and the selected resolution method. [1, 6, 9]",
+      "reason": "State current App/Piping adoption without converting an entry change into a run amendment."
+    },
+    {
+      "group": "M02",
+      "v1_line": 455,
+      "old": "*Figure 1.4. The six section names in the supplied development-loop proposal, in source order. The pointer summaries explain their function. Chapter 4 develops the sequence in detail. [6]*",
+      "new": "*Figure 1.4. The six section names in the App and Piping development loops at the edition's recorded repository basis, in source order. The pointer summaries explain their function. Chapter 4 develops the sequence in detail. [6]*",
+      "reason": "Correct proposal-only figure standing."
+    },
+    {
+      "group": "M03",
+      "v1_line": 459,
+      "old": "A missing graph target requires investigation. It may reflect an incorrect pointer, an unmerged record, or an interrupted update. A pointer deliberately set to `none` means no undertaking is currently selected there. Establish the intended course from the owner and the project before constructing one. Historical records can help this recovery, subject to their coverage and any required validation. Their age or prominence does not give them authority over current direction.",
+      "new": "A missing graph target requires investigation. It may reflect an incorrect pointer, an unmerged record, or an interrupted update. A pointer deliberately set to `none` means no undertaking is currently selected there. Recover the intended result from the owner's steering, conversation, and relevant project records. Where that basis is adequate, state the interpretation and construct the graph within the authorised scope; clarify only gaps that would materially change the scope, ordering, effort, or completion conditions. Historical records can help this recovery, subject to their coverage and any required validation. Their age or prominence does not give them authority over current direction.",
+      "reason": "Reflect adopted infer-and-clarify behavior without inventing a routine approval gate."
+    },
+    {
+      "group": "M06",
+      "v1_line": 521,
+      "old": "**[6] Entry and development.** The supplied `dev-loop-init-prompt.md`; `development-loop.zip/loop-1/loop/LOOP_INIT.md` and `loop-2/loop/LOOP_INIT.md`. The launcher establishes project, role, and steering. The proposed loops have a current-graph pointer, project pointers, and six numbered sections, 0–5. Inclusion in the manual does not adopt them in a project. The timing of their use follows [1].",
+      "new": "**[6] Entry and development.** The original manuscript cited the supplied `dev-loop-init-prompt.md` and proposed loops in `development-loop.zip`. The reproduced Piping launcher also has a [repository counterpart](../../projects/chirality-piping/init/dev-loop-init-prompt.md). Current application is documented by the [App](../../projects/chirality-app-dev/loop/LOOP_INIT.md) and [Piping](../../projects/chirality-piping/loop/LOOP_INIT.md) loop entries and the [September 22 implementation record](../../execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md). Historical archive provenance and current project adoption are distinct; the timing of the phase model follows [1].",
+      "reason": "Link current maintained loop sources while preserving archive provenance."
+    },
+    {
+      "group": "M06",
+      "v1_line": 527,
+      "old": "**[9] Local graph and reconciliation methods.** `development-loop.zip/construct-local-work-graph/WORKFLOW.md`, its `resources/work-graph-template.md`, and `bounded-reconciliation/WORKFLOW.md`. Route selection, executable nodes, continuing state, and bounded comparison with warranted edits. The outline in Figure 1.4 quotes the loop’s section names; the record specimen is illustrative.",
+      "new": "**[9] Local graph and reconciliation methods.** The original source was `development-loop.zip`. Current maintained counterparts are [construct-local-work-graph](../../workflows/construct-local-work-graph/WORKFLOW.md), its [graph template](../../workflows/construct-local-work-graph/resources/work-graph-template.md), and [bounded-reconciliation](../../workflows/bounded-reconciliation/WORKFLOW.md), from the bundled `chirality-root` library. They support route selection, executable nodes, continuing state, and bounded comparison with warranted edits. The outline in Figure 1.4 quotes the loop's section names; the record specimen is illustrative. Source-qualified selection and in-flight adoption remain explicit.",
+      "reason": "Use navigable registered counterparts without asserting archive byte equality."
+    },
+    {
+      "group": "M07",
+      "v1_line": 553,
+      "old": "The `software-prd` workflow gives this preparation a defined method. HELPS_HUMANS works with the human to develop the product account, examines the material that can support it, and brings an identified, reviewed document back for acceptance. A feature can be developed in a small set of records. A larger product can draw on more extensive source intake, bounded investigations, and several connected sections or normative annexes. The method preserves the same distinction between agent-prepared proposals and human commitments at either scale. [1, 4, 14]",
+      "new": "This chapter describes the proposed `software-prd` method, draft version 1, as an authoring pattern for human review. It is not registered in the Root workflow catalog at the repository basis examined for this edition. Under that proposed method, HELPS_HUMANS works with the human to develop the product account, examines the material that can support it, and brings an identified, reviewed document back for acceptance. A feature can be developed in a small set of records. A larger product can draw on more extensive source intake, bounded investigations, and several connected sections or normative annexes. The method preserves the same distinction between agent-prepared proposals and human commitments at either scale. [1, 4, 14]",
+      "reason": "Make draft/unregistered standing visible at the first substantive introduction."
+    },
+    {
+      "group": "M08",
+      "v1_line": 1106,
+      "old": "Preparation creates the package folders and local records for each Deliverable, including its context, status, references, and dependency container. It populates source-grounded metadata without inventing engineering content or dependency edges. The supplied scaffolding tool reports the paths it created. Existing files, including existing empty files, remain unchanged unless a separate repair assignment authorises them. This makes an interrupted setup recoverable without overwriting work already performed. [10, 12]",
+      "new": "The effective `preparation` skill creates the package folders and local records for each Deliverable, including its context, status, references, and dependency container. It populates source-grounded metadata without inventing engineering content or dependency edges. The supplied scaffolding tool reports the paths it created. Existing files, including existing empty files, remain unchanged unless a separate repair assignment authorises them. This makes an interrupted setup recoverable without overwriting work already performed. [10, 12]",
+      "reason": "Name the current reusable component kind."
+    },
+    {
+      "group": "M07",
+      "v1_line": 1176,
+      "old": "The `software-prd` package described here is draft version 1, prepared for human review under `create-workflow`. It remains unregistered. Its inclusion in this manual does not establish acceptance, successful execution, or suitability for every project. The complete proposed instructions and their two supporting guides accompany the source bundle. [14, 15]",
+      "new": "The `software-prd` package described here is draft version 1, identified by the original manuscript as prepared for human review under `create-workflow`. Its original entrypoint and two supporting guides were not available for independent examination in this repository review. This chapter does not register the method or establish acceptance, successful execution, or suitability for every project. Before operational use, obtain and inspect the intended package and preserve its source-qualified identity. An authorised ad hoc PRD assignment remains an ad hoc undertaking unless a reusable workflow is deliberately adopted. [14, 15]",
+      "reason": "Replace unavailable accompanying-package claim with actual evidence limit."
+    },
+    {
+      "group": "M06",
+      "v1_line": 1186,
+      "old": "**[5] Development continuity.** The supplied launcher and the proposed loops in `development-loop.zip`, read with the local-graph construction method. Current steering and graph state support ordinary continuation. The earlier standalone loop supplies retained detailed examination examples only where the owning project adopts them. Method-specific handoffs, including PRD and decomposition transfers, remain distinct from routine session entry.",
+      "new": "**[5] Development continuity.** The original source was the supplied launcher and proposed loops in `development-loop.zip`. Current counterparts are the [App](../../projects/chirality-app-dev/loop/LOOP_INIT.md) and [Piping](../../projects/chirality-piping/loop/LOOP_INIT.md) loop entries and [local-graph construction method](../../workflows/construct-local-work-graph/WORKFLOW.md). Existing runs retain their selected methods and gates; Runtime and PEC retain separate project entry procedures. Method-specific handoffs, including PRD and decomposition transfers, remain distinct from ordinary continuation under adopted local-graph loops.",
+      "reason": "Clarify current continuity sources and project scope."
+    },
+    {
+      "group": "M08",
+      "v1_line": 1196,
+      "old": "**[10] Setup and preparation.** `workflows-FEED.zip`: `project-setup/WORKFLOW.md`, `resources/contract.md`, and `resources/method.md`; `preparation/WORKFLOW.md` and its contract and method. Supports workspace inspection, coordination representation, declared writes, preservation of existing work, local records, optional Memory, and routing to preparation of the scope of work. Section 2.11 shows selected records and relationships, not the complete runtime interface or a complete fileset.",
+      "new": "**[10] Setup and preparation.** `workflows-FEED.zip`: `project-setup/WORKFLOW.md`, `resources/contract.md`, and `resources/method.md`; `preparation/WORKFLOW.md` and its contract and method. Supports workspace inspection, coordination representation, declared writes, preservation of existing work, local records, optional Memory, and routing to preparation of the scope of work. Section 2.11 shows selected records and relationships, not the complete runtime interface or a complete fileset.\n\nCurrent repository setup discovers the source-qualified [preparation skill](../../.agents/skills/preparation/SKILL.md); [project-setup](../../workflows/project-setup/resources/method.md) records that selection and routes new PROJECT/SOFTWARE production to `scope-of-work`, `MODE=INIT`. Existing complete legacy contracts keep their compatibility route until an authorised conversion.",
+      "reason": "Give the archived preparation reference a current skill counterpart and compatibility limit."
+    },
+    {
+      "group": "M08",
+      "v1_line": 1399,
+      "old": "The setup workflow uses the effective, source-qualified `preparation` method. Its actor may be an eligible manager applying the bounded method or a delegated TASK. The selected origin, actual actor, read context, and permitted writes are recorded with the assignment. The host supplies the operations available to that actor.",
+      "new": "The setup workflow uses the effective, source-qualified `preparation` skill. Its actor may be an eligible manager applying the bounded method or a delegated TASK. The selected origin, actual actor, read context, and permitted writes are recorded with the assignment. The host supplies the operations available to that actor.",
+      "reason": "Avoid teaching archived preparation packaging as current invocation."
+    },
+    {
+      "group": "M09",
+      "v1_line": 1459,
+      "old": "`ScopeOfWork.md` is the human-readable production contract for one PROJECT or SOFTWARE Deliverable. It develops the allocated scope into a statement of the output, its governing requirements, the conditions of completion, and the means of production and verification. Its objective and scope references retain the relationship to the accepted project basis. [6, 7]",
+      "new": "`ScopeOfWork.md` is the human-readable production contract for one PROJECT or SOFTWARE Deliverable. It develops the allocated scope into a statement of the output, its governing requirements, the conditions of completion, and the means of production and verification. Its objective and scope references retain the relationship to the accepted project basis. [6, 7]\n\nThis chapter uses the Scope-of-Work format for new production authoring. Before working on an existing Deliverable, establish its active format and governing adoption. A valid legacy-only `Datasheet.md`, `Specification.md`, `Procedure.md`, and `Guidance.md` kit can remain active during its authorised transition. Inspect that kit where it still governs; do not recreate retired files or treat archived copies as current. Format conversion is a separate, lifecycle-neutral undertaking.",
+      "reason": "Preserve active legacy production contracts and prevent accidental reinitialization."
+    },
+    {
+      "group": "M06",
+      "v1_line": 1818,
+      "old": "The procedures described here require an adopted project basis, applicable method versions, and the operations actually available in the host. The chapter does not enact workflow adoption, record a project gate, or change an operational file. Its source bundle preserves the examined versions and the separate editorial notes on unresolved source interfaces.",
+      "new": "The procedures described here require an adopted project basis, applicable method versions, and the operations actually available in the host. The chapter does not enact workflow adoption, record a project gate, or change an operational file. The original archive citations preserve the manuscript's provenance; this edition's [review record](MANUAL_REVIEW_v1.md#sources-and-provenance) identifies the current counterparts examined without asserting that unavailable archive bytes match them.",
+      "reason": "Remove unsupported source-bundle delivery assertion."
+    },
+    {
+      "group": "M08",
+      "v1_line": 1828,
+      "old": "**[5] Structural preparation.** `workflows-FEED.zip`: `preparation/WORKFLOW.md`, `resources/contract.md`, and `resources/method.md`, principally tasks A–C. Read with the implementations of `scaffold_package.sh`, `scaffold_deliverable.sh`, and `write_status.sh` in `tools-FEED.zip/scaffolding/`. Exact creation and preservation rules, source-faithful local context, references, dependency declarations, status, and optional Memory.",
+      "new": "**[5] Structural preparation.** `workflows-FEED.zip`: `preparation/WORKFLOW.md`, `resources/contract.md`, and `resources/method.md`, principally tasks A–C. Read with the implementations of `scaffold_package.sh`, `scaffold_deliverable.sh`, and `write_status.sh` in `tools-FEED.zip/scaffolding/`. Exact creation and preservation rules, source-faithful local context, references, dependency declarations, status, and optional Memory.\n\nThe current repository counterpart is the [preparation skill](../../.agents/skills/preparation/SKILL.md), selected through [project-setup](../../workflows/project-setup/resources/method.md). Its structural write boundary remains distinct from production-content authoring.",
+      "reason": "Identify the current skill implementation without rewriting archive history."
+    },
+    {
+      "group": "M09",
+      "v1_line": 1832,
+      "old": "**[7] Scope-of-work standard.** `DELIVERABLE_SCOPE_OF_WORK_STANDARD.md`, especially §§1, 3–5, and 8. Canonical production-contract form, ordered headings, statement identifiers, evaluation matrix, checklist fidelity, and lifecycle meaning. The supplied file's activation notice makes operational effect conditional on approval of D-GOV-16. This chapter describes the prescribed form without asserting that the notice itself proves activation.",
+      "new": "**[7] Scope-of-work standard.** `DELIVERABLE_SCOPE_OF_WORK_STANDARD.md`, especially §§1, 3–5, and 8. Canonical production-contract form, ordered headings, statement identifiers, evaluation matrix, checklist fidelity, and lifecycle meaning. The supplied file's activation notice makes operational effect conditional on approval of D-GOV-16. The repository's [D-GOV-16 record](../../docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md) records published approval on 12 July 2026. That activation does not establish every individual conversion, lifecycle transition, or later amendment; the active format and applicable adoption remain to be recovered for the Deliverable in use.",
+      "reason": "Replace unknown activation status with the published decision while retaining conversion boundaries."
+    },
+    {
+      "group": "M06",
+      "v1_line": 1842,
+      "old": "**[12] Session continuity.** The supplied `dev-loop-init-prompt.md` and the two proposed `LOOP_INIT.md` files in `development-loop.zip`, with `construct-local-work-graph`. Current steering, current-state recovery, graph construction and traversal, and ordinary continuation without a compulsory separate handoff. Directed SCC work precedes the first DAG; DAG-derived local graphs guide subsequent development.",
+      "new": "**[12] Session continuity.** The original source was the supplied `dev-loop-init-prompt.md` and proposed loops in `development-loop.zip`. Current counterparts are the [Piping launcher](../../projects/chirality-piping/init/dev-loop-init-prompt.md), [App loop](../../projects/chirality-app-dev/loop/LOOP_INIT.md), [Piping loop](../../projects/chirality-piping/loop/LOOP_INIT.md), and [construct-local-work-graph](../../workflows/construct-local-work-graph/WORKFLOW.md), with adoption recorded in the [September 22 implementation record](../../execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md). Ordinary graph continuity applies within those loops and preserves the selected run's own outputs and gates. Directed SCC work precedes the first DAG; DAG-derived local graphs guide subsequent development in the author's phase model.",
+      "reason": "Update continuity provenance and applicability."
+    },
+    {
+      "group": "M12",
+      "v1_line": 1844,
+      "old": "**[13] Theory and philosophical account.** `01_theory.md`, §§1–10; `03_philosophical_framework.md`, §§3.2 and 3.6; `05_epistemic_architecture.md`, §§5.3–5.5; and `09_discussion.md`, §§9.2.6 and 9.3.5. Purpose, commitments, records, warrants, situated human reliance, coordination, and attention. The accepted manual chapters provide the preceding development of these concepts.",
+      "new": "**[13] Theory and philosophical account.** `01_theory.md`, §§1–10; `03_philosophical_framework.md`, §§3.2 and 3.6; `05_epistemic_architecture.md`, §§5.3–5.5; and `09_discussion.md`, §§9.2.6 and 9.3.5. Purpose, commitments, records, warrants, situated human reliance, coordination, and attention. The preceding manual chapters provide the preceding development of these concepts.",
+      "reason": "Remove manuscript-acceptance implication not established by this review."
+    },
+    {
+      "group": "M10",
+      "v1_line": 1852,
+      "old": "**[17] Stable production claims.** `DELIVERABLE_CONCORDANCE_METHOD.md`, supplied Revision 2, §3.1. Decision, interface, and named-verification tests for claim granularity; mechanism descriptions as supporting evidence; human treatment of borderline commitments.",
+      "new": "**[17] Stable production claims.** `DELIVERABLE_CONCORDANCE_METHOD.md`, supplied Revision 2, §3.1. Decision, interface, and named-verification tests for claim granularity; mechanism descriptions as supporting evidence; human treatment of borderline commitments.\n\nThe current [shared method](../../docs/DELIVERABLE_CONCORDANCE_METHOD.md) records Revision 2 under [D-GOV-44](../../docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md); in-flight runs retain their own pins until their owning adoption.",
+      "reason": "Distinguish shared ratification from run adoption."
+    },
+    {
+      "group": "M11",
+      "v1_line": 1940,
+      "old": "The init-prompt identifies the project, HELP_HUMAN as the active role, and any steer for the run. It directs that role to `LOOP_INIT.md`. The loop file carries project pointers, a **current work graph** pointer, and the recurrent procedure. The graph holds the undertaking's changing work and recovery information. This arrangement gives a fresh session a defined place to begin without requiring a separate handoff.",
+      "new": "The init-prompt identifies the project, HELP_HUMAN as the active role, and any steer for the run. It directs that role to `LOOP_INIT.md`. The loop file carries project pointers, a **current work graph** pointer, and the recurrent procedure. The graph holds the undertaking's changing work and recovery information. This arrangement gives a fresh session a defined place to begin without requiring a separate handoff where the owning loop and selected method permit.",
+      "reason": "Bound the no-handoff rule at its point of use."
+    },
+    {
+      "group": "M02",
+      "v1_line": 1942,
+      "old": "The two supplied project loops use the same traversal sequence. Their project paths and verification references differ, and each retains its own current-graph selection.",
+      "new": "The App and Piping development loops adopted in the repository on 22 September 2026 use the same traversal sequence. Their project pointers, checks, and selected graphs differ. Runtime and PEC retain their own entry and closeout contracts. This chapter develops the App/Piping local-graph method; application elsewhere follows the owning project's adopted basis.",
+      "reason": "State the actual current loop scope."
+    },
+    {
+      "group": "M02",
+      "v1_line": 1964,
+      "old": "*Figure 4.2. Entry and the six numbered sections of the proposed development loops. Section names retain their source wording and order. The summaries above them identify the functions of entry and the pointers. [2]*",
+      "new": "*Figure 4.2. Entry and the six numbered sections of the App and Piping development loops. Section names retain their source wording and order. The summaries above them identify the functions of entry and the pointers. [2]*",
+      "reason": "Correct figure adoption status."
+    },
+    {
+      "group": "M02",
+      "v1_line": 1968,
+      "old": "Also determine whether previous workers or checks are still active. A new session does not by itself release their files or test resources. Verify that the prior operation has stopped, or explicitly transfer ownership, before assigning another participant to the same work. The graph's recovery information should identify active operations whose continuation matters.",
+      "new": "Also determine whether previous workers or checks are still active. A new session does not by itself release their files or test resources. Verify that the prior operation has stopped, or explicitly transfer ownership, before assigning another participant to the same work. The graph's recovery information should identify active operations whose continuation matters.\n\nFollow any phase cursor or handoff linked by the selected graph. A continuing governed run retains its selected method, pinned source basis, and owner gates until it adopts a change through its own decision path. In the September 2026 App and Piping adoption, the new pointers select existing whole-corpus reconciliation graphs; selecting them neither replaces their method with bounded reconciliation nor resumes development.",
+      "reason": "Preserve the current selected runs through an entry-procedure adoption."
+    },
+    {
+      "group": "M06",
+      "v1_line": 1978,
+      "old": "`construct-local-work-graph` gives this work five ordered steps: understand the user's intended course; select a route through the project DAG; develop enough scope for executable work; build and check the local graph; then save it and return to the loop. HELP_HUMAN coordinates this preparation with the human. WORKING_ITEMS can develop a selected portion, and TASK can perform a bounded inspection or drafting contribution. Graph writes are performed by an actor with the relevant write authority. [3, 5, 6]",
+      "new": "The adopted `chirality-root:bundled:workflow:construct-local-work-graph` gives this work five ordered steps: understand the user's intended course; select a route through the project DAG; develop enough scope for executable work; build and check the local graph; then save it and return to the loop. HELP_HUMAN coordinates this preparation with the human. WORKING_ITEMS can develop a selected portion, and TASK can perform a bounded inspection or drafting contribution. Graph writes are performed by an actor with the relevant write authority. [3, 5, 6]",
+      "reason": "Retain the selected method source-qualified identity."
+    },
+    {
+      "group": "M02",
+      "v1_line": 2035,
+      "old": "Keep a useful existing graph in its current form, including JSON. For a new graph, the supplied method prefers `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`. Supporting results can be kept beside it or linked from an appropriate existing location. Record the actual selected path in the loop pointer. The existing Piping example retains a graph under `AgentRuns`; the method requires no relocation merely to adopt the preferred path for new work. [2, 5]",
+      "new": "Keep a useful existing graph in its current form, including JSON. For a new graph, the supplied method prefers `execution/_Coordination/WorkGraphs/<undertaking>/WORK_GRAPH.md`. Supporting results can be kept beside it or linked from an appropriate existing location. Record the actual selected path in the loop pointer. At the dated repository basis, both App and Piping retain selected graphs under `AgentRuns`; the method requires no relocation merely to adopt the preferred path for new work. [2, 5]",
+      "reason": "Use current selected-graph examples."
+    },
+    {
+      "group": "M02",
+      "v1_line": 2037,
+      "old": "One maintainer integrates graph updates against the latest revision. Children return findings and proposed state changes to that maintainer, with the evidence needed to examine them. Preserve revisions and useful completed work. Retain necessary evidence before temporary worktrees are removed. The local graph then supports continuation from current state, including after a change of agent or session.",
+      "new": "One maintainer integrates graph updates against the latest revision. Children return findings and proposed state changes to that maintainer, with the evidence needed to examine them. Preserve revisions and useful completed work. Retain necessary evidence before temporary worktrees are removed. The local graph then supports continuation from current state, including after a change of agent or session.\n\nUpdating the designated pointer within an authorised undertaking is navigation-state maintenance. Changing the loop's behaviour or constraints is an instruction change with its own authority and manifest. Neither act supplies new production scope.",
+      "reason": "Explain the adopted pointer-maintenance distinction."
+    },
+    {
+      "group": "M02",
+      "v1_line": 2106,
+      "old": "State how the undertaking will be organised: HELP_HUMAN's contribution, manager responsibilities, selected execution resources, concurrency, write scopes, review, and integration. Obtain agreement where steering or an adopted procedure requires it. Reuse a clear, applicable strategy and bring material changes back under its terms. The proposed loop provides no additional strategy-approval gate at every session entry. [1, 2, 5]",
+      "new": "State how the undertaking will be organised: HELP_HUMAN's contribution, manager responsibilities, selected execution resources, concurrency, write scopes, review, and integration. Obtain agreement where steering or an adopted procedure requires it. Reuse a clear, applicable strategy and bring material changes back under its terms. The App/Piping development-loop procedure provides no additional strategy-approval gate at every session entry. [1, 2, 5]",
+      "reason": "Correct proposal-only terminology without adding an approval gate."
+    },
+    {
+      "group": "M04",
+      "v1_line": 2194,
+      "old": "Sealing records the assignment as it stood at launch. Preserve the brief, the supplied context and method identities, and their hashes where available. Record actual parentage and the mechanism used to create the child. An authored brief is a prepared instruction; the execution record must establish whether a child actually ran and what it received.",
+      "new": "Sealing records the assignment as it stood at launch. Preserve the brief, the supplied context and method identities, and their hashes where available. Record actual parentage and the mechanism used to create the child. An authored brief is a prepared instruction; the execution record must establish whether a child actually ran and what it received.\n\nChirality distinguishes managed `delegate_agent` sessions from delegated-harness-native descendants. Record the class actually used and the role instructions actually supplied. A native child or full-history fork does not by itself establish a different role. Where the host remains broadly writable, describe a brief's narrower scope as an instruction restriction rather than claiming sandbox enforcement.",
+      "reason": "Clarify actual role delivery and enforcement without changing the role ceiling."
+    },
+    {
+      "group": "M02",
+      "v1_line": 2438,
+      "old": "The proposed loop points to `software-workflow.json` and the project's `AGENTS.md` for the affected checks, evidence, and review requirements. Read those sources for the particular undertaking. **Continuous integration**, or **CI**, executes configured checks on source changes. Record required results against the candidate that merges and retain any outstanding native or practitioner examination. [2]",
+      "new": "The App/Piping development loops point to `software-workflow.json` and the project's `AGENTS.md` for the affected checks, evidence, and review requirements. Read those sources for the particular undertaking. **Continuous integration**, or **CI**, executes configured checks on source changes. Record required results against the candidate that merges and retain any outstanding native or practitioner examination. [2]",
+      "reason": "Use the current adopted check-location rule."
+    },
+    {
+      "group": "M06",
+      "v1_line": 2452,
+      "old": "The local graph plans **bounded reconciliation** throughout the undertaking. Each reconciliation node follows a coherent result and names the folders and sections to be examined against identified code and evidence. Its main output is the warranted change to those documents. When editing is authorised, a report of differences leaves that production work unfinished. A supported conclusion that no change is needed can also complete the node within its stated scope.",
+      "new": "The local graph plans **bounded reconciliation** throughout the undertaking, using `chirality-root:bundled:workflow:bounded-reconciliation` in the adopted App/Piping loops. Each reconciliation node follows a coherent result and names the folders and sections to be examined against identified code and evidence. Its main output is the warranted change to those documents. When editing is authorised, a report of differences leaves that production work unfinished. A supported conclusion that no change is needed can also complete the node within its stated scope.",
+      "reason": "Retain the bounded method's source-qualified identity."
+    },
+    {
+      "group": "M09",
+      "v1_line": 2468,
+      "old": "| `ScopeOfWork.md` | Purpose and objective links, outputs and behaviour, requirements, completion criteria, methods, governing decisions, and the Output and Evaluation Matrix. Locate the statements affected by the result. |",
+      "new": "| `ScopeOfWork.md` | Purpose and objective links, outputs and behaviour, requirements, completion criteria, methods, governing decisions, and the Output and Evaluation Matrix. Locate the statements affected by the result. |\n| Active legacy `Datasheet.md`, `Specification.md`, `Procedure.md`, `Guidance.md` | Inspect the equivalent definition, requirements, method, and rationale where this remains the governing production format. Do not recreate retired files or update archived copies as current documents. |",
+      "reason": "Include the active legacy format in the actual comparison table."
+    },
+    {
+      "group": "M10",
+      "v1_line": 2482,
+      "old": "Classify each material difference by the action it requires. Where documentation has fallen behind, update the current description, resolved detail, verification account, or Remaining item from the evidence. Where implementation falls short, preserve the requirement and record the particular gap for repair. Apply an adopted design decision within the assignment, keeping its basis and residual work visible. Return unapproved departures and uncertain results as precise investigations, proposed edits, or human decisions. [11]",
+      "new": "Classify each material difference by the action it requires. Where documentation has fallen behind, update the current description, resolved detail, verification account, or Remaining item from the evidence. Where implementation falls short, preserve the requirement and record the particular gap for repair. Apply an adopted design decision within the assignment, keeping its basis and residual work visible. Return unapproved departures and uncertain results as precise investigations, proposed edits, or human decisions. [11]\n\nFor stale mechanism-level wording, apply the decision, interface, and named-verification tests before choosing the repair. Where the adopted claim-granularity rule applies, prefer to restate the stable obligation and move mechanism detail into supporting evidence. Retaining a mechanism-level claim needs the owning ruling's reason, for example that the mechanism is itself decision-bound. This correction does not authorise changing a requirement; borderline classifications remain visible for the owning decision. [14]",
+      "reason": "Make the current default claim-granularity repair explicit and conditional on adoption."
+    },
+    {
+      "group": "M11",
+      "v1_line": 2530,
+      "old": "Ordinary continuation does not require a handoff or new receipt when the graph already holds the needed facts. Retain existing handoffs and receipts as historical material and use them where they help recovery. The incoming agent returns to the current graph after establishing what those records support. It need not create another graph or restart the completed portions of the undertaking.",
+      "new": "In the adopted App/Piping development loops, ordinary continuation needs no additional session handoff or receipt when the graph and linked results already contain the required facts. A separately selected workflow retains its own output contract, and other project loops retain their adopted continuity requirements. Existing handoffs and receipts remain historical evidence; apply the owning validation rule before using a historical receipt as a recovery cursor. Continue the selected undertaking without creating a duplicate graph or restarting completed work.",
+      "reason": "Prevent the graph continuity rule from erasing Runtime, PEC or selected workflow outputs."
+    },
+    {
+      "group": "M06",
+      "v1_line": 2589,
+      "old": "This chapter develops the author's method of steering detailed development through local work graphs. The numbered references distinguish current author direction, the supplied loop proposal, supporting methods, and the project-specific execution practices retained for their stated purpose. The documentary figures explain those sources; they record no actual dispatch, test, review, or acceptance.",
+      "new": "This chapter develops the author's method of steering detailed development through local work graphs. The numbered references distinguish author direction, the supplied loop proposal and current adopted counterparts, supporting methods, and the project-specific execution practices retained for their stated purpose. The documentary figures explain those sources; they record no actual dispatch, test, review, or acceptance.",
+      "reason": "Keep archive provenance alongside updated standing."
+    },
+    {
+      "group": "M06",
+      "v1_line": 2593,
+      "old": "**[2] Proposed development loops.** `development-loop.zip`: `loop-1/loop/LOOP_INIT.md` and `loop-2/loop/LOOP_INIT.md`, complete. The App and Piping variants share six numbered sections, 0–5. They differ in project pointers, existing graph selection, and historical receipt-validation references. Both direct current work through the graph and its recovery information, with bounded reconciliation during traversal. Read with the supplied `dev-loop-init-prompt.md` for the launcher's project, role, and steering fields. The author supplied these loops as the current proposal; their inclusion establishes no repository adoption.",
+      "new": "**[2] Development loops and adoption.** The original manuscript used `development-loop.zip`, `loop-1/loop/LOOP_INIT.md` and `loop-2/loop/LOOP_INIT.md`, as supplied proposals. This edition additionally uses the current [App loop](../../projects/chirality-app-dev/loop/LOOP_INIT.md) and [Piping loop](../../projects/chirality-piping/loop/LOOP_INIT.md). Their adoption is recorded in the [implementation record](../../execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md), its [instruction-tranche manifest](../../docs/governance_harness/tranche_manifests/ROOT-LOCAL-WORK-GRAPH-METHODS-20260922.yaml), and routed notices. Both loops use sections 0–5 and persistent graph recovery. Runtime and PEC received notices; their loop procedures were not replaced. Read the current launcher and owning instructions for applicable entry and checks.",
+      "reason": "Replace proposal-only source status with exact current adoption evidence."
+    },
+    {
+      "group": "M06",
+      "v1_line": 2599,
+      "old": "**[5] Local graph construction.** `development-loop.zip/construct-local-work-graph/WORKFLOW.md` and `resources/work-graph-template.md`, complete. Intent and source direction, route selection, actual-state inspection, executable node definition, dependency checks, planned reconciliation, graph identity and maintenance, preferred location for a new graph, and recovery information. The manuscript condenses the template for explanation without prescribing another schema.",
+      "new": "**[5] Local graph construction.** `development-loop.zip/construct-local-work-graph/WORKFLOW.md` and `resources/work-graph-template.md`, complete. Intent and source direction, route selection, actual-state inspection, executable node definition, dependency checks, planned reconciliation, graph identity and maintenance, preferred location for a new graph, and recovery information. The manuscript condenses the template for explanation without prescribing another schema.\n\nThe current maintained counterpart is [construct-local-work-graph](../../workflows/construct-local-work-graph/WORKFLOW.md) and its [template](../../workflows/construct-local-work-graph/resources/work-graph-template.md), from the bundled `chirality-root` library.",
+      "reason": "Link the maintained graph method."
+    },
+    {
+      "group": "M09",
+      "v1_line": 2603,
+      "old": "**[7] Deliverable production contract.** `DELIVERABLE_SCOPE_OF_WORK_STANDARD.md`, §§1, 3–5, and 8, read with the supplied `scope-of-work` package. The current `ScopeOfWork.md` production target, its Output and Evaluation Matrix, and the Remaining items in `_STATUS.md`. The standard's stated activation condition and the adopted lifecycle policy govern operational use; this chapter performs no status transition.",
+      "new": "**[7] Deliverable production contract.** `DELIVERABLE_SCOPE_OF_WORK_STANDARD.md`, §§1, 3–5, and 8, read with the supplied `scope-of-work` package. The current `ScopeOfWork.md` production target, its Output and Evaluation Matrix, and the Remaining items in `_STATUS.md`. The standard's stated activation condition and the adopted lifecycle policy govern operational use; this chapter performs no status transition.\n\nThe repository's [D-GOV-16 ruling](../../docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md) records published approval on 12 July 2026; individual conversion and lifecycle acts remain separate. Active legacy contracts retain the compatibility described in §3.6.",
+      "reason": "Connect the standard's condition to its actual decision."
+    },
+    {
+      "group": "M06",
+      "v1_line": 2611,
+      "old": "**[11] Bounded reconciliation.** `development-loop.zip/bounded-reconciliation/WORKFLOW.md`, complete. Five steps from naming the completed work and affected Deliverables through bidirectional comparison, warranted document edits, checking, and return of remaining consequences. The chapter addresses the current Scope-of-Work arrangement. Routine edits remain bounded by the assignment and owning rules; project scope, lifecycle, acceptance, and pinned-basis changes retain their separate authority.",
+      "new": "**[11] Bounded reconciliation.** `development-loop.zip/bounded-reconciliation/WORKFLOW.md`, complete. Five steps from naming the completed work and affected Deliverables through bidirectional comparison, warranted document edits, checking, and return of remaining consequences. The chapter addresses the current Scope-of-Work arrangement. Routine edits remain bounded by the assignment and owning rules; project scope, lifecycle, acceptance, and pinned-basis changes retain their separate authority.\n\nThe current maintained counterpart is [bounded-reconciliation](../../workflows/bounded-reconciliation/WORKFLOW.md), from the bundled `chirality-root` library.",
+      "reason": "Link the maintained reconciliation method."
+    },
+    {
+      "group": "M06",
+      "v1_line": 2613,
+      "old": "**[12] Detailed development checks.** The earlier supplied `LOOP_INIT.md`, principally Build and test through user workflows, Reproducible evidence, and Protected checks, review and integration, read with Root instructions and the bounded software method. These support the retained explanations of connected tests, protected criteria, exact-candidate evidence, independent review, backchecks, and integration. The proposed loops in [2] locate applicable check requirements in project `AGENTS.md` and `software-workflow.json`. Their complete current project-specific contents were not included in the new archive. The detailed checks remain subject to those project sources and the actual candidate; the loop itself supplies orientation and traversal.",
+      "new": "**[12] Detailed development checks.** The earlier supplied `LOOP_INIT.md` supported the retained explanations of connected tests, protected criteria, exact-candidate evidence, independent review, backchecks, and integration. Current requirements are maintained in the [App project instructions](../../projects/chirality-app-dev/AGENTS.md#development-checks-and-evidence), [Piping project instructions](../../projects/chirality-piping/AGENTS.md#software-checks), and each project's `software-workflow.json`. The earlier loop remains dated provenance. Read the affected current checks for the actual candidate; the loop itself supplies orientation and traversal.",
+      "reason": "Locate current checks rather than referring only to obsolete loop sections."
+    },
+    {
+      "group": "M06",
+      "v1_line": 2617,
+      "old": "The accompanying source bundle preserves the examined files and their hashes. Project-specific paths, permissions, command names, and review rules remain subject to the actual project and host. The manuscript describes a proposed course of work; it does not register a method, adopt a loop, issue a DAG, accept a Deliverable, or authorise release.",
+      "new": "The [review record](MANUAL_REVIEW_v1.md#sources-and-provenance) identifies the current counterparts examined and their hashes; unavailable original archives remain provenance references. Project-specific paths, permissions, command names, and review rules remain subject to the actual project and host. The manuscript describes a proposed course of work; it does not register a method, adopt a loop, issue a DAG, accept a Deliverable, or authorise release.",
+      "reason": "Replace unsupported delivered-bundle assertion."
+    },
+    {
+      "group": "M10",
+      "v1_line": 2619,
+      "old": "**[14] Claim granularity and information ownership.** `DELIVERABLE_CONCORDANCE_METHOD.md`, supplied Revision 2, §§2–3.1, and the supplied reconciliation contract. Stable claims, supporting mechanism evidence, Remaining ownership under the adopted method, and the separation of observation from scope authority.",
+      "new": "**[14] Claim granularity and information ownership.** `DELIVERABLE_CONCORDANCE_METHOD.md`, supplied Revision 2, §§2–3.1, and the supplied reconciliation contract. Stable claims, supporting mechanism evidence, Remaining ownership under the adopted method, and the separation of observation from scope authority.\n\nThe current [shared method](../../docs/DELIVERABLE_CONCORDANCE_METHOD.md) and [D-GOV-44](../../docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md) establish the published Revision-2 default while preserving each in-flight run's own adoption.",
+      "reason": "Bind the new repair paragraph to its governing source and limit."
+    },
+    {
+      "group": "M11",
+      "v1_line": 2729,
+      "old": "A separate handoff can help when an outside interruption leaves an unfinished diagnosis, a running operation, or a decision difficult to recover from the graph. During ordinary traversal, current graph state and its linked records supply continuation. The loop's current pointer remains selected after completion until another undertaking is chosen. This preserves a definite endpoint and prevents a finished graph from becoming an unspoken instruction to start a new phase. [2]",
+      "new": "A separate handoff can help when an outside interruption leaves an unfinished diagnosis, a running operation, or a decision difficult to recover from the graph. In a loop that has adopted persistent graph continuity, current graph state and linked records supply ordinary continuation, and the pointer remains selected after completion until another undertaking is chosen. This preserves a definite endpoint and prevents a finished graph from becoming an unspoken instruction to start a new phase. A selected workflow or another project's closeout contract may still require its own handoff or receipt. [2]",
+      "reason": "Qualify continuity for readers entering Chapter 5 directly."
+    },
+    {
+      "group": "M09",
+      "v1_line": 2847,
+      "old": "The production contract identifies what a Deliverable is to contribute and how the contribution will be assessed. During completion, use it to examine the actual outputs and their evidence. The current `ScopeOfWork.md` gives the required objects and behaviours, the requirements and acceptance criteria, the production and verification methods, and the governing decisions. Its Output and Evaluation Matrix binds these elements together. [6]",
+      "new": "The production contract identifies what a Deliverable is to contribute and how the contribution will be assessed. During completion, use its adopted form to examine the actual outputs and their evidence. For a Chirality PROJECT or SOFTWARE Deliverable using `ScopeOfWork.md`, that file gives the required objects and behaviours, requirements and acceptance criteria, production and verification methods, and governing decisions; its Output and Evaluation Matrix binds these elements together. An active legacy document kit retains its accepted role until conversion. DOMAIN/KTY and other independent schemas use their own governing forms. [6]",
+      "reason": "Avoid universalizing the SOW representation beyond its adopted artifact types."
+    },
+    {
+      "group": "M13",
+      "v1_line": 3042,
+      "old": "The bounded method identifies the work and affected Deliverables, reads their current contents, compares them with implementation and evidence in both directions, makes and checks authorised changes, and returns the remaining consequences. Future requirements remain in the production contract. An implementation that has yet to satisfy them leaves corresponding work open. A supported no-change result can close the bounded comparison when the record already gives an accurate account.",
+      "new": "The bounded method identifies the work and affected Deliverables, reads their current contents, compares them with implementation and evidence in both directions, makes and checks authorised changes, and returns the remaining consequences. Future requirements remain in the production contract. An implementation that has yet to satisfy them leaves corresponding work open. A supported no-change result can close the bounded comparison when the record already gives an accurate account.\n\nWhen the assignment authorises document changes, a report alone does not complete the node: apply and check the warranted edits. If writes are outside the brief, return exact proposed changes and leave their application outstanding. The boundary between routine factual updates and decisions changing scope, lifecycle, acceptance, or a pinned basis remains as described in §4.11.",
+      "reason": "Restate the executable reconciliation output at the completion-stage entry."
+    },
+    {
+      "group": "M11",
+      "v1_line": 3238,
+      "old": "The same entry and local-graph method can carry the ensuing work. Preserve usable graphs and completed results, revise the selected scope under the human's direction, and identify any newly selected undertaking through the loop pointer. A separate handoff is useful only where it supplies continuation facts that the current record does not already make available. [2, 3]",
+      "new": "Where the owning loop has adopted this continuation method, the same entry and local graph can carry the ensuing work. Preserve usable graphs and completed results, revise selected scope under the human's direction, and identify any newly selected undertaking through the loop pointer. An additional handoff is useful when it supplies facts the current record lacks, and remains required where the selected workflow or project contract calls for it. [2, 3]",
+      "reason": "Preserve method-specific handoffs at transition."
+    },
+    {
+      "group": "M11",
+      "v1_line": 3410,
+      "old": "Keep the completed development graphs and their evidence available. They explain what was achieved and why particular choices were made. Leave the current graph selected until the next undertaking is chosen, then update the pointer within the available authority. Useful prior results remain linked as the publication work begins. [2]",
+      "new": "Keep the completed development graphs and their evidence available. They explain what was achieved and why particular choices were made. Where the loop has adopted this continuation method, leave the current graph selected until the next undertaking is chosen, then update the pointer within the available authority. Useful prior results remain linked as the publication work begins. [2]",
+      "reason": "Bound the publication-transition pointer rule."
+    },
+    {
+      "group": "M06",
+      "v1_line": 3436,
+      "old": "**[2] Recurrent development.** `development-loop.zip`: `loop-1/loop/LOOP_INIT.md` and `loop-2/loop/LOOP_INIT.md`. Their six numbered sections, 0–5, cover orientation, graph construction or revision, ready work, execution and evidence, bounded reconciliation, and continuation or completion. Current graph state supports ordinary continuation. A separate handoff supplies recovery information when needed. These supplied files are proposals; the manuscript does not establish project-loop adoption.",
+      "new": "**[2] Recurrent development.** `development-loop.zip`: `loop-1/loop/LOOP_INIT.md` and `loop-2/loop/LOOP_INIT.md`. Their six numbered sections, 0–5, cover orientation, graph construction or revision, ready work, execution and evidence, bounded reconciliation, and continuation or completion. Current graph state supports ordinary continuation. A separate handoff supplies recovery information when needed. The supplied archive is the historical source. Current [App](../../projects/chirality-app-dev/loop/LOOP_INIT.md) and [Piping](../../projects/chirality-piping/loop/LOOP_INIT.md) instructions establish this pattern in those two development loops, with selected-run pins and output contracts preserved. Runtime and PEC retain their own adopted procedures.",
+      "reason": "Correct Chapter 5 loop-source status."
+    },
+    {
+      "group": "M06",
+      "v1_line": 3438,
+      "old": "**[3] Construction of local undertakings.** `development-loop.zip/construct-local-work-graph/WORKFLOW.md` and `resources/work-graph-template.md`. Steering, route selection from the project DAG, current-state inspection, executable nodes, independent scopes, reconciliation, and continuation across sessions.",
+      "new": "**[3] Construction of local undertakings.** `development-loop.zip/construct-local-work-graph/WORKFLOW.md` and `resources/work-graph-template.md`. Steering, route selection from the project DAG, current-state inspection, executable nodes, independent scopes, reconciliation, and continuation across sessions.\n\nThe current repository counterpart is [construct-local-work-graph](../../workflows/construct-local-work-graph/WORKFLOW.md) with its [template](../../workflows/construct-local-work-graph/resources/work-graph-template.md), from the bundled `chirality-root` library.",
+      "reason": "Link maintained graph source."
+    },
+    {
+      "group": "M09",
+      "v1_line": 3444,
+      "old": "**[6] Production and evaluation basis.** `DELIVERABLE_SCOPE_OF_WORK_STANDARD.md`, §§1, 3–5, 8, and the checklist provisions of §10. `ScopeOfWork.md`, qualified OUT/REQ/AC/VER relationships, the Output and Evaluation Matrix, exact compilation of criteria, and Remaining as the delta against the production target. The standard retains its stated D-GOV-16 activation condition. The project must use its actual adopted production and lifecycle basis.",
+      "new": "**[6] Production and evaluation basis.** `DELIVERABLE_SCOPE_OF_WORK_STANDARD.md`, §§1, 3–5, 8, and the checklist provisions of §10. `ScopeOfWork.md`, qualified OUT/REQ/AC/VER relationships, the Output and Evaluation Matrix, exact compilation of criteria, and Remaining as the delta against the production target. The repository's published [D-GOV-16 ruling](../../docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md) satisfies the standard's activation condition. Its PROJECT/SOFTWARE scope, bounded legacy transition, and lifecycle-neutral conversion limits remain material; the project must use its actual adopted production and lifecycle basis.",
+      "reason": "Record ratification without inferring conversion or lifecycle adoption."
+    },
+    {
+      "group": "M06",
+      "v1_line": 3446,
+      "old": "**[7] Bounded reconciliation.** `development-loop.zip/bounded-reconciliation/WORKFLOW.md`. Five ordered steps carry a bounded result into actual comparison, authorised edits, checks, and remaining consequences. This loop-level method is distinct from the activated corpus-concordance programme in [15–16]. Optional Memory remains non-authoritative context.",
+      "new": "**[7] Bounded reconciliation.** `development-loop.zip/bounded-reconciliation/WORKFLOW.md`. Five ordered steps carry a bounded result into actual comparison, authorised edits, checks, and remaining consequences. This loop-level method is distinct from the activated corpus-concordance programme in [15–16]. Optional Memory remains non-authoritative context.\n\nThe current repository counterpart is [bounded-reconciliation](../../workflows/bounded-reconciliation/WORKFLOW.md), selected by the App and Piping development loops from the bundled `chirality-root` library.",
+      "reason": "Link maintained reconciliation source."
+    },
+    {
+      "group": "M10",
+      "v1_line": 3462,
+      "old": "**[15] Deliverable concordance.** `DELIVERABLE_CONCORDANCE_METHOD.md`, supplied Revision 2, labelled 22 September 2026. §§2–3 define information homes and claim-level comparison; §3.1 states the decision, interface, and named-verification tests and the default granularity-repair posture; §§4–6 define lifecycle, project adoption, and activation. The manuscript cites the supplied revision, without claiming independent verification of its ratification or adoption by a particular project. In-flight work retains its adopted pin until the required amendment is made.",
+      "new": "**[15] Deliverable concordance.** The supplied `DELIVERABLE_CONCORDANCE_METHOD.md`, Revision 2, labelled 22 September 2026, is the original manuscript's source. The current [repository method](../../docs/DELIVERABLE_CONCORDANCE_METHOD.md) records shared-method ratification on 11 July and the Revision-2 claim-granularity amendment under [D-GOV-44](../../docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md) on 22 September. Its §§2–3 establish information homes and claim-level comparison; §3.1 gives the decision, interface, and named-verification tests and the default granularity-repair posture; §§4–7 distinguish lifecycle, activation, and adoption. D-GOV-44 preserves App `RUN_D128` Revision-1 and workflow pins pending its later adoption rider, and routes notices for the receiving loops to decide adoption. Shared publication, project adoption, and an in-flight run's method remain separate facts.",
+      "reason": "Establish current ratification and preserve the explicit in-flight pin boundary."
+    },
+    {
+      "group": "M06",
+      "v1_line": 3474,
+      "old": "The source bundle retains the examined basis. This chapter describes the supplied methods and creates no operational authority.",
+      "new": "The [review record](MANUAL_REVIEW_v1.md#sources-and-provenance) retains this edition's examined repository basis; the original archive references do not imply that a complete source bundle is included. This chapter describes the supplied methods and creates no operational authority.",
+      "reason": "Correct source-bundle availability."
+    },
+    {
+      "group": "M12",
+      "v1_line": 3551,
+      "old": "**[2] Project-management theory and developed practice.** `01_theory.md`, §§1–2 and 9–11, together with the accepted Chapter 5, §§5.9–5.14. Candidate identity, bounded completion, accountable acceptance, continuity, shipping, and the conditional use of retained project records in maintenance.",
+      "new": "**[2] Project-management theory and developed practice.** `01_theory.md`, §§1–2 and 9–11, together with Chapter 5 of this manual, §§5.9–5.14. Candidate identity, bounded completion, accountable acceptance, continuity, shipping, and the conditional use of retained project records in maintenance.",
+      "reason": "Avoid implying undocumented manuscript acceptance."
+    },
+    {
+      "group": "M06",
+      "v1_line": 3670,
+      "old": "**[4] Agent responsibilities.** `AGENTS.md` and the four current role instructions, read with the runtime contract’s distinctions among role, method, brief, capability, and actual permission. The application through local graphs follows `development-loop.zip` and the author’s later clarifications.",
+      "new": "**[4] Agent responsibilities.** `AGENTS.md` and the four current role instructions, read with the runtime contract’s distinctions among role, method, brief, capability, and actual permission. The local-graph account has `development-loop.zip` and the author’s clarifications as its historical source, and the current [App](../../projects/chirality-app-dev/loop/LOOP_INIT.md)/[Piping](../../projects/chirality-piping/loop/LOOP_INIT.md) instructions and bundled graph/reconciliation methods as this edition’s repository application basis. Other loops retain their own adopted contracts.",
+      "reason": "Correct concluding source status."
+    },
+    {
+      "group": "M04",
+      "v1_line": 3688,
+      "old": "| Agent Type | A position in the delegation arrangement: 0 for alignment and coordination, 1 for managing an undertaking, 2 for bounded execution without further delegation. |",
+      "new": "| Agent Type | A responsibility category: 0 for alignment and coordination, 1 for managing an undertaking, and 2 for bounded execution without further delegation. It is neither a model tier nor a measure of actual delegation depth. |",
+      "reason": "Prevent responsibility Type from being read as hierarchy depth."
+    },
+    {
+      "group": "M14",
+      "v1_line": 3697,
+      "old": "| Deferred work | An identified obligation without an immediate home in the current local work graph, preserved for human disposition and later allocation through the last-resort Task Management route. |",
+      "new": "| Deferred work | An identified obligation without an immediate home in the current local work graph, preserved for human disposition and later allocation through the last-resort Task Management route. This scheduling use does not redefine a workflow’s `DEFERRED` state, automatically create a register row, or remove the obligation from its owning records. |",
+      "reason": "Preserve the author's last-resort meaning without redefining governed workflow states."
+    },
+    {
+      "group": "M11",
+      "v1_line": 3703,
+      "old": "| Handoff | A record explaining a position and its remaining consequences to a successor. Particular workflows require it; ordinary development can continue from current graph state. |",
+      "new": "| Handoff | A record explaining a position and its remaining consequences to a successor. Particular workflows require it; ordinary development can continue from current graph state where the owning loop permits. |",
+      "reason": "Qualify the standalone glossary definition."
+    },
+    {
+      "group": "M09",
+      "v1_line": 3720,
+      "old": "| Scope of Work | The Deliverable’s production contract, relating purpose, outputs, requirements, evaluation, methods, and governing choices. |",
+      "new": "| Scope of Work | The Deliverable’s production contract, relating purpose, outputs, requirements, evaluation, methods, and governing choices. In Chirality, `ScopeOfWork.md` is the adopted representation for initialized or converted PROJECT/SOFTWARE Deliverables; other artifact types use their governing forms. |",
+      "reason": "Preserve generic concept while qualifying repository representation."
+    }
+  ]
+}

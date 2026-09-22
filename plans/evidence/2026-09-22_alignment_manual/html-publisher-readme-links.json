@@ -1,0 +1,102 @@
+[
+  {
+    "document": "README.md",
+    "href": "projects/chirality-app-dev/README.md",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": "projects/chirality-runtime/README.md",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": "agents/",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": "workflows/README.md",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": ".agents/skills/",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": "tools/",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": "projects/",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": "docs/",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": "projects/chirality-app-dev/README.md",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": "AGENTS.md",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": "docs/alignment-manual/README.md",
+    "exists": true
+  },
+  {
+    "document": "README.md",
+    "href": "LICENSE.md",
+    "exists": true
+  },
+  {
+    "document": "docs/alignment-manual/README.md",
+    "href": "CHIRALITY_AGENT_USER_MANUAL_v1.html",
+    "exists": true
+  },
+  {
+    "document": "docs/alignment-manual/README.md",
+    "href": "CHIRALITY_AGENT_USER_MANUAL_v1.md",
+    "exists": true
+  },
+  {
+    "document": "docs/alignment-manual/README.md",
+    "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+    "exists": true
+  },
+  {
+    "document": "docs/alignment-manual/README.md",
+    "href": "MANUAL_REVIEW_v1.md",
+    "exists": true
+  },
+  {
+    "document": "docs/alignment-manual/README.md",
+    "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+    "exists": true
+  },
+  {
+    "document": "docs/alignment-manual/README.md",
+    "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+    "exists": true
+  },
+  {
+    "document": "docs/alignment-manual/README.md",
+    "href": "Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+    "exists": true
+  },
+  {
+    "document": "docs/alignment-manual/README.md",
+    "href": "requirements.txt",
+    "exists": true
+  }
+]

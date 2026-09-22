@@ -1,0 +1,185 @@
+{
+  "date": "2026-09-22",
+  "agent": "/root/publication_reviewer",
+  "role": "TASK (Type 2)",
+  "parent": "/root",
+  "mechanism": "delegated-harness-native Codex collaboration agent",
+  "further_delegation": false,
+  "scope_enforcement": "Instruction-based write restriction on an unrestricted shared host",
+  "basis_revision": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "selected_workflows": [],
+  "selected_skills": [
+    ".agents/skills/software-code-review/SKILL.md"
+  ],
+  "inputs": [
+    {
+      "path": "AGENTS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "use": "repository instructions"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "use": "role instructions"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "use": "selected repository skill"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "sha256": "f39f539db71f8bda320ca5970826652df073fd4d066285f420d73c7b377599ca",
+      "use": "active undertaking brief"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-ALIGNMENT-MANUAL-20260922.yaml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/ROOT-ALIGNMENT-MANUAL-20260922.yaml",
+      "sha256": "89589b8c32657735dba0ca03cf85642ca91934630b7d894625183c1028c3f5fd",
+      "use": "declared change scope"
+    },
+    {
+      "path": "tools/software_workflow/validate_change_scope.py",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/software_workflow/validate_change_scope.py",
+      "sha256": "6275277dcb214f78dfad6c159333decda95f9aa3e086d12e39c7f2f73a70cb0d",
+      "use": "executed read-only scope helper"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/html-publisher-fixture-checks.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/html-publisher-fixture-checks.json",
+      "sha256": "159cbb0ca971c62d047f58a2951ef0c1f3d2edf0343533cfef3e246bd45dfc08",
+      "use": "publisher evidence lead"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/html-publisher-inputs.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/html-publisher-inputs.json",
+      "sha256": "96c66a9796dc21e53c1eefdbadea282087770387096c696bf55e1ea5d1ae8b6e",
+      "use": "publisher evidence lead"
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/PRD_ROOT.md",
+      "sha256": "83cea4babd9080eec1a92d6ca17575af355afacaa246ae689a60176de6a92eb8",
+      "use": "Heading at line 484 inspected for the sole cross-file fragment; not loaded as full governance context"
+    }
+  ],
+  "runtime": {
+    "python": "3.13.14 (main, Jul 18 2026, 16:56:45) [Clang 22.1.3 ]",
+    "executable": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+    "markdown-it-py": "4.2.0",
+    "mdurl": "0.1.2"
+  },
+  "initial_renderer_sha256": "b10596a1230fe71604f2192ddc446aab30deae0e49df10982dce25f73a644d22",
+  "reviewed_final_targets": [
+    {
+      "path": "docs/alignment-manual/render_manual.py",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/render_manual.py",
+      "sha256": "caaa10a48f51b79f451b238327cdd57bed9a89de6c97b2c29db3851300dc1e4e",
+      "basis": "reviewed working-tree publication candidate"
+    },
+    {
+      "path": "docs/alignment-manual/requirements.txt",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/requirements.txt",
+      "sha256": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+      "basis": "reviewed working-tree publication candidate"
+    },
+    {
+      "path": "docs/alignment-manual/README.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/README.md",
+      "sha256": "732499bb3548d55d277759c1cb106ddf6230e2c5cf7d48058571be4691fdeee6",
+      "basis": "reviewed working-tree publication candidate"
+    },
+    {
+      "path": "README.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/README.md",
+      "sha256": "c42e7936491f10a462b9db058d22875f7812f95aff87f09e4cf51b9ae9cbeca6",
+      "basis": "reviewed working-tree publication candidate"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "basis": "reviewed working-tree publication candidate"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "sha256": "77bbc449bca0daa3ba4dd3644119a6deaedff3f89f606b26824a0bce504339b5",
+      "basis": "reviewed working-tree publication candidate"
+    }
+  ],
+  "status": "Complete: initial P2 and P3 findings repaired and independently backchecked; no unresolved publication finding on listed hashes",
+  "network_used": false,
+  "dependency_installations": false,
+  "git_mutations": false,
+  "visual_or_print_checks_executed": false,
+  "findings": [
+    {
+      "priority": "P2",
+      "summary": "Unsupported raw HTML bypassed offline resource validation",
+      "status": "resolved",
+      "repair_sha256": "caaa10a48f51b79f451b238327cdd57bed9a89de6c97b2c29db3851300dc1e4e",
+      "backcheck": "Four reported resource cases reject; anchor and ordinary Markdown table/code accepted"
+    },
+    {
+      "priority": "P3",
+      "summary": "Contents counted as a chapter",
+      "status": "resolved",
+      "repair_sha256": "caaa10a48f51b79f451b238327cdd57bed9a89de6c97b2c29db3851300dc1e4e",
+      "backcheck": "Mobile navigation label and CLI now say sections"
+    }
+  ],
+  "final_checks": {
+    "structural_parity": "Exact article HTML after removing only generated heading IDs and table-scroll wrappers matches independently configured markdown-it-py output",
+    "source_link_sequence_parity": true,
+    "source_links": 343,
+    "all_html_links": 392,
+    "local_file_links": 323,
+    "distinct_local_file_targets": 79,
+    "inpage_links": 69,
+    "unique_ids": 51,
+    "headings": 28,
+    "h2_navigation_entries_each": 22,
+    "tables": 7,
+    "code_blocks": 10,
+    "missing_links": [],
+    "external_resources": [],
+    "cross_file_fragment": "../PRD_ROOT.md#531-merge-gate-policy--the-d-8-successor",
+    "directory_readme_links": 8,
+    "root_navigation_target_exists": true,
+    "metadata_matches_source_and_explicit_basis": true,
+    "check_command": [
+      "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+      "-B",
+      "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/render_manual.py",
+      "--basis-date",
+      "2026-09-22",
+      "--basis-revision",
+      "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "--check"
+    ],
+    "check_cwd": "/tmp",
+    "check_exit_code": 0,
+    "environment_note": "A prior bare python3 call from /tmp selected an interpreter lacking pinned dependencies and exited 1. Reused the existing qualified absolute runtime; installed nothing.",
+    "sampled_contrast_ratios": {
+      "body/paper": 13.929,
+      "muted/paper": 6.257,
+      "link/paper": 7.006,
+      "muted/canvas": 5.534,
+      "table_heading": 8.93,
+      "code_block": 10.325
+    }
+  },
+  "omitted_checks": [
+    "live browser interaction",
+    "responsive viewport rendering",
+    "accessibility tree and screen-reader behavior",
+    "print preview and printed pagination",
+    "editorial/project-governance accuracy",
+    "repository CI owned by closeout manager"
+  ]
+}

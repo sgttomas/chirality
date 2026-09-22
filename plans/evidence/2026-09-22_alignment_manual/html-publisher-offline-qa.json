@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-22",
+  "assignment": "Bounded non-browser static print-layout QA using WeasyPrint with every URL fetch denied, followed by Poppler page images if prerequisites permit.",
+  "status": "Not executed: required native Pango library unavailable in checked system and bundled runtime locations.",
+  "html_sha256": "77bbc449bca0daa3ba4dd3644119a6deaedff3f89f606b26824a0bce504339b5",
+  "source_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+  "skill": {
+    "path": "/Users/ryan/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md",
+    "sha256": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e",
+    "origin": "bundled PDF skill 26.904.11930"
+  },
+  "runtime_dependency_tool": "mcp__codex_app__load_workspace_dependencies; bundle 26.904.11930",
+  "native_lookup": {
+    "pango-1.0": null,
+    "gobject-2.0": null,
+    "cairo": null
+  },
+  "checked_library_directories": {
+    "/opt/homebrew/lib": "No matching Pango libraries",
+    "/usr/local/lib": "Directory absent",
+    "/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies": "rg inventory found Cairo and GObject libraries but no libpango library; pango-name matches were terminfo files only."
+  },
+  "available_poppler": {
+    "pdftoppm": "/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+    "pdfinfo": "/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override/pdfinfo"
+  },
+  "artifact_marker_found": "/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime/plugins/pdf/skills/pdf/container_tools/mark_artifact_operation_started.mjs",
+  "artifact_marker_run": false,
+  "artifact_marker_reason": "No PDF create/edit authoring command was reached. The skill requires the marker immediately before the first authoring command, not prerequisite inspection.",
+  "temporary_python_environment_created": false,
+  "pypi_install_attempted": false,
+  "install_reason": "A Python-only WeasyPrint installation would not supply the missing native Pango prerequisite; parent explicitly requested bounded effort and reporting this limit.",
+  "intermediate_pdf_created": false,
+  "page_images_created": false,
+  "fetches_performed": 0,
+  "browser_or_ui_calls": 0,
+  "published_html_changed": false,
+  "cleanup_required": false,
+  "validation_limit": "No static print-layout, live desktop/mobile browser, responsive interaction, or browser print-preview result is established by this attempt."
+}

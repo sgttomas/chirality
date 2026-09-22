@@ -1,0 +1,559 @@
+{
+  "schema": "chirality-alignment-manual-source-record/v1",
+  "recorded_at_utc": "2026-09-22T08:26:25.972351+00:00",
+  "repository_root": "/Users/ryan/.codex/worktrees/da43/chirality",
+  "brief_declared_repository_basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "basis_verification": "Brief declaration only; no Git operations or remote queries performed by this TASK",
+  "role": "TASK",
+  "role_type": 2,
+  "parent": "/root/project_coverage_manager",
+  "ancestry": [
+    "/root",
+    "/root/project_coverage_manager",
+    "/root/project_coverage_manager/piping_review"
+  ],
+  "actual_agent_id": "/root/project_coverage_manager/piping_review",
+  "actual_agent_name": "piping_review",
+  "actual_id_kind": "Host-provided canonical task identifier; no distinct opaque agent ID was supplied to this child",
+  "mechanism": "delegated-harness-native Codex collaboration agent",
+  "execution_context": {
+    "host": "Codex desktop collaboration tools",
+    "model": "Inherited from parent; exact model/effort identifier not separately exposed to this child",
+    "fresh_type_2_assignment": true,
+    "chirality_managed_delegate_agent": false,
+    "further_delegation": false
+  },
+  "boundaries": {
+    "read": "Root entry, actual TASK role, manual brief, Piping operational/pinned-run/maintained command sources needed for this assignment",
+    "write": [
+      "plans/evidence/2026-09-22_alignment_manual/project-piping-notes.md",
+      "plans/evidence/2026-09-22_alignment_manual/project-piping-sources.json"
+    ],
+    "prohibited": [
+      "Git actions",
+      "project/manual/instruction edits",
+      "live-pointer or authority adoption",
+      "project acceptance or release",
+      "external messages",
+      "delegation",
+      "full test/build suites"
+    ],
+    "enforcement": "Host permissions are broad/unrestricted; bounded write/no-Git/no-delegation/read-only-source constraints are instruction-based, not filesystem-enforced"
+  },
+  "skills_workflows": {
+    "skill_bodies_loaded": [],
+    "workflow_bodies_loaded": [],
+    "method": "Direct bounded read-only documentation inspection from the brief; historical run plans and profile were inspected as evidence, not activated"
+  },
+  "inspection_policy": "Manifest lists files whose returned contents or search matches entered this TASK context; filename-only discovery inventories are not full source loads. Hashes are full current file bytes, with inspection extent stated per file.",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "lines": 242,
+      "inspection": "full",
+      "use": "Active Root instructions"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "lines": 39,
+      "inspection": "full",
+      "use": "Actual active role TASK; no other full role body was loaded"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "sha256": "f39f539db71f8bda320ca5970826652df073fd4d066285f420d73c7b377599ca",
+      "bytes": 4445,
+      "lines": 32,
+      "inspection": "full",
+      "use": "Authorized documentation undertaking and write boundary"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+      "bytes": 8678,
+      "lines": 150,
+      "inspection": "full",
+      "use": "Applicable Piping constraints, inspected within documentation task"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "bytes": 6070,
+      "lines": 107,
+      "inspection": "full",
+      "use": "Current entry, selected graph and recovery protocol"
+    },
+    {
+      "path": "projects/chirality-piping/init/dev-loop-init-prompt.md",
+      "sha256": "b4ad6c6d4bdbd52d76f12361457c454ddd55785f425b4756680e18aeda8d304a",
+      "bytes": 401,
+      "lines": 16,
+      "inspection": "full",
+      "use": "Launcher recipe; inspected, not activated as this TASK role"
+    },
+    {
+      "path": "projects/chirality-piping/software-workflow.json",
+      "sha256": "3a6fd86bd362eed5e1fbcda05dcde961fca8ad46cb14375ce3dd79c3872e09b7",
+      "bytes": 1101,
+      "lines": 19,
+      "inspection": "full",
+      "use": "Registered checks and cwd/path mapping"
+    },
+    {
+      "path": "projects/chirality-piping/loop/WORKPLAN_2026-09-19_piping_loop.md",
+      "sha256": "d3f3a939e6983c373f3bc8f55b3d63a6b5f90106f13f913a777d779f6229c5d4",
+      "bytes": 1201,
+      "lines": 23,
+      "inspection": "full",
+      "use": "Superseded procedure pointer and stale wording"
+    },
+    {
+      "path": "projects/chirality-piping/loop/WORKPLAN_2026-07-18b_piping_loop.md",
+      "sha256": "82806c43b654a51771f6c4b7eed60ccc620dab6a34cc9f6e5de7949abba9724b",
+      "bytes": 15003,
+      "lines": 210,
+      "inspection": "heading/identifier search; lines 159-205",
+      "use": "Retained F-PIP fence definitions only; old procedure not activated"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_PIPING_LOOP_WORKGRAPH.md",
+      "sha256": "65594de02def126530c2fa87f7d732ff5d015bce1925df7106e1830616e3c401",
+      "bytes": 1552,
+      "lines": 28,
+      "inspection": "full",
+      "use": "Instruction transition notice"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_STANDING_LOOP_ALIGNMENT.md",
+      "sha256": "a27adb9fb32318fc8975e57e6807a00e994e4ea3ebf9a5f985dac147836ad499",
+      "bytes": 2069,
+      "lines": 35,
+      "inspection": "full",
+      "use": "Acceptance notice and dated UI discovery pointers"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_LOOP_CLARIFICATIONS.md",
+      "sha256": "3805118eb62f124310f4188ad5634a3a083e79bb97ee71ef5a6ed10a19c31e52",
+      "bytes": 1594,
+      "lines": 24,
+      "inspection": "full",
+      "use": "Clarification notice and supersession boundaries"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "bytes": 1811,
+      "lines": 30,
+      "inspection": "full",
+      "use": "Current graph adoption and preserved pinned reconciliation run"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md",
+      "sha256": "edd1463f7b191485b5033fca4b08df7bcbec95c0e2d1f62db7f68f97b5e3e22b",
+      "bytes": 2965,
+      "lines": 13,
+      "inspection": "full",
+      "use": "Notice versus Piping adoption boundary; stale July reference"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "sha256": "5089d12c79935523a3a31f7e8b075bfd67a1dd6ac4a0ae7be44ddebfd642d031",
+      "bytes": 760,
+      "lines": 13,
+      "inspection": "full",
+      "use": "Notice explicitly does not adopt Piping basis"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_DAG/_LATEST.md",
+      "sha256": "9da625a75f75819fe39a05532d67697fa6de0d7a84982c4e2e1b89c6d3ef80b3",
+      "bytes": 2808,
+      "lines": 29,
+      "inspection": "full",
+      "use": "Approved DAG pointer and authority scope"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Decomposition/_LATEST.md",
+      "sha256": "9491c6a5b5663e12d00805e2360e623ad79ca65d2ebfdb1ea99f2affa5974f87",
+      "bytes": 66,
+      "lines": 1,
+      "inspection": "full",
+      "use": "Current decomposition revision pointer"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/_LATEST.md",
+      "sha256": "145edf07b189002df4b78a7e62e5df96c3eb392723c64f8d49fda16e726b5ea7",
+      "bytes": 490,
+      "lines": 3,
+      "inspection": "full",
+      "use": "Historical directory-local pointer, not current reconciliation cursor"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_COORDINATION.md",
+      "sha256": "80fcf8aecb0652aa698607dfe38433bd5f03e057a0aa6e9a3b4156439a2a8b7e",
+      "bytes": 6464,
+      "lines": 112,
+      "inspection": "keyword search; lines 1-35 and 75-112",
+      "use": "Current preface versus retained historical routing and PRD target stage"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "45212dd777cadc4d1f59b134d161ebad6e0a1171e134861258c1d18feea2fecc",
+      "bytes": 76032,
+      "lines": 140,
+      "inspection": "authority/adoption keyword matches; lines 101-111",
+      "use": "Decision register pointers and D-73 effect"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-73_RULING_2026-09-21.md",
+      "sha256": "c526ac4032c4f9a4f7f2cae3820da775618c282c1af9133779b2b0368d49217d",
+      "bytes": 5965,
+      "lines": 108,
+      "inspection": "full",
+      "use": "Actual activation authority and merged profile pin"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-73_RULING_ADDENDUM_2026-09-21.md",
+      "sha256": "a5d7dffdc73804307cbe4c98f9d5bd58f7f3b62bc9a6157bd6f7ec2c70bb346d",
+      "bytes": 2590,
+      "lines": 50,
+      "inspection": "full",
+      "use": "Run-specific no-suite-rerun direction"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260919-LOOP-ALIGNMENT/OWNER_ACCEPTANCE.md",
+      "sha256": "2e684327b3c22026aa6fe43bd6b6ffa356acde498a628338f791be99bbe8e2f1",
+      "bytes": 2084,
+      "lines": 44,
+      "inspection": "full",
+      "use": "Owner acceptance, source custody and archive boundary"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260919-LOOP-WORKGRAPH/OWNER_DIRECTION.md",
+      "sha256": "14648c01da73226dd8e5d98879e46f0ca933a670075350bab60f0c8b658a0cc4",
+      "bytes": 2173,
+      "lines": 42,
+      "inspection": "full",
+      "use": "Owner-authorized separation of procedure, constraints and session graph"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260919-LOOP-CLARIFICATIONS/OWNER_DIRECTION.md",
+      "sha256": "7f40370f027d8530c3fbe1f961c5f3eae69b6f97f37952bb25b274c6140f1ae5",
+      "bytes": 2150,
+      "lines": 39,
+      "inspection": "full",
+      "use": "Owner-approved clarification scope"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/WORK_GRAPH.json",
+      "sha256": "e66c8aeb10cfe67617a5767b74d864150448fd2eda4417df97ebd5361c9d4921",
+      "bytes": 8058,
+      "lines": 188,
+      "inspection": "full",
+      "use": "Current selected graph and stale frontier"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/HANDOFF_STATE.md",
+      "sha256": "17937f706649c0b6a0b5895587ec37bca5e7908288500d150f5860dbf5f80e7a",
+      "bytes": 3257,
+      "lines": 67,
+      "inspection": "full",
+      "use": "Linked phase cursor and recorded state"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/OWNER_DIRECTIONS.md",
+      "sha256": "8de353cf21b63a3476a867ecea8c00346966df1e966c1f85c59f52f17b959699",
+      "bytes": 9835,
+      "lines": 159,
+      "inspection": "full",
+      "use": "Run-specific owner directions and hold boundaries"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/PLAN.md",
+      "sha256": "18d3960ed8078806b60f66bfbf7e623f2f7735d225fa5dc661247ef730d96381",
+      "bytes": 13178,
+      "lines": 113,
+      "inspection": "full",
+      "use": "Approved plan inspected historically, not selected for this manual task"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RESUME.md",
+      "sha256": "05848c790613b43ae793e0948f321375d94916b929210e4c09fe882579c55b22",
+      "bytes": 2145,
+      "lines": 35,
+      "inspection": "full",
+      "use": "Phase replay instructions and stale summary"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RUN_BASIS.md",
+      "sha256": "465241fda22438a66339c1755953fd673e121f410f43036e7195df64b58b51f1",
+      "bytes": 15412,
+      "lines": 247,
+      "inspection": "lines 1-180 plus partial full command output",
+      "use": "Frozen basis, pins, gate evidence and append-only facts"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RUN_STATE.jsonl",
+      "sha256": "8aecfd7284f8b5d13fcdacafdc0d55cb305b936b6dc2576986a05cb80eb56eef",
+      "bytes": 178726,
+      "lines": 461,
+      "inspection": "parsed all records for count/latest event kinds; displayed latest PHASE_OPEN/PHASE_CLOSE/CAP/BOUND_INPUTS and final 12 records",
+      "use": "Current recorded recovery phase; not a new execution or result verification"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/R4/R4_GATE_INDEX.md",
+      "sha256": "0bdac202ebf75cf3469d65dd6a86c48f719a5c7dcbd04a0d9b2e2c000b99abf9",
+      "bytes": 10034,
+      "lines": 177,
+      "inspection": "lines 1-65",
+      "use": "Proposal versus owner ruling and R5/R6 gate"
+    },
+    {
+      "path": "projects/chirality-piping/docs/RECONCILIATION_PROFILE.md",
+      "sha256": "271bd0d0637f061c080ee83931a8c0134bdff8fa354536c09e6a1ca4e71ada73",
+      "bytes": 9632,
+      "lines": 169,
+      "inspection": "full",
+      "use": "Pinned profile, representations and authority boundaries; inspected, not adopted by this task"
+    },
+    {
+      "path": "projects/chirality-piping/README.md",
+      "sha256": "36d5c800a342ca1c0462aa4898b206c2a2d3f0ac81e088c61787aee6fd2ae083",
+      "bytes": 3655,
+      "lines": 55,
+      "inspection": "full",
+      "use": "Stale launcher and basis text"
+    },
+    {
+      "path": "projects/chirality-piping/docs/README.md",
+      "sha256": "a5de93304893997be56d9409150c6a4ccf5ef982aa5a4c8d001809ebf4ee0f63",
+      "bytes": 5012,
+      "lines": 72,
+      "inspection": "full",
+      "use": "Stale DAG/decomposition/launcher and document map"
+    },
+    {
+      "path": "projects/chirality-piping/CONTRIBUTING.md",
+      "sha256": "e0d03e4967bc32cfccff904c6650a77e8e9cdee6d032f401371782bfce2e5003",
+      "bytes": 6913,
+      "lines": 142,
+      "inspection": "full",
+      "use": "Draft contributor guide and stale basis text"
+    },
+    {
+      "path": "projects/chirality-piping/docs/contributor_guide/index.md",
+      "sha256": "6b4f407517cabfd26fa6ebaa5a81b301c4a1e0bc5d0fb190e81a4a89033bc215",
+      "bytes": 11558,
+      "lines": 236,
+      "inspection": "command searches; lines 16-70 and 139-195",
+      "use": "Navigation, layout, tests and missing INIT trap"
+    },
+    {
+      "path": "projects/chirality-piping/docs/BUILD_AND_RELEASE.md",
+      "sha256": "5ff4e8108bf0dbac6f3630f45914b6b3a422684b0fd2961eb705df1338dc0226",
+      "bytes": 18303,
+      "lines": 352,
+      "inspection": "command search; lines 125-156,185-219,241-266",
+      "use": "Maintained native build command and stale CI prose"
+    },
+    {
+      "path": "projects/chirality-piping/package.json",
+      "sha256": "7e719791e3ffdc7b57eddb2bb32d682705bf945af5b7207ffc699a2a45648656",
+      "bytes": 737,
+      "lines": 17,
+      "inspection": "full",
+      "use": "Workspace scripts and actual package identifier"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/package.json",
+      "sha256": "c0e3ddd045e0ea7576a4cd01af86c4921bab7314e7b3d927b5eab11822e959fa",
+      "bytes": 1196,
+      "lines": 40,
+      "inspection": "full",
+      "use": "Desktop scripts and UI dependency stack"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/Cargo.toml",
+      "sha256": "390a7a611509fce1c723d1fa198654df14f0a7651d5b18c53d0d7b04dd1ae246",
+      "bytes": 1495,
+      "lines": 32,
+      "inspection": "full",
+      "use": "Native crate and dependencies"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/src-tauri/tauri.conf.json",
+      "sha256": "b3de0965f205e1ed34f07744939314c9ac40dd00af2ee8c0de336c6e2bfba5d0",
+      "bytes": 671,
+      "lines": 31,
+      "inspection": "full",
+      "use": "Native frontend build path, product name, bundle kind"
+    },
+    {
+      "path": "projects/chirality-piping/requirements-dev.txt",
+      "sha256": "f8dfa6abb1ae5b48c157e8c92599098785d56340c1250a350187ce941cd25c47",
+      "bytes": 70,
+      "lines": 4,
+      "inspection": "full",
+      "use": "Pinned Python tooling including pytest-xdist"
+    },
+    {
+      "path": "projects/chirality-piping/core/product_physics/Cargo.toml",
+      "sha256": "2d04ed98254a98a1f24235ed09ba9538e96e63924ca2a2802b9cd3218d7c5035",
+      "bytes": 1136,
+      "lines": 25,
+      "inspection": "full",
+      "use": "Maintained representative Rust crate and focused command path"
+    },
+    {
+      "path": "projects/chirality-piping/core/solver/frame_kernel/Cargo.toml",
+      "sha256": "c124ff5534616207027d932d561b810fed824ee7a095b4a06f738ff9d226c317",
+      "bytes": 217,
+      "lines": 11,
+      "inspection": "full",
+      "use": "Maintained Rust solver crate"
+    },
+    {
+      "path": "projects/chirality-piping/validation/benchmarks/physics_audit_regression/Cargo.toml",
+      "sha256": "55f28a0a7980548c816c6f67be46d8279af8ec067b147bb5eb132c3f19793dec",
+      "bytes": 223,
+      "lines": 9,
+      "inspection": "full",
+      "use": "Benchmark crate binds production physics"
+    },
+    {
+      "path": "projects/chirality-piping/tools/REGISTRY.md",
+      "sha256": "5ba04acbe7969162769c253e76866c66267fd5b94de34f601ddf3068361e7d8e",
+      "bytes": 1774,
+      "lines": 15,
+      "inspection": "full",
+      "use": "Read-only status helper and stale DAG example"
+    },
+    {
+      "path": "projects/chirality-piping/tools/coordination/list_deliverable_status.py",
+      "sha256": "0c0d33e7726a9c94ec72170f9372ec2402b9b341a66c7326535df02b10bbbdfc",
+      "bytes": 9993,
+      "lines": 306,
+      "inspection": "argument-definition matching lines 259-279",
+      "use": "Concrete helper command flags"
+    },
+    {
+      "path": "projects/chirality-piping/tools/release/run_evidence_sweep.py",
+      "sha256": "cdb7bd4914652e6e5497f09f084d755107977dbbf58968dadfebda9f44ddcd3c",
+      "bytes": 50340,
+      "lines": 1325,
+      "inspection": "function/command/argument searches; lines 1-47,166-237,327-341,1075-1138",
+      "use": "Exact sweep commands, ordering, output and prerequisite/partial-run semantics"
+    },
+    {
+      "path": "projects/chirality-piping/tools/release/check_release_readiness.py",
+      "sha256": "c386cdef9fe16ae0239dc509cb29dbadf0f6ce138cf7c0b7ab40867cb34e930f",
+      "bytes": 8456,
+      "lines": 273,
+      "inspection": "command/function searches; lines 1-110,142-163,208-230",
+      "use": "Cargo discovery scope and exact offline test pattern"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/scripts/build-wasm-engine.mjs",
+      "sha256": "331a792124925e9dc436e3c4dd563bdd22cc4d370cc87a53afe0a33f82a04ee5",
+      "bytes": 8425,
+      "lines": 220,
+      "inspection": "lines 1-85",
+      "use": "Generated WASM destination, version pin, offline/build semantics"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/playwright.config.ts",
+      "sha256": "d861a8567ce54c803e2bef914a5b9965906f90e0eda58ab4d907160d10eed31a",
+      "bytes": 3703,
+      "lines": 89,
+      "inspection": "full",
+      "use": "Source browser configuration and shared resource ownership"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/playwright.dist.config.ts",
+      "sha256": "d53c01817b11718850b2b2b52e0132825931741998d4214a0d0c7e533c2b5756",
+      "bytes": 2567,
+      "lines": 67,
+      "inspection": "full",
+      "use": "Dist browser/native protocol boundary"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/e2e/ui-foundation/README.md",
+      "sha256": "9b4fc8adcbecaf7a94368a21e299c7212f2b9d720dc0e727cd31411b75c89261",
+      "bytes": 47675,
+      "lines": 755,
+      "inspection": "command matching; lines 1-40",
+      "use": "Ordinary suite versus separately selected long benchmark"
+    },
+    {
+      "path": ".github/workflows/piping-desktop-e2e.yml",
+      "sha256": "dee6e956e0fc0b42a0bb243dab8629954960695017bf983acfca3439fd31f40d",
+      "bytes": 6371,
+      "lines": 165,
+      "inspection": "full",
+      "use": "Actual hosted selector, barrier, remainder and aggregate commands"
+    },
+    {
+      "path": ".github/workflows/piping-e2e-cache.yml",
+      "sha256": "3013f93503e094e8abd1d2c6da1a851e63883dd76620f32a7ed5ca9025980ba2",
+      "bytes": 1208,
+      "lines": 36,
+      "inspection": "single condition match at line 28",
+      "use": "Read-only search discovery of maintained workflow condition; not used for substantive claims"
+    },
+    {
+      "path": ".github/actions/setup-piping-e2e/action.yml",
+      "sha256": "6fc0a7db9ab474fffbbd6ea8198c5662866c6e1dd593fca4e2a6bdf26caf4dd3",
+      "bytes": 4041,
+      "lines": 108,
+      "inspection": "full",
+      "use": "Maintained CI prerequisite/install/build commands"
+    },
+    {
+      "path": "tools/practitioner_harness/harness.py",
+      "sha256": "01a9b9541ded993364f7db8a8e8a59087bf26649094a522867a658e2eae561f3",
+      "bytes": 22269,
+      "lines": 437,
+      "inspection": "subcommand and parser matching lines",
+      "use": "Registered harness self-check callable CLI"
+    },
+    {
+      "path": "tools/validation/validate_piping_loop_receipts.py",
+      "sha256": "b6891b75614a183e4f0e33be8315a8ac49a2a4baa9a9d11ccfd8f704504a7965",
+      "bytes": 1795,
+      "lines": 63,
+      "inspection": "full",
+      "use": "Historical receipt validation wrapper and evidence limitations"
+    }
+  ],
+  "existence_checks": [
+    {
+      "path": "projects/chirality-piping/INIT.md",
+      "exists": false,
+      "purpose": "Contributor launcher link verification"
+    },
+    {
+      "path": "projects/chirality-piping/Cargo.toml",
+      "exists": false,
+      "purpose": "Confirm no project-root Cargo workspace"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/_LATEST.md",
+      "exists": false,
+      "purpose": "Do not invent a live reconciliation pointer"
+    }
+  ],
+  "verification": {
+    "full_suites_run": false,
+    "commands_executed": "File/directory discovery, bounded content reads, JSON event parsing, hashes, and output-integrity checks only",
+    "no_project_state_changed": true,
+    "remote_or_other_worktrees_verified": false
+  },
+  "return": {
+    "notes_path": "plans/evidence/2026-09-22_alignment_manual/project-piping-notes.md",
+    "notes_sha256": "5166b88a67ae3c7ad811e45623054140b8e61189a9b3a54bb3f261799989cd83",
+    "disposition": "Returned to WORKING_ITEMS for manual integration; findings and proposals do not adopt instructions or accept project work"
+  }
+}

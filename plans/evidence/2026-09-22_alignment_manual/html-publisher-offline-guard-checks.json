@@ -1,0 +1,29 @@
+{
+  "renderer_sha256": "caaa10a48f51b79f451b238327cdd57bed9a89de6c97b2c29db3851300dc1e4e",
+  "cases": {
+    "css_import": {
+      "rejected": true,
+      "error": "Unsupported source HTML: unsupported <style> tag"
+    },
+    "style_background_image": {
+      "rejected": true,
+      "error": "Unsupported source HTML: unsupported p[style] attribute"
+    },
+    "object_resource": {
+      "rejected": true,
+      "error": "Unsupported source HTML: unsupported <object> tag; unsupported object[data] attribute"
+    },
+    "iframe_srcdoc": {
+      "rejected": true,
+      "error": "Unsupported source HTML: unsupported <iframe> tag; unsupported iframe[srcdoc] attribute"
+    },
+    "normal_markdown_and_anchor": {
+      "accepted": true,
+      "aligned_table": true,
+      "code_literal_preserved": true,
+      "section_count_label": true
+    }
+  },
+  "source_fragment_validation": "Raw HTML tokens checked before trusted page CSS/JS are inserted; unsupported markup rejected without stripping.",
+  "production_source_rendered": false
+}

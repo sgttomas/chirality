@@ -1,0 +1,656 @@
+{
+  "schema": "chirality-alignment-manual-project-manager-evidence/v1",
+  "generated_at_utc": "2026-09-22T08:33:18.280585+00:00",
+  "date": "2026-09-22",
+  "supplied_repository_basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "basis_verification": "Read from parent brief; no Git commands or remote verification in this delegated task.",
+  "manager": {
+    "id": "/root/project_coverage_manager",
+    "role": "WORKING_ITEMS",
+    "type": 1,
+    "parent_id": "/root",
+    "parent_role": "HELP_HUMAN",
+    "mechanism": "delegated-harness-native Codex collaboration child",
+    "actual_model": "Exact serving identity/effort not exposed by tools; inherited, no override requested.",
+    "role_instructions": "agents/AGENT_WORKING_ITEMS.md",
+    "deliberate_wider_role_consultation": {
+      "path": "agents/AGENT_TASK.md",
+      "reason": "Frame fresh role-correct bounded TASK assignments."
+    }
+  },
+  "authority_and_limits": {
+    "brief": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+    "method": "Ad hoc documentation survey; no reusable workflow/skill body selected.",
+    "host": "Broad shared filesystem; no per-child sandbox claim.",
+    "write_boundary": "Project coverage and distinct project notes/source JSON under this evidence directory only.",
+    "excluded": "Git actions, project/manual edits, external messages, instruction adoption, project acceptance, product release.",
+    "actual_checks": "Static source/profile checks and hashes. PEC child ran one exact historical-inspection hold preflight (ALLOW). No product suites/builds/installations/native trials/remote refresh."
+  },
+  "children": [
+    {
+      "id": "/root/project_coverage_manager/app_runtime_review",
+      "role": "TASK",
+      "type": 2,
+      "mechanism": "delegated-harness-native",
+      "actual_launch_tool": "collaboration.spawn_agent",
+      "fork_turns": "none",
+      "configured_model_override": null,
+      "scope": "App and Runtime entries, accepted overlays, commands/layouts, stale guidance",
+      "supplied_sources": [
+        "AGENTS.md",
+        "agents/AGENT_TASK.md",
+        "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+        "projects/chirality-app-dev/AGENTS.md",
+        "projects/chirality-runtime/AGENTS.md"
+      ],
+      "write_targets": [
+        "project-app-runtime-notes.md",
+        "project-app-runtime-sources.json"
+      ],
+      "status": "Completed; bounded followup clarified generated-output paths and refreshed notes hash.",
+      "enforcement": "Instruction-asserted on broad shared filesystem. No Git, project/manual edits, external messages or delegation.",
+      "review_classification": "Fresh-context contributor investigation, not independent final review of the integrated manual.",
+      "delegation_performed": false
+    },
+    {
+      "id": "/root/project_coverage_manager/piping_review",
+      "role": "TASK",
+      "type": 2,
+      "mechanism": "delegated-harness-native",
+      "actual_launch_tool": "collaboration.spawn_agent",
+      "fork_turns": "none",
+      "configured_model_override": null,
+      "scope": "Piping entry/phase cursor, authority/adoption, commands/layouts, stale guidance",
+      "supplied_sources": [
+        "AGENTS.md",
+        "agents/AGENT_TASK.md",
+        "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+        "projects/chirality-piping/AGENTS.md"
+      ],
+      "write_targets": [
+        "project-piping-notes.md",
+        "project-piping-sources.json"
+      ],
+      "status": "Completed; source/notes hashes sealed.",
+      "enforcement": "Instruction-asserted on broad shared filesystem. No Git, project/manual edits, external messages or delegation.",
+      "review_classification": "Fresh-context contributor investigation, not independent final review of the integrated manual.",
+      "delegation_performed": false
+    },
+    {
+      "id": "/root/project_coverage_manager/pec_review",
+      "role": "TASK",
+      "type": 2,
+      "mechanism": "delegated-harness-native",
+      "actual_launch_tool": "collaboration.spawn_agent",
+      "fork_turns": "none",
+      "configured_model_override": null,
+      "scope": "PEC entry, migration, exact grants/adoption, v2 commands/layouts, stale guidance",
+      "supplied_sources": [
+        "AGENTS.md",
+        "agents/AGENT_TASK.md",
+        "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+        "projects/pec/AGENTS.md"
+      ],
+      "write_targets": [
+        "project-pec-notes.md",
+        "project-pec-sources.json"
+      ],
+      "status": "Initial turn performed source inspection and progress reporting, then ended in model-capacity error before output writes. Same TASK resumed using collaboration.followup_task, completed outputs, resolved profile-hash change under D80. Failed turn not counted as completed review.",
+      "enforcement": "Instruction-asserted on broad shared filesystem. No Git, project/manual edits, external messages or delegation.",
+      "review_classification": "Fresh-context contributor investigation, not independent final review of the integrated manual.",
+      "delegation_performed": false
+    }
+  ],
+  "dispatch_record": "Exact launch/steering and returns are retained in parent conversation tool records; canonical task names are actual exposed IDs; no separate opaque ID exposed.",
+  "source_hash_algorithm": "SHA-256",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "bytes": 1804,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "sha256": "9cc54bfb649168801c2ea060acb242145f48a0e08ac893e6ca38824439f7c5b3",
+      "bytes": 4300,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/APP-LOOP-WORKGRAPH-20260919.yaml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/APP-LOOP-WORKGRAPH-20260919.yaml",
+      "sha256": "5f6f89d071e5c7730fb641711bd9aa85914f1ef04709e0561079d7595186158f",
+      "bytes": 1074,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/APP-PIPING-LOOP-CLARIFICATIONS-20260919.yaml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/APP-PIPING-LOOP-CLARIFICATIONS-20260919.yaml",
+      "sha256": "92c070917cbb61443ef10df5e4ce782c1b49ed2b35c3ed9e698f605daae55fbb",
+      "bytes": 1568,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/PIPING-LOOP-WORKGRAPH-20260919.yaml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/PIPING-LOOP-WORKGRAPH-20260919.yaml",
+      "sha256": "12342c371ae3d2e536aa24714a88f410be9ab377e6392e755d81fbb1bf15e73c",
+      "bytes": 1066,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-LOCAL-WORK-GRAPH-METHODS-20260922.yaml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/ROOT-LOCAL-WORK-GRAPH-METHODS-20260922.yaml",
+      "sha256": "f0894335d6101f59698564e9600e700d240eb385b8306dfa075dffdfc4b79d30",
+      "bytes": 2263,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md",
+      "sha256": "f21ec486c68ba7688f9e5f2b4237dd4a418eff095f94024a2822fec3933260b4",
+      "bytes": 5862,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "sha256": "f39f539db71f8bda320ca5970826652df073fd4d066285f420d73c7b377599ca",
+      "bytes": 4445,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-app-runtime-notes.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-app-runtime-notes.md",
+      "sha256": "ce8113215207760857b3f986eebbb9236ad0cc87c821713ccba3cc8d187b3df4",
+      "bytes": 29817,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-app-runtime-sources.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-app-runtime-sources.json",
+      "sha256": "2c1cabfd980261706e2a7295c9cdae7f18ea6fa205492d1845a7f13b0e3e2c84",
+      "bytes": 46615,
+      "inspection": "Provenance/schema inspected; all listed SHA-256 values machine-recomputed; underlying full-text reads remain attributed to child.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-pec-notes.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-pec-notes.md",
+      "sha256": "c268353a488a52838cd4e733d4bdfcda6ccd7053d1dc676fec831657be22ac77",
+      "bytes": 20795,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-pec-sources.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-pec-sources.json",
+      "sha256": "1d72df8ca85ac5f38dd3c44cd666ba7a50361d75e906c15cd52b70918c4264f0",
+      "bytes": 60885,
+      "inspection": "Provenance/schema inspected; all listed SHA-256 values machine-recomputed; underlying full-text reads remain attributed to child.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-piping-notes.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-piping-notes.md",
+      "sha256": "5166b88a67ae3c7ad811e45623054140b8e61189a9b3a54bb3f261799989cd83",
+      "bytes": 26723,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-piping-sources.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-piping-sources.json",
+      "sha256": "79d7d1c8e5bdd2613e7e4a52e50a130f6cff8fb46d9c752986a85d98499a1ff6",
+      "bytes": 23480,
+      "inspection": "Provenance/schema inspected; all listed SHA-256 values machine-recomputed; underlying full-text reads remain attributed to child.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/AGENTS.md",
+      "sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "bytes": 23399,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json",
+      "sha256": "7cacbfac8fc1d89662f9e7ccdfa9e780c75972657701b755e446edd8edd1f1f8",
+      "bytes": 5156,
+      "inspection": "Machine-parsed selected top-level identity, basis, topology/authority and frontier fields; App node states projected; not a full graph-state audit.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-19_APP_LOOP_WORKGRAPH.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-19_APP_LOOP_WORKGRAPH.md",
+      "sha256": "1b774824da84f323a2cc45aa072fc3103debc764f38c425bca4c86ee61adb80b",
+      "bytes": 1895,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-19_LOOP_CLARIFICATIONS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-19_LOOP_CLARIFICATIONS.md",
+      "sha256": "e954a438d9f400330730694549f7e9d001bc10f6ce7148a6c6688f5d506bdd21",
+      "bytes": 1474,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md",
+      "sha256": "f42d94ad0ee1612014c5125283b70fcdf45e135bf2c6873c7cf04fef8cea35d9",
+      "bytes": 3273,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "bytes": 1811,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-130_RULING_R4_GATE_RUN_D128_2026-09-22.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-130_RULING_R4_GATE_RUN_D128_2026-09-22.md",
+      "sha256": "8dcb4266df7aac13880151358ebc011a7c465efdf66ad85838e16696a0986811",
+      "bytes": 3489,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/frontend/package.json",
+      "sha256": "abb69035a149b9fa788639d70cc24e240731fb2fcc517253dba1022035ed6cec",
+      "bytes": 7138,
+      "inspection": "Machine-parsed complete JSON; name/version/engines/workspaces/scripts projected and checked against registered profiles.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/init/dev-loop-init-prompt.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/init/dev-loop-init-prompt.md",
+      "sha256": "ee617f5fa910b8a43dc161f746d03b1688b7f9fb10e426541433e78b5a256cbe",
+      "bytes": 402,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "bytes": 6293,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-app-dev/software-workflow.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/software-workflow.json",
+      "sha256": "97b6717a5991549367aa098629fbd7140bce7c7c226a15ef9419c0c3397f65e9",
+      "bytes": 1888,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/AGENTS.md",
+      "sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+      "bytes": 8678,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/package.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/apps/desktop/package.json",
+      "sha256": "c0e3ddd045e0ea7576a4cd01af86c4921bab7314e7b3d927b5eab11822e959fa",
+      "bytes": 1196,
+      "inspection": "Machine-parsed complete JSON; name/version/engines/workspaces/scripts projected and checked against registered profiles.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/WORK_GRAPH.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/WORK_GRAPH.json",
+      "sha256": "e66c8aeb10cfe67617a5767b74d864150448fd2eda4417df97ebd5361c9d4921",
+      "bytes": 8058,
+      "inspection": "Machine-parsed selected top-level identity, basis, topology/authority and frontier fields; App node states projected; not a full graph-state audit.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_LOOP_CLARIFICATIONS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_LOOP_CLARIFICATIONS.md",
+      "sha256": "3805118eb62f124310f4188ad5634a3a083e79bb97ee71ef5a6ed10a19c31e52",
+      "bytes": 1594,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_PIPING_LOOP_WORKGRAPH.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_PIPING_LOOP_WORKGRAPH.md",
+      "sha256": "65594de02def126530c2fa87f7d732ff5d015bce1925df7106e1830616e3c401",
+      "bytes": 1552,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md",
+      "sha256": "edd1463f7b191485b5033fca4b08df7bcbec95c0e2d1f62db7f68f97b5e3e22b",
+      "bytes": 2965,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "bytes": 1811,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/R4/R4_GATE_INDEX.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/R4/R4_GATE_INDEX.md",
+      "sha256": "0bdac202ebf75cf3469d65dd6a86c48f719a5c7dcbd04a0d9b2e2c000b99abf9",
+      "bytes": 10034,
+      "inspection": "Opening 45 lines read, including authority limit and packet/handoff map.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RESUME.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RESUME.md",
+      "sha256": "05848c790613b43ae793e0948f321375d94916b929210e4c09fe882579c55b22",
+      "bytes": 2145,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RUN_STATE.jsonl",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RUN_STATE.jsonl",
+      "sha256": "8aecfd7284f8b5d13fcdacafdc0d55cb305b936b6dc2576986a05cb80eb56eef",
+      "bytes": 178726,
+      "inspection": "Final 12 event records read; child separately parsed the complete event sequence.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/init/dev-loop-init-prompt.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/init/dev-loop-init-prompt.md",
+      "sha256": "b4ad6c6d4bdbd52d76f12361457c454ddd55785f425b4756680e18aeda8d304a",
+      "bytes": 401,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "bytes": 6070,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/package.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/package.json",
+      "sha256": "7e719791e3ffdc7b57eddb2bb32d682705bf945af5b7207ffc699a2a45648656",
+      "bytes": 737,
+      "inspection": "Machine-parsed complete JSON; name/version/engines/workspaces/scripts projected and checked against registered profiles.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-piping/software-workflow.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/software-workflow.json",
+      "sha256": "3a6fd86bd362eed5e1fbcda05dcde961fca8ad46cb14375ce3dd79c3872e09b7",
+      "bytes": 1101,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/AGENTS.md",
+      "sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+      "bytes": 1124,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/Impact_Assessment.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/Impact_Assessment.md",
+      "sha256": "5a1c1094be30d05ae9bb70a1b407d302989c1692beb68fe1b62a16ff309b0e95",
+      "bytes": 3472,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/loop/LOOP_INIT.md",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "bytes": 2976,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/package.json",
+      "sha256": "a8052992a83f9390d68f015776cd81e27ed8b13a77847fcd468177758d3b7ede",
+      "bytes": 489,
+      "inspection": "Machine-parsed complete JSON; name/version/engines/workspaces/scripts projected and checked against registered profiles.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/chirality-runtime/software-workflow.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/software-workflow.json",
+      "sha256": "cbd2c3e0ac8e1f90b4b0088a4919a709fa5300ab447dfaaf8dd061a1bcb1141f",
+      "bytes": 551,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/AGENTS.md",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "bytes": 12871,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+      "bytes": 88,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851",
+      "bytes": 5945,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/loop/LOOP_INIT.md",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "bytes": 19809,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/pec/package.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/package.json",
+      "sha256": "a20d06cbbd95b5b20a7b1355b91fdefe7bed5280c858838300257e5115065b39",
+      "bytes": 1330,
+      "inspection": "Machine-parsed complete JSON; name/version/engines/workspaces/scripts projected and checked against registered profiles.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/software-workflow.json",
+      "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a",
+      "bytes": 2054,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "tools/software_workflow/run_registered_checks.py",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/software_workflow/run_registered_checks.py",
+      "sha256": "665a4ac138b92d0b0a7d4a2b03b47dc05118c8a4cb5c894155976e5eccc1c766",
+      "bytes": 12548,
+      "inspection": "Argument parser/main excerpt lines 244-285; CLI definitions and default selection behavior inspected.",
+      "hash_scope": "entire file bytes at integration seal"
+    },
+    {
+      "path": "tools/software_workflow/select_affected_checks.py",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/software_workflow/select_affected_checks.py",
+      "sha256": "ffcf15f4b9d55239dab7796378ca66cf109b65b143d5d6c79fdc2fcad593538f",
+      "bytes": 2000,
+      "inspection": "Full content read.",
+      "hash_scope": "entire file bytes at integration seal"
+    }
+  ],
+  "verification": {
+    "child_manifests": [
+      {
+        "manifest": "plans/evidence/2026-09-22_alignment_manual/project-app-runtime-sources.json",
+        "listed_source_count": 72,
+        "source_hash_differences": [
+          {
+            "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+            "recorded_sha256": "968abf747afd6f5ac059f8b6e780844fadb8a6d27cba73f57cab26209527f379",
+            "current_sha256": "f39f539db71f8bda320ca5970826652df073fd4d066285f420d73c7b377599ca",
+            "disposition": "Known parent-owned brief refinement during evidence sealing; manager reread current brief, project survey scope unchanged; preserve recorded historical hash."
+          }
+        ],
+        "notes_sha256": "ce8113215207760857b3f986eebbb9236ad0cc87c821713ccba3cc8d187b3df4"
+      },
+      {
+        "manifest": "plans/evidence/2026-09-22_alignment_manual/project-piping-sources.json",
+        "listed_source_count": 60,
+        "source_hash_differences": [],
+        "notes_sha256": "5166b88a67ae3c7ad811e45623054140b8e61189a9b3a54bb3f261799989cd83"
+      },
+      {
+        "manifest": "plans/evidence/2026-09-22_alignment_manual/project-pec-sources.json",
+        "listed_source_count": 130,
+        "source_hash_differences": [
+          {
+            "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+            "recorded_sha256": "968abf747afd6f5ac059f8b6e780844fadb8a6d27cba73f57cab26209527f379",
+            "current_sha256": "f39f539db71f8bda320ca5970826652df073fd4d066285f420d73c7b377599ca",
+            "disposition": "Known parent-owned brief refinement during evidence sealing; manager reread current brief, project survey scope unchanged; preserve recorded historical hash."
+          }
+        ],
+        "notes_sha256": "c268353a488a52838cd4e733d4bdfcda6ccd7053d1dc676fec831657be22ac77"
+      }
+    ],
+    "unaccounted_hash_differences": [],
+    "profiles": [
+      {
+        "project": "chirality-app-dev",
+        "registered_checks": [
+          "frontend-build",
+          "frontend-premerge",
+          "frontend-test",
+          "frontend-typecheck",
+          "harness-pytest",
+          "harness-self-check",
+          "app-hold-integrity"
+        ],
+        "cwd_and_declared_command_target_errors": []
+      },
+      {
+        "project": "chirality-runtime",
+        "registered_checks": [
+          "typecheck",
+          "unit"
+        ],
+        "cwd_and_declared_command_target_errors": []
+      },
+      {
+        "project": "chirality-piping",
+        "registered_checks": [
+          "desktop-build",
+          "desktop-test",
+          "evidence-sweep",
+          "piping-pytest",
+          "harness-pytest",
+          "harness-self-check"
+        ],
+        "cwd_and_declared_command_target_errors": []
+      },
+      {
+        "project": "pec",
+        "registered_checks": [
+          "v2-api-contract",
+          "v2-loop-registry",
+          "v2-store-guard",
+          "v2-core-posture",
+          "harness-self-check"
+        ],
+        "cwd_and_declared_command_target_errors": []
+      }
+    ],
+    "format": "Balanced report code fences; malformed joined word repaired.",
+    "direct_backchecks": [
+      "D-APP-130 no-repair boundary",
+      "Runtime D-GOV-43 Impact_Assessment preserved-source overlays",
+      "Piping RESUME/log tail/R4 no-ruling boundary",
+      "PEC D85 exact grant and current hold register"
+    ]
+  },
+  "output": {
+    "path": "plans/evidence/2026-09-22_alignment_manual/project-coverage.md",
+    "sha256": "884f438e434f409fa1e23831dda6ffc4685e237d1991f90cf964cd1ef2ee5c43"
+  },
+  "limitations": [
+    "Initial brief was read before parent refinements; exact initial text remains in manager tool transcript. Current brief reread and hashed; child-sealing differences preserved, not overwritten.",
+    "Snapshot only; repeat live remote/hold/authority discovery before future execution.",
+    "Hashing an entire file does not imply full-body reading where an excerpt or machine inspection is specified.",
+    "No exhaustive code/history audit, no instruction adoption or project acceptance."
+  ]
+}

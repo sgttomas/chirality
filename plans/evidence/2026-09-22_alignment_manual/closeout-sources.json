@@ -1,0 +1,216 @@
+{
+  "schema": "alignment-manual-closeout-sources/v1",
+  "recorded_at_utc": "2026-09-22T08:26:20.434266+00:00",
+  "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "agent": {
+    "canonical_task": "/root/closeout_manager",
+    "parent": "/root",
+    "role": "WORKING_ITEMS",
+    "type": 1,
+    "mechanism": "delegated-harness-native Codex collaboration child; not Chirality-managed delegate_agent",
+    "role_basis": "Explicit fresh WORKING_ITEMS assignment and full role read; exact fork parameter is not independently exposed to this child",
+    "model_identity": "GPT-6-based Codex as supplied by host; exact supplier model ID and reasoning setting not independently exposed",
+    "children_spawned": 0,
+    "host_permissions": {
+      "filesystem": "unrestricted/danger-full-access",
+      "network": "enabled",
+      "approval_policy": "never"
+    },
+    "effective_brief_boundary": "Manifest and closeout evidence; Git mutations held until explicit root content-ready signal. These are instruction restrictions, not a mechanically enforced per-agent filesystem fence."
+  },
+  "native_inventory_observation": {
+    "tool": "collaboration.list_agents",
+    "current_agents": [
+      {
+        "task": "/root",
+        "parent": null,
+        "status": "running"
+      },
+      {
+        "task": "/root/closeout_manager",
+        "parent": "/root",
+        "status": "running"
+      },
+      {
+        "task": "/root/guide_author",
+        "parent": "/root",
+        "status": "running"
+      },
+      {
+        "task": "/root/html_publisher",
+        "parent": "/root",
+        "status": "running"
+      },
+      {
+        "task": "/root/manual_review_manager",
+        "parent": "/root",
+        "status": "running"
+      },
+      {
+        "task": "/root/manual_review_manager/manual_ch1_ch2",
+        "parent": "/root/manual_review_manager",
+        "status": "running"
+      },
+      {
+        "task": "/root/manual_review_manager/manual_ch3_ch4",
+        "parent": "/root/manual_review_manager",
+        "status": "running"
+      },
+      {
+        "task": "/root/manual_review_manager/manual_ch5_ch7",
+        "parent": "/root/manual_review_manager",
+        "status": "running"
+      },
+      {
+        "task": "/root/project_coverage_manager",
+        "parent": "/root",
+        "status": "running"
+      },
+      {
+        "task": "/root/project_coverage_manager/app_runtime_review",
+        "parent": "/root/project_coverage_manager",
+        "status": "running"
+      },
+      {
+        "task": "/root/project_coverage_manager/pec_review",
+        "parent": "/root/project_coverage_manager",
+        "status": "running"
+      },
+      {
+        "task": "/root/project_coverage_manager/piping_review",
+        "parent": "/root/project_coverage_manager",
+        "status": "running"
+      }
+    ],
+    "earlier_observation": "The PEC child was first observed in an errored model-capacity state, then running again. The root coordinator reports that it completed substantial inspection before an interrupted/partial turn and resumed the same instance. This was recovery after partial execution, not a failed launch or a completed review.",
+    "source_evidence": "Named child and manager *sources.json records carry their supplied basis and returns; only present metadata explicitly read is claimed here."
+  },
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "consultation_scope": "Full active root entry"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_WORKING_ITEMS.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "consultation_scope": "Full assigned role"
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/chirality-change/SKILL.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+      "consultation_scope": "Full selected skill"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "f39f539db71f8bda320ca5970826652df073fd4d066285f420d73c7b377599ca",
+      "consultation_scope": "Full initial brief; authorized clarification and owner excerpts then authored and rechecked; hash names clarified current version"
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/PRD_ROOT.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "83cea4babd9080eec1a92d6ca17575af355afacaa246ae689a60176de6a92eb8",
+      "consultation_scope": "Merge policy section 5.3.1; navigation searches and a separate historical/falsifier excerpt"
+    },
+    {
+      "path": ".github/workflows/governance-harness.yml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/.github/workflows/governance-harness.yml",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "0e2c9f9ab517d90cecf9a10f36f623f0521ee2e73aa29cbef9a474e853d74247",
+      "consultation_scope": "Full CI entrypoint"
+    },
+    {
+      "path": ".github/workflows/harness-premerge.yml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/.github/workflows/harness-premerge.yml",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "0b4e4500375efa9ebd6a663f53dd7cffc6f5749a742f21b58842565d7121bdde",
+      "consultation_scope": "Trigger, jobs and check entrypoints; combined-output view truncated"
+    },
+    {
+      "path": ".github/workflows/piping-desktop-e2e.yml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/.github/workflows/piping-desktop-e2e.yml",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "dee6e956e0fc0b42a0bb243dab8629954960695017bf983acfca3439fd31f40d",
+      "consultation_scope": "Lines 1–38; workflow applicability and selector entry"
+    },
+    {
+      "path": ".github/workflows/pec-tests.yml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/.github/workflows/pec-tests.yml",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "4dbce18e42873432cbbf87b07a0c58b7e87357c1ed1472edb17f80d205a2bafb",
+      "consultation_scope": "Lines 1–29; trigger"
+    },
+    {
+      "path": ".github/workflows/desktop-release-template.yml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/.github/workflows/desktop-release-template.yml",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "9894b3cb116aeb835925839af4fedcb060cf9acaada6e9c31f4ab8ce827f0501",
+      "consultation_scope": "Lines 1–30; trigger and artifact-job guard"
+    },
+    {
+      "path": "tools/validation/validate_instruction_tranche_manifest.py",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/validation/validate_instruction_tranche_manifest.py",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "1b2bd3941ace82924028d8e21f909d6f927712c22ed97fb26d9c2aa2a34d286f",
+      "consultation_scope": "Schema, protected surfaces, gate fields, coverage and CLI excerpts; not every implementation line"
+    },
+    {
+      "path": "tools/run_affected_tests.py",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/run_affected_tests.py",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "e6f20d65ae41db14603983e6215edb8f884d3251787074af7c9856dc1ded78b2",
+      "consultation_scope": "Full selector wrapper"
+    },
+    {
+      "path": "tools/tools-test-routing.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/tools-test-routing.json",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "4849da12fdd3c05d9c72552f1f3c581497a5459c1b78ab72f4ac0f689feb8c26",
+      "consultation_scope": "Full routing profile"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-MANUAL-THEORY-20260919.yaml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/ROOT-MANUAL-THEORY-20260919.yaml",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "09818b1292fa133d85ba761d6156515586588e8a45c1419d2a9f80ec85e677ab",
+      "consultation_scope": "Full additive-manual precedent"
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-CONCORDANCE-CLAIM-GRANULARITY-20260922.yaml",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/ROOT-CONCORDANCE-CLAIM-GRANULARITY-20260922.yaml",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "e3c2f14b53c9343d52ac05e0222b388f71cce8a27cd43ed21722b59386dc14f1",
+      "consultation_scope": "Full current manifest precedent; not adopted as this run scope"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/INPUTS.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/INPUTS.json",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "84b54ed0634fde2afd05467ceec5fc7efa1535b1670ca6deaae61b09442f4944",
+      "consultation_scope": "Preserved source identity record"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-coverage.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-coverage.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "44737ae4698db8626cb975d2f6f5cb2ddc5b7fad05533a5337421323da5e29dc",
+      "consultation_scope": "First 100 lines of still-active manager draft; not accepted as final coverage"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/review-ch5-ch7-sources.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/review-ch5-ch7-sources.json",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "cfc85112752a30e71c7af262fa55bc43a9d73622eebe6e25dac56fadb0e3c155",
+      "consultation_scope": "Agent/parentage metadata and selected source entries; full body not claimed"
+    }
+  ]
+}

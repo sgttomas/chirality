@@ -1,0 +1,106 @@
+{
+  "schema": "alignment-manual-closeout-candidate-checks/v1",
+  "observed_at_utc": "2026-09-22T08:45:09.176865+00:00",
+  "phase": "uncommitted candidate; independent review and UI inspection active",
+  "base": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "checks": {
+    "changed_scope_is_authorized": true,
+    "all_working_candidate_protected_paths_declared": true,
+    "all_preserved_originals_match": true,
+    "renderer_passes_from_only_declared_four_file_copy": true,
+    "authored_document_links_exist_in_submission": true,
+    "publisher_parity_checks_all_pass": true,
+    "publisher_parity_evidence_matches_source_and_html": true,
+    "working_candidate_has_no_conflict_marker_lines": true
+  },
+  "changed_path_count": 50,
+  "protected_path_count": 12,
+  "scope_failures": [],
+  "uncovered_protected_paths": [],
+  "preserved_originals": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "sha256": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39",
+      "matches": true
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+      "matches": true
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "matches": true
+    }
+  ],
+  "isolated_renderer": {
+    "copied_files": [
+      "render_manual.py",
+      "requirements.txt",
+      "CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "CHIRALITY_AGENT_USER_MANUAL_v1.html"
+    ],
+    "cwd": "isolated temporary directory outside repository",
+    "exit_code": 0,
+    "summary": [
+      "22 sections; 28 headings; 7 tables; 10 code blocks",
+      "Source SHA-256: 2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "HTML SHA-256:   77bbc449bca0daa3ba4dd3644119a6deaedff3f89f606b26824a0bce504339b5"
+    ]
+  },
+  "local_link_checks": [
+    {
+      "path": "docs/alignment-manual/README.md",
+      "local_links_checked": 8
+    },
+    {
+      "path": "docs/alignment-manual/MANUAL_REVIEW_v1.md",
+      "local_links_checked": 28
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "local_links_checked": 33
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "local_links_checked": 99
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "local_links_checked": 124
+    },
+    {
+      "path": "README.md",
+      "local_links_checked": 11
+    }
+  ],
+  "local_link_failures": [],
+  "conflict_markers": [],
+  "artifact_sha256": {
+    "README.md": "c42e7936491f10a462b9db058d22875f7812f95aff87f09e4cf51b9ae9cbeca6",
+    "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html": "77bbc449bca0daa3ba4dd3644119a6deaedff3f89f606b26824a0bce504339b5",
+    "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+    "docs/alignment-manual/MANUAL_REVIEW_v1.md": "04494eecd470f868796892415d547f3441a410e7fd68081d9eba4e0a3149239a",
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39",
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+    "docs/alignment-manual/README.md": "732499bb3548d55d277759c1cb106ddf6230e2c5cf7d48058571be4691fdeee6",
+    "docs/alignment-manual/assets/Figure_1_1.png": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1",
+    "docs/alignment-manual/render_manual.py": "caaa10a48f51b79f451b238327cdd57bed9a89de6c97b2c29db3851300dc1e4e",
+    "docs/alignment-manual/requirements.txt": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+    "docs/governance_harness/tranche_manifests/ROOT-ALIGNMENT-MANUAL-20260922.yaml": "89589b8c32657735dba0ca03cf85642ca91934630b7d894625183c1028c3f5fd"
+  },
+  "limits": [
+    "The original v1 Markdown is preserved verbatim and excluded from authored-document link repair.",
+    "Working-tree scope coverage does not replace G4 and conflict-marker checks over the eventual committed complete PR range.",
+    "The isolated renderer uses installed pinned Python packages and only its selected source/output/renderer/requirements files; it does not use dated evidence as a runtime dependency.",
+    "Independent review and UI conclusions are reported separately and must cover the final bytes."
+  ],
+  "local_image_check": {
+    "document": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+    "source": "assets/Figure_1_1.png",
+    "exists_in_submitted_assets": true
+  }
+}

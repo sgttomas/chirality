@@ -1,0 +1,104 @@
+{
+  "schema": "alignment-manual-final-review-binding/v1",
+  "bound_at_utc": "2026-09-22T08:56:38.824728+00:00",
+  "branch": "codex/alignment-manual-and-agent-guide-20260922",
+  "source_basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "checks": {
+    "every_reviewed_subject_matches": true,
+    "content_review_has_no_unresolved_findings": true,
+    "publication_review_has_no_unresolved_findings": true,
+    "three_preserved_inputs_match": true,
+    "authored_artifacts_unchanged_since_candidate_checks": true,
+    "no_upstream_authored_artifact_overlap": true
+  },
+  "reviewed_subjects": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "reviews": [
+        "content"
+      ],
+      "matches": true
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+      "reviews": [
+        "content"
+      ],
+      "matches": true
+    },
+    {
+      "path": "docs/alignment-manual/MANUAL_REVIEW_v1.md",
+      "sha256": "04494eecd470f868796892415d547f3441a410e7fd68081d9eba4e0a3149239a",
+      "reviews": [
+        "content"
+      ],
+      "matches": true
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "reviews": [
+        "content",
+        "publication"
+      ],
+      "matches": true
+    },
+    {
+      "path": "docs/alignment-manual/render_manual.py",
+      "sha256": "caaa10a48f51b79f451b238327cdd57bed9a89de6c97b2c29db3851300dc1e4e",
+      "reviews": [
+        "publication"
+      ],
+      "matches": true
+    },
+    {
+      "path": "docs/alignment-manual/requirements.txt",
+      "sha256": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+      "reviews": [
+        "publication"
+      ],
+      "matches": true
+    },
+    {
+      "path": "docs/alignment-manual/README.md",
+      "sha256": "732499bb3548d55d277759c1cb106ddf6230e2c5cf7d48058571be4691fdeee6",
+      "reviews": [
+        "publication"
+      ],
+      "matches": true
+    },
+    {
+      "path": "README.md",
+      "sha256": "c42e7936491f10a462b9db058d22875f7812f95aff87f09e4cf51b9ae9cbeca6",
+      "reviews": [
+        "publication"
+      ],
+      "matches": true
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html",
+      "sha256": "77bbc449bca0daa3ba4dd3644119a6deaedff3f89f606b26824a0bce504339b5",
+      "reviews": [
+        "publication"
+      ],
+      "matches": true
+    }
+  ],
+  "review_records": {
+    "final-content-review.md": "2d7cec98a3e469b6d0b06424e60e137180d5f58baae66a0ec0ee0337a9f41091",
+    "final-content-review-sources.json": "f462bbcb27b077c0c58651f082df8ccf46aedfe61e7bfe7f03fd356ceb03002f",
+    "publication-review.md": "05006bf3e1327d10b377e112f6a73095f6e09c7dc6c347b3f3c682e54b492003",
+    "publication-review-sources.json": "cc3b1607179418f4c56373adf5233f2b312091ff5cf3043b393bde94459611bc"
+  },
+  "root_git_closeout_signal": "Root directed autonomous commit/push/PR/CI/merge after the content reviewer completed its source record and final notice; that notice was received on 2026-09-22. Standing owner grant remains conditional on actual-candidate CI and review.",
+  "integration_context": {
+    "observed_origin_main": "44df90bd907298ec67c990451646175e2aae56b3",
+    "upstream_changed_path_count": 1167,
+    "overlap_with_authored_artifacts": [],
+    "edition_basis": "The manuals preserve the explicitly dated source basis; later upstream project-state changes are not silently adopted."
+  },
+  "visual_inspection": "NOT VERIFIED: browser file-URL security policy; offline WeasyPrint prerequisite Pango unavailable. No alternate browser route, rendered PDF or page images.",
+  "commit_binding": "The ordinary PR record will identify the commit containing these exact reviewed bytes; this file does not attempt self-referential commit hashing."
+}

@@ -1,0 +1,40 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-ALIGNMENT-MANUAL-20260922
+title: Review the alignment manual and add the Chirality agent user guide
+date: 2026-09-22
+basis: 9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8
+
+instruction_surface_paths:
+  - docs/alignment-manual/**
+  - docs/governance_harness/tranche_manifests/ROOT-ALIGNMENT-MANUAL-20260922.yaml
+
+m2_gate:
+  authorization: >-
+    Ryan Tufts directs a comprehensive review of the supplied project-management
+    manuscript for its application to Chirality, preservation of the originals,
+    an incremented Markdown revision, and comprehensive agent-facing user
+    documentation in Markdown and human-friendly HTML. The scope covers App,
+    Piping, Runtime, PEC and general project development, including recent
+    development-loop definitions and the treatment of obsolete evidence. The
+    owner authorizes Agent 0 with Type 1 and Type 2 assistance. The task and
+    execution boundaries are recorded in
+    plans/evidence/2026-09-22_alignment_manual/BRIEF.md. This cited scope
+    description records the instruction of the active owner session; it is not
+    a verbatim quotation or a claim of acceptance of the resulting text.
+  authorized_by: Ryan Tufts
+  authorization_date: 2026-09-22
+  integration_owner: >-
+    WORKING_ITEMS /root/closeout_manager under HELP_HUMAN /root; sole Git
+    mutation owner after the root marks the content ready
+  merge_gate: owner-authorized-pr
+  self_merge: true
+
+m6_notice:
+  disposition: none-required
+  routed_to: []
+  rationale: >-
+    Additive explanatory manuals and their preserved inputs change no pinned
+    authority, live instruction, project contract or adopted workflow. No
+    project loop adopts this text through its publication. G4 applies because
+    these files are under docs/**; the manifest and Git integration do not
+    establish governed acceptance, downstream adoption or product release.

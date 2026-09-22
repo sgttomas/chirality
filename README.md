@@ -43,6 +43,8 @@ A role describes how an agent participates. A workflow describes how work is org
 
 For application development, start with the [App README](projects/chirality-app-dev/README.md). For agent-assisted work in this repository, read [AGENTS.md](AGENTS.md) and the instructions in the project you are changing.
 
+The [alignment manual and agent guide](docs/alignment-manual/README.md) explain how to organize, check, and carry work forward across Chirality projects.
+
 The repository contains ongoing development and historical evidence as well as released source. Consult the [release notes](https://github.com/sgttomas/chirality-app/releases) for what ships in a particular App version.
 
 [Report an App issue](https://github.com/sgttomas/chirality-app/issues/new/choose) · [Discuss source changes](https://github.com/sgttomas/chirality/issues) · [Work with us](https://chirality.ai/contact)
