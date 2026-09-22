@@ -82,7 +82,7 @@ evidence remain dated compatibility history and are not deleted.
 `DEL-02-02 Right-Panel Coordination, Workflows, and Proposal UX` (UX_UI_SLICE, applied decomposition row L308):
 
 Present, in the right panel, the "Who is working" view over recorded
-agent/session selections and Agent 0/1/2 role entry for Codex sessions with
+agent/session selections and the current HELP_HUMAN/HELPS_HUMANS/WORKING_ITEMS direct-entry roles for Codex sessions, with TASK delegated with
 source, authority class, responsible reference, currency, and evidence; the
 Workflows view, roadmap, New workflow form, library, and bind actions over
 governed workflow files; and the transcript proposal card rendered from
@@ -109,7 +109,7 @@ and query compatibility tests.
 1. The primary dialogue is invariant; Workbench and Pipeline are unmounted from the active shell with code, routes, and tests retained and the routes reachable by URL (Q3); the Work projection stays unmounted until an explicitly recorded plan/task source exists.
 2. Who is working renders only canonical recorded sessions and exact parentage with source, authority class, responsible reference, currency, and evidence; unknown stays unknown and provenance-labelled.
 3. The Workflows view lists, opens, follows, pauses, creates, and binds governed workflow files with provenance (`roadmapSource` and hash), reports currency (Q15), and advances position only at human gates recording who advanced it (Q16); creation refuses role, folder, or delegation policy unset; the file steers and never records.
-4. The proposal card promotes nothing silently; Accept, Adjust, and Not now are human acts applied by the app; one proposal per chat per trigger; live `proposal.*` consumption waits on DEL-05-02 after Root DEL-02-10 acceptance.
+4. The proposal card promotes nothing silently; Accept, Adjust, and Not now are human acts applied by the app; one proposal per chat per trigger; live proposal consumption waits on current extensible Runtime event/record evidence with DEL-05-02 and DEL-08-04/05; the retired closed schema-v2 acceptance is not a gate.
 5. Presentation only: DEL-08-02 owns routing and guarded selection, DEL-08-03 dispatch semantics (no active-shell consumer), DEL-08-04 role and delegation semantics, DEL-08-05 child records, DEL-05-04 replay and projection, DEL-06-03 the `propose` tool, DEL-07-03 the workflow file contract.
 6. If implementation review finds cross-domain churn between the coordination and workflow views, a split is proposed before the envelope widens (row split trigger).
 
@@ -118,8 +118,7 @@ and query compatibility tests.
 Remaining items seated under D-APP-108 (2026-09-04): DEL-02-02-V3-03,
 DEL-02-02-V3-04. Ruled questions applied here: Q3, Q10 to Q14, Q15, Q16.
 Alignment writes WI-006, WI-007, WI-008, WI-009, WI-010 performed in run
-`APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes DEP-003, DEP-004 await
-the registered dependency-extract pass after owner acceptance of this alignment.
+`APP_SCA_APP_010_SEATING_2026-09-04`; dependency writes DEP-003, DEP-004 were performed under D-APP-109/D-APP-110 on 2026-09-05; the extracted register now exists.
 No lifecycle, Checking Approval SHA, dependency-acceptance, product, or release
 act is implied.
 
@@ -129,7 +128,7 @@ act is implied.
 
 > #### Datasheet: DEL-02-02 Work/Agents Coordination, Workbench, and Pipeline UX
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-002 — Identification
@@ -139,7 +138,7 @@ act is implied.
 > | Field | Value |
 > |---|---|
 > | DeliverableID | DEL-02-02 |
-> | DeliverableName | Work/Agents Coordination, Workbench, and Pipeline UX |
+> | DeliverableName | Right-Panel Coordination, Workflows, and Proposal UX |
 > | PackageID | PKG-02 |
 > | PackageName | Woven Dialogue Shell, Navigation, and Operator State |
 > | DecompositionVariant | SOFTWARE_DECOMP |
@@ -173,7 +172,7 @@ act is implied.
 > |---|---|---|
 > | Current release priority | Workbench agent context, pipeline category controls, and TASK split selectors are P0. Workbench contract APIs and stale selection reset are P1. | `docs/PRD.md` Section 8.2 |
 > | Scope boundary | Includes UI and operator workflow behavior; excludes runtime engine internals. | `_CONTEXT.md` Package Scope; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Section 7 |
-> | Source warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` Authoritative Source Corpus — reconciled under D-APP-38 |
+> | Source warning | D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment. | `_REFERENCES.md` Authoritative Source Corpus — reconciled under D-APP-38 |
 > | Dispatch path warning | The dispatched path used stale package label `PKG-02_Desktop_UI_and_Local_Experience`; the unique live DEL-02-02 folder is under `PKG-02_Desktop_Shell_Navigation_and_Operator_State`. | `execution/_Coordination/WORKSPACE_MANIFEST.csv`; `_CONTEXT.md` Identity |
 >
 
@@ -192,23 +191,11 @@ act is implied.
 
 ### CLM-006 — References
 
-> ##### References
->
-> - `_CONTEXT.md` for deliverable identity, scope, and anticipated artifacts.
-> - `_REFERENCES.md` for source corpus and hash status.
-> - `_DEPENDENCIES.md` for declared dependency state; dependency extraction is deferred.
-> - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Sections 7-9 for package, deliverable, and scope-ledger entries.
-> - `docs/PRD.md` Sections 7.2, 7.5, 8.2, 14, and 16 for source requirements and traceability.
-> - `docs/TYPES.md` Section 4 for navigation vocabulary.
-> - `docs/SPEC.md` Section 17.2 for deliverable status/dependency workspace APIs.
-> - `docs/CONTRACT.md` Section 1.7 for lifecycle/dependency/provenance invariants.
->
+D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment. Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation. Source references are indexed in `_REFERENCES.md`; no frozen source acceptance is changed.
 
 ### CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-> ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
->
-> UPD-107 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; dependency extraction remains outside this UX slice's product ownership.
+The original nine-row/UPD evidence describes the earlier Workbench/Pipeline implementation. SCA-APP-010 unmounts those active-shell panes while preserving the exact route/query compatibility question. Current right-panel, workflow and proposal obligations remain in the controlling section and Remaining; old helper tests are not live evidence. Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation.
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -254,7 +241,7 @@ act is implied.
 > | DEL-02-02-REQ-008 | Dynamic scope scans shall reset invalid selections caused by root changes, removed deliverables, disabled knowledge markers, or stale knowledge targets. | P1 | `docs/PRD.md` Section 8.2 FR-013; `docs/PRD.md` Section 7.5 |
 > | DEL-02-02-REQ-009 | The UX shall preserve disabled or unsupported variants as visible non-selectable options rather than silently hiding roadmap scope. | P0/P1 context | `docs/PRD.md` Section 7.2; `docs/PRD.md` Section 14; `docs/TYPES.md` Section 4.4 |
 > | DEL-02-02-REQ-010 | UI state used by this slice shall remain non-authoritative and must not replace project truth in deliverable files, status files, dependency records, or accepted git history. | Governance constraint | `docs/DIRECTIVE.md` Sections 2.1, 2.2, and 2.6; `docs/CONTRACT.md` Section 1.7 |
-> | DEL-02-02-REQ-011 | Workbench status/dependency summaries shall not be populated from UI convenience state while dependency extraction remains deferred; empty or missing dependency records must remain visibly `TBD`, unavailable, or sourced from the deliverable contract API. | Governance constraint | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7 |
+> | DEL-02-02-REQ-011 | Workbench status/dependency summaries shall not be populated from UI convenience state without treating local UI state as formal dependency truth; empty or missing dependency records must remain visibly `TBD`, unavailable, or sourced from the deliverable contract API. | Governance constraint | `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7 |
 >
 
 ### CLM-011 — Standards
@@ -284,7 +271,7 @@ act is implied.
 > | DEL-02-02-REQ-007 | Scope-mode validation tests for deliverables, knowledge types, and required target deliverable. | Task-scope selector tests |
 > | DEL-02-02-REQ-008 | Stale selection tests for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets. | Stale selection tests |
 > | DEL-02-02-REQ-010 | Review that no UI state is treated as authoritative project truth. | ADQ-13 evidence note plus existing workspace deliverable API tests |
-> | DEL-02-02-REQ-011 | Mocked API or integration tests proving status/dependency summaries come from deliverable contract APIs or remain explicitly unavailable/TBD when dependency extraction is deferred. | `frontend/src/__tests__/lib/workspace-deliverable-api.test.ts`; `frontend/src/__tests__/components/workbench-surface.test.ts` |
+> | DEL-02-02-REQ-011 | Mocked API or integration tests proving status/dependency summaries come from deliverable contract APIs or remain explicitly unavailable/TBD when formal records are unavailable. | `frontend/src/__tests__/lib/workspace-deliverable-api.test.ts`; `frontend/src/__tests__/components/workbench-surface.test.ts` |
 >
 
 ### CLM-013 — Documentation
@@ -308,7 +295,7 @@ act is implied.
 >
 > R4-P28 assigns the PIPELINE Execution Root Scaffold form and the co-resident deliverable-contract/lifecycle-transition panels to DEL-02-02, parallel to the WORKBENCH selection requirements. Verification must include a PIPELINE transition render test meeting the D-APP-36 bar; this records the obligation and does not assert that test as complete.
 
-- **AC-001** — The converted contract preserves all legacy source content and traceability to SOW-006, SOW-007, and OBJ-001 without changing lifecycle or dependency state.
+- **AC-001** — The converted contract preserves all legacy source content and traceability to SOW-006, SOW-081, SOW-082, OBJ-001, and OBJ-007 without changing lifecycle or dependency state.
 
 ## Production and Verification Method — Praxeology
 
@@ -326,63 +313,17 @@ act is implied.
 
 ### CLM-017 — Prerequisites
 
-> ##### Prerequisites
->
-> - Accepted working root with DEL-02-02 scaffolded under PKG-02.
-> - Accessible source corpus from `_REFERENCES.md`, especially `docs/PRD.md`, `docs/TYPES.md`, `docs/SPEC.md`, and the active SOFTWARE_DECOMP file.
-> - Current deliverable status and dependencies available through deliverable-local files or workspace APIs.
-> - Declared upstream dependencies: TBD; `_DEPENDENCIES.md` says no accepted dependency edges have been extracted yet.
-> - Declared downstream dependencies: TBD; `_DEPENDENCIES.md` says no accepted dependency edges have been extracted yet.
->
+Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation. Read the controlling SCA-APP-010 section and current four-role guidance. Keep live descendant presentation gated by the current Runtime record/interface and DEL-08-04/05 readiness. Workflow/roadmap/proposal promises that differ from current method-library/draft registration remain exact alignment tasks, not inferred retirements.
 
 ### CLM-018 — Steps
 
-> ##### Steps
->
-> 1. Confirm source and scope.
->    - Read `_CONTEXT.md`, `_REFERENCES.md`, `_STATUS.md`, and `_DEPENDENCIES.md`.
->    - Confirm `ResponsibleParty` remains `TBD`.
->    - Confirm this slice covers Workbench context UI, Pipeline selector behavior, and stale selection tests.
->
-> 2. Implement or inspect Workbench context behavior.
->    - Verify that selected agent, row, and column are read from query parameters.
->    - Verify sensible defaults for incomplete or missing query parameters.
->    - Verify the resolved active context is visible to the operator.
->    - Verify Workbench can operate as a loop-first right-sidebar/deep-link tertiary form rather than a replacement primary pane.
->    - Source: `docs/PRD.md` Section 8.2 FR-009.
->
-> 3. Implement or inspect Workbench deliverable contract summaries.
->    - Load selected-deliverable status/dependency summaries through workspace contract APIs where the UI supports deliverable context.
->    - Keep lifecycle controls disabled for unsupported agents.
->    - Use `frontend/src/lib/workspace/deliverable-api.ts` `canAgentTransitionLifecycle` as the current implementation source of truth for lifecycle-control actor support.
->    - Verify human-gated transitions require approval SHA before submission.
->    - Verify status/dependency summaries are not populated from local UI convenience state while dependency extraction remains deferred.
->    - Do not treat UI state as authoritative lifecycle or dependency truth.
->    - Sources: `docs/PRD.md` Section 8.2 FR-010; `docs/SPEC.md` Section 17.2; `docs/DIRECTIVE.md` Section 2.6; `docs/CONTRACT.md` Section 1.7.
->
-> 4. Implement or inspect Pipeline category controls.
->    - Expose `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls.
->    - Keep unsupported options visible and disabled as coming soon.
->    - Sources: `docs/PRD.md` Section 8.2 FR-011; `docs/TYPES.md` Section 4.4.
->
-> 5. Implement or inspect Pipeline TASK selectors.
->    - Separate task-agent selection from scope selection.
->    - Support scope modes `DELIVERABLES` and `KNOWLEDGE_TYPES`.
->    - Require target deliverable selection for knowledge-type mode.
->    - Source: `docs/PRD.md` Section 8.2 FR-012.
->
-> 6. Implement or inspect stale selection reset behavior.
->    - Reset invalid selection state when the working root changes.
->    - Reset removed deliverables.
->    - Reset disabled knowledge markers.
->    - Reset stale knowledge targets.
->    - Sources: `docs/PRD.md` Section 8.2 FR-013; `docs/PRD.md` Section 7.5.
->
-> 7. Preserve governance boundaries.
->    - Do not create or update `Dependencies.csv` as part of this UX deliverable.
->    - Do not infer dependency edges from UI selector behavior.
->    - Record unknowns as `TBD`, `ASSUMPTION`, or conflicts for human ruling.
->
+1. Bind the current presentation/source basis and preserve primary-dialogue isolation.
+2. Present only recorded descendant/session relationships; verify missing/stale/unknown states and reconcile exact provenance-label directions before changing accepted presentation.
+3. Compare current workflow library/draft registration with retained roadmap, follow/pause, bind, currency and attributed-human-gate obligations; record the exact difference instead of inferring retirement.
+4. Verify proposal Accept/Adjust/Not now as actual human acts, once-per-chat/trigger and without silent promotion.
+5. Verify supported current role entry, routing/query compatibility and read-only project records with their semantic owners.
+6. Use current extensible Runtime events and DEL-08-04/05 records for live wiring; no retired closed-schema gate applies.
+7. Record D-APP-36 render/browser and current-source component/integration results, retaining missing implementation explicitly. Current hooks: frontend/src/__tests__/components/woven-dialogue-shell.test.tsx and woven-dialogue-controls.test.tsx, with workspace-deliverable-api.test.ts for the read-only contract.
 
 ### CLM-019 — Verification
 
@@ -402,24 +343,11 @@ act is implied.
 
 ### CLM-020 — Records
 
-> ##### Records
->
-> - Workbench context UI implementation or inspection notes: `frontend/src/components/workbench/workbench-surface.tsx`; ADQ-13 evidence note.
-> - Workbench context UI test evidence for query defaults: `frontend/src/__tests__/components/workbench-surface.test.ts`.
-> - Workbench lifecycle-control source-of-truth fixture or registry evidence: `frontend/src/lib/workspace/deliverable-api.ts`; `frontend/src/__tests__/components/workbench-surface.test.ts`; `frontend/src/__tests__/lib/workspace-deliverable-api.test.ts`.
-> - Workbench contract boundary evidence for status/dependency summaries: `frontend/src/__tests__/lib/workspace-deliverable-api.test.ts`; ADQ-13 evidence note.
-> - Pipeline selector behavior implementation or inspection notes: `frontend/src/components/pipeline/pipeline-surface.tsx`; ADQ-13 evidence note.
-> - Pipeline category and TASK split-selector test evidence: `frontend/src/__tests__/components/pipeline-surface.test.ts`; `frontend/src/__tests__/lib/task-scope-selection.test.ts`.
-> - Stale selection test evidence for root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets: `frontend/src/__tests__/lib/task-scope-selection.test.ts`.
-> - Human rulings for conflict table entries in `Guidance.md`: TBD.
-> - Dependency extraction remains deferred; `Dependencies.csv` is intentionally not produced by this run.
->
+Preserve current source-bound presentation, stale/empty/unknown-state and query tests; missing live descendants/workflow/proposal results remain explicit. Conflict decisions are in ScopeOfWork.md CLM-028, not a retired four-document kit. Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation.
 
 ### CLM-021 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-> ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
->
-> UPD-107 supersedes run-scoped extraction deferral wording: the nine-row derivative register exists; dependency extraction remains outside this UX slice's product ownership.
+The original nine-row/UPD evidence describes the earlier Workbench/Pipeline implementation. SCA-APP-010 unmounts those active-shell panes while preserving the exact route/query compatibility question. Current right-panel, workflow and proposal obligations remain in the controlling section and Remaining; old helper tests are not live evidence. Dependency extraction ran under D-APP-109/D-APP-110 on 2026-09-05. `Dependencies.csv` is the formal extracted register; consult each edge and gate directly. This record repair neither changes an edge nor infers satisfaction from implementation.
 
 - **VER-001** — Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, then perform human review against the accepted legacy basis.
 
@@ -429,7 +357,7 @@ act is implied.
 
 > #### Guidance: DEL-02-02 Workbench and Pipeline Selection UX
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> Historical D-APP-56 source observation (2026-07-12): the then-current REF-006 matched. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 >
 
 ### CLM-023 — Purpose
@@ -490,13 +418,7 @@ act is implied.
 
 ### CLM-028 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
-> |---|---|---|---|---|---|---|
-> | DEL-02-02-CONFLICT-001 | Dispatch path used stale package label `PKG-02_Desktop_UI_and_Local_Experience`, but the live scaffolded deliverable is under `PKG-02_Desktop_Shell_Navigation_and_Operator_State`. | User dispatch brief | `_CONTEXT.md` Identity; `execution/_Coordination/WORKSPACE_MANIFEST.csv` row for DEL-02-02 | All run-record scope references | Use the unique live DEL-02-02 path and preserve the path mismatch as a source warning. | TBD |
-> | DEL-02-02-CONFLICT-002 | PRD expected and observed PRD hashes match under D-APP-38. Dispatch says to treat this as a source status, not a blocker. | `_REFERENCES.md` REF-006 row | User dispatch brief | All PRD-backed requirements | Continue using accessible `docs/PRD.md`, cite sections, and surface hash status: MATCH for review. | TBD |
-> | DEL-02-02-CONFLICT-003 | `_CONTEXT.md` lists SOW-007 under DEL-02-02, while the decomposition scope ledger maps SOW-007 to PKG-08 / DEL-08-03 with PKG-08 as primary package. | `_CONTEXT.md` Traceability | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Scope Ledger SOW-007 | Specification scope, requirements, and ownership notes | Treat DEL-02-02 as UI selector owner and PKG-08 as dispatch semantics owner. | **RULED 2026-07-12 (D-APP-56 R4-P35): proposed split ratified.** |
+Current source-state observations are in `_REFERENCES.md`; prior MATCH results are historical. Exact TYPES §4 route/query compatibility, descendant-card provenance versus the recorded owner removal direction, and workflow/roadmap/proposal presentation versus current method-library/draft registration remain bounded source-alignment questions. Current four-role applicability is settled; no generic Agent 2 direct entry or absent UI implies human authority. D-APP-38 established the reference-observation model. Earlier MATCH and hash-warning assertions are dated source snapshots. Read current observed hashes in `_REFERENCES.md` separately from the accepted authority-corpus pins; this repair does not refresh accepted pins or certify a corpus amendment.
 
 ## Output and Evaluation Matrix
 

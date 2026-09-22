@@ -11,11 +11,29 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See the current formal `Dependencies.csv` rows whose Direction is UPSTREAM; satisfaction and gates are read from that register, not inferred here.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No new dependency or status is created by this descriptive mirror.
+
+## Current Extracted Dependency Summary — 2026-09-22
+
+Total rows: 9. ACTIVE: 8, RETIRED: 1.
+
+| DependencyID | Class | Type | Direction | Target | Status | SatisfactionStatus |
+|---|---|---|---|---|---|---|
+| DEP-03-01-001 | ANCHOR | OTHER | UPSTREAM | SOW-037 | ACTIVE | SATISFIED |
+| DEP-03-01-002 | ANCHOR | OTHER | UPSTREAM | OBJ-002 | ACTIVE | SATISFIED |
+| DEP-03-01-003 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 | RETIRED | NOT_APPLICABLE |
+| DEP-03-01-004 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | ACTIVE | SATISFIED |
+| DEP-03-01-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-03-SPEC-SCOPE | ACTIVE | PENDING |
+| DEP-03-01-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 | RETIRED | NOT_APPLICABLE |
+| DEP-03-01-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-01-02 | ACTIVE | PENDING |
+| DEP-03-01-008 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-02 | ACTIVE | PENDING |
+| DEP-03-01-009 | EXECUTION | INTERFACE | UPSTREAM | Runtime-owned Codex contracts and App-client conformance | ACTIVE | PENDING |
+
+This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Runtime ownership and retire daemon proof subjects; formal row amendments, satisfaction changes and basis pins retain their owning process. Earlier notes below remain historical and do not override this current summary.
 
 ## Run Notes
 
@@ -86,3 +104,33 @@ TBD - no accepted dependency edges have been extracted yet.
 - **Current counts:** ACTIVE 7; RETIRED 1; NOT_APPLICABLE=1; PENDING=4; SATISFIED=3.
 - **Correction:** DEP-03-01-006 is RETIRED; the older active-row table is superseded.
 - Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=8; RETIRED=1; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+2 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_PREVIEW_0301_FALLBACK.csv`; current rows: ACTIVE=8, RETIRED=1. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_PREVIEW_SCOPE_SEMANTIC_APPROVED.csv`; current rows: ACTIVE=7, RETIRED=2. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

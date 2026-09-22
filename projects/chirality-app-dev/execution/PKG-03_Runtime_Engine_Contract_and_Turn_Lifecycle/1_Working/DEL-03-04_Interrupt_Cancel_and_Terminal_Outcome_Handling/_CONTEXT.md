@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** App-side runtime-client integration for the Root-owned turn lifecycle, including thin Desktop/HTTP proxy behavior, session request binding, route/SSE compatibility, interrupt/cancel presentation, and conformance evidence.
+**ScopeDescription:** App-side runtime-client integration for the Runtime-owned turn lifecycle, including thin Desktop/HTTP proxy behavior, session request binding, route/SSE compatibility, interrupt/cancel presentation, and conformance evidence.
 
-**InclusionCriteria:** App daemon client/proxy, contract compatibility, API/SSE transport, affected-client evidence.
+**InclusionCriteria:** App-owned Runtime service client/proxy, contract compatibility, API/SSE transport, affected-client evidence.
 
-**Exclusions:** Generic runtime contracts, daemon/session/lock/interruption/persistence semantics, and provider-specific message translation details.
+**Exclusions:** Generic runtime contracts, Runtime/session/lock/interruption/persistence semantics, and provider-specific message translation details.
 
 ## Deliverable Scope
 
-Forward App client interrupts, cancellations, disconnects, and failures and verify that daemon-owned cleanup and terminal persistence preserve client-visible behavior.
+Forward explicit App interrupts and verify Runtime-owned terminal persistence and true-terminal lock release. Renderer disconnect only unsubscribes; verify continuity and sequence-based reattachment without resending the prompt (D-GOV-43/D-APP-127).
 
 ## Anticipated Artifacts
 
-Client interrupt/cancel forwarding tests; daemon cleanup conformance evidence; terminal-event compatibility fixtures
+Client interrupt forwarding tests; Runtime terminal/lock and disconnect-continuity conformance evidence; current event fixtures
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Client interrupt/cancel forwarding tests; daemon cleanup conformance evidence; t
 |---|---|
 | CoversScopeItems | SOW-012, SOW-015 |
 | SupportsObjectives | OBJ-002, OBJ-003 |
-| ContextEnvelopeNotes | App client lifecycle-integration slice with explicit daemon ownership. |
+| ContextEnvelopeNotes | App client lifecycle-integration slice with explicit Runtime ownership. |
 
 ## Source Authority
 

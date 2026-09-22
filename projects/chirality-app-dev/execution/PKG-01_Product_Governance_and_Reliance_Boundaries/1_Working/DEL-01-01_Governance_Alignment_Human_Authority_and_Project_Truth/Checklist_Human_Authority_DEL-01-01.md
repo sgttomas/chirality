@@ -1,5 +1,28 @@
 # Human-Authority Checklist — DEL-01-01
 
+## Current applicability — 2026-09-22
+
+This keyed review applies the settled D-GOV-43 / D-APP-127 direction, D-APP-131 execution (b), D-APP-132 retained controls and D-APP-118 facade retirement to every original check. It is current documentary disposition, not a new blanket PASS or product qualification. Authority references are repository-relative: Root `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`, App `execution/_Coordination/_DECISIONS/` rulings, current App `docs/harness/reliance_boundary_register.md`, and this deliverable's `ScopeOfWork.md`/`_STATUS.md`. Actual observed source hashes are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/W00_03_GOVERNANCE_SOURCE_STATE.json`; final D-APP-38 integration is manager-owned. Live gaps below follow DEL-01-02 or DEL-01-03 current Remaining and their named register checks; none is closed by documentary consistency.
+
+| Original check | Current disposition / obligation |
+|---|---|
+| H-01 | Human binding approval/reliance authority survives D-GOV-43; native execution permission grants no professional acceptance. |
+| H-02 | Agents, tools, runtime events and deterministic checks cannot approve/issue/certify professional work. Full native capability does not alter that requirement. |
+| H-03 | K-AUTH/K-BIND/K-GATE/K-PROF remain live requirements; current implementation gaps must not be represented as enforcement merely because prose exists. |
+| H-04 | Lifecycle approval evidence and immutable content binding remain required. Current _STATUS.md state and retained approval SHA are authoritative for this deliverable; this repair changes neither. |
+| H-05 | Human-only approval vocabulary remains current in professional work; execution approvals and sandbox settings have their separate Codex meaning. |
+| H-06 | Autonomous professional approval/issuance remains excluded. C003 is resolved as source-history reconciliation, not a fresh request for human ruling; current corpus state follows manager D-APP-38 evidence. |
+| H-07 | Full runtime events remain audit evidence and cannot confer acceptance, release or compliance. |
+| H-08 | Deterministic validation gathers evidence; current RB-HUMAN-GATE records the missing authenticated-actor control rather than treating it as a harmless by-design TBD. |
+| H-09 | Domain operations retain read/propose/validate and separate human apply/acceptance gates; no native capability setting grants professional reliance. |
+| H-10 | OPEN DELIVERY: actual actor identity must distinguish a real human act from an agent/tool action. Structural presence of an approval record cannot manufacture or authenticate the act; RB-HUMAN-GATE carries the gap. |
+| H-11 | OPEN DELIVERY: DEL-01-03 owns the live rendered UI/runtime copy sweep and release evidence. This records-only correction does not claim that unperformed check passed. |
+| H-12 | The seven current disposition sections are agent record repairs, not acceptance, certification, issuance or lifecycle transition. Historical July agent findings remain preserved. |
+
+## Preserved 2026-07-18 review (historical)
+
+The original review below, including its headings, quoted sources, verdicts and counts, is preserved as dated evidence. Its obsolete subjects and open decisions have the current dispositions above.
+
 ## Header
 
 | Field | Value |

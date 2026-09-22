@@ -21,7 +21,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 
 > #### Datasheet: DEL-07-02 Execution Root Scaffolding from Decomposition
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-002 — Identification
@@ -50,13 +50,13 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > | Attribute | Value | Source |
 > |---|---|---|
 > | Primary function | Scaffold SPEC-conformant execution roots from decomposition markdown idempotently and recoverably. | `_CONTEXT.md` Deliverable Scope; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-07 table |
-> | Runtime surface | `/api/harness/scaffold` POST endpoint wraps execution-root scaffolding. | `docs/SPEC.md` Section 17.1; `docs/PRD.md` Section 7.3 |
+> | Runtime surface | `/api/harness/scaffold` must provide scaffolding through the App-owned Runtime service; the missing ProjectScaffoldPort composition and resulting 501 remain open. | `docs/SPEC.md` Section 17.1; `docs/PRD.md` Section 7.3 |
 > | Execution root contents | `INIT.md`, flat package folders, and tool roots including `_Aggregation`, `_Change`, `_Coordination`, `_Decomposition`, `_Estimates`, `_Reconciliation`, `_Archive`, `_Scripts`, and `_Sources`. | `docs/SPEC.md` Section 2; `docs/PRD.md` FR-045 |
 > | Coordination artifact | `_Coordination/_COORDINATION.md` is part of the execution-root layout and scaffold output. | `docs/SPEC.md` Section 2.2; `docs/PRD.md` Section 7.3 |
 > | Package layout | Flat `PKG-XX_Label` or `PKG-XXX_Label` folders; no nested package layer. | `docs/SPEC.md` Section 2.1; `docs/PRD.md` FR-046; `docs/CONTRACT.md` K-HIER-1 |
 > | Deliverable layout | Deliverable folders are under `{PKG-ID}_{PkgLabel}/1_Working/{DEL-ID}_{DelLabel}/`. | `docs/SPEC.md` Section 3 |
 > | Minimum deliverable fileset | `_STATUS.md`, `_CONTEXT.md`, `_DEPENDENCIES.md`, `_REFERENCES.md`, and `_SEMANTIC.md` placeholder. | `docs/SPEC.md` Section 3.1 |
-> | Document kit files | `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`. | `docs/SPEC.md` Section 3.1; `docs/PRD.md` FR-049 |
+> | Document kit files | `ScopeOfWork.md` and its applicable retained historical representation evidence. | `docs/SPEC.md` Section 3.1; `docs/PRD.md` FR-049 |
 > | Metadata compatibility target | PREPARATION compatibility is reported before the user proceeds. | `docs/PRD.md` Section 7.3 |
 >
 
@@ -71,7 +71,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > | Idempotence | Existing directories/files are preserved on rerun. | `docs/PRD.md` Section 7.3; `docs/PRD.md` NFR-011 |
 > | Recovery diagnostics | Failures are fail-fast and include stage, target path, and created paths for recovery. | `docs/PRD.md` Section 7.3 |
 > | Lifecycle state file | `_STATUS.md` is the canonical lifecycle file. | `docs/SPEC.md` Section 4; `docs/CONTRACT.md` K-STATUS-1 |
-> | Source warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
+> | Source warning | `docs/PRD.md` Section 7.3, FR-045–049 and NFR-011; source currentness is verified separately. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
 >
 
 ### CLM-005 — Construction
@@ -92,7 +92,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > - `docs/CONTRACT.md` K-HIER-1, K-FS-1, K-ROOT-1 through K-ROOT-3, K-STATUS-1, K-INVENT-1, K-CONFLICT-1.
 > - `docs/SPEC.md` Sections 2, 3, 4, 5, and 17.1.
 > - `docs/TYPES.md` Sections 8.4 and 13.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 > - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-07-02 and SOW-024/SOW-025 rows.
 
 ## Completion and Reliance Basis — Epistemology
@@ -101,7 +101,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 
 > #### Specification: DEL-07-02 Execution Root Scaffolding from Decomposition
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-008 — Scope
@@ -151,18 +151,9 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 
 ### CLM-010 — Scaffold API Result Contract
 
-> ##### Scaffold API Result Contract
+> Scaffold results must identify the requested root and decomposition, parsed package/deliverable counts, created paths, existing-layout compatibility and recoverable failure stage/path. Verification: `frontend/src/__tests__/lib/harness-scaffold.test.ts` and `frontend/src/__tests__/api/harness/scaffold-route.test.ts` against the actual application-owned Runtime composition.
 >
-> The `POST /api/harness/scaffold` response shape remains an implementation contract to finalize, but tests should expect these source-backed semantic fields:
->
-> | Field Group | Expected Semantics | Status / Source |
-> |---|---|---|
-> | Request echo | Execution root or working root target and decomposition path used for the scaffold operation. | Source-backed by `docs/PRD.md` Section 7.3 and `docs/SPEC.md` Section 17.1; exact field names TBD. |
-> | Scaffold counts | Package count and deliverable count parsed from supported decomposition rows. | Source-backed by `docs/PRD.md` Section 7.3; exact field names TBD. |
-> | Created/existing inventory | Created path inventory plus already-existing path/file indicators sufficient to verify idempotence. | Source-backed by `docs/PRD.md` Section 7.3 and NFR-011; exact field names TBD. |
-> | Validation summaries | Layout validation and PREPARATION compatibility readiness, including issue count. | Source-backed by `docs/PRD.md` Section 7.3; exact field names TBD. |
-> | Failure diagnostics | Fail-fast stage, target path, and created path inventory. | Source-backed by `docs/PRD.md` Section 7.3; exact field names TBD. |
->
+> The retained result type in `frontend/src/lib/harness/scaffold.ts` supplies `executionRoot`, `packageCount`, `deliverableCount`, `created`, `layoutValidation` and `preparationCompatibility`; these are evidence of the selected contract, not unresolved naming decisions. Existing-path validation is represented by layout checks. The live Runtime composition does not currently supply ProjectScaffoldPort, so route-level 501 behavior remains a delivery gap; retained service tests do not establish live creation.
 
 ### CLM-011 — Standards
 
@@ -172,8 +163,8 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > |---|---|---|
 > | Execution Root Layout | Governs root folders, package folders, tool roots, and deliverable paths. | `docs/SPEC.md` Sections 2 and 3 |
 > | Lifecycle File Contract | Governs `_STATUS.md` scaffold state and later lifecycle transition compatibility. | `docs/SPEC.md` Section 4 |
-> | Filesystem Execution Model | Product requirements for scaffold layout, package/deliverable structures, metadata files, document kits, and path policy. | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
-> | Reliability Requirement NFR-011 | Idempotent and recoverable scaffolding. | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
+> | Filesystem Execution Model | Product requirements for scaffold layout, package/deliverable structures, metadata files, document kits, and path policy. | `docs/PRD.md` Section 7.3, FR-045–049 and NFR-011; source currentness is verified separately. |
+> | Reliability Requirement NFR-011 | Idempotent and recoverable scaffolding. | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. |
 > | Invariant Catalog | Governs flat hierarchy, project truth, root separation, lifecycle canonicality, no invention, and conflict surfacing. | `docs/CONTRACT.md` K-HIER-1, K-FS-1, K-ROOT-1 through K-ROOT-3, K-STATUS-1, K-INVENT-1, K-CONFLICT-1 |
 > | TYPES Vocabulary | Governs initial Chirality MCP tool names and coordination representation terms where the scaffold API exposes or records those concepts. | `docs/TYPES.md` Sections 8.4 and 13 |
 >
@@ -209,7 +200,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > - Idempotence tests.
 > - Fail-fast recovery diagnostics.
 > - API contract notes for `/api/harness/scaffold`.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 
 ### CLM-014 — Assumptions and TBDs
@@ -225,8 +216,8 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > | F-001 INIT schema disposition | Already covered as a named TBD; sources require `INIT.md` presence but do not provide a complete content schema. |
 > | F-002 coordination schema disposition | Already covered as a named TBD; sources require `_Coordination/_COORDINATION.md` presence and coordination vocabulary but do not provide a complete template. |
 > | F-003 idempotence disposition | Incorporated by requiring rerun tests to preserve existing file contents, not only paths. |
-> | E-001 scaffold API response disposition | Incorporated as a semantic response-field contract with exact field names left TBD. |
-> | Existing code surface | ASSUMPTION: existing frontend scaffold service and tests may be reusable, but code files are not listed as authoritative references for this deliverable kit. |
+> | E-001 scaffold API response disposition | Field-name decision resolved by the retained result type cited in CLM-010; live producer and verification remain open. |
+> | Existing code surface | The retained frontend scaffold service is evidence; the live App-owned Runtime composition lacks its ProjectScaffoldPort. CLM-010 names selected contract/tests; code is not scope authority. |
 
 - **AC-001** — The accepted v3.2 decomposition shape produces the SPEC-conformant flat execution tree and PREPARATION fileset, preserves existing content on rerun, reports unsupported shapes and failures without guessing, and confines writes to the working root.
 
@@ -236,7 +227,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 
 > #### Procedure: DEL-07-02 Execution Root Scaffolding from Decomposition
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-016 — Purpose
@@ -257,7 +248,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > | Instruction root and working root are distinct. | `docs/DIRECTIVE.md` Section 2.7; `docs/CONTRACT.md` K-ROOT-1 |
 > | Scaffold operation target is under the active working root. | `docs/CONTRACT.md` K-ROOT-3 and K-PATH-2 |
 > | Required source contracts are available. | `_REFERENCES.md` REF-001 through REF-007; REF-006 warning noted |
-> | Declared upstream dependencies for this deliverable. | TBD; `_DEPENDENCIES.md` declares no accepted upstream edges yet. X-001 disposition: keep this as an explicit readiness blocker until accepted upstream edges or a human ruling are available. |
+> | Declared upstream dependencies for this deliverable. | TBD; `_DEPENDENCIES.md` declares the extracted register supplies current rows; formal acceptance/satisfaction remains at its source. X-001 disposition: keep this as an explicit readiness blocker until accepted upstream edges or a human ruling are available. |
 >
 
 ### CLM-018 — Steps
@@ -342,7 +333,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > - Scaffold result payload examples or fixtures.
 > - PREPARATION compatibility diagnostics.
 > - Any human rulings for `INIT.md` or `_COORDINATION.md` content templates.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 
 ### CLM-021 — Open Items
@@ -354,7 +345,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 > | `INIT.md` exact content schema | Human or source-backed template needed. |
 > | `_COORDINATION.md` exact scaffold template | Human or source-backed template needed. |
 > | Parser grammar for decomposition markdown variants | Implementation decision and tests needed; current sources specify behavior but not full grammar. |
-> | Scaffold API response field names | Implementation decision needed; current sources define response semantics for validation summaries, PREPARATION compatibility, issue counts, and fail-fast diagnostics but not exact field names. |
+> | Scaffold API response contract | Selected retained result contract and named tests are recorded in CLM-010; live Runtime composition and instruction-root denial evidence remain open. |
 
 - **VER-001** — Run the source-defined decomposition parser, scaffold API, layout, PREPARATION, idempotence, fail-fast recovery, path-policy, and unsupported-shape tests and review the resulting tree and diagnostics.
 
@@ -364,7 +355,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 
 > #### Guidance: DEL-07-02 Execution Root Scaffolding from Decomposition
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-023 — Purpose
@@ -395,7 +386,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 
 > ##### Considerations
 >
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 > - Scaffold output is a boundary between decomposition truth and execution working state. The scaffold service should copy or reference the accepted decomposition snapshot without treating generated folders as a replacement for the decomposition authority.
 > - PREPARATION compatibility should be treated as an operator-facing readiness check, not as proof that downstream deliverables are complete.
 > - The scaffold operation should avoid over-owning adjacent responsibilities. Metadata contract validation belongs primarily to DEL-07-03, lifecycle transition enforcement to DEL-07-04, and `Dependencies.csv` v3.1 behavior to DEL-07-05.
@@ -462,11 +453,7 @@ This candidate defines `DEL-07-02` in service of project scope [SOW-024, SOW-025
 
 ### CLM-031 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-> |---|---|---|---|---|---|---|
-> | None | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 | Task brief | All documents using PRD citations | Use PRD with explicit warning. | TBD — reconciled under D-APP-38 |
+> The earlier REF-006 conflict is historical at the D-APP-38 snapshot. Current source reliance must record the actual bytes and verification result using `execution/_Scripts/references_hash_tool.py`. A changed source requires the applicable D-APP-38 reconciliation or an authorized, durable bypass; no perpetual MATCH or repeated decision on the already-settled mismatch is asserted. Substantive authority conflicts remain separate from hash currentness.
 
 ## Output and Evaluation Matrix
 

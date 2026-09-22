@@ -26,7 +26,15 @@
   Return: chips in replies and activity rows resolve to tree files; Ask and Attach from the viewer; the composer quote row produces a `clientType: 'quote'` attachment carrying source path and range, proven by a wire-shape test and an empty `lib/harness/**` diff; durable non-secret bytes sufficient for independent recomputation per the `loop/LOOP_INIT.md` §7 Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
   Removed when: merged with review PASS.
 
-- **DEL-02-03-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 1 evidence result, 19 implementation or evidence, 17 record repair. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-02-03.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+
+
+
+
+
+
+
+- **DEL-02-03-R5-RESIDUALS** — Retain native in-panel PDF/security qualification with DEL-09-06 and exact-source CI/review; also keep reference-chip/Ask/Attach/quote delivery V3-02. Verify typed-error details, skipped/truncated tree and rename fixtures. Exact scope-scan/summary/status/route consumer allocation remains unproven; formal pins and carrier amendments use their owning scope process. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval.
+
 
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

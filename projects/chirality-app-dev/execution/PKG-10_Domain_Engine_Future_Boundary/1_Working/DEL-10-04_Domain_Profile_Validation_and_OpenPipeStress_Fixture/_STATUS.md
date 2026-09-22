@@ -1,15 +1,22 @@
 # Status: DEL-10-04
 
 **Current State:** IN_PROGRESS
-**P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
+**P06 Record:** D-APP-56 transcription is historical; current residuals are stated below and lifecycle remains IN_PROGRESS.
 **Last Updated:** 2026-09-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+**Current record authority:** D-APP-54 lifecycle rebaseline and D-APP-131/132 bounded reconciliation apply; the Authorization Basis and Directive headers retain the historical D-APP-19 inspection record. No new approval or lifecycle transition is asserted.
+
 ## Remaining
 
-- **DEL-10-04-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 1 authority application, 1 evidence result, 10 implementation or evidence, 33 record repair. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-10-04.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- Under DEP-10-04-004, complete the adapter assumptions note and deterministic negative fixtures for overlapping protected/agent-writable paths, incomplete proposals, core coupling and prohibited boundary wording. Verify path separation, generic core separation, wording coverage and no unauthorized exposure against the four tests in ScopeOfWork CLM-005 and the tier-0 validation records. Owner: App validation work with Ryan Tufts as assigned evidence owner; new fixture activation retains the PKG-10 amendment gate.
+
+- Investigate OpenPipeStress-specific descriptors in `projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts` (`domain_headless_preview_run`, `profileId: open_pipe_stress`) and their tool-catalog/name registration against FR-114 generic-core separation. Retain the requirement; produce a bounded placement/interface repair and named separation test through App/Runtime ownership. Do not infer that shipped descriptors are accepted core solver assumptions.
+
+- Wire deterministic invalid/incomplete profile rejection before any authorized Codex exposure, with a current-path negative witness. Retained tests and ADOPTED profiles do not prove this wiring. App owns consumption/evidence; tier-0 bridge owns `_DomainEngines/**` profile/manifest authoring under D-APP-58/F-APP-3; preserve each integration stage.
+
 
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

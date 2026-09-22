@@ -6,11 +6,14 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+**Current record authority:** D-APP-54 lifecycle rebaseline and D-APP-131/132 bounded reconciliation apply; the Authorization Basis and Directive headers retain the historical D-APP-19 inspection record. No new approval or lifecycle transition is asserted.
+
 ## Remaining
 
-- Define the concrete path-glob syntax and hook API and close DEP-10-02-005 — no live evidence exists yet (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed DEP-10-02-003) (stage-gated: F-APP-3 / PKG-10 future-boundary lane; needs its own decision packet before code)
+- Define accepted glob semantics and the live protection interface for profile `protected_write_paths` / `agent_writable_paths` (DEP-10-02-005). Supply named tests for forbidden direct writes, permitted proposal/review writes and human-gated approved mutation. Codex policy is user-selected; declarations, prompt text and a mode label do not prove this control. Owner: App/Runtime with tier-0 bridge; stage-gate: F-APP-3/PKG-10 and the existing bounded decision packet before code.
 
-- **DEL-10-02-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 2 authority application, 24 record repair, 3 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-10-02.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- Keep adapter manifest instances/loader/validation routed to the tier-0 bridge under D-APP-58. The convention and schema identifier are assigned; this App record task does not create instances or claim enforcement.
+
 
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

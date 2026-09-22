@@ -1,5 +1,26 @@
 # Acceptance Checklist — DEL-01-01
 
+## Current applicability — 2026-09-22
+
+This keyed review applies the settled D-GOV-43 / D-APP-127 direction, D-APP-131 execution (b), D-APP-132 retained controls and D-APP-118 facade retirement to every original check. It is current documentary disposition, not a new blanket PASS or product qualification. Authority references are repository-relative: Root `docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md`, App `execution/_Coordination/_DECISIONS/` rulings, current App `docs/harness/reliance_boundary_register.md`, and this deliverable's `ScopeOfWork.md`/`_STATUS.md`. Actual observed source hashes are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/W00_03_GOVERNANCE_SOURCE_STATE.json`; final D-APP-38 integration is manager-owned. Live gaps below follow DEL-01-02 or DEL-01-03 current Remaining and their named register checks; none is closed by documentary consistency.
+
+| Original check | Current disposition / obligation |
+|---|---|
+| C-01 | Register exists and has current per-boundary controls/gaps; the historical 13-row count is not a completeness proof for the current inventory. |
+| C-02 | Prompt-only enforcement remains insufficient for a claimed reliance boundary; source instructions themselves do not establish host enforcement. Verify actual negative-test evidence for the surviving controls. |
+| C-03 | D-GOV-43 accepts stock Codex-owned policy and configuration interfaces. The former opaque-SDK-default wording does not authorize overriding the user; current conditional guarantees and gaps are explicit in the register. |
+| C-04 | REPAIRED: current register maps each boundary to accepted requirement/interface/named verification. Old hooks/settings-builder paths are compatibility evidence; live implementation qualification remains DEL-01-02 delivery. |
+| C-05 | OPEN DELIVERY: authenticated human act, structural redaction, instruction protection and current Codex event/policy/delegation tests retain actual evidence gaps. Facade/fallback rollback support is retired by D-APP-118; no fallback-trigger owner decision remains. |
+| C-06 | Current register category coverage is documentary coverage only; its domain, lifecycle, transcript, policy and instruction-control obligations survive the accepted host change. |
+| C-07 | REPAIRED: lifecycle comes from DEL-01-02/_STATUS.md; register evidence is non-accepting and its old blanket CHECKING/PROPOSED labels are historical. |
+| C-08 | Unknown outcomes stay explicit; stale reserved decisions are applied, not re-presented as TBD. Source observations are in W00_03_GOVERNANCE_SOURCE_STATE.json; final corpus registration is manager-owned. |
+| C-09 | This current repair changes only dependency locator/notes carriers under the accepted scope; formal IDs, types, directions, statuses, satisfaction and source quotations remain intact. July no-write statement remains historical. |
+| C-10 | INSP-03 assessments and July checklist results retain their dates. Current source dispositions here supersede their applicability without rewriting historical findings. |
+
+## Preserved 2026-07-18 review (historical)
+
+The original review below, including its headings, quoted sources, verdicts and counts, is preserved as dated evidence. Its obsolete subjects and open decisions have the current dispositions above.
+
 ## Header
 
 | Field | Value |

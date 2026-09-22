@@ -13,7 +13,7 @@ package_objective_refs: [OBJ-001, OBJ-003]
 
 This Scope of Work defines `DEL-05-04` in service of project scope [SOW-006, SOW-042, SOW-046] and package objectives [OBJ-001, OBJ-003].
 
-- **OUT-001** — A runtime replay, dialogue, and agent-transcript projection contract that reconstructs accepted turns, recorded-session replay, assistant output, tool summaries, terminal outcomes, attribution, diagnostics, artifact links, and secondary SDK transcript linkage from canonical Chirality records without replacing the mounted primary live dialogue or creating another evidence store.
+- **OUT-001** — Labelled read-only replay and transcript projections from canonical Runtime records with exact attribution/parentage, malformed-tail diagnostics, artifact links and primary-dialogue isolation; explicit native continuation remains distinct and verified.
 
 ## Deliverable Definition — Ontology
 
@@ -42,38 +42,19 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-006, SOW
 
 ### CLM-003 — Attributes
 
-> ##### Attributes
->
-> | Attribute | Value | Source |
-> |---|---|---|
-> | Primary store | `.chirality/sessions/<sessionId>/events.jsonl` as the product-owned Chirality audit mirror. | `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-EVENT-4; `docs/TYPES.md` Section 1.8 |
-> | Session metadata input | `.chirality/sessions/<sessionId>/session.json` with session identity, project root, persona, mode, model, SDK linkage, transcript/store linkage, and resume metadata where available. | `docs/SPEC.md` Sections 8.2-8.4 |
-> | Legacy metadata input | Existing `{sessionRoot}/{sessionId}.json` records remain readable through D-APP-41 eager conversion, then canonical folder records are used. | `docs/SPEC.md` Section 8.1; `docs/PRD.md` Section 8.12 and session storage notes; `D-APP-41` |
-> | Event record shape | `HarnessEvent` includes `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, timestamp, type, and data payload. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
-> | Replay tolerance | Replay must ignore malformed trailing JSONL lines while preserving valid prior events and surfacing diagnostics. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5; `docs/PRD.md` FR-073 and NFR-013 |
-> | Transcript content target | Accepted user turns, assistant output, tool summaries, terminal outcomes, artifact links, and SDK transcript links. | `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` FR-076 |
-> | SDK transcript status | SDK transcript paths/store keys are secondary adapter metadata unless explicitly imported into `HarnessEvent` form. | `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3; `docs/DIRECTIVE.md` Sections 2.3 and 2.10 |
-> | UI/runtime contract separation | Browser `UIEvent`s and persisted `HarnessEvent`s are separate contracts; replay must not make public UI/API contracts SDK-shaped. | `docs/SPEC.md` Sections 10.3 and 11; `docs/CONTRACT.md` K-EVENT-1 and K-ENGINE-4 |
-> | Secret handling | Secrets must not be stored in events; runtime logs, tool artifacts, and provider errors require redaction. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-6 |
->
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Replay preserves sequence, valid events before malformed tails, terminal outcomes, tools/artifact linkage and explicit missing/stale/bounded/conflicting evidence. Use exact parent/return IDs, never inferred conversational similarity. Viewing replay must not mutate the primary draft, attachments, next-turn context, permissions or identity. An explicit continue action uses native continuation with truthful account/policy compatibility or fresh-session presentation, without silently reattaching an in-flight turn. Runtime completion is never project or lifecycle acceptance.
+
+Named verification: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification. Evidence: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests.
 
 ### CLM-004 — Conditions
 
-> ##### Conditions
->
-> | Condition | Value | Source |
-> |---|---|---|
-> | Upstream dependencies | ADQ-09 replay scope depends on DEL-05-01, DEL-05-02, DEL-04-01 SDK linkage metadata, redaction policy/helper, and DEL-05-05 artifact-link metadata; all are satisfied for transcript/replay projection. | `_DEPENDENCIES.md`; `Dependencies.csv`; ADQ-09 evidence |
-> | Downstream dependencies | ADQ-10 remains responsible for DEL-05-05 checksum/retention residuals; ADQ-09 consumes artifact-link metadata but does not close checksum policy. | `_DEPENDENCIES.md`; `D-APP-42` |
-> | Canonicality constraint | `events.jsonl` remains canonical for runtime replay; SDK transcripts assist resume/debugging but do not displace Chirality events. | `docs/SPEC.md` Section 8.4; `docs/DIRECTIVE.md` Section 2.3 |
-> | Migration constraint | Replay must account for legacy flat sessions through D-APP-41 eager conversion, then operate on canonical folder records. | `docs/SPEC.md` Section 8.1; `docs/PRD.md` session storage notes; `D-APP-41` |
-> | Exact parser API | `replayHarnessEvents(sessionId)` in `frontend/src/lib/harness/session-events.ts`; transcript projection via `deriveTranscriptView(events, session?)` in `frontend/packages/harness-contract/src/transcript-replay.ts`. | ADQ-09 implementation; D-APP-48 relocation |
-> | Current compatibility transcript route/UI placement | Replay route: `frontend/src/app/api/harness/session/[id]/events/route.ts`; compatibility sidebar UI: `frontend/src/components/shell/transcript-stream-view.tsx`. The Woven Dialogue target placement remains implementation work and must consume the same replay authority. | ADQ-09 implementation; SCA-APP-004 |
-> | Selected-session replay posture | A recorded session may be inspected through a clearly labelled, read-only replay lens. Selection does not resume, switch, merge with, or mutate the mounted primary live dialogue. | SCA-APP-004 Amendment Preview and Propagation Plan |
-> | Projection authority | Transcript and Agent projections are rebuildable, provenance-labelled views. Missing, stale, bounded, malformed, conflicting, or unrecorded evidence remains explicit and the admitted source remains controlling. | SCA-APP-004 coordination-projection invariant |
-> | Parentage consumption | Exact parentage may be displayed only from canonical child-run/session records owned by DEL-08-05; DEL-05-04 does not infer or persist hierarchy. | SCA-APP-004 semantic ownership partition |
-> | Tool summary detail level | ASSUMPTION: replay should expose compact summaries and artifact links rather than raw large payloads, because large payloads are stored as artifacts and referenced by path. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-7 |
->
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Replay preserves sequence, valid events before malformed tails, terminal outcomes, tools/artifact linkage and explicit missing/stale/bounded/conflicting evidence. Use exact parent/return IDs, never inferred conversational similarity. Viewing replay must not mutate the primary draft, attachments, next-turn context, permissions or identity. An explicit continue action uses native continuation with truthful account/policy compatibility or fresh-session presentation, without silently reattaching an in-flight turn. Runtime completion is never project or lifecycle acceptance.
+
+Named verification: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification. Evidence: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests.
 
 ### CLM-005 — Pass 3 Semantic Lensing Notes
 
@@ -88,16 +69,13 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-006, SOW
 
 ### CLM-006 — Construction
 
-> ##### Construction
->
-> | Component | Construction expectation | Source |
-> |---|---|---|
-> | Replay parser | Read ordered newline-delimited `HarnessEvent` records, ignore malformed final records, retain valid prior records, redact replay output, and emit diagnostics for replay/reporting. | `docs/SPEC.md` Section 9.2; `docs/PRD.md` FR-073 and NFR-013; `frontend/src/lib/harness/session-events.ts` |
-> | Transcript reconstruction | Group accepted turns, assistant deltas/completions, tool lifecycle summaries, terminal outcomes, and diagnostics into a replayable transcript representation. | `docs/SPEC.md` Sections 9.3-9.4; `docs/PRD.md` FR-076; `frontend/src/lib/harness/transcript-replay.ts` |
-> | SDK linkage projection | Include `sdkSessionId`, `sdkTranscriptPath` or `sdkSessionStoreKey`, `sdkProjectKey`, and resume metadata from session metadata when present, while keeping these fields adapter metadata. | `docs/SPEC.md` Sections 8.3-8.4; `docs/TYPES.md` Section 7.2 |
-> | Artifact link projection | Represent large payloads by session artifact paths rather than inlining raw large or sensitive content. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-7 |
-> | Verification fixtures | Include transcript reconstruction, malformed-tail, redaction, API replay, SDK-linkage, and sidebar render tests in accepted fixture paths. | `_CONTEXT.md` Anticipated Artifacts; `docs/SPEC.md` Section 19.3 validation IDs; ADQ-09 tests |
->
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification.
+
+Unfinished delivery: Complete live malformed-tail/redaction witnesses and replay-versus-explicit-continuation isolation checks; verify account/policy compatibility, fresh fallback, no in-flight reattachment and right-panel presentation against the current candidate.
 
 ### CLM-007 — References
 
@@ -105,13 +83,16 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-006, SOW
 >
 > | RefID | Source | Use | Source state |
 > |---|---|---|---|
-> | REF-001 | `docs/DIRECTIVE.md` | Runtime audit canonicality, professional boundaries, provider-neutrality | MATCH |
-> | REF-002 | `docs/CONTRACT.md` | Binding invariants for event replay, transcript status, redaction, and SDK boundaries | MATCH |
-> | REF-003 | `docs/SPEC.md` | Session layout, event schema, replay rules, SDK metadata, validation IDs | MATCH |
-> | REF-004 | `docs/TYPES.md` | Vocabulary and type targets for runtime audit mirror, session metadata, and `HarnessEvent` | MATCH |
-> | REF-005 | `docs/PLAN.md` | R1 sequencing context and runtime validation direction | MATCH |
-> | REF-006 | `docs/PRD.md` | Product requirements for replay and SDK transcript linkage | MATCH |
-> | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | Decomposition method context only | MATCH |
+> | REF-001 | `docs/DIRECTIVE.md` | Runtime audit canonicality, professional boundaries, provider-neutrality | HISTORICAL_MATCH |
+> | REF-002 | `docs/CONTRACT.md` | Binding invariants for event replay, transcript status, redaction, and SDK boundaries | HISTORICAL_MATCH |
+> | REF-003 | `docs/SPEC.md` | Session layout, event schema, replay rules, SDK metadata, validation IDs | HISTORICAL_MATCH |
+> | REF-004 | `docs/TYPES.md` | Vocabulary and type targets for runtime audit mirror, session metadata, and `HarnessEvent` | HISTORICAL_MATCH |
+> | REF-005 | `docs/PLAN.md` | R1 sequencing context and runtime validation direction | HISTORICAL_MATCH |
+> | REF-006 | `docs/PRD.md` | Product requirements for replay and SDK transcript linkage | HISTORICAL_MATCH |
+> | REF-007 | `workflows/software-decomp/WORKFLOW.md` | Decomposition method context only | HISTORICAL_MATCH |
+
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin. Current applicability: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable.
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -122,109 +103,71 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-006, SOW
 
 ### CLM-009 — Scope
 
-> ##### Scope
->
-> DEL-05-04 specifies the backend feature slice that reconstructs runtime replay and transcript views from Chirality-owned session events. It covers replay parsing, transcript reconstruction tests, malformed-tail handling, terminal-state projection, and SDK transcript linkage surfaced as non-canonical adapter metadata.
->
-> In scope:
->
-> - Read canonical `.chirality/sessions/<sessionId>/events.jsonl` records and session metadata for replay/reporting.
-> - Preserve valid prior JSONL events when the tail line is malformed and surface diagnostics.
-> - Reconstruct accepted turns, assistant output, tool summaries, terminal outcomes, artifact links, and SDK transcript links.
-> - Keep SDK transcripts secondary to Chirality `HarnessEvent` records unless imported into `HarnessEvent` form.
-> - Maintain separation between compact browser `UIEvent`s and richer persisted `HarnessEvent`s.
-> - Rebuild evidence-conditioned dialogue and Agent projections from canonical records, including attribution, interruption, terminal state, and exact recorded parentage references when available.
-> - Present a selected recorded session as a clearly labelled, read-only replay lens while the primary live dialogue remains mounted and retains its own draft, attachments, next-turn context, permissions, interruption state, session identity, and interaction authority.
-> - Surface bounded, stale, malformed, unavailable, conflicting, and unknown replay conditions without synthesizing missing work, hierarchy, approval, or runtime state.
->
-> Out of scope:
->
-> - Defining the full `HarnessEvent` schema and append-only writer. That is primarily DEL-05-02.
-> - Canonical session folder migration and legacy session migration helpers. That is primarily DEL-05-01.
-> - Tool result storage thresholds and raw artifact storage. That is primarily DEL-05-05.
-> - Tool permission semantics, which are excluded by the package context.
-> - Project-plan or task-list authority, human approval, assignment authority, persona/alias routing, Pipeline dispatch semantics, child-run persistence, direct child messaging, or editable hierarchy.
-> - Resuming or mutating a selected historical/child session, transferring primary-session context to it, or creating global AgentRun discovery.
->
-> Sources: `_CONTEXT.md`; `docs/SPEC.md` Sections 8-11; `docs/CONTRACT.md` K-EVENT and K-SDK invariants; `docs/PRD.md` FR-073, FR-076, FR-118, FR-121. D-APP-38 authority corpus v2 reports these references as `MATCH`.
->
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Replay preserves sequence, valid events before malformed tails, terminal outcomes, tools/artifact linkage and explicit missing/stale/bounded/conflicting evidence. Use exact parent/return IDs, never inferred conversational similarity. Viewing replay must not mutate the primary draft, attachments, next-turn context, permissions or identity. An explicit continue action uses native continuation with truthful account/policy compatibility or fresh-session presentation, without silently reattaching an in-flight turn. Runtime completion is never project or lifecycle acceptance.
+
+Verification: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification.
 
 ### CLM-010 — Requirements
 
-> ##### Requirements
->
-> | ID | Requirement | Source |
-> |---|---|---|
-> | DEL-05-04-REQ-001 | The replay reader MUST treat `.chirality/sessions/<sessionId>/events.jsonl` as the canonical runtime audit mirror for transcript reconstruction. | `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-EVENT-4 |
-> | DEL-05-04-REQ-002 | The replay reader MUST process newline-delimited `HarnessEvent` records in write sequence. | `docs/SPEC.md` Section 9.2 |
-> | DEL-05-04-REQ-003 | Replay MUST ignore a malformed trailing JSONL line, preserve valid prior events, and surface a diagnostic. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5 |
-> | DEL-05-04-REQ-004 | Replay MUST NOT treat SDK transcripts as canonical project or runtime audit truth unless their content has been explicitly imported into `HarnessEvent` form. | `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3; `docs/DIRECTIVE.md` Section 2.3 |
-> | DEL-05-04-REQ-005 | Transcript reconstruction MUST include accepted user turns and terminal outcomes when the corresponding `HarnessEvent`s are present. | `docs/SPEC.md` Sections 9.3-9.4; `docs/CONTRACT.md` K-EVENT-2 and K-EVENT-3 |
-> | DEL-05-04-REQ-006 | Transcript reconstruction SHOULD include assistant deltas/completions, tool summaries, artifact links, and SDK transcript links when supported by available events or session metadata. | `docs/SPEC.md` Sections 8.3, 9.3, and 9.4; `docs/PRD.md` FR-076 and FR-085 |
-> | DEL-05-04-REQ-007 | SDK-specific names, IDs, transcript paths, and store keys MUST remain adapter metadata and MUST NOT redefine public Chirality replay contracts. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` K-ENGINE-4 |
-> | DEL-05-04-REQ-008 | Replay output MUST redact or omit secrets and MUST NOT expose API keys from event data, runtime logs, tool artifacts, provider errors, or SDK metadata. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-6; `docs/DIRECTIVE.md` Section 2.9 |
-> | DEL-05-04-REQ-009 | Legacy session records MUST remain readable for replay-related session discovery through the D-APP-41 eager conversion path, after which canonical folder records are the runtime source. | `docs/SPEC.md` Section 8.1; `docs/PRD.md` FR-077 and session storage notes; `D-APP-41` |
-> | DEL-05-04-REQ-010 | Replay fixtures MUST cover event append/replay, malformed trailing JSONL behavior, and SDK session linkage/resume metadata. | `docs/SPEC.md` Section 19.3; `docs/PRD.md` conformance bullets |
-> | DEL-05-04-REQ-011 | ASSUMPTION: the transcript view model should represent large tool results by summary and artifact reference rather than raw inline payload. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-7 |
-> | DEL-05-04-REQ-012 | The accepted parser, model, API, component, and fixture paths are assigned by ADQ-09 implementation and must remain recorded in evidence. | Source gap resolved by ADQ-09 |
-> | DEL-05-04-REQ-013 | The implementation handoff MUST record `frontend/src/lib/harness/session-events.ts`, `frontend/packages/harness-contract/src/transcript-replay.ts`, `frontend/src/app/api/harness/session/[id]/events/route.ts`, `frontend/src/components/shell/transcript-stream-view.tsx`, and the focused replay/transcript fixtures. | `docs/SPEC.md` Sections 8-11; decomposition DEL-05-04 row; P3 items C-001 and D-001 |
-> | DEL-05-04-REQ-014 | A selected recorded session MUST render as a labelled read-only replay lens and MUST NOT resume, switch, merge with, or mutate the mounted primary live dialogue. | SCA-APP-004; SOW-006 |
-> | DEL-05-04-REQ-015 | Selecting replay MUST NOT transfer or overwrite the primary session's draft, attachments, explicit next-turn context, permissions, interruption state, session identity, or interaction authority. | SCA-APP-004 selected concept |
-> | DEL-05-04-REQ-016 | Replay and Agent projections MUST be rebuildable from admitted canonical project/runtime records, MUST identify provenance and currency where available, and MUST render missing, stale, bounded, malformed, conflicting, or unrecorded evidence explicitly. | SCA-APP-004 coordination-projection invariant |
-> | DEL-05-04-REQ-017 | Parentage and return cross-links MUST use exact canonical identifiers supplied by DEL-08-05/session evidence and MUST NOT be inferred from conversational similarity or UI grouping. | SCA-APP-004 semantic ownership partition; DEL-08-05 |
-> | DEL-05-04-REQ-018 | Runtime completion or terminal state MUST remain distinct from project-plan completion, deliverable lifecycle acceptance, approval, or professional reliance. | `docs/CONTRACT.md` K-FS-1, K-NOMEM-1, K-BIND-1; SCA-APP-004 |
-> | DEL-05-04-REQ-019 | Historical or observational controls that could mutate runtime/session state MUST be unavailable in the read-only replay lens, and a persistent action MUST return the operator to the primary live dialogue. | SCA-APP-004 selected concept |
->
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Replay preserves sequence, valid events before malformed tails, terminal outcomes, tools/artifact linkage and explicit missing/stale/bounded/conflicting evidence. Use exact parent/return IDs, never inferred conversational similarity. Viewing replay must not mutate the primary draft, attachments, next-turn context, permissions or identity. An explicit continue action uses native continuation with truthful account/policy compatibility or fresh-session presentation, without silently reattaching an in-flight turn. Runtime completion is never project or lifecycle acceptance.
+
+The following source-ID crosswalk preserves the original requirement population. Current fulfillment is evaluated against the obligations above and the named live checks below; superseded SDK mechanisms remain historical evidence and never substitute for live verification.
+
+| Requirement ID | Current requirement / explicit historical applicability |
+|---|---|
+| DEL-05-04-REQ-001 | Reconstruct replay from Runtime-owned central events.jsonl records. |
+| DEL-05-04-REQ-002 | The replay reader MUST process newline-delimited `HarnessEvent` records in write sequence. |
+| DEL-05-04-REQ-003 | Replay MUST ignore a malformed trailing JSONL line, preserve valid prior events, and surface a diagnostic. |
+| DEL-05-04-REQ-004 | Replay MUST NOT treat SDK transcripts as canonical project or runtime audit truth unless their content has been explicitly imported into `HarnessEvent` form. |
+| DEL-05-04-REQ-005 | Transcript reconstruction MUST include accepted user turns and terminal outcomes when the corresponding `HarnessEvent`s are present. |
+| DEL-05-04-REQ-006 | Transcript reconstruction SHOULD include assistant deltas/completions, tool summaries, artifact links, and SDK transcript links when supported by available events or session metadata. |
+| DEL-05-04-REQ-007 | Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. |
+| DEL-05-04-REQ-008 | Replay output MUST redact or omit secrets and MUST NOT expose API keys from event data, runtime logs, tool artifacts, provider errors, or SDK metadata. |
+| DEL-05-04-REQ-009 | Preserve accessible historical records; declared legacy roots use lazy non-destructive Runtime migration. Import or v2 continuation is not a release prerequisite. |
+| DEL-05-04-REQ-010 | Replay fixtures MUST cover event append/replay, malformed trailing JSONL behavior, and SDK session linkage/resume metadata. |
+| DEL-05-04-REQ-011 | ASSUMPTION: the transcript view model should represent large tool results by summary and artifact reference rather than raw inline payload. |
+| DEL-05-04-REQ-012 | Record current Runtime parser/model/client and App replay-view/fixture paths with actual source identity. |
+| DEL-05-04-REQ-013 | Name Runtime packages/core/src/session-store.ts and packages/contracts/src/harness/transcript-replay.ts, App selected-session-replay-lens.tsx and current session-event API/client fixtures. |
+| DEL-05-04-REQ-014 | Viewing history is labelled read-only and cannot silently resume or mutate the primary dialogue. Explicit native continuation is separately allowed under D-GOV-43 item 5. |
+| DEL-05-04-REQ-015 | Viewing replay preserves primary draft/attachments/context/permissions/identity; any explicit continuation action must clearly identify its transition and verify isolation. |
+| DEL-05-04-REQ-016 | Replay and Agent projections MUST be rebuildable from admitted canonical project/runtime records, MUST identify provenance and currency where available, and MUST render missing, stale, bounded, malformed, conflicting, or unrecorded evidence explicitly. |
+| DEL-05-04-REQ-017 | Parentage and return cross-links MUST use exact canonical identifiers supplied by DEL-08-05/session evidence and MUST NOT be inferred from conversational similarity or UI grouping. |
+| DEL-05-04-REQ-018 | Runtime completion or terminal state MUST remain distinct from project-plan completion, deliverable lifecycle acceptance, approval, or professional reliance. |
+| DEL-05-04-REQ-019 | Read-only history controls cannot silently mutate a session. Explicit continuation remains a separate native action with truthful compatibility/fresh fallback and no in-flight reattachment. |
+
+Verification: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification.
+
+Evidence locations: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests. These are hooks and source locations, not newly executed results.
 
 ### CLM-011 — Standards
 
-> ##### Standards
->
-> | Standard / contract | Applicability | Source |
-> |---|---|---|
-> | Chirality session layout | Replay consumes `.chirality/sessions/<sessionId>/session.json`, `events.jsonl`, `turns/`, `artifacts/`, and `sdk/` where present. | `docs/SPEC.md` Section 8.2 |
-> | `HarnessEvent` type target | Replay consumes stable versioned events with event/session/turn identity and typed data payloads. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
-> | Runtime engine adapter rule | Replay-facing contracts remain Chirality-owned and provider-neutral. | `docs/SPEC.md` Section 10.3 |
-> | Runtime event invariants | Accepted turns, terminal events, malformed-tail tolerance, redaction, and artifact budgeting govern replay behavior. | `docs/CONTRACT.md` K-EVENT-2 through K-EVENT-7 |
-> | SDK transcript invariant | SDK transcript linkage is resume/debug metadata, not canonical replay truth. | `docs/CONTRACT.md` K-SDK-3 |
->
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Replay preserves sequence, valid events before malformed tails, terminal outcomes, tools/artifact linkage and explicit missing/stale/bounded/conflicting evidence. Use exact parent/return IDs, never inferred conversational similarity. Viewing replay must not mutate the primary draft, attachments, next-turn context, permissions or identity. An explicit continue action uses native continuation with truthful account/policy compatibility or fresh-session presentation, without silently reattaching an in-flight turn. Runtime completion is never project or lifecycle acceptance.
+
+Named verification: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification. Evidence: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests.
 
 ### CLM-012 — Verification
 
-> ##### Verification
->
-> | Requirement | Verification approach |
-> |---|---|
-> | DEL-05-04-REQ-001, DEL-05-04-REQ-002 | Unit test replay ordering from valid `events.jsonl` fixtures. |
-> | DEL-05-04-REQ-003 | Malformed-tail fixture: final line invalid JSON; valid earlier events still appear; diagnostic is returned. |
-> | DEL-05-04-REQ-004, DEL-05-04-REQ-007 | Type/API tests or snapshot tests showing SDK transcript fields appear only as adapter metadata, not canonical event identity. |
-> | DEL-05-04-REQ-005, DEL-05-04-REQ-006 | Transcript reconstruction tests for accepted turns, assistant output, tool summaries, terminal outcomes, artifact links, and SDK transcript links. |
-> | DEL-05-04-REQ-008 | Redaction fixture with secret-like event/tool/provider data; replay output omits or redacts sensitive values. |
-> | DEL-05-04-REQ-009 | Legacy session discovery/retrieval fixture remains readable while canonical folder layout is introduced. |
-> | DEL-05-04-REQ-010 | Section 9 validation coverage includes `section9.session_event_replay` and `section9.sdk_session_link_resume`. |
-> | DEL-05-04-REQ-011 | Tool-result replay fixture confirms compact summary plus artifact link behavior. |
-> | DEL-05-04-REQ-013 | Handoff/review check confirms all replay parser, transcript model, route/component, and fixture path placeholders are filled with accepted ADQ-09 code/test locations. |
-> | DEL-05-04-REQ-014, DEL-05-04-REQ-015, DEL-05-04-REQ-019 | Selected-session tests prove replay is read-only, the primary live dialogue remains mounted, state/context/permissions do not transfer, historical mutation controls are unavailable, and return-to-primary restores the original dialogue. |
-> | DEL-05-04-REQ-016, DEL-05-04-REQ-017, DEL-05-04-REQ-018 | Projection tests cover exact source identifiers, attribution, stale/unknown/bounded/malformed disclosure, exact parentage, and separation of runtime state from project lifecycle and approval. |
->
-> Minimum fixture coverage before closure includes success, failure, cancellation, interruption, malformed-tail diagnostics, legacy session reads, SDK transcript linkage, redaction behavior, and compact tool-result artifact links. ADQ-09 assigns the replay/transcript fixture paths: `frontend/src/__tests__/lib/session-events.test.ts`, `frontend/src/__tests__/lib/transcript-replay.test.ts`, `frontend/src/__tests__/api/harness/routes.test.ts`, and `frontend/src/__tests__/components/harness-stream-views.test.ts`. Source reread: `docs/SPEC.md` Sections 9.2 and 19.3; `docs/PRD.md` Section 12 validation IDs. Disposition: X-001 incorporated with implementation-specific names filled by ADQ-09.
->
+Required current checks: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification.
+
+Named evidence: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Complete live malformed-tail/redaction witnesses and replay-versus-explicit-continuation isolation checks; verify account/policy compatibility, fresh fallback, no in-flight reattachment and right-panel presentation against the current candidate.
 
 ### CLM-013 — Documentation
 
-> ##### Documentation
->
-> Required records or artifacts for this deliverable:
->
-> - Replay parser implementation: `frontend/src/lib/harness/session-events.ts`.
-> - Transcript reconstruction model and interfaces: `frontend/src/lib/harness/transcript-replay.ts`.
-> - Replay API placement: `frontend/src/app/api/harness/session/[id]/events/route.ts`.
-> - Transcript UI placement: `frontend/src/components/shell/transcript-stream-view.tsx` and the Workspace sidebar Transcript tab.
-> - Woven Dialogue selected-session replay lens and Agent projection component locations: TBD until the governed implementation tranche selects paths.
-> - Transcript, malformed-tail, SDK-linkage, redaction, and artifact-link fixtures: `frontend/src/__tests__/lib/transcript-replay.test.ts`, `frontend/src/__tests__/lib/session-events.test.ts`, `frontend/src/__tests__/api/harness/routes.test.ts`, and `frontend/src/__tests__/components/harness-stream-views.test.ts`.
-> - Source-state note: D-APP-38 authority corpus v2 reports all DEL-05-04 references as `MATCH`.
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
 
-- **AC-001** — The runtime replay, dialogue, and Agent transcript projection preserves canonical Chirality event precedence, valid-event ordering, malformed-tail tolerance, redaction, adapter-only SDK linkage, compact artifact references, exact evidence-conditioned parentage, explicit stale/unknown/bounded state, and strict read-only separation from the mounted primary live dialogue.
+Record the current implementation/consumer and named verification locations: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification.
+
+Unfinished delivery: Complete live malformed-tail/redaction witnesses and replay-versus-explicit-continuation isolation checks; verify account/policy compatibility, fresh fallback, no in-flight reattachment and right-panel presentation against the current candidate.
+
+- **AC-001** — The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Replay preserves sequence, valid events before malformed tails, terminal outcomes, tools/artifact linkage and explicit missing/stale/bounded/conflicting evidence. Use exact parent/return IDs, never inferred conversational similarity. Viewing replay must not mutate the primary draft, attachments, next-turn context, permissions or identity. An explicit continue action uses native continuation with truthful account/policy compatibility or fresh-session presentation, without silently reattaching an in-flight turn. Runtime completion is never project or lifecycle acceptance.
 
 ## Production and Verification Method — Praxeology
 
@@ -242,110 +185,47 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-006, SOW
 
 ### CLM-016 — Prerequisites
 
-> ##### Prerequisites
->
-> | Prerequisite | Status / note | Source |
-> |---|---|---|
-> | Canonical session folder layout is available through the D-APP-41/ADQ-08 eager conversion path. | Satisfied for replay discovery. | `docs/SPEC.md` Section 8.2; `D-APP-41`; ADQ-08 evidence |
-> | Legacy session records remain readable through conversion. | Satisfied: flat records convert to canonical folders on read/list/resume/save. | `docs/SPEC.md` Section 8.1; `D-APP-41`; ADQ-08 evidence |
-> | `HarnessEvent` schema and event writer behavior are available. | Satisfied for ADQ-09 replay and transcript projection. | `docs/SPEC.md` Section 9; `frontend/src/lib/harness/event-schema.ts`; `frontend/src/lib/harness/session-events.ts` |
-> | SDK session linkage metadata is available in session metadata or fixtures. | Satisfied by `SessionRecord` linkage fields and transcript projection fixtures. | `docs/SPEC.md` Section 8.3; `frontend/src/lib/harness/transcript-replay.ts`; `frontend/src/__tests__/lib/transcript-replay.test.ts` |
-> | Declared dependency edges are accepted for ADQ-09 replay closure. | Satisfied for DEL-05-04 ADQ-09 scope; ADQ-10 remains for DEL-05-05 checksum/retention policy outside this transcript slice. | `_DEPENDENCIES.md`; `D-APP-42` |
-> | Redaction helper or policy is available. | Satisfied: replay applies read-time redaction to imported/manual logs as well as append-time redaction. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-6; `frontend/src/lib/harness/session-events.ts` |
->
-> Dependency closure disposition: F-001 is resolved for the ADQ-09 transcript/replay scope. DEL-05-01 is satisfied by ADQ-08/D-APP-41, DEL-05-02 replay-facing schema/writer behavior is available, SDK linkage is fixture-covered, read-time redaction is implemented, and DEL-05-05 artifact-link projection is covered without claiming ADQ-10 checksum/retention closure. Source reread: `_DEPENDENCIES.md` extracted dependency register; decomposition rows for DEL-05-01, DEL-05-02, DEL-05-04, and DEL-05-05; `docs/CONTRACT.md` K-EVENT-6 and K-EVENT-7.
->
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+Current implementation/adoption evidence: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests.
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Selection boundary: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision.
 
 ### CLM-017 — Steps
 
-> ##### Steps
->
-> 1. **Confirm source contracts.**
->    - Re-read the accepted session layout, event schema, replay rules, SDK linkage fields, and browser/runtime contract separation.
->    - Use D-APP-38 authority corpus v2 as the current source-state check.
->
-> 2. **Define replay input handling.**
->    - Read `.chirality/sessions/<sessionId>/session.json` and `.chirality/sessions/<sessionId>/events.jsonl` for canonical vNext sessions.
->    - Preserve compatibility for legacy `{sessionRoot}/{sessionId}.json` records through D-APP-41 eager conversion to canonical folders.
->    - Keep exact path override behavior for `CHIRALITY_SESSION_ROOT` aligned with the session store contract.
->
-> 3. **Parse `events.jsonl`.**
->    - Process newline-delimited `HarnessEvent` records in write sequence.
->    - Validate the required event fields defined by the type target.
->    - Ignore a malformed trailing line while retaining prior valid events.
->    - Return or record a diagnostic for malformed-tail replay.
->
-> 4. **Build the transcript projection.**
->    - Group events by `turnId` where available.
->    - Project accepted user input, assistant deltas/completions, tool summaries, terminal outcomes, and artifact references.
->    - Treat missing optional event categories as absent data, not parser failure, unless a required accepted-turn/terminal invariant is violated.
->    - ASSUMPTION: expose compact tool summaries and artifact links rather than raw large payloads.
->
-> 5. **Attach SDK transcript linkage.**
->    - Read `engineSessionId`, `claudeSessionId`, `sdkSessionId`, `sdkTranscriptPath`, `sdkSessionStoreKey`, `sdkConfigDir`, SDK setting sources, SDK package versions, and model metadata when present in `session.json`.
->    - Mark SDK transcript/store linkage as adapter metadata and secondary runtime state.
->    - Do not let SDK message names, transcript paths, or session IDs become canonical Chirality identifiers.
->
-> 6. **Apply redaction and safety filtering.**
->    - Ensure replay output and diagnostics do not expose API keys or configured secret variants.
->    - For large or sensitive tool result data, show summary and artifact reference only.
->    - Surface redaction limitations as diagnostics rather than silently leaking raw content.
->
-> 7. **Create verification fixtures.**
->    - Valid transcript reconstruction fixture.
->    - Malformed-tail JSONL fixture.
->    - Terminal outcome fixture for success, failure, cancellation, or interruption where source events exist.
->    - SDK linkage fixture confirming `events.jsonl` remains canonical.
->    - Legacy session fixture.
->    - Redaction fixture for secret-like event, tool, provider, or SDK metadata.
->    - Tool-result artifact-link fixture for compact summaries and stored payload references.
->    - Record exact fixture filenames in the evidence file.
->
-> 8. **Run verification.**
->    - Execute unit tests and Section 9 validation coverage for `section9.session_event_replay` and `section9.sdk_session_link_resume`.
->
-> 9. **Record accepted implementation locations.**
->    - Record the replay parser module path, transcript view model/interface name, route or component placement, transcript reconstruction fixture path, malformed-tail fixture path, SDK-linkage fixture path, redaction fixture path, and tool-result artifact fixture path.
->    - Source reread: `docs/SPEC.md` Sections 8.2, 8.4, 9.2, and 19.3; decomposition DEL-05-04 row. Disposition: D-001 incorporated and filled by ADQ-09 code discovery/implementation.
->
-> 10. **Implement and verify the Woven Dialogue replay projection.**
->    - Keep the primary live dialogue mounted when another recorded session is selected.
->    - Render the selected session as live, replayed, bounded, stale, malformed, unavailable, or unknown according to canonical evidence.
->    - Disable mutation controls for replay-only sessions and provide a persistent return-to-primary action.
->    - Prove draft, attachment, explicit context, permission, interruption, and session identity do not transfer.
->    - Consume exact DEL-08-05 parentage/return references when present and never infer missing relationships.
->
+1. Establish the current candidate, source and actual dependency state. Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+2. Apply the current scope: Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+3. Implement only within the owning App/Runtime boundary, preserving these requirements: The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Replay preserves sequence, valid events before malformed tails, terminal outcomes, tools/artifact linkage and explicit missing/stale/bounded/conflicting evidence. Use exact parent/return IDs, never inferred conversational similarity. Viewing replay must not mutate the primary draft, attachments, next-turn context, permissions or identity. An explicit continue action uses native continuation with truthful account/policy compatibility or fresh-session presentation, without silently reattaching an in-flight turn. Runtime completion is never project or lifecycle acceptance.
+4. Verify verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification.
+5. Retain inputs, source/candidate identity, commands, output and limitations; update Remaining only for backchecked outcomes.
+
+Locus and checks: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests.
+
+Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision.
 
 ### CLM-018 — Verification
 
-> ##### Verification
->
-> | Check | Expected result |
-> |---|---|
-> | Canonical replay | Valid events reconstruct accepted turns, assistant output, tool summaries, terminal outcomes, and artifact links where present. |
-> | Malformed tail | Invalid final JSONL line is ignored; valid prior events survive; diagnostic is visible. |
-> | SDK linkage | SDK session/transcript/store metadata appears as secondary adapter metadata only. |
-> | Legacy read | Legacy flat session record remains readable through D-APP-41 eager conversion and then replay uses canonical folder state. |
-> | Redaction | Secret-like values do not appear in replay output, diagnostics, or summaries. |
-> | Contract separation | Browser `UIEvent` and persisted `HarnessEvent` concepts remain distinct in naming and tests. |
-> | Closure slots | Parser API, transcript model, route/component placement, fixture paths, dependency edges, and redaction/tool-result artifact coverage are recorded in ADQ-09 evidence. |
->
+Required current checks: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification.
+
+Named evidence: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Complete live malformed-tail/redaction witnesses and replay-versus-explicit-continuation isolation checks; verify account/policy compatibility, fresh fallback, no in-flight reattachment and right-panel presentation against the current candidate.
 
 ### CLM-019 — Records
 
-> ##### Records
->
-> Expected records for closure:
->
-> - Replay parser implementation path: `frontend/src/lib/harness/session-events.ts`.
-> - Transcript reconstruction model path: `frontend/packages/harness-contract/src/transcript-replay.ts`.
-> - Replay API path: `frontend/src/app/api/harness/session/[id]/events/route.ts`.
-> - Transcript UI path: `frontend/src/components/shell/transcript-stream-view.tsx`.
-> - Transcript reconstruction, malformed-tail, SDK transcript linkage, redaction, API replay, and sidebar render test results.
-> - Source-state note for D-APP-38 authority corpus v2 `MATCH`.
-> - Dependency register update for the ADQ-09 replay/transcript scope.
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
 
-- **VER-001** — Validate schema and traceability; map and parity-check every legacy source line; derive the deterministic REVIEW checklist; render script-free HTML; and confirm source/control byte preservation.
+Record the current implementation/consumer and named verification locations: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification.
+
+Unfinished delivery: Complete live malformed-tail/redaction witnesses and replay-versus-explicit-continuation isolation checks; verify account/policy compatibility, fresh fallback, no in-flight reattachment and right-panel presentation against the current candidate.
+
+- **VER-001** — Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification.
 
 ## Governing Values and Decisions — Axiology
 
@@ -365,39 +245,27 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-006, SOW
 
 ### CLM-022 — Principles
 
-> ##### Principles
->
-> 1. **Replay from Chirality events first.** Use `.chirality/sessions/<sessionId>/events.jsonl` as the canonical replay input. SDK transcripts can help resume/debugging, but they do not replace the Chirality audit mirror. Sources: `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-EVENT-4 and K-SDK-3.
-> 2. **Separate UI compactness from audit richness.** Browser `UIEvent`s remain compact while persisted `HarnessEvent`s may carry richer runtime metadata. Replay should not blur those contracts. Sources: `docs/SPEC.md` Sections 10.3 and 11; `docs/CONTRACT.md` K-EVENT-1.
-> 3. **Keep provider-specific details at adapter boundaries.** SDK session IDs, transcript paths, tool names, and message names are useful metadata but must not become public Chirality contract identity. Sources: `docs/SPEC.md` Section 10.3; `docs/DIRECTIVE.md` Section 2.10.
-> 4. **Prefer recoverability over all-or-nothing parsing.** A malformed trailing JSONL record should not destroy access to earlier valid events. Sources: `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5.
-> 5. **Do not leak secrets through replay.** Replay output, diagnostics, and artifact summaries should follow redaction and artifact-reference rules. Sources: `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-6 and K-EVENT-7.
->
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Replay preserves sequence, valid events before malformed tails, terminal outcomes, tools/artifact linkage and explicit missing/stale/bounded/conflicting evidence. Use exact parent/return IDs, never inferred conversational similarity. Viewing replay must not mutate the primary draft, attachments, next-turn context, permissions or identity. An explicit continue action uses native continuation with truthful account/policy compatibility or fresh-session presentation, without silently reattaching an in-flight turn. Runtime completion is never project or lifecycle acceptance.
+
+Named verification: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification. Evidence: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests.
 
 ### CLM-023 — Considerations
 
-> ##### Considerations
->
-> - The replay model should preserve stable identity fields: `sessionId`, `turnId`, and event identity. Stable identifiers persist across path and label changes. Source: `docs/TYPES.md` Sections 1.7-2.
-> - Terminal outcomes matter as much as streamed text. Accepted turns must end with a durable success, failure, cancellation, or interruption event for reliable replay. Source: `docs/CONTRACT.md` K-EVENT-2 and K-EVENT-3.
-> - Session metadata can provide SDK linkage (`sdkSessionId`, `sdkTranscriptPath`, `sdkSessionStoreKey`, `sdkResumeMode`) but replay should present it as linkage metadata, not as the transcript authority. Source: `docs/SPEC.md` Sections 8.3-8.4.
-> - Legacy session records are handled through the D-APP-41 eager conversion path; replay should consume the canonical folder state after conversion. Source: `docs/SPEC.md` Section 8.1; `D-APP-41`.
-> - ADQ-09 assigns the concrete view model and API shape: `TranscriptView`/`TranscriptItem` in `frontend/packages/harness-contract/src/transcript-replay.ts`, the replay API in `frontend/src/app/api/harness/session/[id]/events/route.ts`, and the sidebar component in `frontend/src/components/shell/transcript-stream-view.tsx`.
->
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Replay preserves sequence, valid events before malformed tails, terminal outcomes, tools/artifact linkage and explicit missing/stale/bounded/conflicting evidence. Use exact parent/return IDs, never inferred conversational similarity. Viewing replay must not mutate the primary draft, attachments, next-turn context, permissions or identity. An explicit continue action uses native continuation with truthful account/policy compatibility or fresh-session presentation, without silently reattaching an in-flight turn. Runtime completion is never project or lifecycle acceptance.
+
+Named verification: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification. Evidence: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests.
 
 ### CLM-024 — Trade-offs
 
-> ##### Trade-offs
->
-> | Topic | Guidance | Rationale |
-> |---|---|---|
-> | Strict JSONL parsing vs. tolerant replay | Favor tolerant replay for a malformed final line, while surfacing diagnostics. | Protects audit recoverability after interruption or partial writes. |
-> | Raw tool output vs. artifact links | Favor compact summaries plus artifact links for large or sensitive results. | Prevents replay views from flooding UI/model context and supports redaction policy. |
-> | SDK transcript detail vs. Chirality canonicality | Show SDK transcript/store linkage as secondary metadata. | Maintains provider-neutral core and avoids SDK-shaped public contracts. |
-> | Legacy compatibility vs. clean vNext layout | Use D-APP-41 eager conversion and canonical folder records for replay. | Gives deterministic long-term storage while keeping legacy reads usable through migration. |
->
-> For tool results, compact summaries plus artifact references are the preferred replay shape because the audit view needs durable traceability without re-exposing large or sensitive payloads in transcript context. The artifact reference preserves where the full result was stored, while the summary supports review and redaction-aware replay. Sources reread: `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-6 and K-EVENT-7. Disposition: E-001 incorporated.
->
+Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. Replay preserves sequence, valid events before malformed tails, terminal outcomes, tools/artifact linkage and explicit missing/stale/bounded/conflicting evidence. Use exact parent/return IDs, never inferred conversational similarity. Viewing replay must not mutate the primary draft, attachments, next-turn context, permissions or identity. An explicit continue action uses native continuation with truthful account/policy compatibility or fresh-session presentation, without silently reattaching an in-flight turn. Runtime completion is never project or lifecycle acceptance.
+
+Named verification: Verify malformed-tail diagnostics, synthetic-secret exclusion, parent links, read-only projection, primary state isolation and explicit continuation/fresh-otherwise outcomes. Retain source/candidate identity for G5/native continuity; legacy fixture passes are not live qualification. Evidence: Runtime `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; App `frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx`, right-panel Session view and selected-session/shell tests.
 
 ### CLM-025 — Examples
 
@@ -413,23 +281,22 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-006, SOW
 
 ### CLM-026 — Source-State Notes
 
-> ##### Source-State Notes
->
-> D-APP-38 authority corpus v2 reports DEL-05-04 references as `MATCH`, including `docs/PRD.md`. PRD-derived replay requirements are no longer warning-qualified for this deliverable.
->
-> Disposition: B-001 is retired for the current source corpus; the previous PRD hash mismatch is resolved by D-APP-38 corpus v2 reconciliation.
->
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Complete live malformed-tail/redaction witnesses and replay-versus-explicit-continuation isolation checks; verify account/policy compatibility, fresh fallback, no in-flight reattachment and right-panel presentation against the current candidate.
 
 ### CLM-027 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-> |---|---|---|---|---|---|---|
-> | None | No content conflict identified in accessible source slices during P1/P2. | N/A | N/A | N/A | N/A | N/A |
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. Provide a labelled read-only replay projection from Runtime canonical records alongside the primary dialogue. Explicit native continuation is permitted by D-GOV-43 item 5 and must remain distinct from viewing history.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Complete live malformed-tail/redaction witnesses and replay-versus-explicit-continuation isolation checks; verify account/policy compatibility, fresh fallback, no in-flight reattachment and right-panel presentation against the current candidate.
 
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-042 SOW-046 OBJ-003 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-006 SOW-042 SOW-046 OBJ-001 OBJ-003 | CLM-010  | AC-001 | VER-001 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |

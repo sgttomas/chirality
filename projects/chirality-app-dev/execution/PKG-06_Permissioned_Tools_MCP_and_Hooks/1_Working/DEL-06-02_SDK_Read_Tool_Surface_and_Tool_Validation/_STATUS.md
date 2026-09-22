@@ -8,9 +8,17 @@
 
 ## Remaining
 
-- **DEL-06-02-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through. Original R5 classification counts (historical, not current completion totals): 4 authority application, 1 changed claim followthrough, 26 implementation or evidence, 18 record repair, 2 reserved authority. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-06-02.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface. Current overlay for this deliverable: `execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv` (D-APP-132); it supersedes only the listed keys' current decision/gate reading and retains all other original residuals. CLM-005/032 are released and rewritten; their ordering/live-verification follow-through remains. The former count of two reserved keys is historical, not a current owner gate.
+- **DEL-06-02-R5-DELIVERY** — Supply live catalog/exposure and permuted-order witnesses, preserve domain roster/stage checks, and resolve any absent App registration through the accepted application-tool interface. P-01 wording is already released; product verification remains open.
+  Locus: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-catalog.ts`, `tests/application-tools.test.ts`, `tests/codex-application-tools.test.ts`; App `frontend/src/lib/harness/tool-pool.ts`; D-APP-132.
+  Check: Verify catalog registration, collisions, schema validation and unknown calls; test permuted input ordering, policy/exposure separation, applicable read-first/domain-stage restrictions and safe metadata. Identify actual App registrations; an available Runtime catalog does not prove those tools are exposed.
+  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
+
 
 ## History
+- 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
+
+History entries retain their original append order and dates; their position is not a chronological or authority-precedence claim. The Last Updated field records this current record application.
+
 - 2026-09-22 — D-APP-132: applied current proposal dispositions and exact residual continuation; owner-released CLM-005/032 rewritten with unmet checks retained. Lifecycle and Checking Approval SHA unchanged.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.

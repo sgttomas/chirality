@@ -21,7 +21,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 
 > #### Datasheet: DEL-07-05 Dependencies.csv v3.1 Reader, Writer, and Linter
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-002 — Identification
@@ -59,7 +59,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 > | Linter behavior | Validate schema, enum values, identity rules, provenance, and resolvable deliverable references; report warnings without fabricating values | `docs/CONTRACT.md` Section 1.7; `docs/PRD.md` Section 8.9 |
 > | API surface | `/api/working-root/deliverable/dependencies` supports GET/PUT for `Dependencies.csv` snapshot rows | `docs/PRD.md` Section 17.2 |
 > | MCP surface | `mcp__chirality__deps_read` and `mcp__chirality__deps_write` | `docs/SPEC.md` Section 14.2 |
-> | Source warning | `docs/PRD.md` is locally accessible but has a recorded hash status: MATCH in `_REFERENCES.md`; use as warned source, not as silent accepted hash truth | `_REFERENCES.md` (Authoritative Source Corpus) — reconciled under D-APP-38 |
+> | Source warning | `docs/PRD.md` is locally accessible but has a historical D-APP-38 source state; verify current candidate bytes in `_REFERENCES.md`; use as warned source, not as silent accepted hash truth | `_REFERENCES.md` (Authoritative Source Corpus) — reconciled under D-APP-38 |
 >
 
 ### CLM-004 — Conditions
@@ -137,7 +137,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 > - `docs/SPEC.md` Sections 3, 5, 6, 14.2, 14.3, and 15.2.
 > - `docs/TYPES.md` Section 6.
 > - `docs/CONTRACT.md` Section 1.7.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 > - `docs/DIRECTIVE.md` Sections 2.5 and 5.
 > - `docs/PLAN.md` R4 target slice and Optional/Retired Scope Status.
 > - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` PKG-07 deliverable table and Scope Ledger SOW-029.
@@ -150,9 +150,9 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 > | ItemID | Datasheet disposition |
 > |---|---|
 > | C-001 | Converted to a named TBD: the warning output must remain structured and deterministic, but the exact warning code/category taxonomy is not selected by the accessible sources. |
-> | F-001 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
+> | F-001 | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. |
 > | D-001 | Converted to implementation slots: module names, API handler names, fixture paths, payload type names, and test paths remain TBD until local code ownership selects them. |
-> | X-001 | Converted to acceptance-evidence slots: API/MCP dependency payload evidence and governed write-hook evidence remain required, with final artifact paths TBD. |
+> | X-001 | Converted to acceptance-evidence slots: API/MCP dependency payload evidence and governed write-hook evidence remain required, with record actual candidate evidence paths. |
 >
 > Source rereads for these notes: `_SEMANTIC_LENSING.md` current warranted rows; `docs/SPEC.md` Sections 6, 14.2, 14.3, 15.1, 15.2, and 17.2; `docs/CONTRACT.md` Sections 1.6 and 1.7; `docs/PRD.md` Sections 8.9, 10.9, and 17.2; `_REFERENCES.md` Authoritative Source Corpus.
 
@@ -162,7 +162,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 
 > #### Specification: DEL-07-05 Dependencies.csv v3.1 Reader, Writer, and Linter
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-011 — Scope
@@ -209,7 +209,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 > | REQ-DEL-07-05-011 | Unknown values MUST remain `TBD` rather than being guessed. | `docs/CONTRACT.md` Section 1.7; `docs/DIRECTIVE.md` Section 2.5 |
 > | REQ-DEL-07-05-012 | The writer MUST preserve host deliverable consistency, schema version, row lifecycle behavior, and warnings for legacy or invalid data. | `docs/PRD.md` Section 8.9 |
 > | REQ-DEL-07-05-013 | The dependency API surface MUST support GET/PUT for `Dependencies.csv` snapshot rows at `/api/working-root/deliverable/dependencies`. | `docs/PRD.md` Section 17.2 |
-> | REQ-DEL-07-05-014 | Chirality MCP dependency tools MUST pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins. | `docs/CONTRACT.md` Section 1.6; `docs/SPEC.md` Section 14.2 |
+> | REQ-DEL-07-05-014 | Current dependency application tools MUST pass through applicable user-selected Codex policy and App-owned Runtime path, instruction-root, redaction and event controls; retained MCP/SDK fixtures are compatibility evidence. | `docs/CONTRACT.md` Section 1.6; `docs/SPEC.md` Section 14.2 |
 > | REQ-DEL-07-05-015 | Filesystem write behavior MUST respect project-root containment, instruction-root protection, symlink write rejection, and provenance hook policy. | `docs/SPEC.md` Sections 15.1 and 15.2; `docs/CONTRACT.md` Section 1.6 |
 > | REQ-DEL-07-05-016 | Extension columns MAY be present and MUST be non-breaking to the schema reader/writer. | `docs/SPEC.md` Section 6.1 |
 > | REQ-DEL-07-05-017 | Unknown option keys in runtime/tool options MUST be ignored with warnings rather than silently mutating behavior. | `docs/SPEC.md` Section 13.1; `docs/PRD.md` FR-024 |
@@ -248,34 +248,11 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 
 ### CLM-015 — Pass 3 Acceptance Evidence Mapping
 
-> ###### Pass 3 Acceptance Evidence Mapping
->
-> | ItemID | Required evidence | Current disposition |
-> |---|---|---|
-> | C-001 | A stable structured warning taxonomy for parse, schema, enum, identity, provenance, target-resolution, legacy-normalization, permission, hook, containment, and source-state findings. | Converted to TBD because the sources require warnings but do not name final warning codes or categories. |
-> | D-001 | Implementation path register naming parser/writer module, linter module, API handler, MCP wrapper, payload type definitions, fixtures, and tests. | Converted to TBD path slots pending local code ownership. |
-> | X-001 | API GET/PUT payload tests, MCP dependency read/write tests, write-hook containment tests, instruction-root rejection tests, symlink-write rejection tests, provenance/event-hook evidence, and PRD hash-warning review evidence. | Converted to required acceptance evidence with final artifact paths TBD. |
->
-> Source rereads: `docs/SPEC.md` Sections 6, 14.2, 14.3, 15.1, 15.2, and 17.2; `docs/CONTRACT.md` Sections 1.6 and 1.7; `docs/PRD.md` Sections 8.9, 10.9, 17.2, and implementation targets; `docs/TYPES.md` Section 6.
->
+> C-001 warning-code selection and D-001 module slots are resolved by the implementation evidence in `frontend/src/lib/dependencies/` and the CLM-014 tests. Stable diagnostic behavior must be verified, not restated as a pending naming decision. X-001 remains open for read-side lint findings, target-existence resolution, unknown options, instruction-root rejection and live write/provenance evidence. Legacy MCP tests cannot discharge those live-path checks.
 
 ### CLM-016 — Documentation
 
-> ##### Documentation
->
-> Required artifacts for this deliverable:
->
-> - Dependency parser/writer.
-> - Linter tests.
-> - Provenance fixtures.
->
-> Recommended supporting documentation:
->
-> - Fixture README or inline test comments explaining valid v3.1 rows, legacy normalization cases, invalid enum cases, unresolved target cases, and retired-row preservation.
-> - API/MCP contract notes that point back to `docs/SPEC.md` Section 6 and `docs/PRD.md` Section 8.9.
->
-> REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
->
+> Use the accepted requirement and verification contract in CLM-014/015 and frontend/src/__tests__/lib/dependencies-register-contract.test.ts. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 ### CLM-017 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
@@ -283,7 +260,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 >
 > UPD-133 adopts the stricter live rule: every ACTIVE dependency row requires both `EvidenceFile` and `SourceRef`.
 >
-> REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 
 - **AC-001** — Dependency registers validate v3.1 identity, enums, host, provenance, target, and lifecycle rules; writes preserve retired rows and extension columns, normalize legacy versions with warnings, retain unknowns as TBD, and obey permission, containment, hook, and instruction-root protections.
 
@@ -293,7 +270,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 
 > #### Procedure: DEL-07-05 Dependencies.csv v3.1 Reader, Writer, and Linter
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-019 — Purpose
@@ -311,7 +288,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 >
 > | Prerequisite | Status / Note | Source |
 > |---|---|---|
-> | Accepted source references are available | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` — reconciled under D-APP-38 |
+> | Accepted source references are available | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. | `_REFERENCES.md` — reconciled under D-APP-38 |
 > | v3.1 schema and enum vocabulary are known | Defined in SPEC and TYPES. | `docs/SPEC.md` Section 6; `docs/TYPES.md` Section 6 |
 > | Dependency authority model is known | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are authoritative; aggregation is on demand. | `docs/CONTRACT.md` Section 1.7 |
 > | Working-root write policy is known | Governed writes require containment, instruction-root protection, symlink rejection, and hook/provenance behavior. | `docs/SPEC.md` Section 15 |
@@ -359,7 +336,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 >
 > 7. Connect contract surfaces.
 >    - Expose read/write behavior through `/api/working-root/deliverable/dependencies` GET/PUT.
->    - Expose or integrate `mcp__chirality__deps_read` and `mcp__chirality__deps_write` behind the same permission and hook policy as SDK built-ins.
+>    - Verify the current dependency application-tool read/write path under applicable Codex host policy and App-owned Runtime controls; retained `mcp__chirality__deps_read`/`deps_write` are compatibility checks only where actually exposed.
 >    - Treat unknown option keys as warnings rather than behavior mutations.
 >
 > 8. Build fixtures.
@@ -420,7 +397,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 > - Linter test suite and fixtures. Exact paths TBD.
 > - Provenance fixtures showing valid source citation and `location TBD` behavior.
 > - API/MCP tests or integration evidence for dependency read/write contract surfaces.
-> - Review note confirming `docs/PRD.md` hash status: MATCH was considered before accepting PRD-derived requirements. (reconciled under D-APP-38).
+> - Review note confirming `docs/PRD.md` historical D-APP-38 source state; verify current candidate bytes was considered before accepting PRD-derived requirements. (reconciled under D-APP-38).
 >
 
 ### CLM-024 — Pass 3 Worklist Disposition
@@ -430,7 +407,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 > | ItemID | Procedure disposition | Required follow-through |
 > |---|---|---|
 > | C-001 | Converted to TBD. | Select and document stable warning categories or codes before locking tests for reader, writer, linter, API, and MCP warning output. |
-> | F-001 | Already surfaced as conflict. | Preserve `_REFERENCES.md` PRD `MATCH` in review evidence or refresh/accept the PRD hash through the appropriate human-governed path. — reconciled under D-APP-38 |
+> | F-001 | Already surfaced as conflict. | Preserve `_REFERENCES.md` PRD historical D-APP-38 source state; verify current candidate bytes in review evidence or refresh/accept the PRD hash through the appropriate human-governed path. — reconciled under D-APP-38 |
 > | D-001 | Converted to implementation-location slots. | Record final module names, API handler names, MCP wrapper names, payload type names, fixture paths, and test paths in implementation evidence once selected. |
 > | X-001 | Converted to acceptance-evidence slots. | Record API/MCP dependency read-write payload evidence and governed write-hook evidence, including containment, instruction-root rejection, symlink-write rejection, provenance/event hooks, extension-column preservation, retired-row retention, and warning behavior. |
 >
@@ -444,7 +421,7 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 
 > #### Guidance: DEL-07-05 Dependencies.csv v3.1 Reader, Writer, and Linter
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-026 — Purpose
@@ -477,10 +454,10 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 >
 > - Reader design should separate syntactic CSV parsing from semantic validation. This keeps parse failures, schema warnings, enum errors, identity errors, and provenance warnings distinguishable.
 > - Writer design should be conservative: preserve existing column order where possible, preserve extension columns, normalize only source-authorized legacy forms, and retain retired rows.
-> - Linter output should be deterministic and stable enough for tests. ASSUMPTION: warning codes or categories should be stable once selected, but the exact code vocabulary is TBD.
+> - Linter output should be deterministic and stable enough for tests. Selected diagnostic codes are evidence in the register-contract tests; stability and coverage must be checked against the candidate.
 > - Target resolution should use stable deliverable IDs when available. If the target cannot be confidently resolved, the row should use `TargetType=UNKNOWN` rather than inventing a target.
 > - Provenance validation should distinguish active extracted rows from other row origins/statuses because the explicit provenance invariant applies to active extracted dependency rows.
-> - The `docs/PRD.md` source is useful but flagged `MATCH` in `_REFERENCES.md`; revalidate PRD-derived acceptance language during human review. (reconciled under D-APP-38).
+> - The `docs/PRD.md` source is useful but flagged historical D-APP-38 source state; verify current candidate bytes in `_REFERENCES.md`; revalidate PRD-derived acceptance language during human review. (reconciled under D-APP-38).
 > - Do not use this deliverable to reintroduce project-level dependency graph generation, deliverable locks, staleness propagation, or unified pipeline run records. `docs/PLAN.md` Section 9 identifies those as retired without amendment.
 >
 
@@ -530,25 +507,11 @@ This candidate defines `DEL-07-05` in service of project scope [SOW-029] and pac
 
 ### CLM-034 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-> |---|---|---|---|---|---|---|
-> | C-DEL-07-05-001 | `_REFERENCES.md` records `docs/PRD.md` as `MATCH`, but PRD Section 8.9 is the local source for FR-055 through FR-057 acceptance language. | `_REFERENCES.md` Authoritative Source Corpus | `docs/PRD.md` Section 8.9 | Datasheet Attributes; Specification Requirements; Procedure Verification | Use PRD content as a source warning for drafting, then require human review before relying on PRD-derived claims as accepted hash truth. | TBD — reconciled under D-APP-38 |
->
+> Use the accepted requirement and verification contract in CLM-014/015 and frontend/src/__tests__/lib/dependencies-register-contract.test.ts. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 ### CLM-035 — Pass 3 Human Rulings and Design Holds
 
-> ##### Pass 3 Human Rulings and Design Holds
->
-> | ItemID | Guidance disposition |
-> |---|---|
-> | C-001 | Keep the warning vocabulary as a design hold. The sources warrant structured warnings, but they do not choose final warning codes; implementation should select stable categories before tests freeze them. |
-> | F-001 | Preserve the PRD hash conflict as a human ruling item. This P3 pass does not accept, refresh, or bypass the mismatched PRD hash. |
-> | D-001 | Keep implementation path and payload-type names out of prose until code ownership chooses them. Stable IDs and file contracts are authoritative; module paths are projections. |
-> | X-001 | Require evidence that API/MCP dependency operations and governed write hooks are tested together, because MCP is a transport and not a bypass of permission, hook, path, redaction, or event policy. |
->
-> Source rereads: `_REFERENCES.md` Authoritative Source Corpus; `docs/CONTRACT.md` K-ID-1, K-PATH-1, K-MCP-1, K-HOOK-1, K-PATH-2, K-PATH-3, K-DEP-1, K-DEP-2, K-PROV-1, K-INVENT-1, and K-CONFLICT-1; `docs/SPEC.md` Sections 6, 14.2, 14.3, 15, and 17.2; `docs/PLAN.md` Optional and Retired Scope Status.
+> The former warning-code and module-name design holds are historical; the selected code and tests are named in CLM-014/015. D-APP-38 resolved its dated source mismatch, while candidate-bound current source verification remains required. Preserve unresolved target resolution, read-side validation, unknown-option and live instruction-root/provenance checks. D-GOV-43/D-APP-127 settle the live Codex versus retained MCP distinction; no repeated provider-mechanism ruling is needed. Changes to formal dependency semantics remain outside this record repair.
 
 ## Output and Evaluation Matrix
 

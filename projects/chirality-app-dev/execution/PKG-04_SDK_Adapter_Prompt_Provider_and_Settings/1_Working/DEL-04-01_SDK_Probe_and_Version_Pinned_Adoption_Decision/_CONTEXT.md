@@ -17,33 +17,33 @@
 
 ## Package Scope
 
-**ScopeDescription:** App integration, project-input composition, packaged-daemon credential-boundary participation, provider-adapter compatibility, settings isolation, and conformance evidence.
+**ScopeDescription:** App integration, project-input composition, Codex-custodied private authentication, current shared configuration, retained adapter compatibility and conformance evidence under D-GOV-43/A2.
 
-**InclusionCriteria:** First-adapter probe; App client/packaging integration; prompt/project inputs; provider and settings conformance.
+**InclusionCriteria:** Current Codex observation; App client/service-child packaging; additive project instructions; credential separation and configuration conformance.
 
 **Exclusions:** Generic adapters, engines, credentials, residency, and unresolved generic-versus-private component classification.
 
 ## Deliverable Scope
 
-Confirm App packaged-daemon/client compatibility with the first Root-runtime adapter, including version, messages, policy inputs, hooks, project MCP acts, session linkage, interruption, packaging, conformance, and unresolved component-classification risks.
+Preserve the D-APP-68 first-adapter probe/adoption package as version-bound compatibility history and produce App-boundary observation/adoption evidence for the App-bundled, lockfile-pinned stock Codex App Server under accepted SOW-079. Runtime retains supplier-interface and session semantics; current A2 bundle integrity, exact candidate identity and conformance apply without retired supplier-admission/supply-certification gates. This record does not activate implementation.
 
 ## Anticipated Artifacts
 
-App first-adapter client probe; version decision; conformance criteria; component-classification open items; residual-risk notes
+Current App/Runtime interface and conformance records; named implementation/verification evidence: `Decision_Version_Pinned_SDK_Adoption_2026-07-19.md`, `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; current Runtime `packages/daemon/src/codex-supervisor.ts` and `tests/codex-supervisor.test.ts`; App re-platform `NATIVE_CHECKLIST.md` S-1–S-8.
 
 ## Traceability
 
 | Field | Value |
 |---|---|
-| CoversScopeItems | SOW-018, SOW-044, SOW-046 |
-| SupportsObjectives | OBJ-004 |
+| CoversScopeItems | SOW-018, SOW-044, SOW-046, SOW-079 |
+| SupportsObjectives | OBJ-002, OBJ-004 |
 | ContextEnvelopeNotes | App client/probe slice; no generic adapter ownership or new tool exposure. |
 
 ## Source Authority
 
 This folder was scaffolded by ORCHESTRATOR from the accepted v3.2 SOFTWARE_DECOMP working surface. Downstream TASK work must preserve `ResponsibleParty: TBD` until a human assigns ownership.
 
-## SCA-APP-001 Context Alignment
+## SCA-APP-001 Context Alignment — historical basis
 
 `SCA-APP-001` is accepted. This deliverable is aligned to the provider-adapter-general runtime strategy: Claude Agent SDK / Anthropic remains the first concrete/current path; Pi is pattern corpus/reference only; permission governance is capability-forward with explicit hard-deny precedence.
 
@@ -73,3 +73,9 @@ assessments and fallback triggers. The verdict is not release approval,
 issuance, certification, professional acceptance, signing, notarization,
 publication, or external distribution, and it does not alter
 `ResponsibleParty: TBD` or the deliverable lifecycle.
+
+## Current interface applicability — 2026-09-22
+
+Record evaluated supplier/version, protocol and effective configuration, role behavior, candidate identity, results, approver, limitations, fallback criteria and residual risks. Current App qualification must cover event/request completeness, session linkage, interruption, permissions, instruction basis, credential separation and packaging using the applicable S-1–S-8 checks. Do not substitute the historical Claude probe for Codex evidence. Historical SDK resume/SessionStore and future-provider criteria remain explicitly incomplete in that package; new providers remain future scope.
+
+D-GOV-43/A2 and D-APP-127 govern current purpose and interface; prior dated alignments retain their historical scope. Existing decomposition and approval basis pins remain unchanged. The manager-owned dependency refresh separately records reviewed current row applications under the same accepted rulings; historical edge identity is preserved and actual satisfaction is evidence-bound.

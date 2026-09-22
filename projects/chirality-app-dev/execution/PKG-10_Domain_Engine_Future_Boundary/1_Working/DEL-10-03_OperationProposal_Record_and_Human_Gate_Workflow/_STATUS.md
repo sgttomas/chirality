@@ -1,17 +1,22 @@
 # Status: DEL-10-03
 
 **Current State:** IN_PROGRESS
-**P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
+**P06 Record:** D-APP-56 transcription is historical; current residuals are stated below and lifecycle remains IN_PROGRESS.
 **Last Updated:** 2026-09-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+**Current record authority:** D-APP-54 lifecycle rebaseline and D-APP-131/132 bounded reconciliation apply; the Authorization Basis and Directive headers retain the historical D-APP-19 inspection record. No new approval or lifecycle transition is asserted.
+
 ## Remaining
 
-- Land the open_pipe_stress-scoped proposal transport (domain_proposal_validate live via operation_applier.validate) — already inside the D-APP-50 ruling's grant (source: D-APP-53 packet §4 / D-APP-50 ruling; Receipt 4) (stage-gated: piping-side operation_applier.validate transport soundness)
+- Land the already-authorized open_pipe_stress proposal validation transport on the current Codex/Runtime composition path, including the operation_applier.validate boundary and schema-bound outcome. Verify against `domain-proposal-tools.test.ts` / `operation-proposal.test.ts` and an actual current-path witness. Owner: App/Runtime with Piping transport owner; stage-gate: piping-side transport soundness. Retained in-process MCP checks are compatibility evidence only.
 
-- **DEL-10-03-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 1 authority application, 10 implementation or evidence, 16 record repair. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-10-03.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- Complete operation store/storage convention, review-checklist record, concrete proposal instances and missing operation-specific evidence under DEP-10-03-004/F-APP-3. Verify proposal_only status, lifecycle, K-AUTH-2 human evidence, protected paths and ready-for-construction/professional-boundary prohibitions. Apply tooling stays separately gated; D-APP-53 Option C is not activated.
+
+- Coordinate protected-path live enforcement with DEL-10-02 and its denial/allowance fixtures. Current TYPES §11.2 includes constant proposal-only status; preserve that repaired interface in operation records and live checks.
+
 
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

@@ -1,15 +1,20 @@
 # Status: DEL-10-05
 
 **Current State:** IN_PROGRESS
-**P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
+**P06 Record:** D-APP-56 transcription is historical; current residuals are stated below and lifecycle remains IN_PROGRESS.
 **Last Updated:** 2026-09-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+**Current record authority:** D-APP-54 lifecycle rebaseline and D-APP-131/132 bounded reconciliation apply; the Authorization Basis and Directive headers retain the historical D-APP-19 inspection record. No new approval or lifecycle transition is asserted.
+
 ## Remaining
 
-- **DEL-10-05-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 2 authority application, 1 evidence result, 4 implementation or evidence, 22 record repair. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-10-05.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- For the future domain surfaces selected under their existing amendment, inventory UI, documentation, events, profile and proposal surfaces with required notice or explicit exclusion. Use ScopeOfWork CLM-011 scans and CLM-032 checklist; capture reviewer/date/source/check results in CLM-018 and the closure set in CLM-019. Owner: App copy/surface implementation with the accountable future-surface reviewer; gate: accepted surface scope and CLM-036 wording/acceptance decisions.
+
+- Use the corrected CLM-027 standard notice (including no professional validation) and preserve solver ownership, protected paths, proposal_only semantics and human acceptance. Cite DEL-10-03 record shape before proposal examples support closure; current TYPES §11.2 supplies the proposal-only status carrier; live Codex composition remains unverified. No product-native notice placement or human acceptance result is asserted by this record repair.
+
 
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

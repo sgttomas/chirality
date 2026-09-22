@@ -21,7 +21,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 
 > #### Datasheet: DEL-09-03 Unit and Integration Test Expansion
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-002 — Identification
@@ -55,9 +55,9 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 > | Validation adjacency | Section 8 and Section 9 validation are adjacent validation surfaces, but this deliverable is scoped to unit/API/integration test expansion rather than authoring the Section 9 runner itself. | `docs/PRD.md` Sections 12.3-12.6; decomposition rows DEL-09-02 and DEL-09-03 |
 >
 
-### CLM-004 — Conditions
+### CLM-004 — Historical initialization conditions (2026-05-20)
 
-> ##### Conditions
+> ##### Historical initialization conditions (2026-05-20; not current prerequisites)
 >
 > | Condition | Value | Source |
 > |---|---|---|
@@ -73,14 +73,14 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 >
 > | Test Area | Required Coverage Target | Source |
 > |---|---|---|
-> | TurnEngine lifecycle | Unit-test `TurnEngine.runTurn()` without HTTP and verify accepted-turn persistence, UI event yield, canonical event persistence, permissions/tool exposure linkage, interrupt/cancel handling, and terminal outcomes. | `docs/SPEC.md` Section 10; `docs/PRD.md` FR-070, FR-123, Section 12.5 |
-> | SSE compatibility | Integration-test `/api/harness/turn` as a transport adapter that preserves browser-facing SSE event names and terminates correctly. | `docs/SPEC.md` Sections 10.4 and 11; `docs/PRD.md` Sections 9.1, 9.3, 12.6 |
+> | TurnEngine lifecycle | Test the product-owned Runtime turn lifecycle/AgentEnginePort boundary independently of HTTP: accepted-input persistence, event propagation, permissions/tools, interruption and durable terminal outcomes. TurnEngine is retained compatibility evidence. | `docs/SPEC.md` Section 10; `docs/PRD.md` FR-070, FR-123, Section 12.5 |
+> | SSE compatibility | Test the current browser transport, full Codex event preservation, unfamiliar notifications, keepalive and disconnect-without-interrupt; every server request receives a reply. | `docs/SPEC.md` Sections 10.4 and 11; `docs/PRD.md` Sections 9.1, 9.3, 12.6 |
 > | Event replay | Test append-only `events.jsonl` serialization/replay, malformed trailing JSONL tolerance, valid-prior-event preservation, and transcript reconstruction inputs. | `docs/SPEC.md` Sections 9.1-9.4; `docs/CONTRACT.md` K-EVENT-4 and K-EVENT-5; `docs/PRD.md` FR-073, FR-076 |
-> | Attachments | Test server-side attachment resolver path validation, regular-file checks, symlink rejection, extension allowlist, readability, file-size budget, total-byte budget, and partial/all-failure behavior. | `docs/SPEC.md` Section 16.1; `docs/CONTRACT.md` K-ATTACH-1; `docs/PRD.md` FR-064 |
-> | Status lifecycle | Test `_STATUS.md` parser and forward-only, actor-authorized transitions including approval SHA requirements for human gates. | `docs/SPEC.md` Section 4; `docs/CONTRACT.md` K-STATUS-1 and K-STATUS-2; `docs/PRD.md` FR-052 through FR-054 |
+> | Attachments | Test path/type/symlink/readability and 10 MB per-file/18 MB aggregate budgets; live Codex rejects an invalid attachment set. Partial/all-failure continuation is legacy compatibility. | `docs/SPEC.md` Section 16.1; `docs/CONTRACT.md` K-ATTACH-1; `docs/PRD.md` FR-064 |
+> | Status lifecycle | Test parsing, history/Remaining preservation and actor-authorized forward plus explicit human reversal paths, including authentic human action and candidate-bound approval evidence. | `docs/SPEC.md` Section 4; `docs/CONTRACT.md` K-STATUS-1 and K-STATUS-2; `docs/PRD.md` FR-052 through FR-054 |
 > | Dependencies | Test `Dependencies.csv` v3.1 parser/validator/writer behavior, provenance fields, host deliverable consistency, row retirement, and legacy normalization. | `docs/SPEC.md` Section 6; `docs/CONTRACT.md` K-DEP-1, K-DEP-2, K-PROV-1; `docs/PRD.md` FR-055 through FR-057 |
 > | Interrupts/cancellation | Test interrupt endpoint behavior, cancellation cleanup, lock release, and terminal cancellation/failure persistence. | `docs/PRD.md` FR-071, FR-073, Section 12.6; `docs/SPEC.md` Sections 10.1-10.2 |
-> | Denied actions | Test deny precedence, `dontAsk`, `readOnly`, denied writes, denied Bash, unknown tools, hook fail-closed behavior, and permission event persistence where runtime event support exists. | `docs/SPEC.md` Sections 14-15; `docs/CONTRACT.md` K-PERM-1 through K-PERM-5, K-BASH-1, K-HOOK-1; `docs/PRD.md` FR-081, FR-087 through FR-092 |
+> | Denied actions | Test current Codex approval/policy outcomes and applicable application-control denials; denied actions do not execute. Retained SDK overlay fixtures are compatibility evidence, not live proof. | `docs/SPEC.md` Sections 14-15; `docs/CONTRACT.md` K-PERM-1 through K-PERM-5, K-BASH-1, K-HOOK-1; `docs/PRD.md` FR-081, FR-087 through FR-092 |
 >
 
 ### CLM-006 — References
@@ -102,7 +102,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 
 > #### Specification: DEL-09-03 Unit and Integration Test Expansion
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-008 — Scope
@@ -120,16 +120,16 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 >
 > | ID | Requirement | Verification |
 > |---|---|---|
-> | DEL-09-03-REQ-001 | Tests shall cover `TurnEngine.runTurn()` as a product-owned lifecycle boundary, separate from HTTP route ownership. | Unit tests instantiate or exercise TurnEngine without HTTP; assertions cover accepted-turn persistence, event yield, terminal outcomes, and adapter boundary behavior. Source: `docs/SPEC.md` Section 10; `docs/PRD.md` FR-070 and Section 12.5. |
-> | DEL-09-03-REQ-002 | Tests shall preserve `/api/harness/turn` SSE route compatibility, including stable browser event names. | API/integration tests assert `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, and `process:exit` behavior as applicable. Source: `docs/SPEC.md` Section 11; `docs/PRD.md` Section 9.3. |
+> | DEL-09-03-REQ-001 | Tests shall cover the product-owned Runtime turn lifecycle and AgentEnginePort interface independently of HTTP, including accepted input, persistence and terminal outcomes. | Unit tests instantiate or exercise TurnEngine without HTTP; assertions cover accepted-turn persistence, event yield, terminal outcomes, and adapter boundary behavior. Source: `docs/SPEC.md` Section 10; `docs/PRD.md` FR-070 and Section 12.5. |
+> | DEL-09-03-REQ-002 | Tests shall preserve browser transport behavior while retaining full Codex events, unfamiliar notifications, server-request replies, keepalive and disconnect-without-interrupt semantics. | API/integration tests assert `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, and `process:exit` behavior as applicable. Source: `docs/SPEC.md` Section 11; `docs/PRD.md` Section 9.3. |
 > | DEL-09-03-REQ-003 | Tests shall verify that accepted user input is persisted before SDK/model execution begins. | Integration or unit tests assert `turn.accepted` precedes model/request execution records. Source: `docs/CONTRACT.md` K-EVENT-2; `docs/PRD.md` Sections 8.12 and 12.6. |
 > | DEL-09-03-REQ-004 | Tests shall verify every accepted turn reaches a durable terminal success, failure, cancellation, or interruption event. | Tests assert terminal event persistence for success, failure, interrupt, and cancellation paths. Source: `docs/CONTRACT.md` K-EVENT-3; `docs/PRD.md` FR-073 and Section 12.6. |
 > | DEL-09-03-REQ-005 | Tests shall cover append-only `HarnessEvent` JSONL replay, including malformed trailing line tolerance and preservation of valid prior events. | Unit tests write valid events plus malformed tail and assert replay diagnostics without loss of valid prior events. Source: `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-5. |
-> | DEL-09-03-REQ-006 | Tests shall verify attachment resolver enforcement for path validation, regular-file status, symlink rejection, extension allowlist, readability, per-file 10 MB limit, total raw-byte 18 MB limit, partial failure, and all-failure empty-text rejection. | Attachment resolver unit/API tests use fixtures for allowed file types, symlink/path failures, budget failures, partial failure, and `ATTACHMENT_FAILURE`. Source: `docs/SPEC.md` Section 16.1; `docs/CONTRACT.md` K-ATTACH-1. |
-> | DEL-09-03-REQ-007 | Tests shall verify `_STATUS.md` parsing and forward-only lifecycle transition enforcement, including approval SHA requirements for `CHECKING` and `ISSUED`. | Status parser/API tests cover valid states, invalid/backward transitions, unauthorized actors, and SHA-like token requirements. Source: `docs/SPEC.md` Section 4; `docs/PRD.md` FR-052 through FR-054. |
+> | DEL-09-03-REQ-006 | Tests shall verify server-side attachment validation and 10 MB per-file/18 MB aggregate limits; the live Codex path rejects an invalid set. Partial/all-failure continuation tests are retained legacy compatibility evidence. | Attachment resolver unit/API tests use fixtures for allowed file types, symlink/path failures, budget failures, partial failure, and `ATTACHMENT_FAILURE`. Source: `docs/SPEC.md` Section 16.1; `docs/CONTRACT.md` K-ATTACH-1. |
+> | DEL-09-03-REQ-007 | Tests shall verify status parsing, history and Remaining preservation, authorized forward and human reversal paths, actual actor authority and candidate-bound approval evidence. | Status parser/API tests cover valid states, invalid/backward transitions, unauthorized actors, and SHA-like token requirements. Source: `docs/SPEC.md` Section 4; `docs/PRD.md` FR-052 through FR-054. |
 > | DEL-09-03-REQ-008 | Tests shall verify `Dependencies.csv` v3.1 parsing, validation, writing, provenance preservation, host deliverable consistency, row retirement, and legacy normalization. | Dependency parser/writer/linter tests assert required headers, enums, `FromDeliverableID` consistency, active extracted-row evidence fields, and retired-not-deleted behavior. Source: `docs/SPEC.md` Section 6; `docs/PRD.md` FR-055 through FR-057. |
 > | DEL-09-03-REQ-009 | Tests shall verify denied actions do not execute and, where runtime event support exists, emit permission/runtime events. | Permission tests cover deny-over-allow, `dontAsk`, `readOnly`, unknown tool names, denied writes, denied Bash, hook failure, and structured decisions. Source: `docs/SPEC.md` Sections 14-15; `docs/CONTRACT.md` K-PERM-1 through K-PERM-5 and K-BASH-1. |
-> | DEL-09-03-REQ-010 | Tests shall keep public APIs and canonical events provider-neutral, with SDK-specific names and IDs only as adapter metadata. | Conformance tests reject SDK-shaped leakage in public APIs and canonical `HarnessEvent` fields except explicit adapter metadata. Source: `docs/SPEC.md` Section 10.3; `docs/PRD.md` FR-122 and FR-123. |
+> | DEL-09-03-REQ-010 | Tests shall preserve full Codex protocol/event information on the current path, including unfamiliar notifications; known-event presentation may normalize but must not erase source payloads or secret-protection obligations. | Conformance tests reject SDK-shaped leakage in public APIs and canonical `HarnessEvent` fields except explicit adapter metadata. Source: `docs/SPEC.md` Section 10.3; `docs/PRD.md` FR-122 and FR-123. |
 > | DEL-09-03-REQ-011 | Closure shall include at least one implemented or explicitly deferred test case for each required behavior group: TurnEngine, SSE compatibility, event replay, attachments, status lifecycle, dependencies, interrupts/cancellation, and denied actions. | Review the implemented test inventory against the eight behavior groups and record any group without executable coverage as `TBD`, deferred, or blocked with source-backed rationale. Source: `_CONTEXT.md` Deliverable Scope; `docs/PRD.md` Sections 12.5-12.6; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-09-03 row. |
 > | DEL-09-03-REQ-012 | Closure shall preserve stable validation evidence for `npm run test` after implementation paths are selected. | Implementation run record or PR notes capture passing command output or a stable validation artifact; until execution occurs, command evidence remains `TBD`. Source: `docs/CONTRACT.md` K-VALIDATE-1; `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1. |
 >
@@ -143,7 +143,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 > | `docs/CONTRACT.md` | Binding invariants for event audit, permissions, lifecycle, dependencies, attachments, validation, and no-invention behavior. |
 > | `docs/SPEC.md` | Physical file/API/runtime contracts for `_STATUS.md`, `Dependencies.csv`, `HarnessEvent`, TurnEngine, SSE, tools, permissions, and attachments. |
 > | `docs/TYPES.md` | Vocabulary and canonical terms for runtime, session, permission, validation, and dependency concepts. |
-> | `docs/PRD.md` | Product requirements for validation/test coverage and runtime behavior; hash status: MATCH is a source status for this run. — reconciled under D-APP-38 |
+> | `docs/PRD.md` | Product requirements for validation/test coverage and runtime behavior; historical D-APP-38 source state; verify current candidate bytes is a source status for this run. — reconciled under D-APP-38 |
 > | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Accepted decomposition routing, DEL-09-03 scope, SOW mapping, and objective mapping. |
 >
 
@@ -163,12 +163,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 
 ### CLM-012 — Documentation
 
-> ##### Documentation
->
-> - Test names or descriptions should cite the governing contract section or FR where practical.
-> - Any unsupported implementation target remains `TBD` rather than being converted into a false requirement.
-> - Test fixtures should be documented enough to distinguish source-derived requirements from assumptions.
-> - ResponsibleParty remains TBD until assigned by a human.
+> Use the accepted requirement and verification contract in CLM-018 and the eight-group candidate-bound coverage matrix. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 - **AC-001** — Each named behavior group has at least one implemented test or an explicit deferral or blocker, final test and fixture paths and validation command evidence are recorded or explicitly remain TBD with a blocker, and npm run test passes when dependencies and required instruction-root assets are present.
 
@@ -178,7 +173,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 
 > #### Procedure: DEL-09-03 Unit and Integration Test Expansion
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-014 — Purpose
@@ -195,7 +190,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 > | Prerequisite | Status / Note | Source |
 > |---|---|---|
 > | Accepted DEL-09-03 scope | Available in `_CONTEXT.md` and decomposition v3.2. | `_CONTEXT.md`; decomposition row DEL-09-03 |
-> | Authoritative source corpus | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md`; TASK dispatch — reconciled under D-APP-38 |
+> | Authoritative source corpus | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. | `_REFERENCES.md`; TASK dispatch — reconciled under D-APP-38 |
 > | Upstream dependencies | `Dependencies.csv` exists with 13 ACTIVE extracted rows and all satisfaction statuses remain `TBD`; final release-readiness review must either satisfy, waive, or explicitly defer applicable dependency evidence. | `_DEPENDENCIES.md`; `Dependencies.csv`; `_run_records/TASK_RUN_2026-05-20_2102.md` |
 > | Responsible party | TBD until human assignment. | `_CONTEXT.md` Source Authority |
 > | Implementation paths | TBD; exact frontend test directories/files must be identified during implementation work. | ASSUMPTION based on anticipated artifacts and `docs/PRD.md` Section 12.2 |
@@ -207,7 +202,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 >
 > 1. Confirm the current source state.
 >    - Read `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, and the DEL-09-03 decomposition row.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 > 2. Build the test inventory.
 >    - Map each test candidate to at least one source requirement or invariant.
@@ -252,9 +247,9 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 > | Scope check | Tests map to DEL-09-03 behaviors and do not implement unrelated features. |
 > | Source check | Non-trivial assertions cite or trace to `docs/CONTRACT.md`, `docs/SPEC.md`, `docs/TYPES.md`, `docs/PRD.md`, or decomposition v3.2. |
 > | Event check | Accepted-turn, terminal, replay, and redaction tests align with product-owned `HarnessEvent` contracts. |
-> | API check | SSE route tests preserve browser event names and route shape. |
+> | API check | SSE tests preserve the current envelope and full Codex events, unfamiliar notifications, request replies, keepalive and disconnect-without-interrupt. |
 > | Lifecycle check | `_STATUS.md` and `Dependencies.csv` tests follow SPEC sections 4 and 6. |
-> | Permission check | Explicit hard-deny precedence is tested as an enforcement boundary, not as prompt text. |
+> | Permission check | Exercise user-selected Codex policy and applicable application denials; retained SDK overlays are compatibility evidence. Record actual enforcement limits. |
 > | Fixture check | Fixtures are deterministic, small, and free of secrets. |
 > | Command check | `npm run test` passes when dependencies and required instruction-root assets are present. |
 > | Closure evidence check | Test source paths, fixture paths, behavior-group coverage decisions, and command evidence are recorded, or explicitly remain `TBD` with a blocker. |
@@ -262,15 +257,9 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 
 ### CLM-018 — Records
 
-> ##### Records
+> Candidate-bound evidence must cover the eight required groups: Runtime lifecycle, SSE, replay, attachments, status, dependencies, interruption/cancellation and denied actions. Name each actual test/result and classify live Codex/Runtime versus retained compatibility coverage; any missing group is an explicit gap.
 >
-> - Test source files: TBD until implementation work identifies exact paths.
-> - Fixtures: TBD until implementation work identifies exact paths.
-> - Command evidence: TBD until implementation work runs validation.
-> - Behavior-group closure: TBD until implementation work records implemented tests, explicit deferrals, or blockers for TurnEngine, SSE compatibility, event replay, attachments, status lifecycle, dependencies, interrupts/cancellation, and denied actions.
-> - Dependency review evidence: existing `Dependencies.csv` contains 13 ACTIVE rows with satisfaction `TBD`; final release-readiness review must resolve or explicitly defer applicable dependency evidence.
-> - Four-document initialization run record: `_run_records/TASK_RUN_2026-05-20_1619.md`.
->
+> Existing hooks include `frontend/src/__tests__/lib/lifecycle-status.test.ts`, `dependencies-register-contract.test.ts`, API harness tests, Runtime native-event/turn/session-store tests and the registered test/premerge chain. The extracted register supplies the current dependency records; its 13 ACTIVE rows were recorded SATISFIED at the discovery basis, not TBD. Revalidate affected evidence rather than altering those formal states here. The original four-document run remains historical; production scope is ScopeOfWork.md. No product tests were executed by this record repair.
 
 ### CLM-019 — Pass 3 Semantic Lensing Disposition
 
@@ -282,7 +271,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 > | B-001 | Incorporated as closure evidence. | Records now require final test source files, fixture files, behavior-group coverage decisions, and command evidence, or explicit `TBD` blockers. Reread: Procedure Records; `docs/PRD.md` Section 12.2. |
 > | C-001 | Incorporated as prerequisite and fixture guard. | Procedure keeps implementation paths `TBD` until selected and Step 5 now blocks fixture path replacement until actual files exist. Reread: Procedure Prerequisites and Steps; `docs/PRD.md` Section 12.2. |
 > | F-001 | Incorporated. | Added DEL-09-03-REQ-012 and closure-evidence verification for stable `npm run test` evidence. Reread: `docs/CONTRACT.md` K-VALIDATE-1; `docs/PRD.md` Section 12.2; `docs/SPEC.md` Section 19.1. |
-> | D-001 | Already covered and preserved. | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
+> | D-001 | Already covered and preserved. | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. |
 > | X-001 | Incorporated as closure evidence. | Records now require test source paths, fixture paths, behavior-group coverage decisions, and command evidence before determination closure, with blockers if still `TBD`. Reread: Procedure Records and Verification. |
 > | E-001 | Incorporated as fixture-path guard. | Step 5 now requires actual fixture files before replacing fixture path `TBD`s for symlink, budget, malformed JSONL, dependency, status, and denied-tool cases. Reread: `docs/SPEC.md` Sections 9.2 and 16.1; `docs/PRD.md` Sections 12.5-12.6. |
 > | E-002 | Incorporated with current dependency state. | Prerequisites and Records now note existing `Dependencies.csv`, 13 ACTIVE rows, and satisfaction `TBD`; final release-readiness review must resolve or explicitly defer applicable dependency evidence. Reread: `_DEPENDENCIES.md`, `Dependencies.csv`, and `_run_records/TASK_RUN_2026-05-20_2102.md`. |
@@ -290,9 +279,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 
 ### CLM-020 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-> ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
->
-> UPD-145 replaces closure-record TBDs with the existing GATE-TRANSCRIPT/ADQ-14 command evidence.
+> Use the accepted requirement and verification contract in CLM-018 and the eight-group candidate-bound coverage matrix. Selected implementation modules, result schemas and test hooks are evidence, not unresolved naming decisions or fresh pass results. Record the candidate, actual command/result paths, checked source basis, and live Runtime/Codex versus retained compatibility reach. Preserve every requirement in the requirement table; missing tests, native results and consumer wiring remain explicit work in Remaining. D-APP-38 source statements are historical; verify current source bytes and retain any mismatch/bypass. Earlier P3 path/schema slots and four-file record lists are superseded by the current ScopeOfWork representation and named evidence. This record grants no product, scope, lifecycle or release acceptance.
 
 - **VER-001** — Review the test inventory and closure evidence against all eight named behavior groups, inspect recorded test paths, fixture paths, deferrals or blockers, and stable command evidence, and run npm run test when dependencies and required instruction-root assets are present.
 
@@ -302,7 +289,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 
 > #### Guidance: DEL-09-03 Unit and Integration Test Expansion
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-022 — Purpose
@@ -335,7 +322,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 > - Use integration tests when behavior depends on route cleanup, session locking, SSE termination, cancellation, or multiple services.
 > - Use unit tests for deterministic parsers, mappers, permission resolution, fixture validation, and event replay.
 > - Keep Section 9 validation IDs aligned with DEL-09-02; this deliverable can provide underlying unit/API/integration coverage, but authoring the runner/ID catalog belongs to DEL-09-02 unless a later human ruling changes scope.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 > - Mark unimplemented or phase-dependent coverage as `TBD` or `ASSUMPTION` in planning notes rather than creating tests that assert unavailable behavior.
 > - Treat missing implementation paths, fixture paths, and command output as closure evidence gaps, not as permission to invent paths. The implementation pass should replace those `TBD` values only after files and commands exist.
 >
@@ -370,11 +357,7 @@ This Scope of Work defines `DEL-09-03` in service of project scope [SOW-011, SOW
 
 ### CLM-027 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
-> |---|---|---|---|---|---|---|
-> | CONFLICT-001 | PRD reference hash status: MATCH: expected and observed SHA256 differ. | `_REFERENCES.md` REF-006 | TASK dispatch source-warning override | All source-grounded PRD references | Treat as source status for this run, per dispatch. | TBD — reconciled under D-APP-38 |
+> Earlier drafting source-state conflicts are historical at their recorded basis. Current reliance requires candidate-bound source verification through `execution/_Scripts/references_hash_tool.py`, with actual mismatch or authorized bypass retained. D-APP-38 did not guarantee perpetual MATCH. Apply settled D-GOV-43/D-APP-127 direction and retain substantive implementation/evidence gaps in Remaining; this record neither re-pins an accepted source nor certifies a new product result.
 
 ## Output and Evaluation Matrix
 

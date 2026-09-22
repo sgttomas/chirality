@@ -1,5 +1,9 @@
 # MEMORY - DEL-03-03
 
+## Current applicability — 2026-09-22 record reconciliation
+
+D-APP-131 applies D-GOV-43/D-APP-127 to the current SoW source blocks and Remaining. Earlier daemon/helper, closed-event, SDK-only conformance, global-folder and loop-first observations below remain dated history. They do not establish live Codex qualification or current UI behavior. Current exact-key dispositions and evidence are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/W02_03_ROWS.csv`; lifecycle and Checking Approval SHA are unchanged.
+
 ## Decisions And Evidence
 
 - 2026-07-12 - D-APP-56 R5 P44 docs executed UPD-099: runtime-engine-contract citations now point to the harness-contract package. The separately ruled P48 artifact residual is unchanged. No lifecycle transition occurred.

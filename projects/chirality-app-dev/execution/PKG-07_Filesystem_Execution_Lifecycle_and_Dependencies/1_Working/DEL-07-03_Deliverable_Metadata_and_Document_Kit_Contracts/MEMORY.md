@@ -16,3 +16,7 @@
 - 2026-09-06 - The prior owner-merge-pending statement is historical: DEL-07-03-V3-01 now meets its unchanged removal criterion through PR #733 merge `8e649eaa51c98459234512b87a3cf9042365dbd7`, matching reviewed source/test hashes, fresh review r2 PASS, and successful CI on exact head `5ffafd710430bf053d5cfaf11129ccc1aa3130e5`. No new product work or lifecycle/dependency acceptance. Only the grammar obligation is reconciled; callers retain vocabulary mapping, authenticated write authority, canonical containment, human attribution, stale-content refusal, and runtime steering duties. See `_run_records/TASK_RUN_2026-09-06_APP_SHELL_RESUME_WORKFLOW_RECONCILIATION.md`.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## Record closeout — 2026-09-22
+
+D-APP-131/132 and D-GOV-43/D-APP-127 now govern the current ScopeOfWork and Remaining interpretation. Earlier SDK/daemon, four-file, matrix/default-role, source-MATCH and pre-release planning statements remain dated history. Current work, owning surface, checks and gates are in `_STATUS.md`; the W07_10_ROWS.csv derivative accounts for original residual keys. No lifecycle/approval-SHA refresh, product completion, new native result, or release is asserted.

@@ -10,3 +10,9 @@
 - 2026-07-19 - D-APP-68 ruling 3 assigned DEL-05-01 documentary ownership of the 18 optional managed-delegation `SessionRecord` metadata fields. Canonical Chirality session identity, folder placement, audit-mirror authority, and legacy migration precedence remain unchanged; managed-child lifecycle/records and path enforcement remain with DEL-08-05 and DEL-06-04 respectively. No lifecycle transition occurred.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## 2026-09-22 current record closeout
+
+D-APP-131 lift (b), D-GOV-43/A2, D-APP-127 and applicable D-APP-132 dispositions applied to the current claim blocks. Earlier dated decisions, checks and lifecycle/approval evidence remain historical. App session clients conform to Runtime-owned central storage and D-APP-73 lazy, non-destructive declared-legacy-root migration. D-GOV-43 preserves accessible prior history and does not require a v2 import/continuation feature for release.
+
+Current unfinished delivery: Complete central-store migration conformance for declared legacy roots, duplicate/source-marker/corruption/delete cases and App discovery. Preserve inaccessible or unmapped prior records as explicit limitations; import and v2 continuation are not release prerequisites. See `_STATUS.md` Remaining and the W04_06 current row derivative; no new product test, native outcome, issuance or release is claimed.

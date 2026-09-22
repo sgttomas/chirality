@@ -1,7 +1,7 @@
 # Status: DEL-02-01
 
 **Current State:** IN_PROGRESS
-**P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
+**P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; this is the dated P06 observation; current residual selection is below.
 **Last Updated:** 2026-09-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
@@ -9,26 +9,11 @@
 
 ## Remaining
 
-- Record-only note, no code owed: Next `metadata.icons` is intentionally
-  satisfied through the `src/app/icon.svg` file convention rather than a
-  literal metadata field.
-- Cross-reference, owned by DEL-09-04: opening the app from Finder or the Dock
-  while the daemon runs briefly bounces the runtime, because activation-policy
-  suppression does not stop LaunchServices resolving the launch against the
-  running daemon. Self-healing and visible in the connectivity chip; the causal
-  fix is a daemon helper bundle with its own identity, escalated to the owner as
-  a future tranche.
-- Cross-reference, owned by DEL-02-02 and DEL-08-02: packaged Desktop evidence
-  for the Workbench and Pipeline surfaces and for the navigator
-  recorded-session selection path is still owed. The 2026-07-25 packaged frames
-  show the shell at the Dialogue surface with no recorded sessions in the
-  isolated user data.
-
 - **DEL-02-01-V3-01** (`NOT_SELECTABLE_UNTIL: DEL-02-02-V3-03 landed`) — header removal, Stone tokens, composer context line with folder select, and the plain-language copy pass (T2).
   Trace: OUT-001, AC-001, VER-001; applied decomposition row L307 (header-less three-panel frame; composer context line with folder, agent, permissions, delegation, and rung; per-chat folder selection over the known-folder set); SOW-001 L171; SOW-002 L172 (folder chosen in the composer before the first message and fixed thereafter; a chat may have no folder; DEL-07-01 retains validation); SOW-005.
   Plan: T2; SR-10 to SR-15, SR-18, SR-21; Q9 ruled D-APP-108 (full Mac-native set: native folder picker; known folders registered as macOS recent documents so they appear in the Dock and Open Recent menus; Reveal in Finder on each chat; a folder dropped from Finder onto the composer). `03_TARGET_SPEC.md` (SHA-256 `d1643e3cf8156b7084b370aa8624bd5e87a75bfb4c0cd7b3a2552a4cbef82b45`) §10 copy table for meaning. Design basis `plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md` (SHA-256 `e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb`), cited only for what the tranche means when complete, never as a queue; status from current `main`.
   Depends: DEL-02-02-V3-03 (the woven route this item re-frames); DEL-07-01 folder validation consumed, not changed; DEL-02-04-V3-01 known-folder convenience fields; additive `frontend/electron/**` changes stay under D-APP-98 Electron authority and the existing IPC sender policy.
-  Write locus: `frontend/src/components/shell/shell-frame.tsx`, `chat-panel.tsx`, `persona-picker.tsx`, a new `folder-select.tsx`, `frontend/src/components/woven-dialogue/navigator.tsx`, `frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx` and `frontend/src/components/woven-dialogue/activity-shelf.tsx` with shell/reconnect/activity render tests (D-APP-120 A1; addition HELD until the ruling is observable on fetched `origin/main`; exact responsibility split and proof in the ruling/packet), `frontend/src/app/globals.css` (Stone token block with measured contrast), additive recent-documents registration and folder-drop IPC in `frontend/electron/main.ts` and `preload.ts` under the existing sender policy, tests; deliverable-local state. No harness, daemon, or Root write.
+  Write locus: `frontend/src/components/shell/shell-frame.tsx`, `chat-panel.tsx`, `persona-picker.tsx`, a new `folder-select.tsx`, `frontend/src/components/woven-dialogue/navigator.tsx`, `frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx` and `frontend/src/components/woven-dialogue/activity-shelf.tsx` with shell/reconnect/activity render tests (D-APP-120 current shell/no-folder responsibility; D-APP-127 affected-check rule governs applicable proof), `frontend/src/app/globals.css` (Stone token block with measured contrast), additive recent-documents registration and folder-drop IPC in `frontend/electron/main.ts` and `preload.ts` under the existing sender policy, tests; deliverable-local state. No harness, daemon, or Root write.
   Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
   Return: no header in the woven route; wordmark in the left panel; the composer context line shows folder, agent, permissions, delegation, and rung from recorded state; folder select is live before the first message and a fixed label after, over the known-folder set with the native picker; known folders appear in the Dock and Open Recent menus; Reveal in Finder on each chat; a folder dropped from Finder sets the composer folder subject to DEL-07-01 validation; Stone token block with recorded contrast ratios; plain-language copy per the §10 table with the professional-boundary copy (DEL-01-03) unchanged; durable non-secret bytes sufficient for independent recomputation per the `loop/LOOP_INIT.md` §7 Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
   Removed when: merged with review PASS and browser evidence recorded.
@@ -52,12 +37,20 @@
   Trace: OUT-001, AC-001, VER-001; applied decomposition row L307; SOW-001 L171.
   Plan: T7 renderer part; SR-05, SR-16; Q5 ruled D-APP-108 (defer the pop-out window; ship the icon). `05_LOGO_AND_BRAND.md` (SHA-256 `84b466fde1fea8418f41778a51ecadfde496322edeac14f6ec2aa508dc509d2b`) for the asset meaning. Design basis `plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md` (SHA-256 `e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb`), cited only for what the tranche means when complete, never as a queue; status from current `main`.
   Depends: DEL-02-05-V3-05 (last T6 item); the `.icns` regeneration and packaging-integrity record are DEL-09-04-V3-02.
-  Write locus: `frontend/src/app/icon.svg` (replacement; the Next `metadata.icons` file convention is retained per this deliverable's record-only note) or a new `icon.png` under the same convention, `frontend/public/chirality-app-icon.svg`, `frontend/build/icon-macos.svg` source, tests; deliverable-local state. No Electron window work.
+  Write locus: `frontend/src/app/icon.svg` (replacement; the old renderer-icon convention is subject to the recorded owner removal direction) or a new `icon.png` under the same convention, `frontend/public/chirality-app-icon.svg`, `frontend/build/icon-macos.svg` source, tests; deliverable-local state. No Electron window work.
   Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
-  Return: the new icon renders through the Next metadata path and the public asset; the reproducibility record (source SVG hash to raster) is handed to DEL-09-04-V3-02; no window work; durable non-secret bytes sufficient for independent recomputation per the `loop/LOOP_INIT.md` §7 Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
+  Return: reconcile the exact renderer-icon removal direction and macOS source-artwork/reproducibility handoff before any asset edit; no renderer restoration is implied; the reproducibility record (source SVG hash to raster) is handed to DEL-09-04-V3-02; no window work; durable non-secret bytes sufficient for independent recomputation per the `loop/LOOP_INIT.md` §7 Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
   Removed when: merged with review PASS; a pop-out window would need a new owner ruling and its own item (Q5).
 
-- **DEL-02-01-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 1 evidence result, 31 implementation or evidence, 26 record repair, 5 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-02-01.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+
+
+
+
+
+
+
+- **DEL-02-01-R5-RESIDUALS** — Retain delegation/rung context, left wordmark, Finder-drop/Dock proof and full known-root listing as concrete gaps; bind landed organisation changes to their review/merge evidence before removing V3-02. Exact TYPES §4 route/query compatibility and icon/reproducibility differences require source-faithful alignment with DEL-08-02/DEL-09-04. Current update UI consumes DEL-09-05 CLM-005; it adds no auto-install/restart. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval.
+
 
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

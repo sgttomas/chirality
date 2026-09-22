@@ -11,3 +11,7 @@
 - 2026-08-15 - DEL-09-03 independently accepted DEL-03-04's App-owned model-drain daemon-recovery proof. A fresh read-only `software-code-review` verifier confirmed one correlated `turn.accepted` and exactly one durable terminal event (`turn.interrupted`) after public model activation, graceful daemon stop, fresh-service restart, and replay. Focused Vitest (1 passed, 2 skipped), full frontend Vitest (1116 passed, 4 skipped), typecheck, registered always checks, and practitioner pytest (349 passed) were accepted against basis `910c02129811a005da9b180c31e3c18dd365df6f`. Rerun if daemon/client/session/residency or terminal-event contracts change; this does not claim crash-kill or live-provider coverage and does not change lifecycle state.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## Record closeout — 2026-09-22
+
+D-APP-131/132 and D-GOV-43/D-APP-127 now govern the current ScopeOfWork and Remaining interpretation. Earlier SDK/daemon, four-file, matrix/default-role, source-MATCH and pre-release planning statements remain dated history. Current work, owning surface, checks and gates are in `_STATUS.md`; the W07_10_ROWS.csv derivative accounts for original residual keys. No lifecycle/approval-SHA refresh, product completion, new native result, or release is asserted.

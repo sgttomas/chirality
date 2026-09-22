@@ -55,12 +55,12 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > | RefID | Source | Status | Use in this datasheet |
 > |---|---|---|---|
 > | REF-001 | `docs/DIRECTIVE.md` | MATCH | Product intent, authority, reliance-boundary and professional-boundary rules |
-> | REF-002 | `docs/CONTRACT.md` | MATCH | Binding invariants and enforcement expectations |
-> | REF-003 | `docs/SPEC.md` | MATCH | Runtime structures, API/file contracts, hooks, settings, validation IDs |
+> | REF-002 | `docs/CONTRACT.md` | SNAPSHOT-BOUND v23 | Binding invariants and enforcement expectations |
+> | REF-003 | `docs/SPEC.md` | SNAPSHOT-BOUND v23 | Runtime structures, API/file contracts, hooks, settings, validation IDs |
 > | REF-004 | `docs/TYPES.md` | MATCH | Vocabulary and type targets |
 > | REF-005 | `docs/PLAN.md` | MATCH | Runtime roadmap and R0 reliance-boundary deliverable expectations |
-> | REF-006 | `docs/PRD.md` | MATCH | Current product requirements and approved vNext scope under the current D-APP-38 corpus snapshot |
-> | REF-007 | `AGENT_SOFTWARE_DECOMP.md` | MATCH | Decomposition discipline and no-invention constraints |
+> | REF-006 | `docs/PRD.md` | SNAPSHOT-BOUND v23 | Current product requirements and approved vNext scope under the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) |
+> | REF-007 | `workflows/software-decomp/WORKFLOW.md` | MATCH | Decomposition discipline and no-invention constraints |
 >
 
 ### CLM-005 — Decomposition Traceability
@@ -81,19 +81,19 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 >
 > | Boundary ID | Boundary | Product-critical semantic | Primary enforcement surface | Source support |
 > |---|---|---|---|---|
-> | RB-ENGINE | Runtime engine contract | SDK APIs must not define public Chirality semantics. | `AgentEnginePort` / `RuntimeEngineContract`; engine conformance tests; adapter boundary | REF-001 §2.8-2.10; REF-002 K-ENGINE-1/K-ENGINE-4; REF-006 FR-122/FR-123 |
-> | RB-AUDIT | Runtime audit mirror | Accepted turns and runtime outcomes must be recoverable in Chirality terms. | `.chirality/sessions/<sessionId>/events.jsonl`; `HarnessEvent` schema; replay tests | REF-001 §2.7-2.9; REF-002 K-EVENT-4; REF-003 §8.4/§19.3; REF-006 FR-072-FR-074/FR-121 |
-> | RB-PERMISSION | Permission decisions | Tool and runtime permissions are structured, persisted, and governed by capability-forward policy with explicit hard-deny precedence. | `ChiralityPermissionOverlay`; `HarnessPermissionDecision`; `tool.permission` events | REF-002 K-PERM-1/K-PERM-3; REF-003 §15; REF-004 §8; REF-006 FR-087-FR-092 |
-> | RB-FILESYSTEM | Filesystem writes and roots | Writes must stay inside the active project root and must not mutate instruction-root assets. | Path containment helpers; `PreToolUse` hooks; MCP wrappers; symlink write rejection | REF-001 §2.7/§5; REF-002 K-ROOT-2/K-PATH-2/K-PATH-3; REF-003 §15.2; REF-006 FR-095/FR-097 |
+> | RB-ENGINE | Runtime engine contract | Codex is the sole MVP engine and qualification target; preserve full protocol and Chirality human-authority boundaries. | Runtime delegated engine adapter and codex-supervisor; conformance evidence must identify the live adapter. | D-GOV-43; D-APP-127; D-APP-131 P-20 |
+> | RB-AUDIT | Runtime audit mirror | Accepted turns and outcomes must remain recoverable, including unfamiliar Codex notifications; audit is non-authoritative. | Runtime userData session/event store and replay routes; full-event preservation and replay checks. | K-EVENT-4 as amended; D-GOV-43 |
+> | RB-PERMISSION | Permission decisions | Honor the user-selected Codex sandbox/approval policy and answer every server request; record decisions and attribution. | Runtime codex-supervisor and App request presentation; policy/approval tests. No legacy Chirality deny overlay is claimed on native tools. | D-GOV-43; D-APP-127 |
+> | RB-FILESYSTEM | Filesystem writes and roots | Record actual conditional Codex enforcement; Full access grants no normative authority. Preserve ordinary-project instruction-root integrity and domain protection obligations. | Codex policy and App root/proposal/packaging checks; live instruction protection and symlink verification remain open. | D-GOV-43; D-APP-132; K-ROOT/K-PATH surviving controls |
 > | RB-LIFECYCLE | Deliverable lifecycle and gates | `_STATUS.md` is canonical and human gates are non-delegable. | Status parser; status transition API/MCP; approval SHA checks for human-gate states | REF-002 K-STATUS-1/K-STATUS-2/K-GATE-1; REF-003 lifecycle sections; REF-001 §3 |
-> | RB-TRANSCRIPT | SDK transcript separation | SDK transcripts are secondary and must not displace the Chirality audit mirror. | SDK session linkage metadata; local `SessionStore`/`CLAUDE_CONFIG_DIR` where reliable; residual-risk register entry when default SDK paths remain | REF-001 §2.8-2.10; REF-002 K-SDK-3; REF-003 §8.4/§12.4; REF-006 FR-118/FR-121/KG-024 |
-> | RB-SETTINGS | SDK settings isolation | Shipped builds must not load ambient user/global or local Claude Code settings. | `settingSources: []`; `SdkOptionsBuilder` tests; release verification | REF-001 §4.2/§5; REF-002 K-SDK-1; REF-003 §12.2; REF-006 FR-117/KG-022 |
-> | RB-SUBAGENT | Subagent delegation | Type 2 child runs cannot expand authority or inherit unsafe tool posture. | `evaluateSubagentGovernance`; subagent hooks; restricted child tools/cwd; child run records | REF-002 K-SEAL-1/K-SUBAGENT-1/K-SUBAGENT-2; REF-003 §15.2; REF-004 subagent terms; REF-006 FR-101/FR-102/KG-027 |
+> | RB-TRANSCRIPT | Transcript separation | Runtime audit remains canonical and non-authoritative; Codex thread/rollout data is secondary execution evidence. | Runtime session store plus Codex effective home; resume/link/replay checks. Legacy CLAUDE_CONFIG_DIR is compatibility evidence. | K-EVENT-4; D-GOV-43 |
+> | RB-SETTINGS | Shared configuration | Use the user’s shared Codex configuration/resources without a Chirality veto; Codex owns native discovery. Keep authentication separated and credentials custodied by Codex. | Effective Codex home and S-8 account-isolation verification. settingSources is historical Claude compatibility. | D-GOV-43 items 3/6; D-APP-127 |
+> | RB-SUBAGENT | Delegation | Children receive bounded authority and their actual parentage, supplied basis, scope, observed decisions and returns are recorded; native descendants do not gain authority by inheritance. | Current Runtime delegation/native child records and role/context checks; do not assert legacy hook/seal enforcement on the live path. | D-GOV-35/43; D-APP-131; D-APP-132 |
 > | RB-HUMAN-GATE | Human authority | No agent, SDK, tool, runtime event, or validator can approve, certify, sign, seal, issue, or externally validate work for reliance. | Human approval workflow; status transition policy; UI/document copy; release checks | REF-001 §3; REF-002 K-AUTH-1/K-BIND-1/K-GATE-1/K-PROF-1; REF-006 KG-015 |
-> | RB-TOOL-SURFACE | Tool exposure | Tool availability must be deterministic and permission-filtered; `allowedTools` alone is not a restriction boundary. | Tool resolver; `disallowedTools`; mode policy; `canUseTool`; hooks; tests | REF-002 K-TOOL-1/K-TOOL-2/K-PERM-3; REF-003 §14.3; REF-006 FR-078-FR-083/KG-023 |
-> | RB-HOOKS | Hook lifecycle and fail-closed behavior | Hook failures block write, shell, domain, and subagent actions. | SDK hook callbacks mapped through Chirality hooks; hook events; failure triage | REF-002 K-HOOK-1; REF-003 §15.2; REF-004 §8.5; REF-006 FR-093-FR-095 |
-> | RB-REDACTION | Secrets and sensitive runtime records | API keys and secret variants must not be persisted in logs, events, SDK transcripts if avoidable, or tool artifacts. | SafeStorage/env precedence; redaction helper; run logger tests; event/log redaction | REF-002 K-EVENT-6/K-KEY-1; REF-003 §12.3; REF-006 FR-075 |
-> | RB-FALLBACK | SDK fallback | A governed fallback/custom-runtime path remains necessary if an SDK behavior cannot satisfy a critical boundary. | R0/R1 first-adapter probe; fallback criteria; conformance suite; reliance-boundary register residual-risk entries | REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030 |
+> | RB-TOOL-SURFACE | Tool exposure | Runtime validates Chirality application-tool registration/calls; native tools follow user-selected Codex policy. Preserve applicable deterministic exposure and PKG-10 domain-stage controls. | Runtime application-tools and codex-supervisor; App tool-pool ordering and live policy tests remain distinct. | D-APP-132 P-01; D-GOV-43 |
+> | RB-HOOKS | Action safeguards | Preserve applicable action-denial and failure guarantees at current owning interfaces. Do not claim that legacy SDK hooks run on the Codex path. | Codex approvals/sandbox and current application-tool validation; verify each retained domain/App denial at its actual surface. | D-GOV-43; D-APP-127/132 |
+> | RB-REDACTION | Secret hygiene | Structurally redact configured secrets before every persistence/presentation sink while retaining full inspectable events. Codex credential custody does not satisfy event redaction. | Runtime event/session sinks, App logs and artifacts; live redaction gap remains open. | K-EVENT-6; D-APP-131 P-12 |
+> | RB-FALLBACK | Engine qualification | Codex is the sole MVP qualification target; no alternative adapter is required or qualified by legacy fallback tests. Preserve current conformance gaps. | Runtime Codex conformance mapping and current named checks; historical SDK probe evidence remains history. | D-GOV-43; D-APP-131 P-20 |
 >
 
 ### CLM-007 — Conditions
@@ -104,14 +104,14 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > |---|---|
 > | P0 boundary rule | P0 reliance boundaries cannot be prompt-only or opaque SDK-default-only. |
 > | Register coverage rule | The register must identify ownership for product-critical semantics and record the enforcement surface type. |
-> | Settings isolation condition | Shipped SDK options use `settingSources: []`; `user` and `local` setting sources are not used in shipped builds. |
-> | Permission condition | Permission decisions are recorded as `allow`, `deny`, or application-level `ask`; deny rules override allow decisions. |
-> | Transcript condition | SDK transcripts may support resume/debugging but `.chirality/sessions/<sessionId>/events.jsonl` remains canonical unless imported into `HarnessEvent` form. |
+> | Settings isolation condition | Shared Codex configuration and native discovery follow D-GOV-43; authentication isolation is separately verified by S-8. |
+> | Permission condition | Record and answer Codex requests under the user-selected policy; no legacy deny-first overlay is implied for native tools. |
+> | Transcript condition | SDK transcripts may support resume/debugging but the Runtime-owned userData session/event store (K-EVENT-4; project-local `.chirality/sessions` is legacy compatibility) remains canonical unless imported into `HarnessEvent` form. |
 > | Human-gate condition | Reliance-affecting approval remains human-only and evidence-bound. |
-> | Authority-corpus condition | Authority-doc references, including REF-006 `docs/PRD.md`, are reconciled to the current D-APP-38 corpus snapshot at this source state. |
+> | Authority-corpus condition | Authority-doc references, including REF-006 `docs/PRD.md`, are reconciled to the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) at this source state. |
 > | Source trace acceptance condition | Register rows that cite `docs/PRD.md` must cite REF-006 and should be rechecked if a later authority-corpus audit reports drift. |
 > | Register artifact condition | ADQ-02 generated `docs/harness/reliance_boundary_register.md` as CHECKING-stage evidence, not issuance or dependency closure. |
-> | Implementation-surface completion condition | Exact module paths, hook/check names, and validation file names remain `TBD` until downstream runtime and Section 9 deliverables produce inspectable artifacts. |
+> | Implementation-surface completion condition | Legacy surfaces and validation IDs exist; current Codex enforcement and result coverage must be mapped explicitly. Absent live proof remains an open gap. |
 >
 
 ### CLM-008 — Construction
@@ -129,7 +129,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > | BoundaryCategory | Audit, permission, filesystem, lifecycle, transcript, settings, subagent, human-gate, engine, tool-surface, hook, redaction, fallback | Required |
 > | ProductSemantic | Chirality-owned behavior being protected | Required |
 > | SourceRefs | Evidence locations from directive, contract, spec, PRD, types, plan, and decomposition | Required |
-> | EnforcementOwner | Chirality code, SDK option, SDK hook/callback, MCP wrapper, human gate, release check, prompt support, or mixed | Required |
+> | EnforcementOwner | Current Codex host policy, App-owned Runtime control, application-tool validation, human gate or release check, with actual enforcement limits; historical SDK options/hooks/MCP wrappers are separately labelled compatibility evidence | Required |
 > | EnforcementSurface | Concrete module/API/file/test/check where enforcement is expected | Required; `TBD` until implemented |
 > | PromptOnlyAllowed | Must be `NO` for P0 boundaries | Required |
 > | SDKDefaultOnlyAllowed | Must be `NO` for P0 boundaries | Required |
@@ -145,10 +145,10 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > | Deferred field | Current handling | Closure evidence required |
 > |---|---|---|
 > | ResponsibleParty | `TBD` by scaffold policy until human assignment. | Human-maintained ownership update in deliverable status/context or accepted downstream ownership record. |
-> | Exact enforcement file paths | ADQ-02 register rows name current inspectable runtime paths where present and preserve `TBD` where downstream modules do not yet exist. | Downstream implementation paths or register rows verified against produced modules and hooks. |
+> | Exact enforcement file paths | Legacy ADQ-02 paths exist; classify their applicability and map current Runtime/Codex surfaces. | Live-path implementation and test evidence with candidate identity |
 > | Exact validation file/test names | Current implemented Section 9 IDs are listed in the ADQ-02 register test index; future IDs remain `TBD` where not yet produced. | Section 9 validation additions or accepted test index entries. |
-> | PRD-derived rows | May be drafted from REF-006 under the current D-APP-38 corpus snapshot with current `MATCH` status. | Re-run D-APP-38 reconciliation if an authority document changes before issue-readiness reliance. |
-> | SDK transcript/storage decision | Residual risk until R0/R1 probe evidence is available. | Accepted first-adapter probe result naming transcript placement or mirroring policy. |
+> | PRD-derived rows | May be drafted from REF-006 under the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) with snapshot-bound `MATCH` status. | Re-run D-APP-38 reconciliation if an authority document changes before issue-readiness reliance. |
+> | SDK transcript/storage decision | Codex thread/rollout records are secondary; Runtime userData events are canonical. | Current resume/link/replay checks; no retired first-adapter probe gate |
 >
 
 ### CLM-011 — Candidate Validation Index
@@ -161,9 +161,9 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > | `section9.adapter_turn_engine_event_log` | RB-AUDIT, RB-TRANSCRIPT |
 > | `section9.adapter_message_mapper` | RB-ENGINE, RB-AUDIT |
 > | `section9.session_event_replay` | RB-AUDIT |
-> | `section9.reliance_boundary_register` | Future/TBD validator ID; ADQ-02 generated the document artifact and cross-check table but did not add this ID to the current Section 9 script. |
+> | `section9.reliance_boundary_register` | Implemented register schema/inventory check; see contract-pins.manifest.ts. It does not qualify live Codex enforcement. |
 > | `section9.settingsources_isolation` | RB-SETTINGS |
-> | `section9.sdk_session_link_resume` | Future/TBD session-linkage validator ID; not implemented in the current Section 9 script. |
+> | `section9.sdk_session_link_resume` | Implemented compatibility linkage check (UPD-100); live Codex linkage/resume requires separate current evidence. |
 > | `section9.permission_overlay_hard_deny_precedence` | RB-PERMISSION, RB-TOOL-SURFACE |
 > | `section9.tool_runtime_read_file` | RB-TOOL-SURFACE, RB-FILESYSTEM |
 > | `section9.chirality_mcp_status_dependencies` | RB-LIFECYCLE, RB-TOOL-SURFACE |
@@ -172,6 +172,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > | `section9.tool_result_budget` | RB-AUDIT, RB-REDACTION |
 > | `section9.context_compaction_boundary` | RB-AUDIT, RB-HOOKS |
 > | `section9.subagent_governance_hook` | RB-SUBAGENT, RB-HOOKS |
+> | `section9.domain_profile_validation` | Implemented closed compatibility profile validation (UPD-102); grants no live binding or apply exposure. |
 >
 
 ### CLM-012 — References
@@ -183,15 +184,15 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > - REF-003: `docs/SPEC.md`, especially §§8.4, 9, 10, 12, 14, 15, and 19.3.
 > - REF-004: `docs/TYPES.md`, especially runtime, permission, hook, SDK, subagent, and validation terms.
 > - REF-005: `docs/PLAN.md`, especially R0/R1 reliance-boundary deliverables and acceptance.
-> - REF-006: `docs/PRD.md`, especially §§8.12-8.16 and §15, under the current D-APP-38 corpus snapshot MATCH status.
-> - REF-007: `AGENT_SOFTWARE_DECOMP.md`, especially no-invention and scope-boundary protocol.
+> - REF-006: `docs/PRD.md`, especially §§8.12-8.16 and §15, under the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) MATCH status.
+> - REF-007: `workflows/software-decomp/WORKFLOW.md`, especially no-invention and scope-boundary protocol.
 >
 
 ### CLM-013 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
-> UPD-100/101/102 supersede the earlier future/TBD cells: `section9.sdk_session_link_resume` and `section9.domain_profile_validation` are implemented and registered under their ruled scopes; Bash is mode-gated with live default `ask` and workspace-write auto-allow only after hooks, not flatly denied by default.
+> UPD-100/101/102 supersede the earlier future/TBD cells: `section9.sdk_session_link_resume` and `section9.domain_profile_validation` are implemented and registered under their ruled scopes; that Bash/hook posture is historical compatibility evidence; current shell actions follow Codex user-selected policy (D-GOV-43).
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -240,23 +241,23 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > | RBR-001 | The register shall identify each P0 reliance boundary with a stable `BoundaryID`, category, product semantic, source references, enforcement owner, enforcement surface, validation ID, residual risk, and decision status. | REF-002 K-RELIANCE-1; REF-006 FR-124 | Review generated register schema and row completeness. |
 > | RBR-002 | No P0 boundary shall be marked enforceable by prompt text alone. | REF-001 §2.9; REF-002 K-RELIANCE-2/K-PERM-2; REF-006 FR-124 | Check `PromptOnlyAllowed=NO` for every P0 row; flag exceptions as `CONFLICT`. |
 > | RBR-003 | No P0 boundary shall rely on opaque SDK defaults alone. | REF-001 §2.9; REF-002 K-RELIANCE-2; REF-006 FR-125 | Check enforcement owner/surface for Chirality code, verified SDK callback/hook, MCP wrapper, release check, or human gate. |
-> | RBR-004 | Runtime engine boundaries shall preserve `AgentEnginePort` / `RuntimeEngineContract` as product-owned and provider-neutral. | REF-001 §2.8-2.10; REF-002 K-ENGINE-1/K-ENGINE-4; REF-006 FR-122/FR-123 | `section9.runtime_engine_contract`; engine conformance suite review. |
-> | RBR-005 | Browser `UIEvent`s and persisted `HarnessEvent`s shall remain separate contracts and shall not become SDK-shaped except as adapter metadata. | REF-002 K-ENGINE-4; REF-003 §10.3; REF-006 FR-074/FR-116/FR-122 | Mapper tests; event-schema review; `section9.adapter_message_mapper`. |
+> | RBR-004 | The register shall identify Codex as the sole MVP engine and preserve current Runtime contract ownership. | D-GOV-43; D-APP-127 | Current Codex conformance mapping; legacy section9.runtime_engine_contract does not establish coverage. |
+> | RBR-005 | Preserve the complete Codex event stream, including unfamiliar notifications, alongside known-event presentation. Presentation and persisted evidence remain distinct; redaction is separate. | D-GOV-43; D-APP-131 P-05/P-12 | Current raw-event/replay and redaction tests. |
 > | RBR-006 | Accepted turns and terminal outcomes shall be persisted in an append-only Chirality audit mirror. | REF-001 §2.7-2.9; REF-002 K-EVENT-3/K-EVENT-4; REF-006 FR-072/FR-073 | `section9.adapter_turn_engine_event_log`; replay validation. |
-> | RBR-007 | SDK transcripts shall be treated as secondary resume/debug artifacts unless explicitly imported into `HarnessEvent` form. | REF-001 §2.7-2.10; REF-002 K-SDK-3; REF-003 §8.4; REF-006 FR-121/KG-024 | Transcript-linkage tests remain `TBD`; register residual risk where default SDK paths remain. |
-> | RBR-008 | Shipped SDK options shall use `settingSources: []`; `user` and `local` setting sources shall not be used in shipped builds. | REF-001 §4.2/§5; REF-002 K-SDK-1; REF-003 §12.2; REF-006 FR-117/KG-022 | `section9.settingsources_isolation`; release verification. |
-> | RBR-009 | Permission decisions shall be structured, persisted, and recorded as `allow`, `deny`, or application-level `ask`. | REF-004 §8.2; REF-006 FR-087/FR-092; SOW-054 | `tool.permission` event tests; permission decision schema tests. |
-> | RBR-010 | Deny rules shall override all allow decisions, including persona/session/operator allows and developer-local bypass. | REF-002 K-PERM-1; REF-006 FR-089 | `section9.permission_overlay_hard_deny_precedence`; targeted deny precedence tests. |
-> | RBR-011 | `allowedTools` alone shall not be treated as a restriction boundary. | REF-002 K-PERM-3; REF-003 §14.3; REF-006 FR-081/KG-023 | SDK options builder tests showing restriction requires deny/mode/hook/callback policy. |
-> | RBR-012 | Filesystem write/edit behavior shall enforce active project-root containment, instruction-root protection, and initial symlink write rejection. | REF-002 K-ROOT-2/K-PATH-2/K-PATH-3; REF-003 §15.2; REF-006 FR-095/FR-097 | `section9.path_containment_hook`; `section9.instruction_root_protection_hook`; write/edit tests. |
-> | RBR-013 | Hook denials and hook failures shall fail closed for write, shell, domain, and subagent actions. | REF-002 K-HOOK-1; REF-003 §15.2; REF-006 FR-093-FR-095 | Hook lifecycle tests; denied action must not execute. |
-> | RBR-014 | Bash shall remain denied by default until timeout, capture, storage, interrupt, and audit behavior are implemented and validated. | REF-002 K-BASH-1; REF-006 FR-100 | Bash deny/default tests; result-budget tests before enablement. |
-> | RBR-015 | In-process Chirality MCP tools shall pass through the same permission, hook, redaction, and event logging policy as SDK built-ins. | REF-002 K-MCP-1; REF-003 §14.2; REF-006 FR-104/FR-119 | MCP wrapper tests; event and hook evidence. |
-> | RBR-016 | Subagent execution shall fail closed unless governance, context sealing, approval reference, child tool restriction, and child cwd restriction pass. | REF-002 K-SEAL-1/K-SUBAGENT-1/K-SUBAGENT-2; REF-006 FR-101/FR-102/KG-027 | `section9.subagent_governance_hook`; child run record tests. |
+> | RBR-007 | Runtime session/event records remain canonical; Codex threads/rollouts are secondary execution records, not project truth. | K-EVENT-4 as amended; D-GOV-43 | Current resume/replay linkage checks; legacy section9.sdk_session_link_resume exists but is not live-path proof. |
+> | RBR-008 | The App shall use shared Codex configuration/resources and native discovery without vetoing user settings; Codex credentials remain isolated from other clients. | D-GOV-43 items 3/6; D-APP-127 | Effective-home and S-8 checks. |
+> | RBR-009 | Persist structured approval requests, resolutions and actual attribution; answer every server request under the user-selected policy. | D-GOV-43 | Current Runtime request/response and App approval presentation tests. |
+> | RBR-010 | Honor the selected Codex sandbox/approval policy, including Full access, without treating that policy as authority to issue work or cross governed domain scope. | D-GOV-43; D-APP-131 P-13 | Current policy mapping/approval tests and separate domain controls. |
+> | RBR-011 | Application-tool exposure shall be validated by Runtime; native Codex tools follow the selected Codex policy. A tool list or mode label alone is not proof of a protected boundary. | D-APP-132 P-01 | Runtime application-tools tests; distinct live ordering and policy checks. |
+> | RBR-012 | Preserve ordinary-project instruction-root integrity, App root/proposal denials and domain protections; record actual sandbox-dependent containment rather than universal native-tool prevention. | D-GOV-43; D-APP-132 | App packaging/instruction-root integrity and current negative write/symlink checks; missing enforcement remains open. |
+> | RBR-013 | Verify applicable action-denial and failure guarantees at current App/Runtime interfaces. Legacy SDK hooks are compatibility mechanisms and are not claimed on the Codex path. | D-GOV-43; D-APP-127 | Current application-tool and policy failure tests; retained domain checks. |
+> | RBR-014 | Shell execution shall follow the user-selected Codex policy; verify capture, interruption, persistence and recovery on that path. Retired Bash-default-deny gates do not qualify it. | D-GOV-43; D-APP-131 P-08 | Distinct current shell/turn/interrupt tests and applicable S-1–S-8. |
+> | RBR-015 | Chirality application tools shall satisfy current Runtime validation, logging and secret-hygiene contracts. Native Codex tools retain their selected policy; no shared legacy hook layer is asserted. | D-GOV-43; D-APP-132 | application-tools/codex-application-tools tests plus unresolved sink-redaction checks. |
+> | RBR-016 | Record actual delegated parentage, supplied basis, bounded scope, observed decisions and return linkage. Distinguish managed and native execution and actual enforcement limits. | D-GOV-35/43; D-APP-132 | Current delegation/context/replay evidence; optional per-attempt replay is not adopted. |
 > | RBR-017 | `_STATUS.md` shall remain the canonical lifecycle state file and human-gate transitions shall require human evidence. | REF-002 K-STATUS-1/K-STATUS-2/K-GATE-1; REF-001 §3 | Status transition API/MCP tests; approval SHA checks. |
 > | RBR-018 | No agent, SDK, tool, runtime event, validator, or domain adapter shall claim to approve, certify, sign, seal, issue, transmit, or externally validate professional work. | REF-001 §3; REF-002 K-AUTH-1/K-PROF-1 | UI/docs copy review; human-gate checklist. |
 > | RBR-019 | Runtime events, logs, tool artifacts, provider errors, and SDK interaction metadata shall redact API keys and configured secret variants. | REF-002 K-EVENT-6/K-KEY-1; REF-003 §12.3; REF-006 FR-075 | Redaction tests; run logger tests; artifact inspection. |
-> | RBR-020 | The register shall preserve fallback criteria for SDK replacement if a product-critical boundary cannot be governed or verified. | REF-001 §2.8-2.10; REF-002 K-ENGINE-5; REF-006 FR-126/KG-030 | R0/R1 first-adapter probe review; fallback criteria row in register. |
+> | RBR-020 | Preserve current Codex conformance failures as explicit gaps; legacy SDK-replacement probes do not require a second MVP engine. | D-GOV-43; D-APP-131 P-20 | Codex adapter conformance mapping and missing distinct checks. |
 > | RBR-021 | The register shall record the current D-APP-38 corpus version for authority-doc references, including REF-006 `docs/PRD.md`. | `_REFERENCES.md`; D-APP-38 | Register metadata cites the current corpus snapshot and `MATCH` status. |
 > | RBR-022 | The register shall distinguish current corpus-matched source support from any future drift or warning-limited source support in row-level traces where PRD content affects acceptance. | REF-001 §2.1/§2.7; REF-002 K-REF-1/K-INVENT-1; `_REFERENCES.md` REF-006 | Source trace review confirms PRD-cited rows cite REF-006 and the current corpus version, or preserve a drift warning if reconciliation later reports one. |
 > | RBR-023 | Final acceptance shall include evidence that no P0 boundary is enforced only by prompt text or by opaque SDK defaults. | REF-001 §2.9; REF-002 K-RELIANCE-2; REF-006 FR-124/FR-125 | Generated register review includes explicit `PromptOnlyAllowed=NO`, `SDKDefaultOnlyAllowed=NO`, and non-empty enforcement-surface evidence for every P0 row. |
@@ -275,8 +276,8 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > | `docs/SPEC.md` | Runtime structures, settings, hooks, MCP, validation IDs, and API/file contracts. |
 > | `docs/TYPES.md` | Terms and target type names used in the register. |
 > | `docs/PLAN.md` | Runtime roadmap and R0/R1 reliance-boundary acceptance expectations. |
-> | `docs/PRD.md` | Product requirements and risk register, reconciled as REF-006 under the current D-APP-38 corpus snapshot. |
-> | `AGENT_SOFTWARE_DECOMP.md` | Decomposition discipline; no-invention and scope-boundary rules. |
+> | `docs/PRD.md` | Product requirements and risk register, reconciled as REF-006 under the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance). |
+> | `workflows/software-decomp/WORKFLOW.md` | Decomposition discipline; no-invention and scope-boundary rules. |
 >
 
 ### CLM-020 — Verification
@@ -289,7 +290,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > | Coverage completeness | Rows exist for audit, permission, filesystem, lifecycle, transcript, settings, subagent, human-gate, runtime-engine, tool-surface, hooks, redaction, and fallback boundaries. |
 > | Source traceability | Each row cites at least one governance/source reference and uses `location TBD` where exact implementation files are unavailable. |
 > | P0 enforcement posture | P0 rows have `PromptOnlyAllowed=NO` and `SDKDefaultOnlyAllowed=NO`. |
-> | Prompt/SDK-default exclusion evidence | Acceptance evidence proves the row has a Chirality-owned, verified SDK callback/hook, MCP wrapper, release check, or human gate beyond prompt-only or opaque SDK-default behavior. |
+> | Prompt/SDK-default exclusion evidence | Acceptance evidence identifies the actual verified current control and its limitations; historical SDK hooks do not qualify Codex native policy or current application controls. |
 > | PRD source-state trace | Rows using REF-006 cite the current corpus-matched source state or explicitly preserve any future drift warning. |
 > | Validation mapping | Rows map to implemented Section 9 validation IDs where available; SPEC/PRD-listed future IDs remain `TBD` until the Section 9 script implements them. |
 > | Residual-risk surfacing | Authority-corpus drift, SDK transcript placement, SDK API drift, and inherited subagent permission risks are recorded instead of silently resolved. |
@@ -305,28 +306,22 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > - `docs/harness/reliance_boundary_register.md`
 > - embedded enforcement matrix
 > - test index keyed to current Section 9 validation IDs and future/TBD IDs
-> - residual-risk notes for unresolved first-adapter probe findings
+> - residual-risk notes for current Codex conformance, policy, redaction and evidence gaps
 > - authority-corpus version note for `docs/PRD.md` and any future drift warning
 >
 
 ### CLM-022 — Open Items
 
-> ##### Open Items
->
-> | ID | Item | Status |
-> |---|---|---|
-> | OI-RBR-001 | Closed by the current D-APP-38 corpus snapshot; REF-006 currently matches. Reopen only if a future corpus audit reports drift. | CLOSED |
-> | OI-RBR-002 | Fill exact implementation file paths for enforcement surfaces after the relevant runtime modules exist. | TBD |
-> | OI-RBR-003 | Confirm SDK transcript placement decision after R1 probe. | TBD |
-> | OI-RBR-004 | Current implemented Section 9 validation IDs are indexed in `docs/harness/reliance_boundary_register.md`; future `section9.reliance_boundary_register` and `section9.sdk_session_link_resume` remain TBD until validator/session-linkage work lands. | PARTIAL |
-> | OI-RBR-005 | Generated register rows cite the current D-APP-38 corpus snapshot and distinguish current corpus-matched evidence from future drift warnings. | CLOSED |
->
+> OI-RBR-001/005: v23 MATCH is historical; recompute drifted source support before current reliance.
+> OI-RBR-002: exact legacy paths exist; live Codex/Runtime applicability and enforcement evidence remain open.
+> OI-RBR-003: canonical Runtime store and secondary Codex transcript ownership are settled; current live linkage evidence remains required.
+> OI-RBR-004: reliance_boundary_register, sdk_session_link_resume and domain_profile_validation IDs are implemented. Legacy coverage does not qualify current controls. Verification: frontend/scripts/harness-section9-manifest.json and frontend/src/__tests__/contract-pins.manifest.ts.
 
 ### CLM-023 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
-> UPD-100/101/102 supersede the earlier future/TBD cells: `section9.sdk_session_link_resume` and `section9.domain_profile_validation` are implemented and registered under their ruled scopes; Bash is mode-gated with live default `ask` and workspace-write auto-allow only after hooks, not flatly denied by default.
+> UPD-100/101/102 supersede the earlier future/TBD cells: `section9.sdk_session_link_resume` and `section9.domain_profile_validation` are implemented and registered under their ruled scopes; that Bash/hook posture is historical compatibility evidence; current shell actions follow Codex user-selected policy (D-GOV-43).
 
 - **AC-001** — The conversion preserves and traces the legacy source content to the frozen project scope references [SOW-037, SOW-045, SOW-054, SOW-057, SOW-074] and package objective references [OBJ-002, OBJ-005, OBJ-009].
 
@@ -352,10 +347,10 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > |---|---|
 > | Deliverable-local context | `_CONTEXT.md` read for identity, scope, anticipated artifacts, and traceability. |
 > | Lifecycle state | Read from `_STATUS.md` (currently `IN_PROGRESS`); this procedure performs no transition. |
-> | References | `_REFERENCES.md` read; REF-001 through REF-007 available. |
-> | Dependency declarations | `_DEPENDENCIES.md` and `Dependencies.csv` read; extracted rows remain active/TBD dependency evidence. |
+> | References | `_REFERENCES.md` read; REF-001 through REF-007, REF-009 and REF-010 are the reference inventory; recompute applicability and hashes. |
+> | Dependency declarations | `_DEPENDENCIES.md` and `Dependencies.csv` read; formal row states remain in Dependencies.csv and are not changed here. |
 > | Decomposition entry | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-01-02 row read. |
-> | Reference integrity | the current D-APP-38 corpus snapshot records REF-006 `docs/PRD.md` as `MATCH`. |
+> | Reference integrity | the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) records REF-006 `docs/PRD.md` as `MATCH`. |
 > | Required source review | Directive, Contract, Spec, Types, Plan, PRD, and Software Decomp source slices reviewed. |
 >
 
@@ -404,12 +399,12 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 >    - filesystem containment and instruction-root protection;
 >    - lifecycle status and human gates;
 >    - SDK transcript separation;
->    - SDK settings isolation;
+>    - shared Codex settings and separate authentication;
 >    - subagent governance;
 >    - deterministic tool surface and MCP wrappers;
 >    - hook lifecycle and fail-closed behavior;
 >    - secret redaction and key handling;
->    - SDK fallback criteria.
+>    - Codex-only engine qualification and retained historical fallback evidence.
 > 2. Assign stable `BoundaryID` values.
 > 3. For each row, define the protected Chirality product semantic in Chirality terms.
 > 4. Cite source references.
@@ -422,45 +417,17 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 >
 > For each boundary row:
 >
-> 1. Identify the enforcement owner:
->    - Chirality code;
->    - SDK option;
->    - SDK hook/callback;
->    - MCP wrapper;
->    - human gate;
->    - release check;
->    - prompt support;
->    - mixed.
+> 1. Identify the current enforcement owner: Codex host for the user-selected sandbox/approval policy; App-owned Runtime for admission, records and application-tool validation; human for governed acceptance; release checks for package gates. Record actual host limits. Historical SDK options, callbacks and MCP wrappers remain compatibility surfaces, not assumed live enforcement owners.
 > 2. Identify the concrete enforcement surface.
 > 3. If the only surface is prompt support, mark the row incomplete for P0.
-> 4. If the only surface is opaque SDK default behavior, mark the row incomplete for P0.
-> 5. Add residual-risk notes where SDK behavior is not yet empirically verified.
+> 4. If the only evidence is an opaque supplier default or retained SDK fixture, mark the live P0 row incomplete.
+> 5. Add residual-risk notes where actual Codex/Runtime behavior or sink-specific evidence is unverified.
 >
 
 ### CLM-032 — 5. Attach Validation Evidence
 
-> ###### 5. Attach Validation Evidence
->
-> 1. Map rows to existing Section 9 validation IDs where available:
->    - `section9.runtime_engine_contract`
->    - `section9.adapter_turn_engine_event_log`
->    - `section9.adapter_message_mapper`
->    - `section9.session_event_replay`
->    - `section9.settingsources_isolation`
->    - `section9.permission_overlay_hard_deny_precedence`
->    - `section9.tool_runtime_read_file`
->    - `section9.chirality_mcp_status_dependencies`
->    - `section9.path_containment_hook`
->    - `section9.instruction_root_protection_hook`
->    - `section9.tool_result_budget`
->    - `section9.context_compaction_boundary`
->    - `section9.subagent_governance_hook`
-> 2. Record SPEC/PRD-listed future validation IDs as `TBD` unless the current Section 9 script implements them:
->    - `section9.reliance_boundary_register`
->    - `section9.sdk_session_link_resume`
-> 3. Use `TBD` for validation IDs not yet implemented or not yet named.
-> 4. Add test index rows that connect each validation ID to one or more boundary IDs.
->
+> Map each live obligation to current candidate-bound evidence. The 16 implemented compatibility Section 9 IDs are runtime_engine_contract, adapter_turn_engine_event_log, adapter_message_mapper, session_event_replay, reliance_boundary_register, settingsources_isolation, sdk_session_link_resume, permission_overlay_hard_deny_precedence, tool_runtime_read_file, chirality_mcp_status_dependencies, path_containment_hook, instruction_root_protection_hook, tool_result_budget, context_compaction_boundary, subagent_governance_hook and domain_profile_validation (all prefixed section9.).
+> Verification: frontend/scripts/harness-section9-manifest.json and contract-pins.manifest.ts. These IDs cite legacy evidence; instruction-root and dependency-register tests also touch live modules, but that does not establish live Codex permission/containment/lifecycle coverage. Record current Runtime/Codex checks separately and leave missing results open.
 
 ### CLM-033 — 6. Cross-Check Against Specification
 
@@ -498,7 +465,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > 1. Run a consistency review across register rows, enforcement matrix, and test index.
 > 2. Confirm there are no P0 rows with prompt-only or SDK-default-only enforcement.
 > 3. Confirm human-gate and professional-boundary rows do not imply automated approval.
-> 4. Confirm REF-006 is current under the current D-APP-38 corpus snapshot, or preserve any future drift warning.
+> 4. Confirm REF-006 is current under the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance), or preserve any future drift warning.
 > 5. Confirm the generated register, enforcement matrix, and test index can be traced back to the datasheet fields and specification requirements.
 > 6. Move the deliverable to the next lifecycle state only through the authorized status workflow.
 >
@@ -538,15 +505,12 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 
 ### CLM-038 — Remaining Blockers
 
-> ##### Remaining Blockers
->
-> | ID | Blocker | Required action |
-> |---|---|---|
-> | BLK-RBR-001 | REF-006 source-state | Closed by the current D-APP-38 corpus snapshot; reopen only if future authority-corpus status reports drift. |
-> | BLK-RBR-002 | Exact implementation surfaces not yet complete | Downstream runtime implementation deliverables must fill file paths and tests. |
-> | BLK-RBR-003 | SDK transcript and settings behavior require empirical probe | R0/R1 first-adapter probe and validation must confirm behavior before final acceptance. |
+> BLK-RBR-001: current source hashes and accepted-corpus applicability require recomputation; v23 closure is historical.
+> BLK-RBR-002: legacy paths exist, but the current Codex enforcement matrix and evidence need completion.
+> BLK-RBR-003: verify current Codex transcript linkage, replay and effective-home credential separation; retired SDK probes are not prerequisites.
+> Structural redaction, trustworthy human-gate identity, ordinary-project instruction protection and live conformance remain delivery obligations. No test result or human review is inferred from record repair.
 
-- **VER-001** — Deterministic validation, claim mapping, parity reporting, review-checklist derivation, and HTML-render checks, followed by human review.
+- **VER-001** — Verify current requirement traceability, source fidelity and named checks against this candidate. One-time conversion mapping/parity/render evidence remains historical (R5/CONVERSION_EVIDENCE_REVIEW.csv); it does not establish current behavioral qualification or personal human review.
 
 ## Governing Values and Decisions — Axiology
 
@@ -561,7 +525,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 >
 > The Reliance Boundary Register exists to prevent product-critical Chirality semantics from drifting into prompt-only instruction, opaque SDK defaults, transient runtime state, or undocumented human assumptions. It should make the enforcement ownership of each boundary inspectable before implementation choices harden.
 >
-> The register is especially important because Chirality intentionally privileges the Claude Agent SDK as a runtime substrate while keeping product semantics, auditability, permission decisions, working-root policy, lifecycle rules, subagent governance, and professional-boundary language under Chirality ownership.
+> The register is especially important because Codex is the sole MVP engine and qualification target under D-GOV-43. The register distinguishes user-selected Codex enforcement from Chirality-owned application controls and records actual gaps, while preserving human authority and non-binding runtime evidence.
 >
 
 ### CLM-041 — Principles
@@ -585,10 +549,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 
 ### CLM-044 — 3. Deny-First Means Deny Overrides All Allows
 
-> ###### 3. Deny-First Means Deny Overrides All Allows
->
-> The register should treat deny rules as the controlling policy for dangerous actions. A row that relies only on `allowedTools`, default SDK behavior, or persona instruction should be marked incomplete until paired with mode policy, `disallowedTools`, `canUseTool`, hooks, path checks, or equivalent Chirality-owned enforcement.
->
+> The user selects Codex sandbox and approval policy. Record that actual policy and its observed enforcement; do not infer a legacy Chirality deny-first overlay or universal protection from a mode label. Application-tool/domain controls and human authority retain their own scope. Verification: Runtime codex-supervisor policy/approval tests and live negative boundary checks (D-GOV-43; D-APP-132).
 
 ### CLM-045 — 4. Canonical Audit Is Chirality-Owned
 
@@ -618,16 +579,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 
 ### CLM-049 — Source-State Handling
 
-> ###### Source-State Handling
->
-> `docs/PRD.md` is accessible and contains detailed runtime requirements and known gaps. D-APP-38 corpus
-> `v1` reconciled the authority-doc reference corpus, and current `_REFERENCES.md` records REF-006
-> `docs/PRD.md` as `MATCH`.
->
-> Rows that depend on PRD content should cite REF-006 and the current corpus version. Future
-> authority-doc edits must rerun the D-APP-38 reconciliation flow before issue-readiness reliance is
-> claimed.
->
+> The preserved authority-corpus hash results are bound to their recorded snapshot (v23 in the discovery basis), not to current source bytes. Later drift is an active source warning until independently recomputed under D-APP-38. D-APP-131 applies settled D-GOV-43 decisions without a duplicate owner prompt; genuine normative amendments retain their governing process.
 
 ### CLM-050 — Boundary Granularity
 
@@ -648,36 +600,11 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 
 ### CLM-051 — Current Implementation Surfaces And Path Maintenance
 
-> ###### Current Implementation Surfaces And Path Maintenance
->
-> Keep concrete register paths synchronized with the inspectable tree. Use `TBD` only for a genuinely absent or unassigned surface, and retain a downstream closure path for every such entry.
->
-> | Surface | Current implementation path |
-> |---|---|
-> | `AgentEnginePort` | `frontend/packages/harness-contract/src/agent-engine-port.ts` |
-> | `RuntimeEngineContract` | `frontend/src/lib/harness/agent-runtime-contract.ts` |
-> | `TurnEngine` | `frontend/src/lib/harness/turn-engine.ts` |
-> | `SdkOptionsBuilder` | `frontend/src/lib/harness/sdk-options-builder.ts` |
-> | `ChiralityPermissionOverlay` | `frontend/src/lib/harness/permission-overlay.ts` |
-> | `ChiralityHooks` / hook runner | `frontend/src/lib/harness/chirality-hooks.ts` |
-> | `evaluateSubagentGovernance` bridge | `frontend/src/lib/harness/subagent-governance.ts` |
->
+> Current contract source is @chirality/runtime-contracts in projects/chirality-runtime/packages/contracts; D-APP-118 retired @chirality/harness-contract and its dedicated rollback support. Runtime packages/core/src/delegated-engine-adapter.ts, delegated-runtime.ts and session-store.ts and packages/daemon/src/codex-supervisor.ts and application-tools.ts are current evidence loci. App frontend/src/lib/harness retains compatibility modules; their path existence is not live-path qualification. Keep exact current ownership and tests in docs/harness/reliance_boundary_register.md. Verification: current consumer census and per-boundary Runtime/App tests; absent result evidence remains open.
 
 ### CLM-052 — Residual Risk Topics
 
-> ###### Residual Risk Topics
->
-> Track these explicitly until closed:
->
-> - SDK API drift and message/category changes.
-> - SDK settings leakage if project/user/local setting sources are accidentally enabled.
-> - SDK transcript placement outside the working root.
-> - SDK permission semantics being necessary but insufficient.
-> - SDK subagents inheriting powerful parent permissions.
-> - Thin-wrapper drift where product identity becomes SDK-shaped.
-> - Authority-doc corpus drift if a future edit changes `docs/PRD.md` or another corpus source without rerunning D-APP-38 reconciliation.
-> - Section 9 validation IDs or test file names still being candidate labels rather than implemented checks.
->
+> Track current Codex pin/supplier drift, full-event persistence and sink redaction, policy-dependent filesystem enforcement, human-gate actor identity, delegated basis/return evidence, live conformance coverage and authority-corpus drift. Shared Codex settings and native transcript storage are accepted architecture, not settings leakage defects. Preserve unknown empirical results; do not revive retired SDK/Pi/Bash-default-deny prerequisites (D-GOV-43; D-APP-127/131/132).
 
 ### CLM-053 — Trade-offs
 
@@ -685,7 +612,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 >
 > | Trade-off | Guidance |
 > |---|---|
-> | SDK leverage vs. product-owned semantics | Use SDK mechanics where verified, but keep public contracts, events, permissions, and records in Chirality terms. |
+> | SDK leverage vs. product-owned semantics | Use the full Codex protocol and user-selected policy while preserving Chirality identity, current application controls and non-binding audit (D-GOV-43); verify actual current enforcement. |
 > | Early register completeness vs. implementation uncertainty | Draft all required boundary rows now; use `TBD` for exact implementation files until downstream deliverables exist. |
 > | Human gate clarity vs. runtime automation | Automate evidence capture and state-transition checks, but keep binding approval human-only. |
 > | Prompt support vs. hard enforcement | Prompt support is acceptable as an explanatory layer, not as the enforcement surface for P0 boundaries. |
@@ -699,22 +626,7 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 
 ### CLM-055 — Example Register Row Pattern
 
-> ###### Example Register Row Pattern
->
-> | Field | Example |
-> |---|---|
-> | BoundaryID | RB-SETTINGS |
-> | BoundaryCategory | settings |
-> | ProductSemantic | Shipped builds must not load ambient user/global or local Claude Code settings. |
-> | SourceRefs | `docs/SPEC.md` §12.2; `docs/CONTRACT.md` K-SDK-1; `docs/PRD.md` FR-117 under the current D-APP-38 corpus snapshot |
-> | EnforcementOwner | Chirality code + SDK option + release validation |
-> | EnforcementSurface | `SdkOptionsBuilder` sets `settingSources: []`; settings isolation test; release verification |
-> | PromptOnlyAllowed | NO |
-> | SDKDefaultOnlyAllowed | NO |
-> | ValidationID | `section9.settingsources_isolation` |
-> | ResidualRisk | SDK option behavior must be empirically confirmed on pinned SDK version. |
-> | DecisionStatus | TBD until implementation and probe pass |
->
+> Example RB-SETTINGS row: protected semantic is shared Codex configuration/resources with separate authentication and Codex credential custody. Source: D-GOV-43 items 3/6 and D-APP-127. Enforcement owner: Codex and effective-home composition. Verification: S-8 and current configuration tests. PromptOnlyAllowed=NO; opaque-default-only evidence is insufficient. DecisionStatus records the accepted direction separately from outstanding empirical results.
 
 ### CLM-056 — Example Incomplete Row
 
@@ -724,18 +636,12 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 > |---|---|
 > | BoundaryID | RB-SUBAGENT |
 > | Incomplete signal | Enforcement surface says only "tell subagents not to write outside scope." |
-> | Required correction | Add `evaluateSubagentGovernance`, restricted child tools/cwd, hook evidence, and child run record validation. |
+> | Required correction | Record current delegation mechanism, supplied role/basis/scope, actual enforcement and child return evidence; verify the current Runtime/native path rather than cite legacy hooks. |
 >
 
 ### CLM-057 — Closed Source-State Note
 
-> ##### Closed Source-State Note
->
-> Historical conflict `CONF-RBR-001` is superseded by the current D-APP-38 corpus snapshot: `_REFERENCES.md` now records
-> REF-006 `docs/PRD.md` as `MATCH`. That source-state reconciliation did not by itself generate the
-> reliance-boundary register or satisfy dependency rows; it only removed the stale PRD hash blocker from
-> the local-kit wording.
->
+> CONF-RBR-001 was closed against the historical corpus. Later CONTRACT/SPEC/PRD drift reopens current source verification; the historical MATCH neither proves current bytes nor satisfies dependency or lifecycle gates.
 
 ### CLM-058 — Generated Artifact Note
 
@@ -750,22 +656,17 @@ This Scope of Work defines `DEL-01-02` in service of project scope [SOW-037, SOW
 
 ### CLM-059 — Assumptions and TBDs
 
-> ##### Assumptions and TBDs
->
-> | ID | Item | Disposition |
-> |---|---|---|
-> | ASSUMPTION-RBR-001 | The decomposition-listed objectives OBJ-002, OBJ-005, and OBJ-009 are directionally relevant to DEL-01-02. | Supported by DEL-01-02 decomposition row; not an extra hard requirement beyond cited source requirements. |
-> | TBD-RBR-001 | Exact implementation file paths for runtime contract, permissions, hooks, settings, event log, and subagent bridge. | RESOLVED for the currently named surfaces above; keep their register citations current and use `TBD` only for a genuinely absent or unassigned future surface. |
-> | TBD-RBR-002 | Exact SDK transcript storage/mirroring decision. | Resolve after R1 first-adapter probe and session linkage work. |
-> | TBD-RBR-003 | Final Section 9 validation file/test names. | Current implemented IDs are indexed in `docs/harness/reliance_boundary_register.md`; future `section9.reliance_boundary_register` and `section9.sdk_session_link_resume` remain TBD. |
-> | TBD-RBR-004 | Generated-register completion evidence. | ADQ-02 generated and cross-checked `docs/harness/reliance_boundary_register.md`; future validator automation remains downstream. |
->
+> ASSUMPTION-RBR-001: objective trace remains the accepted decomposition row, with no extra scope inferred.
+> TBD-RBR-001: legacy exact paths are known; current evidence mapping uses CLM-051 and retains missing live enforcement.
+> TBD-RBR-002: Runtime canonical events and secondary Codex thread storage are settled; live linkage/replay evidence remains required.
+> TBD-RBR-003: Section 9 linkage/domain/register IDs are implemented under their original scope; current Codex coverage remains separate.
+> TBD-RBR-004: register schema, boundary inventory and index automation exists in frontend/src/__tests__/contract-pins.manifest.ts; old test-file locators need updating. Automation is not product or human acceptance.
 
 ### CLM-060 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
-> UPD-100/101/102 supersede the earlier future/TBD cells: `section9.sdk_session_link_resume` and `section9.domain_profile_validation` are implemented and registered under their ruled scopes; Bash is mode-gated with live default `ask` and workspace-write auto-allow only after hooks, not flatly denied by default.
+> UPD-100/101/102 supersede the earlier future/TBD cells: `section9.sdk_session_link_resume` and `section9.domain_profile_validation` are implemented and registered under their ruled scopes; that Bash/hook posture is historical compatibility evidence; current shell actions follow Codex user-selected policy (D-GOV-43).
 
 ## Output and Evaluation Matrix
 

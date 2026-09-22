@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows: `DEP-08-01-001`, `DEP-08-01-002`, `DEP-08-01-003`, `DEP-08-01-004`, `DEP-08-01-005`, `DEP-08-01-006`, `DEP-08-01-007`, `DEP-08-01-008`, `DEP-08-01-009`, `DEP-08-01-010`, `DEP-08-01-011`, `DEP-08-01-012`, `DEP-08-01-013`, `DEP-08-01-014`, `DEP-08-01-015`, `DEP-08-01-016`, `DEP-08-01-017`, `DEP-08-01-018`, `DEP-08-01-019`, `DEP-08-01-021`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows: `DEP-08-01-020`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Run Notes
 
@@ -105,21 +105,21 @@ Structured register: `Dependencies.csv` v3.1
 | DEP-08-01-004 | ANCHOR | OTHER | UPSTREAM | SOW-073 | ACTIVE | SATISFIED |
 | DEP-08-01-005 | ANCHOR | OTHER | UPSTREAM | OBJ-007 | ACTIVE | SATISFIED |
 | DEP-08-01-006 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | SATISFIED |
-| DEP-08-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 `docs/DIRECTIVE.md` | ACTIVE | PENDING |
-| DEP-08-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE | PENDING |
-| DEP-08-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE | PENDING |
-| DEP-08-01-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` | ACTIVE | PENDING |
-| DEP-08-01-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 `docs/PLAN.md` | ACTIVE | PENDING |
-| DEP-08-01-012 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE | PENDING |
-| DEP-08-01-013 | EXECUTION | PREREQUISITE | UPSTREAM | REF-007 `AGENT_SOFTWARE_DECOMP.md` | ACTIVE | PENDING |
-| DEP-08-01-014 | EXECUTION | PREREQUISITE | UPSTREAM | DEC-004 decomposition v3.2 (applied row L368, DEC-025) | ACTIVE | PENDING |
-| DEP-08-01-015 | EXECUTION | PREREQUISITE | UPSTREAM | TBD current instruction-root source tree | ACTIVE | PENDING |
+| DEP-08-01-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 | ACTIVE | PENDING |
+| DEP-08-01-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 | ACTIVE | PENDING |
+| DEP-08-01-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 | ACTIVE | PENDING |
+| DEP-08-01-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 | ACTIVE | PENDING |
+| DEP-08-01-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 | ACTIVE | PENDING |
+| DEP-08-01-012 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 | ACTIVE | PENDING |
+| DEP-08-01-013 | EXECUTION | PREREQUISITE | UPSTREAM | REF-007 | ACTIVE | PENDING |
+| DEP-08-01-014 | EXECUTION | PREREQUISITE | UPSTREAM | DEC-004 | ACTIVE | PENDING |
+| DEP-08-01-015 | EXECUTION | PREREQUISITE | UPSTREAM | TBD | ACTIVE | PENDING |
 | DEP-08-01-016 | ANCHOR | OTHER | UPSTREAM | SOW-082 | ACTIVE | SATISFIED |
 | DEP-08-01-017 | ANCHOR | OTHER | UPSTREAM | SOW-084 | ACTIVE | SATISFIED |
-| DEP-08-01-018 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-03 `propose` tool contract the proposal clauses invoke (D-APP-109 H-018; resolved by decompose under D-APP-110, strict edge) | ACTIVE | PENDING |
-| DEP-08-01-019 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-01 organisation-layer protections (K-ROOT-1 on both layers) | ACTIVE | PENDING |
-| DEP-08-01-020 | EXECUTION | CONSTRAINT | DOWNSTREAM | EXTERNAL routed agent-index change notice and G4 manifest (Root `AGENTS.md` rule; location TBD) | ACTIVE | PENDING |
-| DEP-08-01-021 | EXECUTION | PREREQUISITE | UPSTREAM | EXTERNAL owner write-scope grant for `agents/**` and `skills/**` at selection (location TBD) | ACTIVE | PENDING |
+| DEP-08-01-018 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-03 | ACTIVE | PENDING |
+| DEP-08-01-019 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-01 | ACTIVE | PENDING |
+| DEP-08-01-020 | EXECUTION | CONSTRAINT | DOWNSTREAM | AGENTS.md#agent-index-change-notice-rule | ACTIVE | PENDING |
+| DEP-08-01-021 | EXECUTION | PREREQUISITE | UPSTREAM | OWNER-WRITE-SCOPE-GRANT-AGENTS-SKILLS | RETIRED | NOT_APPLICABLE |
 
 ## Run History
 
@@ -133,17 +133,15 @@ Structured register: `Dependencies.csv` v3.1
 
 ## Lifecycle Summary
 
-| Status | Count |
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
+| Field | Count |
 |---|---:|
 | ACTIVE | 21 |
-| RETIRED | 0 |
-
-| SatisfactionStatus | Count |
-|---|---:|
-| SATISFIED | 8 |
-| PENDING | 13 |
-
-Closure-state breakdown: 8 anchors SATISFIED (1 parent, 7 trace); 13 EXECUTION rows PENDING (8 document prerequisites, 1 unresolved instruction-root source tree, 2 deliverable interfaces awaiting DEL-06-03-V3-01 and DEL-07-01-V3-01, 1 owner write-scope grant, 1 routed-notice/G4-manifest constraint that binds at the first instruction-file change). Of these, DEP-08-01-018 (DEL-06-03 interface, emitted under D-APP-109 from held proposal H-018) was cycle-participating until the two-node SCC DEL-06-03/DEL-08-01 was decomposed under D-APP-110 (SD-007, on the DEL-06-03 side); it is now a strict edge that gates per its SatisfactionStatus. No held non-emitted proposal and no cycle-participating row remains.
+| RequiredMaturity=SEMANTIC_READY | 21 |
+| ProposedMaturity=TBD | 21 |
+| SatisfactionStatus=PENDING | 13 |
+| SatisfactionStatus=SATISFIED | 8 |
 
 ## Downstream Handoff Notes
 
@@ -163,3 +161,25 @@ evidence for dependency rows. Its recorded consumption as the primary input
 to `_SEMANTIC_LENSING.md` is a different act, outside that scope and
 consistent with it. See
 `execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.
+
+## Current record interpretation — 2026-09-22
+
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
+
+## Current evidence-locator refresh — 2026-09-22
+
+16 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=21; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SEMANTIC_19_PREVIEW.csv`; current rows: ACTIVE=20, RETIRED=1. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_EXTRA_3_PREVIEW.csv`; current rows: ACTIVE=20, RETIRED=1. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no declared dependency edges have been accepted by a human.
+Current extracted upstream rows: `DEP-08-02-001`, `DEP-08-02-002`, `DEP-08-02-003`, `DEP-08-02-004`, `DEP-08-02-005`, `DEP-08-02-006`, `DEP-08-02-007`, `DEP-08-02-008`, `DEP-08-02-009`, `DEP-08-02-010`, `DEP-08-02-011`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no declared dependency edges have been accepted by a human.
+Current extracted downstream rows: `DEP-08-02-012`, `DEP-08-02-013`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Extracted Dependency Register
 
@@ -68,35 +68,29 @@ TBD - no declared dependency edges have been accepted by a human.
 
 ## Lifecycle Summary
 
-| Status | Count |
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
+| Field | Count |
 |---|---:|
 | ACTIVE | 13 |
-| RETIRED | 0 |
+| RequiredMaturity=SEMANTIC_READY | 13 |
+| ProposedMaturity=TBD | 13 |
+| SatisfactionStatus=PENDING | 5 |
+| SatisfactionStatus=SATISFIED | 6 |
+| SatisfactionStatus=TBD | 2 |
 
-| SatisfactionStatus | Count |
-|---|---:|
-| SATISFIED | 6 |
-| PENDING | 5 |
-| TBD | 2 |
+## Current record interpretation — 2026-09-22
 
-| DependencyClass | Count |
-|---|---:|
-| ANCHOR | 6 |
-| EXECUTION | 7 |
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
 
-| DependencyType | Count |
-|---|---:|
-| OTHER | 6 |
-| PREREQUISITE | 5 |
-| INTERFACE | 2 |
+## Current evidence-locator refresh — 2026-09-22
 
----
+9 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
 
-**Addendum (2026-07-18 — D-APP-62 scoped interpretation):** Under the
-D-APP-62 ruling (O-A, 2026-07-18), the assertion above that `_SEMANTIC.md`
-is invalid evidence / was not read or consumed is scoped to
-dependency-extraction evidence: it bars `_SEMANTIC.md` from serving as
-evidence for dependency rows. Its recorded consumption as the primary input
-to `_SEMANTIC_LENSING.md` is a different act, outside that scope and
-consistent with it. See
-`execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.
+## Current evidence-locator refresh — 2026-09-22
+
+2 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+2 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.

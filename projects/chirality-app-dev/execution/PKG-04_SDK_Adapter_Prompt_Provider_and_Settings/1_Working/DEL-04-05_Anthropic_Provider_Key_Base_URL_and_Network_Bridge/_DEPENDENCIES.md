@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-04-05-001, DEP-04-05-002, DEP-04-05-003, DEP-04-05-004, DEP-04-05-005, DEP-04-05-006, DEP-04-05-007, DEP-04-05-008, DEP-04-05-010, DEP-04-05-011, DEP-04-05-012, DEP-04-05-013
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-04-05-009
 
 ## Run Notes
 
@@ -32,23 +32,25 @@ TBD - no accepted dependency edges have been extracted yet.
 
 ## Extracted Dependency Register
 
-| DependencyID | Class | Type | Direction | Target | Status | Evidence |
-|---|---|---|---|---|---|---|
-| DEP-04-05-001 | ANCHOR | OTHER | UPSTREAM | PKG-04 | ACTIVE | `_CONTEXT.md` |
-| DEP-04-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-019 | ACTIVE | `Datasheet.md` |
-| DEP-04-05-003 | ANCHOR | OTHER | UPSTREAM | SOW-020 | ACTIVE | `Datasheet.md` |
-| DEP-04-05-004 | ANCHOR | OTHER | UPSTREAM | SOW-021 | ACTIVE | `Datasheet.md` |
-| DEP-04-05-005 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE | `Datasheet.md` |
-| DEP-04-05-006 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | `Datasheet.md` |
-| DEP-04-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 | ACTIVE | `Procedure.md` |
-| DEP-04-05-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-02 | ACTIVE | `Specification.md` |
-| DEP-04-05-009 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-04-03 | ACTIVE | `Specification.md` |
-| DEP-04-05-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-05-KEY_STATUS_CONTRACT | ACTIVE | `Specification.md` |
-| DEP-04-05-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-03 | RETIRED | `Specification.md` |
-| DEP-04-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | RETIRED | `Procedure.md` |
-| DEP-04-05-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 docs/CONTRACT.md K-NET-1 accepted endpoint set and K-KEY-1 | ACTIVE | `ScopeOfWork.md` |
+Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 
-Counts: 13 rows total (11 ACTIVE, 2 RETIRED); 6 ANCHOR, 7 EXECUTION. (Corrected 2026-07-18; recounted 2026-09-03 after DEP-04-05-013; unchanged by the 2026-09-05 D-APP-110 decompose, which re-targeted one row without adding, retiring, or reclassifying any; see Run Notes.)
+| DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
+|---|---|---|---|---|---|---|
+| DEP-04-05-001 | ANCHOR | OTHER | UPSTREAM | PKG-04 | ACTIVE | SATISFIED |
+| DEP-04-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-019 | ACTIVE | SATISFIED |
+| DEP-04-05-003 | ANCHOR | OTHER | UPSTREAM | SOW-020 | ACTIVE | SATISFIED |
+| DEP-04-05-004 | ANCHOR | OTHER | UPSTREAM | SOW-021 | ACTIVE | SATISFIED |
+| DEP-04-05-005 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE | SATISFIED |
+| DEP-04-05-006 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | SATISFIED |
+| DEP-04-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 | RETIRED | SATISFIED |
+| DEP-04-05-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-02 | RETIRED | TBD |
+| DEP-04-05-009 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-04-03 | ACTIVE | TBD |
+| DEP-04-05-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-05-KEY_STATUS_CONTRACT | ACTIVE | TBD |
+| DEP-04-05-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-03 | RETIRED | NOT_APPLICABLE |
+| DEP-04-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | RETIRED | NOT_APPLICABLE |
+| DEP-04-05-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 | ACTIVE | PENDING |
+
+Counts: ACTIVE=11, RETIRED=2; satisfaction NOT_APPLICABLE=2, PENDING=1, SATISFIED=7, TBD=3.
 
 ## Lifecycle Summary
 
@@ -103,3 +105,27 @@ REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated R
 - As of 2026-09-05 (D-APP-110 decompose, SD-001) this carrier no longer holds any cycle-participating row: `DEP-04-05-010` is a document-scoped `DOCUMENT` edge to `DEL-02-05-KEY_STATUS_CONTRACT`, and every remaining EXECUTION row is a strict edge of the acyclic approved deliverable graph.
 - Every row gates per its `SatisfactionStatus`; no row in this register is held non-gating pending SCC resolution.
 - The resulting acyclic strict graph is recorded by the fresh `AUDIT_DEP_CLOSURE` snapshot produced under the same run (node N16); acceptance of that snapshot as the loop's DepClosure pointer remains a separate owner act.
+
+## Current descriptive index — 2026-09-22
+
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Current consumer/verification locus: Runtime `packages/daemon/src/codex-effective-home.ts`, `codex-supervisor.ts`, `tests/codex-effective-home.test.ts`, `tests/codex-supervisor.test.ts`; App `frontend/electron/main.ts`; re-platform `NATIVE_CHECKLIST.md` S-8. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=11; RETIRED=2; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+## Current evidence-locator refresh — 2026-09-22
+
+5 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SOURCE_04_06_APPROVED.csv`; current rows: ACTIVE=9, RETIRED=4. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_PREVIEW_THREE_INTERFACES.csv`; current rows: ACTIVE=9, RETIRED=4. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

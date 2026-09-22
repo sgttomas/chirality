@@ -8,9 +8,14 @@
 
 ## Remaining
 
-- **DEL-04-03-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 2 changed claim followthrough, 14 implementation or evidence, 14 record repair, 1 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-04-03.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- **DEL-04-03-R5-DELIVERY** — Add or recover the repeated-sequence golden, error/permission redaction, unfamiliar-event/request and current adapter-conformance witnesses; retain all missing live-path outcomes as unverified.
+  Locus: App `frontend/src/__tests__/lib/harness-event-views-codex.test.ts`, `frontend/src/__tests__/components/live-session-requests.test.tsx`; Runtime `tests/codex-app-server-client.test.ts`, `tests/codex-supervisor.test.ts`; retained App `sdk-message-mapper.ts` and its tests.
+  Check: Repeat a source sequence with IDs/timestamps normalized; verify known and unfamiliar notifications, server-request resolution, terminal translation and synthetic secrets at mapping/SSE/persistence boundaries. Map current K-ENGINE-2 and S-1/S-7 coverage without asserting legacy equivalence.
+  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
+
 
 ## History
+- 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-07-22 - D-APP-72 independent Pi event mapping completed and conformance-tested while the Claude mapper remains adapter-specific. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.

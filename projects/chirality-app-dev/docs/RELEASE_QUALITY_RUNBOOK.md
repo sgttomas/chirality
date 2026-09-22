@@ -22,8 +22,10 @@ The wrapper runs:
 
 - full Vitest suite: `npm run test -- --testTimeout=15000`;
 - TypeScript checks: `npm run typecheck`;
-- standalone Section 9 runtime-ID validation: `npm run harness:validate:section9`;
-- harness premerge validation: `npm run harness:validate:premerge`, unless explicitly skipped with reason.
+- in-process Section 9 runtime-ID validation reusing the full Vitest result;
+- in-process harness premerge validation reusing Section 9, unless explicitly skipped with reason.
+
+The former contract-dependency pre-step retired with the facade under D-APP-118; it is not present in the current package script.
 
 It writes `frontend/artifacts/harness/release-quality/latest/summary.json`. That summary records command outcomes, summary-consistency checks, Section 9 policy, generated artifact paths, skipped checks, and no-release-claim boundaries.
 
@@ -46,7 +48,7 @@ The command exits successfully only if all non-skipped commands and summary chec
 
 ## 4. Section 9 Policy
 
-The wrapper treats standalone Section 9 as blocking for the wrapper result. If `npm run harness:validate:section9` fails or its stable summary is malformed, the wrapper fails.
+The wrapper treats its Section 9 result as blocking, including when generated in-process from the full test result. A failed or malformed stable summary fails the wrapper. The standalone command remains available for distinct targeted checks.
 
 Inside `npm run harness:validate:premerge`, Section 9 remains report-only. Section 8 remains the premerge blocking surface until a governed policy change promotes Section 9.
 
@@ -63,6 +65,6 @@ The release-quality summary itself is ignored by git like other generated harnes
 
 ## 6. Packaging Boundary
 
-Packaging and DMG evidence remain separate. Use `docs/BUILD_AND_RELEASE.md` and `docs/RELEASE_QUALITY_GATES.md` for `npm run build`, `npm run desktop:pack`, `npm run desktop:dist`, `npm run instruction-root:integrity`, and packaged SDK proof selection.
+Packaging and DMG evidence remain separate. Use `docs/BUILD_AND_RELEASE.md` and `docs/RELEASE_QUALITY_GATES.md` for `npm run build`, `npm run desktop:pack`, `npm run desktop:dist`, `npm run instruction-root:integrity`, and the current Runtime/Codex packaged checks. Historical SDK package proofs are compatibility evidence only.
 
 Do not use this runtime-premerge wrapper to imply signing, notarization, publication, distribution, release-readiness, professional approval, certification, sealing, authentication, or code-compliance acceptance.

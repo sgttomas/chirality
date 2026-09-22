@@ -25,11 +25,11 @@
 
 ## Deliverable Scope
 
-Redact App-originated provider/client presentation and verify that Root-runtime operational records exclude credentials and secrets.
+App clients and diagnostics conform to Runtime-owned secret hygiene. Generic run-logger implementation belongs to Runtime under SCA-APP-005; the App owns its presentation/transport sinks and conformance evidence.
 
 ## Anticipated Artifacts
 
-App redaction helper; daemon redaction conformance tests; provider/client error fixtures
+Current App/Runtime interface and conformance records; named implementation/verification evidence: Runtime `packages/core/src/session-store.ts`, `packages/daemon/src/codex-supervisor.ts`; App event/SSE/replay and diagnostics consumers; retained App `frontend/src/lib/harness/run-logger.ts` and redaction fixtures.
 
 ## Traceability
 
@@ -42,3 +42,9 @@ App redaction helper; daemon redaction conformance tests; provider/client error 
 ## Source Authority
 
 This folder was scaffolded by ORCHESTRATOR from the accepted v3.2 SOFTWARE_DECOMP working surface. Downstream TASK work must preserve `ResponsibleParty: TBD` until a human assigns ownership.
+
+## Current interface applicability — 2026-09-22
+
+Apply structural redaction before Runtime JSONL writes, both SSE hops, replay, App Server diagnostics, logs, errors and artifacts. Preserve safe error/status/source/event metadata and encoded-secret variants without reading Codex credential stores. D-APP-67 API-key helper scope and replacement token remain the historical helper contract; it is not a generic credential registry. Sensitive payloads require redaction before storage or display. PEC credentials and pec_session remain excluded from envelopes/logs/model context whenever that gated transport is used; no new domain activation follows.
+
+D-GOV-43/A2 and D-APP-127 govern current purpose and interface; prior dated alignments retain their historical scope. Existing decomposition and approval basis pins remain unchanged. The manager-owned dependency refresh separately records reviewed current row applications under the same accepted rulings; historical edge identity is preserved and actual satisfaction is evidence-bound.

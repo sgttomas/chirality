@@ -51,7 +51,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > | ControlPurpose | Coordinate source-grounded SCC-001 reconciliation for the runtime, SDK, session, and tooling closure area. |
 > | GraphParticipation | EXCLUDED_CONTROL_DELIVERABLE |
 > | StructuredDependencyRegister | Intentionally absent; do not create `Dependencies.csv` for this control deliverable. |
-> | CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z/` |
+> | CurrentClosureSnapshot | `execution/_Reconciliation/DepClosure/CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034/` |
 > | StrictFullGraphStatus | ACYCLIC |
 > | StrictSCCCount | 0 |
 > | BlockerSubsetStatus | ACYCLIC |
@@ -85,7 +85,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > | Component | Status | Notes |
 > |---|---|---|
 > | Control package scaffold | Present | PKG-00 owns DAG/SCC closure workflow notes and SCC closure control deliverables. |
-> | Current evidence pointer | Present | `_REFERENCES.md` points to `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` as current; `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains historical SCC-001-closing first-proof evidence. |
+> | Current evidence pointer | Present | The accepted D-APP-111 control pointer is `CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034` as current; `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains historical SCC-001-closing first-proof evidence. |
 > | SCC-001 node set | Closed | Current `Evidence/scc_summary.csv` contains only the header row. |
 > | Initial bidirectional-pair evidence | Historical | Earlier evidence remains as triage history; current snapshot reports bidirectional pair count `0`. |
 > | Initial triage directive | Historical | Earlier triage is superseded by accepted safe-moves closure evidence. |
@@ -150,7 +150,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > | ID | Requirement | Source |
 > |---|---|---|
 > | REQ-DEL-00-02-001 | The deliverable MUST remain a PKG-00 control artifact and MUST NOT be promoted into the product dependency graph by adding a deliverable-local `Dependencies.csv`. | `_CONTEXT.md` (Source Authority); `_DEPENDENCIES.md` (Boundary); `README.md` (Boundary) |
-> | REQ-DEL-00-02-002 | The SCC-001 control record MUST consume the current accepted DepClosure snapshot identified as `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z`; `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains the historical SCC-001-closing first-proof snapshot. | `_REFERENCES.md` (Authoritative Source Corpus); `DAG_CLOSURE_CONTROL.md` (Control Status) |
+> | REQ-DEL-00-02-002 | The SCC-001 control record MUST consume the current accepted DepClosure snapshot identified as `CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034`; `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains the historical SCC-001-closing first-proof snapshot. | `_REFERENCES.md` (Authoritative Source Corpus); `DAG_CLOSURE_CONTROL.md` (Control Status) |
 > | REQ-DEL-00-02-003 | Historical SCC-001 node sets and bidirectional-pair queues MUST remain historical evidence after a later accepted DepClosure snapshot reports `scc_count = 0`. | `Evidence/scc_summary.csv`; `Dependency_Closure_Report.md` (Remaining SCCs) |
 > | REQ-DEL-00-02-004 | No active SCC-001 ruling workbook queue remains while the latest accepted DepClosure snapshot reports `scc_count = 0`. | `DAG_CLOSURE_CONTROL.md` (Current Queue); `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/Dependency_Closure_Report.md` |
 > | REQ-DEL-00-02-005 | Dependency row decisions MUST inspect owning product deliverable dependency registers and cited source evidence before any row mutation. | `DAG_CLOSURE_CONTROL.md` (Workflow); `SCC_Triage_Workbook.csv` (RecommendedAction); `_DEPENDENCIES.md` (Declared Upstream) |
@@ -169,7 +169,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > |---|---|---|
 > | PKG-00 control package boundary | Governs this deliverable's control-only status and exclusion from product graph discovery. | `README.md` (Boundary) |
 > | DepClosure snapshot evidence | Governs current SCC status and strict acyclic verdict. Historical snapshots remain evidence only. | `Dependency_Closure_Report.md`; `Evidence/*.csv`; `closure_summary.json` |
-> | Existing dependency schema actions and fields | Governs future row decisions in owning product deliverable registers. | Source location TBD / HumanRuling required before row-classification work; cited by `DAG_CLOSURE_CONTROL.md` workflow and `SCC_Triage_Workbook.csv` directive |
+> | Existing dependency schema actions and fields | Governs future row decisions in owning product deliverable registers. | App `docs/SPEC.md` §6 (dependency schema v3.1); cited by `DAG_CLOSURE_CONTROL.md` workflow and `SCC_Triage_Workbook.csv` directive |
 >
 
 ### CLM-012 — Verification
@@ -199,7 +199,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > - Historical focused SCC-001 ruling workbook.
 > - Historical per-row decision records citing owning product registers and source evidence.
 > - Historical product `Dependencies.csv` row changes where evidence supported change.
-> - Current DepClosure snapshot and closure report: `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z`.
+> - Current DepClosure snapshot and closure report: `CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034`.
 > - Historical SCC-001-closing first-proof snapshot and closure report: `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z`.
 > - Handoff state naming accepted upstream snapshot, derivative status, closure verdict, rerun requirements, and remaining blockers.
 >
@@ -234,11 +234,11 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 
 > ##### Prerequisites
 >
-> - Current accepted upstream snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z/`.
+> - Current accepted upstream snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034/`.
 > - Historical SCC-001-closing first-proof snapshot: `execution/_Reconciliation/DepClosure/CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z/`.
 > - Required evidence files:
 >   - `Dependency_Closure_Report.md`
->   - `Closure_Acceptance_Audit.md`
+>   - Historical first-proof `Closure_Acceptance_Audit.md` (SAFE_MOVES only; not required in the current snapshot)
 >   - `Evidence/closure_summary.json`
 >   - `Evidence/scc_summary.csv`
 > - DEL-00-02 remains a control deliverable with no `Dependencies.csv`.
@@ -252,7 +252,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > ##### Steps
 >
 > 1. Confirm the accepted upstream DepClosure snapshot path from `_REFERENCES.md` and `DAG_CLOSURE_CONTROL.md`.
-> 2. Read `Dependency_Closure_Report.md` and `Closure_Acceptance_Audit.md`.
+> 2. Read the current `Dependency_Closure_Report.md`; retain the SAFE_MOVES `Closure_Acceptance_Audit.md` as historical first-proof evidence.
 > 3. Confirm strict `scc_count = 0`, bidirectional pair count `0`, schema-invalid register count `0`, and strict graph acyclic posture.
 > 4. Confirm `Evidence/scc_summary.csv` contains only the header row.
 > 5. Record the closure snapshot path, strict SCC verdict, and remaining-boundary notes in DEL-00-02 control records.
@@ -291,7 +291,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > | D-001 | Historical. | No active SCC-001 workbook output path remains pending after the accepted safe-moves snapshot; older workbook material is retained as evidence history. |
 > | E-001 | Closed for dependency-closure discovery. | `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` records strict FULL_GRAPH acyclic posture with `scc_count = 0`; lifecycle issuance and release/professional claims remain out of scope. |
 
-- **VER-001** — Deterministic validation, claim mapping, parity, checklist derivation, and human review against the accepted legacy basis.
+- **VER-001** — Verify current source claims and traceability against the accepted basis. One-time conversion mapping/parity/checklist evidence is historical (R5/CONVERSION_EVIDENCE_REVIEW.csv); it establishes neither current parity nor personal human review.
 
 ## Governing Values and Decisions — Axiology
 
@@ -304,7 +304,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 
 > ##### Purpose
 >
-> DEL-00-02 exists to keep SCC-001 closure work visible as a governed PKG-00 control deliverable while preserving the boundary between control-plane reconciliation and product dependency data. The current accepted DepClosure evidence says the strict graph is acyclic for dependency-closure discovery: `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` reports strict `scc_count = 0`, bidirectional pair count `0`, and schema-invalid register count `0`; `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains historical first-proof evidence.
+> DEL-00-02 exists to keep SCC-001 closure work visible as a governed PKG-00 control deliverable while preserving the boundary between control-plane reconciliation and product dependency data. The current accepted DepClosure evidence says the strict graph is acyclic for dependency-closure discovery: `CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034` reports strict `scc_count = 0`, bidirectional pair count `0`, and schema-invalid register count `0`; `CLOSURE_SCC_SAFE_MOVES_001_2026-06-16_0325Z` remains historical first-proof evidence.
 >
 > Sources: `_CONTEXT.md` (Deliverable Scope), `README.md` (Purpose, Boundary), `DAG_CLOSURE_CONTROL.md` (Control Status, Current Queue), `Dependency_Closure_Report.md` (Verdict, Ruling).
 >
@@ -327,7 +327,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > ##### Considerations
 >
 > - The current accepted snapshot contains no non-trivial SCC membership; `Evidence/scc_summary.csv` has only the header row.
-> - `Dependency_Closure_Report.md` records active strict deliverable execution edges `97`, strict SCC count `0`, and bidirectional pair count `0`.
+> - The historical SAFE_MOVES/D53A `Dependency_Closure_Report.md` records active strict deliverable execution edges `97`, strict SCC count `0`, and bidirectional pair count `0`.
 > - `Closure_Acceptance_Audit.md` accepts the safe-moves snapshot for dependency-closure discovery and independently reran the analyzer with matching `scc_count = 0` evidence.
 > - Earlier triage files remain useful as evidence history, but they are not the current graph-state authority.
 >
@@ -343,7 +343,7 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > | Fast graph closure vs. evidence fidelity | Prefer evidence fidelity. | PKG-00 non-goals forbid inventing or deleting dependency edges merely to force DAG closure. |
 > | Control deliverable dependencies vs. product dependencies | Keep control dependencies unregistered in DEL-00-02. | Adding `Dependencies.csv` would promote the control deliverable into analyzer discovery. |
 > | Immediate mutation vs. ruling workbook | Produce the ruling workbook first. | The accepted workflow requires inspecting source-grounded rows before mutation. |
-> | Reporting dependency-closure status | Use the accepted safe-moves snapshot and state its boundary. | Current DepClosure evidence is acyclic for discovery, but does not create lifecycle issuance or release/professional approval. |
+> | Reporting dependency-closure status | Use the current accepted DepClosure snapshot and state its boundary. | Current DepClosure evidence is acyclic for discovery, but does not create lifecycle issuance or release/professional approval. |
 >
 
 ### CLM-027 — Examples
@@ -397,6 +397,8 @@ This Scope of Work defines `DEL-00-02` in service of project scope [CONTROL-SCC-
 > R4-P47 explicitly defers assignment of this deliverable's `ResponsibleParty`. The field remains honestly `TBD` until an accountable human assigns it; this agent record assigns no role.
 >
 > D-APP-65 assigned this field on 2026-07-18 to Ryan Tufts (K-AUTH-1), demonstrator scope; the deferral record above is preserved as dated history.
+
+Historical source identity: `CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z` and SAFE_MOVES remain immutable prior evidence; D-APP-111 and the current control pointer establish the successor cited above.
 
 ## Output and Evaluation Matrix
 

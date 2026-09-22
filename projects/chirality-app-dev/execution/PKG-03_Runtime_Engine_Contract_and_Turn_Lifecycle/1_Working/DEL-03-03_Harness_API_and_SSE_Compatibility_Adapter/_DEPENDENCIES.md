@@ -11,38 +11,31 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See the current formal `Dependencies.csv` rows whose Direction is UPSTREAM; satisfaction and gates are read from that register, not inferred here.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No new dependency or status is created by this descriptive mirror.
 
-## Extracted Dependency Register
+## Current Extracted Dependency Summary — 2026-09-22
 
-Source register: `Dependencies.csv` v3.1
+Total rows: 11. ACTIVE: 10, RETIRED: 1.
 
-| Metric | Count |
-|---|---:|
-| ACTIVE rows | 10 |
-| RETIRED rows | 1 |
-| ANCHOR rows | 5 |
-| EXECUTION rows | 6 |
+| DependencyID | Class | Type | Direction | Target | Status | SatisfactionStatus |
+|---|---|---|---|---|---|---|
+| DEP-03-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-03 | ACTIVE | NOT_APPLICABLE |
+| DEP-03-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-011 | ACTIVE | NOT_APPLICABLE |
+| DEP-03-03-003 | ANCHOR | OTHER | UPSTREAM | SOW-040 | ACTIVE | NOT_APPLICABLE |
+| DEP-03-03-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 | ACTIVE | NOT_APPLICABLE |
+| DEP-03-03-005 | ANCHOR | OTHER | UPSTREAM | OBJ-002 | ACTIVE | NOT_APPLICABLE |
+| DEP-03-03-006 | EXECUTION | INTERFACE | UPSTREAM | RUNTIME_ENGINE_CONTRACT_TURN_ENGINE | ACTIVE | TBD |
+| DEP-03-03-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 | ACTIVE | TBD |
+| DEP-03-03-008 | EXECUTION | INTERFACE | UPSTREAM | Session Audit Replay and Tool Result Records | ACTIVE | TBD |
+| DEP-03-03-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-03 | RETIRED | NOT_APPLICABLE |
+| DEP-03-03-010 | EXECUTION | PREREQUISITE | UPSTREAM | TBD | ACTIVE | TBD |
+| DEP-03-03-011 | EXECUTION | INTERFACE | UPSTREAM | Current Runtime socket/API and extensible Codex event interface | ACTIVE | PENDING |
 
-### Active Rows
-
-| DependencyID | Class | Type | Target | Status |
-|---|---|---|---|---|
-| DEP-03-03-001 | ANCHOR | OTHER | PKG-03 Runtime Engine Contract and Turn Lifecycle | ACTIVE |
-| DEP-03-03-002 | ANCHOR | OTHER | SOW-011 SSE turn stream and session locking | ACTIVE |
-| DEP-03-03-003 | ANCHOR | OTHER | SOW-040 UIEvent and HarnessEvent separation | ACTIVE |
-| DEP-03-03-004 | ANCHOR | OTHER | OBJ-001 Preserve browser-facing harness experience | ACTIVE |
-| DEP-03-03-005 | ANCHOR | OTHER | OBJ-002 Stabilize runtime contract and turn lifecycle | ACTIVE |
-| DEP-03-03-006 | EXECUTION | INTERFACE | DOCUMENT RUNTIME_ENGINE_CONTRACT_TURN_ENGINE Runtime Engine Contract TurnEngine boundary | ACTIVE |
-| DEP-03-03-007 | EXECUTION | INTERFACE | DEL-03-04 Interrupt Cancel and Terminal Outcome Handling | ACTIVE |
-| DEP-03-03-008 | EXECUTION | INTERFACE | PKG-05 Session Audit Replay and Tool Result Records | ACTIVE |
-| DEP-03-03-009 | EXECUTION | INTERFACE | DEL-04-03 SdkMessageMapper and Provider-Neutral Translation | ACTIVE |
-| DEP-03-03-010 | EXECUTION | PREREQUISITE | Current implementation fixture capture | ACTIVE |
-| DEP-03-03-011 | EXECUTION | INTERFACE | Closed Root API/event schema v2 behind services | ACTIVE |
+This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Runtime ownership and retire daemon proof subjects; formal row amendments, satisfaction changes and basis pins retain their owning process. Earlier notes below remain historical and do not override this current summary.
 
 ## Run Notes
 
@@ -96,3 +89,21 @@ Source register: `Dependencies.csv` v3.1
 - **Current counts:** ACTIVE 9; RETIRED 1; NOT_APPLICABLE=6; TBD=4.
 - **Correction:** DEP-03-03-009 is RETIRED; the older active-row table is superseded.
 - Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=10; RETIRED=1; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+## Current evidence-locator refresh — 2026-09-22
+
+5 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+3 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.

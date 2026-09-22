@@ -12,3 +12,7 @@
 - 2026-09-05 - D-APP-109 dependency closure and context alignment: `Dependencies.csv` is current with the applied row L370; rows noted `CYCLE_PARTICIPATING` are non-gating until their SCC is resolved by a recorded move, so read the seated items' `Depends` lines and gates, not those rows, for executable ordering; `_CONTEXT.md` traceability and artifacts equal the applied row; read `_STATUS.md` with this file before any write; nothing here is authority.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## Record closeout — 2026-09-22
+
+D-APP-131/132 and D-GOV-43/D-APP-127 now govern the current ScopeOfWork and Remaining interpretation. Earlier SDK/daemon, four-file, matrix/default-role, source-MATCH and pre-release planning statements remain dated history. Current work, owning surface, checks and gates are in `_STATUS.md`; the W07_10_ROWS.csv derivative accounts for original residual keys. No lifecycle/approval-SHA refresh, product completion, new native result, or release is asserted.

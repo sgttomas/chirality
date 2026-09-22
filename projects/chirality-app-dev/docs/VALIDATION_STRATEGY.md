@@ -47,16 +47,16 @@ Unless a tranche specifies narrower validation, app-dev validation commands are 
 | `npm run typecheck` | TypeScript contract check for frontend and Electron entry surfaces. |
 | `npm run harness:validate:premerge` | Running-app harness workflow validation with stable summary artifact at `frontend/artifacts/harness/section8/latest/summary.json`. Requires the harness API to be reachable; stop any local dev server before build/pack/premerge to avoid a `.next` dev/build race (see `docs/BUILD_AND_RELEASE.md` §4). |
 | `npm run harness:validate:section9` | Section 9 deterministic runtime-ID aggregation over targeted Vitest files with stable summary artifact at `frontend/artifacts/harness/section9/latest/summary.json`. |
-| `npm run harness:validate:agentsdk-dev-turn` | Route-level opt-in `agentSdk` scripted dev-turn validation using the real SDK `query()` path and an offline scripted subprocess. |
-| `npm run harness:validate:agentsdk-mcp-probe` | STAB-04 SDK/MCP behavior probe proving raw in-process MCP `mcp_message` calls, explicit `canUseTool`, and explicit hook callbacks remain distinct evidence paths. |
-| `npm run harness:validate:agentsdk-packaged-proof` | STAB-02(d) no-live packaged SDK proof. Imports the SDK module from `app.asar.unpacked`, runs a scripted `query()` turn, records the resolved native subprocess command, and verifies controlled `CLAUDE_CONFIG_DIR`/`HOME` propagation. |
-| `npm run validate:release-quality` | Runtime-premerge evidence wrapper. Runs full Vitest, typecheck, standalone Section 9, and premerge unless premerge is explicitly skipped with reason; writes `frontend/artifacts/harness/release-quality/latest/summary.json`. See `docs/RELEASE_QUALITY_RUNBOOK.md`. |
+| `npm run harness:validate:agentsdk-dev-turn` | Retained legacy Agent SDK evidence; not current Codex route qualification. |
+| `npm run harness:validate:agentsdk-mcp-probe` | Retained legacy SDK/MCP evidence; does not qualify native Codex tools or the Runtime application-tool channel. |
+| `npm run harness:validate:agentsdk-packaged-proof` | Historical SDK package proof only. The A2 package excludes the Agent SDK; use dependency-boundary and Codex-pin checks for the live package. |
+| `npm run validate:release-quality` | Runtime-premerge evidence wrapper. Runs full Vitest, typecheck, and in-process Section 9/premerge reusing the prior results unless premerge is explicitly skipped with reason; writes `frontend/artifacts/harness/release-quality/latest/summary.json`. See `docs/RELEASE_QUALITY_RUNBOOK.md`. |
 | `npm run instruction-root:integrity` | Instruction-root packaging/resource integrity check with summary artifact at `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`. |
 | `npm run proof:secret-scan` | Secret-scan evidence for tracked app-dev files and generated harness artifacts. Writes `frontend/artifacts/harness/security/latest/secret-scan-summary.json` without raw secret values. |
-| `npm run proof:network-policy` | Network policy proof for the current shipped loopback plus Anthropic outbound policy. Use `-- --provider agentSdk --scripted-agent-sdk` for the STAB-02(c) dev proof, which runs the opt-in SDK adapter with an offline SDK subprocess and does not replace packaged subprocess evidence. |
+| `npm run proof:network-policy` | Electron/renderer network proof. Codex child tools and egress follow Codex configuration and user-selected policy; this renderer proof does not establish child-process containment. SDK options are legacy evidence inputs. |
 | `npm run build` | Next/Electron build evidence for source and Electron entry surfaces. |
-| `npm run desktop:pack` | Unsigned local macOS arm64 directory packaging plus instruction-root integrity. |
-| `npm run desktop:dist` | Unsigned/unnotarized local-builder macOS arm64 DMG plus instruction-root integrity. |
+| `npm run desktop:pack` | Packages prebuilt renderer, Electron, Runtime and instruction resources into a macOS arm64 app directory; unsigned by default and signed with a supplied identity, plus dependency and instruction integrity. |
+| `npm run desktop:dist` | Packages prebuilt renderer, Electron, Runtime and instruction resources into a macOS arm64 DMG, unsigned by default and Developer ID signed when a signing identity is supplied; dependency/Codex-pin and instruction integrity checks. Notarization remains separate. |
 
 Documentation-only governance tranches normally use static checks instead of frontend runtime commands. Runtime, SDK, permission, network, packaging, and release-significant tranches use the applicable gate family in `docs/RELEASE_QUALITY_GATES.md`.
 
@@ -68,11 +68,11 @@ Build, packaging, artifact, and release-evidence command details are recorded in
 |---|---|
 | Coordination, plans, decision-register pointers, or docs-only governance | `git diff --check` over affected docs/control-plane paths; targeted `rg` checks for retired rules or stale authority; link/path existence checks for new references; explicit no-runtime-code-change check. |
 | Runtime engine contract, adapter, turn lifecycle, session events, or event schema | Focused Vitest coverage for touched runtime modules; `npm run typecheck`; broader `npm run test` when shared contracts move. |
-| SDK options, permission overlay, tool descriptors, tool exposure, MCP wrappers, or hooks | Focused tests for options, permissions, descriptors, denied tools, unknown tools, and `npm run harness:validate:agentsdk-mcp-probe` when in-process SDK MCP behavior is load-bearing; `npm run typecheck`; broader tests when exposure semantics change. |
+| Codex policy, server requests, Runtime application-tool registration or native tool presentation | Focused Codex supervisor/server-request and application-tool tests; truthful PolicySelection behavior; unknown requests answered/refused visibly; typecheck and broader affected tests. SDK options, canUseTool, hooks and MCP probe evidence apply only to retained compatibility paths. |
 | Harness API, running workflow, session boot, SSE, interrupt, attachment, or validation behavior | Relevant unit/API tests; `npm run harness:validate:premerge` against a reachable local app; summary artifact review. |
 | Network, API key, redaction, or provider policy | Relevant unit tests; `npm run proof:secret-scan`; `npm run proof:network-policy`; redaction or key-storage tests where touched. |
 | UI workflow, professional-boundary copy, product identity, or navigation | Relevant component/library tests; targeted manual or browser review when layout/copy behavior changes; no prohibited professional/release claims. |
-| Instruction-root, bundled resources, Electron packaging, release scripts, or distribution metadata | `npm run instruction-root:integrity`; `npm run build`; `npm run desktop:pack` or `npm run desktop:dist` when packaging behavior changes; `npm run harness:validate:agentsdk-packaged-proof` when packaged SDK resolver or transcript/HOME posture is in scope. |
+| Instruction-root, bundled resources, Electron packaging, release scripts, or distribution metadata | `npm run instruction-root:integrity`; `npm run build`; `npm run desktop:pack` or `npm run desktop:dist` when packaging behavior changes; packaged Runtime service lifecycle, dependency-boundary and Codex-pin checks; historical packaged SDK proofs are not live-path qualification. |
 | Future domain-engine adapters or operation proposals | Runtime tests plus explicit human-gate and professional-boundary review; no direct protected-domain writes unless a governed adapter workflow authorizes them. |
 
 ## 5. Evidence Artifacts
@@ -85,19 +85,24 @@ Machine-readable artifacts are preferred when available:
 - instruction-root integrity summary: `frontend/artifacts/harness/instruction-root-integrity/latest/summary.json`;
 - packaged SDK resolver/HOME proof summary: `frontend/artifacts/harness/packaged-agent-sdk/latest/summary.json`;
 - secret-scan summary: `frontend/artifacts/harness/security/latest/secret-scan-summary.json`;
-- network-policy proof summaries under `frontend/artifacts/harness/network-policy/`;
+- network-policy proof summaries default to DEL-09-06 `Evidence/NETWORK_POLICY_PROOF_<timestamp>/`, or the explicit output directory;
 - test command output captured in terminal or run records when required by a tranche;
 - plan/log closeout pointers in `plans/PLAN_2026-06-16_six_node_scc_resolution.md` and `plans/PLAN_COMPLETION_LOG.md`.
 
 Evidence artifacts are derivative records. They support review and regression analysis, but they do not become decomposition truth, product requirements, lifecycle approval, release authorization, or professional acceptance.
 
-## 6. Open Decisions
+## 6. Current direction and unresolved decisions
 
-- Hosted CI provider, workflow location, and public/private data handling remain governed future decisions.
-- Final release-label vocabulary, signing, notarization, publication, and attestation remain governed future decisions.
-- Final coverage, performance, and platform-matrix thresholds remain `TBD`.
-- D-APP-72 / SCA-APP-002 is the sole bounded provider/network exception beyond the current Anthropic path: pinned in-process Pi `0.80.10` over authenticated `127.0.0.1` oMLX for one governed read-only Agent 2 child after Electron `43.2.0` proof (D-APP-98 successor authority; D-APP-72's `43.1.1` is historical).
-- D-APP-01 and D-APP-02 remain historical and continue to prohibit every Pi path outside that exact exception, including fork/sidecar/native capabilities/ambient discovery, remote providers, direct supervisors, automatic fallback, and write/shell/network tools.
+D-GOV-43 / D-APP-127 select Codex as the sole MVP engine, Codex-held credentials
+and the application-owned Runtime service. GitHub Actions is the hosted CI
+surface. D-APP-131 P-03 records prior exact-candidate 3.0.0/3.0.1 release
+authority; it does not certify missing native results or authorize a future release.
+Legacy Anthropic/Pi/oMLX paths are compatibility evidence, not MVP qualification.
+
+Release-label vocabulary, attestation, wider platform matrices, coverage and
+performance thresholds remain subject to their adopted policy and actual
+verification. Public/private data handling cannot expand by reuse of a prior
+CI or publication result.
 
 ## 7. Shared Runtime Validation Addendum
 
@@ -118,8 +123,9 @@ Revised under D-GOV-43 (A2), 2026-09-12. SCA-APP-003 validation adds:
 - a deterministic regression ordering interruption, worker completion and
   final retirement explicitly (the PR #767 interrupt-versus-retirement
   defect);
-- lazy cross-store session migration and replay tests; daemon-era chats are
-  preserved in place and viewable if the existing reader renders them;
+- current native continuation and replay checks; daemon-era chats remain
+  preserved in place and viewable if the existing reader renders them. D-GOV-43
+  item5 makes neither an import feature nor v2 chat continuation a release prerequisite;
 - request and session correctness tests (family 4), including every server
   request answered and unfamiliar requests refused visibly;
 - the eight functional checks S-1 to S-8 of D-GOV-43 item 12 on the

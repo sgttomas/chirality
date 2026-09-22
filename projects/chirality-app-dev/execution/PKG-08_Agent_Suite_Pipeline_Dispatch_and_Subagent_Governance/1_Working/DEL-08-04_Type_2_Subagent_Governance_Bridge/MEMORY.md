@@ -27,3 +27,7 @@
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
 
 - 2026-09-22 — D-APP-132 current continuation: `execution/_Coordination/_DECISIONS/D-APP-132_RULING_P01_AND_AGENT0_DISPOSITIONS_2026-09-22.md` and `execution/_Coordination/_PROPOSALS/R5_R6_FOLLOWUP_2026-09-22/CURRENT_RESIDUAL_DISPOSITIONS.csv` govern the listed follow-up keys; earlier references to these decisions as awaiting this reconciliation's owner choice are historical. D116/117 optional enhancement preparation closed/not adopted here; future adoption gates remain. Obsolete D119 candidate withdrawn without reducing existing organisation obligations. No lifecycle, dependency acceptance or product completion.
+
+## Record closeout — 2026-09-22
+
+D-APP-131/132 and D-GOV-43/D-APP-127 now govern the current ScopeOfWork and Remaining interpretation. Earlier SDK/daemon, four-file, matrix/default-role, source-MATCH and pre-release planning statements remain dated history. Current work, owning surface, checks and gates are in `_STATUS.md`; the W07_10_ROWS.csv derivative accounts for original residual keys. No lifecycle/approval-SHA refresh, product completion, new native result, or release is asserted.

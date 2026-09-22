@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-06-06-001, DEP-06-06-002, DEP-06-06-003, DEP-06-06-004, DEP-06-06-005, DEP-06-06-006, DEP-06-06-008
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-06-06-007
 
 ## Current ADQ-11 Reconciliation Note
 
@@ -32,26 +32,20 @@ handover rows remain pending unless separately closed by their owning deliverabl
 
 ## Extracted Dependency Register
 
-Run timestamp: 2026-05-20T19:47:33-0600
+Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 
-| Metric | Count |
-|---|---:|
-| Total rows | 8 |
-| ACTIVE rows | 8 |
-| RETIRED rows | 0 |
-| ANCHOR rows | 3 |
-| EXECUTION rows | 5 |
-
-| DependencyID | Class | Type | Direction | Target | Status | Evidence |
+| DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
-| DEP-06-06-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | PKG-06 Permissioned Tools, MCP, and Hooks | ACTIVE | `_CONTEXT.md` |
-| DEP-06-06-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-057 Hooks and fail-closed behavior | ACTIVE | `Specification.md` |
-| DEP-06-06-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-061 Compaction mirror | ACTIVE | `Specification.md` |
-| DEP-06-06-004 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE | `Specification.md` |
-| DEP-06-06-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE | `Specification.md` |
-| DEP-06-06-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 Interrupt, Cancel, and Terminal Outcome Handling | ACTIVE | `Guidance.md` |
-| DEP-06-06-007 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE | `Procedure.md` |
-| DEP-06-06-008 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` source-state reconciliation | ACTIVE | `Specification.md` |
+| DEP-06-06-001 | ANCHOR | OTHER | UPSTREAM | PKG-06 | ACTIVE | NOT_APPLICABLE |
+| DEP-06-06-002 | ANCHOR | OTHER | UPSTREAM | SOW-057 | ACTIVE | NOT_APPLICABLE |
+| DEP-06-06-003 | ANCHOR | OTHER | UPSTREAM | SOW-061 | ACTIVE | NOT_APPLICABLE |
+| DEP-06-06-004 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-05-02 | ACTIVE | PENDING |
+| DEP-06-06-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-04 | ACTIVE | PENDING |
+| DEP-06-06-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-04 | ACTIVE | PENDING |
+| DEP-06-06-007 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-02 | ACTIVE | PENDING |
+| DEP-06-06-008 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | ACTIVE | SATISFIED |
+
+Counts: ACTIVE=8; satisfaction NOT_APPLICABLE=3, PENDING=4, SATISFIED=1.
 
 ## Run Notes
 
@@ -88,3 +82,31 @@ Run timestamp: 2026-05-20T19:47:33-0600
 | NOT_APPLICABLE | 3 |
 | PENDING | 4 |
 | SATISFIED | 1 |
+
+## Current descriptive index — 2026-09-22
+
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Current consumer/verification locus: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
+
+## Current evidence-locator refresh — 2026-09-22
+
+2 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=8; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SOURCE_04_06_APPROVED.csv`; current rows: ACTIVE=8, RETIRED=0. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

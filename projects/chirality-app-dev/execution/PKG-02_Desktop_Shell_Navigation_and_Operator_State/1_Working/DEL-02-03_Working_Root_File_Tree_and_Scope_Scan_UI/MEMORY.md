@@ -1,5 +1,9 @@
 # MEMORY - DEL-02-03
 
+## Current applicability — 2026-09-22 record reconciliation
+
+D-APP-131 applies D-GOV-43/D-APP-127 to the current SoW source blocks and Remaining. Earlier daemon/helper, closed-event, SDK-only conformance, global-folder and loop-first observations below remain dated history. They do not establish live Codex qualification or current UI behavior. Current exact-key dispositions and evidence are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/W02_03_ROWS.csv`; lifecycle and Checking Approval SHA are unchanged.
+
 ## Decisions And Evidence
 
 - 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.

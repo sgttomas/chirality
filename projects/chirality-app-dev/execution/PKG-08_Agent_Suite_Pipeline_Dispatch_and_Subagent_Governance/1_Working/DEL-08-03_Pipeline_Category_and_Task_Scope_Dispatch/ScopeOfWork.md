@@ -90,12 +90,12 @@ act is implied.
 > | Attribute | Value | Source |
 > |---|---|---|
 > | Scope | Own presentation-neutral DECOMP/PREP/TASK/AUDIT lane semantics, category/task-scope interpretation, dynamic scope, and disabled-option rules for contextual Run consumers. | `_CONTEXT.md`; decomposition entry; SCA-APP-004 |
-> | Package scope | Agent instruction conformance, matrix/pipeline dispatch, Type 2 subagent governance and child records. | `_CONTEXT.md`; decomposition PKG-08 row |
-> | Inclusion criteria | Agent OS behavior and delegation. | `_CONTEXT.md`; decomposition PKG-08 row |
-> | Exclusions | General SDK adapter mechanics. | `_CONTEXT.md`; decomposition PKG-08 row |
+> | Package scope | Agent instruction conformance, matrix/pipeline dispatch, project delegation authority, daemon-client dispatch, sealed child context, and checkout-contained AgentRuns. | `_CONTEXT.md`; decomposition PKG-08 row |
+> | Inclusion criteria | Agent OS authority, instructions, approval references, client dispatch, and project evidence. | `_CONTEXT.md`; decomposition PKG-08 row |
+> | Exclusions | Generic provider/SDK mechanics and daemon-owned operational delegation execution/state. | `_CONTEXT.md`; decomposition PKG-08 row |
 > | Covered scope items | SOW-007, SOW-026 | `_CONTEXT.md`; decomposition entry |
 > | Supported objectives | OBJ-001, OBJ-007 | `_CONTEXT.md`; decomposition entry |
-> | Anticipated artifacts | Dispatch contract tests; Pipeline selector and contextual-consumer tests; knowledge-type discovery; dynamic-scope and disabled-option handling | `_CONTEXT.md`; decomposition entry |
+> | Anticipated artifacts | Presentation-neutral dispatch contract tests, contextual-consumer tests, knowledge-type discovery, and dynamic/disabled scope handling under the applied SCA-APP-010 row. | `_CONTEXT.md`; decomposition entry |
 > | Pipeline categories | `DECOMP*`, `PREP*`, `TASK*`, `AUDIT*` | `docs/TYPES.md` Section 4.4 |
 > | TASK scope modes | `DELIVERABLES`, `KNOWLEDGE_TYPES` | `docs/TYPES.md` Section 4.4 |
 > | Knowledge type options | `Datasheet`, `Specification`, `Guidance`, `Procedure`, `Dependencies`, `References`, `Context`, `Status`, `Semantic`, `Memory` | `docs/TYPES.md` Section 4.4 |
@@ -148,7 +148,7 @@ act is implied.
 > | Edge Type | Current Evidence | Disposition |
 > |---|---|---|
 > | Accepted upstream anchors | `_DEPENDENCIES.md` lists active anchors for DEL-08-03, SOW-007, SOW-026, OBJ-001, and OBJ-007. | Use as context; satisfaction remains TBD until dependency closure accepts the register. |
-> | Accepted upstream interfaces and constraints | `_DEPENDENCIES.md` lists active execution rows for `docs/TYPES.md` Section 4.4, `docs/SPEC.md` Section 17.2, `docs/CONTRACT.md` Section 1.8, and `docs/PRD.md` Section 8.2. | Use as current extracted evidence under D-APP-38 and REF-006 `MATCH`. |
+> | Accepted upstream interfaces and constraints | `_DEPENDENCIES.md` lists active execution rows for `docs/TYPES.md` Section 4.4, `docs/SPEC.md` Section 17.2, `docs/CONTRACT.md` Section 1.8, and `docs/PRD.md` Section 8.2. | Use as current extracted evidence under D-APP-38 and historical D-APP-38 source state; verify current candidate bytes. |
 > | Downstream handoff | `_DEPENDENCIES.md` lists a downstream handoff to pipeline selector, knowledge-type discovery, and disabled option tests, with consumer target unresolved. | Consumer deliverable remains TBD. |
 >
 
@@ -164,7 +164,7 @@ act is implied.
 > | REF-004 | `docs/TYPES.md` | Pipeline category, task scope, knowledge-type, and disabled-option vocabulary |
 > | REF-005 | `docs/PLAN.md` | Runtime roadmap and retired-scope boundaries |
 > | REF-006 | `docs/PRD.md` | Product requirements for matrix, pipeline, scope, and knowledge buckets; current under D-APP-38 authority corpus |
-> | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | SOFTWARE_DECOMP method and deliverable sizing context |
+> | REF-007 | `../../workflows/software-decomp/WORKFLOW.md` | SOFTWARE_DECOMP method and deliverable sizing context |
 > | DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Accepted deliverable entry and objective/scope mapping |
 >
 
@@ -225,10 +225,10 @@ act is implied.
 >
 > | ID | Requirement | Priority / Status | Source |
 > |---|---|---|---|
-> | DEL-08-03-REQ-001 | The PIPELINE UI shall expose operative category controls for `DECOMP`, `PREP`, `TASK`, and `AUDIT`. | P0 | `docs/PRD.md` FR-011 |
+> | DEL-08-03-REQ-001 | The dispatch interface shall preserve the accepted DECOMP/PREP/TASK/AUDIT taxonomy for admitted contextual consumers; a removed fixed Pipeline UI is not reintroduced. | P0 | `docs/PRD.md` FR-011 |
 > | DEL-08-03-REQ-002 | Category controls shall present documented category-specific options for `DECOMP*`, `PREP*`, `TASK*`, and `AUDIT*`; the implementation record shall name the option-list source or fixture used for each category. | P0 | `docs/PRD.md` FR-011; `docs/TYPES.md` Section 4.4 |
 > | DEL-08-03-REQ-003 | Unsupported PIPELINE variants shall remain visible, shall carry disabled or coming-soon semantics, and shall be unable to initiate execution. | P0 | `docs/PRD.md` FR-011; `docs/TYPES.md` Section 4.4; `docs/PRD.md` success metric 7 |
-> | DEL-08-03-REQ-004 | PIPELINE `TASK` shall use split selectors for task agent and scope. | P0 | `docs/PRD.md` FR-012 |
+> | DEL-08-03-REQ-004 | TASK dispatch intent shall distinguish eligible task role and bounded scope independently of the presentation component. | P0 | `docs/PRD.md` FR-012 |
 > | DEL-08-03-REQ-005 | TASK scope mode shall support `DELIVERABLES` and `KNOWLEDGE_TYPES`. | P0 | `docs/PRD.md` FR-012; `docs/TYPES.md` Section 4.4 |
 > | DEL-08-03-REQ-006 | Knowledge-type mode shall require a target deliverable. | P0 | `docs/PRD.md` FR-012 |
 > | DEL-08-03-REQ-007 | Dynamic scope scan shall reset invalid selection state when roots change, deliverables disappear, knowledge markers are disabled, or knowledge targets become stale. | P1 | `docs/PRD.md` FR-013 |
@@ -288,7 +288,7 @@ act is implied.
 > - TASK scope selector fixtures for `DELIVERABLES` and `KNOWLEDGE_TYPES`.
 > - Category-specific option-list source or fixture record for `DECOMP*`, `PREP*`, `TASK*`, and `AUDIT*`.
 > - Evidence that invalid selections reset after root and scan changes, including root-change, removed-deliverable, disabled-marker, and stale-target fixtures.
-> - Scope-scan evidence showing `/api/working-root/scope` integration or a mocked equivalent for active-root scanning.
+> - Scope-scan evidence showing `/api/project/deliverables` integration or a mocked equivalent for active-root scanning.
 > - Governance guard evidence showing selector state does not bypass Type 2 sealed context, approval metadata, no-ghost-input limits, write-scope limits, or fail-closed delegation.
 > - Cross-surface dispatch evidence proving contextual Run/Workbench/Work-panel consumers preserve Pipeline taxonomy, scope validation, and disabled states.
 > - Projection evidence proving only explicitly recorded task/dispatch sources appear, conversational prose is not synthesized into structured work, and runtime status is not presented as project acceptance.
@@ -301,7 +301,7 @@ act is implied.
 >
 > | State ID | Statement | Impact |
 > |---|---|---|
-> | STATE-001 | `docs/PRD.md` is current under the D-APP-38 authority corpus; `_REFERENCES.md` records REF-006 as `MATCH`. | Former PRD source-state warning is resolved for this tranche. Implementation proof remains separate from source-state proof. |
+> | STATE-001 | `docs/PRD.md` is historically reconciled under D-APP-38; verify current bytes; `_REFERENCES.md` records historical D-APP-38 source state; verify current candidate bytes. | Former PRD source-state warning is resolved for this tranche. Implementation proof remains separate from source-state proof. |
 >
 
 ### CLM-018 — Pass 3 Disposition Notes
@@ -347,7 +347,7 @@ act is implied.
 > | Accepted decomposition entry for DEL-08-03 | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
 > | Deliverable metadata files | `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `_SEMANTIC.md`, `_STATUS.md` present |
 > | Authoritative vocabulary | `docs/TYPES.md` Section 4.4 |
-> | Product requirements | `docs/PRD.md` Section 8.2; current under D-APP-38 with REF-006 `MATCH` |
+> | Product requirements | `docs/PRD.md` Section 8.2; current under D-APP-38 with historical D-APP-38 source state; verify current candidate bytes |
 > | Workspace scope API contract | `docs/SPEC.md` Section 17.2 |
 > | Declared upstream dependencies | Extracted active rows exist in `_DEPENDENCIES.md` for accepted anchors, vocabulary, scope API, governance invariants, and PRD requirements; satisfaction remains TBD pending dependency closure. |
 > | Declared downstream dependencies | `_DEPENDENCIES.md` records downstream handoff to pipeline selector, knowledge-type discovery, and disabled option tests; consumer target remains TBD. |
@@ -378,7 +378,7 @@ act is implied.
 >
 > 5. Implement or verify dynamic scope discovery.
 >    - Use the working-root scope surface to scan deliverables and knowledge types.
->    - Record whether evidence comes from live `/api/working-root/scope` integration or a mock contract fixture.
+>    - Record whether evidence comes from live `/api/project/deliverables` integration or a mock contract fixture.
 >    - Confirm the evidence demonstrates active-root scanning rather than hard-coded project assumptions.
 >    - Detect document-kit buckets: `Datasheet`, `Specification`, `Guidance`, and `Procedure`.
 >    - If metadata buckets are exposed, align them with the `KnowledgeTypeOption` vocabulary.
@@ -423,7 +423,7 @@ act is implied.
 > | Disabled option test | Unsupported variants are visible, carry disabled or coming-soon semantics, and cannot be selected for execution. |
 > | TASK scope selector test | Task agent and scope controls are independently represented. |
 > | Knowledge-type target test | Knowledge-type mode requires a selected deliverable. |
-> | Scope API evidence check | `/api/working-root/scope` integration or mock evidence demonstrates active-root deliverable and knowledge-type scanning. |
+> | Scope API evidence check | `/api/project/deliverables` integration or mock evidence demonstrates active-root deliverable and knowledge-type scanning. |
 > | Knowledge bucket discovery test | Document kit files are detected as first-class knowledge buckets; any metadata buckets use canonical `KnowledgeTypeOption` labels. |
 > | Stale selection reset test | Root change, removed deliverable, disabled marker, and stale knowledge target fixtures clear invalid UI state. |
 > | Governance boundary review | UI dispatch does not grant runtime authority beyond governed execution checks, including sealed context, approval metadata, no ghost inputs, explicit write scope, and fail-closed delegation. |
@@ -453,7 +453,7 @@ act is implied.
 >
 > | ItemID | Disposition |
 > |---|---|
-> | F-002 | Incorporated by requiring live or mocked `/api/working-root/scope` evidence that demonstrates active-root scanning. |
+> | F-002 | Incorporated by requiring live or mocked `/api/project/deliverables` evidence that demonstrates active-root scanning. |
 > | F-003 | Incorporated by naming reset fixture cases for root change, removed deliverable, disabled marker, and stale knowledge target. |
 > | D-002 | Converted to an implementation-worker record slot for final UI component and test file paths, with owner still TBD. |
 
@@ -495,9 +495,9 @@ act is implied.
 >
 > - Prefer source-derived option lists and vocabulary over ad hoc labels. If implementation code already has local naming, reconcile it with `docs/TYPES.md` rather than silently creating a parallel taxonomy.
 > - Scope scan behavior should be resilient to working-root changes. A selected deliverable or knowledge bucket that is no longer present should be cleared instead of retained as stale UI state.
-> - Knowledge-type discovery should account for the four-document kit first. Metadata buckets should be exposed only when the UI can use canonical `KnowledgeTypeOption` labels or an explicit mapping to them, because partial local labels would create a parallel taxonomy.
+> - Knowledge-type discovery should account for the accepted deliverable representation first. Metadata buckets should be exposed only when the UI can use canonical `KnowledgeTypeOption` labels or an explicit mapping to them, because partial local labels would create a parallel taxonomy.
 > - The deliverable's anticipated artifacts are tests and discovery behavior, not new authority for runtime subagent execution.
-> - REF-006 is current under D-APP-38 and `_REFERENCES.md` records `docs/PRD.md` as `MATCH`. Preserve implementation proof separately from source-state proof.
+> - REF-006 is current under D-APP-38 and `_REFERENCES.md` records historical D-APP-38 source state; verify current candidate bytes. Preserve implementation proof separately from source-state proof.
 >
 
 ### CLM-031 — Boundary Rationale
@@ -538,7 +538,7 @@ act is implied.
 > | Operator selects PIPELINE `TASK`, then switches scope mode to `KNOWLEDGE_TYPES` without selecting a deliverable. | The UI should require a target deliverable before knowledge-type targets become executable. |
 > | Active working root changes and the previously selected deliverable is no longer in the scope scan. | The selected deliverable and dependent knowledge target should reset. |
 > | A future AUDIT variant is known but not implemented. | It may be visible as a disabled option with no runtime execution path. |
-> | A deliverable folder has `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md`. | These files should be discoverable as first-class knowledge buckets when knowledge-type scope is used. |
+> | A deliverable folder has `ScopeOfWork.md` and its applicable retained historical representation evidence. | These files should be discoverable as first-class knowledge buckets when knowledge-type scope is used. |
 >
 
 ### CLM-035 — Conflict Table (for human ruling)
@@ -552,11 +552,7 @@ act is implied.
 
 ### CLM-036 — Assumptions
 
-> ##### Assumptions
->
-> - ASSUMPTION: OBJ-001 and OBJ-007 are relevant because the decomposition explicitly lists them for DEL-08-03.
-> - ASSUMPTION: The final implementation surface is frontend/UI state and tests, but specific component and test file paths are TBD until the implementation worker selects or confirms existing modules.
->
+> The decomposition supplies OBJ-001/OBJ-007 and the presentation-neutral dispatch responsibility; their applicability is source-backed, not an assumption. Source and test hooks are named in CLM-006. Root-change reset, cross-consumer parity and live delegation checks remain actual verification obligations. No mounted contextual consumer is inferred from retained Pipeline component tests.
 
 ### CLM-037 — Pass 3 Disposition Notes
 

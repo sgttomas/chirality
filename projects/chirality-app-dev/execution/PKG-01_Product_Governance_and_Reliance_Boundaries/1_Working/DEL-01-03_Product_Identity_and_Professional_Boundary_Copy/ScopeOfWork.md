@@ -101,8 +101,8 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > | REF-003 | `docs/SPEC.md` | Physical structures, persona composer professional-boundary reminders, domain future boundary |
 > | REF-004 | `docs/TYPES.md` | Stable identifiers, project truth, artifact vocabulary, human approval authority |
 > | REF-005 | `docs/PLAN.md` | Product identity and release/local-check posture |
-> | REF-006 | `docs/PRD.md` | Product requirements and accepted vNext runtime direction; the current D-APP-38 corpus snapshot records a matching authority-doc hash |
-> | REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method context; no copy requirements extracted |
+> | REF-006 | `docs/PRD.md` | Product requirements and accepted vNext runtime direction; the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) records a matching authority-doc hash |
+> | REF-007 | `workflows/software-decomp/WORKFLOW.md` | Decomposition method context; no copy requirements extracted |
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -127,7 +127,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > Excluded:
 >
 > - Runtime implementation details except where copy must reflect product-owned boundaries.
-> - Dependency satisfaction closure; `Dependencies.csv` exists, but its rows remain `SatisfactionStatus=TBD` pending downstream FULL_GRAPH/cycle checks and any human closure decisions.
+> - Dependency satisfaction mutation is outside this copy task; D-APP-53 closed the dependency-reconciliation act. Read actual row states from the register; stale source MATCH notes still need verification.
 > - Final assignment of `ResponsibleParty`; it remains TBD.
 > - Current-release domain operation implementation.
 >
@@ -161,7 +161,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > | `docs/SPEC.md` | Accessible | Governs runtime/document structures and future domain specification boundary |
 > | `docs/TYPES.md` | Accessible | Governs vocabulary for project truth, artifacts, stable IDs, and authority |
 > | `docs/PLAN.md` | Accessible | Governs roadmap/release copy checks |
-> | `docs/PRD.md` | Accessible; the current D-APP-38 corpus snapshot records matching REF-006 authority-doc hashes | Governs product requirements and accepted vNext direction |
+> | `docs/PRD.md` | Accessible; the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) records matching REF-006 authority-doc hashes | Governs product requirements and accepted vNext direction |
 >
 
 ### CLM-011 — Verification
@@ -181,8 +181,8 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 >
 > - `ResponsibleParty` assigned by an accountable human: TBD.
 > - Final destination paths for UI copy guidelines, release review checklist, boundary notice examples, and review notes: `docs/BOUNDARY_REVIEW_CHECKLISTS.md` (ADQ-03 review evidence only).
-> - `Dependencies.csv` satisfaction and any project-level FULL_GRAPH/cycle checks closed or explicitly deferred by a human: TBD.
-> - Conflict Table CT-001 path-label ruling recorded or explicitly deferred: TBD. Historical CT-002 PRD hash warning is closed by the current D-APP-38 corpus snapshot.
+> - D-APP-53 records the dependency reconciliation; no new blanket dependency-closure decision is pending here.
+> - Conflict Table CT-001 was RULED by D-APP-56 R4-P35 on 2026-07-12. Historical CT-002 PRD hash warning is closed by the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance).
 > - Release review evidence record completed for the checked surfaces and source sections: TBD.
 >
 
@@ -200,7 +200,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > TBD:
 >
 > - Human assignment of `ResponsibleParty`.
-> - Human closure decision for `Dependencies.csv` rows whose `SatisfactionStatus` remains `TBD`.
+> - Current source support for dependency rows must be reverified without changing their formal semantics.
 >
 
 ### CLM-013 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
@@ -231,14 +231,14 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 >
 > - Read `_CONTEXT.md` for deliverable identity, scope, artifacts, and `ResponsibleParty: TBD`.
 > - Read `_REFERENCES.md` for the authoritative source corpus and hash status.
-> - Read `_DEPENDENCIES.md` and `Dependencies.csv`; dependency extraction has produced active rows, but satisfaction status remains `TBD` pending downstream FULL_GRAPH/cycle checks and human closure decisions.
+> - Read `_DEPENDENCIES.md` and `Dependencies.csv`; dependency reconciliation was closed under D-APP-53; preserve the register states and recheck drifted source citations.
 > - Read relevant source slices from:
 >   - `docs/DIRECTIVE.md`
 >   - `docs/CONTRACT.md`
 >   - `docs/SPEC.md`
 >   - `docs/TYPES.md`
 >   - `docs/PLAN.md`
->   - `docs/PRD.md` under the current D-APP-38 corpus snapshot
+>   - `docs/PRD.md` under the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance)
 >   - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 >
 
@@ -253,7 +253,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > 2. Establish source authority.
 >    - Use `docs/DIRECTIVE.md` for intent, product identity, professional responsibility, evidence posture, and source hierarchy.
 >    - Use `docs/CONTRACT.md` for binding invariants.
->    - Use `docs/PRD.md` for accepted vNext product requirements under the current D-APP-38 corpus snapshot reference state.
+>    - Use `docs/PRD.md` for accepted vNext product requirements under the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) reference state.
 >
 > 3. Draft or review product identity copy.
 >    - Confirm the surface names Chirality as the product.
@@ -318,8 +318,8 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > - Release review checklist: this `ScopeOfWork.md` CLM-018/020, materialized in `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
 > - Boundary notice examples: this `ScopeOfWork.md` CLM-029, materialized in `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
 > - Review notes with checked surfaces and source sections: this `ScopeOfWork.md` CLM-021, materialized in `docs/BOUNDARY_REVIEW_CHECKLISTS.md`.
-> - Human rulings for Conflict Table entries: TBD.
-> - `Dependencies.csv` satisfaction closure notes: TBD.
+> - CT-001 ruling: D-APP-56 R4-P35 (2026-07-12); actual new conflicts retain their own decision path.
+> - Dependency reconciliation evidence: D-APP-53; current individual states remain in `Dependencies.csv`.
 >
 
 ### CLM-020 — Release Review Evidence Template
@@ -334,8 +334,8 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > | Release or surface set | TBD |
 > | Surfaces checked | TBD |
 > | Source sections used | TBD |
-> | Authority-corpus treatment | REF-006 matches under the current D-APP-38 corpus snapshot; rerun reconciliation if authority docs change |
-> | Conflict Table status | CT-001 TBD; historical CT-002 closed by the current D-APP-38 corpus snapshot |
+> | Authority-corpus treatment | REF-006 matches under the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance); rerun reconciliation if authority docs change |
+> | Conflict Table status | CT-001 RULED D-APP-56 R4-P35; historical CT-002 closed by the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance) |
 > | Overall result | TBD |
 >
 
@@ -360,7 +360,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 >
 > UPD-103 records the post-D-APP-53 state: the dependency-reconciliation act is human-closed and the earlier INSP-03 dependency wording is historical. This does not imply every dependency is satisfied or any lifecycle transition.
 
-- **VER-001** — Run deterministic Scope-of-Work validation, claim mapping, parity, checklist, and rendering checks, followed by human review of the candidate.
+- **VER-001** — Verify current requirement traceability, source fidelity and named checks against this candidate. One-time conversion mapping/parity/render evidence remains historical (R5/CONVERSION_EVIDENCE_REVIEW.csv); it does not establish current behavioral qualification or personal human review.
 
 ## Governing Values and Decisions — Axiology
 
@@ -378,7 +378,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > The governing posture is:
 >
 > - Chirality is a governed desktop harness, not a vendor CLI wrapper.
-> - The SDK may be privileged as implementation substrate, but Chirality owns product semantics, runtime contracts, audit posture, permission policy, professional-boundary language, and user-facing product identity.
+> - Codex is the sole MVP engine and qualification target under D-GOV-43, with its full protocol and user-selected permission policy. Chirality preserves its product identity, non-binding runtime evidence and human-only professional acceptance.
 > - Agents, tools, SDKs, validators, transcripts, and runtime events assist; accountable humans decide what can be relied upon.
 >
 > Sources: `docs/DIRECTIVE.md` Sections 1, 2.8, 2.11, and 3; `docs/CONTRACT.md` K-AUTH-1, K-ENGINE-3, K-SDK-4.
@@ -471,7 +471,7 @@ This Scope of Work defines `DEL-01-03` in service of project scope [SOW-071, SOW
 > |---|---|---|---|---|---|---|
 > | CT-001 | Dispatch path used `PKG-01_Governance_and_Product_Boundaries`, but the matching folder on disk is `PKG-01_Product_Governance_and_Reliance_Boundaries`. | User dispatch path | `_CONTEXT.md` PackageName and actual folder path | Run record; final report | Treat actual matching DEL-01-03 folder as resolved scope; preserve stable PackageID/DeliverableID. | **RULED 2026-07-12 (D-APP-56 R4-P35): proposed authority ratified.** |
 >
-> Closed historical conflict: `CT-002` is superseded by the current D-APP-38 corpus snapshot; current `_REFERENCES.md`
+> Closed historical conflict: `CT-002` is superseded by the recorded D-APP-38 v23 snapshot (historical hash result; recompute before current reliance); current `_REFERENCES.md`
 > records REF-006 `docs/PRD.md` as `MATCH`.
 >
 

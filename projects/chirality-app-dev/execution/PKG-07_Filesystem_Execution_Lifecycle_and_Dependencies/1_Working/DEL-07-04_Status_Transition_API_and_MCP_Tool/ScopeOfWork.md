@@ -21,7 +21,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 > #### Datasheet: DEL-07-04 Status Transition API and MCP Tool
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-002 — Identification
@@ -69,11 +69,11 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 >
 > | Condition | Status |
 > |---|---|
-> | Source hash warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
+> | Source hash warning | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. |
 > | Dependency inputs | `_DEPENDENCIES.md` declares no accepted upstream or downstream edges yet. |
 > | Ownership | Responsible party is `TBD`; `_CONTEXT.md` says to preserve `ResponsibleParty: TBD` until human assignment. |
 > | Semantic lensing | `_SEMANTIC.md` is `NOT_GENERATED`; this P1/P2 run does not use semantic lensing. |
-> | Existing implementation path | TBD. Source documents define required behavior but do not name the implementation files for this slice. |
+> | Existing implementation path | Selected implementation evidence is named in CLM-008; accepted schema fixtures and actual human identity enforcement remain open. |
 > | Variant naming note | `SOFTWARE_DECOMP` names the accepted decomposition family in this deliverable context; `SOFTWARE` is the four-documents runtime dispatch token. |
 >
 
@@ -98,7 +98,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > | REF-003 | `docs/SPEC.md` | Sections 4, 13, 14.2 | `_STATUS.md` format, lifecycle, API and MCP names |
 > | REF-004 | `docs/TYPES.md` | Sections 4.1, 8.4 | Lifecycle vocabulary and MCP tool naming |
 > | REF-005 | `docs/PLAN.md` | R3 implementation targets | Status transition tool target and approval SHA gate |
-> | REF-006 | `docs/PRD.md` | Sections 8.9, 8.13, API inventory | Product requirements; MATCH status applies — reconciled under D-APP-38 |
+> | REF-006 | `docs/PRD.md` | Sections 8.9, 8.13, API inventory | Product requirements; historical D-APP-38 source state; verify current candidate bytes status applies — reconciled under D-APP-38 |
 > | REF-007 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | PKG-07 DEL-07-04; SOW-028 | Scope and anticipated artifacts |
 >
 
@@ -113,9 +113,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 ### CLM-008 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 
-> ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
->
-> UPD-132 names the landed status-transition and MCP modules while leaving ResponsibleParty assignment human-owned.
+> UPD-132 records a historical module-selection decision. Current source evidence is `frontend/src/lib/lifecycle/status-parser.ts`, `status-writer.ts`, the lifecycle validator, and the status API routes. Retained MCP modules are compatibility evidence. Verification hooks are `frontend/src/__tests__/lib/lifecycle-status.test.ts` and `frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts`; candidate-bound actor identity, reversal, schema and preservation checks remain open. ResponsibleParty assignment remains human-owned.
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -123,7 +121,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 > #### Specification: DEL-07-04 Status Transition API and MCP Tool
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-010 — Scope
@@ -155,23 +153,23 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > | ID | Requirement | Source |
 > |---|---|---|
 > | DEL-07-04-REQ-001 | The status parser SHALL read `_STATUS.md` as the canonical human-readable lifecycle file for a deliverable. | `docs/CONTRACT.md` Section 1.7 K-STATUS-1; `docs/SPEC.md` Section 4.3 |
-> | DEL-07-04-REQ-002 | The parser SHALL extract `Current State`, `Last Updated`, and history entries from the `_STATUS.md` format. | `docs/SPEC.md` Section 4.1; `docs/PRD.md` Section 8.9 FR-052 |
+> | DEL-07-04-REQ-002 | The parser SHALL extract `Current State`, `Last Updated`, and history entries; transition writes SHALL preserve all history and the deliverable-local Remaining work surface. | `docs/SPEC.md` Section 4.1; `docs/PRD.md` Section 8.9 FR-052 |
 > | DEL-07-04-REQ-003 | The validator SHALL recognize the lifecycle order `OPEN -> INITIALIZED -> SEMANTIC_READY -> IN_PROGRESS -> CHECKING -> ISSUED`. | `docs/SPEC.md` Section 4.2; `docs/TYPES.md` Section 4.1 |
-> | DEL-07-04-REQ-004 | The validator SHALL reject backward transitions unless a human explicitly amends the record. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-053 |
-> | DEL-07-04-REQ-005 | The validator SHALL enforce actor authorization for lifecycle transitions according to SPEC Section 4.3. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-053 |
+> | DEL-07-04-REQ-004 | The validator SHALL enforce the authorized transition table, including human-authorized CHECKING -> IN_PROGRESS and ISSUED -> IN_PROGRESS through the scope-change path; other backward transitions are rejected. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-053 |
+> | DEL-07-04-REQ-005 | The validator SHALL enforce actor authorization for lifecycle transitions according to SPEC Section 4.3, including human initialization and the authorized reversal paths. A caller-supplied HUMAN/USER/OPERATOR string and format-valid SHA alone do not establish a human act. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-053 |
 > | DEL-07-04-REQ-006 | Transitions to `CHECKING` or `ISSUED` SHALL require approval SHA evidence; the PRD acceptance criterion is a 7-64 character hex SHA-like token. | `docs/SPEC.md` Section 4.3; `docs/PRD.md` Section 8.9 FR-054 |
-> | DEL-07-04-REQ-007 | The implementation SHALL expose a status read API at `GET /api/working-root/deliverable/status`. | `docs/PRD.md` API inventory; `docs/SPEC.md` Section 13 |
-> | DEL-07-04-REQ-008 | The implementation SHALL expose a status transition API at `POST /api/working-root/deliverable/status/transition`. | `docs/PRD.md` API inventory; `docs/SPEC.md` Section 13 |
+> | DEL-07-04-REQ-007 | The implementation SHALL expose a status read API at `GET /api/working-root/deliverable/status`. | `docs/PRD.md` API inventory; `docs/SPEC.md` Section 17.2 |
+> | DEL-07-04-REQ-008 | The implementation SHALL expose a status transition API at `POST /api/working-root/deliverable/status/transition`. | `docs/PRD.md` API inventory; `docs/SPEC.md` Section 17.2 |
 > | DEL-07-04-REQ-009 | The implementation SHALL expose `mcp__chirality__status_read` and `mcp__chirality__status_transition` as Chirality MCP tool names. | `docs/SPEC.md` Section 14.2; `docs/TYPES.md` Section 8.4 |
 > | DEL-07-04-REQ-010 | `mcp__chirality__status_transition` SHALL be write-gated and SHALL apply authorized lifecycle transitions with approval SHA where required. | `docs/SPEC.md` Section 14.2; `docs/CONTRACT.md` Section 1.7 K-STATUS-2 |
-> | DEL-07-04-REQ-011 | Chirality MCP status tools SHALL pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins. | `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/PRD.md` Section 8.13 FR-119 |
-> | DEL-07-04-REQ-012 | Deny-first behavior SHALL be preserved for status transitions; denial from policy, path check, hook, governance, SDK deny rule, or human gate blocks execution. | `docs/CONTRACT.md` Section 1.6 K-PERM-1; `docs/DIRECTIVE.md` Design commitments |
+> | DEL-07-04-REQ-011 | Current status application tools SHALL pass through applicable user-selected Codex policy and App-owned Runtime actor, approval, path, redaction and event controls; retained MCP/SDK fixtures are compatibility evidence. | `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/PRD.md` Section 8.13 FR-119 |
+> | DEL-07-04-REQ-012 | Deny-first behavior SHALL be preserved for status transitions; denial from actual host policy, App-owned Runtime actor/path/governance validation, or the human gate blocks execution; retained SDK deny fixtures do not prove live enforcement. | `docs/CONTRACT.md` Section 1.6 K-PERM-1; `docs/DIRECTIVE.md` Design commitments |
 > | DEL-07-04-REQ-013 | Status transition behavior SHALL NOT create or imply binding approval records by an agent, SDK, tool, runtime event, validator, or domain adapter. | `docs/CONTRACT.md` Section 1.2 K-AUTH-1/K-BIND-1; `docs/DIRECTIVE.md` Human authority |
 > | DEL-07-04-REQ-014 | Approval evidence SHALL bind to specific content, normally a git SHA or equivalent immutable evidence; content changes after approval void approval until review. | `docs/DIRECTIVE.md` Human authority; `docs/CONTRACT.md` Section 1.2 K-AUTH-2 |
 > | DEL-07-04-REQ-015 | Tests SHALL cover parser success/failure, invalid state handling, unauthorized actor rejection, backward transition rejection, approval SHA enforcement, and API/MCP routing. | `docs/PRD.md` Section 8.9 FR-052 through FR-054; decomposition DEL-07-04 anticipated artifacts |
-> | DEL-07-04-REQ-016 | Request and response payload schemas for status read, status transition, and MCP equivalents SHALL be captured as accepted schema fixtures before implementation acceptance; until accepted, exact fields remain `TBD`. | `docs/SPEC.md` Sections 13 and 14.2; `docs/PRD.md` API inventory; `docs/PRD.md` FR-079 |
+> | DEL-07-04-REQ-016 | Request and response payload schemas for status read, status transition, and MCP equivalents SHALL be captured as accepted schema fixtures before implementation acceptance; until accepted, exact fields remain `TBD`. | `docs/SPEC.md` Sections 17.2 and 14.2; `docs/PRD.md` API inventory; `docs/PRD.md` FR-079 |
 > | DEL-07-04-REQ-017 | Runtime actor identity mapping SHALL be explicit and fail closed for unmapped actors before transition authorization is treated as complete. The accepted human-gate string aliases are exactly `HUMAN`, `USER`, and `OPERATOR`; arbitrary `HUMAN*` prefixes are unmapped and MUST fail with `UNAUTHORIZED_ACTOR`. | `docs/SPEC.md` Section 4.3; `docs/CONTRACT.md` K-STATUS-2; D-APP-56 R4-P19 |
-> | DEL-07-04-REQ-018 | PRD-derived approval-SHA acceptance criteria SHALL NOT be treated as final implementation acceptance authority until the `docs/PRD.md` hash status: MATCH is reconciled or a human-approved bypass record is accepted. | `_REFERENCES.md` REF-006; `docs/SPEC.md` Section 3.1 file inventory for `HASH_VERIFICATION_BYPASS.jsonl`; `docs/SPEC.md` Section 7 reference hash behavior — reconciled under D-APP-38 |
+> | DEL-07-04-REQ-018 | PRD-derived approval-SHA acceptance criteria SHALL NOT be treated as final implementation acceptance authority until the `docs/PRD.md` current source hash is verified or a human-approved bypass record is accepted. | `_REFERENCES.md` REF-006; `docs/SPEC.md` Section 3.1 file inventory for `HASH_VERIFICATION_BYPASS.jsonl`; `docs/SPEC.md` Section 7 reference hash behavior — reconciled under D-APP-38 |
 >
 
 ### CLM-012 — Standards
@@ -181,10 +179,10 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > | Standard or source | Applicability |
 > |---|---|
 > | `docs/SPEC.md` Section 4 | Governs `_STATUS.md` format, lifecycle states, and transition rules. |
-> | `docs/SPEC.md` Sections 13 and 14.2 | Governs status API and Chirality MCP tool names. |
+> | `docs/SPEC.md` Sections 17.2 and 14.2 | Governs status API and Chirality MCP tool names. |
 > | `docs/CONTRACT.md` K-STATUS-1/K-STATUS-2 | Binding invariants for canonical status state and transition enforcement. |
 > | `docs/CONTRACT.md` K-MCP-1/K-PERM-1 | Binding invariants for MCP wrapper and deny-first behavior. |
-> | `docs/PRD.md` Section 8.9 | Product requirements for lifecycle and dependency contracts; MATCH status applies. — reconciled under D-APP-38 |
+> | `docs/PRD.md` Section 8.9 | Product requirements for lifecycle and dependency contracts; historical D-APP-38 source state; verify current candidate bytes status applies. — reconciled under D-APP-38 |
 > | `docs/TYPES.md` Section 4.1 | Defines lifecycle vocabulary and optional `INITIALIZED -> IN_PROGRESS` route when semantic lensing is skipped. |
 >
 
@@ -204,7 +202,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > | REQ-015 | Test suite includes the anticipated artifacts from decomposition: status parser tests, transition API/tool tests, and approval SHA tests. |
 > | REQ-016 | Schema fixture tests cover status snapshot response, transition request, transition success response, transition denial response, and MCP input/output schemas after the accepted schemas exist. |
 > | REQ-017 | Actor authorization tests cover every SPEC Section 4.3 authorized transition plus unmapped/unsupported actor denial. |
-> | REQ-018 | Acceptance checklist verifies the PRD hash status: MATCH has been reconciled or explicitly bypassed before relying on PRD-specific SHA-token criteria as final. — reconciled under D-APP-38 |
+> | REQ-018 | Acceptance checklist verifies the PRD historical D-APP-38 source state; verify current candidate bytes has been reconciled or explicitly bypassed before relying on PRD-specific SHA-token criteria as final. — reconciled under D-APP-38 |
 > | REQ-004, REQ-005, REQ-006, REQ-011, REQ-012 | Denial fixtures assert typed reasons for invalid state, backward transition, unauthorized actor, missing approval SHA, invalid approval SHA, policy/path denial, and malformed `_STATUS.md`. |
 >
 
@@ -224,10 +222,10 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 >
 > | ItemID | Disposition | Evidence |
 > |---|---|---|
-> | B-001 | Converted to explicit `TBD` schema-fixture requirement rather than invented payload fields. | `docs/SPEC.md` Sections 13 and 14.2; `docs/PRD.md` FR-079. |
+> | B-001 | Converted to explicit `TBD` schema-fixture requirement rather than invented payload fields. | `docs/SPEC.md` Sections 17.2 and 14.2; `docs/PRD.md` FR-079. |
 > | B-002 | Converted to explicit `TBD` actor-mapping requirement with fail-closed behavior. | `docs/SPEC.md` Section 4.3; `docs/CONTRACT.md` K-STATUS-2. |
 > | F-001 | Incorporated as a PRD hash reconciliation acceptance check. | `_REFERENCES.md` REF-006; `docs/SPEC.md` Section 3.1 and reference-hash behavior. |
-> | F-002 | Incorporated as schema fixture verification after schemas are accepted. | `docs/SPEC.md` Sections 13 and 14.2; `docs/PRD.md` FR-079. |
+> | F-002 | Incorporated as schema fixture verification after schemas are accepted. | `docs/SPEC.md` Sections 17.2 and 14.2; `docs/PRD.md` FR-079. |
 > | X-001 | Incorporated as denial-reason fixture coverage. | `docs/CONTRACT.md` K-PERM-1/K-MCP-1/K-STATUS-2; `docs/SPEC.md` Sections 4.1-4.3. |
 >
 
@@ -235,7 +233,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 > ##### Source Status
 >
-> `docs/PRD.md` is listed as `MATCH` in `_REFERENCES.md`. Requirements using PRD clauses are retained because the source is locally accessible and explicitly listed, but the MATCH should be reconciled before treating PRD-derived acceptance details as final implementation authority. (reconciled under D-APP-38).
+> `docs/PRD.md` is listed historical D-APP-38 source state; verify current candidate bytes in `_REFERENCES.md`. Requirements using PRD clauses are retained because the source is locally accessible and explicitly listed, but the historical D-APP-38 source state; verify current candidate bytes should be reconciled before treating PRD-derived acceptance details as final implementation authority. (reconciled under D-APP-38).
 
 - **AC-001** — Status reads preserve canonical lifecycle fields; transitions follow the defined forward order, reject unknown, backward, or unauthorized actions, require exact human aliases and approval SHA evidence at human gates, and never represent tool or agent activity as human approval.
 
@@ -245,7 +243,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 > #### Procedure: DEL-07-04 Status Transition API and MCP Tool
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-018 — Purpose
@@ -263,10 +261,10 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > |---|---|
 > | Accepted scope entry for DEL-07-04 | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`. |
 > | Authoritative lifecycle contract | Available in `docs/SPEC.md` Section 4 and `docs/CONTRACT.md` Section 1.7. |
-> | API/MCP contract references | Available in `docs/SPEC.md` Sections 13 and 14.2 and `docs/PRD.md` API inventory. |
+> | API/MCP contract references | Available in `docs/SPEC.md` Sections 17.2 and 14.2 and `docs/PRD.md` API inventory. |
 > | Permission/MCP boundary references | Available in `docs/CONTRACT.md` Section 1.6 and `docs/DIRECTIVE.md` design commitments. |
-> | Declared upstream dependencies | TBD; `_DEPENDENCIES.md` lists no accepted upstream edges yet. |
-> | Implementation module location | TBD; implementation owner must identify accepted module paths for working-root status APIs and Chirality MCP tools before implementation closeout. |
+> | Declared upstream dependencies | TBD; `_DEPENDENCIES.md` lists the extracted register supplies current rows; formal acceptance/satisfaction remains at its source. |
+> | Implementation module location | Selected source and verification locations are named in CLM-008; retained MCP is compatibility-only. |
 > | Accepted schema fixtures | TBD; exact request/response fields remain unresolved until API and MCP schema fixtures are accepted. |
 >
 
@@ -292,7 +290,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 >
 > 5. Implement human gate approval SHA checks.
 >    - Require approval SHA evidence for transitions to `CHECKING` or `ISSUED`.
->    - Apply the PRD Section 8.9 FR-054 acceptance detail: 7-64 character hex SHA-like token. PRD hash status: MATCH status applies. (reconciled under D-APP-38).
+>    - Apply the PRD Section 8.9 FR-054 acceptance detail: 7-64 character hex SHA-like token. PRD historical D-APP-38 source state; verify current candidate bytes status applies. (reconciled under D-APP-38).
 >
 > 6. Implement the status API surface.
 >    - Provide `GET /api/working-root/deliverable/status` for read-only status snapshots.
@@ -303,7 +301,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > 7. Implement the Chirality MCP status tools.
 >    - Provide `mcp__chirality__status_read` for reading `_STATUS.md`.
 >    - Provide `mcp__chirality__status_transition` for write-gated status transitions.
->    - Route MCP execution through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.
+>    - Route current status application-tool execution through applicable Codex host policy and App-owned Runtime permission, path, redaction and event controls; label retained MCP/SDK checks by compatibility reach.
 >    - Record test evidence for permission decisions, path containment, hook outcomes, redaction behavior, and tool/runtime event logging for status operations.
 >
 > 8. Add tests for the deliverable acceptance surface.
@@ -369,7 +367,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > | ItemID | Disposition | Evidence |
 > |---|---|---|
 > | D-001 | Converted to an explicit prerequisite and closeout blocker: accepted implementation module paths remain `TBD`. | `_DEPENDENCIES.md` DEP-07-04-008; decomposition DEL-07-04 anticipated artifacts. |
-> | F-002 | Incorporated as post-schema fixture verification for API/MCP request and response schemas. | `docs/SPEC.md` Sections 13 and 14.2; `docs/PRD.md` FR-079. |
+> | F-002 | Incorporated as post-schema fixture verification for API/MCP request and response schemas. | `docs/SPEC.md` Sections 17.2 and 14.2; `docs/PRD.md` FR-079. |
 > | X-002 | Incorporated as audit evidence expectations for permission, hook, path, redaction, and event logging policy on MCP status operations. | `docs/CONTRACT.md` K-MCP-1/K-PERM-1; `docs/PRD.md` FR-092, FR-093, FR-104. |
 > | E-002 | Converted to explicit `TBD` success/denial payload fields until schema acceptance. | `docs/SPEC.md` API inventory; `docs/PRD.md` FR-079 and NFR-009. |
 >
@@ -378,7 +376,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 > ##### Source Status
 >
-> `docs/PRD.md` is listed as `MATCH` in `_REFERENCES.md`; reconcile the source hash before final acceptance of PRD-derived acceptance details. (reconciled under D-APP-38).
+> `docs/PRD.md` is listed historical D-APP-38 source state; verify current candidate bytes in `_REFERENCES.md`; reconcile the source hash before final acceptance of PRD-derived acceptance details. (reconciled under D-APP-38).
 >
 
 ### CLM-025 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
@@ -395,7 +393,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 > #### Guidance: DEL-07-04 Status Transition API and MCP Tool
 >
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
+> > **D-APP-56 / D-APP-38 historical source note (2026-07-12):** REF-006 `docs/PRD.md` was recorded as `MATCH` in that reconciliation snapshot. This is historical evidence, not a current hash result. Before reliance, verify the candidate source bytes through `execution/_Scripts/references_hash_tool.py`; retain mismatch or authorized bypass evidence without inferring a corpus re-pin.
 >
 
 ### CLM-027 — Purpose
@@ -432,8 +430,8 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 > ##### Considerations
 >
-> - Actor authorization should be explicit enough that unsupported actors fail closed. SPEC Section 4.3 lists authorized actors by transition; implementation-specific actor identity mapping remains `TBD`.
-> - Approval SHA validation should follow the PRD acceptance detail of a 7-64 character hex SHA-like token for transitions to `CHECKING` or `ISSUED`. PRD hash status: MATCH status applies. (reconciled under D-APP-38).
+> - Actor authorization should be explicit enough that unsupported actors fail closed. SPEC Section 4.3 lists authorized actors by transition; D-APP-56 R4-P19 fixes the accepted string aliases HUMAN, USER and OPERATOR, while actual human identity remains an enforcement gap.
+> - Approval SHA validation should follow the PRD acceptance detail of a 7-64 character hex SHA-like token for transitions to `CHECKING` or `ISSUED`. PRD historical D-APP-38 source state; verify current candidate bytes status applies. (reconciled under D-APP-38).
 > - The API and MCP tool should return structured denial information for invalid state, backward transition, unauthorized actor, missing approval SHA, invalid approval SHA, path/policy denial, and malformed `_STATUS.md`. Exact response shape is `TBD`.
 > - `INITIALIZED -> SEMANTIC_READY` is optional according to `docs/TYPES.md` Section 4.1; if semantic lensing is skipped, deliverables may transition directly from `INITIALIZED -> IN_PROGRESS` under SPEC actor rules.
 > - Status transition writes should remain subject to project-root containment and instruction-root protection expectations from the filesystem and permission surfaces. Source: `docs/CONTRACT.md` K-PATH-2 and K-MCP-1; `docs/PLAN.md` R3 implementation targets.
@@ -441,7 +439,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > - If alternate immutable approval evidence is ever accepted instead of a git SHA-like token, treat it as a human-approved policy extension recorded in versioned project evidence. Do not accept arbitrary runtime text as approval evidence. Source: `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-AUTH-2.
 > - Review evidence should prove that status-transition outputs, tool events, hook events, and runtime records describe execution only. They must not use language that claims an agent, SDK, MCP tool, validator, or runtime event approved, issued, certified, or released work for reliance. Source: `docs/DIRECTIVE.md` Sections 2.3-2.4; `docs/CONTRACT.md` K-AUTH-1/K-BIND-1.
 > - `SOFTWARE_DECOMP` is the accepted decomposition-family label in deliverable context, while `SOFTWARE` is the runtime dispatch token used by the four-documents task. Preserve both labels with their context rather than normalizing one into the other.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
+> - REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes.
 >
 
 ### CLM-030 — Trade-offs
@@ -450,7 +448,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 >
 > | Topic | Guidance | Source |
 > |---|---|---|
-> | API versus MCP | Maintain both surfaces because the PRD/SPEC list working-root API endpoints and Chirality MCP tools. Keep validation shared or behaviorally equivalent to avoid drift. | `docs/PRD.md` API inventory; `docs/SPEC.md` Sections 13 and 14.2 |
+> | API versus MCP | Maintain both surfaces because the PRD/SPEC list working-root API endpoints and Chirality MCP tools. Keep validation shared or behaviorally equivalent to avoid drift. | `docs/PRD.md` API inventory; `docs/SPEC.md` Sections 17.2 and 14.2 |
 > | SHA gate strictness | Prefer strict SHA-like validation for human gate transitions; if a human chooses alternate immutable evidence, capture it as a deliberate policy extension rather than silently accepting arbitrary text. | `docs/PRD.md` Section 8.9 FR-054; `docs/DIRECTIVE.md` Human authority |
 > | Parser tolerance | Be tolerant enough to read the SPEC format, but report malformed or ambiguous status files rather than inferring state from other files. | `docs/SPEC.md` Section 4.1; `docs/CONTRACT.md` K-STATUS-1 |
 > | Semantic-ready shortcut | Support the optional `INITIALIZED -> IN_PROGRESS` route when semantic lensing is skipped, but only under authorized actor rules. | `docs/TYPES.md` Section 4.1; `docs/SPEC.md` Section 4.3 |
@@ -474,18 +472,13 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 
 ### CLM-032 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-> |---|---|---|---|---|---|---|
-> | TBD | No source conflict identified during P1/P2 drafting. | TBD | TBD | TBD | TBD | TBD |
->
+> Earlier drafting source-state conflicts are historical at their recorded basis. Current reliance requires candidate-bound source verification through `execution/_Scripts/references_hash_tool.py`, with actual mismatch or authorized bypass retained. D-APP-38 did not guarantee perpetual MATCH. Apply settled D-GOV-43/D-APP-127 direction and retain substantive implementation/evidence gaps in Remaining; this record neither re-pins an accepted source nor certifies a new product result.
 
 ### CLM-033 — Source Status
 
 > ##### Source Status
 >
-> `docs/PRD.md` is listed as `MATCH` in `_REFERENCES.md`. Use PRD acceptance details as warned source material until the reference hash is reconciled. (reconciled under D-APP-38).
+> `docs/PRD.md` is listed historical D-APP-38 source state; verify current candidate bytes in `_REFERENCES.md`. Use PRD acceptance details as warned source material until the reference hash is reconciled. (reconciled under D-APP-38).
 >
 
 ### CLM-034 — Pass 3 Disposition Notes
@@ -497,7 +490,7 @@ This candidate defines `DEL-07-04` in service of project scope [SOW-028] and pac
 > | C-001 | Incorporated as a policy-extension rule for alternate immutable approval evidence. | `docs/DIRECTIVE.md` Section 2.4; `docs/CONTRACT.md` K-AUTH-2. |
 > | D-002 | Incorporated as review-evidence guidance separating runtime/event records from human approval records. | `docs/DIRECTIVE.md` Sections 2.3-2.4; `docs/CONTRACT.md` K-AUTH-1/K-BIND-1. |
 > | E-001 | Incorporated as contextual variant-label guidance. | `_CONTEXT.md` Identification; `_SEMANTIC_LENSING.md` header. |
-> | E-003 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; `docs/SPEC.md` reference hash behavior. — reconciled under D-APP-38 |
+> | E-003 | REF-006 was MATCH in the dated D-APP-38 reconciliation; current reliance requires verification of the candidate source bytes. | `_REFERENCES.md` REF-006; `docs/SPEC.md` reference hash behavior. — reconciled under D-APP-38 |
 
 ## Output and Evaluation Matrix
 

@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no declared upstream dependency edges have been accepted by a human.
+Current extracted upstream rows: `DEP-07-03-001`, `DEP-07-03-002`, `DEP-07-03-003`, `DEP-07-03-004`, `DEP-07-03-005`, `DEP-07-03-006`, `DEP-07-03-007`, `DEP-07-03-008`, `DEP-07-03-009`, `DEP-07-03-010`, `DEP-07-03-011`, `DEP-07-03-014`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no declared downstream dependency edges have been accepted by a human.
+Current extracted downstream rows: `DEP-07-03-012`, `DEP-07-03-013`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Extracted Dependency Register
 
@@ -31,20 +31,20 @@ TBD - no declared downstream dependency edges have been accepted by a human.
 
 | DependencyID | Class | Type | Target | Status | Evidence |
 |---|---|---|---|---|---|
-| DEP-07-03-001 | ANCHOR | IMPLEMENTS_NODE / OTHER | SOW-026 Metadata files and document kit | ACTIVE | `ScopeOfWork.md` / CLM-002 Identification; decomposition L359, L429 |
-| DEP-07-03-002 | ANCHOR | TRACES_TO_REQUIREMENT / OTHER | OBJ-006 filesystem project truth objective | ACTIVE | `ScopeOfWork.md` / Purpose and Objective Traceability; decomposition L267 |
-| DEP-07-03-003 | EXECUTION | PREREQUISITE | Accepted decomposition entry for DEL-07-03 | ACTIVE | `ScopeOfWork.md` / CLM-020 Prerequisites; front matter `decomposition_basis` |
-| DEP-07-03-004 | EXECUTION | PREREQUISITE | `docs/SPEC.md` | ACTIVE | `ScopeOfWork.md` / CLM-020 Prerequisites; `_REFERENCES.md` REF-003 |
-| DEP-07-03-005 | EXECUTION | PREREQUISITE | `docs/PRD.md` | ACTIVE | `ScopeOfWork.md` / CLM-020 Prerequisites; `_REFERENCES.md` REF-006 |
-| DEP-07-03-006 | EXECUTION | PREREQUISITE | `docs/TYPES.md` | ACTIVE | `ScopeOfWork.md` / CLM-020 Prerequisites; `_REFERENCES.md` REF-004 |
-| DEP-07-03-007 | EXECUTION | PREREQUISITE | `docs/DIRECTIVE.md` | ACTIVE | `ScopeOfWork.md` / CLM-020 Prerequisites; `_REFERENCES.md` REF-001 |
-| DEP-07-03-008 | EXECUTION | PREREQUISITE | `docs/CONTRACT.md` | ACTIVE | `ScopeOfWork.md` / CLM-020 Prerequisites; `_REFERENCES.md` REF-002 |
-| DEP-07-03-009 | EXECUTION | CONSTRAINT | DEL-07-04 Status Transition API and MCP Tool | ACTIVE | `ScopeOfWork.md` / CLM-021 Steps, CLM-008 Scope; decomposition L360 |
-| DEP-07-03-010 | EXECUTION | CONSTRAINT | DEL-07-05 Dependencies.csv v3.1 Reader Writer and Linter | ACTIVE | `ScopeOfWork.md` / CLM-021 Steps, CLM-008 Scope; decomposition L361 |
-| DEP-07-03-011 | ANCHOR | TRACES_TO_REQUIREMENT / OTHER | SOW-081 Governed workflow files and Workflows view | ACTIVE | `ScopeOfWork.md` / front matter `project_scope_refs`, Current responsibility; decomposition L359, L251, L484 |
-| DEP-07-03-012 | EXECUTION | INTERFACE (DOWNSTREAM) | DEL-02-02 Right-Panel Coordination, Workflows, and Proposal UX | ACTIVE | decomposition L484, L308; `ScopeOfWork.md` / Current acceptance obligations |
-| DEP-07-03-013 | EXECUTION | INTERFACE (DOWNSTREAM) | DEL-04-04 PersonaComposer from Instruction Root | ACTIVE | decomposition L484, L329, L251; `ScopeOfWork.md` / Current acceptance obligations |
-| DEP-07-03-014 | EXECUTION | CONSTRAINT | K-PATH-2 path-containment invariant (EXTERNAL, location TBD) | ACTIVE | decomposition L251, L329; `ScopeOfWork.md` / CLM-009 Requirements (REQ-008) |
+| DEP-07-03-001 | ANCHOR | OTHER | UPSTREAM | SOW-026 | ACTIVE | TBD |
+| DEP-07-03-002 | ANCHOR | OTHER | UPSTREAM | OBJ-006 | ACTIVE | TBD |
+| DEP-07-03-003 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-07-03 decomposition entry | ACTIVE | TBD |
+| DEP-07-03-004 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 | ACTIVE | TBD |
+| DEP-07-03-005 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 | ACTIVE | TBD |
+| DEP-07-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 | ACTIVE | TBD |
+| DEP-07-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 | ACTIVE | TBD |
+| DEP-07-03-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 | ACTIVE | TBD |
+| DEP-07-03-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-07-04 | ACTIVE | TBD |
+| DEP-07-03-010 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-07-05 | ACTIVE | TBD |
+| DEP-07-03-011 | ANCHOR | OTHER | UPSTREAM | SOW-081 | ACTIVE | TBD |
+| DEP-07-03-012 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-02-02 | ACTIVE | PENDING |
+| DEP-07-03-013 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-04-04 | ACTIVE | PENDING |
+| DEP-07-03-014 | EXECUTION | CONSTRAINT | UPSTREAM | K-PATH-2 | ACTIVE | PENDING |
 
 ## Run Notes
 
@@ -89,19 +89,15 @@ TBD - no declared downstream dependency edges have been accepted by a human.
 
 ## Lifecycle Summary
 
-| Status | Count |
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
+| Field | Count |
 |---|---:|
 | ACTIVE | 14 |
-| RETIRED | 0 |
-
-| SatisfactionStatus | Count |
-|---|---:|
-| TBD | 11 |
-| PENDING | 3 |
-
-| RequiredMaturity | Count |
-|---|---:|
-| SEMANTIC_READY | 14 |
+| RequiredMaturity=SEMANTIC_READY | 14 |
+| ProposedMaturity=TBD | 14 |
+| SatisfactionStatus=PENDING | 3 |
+| SatisfactionStatus=TBD | 11 |
 
 ## Downstream Handoff Notes
 
@@ -125,3 +121,21 @@ evidence for dependency rows. Its recorded consumption as the primary input
 to `_SEMANTIC_LENSING.md` is a different act, outside that scope and
 consistent with it. See
 `execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.
+
+## Current record interpretation — 2026-09-22
+
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
+
+## Current evidence-locator refresh — 2026-09-22
+
+2 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=14; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+## Current evidence-locator refresh — 2026-09-22
+
+7 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.

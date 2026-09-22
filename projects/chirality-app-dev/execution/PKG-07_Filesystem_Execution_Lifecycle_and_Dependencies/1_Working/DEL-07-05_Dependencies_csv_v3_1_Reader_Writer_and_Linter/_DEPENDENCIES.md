@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted declared dependency edges have been provided. Current register rows are `Origin=EXTRACTED`.
+Current extracted upstream rows: `DEP-07-05-001`, `DEP-07-05-002`, `DEP-07-05-003`, `DEP-07-05-004`, `DEP-07-05-005`, `DEP-07-05-006`, `DEP-07-05-007`, `DEP-07-05-008`, `DEP-07-05-009`, `DEP-07-05-010`, `DEP-07-05-011`, `DEP-07-05-012`, `DEP-07-05-013`, `DEP-07-05-014`, `DEP-07-05-015`, `DEP-07-05-016`, `DEP-07-05-017`, `DEP-07-05-018`, `DEP-07-05-019`, `DEP-07-05-020`, `DEP-07-05-021`, `DEP-07-05-022`, `DEP-07-05-023`, `DEP-07-05-024`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no accepted declared dependency edges have been provided. Current register rows are `Origin=EXTRACTED`.
+Current extracted downstream rows: `DEP-07-05-025`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Extracted Dependency Register
 
@@ -100,15 +100,16 @@ TBD - no accepted declared dependency edges have been provided. Current register
 
 ## Lifecycle Summary
 
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
 | Field | Count |
 |---|---:|
 | ACTIVE | 25 |
 | RETIRED | 1 |
 | RequiredMaturity=SEMANTIC_READY | 26 |
 | ProposedMaturity=TBD | 26 |
+| SatisfactionStatus=NOT_APPLICABLE | 1 |
 | SatisfactionStatus=TBD | 25 |
-
-No downstream handoff section was added because `CONSUMER_CONTEXT=NONE`.
 
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 
@@ -124,3 +125,19 @@ evidence for dependency rows. Its recorded consumption as the primary input
 to `_SEMANTIC_LENSING.md` is a different act, outside that scope and
 consistent with it. See
 `execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.
+
+## Current record interpretation — 2026-09-22
+
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
+
+## Current residual-specific interpretation — 2026-09-22
+
+DEP-001..025 four-document EvidenceFile/SourceRef values preserve historical source quotations; ScopeOfWork.md is the current claim carrier. OBJECTIVE_TARGET_TYPE_UNAVAILABLE is a dated extraction warning, not a new current discovery: DEP-002 remains UNKNOWN in the unchanged formal register. Any decision to reclassify that formal target remains with its owning dependency pass.
+
+## Current evidence-locator refresh — 2026-09-22
+
+24 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.

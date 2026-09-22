@@ -13,16 +13,13 @@ package_objective_refs: [OBJ-003, OBJ-005]
 
 This Scope of Work defines `DEL-06-06` in service of project scope [SOW-057, SOW-061] and package objectives [OBJ-003, OBJ-005].
 
-- **OUT-001** — A hook lifecycle and compaction mirror that records hook start, progress, completion or failure outcomes, Stop/finalization, and available compaction boundaries as Chirality-owned HarnessEvent records while preserving append-only replay.
+- **OUT-001** — Actual hook/compaction/terminal observation and replay conformance through the complete Runtime/Codex stream, preserving available hook facts, append order, redaction, compaction implications and exactly one noncontradictory durable terminal outcome per accepted turn.
 
 ## Deliverable Definition — Ontology
 
 ### CLM-001 — Datasheet: DEL-06-06 Hook Lifecycle and Compaction Mirror
 
-> #### Datasheet: DEL-06-06 Hook Lifecycle and Compaction Mirror
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-002 — Identification
 
@@ -44,36 +41,40 @@ This Scope of Work defines `DEL-06-06` in service of project scope [SOW-057, SOW
 > Sources: `_CONTEXT.md`; `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` sections "PKG-06 Permissioned Tools, MCP, and Hooks" and scope ledger rows SOW-057 and SOW-061.
 >
 
+
+Current deliverable responsibility: Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
 ### CLM-003 — Attributes
 
-Available lifecycle, failure, compaction and terminal evidence must remain attributable and replayable. The canonical record is the App-owned Runtime service's session store under K-EVENT-4; project-local session files are legacy compatibility sources. Event writes preserve unique identity and append-only history. Compaction must not erase the retained event record or invent a boundary that was not observed.
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
 
-D-GOV-43 item 2 preserves upstream method names, identifiers and payloads after required redaction; a closed set of SDK hook names is not the live event contract. Durable terminal outcomes and any applicable fail-closed control remain obligations, with missing live enforcement retained as a gap under D-APP-131.
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
 
-Verification hooks: `projects/chirality-runtime/tests/codex-supervisor.test.ts` for notification transport and interruption, and `projects/chirality-runtime/tests/app-owned-composition.test.ts` for persisted/replayed terminal evidence. Legacy `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` covers its own compaction mapping, not Codex compaction qualification.
+Named verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
 
 ### CLM-004 — Conditions
 
-> ##### Conditions
->
-> | Condition | Constraint | Source |
-> |---|---|---|
-> | PRD source state | `docs/PRD.md` is accessible but has MATCH in `_REFERENCES.md`; PRD-derived details are treated as source-state evidence, not as unqualified accepted truth. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
-> | Product-owned contract | SDK messages, external hook names, and SDK-specific IDs must be translated into Chirality-owned contracts; SDK values may appear only as explicit adapter metadata. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-ENGINE-4 |
-> | Audit authority | SDK transcripts are secondary runtime artifacts unless imported into `HarnessEvent` form. | `docs/CONTRACT.md` Section 1.4 K-SDK-3; `docs/SPEC.md` Section 8.4 |
-> | Secret handling | Runtime events and logs must not store secrets; large payloads must be stored as artifacts and referenced by path. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
-> | Terminal outcome linkage | Every accepted turn must end with a durable success, failure, cancellation, or interruption event. | `docs/CONTRACT.md` Section 1.5 K-EVENT-3 |
-> | Hook separation | Path containment and write/edit preconditions are owned primarily by DEL-06-04; DEL-06-06 mirrors lifecycle, failure, terminal, and compaction boundaries into events. | `_CONTEXT.md`; decomposition PKG-06 rows |
-> | Dependency state | `_DEPENDENCIES.md` lists no accepted upstream or downstream edges yet. | `_DEPENDENCIES.md` |
->
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Named verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
 
 ### CLM-005 — Construction
 
-Lifecycle evidence must preserve observed start, progress, completion and failure information, safe output, available compaction boundaries and their known replay implications. Stop/finalization must not duplicate a terminal outcome or turn a failure/interruption into success. Redaction and append-only replay remain requirements; fail-closed obligations are not discharged by recording a hook event.
+For each accepted turn, persist exactly one durable terminal outcome. Completion, Stop/finalization and interruption races must not append duplicate or contradictory terminal records. Verify a named completion-versus-Stop race fixture against the live Runtime event store, asserting exactly one terminal event and a truthful final result.
 
-The live Codex event path retains upstream notifications and native compaction semantics under D-GOV-43 items 2 and 5. Legacy callback names, mapper modules and artifact layout belong in evidence. Verify notification and terminal handling through `projects/chirality-runtime/tests/codex-supervisor.test.ts` and `projects/chirality-runtime/tests/app-owned-composition.test.ts`; retain `frontend/src/__tests__/lib/sdk-message-mapper.test.ts` as compatibility evidence. Current compaction/replay and redaction gaps remain separately verifiable work under D-APP-131, not presumed satisfied by those legacy fixtures.
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+
+Unfinished delivery: Deliver live named compaction/replay and terminal witnesses, identify which hook facts Codex actually emits, and close structural-redaction/artifact gaps with PKG-05. Record any absent native hook or enforcement subject without recreating retired SDK callbacks.
 
 ### CLM-006 — Pass 3 Disposition
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### Pass 3 Disposition
 >
@@ -82,127 +83,100 @@ The live Codex event path retains upstream notifications and native compaction s
 > | C-001 | Converted to an explicit implementation blocker: the hook lifecycle mapper is required, but the exact module path remains `TBD` until implementation ownership assigns the adapter surface. | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` DEL-06-06 row; `docs/SPEC.md` Sections 9, 10.3, and 15.2; `docs/TYPES.md` Sections 7.3 and 8.5 |
 >
 
+
+Current requirement and verification boundary: Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+
 ### CLM-007 — References
 
 > ##### References
 >
 > | RefID | Source | Use | Source state |
 > |---|---|---|---|
-> | REF-002 | `docs/CONTRACT.md` Sections 1.4 through 1.6 | Binding engine, event, SDK, permission, hook, and audit invariants | MATCH |
-> | REF-003 | `docs/SPEC.md` Sections 8 through 10, 15, and 19 | Session layout, `HarnessEvent` schema, adapter translation rules, required hooks, validation IDs | MATCH |
-> | REF-004 | `docs/TYPES.md` Sections 7.1 through 7.3 and 8.5 | Runtime vocabulary, event categories, hook terms | MATCH |
-> | REF-005 | `docs/PLAN.md` R4 and risk table | Sequencing and compaction acceptance context | MATCH |
-> | REF-006 | `docs/PRD.md` Sections 8.15 and runtime event requirements | Product requirements for compaction and hook event recording | MATCH status — reconciled under D-APP-38 |
+> | REF-002 | `docs/CONTRACT.md` Sections 1.4 through 1.6 | Binding engine, event, SDK, permission, hook, and audit invariants | HISTORICAL_MATCH |
+> | REF-003 | `docs/SPEC.md` Sections 8 through 10, 15, and 19 | Session layout, `HarnessEvent` schema, adapter translation rules, required hooks, validation IDs | HISTORICAL_MATCH |
+> | REF-004 | `docs/TYPES.md` Sections 7.1 through 7.3 and 8.5 | Runtime vocabulary, event categories, hook terms | HISTORICAL_MATCH |
+> | REF-005 | `docs/PLAN.md` R4 and risk table | Sequencing and compaction acceptance context | HISTORICAL_MATCH |
+> | REF-006 | `docs/PRD.md` Sections 8.15 and runtime event requirements | Product requirements for compaction and hook event recording | HISTORICAL_MATCH status — reconciled under D-APP-38 |
 > | DECOMP | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | Deliverable scope, SOW coverage, package boundaries | accepted v3.2 working surface |
+
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin. Current applicability: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable.
 
 ## Completion and Reliance Basis — Epistemology
 
 ### CLM-008 — Specification: DEL-06-06 Hook Lifecycle and Compaction Mirror
 
-> #### Specification: DEL-06-06 Hook Lifecycle and Compaction Mirror
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-009 — Scope
 
-> ##### Scope
->
-> DEL-06-06 specifies the backend feature slice that mirrors SDK or adapter hook lifecycle, terminal finalization, and context-compaction boundaries into Chirality-owned runtime events. It covers hook start, completion, and failure event mapping; `PreCompact` boundary mirroring; Stop/finalization evidence; JSONL append semantics; replay-safe event payload discipline; and tests for `context.compacted` and terminal hook fixtures.
->
-> In scope:
->
-> - Produce or specify a hook lifecycle mapper that translates hook callbacks into Chirality `HarnessEvent` records.
-> - Emit safe `hook.started` and `hook.completed` event evidence, including failure outcome handling where supported.
-> - Mirror SDK/model compaction boundaries into `context.compacted` events when the boundary is available.
-> - Preserve the product-owned audit mirror in `.chirality/sessions/<id>/events.jsonl`; SDK transcripts remain secondary unless imported into `HarnessEvent` form.
-> - Connect Stop/finalization callbacks to durable terminal outcome evidence without making SDK hook names the public contract.
-> - Provide `context.compacted` tests and terminal hook fixtures.
->
-> Out of scope:
->
-> - Permission-mode decision semantics and `canUseTool` approval mediation, owned by DEL-06-01.
-> - Write/edit path containment, instruction-root protection, symlink rejection, and edit preconditions, owned primarily by DEL-06-04.
-> - Bash timeout/capture policy, owned by DEL-06-05.
-> - Subagent governance bridge behavior beyond preserving hook event compatibility, owned by PKG-08 deliverables.
-> - Custom context-compaction implementation unless a later governed source update requires fallback behavior.
->
-> Sources: `_CONTEXT.md`; decomposition PKG-06 rows; `docs/SPEC.md` Sections 8 through 10 and 15; `docs/CONTRACT.md` Sections 1.4 through 1.6; `docs/TYPES.md` Sections 7 and 8.5; `docs/PRD.md` Section 8.15 with MATCH status. (reconciled under D-APP-38).
->
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
 
 ### CLM-010 — Requirements
 
-> ##### Requirements
->
-> | ID | Requirement | Source |
-> |---|---|---|
-> | DEL-06-06-REQ-001 | The hook lifecycle mapper MUST emit Chirality-owned `HarnessEvent` records rather than exposing SDK hook names as the persisted event contract. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-ENGINE-4 |
-> | DEL-06-06-REQ-002 | Each emitted runtime event MUST conform to the `HarnessEvent` shape: `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data`. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Section 7.3 |
-> | DEL-06-06-REQ-003 | Runtime event writes MUST append newline-delimited JSONL in write sequence and use unique event IDs. | `docs/SPEC.md` Section 9.2 |
-> | DEL-06-06-REQ-004 | Hook lifecycle event mapping MUST include `hook.started`, `hook.progress`, and `hook.completed` categories where hook execution evidence is available. Progress mapping MUST preserve available stdout, stderr, and output fields in provider-neutral `HarnessEvent` data. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3; D-APP-56 R4-P04 |
-> | DEL-06-06-REQ-005 | Hook failure outcomes MUST preserve fail-closed behavior for write, shell, domain, and subagent actions. | `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2 |
-> | DEL-06-06-REQ-006 | The mapper MUST support `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, and subagent hook terms without making exact SDK callback names authoritative in public APIs. | `docs/TYPES.md` Section 8.5; `docs/SPEC.md` Section 10.3 |
-> | DEL-06-06-REQ-007 | `PreCompact` mirroring MUST persist a compaction boundary when available. | `docs/SPEC.md` Section 15.2; decomposition SOW-061 |
-> | DEL-06-06-REQ-008 | `context.compacted` events MUST be persisted for compaction boundaries and record replay implications where knowable. | `docs/SPEC.md` Section 9.4; `docs/PRD.md` Section 8.15, MATCH status — reconciled under D-APP-38 |
-> | DEL-06-06-REQ-009 | Full Chirality event log replay MUST remain possible after compaction; SDK transcript linkage may be preserved but cannot displace `events.jsonl`. | `docs/CONTRACT.md` Section 1.4 K-SDK-3 and Section 1.5 K-EVENT-4; `docs/PLAN.md` R4 |
-> | DEL-06-06-REQ-010 | Stop/finalization mapping MUST preserve durable terminal outcome evidence for success, failure, cancellation, or interruption. | `docs/CONTRACT.md` Section 1.5 K-EVENT-3; `docs/SPEC.md` Section 15.2 |
-> | DEL-06-06-REQ-011 | Runtime event payloads MUST NOT store secrets, and large or sensitive payloads MUST be stored as artifacts or redacted according to policy. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
-> | DEL-06-06-REQ-012 | SDK-specific values MAY be retained only as explicit adapter metadata fields, not as Chirality public contract identifiers. | `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-CORE-1 |
-> | DEL-06-06-REQ-013 | Tests MUST cover `context.compacted` event production and terminal hook fixtures. | `_CONTEXT.md`; `docs/SPEC.md` Section 19 `section9.context_compaction_boundary` |
-> | DEL-06-06-REQ-014 | Implementation MUST record the `docs/PRD.md` MATCH status for any behavior that depends only on PRD Section 8.15 details. | `_REFERENCES.md` REF-006 — reconciled under D-APP-38 |
-> | DEL-06-06-REQ-015 | Implementation evidence identifies mapper components (`chirality-hooks.ts`, `sdk-message-mapper.ts`), mapper/terminal/compaction tests (`chirality-hooks.test.ts`, `sdk-message-mapper.test.ts`), replay validation (`session-events.ts` / `session-events.test.ts`), artifact/redaction checks (`tool-result-artifacts.ts` / tests), and the Section 9 runner (`scripts/validate-harness-section9.mjs`). | `_CONTEXT.md`; `docs/SPEC.md` Sections 9.2 and 19; cited live paths |
->
+For each accepted turn, persist exactly one durable terminal outcome. Completion, Stop/finalization and interruption races must not append duplicate or contradictory terminal records. Verify a named completion-versus-Stop race fixture against the live Runtime event store, asserting exactly one terminal event and a truthful final result.
+
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+The following source-ID crosswalk preserves the original requirement population. Current fulfillment is evaluated against the obligations above and the named live checks below; superseded SDK mechanisms remain historical evidence and never substitute for live verification.
+
+| Requirement ID | Current requirement / explicit historical applicability |
+|---|---|
+| DEL-06-06-REQ-001 | Preserve all actual Codex hook/notification/request evidence and present known lifecycle facts without dropping unfamiliar data; exact SDK hook names are compatibility evidence. |
+| DEL-06-06-REQ-002 | Preserve the Runtime event envelope, version, event/session/turn/parent identity, timestamp, type and safe data. |
+| DEL-06-06-REQ-003 | Append unique event records in canonical Runtime write sequence. |
+| DEL-06-06-REQ-004 | Represent actual hook start/progress/completion/failure and supplied output where observed; no missing native hook is fabricated or counted as passed. |
+| DEL-06-06-REQ-005 | Application-controlled mutating/domain/delegation validation remains fail-closed; native requests obey selected Codex policy, with enforcement evidence recorded separately. |
+| DEL-06-06-REQ-006 | Retain legacy PreToolUse/PostToolUse/PostToolUseFailure/PreCompact/Stop/subagent mappings as compatibility evidence; preserve their surviving outcomes from current native facts when emitted. |
+| DEL-06-06-REQ-007 | Observe and persist available native compaction boundaries; a callback with a retired SDK name is not required. |
+| DEL-06-06-REQ-008 | Preserve the context.compacted semantic requirement and known replay implications; where only generic native notifications exist, record the missing named mapping/verification as delivery work. |
+| DEL-06-06-REQ-009 | Full canonical event replay must remain possible after compaction; provider transcript linkage never displaces Runtime events. |
+| DEL-06-06-REQ-010 | Preserve exactly one durable actual terminal success/failure/cancellation/interruption outcome per accepted turn; completion/Stop/finalization races must not create duplicate or contradictory records. |
+| DEL-06-06-REQ-011 | Apply structural redaction and accepted payload budgets/artifact references before Runtime persistence, SSE and replay sinks. |
+| DEL-06-06-REQ-012 | Preserve upstream method names/identifiers/payloads after redaction as directed by D-GOV-43, with clear operational attribution; do not reintroduce a closed neutral vocabulary. |
+| DEL-06-06-REQ-013 | Verify live compaction observation, replay implications and terminal outcomes, explicitly identifying absent native hook facts. |
+| DEL-06-06-REQ-014 | Bind source-dependent behavior to its evaluated current reference state; historical MATCH is not current qualification. |
+| DEL-06-06-REQ-015 | Name the current Runtime supervisor/store/replay and live fixture paths. Legacy hooks, SDK mapper and Section 9 fixtures are evidence only for the paths they exercise. |
+
+Verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+
+Evidence locations: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach. These are hooks and source locations, not newly executed results.
 
 ### CLM-011 — Standards
 
-> ##### Standards
->
-> | Standard or governing source | Applicability |
-> |---|---|
-> | `docs/CONTRACT.md` Sections 1.4 through 1.6 | Binding invariants for engine contract ownership, runtime audit mirror, SDK transcript secondary status, event durability, redaction, and hook fail-closed behavior. |
-> | `docs/SPEC.md` Sections 8 through 10 | Session storage, `events.jsonl`, `HarnessEvent` shape, event append rules, event categories, and adapter translation rules. |
-> | `docs/SPEC.md` Section 15.2 | Required hooks, including PreCompact mirror and Stop/finalization behavior. |
-> | `docs/TYPES.md` Sections 7 and 8.5 | Runtime vocabulary, event categories, hook terms, and adapter boundary vocabulary. |
-> | `docs/PLAN.md` R4 | Sequencing and acceptance for compaction mirror and replay preservation. |
-> | `docs/PRD.md` Section 8.15 | Product requirements for compaction event persistence; use with MATCH status from `_REFERENCES.md`. — reconciled under D-APP-38 |
->
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Named verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
 
 ### CLM-012 — Verification
 
-> ##### Verification
->
-> | Requirement | Verification approach |
-> |---|---|
-> | DEL-06-06-REQ-001, REQ-012 | Type or mapper tests assert persisted event types use Chirality-owned names and SDK details appear only under explicit adapter metadata. |
-> | DEL-06-06-REQ-002 | Schema tests validate every emitted hook/compaction/terminal event against `HarnessEvent`. |
-> | DEL-06-06-REQ-003 | Session event writer tests assert newline-delimited append order and unique event IDs. |
-> | DEL-06-06-REQ-004 | Mapper and persistence tests assert `hook.progress` is emitted and replayed with available stdout, stderr, and output fields, alongside start and completion evidence. |
-> | DEL-06-06-REQ-005 | Failure fixtures assert failed hook outcomes do not silently allow write, shell, domain, or subagent execution. |
-> | DEL-06-06-REQ-006 | Mapper tests cover `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, and subagent hook term handling where runtime support exists. |
-> | DEL-06-06-REQ-007, REQ-008 | `context.compacted` tests assert a compaction boundary event is persisted when the SDK/model emits the boundary. |
-> | DEL-06-06-REQ-009 | Replay tests assert event log replay remains possible after a compaction event and does not require SDK transcript data as canonical truth. |
-> | DEL-06-06-REQ-010 | Terminal hook fixtures assert Stop/finalization evidence aligns with durable terminal turn outcomes. |
-> | DEL-06-06-REQ-011 | Redaction and payload-budget tests assert secrets are excluded and large payloads are artifact-referenced. |
-> | DEL-06-06-REQ-013 | Section 9 validation includes or points to `section9.context_compaction_boundary`; exact runner path: TBD. |
-> | DEL-06-06-REQ-014 | Review evidence records the PRD hash warning when PRD-only behavior is cited. |
-> | DEL-06-06-REQ-015 | Closure review verifies the cited mapper, fixture, replay, artifact/redaction, and Section 9 runner paths exist and remain testable. |
->
+Required current checks: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+
+Named evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Deliver live named compaction/replay and terminal witnesses, identify which hook facts Codex actually emits, and close structural-redaction/artifact gaps with PKG-05. Record any absent native hook or enforcement subject without recreating retired SDK callbacks.
 
 ### CLM-013 — Documentation
 
-> ##### Documentation
->
-> Required implementation evidence:
->
-> - Hook lifecycle mapper: `frontend/src/lib/harness/chirality-hooks.ts`; adapter mapping: `frontend/src/lib/harness/sdk-message-mapper.ts`.
-> - Schema/mapper and terminal/compaction fixtures: `frontend/src/__tests__/lib/chirality-hooks.test.ts` and `sdk-message-mapper.test.ts`.
-> - Replay validation: `frontend/src/lib/harness/session-events.ts` and `frontend/src/__tests__/lib/session-events.test.ts`.
-> - Artifact/redaction and payload-budget checks: `frontend/src/lib/harness/tool-result-artifacts.ts`, its tests, and `chirality-hooks.test.ts`.
-> - Section 9 runner: `frontend/scripts/validate-harness-section9.mjs` with `harness-section9-manifest.json`.
-> - Residual-risk note for `docs/PRD.md` MATCH under the reconciled D-APP-38 source state. (reconciled under D-APP-38).
->
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+
+Unfinished delivery: Deliver live named compaction/replay and terminal witnesses, identify which hook facts Codex actually emits, and close structural-redaction/artifact gaps with PKG-05. Record any absent native hook or enforcement subject without recreating retired SDK callbacks.
 
 ### CLM-014 — Pass 3 Disposition
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### Pass 3 Disposition
 >
@@ -213,27 +187,26 @@ The live Codex event path retains upstream notifications and native compaction s
 > | X-002 | Already covered in validation intent but not in path evidence; retained as `TBD` runner/fixture evidence tied to `section9.context_compaction_boundary`. | `docs/SPEC.md` Section 19; `docs/PRD.md` Section 8.14/8.15 validation list, MATCH status — reconciled under D-APP-38 |
 >
 
+
+Current requirement and verification boundary: Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+
 ### CLM-015 — Traceability
 
-> ##### Traceability
->
-> | Source item | Covered by |
-> |---|---|
-> | SOW-057 Hooks and fail-closed behavior | DEL-06-06-REQ-001 through REQ-006, REQ-010 through REQ-013 |
-> | SOW-061 Compaction mirror | DEL-06-06-REQ-007 through REQ-009, REQ-013 |
-> | OBJ-003 Audit and session objective | DEL-06-06-REQ-002, REQ-003, REQ-008 through REQ-010 |
-> | OBJ-005 Tool governance objective | DEL-06-06-REQ-004 through REQ-006, REQ-011 |
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
 
-- **AC-001** — The mirror satisfies the preserved DEL-06-06 requirements when hook lifecycle, failure, terminal, and compaction events validate against HarnessEvent, append safely to events.jsonl, preserve fail-closed and replay semantics, avoid secrets, and the cited tests and Section 9 evidence pass.
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Named verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
+
+- **AC-001** — Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
 
 ## Production and Verification Method — Praxeology
 
 ### CLM-016 — Procedure: DEL-06-06 Hook Lifecycle and Compaction Mirror
 
-> #### Procedure: DEL-06-06 Hook Lifecycle and Compaction Mirror
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-017 — Purpose
 
@@ -244,107 +217,51 @@ The live Codex event path retains upstream notifications and native compaction s
 
 ### CLM-018 — Prerequisites
 
-> ##### Prerequisites
->
-> | Prerequisite | Status |
-> |---|---|
-> | Accepted DEL-06-06 scope and source references | Available in `_CONTEXT.md` and `_REFERENCES.md` |
-> | Runtime event schema and event categories | Available in `docs/SPEC.md` Section 9 and `docs/TYPES.md` Section 7.3 |
-> | Session audit mirror rules | Available in `docs/SPEC.md` Section 8.4 and `docs/CONTRACT.md` Section 1.5 |
-> | Hook vocabulary and required hook behavior | Available in `docs/TYPES.md` Section 8.5 and `docs/SPEC.md` Section 15.2 |
-> | Engine adapter translation rules | Available in `docs/SPEC.md` Section 10.3 |
-> | Compaction mirror product direction | Available in `docs/PLAN.md` R4; `docs/PRD.md` Section 8.15 is current and MATCH — reconciled under D-APP-38 |
-> | Declared upstream dependencies | Human-declared upstream dependencies remain `TBD`; extracted ACTIVE upstream edges exist in `_DEPENDENCIES.md` and must be closure-checked before final acceptance. |
-> | Exact implementation file paths | `frontend/src/lib/harness/chirality-hooks.ts`; `sdk-message-mapper.ts`; `session-events.ts`; `tool-result-artifacts.ts` |
-> | Exact test fixture paths | `frontend/src/__tests__/lib/chirality-hooks.test.ts`; `sdk-message-mapper.test.ts`; `session-events.test.ts`; `tool-result-artifacts.test.ts`; `frontend/scripts/validate-harness-section9.mjs` |
->
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Current implementation/adoption evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Selection boundary: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision.
 
 ### CLM-019 — Steps
 
-> ##### Steps
->
-> 1. Confirm the event contract boundary.
->    - Use `HarnessEvent` as the persisted runtime event shape.
->    - Keep SDK callback names, SDK transcript IDs, and SDK compaction metadata as adapter metadata rather than public Chirality contract fields.
->    - Preserve `events.jsonl` as the canonical audit mirror.
->
-> 2. Define or locate the hook lifecycle mapper.
->    - Map supported hook terms from `docs/TYPES.md` Section 8.5: `PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `PreCompact`, `Stop`, `SubagentStart`, and `SubagentStop`.
->    - Keep detailed policy enforcement ownership aligned with adjacent deliverables; this mapper records lifecycle and boundary evidence.
->    - Exact module path: TBD.
->
-> 3. Implement hook start evidence.
->    - Emit or stage `hook.started` evidence when a supported hook begins.
->    - Include session and turn linkage where available.
->    - Include safe hook term and target context where available.
->    - Do not include secrets or large raw payloads.
->
-> 4. Implement hook completion and failure evidence.
->    - Emit `hook.completed` evidence for successful completion.
->    - For failure outcomes, record safe diagnostics and outcome status without inventing an unregistered public event type unless the event registry is updated.
->    - Ensure failed hooks preserve fail-closed behavior for write, shell, domain, and subagent actions.
->
-> 5. Implement `PreCompact` mirroring.
->    - When the SDK/model exposes a compaction boundary, persist `context.compacted`.
->    - Record boundary metadata and replay implications when safe and available.
->    - Mark unavailable SDK-specific fields as `TBD`; do not infer hidden transcript state.
->
-> 6. Implement Stop/finalization mapping.
->    - Record finalization evidence associated with the relevant session and turn.
->    - Preserve the existing terminal event contract: accepted turns end with success, failure, cancellation, or interruption evidence.
->    - Avoid duplicate or contradictory terminal outcomes.
->
-> 7. Integrate with append-only session event storage.
->    - Append JSONL events in write sequence with unique event IDs.
->    - Keep replay tolerant of malformed trailing lines as required by the session event contract.
->    - Store large or sensitive payloads as session artifacts or redact them according to policy.
->    - Event writer/session-artifact call paths are resolved: `session-events.ts` `appendHarnessEvent` and `tool-result-artifacts.ts`.
->
-> 8. Add tests and fixtures.
->    - Add hook lifecycle mapper tests for start, completion, and failure outcomes.
->    - Add `context.compacted` tests for boundary persistence and replay implications.
->    - Add terminal hook fixtures for Stop/finalization behavior.
->    - Add redaction or payload-budget checks for hook/compaction payloads.
->    - Include Section 9 validation linkage for `section9.context_compaction_boundary` where the validation runner expects it.
->
-> 9. Record residual gaps and source warnings.
->    - Keep only genuinely unsupported payload fields or linkage policy as `TBD`; the mapper, fixture, replay, artifact, and runner paths above are assigned.
->    - Record the `docs/PRD.md` MATCH status anywhere PRD-only compaction payload details are used. (reconciled under D-APP-38).
->
+For each accepted turn, persist exactly one durable terminal outcome. Completion, Stop/finalization and interruption races must not append duplicate or contradictory terminal records. Verify a named completion-versus-Stop race fixture against the live Runtime event store, asserting exactly one terminal event and a truthful final result.
+
+1. Establish the current candidate, source and actual dependency state. Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+2. Apply the current scope: Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+3. Implement only within the owning App/Runtime boundary, preserving these requirements: Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+4. Verify verify actual emitted hook coverage, named compaction observation/replay implications, preserved terminal outcomes, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+5. Retain inputs, source/candidate identity, commands, output and limitations; update Remaining only for backchecked outcomes.
+
+Locus and checks: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
+
+Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision.
 
 ### CLM-020 — Verification
 
-> ##### Verification
->
-> | Check | Expected result |
-> |---|---|
-> | Event schema | Hook, compaction, and terminal mirror events conform to `HarnessEvent`. |
-> | Event append behavior | Events append as newline-delimited JSONL in order with unique event IDs. |
-> | Product-owned names | Persisted event types use Chirality names, with SDK details only in adapter metadata. |
-> | Hook start | Supported hook execution emits or stages `hook.started` evidence. |
-> | Hook completion/failure | Supported hook completion records outcome; failures preserve fail-closed semantics for write, shell, domain, and subagent actions. |
-> | Compaction boundary | SDK/model compaction boundary emits `context.compacted` when available. |
-> | Replay preservation | Full Chirality event replay remains possible after compaction without relying on SDK transcript as canonical truth. |
-> | Stop/finalization | Finalization evidence aligns with exactly one durable terminal outcome for the accepted turn. |
-> | Redaction and payload budget | Secrets are absent and large payloads are artifact-referenced or redacted. |
-> | PRD warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. |
->
+Required current checks: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+
+Named evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Deliver live named compaction/replay and terminal witnesses, identify which hook facts Codex actually emits, and close structural-redaction/artifact gaps with PKG-05. Record any absent native hook or enforcement subject without recreating retired SDK callbacks.
 
 ### CLM-021 — Records
 
-> ##### Records
->
-> - Hook lifecycle mapper implementation: `frontend/src/lib/harness/chirality-hooks.ts` and `sdk-message-mapper.ts`.
-> - Event schema/mapper and `context.compacted` tests: `frontend/src/__tests__/lib/chirality-hooks.test.ts` and `sdk-message-mapper.test.ts`.
-> - Terminal hook fixtures: `frontend/src/__tests__/lib/sdk-message-mapper.test.ts`.
-> - Session event replay validation: `frontend/src/lib/harness/session-events.ts` and `frontend/src/__tests__/lib/session-events.test.ts`.
-> - Redaction/payload-budget validation: `frontend/src/lib/harness/tool-result-artifacts.ts`, its test, and `chirality-hooks.test.ts`.
-> - Section 9 validation: `frontend/scripts/validate-harness-section9.mjs` and `harness-section9-manifest.json`.
-> - Review note for PRD MATCH: required under the reconciled D-APP-38 source state. (reconciled under D-APP-38).
-> - Dependency-closure note: human-declared upstream dependency status is TBD; extracted ACTIVE edges in `_DEPENDENCIES.md` must be reconciled before closure.
->
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+
+Unfinished delivery: Deliver live named compaction/replay and terminal witnesses, identify which hook facts Codex actually emits, and close structural-redaction/artifact gaps with PKG-05. Record any absent native hook or enforcement subject without recreating retired SDK callbacks.
 
 ### CLM-022 — Pass 3 Disposition
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### Pass 3 Disposition
 >
@@ -354,36 +271,29 @@ The live Codex event path retains upstream notifications and native compaction s
 > | D-002 | Rejected as an implementation assumption and replaced with a blocker: event writer/session artifact APIs must be cited from PKG-05/PKG-03 ownership before closure. | `docs/SPEC.md` Sections 8.4 and 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-4 through K-EVENT-7 |
 > | E-002 | Incorporated as an explicit records and verification obligation for redaction or payload-budget validation evidence on hook and compaction payloads; evidence path remains `TBD`. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` Section 1.5 K-EVENT-6 and K-EVENT-7 |
 
-- **VER-001** — Run the cited mapper, schema, replay, redaction/payload-budget, terminal-fixture, context.compacted, and Section 9 validation checks against the preserved source requirements.
+- **VER-001** — Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
 
 ## Governing Values and Decisions — Axiology
 
 ### CLM-023 — Guidance: DEL-06-06 Hook Lifecycle and Compaction Mirror
 
-> #### Guidance: DEL-06-06 Hook Lifecycle and Compaction Mirror
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-024 — Purpose
 
-> ##### Purpose
->
-> DEL-06-06 exists to make hook execution, failure, terminal finalization, and SDK/model compaction boundaries auditable in Chirality-owned runtime events. It is an event-mirroring slice, not the owner of every hook policy: path/write hook enforcement is primarily DEL-06-04, permission mediation is DEL-06-01, and this deliverable ensures those hook and compaction boundaries become replayable evidence in `events.jsonl`.
->
-> Sources: `_CONTEXT.md`; decomposition PKG-06; `docs/SPEC.md` Sections 8 through 10 and 15.2; `docs/CONTRACT.md` Sections 1.4 through 1.6.
->
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
 
 ### CLM-025 — Principles
 
-> ##### Principles
->
-> 1. Chirality event names are the durable contract. SDK hook names and SDK transcript details may be adapter metadata, but persisted runtime semantics should remain `HarnessEvent` records in Chirality terms. Sources: `docs/SPEC.md` Section 10.3; `docs/CONTRACT.md` Section 1.4 K-ENGINE-4.
-> 2. The audit mirror stays canonical. `.chirality/sessions/<id>/events.jsonl` remains the product-owned audit record even when SDK transcripts assist resume or debugging. Sources: `docs/CONTRACT.md` Section 1.5 K-EVENT-4; `docs/SPEC.md` Section 8.4.
-> 3. Hook failure is safety-relevant. Failed hooks cannot be reduced to diagnostics when the attempted action is write, shell, domain, or subagent execution; fail-closed behavior must be preserved. Sources: `docs/CONTRACT.md` Section 1.6 K-HOOK-1; `docs/SPEC.md` Section 15.2.
-> 4. Compaction must not erase replay. Context compaction can reduce model context, but the full Chirality event log must remain on disk and replayable. Sources: `docs/PLAN.md` R4; `docs/PRD.md` Section 8.15, MATCH status. (reconciled under D-APP-38).
-> 5. Terminal outcomes remain durable. Stop/finalization evidence should support, not replace, the TurnEngine/session event obligation that every accepted turn ends in a durable terminal event. Source: `docs/CONTRACT.md` Section 1.5 K-EVENT-3.
->
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Named verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
 
 ### CLM-026 — Considerations
 
@@ -392,42 +302,37 @@ The live Codex event path retains upstream notifications and native compaction s
 
 ### CLM-027 — Event Boundary
 
-> ###### Event Boundary
->
-> | Topic | Guidance | Source |
-> |---|---|---|
-> | Event type names | Use `hook.started`, `hook.completed`, and `context.compacted` where they apply. If a distinct failure event type is proposed, treat it as PROPOSAL until the event category registry accepts it; meanwhile encode failure as outcome data under an accepted event type or a versioned extension. | `docs/SPEC.md` Section 9.4; `docs/TYPES.md` Section 7.3 |
-> | Payload content | Keep payloads replay-useful but safe: IDs, timestamps, hook term, action/tool context, outcome, duration, adapter metadata, and artifact references are plausible; exact fields are TBD until implementation defines the event schema. | `docs/SPEC.md` Section 9.1 and 9.2 |
-> | SDK metadata | Store SDK hook names, transcript keys, or compaction metadata only under explicit adapter metadata fields. | `docs/SPEC.md` Section 10.3 |
-> | Parent linkage | Use `parentEventId` or turn/session IDs where useful to connect hook events to tool, turn, terminal, or subagent events. Exact linkage policy is TBD until the mapper owns the relationship between hook callbacks and event-writer records. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Sections 7.3 and 8.5 |
->
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Named verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
 
 ### CLM-028 — Compaction Mirror
 
-> ###### Compaction Mirror
->
-> REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
->
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Named verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
 
 ### CLM-029 — Terminal Hook Handling
 
-> ###### Terminal Hook Handling
->
-> Stop/finalization hooks should be mapped carefully so they do not race or duplicate terminal `turn.completed`, `turn.failed`, `turn.cancelled`, or interruption records. A useful implementation pattern is to make the finalization mapper attach safe hook evidence to the same turn/session lineage while preserving the TurnEngine as terminal outcome owner. Exact implementation: TBD.
->
+For each accepted turn, persist exactly one durable terminal outcome. Completion, Stop/finalization and interruption races must not append duplicate or contradictory terminal records. Verify a named completion-versus-Stop race fixture against the live Runtime event store, asserting exactly one terminal event and a truthful final result.
+
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Named verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
 
 ### CLM-030 — Trade-offs
 
-> ##### Trade-offs
->
-> | Trade-off | Guidance |
-> |---|---|
-> | Separate failure event type vs outcome field | The current listed categories include `hook.started` and `hook.completed` but not `hook.failed`. Prefer accepted event categories unless the event registry is explicitly extended. Preserve failure in outcome/status data when needed. |
-> | Rich payloads vs redaction | Prefer minimal replay-relevant metadata plus artifact references. Do not store secrets or large raw tool outputs in hook events. Source: `docs/SPEC.md` Section 9.2. |
-> | SDK transcript reliance vs Chirality mirror | Use SDK transcript linkage for resume/debug metadata, but never make it the only source needed to replay Chirality runtime history. |
-> | Compaction mirror vs custom compaction | Mirror SDK compaction first. Custom compaction is not required by current sources and should remain TBD unless a governed update adds it. Source: `docs/PLAN.md` alternatives table. |
-> | Hook enforcement vs hook evidence | DEL-06-06 should not absorb DEL-06-04's path enforcement scope. It records lifecycle/failure/finalization evidence and preserves fail-closed semantics at the mirror boundary. |
->
+Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Named verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success. Evidence: Runtime `packages/daemon/src/codex-supervisor.ts`, `packages/core/src/session-store.ts`, `packages/contracts/src/harness/transcript-replay.ts`; `tests/codex-supervisor.test.ts`; App `scripts/validate-harness-section9.mjs` as a coverage mapping hook, not proof of live reach.
 
 ### CLM-031 — Examples
 
@@ -445,14 +350,15 @@ The live Codex event path retains upstream notifications and native compaction s
 
 ### CLM-032 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling |
-> |---|---|---|---|---|---|---|
-> | TBD | No direct source conflict identified during P1/P2. PRD has a MATCH source state. | `_REFERENCES.md` REF-006 | `docs/PRD.md` Section 8.15 and runtime event requirements | PRD-cited compaction payload details and acceptance wording | Treat PRD as a current MATCH source under the reconciled D-APP-38 source state; prefer CONTRACT/SPEC/TYPES for binding schema and invariants. | TBD — reconciled under D-APP-38 |
->
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. Observe hook/compaction/terminal activity through the complete Runtime/Codex event stream and provide truthful App replay. Legacy SDK callback names do not prescribe native supplier hooks.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Deliver live named compaction/replay and terminal witnesses, identify which hook facts Codex actually emits, and close structural-redaction/artifact gaps with PKG-05. Record any absent native hook or enforcement subject without recreating retired SDK callbacks.
 
 ### CLM-033 — Pass 3 Disposition
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### Pass 3 Disposition
 >
@@ -462,8 +368,13 @@ The live Codex event path retains upstream notifications and native compaction s
 > | X-001 | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; `docs/PRD.md` Section 8.15; `docs/SPEC.md` Sections 9.4 and 15.2 — reconciled under D-APP-38 |
 > | E-001 | Converted to a tracked linkage-policy blocker: parent/child linkage may use `parentEventId`, `turnId`, or `sessionId`, but the exact policy remains `TBD` until mapper implementation assigns callback-to-event lineage. | `docs/SPEC.md` Section 9.1; `docs/TYPES.md` Sections 7.3 and 8.5 |
 
+
+Current requirement and verification boundary: Preserve the complete Codex notification/request stream, including upstream method names, identifiers and payloads after required redaction. Known events may have normalized views; unfamiliar notifications remain inspectable and every server request receives a truthful response. The closed event vocabulary and a prohibition on all upstream-shaped data are superseded, while canonical event ownership, terminal outcomes and secret protection remain. The application-owned Runtime service is the canonical session/event writer. Its store is `{userData}/runtime/projects/<projectId>/sessions/<sessionId>/`; project-local `.chirality/sessions` is a legacy source. Runtime state is operational, not authoritative project truth. Provider thread/transcript references remain secondary linkage. Preserve unique event IDs and write sequence, available hook progress/output/failure data, safe provenance, durable terminal outcomes and replay after compaction. Record compaction boundaries and known replay implications; retain the context.compacted semantic requirement as unresolved where only a generic native notification is stored. Never fabricate a hook that Codex did not emit. Application-controlled mutating/domain/delegation operations retain fail-closed validation; native tools obey selected Codex policy. Redaction and payload budgets apply before sinks.
+
+Verification: Verify actual emitted hook coverage, named compaction observation/replay implications, exactly one noncontradictory terminal outcome per accepted turn including a completion-versus-Stop race fixture, append order and structural redaction/budgets. Map section9.context_compaction_boundary to actual live fixtures; absence of hook evidence remains unknown, not success.
+
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-057 SOW-061 OBJ-003 OBJ-005 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-057 SOW-061 OBJ-003 OBJ-005 | CLM-010  | AC-001 | VER-001 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |

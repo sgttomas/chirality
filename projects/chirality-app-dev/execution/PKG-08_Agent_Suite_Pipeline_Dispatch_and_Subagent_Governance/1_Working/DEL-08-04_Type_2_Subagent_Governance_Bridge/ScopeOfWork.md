@@ -14,7 +14,7 @@ package_objective_refs: [OBJ-005, OBJ-007]
 This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063, SOW-083] and package objectives [OBJ-005, OBJ-007].
 
 - **OUT-001** — The managed-delegation admission bridge for DEL-08-04, including `delegate_agent`, fail-closed governance evaluation, parent-relative hierarchy checks, restricted child tools/cwd, and the DEL-08-05 handoff interface.
-- **OUT-002** — The v3.0.0-rc.1 carrier outputs assigned to `DEL-08-04` by the applied decomposition row (`execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` line 357 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`): App project-authority and managed-delegation bridge; daemon-client dispatch; class-aware `subagent-governance` behavior; managed sibling-overlap checks; role/native-origin fixtures; sealed-brief, containment, approval, cancellation, and cleanup conformance tests. Traceable to SOW-063 and OBJ-005, OBJ-007.
+- **OUT-002** — The dated 2026-09-03 v3.0.0-rc.1 carrier outputs assigned to `DEL-08-04` by the applied decomposition row (`execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` line 357 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`): App project-authority and managed-delegation bridge; daemon-client dispatch; class-aware `subagent-governance` behavior; managed sibling-overlap checks; role/native-origin fixtures; sealed-brief, containment, approval, cancellation, and cleanup conformance tests. Traceable to SOW-063 and OBJ-005, OBJ-007.
 
 ## SCA-APP-010 Gate-5 Current Contract (Controlling)
 
@@ -31,34 +31,24 @@ evidence remain dated compatibility history and are not deleted.
 
 `DEL-08-04 Type 2 Subagent Governance Bridge` (BACKEND_FEATURE_SLICE, applied decomposition row L371):
 
-Remain the Chirality-managed delegation bridge and prospectively carry
-multi-child managed execution plus the root `AGENTS.md` Agent 0/1/2 graph for v3
-work, while consuming delegated-harness-native descent as a distinct
-Root-originated class. Enforce managed hierarchy, named allowlist or declared
-generalist policy, sealed brief, approvals, context/cwd/tool/write boundaries,
-active-sibling write-overlap fail-close, cancellation/cleanup, and class-aware
-routing; native descent assigns no Agent 0/1/2 role. Agent 0/1/2 role entry is
-offered for Codex sessions, with Agent 2/TASK labelled `role not mechanically
-enforced` and governed evidence marked `instruction-asserted` when G-ROLE cannot
-mechanically prove non-delegation. Honour the per-chat delegation policy carried
-with the session (`none` by default) as a narrowing input to managed delegation.
+Apply the current Root/App four-role graph: HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS may enter directly; TASK is delegated and cannot delegate. The App-owned Runtime carries managed delegation, while delegated-harness-native descendants remain a distinct class. Enforce managed hierarchy, named allowlist or declared generalist policy, sealed brief, approvals, context/cwd/tool/write boundaries, active-sibling write-overlap fail-close, cancellation/cleanup and class-aware routing. Native descent does not infer a managed role; record its actual parentage, supplied basis, host enforcement limits and return. Honour the per-chat delegation policy (`none` by default) as a narrowing input. The older Agent 0/1/2 and daemon-client wording in the applied row is dated carrier history; CLM-033 retains its exact provenance.
 
-Applied row notes: Project authority/client-dispatch slice; daemon owns
+Applied row notes (dated decomposition history): Project authority/client-dispatch slice; daemon owns
 operational managed delegation and Root owns delegated-harness-native semantics.
 The D-APP-74 exclusion remains historical and tranche-scoped to SCA-APP-004;
 this v3 carrier prospectively supersedes it without retroactive edit. D-GOV-35
 is necessary but App carrier acceptance and WP-03/05 fixtures remain required.
 
-Applied row outputs: App project-authority and managed-delegation bridge;
+Applied row outputs (dated decomposition history): App project-authority and managed-delegation bridge;
 daemon-client dispatch; class-aware `subagent-governance` behavior; managed
 sibling-overlap checks; role/native-origin fixtures; sealed-brief, containment,
 approval, cancellation, and cleanup conformance tests.
 
 ### Current acceptance obligations
 
-1. The Chirality-managed delegation bridge enforces managed hierarchy, named allowlist or declared generalist policy, sealed brief, approvals, context/cwd/tool/write boundaries, active-sibling write-overlap fail-close, cancellation and cleanup, and class-aware routing; native descent assigns no Agent 0/1/2 role.
+1. The Chirality-managed delegation bridge enforces managed hierarchy, named allowlist or declared generalist policy, sealed brief, approvals, context/cwd/tool/write boundaries, active-sibling write-overlap fail-close, cancellation and cleanup, and class-aware routing; native descent does not infer a managed role.
 2. The per-chat delegation policy carried with the session (`none` by default) is honoured as a narrowing input to managed delegation and adds no delegation class.
-3. Role entry for Codex sessions carries the exact `role not mechanically enforced` label and `instruction-asserted` evidence marking where G-ROLE cannot prove non-delegation; WP-03/05 fixtures and D-GOV-35 remain required for the class-aware paths.
+3. Current role entry follows the Root/App four-role instructions; record actual host enforcement limits and evidence provenance for managed and native descendants. WP-03/05 fixtures and D-GOV-35 remain required for class-aware paths; older posture labels are historical carrier evidence.
 
 ### Seating and rulings
 
@@ -91,7 +81,7 @@ dependency-acceptance, product, or release act is implied.
 > | Type | BACKEND_FEATURE_SLICE |
 > | ResponsibleParty | TBD |
 > | ContextEnvelope | M |
-> | CoversScopeItems | SOW-063 |
+> | CoversScopeItems | SOW-063, SOW-083 |
 > | SupportsObjectives | OBJ-005, OBJ-007 |
 >
 
@@ -115,11 +105,11 @@ dependency-acceptance, product, or release act is implied.
 >
 > | Condition | Value |
 > |---|---|
-> | PRD source status | `docs/PRD.md` is current under the D-APP-38 authority corpus; PRD-derived subagent governance details are accepted for this tranche. |
+> | PRD source status | `docs/PRD.md` is historically reconciled under D-APP-38; verify current bytes; PRD-derived subagent governance details are accepted for this tranche. |
 > | Sequencing | PLAN R5 places governed subagent runtime after earlier runtime, permission, hook, and tool-governance work. |
 > | Scope boundary | This deliverable covers `delegate_agent` admission, fail-closed governance, parent-relative hierarchy eligibility, and the disabled legacy-bridge boundary. Persistent parent-child run records are DEL-08-05. |
 > | Authority boundary | D-GOV-14 item 7 retires the record-less SDK `Agent` bridge. Chirality-owned managed sessions, governance, permission, audit, and runtime contracts control executable delegation. |
-> | Dependency boundary | Declared upstream/downstream dependency lists remain `TBD`; the current extracted register records ACTIVE execution prerequisites for the source corpus, `evaluateSubagentGovernance` contract, permission/hook infrastructure, DEL-04-01 SDK probe, and DEL-08-05 handoff. Source: `_DEPENDENCIES.md`. |
+> | Dependency boundary | Existing Dependencies.csv rows and the accepted closure pointer control selectability. Legacy SDK-probe and hook targets are historical evidence; refresh their formal applicability only through the owning dependency process. |
 >
 
 ### CLM-005 — Construction
@@ -143,13 +133,13 @@ dependency-acceptance, product, or release act is implied.
 >
 > | RefID | Source | Status |
 > |---|---|---|
-> | REF-001 | `docs/DIRECTIVE.md` | MATCH |
-> | REF-002 | `docs/CONTRACT.md` | MATCH |
-> | REF-003 | `docs/SPEC.md` | MATCH |
-> | REF-004 | `docs/TYPES.md` | MATCH |
-> | REF-005 | `docs/PLAN.md` | MATCH |
-> | REF-006 | `docs/PRD.md` | MATCH under the current D-APP-38 authority corpus |
-> | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | MATCH |
+> | REF-001 | `docs/DIRECTIVE.md` | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-002 | `docs/CONTRACT.md` | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-003 | `docs/SPEC.md` | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-004 | `docs/TYPES.md` | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-005 | `docs/PLAN.md` | historical D-APP-38 source state; verify current candidate bytes |
+> | REF-006 | `docs/PRD.md` | historical D-APP-38 source state; verify current candidate bytes|
+> | REF-007 | `../../workflows/software-decomp/WORKFLOW.md` | historical D-APP-38 source state; verify current candidate bytes |
 >
 
 ### CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
@@ -162,7 +152,7 @@ dependency-acceptance, product, or release act is implied.
 
 > ##### Applied decomposition row for DEL-08-04 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`
 >
-> The accepted SCA-APP-008 Gate-5 application (PR #662) amended this deliverable's row. The row text below is transcribed verbatim from the applied decomposition and is the sole scope basis for the v3 outputs and requirements added on 2026-09-03; it adds no obligation beyond the row.
+> The accepted SCA-APP-008 Gate-5 application (PR #662) amended this deliverable's row. The row text below is transcribed verbatim as dated 2026-09-03 provenance. Current four-role applicability and App-owned Runtime topology follow later Root/App instructions, D-GOV-43/D-APP-127 and D-APP-131; the verbatim row does not revive its older role or daemon mechanism.
 >
 > | Column | Applied row text |
 > |---|---|
@@ -210,19 +200,9 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-011 — Governance Decision Contract
 
-> ##### Governance Decision Contract
+> Managed admission must preserve the decision and reason actually observed, decision source, applicable approval reference, eligible parent/child identity, sealed supplied basis, cwd/tools/write targets, and DEL-08-05 return linkage. These semantics are checkable through `frontend/src/__tests__/lib/managed-delegation.test.ts`; its selected serialized shape is retained compatibility evidence, not a current live-Codex admission guarantee.
 >
-> The exact serialized decision-object type is `TBD` until implementation locates or defines the `evaluateSubagentGovernance` contract. The accepted contract must, at minimum, preserve these product-owned semantics without becoming SDK-shaped:
->
-> | Field family | Required content | Source |
-> |---|---|---|
-> | Decision behavior | `allow`, `deny`, or application-level `ask`/human-ruling-needed outcome; deny overrides allow. | `docs/PRD.md` FR-087, FR-089; `docs/CONTRACT.md` K-PERM-1 |
-> | Denial reason | Audit-suitable reason code and summary that are stable enough for tests and do not leak sensitive prompt or environment data. | `docs/PRD.md` FR-092; `Guidance.md` Considerations |
-> | Decision source | Whether the outcome came from Chirality policy, hook, governance gate, SDK callback, or human gate. | `docs/PRD.md` FR-087, FR-092; `docs/TYPES.md` Section 8.2 |
-> | Approval reference | Non-empty human/gate evidence string when delegation is allowed; missing or ambiguous approval references deny. | `docs/TYPES.md` Section 10; `docs/CONTRACT.md` K-AUTH-1, K-AUTH-2 |
-> | Candidate and scope facts | Candidate agent identity, Type 2 eligibility result, allowlist result, context-sealed result, requested tools, restricted tools, requested cwd, and approved cwd. | `docs/TYPES.md` Section 10; `docs/PLAN.md` R5 |
-> | DEL-08-05 handoff | Parent session/turn identifiers and child lifecycle/output-reference hooks sufficient for DEL-08-05 to persist child records without this deliverable owning persistence. | `docs/TYPES.md` Section 10; `docs/PRD.md` FR-101 |
->
+> Native Codex descendants are a distinct D-GOV-35 class and do not imply managed admission. Record actual parentage, basis, scope, enforcement limits, decisions and return. D-APP-132 leaves the additional D-APP-117 per-attempt replay product unadopted; existing class-aware evidence duties continue. Missing live managed admission, sibling-overlap and per-chat policy evidence remains implementation/verification work.
 
 ### CLM-012 — Standards
 
@@ -235,7 +215,7 @@ dependency-acceptance, product, or release act is implied.
 > | `docs/TYPES.md` Section 10 | Canonical subagent vocabulary and `evaluateSubagentGovernance` meaning. |
 > | `docs/PLAN.md` R5 | Implementation sequencing, targets, and acceptance criteria. |
 > | `docs/PRD.md` Section 8.15 | User/runtime behavior for governed delegation. |
-> | `AGENT_SOFTWARE_DECOMP.md` deliverable sizing rules | Confirms Type 2 deliverables are bounded executable units; no sub-task level should be invented. |
+> | `../../workflows/software-decomp/WORKFLOW.md` deliverable sizing rules | Confirms Type 2 deliverables are bounded executable units; no sub-task level should be invented. |
 >
 
 ### CLM-013 — Verification
@@ -283,13 +263,13 @@ dependency-acceptance, product, or release act is implied.
 >
 > UPD-135/136 record the landed `SubagentGovernanceDecision`, preflight `safeMetadata`, and `ChildRunRecord` shapes plus implementation/test paths; only the separately gated approval-reference question remains open. UPD-137 aligns DEP-08-04-003 to that contract.
 
-- **REQ-001** — The deliverable shall remain the Chirality-managed delegation bridge and prospectively carry multi-child managed execution plus the root `AGENTS.md` Agent 0/1/2 graph for v3 work.
-- **REQ-002** — The deliverable shall consume delegated-harness-native descent as a distinct Root-originated class; native descent assigns no Agent 0/1/2 role, and Root owns delegated-harness-native semantics.
+- **REQ-001** — The deliverable shall preserve managed multi-child delegation under the current Root/App four-role graph and App-owned Runtime, with TASK unable to delegate and actual host limits recorded.
+- **REQ-002** — The deliverable shall consume delegated-harness-native descent as a distinct Root-originated class; native descent does not infer a managed Chirality role, and Root owns its native semantics.
 - **REQ-003** — The bridge shall enforce managed hierarchy, named allowlist or declared generalist policy, sealed brief, approvals, context/cwd/tool/write boundaries, active-sibling write-overlap fail-close, cancellation/cleanup, and class-aware routing.
-- **REQ-004** — Agent 0/1/2 role entry shall be offered for Codex sessions, with Agent 2/TASK labelled `role not mechanically enforced` and governed evidence marked `instruction-asserted` when G-ROLE cannot mechanically prove non-delegation.
+- **REQ-004** — Direct entry shall offer HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS; TASK is delegated. Record selected role, scope and mechanical enforcement limits truthfully for each managed/native class.
 - **REQ-005** — The D-APP-74 exclusion remains historical and tranche-scoped to SCA-APP-004 and is prospectively superseded without retroactive edit; D-GOV-35 is necessary, but App carrier acceptance and WP-03/05 fixtures remain required before v3 delegation work.
-- **AC-001** — The DEL-08-04 bridge is accepted when the complete preserved legacy source's denial, restriction, allowed-path, audit-safety, and DEL-08-05 handoff checks demonstrate fail-closed parent-relative managed delegation for SOW-063 and OBJ-005, OBJ-007.
-- **AC-002** — The v3 outputs assigned by the applied decomposition row (App project-authority and managed-delegation bridge, daemon-client dispatch, class-aware `subagent-governance` behavior, managed sibling-overlap checks, role/native-origin fixtures, and sealed-brief, containment, approval, cancellation, and cleanup conformance tests) exist and satisfy REQ-001 through REQ-005 without inferring an Agent role from native descent.
+- **AC-001** — The DEL-08-04 bridge requires current App-owned Runtime managed/native class checks for denial, restriction, allowed path, audit safety and DEL-08-05 handoff, bound to the candidate and actual host limits. Preserved legacy fixtures establish only their compatibility subjects for SOW-063 and OBJ-005, OBJ-007.
+- **AC-002** — The v3 outputs assigned by the applied decomposition row (App project-authority and managed-delegation bridge through App-owned Runtime, class-aware descendant handling, managed sibling-overlap checks, role/native-origin fixtures, and sealed-brief, containment, approval, cancellation, and cleanup conformance tests) exist and satisfy REQ-001 through REQ-005 without inferring an Agent role from native descent.
 
 ## Production and Verification Method — Praxeology
 
@@ -307,17 +287,7 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-019 — Prerequisites
 
-> ##### Prerequisites
->
-> | Prerequisite | Status |
-> |---|---|
-> | Accepted source corpus for DEL-08-04 | Available under the current D-APP-38 authority corpus. |
-> | Current deliverable status permits authoring | INITIALIZED; P3 enrichment is allowed by the four-documents skill, and `_STATUS.md` remains read-only under `NO_STATUS_TOUCH`. |
-> | Existing `evaluateSubagentGovernance` behavior or target contract | TBD at implementation time; source docs identify it as authoritative but do not provide the code shape. |
-> | Permission overlay and hook infrastructure | Required by source sequencing; implementation readiness TBD. |
-> | D-GOV-14 item 7 managed-delegation posture | RULED: the record-less SDK `Agent` bridge is retired and managed child sessions are the sole executable app-harness path. |
-> | Declared upstream dependencies | TBD; no declared upstream edges have been accepted outside the extracted register. Current extracted ACTIVE prerequisites are source corpus, `evaluateSubagentGovernance` contract, permission/hook infrastructure, DEL-04-01 SDK probe, and DEL-08-05 handoff. |
->
+> Use current `_STATUS.md`, Dependencies.csv and the accepted closure pointer rather than the P3 INITIALIZED/NO_STATUS_TOUCH snapshot. Named retained managed-admission evidence is in CLM-005/011. Live implementation requires the current Runtime interface and class-aware App handoff; native descendants are allowed under D-GOV-35 without reviving the disabled SDK Agent bridge. Required sealed context, scope, actor/approval and return evidence remains class-specific. D-APP-132 defers only the optional additional replay product.
 
 ### CLM-020 — Steps
 
@@ -327,7 +297,7 @@ dependency-acceptance, product, or release act is implied.
 > 2. Define the governance input required by the bridge: parent session identity, requested candidate agent, requested task scope, context-sealed indicator, pipeline approval indicator, approval reference, persona allowlist result, environment enablement, and requested child tool/cwd constraints.
 > 3. Ensure every required input has a fail-closed default. Missing, malformed, or unknown values must deny or require human ruling.
 > 4. Record the managed-delegation, legacy-bridge, coordination-registration, fixture, runnable-test, and evidence paths.
-> 5. Resolve child eligibility relative to the direct parent: Agent 0 → named Agent 1; Agent 1 → allowed Agent 2; Agent 2 → none.
+> 5. Resolve child eligibility relative to the current direct parent: HELP_HUMAN may coordinate managers or dispatch bounded TASK work; HELPS_HUMANS and WORKING_ITEMS may dispatch TASK or an allowed ephemeral Type 2 instance; TASK cannot delegate. Record actual selected role and host enforcement limits.
 > 6. Apply explicit child restrictions, including declared context, tools, write targets, dependencies, output contract, and working directory.
 > 7. Keep the record-less SDK `Agent` bridge disabled and absent from the model-visible tool surface.
 > 8. Invoke the governance/admission bridge before managed child-session creation.
@@ -374,7 +344,7 @@ dependency-acceptance, product, or release act is implied.
 > Do not create or modify `Dependencies.csv` during this procedure. Use `_DEPENDENCIES.md` only as current dependency context until declared edges are accepted.
 
 - **VER-001** — Review the complete preserved legacy source and execute its specified missing-metadata, approval-reference, unsealed-context, non-allowlisted, parent/child-hierarchy, launch-error, broad-capability, allowed-restricted-execution, audit-safety, and DEL-08-05 handoff checks; record concrete evidence.
-- **VER-002** — Run the class-aware routing, managed sibling-overlap, role/native-origin, sealed-brief, containment, approval, cancellation, and cleanup conformance tests; confirm native descent assigns no Agent 0/1/2 role and that the `role not mechanically enforced` and `instruction-asserted` labels appear whenever G-ROLE proof is absent.
+- **VER-002** — Run the class-aware routing, managed sibling-overlap, role/native-origin, sealed-brief, containment, approval, cancellation, and cleanup conformance tests; confirm native descent does not infer a managed role and record actual selected role, scope and host enforcement limits. Older posture-label fixtures remain dated compatibility evidence.
 
 ## Governing Values and Decisions — Axiology
 
@@ -398,7 +368,7 @@ dependency-acceptance, product, or release act is implied.
 > |---|---|
 > | Deny first | Treat any missing governance metadata, unknown candidate status, hook error, unsealed context, missing approval reference, or unsupported state as denial or human-ruling-needed. Do not infer permission from SDK defaults. |
 > | Chirality owns semantics | `delegate_agent`, managed-session records, public runtime contracts, audit events, and governance decisions remain Chirality-owned; the SDK `Agent` tool is not model-visible. |
-> | Parent-relative hierarchy | Agent 0 delegates only to named Agent 1; Agent 1 delegates only to allowed Agent 2; Agent 2 does not delegate. Eligibility is relative to the direct parent, not a universal Type-2-only rule. |
+> | Parent-relative hierarchy | Current HELP_HUMAN may coordinate managers or dispatch bounded TASK work directly; HELPS_HUMANS and WORKING_ITEMS may dispatch TASK or allowed ephemeral Type 2 work; TASK does not delegate. Eligibility remains relative to the direct parent, with actual host limits recorded. |
 > | No capability inheritance by accident | A managed child receives explicit declared context, tools, write targets, and cwd. It does not inherit parent capabilities implicitly or broaden parent authority. |
 > | Sealed context only | Managed child context is limited to the sealed brief and declared references. Avoid "ghost inputs" that are not in the sealed brief or declared sources. |
 > | Approval is evidence, not vibes | The approval reference must be non-empty and traceable to human/gate evidence. Until the accepted format is selected, the bridge should treat absent, ambiguous, mutable, or SDK-only approval data as denial or human-ruling-needed. |
@@ -415,7 +385,7 @@ dependency-acceptance, product, or release act is implied.
 > - The candidate resolver should prefer explicit `AGENT_TYPE: 2` and task-agent metadata. If an instruction file is ambiguous, classify it as ineligible until a human or conformance validator resolves it.
 > - Child cwd should be the approved bounded working root for the task, not the instruction root and not a broad ambient workspace.
 > - The bridge should produce denial reasons suitable for audit and tests without leaking sensitive prompt or environment data.
-> - REF-006 is current under the D-APP-38 authority corpus. PRD-derived delegation behavior remains traceable to PRD text, while implementation proof remains separate.
+> - REF-006 is historically reconciled under D-APP-38; verify current bytes. PRD-derived delegation behavior remains traceable to PRD text, while implementation proof remains separate.
 >
 
 ### CLM-027 — Trade-offs
@@ -438,9 +408,9 @@ dependency-acceptance, product, or release act is implied.
 > |---|---|
 > | Delegation request lacks approval reference | Denied before managed child creation. |
 > | Delegation request includes only an SDK transcript path or mutable UI label as approval evidence | Denied or human-ruling-needed until the accepted approval-reference format is selected. |
-> | Agent 0 requests an Agent 2 child directly | Denied; Agent 0 delegates only to named Agent 1. |
-> | Agent 1 requests an allowed TASK or ephemeral-generalist Agent 2 | Eligible for further sealed-brief and policy checks. |
-> | Agent 2 requests any child | Denied; Agent 2 cannot delegate. |
+> | HELP_HUMAN requests bounded TASK work directly | Eligible for further sealed-brief and policy checks under current Root role instructions. |
+> | HELPS_HUMANS or WORKING_ITEMS requests an allowed TASK or ephemeral Type 2 child | Eligible for further sealed-brief and policy checks. |
+> | TASK requests any child | Denied; TASK cannot delegate. |
 > | Context is not sealed or includes undeclared references | Denied or human-ruling-needed; do not execute with ghost inputs. |
 > | Child tool list requests write/bash beyond approved scope | Denied or reduced to explicit approved tools; do not inherit parent capability. |
 > | Hook throws during governance evaluation | Denied with fail-closed hook outcome. |
@@ -457,16 +427,7 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-030 — Open Items
 
-> ##### Open Items
->
-> | Item | Status |
-> |---|---|
-> | Managed-delegation implementation paths | Resolved: `frontend/src/lib/harness/managed-delegation.ts`, `subagent-bridge.ts`, coordination tool registration, and their tests. |
-> | Exact serialized shape of the governance decision object | TBD; must include allow/deny or human-ruling-needed behavior, stable denial reason vocabulary, decision source, safe metadata, approval reference, candidate/scope facts, and DEL-08-05 handoff fields. |
-> | Exact approval reference format | TBD; must be non-empty, traceable to human/gate evidence, and stable enough for audit and tests. |
-> | Legacy bridge posture | Resolved by D-GOV-14 item 7: disabled and non-model-visible; no SDK Agent probe can reactivate it. |
-> | Exact interface boundary with DEL-08-05 | TBD; should carry child lifecycle metadata and output artifact-path hooks without duplicating persistence ownership. |
->
+> The retained managed implementation and tests are named in CLM-005; their serialized shape is evidence, not an unresolved naming decision. Current work is live managed admission and class-aware DEL-08-05 handoff, scope/sibling-overlap protection, cancellation/cleanup, policy application and actual return evidence on the App-owned Runtime/Codex path. Optional D-APP-117 per-attempt replay is not adopted for this undertaking under D-APP-132 and is deferred to its future adoption/implementation gate. Required existing evidence is not deferred with it.
 
 ### CLM-031 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 

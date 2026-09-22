@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-06-03-001, DEP-06-03-002, DEP-06-03-003, DEP-06-03-004, DEP-06-03-005, DEP-06-03-006, DEP-06-03-007, DEP-06-03-008, DEP-06-03-009, DEP-06-03-010, DEP-06-03-011, DEP-06-03-012, DEP-06-03-013, DEP-06-03-014, DEP-06-03-015, DEP-06-03-018
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-06-03-016, DEP-06-03-017
 
 ## Current ADQ-11 Reconciliation Note
 
@@ -58,37 +58,30 @@ remain extraction history and no longer describe the active source-state posture
 
 ## Extracted Dependency Register
 
-Structured register: `Dependencies.csv` v3.1
+Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 
-| DependencyID | Class | Type | Direction | Target | Status |
-|---|---|---|---|---|---|
-| DEP-06-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-06 Permissioned Tools, MCP, and Hooks | ACTIVE |
-| DEP-06-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-048 Chirality MCP descriptors | ACTIVE |
-| DEP-06-03-003 | ANCHOR | OTHER | UPSTREAM | SOW-050 Read tools before writes/bash | ACTIVE |
-| DEP-06-03-004 | EXECUTION | PREREQUISITE | UPSTREAM | Decomposition v3.2 document | ACTIVE |
-| DEP-06-03-005 | EXECUTION | PREREQUISITE | UPSTREAM | MCP tools and permissions source contracts | ACTIVE |
-| DEP-06-03-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-01 ChiralityPermissionOverlay and Mode Mapping | ACTIVE |
-| DEP-06-03-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-05 Dependencies.csv v3.1 Reader Writer and Linter | ACTIVE |
-| DEP-06-03-008 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN/TBD status lifecycle API owner | ACTIVE |
-| DEP-06-03-009 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN/TBD Chirality runtime event path | ACTIVE |
-| DEP-06-03-010 | ANCHOR | OTHER | UPSTREAM | SOW-064 MCP extension boundaries | ACTIVE |
-| DEP-06-03-011 | ANCHOR | OTHER | UPSTREAM | SOW-082 Prompted specification ladder | ACTIVE |
-| DEP-06-03-012 | ANCHOR | OTHER | UPSTREAM | OBJ-005 Project capability policy and conformance | ACTIVE |
-| DEP-06-03-013 | ANCHOR | OTHER | UPSTREAM | OBJ-006 Filesystem project truth | ACTIVE |
-| DEP-06-03-014 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-01-PROPOSAL_TRIGGER_CLAUSES Proposal-trigger clauses contract (DOCUMENT; DEL-08-01 ScopeOfWork.md SCA-APP-010 Gate-5 Current Contract) | ACTIVE |
-| DEP-06-03-015 | EXECUTION | PREREQUISITE | UPSTREAM | UNKNOWN/TBD instruction-root roster and policy values | ACTIVE |
-| DEP-06-03-016 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-02-02 Right-Panel Coordination, Workflows, and Proposal UX | ACTIVE |
-| DEP-06-03-017 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE |
-| DEP-06-03-018 | EXECUTION | CONSTRAINT | UPSTREAM | EXTERNAL/TBD Root DEL-02-10 additive proposal.* event-type acceptance | ACTIVE |
+| DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
+|---|---|---|---|---|---|---|
+| DEP-06-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-06 | ACTIVE | SATISFIED |
+| DEP-06-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-048 | ACTIVE | SATISFIED |
+| DEP-06-03-003 | ANCHOR | OTHER | UPSTREAM | SOW-050 | ACTIVE | SATISFIED |
+| DEP-06-03-004 | EXECUTION | PREREQUISITE | UPSTREAM | DECOMP-v3.2 | ACTIVE | SATISFIED |
+| DEP-06-03-005 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002/REF-003/REF-006 | ACTIVE | SATISFIED |
+| DEP-06-03-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-01 | ACTIVE | TBD |
+| DEP-06-03-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-05 | ACTIVE | TBD |
+| DEP-06-03-008 | EXECUTION | INTERFACE | UPSTREAM | TBD | RETIRED | NOT_APPLICABLE |
+| DEP-06-03-009 | EXECUTION | INTERFACE | UPSTREAM | TBD | ACTIVE | TBD |
+| DEP-06-03-010 | ANCHOR | OTHER | UPSTREAM | SOW-064 | ACTIVE | SATISFIED |
+| DEP-06-03-011 | ANCHOR | OTHER | UPSTREAM | SOW-082 | ACTIVE | SATISFIED |
+| DEP-06-03-012 | ANCHOR | OTHER | UPSTREAM | OBJ-005 | ACTIVE | SATISFIED |
+| DEP-06-03-013 | ANCHOR | OTHER | UPSTREAM | OBJ-006 | ACTIVE | SATISFIED |
+| DEP-06-03-014 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-01-PROPOSAL_TRIGGER_CLAUSES | ACTIVE | PENDING |
+| DEP-06-03-015 | EXECUTION | PREREQUISITE | UPSTREAM | TBD | RETIRED | NOT_APPLICABLE |
+| DEP-06-03-016 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-02-02 | ACTIVE | PENDING |
+| DEP-06-03-017 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-05-02 | ACTIVE | PENDING |
+| DEP-06-03-018 | EXECUTION | CONSTRAINT | UPSTREAM | ROOT:DEL-02-10 | RETIRED | PENDING |
 
-Counts:
-
-- Total rows: 18 (DEP-06-03-014 emitted under D-APP-109 and re-targeted to its DOCUMENT contract node under D-APP-110; strict edge, gates per SatisfactionStatus)
-- By class: ANCHOR=7, EXECUTION=11
-- By type: OTHER=7, PREREQUISITE=3, INTERFACE=5, HANDOVER=2, CONSTRAINT=1
-- By status: ACTIVE=18
-- By direction: UPSTREAM=16, DOWNSTREAM=2
-- Parent anchor check: PASS (one ACTIVE `IMPLEMENTS_NODE` row)
+Counts: ACTIVE=18; satisfaction PENDING=5, SATISFIED=9, TBD=4.
 
 ## Lifecycle Summary
 
@@ -123,12 +116,12 @@ Open dependency closure items:
 - 2026-09-05T07:57-0600 (D-APP-109 emission) - `TASK + dependency-extract` apply (`ApplyEdits=true`; instance `N9-TASK-DEL-06-03`; owner ruling D-APP-109 accepting the held edges of `HELD_EDGE_PROPOSALS.csv`; the 05:15 reviewed write of the v1.1 post-image by `N3-TASK-DEL-06-03` is the pre-image); mode `UPDATE`; strictness `CONSERVATIVE`; consumer context `RECONCILIATION`; decomposition found at the pinned identity `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`; warnings: PROJECT_ID_FORMAT_PROFILE, TARGET_UNRESOLVED (DEP-06-03-008, -009, -015), CYCLE_PARTICIPATING (DEP-06-03-014 inside the new two-node SCC DEL-06-03/DEL-08-01 with DEP-08-01-018; non-gating pending a recorded move); NEEDS_HUMAN_GRAPH_DECISION x2 carried unchanged (H-1 DEL-06-02 cycle; DEP-06-03-008 resolution to DEL-07-04); 18 ACTIVE rows (17 preserved byte-identical, 1 emitted DEP-06-03-014 at its numeric position, 0 retired, 0 held).
 - 2026-09-05T10:15-0600 (D-APP-110 decompose) - `TASK + dependency-extract` apply (`ApplyEdits=true`; instance `N14-TASK-DEL-06-03`; owner ruling D-APP-110 directing the decompose move, workbook `SCC_DECOMPOSE_RULINGS.csv` row SD-007; the 07:57 D-APP-109 emission by `N9-TASK-DEL-06-03` is the pre-image); mode `UPDATE`; strictness `CONSERVATIVE`; consumer context `RECONCILIATION`; decomposition found at the pinned identity `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`; warnings: PROJECT_ID_FORMAT_PROFILE, TARGET_UNRESOLVED (DEP-06-03-008, -009, -015); CYCLE_PARTICIPATING cleared (DEP-06-03-014 re-targeted to the DOCUMENT contract DEL-08-01-PROPOSAL_TRIGGER_CLAUSES; the two-node SCC DEL-06-03/DEL-08-01 is decomposed); NEEDS_HUMAN_GRAPH_DECISION x2 carried unchanged (H-1 DEL-06-02 cycle; DEP-06-03-008 resolution to DEL-07-04); 18 ACTIVE rows (17 preserved byte-identical, 1 re-targeted DEP-06-03-014 in place, 0 added, 0 retired, 0 held).
 
-## D-APP-56 R5 P45 current register summary (2026-07-12)
+## D-APP-56 R5 P45 dated register history (2026-07-12)
 
 - **Source:** UPD-128
-- **Current counts:** ACTIVE 9; RETIRED 0; SATISFIED=5; TBD=4.
+- **Snapshot counts (2026-07-12):** ACTIVE 9; RETIRED 0; SATISFIED=5; TBD=4.
 - **Correction:** DEP-06-03-005 is SATISFIED and removed from current open-item interpretation.
-- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the current structured-register mirror.
+- Earlier extraction and reconciliation history is preserved as dated evidence; this block is the dated 2026-07-12 register snapshot.
 - 2026-09-05 preview note: once the reviewed DEP-015/DEP-016 write is applied, the `## Extracted Dependency Register` and `## Lifecycle Summary` sections above become the current structured-register mirror and this block remains dated history.
 
 ## Downstream Handoff Notes
@@ -142,3 +135,23 @@ Consumer context: `RECONCILIATION`.
 - Root-owned semantics: DEP-06-03-018 (Root DEL-02-10 additive `proposal.*` acceptance) is `EXTERNAL/TBD/PENDING` under OI-008; reconcile only against the routed Root return, never against a Root path.
 - Open graph decisions for the owner: held candidate H-1 (DEL-06-02 catalog-validation cycle with `DEP-06-02-006`; not encoded in this register) and DEP-06-03-008 (resolution to DEL-07-04; row kept UNKNOWN/TBD). The two-node SCC DEL-06-03/DEL-08-01 recorded under D-APP-109 was resolved by the D-APP-110 decompose of DEP-06-03-014; acceptance of the resulting closure snapshot as the loop's DepClosure pointer remains a separate owner act.
 - Unresolved targets remain `UNKNOWN/TBD` (DEP-06-03-008, -009, -015); reconciliation should not infer owners from prose.
+
+## Current descriptive index — 2026-09-22
+
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Current consumer/verification locus: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=17; RETIRED=1; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_04_06_SUPPORTED_APPROVED.csv`; current rows: ACTIVE=17, RETIRED=1. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SEMANTIC_19_PREVIEW.csv`; current rows: ACTIVE=15, RETIRED=3. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

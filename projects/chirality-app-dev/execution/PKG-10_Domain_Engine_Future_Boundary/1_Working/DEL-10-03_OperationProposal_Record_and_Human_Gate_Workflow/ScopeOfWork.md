@@ -59,7 +59,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > | Result schema hooks | Proposal checks route through profile-declared `validate_result_schema`, `apply_result_schema`, and deterministic-check result schema hooks. | REF-008; `docs/TYPES.md` Section 11.1 |
 > | Domain-truth ownership | Domain engines own authoritative domain truth; Chirality governs interaction, proposals, records, and human gates. | `docs/CONTRACT.md` Section 1.10 K-DOMAIN-1 |
 > | Protected path relationship | Agents write proposals, summaries, and review aids, not protected domain-engine model truth. | `docs/PRD.md` Section 8.17; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 |
-> | Professional boundary | Domain-engine output must not be represented as professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth owned by Chirality. | `docs/PRD.md` Section 8.17; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 |
+> | Professional boundary | Domain-engine output must not be represented as professional approval, code compliance, certification, sealing, authentication, external validation, ready-for-construction status, or solver truth owned by Chirality. | `docs/PRD.md` Section 8.17; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 |
 >
 
 ### CLM-004 — Conditions
@@ -70,10 +70,10 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > |---|---|---|
 > | Activation condition | Future amendment required before domain-engine operation execution is active. | `docs/PLAN.md` R7; `_CONTEXT.md` Package Scope |
 > | Current implementation state | Domain-engine implementation is not activated by this deliverable. | D-APP-39 F3; `docs/SPEC.md` Section 18 |
-> | Upstream precedence | Framework-root `AGENT_DOMAIN_ENGINE.md` at `77a327727` is canonical; app-dev `docs/TYPES.md` Section 11 conforms to it. | D-T0-01; REF-008 |
+> | Upstream precedence | Framework-root `AGENT_DOMAIN_ENGINE.md` at `77a327727` is canonical; app-dev TYPES supplies the local vocabulary; current Section 11.2 explicitly preserves constant proposal-only status and separate lifecycle. The current field is already present on the shared HEAD; this record repair does not claim to have added it. | D-T0-01; REF-008 |
 > | Resolved former blockers | Required-human-gate semantics and result-schema hooks are resolved by canon; concrete result-schema refs published 2026-07-02 (`projects/chirality-piping/schemas/operation_outcome.schema.json`, `projects/chirality-piping/schemas/rule_check_run_result.schema.json`); remaining evidence artifacts (operation store, records, review checklist) implementation `TBD`. | REF-008; D-T0-01; piping DEL-10-03 |
-> | Upstream dependencies | TBD - no accepted dependency edges have been extracted. | `_DEPENDENCIES.md` |
-> | Downstream dependencies | TBD - no accepted dependency edges have been extracted. | `_DEPENDENCIES.md` |
+> | Upstream dependencies | Use the extracted `Dependencies.csv` and descriptive `_DEPENDENCIES.md`; DEP-10-03-004 remains PENDING and other recorded prerequisites are SATISFIED on their stated basis. | `_DEPENDENCIES.md` |
+> | Downstream dependencies | Use the extracted `Dependencies.csv` and descriptive `_DEPENDENCIES.md`; DEP-10-03-004 remains PENDING and other recorded prerequisites are SATISFIED on their stated basis. | `_DEPENDENCIES.md` |
 >
 
 ### CLM-005 — Construction
@@ -84,7 +84,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > |---|---|---|
 > | Proposal record shape | Future `OperationProposal` table with canonical fields and proposal-only status. | REF-008; `docs/TYPES.md` Section 11.2 |
 > | Base state | Identifies the accepted state or artifact baseline against which a proposal is made. | REF-008 |
-> | Deterministic checks | Proposal field listing checks expected before review; the check result payload is published 2026-07-02 (`projects/chirality-piping/schemas/rule_check_run_result.schema.json`); the ADOPTED profile's hook refs remain `TBD` pending an owner tier-0 CHANGE. | REF-008; `docs/PRD.md` Section 8.17; piping DEL-10-03 |
+> | Deterministic checks | Proposal field listing checks expected before review; the check result payload is published 2026-07-02 (`projects/chirality-piping/schemas/rule_check_run_result.schema.json`); applicable ADOPTED profile hooks are bound; inapplicable or unsupplied hooks remain explicitly TBD. | REF-008; `docs/PRD.md` Section 8.17; piping DEL-10-03 |
 > | Human gate workflow | Proposal cannot reach accepted/applied lifecycle states without K-AUTH-2-bound human approval. | REF-008; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 |
 > | Review checklist | Must verify field completeness, base state, deterministic checks, outputs, risks, assumptions, blockers, required human gate, protected-path posture, and professional-boundary language. | REF-008; `docs/PRD.md` Section 8.17 |
 >
@@ -96,7 +96,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > - `_CONTEXT.md`
 > - `_DEPENDENCIES.md`
 > - `_REFERENCES.md`
-> - `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`
+> - historical `agents/AGENT_DOMAIN_ENGINE.md@77a327727` (retained source basis); current method references are `_REFERENCES.md` REF-008/REF-011/REF-012
 > - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`
 > - `docs/CONTRACT.md` Section 1.10
 > - `docs/DIRECTIVE.md` professional and domain-boundary principles
@@ -125,9 +125,9 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 >
 > This deliverable defines a future-boundary data model and review workflow for `OperationProposal` records. It covers the proposal record shape, proposal-only status, lifecycle, K-AUTH-2-bound human gate, deterministic result-schema hooks, and review checklist for future domain-engine operations.
 >
-> This deliverable excludes operation apply, `/api/domain/*` endpoints, direct protected-path writes/hooks, general domain-runtime activation, and any claim that Chirality owns solver truth. D-APP-49 through D-APP-52 separately authorize source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools; those staged surfaces remain outside this four-document contract except as governing context.
+> This deliverable excludes operation apply, `/api/domain/*` endpoints, direct protected-path writes/hooks, general domain-runtime activation, and any claim that Chirality owns solver truth. D-APP-49 through D-APP-52 separately authorize source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools; CLM-015 assigns this deliverable the proposal interface/envelopes/gates. That authorized interface is implemented on a retained compatibility path; live Codex composition remains delivery work. The ownership amendment does not authorize apply or lift DEP-10-03-004.
 >
-> Primary canon: `_REFERENCES.md` REF-008, `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`. Under D-T0-01, the framework-root persona is canonical; app-dev `docs/TYPES.md` Section 11 conforms to it and must not weaken framework invariants.
+> Historical field-shape basis: `agents/AGENT_DOMAIN_ENGINE.md@77a327727`. Current domain-engine method sources are `_REFERENCES.md` REF-008/REF-011/REF-012; they are not the historical persona bytes. Under D-T0-01, the framework-root persona is canonical; app-dev `docs/TYPES.md` Section 11 conforms to it and must not weaken framework invariants.
 >
 
 ### CLM-010 — Requirements
@@ -144,8 +144,8 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > | REQ-10-03-006 | Proposal records MUST identify inputs, intended changes, deterministic checks, expected outputs, risks, assumptions, blockers, boundary notice, required gate, risk class, judgment-value provenance, and storage path. | REF-008; `docs/TYPES.md` Section 11.2 | Required fields are present and non-empty or explicitly `TBD` before review. |
 > | REQ-10-03-007 | Deterministic checks MUST resolve against profile-declared schema hooks: `validate_result_schema`, `apply_result_schema`, and `deterministic_check_result_schema`. | REF-008; `docs/TYPES.md` Section 11.1 | Review checklist blocks implementation readiness when concrete schema refs are missing. |
 > | REQ-10-03-008 | Agents MUST write proposals, summaries, and review aids, not protected domain-engine model truth. | `docs/PRD.md` Section 8.17 FR-111; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-2 | Review checklist confirms proposed outputs target proposal/review paths, not protected paths. |
-> | REQ-10-03-009 | Domain-engine outputs MUST NOT be represented as professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth owned by Chirality. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 | Review checklist includes professional-boundary copy check. |
-> | REQ-10-03-010 | Concrete evidence artifacts remain future implementation TBDs until accepted: profile instances, concrete schema refs, adapters, operation store, apply tooling, and review-checklist artifact path/schema. | `docs/PLAN.md` R7; `docs/SPEC.md` Section 18; REF-008 | Documentation preserves TBDs for concrete implementation artifacts without weakening canonical lifecycle semantics. |
+> | REQ-10-03-009 | Domain-engine outputs MUST NOT be represented as professional approval, code compliance, certification, sealing, authentication, external validation, ready-for-construction status, or solver truth owned by Chirality. | `docs/PRD.md` Section 8.17 FR-115; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 | Review checklist includes professional-boundary copy check. |
+> | REQ-10-03-010 | Concrete evidence artifacts remain future implementation TBDs until accepted: new live-path adapters, operation store, apply tooling, review-checklist artifact path/schema and concrete proposal instances. ADOPTED profiles and applicable bound hooks are supplied; retained PEC adapters do not qualify Codex exposure. | `docs/PLAN.md` R7; `docs/SPEC.md` Section 18; REF-008 | Documentation preserves TBDs for concrete implementation artifacts without weakening canonical lifecycle semantics. |
 >
 
 ### CLM-011 — Standards
@@ -154,8 +154,8 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 >
 > | Standard or Source | Applicability |
 > |---|---|
-> | `agents/AGENT_DOMAIN_ENGINE.md` at `77a327727` | Canonical operation-proposal field table, lifecycle, human gate, result-schema hooks, and boundary posture. |
-> | `docs/TYPES.md` Section 11.2 | App-dev vocabulary target conforming to framework canon. |
+> | historical `agents/AGENT_DOMAIN_ENGINE.md@77a327727`; current method REF-008/REF-011/REF-012 | Canonical operation-proposal field table, lifecycle, human gate, result-schema hooks, and boundary posture. |
+> | `docs/TYPES.md` Section 11.2 | Current local vocabulary includes constant proposal-only `status`; the current field is already present on the shared HEAD, without weakening the requirement. |
 > | `docs/PRD.md` Section 8.17 | Product requirements for future domain-engine compatibility. |
 > | `docs/CONTRACT.md` Section 1.10 | Binding app-dev invariants specializing framework K-DOMAIN without weakening it. |
 > | `docs/SPEC.md` Section 18 | Future API surface context; endpoint behavior details remain gated. |
@@ -173,7 +173,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > | Apply result posture | Verify applied state also requires domain-engine-controlled apply or external terminal acceptance record, or remains blocked as implementation `TBD`. | PASS/TBD |
 > | Result schema hooks | Verify future deterministic checks reference profile-level validation/apply/check result schema hooks. | PASS/TBD |
 > | Protected path posture | Verify proposal outputs do not directly modify protected domain-engine paths. | PASS/TBD |
-> | Boundary language | Verify no text claims Chirality approves, certifies, code-validates, externally validates, seals, authenticates, or owns solver truth. | PASS/TBD |
+> | Boundary language | Verify no text claims Chirality approves, certifies, code-validates, externally validates, seals, authenticates, confers ready-for-construction status, or owns solver truth. | PASS/TBD |
 > | Future-boundary constraint | Verify implementation activation is excluded until governed amendment. | PASS/TBD |
 > | Review sufficiency evidence | Verify a future review-checklist result artifact is identified as a true implementation `TBD`, not as an unresolved framework blocker. | PASS/TBD |
 >
@@ -191,7 +191,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > Additional documentation needed before implementation:
 >
 > - TBD: exact proposal ID generation semantics.
-> - TBD: concrete `DomainEngineProfile` instance for the target engine.
+> - Supplied: ADOPTED OpenPipeStress and PEC profiles under tier-0 authority; use their respective integration levels.
 > - RESOLVED by cross-reference (2026-07-02, agent decision under
 >   `TRB-chirality-app-dev-DEL-10-03-2026-07-02`): concrete refs for the tier-0 engine
 >   instance are published — `validate_result_schema` / `apply_result_schema` =
@@ -200,9 +200,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 >   `deterministic_check_result_schema` =
 >   `projects/chirality-piping/schemas/rule_check_run_result.schema.json`
 >   (rule_check_runner `RuleCheckRunResult`); the Rust sources govern on disagreement.
->   Residual `TBD`: the ADOPTED profile's hook fields await an owner tier-0 CHANGE
->   (`_DomainEngines/profiles/open_pipe_stress.yaml:81,88,101,115`); engines other than
->   open_pipe_stress supply their own refs.
+>   Applicable hooks are bound in `_DomainEngines/profiles/open_pipe_stress.yaml`; read them by field, not obsolete line numbers. Other engines supply their own refs.
 > - TBD: operation store and `storage_path` convention.
 > - TBD: adapter validation/apply tooling and result-record location. (Narrowed
 >   2026-07-02: the validation/apply result envelope is published — see the resolved
@@ -224,7 +222,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 >
 > Under R4-P27, this deliverable owns the ruled proposal-tool surface in `domain-proposal-tools.ts` (`propose`, `refresh`, and `validate`), including registration, proposal envelopes, and gates. Only PEC-profile-scoped fixture interaction is evidence for DEL-10-04. This amendment does not unlock DEP-10-03-004 or any D-APP-53 Option-C-gated work.
 
-- **AC-001** — The DEL-10-03 OperationProposal record and human-gate workflow preserves the exact legacy source content, proposal-only boundary, and human approval gate while remaining bounded to SOW-069 and OBJ-010.
+- **AC-001** — The DEL-10-03 OperationProposal record and human-gate workflow preserves the substantive source obligations, proposal-only boundary, and human approval gate while remaining bounded to SOW-069 and OBJ-010.
 
 ## Production and Verification Method — Praxeology
 
@@ -244,14 +242,14 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 
 > ##### Prerequisites
 >
-> - Framework canon source: `_REFERENCES.md` REF-008, `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`.
+> - Framework canon source: `_REFERENCES.md` REF-008, historical `agents/AGENT_DOMAIN_ENGINE.md@77a327727` (retained source basis); current method references are `_REFERENCES.md` REF-008/REF-011/REF-012.
 > - Accepted future amendment authorizing domain-engine operation workflow implementation: TBD.
-> - Accepted `DomainEngineProfile` for the target engine: TBD.
-> - Protected path and proposal path policy: TBD, sibling deliverable DEL-10-02.
-> - Deterministic adapter or validation tool for the operation: TBD.
-> - Concrete `validate_result_schema`, `apply_result_schema`, and deterministic-check result schema refs: published 2026-07-02 — `projects/chirality-piping/schemas/operation_outcome.schema.json` (validate/apply envelope) and `projects/chirality-piping/schemas/rule_check_run_result.schema.json` (deterministic-check result); the ADOPTED profile's hook fields remain `TBD` pending an owner tier-0 CHANGE.
+> - Accepted target profiles exist; verify the selected ADOPTED profile and its integration level (DEP-10-03-005 SATISFIED).
+> - Protected path and proposal path policy: DEL-10-02 contract supplied (DEP-10-03-006 SATISFIED); Codex enforcement evidence remains outstanding.
+> - Retained deterministic adapter/tool evidence satisfies DEP-10-03-007 on its recorded basis; current Codex composition remains unverified.
+> - Concrete `validate_result_schema`, `apply_result_schema`, and deterministic-check result schema refs: published 2026-07-02 — `projects/chirality-piping/schemas/operation_outcome.schema.json` (validate/apply envelope) and `projects/chirality-piping/schemas/rule_check_run_result.schema.json` (deterministic-check result); applicable ADOPTED profile hooks are now bound; read explicit remaining TBDs individually.
 > - Operation store and review-checklist result artifact path/schema: TBD.
-> - Declared upstream dependencies: TBD, no accepted dependency edges extracted yet.
+> - Read `Dependencies.csv`: DEP-10-03-004 remains PENDING; other recorded prerequisites are SATISFIED. This does not qualify the Codex live path.
 >
 
 ### CLM-019 — Steps
@@ -292,7 +290,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 >
 > 7. Review protected-path and professional-boundary posture.
 >    - Confirm agents write proposals, summaries, and review aids only.
->    - Confirm proposal text does not claim professional approval, code compliance, certification, sealing, authentication, external validation, or Chirality-owned solver truth.
+>    - Confirm proposal text does not claim professional approval, code compliance, certification, sealing, authentication, external validation, ready-for-construction status, or Chirality-owned solver truth.
 >
 > 8. Maintain lifecycle semantics.
 >    - `draft`: initial incomplete or working proposal.
@@ -314,7 +312,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > | Deterministic checks | Checks are listed or marked `TBD`; no prompt-only safety claim is made. |
 > | Result schema hooks | Validation/apply/check result schema hooks are present; concrete refs may remain `TBD`. |
 > | Protected path safety | No step instructs agents to write protected domain-engine model truth. |
-> | Boundary notice | No step or record represents Chirality as professional approver, code-compliance verifier, certifier, sealer, authenticator, external validator, or solver truth owner. |
+> | Boundary notice | No step or record represents Chirality as professional approver, code-compliance verifier, certifier, sealer, authenticator, external validator, ready-for-construction authority, or solver truth owner. |
 > | Future-boundary posture | Procedure does not activate current-release domain operation execution. |
 > | Review sufficiency evidence | Future review checklist result records field completeness, protected-path posture, boundary-language review, gate readiness, deterministic-check readiness, and unresolved implementation blockers or marks the result artifact as `TBD`. |
 >
@@ -338,7 +336,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 >
 > UPD-150/151/152 record that tier-0 CHANGE landed, open_pipe_stress and pec are ADOPTED/registered, and the extracted register is reconciled. Proposal-ID semantics, store/checklist artifacts, concrete instances, and declared-section ownership remain genuine TBDs.
 
-- **VER-001** — Verify DEL-10-03 source-marker coverage and byte parity against the exact legacy four-document source, and confirm SOW-069 and OBJ-010 traceability, proposal-only status, and the preserved human gate.
+- **VER-001** — Review the current ScopeOfWork claims and output matrix against their cited requirements and retained gates. Historical conversion/parity evidence is recovered in `R5/CONVERSION_EVIDENCE_REVIEW.csv` of RUN_D128_CONCORDANCE_2026-09-21_1614Z; it proves the dated conversion only. Current reconciliation uses W10_CHANGES.csv and independent changed-block review; product and human-acceptance checks remain separately required.
 
 ## Governing Values and Decisions — Axiology
 
@@ -353,7 +351,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 >
 > This deliverable preserves future compatibility for domain-engine operation workflows without turning Chirality into a domain solver. It defines how future domain operations should be represented as proposed, reviewable, human-gated records before any protected domain state can be changed.
 >
-> Primary canon: `_REFERENCES.md` REF-008, `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`.
+> Historical field-shape basis: `agents/AGENT_DOMAIN_ENGINE.md@77a327727`. Current domain-engine method sources are `_REFERENCES.md` REF-008/REF-011/REF-012; they are not the historical persona bytes.
 >
 
 ### CLM-025 — Principles
@@ -366,7 +364,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > - Preserve `status = proposal_only`; use `lifecycle` for `draft`, `ready_for_review`, `accepted`, `rejected`, and `applied`.
 > - Require deterministic checks and profile-declared result-schema hooks before a future operation can be considered implementation-ready.
 > - Require explicit human approval bound to git SHA per K-AUTH-2 before accepted/applied lifecycle states.
-> - Preserve professional-boundary language: Chirality must not claim professional approval, code compliance, certification, sealing, authentication, external validation, or solver truth ownership.
+> - Preserve professional-boundary language: Chirality must not claim professional approval, code compliance, certification, sealing, authentication, external validation, ready-for-construction status, or solver truth ownership.
 >
 
 ### CLM-026 — Considerations
@@ -378,13 +376,13 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > | Future scope | Draft record/workflow surfaces only; do not activate domain-engine implementation in this package. | `_CONTEXT.md`; `docs/PRD.md` Section 8.17; D-APP-39 F3 |
 > | Proposal fields | Use the REF-008 field table as the minimum record shape. | REF-008; `docs/TYPES.md` Section 11.2 |
 > | Base state | Include `base_state` so review can compare proposed changes against a named accepted state or artifact baseline. | REF-008 |
-> | Deterministic checks | Define check names and expected outcomes before review; concrete result payloads and schema refs remain true implementation TBDs. | REF-008; `docs/PRD.md` Section 8.17 FR-112 |
+> | Deterministic checks | Define check names and expected outcomes before review; published result envelopes and applicable ADOPTED hooks are supplied; missing operation-specific evidence remains TBD. | REF-008; `docs/PRD.md` Section 8.17 FR-112 |
 > | Human gate | Accepted/applied states require explicit human approval bound to git SHA per K-AUTH-2. | REF-008; `docs/CONTRACT.md` Section 1.10 K-DOMAIN-3 |
 > | Applied state | Applied state additionally requires domain-engine-controlled apply or external terminal acceptance record. | REF-008 |
 > | Protected paths | Proposal outputs should be written to proposal/review locations, not protected model truth. | `docs/PRD.md` Section 8.17 FR-110/FR-111 |
-> | Professional boundary | Review copy and event records should avoid language that makes Chirality the approving professional, code-compliance verifier, external validator, certifier, sealer, authenticator, or solver owner. | `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 |
+> | Professional boundary | Review copy and event records should avoid language that makes Chirality the approving professional, code-compliance verifier, external validator, certifier, sealer, authenticator, ready-for-construction authority, or solver owner. | `docs/CONTRACT.md` Section 1.10 K-DOMAIN-4 |
 >
-> The former "7 TBD blockers" around required-human-gate semantics and result-schema hooks are resolved by framework canon. Do not re-derive them locally. Preserve only concrete implementation TBDs: profile instances, concrete schema refs, adapters, operation stores, apply tooling, review-checklist artifact path/schema, and concrete proposal records.
+> The former "7 TBD blockers" around required-human-gate semantics and result-schema hooks are resolved by framework canon. Do not re-derive them locally. Preserve only concrete implementation TBDs: new live-path adapters, operation stores, apply tooling, review-checklist artifact path/schema, and concrete proposal records. ADOPTED profile instances and applicable bound schema hooks are supplied.
 >
 
 ### CLM-027 — Terminology Map
@@ -398,7 +396,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > | Human gate | The workflow point that prevents accepted/applied lifecycle states without accountable human action. | Required by REF-008 and K-DOMAIN-3. |
 > | Explicit human approval | K-AUTH-2-bound human approval evidence for accepted/applied lifecycle states. | Canonical requirement; concrete evidence artifact remains implementation `TBD`. |
 > | `required_human_gate` | The `OperationProposal` field naming the required gate. | Required field; concrete value vocabulary may be profile/workflow-specific. |
-> | Deterministic result schema | Schema hooks used by validation/apply/check results. | Canonical hooks required; concrete refs published 2026-07-02: `projects/chirality-piping/schemas/operation_outcome.schema.json` (validate/apply), `projects/chirality-piping/schemas/rule_check_run_result.schema.json` (deterministic check); the ADOPTED profile's hook fields await an owner tier-0 CHANGE. |
+> | Deterministic result schema | Schema hooks used by validation/apply/check results. | Canonical hooks required; concrete refs published 2026-07-02: `projects/chirality-piping/schemas/operation_outcome.schema.json` (validate/apply), `projects/chirality-piping/schemas/rule_check_run_result.schema.json` (deterministic check); applicable ADOPTED profile hooks are bound; preserve individually inapplicable/TBD hooks. |
 > | Review checklist result | Future artifact recording schema completeness, protected-path posture, boundary-language review, gate readiness, deterministic-check readiness, and unresolved implementation blockers. | Implementation `TBD` until artifact path/schema is accepted. |
 >
 
@@ -431,7 +429,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > }
 > ```
 >
-> Values are `TBD` because no accepted engine profile, adapter, operation store, or operation instance exists in this future-boundary deliverable.
+> Values are illustrative placeholders, not an assertion that profiles are absent. ADOPTED profiles and retained adapters exist; the App operation store and concrete accepted proposal instances remain unfinished.
 >
 
 ### CLM-029 — Review Checklist
@@ -449,7 +447,7 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 > | Human gate | Is `required_human_gate` explicit, and is accepted/applied blocked until K-AUTH-2-bound approval exists? |
 > | Lifecycle | Does `status` remain `proposal_only`, with lifecycle carrying progression? |
 > | Review evidence | Does a future checklist result artifact record boundary-language, protected-path, human-gate, deterministic-check, and unresolved implementation-blocker findings or mark the artifact as `TBD`? |
-> | Boundary notice | Does the proposal avoid claims of professional approval, code compliance, certification, sealing, authentication, external validation, or Chirality-owned solver truth? |
+> | Boundary notice | Does the proposal avoid claims of professional approval, code compliance, certification, sealing, authentication, external validation, ready-for-construction status, or Chirality-owned solver truth? |
 >
 
 ### CLM-030 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
@@ -462,4 +460,4 @@ This Scope of Work defines `DEL-10-03` in service of project scope [SOW-069] and
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-069 OBJ-010 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-069 OBJ-010 | CLM-008 | AC-001 | VER-001 | Historical conversion mapping; current claim-block review and applicable named verification evidence |

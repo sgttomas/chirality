@@ -40,19 +40,19 @@ Structured register: `Dependencies.csv` v3.1.
 
 | DependencyID | Class | Type | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEP-01-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-01 Product Governance and Reliance Boundaries | ACTIVE |
-| DEP-01-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-065 Remote MCP/plugins out of current scope | ACTIVE |
-| DEP-01-04-003 | ANCHOR | OTHER | UPSTREAM | SOW-076 Ambient settings and shipped bypass forbidden | ACTIVE |
-| DEP-01-04-004 | ANCHOR | OTHER | UPSTREAM | SOW-077 Retired PKG-08 scope remains retired | ACTIVE |
-| DEP-01-04-005 | ANCHOR | OTHER | UPSTREAM | SOW-078 Windows/Linux packaging out of scope | ACTIVE |
-| DEP-01-04-006 | ANCHOR | OTHER | UPSTREAM | OBJ-009 Professional boundary and reliance-boundary ownership | ACTIVE |
-| DEP-01-04-007 | EXECUTION | PREREQUISITE | UPSTREAM | `_CONTEXT.md` | ACTIVE |
-| DEP-01-04-008 | EXECUTION | PREREQUISITE | UPSTREAM | `_REFERENCES.md` | ACTIVE |
-| DEP-01-04-009 | EXECUTION | PREREQUISITE | UPSTREAM | Decomposition v3.2 | ACTIVE |
-| DEP-01-04-010 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-04-02 SdkOptionsBuilder and Settings Isolation | ACTIVE |
-| DEP-01-04-011 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-07-06 Reference Hash and Snapshot Conventions | ACTIVE |
-| DEP-01-04-012 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-09-04 macOS DMG Packaging and Instruction Root Integrity | ACTIVE |
-| DEP-01-04-013 | EXECUTION | CONSTRAINT | DOWNSTREAM | PKG-10 Domain Engine Future Boundary | ACTIVE |
+| DEP-01-04-001 | ANCHOR | OTHER | UPSTREAM | PKG-01 | ACTIVE | SATISFIED |
+| DEP-01-04-002 | ANCHOR | OTHER | UPSTREAM | SOW-065 | ACTIVE | SATISFIED |
+| DEP-01-04-003 | ANCHOR | OTHER | UPSTREAM | SOW-076 | ACTIVE | SATISFIED |
+| DEP-01-04-004 | ANCHOR | OTHER | UPSTREAM | SOW-077 | ACTIVE | SATISFIED |
+| DEP-01-04-005 | ANCHOR | OTHER | UPSTREAM | SOW-078 | ACTIVE | SATISFIED |
+| DEP-01-04-006 | ANCHOR | OTHER | UPSTREAM | OBJ-009 | ACTIVE | SATISFIED |
+| DEP-01-04-007 | EXECUTION | PREREQUISITE | UPSTREAM | _CONTEXT.md | ACTIVE | SATISFIED |
+| DEP-01-04-008 | EXECUTION | PREREQUISITE | UPSTREAM | _REFERENCES.md | ACTIVE | SATISFIED |
+| DEP-01-04-009 | EXECUTION | PREREQUISITE | UPSTREAM | DECOMP-v3.2 | ACTIVE | SATISFIED |
+| DEP-01-04-010 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-04-02 | ACTIVE | PENDING |
+| DEP-01-04-011 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-07-06 | ACTIVE | SATISFIED |
+| DEP-01-04-012 | EXECUTION | CONSTRAINT | DOWNSTREAM | DEL-09-04 | ACTIVE | SATISFIED |
+| DEP-01-04-013 | EXECUTION | CONSTRAINT | DOWNSTREAM | PKG-10 | ACTIVE | SATISFIED |
 
 ## Lifecycle Summary
 
@@ -95,3 +95,17 @@ the 2026-05-20 extraction and remain historical. Current live evidence pointers
 are maintained in `Dependencies.csv` against consolidated `ScopeOfWork.md` CLM
 anchors. This migration changed no dependency identity, status, satisfaction,
 or lifecycle meaning.
+
+## Current Reliance Annotation (2026-09-22)
+
+D-APP-53 results and earlier MATCH notes above are dated evidence, not a fresh verification of changed source bytes. Formal row identity, status, satisfaction and accepted basis remain unchanged. Current source support is rechecked under D-APP-38; D-GOV-43/D-APP-127 governs current Codex/runtime/settings/policy applicability. REF-007 now names `workflows/software-decomp/WORKFLOW.md`; the descriptive locator now agrees with REF-007; formal edge identity, status and satisfaction remain unchanged.
+
+## Current evidence-locator refresh — 2026-09-22
+
+4 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=13; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.

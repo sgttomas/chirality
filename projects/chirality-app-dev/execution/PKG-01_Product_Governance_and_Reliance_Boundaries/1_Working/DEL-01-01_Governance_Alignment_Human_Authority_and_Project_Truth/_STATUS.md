@@ -8,11 +8,17 @@
 
 ## Remaining
 
-- **DEL-01-01-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 5 authority application, 1 evidence result, 3 implementation or evidence, 13 record repair, 4 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-01-01.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- Complete current P0 control/evidence mapping with the Runtime interface owner, including ordinary instruction protection and actual selected-policy limits. Verify current negative tests; no legacy SDK test implies live qualification.
 
-- **DEL-01-01-R5-EXTENSION-ROUTING** — Route the 41 unseated extension findings in the run's `R5/EXTENSION_RESIDUALS.csv` to their already owning document, scope or instruction authority; apply exact prior decisions and preserve real gates. This coordination item authorizes routing and record repair within D-APP-131, not new instruction or product scope.
+- App WORKING_ITEMS and the governance-doc owner must apply D-GOV-43/A2 and D-APP-127 to the App authority corpus through its clause-level scope-change and rehash process. Include the still-stale `docs/DIRECTIVE.md` clauses and every other affected governing carrier, then verify the resulting D-APP-38 corpus identity and live reference bindings. The superseding rulings govern now; this task neither accepts new scope nor treats the unamended corpus bytes as current Codex-path wording.
+
+
+
+Current record derivative: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (exact prior keys) and `CURRENT_CHANGED_UNITS.csv` (reproducible changed-unit identities). Scope wording is repaired; only the concrete tasks above remain. Historical R5 proposals are preserved as evidence, not current instructions.
 
 ## History
+- 2026-09-22 — The current reconciliation final review found that a draft `docs/DIRECTIVE.md` rewrite lacked the required authority-corpus successor. The draft was restored; this exact governed application and D-APP-38 verification remain open. D-GOV-43/D-APP-127 authority, lifecycle and prior approval SHA are unchanged.
+- 2026-09-22 — Current record closeout applies D-APP-131 lift and settled D-GOV-43/D-APP-127/132; exact current obligations and source-block evidence are in APP_RECORD_CLOSEOUT_2026-09-22. No lifecycle, approval SHA, dependency semantics, product qualification or personal owner review is claimed.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1_P2)
 - 2026-05-20 - State set to OPEN (PREPARATION)

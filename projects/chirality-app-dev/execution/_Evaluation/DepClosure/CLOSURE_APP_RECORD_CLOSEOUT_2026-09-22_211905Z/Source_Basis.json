@@ -1,0 +1,85 @@
+{
+  "app_hold": {
+    "entry_path": "HELP_HUMAN:APP_RECORD_CLOSEOUT:DDEPEND_AUDIT",
+    "operation": "reliance",
+    "register_sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c",
+    "scan_fingerprint_sha256": "fd2dc4854c18698679fe04fd21ae7397a08656470526148870eeaf214dd8d72d",
+    "target_count": 54,
+    "verdict": "ALLOW"
+  },
+  "execution": {
+    "agent": "/root",
+    "host_boundary": "shared writable checkout; no product/source mutation by audit",
+    "mechanism": "Agent 0 continuation using deterministic registered analyzer after interrupted delegated auditor",
+    "model_attestation": "not exposed by local tool",
+    "role": "HELP_HUMAN"
+  },
+  "repo_head": "100c5a21d00ae6e56e26171f61e58d48e475a70e",
+  "selected_workflow": "bundled:chirality-root/audit-dep-closure",
+  "sources": [
+    {
+      "Origin": "AGENTS.md",
+      "SHA256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57"
+    },
+    {
+      "Origin": "agents/AGENT_TASK.md",
+      "SHA256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "Origin": "projects/chirality-app-dev/instructions/AGENTS.md",
+      "SHA256": "12b2c01c7e960bc35ef7bf55d2a968687bef776826f12edfea8b8fdbc778e3de"
+    },
+    {
+      "Origin": "workflows/audit-dep-closure/WORKFLOW.md",
+      "SHA256": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1"
+    },
+    {
+      "Origin": "workflows/audit-dep-closure/resources/contract.md",
+      "SHA256": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43"
+    },
+    {
+      "Origin": "workflows/audit-dep-closure/resources/method.md",
+      "SHA256": "8fb002e8179cf28231404ffdf938a8b3a0280f7d5d55082905f4949405ea637d"
+    },
+    {
+      "Origin": "tools/coordination/analyze_dep_closure.py",
+      "SHA256": "fe546d0f18aac3ab44866d55d6e6ca39c2b6d323ee0355e923b01106a1698ccd"
+    },
+    {
+      "Origin": "tools/evaluation/audit_common.py",
+      "SHA256": "2d5eb4f62cc3fb13cce39b2e80ee92f55ff737fed181f98745a63966f1fef026"
+    },
+    {
+      "Origin": "tools/validation/validate_dependencies_schema.py",
+      "SHA256": "75cd74768cc8edf91c6f40b582f0fb570d2427894e6c2236ea2fe7d384291f5f"
+    },
+    {
+      "Origin": "projects/chirality-app-dev/execution/_Scripts/app_hold.py",
+      "SHA256": "92e6dd4c001e8715450e61f91073b49da6788de41f43606c812457c02e07c5bc"
+    },
+    {
+      "Origin": "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034/closure_summary.json",
+      "SHA256": "8ef85cb14932831860d951af6afdd70737fe688593a3e1ce2cf6cd93d20b3253"
+    },
+    {
+      "Origin": "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034/Evidence/edge_list.csv",
+      "SHA256": "d47d81d7173ac84a6532fe2fad8a4c2741729d03175adddd80978569f598b1e0"
+    },
+    {
+      "Origin": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "SHA256": "9261ce30f933a0b72364a5af09c8aeed9208372774959864ff24a805126ea8a6"
+    },
+    {
+      "Origin": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md",
+      "SHA256": "211ce2d25fde94c2c88c7b688a530e697b1b923efffaaaf18f39db414f494c19"
+    },
+    {
+      "Origin": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/_CONTEXT.md",
+      "SHA256": "55048244e0466dba8cdd2d977bc5cebd600420b782037ed437af15b0a082310f"
+    },
+    {
+      "Origin": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/_CONTEXT.md",
+      "SHA256": "c707baa78be3464230382068e2efe56eaf0ebbdd18decd41200e1fe078c2e973"
+    }
+  ]
+}

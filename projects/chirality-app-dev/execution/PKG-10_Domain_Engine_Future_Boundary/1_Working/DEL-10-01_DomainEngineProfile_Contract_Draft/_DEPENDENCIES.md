@@ -11,11 +11,15 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Descriptive mirror of `Dependencies.csv` (2026-09-22; no formal edge or basis change):
+
+- `DEP-10-01-001` — OTHER; Domain Engine Future Boundary; SATISFIED.
+- `DEP-10-01-002` — OTHER; Future Domain Engine Profile compatibility; SATISFIED.
+- `DEP-10-01-003` — OTHER; Generic domain profile contract; SATISFIED.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+No downstream-directed row is recorded in this local structured register; this does not assert absence of consumers elsewhere.
 
 ## Run Notes
 
@@ -58,16 +62,11 @@ Generated: 2026-05-20 21:02
 
 ## Lifecycle Summary
 
-| Status | Count |
-|---|---:|
-| ACTIVE | 3 |
-| RETIRED | 0 |
+Current structured-register mirror: 3 SATISFIED. Lifecycle labels and SatisfactionStatus are distinct; the complete formal register remains unchanged. Earlier run summaries below describe their dated basis.
 
-| SatisfactionStatus | Count |
-|---|---:|
-| SATISFIED | 3 |
+## Current evidence navigation — 2026-09-22
 
-(Synced to CSV state 2026-07-10, D-APP-53 reconciliation; previously TBD 3.)
+Current contract carrier: `ScopeOfWork.md`; former Datasheet/Specification/Procedure/Guidance labels and old line anchors in formal rows are retained historical evidence locators. Current generic type source is `projects/chirality-runtime/packages/contracts/src/harness/domain-profile.ts`, consumed as `@chirality/runtime-contracts`; D-APP-118 retires the App facade. Retained registry/proposal tests are not proof of live Codex exposure. Formal row evidence/pin/LastSeen changes require the owning dependency reconciliation and are outside this record repair.
 
 ---
 

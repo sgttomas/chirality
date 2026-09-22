@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows: `DEP-09-03-001`, `DEP-09-03-002`, `DEP-09-03-003`, `DEP-09-03-004`, `DEP-09-03-005`, `DEP-09-03-006`, `DEP-09-03-007`, `DEP-09-03-008`, `DEP-09-03-009`, `DEP-09-03-010`, `DEP-09-03-011`, `DEP-09-03-012`, `DEP-09-03-013`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows: NONE. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Run Notes
 
@@ -62,12 +62,23 @@ Structured register: `Dependencies.csv` v3.1
 
 ## Lifecycle Summary
 
-| Status | Count |
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
+| Field | Count |
 |---|---:|
 | ACTIVE | 13 |
-| RETIRED | 0 |
+| RequiredMaturity=TBD | 13 |
+| ProposedMaturity=TBD | 13 |
+| SatisfactionStatus=SATISFIED | 13 |
 
-| SatisfactionStatus | Count |
-|---|---:|
-| SATISFIED | 13 |
-| TBD | 0 |
+## Current record interpretation — 2026-09-22
+
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+11 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.

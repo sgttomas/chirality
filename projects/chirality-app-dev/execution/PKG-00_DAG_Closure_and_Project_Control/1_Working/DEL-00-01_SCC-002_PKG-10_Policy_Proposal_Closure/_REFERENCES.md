@@ -10,7 +10,9 @@
 | REF-004 | `execution/_Reconciliation/DepClosure/CLOSURE_SCC002_CHANGE_HANDOFF_2026-05-24_2020/` | SCC-002 closure evidence | HISTORICAL |
 | REF-005 | `execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/Dependencies.csv` | Source row `DEP-10-02-004` | CURRENT |
 | REF-006 | `execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/Dependencies.csv` | Source row `DEP-10-03-006` | CURRENT |
-| REF-007 | `execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z/` | Current accepted DepClosure snapshot | CURRENT |
+| REF-007 | `execution/_Reconciliation/DepClosure/CLOSURE_D53A_DEP_RECONCILIATION_2026-07-11_0224Z/` | Historical D53A snapshot | HISTORICAL |
+
+| REF-008 | `execution/_Reconciliation/DepClosure/CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034/` | Current accepted D-APP-111 DepClosure snapshot | CURRENT |
 
 ## Notes
 

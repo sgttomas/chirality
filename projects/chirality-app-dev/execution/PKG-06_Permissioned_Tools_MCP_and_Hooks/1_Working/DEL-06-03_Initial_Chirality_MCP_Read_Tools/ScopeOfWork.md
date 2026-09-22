@@ -13,7 +13,7 @@ package_objective_refs: [OBJ-005, OBJ-006]
 
 This Scope of Work defines `DEL-06-03` in service of project scope [SOW-048, SOW-050, SOW-064, SOW-082] and package objectives [OBJ-005, OBJ-006].
 
-- **OUT-001** — Initial Chirality MCP read-tool slice comprising deterministic descriptors, wrapper metadata, status read, dependency read, bounded scope scan, scaffold preview/dry-run behavior, and associated verification evidence.
+- **OUT-001** — Accepted deterministic Chirality read-operation descriptors/composition and live application-tool conformance for status, dependencies, bounded scope scan and scaffold preview; the gated SOW-082 propose operation retains tuple/plan/once-per-chat validation and proposal.offered semantics.
 
 **D-APP-80 concordance note (2026-07-28):** SOW-064 is supported here
 through in-process deterministic MCP wrappers and the App extension
@@ -32,43 +32,25 @@ evidence remain dated compatibility history and are not deleted.
 
 ### Current responsibility
 
-`DEL-06-03 Initial Chirality MCP Read Tools` (BACKEND_FEATURE_SLICE, applied decomposition row L348):
+Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
 
-Expose in-process deterministic MCP wrappers for status read, dependency read,
-scope scan, scaffold preview/dry-run, and the `propose` specification-ladder
-tool, and document their in-process extension boundary without opening remote
-MCP, plugins, or marketplace scope.
-
-Applied row notes: In-process wrapper and extension-boundary share of SOW-064;
-catalog validation and collision prevention remain DEL-06-02.
-
-Applied row outputs: `mcp__chirality__*` definitions; wrapper metadata;
-in-process extension-boundary notes; `propose` tool schema, validation, and
-once-per-chat tests; MCP tool tests.
+Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
 
 ### Current acceptance obligations
 
-1. MCP wrappers remain in-process and deterministic; no remote MCP, plugin, marketplace, provider, or network scope opens.
-2. The `propose` tool validates the specification tuple (folder, agent, delegation policy, roadmap, permission mode) against roster and policy values, resolves plan references from Agent 1 procedures, refuses a trigger already declined in the chat, and emits only `proposal.offered`.
-3. Catalog validation and collision prevention remain DEL-06-02's.
+Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
+
+Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite.
 
 ### Seating and rulings
 
-Remaining items seated under D-APP-108 (2026-09-04): DEL-06-03-V3-01. Ruled
-questions applied here: Q11, Q12, Q13. Alignment writes WI-036, WI-037, WI-038,
-WI-039, WI-040 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency
-writes DEP-015, DEP-016 await the registered dependency-extract pass after owner
-acceptance of this alignment. No lifecycle, Checking Approval SHA,
-dependency-acceptance, product, or release act is implied.
+The D-APP-109 extraction and D-APP-110 retargeting are recorded in the existing dependency register; the former pending-extraction note is historical. Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction. For propose: DEL-02-02-V3-04 selected, applicable DEL-08-01 trigger contract and DEL-06-02 catalog validation; ordinary current implementation/evidence gates for read tools; no new remote MCP/provider permission.
 
 ## Deliverable Definition — Ontology
 
 ### CLM-001 — Datasheet: DEL-06-03 Initial Chirality MCP Read Tools
 
-> #### Datasheet: DEL-06-03 Initial Chirality MCP Read Tools
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-002 — Identification
 
@@ -90,30 +72,29 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-003 — Attributes
 
-The claimed read interfaces must return bounded, non-mutating status, dependency and scope information; scaffold preview must not perform the proposed writes. Their descriptors must state schema, permissions, concurrency, interruption, execution and summarization behavior. Transport availability does not authorize a tool call or bypass path, redaction, event-evidence or human-gate obligations. Tool exposure and ordering remain the adjacent DEL-06-02 contract.
+Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
 
-The `mcp__chirality__*` roster and in-process SDK wrapper are retained compatibility mechanisms under D-GOV-43 and D-APP-131. Their registration is not evidence that they are exposed on the live Codex path. Verify their read behavior and descriptor parity through `frontend/src/__tests__/lib/chirality-read-mcp.test.ts` and `frontend/src/__tests__/lib/tool-descriptor.test.ts`; any live-path claim needs current integration evidence. Write and lifecycle tools remain outside this read-only slice.
+Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
+
+Named verification: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure. Evidence: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers.
 
 ### CLM-004 — Conditions
 
-> ##### Conditions
->
-> | Condition | Value | Source |
-> |---|---|---|
-> | Permission mode compatibility | `readOnly` exposes or allows read-only tools only; write/edit/bash/network-capable tools are unavailable or hard-denied. | `docs/PRD.md` Section 8.14 FR-091; `docs/TYPES.md` Section 8.1 |
-> | Deny precedence | Explicit denies from policy, path containment, hook, governance, SDK deny rule, or human gate block execution. | `docs/CONTRACT.md` Section 1.6 K-PERM-1; `docs/PRD.md` Section 8.14 FR-089 |
-> | `allowedTools` limitation | `allowedTools` is not a restriction boundary by itself. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
-> | Status truth source | `_STATUS.md` is canonical human-readable lifecycle state. | `docs/CONTRACT.md` Section 1.7 K-STATUS-1 |
-> | Dependency truth source | Deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` are authoritative for dependencies. | `docs/CONTRACT.md` Section 1.7 K-DEP-1 |
-> | Scaffold posture | `mcp__chirality__scaffold` is gated; this deliverable should cover preview/dry-run behavior where appropriate, not uncontrolled scaffold writes. | `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2 |
-> | Source-state warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006; task brief — reconciled under D-APP-38 |
->
+Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+
+Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
+
+Named verification: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure. Evidence: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers.
 
 ### CLM-005 — Construction
 
-Status reads must preserve the recorded lifecycle state. Dependency reads must validate structured `Dependencies.csv` data when present and disclose a secondary-summary/not-structured-tracked result when only `_DEPENDENCIES.md` exists; they must not invent rows. Scope scans must stay within their declared scope, and scaffold dry-runs must describe prospective changes without mutation.
+Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
 
-The legacy SDK factory, parser arrangement and wrapper implementation are evidence for these interfaces, not required construction of the live Codex host. `frontend/src/__tests__/lib/chirality-read-mcp.test.ts` names status/dependency reading and scaffold-preview verification; `frontend/src/__tests__/lib/tool-descriptor.test.ts` names descriptor parity. These are compatibility-subject checks. D-APP-131 preserves missing live integration and the separate scaffold obligation; no live MCP exposure or successful scaffold execution is asserted here.
+Record the current implementation/consumer and named verification locations: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
+
+Unfinished delivery: Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite.
 
 ### CLM-006 — Pass 3 Notes
 
@@ -142,56 +123,43 @@ The legacy SDK factory, parser arrangement and wrapper implementation are eviden
 
 ### CLM-008 — Specification: DEL-06-03 Initial Chirality MCP Read Tools
 
-> #### Specification: DEL-06-03 Initial Chirality MCP Read Tools
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-009 — Scope
 
-> ##### Scope
->
-> This deliverable specifies the initial in-process Chirality MCP read-tool slice for PKG-06. It covers deterministic MCP tool descriptors, wrapper metadata, execution behavior, and tests for status read, dependency read, bounded scope scan, and scaffold preview/dry-run behavior.
->
-> In scope:
->
-> - Define Chirality MCP tools using the `mcp__chirality__*` naming convention.
-> - Implement or expose read-safe deterministic operations for status read, dependency read, bounded scope scan, and scaffold preview/dry-run.
-> - Route the tools through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.
-> - Preserve read-before-write sequencing by excluding write/edit/bash capability from this deliverable.
-> - Provide deterministic wrapper metadata and MCP tool tests.
->
-> Out of scope:
->
-> - Status transition and dependency write execution except as adjacent naming/context for exclusion.
-> - General SDK built-in read-tool resolver behavior owned by DEL-06-02.
-> - Write/edit path hooks owned by DEL-06-04.
-> - Bash governance owned by DEL-06-05.
-> - Remote MCP, plugins, and domain-engine operations.
->
+Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+
+Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
+
+Verification: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
 
 ### CLM-010 — Requirements
 
-> ##### Requirements
->
-> | ID | Requirement | Source |
-> |---|---|---|
-> | REQ-06-03-001 | Chirality-specific deterministic operations in this slice MUST use `mcp__chirality__*` names. | `docs/SPEC.md` Section 14.1; `docs/TYPES.md` Section 8.4 |
-> | REQ-06-03-002 | The initial read-tool set MUST include `mcp__chirality__status_read`, `mcp__chirality__deps_read`, and `mcp__chirality__scope_scan`. | `docs/SPEC.md` Section 14.2; `docs/PRD.md` Section 8.13 FR-119 |
-> | REQ-06-03-003 | The scaffold surface in this deliverable MUST be limited to preview/dry-run behavior where applicable and MUST NOT open uncontrolled scaffold writes. | `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2 |
-> | REQ-06-03-004 | Chirality-owned tool definitions MUST declare schema, permissions, read-only behavior, concurrency behavior, interruption behavior, execution behavior, and summarization behavior. | `docs/PRD.md` Section 8.13 FR-079 |
-> | REQ-06-03-005 | Tool-surface construction MUST be deterministic for a given session, persona, mode, option set, SDK version, MCP server set, and permission policy. | `docs/CONTRACT.md` Section 1.6 K-TOOL-1; `docs/PRD.md` Section 8.13 FR-080 |
-> | REQ-06-03-006 | MCP tools MUST pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins. | `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/PRD.md` Section 8.13 FR-119 |
-> | REQ-06-03-007 | Denied tools MUST NOT execute and SHOULD be omitted from model context where possible. | `docs/SPEC.md` Section 14.3; `docs/PRD.md` Section 8.13 FR-081 |
-> | REQ-06-03-008 | `allowedTools` MUST NOT be treated as a restriction boundary by itself; restriction MUST rely on deny rules, mode policy, hooks, `canUseTool`, and/or `dontAsk` posture. | `docs/CONTRACT.md` Section 1.6 K-PERM-3; `docs/SPEC.md` Section 14.3 |
-> | REQ-06-03-009 | In `readOnly` mode, these tools MUST NOT expose or allow write/edit/bash/network-capable actions. | `docs/CONTRACT.md` Section 1.6 K-PERM-4; `docs/PRD.md` Section 8.14 FR-091 |
-> | REQ-06-03-010 | Tool permission/start/completion/failure activity SHOULD be persisted as Chirality runtime events when the runtime event plumbing is available. | `docs/PLAN.md` R2; `docs/PRD.md` Section 8.13 FR-083 |
-> | REQ-06-03-011 | Status read behavior MUST treat `_STATUS.md` as the canonical lifecycle state source. | `docs/CONTRACT.md` Section 1.7 K-STATUS-1; `docs/SPEC.md` Section 14.2 |
-> | REQ-06-03-012 | Dependency read behavior MUST treat deliverable-local `_DEPENDENCIES.md` and `Dependencies.csv` as dependency truth sources, with `Dependencies.csv` read/validation behavior where present. | `docs/CONTRACT.md` Section 1.7 K-DEP-1; `docs/SPEC.md` Section 14.2 |
-> | REQ-06-03-013 | Scope scan behavior MUST be bounded to the workspace/project root contract and must not scan arbitrary external locations. | `docs/SPEC.md` Sections 14.2 and 17.2; `docs/CONTRACT.md` Section 1.6 K-PATH-2 |
-> | REQ-06-03-014 | Unknown or unsupported MCP tool names MUST fail with structured validation errors rather than silent pass-through. | `docs/SPEC.md` Section 14.3; `docs/PRD.md` Section 8.13 FR-078 |
-> | REQ-06-03-015 | Dependency-read behavior MUST expose explicit structured absence or secondary-summary status when `Dependencies.csv` is absent and `_DEPENDENCIES.md` exists; it MUST NOT infer structured dependency rows from prose. Final result schema remains TBD pending DEL-07-05. | `docs/CONTRACT.md` Section 1.7 K-DEP-1; `docs/SPEC.md` Sections 14.2 and 17.2; `_DEPENDENCIES.md` Extracted Dependency Register |
->
+Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
+
+The following source-ID crosswalk preserves the original requirement population. Current fulfillment is evaluated against the obligations above and the named live checks below; superseded SDK mechanisms remain historical evidence and never substitute for live verification.
+
+| Requirement ID | Current requirement / explicit historical applicability |
+|---|---|
+| REQ-06-03-001 | Retain canonical identities for Chirality deterministic operations and prevent alias/catalog collisions at the current application-tool boundary. |
+| REQ-06-03-002 | Provide the accepted status_read, deps_read and scope_scan operations through the live application-tool interface; compatibility-only descriptors do not satisfy exposure. |
+| REQ-06-03-003 | Scaffold in this slice is preview/dry-run only and must not open uncontrolled writes. |
+| REQ-06-03-004 | Application-tool descriptors declare schema, permissions, read-only/concurrency/interruption/execution/summarization behavior. |
+| REQ-06-03-005 | Construct deterministic application-tool exposure from its effective catalog/policy basis; verify ordering rather than infer it from deduplication. |
+| REQ-06-03-006 | Application tools retain their permission, path, redaction, event and applicable hook/validation controls. Native Codex tools independently follow selected Codex policy. |
+| REQ-06-03-007 | Denied application calls must not execute and should be omitted from model context when supported. |
+| REQ-06-03-008 | An allowed-name list is not an authorization boundary; application handler validation and actual Codex policy enforcement must each be evidenced. |
+| REQ-06-03-009 | Read tools must remain nonmutating and must not smuggle shell, network or write actions into the read surface. |
+| REQ-06-03-010 | Preserve actual application-tool permission/start/completion/failure evidence through Runtime events, without fabricating absent calls. |
+| REQ-06-03-011 | _STATUS.md remains the canonical deliverable lifecycle source. |
+| REQ-06-03-012 | Dependencies.csv supplies structured dependency truth; _DEPENDENCIES.md is the local explanatory index. Do not infer structured rows from prose. |
+| REQ-06-03-013 | Scope scanning stays within the declared workspace/project root and does not read arbitrary external locations. |
+| REQ-06-03-014 | Unknown or unsupported application-tool calls return structured validation errors rather than silent pass-through. |
+| REQ-06-03-015 | When Dependencies.csv is absent, report explicit structured absence or secondary-summary status for _DEPENDENCIES.md; use the D-APP-43 resolved reader behavior and never invent rows. |
+
+Verification: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
+
+Evidence locations: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers. These are hooks and source locations, not newly executed results.
 
 ### CLM-011 — Standards
 
@@ -209,52 +177,41 @@ The legacy SDK factory, parser arrangement and wrapper implementation are eviden
 
 ### CLM-012 — Verification
 
-> ##### Verification
->
-> | Requirement(s) | Verification Approach |
-> |---|---|
-> | REQ-06-03-001 through REQ-06-03-004 | Unit-test exported MCP descriptors/wrapper metadata for names, schemas, permission class, read/write classification, concurrency/interruption declarations, execution binding, and summarization metadata. Proposed tests: `chirality-mcp-descriptor-schema`, `chirality-mcp-permission-class`, `chirality-mcp-readonly-classification`, `chirality-mcp-concurrency-interruption`, `chirality-mcp-execution-binding`, and `chirality-mcp-summarization-metadata`; final file paths TBD. |
-> | REQ-06-03-005 | Snapshot or table-driven tests proving deterministic ordering for a fixed session/persona/mode/option set. |
-> | REQ-06-03-006 through REQ-06-03-010 | Integration or adapter tests proving tools pass through permission overlay/hook/path/redaction/event paths and denied tools do not execute. Acceptance evidence should include permission decision records, hook invocation records, path-containment rejection fixtures, redaction assertions, event mirror records, and denied-execution assertions; final fixture paths TBD. |
-> | REQ-06-03-011 | Status read tests using `_STATUS.md` fixtures, including missing/malformed status handling. |
-> | REQ-06-03-012 and REQ-06-03-015 | Dependency read tests using absent, valid, and malformed `Dependencies.csv` fixtures, plus `_DEPENDENCIES.md`-only fixtures that assert explicit secondary-summary / not-structured-tracked behavior without invented rows. Final behavior must align with DEL-07-05 when its dependency API contract is accepted. |
-> | REQ-06-03-013 | Scope scan tests proving bounded root behavior and rejection of out-of-root scan requests. |
-> | REQ-06-03-014 | Unknown-tool validation tests asserting structured errors. |
-> | Section 9 marker | Add or map runtime validation coverage to `section9.chirality_mcp_status_dependencies` when the Section 9 runner is active. |
->
+Required current checks: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
+
+Named evidence: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite.
 
 ### CLM-013 — Acceptance Evidence Register
 
-> ###### Acceptance Evidence Register
->
-> | Evidence Area | Required Evidence | Status |
-> |---|---|---|
-> | Descriptor and wrapper metadata | Named tests or fixtures for schema, permission class, read-only behavior, concurrency, interruption, execution binding, and summarization metadata. | TBD - proposed test names listed above; implementation file paths not assigned. |
-> | Policy traversal | Permission decision records, hook traversal records, path-containment evidence, redaction assertions, and event mirror records for Chirality MCP tool execution. | TBD - requires implementation and runtime event path availability. |
-> | Section 9 coverage | Mapping to `section9.chirality_mcp_status_dependencies` for status/dependency MCP behavior. | TBD - active when Section 9 runner accepts this validation ID. |
-> | Dependency fallback | Fixture proving `_DEPENDENCIES.md`-only state returns explicit non-structured / secondary-summary status and does not synthesize `Dependencies.csv` rows. | TBD - final schema depends on DEL-07-05. |
->
+Required current checks: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
+
+Named evidence: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite.
 
 ### CLM-014 — Documentation
 
-> ##### Documentation
->
-> Required artifacts:
->
-> - `mcp__chirality__*` tool definitions for the read-tool slice.
-> - Wrapper metadata documenting schema, permissions, read-only behavior, concurrency, interruption, execution, and summarization behavior.
-> - MCP tool tests and fixtures for status read, dependency read, bounded scope scan, scaffold preview/dry-run, deterministic ordering, and denial behavior.
-> - REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
->
+Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+
+Record the current implementation/consumer and named verification locations: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers. Retained SDK modules are historical/compatibility evidence, not a second live Runtime.
+
+Record actual source, candidate, safe metadata, check result and missing evidence for: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
+
+Unfinished delivery: Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite.
 
 ### CLM-015 — Conflict Table
 
-> ##### Conflict Table
->
-> REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
->
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite.
 
 ### CLM-016 — Pass 3 Notes
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### Pass 3 Notes
 >
@@ -264,16 +221,13 @@ The legacy SDK factory, parser arrangement and wrapper implementation are eviden
 > | F-002 | Incorporated with TBD artifact paths | Acceptance evidence for permission, hook, path, redaction, and event-policy traversal is now explicit. Source reread: `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/SPEC.md` Section 14.3. |
 > | X-002 | Incorporated with TBD closure paths | Verification now names concrete evidence categories and Section 9 mapping while preserving implementation paths as `TBD`. Source reread: `docs/SPEC.md` Section 19.3; `docs/PRD.md` Section 8.13 FR-079 and FR-083. |
 
-- **AC-001** — The converted contract preserves every legacy source line with hash-bound migration markers, retains the initial read-tool scope and exclusions, and provides verification coverage for naming, wrapper metadata, permission and deny behavior, lifecycle and dependency reads, bounded scans, no-write scaffold preview, and unresolved dependency closure.
+- **AC-001** — Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
 
 ## Production and Verification Method — Praxeology
 
 ### CLM-017 — Procedure: DEL-06-03 Initial Chirality MCP Read Tools
 
-> #### Procedure: DEL-06-03 Initial Chirality MCP Read Tools
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-018 — Purpose
 
@@ -284,100 +238,47 @@ The legacy SDK factory, parser arrangement and wrapper implementation are eviden
 
 ### CLM-019 — Prerequisites
 
-> ##### Prerequisites
->
-> | Prerequisite | Status / Source |
-> |---|---|
-> | Accepted decomposition scope for DEL-06-03 | Available in `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` Section 7.6 and Section 9. |
-> | Source contracts for MCP tools and permissions | Available in `docs/SPEC.md` Sections 14-15, `docs/CONTRACT.md` Section 1.6, and `docs/PRD.md` Sections 8.13-8.14. |
-> | Runtime sequence context | R2 requires permission-gated read surface before writes/bash; see `docs/PLAN.md` R2. |
-> | Declared upstream dependencies | Active unresolved interfaces are recorded in `_DEPENDENCIES.md`: DEL-06-01 permission overlay integration, DEL-07-05 dependency reader behavior, UNKNOWN/TBD status lifecycle API owner, and UNKNOWN/TBD Chirality runtime event path. Closure requires human or upstream acceptance of these states. |
-> | Implementation module locations | TBD - no implementation path is specified in the accessible sources for this deliverable. |
-> | PRD source state | `docs/PRD.md` is `MATCH` in `_REFERENCES.md` under D-APP-38. |
->
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+
+Current implementation/adoption evidence: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers.
+
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Selection boundary: For propose: DEL-02-02-V3-04 selected, applicable DEL-08-01 trigger contract and DEL-06-02 catalog validation; ordinary current implementation/evidence gates for read tools; no new remote MCP/provider permission.
 
 ### CLM-020 — Implementation Location Worklist
 
-> ###### Implementation Location Worklist
->
-> | Component | Expected Location Evidence | Status |
-> |---|---|---|
-> | MCP definitions | Module exporting `mcp__chirality__status_read`, `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and scaffold preview/dry-run descriptor. | TBD - owner/path not assigned in accessible sources. |
-> | Wrapper metadata | Shared metadata table or builder for schema, permissions, read-only class, concurrency, interruption, execution, summarization, redaction, and events. | TBD - owner/path not assigned in accessible sources. |
-> | Status reader | Adapter/parser for `_STATUS.md` snapshot read; final ownership should align with DEL-07-04. | TBD - status lifecycle API owner unresolved in `_DEPENDENCIES.md`. |
-> | Dependency reader | Adapter/parser for `Dependencies.csv` plus `_DEPENDENCIES.md`-only absence/secondary-summary behavior; final ownership should align with DEL-07-05. | TBD - DEL-07-05 alignment unresolved in `_DEPENDENCIES.md`. |
-> | Scope scan | Bounded workspace scope scanner or adapter. | TBD - owner/path not assigned in accessible sources. |
-> | Scaffold preview | Dry-run/preview adapter that does not apply filesystem writes. | TBD - owner/path not assigned in accessible sources. |
->
+1. Establish the current candidate, source and actual dependency state. Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+2. Apply the current scope: Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+3. Implement only within the owning App/Runtime boundary, preserving these requirements: Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
+4. Verify verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
+5. Retain inputs, source/candidate identity, commands, output and limitations; update Remaining only for backchecked outcomes.
+
+Locus and checks: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers.
+
+Gate: For propose: DEL-02-02-V3-04 selected, applicable DEL-08-01 trigger contract and DEL-06-02 catalog validation; ordinary current implementation/evidence gates for read tools; no new remote MCP/provider permission.
 
 ### CLM-021 — Steps
 
-> ##### Steps
->
-> 1. Confirm the active scope.
->
->    Read `_CONTEXT.md`, `_REFERENCES.md`, and the DEL-06-03 decomposition row. Confirm the scope remains "Expose in-process deterministic MCP tools for status read, dependency read, scope scan, and scaffold preview/dry-run."
->
-> 2. Establish the tool inventory.
->
->    Include `mcp__chirality__status_read`, `mcp__chirality__deps_read`, `mcp__chirality__scope_scan`, and scaffold preview/dry-run behavior for `mcp__chirality__scaffold` where applicable. Exclude write/gated operations unless they are represented only as denied or adjacent metadata.
->
-> 3. Define wrapper metadata.
->
->    For each tool, declare schema, permissions, read-only behavior, concurrency behavior, interruption behavior, execution behavior, summarization behavior, redaction/event metadata, and denial behavior.
->
-> 4. Wire permission evaluation.
->
->    Route each tool through the Chirality permission overlay, deny rules, relevant hooks, and mode policy. Confirm `allowedTools` is not used as a standalone restriction boundary.
->
-> 5. Implement status read.
->
->    Read `_STATUS.md` as canonical lifecycle truth. Return a structured result with source path, parsed state, warnings, and malformed/missing handling. Do not apply lifecycle transitions in this tool.
->
-> 6. Implement dependency read.
->
->    Read and validate `Dependencies.csv` when present. If it is absent but `_DEPENDENCIES.md` exists, return an explicit missing/not-tracked status and do not infer dependency rows. Align final behavior with the dependency contract owner when available.
->
-> 7. Implement bounded scope scan.
->
->    Run a workspace/project-root bounded scan that reports package/deliverable identities and rejects out-of-root or non-project scan targets. Preserve stable IDs as identity.
->
-> 8. Implement scaffold preview/dry-run.
->
->    Produce a preview of scaffold effects without applying filesystem writes. If the underlying scaffold service can write, enforce dry-run mode or deny write execution in this deliverable.
->
-> 9. Emit runtime events where available.
->
->    Persist or adapt permission, started, completed, and failed tool events through the Chirality runtime event path. The runtime event path owner is currently `UNKNOWN/TBD` in `_DEPENDENCIES.md`; until accepted upstream ownership exists, keep this as a tracked closure blocker and add tests around the expected event contract rather than silently treating event persistence as complete.
->
-> 10. Add tests.
->
->    Cover descriptors, deterministic ordering, permission denial, readOnly behavior, unknown-tool errors, status fixtures, dependency fixtures, bounded scan rejection, scaffold preview/no-write behavior, and relevant Section 9 validation mapping.
->
-> 11. Re-check cross-deliverable boundaries.
->
->    Confirm the implementation has not absorbed DEL-06-01 permission policy ownership, DEL-06-02 SDK built-in tool resolver ownership, DEL-06-04 write/path hook ownership, DEL-06-05 bash governance, or remote/domain MCP scope.
->
+1. Establish the current candidate, source and actual dependency state. Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+2. Apply the current scope: Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+3. Implement only within the owning App/Runtime boundary, preserving these requirements: Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
+4. Verify verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
+5. Retain inputs, source/candidate identity, commands, output and limitations; update Remaining only for backchecked outcomes.
+
+Locus and checks: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers.
+
+Gate: For propose: DEL-02-02-V3-04 selected, applicable DEL-08-01 trigger contract and DEL-06-02 catalog validation; ordinary current implementation/evidence gates for read tools; no new remote MCP/provider permission.
 
 ### CLM-022 — Verification
 
-> ##### Verification
->
-> | Check | Expected Result |
-> |---|---|
-> | Tool names | Only accepted Chirality MCP names use the `mcp__chirality__*` namespace; unknown names fail with structured errors. |
-> | Descriptor completeness | Each Chirality-owned tool declares schema, permissions, read-only behavior, concurrency, interruption, execution, and summarization behavior. |
-> | Deterministic surface | Tool ordering and metadata are stable for fixed session/persona/mode/option input. |
-> | Capability policy with explicit hard-deny precedence | Denied tools do not execute; `allowedTools` alone is not treated as restriction. |
-> | Read-only mode | Write/edit/bash/network-capable behavior is unavailable or hard-denied. |
-> | Status read | `_STATUS.md` is the only lifecycle truth source. |
-> | Dependency read | `Dependencies.csv` is read/validated when present; absence is explicit rather than inferred. |
-> | Scope scan | Out-of-root scans are rejected. |
-> | Scaffold preview | Dry-run/preview does not apply filesystem writes. |
-> | Runtime events | Permission/start/completion/failure events are persisted or an explicit pending integration contract is tested. |
-> | Upstream dependency closure | DEL-06-01, DEL-07-05, status lifecycle API ownership, and runtime event path ownership are accepted or recorded as closure blockers. |
-> | Source-state status | `docs/PRD.md` REF-006 is `MATCH` under D-APP-38. |
->
+Required current checks: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
+
+Named evidence: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers. Historical test outcomes retain their actual path and candidate; no new product result is claimed here.
+
+Unfulfilled checks: Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite.
 
 ### CLM-023 — Records
 
@@ -397,6 +298,8 @@ The legacy SDK factory, parser arrangement and wrapper implementation are eviden
 
 ### CLM-024 — Pass 3 Notes
 
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
+
 > ##### Pass 3 Notes
 >
 > | ItemID | Disposition | Evidence |
@@ -405,16 +308,13 @@ The legacy SDK factory, parser arrangement and wrapper implementation are eviden
 > | D-002 | Incorporated as closure blocker | Upstream dependency state now names DEL-06-01, DEL-07-05, status lifecycle API ownership, and runtime event path ownership as closure blockers or acceptance requirements. Source reread: `_DEPENDENCIES.md` Extracted Dependency Register and Open dependency closure items. |
 > | E-001 | Converted to tracked blocker | Runtime-event wording now requires a cited event path or explicit blocker/test contract rather than treating availability as optional. Source reread: `docs/CONTRACT.md` Section 1.6 K-MCP-1; `docs/PRD.md` Section 8.13 FR-083; `_DEPENDENCIES.md` open runtime event path item. |
 
-- **VER-001** — Validate the SOW schema and source parity; inspect deterministic descriptor, permission, hook, path, redaction, event, status, dependency, bounded-scan, scaffold-preview, and Section 9 evidence, with human review of unresolved TBD dependency interfaces.
+- **VER-001** — Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
 
 ## Governing Values and Decisions — Axiology
 
 ### CLM-025 — Guidance: DEL-06-03 Initial Chirality MCP Read Tools
 
-> #### Guidance: DEL-06-03 Initial Chirality MCP Read Tools
->
-> > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
->
+**Dated source-state record (2026-07-12):** The former D-APP-56/D-APP-38 MATCH finding describes that snapshot only. Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
 
 ### CLM-026 — Purpose
 
@@ -427,63 +327,35 @@ The legacy SDK factory, parser arrangement and wrapper implementation are eviden
 
 ### CLM-027 — Principles
 
-> ##### Principles
->
-> 1. Read tools come first.
->
->    The R2 slice enables SDK read tools and Chirality read MCP tools before write/edit/bash capability. Treat this deliverable as a read-surface and descriptor/wrapper contract, not a general tool expansion.
->
-> 2. MCP is a transport, not a policy escape.
->
->    In-process Chirality MCP tools must go through the same permission, hook, path, redaction, and event logging policy as SDK built-ins. A tool being implemented locally does not make it safe to expose.
->
-> 3. Determinism is part of the contract.
->
->    Tool naming, ordering, server IDs, wrapper metadata, and allow/deny behavior should be table-driven or otherwise stable for a fixed runtime configuration.
->
-> 4. Explicit hard-deny precedence is non-negotiable.
->
->    `allowedTools` may auto-approve, but it is not a restriction boundary. Denies from policy, hooks, path containment, governance, SDK deny rules, or human gates must win.
->
-> 5. Filesystem truth remains local and inspectable.
->
->    Status and dependency tools should read the canonical project files, not hidden runtime state. Unknowns and malformed records should produce explicit results rather than inferred project truth.
->
+Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+
+Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
+
+Named verification: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure. Evidence: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers.
 
 ### CLM-028 — Considerations
 
-> ##### Considerations
->
-> | Topic | Guidance | Source |
-> |---|---|---|
-> | Tool boundaries | Keep `status_transition` and `deps_write` out of this read-tool slice except as excluded adjacent tools. | `docs/SPEC.md` Section 14.2 |
-> | Scaffold behavior | `mcp__chirality__scaffold` is listed as gated. For this deliverable, implement only preview/dry-run behavior where applicable unless a later write-surface gate authorizes more. | `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2 |
-> | Dependency reads | Prefer a clear `Dependencies.csv` validation result. Behavior when the deliverable has `_DEPENDENCIES.md` but no `Dependencies.csv` is TBD and should align with DEL-07-05. | `docs/CONTRACT.md` Section 1.7 K-DEP-1; `_DEPENDENCIES.md` |
-> | Status reads | Read `_STATUS.md` as canonical lifecycle state. Do not infer status from folder names, chat state, runtime events, or document presence. | `docs/CONTRACT.md` Section 1.7 K-STATUS-1 |
-> | Scope scan | Scope scan should stay bounded to the selected working root and stable deliverable IDs. | `docs/SPEC.md` Sections 17.2 and 14.2; `docs/CONTRACT.md` K-PATH-2 |
-> | Runtime events | Permission/start/completion/failure event persistence may depend on R1/R2 runtime plumbing. If not available, expose a typed integration seam and tests around the expected behavior. | `docs/PLAN.md` R2; `docs/PRD.md` Section 8.13 FR-083 |
-> | PRD hash warning | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md`; task brief — reconciled under D-APP-38 |
->
+Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+
+Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
+
+Named verification: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure. Evidence: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers.
 
 ### CLM-029 — Source-State Posture
 
-> ###### Source-State Posture
->
-> REF-006 is `MATCH` under D-APP-38; the earlier warning is dated history.
->
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite.
 
 ### CLM-030 — Trade-offs
 
-> ##### Trade-offs
->
-> | Decision Area | Trade-off | Recommended Posture |
-> |---|---|---|
-> | Single wrapper vs per-tool wrappers | A shared wrapper improves consistent permission/event/redaction behavior; per-tool wrappers can drift. | Use a shared wrapper contract with per-tool metadata and execution handlers. |
-> | Scaffold included vs deferred | SPEC lists scaffold as gated; PLAN R2 calls for scaffold preview/dry-run where appropriate. | Include dry-run/preview only, with write execution denied or delegated to later gated surfaces. |
-> | Dependency file absence | `Dependencies.csv` may not exist early in a deliverable lifecycle. | Return an explicit "not present / not tracked yet" result; do not fabricate dependencies. |
-> | Event coupling | Full event persistence may not be complete when read tools are first drafted. | Keep event emission/adaptation explicit and testable; mark unavailable runtime pieces `TBD` instead of embedding hidden behavior. |
-> | SDK-specific APIs | PRD references SDK MCP APIs, but Chirality contracts must remain product-owned. | Use SDK APIs behind product-owned wrappers and tests; do not leak SDK-shaped public contracts. |
->
+Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+
+Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
+
+Named verification: Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure. Evidence: Runtime `packages/daemon/src/application-tools.ts`, `packages/contracts/src/harness/tool-descriptor.ts`, `tests/application-tools-composition.test.ts`; App `frontend/src/lib/harness/mcp/**` retained read/propose surface and project readers.
 
 ### CLM-031 — Scaffold Boundary Rationale
 
@@ -522,12 +394,11 @@ The legacy SDK factory, parser arrangement and wrapper implementation are eviden
 
 ### CLM-033 — Conflict Table (for human ruling)
 
-> ##### Conflict Table (for human ruling)
->
-> | Conflict ID | Conflict (short statement) | Source A (file + section) | Source B (file + section) | Impacted sections | Proposed authority (PROPOSAL) | Human ruling (TBD) |
-> |---|---|---|---|---|---|---|
-> | N/A | REF-006 is MATCH under D-APP-38; the earlier warning is dated history. | `_REFERENCES.md` REF-006 | Task brief | References and source confidence | Treat as warning per task brief; re-check hash before implementation closure. | TBD — reconciled under D-APP-38 |
->
+Source assertions refer to their identified historical snapshot; a past MATCH label is not a present hash verdict. Use the current `_REFERENCES.md` authority-corpus reconciliation; manager D-APP-38 adoption updates authority-reference hashes, while lifecycle/decomposition approval identities remain unchanged. A reliance check alone does not authorize a further re-pin.
+
+Applicable prior decisions: D-GOV-43/A2; D-APP-127; D-APP-131 execution (b); D-APP-132 where applicable. Expose accepted deterministic Chirality read operations through the current Runtime application-tool interface, with descriptor ownership in DEL-06-02 and handler/composition ownership here. The old in-process SDK MCP assembly remains compatibility evidence.
+
+No repeated owner decision is needed for the settled topology, native policy, event preservation, credential custody or D-APP-132 dispositions. Actual accepted-scope changes retain their owning decision. Unresolved delivery and evidence: Connect and verify accepted read operations on the live application-tool path; retain missing/malformed status and dependency fixtures. Deliver propose schema/tuple/roster/policy/plan validation, once-per-chat behavior and proposal.offered after the named UI trigger prerequisite.
 
 ### CLM-034 — Pass 3 Notes
 
@@ -539,6 +410,8 @@ The legacy SDK factory, parser arrangement and wrapper implementation are eviden
 > | E-002 | Incorporated | Scaffold preview rationale now explains why preview/dry-run is in scope while write-capable scaffold execution remains gated. Source reread: `docs/SPEC.md` Section 14.2; `docs/PLAN.md` R2. |
 
 ### CLM-035 — D-APP-68 In-Process Coordination Composition (2026-07-19)
+
+**Historical evidence:** the dated findings below retain their evaluated path and candidate. They do not establish current Codex qualification.
 
 > ##### D-APP-68 In-Process Coordination Composition (2026-07-19)
 >
@@ -555,14 +428,12 @@ The legacy SDK factory, parser arrangement and wrapper implementation are eviden
 > `frontend/src/lib/harness/sdk-options-builder.ts`;
 > `frontend/src/lib/harness/mcp/coordination-tools.ts`.
 
-- **AC-002** — The four coordination tools are composed on the in-process
-  Chirality MCP server while descriptor/catalog ownership remains with
-  DEL-06-02.
-- **VER-002** — Inspect the in-process server assembly and coordination-tool
-  factory, then verify the DEL-06-02/DEL-06-03 boundary against D-APP-68.
+- **AC-002** — Native Codex tools follow the user-selected Codex approval and sandbox policy, passed through without an App veto. Full access is selectable and does not grant normative authority. Chirality-owned application operations retain their own authorization, path, domain-stage and evidence controls; prompts and tool-name lists are not enforcement. Preserve status_read, deps_read and scope_scan semantics, bounded workspace scans, schema/read-only/concurrency/interruption/summarization descriptors, structured unknown-name failure and safe permission/start/completion/failure evidence. _STATUS.md remains lifecycle truth; Dependencies.csv is structured dependency truth, with explicit absence or secondary prose summary when absent, never invented rows. Scaffold remains preview-only in this slice. SOW-082 propose validates the folder/role/delegation/workflow/policy tuple, plan references and once-per-chat decline, emitting proposal.offered without automatic activation.
+
+- **VER-002** — Verify actual registration/call reach, read-only/path constraints, malformed/missing status, absent CSV/prose-only dependency outcomes, unknown names, descriptor metadata and proposal validation/replay. Existing legacy reader tests do not prove live application-tool exposure.
 
 ## Output and Evaluation Matrix
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-048 SOW-050 OBJ-005 OBJ-006 | CLM-008 CLM-035 | AC-001 AC-002 | VER-001 VER-002 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-048 SOW-050 SOW-064 SOW-082 OBJ-005 OBJ-006 | CLM-010 CLM-035 | AC-001 AC-002 | VER-001 VER-002 | Current candidate-bound conformance and named verification; historical path limits and unmet outcomes explicit |

@@ -1,0 +1,31 @@
+{
+  "ObservationDate": "2026-09-22",
+  "HEAD": "1b5adbf50142a4c01c454c62a31dfcdc60da1894",
+  "Meaning": "Observed current working-tree bytes at documentary repair; not an accepted-corpus hash registration or blanket consistency/qualification verdict. Manager D-APP-38 application is authoritative for final registered state.",
+  "Sources": [
+    {
+      "Path": "projects/chirality-app-dev/docs/DIRECTIVE.md",
+      "ObservedSHA256": "50b816d5be74021f173e19b39773b4f5d2cc3f434966dc9d6faf9399ddf26099"
+    },
+    {
+      "Path": "projects/chirality-app-dev/docs/CONTRACT.md",
+      "ObservedSHA256": "57411f8df49e6316d8d3bc9674d698b1c8478e639aad331115d4f67bcca97363"
+    },
+    {
+      "Path": "projects/chirality-app-dev/docs/SPEC.md",
+      "ObservedSHA256": "8b0d805b6abc6d4a493463440394ea9bb39f23fba84483f05007fe724447fe13"
+    },
+    {
+      "Path": "projects/chirality-app-dev/docs/TYPES.md",
+      "ObservedSHA256": "334bd49602a68900cc877053493d0edb66e370919f77b768b3db679ed4087835"
+    },
+    {
+      "Path": "projects/chirality-app-dev/docs/PLAN.md",
+      "ObservedSHA256": "5e9cb5e553a815cba6e3d5bf765c66290bc9e25c15c2e44a0a33bea7ed4d04dc"
+    },
+    {
+      "Path": "projects/chirality-app-dev/docs/PRD.md",
+      "ObservedSHA256": "17ca3f3c2b868771a0cbcafeb0928c5416cd8bc88d79639838cefe1462e46054"
+    }
+  ]
+}

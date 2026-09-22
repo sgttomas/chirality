@@ -2,9 +2,9 @@
 
 **Status:** Governance/runtime contributor guide
 **Applies to:** local SDK built-ins and in-process Chirality MCP tools
-**Primary sources:** `frontend/src/lib/harness/tool-descriptor.ts`,
+**Primary sources:** `projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts`,
 `frontend/src/lib/harness/sdk-options-builder.ts`,
-`frontend/src/lib/harness/mcp/tool-names.ts`,
+`projects/chirality-runtime/packages/contracts/src/harness/mcp/tool-names.ts`,
 `frontend/src/lib/harness/mcp/read-tools.ts`, and
 `frontend/docs/harness/runtime_engine_contract.md`
 **Amended:** D-GOV-43 (A2), 2026-09-12: Codex is the only engine and the adapter boundary is the Runtime service's socket API. Tool activity shown in the App comes from Codex's own tools and the user's MCP configuration (shared by reference through the effective Codex home) and is rendered through the normalized tool-activity view of the pass-through event representation. The Claude Agent SDK built-in path and `buildSdkOptions` sequence below are compatibility history; whether and how Chirality MCP tools are exposed to Codex is not established by this guide.
@@ -12,15 +12,35 @@
 This guide describes how to add or change a governed tool without bypassing Chirality's
 permission, hook, path, redaction, event, and human-gate policy. It does not approve a new
 tool by itself. Remote MCP, plugins, broad tool search, network expansion, domain tools,
-non-Anthropic providers, default-provider cutover, and release/professional claims remain
-outside R6 unless a future human ruling authorizes them.
+new provider qualification, default-provider cutover, and release/professional claims require
+their own authority; the current MVP engine is Codex.
 
-## Required Sequence
+## Current applicability
+
+D-GOV-43, D-APP-127 and D-APP-132 distinguish native Codex tools from
+Chirality-owned application tools. Native tools follow Codex configuration
+and the user-selected policy. Runtime validates any Chirality application
+registration and rejects unregistered calls; exposure and domain-stage authority
+remain separate. The App currently has no such registrations. Native delegation
+uses Codex descendants with recorded parentage and supplied basis.
+
+The generated `tool_catalog.md`, its exposure column, domain-wrapper live
+labels and SDK hooks describe the retained SDK/in-process registry only. They
+do not establish current Codex exposure. Preserve the generated catalog until
+an authorized generator change can label that applicability without breaking
+its regeneration check. Domain admission, provenance, human acceptance/apply
+boundaries and secret protection remain in force.
+
+Named live verification hooks are Runtime `tests/application-tools.test.ts`,
+`tests/codex-supervisor.test.ts` and App tool-policy/request presentation tests;
+their names are not an assertion of execution or complete coverage.
+
+## Retained compatibility sequence
 
 1. Update `HARNESS_TOOL_DESCRIPTORS` in
-   `frontend/src/lib/harness/tool-descriptor.ts`.
+   `projects/chirality-runtime/packages/contracts/src/harness/tool-descriptor.ts`.
 2. For a Chirality MCP tool, update the typed name inventory in
-   `frontend/src/lib/harness/mcp/tool-names.ts`.
+   `projects/chirality-runtime/packages/contracts/src/harness/mcp/tool-names.ts`.
 3. Implement or update the handler registration in
    `frontend/src/lib/harness/mcp/read-tools.ts`.
 4. Ensure SDK option resolution in `frontend/src/lib/harness/sdk-options-builder.ts`
@@ -32,7 +52,7 @@ outside R6 unless a future human ruling authorizes them.
 7. Run the validation required by the active tranche. For tool-surface changes, the
    default minimum is `npm run test` and `npm run typecheck`.
 
-## Descriptor Requirements
+## Descriptor Requirements (retained compatibility path)
 
 Every tool needs a descriptor before it can be considered for exposure. The descriptor
 records:
@@ -49,7 +69,7 @@ The descriptor tests also assert built-in SDK names remain disjoint from
 `mcp__chirality__*` adapter names and that live Chirality MCP registrations match
 descriptor metadata.
 
-## Built-In SDK Tool Path
+## Built-In SDK Tool Path (retained compatibility path)
 
 SDK built-ins such as `Read`, `Write`, `Edit`, and `Bash` are exposed through descriptor
 resolution and `buildSdkOptions`.
@@ -68,7 +88,7 @@ The required enforcement path is:
 descriptor resolution, `disallowedTools`, `canUseTool`, or required hooks is not governed
 and must be rejected.
 
-## In-Process Chirality MCP Path
+## In-Process Chirality MCP Path (retained compatibility path)
 
 Chirality MCP tools use the `mcp__chirality__*` adapter-name convention. Add the raw tool
 name to the relevant registry list, then add the handler to `buildChiralityMcpTools` only
@@ -94,7 +114,7 @@ permission/evidence wrapper and must:
 An MCP tool that mutates project state without this handler-level wrapper is a K-MCP-1
 bypass and must be rejected in review.
 
-## Reserved Names
+## Reserved Names (retained compatibility path)
 
 Current Chirality MCP adapter names are cataloged in
 `frontend/docs/harness/tool_catalog.md`.
@@ -121,7 +141,7 @@ Do not add placeholder domain handlers, broad tool search, remote MCP servers,
 plugin marketplace hooks, remote execution, provider-network expansion, or apply-capable
 domain tools as part of ordinary local tool work.
 
-## Agent Tool Exception
+## Agent Tool Exception (retained compatibility path)
 
 `Agent` is special-cased outside ordinary descriptor exposure. Its descriptor remains not
 exposed by default. `buildSdkOptions` may add `Agent` only when:

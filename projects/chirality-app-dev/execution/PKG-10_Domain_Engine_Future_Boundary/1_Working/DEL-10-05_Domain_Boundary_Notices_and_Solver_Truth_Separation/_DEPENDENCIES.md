@@ -11,11 +11,22 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Descriptive mirror of `Dependencies.csv` (2026-09-22; no formal edge or basis change):
+
+- `DEP-10-05-001` — OTHER; Domain Engine Future Boundary; SATISFIED.
+- `DEP-10-05-002` — OTHER; Domain professional boundary; SATISFIED.
+- `DEP-10-05-003` — OTHER; Preserve professional boundary, product identity, and reliance-boundary ownership in docs, UI, runtime, and release behavior.; SATISFIED.
+- `DEP-10-05-004` — OTHER; Preserve future domain-engine compatibility without turning domain solvers into Chirality core.; SATISFIED.
+- `DEP-10-05-005` — PREREQUISITE; docs/DIRECTIVE.md; SATISFIED.
+- `DEP-10-05-006` — PREREQUISITE; docs/CONTRACT.md; SATISFIED.
+- `DEP-10-05-007` — PREREQUISITE; docs/SPEC.md; SATISFIED.
+- `DEP-10-05-008` — PREREQUISITE; docs/TYPES.md; SATISFIED.
+- `DEP-10-05-009` — PREREQUISITE; docs/PRD.md; SATISFIED.
+- `DEP-10-05-010` — PREREQUISITE; Chirality App vNext SOFTWARE_DECOMP v3.2; SATISFIED.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+No downstream-directed row is recorded in this local structured register; this does not assert absence of consumers elsewhere.
 
 ## Run Notes
 
@@ -45,16 +56,16 @@ Structured register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEP-10-05-001 | ANCHOR | OTHER | UPSTREAM | PKG-10 Domain Engine Future Boundary | ACTIVE |
-| DEP-10-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-071 Domain professional boundary | ACTIVE |
-| DEP-10-05-003 | ANCHOR | OTHER | UPSTREAM | OBJ-009 Governance identity objective | ACTIVE |
-| DEP-10-05-004 | ANCHOR | OTHER | UPSTREAM | OBJ-010 Future domain-engine compatibility objective | ACTIVE |
-| DEP-10-05-005 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 `docs/DIRECTIVE.md` | ACTIVE |
-| DEP-10-05-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 `docs/CONTRACT.md` | ACTIVE |
-| DEP-10-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 `docs/SPEC.md` | ACTIVE |
-| DEP-10-05-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` | ACTIVE |
-| DEP-10-05-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` | ACTIVE |
-| DEP-10-05-010 | EXECUTION | PREREQUISITE | UPSTREAM | DECOMP-v3.2 decomposition authority | ACTIVE |
+| DEP-10-05-001 | ANCHOR | OTHER | UPSTREAM | PKG-10 | ACTIVE | SATISFIED |
+| DEP-10-05-002 | ANCHOR | OTHER | UPSTREAM | SOW-071 | ACTIVE | SATISFIED |
+| DEP-10-05-003 | ANCHOR | OTHER | UPSTREAM | OBJ-009 | ACTIVE | SATISFIED |
+| DEP-10-05-004 | ANCHOR | OTHER | UPSTREAM | OBJ-010 | ACTIVE | SATISFIED |
+| DEP-10-05-005 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 | ACTIVE | SATISFIED |
+| DEP-10-05-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 | ACTIVE | SATISFIED |
+| DEP-10-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 | ACTIVE | SATISFIED |
+| DEP-10-05-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 | ACTIVE | SATISFIED |
+| DEP-10-05-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 | ACTIVE | SATISFIED |
+| DEP-10-05-010 | EXECUTION | PREREQUISITE | UPSTREAM | DECOMP-v3.2 | ACTIVE | SATISFIED |
 
 ## Run History
 
@@ -65,17 +76,22 @@ Structured register: `Dependencies.csv` v3.1
 
 ## Lifecycle Summary
 
-| Status | Count |
-|---|---:|
-| ACTIVE | 10 |
-| RETIRED | 0 |
+Current structured-register mirror: 10 SATISFIED. Lifecycle labels and SatisfactionStatus are distinct; the complete formal register remains unchanged. Earlier run summaries below describe their dated basis.
 
-| SatisfactionStatus | Count |
-|---|---:|
-| SATISFIED | 10 |
+## Current evidence navigation — 2026-09-22
 
-(Synced to CSV state 2026-07-10, D-APP-53 reconciliation; previously TBD 10.)
+Current contract carrier: `ScopeOfWork.md`; former Datasheet/Specification/Procedure/Guidance labels and old line anchors in formal rows are retained historical evidence locators. Current generic type source is `projects/chirality-runtime/packages/contracts/src/harness/domain-profile.ts`, consumed as `@chirality/runtime-contracts`; D-APP-118 retires the App facade. Retained registry/proposal tests are not proof of live Codex exposure. Formal row evidence/pin/LastSeen changes require the owning dependency reconciliation and are outside this record repair.
 
-Closure state: dependency register created and schema-valid; satisfaction lifecycle remains `TBD` pending downstream FULL_GRAPH/cycle checks and any human closure decisions.
+## Current evidence-locator refresh — 2026-09-22
 
-Closure state update (2026-07-10, D-APP-53 reconciliation): all 10 rows SATISFIED on live evidence; the project-level FULL_GRAPH snapshot over the reconciled registers is queued as plan DRQ-11 and is tracked at project level, not by a row in this register.
+2 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+4 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=10; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.

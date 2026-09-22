@@ -95,3 +95,7 @@
 - 2026-09-06 — D-APP-124 removes only the eight Runtime-source aliases from Electron typechecking so current built public declarations are consumed. Exact source review PASS, both compiler checks, 1,774 Vitest tests (4 skipped), build and harness checks PASS. Local premerge still fails HTTP 503 without Runtime binding; native startup failure remains historical/unrepaired. Parent final-union/Git closeout and PR-CI remain pending, with no publication or lifecycle act. See `_run_records/D_APP_124_COMPILER_DECLARATION_REPAIR_2026-09-06.md`.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+## Record closeout — 2026-09-22
+
+D-APP-131/132 and D-GOV-43/D-APP-127 now govern the current ScopeOfWork and Remaining interpretation. Earlier SDK/daemon, four-file, matrix/default-role, source-MATCH and pre-release planning statements remain dated history. Current work, owning surface, checks and gates are in `_STATUS.md`; the W07_10_ROWS.csv derivative accounts for original residual keys. No lifecycle/approval-SHA refresh, product completion, new native result, or release is asserted.

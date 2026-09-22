@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows: `DEP-08-03-001`, `DEP-08-03-002`, `DEP-08-03-003`, `DEP-08-03-004`, `DEP-08-03-005`, `DEP-08-03-006`, `DEP-08-03-007`, `DEP-08-03-008`, `DEP-08-03-009`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows: `DEP-08-03-010`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Run Notes
 
@@ -36,16 +36,16 @@ Register: `Dependencies.csv` v3.1
 
 | DependencyID | Class | Type / Anchor | Direction | Target | Status |
 |---|---|---|---|---|---|
-| DEP-08-03-001 | ANCHOR | IMPLEMENTS_NODE | UPSTREAM | DEL-08-03 Pipeline Category and Task Scope Dispatch (applied row L370) | ACTIVE |
-| DEP-08-03-002 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-007 Presentation-neutral DECOMP/PREP/TASK/AUDIT dispatch lane semantics without an active-shell mount | ACTIVE |
-| DEP-08-03-003 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | SOW-026 Metadata files and document kit | ACTIVE |
-| DEP-08-03-004 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-001 governed local desktop harness/operator workflow objective | ACTIVE |
-| DEP-08-03-005 | ANCHOR | TRACES_TO_REQUIREMENT | UPSTREAM | OBJ-007 agent-suite integrity/governed delegation objective | ACTIVE |
-| DEP-08-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 `docs/TYPES.md` Section 4.4 vocabulary | ACTIVE |
-| DEP-08-03-007 | EXECUTION | INTERFACE | UPSTREAM | REF-003 `docs/SPEC.md` Section 17.2 working-root scope API | ACTIVE |
-| DEP-08-03-008 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 `docs/CONTRACT.md` Section 1.8 governance invariants | ACTIVE |
-| DEP-08-03-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 `docs/PRD.md` Section 8.2 product requirements | ACTIVE |
-| DEP-08-03-010 | EXECUTION | HANDOVER | DOWNSTREAM | Pipeline selector, knowledge-type discovery, and disabled option tests (consumer UNKNOWN/TBD) | ACTIVE |
+| DEP-08-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-08 | ACTIVE | TBD |
+| DEP-08-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-007 | ACTIVE | TBD |
+| DEP-08-03-003 | ANCHOR | OTHER | UPSTREAM | SOW-026 | ACTIVE | TBD |
+| DEP-08-03-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 | ACTIVE | TBD |
+| DEP-08-03-005 | ANCHOR | OTHER | UPSTREAM | OBJ-007 | ACTIVE | TBD |
+| DEP-08-03-006 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 | ACTIVE | TBD |
+| DEP-08-03-007 | EXECUTION | INTERFACE | UPSTREAM | REF-003 | ACTIVE | TBD |
+| DEP-08-03-008 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 | ACTIVE | TBD |
+| DEP-08-03-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 | ACTIVE | TBD |
+| DEP-08-03-010 | EXECUTION | HANDOVER | DOWNSTREAM | Pipeline selector, knowledge-type discovery, and disabled option tests | ACTIVE | TBD |
 
 ## Run Notes — 2026-09-05 00:37 (SCA-APP-010 DEP-023/DEP-024 pass)
 
@@ -98,19 +98,14 @@ Register: `Dependencies.csv` v3.1
 
 ## Lifecycle Summary
 
-| Status | Count |
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
+| Field | Count |
 |---|---:|
 | ACTIVE | 10 |
-| RETIRED | 0 |
-
-| SatisfactionStatus | Count |
-|---|---:|
-| TBD | 10 |
-
-| Class (ACTIVE) | Count |
-|---|---:|
-| ANCHOR | 5 |
-| EXECUTION | 5 |
+| RequiredMaturity=SEMANTIC_READY | 10 |
+| ProposedMaturity=TBD | 10 |
+| SatisfactionStatus=TBD | 10 |
 
 ## Downstream Handoff Notes
 
@@ -122,3 +117,17 @@ Consumer context: `RECONCILIATION`.
 - Relations for RECONCILIATION attention: (1) DEP-08-03-002 now carries the amended SOW-007 label and records that the presentation consumer is retired; DEL-02-02's own register still holds DEP-02-02-009 (a CONSTRAINT toward DEL-08-03 evidenced by its legacy `Guidance.md`), which that carrier's SCA-APP-010 pass should reconcile. (2) DEP-08-03-010's consumer remains `UNKNOWN`/`TBD` by design after the presentation retirement. (3) The `/api/project/deliverables` versus `/api/working-root/scope` label conflict inside `ScopeOfWork.md` is a document-consistency item, not a graph item.
 - Rerun requirements: rerun `TASK + dependency-extract` if the applied row L370, Scope Ledger row L177, or reverse view L410/L429 change, if `ScopeOfWork.md` acquires seated `## Remaining` items with `Depends` lines, or if a later amendment re-hosts a presentation consumer.
 - Remaining blockers for closure: none local; register acceptance is a separate human act under the SCA-APP-010 downstream handoff (DEP-023/DEP-024 reviewed write, then closure analysis).
+
+## Current record interpretation — 2026-09-22
+
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=10; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_LUNA_17_APPROVED.csv`; current rows: ACTIVE=10, RETIRED=0. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

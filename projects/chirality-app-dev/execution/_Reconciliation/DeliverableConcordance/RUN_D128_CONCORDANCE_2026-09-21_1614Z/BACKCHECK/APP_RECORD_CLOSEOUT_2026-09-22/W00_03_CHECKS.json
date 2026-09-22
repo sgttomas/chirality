@@ -1,0 +1,84 @@
+{
+  "source_basis": "1b5adbf50142a4c01c454c62a31dfcdc60da1894",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-04_Scope_Boundary_and_Retired_Scope_Register",
+        "--json"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/e468/chirality",
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-04_Scope_Boundary_and_Retired_Scope_Register\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth",
+        "--json"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/e468/chirality",
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy",
+        "--json"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/e468/chirality",
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register",
+        "--json"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/e468/chirality",
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure",
+        "--json"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/e468/chirality",
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/scope_of_work/validate_scope_of_work.py",
+        "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure",
+        "--json"
+      ],
+      "cwd": "/Users/ryan/.codex/worktrees/e468/chirality",
+      "exit": 0,
+      "stdout": "{\n  \"format\": \"SOW_V1\",\n  \"issues\": [],\n  \"target\": \"projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure\",\n  \"valid\": true\n}\n",
+      "stderr": ""
+    }
+  ],
+  "residual_keys": 242,
+  "original_columns": "EXACT",
+  "lifecycle_approval_pins_history": "UNCHANGED",
+  "seven_artifact_original_keys": "64 checks + 5 conflicts/warnings EXACT",
+  "seven_artifact_historical_bytes": "EXACT original body suffix preserved",
+  "formal_dependency_fields": "UNCHANGED; only notes and accepted workflow locator fields differ",
+  "bounded_diff_check": "PASS"
+}

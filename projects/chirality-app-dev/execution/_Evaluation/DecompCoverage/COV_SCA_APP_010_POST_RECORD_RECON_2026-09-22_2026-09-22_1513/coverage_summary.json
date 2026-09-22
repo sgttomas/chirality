@@ -1,0 +1,746 @@
+{
+  "run_label": "SCA_APP_010_POST_RECORD_RECON_2026-09-22",
+  "timestamp": "2026-09-22T15:27:41-06:00",
+  "decomp_variant": "SOFTWARE",
+  "scope": "ALL",
+  "requested_by": "Agent 0 / HELP_HUMAN",
+  "run_status": "WARNINGS",
+  "expected_source_snapshot": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/ (active under projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md SHA-256 f3a25a9baadefb69b3b30494774e4e9d0971b3f756ae4d7a55ff7b254fe8fffb; OPEN_PENDING_DERIVATIVE_CLOSURE)",
+  "expected_handoff_phase": "Fresh full SOFTWARE decomposition coverage supporting App record closeout; no scope/product acceptance or owner acceptance inferred.",
+  "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "decomposition_sha256": "9261ce30f933a0b72364a5af09c8aeed9208372774959864ff24a805126ea8a6",
+  "companion_register_path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
+  "companion_register_sha256": "918e475a48899d18755139027e61db200d23a531e48ed9f969c526dd842fa944",
+  "scope_change_pointer_sha256": "f3a25a9baadefb69b3b30494774e4e9d0971b3f756ae4d7a55ff7b254fe8fffb",
+  "decomposition_revision": "v3.2 current working surface; includes 2026-09-22 retirement propagation; accepted historical pins retained.",
+  "basis_commit": "100c5a21d00ae6e56e26171f61e58d48e475a70e",
+  "repository_topology": {
+    "packages": 10,
+    "deliverables": 52,
+    "objectives": 10,
+    "scope_items": 84,
+    "ledger_rows": 84
+  },
+  "ledger_distribution": {
+    "IN": 78,
+    "OUT": 5,
+    "TBD": 1
+  },
+  "physical_inventory": {
+    "packages": 11,
+    "deliverable_folders": 54,
+    "declared_deliverables": 52,
+    "control_only_package": "PKG-00_DAG_Closure_and_Project_Control",
+    "control_only_deliverables": [
+      "DEL-00-01",
+      "DEL-00-02"
+    ]
+  },
+  "forward_coverage": {
+    "packages": "10/10",
+    "deliverables": "52/52"
+  },
+  "reverse_coverage": "52/52 declared; three explicitly disclosed control-only filesystem surfaces",
+  "context_fidelity": {
+    "declared": {
+      "MATCH": 51,
+      "PARTIAL": 1
+    },
+    "retired_deliverable": "DEL-09-07",
+    "retired_context_status": "PARTIAL: old scaffold semantics remain in _CONTEXT.md; historical OPEN lifecycle retained"
+  },
+  "artifact_presence": {
+    "active_expected_filename_matches": "11/194",
+    "active_expected_descriptions": 194,
+    "matches": 11,
+    "incomplete_in_progress_deliverables": 50,
+    "interpretation": "Filename-level structural screen only; does not prove absence of capability or product acceptance."
+  },
+  "objective_coverage": {
+    "objectives_supported": "10/10",
+    "unmapped_objectives": 0,
+    "authoritative_check": "Scope Ledger ObjectiveID(s) \u2194 Deliverables SupportsObjectives",
+    "summary_reverse_view_differences": 9
+  },
+  "scope_ledger_integrity": {
+    "rows": 84,
+    "reverse_view_errors": 0,
+    "dangling_references": 0
+  },
+  "scope_of_work_validation": {
+    "folders_checked": 54,
+    "passed": 54,
+    "failed": 0,
+    "results": [
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-02_Reliance_Boundary_Register",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-03_Product_Identity_and_Professional_Boundary_Copy",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-04_Scope_Boundary_and_Retired_Scope_Register",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-04_Scope_Boundary_and_Retired_Scope_Register",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-03_SdkMessageMapper_and_Provider_Neutral_Translation",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-05_ToolResultStore_and_Session_Artifacts",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture",
+          "valid": true
+        }
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation",
+        "returncode": 0,
+        "result": {
+          "format": "SOW_V1",
+          "issues": [],
+          "target": "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation",
+          "valid": true
+        }
+      }
+    ]
+  },
+  "companion_register": {
+    "rows": 83,
+    "unique_invariant_ids": 83,
+    "families": 50,
+    "basis_pin_distribution": {
+      "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md#candidate-sha256=c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61": 80,
+      "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md#candidate-sha256=c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61;current-retirement-application-sha256=9261ce30f933a0b72364a5af09c8aeed9208372774959864ff24a805126ea8a6": 3
+    },
+    "interpretation": "accepted original pins are preserved; current retirement application is separately appended on three rows"
+  },
+  "package_shape_conformance": "PASS: authoritative and companion roles explicit; no heavy duplicated truth or derived authority confusion identified",
+  "derivative_package_status": "SKIPPED_SOFTWARE_VARIANT",
+  "active_snapshot_status": "PASS_WITH_HISTORICAL_WARNING",
+  "active_snapshot": "SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA",
+  "active_snapshot_required_root_artifacts": "11/11",
+  "active_snapshot_manifest_entries": "59/59",
+  "active_snapshot_missing": [],
+  "active_snapshot_manifest_errors": [],
+  "historical_snapshot_residue": {
+    "snapshot": "SCA-APP-008_2026-08-23_1727_V3_Release_Pathway",
+    "required_root_artifacts_missing": [
+      "Propagation_Plan.md",
+      "Amendment_Actions.csv",
+      "Pre_Change_Coverage.json",
+      "Post_Change_Coverage.json",
+      "Decision_Log.md",
+      "RUN_SUMMARY.md"
+    ],
+    "conditional_root_artifacts_missing": [
+      "Supersession_Delta.csv",
+      "Supersession_Map.csv"
+    ],
+    "status": "WARNING_NON_CURRENT_CARRIED_FROM_PRIOR_ACCEPTED_AUDIT"
+  },
+  "lifecycle_distribution": {
+    "IN_PROGRESS": 53,
+    "OPEN": 1
+  },
+  "checks": [
+    {
+      "number": "1",
+      "name": "Forward coverage: packages",
+      "status": "PASS",
+      "evidence": "10 declared; 10 matching folders; no missing package folder."
+    },
+    {
+      "number": "2",
+      "name": "Forward coverage: deliverables",
+      "status": "PASS",
+      "evidence": "52 declared; all have matching folders."
+    },
+    {
+      "number": "3",
+      "name": "Reverse coverage: folders",
+      "status": "WARNING",
+      "evidence": "One undeclared control package and two control-only deliverable-shaped folders; tracked explicitly as control surfaces."
+    },
+    {
+      "number": "4",
+      "name": "ID consistency",
+      "status": "PASS",
+      "evidence": "Declared package/deliverable IDs and parent-package relationships match folder IDs; legacy suffix on DEL-02-02 is accepted and ID remains exact."
+    },
+    {
+      "number": "5",
+      "name": "Context fidelity",
+      "status": "WARNING",
+      "evidence": "51 MATCH, 1 PARTIAL, 0 MISSING among 52 declared deliverables; DEL-09-07 retained historical context still describes retired installer work."
+    },
+    {
+      "number": "6",
+      "name": "Artifact presence",
+      "status": "WARNING",
+      "evidence": "Filename-screen coverage 11/194 anticipated artifact descriptions over active declared units; 50 IN_PROGRESS deliverables have incomplete filename matches. Structural presence is not product acceptance."
+    },
+    {
+      "number": "7",
+      "name": "Objective mapping",
+      "status": "PASS",
+      "evidence": "10 objectives; all are supported by at least one existing declared deliverable; no unmapped ObjectiveID; 9 objective summary rows differ from authoritative ledger reverse view (INFO)."
+    },
+    {
+      "number": "8",
+      "name": "Ledger integrity",
+      "status": "PASS",
+      "evidence": "84 ledger rows; states {'IN': 78, 'OUT': 5, 'TBD': 1}; no dangling or Scope Ledger \u2194 Deliverables reverse-view mismatches."
+    },
+    {
+      "number": "9",
+      "name": "Derivative package parity",
+      "status": "SKIPPED",
+      "evidence": "Not variant-owned for SOFTWARE, per method."
+    },
+    {
+      "number": "9b",
+      "name": "Package-shape conformance",
+      "status": "PASS",
+      "evidence": "Main decomposition labels itself authoritative; \u00a72.2 labels the companion register authoritative and specifies its purpose; no duplicate heavy truth or derived-surface authority confusion found."
+    },
+    {
+      "number": "10",
+      "name": "Active snapshot and handoff state",
+      "status": "WARNING",
+      "evidence": "Active SCA-APP-010 pointer resolves uniquely; active root artifacts 11/11; manifest 59/59 entries match. Historical SCA-APP-008 remains non-current residue: six required artifacts and two conditional supersession files are absent (carried from prior accepted audit)."
+    },
+    {
+      "number": "11",
+      "name": "Lifecycle distribution",
+      "status": "PASS",
+      "evidence": "Physical deliverable folders lifecycle counts: {'IN_PROGRESS': 53, 'OPEN': 1}; recognized states; OPEN retained DEL-09-07 is not inferred as active product work."
+    }
+  ],
+  "check_count": 12,
+  "issues_blocker": 0,
+  "issues_warning": 55,
+  "issues_info": 1,
+  "overall_status": "WARNINGS",
+  "closure_readiness": "FAIL",
+  "closure_readiness_basis": "No decomposition-structure blocker. Derivative closure remains open by the active SCA-APP-010 handoff; product/delivery and evidence obligations remain separately open. Structural filename mismatches and one retired-carrier context lag are warnings for disposition, not claims that code/features are absent or unaccepted.",
+  "limits": [
+    "Audit is structural and does not establish implementation completeness, product acceptance, operational execution, signing/notarization/release, or owner acceptance.",
+    "Filename matching uses the workflow\u2019s explicit token similarity screen; it is not semantic proof of artifact quality.",
+    "Controls outside the declared product topology are disclosed, not absorbed into product scope.",
+    "Retired DEL-09-07 remains a stable historical row with OPEN lifecycle; no lifecycle transition is inferred."
+  ],
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}

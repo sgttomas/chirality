@@ -47,13 +47,13 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 > | Attribute | Value | Source |
 > |---|---|---|
 > | Contract subject | Future `DomainEngineProfile` profile contract conforming to framework-root canon at `77a327727`. | `_CONTEXT.md`; `_REFERENCES.md` REF-008; `docs/TYPES.md` §11.1 |
-> | Canonical identity fields | `schema_version`, `id`, `name`, `engine_type`, `profile_version`. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/TYPES.md` §11.1 |
-> | Profile lifecycle fields | `profile_status` using `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN`; `integration_level` using `MANUAL_BRIDGE | READ_ONLY | DOMAIN_CONTROLLED_WRITE | OPERATION_PROPOSAL | EXTERNAL_RESULT_STATE`. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/TYPES.md` §11.1 |
-> | Path and artifact role fields | `domain_root_patterns`, `authoritative_artifacts`, `chirality_readable_artifacts`, `protected_write_paths`, `agent_writable_paths`. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/CONTRACT.md` §1.10 |
-> | Tool contract fields | `deterministic_tools[].id`, `mode`, `requires_human_confirmation`, `validate_result_schema`, and `apply_result_schema`. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/TYPES.md` §11.1 |
-> | Proposal contract field | `operation_proposal_contract` with lifecycle, risk classes, deterministic-check result schema, and accepted/applied requirements. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/TYPES.md` §11.1 |
-> | Professional boundary field | Structured `professional_boundary.agent_must_not_claim` list. | `agents/AGENT_DOMAIN_ENGINE.md` REF-008; `docs/CONTRACT.md` §1.10 K-DOMAIN-4 |
-> | True future TBDs | Concrete profile instances, concrete schema refs, adapter implementations, tool stores, operation stores, and apply tooling remain TBD until governed amendment. | `docs/PLAN.md` §R7; `docs/SPEC.md` §18 |
+> | Canonical identity fields | `schema_version`, `id`, `name`, `engine_type`, `profile_version`. | historical persona basis; current method REF-008/REF-011/REF-012; `docs/TYPES.md` §11.1 |
+> | Profile lifecycle fields | `profile_status` using `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN`; `integration_level` using `MANUAL_BRIDGE | READ_ONLY | DOMAIN_CONTROLLED_WRITE | OPERATION_PROPOSAL | EXTERNAL_RESULT_STATE`. | historical persona basis; current method REF-008/REF-011/REF-012; `docs/TYPES.md` §11.1 |
+> | Path and artifact role fields | `domain_root_patterns`, `authoritative_artifacts`, `chirality_readable_artifacts`, `protected_write_paths`, `agent_writable_paths`. | historical persona basis; current method REF-008/REF-011/REF-012; `docs/CONTRACT.md` §1.10 |
+> | Tool contract fields | `deterministic_tools[].id`, `mode`, `requires_human_confirmation`, `validate_result_schema`, and `apply_result_schema`. | historical persona basis; current method REF-008/REF-011/REF-012; `docs/TYPES.md` §11.1 |
+> | Proposal contract field | `operation_proposal_contract` with lifecycle, risk classes, deterministic-check result schema, and accepted/applied requirements. | historical persona basis; current method REF-008/REF-011/REF-012; `docs/TYPES.md` §11.1 |
+> | Professional boundary field | Structured `professional_boundary.agent_must_not_claim` list. | historical persona basis; current method REF-008/REF-011/REF-012; `docs/CONTRACT.md` §1.10 K-DOMAIN-4 |
+> | True future TBDs | ADOPTED profile instances and their applicable schema hooks are supplied (see CLM-028). New adapters, tool/operation stores, endpoints, apply tooling and per-instance notice review remain gated delivery work. | `docs/PLAN.md` §R7; `docs/SPEC.md` §18 |
 >
 
 ### CLM-004 — Conditions
@@ -62,8 +62,8 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 >
 > | Condition | Value | Source |
 > |---|---|---|
-> | Release scope | D-APP-49 through D-APP-52 rule source types/guards, a closed registry, read tools, and pec-scoped loopback propose/refresh/validate tools live. Endpoints, apply, direct protected-path writes/hooks, and general domain-runtime activation remain future/gated. | `docs/SPEC.md` §18; D-APP-49 through D-APP-52 |
-> | Sequencing | The ruled staged surface is live; any broader Domain Engine Profile or operation workflow proceeds only through its own governed amendment. | `docs/PLAN.md` §R7; `docs/PRD.md` §8.17 |
+> | Release scope | D-APP-49 through D-APP-52 authorize the staged profile/type, registry, read and PEC-scoped propose/refresh/validate interfaces. Their retained implementation is compatibility evidence, not proof of live Codex exposure. D-GOV-43 / D-APP-127 select Codex; live-path composition and named verification remain delivery work. Endpoints, operation apply, direct protected writes/hooks, integration-level advancement and general domain runtime retain F-APP-3 and their separate gates. | `docs/SPEC.md` §18; D-APP-49 through D-APP-52 |
+> | Sequencing | The ruled staged authority survives; retained-path behavior does not establish Codex live-path availability. Broader profile/operation capabilities retain their own governed amendment. | `docs/PLAN.md` §R7; `docs/PRD.md` §8.17 |
 > | Engine-specific integration | A generic `DomainEngineProfile` contract precedes any engine-specific integration. | `docs/PRD.md` §8.17 FR-107 |
 > | Protected path posture | Protected domain paths are write-quarantined; agents write proposals, summaries, and review aids only under profile-approved `agent_writable_paths`. | `docs/CONTRACT.md` §1.10 K-DOMAIN-2; REF-008 |
 > | Human gate posture | Accepted/applied proposal transitions require human approval bound to git SHA per K-AUTH-2 and domain-engine-controlled apply or external terminal acceptance records. | `docs/CONTRACT.md` §1.10 K-DOMAIN-3; REF-008 |
@@ -118,7 +118,7 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 >       - "externally validated"
 > ```
 >
-> Source: `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727` and reflected in `docs/TYPES.md` §11.1.
+> Source: historical `agents/AGENT_DOMAIN_ENGINE.md@77a327727` (retained source basis); current method references are `_REFERENCES.md` REF-008/REF-011/REF-012 and reflected in `docs/TYPES.md` §11.1.
 >
 
 ### CLM-007 — Validation Notes
@@ -142,7 +142,7 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 > - `_REFERENCES.md`
 > - `_DEPENDENCIES.md`
 > - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` §PKG-10, SOW-066, SOW-067, DEC-006
-> - `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`
+> - historical `agents/AGENT_DOMAIN_ENGINE.md@77a327727` (retained source basis); current method references are `_REFERENCES.md` REF-008/REF-011/REF-012
 > - `docs/CONTRACT.md` §1.10
 > - `docs/SPEC.md` §18
 > - `docs/TYPES.md` §11
@@ -198,9 +198,9 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 > | ID | Requirement | Verification |
 > |---|---|---|
 > | DEL-10-01-REQ-001 | The contract draft MUST preserve `ResponsibleParty: TBD` until human assignment. | Inspect document identification sections. |
-> | DEL-10-01-REQ-002 | The contract draft MUST distinguish the D-APP-49 through D-APP-52 staged-live surface from the still-gated endpoints, apply, protected-path hooks/writes, and general domain runtime. | Inspect Scope, Conditions, and Procedure gate checks. |
+> | DEL-10-01-REQ-002 | The contract draft MUST distinguish the D-APP-49 through D-APP-52 authorized staged surface, its retained compatibility implementation and unverified Codex composition from the still-gated endpoints, apply, protected-path hooks/writes, and general domain runtime. | Inspect Scope, Conditions, and Procedure gate checks. |
 > | DEL-10-01-REQ-003 | A generic `DomainEngineProfile` contract MUST precede any engine-specific integration. | Confirm no OpenPipeStress-specific runtime assumptions are embedded in the generic profile contract. |
-> | DEL-10-01-REQ-004 | A future `DomainEngineProfile` MUST include canonical identity, status, integration-level, path-role, deterministic-tool, operation-proposal-contract, and professional-boundary fields from framework `AGENT_DOMAIN_ENGINE.md` at `77a327727`. | Validate field list against `docs/TYPES.md` §11.1 and `_REFERENCES.md` REF-008. |
+> | DEL-10-01-REQ-004 | A future `DomainEngineProfile` MUST include canonical identity, status, integration-level, path-role, deterministic-tool, operation-proposal-contract, and professional-boundary fields from the retained framework persona basis `77a327727`, read with current domain-engine workflow resources. | Validate field list against `docs/TYPES.md` §11.1 and `_REFERENCES.md` REF-008. |
 > | DEL-10-01-REQ-005 | `profile_status` MUST use `NONE | DRAFT | VALIDATED | ADOPTED | STALE | INVALID | UNKNOWN`; integrated workflows require `ADOPTED`, while `MANUAL_BRIDGE` may explicitly record no adopted profile. | Inspect `docs/TYPES.md` §11.1 and future profile records. |
 > | DEL-10-01-REQ-006 | `integration_level` MUST use `MANUAL_BRIDGE | READ_ONLY | DOMAIN_CONTROLLED_WRITE | OPERATION_PROPOSAL | EXTERNAL_RESULT_STATE` and MUST NOT skip levels. | Inspect profile documentation and future amendment packets. |
 > | DEL-10-01-REQ-007 | Protected domain paths MUST be write-quarantined, and agent writes MUST be limited to profile-approved `agent_writable_paths`. | Future path policy separates authoritative/readable/protected/agent-writable path roles. |
@@ -216,50 +216,27 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 >
 > | Source | Applicable authority | Notes |
 > |---|---|---|
-> | `agents/AGENT_DOMAIN_ENGINE.md` at `77a327727` | Canonical domain-engine persona, minimal profile shape, and profile/proposal governance | REF-008; framework-root canonical under D-T0-01. |
+> | historical `agents/AGENT_DOMAIN_ENGINE.md@77a327727`; current method REF-008/REF-011/REF-012 | Historical persona field basis and current domain-engine method/profile governance | Historical pin retained; REF-008/011/012 are current workflow identities. |
 > | `docs/CONTRACT.md` §1.10 | App-dev K-DOMAIN invariants specializing framework K-DOMAIN without weakening them | Governs truth ownership, path quarantine, operation proposals, and professional boundary. |
 > | `docs/SPEC.md` §18 | Future specification boundary and candidate endpoint families | Candidate endpoints are provisional and must not be implemented as current-release scope. |
-> | `docs/TYPES.md` §11 | App-dev vocabulary target conforming to framework canon | Documents profile/proposal vocabulary only; it does not create source types. |
-> | `docs/PRD.md` §8.17 | Product requirements FR-106 through FR-115 | Current authority-corpus references are reconciled by D-APP-38. |
+> | `docs/TYPES.md` §11 | App-dev vocabulary target conforming to framework canon | Defines required vocabulary; D-APP-49 separately supplies the inert source type. No live tool exposure follows from the vocabulary alone. |
+> | `docs/PRD.md` §8.17 | Product requirements FR-106 through FR-115 | Current reference drift is reported separately under D-APP-38; no basis re-pin is implied. |
 > | `docs/PLAN.md` §R7 | Future amendment sequencing | Domain profiles come after core harness stability and human-gated R7 activation. |
 >
 
 ### CLM-014 — Verification
 
-> ##### Verification
->
-> | Verification item | Method |
-> |---|---|
-> | Four-document completeness | Confirm `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` are present and non-empty. |
-> | Future-boundary preservation | Search for current-release implementation claims, source-type activation, MCP tool activation, path-hook implementation, or endpoint activation language; none should be present. |
-> | Source grounding | Check each non-trivial requirement against cited source sections and REF-008. |
-> | Canon conformance | Confirm the profile contract includes ProfileStatus, IntegrationLevel, role-classed paths, deterministic-tool schema hooks, operation-proposal contract, and structured professional boundary. |
-> | True TBD preservation | Confirm concrete profile instances, concrete result schema refs, adapter implementations, stores, and apply tooling remain `TBD` until a governed amendment accepts them. |
-> | Cross-document consistency | Confirm terminology uses `DomainEngineProfile`, `ProfileStatus`, `IntegrationLevel`, protected path, agent-writable path, deterministic tool, OperationProposal, and boundary notice consistently. |
-> | Future profile-instance review data | When concrete profile fixtures exist, review instance-level `professional_boundary` copy and profile values rather than relying only on the generic illustrative skeleton. |
-> | Status policy | Do not change `_STATUS.md` in this conformance tranche; `CHECKING -> ISSUED` remains out of scope. |
->
+> Verification shall review this ScopeOfWork, including CLM-003/006/012 profile fields and CLM-004 staged boundary. Compare canonical vocabulary with current domain-engine workflow resources and the retained persona basis; do not conflate those origins. Inspect ADOPTED profile hooks against their declared schemas. Check `frontend/src/__tests__/lib/domain-profile.test.ts` and `domain-profile-registry.test.ts` as retained conformance evidence; a new Codex registration/exposure witness is outstanding. Verify no endpoint/apply activation, no direct protected write, and no integration-level advance. Current lifecycle and approval SHA remain unchanged.
 
 ### CLM-015 — Documentation
 
-> ##### Documentation
->
-> Required artifacts for this deliverable:
->
-> - Profile schema draft: this specification and the canonical shape recorded in `Datasheet.md`.
-> - Validation notes: deterministic validation requirements and true future implementation `TBD` schema refs.
-> - Future amendment checklist: operationalized in `Procedure.md`.
->
-> Existing dependency registers are not changed by this conformance tranche.
->
+> Required documentation is carried by this ScopeOfWork: CLM-003/006 profile shape, CLM-007 validation obligations, CLM-020 amendment procedure, and CLM-028 illustrative skeleton/instance evidence. The former Datasheet, Specification, Guidance and Procedure are conversion-source identities, not missing current files. Dependency registers remain separate governed sources.
 
 ### CLM-016 — D-APP-56 ownership amendment (2026-07-12)
 
-> ##### D-APP-56 ownership amendment (2026-07-12)
->
-> Under R4-P27, this deliverable owns the ruled `domain-profile.ts` source-type mirror and the `domain-profile-registry.ts` registration mechanism and gate. The mechanism/content boundary is explicit: PEC entry content and fixture-validation evidence remain DEL-10-04 scope.
+> Under D-APP-56 R4-P27, DEL-10-01 owns the generic profile contract, registration interface and gate; DEL-10-04 owns fixture content and validation evidence. The canonical type carrier is `projects/chirality-runtime/packages/contracts/src/harness/domain-profile.ts` through `@chirality/runtime-contracts`; App retained registration evidence is `frontend/src/lib/harness/mcp/domain-profile-registry.ts`. D-APP-118 retires `@chirality/harness-contract` and its rollback-support obligation; no facade approval is pending. Verification: direct canonical imports and `domain-profile.test.ts` / `domain-profile-registry.test.ts`; retained registry checks do not prove live Codex registration. Carrier location does not transfer fixture authoring into this App loop.
 
-- **AC-001** — The Scope of Work identifies DEL-10-01 as a future-boundary generic DomainEngineProfile contract, covers SOW-066 and SOW-067 for OBJ-010, and preserves all four legacy source documents without semantic addition or omission.
+- **AC-001** — The Scope of Work identifies DEL-10-01 as a future-boundary generic DomainEngineProfile contract, covers SOW-066 and SOW-067 for OBJ-010, and preserves all domain requirements and source traceability. Exact four-document parity is the completed historical conversion criterion; subsequent authorized claim repairs are checked against their decisions and current evidence.
 
 ## Production and Verification Method — Praxeology
 
@@ -283,7 +260,7 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 > |---|---|
 > | Deliverable-local context is present. | Satisfied: `_CONTEXT.md` exists. |
 > | Authoritative references are accessible. | Satisfied: `_REFERENCES.md` includes REF-008 for framework `AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`. |
-> | Framework precedence is known. | Satisfied: D-T0-01 makes framework-root `AGENT_DOMAIN_ENGINE.md` canonical; app-dev `docs/TYPES.md` Section 11 conforms to it. |
+> | Framework source identity is known. | Satisfied: D-T0-01 makes the historical framework-root persona canonical on its recorded basis; app-dev `docs/TYPES.md` Section 11 conforms to it. |
 > | Current status posture is preserved. | Required: read current state from `_STATUS.md`; this tranche performs no lifecycle transition or release-readiness act. |
 > | Current scope remains future-boundary. | Required by `docs/SPEC.md` Section 18, `docs/PLAN.md` R7, and D-APP-39 F3. |
 >
@@ -299,12 +276,12 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 >    - Scope: future profile contract for engine identity, integration level, path/artifact roles, deterministic tools, operation-proposal contract, and professional boundary.
 >
 > 2. Confirm source posture from `_REFERENCES.md`.
->    - Use REF-008 as the canonical persona/profile source.
+>    - Use REF-008/REF-011/REF-012 for the current domain-engine workflow; the persona at 77a327727 is the preserved historical field-shape basis.
 >    - Use app-dev `docs/TYPES.md` Section 11 only as the local vocabulary target conforming to REF-008.
 >    - Do not create `Dependencies.csv`.
 >
 > 3. Read source slices for the domain-engine future boundary.
->    - `agents/AGENT_DOMAIN_ENGINE.md` at `77a327727` for Minimal Profile Shape, valid operation proposal table, lifecycle, and `operation_proposal_contract`.
+>    - historical `agents/AGENT_DOMAIN_ENGINE.md@77a327727`; current method REF-008/REF-011/REF-012 for Minimal Profile Shape, valid operation proposal table, lifecycle, and `operation_proposal_contract`.
 >    - `docs/CONTRACT.md` Section 1.10 for app-dev K-DOMAIN invariants, which specialize framework `docs/CONTRACT.md` Section 1.12 without weakening it.
 >    - `docs/SPEC.md` Section 18 for provisional future endpoint/tool boundary.
 >    - `docs/TYPES.md` Section 11 for app-dev vocabulary.
@@ -322,9 +299,9 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 >    - Preserve structured `professional_boundary`.
 >
 > 5. Mark only true future implementation details as `TBD`.
->    - Concrete profile instances.
->    - Concrete schema refs for validation/apply/deterministic-check results.
->    - Adapters, MCP tools, stores, endpoint handlers, protected-path hooks, and apply tooling.
+>    - New profile instances beyond the ADOPTED OpenPipeStress and PEC records.
+>    - Schema refs not already bound by the ADOPTED profile; retain explicit inapplicable/TBD hooks individually.
+>    - Unbuilt live Codex composition, new adapters/stores, endpoint handlers, protected-path enforcement and apply tooling; retained ruled tools are compatibility evidence.
 >    - Concrete boundary notice copy for each accepted profile instance.
 >
 > 6. Preserve future-boundary constraints.
@@ -334,7 +311,7 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 >    - Do not represent domain output as professional approval, code compliance, certification, sealing, authentication, external validation, or Chirality-owned solver truth.
 >
 > 7. Cross-check documents.
->    - Confirm `Datasheet.md`, `Specification.md`, `Guidance.md`, and `Procedure.md` use consistent canonical terms.
+>    - Confirm the profile definition, requirements, procedure and guidance sections of this ScopeOfWork use consistent canonical terms.
 >    - Confirm DEL-10-03 uses the same lifecycle and proposal contract fields.
 >    - Confirm old compact-draft blockers are not reintroduced as unresolved human-ruling blockers.
 >
@@ -346,32 +323,13 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 
 ### CLM-021 — Verification
 
-> ##### Verification
->
-> | Check | Expected result |
-> |---|---|
-> | Four document files | Present and non-empty. |
-> | Status state | Current state is read from `_STATUS.md`; no lifecycle transition is claimed. |
-> | Responsible party | Remains `TBD`. |
-> | Canon conformance | Profile vocabulary includes REF-008 identity, status, integration, path role, deterministic-tool, operation-proposal, and professional-boundary fields. |
-> | True TBD posture | Concrete profiles, concrete schema refs, adapters, stores, path hooks, and apply tooling remain `TBD`. |
-> | Dependency register | Existing `Dependencies.csv` remains separate derivative evidence and is not created or edited by this conformance tranche. |
-> | Implementation activation | No domain-engine source type, endpoint, MCP tool, adapter, operation store, apply workflow, or protected-path write implementation is activated. |
->
+> Check CLM-006/012 profile field conformance and CLM-004/016 ownership and staged boundary against `domain-profile.test.ts` / `domain-profile-registry.test.ts`. Read ADOPTED profiles and their declared hooks; do not call supplied profiles or bound hooks TBD. Current Codex registration/exposure checks remain outstanding. No endpoint/apply/protected-write activation is claimed. Keep the dependency register, lifecycle and approval SHA unchanged; verify current ScopeOfWork sections rather than demanding four retired files.
 
 ### CLM-022 — Records
 
-> ##### Records
->
-> - `Datasheet.md`
-> - `Specification.md`
-> - `Guidance.md`
-> - `Procedure.md`
-> - `MEMORY.md`
-> - `_STATUS.md`
-> - D-APP-45 closeout packet
+> Current records: `ScopeOfWork.md`, `MEMORY.md`, `_STATUS.md`, `_REFERENCES.md`, and the existing dependency register. D-APP-45 and the four-document conversion records remain historical evidence. Current changed-block evidence is W10_CHANGES.csv; no new product qualification or human review is asserted.
 
-- **VER-001** — Verify the source-marker map and parity report against the four legacy documents, then verify the matrix binds OUT-001 and AC-001 to SOW-066, SOW-067, and OBJ-010.
+- **VER-001** — Review the current ScopeOfWork claims and output matrix against their cited requirements and retained gates. Historical conversion/parity evidence is recovered in `R5/CONVERSION_EVIDENCE_REVIEW.csv` of RUN_D128_CONCORDANCE_2026-09-21_1614Z; it proves the dated conversion only. Current reconciliation uses W10_CHANGES.csv and independent changed-block review; product and human-acceptance checks remain separately required.
 
 ## Governing Values and Decisions — Axiology
 
@@ -386,7 +344,7 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 >
 > This guidance explains how to read and maintain the `DomainEngineProfile` contract draft as a future-boundary artifact. The draft preserves compatibility with future domain-engine integrations without activating domain execution in the current app-dev slice.
 >
-> Primary canon: `_REFERENCES.md` REF-008, `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`. Under D-T0-01, the framework-root persona is canonical; app-dev `docs/TYPES.md` Section 11 conforms to it and must not weaken framework invariants.
+> Historical field-shape basis: `agents/AGENT_DOMAIN_ENGINE.md@77a327727`. Current domain-engine method sources are `_REFERENCES.md` REF-008/REF-011/REF-012; they are not the historical persona bytes. Under D-T0-01, the framework-root persona is canonical; app-dev `docs/TYPES.md` Section 11 conforms to it and must not weaken framework invariants.
 >
 
 ### CLM-025 — Principles
@@ -411,7 +369,7 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 > - Use `docs/TYPES.md` Section 11.1 as the app-dev vocabulary target, but resolve conflicts against REF-008.
 > - The older compact draft fields `DomainEngineOperationDescriptor` and `manifestRules` are superseded by canonical `deterministic_tools`, path/artifact role sets, and `operation_proposal_contract`; they are no longer human-ruling blockers for DEL-10-01.
 > - Keep `validate_result_schema`, `apply_result_schema`, and deterministic-check result schema references explicit. A concrete schema may remain `TBD`, but the schema hook itself is canonical.
-> - Keep OpenPipeStress references fixture-level only. A concrete OpenPipeStress profile remains future/gated and must not become an app-dev runtime assumption in this tranche.
+> - Keep OpenPipeStress references fixture-level only. OpenPipeStress and PEC profiles are ADOPTED under tier-0 authority; their existence does not authorize App live integration or core solver assumptions.
 > - Any future validator should be deterministic and reject invalid or incomplete profiles before runtime exposure.
 > - Preserve `_STATUS.md` as-is. This conformance tranche does not authorize `CHECKING -> ISSUED`, release readiness, or R7 implementation.
 >
@@ -422,9 +380,9 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 >
 > | Topic | Conservative position | Risk if loosened |
 > |---|---|---|
-> | Concrete profile instances | Leave engine instances, including OpenPipeStress, as future amendment scope. | An illustrative profile could be mistaken for accepted integration. |
+> | Concrete profile instances | Read existing ADOPTED OpenPipeStress and PEC profiles; additional instances require their owning amendment. | An illustrative profile could be mistaken for accepted integration. |
 > | Concrete schema refs | Record `validate_result_schema`, `apply_result_schema`, and deterministic-check result schema as explicit refs or `TBD`. | Prompt-inferred result schemas could become false contract surface. |
-> | Adapter/tool implementation | Defer deterministic adapters, stores, MCP tools, endpoints, and path hooks. | Crosses F3 and activates domain runtime without tier-0 gate. |
+> | Adapter/tool implementation | Retain ruled staged-tool authority and compatibility evidence; unbuilt Codex composition, new adapters/stores, endpoints, path enforcement and apply remain gated. | Crosses F3 and activates domain runtime without tier-0 gate. |
 > | Boundary notice copy | Require structured boundary fields now; review concrete text per profile instance later. | Generic copy may imply professional reliance in a domain-specific context. |
 >
 
@@ -464,7 +422,7 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 >
 > This example is illustrative only. It is not an accepted runtime fixture and must not be treated as implementation-ready.
 >
-> Cross-reference (2026-07-02, agent decision under `TRB-chirality-app-dev-DEL-10-01-2026-07-02`): a concrete ADOPTED instance of this contract now exists — `_DomainEngines/profiles/open_pipe_stress.yaml` (tier-0, ADOPTED per D-T0-06) — and the concrete result-schema refs the example marks `TBD` are published for that instance: `projects/chirality-piping/schemas/operation_outcome.schema.json` (`validate_result_schema` / `apply_result_schema`; operation_applier `OperationOutcome`) and `projects/chirality-piping/schemas/rule_check_run_result.schema.json` (`deterministic_check_result_schema`; rule_check_runner `RuleCheckRunResult`). The Rust sources govern on disagreement; the ADOPTED profile's own hook fields still read `TBD` pending an owner tier-0 CHANGE. The example skeleton above stays as-is: its `TBD` placeholders are template positions, and other engines supply their own refs. Note the repo qualifier: piping DEL-10-03 (Local FEA handoff) published those schemas; app-dev DEL-10-03 is a different deliverable.
+> Cross-reference (2026-07-02, agent decision under `TRB-chirality-app-dev-DEL-10-01-2026-07-02`): a concrete ADOPTED instance of this contract now exists — `_DomainEngines/profiles/open_pipe_stress.yaml` (tier-0, ADOPTED per D-T0-06) — and the concrete result-schema refs the example marks `TBD` are published for that instance: `projects/chirality-piping/schemas/operation_outcome.schema.json` (`validate_result_schema` / `apply_result_schema`; operation_applier `OperationOutcome`) and `projects/chirality-piping/schemas/rule_check_run_result.schema.json` (`deterministic_check_result_schema`; rule_check_runner `RuleCheckRunResult`). The Rust sources govern on disagreement; applicable validation/apply/check hooks are now bound in the ADOPTED profile. Inapplicable or unsupplied hooks remain explicit TBD. The example skeleton above stays as-is: its `TBD` placeholders are template positions, and other engines supply their own refs. Note the repo qualifier: piping DEL-10-03 (Local FEA handoff) published those schemas; app-dev DEL-10-03 is a different deliverable.
 >
 
 ### CLM-029 — References
@@ -472,7 +430,7 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 > ##### References
 >
 > - `_REFERENCES.md` REF-008
-> - `agents/AGENT_DOMAIN_ENGINE.md` pinned at `77a327727`
+> - historical `agents/AGENT_DOMAIN_ENGINE.md@77a327727` (retained source basis); current method references are `_REFERENCES.md` REF-008/REF-011/REF-012
 > - `docs/CONTRACT.md` Section 1.10
 > - `docs/SPEC.md` Section 18
 > - `docs/TYPES.md` Section 11
@@ -490,4 +448,4 @@ This Scope of Work defines `DEL-10-01` in service of project scope [SOW-066, SOW
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-066 SOW-067 OBJ-010 | CLM-010 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-066 SOW-067 OBJ-010 | CLM-010 | AC-001 | VER-001 | Historical conversion mapping; current claim-block review and applicable named verification evidence |

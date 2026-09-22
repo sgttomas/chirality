@@ -1,0 +1,21 @@
+{
+  "basis": "1b5adbf50142a4c01c454c62a31dfcdc60da1894 + declared dirty docs",
+  "cwd": "projects/chirality-app-dev/frontend",
+  "command": "node node_modules/vitest/vitest.mjs run src/__tests__/docs/reliance-boundary-register.test.ts src/__tests__/contract-pins.test.ts",
+  "exit_code": 0,
+  "runner": "vitest4.1.10",
+  "result": "2 test files passed;24 tests passed",
+  "stdout": "Test Files 2 passed (2); Tests 24 passed (24); Start at13:28:12; Duration168ms; vitest4.1.10",
+  "scope": "Documentation schema/pins and cited path evidence only; not live product qualification",
+  "inputs": {
+    "docs/harness/reliance_boundary_register.md": "efbe0fde26c17e20d5d3b06bde7ade8d881c4b9b6e1d8666dd6aacd592acb0d7",
+    "docs/BOUNDARY_REVIEW_CHECKLISTS.md": "300842788439654754d7194aa4f0b335c09a2c5510deb8a157ed0d9ac21de2d9",
+    "frontend/src/__tests__/docs/reliance-boundary-register.test.ts": "43a5db3ce3915dbfa759ee9f36e154c5c5c6c7fcf9ae07c23387732b5c639904",
+    "frontend/src/__tests__/contract-pins.test.ts": "4a498f4d2a7667346b1dc2cbfde9d01db0563f4febf07e7aef7a0c82d591e99c",
+    "frontend/src/__tests__/contract-pins.manifest.ts": "1e93b4e1f996f827c46478275af47d1193abf9be19ccd70291c7f6103b199534"
+  },
+  "node": "v24.5.0",
+  "stderr": "",
+  "environment": "Inherited host environment; no command-specific overrides",
+  "note": "Latest executed doc tests at13:28:12; current support-doc inputs unchanged since that result. ScopeOfWork/status repairs are separately validated."
+}

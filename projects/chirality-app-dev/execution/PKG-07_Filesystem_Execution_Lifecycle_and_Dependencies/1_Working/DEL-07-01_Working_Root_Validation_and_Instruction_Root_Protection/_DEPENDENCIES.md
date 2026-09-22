@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows: `DEP-07-01-001`, `DEP-07-01-002`, `DEP-07-01-003`, `DEP-07-01-005`, `DEP-07-01-006`, `DEP-07-01-007`, `DEP-07-01-008`, `DEP-07-01-009`, `DEP-07-01-012`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows: `DEP-07-01-010`, `DEP-07-01-011`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Run Notes
 
@@ -53,30 +53,33 @@ TBD - no accepted dependency edges have been extracted yet.
 
 | DependencyID | Class | Type | Target | Status | Evidence |
 |---|---|---|---|---|---|
-| DEP-07-01-001 | ANCHOR | OTHER / IMPLEMENTS_NODE | DEL-07-01 Working Root Validation and Instruction Root Protection | ACTIVE | `ScopeOfWork.md#Current responsibility`; decomposition #L357 |
-| DEP-07-01-002 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | SOW-002 Per-chat working-folder selection and validation | ACTIVE | `_CONTEXT.md#Traceability`; decomposition #L172, #L405 |
-| DEP-07-01-003 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | SOW-027 Path containment and instruction-root protection | ACTIVE | `_CONTEXT.md#Traceability`; decomposition #L197, #L430 |
-| DEP-07-01-004 | EXECUTION | CONSTRAINT | REF-006 `docs/PRD.md` reference state MATCH | RETIRED | `_REFERENCES.md` |
-| DEP-07-01-005 | EXECUTION | PREREQUISITE | UNKNOWN (multi-file) landed implementation modules | ACTIVE | `ScopeOfWork.md#CLM-018`, `#CLM-014`; `_STATUS.md#Remaining` write locus |
-| DEP-07-01-006 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | SOW-075 Local project truth, no hidden project memory | ACTIVE | `ScopeOfWork.md` front matter and D-APP-80 note; decomposition #L245, #L478 |
-| DEP-07-01-007 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | SOW-084 Layered instruction root | ACTIVE | `ScopeOfWork.md#Current acceptance obligations`; decomposition #L254, #L487 |
-| DEP-07-01-008 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | OBJ-006 (TargetType UNKNOWN) | ACTIVE | `ScopeOfWork.md` front matter; decomposition #L267 |
-| DEP-07-01-009 | ANCHOR | OTHER / TRACES_TO_REQUIREMENT | OBJ-008 (TargetType UNKNOWN) | ACTIVE | `ScopeOfWork.md` front matter; decomposition #L269 |
-| DEP-07-01-010 | EXECUTION | INTERFACE (DOWNSTREAM) | DEL-04-04 PersonaComposer from Instruction Root consumes the organisation-layer pins | ACTIVE | `_STATUS.md#Remaining`; decomposition #L487, #L329 |
-| DEP-07-01-011 | EXECUTION | INTERFACE (DOWNSTREAM) | DEL-02-03 Working Root File Tree and Scope Scan UI consumes working-folder validation | ACTIVE | decomposition #L172, #L405, #L309; `ScopeOfWork.md#CLM-003` |
-| DEP-07-01-012 | EXECUTION | CONSTRAINT (UPSTREAM) | REF-002 `docs/CONTRACT.md` K-ROOT-1 applied to both layers | ACTIVE | `ScopeOfWork.md#Current acceptance obligations`; decomposition #L254 |
+| DEP-07-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-07 | ACTIVE | NOT_APPLICABLE |
+| DEP-07-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-002 | ACTIVE | NOT_APPLICABLE |
+| DEP-07-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-027 | ACTIVE | NOT_APPLICABLE |
+| DEP-07-01-004 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | RETIRED | NOT_APPLICABLE |
+| DEP-07-01-005 | EXECUTION | PREREQUISITE | UPSTREAM | Landed working-root and instruction-root implementation modules | ACTIVE | SATISFIED |
+| DEP-07-01-006 | ANCHOR | OTHER | UPSTREAM | SOW-075 | ACTIVE | NOT_APPLICABLE |
+| DEP-07-01-007 | ANCHOR | OTHER | UPSTREAM | SOW-084 | ACTIVE | NOT_APPLICABLE |
+| DEP-07-01-008 | ANCHOR | OTHER | UPSTREAM | OBJ-006 | ACTIVE | NOT_APPLICABLE |
+| DEP-07-01-009 | ANCHOR | OTHER | UPSTREAM | OBJ-008 | ACTIVE | NOT_APPLICABLE |
+| DEP-07-01-010 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-04-04 | ACTIVE | PENDING |
+| DEP-07-01-011 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-02-03 | ACTIVE | PENDING |
+| DEP-07-01-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 | ACTIVE | PENDING |
 
 ## Lifecycle Summary
 
-| Metric | Count |
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
+| Field | Count |
 |---|---:|
-| ACTIVE rows | 11 |
-| RETIRED rows | 1 |
-| ANCHOR rows | 7 |
-| EXECUTION rows | 5 |
-| Satisfaction `NOT_APPLICABLE` | 8 |
-| Satisfaction `SATISFIED` | 1 |
-| Satisfaction `PENDING` | 3 |
+| ACTIVE | 11 |
+| RETIRED | 1 |
+| RequiredMaturity=TBD | 12 |
+| ProposedMaturity=SATISFIED | 1 |
+| ProposedMaturity=TBD | 11 |
+| SatisfactionStatus=NOT_APPLICABLE | 8 |
+| SatisfactionStatus=PENDING | 3 |
+| SatisfactionStatus=SATISFIED | 1 |
 
 ## Run History
 
@@ -114,3 +117,29 @@ evidence for dependency rows. Its recorded consumption as the primary input
 to `_SEMANTIC_LENSING.md` is a different act, outside that scope and
 consistent with it. See
 `execution/_Coordination/_DECISIONS/D-APP-62_PACKET_SEMANTIC_ADMISSIBILITY_SCOPE_2026-07-18.md`.
+
+## Current record interpretation — 2026-09-22
+
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
+
+## Current residual-specific interpretation — 2026-09-22
+
+The DEP-017/018 preview described in the dated extraction run is applied in the current register. `tool-path-policy.ts` is retired compatibility provenance, not a current live enforcement locus. Current ordinary instruction-root protection and its unresolved live checks are in ScopeOfWork.md CLM-028/029 and Remaining; historical line anchors and MATCH notes are not current source verification.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=11; RETIRED=1; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+6 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SEMANTIC_19_PREVIEW.csv`; current rows: ACTIVE=11, RETIRED=1. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

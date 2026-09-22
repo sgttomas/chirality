@@ -1,0 +1,23 @@
+{
+  "original_rows": 3568,
+  "extension_rows": 41,
+  "current_rows": 3568,
+  "unique_keys": 3568,
+  "changed_units": 1495,
+  "source_files": 390,
+  "negative_probes": {
+    "missing": "REJECTED",
+    "duplicate": "REJECTED",
+    "mismatched_source_hash": "REJECTED"
+  },
+  "current_dispositions": {
+    "PRIOR_NO_CHANGE_RETAINED": 783,
+    "REPAIRED": 1311,
+    "CHANGED_SOURCE_REVIEWED": 578,
+    "ALREADY_RESOLVED": 27,
+    "DELIVERY_TASK": 828,
+    "DEFERRED_SCOPE": 39,
+    "DEFERRED_OPTIONAL": 2
+  },
+  "status": "PASS for frozen current record/source coverage; independent semantic review and final routine checks passed. Git/hosted CI remain Root integration gates."
+}

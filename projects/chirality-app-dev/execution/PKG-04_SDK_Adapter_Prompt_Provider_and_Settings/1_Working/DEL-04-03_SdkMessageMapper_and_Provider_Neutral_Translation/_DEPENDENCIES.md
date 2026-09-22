@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-04-03-001, DEP-04-03-002, DEP-04-03-003, DEP-04-03-004, DEP-04-03-005, DEP-04-03-006, DEP-04-03-007, DEP-04-03-008, DEP-04-03-009, DEP-04-03-011
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows are recorded in `Dependencies.csv`; preserve their individual status and satisfaction. DEP-04-03-010
 
 ## Run Notes
 
@@ -36,27 +36,23 @@ TBD - no accepted dependency edges have been extracted yet.
 
 ## Extracted Dependency Register
 
-`Dependencies.csv` v3.1 was created on 2026-05-20 with conservative evidence-first rows only.
+Descriptive mirror of current `Dependencies.csv`; no formal field is changed.
 
-| Count | DependencyClass | Notes |
-|---:|---|---|
-| 6 | ANCHOR | One parent anchor and five trace anchors. |
-| 5 | EXECUTION | Explicit prerequisite/interface/handoff/constraint edges only. |
-| 11 | TOTAL | All rows `Status=ACTIVE`, `Origin=EXTRACTED`. |
+| DependencyID | Class | Direction | Type | Target | Status | Satisfaction |
+|---|---|---|---|---|---|---|
+| DEP-04-03-001 | ANCHOR | OTHER | UPSTREAM | PKG-04 | ACTIVE | TBD |
+| DEP-04-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-040 | ACTIVE | TBD |
+| DEP-04-03-003 | ANCHOR | OTHER | UPSTREAM | SOW-044 | ACTIVE | TBD |
+| DEP-04-03-004 | ANCHOR | OTHER | UPSTREAM | SOW-051 | ACTIVE | TBD |
+| DEP-04-03-005 | ANCHOR | OTHER | UPSTREAM | OBJ-002 | ACTIVE | TBD |
+| DEP-04-03-006 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE | TBD |
+| DEP-04-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 | RETIRED | SATISFIED |
+| DEP-04-03-008 | EXECUTION | INTERFACE | UPSTREAM | RUNTIME_ENGINE_CONTRACT_AGENT_ENGINE_PORT | ACTIVE | TBD |
+| DEP-04-03-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-03-03-SSE_UIEVENT_CONTRACT | ACTIVE | TBD |
+| DEP-04-03-010 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-04-03-SPEC-HARNESSEVENT_HANDOFF | ACTIVE | TBD |
+| DEP-04-03-011 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-04-02 | ACTIVE | TBD |
 
-| DependencyID | Class | Type | Direction | Target | Status |
-|---|---|---|---|---|---|
-| DEP-04-03-001 | ANCHOR | OTHER | UPSTREAM | DEL-04-03 | ACTIVE |
-| DEP-04-03-002 | ANCHOR | OTHER | UPSTREAM | SOW-040 | ACTIVE |
-| DEP-04-03-003 | ANCHOR | OTHER | UPSTREAM | SOW-044 | ACTIVE |
-| DEP-04-03-004 | ANCHOR | OTHER | UPSTREAM | SOW-051 | ACTIVE |
-| DEP-04-03-005 | ANCHOR | OTHER | UPSTREAM | OBJ-002 | ACTIVE |
-| DEP-04-03-006 | ANCHOR | OTHER | UPSTREAM | OBJ-004 | ACTIVE |
-| DEP-04-03-007 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 | ACTIVE |
-| DEP-04-03-008 | EXECUTION | INTERFACE | UPSTREAM | DOCUMENT RUNTIME_ENGINE_CONTRACT_AGENT_ENGINE_PORT | ACTIVE |
-| DEP-04-03-009 | EXECUTION | INTERFACE | UPSTREAM | DOCUMENT DEL-03-03-SSE_UIEVENT_CONTRACT | ACTIVE |
-| DEP-04-03-010 | EXECUTION | HANDOVER | DOWNSTREAM | DOCUMENT DEL-04-03-SPEC-HARNESSEVENT_HANDOFF | ACTIVE |
-| DEP-04-03-011 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-04-02 | ACTIVE |
+Counts: ACTIVE=11; satisfaction SATISFIED=1, TBD=10.
 
 ## Run History
 
@@ -75,3 +71,23 @@ TBD - no accepted dependency edges have been extracted yet.
 |---|---:|
 | SATISFIED | 1 |
 | TBD | 10 |
+
+## Current descriptive index — 2026-09-22
+
+Read `Dependencies.csv` and its current descriptive `_DEPENDENCIES.md` index for extracted edges and their actual satisfaction. Historical setup TBDs do not mean no register exists. This record does not change formal edges, gates or satisfaction.
+
+Current consumer/verification locus: App `frontend/src/__tests__/lib/harness-event-views-codex.test.ts`, `frontend/src/__tests__/components/live-session-requests.test.tsx`; Runtime `tests/codex-app-server-client.test.ts`, `tests/codex-supervisor.test.ts`; retained App `sdk-message-mapper.ts` and its tests. The current topology is application-owned Runtime; older daemon/SDK file names and retired kit-file citations in dated Run Notes are historical source references, not fresh implementation prerequisites. A proposed change to a formal row, satisfaction or accepted dependency basis must be applied by its owner; this index does not enact it.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=11; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_SOURCE_04_06_APPROVED.csv`; current rows: ACTIVE=10, RETIRED=1. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_PREVIEW_THREE_INTERFACES.csv`; current rows: ACTIVE=10, RETIRED=1. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

@@ -17,15 +17,15 @@
 
 ## Package Scope
 
-**ScopeDescription:** App-side runtime-client integration for the Root-owned turn lifecycle, including thin Desktop/HTTP proxy behavior, session request binding, route/SSE compatibility, interrupt/cancel presentation, and conformance evidence.
+**ScopeDescription:** App-side runtime-client integration for the Runtime-owned turn lifecycle, including thin Desktop/HTTP proxy behavior, session request binding, route/SSE compatibility, interrupt/cancel presentation, and conformance evidence.
 
-**InclusionCriteria:** App daemon client/proxy, contract compatibility, API/SSE transport, affected-client evidence.
+**InclusionCriteria:** App-owned Runtime service client/proxy, contract compatibility, API/SSE transport, affected-client evidence.
 
-**Exclusions:** Generic runtime contracts, daemon/session/lock/interruption/persistence semantics, and provider-specific message translation details.
+**Exclusions:** Generic runtime contracts, Runtime/session/lock/interruption/persistence semantics, and provider-specific message translation details.
 
 ## Deliverable Scope
 
-Keep `/api/harness/*` shapes and browser SSE event names stable while runtime policy moves behind services.
+Preserve supported `/api/harness/*` operation shapes and the extensible upstream-preserving event representation, keepalives and renderer disconnect/reattach continuity against the application-owned Runtime service (D-GOV-43/D-APP-127).
 
 ## Anticipated Artifacts
 

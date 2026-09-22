@@ -1,0 +1,98 @@
+{
+  "basis": "1b5adbf50142a4c01c454c62a31dfcdc60da1894",
+  "residual_original_field_and_key_equality": "PASS",
+  "original_rows": 419,
+  "source_structural_validation": {
+    "DEL-02-01": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md",
+      "valid": true
+    },
+    "DEL-02-02": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/ScopeOfWork.md",
+      "valid": true
+    },
+    "DEL-02-03": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-03_Working_Root_File_Tree_and_Scope_Scan_UI/ScopeOfWork.md",
+      "valid": true
+    },
+    "DEL-02-04": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md",
+      "valid": true
+    },
+    "DEL-02-05": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md",
+      "valid": true
+    },
+    "DEL-03-01": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/ScopeOfWork.md",
+      "valid": true
+    },
+    "DEL-03-02": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/ScopeOfWork.md",
+      "valid": true
+    },
+    "DEL-03-03": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/ScopeOfWork.md",
+      "valid": true
+    },
+    "DEL-03-04": {
+      "format": "SOW_V1",
+      "issues": [],
+      "target": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-04_Interrupt_Cancel_and_Terminal_Outcome_Handling/ScopeOfWork.md",
+      "valid": true
+    }
+  },
+  "stable_claim_and_requirement_identity": "PASS",
+  "formal_Dependency_csv_unchanged": "PASS",
+  "decomposition_basis_pins_unchanged": "PASS",
+  "lifecycle_approval_SHA_and_authorization_unchanged": "PASS",
+  "reference_ID_uniqueness": "PASS",
+  "diff_check": "PASS",
+  "parent_D38_corpus_expected_hash_changes": [
+    "DEL-02-01:REF-002",
+    "DEL-02-01:REF-003",
+    "DEL-02-01:REF-006",
+    "DEL-02-02:REF-002",
+    "DEL-02-02:REF-003",
+    "DEL-02-02:REF-006",
+    "DEL-02-03:REF-002",
+    "DEL-02-03:REF-003",
+    "DEL-02-03:REF-006",
+    "DEL-02-04:REF-002",
+    "DEL-02-04:REF-003",
+    "DEL-02-04:REF-006",
+    "DEL-02-05:REF-002",
+    "DEL-02-05:REF-003",
+    "DEL-02-05:REF-006",
+    "DEL-03-01:REF-002",
+    "DEL-03-01:REF-003",
+    "DEL-03-01:REF-006",
+    "DEL-03-02:REF-002",
+    "DEL-03-02:REF-003",
+    "DEL-03-02:REF-006",
+    "DEL-03-03:REF-002",
+    "DEL-03-03:REF-003",
+    "DEL-03-03:REF-006",
+    "DEL-03-04:REF-002",
+    "DEL-03-04:REF-003",
+    "DEL-03-04:REF-006"
+  ],
+  "product_or_native_tests": "NOT RUN: records-only work; actual missing results remain delivery tasks",
+  "independent_review": "PENDING parent-appointed fresh reviewer"
+}

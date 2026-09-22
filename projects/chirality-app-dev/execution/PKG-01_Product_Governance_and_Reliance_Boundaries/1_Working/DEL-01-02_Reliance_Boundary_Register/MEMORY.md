@@ -17,3 +17,5 @@
 - 2026-07-19 - D-APP-68 rulings 1–2 reconciled live SOW-v1 production/record locations and repointed operative dependency citations to consolidated CLM anchors; historical extraction prose remains unchanged. No lifecycle transition occurred.
 
 - 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.
+
+- 2026-09-22 — Current record-closeout derivative: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/W00_03_ROWS.csv` and `W00_03_CHANGES.csv`. Earlier D53A, SDK/Pi/hook, facade and corpus-MATCH statements remain dated history. Current accepted requirements and live delivery/evidence tasks are in ScopeOfWork.md and `_STATUS.md ## Remaining`; D-GOV-43/D-APP-127/132 and D-APP-118 supersede their stated old subjects. This records applied wording repairs, not code/test results or personal human acceptance.

@@ -1,0 +1,105 @@
+[
+  {
+    "command": [
+      "python3",
+      "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "status"
+    ],
+    "cwd": "projects/chirality-app-dev",
+    "exit_code": 1,
+    "stdout": "corpus current_version: v23\n  [MATCH] docs/DIRECTIVE.md            snapshot=50b816d5be74 live=50b816d5be74\n  [DRIFT] docs/CONTRACT.md             snapshot=fa8fc9dcc2f0 live=57411f8df49e\n  [DRIFT] docs/SPEC.md                 snapshot=01e1c75cdf7b live=8b0d805b6abc\n  [MATCH] docs/TYPES.md                snapshot=334bd49602a6 live=334bd49602a6\n  [MATCH] docs/PLAN.md                 snapshot=5e9cb5e553a8 live=5e9cb5e553a8\n  [DRIFT] docs/PRD.md                  snapshot=8649ccba8f68 live=17ca3f3c2b86\n  [MATCH] workflows/software-decomp/WORKFLOW.md snapshot=fd79f8001404 live=fd79f8001404\n  [MATCH] workflows/software-decomp/resources/contract.md snapshot=f6f159169c00 live=f6f159169c00\n  [MATCH] workflows/software-decomp/resources/method.md snapshot=1442f0cee8b5 live=1442f0cee8b5\n  [MATCH] workflows/domain-engine/WORKFLOW.md snapshot=922b6dadbc8a live=922b6dadbc8a\n  [MATCH] workflows/domain-engine/resources/contract.md snapshot=414cccf98053 live=414cccf98053\n  [MATCH] workflows/domain-engine/resources/method.md snapshot=e3bbb3e344c7 live=e3bbb3e344c7\nDRIFT: 3 ref(s) changed since v23; run `bump` to mint a new version.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "bump",
+      "--date",
+      "2026-09-22",
+      "--reason",
+      "D-APP-131 current reconciliation applies already-adopted D-GOV-43/D-APP-127 authority source edits; no authority semantics changed"
+    ],
+    "cwd": "projects/chirality-app-dev",
+    "exit_code": 0,
+    "stdout": "bumped corpus to v24 (2026-09-22). Run `apply` to reconcile deliverables.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "apply"
+    ],
+    "cwd": "projects/chirality-app-dev",
+    "exit_code": 0,
+    "stdout": "reconciled 156 reference row(s) across 52 deliverable file(s) to corpus v24.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "audit"
+    ],
+    "cwd": "projects/chirality-app-dev",
+    "exit_code": 0,
+    "stdout": "AUDIT: all deliverable reference rows reconciled to corpus v24.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "audit"
+    ],
+    "cwd": "projects/chirality-app-dev",
+    "exit_code": 1,
+    "stdout": "  execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_REFERENCES.md: docs/CONTRACT.md expected=fa8fc9dcc2f0 corpus=57411f8df49e live=57411f8df49e\n  execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_REFERENCES.md: docs/SPEC.md expected=01e1c75cdf7b corpus=8b0d805b6abc live=8b0d805b6abc\n  execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_REFERENCES.md: docs/PRD.md expected=8649ccba8f68 corpus=17ca3f3c2b86 live=17ca3f3c2b86\nAUDIT: 3 deliverable reference row(s) are NOT reconciled to corpus v24; run `apply`.\n",
+    "stderr": "",
+    "note": "Restore retired DEL09-07 references byte-exactly after global tool apply; D127 immutable history takes precedence. Earlier all-row PASS predates restoration; current audit result below is governing."
+  },
+  {
+    "command": [
+      "python3",
+      "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "bump",
+      "--date",
+      "2026-09-22",
+      "--reason",
+      "D-APP-131 closeout applies accepted D-GOV-43/D-APP-127 clauses to App DIRECTIVE; preserve retired DEL-09-07 historical references"
+    ],
+    "exit_code": 0,
+    "stdout": "bumped corpus to v25 (2026-09-22). Run `apply` to reconcile deliverables.\n",
+    "stderr": ""
+  },
+  {
+    "command": "canonical apply with _iter_reference_files filtered to nonretired deliverables; implementation unchanged",
+    "exit_code": 0,
+    "stdout": "reconciled 51 reference row(s) across 51 deliverable file(s) to corpus v25.\n",
+    "excluded": [
+      "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_REFERENCES.md"
+    ],
+    "tool_sha256": "d6706247388b3819a6730d9987ea522f3da0b4a2a54a445ddf6e8bfb228904ec"
+  },
+  {
+    "command": "canonical audit with _iter_reference_files filtered to nonretired deliverables; implementation unchanged",
+    "exit_code": 0,
+    "stdout": "AUDIT: all deliverable reference rows reconciled to corpus v25.\n",
+    "excluded": [
+      "/Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_REFERENCES.md"
+    ],
+    "tool_sha256": "d6706247388b3819a6730d9987ea522f3da0b4a2a54a445ddf6e8bfb228904ec"
+  },
+  {
+    "command": [
+      "python3",
+      "projects/chirality-app-dev/execution/_Reconciliation/References/reconcile_authority_corpus.py",
+      "audit"
+    ],
+    "exit_code": 1,
+    "stdout": "  execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_REFERENCES.md: docs/DIRECTIVE.md expected=50b816d5be74 corpus=a07418a7b1bb live=a07418a7b1bb\n  execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_REFERENCES.md: docs/CONTRACT.md expected=fa8fc9dcc2f0 corpus=57411f8df49e live=57411f8df49e\n  execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_REFERENCES.md: docs/SPEC.md expected=01e1c75cdf7b corpus=8b0d805b6abc live=8b0d805b6abc\n  execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/_REFERENCES.md: docs/PRD.md expected=8649ccba8f68 corpus=17ca3f3c2b86 live=17ca3f3c2b86\nAUDIT: 4 deliverable reference row(s) are NOT reconciled to corpus v25; run `apply`.\n",
+    "stderr": "",
+    "scope": "unfiltered canonical v25 audit; retired historical references deliberately remain unmatched under D-APP-127, no waiver or full canonical PASS"
+  }
+]

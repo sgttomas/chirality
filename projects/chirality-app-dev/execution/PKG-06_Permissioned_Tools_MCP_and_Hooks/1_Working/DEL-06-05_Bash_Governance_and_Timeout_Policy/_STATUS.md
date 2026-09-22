@@ -8,9 +8,14 @@
 
 ## Remaining
 
-- **DEL-06-05-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 15 authority application, 16 implementation or evidence, 16 record repair, 1 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-06-05.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- **DEL-06-05-R5-DELIVERY** — Produce live command-denial/timeout/interrupt/output/scope witnesses; implement missing applicable timeout and artifact controls or route an actual scope change through the owning authority. D-APP-68 constants and managed-child protections are not silently waived.
+  Locus: Runtime `packages/daemon/src/codex-supervisor.ts`, `tests/codex-supervisor.test.ts`; App retained `frontend/src/lib/harness/tool-shell-policy.ts`, `frontend/src/__tests__/lib/chirality-hooks.test.ts`; Runtime event/artifact owners.
+  Check: Verify denied-never-spawns, actual timeout including maximum override, interruption versus failure, stream labels, output size/preview/artifact metadata, redaction and native-child scope. Preserve unavailable observations and do not transfer historical constant tests into native qualification.
+  Gate: Current bounded App/Runtime implementation brief, APP-HOLD-1 and affected checks; any actual accepted-scope change retains its owning decision. Owner: WORKING_ITEMS with the App owner and Runtime owner for Runtime changes.
+
 
 ## History
+- 2026-09-22 — Agent 0 App record closeout: generic formal-dependency deferral was discharged against the 81-key source-specific comparison and live register postimages; genuine delivery/evidence tasks remain in Remaining. No lifecycle, approval SHA, dependency satisfaction, native proof or release was promoted.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-05-20 - State set to OPEN (PREPARATION)

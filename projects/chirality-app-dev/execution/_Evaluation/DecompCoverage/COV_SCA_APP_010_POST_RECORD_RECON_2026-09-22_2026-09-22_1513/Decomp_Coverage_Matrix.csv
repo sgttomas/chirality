@@ -1,0 +1,55 @@
+ProductionUnitID,PartitionID,ConcreteProductionUnitLabel,ConcretePartitionLabel,FolderExists,ContextPresent,ContextMatch,ArtifactCoverage,ObjectivesMapped,LifecycleState,IssueCount
+DEL-01-01,PKG-01,"Governance Alignment, Human Authority, and Project Truth",Product Governance and Reliance Boundaries,true,true,MATCH,5/5,1/1,IN_PROGRESS,0
+DEL-01-02,PKG-01,Reliance Boundary Register,Product Governance and Reliance Boundaries,true,true,MATCH,0/3,3/3,IN_PROGRESS,1
+DEL-01-03,PKG-01,Product Identity and Professional Boundary Copy,Product Governance and Reliance Boundaries,true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-01-04,PKG-01,Scope Boundary and Retired Scope Register,Product Governance and Reliance Boundaries,true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-02-01,PKG-02,Woven Dialogue Shell and Compatibility Navigation,"Woven Dialogue Shell, Navigation, and Operator State",true,true,MATCH,0/5,1/1,IN_PROGRESS,1
+DEL-02-02,PKG-02,"Right-Panel Coordination, Workflows, and Proposal UX","Woven Dialogue Shell, Navigation, and Operator State",true,true,MATCH,0/7,2/2,IN_PROGRESS,1
+DEL-02-03,PKG-02,Working Root File Tree and Scope Scan UI,"Woven Dialogue Shell, Navigation, and Operator State",true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-02-04,PKG-02,"Dialogue Toolkit, Context, and Local UI State","Woven Dialogue Shell, Navigation, and Operator State",true,true,MATCH,0/5,2/2,IN_PROGRESS,1
+DEL-02-05,PKG-02,API Key UI and Runtime Feedback,"Woven Dialogue Shell, Navigation, and Operator State",true,true,MATCH,0/5,2/2,IN_PROGRESS,1
+DEL-03-01,PKG-03,AgentEnginePort and Engine Conformance Suite,Runtime Engine Contract and Turn Lifecycle,true,true,MATCH,1/3,1/1,IN_PROGRESS,1
+DEL-03-02,PKG-03,Thin TurnEngine and Session Locking,Runtime Engine Contract and Turn Lifecycle,true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-03-03,PKG-03,Harness API and SSE Compatibility Adapter,Runtime Engine Contract and Turn Lifecycle,true,true,MATCH,1/3,2/2,IN_PROGRESS,1
+DEL-03-04,PKG-03,"Interrupt, Cancel, and Terminal Outcome Handling",Runtime Engine Contract and Turn Lifecycle,true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-04-01,PKG-04,First-Adapter Probe and Version-Pinned Adoption Decision,"SDK Adapter, Prompt, Provider, and Settings",true,true,MATCH,1/5,2/2,IN_PROGRESS,1
+DEL-04-02,PKG-04,SdkOptionsBuilder and Settings Isolation,"SDK Adapter, Prompt, Provider, and Settings",true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-04-03,PKG-04,SdkMessageMapper and Provider-Neutral Translation,"SDK Adapter, Prompt, Provider, and Settings",true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-04-04,PKG-04,PersonaComposer from Instruction Root,"SDK Adapter, Prompt, Provider, and Settings",true,true,MATCH,0/5,2/2,IN_PROGRESS,1
+DEL-04-05,PKG-04,"Anthropic Provider Key, Base URL, and Network Bridge","SDK Adapter, Prompt, Provider, and Settings",true,true,MATCH,0/4,2/2,IN_PROGRESS,1
+DEL-05-01,PKG-05,Canonical Session Folder and Legacy Session Migration,"Session Audit, Replay, and Tool Result Records",true,true,MATCH,0/5,1/1,IN_PROGRESS,1
+DEL-05-02,PKG-05,HarnessEvent Schema and Append-Only JSONL,"Session Audit, Replay, and Tool Result Records",true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-05-03,PKG-05,Redacted RunLogger and Secret Hygiene,"Session Audit, Replay, and Tool Result Records",true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-05-04,PKG-05,"Runtime Replay, Dialogue, and Agent Transcript Projection","Session Audit, Replay, and Tool Result Records",true,true,MATCH,0/5,2/2,IN_PROGRESS,1
+DEL-05-05,PKG-05,ToolResultStore and Session Artifacts,"Session Audit, Replay, and Tool Result Records",true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-06-01,PKG-06,ChiralityPermissionOverlay and Mode Mapping,"Permissioned Tools, MCP, and Hooks",true,true,MATCH,0/4,1/1,IN_PROGRESS,1
+DEL-06-02,PKG-06,SDK Read Tool Surface and Tool Validation,"Permissioned Tools, MCP, and Hooks",true,true,MATCH,0/4,1/1,IN_PROGRESS,1
+DEL-06-03,PKG-06,Initial Chirality MCP Read Tools,"Permissioned Tools, MCP, and Hooks",true,true,MATCH,0/5,2/2,IN_PROGRESS,1
+DEL-06-04,PKG-06,Write/Edit Surface and Path Hooks,"Permissioned Tools, MCP, and Hooks",true,true,MATCH,0/4,2/2,IN_PROGRESS,1
+DEL-06-05,PKG-06,Bash Governance and Timeout Policy,"Permissioned Tools, MCP, and Hooks",true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-06-06,PKG-06,Hook Lifecycle and Compaction Mirror,"Permissioned Tools, MCP, and Hooks",true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-07-01,PKG-07,Working Root Validation and Instruction Root Protection,"Filesystem Execution, Lifecycle, and Dependencies",true,true,MATCH,0/4,2/2,IN_PROGRESS,1
+DEL-07-02,PKG-07,Execution Root Scaffolding from Decomposition,"Filesystem Execution, Lifecycle, and Dependencies",true,true,MATCH,0/5,1/1,IN_PROGRESS,1
+DEL-07-03,PKG-07,Deliverable Metadata and Document Kit Contracts,"Filesystem Execution, Lifecycle, and Dependencies",true,true,MATCH,1/4,1/1,IN_PROGRESS,1
+DEL-07-04,PKG-07,Status Transition API and MCP Tool,"Filesystem Execution, Lifecycle, and Dependencies",true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-07-05,PKG-07,"Dependencies.csv v3.1 Reader, Writer, and Linter","Filesystem Execution, Lifecycle, and Dependencies",true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-07-06,PKG-07,Reference Hash and Snapshot Conventions,"Filesystem Execution, Lifecycle, and Dependencies",true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-08-01,PKG-08,Instruction Root Packaging and Agent Conformance,"Agent Suite, Pipeline Dispatch, and Subagent Governance",true,true,MATCH,0/5,2/2,IN_PROGRESS,1
+DEL-08-02,PKG-08,"Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract","Agent Suite, Pipeline Dispatch, and Subagent Governance",true,true,MATCH,0/4,2/2,IN_PROGRESS,1
+DEL-08-03,PKG-08,Pipeline Category and Task Scope Dispatch,"Agent Suite, Pipeline Dispatch, and Subagent Governance",true,true,MATCH,0/4,2/2,IN_PROGRESS,1
+DEL-08-04,PKG-08,Type 2 Subagent Governance Bridge,"Agent Suite, Pipeline Dispatch, and Subagent Governance",true,true,MATCH,0/6,2/2,IN_PROGRESS,1
+DEL-08-05,PKG-08,Subagent Child Run Records and Artifacts,"Agent Suite, Pipeline Dispatch, and Subagent Governance",true,true,MATCH,0/5,2/2,IN_PROGRESS,1
+DEL-09-01,PKG-09,Section 8 Harness Validation Preservation,"Validation, Packaging, Security, and Release",true,true,MATCH,0/2,1/1,IN_PROGRESS,1
+DEL-09-02,PKG-09,Section 9 Runtime Validation Additions,"Validation, Packaging, Security, and Release",true,true,MATCH,0/3,5/5,IN_PROGRESS,1
+DEL-09-03,PKG-09,Unit and Integration Test Expansion,"Validation, Packaging, Security, and Release",true,true,MATCH,0/3,4/4,IN_PROGRESS,1
+DEL-09-04,PKG-09,macOS DMG Packaging and Instruction Root Integrity,"Validation, Packaging, Security, and Release",true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-09-05,PKG-09,CI Artifact and Release Verification Workflow,"Validation, Packaging, Security, and Release",true,true,MATCH,2/4,1/1,IN_PROGRESS,1
+DEL-09-06,PKG-09,"Network, Key, Attachment, and Renderer Security Checks","Validation, Packaging, Security, and Release",true,true,MATCH,0/5,1/1,IN_PROGRESS,1
+DEL-09-07,PKG-09,Two-Job Runtime-Control Installer Migration and Rollback [RETIRED],"Validation, Packaging, Security, and Release",true,true,PARTIAL,N/A (retired; no new artifacts required),1/1,OPEN,1
+DEL-10-01,PKG-10,DomainEngineProfile Contract Draft,Domain Engine Future Boundary,true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-10-02,PKG-10,Protected Path and Proposal Path Policy,Domain Engine Future Boundary,true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-10-03,PKG-10,OperationProposal Record and Human Gate Workflow,Domain Engine Future Boundary,true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-10-04,PKG-10,Domain Profile Validation and OpenPipeStress Fixture,Domain Engine Future Boundary,true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-10-05,PKG-10,Domain Boundary Notices and Solver Truth Separation,Domain Engine Future Boundary,true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-00-01,PKG-00,DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure,PKG-00_DAG_Closure_and_Project_Control,true,true,NOT_DECLARED,N/A (control surface),N/A,IN_PROGRESS,1
+DEL-00-02,PKG-00,DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure,PKG-00_DAG_Closure_and_Project_Control,true,true,NOT_DECLARED,N/A (control surface),N/A,IN_PROGRESS,1

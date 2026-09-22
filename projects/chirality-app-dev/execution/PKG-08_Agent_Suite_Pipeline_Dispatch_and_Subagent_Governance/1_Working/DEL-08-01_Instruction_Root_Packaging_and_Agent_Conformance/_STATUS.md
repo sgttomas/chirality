@@ -6,20 +6,25 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+**Current record authority:** D-APP-54 issued-basis history where recorded, D-GOV-43/D-APP-127 and D-APP-131/132 apply to this record repair; historical checking approval SHA and lifecycle are preserved.
+
 ## Remaining
 
-- **DEL-08-01-V3-01** (`NOT_SELECTABLE_UNTIL: DEL-02-02-V3-04 selected`) — proposal clauses in HELP_HUMAN and each Agent 1 package, skill-declared workflow templates, organisation-layer packaging checks; the routed agent-index notice and the G4 manifest.
-  Trace: OUT-001, AC-001, VER-001; applied decomposition row L368 (proposal clauses and named triggers in Agent 0 and Agent 1 packages; skill-declared workflow templates; organisation-layer packaging and pins; instruction-file changes under `agents/` or `skills/` ship the routed agent-index change notice); SOW-082 L252; SOW-084 L254.
-  Plan: T3 part; SR-19 discussion, SR-24, SR-25; Q14 ruled 2026-09-04 (G2-CONFIRM: the organisation layer the packaging checks verify). Design basis `plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md` (SHA-256 `e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb`), cited only for what the tranche means when complete, never as a queue; status from current `main`.
-  Depends: DEL-02-02-V3-04; DEL-06-03-V3-01 (the tool the clauses invoke); DEL-07-01-V3-01 (the layer protections the checks verify); an owner write-scope grant for `agents/**` and `skills/**` at selection (the 2026-09-04 session grant does not carry forward).
-  Write locus: `agents/AGENT_HELP_HUMAN.md` and each Agent 1 package (rung-2 and rung-3 proposal clauses with named triggers and once-per-chat), `skills/*/SKILL.md` declared workflow templates, the App agent-conformance validator and integrity fixtures (`frontend/src/__tests__/lib/agent-instruction-conformance.test.ts`, the `verify-instruction-root-integrity` script), organisation-layer packaging checks, the routed agent-index change notice under `execution/_Coordination/`, and the G4 instruction-tranche manifest; deliverable-local state.
-  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes; G4 `validate_instruction_tranche_manifest.py`, `validate_skill_metadata.py`, and the AGENTS.md agent-index change-notice rule.
-  Return: a conformance validator proving each Agent 0 and Agent 1 package carries its proposal clause with named triggers and once-per-chat; skill-declared templates discoverable; organisation-layer pins and packaging checked; the routed notice and manifest; durable non-secret bytes sufficient for independent recomputation per the `loop/LOOP_INIT.md` §7 Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: merged with review PASS and the notice routed.
+The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
 
-- **DEL-08-01-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 22 implementation or evidence, 13 record repair, 1 verification. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-08-01.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- **DEL-08-01-V3-01** — Complete current-role proposal/template and organisation-layer packaging conformance without reviving retired marker or skills-path assumptions.
+  Locus/owner: App packaged instructions/registry/integrity fixtures; Root agents and .agents/skills only through their owning authorized tranche; App WORKING_ITEMS coordinates the named owning surface.
+  Check/return: Check actual packaged files, missing role identity/content/scope, delegation eligibility, required assets and both-layer pins.
+  Gate: DEL-02-02-V3-04 selection; DEL-06-03-V3-01 and DEL-07-01-V3-01 interfaces; any Root instruction edits require their own authorized tranche and downstream notice.
+
+- **DEL-08-01-LIVE** — Replace synthetic legacy-only confidence with conformance evidence over the shipped four-role basis, preserving required assets and current source identity.
+  Locus/owner: frontend/src/__tests__/lib/agent-instruction-conformance.test.ts and packaged root; App WORKING_ITEMS coordinates the named owning surface.
+  Check/return: Actual shipped-file positive/negative fixtures; source-completeness mismatch including PLAN.md recorded.
+  Gate: D-APP-131 current-role application is not D-GOV-42 exact-byte acceptance or an App corpus amendment.
+
 
 ## History
+- 2026-09-22 — Current record closeout: D-APP-131/132 settled direction applied to source claims and concrete remaining work; candidate-bound evidence gaps remain. Historical lifecycle, approvals and executed results are preserved.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
 - 2026-05-20 - State set to OPEN (PREPARATION)

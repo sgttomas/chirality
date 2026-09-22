@@ -33,7 +33,15 @@ remains:
   Return: a one-line activity strip in place of the resizable shelf; the Activity view in the right panel; additive fields (per-view widths, expand state, chat annotations, known folders, chat rung, declined proposal triggers) with migration tests proving prior state is preserved for rollback; convenience state never transfers session authority and never stands in for the workflow file; durable non-secret bytes sufficient for independent recomputation per the `loop/LOOP_INIT.md` §7 Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
   Removed when: merged with review PASS.
 
-- **DEL-02-04-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 2 evidence result, 14 implementation or evidence, 25 record repair. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-02-04.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+
+
+
+
+
+
+
+- **DEL-02-04-R5-RESIDUALS** — Bind landed activity/state work to review/merge evidence; keep artifact/context/rung/declined-trigger producers and rollback migration checks explicit. Verify live Codex policy/option handoff, unknown-key warn/ignore and current UI polish. Align tools/max-turns and governance metadata against current Codex/Runtime capability and deliver only supported controls; preset duration remains an actual undecided detail. Composer model/effort and user-selected policy loci are settled. Exact original-key dispositions, source bindings, current owners and gates are in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv` (filter ClaimKey by deliverable prefix). This current derivative supersedes the original R5 prose for work selection; frozen discovery is preserved. Record reconciliation is separate from delivery, native results and lifecycle approval.
+
 
 ## History
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.

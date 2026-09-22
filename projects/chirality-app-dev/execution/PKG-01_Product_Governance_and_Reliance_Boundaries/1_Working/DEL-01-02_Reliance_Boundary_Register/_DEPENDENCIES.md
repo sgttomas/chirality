@@ -49,30 +49,30 @@ Structured register: `Dependencies.csv` (`v3.1`)
 
 | DependencyID | Class | Direction | Type | Target | Status |
 |---|---|---|---|---|---|
-| DEP-01-02-001 | ANCHOR | UPSTREAM | OTHER | PKG-01 Product Governance and Reliance Boundaries | ACTIVE |
-| DEP-01-02-002 | ANCHOR | UPSTREAM | OTHER | SOW-037 Product-owned engine contract | ACTIVE |
-| DEP-01-02-003 | ANCHOR | UPSTREAM | OTHER | SOW-045 SDK settings isolation | ACTIVE |
-| DEP-01-02-004 | ANCHOR | UPSTREAM | OTHER | SOW-054 Structured permission decisions | ACTIVE |
-| DEP-01-02-005 | ANCHOR | UPSTREAM | OTHER | SOW-057 Hooks and fail-closed behavior | ACTIVE |
-| DEP-01-02-006 | ANCHOR | UPSTREAM | OTHER | SOW-074 Human authority and professional boundaries | ACTIVE |
-| DEP-01-02-007 | EXECUTION | UPSTREAM | PREREQUISITE | REF-001 docs/DIRECTIVE.md | ACTIVE |
-| DEP-01-02-008 | EXECUTION | UPSTREAM | PREREQUISITE | REF-002 docs/CONTRACT.md | ACTIVE |
-| DEP-01-02-009 | EXECUTION | UPSTREAM | PREREQUISITE | REF-003 docs/SPEC.md | ACTIVE |
-| DEP-01-02-010 | EXECUTION | UPSTREAM | PREREQUISITE | REF-004 docs/TYPES.md | ACTIVE |
-| DEP-01-02-011 | EXECUTION | UPSTREAM | PREREQUISITE | REF-005 docs/PLAN.md | ACTIVE |
-| DEP-01-02-012 | EXECUTION | UPSTREAM | PREREQUISITE | REF-006 docs/PRD.md | ACTIVE |
-| DEP-01-02-013 | EXECUTION | UPSTREAM | PREREQUISITE | REF-007 AGENT_SOFTWARE_DECOMP.md | ACTIVE |
-| DEP-01-02-014 | EXECUTION | DOWNSTREAM | ENABLES | DEL-03-01 AgentEnginePort and Engine Conformance Suite | ACTIVE |
-| DEP-01-02-015 | EXECUTION | DOWNSTREAM | ENABLES | DEL-03-02 Thin TurnEngine and Session Locking | ACTIVE |
-| DEP-01-02-016 | EXECUTION | DOWNSTREAM | ENABLES | DEL-04-02 SdkOptionsBuilder and Settings Isolation | ACTIVE |
-| DEP-01-02-017 | EXECUTION | DOWNSTREAM | ENABLES | DEL-05-01 Canonical Session Folder and Legacy Session Migration | ACTIVE |
-| DEP-01-02-018 | EXECUTION | DOWNSTREAM | ENABLES | DEL-05-02 HarnessEvent Schema and Append-Only JSONL | ACTIVE |
-| DEP-01-02-019 | EXECUTION | DOWNSTREAM | ENABLES | DEL-05-04 Runtime Replay and Transcript View | ACTIVE |
-| DEP-01-02-020 | EXECUTION | DOWNSTREAM | ENABLES | DEL-06-01 ChiralityPermissionOverlay and Mode Mapping | ACTIVE |
-| DEP-01-02-021 | EXECUTION | DOWNSTREAM | ENABLES | DEL-06-04 Write/Edit Surface and Path Hooks | ACTIVE |
-| DEP-01-02-022 | EXECUTION | DOWNSTREAM | ENABLES | DEL-06-06 Hook Lifecycle and Compaction Mirror | ACTIVE |
-| DEP-01-02-023 | EXECUTION | DOWNSTREAM | ENABLES | DEL-08-04 Type 2 Subagent Governance Bridge | ACTIVE |
-| DEP-01-02-024 | EXECUTION | DOWNSTREAM | ENABLES | DEL-09-02 Section 9 Runtime Validation Additions | ACTIVE |
+| DEP-01-02-001 | ANCHOR | OTHER | UPSTREAM | PKG-01 | ACTIVE | SATISFIED |
+| DEP-01-02-002 | ANCHOR | OTHER | UPSTREAM | SOW-037 | ACTIVE | SATISFIED |
+| DEP-01-02-003 | ANCHOR | OTHER | UPSTREAM | SOW-045 | ACTIVE | SATISFIED |
+| DEP-01-02-004 | ANCHOR | OTHER | UPSTREAM | SOW-054 | ACTIVE | SATISFIED |
+| DEP-01-02-005 | ANCHOR | OTHER | UPSTREAM | SOW-057 | ACTIVE | SATISFIED |
+| DEP-01-02-006 | ANCHOR | OTHER | UPSTREAM | SOW-074 | ACTIVE | SATISFIED |
+| DEP-01-02-007 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001 | ACTIVE | SATISFIED |
+| DEP-01-02-008 | EXECUTION | PREREQUISITE | UPSTREAM | REF-002 | ACTIVE | SATISFIED |
+| DEP-01-02-009 | EXECUTION | PREREQUISITE | UPSTREAM | REF-003 | ACTIVE | SATISFIED |
+| DEP-01-02-010 | EXECUTION | PREREQUISITE | UPSTREAM | REF-004 | ACTIVE | SATISFIED |
+| DEP-01-02-011 | EXECUTION | PREREQUISITE | UPSTREAM | REF-005 | ACTIVE | SATISFIED |
+| DEP-01-02-012 | EXECUTION | PREREQUISITE | UPSTREAM | REF-006 | ACTIVE | SATISFIED |
+| DEP-01-02-013 | EXECUTION | PREREQUISITE | UPSTREAM | REF-007 | ACTIVE | SATISFIED |
+| DEP-01-02-014 | EXECUTION | ENABLES | DOWNSTREAM | DEL-03-01 | ACTIVE | SATISFIED |
+| DEP-01-02-015 | EXECUTION | ENABLES | DOWNSTREAM | DEL-03-02 | ACTIVE | SATISFIED |
+| DEP-01-02-016 | EXECUTION | ENABLES | DOWNSTREAM | DEL-04-02 | ACTIVE | SATISFIED |
+| DEP-01-02-017 | EXECUTION | ENABLES | DOWNSTREAM | DEL-05-01 | ACTIVE | SATISFIED |
+| DEP-01-02-018 | EXECUTION | ENABLES | DOWNSTREAM | DEL-05-02 | ACTIVE | SATISFIED |
+| DEP-01-02-019 | EXECUTION | ENABLES | DOWNSTREAM | DEL-05-04 | ACTIVE | SATISFIED |
+| DEP-01-02-020 | EXECUTION | ENABLES | DOWNSTREAM | DEL-06-01 | ACTIVE | SATISFIED |
+| DEP-01-02-021 | EXECUTION | ENABLES | DOWNSTREAM | DEL-06-04 | ACTIVE | SATISFIED |
+| DEP-01-02-022 | EXECUTION | ENABLES | DOWNSTREAM | DEL-06-06 | ACTIVE | SATISFIED |
+| DEP-01-02-023 | EXECUTION | ENABLES | DOWNSTREAM | DEL-08-04 | ACTIVE | SATISFIED |
+| DEP-01-02-024 | EXECUTION | ENABLES | DOWNSTREAM | DEL-09-02 | ACTIVE | SATISFIED |
 
 ## Lifecycle Summary
 
@@ -99,3 +99,13 @@ the 2026-05-20 extraction and remain historical. Current live evidence pointers
 are maintained in `Dependencies.csv` against consolidated `ScopeOfWork.md` CLM
 anchors. This migration changed no dependency identity, status, satisfaction,
 or lifecycle meaning.
+
+## Current Reliance Annotation (2026-09-22)
+
+D-APP-53 results and earlier MATCH notes above are dated evidence, not a fresh verification of changed source bytes. Formal row identity, status, satisfaction and accepted basis remain unchanged. Current source support is rechecked under D-APP-38; D-GOV-43/D-APP-127 governs current Codex/runtime/settings/policy applicability. REF-007 now names `workflows/software-decomp/WORKFLOW.md`; the descriptive locator now agrees with REF-007; formal edge identity, status and satisfaction remain unchanged.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=24; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.

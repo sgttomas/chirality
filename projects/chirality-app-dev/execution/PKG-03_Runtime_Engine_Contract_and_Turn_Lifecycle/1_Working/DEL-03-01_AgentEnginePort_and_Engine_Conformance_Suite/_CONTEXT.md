@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** App-side runtime-client integration for the Root-owned turn lifecycle, including thin Desktop/HTTP proxy behavior, session request binding, route/SSE compatibility, interrupt/cancel presentation, and conformance evidence.
+**ScopeDescription:** App-side runtime-client integration for the Runtime-owned turn lifecycle, including thin Desktop/HTTP proxy behavior, session request binding, route/SSE compatibility, interrupt/cancel presentation, and conformance evidence.
 
-**InclusionCriteria:** App daemon client/proxy, contract compatibility, API/SSE transport, affected-client evidence.
+**InclusionCriteria:** App-owned Runtime service client/proxy, contract compatibility, API/SSE transport, affected-client evidence.
 
-**Exclusions:** Generic runtime contracts, daemon/session/lock/interruption/persistence semantics, and provider-specific message translation details.
+**Exclusions:** Generic runtime contracts, Runtime/session/lock/interruption/persistence semantics, and provider-specific message translation details.
 
 ## Deliverable Scope
 
-Verify the App client against Root-owned runtime contracts, preserve the compatibility re-export and App-facing API/UI compatibility, and produce conformance evidence without redefining generic runtime semantics.
+Verify the App client against Root-owned runtime contracts, consume @chirality/runtime-contracts directly and preserve current App-facing operation/event semantics, and produce conformance evidence without redefining generic runtime semantics.
 
 ## Anticipated Artifacts
 
-`@chirality/harness-contract` compatibility re-export; App client conformance tests; API/UI compatibility evidence
+Canonical Runtime contract consumption; App client conformance tests; API/UI compatibility evidence
 
 ## Traceability
 

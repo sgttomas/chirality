@@ -1,0 +1,145 @@
+{
+  "basis": "1b5adbf50142a4c01c454c62a31dfcdc60da1894",
+  "parent": "/root",
+  "manager": "/root/app_record_repair_manager",
+  "role": "WORKING_ITEMS",
+  "mechanism": "delegated-harness-native collaboration",
+  "enforcement": "Host workspace-write and shared writable checkout; disjoint write scopes are brief constraints, not per-agent filesystem enforcement. No commit authority delegated.",
+  "model": "inherited parent model; exact serving identity not exposed by collaboration tool",
+  "method": "bundled:chirality-root/reconciliation",
+  "origins": {
+    "AGENTS.md": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+    "agents/AGENT_WORKING_ITEMS.md": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+    "agents/AGENT_TASK.md": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+    "projects/chirality-app-dev/AGENTS.md": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+    "workflows/reconciliation/WORKFLOW.md": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380",
+    "workflows/reconciliation/resources/contract.md": "36eb3a4454e384fae7ea3e5d60dda2f9d63e9b7c2e7758c40048f00cb422b2fb",
+    "workflows/reconciliation/resources/method.md": "f1c8f54909c0ae4341d53391cb4a96fe377dfc1f167c00b1159d15eab079ea16"
+  },
+  "dispatch_preflight": {
+    "verdict": "ALLOW",
+    "targets": 54,
+    "register_sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c",
+    "scan_fingerprint_sha256": "68b88e611cd7b0ebfa61dc15aa1e3910a01da286ea7e0d9212ef46ea2b1ac675"
+  },
+  "children": [
+    {
+      "task": "author_00_03",
+      "role": "TASK",
+      "scope": "PKG00\u201301; initial02\u201303 transferred untouched",
+      "return_prefix": "W00_03"
+    },
+    {
+      "task": "author_04_06",
+      "role": "TASK",
+      "scope": "PKG04\u201306",
+      "return_prefix": "W04_06"
+    },
+    {
+      "task": "author_07_10",
+      "role": "TASK",
+      "scope": "PKG07\u201309; initial PKG10 transferred untouched to author_10",
+      "return_prefix": "W07_10"
+    },
+    {
+      "task": "author_02_03",
+      "role": "TASK",
+      "scope": "PKG02\u201303; dispatch preflight9ALLOW",
+      "return_prefix": "W02_03"
+    },
+    {
+      "task": "author_10",
+      "parent": "/root/app_record_repair_manager",
+      "role": "TASK",
+      "scope": "PKG10; original author completed; followup repairs transferred to manager while pending_init",
+      "return_prefix": "W10",
+      "model_selection": "inherited"
+    },
+    {
+      "task": "review_04_06",
+      "parent": "/root/app_record_repair_manager",
+      "role": "TASK",
+      "scope": "Independent PKG04\u201306 semantic review",
+      "return_prefix": "W04_06_REVIEW",
+      "model_selection": "inherited"
+    },
+    {
+      "task": "review_10_docs",
+      "parent": "/root/app_record_repair_manager",
+      "role": "TASK",
+      "scope": "Independent PKG10/support-docs/DIRECTIVE review",
+      "return_prefix": "W10_DOCS_REVIEW",
+      "model_selection": "inherited"
+    },
+    {
+      "task": "dependency_records_sol",
+      "parent": "/root/app_record_repair_manager",
+      "role": "TASK",
+      "scope": "51 live product dependency registers/indexes; 2 PKG00 controls intentionally have no register; retired09-07 excluded",
+      "return_prefix": "DDEPEND",
+      "model_selection": "gpt-6-sol/high requested; actual serving identity not exposed"
+    },
+    {
+      "task": "review_00_03_07_09_sol",
+      "parent": "/root/app_record_repair_manager",
+      "role": "TASK",
+      "scope": "Independent32live DEL semantic review plus retired09-07 preservation",
+      "return_prefix": "W00_03_07_09_REVIEW",
+      "model_selection": "gpt-6-sol/high requested; actual serving identity not exposed"
+    },
+    {
+      "task": "repair_02_09_review_sol",
+      "parent": "/root/app_record_repair_manager",
+      "role": "TASK",
+      "scope": "Exact operative review findings across01/02/03/07/08/09; no broadscope authority",
+      "return_prefix": "WREPAIR_02_09",
+      "model_selection": "gpt-6-sol/high requested; actual serving identity not exposed"
+    },
+    {
+      "task": "final_record_review_sol",
+      "parent": "/root/app_record_repair_manager",
+      "role": "TASK",
+      "scope": "Independent affected-source/derivative/dependency/backcheck review",
+      "return_prefix": "FINAL_RECORD_REVIEW",
+      "model_selection": "gpt-6-sol/high requested; actual serving identity not exposed"
+    },
+    {
+      "task": "dependency_sources_04_06_sol",
+      "parent": "/root/app_record_repair_manager",
+      "role": "TASK",
+      "scope": "Read-only35 dependency source proposals; manager approved24 source updates/eight retirements and required three surviving-interface replacements by sole writer",
+      "return_prefix": "DDEPEND_SOURCE_04_06",
+      "model_selection": "gpt-6-sol/high requested; fork_turns=none; actual serving identity not exposed"
+    },
+    {
+      "task": "dependency_sources_09_sol",
+      "parent": "/root/app_record_repair_manager",
+      "role": "TASK",
+      "scope": "Read-only10 PKG09 dependency source proposals; manager reviewed and sole writer applied",
+      "return_prefix": "DDEPEND_SOURCE_09",
+      "model_selection": "gpt-6-sol/high requested; fork_turns=none; actual serving identity not exposed"
+    },
+    {
+      "task": "dependency_audit_sol",
+      "parent": "/root/app_record_repair_manager",
+      "role": "TASK",
+      "scope": "Independent current51 dependency closure and truthful ALL54 census; immutable new Evaluation outputs after freeze",
+      "return_prefix": "DDEPEND_AUDIT",
+      "model_selection": "gpt-6-sol/high requested; fork_turns=none; actual serving identity not exposed"
+    }
+  ],
+  "scope_extension": "Parent authorized existing-ruling propagation to descriptive source carriers, limited App DIRECTIVE/support docs, D38 adoption and executable dependency refresh. No product/code, Root/Runtime/Piping, lifecycle/approval, accepted snapshot promotion or new scope membership. Parent separately owns canonical decomposition/invariant, reverse107, audits and shared Git/CI.",
+  "model_direction": "Owner prospectively selected gpt-6-sol/high for new instances; subsequent *_sol launches used fork_turns=none and complete bounded briefs. Earlier serving identity is not retrospectively rewritten.",
+  "manager_secondary_method": "bundled:chirality-root/dependency-extract UPDATE CONSERVATIVE for reviewed current dependency application; common AH evidence home explicitly authorized in child brief.",
+  "secondary_method_origins": {
+    "workflows/dependency-extract/WORKFLOW.md": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f",
+    "workflows/dependency-extract/resources/checks.md": "6801fe2d037b624e7017690eced948c35e334022012e877d2eb456cfdc817256",
+    "workflows/dependency-extract/resources/tools.md": "38fa6cecd19bcb0a594f7532c6b8dafe53af1a35c827751369f7539a0e180f88"
+  },
+  "audit_method": "bundled:chirality-root/audit-dep-closure",
+  "audit_method_origins": {
+    "workflows/audit-dep-closure/WORKFLOW.md": "b436fa343058795398633410bd9e0abd19a37dc5b2869c14617016df5e63fcb1",
+    "workflows/audit-dep-closure/resources/contract.md": "d42c7a743d92dccc24f7a3cdeab7deaae8393081331c44f35d2c02a9b1c0cb43",
+    "workflows/audit-dep-closure/resources/method.md": "8fb002e8179cf28231404ffdf938a8b3a0280f7d5d55082905f4949405ea637d"
+  }
+}

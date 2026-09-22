@@ -1,0 +1,127 @@
+{
+  "structural_validation": {
+    "pass": 16,
+    "deliverables": [
+      "DEL-04-01",
+      "DEL-04-02",
+      "DEL-04-03",
+      "DEL-04-04",
+      "DEL-04-05",
+      "DEL-05-01",
+      "DEL-05-02",
+      "DEL-05-03",
+      "DEL-05-04",
+      "DEL-05-05",
+      "DEL-06-01",
+      "DEL-06-02",
+      "DEL-06-03",
+      "DEL-06-04",
+      "DEL-06-05",
+      "DEL-06-06"
+    ]
+  },
+  "source_requirement_identity_preservation": "PASS",
+  "remaining_only_status_edits": "PASS",
+  "exact_original_row_multiset_and_field_preservation": 682,
+  "dispositions": {
+    "REPAIRED": 338,
+    "DELIVERY_TASK": 342,
+    "DEFERRED_OPTIONAL": 1,
+    "ALREADY_RESOLVED": 1
+  },
+  "post_review_structural_validation": {
+    "pass": 16,
+    "deliverables": [
+      "DEL-04-01",
+      "DEL-04-02",
+      "DEL-04-03",
+      "DEL-04-04",
+      "DEL-04-05",
+      "DEL-05-01",
+      "DEL-05-02",
+      "DEL-05-03",
+      "DEL-05-04",
+      "DEL-05-05",
+      "DEL-06-01",
+      "DEL-06-02",
+      "DEL-06-03",
+      "DEL-06-04",
+      "DEL-06-05",
+      "DEL-06-06"
+    ]
+  },
+  "post_review_original_field_and_key_preservation": 682,
+  "post_review_manifest_units": 486,
+  "post_review_new_hash_check": {
+    "units": 486,
+    "mismatches": []
+  },
+  "refid_uniqueness": "PASS",
+  "final_post_review_validation": [
+    [
+      "DEL-04-01",
+      0
+    ],
+    [
+      "DEL-04-02",
+      0
+    ],
+    [
+      "DEL-04-03",
+      0
+    ],
+    [
+      "DEL-04-04",
+      0
+    ],
+    [
+      "DEL-04-05",
+      0
+    ],
+    [
+      "DEL-05-01",
+      0
+    ],
+    [
+      "DEL-05-02",
+      0
+    ],
+    [
+      "DEL-05-03",
+      0
+    ],
+    [
+      "DEL-05-04",
+      0
+    ],
+    [
+      "DEL-05-05",
+      0
+    ],
+    [
+      "DEL-06-01",
+      0
+    ],
+    [
+      "DEL-06-02",
+      0
+    ],
+    [
+      "DEL-06-03",
+      0
+    ],
+    [
+      "DEL-06-04",
+      0
+    ],
+    [
+      "DEL-06-05",
+      0
+    ],
+    [
+      "DEL-06-06",
+      0
+    ]
+  ],
+  "final_original_rows": 682
+}

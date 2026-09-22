@@ -11,42 +11,34 @@
 
 ## Declared Upstream
 
-TBD - no accepted declared dependency edges have been provided.
+See the current formal `Dependencies.csv` rows whose Direction is UPSTREAM; satisfaction and gates are read from that register, not inferred here.
 
 ## Declared Downstream
 
-TBD - no accepted declared dependency edges have been provided.
+See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No new dependency or status is created by this descriptive mirror.
 
-## Extracted Dependency Register
+## Current Extracted Dependency Summary — 2026-09-22
 
-Summary:
+Total rows: 14. ACTIVE: 14. RETIRED: 0. RETIRED: 0.
 
-| Count Type | Value |
-|---|---:|
-| Total rows | 14 |
-| ACTIVE rows | 14 |
-| RETIRED rows | 0 |
-| ANCHOR rows | 4 |
-| EXECUTION rows | 10 |
+| DependencyID | Class | Type | Direction | Target | Status | SatisfactionStatus |
+|---|---|---|---|---|---|---|
+| DEP-02-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 | ACTIVE | NOT_APPLICABLE |
+| DEP-02-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-001 | ACTIVE | NOT_APPLICABLE |
+| DEP-02-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-005 | ACTIVE | NOT_APPLICABLE |
+| DEP-02-01-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 | ACTIVE | NOT_APPLICABLE |
+| DEP-02-01-005 | EXECUTION | PREREQUISITE | UPSTREAM | TBD | ACTIVE | TBD |
+| DEP-02-01-006 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-08-02 | ACTIVE | TBD |
+| DEP-02-01-007 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-02-02 | ACTIVE | TBD |
+| DEP-02-01-008 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-08-03 | ACTIVE | TBD |
+| DEP-02-01-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-01 | ACTIVE | TBD |
+| DEP-02-01-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 | ACTIVE | TBD |
+| DEP-02-01-011 | EXECUTION | INTERFACE | UPSTREAM | Runtime-owned current session record and project identity | ACTIVE | PENDING |
+| DEP-02-01-012 | EXECUTION | INTERFACE | UPSTREAM | TBD | ACTIVE | TBD |
+| DEP-02-01-013 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-04 | ACTIVE | TBD |
+| DEP-02-01-014 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-01-03 | ACTIVE | TBD |
 
-Compact register:
-
-| DependencyID | Class | Type | Direction | Target | Status |
-|---|---|---|---|---|---|
-| DEP-02-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 Woven Dialogue Shell, Navigation, and Operator State | ACTIVE |
-| DEP-02-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-001 Dialogue-centred shell: invariant centre dialogue, left chat navigator, one-view-at-a-time right panel, no header row | ACTIVE |
-| DEP-02-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-005 Semantic persona/agent/session routing, guarded dialogue selection, and legacy route/query/alias/matrix compatibility | ACTIVE |
-| DEP-02-01-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 Governed local desktop harness centred on human-agent dialogue as the invariant primary surface | ACTIVE |
-| DEP-02-01-005 | EXECUTION | PREREQUISITE | UPSTREAM | UNKNOWN/TBD existing implementation workspace | ACTIVE |
-| DEP-02-01-006 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-08-02 Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract | ACTIVE |
-| DEP-02-01-007 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-02-02 Right-Panel Coordination, Workflows, and Proposal UX | ACTIVE |
-| DEP-02-01-008 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-08-03 Pipeline Category and Task Scope Dispatch | ACTIVE |
-| DEP-02-01-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-01 Working Root Validation and Instruction Root Protection | ACTIVE |
-| DEP-02-01-010 | EXECUTION | INTERFACE | UPSTREAM | DOCUMENT DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 Additive v1 workspace-state field contract (per-view widths, expand state, chat annotations, known folders, chat rung, declined triggers) | ACTIVE |
-| DEP-02-01-011 | EXECUTION | INTERFACE | UPSTREAM | EXTERNAL/TBD Root-owned daemon session record (registered project identity/root; delegation-policy field, OI-008) | ACTIVE |
-| DEP-02-01-012 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN/TBD existing redaction helper for derived chat titles (Q6) | ACTIVE |
-| DEP-02-01-013 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-04 macOS DMG Packaging and Instruction Root Integrity | ACTIVE |
-| DEP-02-01-014 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-01-03 Product Identity and Professional Boundary Copy | ACTIVE |
+This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Runtime ownership and retire daemon proof subjects; formal row amendments, satisfaction changes and basis pins retain their owning process. Earlier notes below remain historical and do not override this current summary.
 
 ## Run Notes
 
@@ -152,3 +144,13 @@ Compact register:
 - Owner rulings still open: HGD-1 (DEP-02-01-006 direction), HGD-2 (DEP-02-01-007/008 retire or keep as compatibility-only), HGD-3 (DEL-02-02-V3-03 prerequisite, held non-gating, not emitted). Fenced candidates FC-1 to FC-3 stay out of the register unless separately ruled.
 - Reconcile with the DEL-02-02 register (its reverse row DEP-02-02-005 and this register's DEP-02-01-007 are the matrix-era pair that HGD-2 and HGD-3 turn on) and with the DEL-02-04 register (the reciprocal DEP-02-04-017, emitted under D-APP-109 as held proposal H-010, is ruled for the same decompose to DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 under D-APP-110 SD-003 on its own carrier).
 - SCC picture: DEL-02-01 is outside any SCC after the D-APP-110 decompose (strict graph acyclic; no row retired, cut, merged, or inverted; no decomposition topology changed); the fresh AUDIT_DEP_CLOSURE snapshot (amendment v1.3 node N16) is the authoritative post-move record, and its acceptance as the loop's DepClosure pointer remains a separate owner act.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=14; RETIRED=0; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+### Additional formal dependency refresh — 2026-09-22
+
+Reviewed postimages in `DDEPEND_QUOTE_00_03_PREVIEW.csv`; current rows: ACTIVE=14, RETIRED=0. Historic statements and quotes remain in row Notes. Changed satisfaction is recorded only where explicit in preview; no unrun check is asserted.

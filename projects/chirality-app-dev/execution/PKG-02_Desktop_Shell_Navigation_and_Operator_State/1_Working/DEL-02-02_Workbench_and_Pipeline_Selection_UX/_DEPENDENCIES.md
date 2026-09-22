@@ -11,11 +11,42 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See the current formal `Dependencies.csv` rows whose Direction is UPSTREAM; satisfaction and gates are read from that register, not inferred here.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+See the current formal `Dependencies.csv` rows whose Direction is DOWNSTREAM. No new dependency or status is created by this descriptive mirror.
+
+## Current Extracted Dependency Summary — 2026-09-22
+
+Total rows: 22. ACTIVE: 21, RETIRED: 1.
+
+| DependencyID | Class | Type | Direction | Target | Status | SatisfactionStatus |
+|---|---|---|---|---|---|---|
+| DEP-02-02-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 | ACTIVE | TBD |
+| DEP-02-02-002 | ANCHOR | OTHER | UPSTREAM | SOW-006 | ACTIVE | TBD |
+| DEP-02-02-003 | ANCHOR | OTHER | UPSTREAM | SOW-007 | RETIRED | TBD |
+| DEP-02-02-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 | ACTIVE | TBD |
+| DEP-02-02-005 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-01 | ACTIVE | TBD |
+| DEP-02-02-006 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-03 | ACTIVE | TBD |
+| DEP-02-02-007 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-04 | ACTIVE | TBD |
+| DEP-02-02-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-05 | ACTIVE | TBD |
+| DEP-02-02-009 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-08-03 | ACTIVE | TBD |
+| DEP-02-02-010 | ANCHOR | OTHER | UPSTREAM | SOW-081 | ACTIVE | TBD |
+| DEP-02-02-011 | ANCHOR | OTHER | UPSTREAM | SOW-082 | ACTIVE | TBD |
+| DEP-02-02-012 | ANCHOR | OTHER | UPSTREAM | OBJ-007 | ACTIVE | TBD |
+| DEP-02-02-013 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-03 | ACTIVE | PENDING |
+| DEP-02-02-014 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-03 | ACTIVE | PENDING |
+| DEP-02-02-015 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-02 | ACTIVE | PENDING |
+| DEP-02-02-016 | EXECUTION | CONSTRAINT | UPSTREAM | ROOT-PROPOSAL-EVENT-ACCEPTANCE | RETIRED | PENDING |
+| DEP-02-02-017 | EXECUTION | INTERFACE | UPSTREAM | DEL-08-05 | ACTIVE | PENDING |
+| DEP-02-02-018 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-04 | ACTIVE | TBD |
+| DEP-02-02-019 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-08-04 | ACTIVE | PENDING |
+| DEP-02-02-020 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-08-02 | ACTIVE | TBD |
+| DEP-02-02-021 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-02-03 | ACTIVE | SATISFIED |
+| DEP-02-02-022 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 | ACTIVE | PENDING |
+
+This is a read-only summary of formal rows. D-GOV-43/D-APP-127 adapt current Runtime ownership and retire daemon proof subjects; formal row amendments, satisfaction changes and basis pins retain their owning process. Earlier notes below remain historical and do not override this current summary.
 
 ## Run Notes
 
@@ -150,3 +181,9 @@ Closure note: dependency rows are evidence-backed but not satisfaction-closed. A
 - SCC posture: under D-APP-109 the fifteen held edges across nine carriers were emitted together, enlarging the live nine-node SCC-001 and creating a new two-node SCC (DEL-06-03/DEL-08-01); under D-APP-110 both SCCs were resolved by decompose (five edges, seven rows across the affected carriers; this carrier's contribution is SD-005 on DEP-02-02-022), and the strict active deliverable execution graph is acyclic. The fresh `AUDIT_DEP_CLOSURE` run (amendment v1.3 node N16) records the acyclic graph and the move basis; acceptance of that snapshot as the DepClosure pointer is a separate owner act.
 - DEP-02-02-021 host identity is carried at `Confidence=MEDIUM` under the amendment v1.1 C.1 ASSUMPTION (DEL-02-03 as seated); re-target to DEL-02-01 only by owner act.
 - Root boundary: DEP-02-02-016 stays `EXTERNAL`/`TBD` until the Root DEL-02-10 return is routed to App; no Root path may be recorded in this register.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=20; RETIRED=2; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.

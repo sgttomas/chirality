@@ -11,11 +11,11 @@
 
 ## Declared Upstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted upstream rows: `DEP-07-06-001`, `DEP-07-06-002`, `DEP-07-06-003`, `DEP-07-06-004`, `DEP-07-06-005`, `DEP-07-06-006`, `DEP-07-06-007`, `DEP-07-06-008`, `DEP-07-06-009`, `DEP-07-06-010`, `DEP-07-06-011`, `DEP-07-06-012`. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Declared Downstream
 
-TBD - no accepted dependency edges have been extracted yet.
+Current extracted downstream rows: NONE. These are existing register projections, not newly accepted human edges. `Dependencies.csv` and the accepted closure pointer control selectability; no status, target, maturity or satisfaction is changed.
 
 ## Run Notes
 
@@ -47,32 +47,32 @@ Current register: `Dependencies.csv` v3.1.
 
 | DependencyID | Class | Type | Direction | Target | Status | Evidence |
 |---|---|---|---|---|---|---|
-| DEP-07-06-001 | ANCHOR | OTHER | UPSTREAM | DEL-07-06 | ACTIVE | `_CONTEXT.md#Identity`; decomposition DEL-07-06 |
-| DEP-07-06-002 | ANCHOR | OTHER | UPSTREAM | SOW-032 | ACTIVE | `Datasheet.md#Attributes`; decomposition SOW-032 |
-| DEP-07-06-003 | ANCHOR | OTHER | UPSTREAM | SOW-033 | ACTIVE | `Datasheet.md#Attributes`; decomposition SOW-033 |
-| DEP-07-06-004 | ANCHOR | OTHER | UPSTREAM | SOW-034 | ACTIVE | `Datasheet.md#Attributes`; decomposition SOW-034 |
-| DEP-07-06-005 | ANCHOR | OTHER | UPSTREAM | OBJ-006 | ACTIVE | `_CONTEXT.md#Traceability`; decomposition OBJ-006 |
-| DEP-07-06-006 | ANCHOR | OTHER | UPSTREAM | OBJ-009 | ACTIVE | `_CONTEXT.md#Traceability`; decomposition OBJ-009 |
-| DEP-07-06-007 | EXECUTION | PREREQUISITE | UPSTREAM | `_CONTEXT.md` | ACTIVE | `Procedure.md#Prerequisites` |
-| DEP-07-06-008 | EXECUTION | PREREQUISITE | UPSTREAM | `_REFERENCES.md` | ACTIVE | `Procedure.md#Steps` |
-| DEP-07-06-009 | EXECUTION | PREREQUISITE | UPSTREAM | `_DEPENDENCIES.md` | ACTIVE | `Procedure.md#Prerequisites` |
-| DEP-07-06-010 | EXECUTION | PREREQUISITE | UPSTREAM | `_STATUS.md` | ACTIVE | `Procedure.md#Prerequisites`; target not read |
-| DEP-07-06-011 | EXECUTION | PREREQUISITE | UPSTREAM | decomposition v3.2 | ACTIVE | `Procedure.md#Steps` |
-| DEP-07-06-012 | EXECUTION | PREREQUISITE | UPSTREAM | authoritative source corpus | ACTIVE | `Procedure.md#Prerequisites` |
-| DEP-07-06-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 `docs/PRD.md` | RETIRED | `Specification.md#Requirements`; `_REFERENCES.md` REF-006 |
+| DEP-07-06-001 | ANCHOR | OTHER | UPSTREAM | PKG-07 | ACTIVE | TBD |
+| DEP-07-06-002 | ANCHOR | OTHER | UPSTREAM | SOW-032 | ACTIVE | TBD |
+| DEP-07-06-003 | ANCHOR | OTHER | UPSTREAM | SOW-033 | ACTIVE | TBD |
+| DEP-07-06-004 | ANCHOR | OTHER | UPSTREAM | SOW-034 | ACTIVE | TBD |
+| DEP-07-06-005 | ANCHOR | OTHER | UPSTREAM | OBJ-006 | ACTIVE | TBD |
+| DEP-07-06-006 | ANCHOR | OTHER | UPSTREAM | OBJ-009 | ACTIVE | TBD |
+| DEP-07-06-007 | EXECUTION | PREREQUISITE | UPSTREAM | LOCAL-CONTEXT | ACTIVE | TBD |
+| DEP-07-06-008 | EXECUTION | PREREQUISITE | UPSTREAM | LOCAL-REFERENCES | ACTIVE | TBD |
+| DEP-07-06-009 | EXECUTION | PREREQUISITE | UPSTREAM | LOCAL-DEPENDENCIES | ACTIVE | TBD |
+| DEP-07-06-010 | EXECUTION | PREREQUISITE | UPSTREAM | LOCAL-STATUS | ACTIVE | TBD |
+| DEP-07-06-011 | EXECUTION | PREREQUISITE | UPSTREAM | DECOMPOSITION-v3.2 | ACTIVE | TBD |
+| DEP-07-06-012 | EXECUTION | PREREQUISITE | UPSTREAM | REF-001-REF-007 | ACTIVE | TBD |
+| DEP-07-06-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | RETIRED | NOT_APPLICABLE |
 
 ## Lifecycle Summary
 
-| Dimension | Count |
+Current descriptive counts from unchanged `Dependencies.csv` (2026-09-22); this projection does not change satisfaction or maturity.
+
+| Field | Count |
 |---|---:|
 | ACTIVE | 12 |
 | RETIRED | 1 |
-| Satisfaction `TBD` | 12 |
-| Satisfaction `PENDING` | 0 |
-| Satisfaction `IN_PROGRESS` | 0 |
-| Satisfaction `SATISFIED` | 0 |
-| Satisfaction `WAIVED` | 0 |
-| Satisfaction `NOT_APPLICABLE` | 0 |
+| RequiredMaturity=SEMANTIC_READY | 13 |
+| ProposedMaturity=TBD | 13 |
+| SatisfactionStatus=NOT_APPLICABLE | 1 |
+| SatisfactionStatus=TBD | 12 |
 
 ## Run History
 
@@ -83,3 +83,25 @@ Current register: `Dependencies.csv` v3.1.
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 
 REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.
+
+## Current record interpretation — 2026-09-22
+
+Earlier extraction notes, counts, source states and file citations retain their dated basis. Current production claims live in `ScopeOfWork.md`; removed four-document files are historical evidence. D-GOV-43/D-APP-127 make the App-owned Runtime/Codex path current; SDK MCP/hooks and daemon proofs are compatibility history. Formal row mutations require the owning dependency pass; this descriptive update grants none.
+
+## Current evidence-locator refresh — 2026-09-22
+
+7 formal rows now cite exact current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See `DDEPEND_PREVIEW_LOCATORS.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current dependency refresh — 2026-09-22
+
+`TASK + bundled:chirality-root/dependency-extract`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; decomposition `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` (accepted product descriptions frozen; no repin). Current ScopeOfWork.md, _CONTEXT.md, _REFERENCES.md and the accepted D-GOV-43/D-APP-127/131 boundary were read before this register update. Exact field postimages were previewed in `DDEPEND_PREVIEW.csv` and independently checked by WORKING_ITEMS before mutation. Existing IDs and declared provenance remain. Historical source wording/quotes are retained in row Notes. No native check, acceptance, or satisfaction change is inferred.
+
+Rows now: ACTIVE=12; RETIRED=1; ACTIVE parent anchors=1. The active summary table above mirrors these formal rows. Historical run notes and dated tables below preserve their original context.
+
+## Current evidence-locator refresh — 2026-09-22
+
+2 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.
+
+## Current evidence-locator refresh — 2026-09-22
+
+1 formal rows now cite current `ScopeOfWork.md` quote spans and their containing headings where former standalone four-document sources were absorbed. Dependency IDs, classes, targets, Status and SatisfactionStatus are unchanged. Former file names and quotes remain in row Notes. This locator correction is not a new fulfillment or current implementation claim. See the selected `DDEPEND_PREVIEW*.csv` and the home `DDEPEND_CHANGES.csv`.

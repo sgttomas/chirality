@@ -6,20 +6,20 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+**Current record authority:** D-APP-54 issued-basis history where recorded, D-GOV-43/D-APP-127 and D-APP-131/132 apply to this record repair; historical checking approval SHA and lifecycle are preserved.
+
 ## Remaining
 
-- **DEL-09-02-V3-01** (`NOT_SELECTABLE_UNTIL: Root WP-03/WP-05 fixtures and event schema v2 routed to App (Root DEL-02-07/DEL-02-10) and DEL-08-04-V3-01/DEL-08-05-V3-01 landed`) — Section 9 validation IDs for descendant classes, role attribution, closed schema, and cancellation/cleanup.
-  Trace: OUT-001, AC-001, VER-001; DEL-09-02-RQ-003/004/011/012/014; applied decomposition row L365 (add runtime validation IDs for provider-adapter conformance, event log, and subagents).
-  Plan: WP-06/WP-10; G4 and G-WIRE report-only IDs; AT-028/AT-030/AT-032 report portions; no unlanded phase reported passing. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
-  Depends: DEP-09-02-017/024/025; DEL-08-04-V3-01; DEL-08-05-V3-01; DEL-05-02-V3-01. AT-053 App evidence landed as DEL-01-01-V3-01 (`DEL-01-01/Evidence_AT-053_Governed_Basis_2026-09-03.md`, Receipt 209; item closed); AT-054 is unseated (`SCOPE_AMENDMENT_REQUIRED` on DEL-09-04) and AT-055 is Root-owned (DEL-02-11).
-  Write locus: `frontend/scripts/validate-harness-section9.mjs`, Section 9 fixtures, summary schema, and deliverable-local state.
-  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); D-APP-127 requires repeating checks whose evidence is invalidated by affected source, configuration or packaging changes.
-  Return: Section 9 manifest rows with explicit status and evidence for managed/native descendant fixtures, role/native-class attribution, closed event schema, and cancellation/cleanup; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
-  Removed when: the IDs land with pass/fail evidence and no false passing outcome.
+The D-APP-131/132 record repairs are applied in ScopeOfWork.md. Current claim-key accounting: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/APP_RECORD_CLOSEOUT_2026-09-22/CURRENT_ROWS.csv`. The original R5 CSV is frozen discovery evidence. These local items are the executable remaining work; reconciliation does not certify implementation or an unrun check.
 
-- **DEL-09-02-R5-RESIDUALS** — Complete the remaining claim-level reconciliation and owning implementation/evidence follow-through: 2 authority application, 12 implementation or evidence, 25 record repair. Exact source keys, required work and individual gates: `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RESIDUALS/DEL-09-02.csv` (D-APP-131). Apply existing decisions without asking for them again; preserve specifically reserved owner decisions, unknown off-code results, scope/instruction boundaries and human lifecycle acts. Select a bounded subset from this item, revalidate its current source/evidence, and close only the independently backchecked keys. The CSV is supporting evidence for this Remaining item, not a second work-selection surface.
+- **DEL-09-02-V3-01** — Map surviving Section 9 IDs and descendant-class/role-attribution/cancellation-cleanup families to current Runtime/Codex checks. Label first-adapter mapper, settingsSources, overlay and SDK hook IDs by their retained compatibility reach. Preserve full event information, sink-specific redaction, terminal truth and report-only pass/fail status.
+  Locus/owner: harness-section9-manifest.json, runner and current Runtime fixtures; App WORKING_ITEMS coordinates the named owning surface.
+  Check/return: Per-ID live/compatibility mapping, replay/redaction, application-tool, protected-path, budget/compaction and native descendant results; S-1–S-8 where relevant.
+  Gate: DEL-08-04/05 current interface evidence; domain checks remain at accepted stages; no blanket legacy-suite equivalence.
+
 
 ## History
+- 2026-09-22 — Current record closeout: D-APP-131/132 settled direction applied to source claims and concrete remaining work; candidate-bound evidence gaps remain. Historical lifecycle, approvals and executed results are preserved.
 - 2026-09-22 — D-APP-131 R5/R6: completed the D-APP-128 bootstrap, recorded exact residual keys and applied any named carrier repairs. D-APP-127 affected-check rule replaces obsolete A1 re-stage wording in live Remaining only. Historical results, lifecycle and Checking Approval SHA are unchanged.
 - 2026-09-21 - Remaining item added: concordance bootstrap seeded at packet time per D-APP-128 packet; no state change.
 - 2026-09-05 - DEL-09-02-V3-01 `Depends` line updated under D-APP-114 to record that the AT-053 evidence item DEL-01-01-V3-01 has landed (Receipt 209); no scope change.
