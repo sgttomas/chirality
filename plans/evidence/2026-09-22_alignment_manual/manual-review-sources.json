@@ -1,0 +1,1022 @@
+{
+  "schema": "alignment-manual-manager-review-sources/v1",
+  "date": "2026-09-22",
+  "repository_basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "manager": {
+    "canonical_id": "/root/manual_review_manager",
+    "role": "HELPS_HUMANS",
+    "type": 1,
+    "parent": "/root",
+    "parent_role": "HELP_HUMAN",
+    "parent_type": 0,
+    "mechanism": "delegated-harness-native Codex collaboration descendant",
+    "model_identity": "GPT-6-based Codex as supplied by host; exact runtime backend/model effort not separately verified",
+    "host_permissions": {
+      "filesystem": "unrestricted/danger-full-access",
+      "network": "enabled",
+      "approval_policy": "never"
+    },
+    "enforcement_limit": "Write/role restrictions are instruction-based; no per-agent filesystem sandbox is claimed",
+    "initial_write_boundary": "manual-review.md and distinctly named support evidence only",
+    "received_scope_amendments": [
+      "Root explicitly authorized full Consolidated_v2.md and MANUAL_REVIEW_v1.md after all reader findings integrated",
+      "Root explicitly authorized exact DOCX Figure1.1 extraction to docs/alignment-manual/assets/Figure_1_1.png and evidence provenance",
+      "No Git or project-record mutation authority supplied to this manager"
+    ]
+  },
+  "children": [
+    {
+      "canonical_id": "/root/manual_review_manager/manual_ch1_ch2",
+      "role": "TASK",
+      "type": 2,
+      "fork_turns": "none",
+      "model_override": null,
+      "mechanism": "collaboration.spawn_agent; delegated-harness-native Codex descendant",
+      "assigned_manuscript_lines": [
+        1,
+        1212
+      ],
+      "actual_return": "plans/evidence/2026-09-22_alignment_manual/review-ch1-ch2.md",
+      "return_sha256": "ffa26f8aab3ebb7188b3c89c4360a9634246cff948f4f874299ca24a200ec3cc",
+      "source_manifest": "plans/evidence/2026-09-22_alignment_manual/review-ch1-ch2-sources.json",
+      "source_manifest_sha256": "cff548b8a3272eb24a69de1d3e5de94c8897ec465f880ee5c7d5c8eed1a4e650",
+      "supplied_basis": "Explicit instruction to load Root AGENTS.md, agents/AGENT_TASK.md and BRIEF.md; disjoint full-line manuscript assignment, current-source comparison, two-file write boundary, no delegation, no manual/project/Git writes; follow-up identified HEAD PR #846 adoption and unavailable archive-provenance boundary",
+      "source_count": 31,
+      "returned_and_integrated": true
+    },
+    {
+      "canonical_id": "/root/manual_review_manager/manual_ch3_ch4",
+      "role": "TASK",
+      "type": 2,
+      "fork_turns": "none",
+      "model_override": null,
+      "mechanism": "collaboration.spawn_agent; delegated-harness-native Codex descendant",
+      "assigned_manuscript_lines": [
+        1213,
+        2625
+      ],
+      "actual_return": "plans/evidence/2026-09-22_alignment_manual/review-ch3-ch4.md",
+      "return_sha256": "56644dad0d5b5ed163b775e7cb808f82f0ead36fb2e04228ee73910ca5a4a980",
+      "source_manifest": "plans/evidence/2026-09-22_alignment_manual/review-ch3-ch4-sources.json",
+      "source_manifest_sha256": "7eeb902339cfb79fe4d5a8b451312d22f9d3538fc0718df54461d50758ab266a",
+      "supplied_basis": "Explicit instruction to load Root AGENTS.md, agents/AGENT_TASK.md and BRIEF.md; disjoint full-line manuscript assignment, current-source comparison, two-file write boundary, no delegation, no manual/project/Git writes; follow-up identified HEAD PR #846 adoption and unavailable archive-provenance boundary",
+      "source_count": 45,
+      "returned_and_integrated": true
+    },
+    {
+      "canonical_id": "/root/manual_review_manager/manual_ch5_ch7",
+      "role": "TASK",
+      "type": 2,
+      "fork_turns": "none",
+      "model_override": null,
+      "mechanism": "collaboration.spawn_agent; delegated-harness-native Codex descendant",
+      "assigned_manuscript_lines": [
+        2626,
+        3731
+      ],
+      "actual_return": "plans/evidence/2026-09-22_alignment_manual/review-ch5-ch7.md",
+      "return_sha256": "7713686786d9be2776adf89ea2bacc42ef7392380e685b38aae15fdae02a22fd",
+      "source_manifest": "plans/evidence/2026-09-22_alignment_manual/review-ch5-ch7-sources.json",
+      "source_manifest_sha256": "cfc85112752a30e71c7af262fa55bc43a9d73622eebe6e25dac56fadb0e3c155",
+      "supplied_basis": "Explicit instruction to load Root AGENTS.md, agents/AGENT_TASK.md and BRIEF.md; disjoint full-line manuscript assignment, current-source comparison, two-file write boundary, no delegation, no manual/project/Git writes; follow-up identified HEAD PR #846 adoption and unavailable archive-provenance boundary",
+      "source_count": 32,
+      "returned_and_integrated": true
+    }
+  ],
+  "coverage": {
+    "manuscript_lines": 3731,
+    "whitespace_words": 73108,
+    "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+    "partition": [
+      [
+        1,
+        1212
+      ],
+      [
+        1213,
+        2625
+      ],
+      [
+        2626,
+        3731
+      ]
+    ],
+    "continuous_complete": true,
+    "missing": [],
+    "overlap": [],
+    "manager_attestation": "Every final child report read and each proposed modification evaluated before writing v2. Material current source counterparts independently inspected as recorded; no claim manager personally reread every manuscript line."
+  },
+  "manager_loaded_sources": [
+    {
+      "path": "AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "read_scope": "full; active Root instructions"
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "bytes": 2044,
+      "read_scope": "full; active role"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "read_scope": "full; deliberate comparison to form child role/brief boundaries; not active manager role"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "sha256": "f39f539db71f8bda320ca5970826652df073fd4d066285f420d73c7b377599ca",
+      "bytes": 4445,
+      "read_scope": "full initial 20-line version and later current version; parent chat separately amended manager write scope",
+      "initial_supplied_sha256": "069342bb358b7c8ef9b85b15acd6c17d3eeed3b4cd2bf172287075e4d9cb36cc",
+      "history_note": "The initial full text was read before Root added owner-direction transcription and closeout scope. That earlier hash is preserved in the ch5/ch7 source manifest; the current full text was reread after review integration."
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "bytes": 516661,
+      "read_scope": "manager inspected front matter, vocabulary, all source-note regions and material correction paragraphs; all 3,731 lines read by disjoint child assignments"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+      "bytes": 305199,
+      "read_scope": "ZIP member inventory, document.xml drawing/caption context, document relationships, and original embedded image; not a full Word document read"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "bytes": 6293,
+      "read_scope": "full"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "bytes": 6070,
+      "read_scope": "full"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/loop/LOOP_INIT.md",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "bytes": 2976,
+      "read_scope": "full"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/loop/LOOP_INIT.md",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "bytes": 19809,
+      "read_scope": "lines 1–150; additional closeout evidence supplied by child reports"
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/AGENTS.md",
+      "sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "bytes": 23399,
+      "read_scope": "selected lines 140–240 and source locators"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/AGENTS.md",
+      "sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+      "bytes": 8678,
+      "read_scope": "selected lines 20–140 and source locators"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/WORKFLOW.md",
+      "sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+      "bytes": 7374,
+      "read_scope": "full documentary comparison; not executed"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "sha256": "f63c39bb6f69722e17121869959fecc083a64bcb00c3138a06f3d095964e406a",
+      "bytes": 2576,
+      "read_scope": "full documentary comparison; not instantiated"
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/bounded-reconciliation/WORKFLOW.md",
+      "sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+      "bytes": 9631,
+      "read_scope": "full documentary comparison; not executed"
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+      "bytes": 15423,
+      "read_scope": "full, with a truncated clause repaired by rereading lines 176–201"
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168",
+      "bytes": 11118,
+      "read_scope": "search excerpts only directly; child reviews supply full relevant contract comparison"
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/AGENT_WORKFLOW_RUNTIME.md",
+      "sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+      "bytes": 19808,
+      "read_scope": "search excerpts directly; child reviews supply relevant context and execution-boundary comparison"
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/PRD_ROOT.md",
+      "sha256": "83cea4babd9080eec1a92d6ca17575af355afacaa246ae689a60176de6a92eb8",
+      "bytes": 95590,
+      "read_scope": "search excerpts directly; child review supplies complete actual merge-policy section"
+    },
+    {
+      "path": "execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md",
+      "sha256": "f21ec486c68ba7688f9e5f2b4237dd4a418eff095f94024a2822fec3933260b4",
+      "bytes": 5862,
+      "read_scope": "full"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "bytes": 1811,
+      "read_scope": "full"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "bytes": 1811,
+      "read_scope": "full"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "read_scope": "full"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "read_scope": "full"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+      "bytes": 12463,
+      "read_scope": "lines 1–30 and 235–262"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "bytes": 7239,
+      "read_scope": "full"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/review-ch1-ch2.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/review-ch1-ch2.md",
+      "sha256": "ffa26f8aab3ebb7188b3c89c4360a9634246cff948f4f874299ca24a200ec3cc",
+      "bytes": 29826,
+      "read_scope": "full final assessment; all proposed edits evaluated"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/review-ch1-ch2-sources.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/review-ch1-ch2-sources.json",
+      "sha256": "cff548b8a3272eb24a69de1d3e5de94c8897ec465f880ee5c7d5c8eed1a4e650",
+      "bytes": 30743,
+      "read_scope": "structured coverage/source/verification inspection; ch5/ch7 manifest also read in full display"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/review-ch3-ch4.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/review-ch3-ch4.md",
+      "sha256": "56644dad0d5b5ed163b775e7cb808f82f0ead36fb2e04228ee73910ca5a4a980",
+      "bytes": 27650,
+      "read_scope": "full final assessment; all proposed edits evaluated"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/review-ch3-ch4-sources.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/review-ch3-ch4-sources.json",
+      "sha256": "7eeb902339cfb79fe4d5a8b451312d22f9d3538fc0718df54461d50758ab266a",
+      "bytes": 43157,
+      "read_scope": "structured coverage/source/verification inspection; ch5/ch7 manifest also read in full display"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/review-ch5-ch7.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/review-ch5-ch7.md",
+      "sha256": "7713686786d9be2776adf89ea2bacc42ef7392380e685b38aae15fdae02a22fd",
+      "bytes": 25683,
+      "read_scope": "full final assessment; all proposed edits evaluated"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/review-ch5-ch7-sources.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/review-ch5-ch7-sources.json",
+      "sha256": "cfc85112752a30e71c7af262fa55bc43a9d73622eebe6e25dac56fadb0e3c155",
+      "bytes": 22285,
+      "read_scope": "structured coverage/source/verification inspection; ch5/ch7 manifest also read in full display"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/INPUTS.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/INPUTS.json",
+      "sha256": "84b54ed0634fde2afd05467ceec5fc7efa1535b1670ca6deaae61b09442f4944",
+      "bytes": 2147,
+      "read_scope": "Full import manifest, used to verify original MD/DOCX/PDF hashes"
+    }
+  ],
+  "child_loaded_source_identities": [
+    {
+      "path": "AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "sha256": "968abf747afd6f5ac059f8b6e780844fadb8a6d27cba73f57cab26209527f379",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": false
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-piping/init/dev-loop-init-prompt.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/init/dev-loop-init-prompt.md",
+      "sha256": "b4ad6c6d4bdbd52d76f12361457c454ddd55785f425b4756680e18aeda8d304a",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-19_APP_LOOP_WORKGRAPH.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-19_APP_LOOP_WORKGRAPH.md",
+      "sha256": "1b774824da84f323a2cc45aa072fc3103debc764f38c425bca4c86ee61adb80b",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_PIPING_LOOP_WORKGRAPH.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_PIPING_LOOP_WORKGRAPH.md",
+      "sha256": "65594de02def126530c2fa87f7d732ff5d015bce1925df7106e1830616e3c401",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/WORKFLOW.md",
+      "sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/bounded-reconciliation/WORKFLOW.md",
+      "sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/index.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/index.json",
+      "sha256": "7e3f3f5de13c6627b0b907e786e54a2433ce9c735be8983b3baa4d8fe230bee6",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-LOCAL-WORK-GRAPH-METHODS-20260922.yaml",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/ROOT-LOCAL-WORK-GRAPH-METHODS-20260922.yaml",
+      "sha256": "f0894335d6101f59698564e9600e700d240eb385b8306dfa075dffdfc4b79d30",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/loop/LOOP_INIT.md",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/loop/LOOP_INIT.md",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md",
+      "sha256": "f21ec486c68ba7688f9e5f2b4237dd4a418eff095f94024a2822fec3933260b4",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/TYPES.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/TYPES.md",
+      "sha256": "2c5360aa06d4c3bc2a8f3bfa91a0dd68cc066f2579ecd0dcf74972d34cc1d37a",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/software-decomp/resources/contract.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-decomp/resources/contract.md",
+      "sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/project-decomp/resources/contract.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-decomp/resources/contract.md",
+      "sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/software-decomp/resources/method.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-decomp/resources/method.md",
+      "sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/project-setup/resources/method.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/resources/method.md",
+      "sha256": "ce23e911e2f35e8c0644f344f096a39a46be95056736249c18b55c126fbb75ed",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/resources/contract.md",
+      "sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/preparation/resources/method.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/preparation/resources/method.md",
+      "sha256": "905f01da64ebbb16b9b818f8e05870ee1c6ef6eed85806fa9fcf9b5e092ed016",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/scope-of-work/resources/brief.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/brief.md",
+      "sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/scope-of-work/resources/checks.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/checks.md",
+      "sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/scope-of-work/resources/tools.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/tools.md",
+      "sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/preparation/SKILL.md",
+      "sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2",
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/scope-of-work/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/WORKFLOW.md",
+      "sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch1_ch2"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "sha256": "f39f539db71f8bda320ca5970826652df073fd4d066285f420d73c7b377599ca",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "agents/registry.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/registry.json",
+      "sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/AGENT_WORKFLOW_RUNTIME.md",
+      "sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "sha256": "f63c39bb6f69722e17121869959fecc083a64bcb00c3138a06f3d095964e406a",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/AGENTS.md",
+      "sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/AGENTS.md",
+      "sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/AGENTS.md",
+      "sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/AGENTS.md",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "init/dev-loop-init-prompt.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/init/dev-loop-init-prompt.md",
+      "sha256": "aaa2280ad423d82af75892b37df9ee907738bdf5a2f8143f12a296e254d294da",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/HELP-HUMAN-APP-20260921-CONCORDANCE/WORK_GRAPH.json",
+      "sha256": "7cacbfac8fc1d89662f9e7ccdfa9e780c75972657701b755e446edd8edd1f1f8",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/WORK_GRAPH.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/WORK_GRAPH.json",
+      "sha256": "e66c8aeb10cfe67617a5767b74d864150448fd2eda4417df97ebd5361c9d4921",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4",
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DECOMPOSITION_STANDARD.md",
+      "sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": ".agents/skills/deliverable-consistency/SKILL.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/deliverable-consistency/SKILL.md",
+      "sha256": "9dde9339e89fb7cc8603f9dacba1b243d982f066062b43915b5c1fbe55ea516b",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/WORKFLOW.md",
+      "sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/legacy-methods.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/legacy-methods.json",
+      "sha256": "bd591cd7cff2d66288df332b08512b265815b74d04b5a34a1321f1baff8b8936",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/software-bounded-implementation/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-bounded-implementation/WORKFLOW.md",
+      "sha256": "2ea0ddf4f53241fa94274e709b8042ad9de4d8beb9c82cd1ed1dcd0c6f8f0f7b",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch3_ch4"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "sha256": "069342bb358b7c8ef9b85b15acd6c17d3eeed3b4cd2bf172287075e4d9cb36cc",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": false,
+      "historical_or_subsequent_read_records": [
+        {
+          "subsequent_read": {
+            "sha256": "968abf747afd6f5ac059f8b6e780844fadb8a6d27cba73f57cab26209527f379",
+            "bytes": 4392,
+            "line_count": 32,
+            "read_line_ranges": [
+              [
+                1,
+                32
+              ]
+            ],
+            "note": "Parent updated the shared undertaking brief during source verification. Reread in full. Earlier hash retained as actual earlier supplied basis. Revised overall documentation/closeout scope does not expand this child’s two-file write boundary."
+          }
+        }
+      ]
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/WORKFLOW.md",
+      "sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/contract.md",
+      "sha256": "ae681cd4eb8ad2985a667bc93e1db33df93d8fe77d7d68c3c896c2b741dd3764",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/task-management/resources/method.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/method.md",
+      "sha256": "daa6e7c207ab4d8509fbc4a45904b08c2f3ecc296f28928f3c24a58c028da76d",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/PRD_ROOT.md",
+      "sha256": "83cea4babd9080eec1a92d6ca17575af355afacaa246ae689a60176de6a92eb8",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/_REGISTER.md",
+      "sha256": "1daaf65cc2ef6aeabfe769ab99e5918156dbd0c150b62ae060b70bac9e349760",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "docs/governance_harness/tranche_manifests/ROOT-CONCORDANCE-CLAIM-GRANULARITY-20260922.yaml",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/ROOT-CONCORDANCE-CLAIM-GRANULARITY-20260922.yaml",
+      "sha256": "e3c2f14b53c9343d52ac05e0222b388f71cce8a27cd43ed21722b59386dc14f1",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md",
+      "sha256": "f42d94ad0ee1612014c5125283b70fcdf45e135bf2c6873c7cf04fef8cea35d9",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_D-GOV-44_CONCORDANCE_CLAIM_GRANULARITY.md",
+      "sha256": "edd1463f7b191485b5033fca4b08df7bcbec95c0e2d1f62db7f68f97b5e3e22b",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "workflows/reconciliation/resources/contract.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/resources/contract.md",
+      "sha256": "36eb3a4454e384fae7ea3e5d60dda2f9d63e9b7c2e7758c40048f00cb422b2fb",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "88329c6b7103584e5d5bf2df8820949a6bc6b068fbba5a786935feeba9a9abd8",
+      "loaded_by": [
+        "/root/manual_review_manager/manual_ch5_ch7"
+      ],
+      "current_bytes_match": true
+    }
+  ],
+  "evidence_notes": [
+    "Per-child source manifests retain exact full/partial/search reads; aggregation does not promote them to full manager reads.",
+    "BRIEF.md changed during concurrent work. Historic supplied hashes remain evidence; current hash mismatch for that historical file is expected and not silently repinned.",
+    "Workflow/skill bodies were comparison evidence, not activated workflows or skills for this review.",
+    "No original archive bytes, external legal/regulatory interpretation, original author chat history or vendor qualification were independently reconstructed.",
+    "Missing source archives and software-prd package are limited discovery/availability observations, not claims they never existed anywhere."
+  ],
+  "outputs": [
+    "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+    "docs/alignment-manual/MANUAL_REVIEW_v1.md",
+    "docs/alignment-manual/assets/Figure_1_1.png",
+    "plans/evidence/2026-09-22_alignment_manual/manual-review.md",
+    "plans/evidence/2026-09-22_alignment_manual/v2-edit-manifest.json",
+    "plans/evidence/2026-09-22_alignment_manual/figure-extraction.json",
+    "plans/evidence/2026-09-22_alignment_manual/manual-review-checks.json"
+  ]
+}

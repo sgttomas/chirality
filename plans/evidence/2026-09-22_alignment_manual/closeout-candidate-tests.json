@@ -1,0 +1,19 @@
+{
+  "phase": "final-candidate preflight before root review/UI-ready signal",
+  "started_at_utc": "2026-09-22T08:42:49.110244+00:00",
+  "finished_at_utc": "2026-09-22T08:43:28.883745+00:00",
+  "base": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "command": [
+    "python3",
+    "tools/run_affected_tests.py",
+    "--base",
+    "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8"
+  ],
+  "exit_code": 0,
+  "summary": [
+    "[run-affected] running 2 suite(s); skipping 17: analysis, coordination, decomp, drawing_extract, equation_audit, evaluation, pdf2md, publication, reporting, retrieval, scaffolding, scope_of_work, software_workflow, source_audit, source_catalog, taskmgmt, workflow_runtime",
+    "[run-affected] /Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 -m pytest -q -n auto --dist loadscope tools/practitioner_harness tools/validation",
+    "897 passed, 48 subtests passed in 38.75s"
+  ],
+  "scope": "Current staged, unstaged and untracked paths selected by maintained affected-test wrapper. Content and publication review still active; later changes require affected reassessment."
+}

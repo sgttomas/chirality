@@ -1,0 +1,16 @@
+{
+  "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+  "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.html": "77bbc449bca0daa3ba4dd3644119a6deaedff3f89f606b26824a0bce504339b5",
+  "docs/alignment-manual/render_manual.py": "caaa10a48f51b79f451b238327cdd57bed9a89de6c97b2c29db3851300dc1e4e",
+  "docs/alignment-manual/requirements.txt": "ac981afac84d512ce043af011e6274637949d90e9de4fc114190f55fc322ad10",
+  "docs/alignment-manual/README.md": "732499bb3548d55d277759c1cb106ddf6230e2c5cf7d48058571be4691fdeee6",
+  "README.md": "c42e7936491f10a462b9db058d22875f7812f95aff87f09e4cf51b9ae9cbeca6",
+  "plans/evidence/2026-09-22_alignment_manual/html-publisher-check.py": "d4c6964b8febb3d30b6f8a4723b5f163ca1ae076da46585b73c01a40dce181e3",
+  "plans/evidence/2026-09-22_alignment_manual/html-publisher-fixture-checks.json": "159cbb0ca971c62d047f58a2951ef0c1f3d2edf0343533cfef3e246bd45dfc08",
+  "plans/evidence/2026-09-22_alignment_manual/html-publisher-inputs.json": "714affb79e29e4d455872221cdb1c099eff5b7f8c0a446e167dafd832c4f9dfa",
+  "plans/evidence/2026-09-22_alignment_manual/html-publisher-offline-guard-checks.json": "bbb156a77f7b4e3df81a08363a03591b944d82d291c6a0bc33753559cd728a46",
+  "plans/evidence/2026-09-22_alignment_manual/html-publisher-offline-qa.json": "ace5d70109e97ca76d274bd8ea117ceba6016a49598530f11255eeb6598e8cb8",
+  "plans/evidence/2026-09-22_alignment_manual/html-publisher-production-checks.json": "20151442a8e126f18193c19b9e01ba1b2b3014018b5cfb33e3164a563128faae",
+  "plans/evidence/2026-09-22_alignment_manual/html-publisher-readme-links.json": "19b8202e1c1ea651a895f165e35061b4a43df72e93c6115bf7c0c09585637de1",
+  "plans/evidence/2026-09-22_alignment_manual/html-publisher-return.md": "977827d474a81c1049400200f144a01dab6e7aeb7448be2a638d22a7bec86c2c"
+}

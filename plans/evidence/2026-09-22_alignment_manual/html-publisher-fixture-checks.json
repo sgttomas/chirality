@@ -1,0 +1,21 @@
+{
+  "fixture_directory": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-manual-renderer-eziy01lu",
+  "python": "3.13.14 (main, Jul 18 2026, 16:56:45) [Clang 22.1.3 ]",
+  "executable": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+  "sample_html_sha256": "4d6538a2204fd2dc5e68d4361502fb9a79bdb7f941bb206f080e0b29e4c2a7dc",
+  "passed": [
+    "fixture render",
+    "deterministic second render",
+    "--check on current output",
+    "visible source text parity",
+    "source link parity",
+    "source element counts",
+    "explicit/generated/repeated/Unicode anchors",
+    "--check rejects stale output",
+    "missing anchor rejected",
+    "external resource rejected",
+    "duplicate source IDs rejected"
+  ],
+  "render_stdout": "Rendered /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-manual-renderer-eziy01lu/sample.html\n2 chapters; 5 headings; 1 tables; 1 code blocks\nSource SHA-256: f0daa94f5ce3412af1f4ea1d9c6f0bff184c58368937bfef68bd9b6bea6ff91c\nHTML SHA-256:   4d6538a2204fd2dc5e68d4361502fb9a79bdb7f941bb206f080e0b29e4c2a7dc\n",
+  "production_source_rendered": false
+}

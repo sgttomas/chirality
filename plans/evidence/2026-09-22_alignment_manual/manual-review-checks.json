@@ -1,0 +1,38 @@
+{
+  "schema": "alignment-manual-author-checks/v1",
+  "date": "2026-09-22",
+  "v2_sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+  "review_sha256": "04494eecd470f868796892415d547f3441a410e7fd68081d9eba4e0a3149239a",
+  "originals": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "sha256": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39",
+      "matches_import": true
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+      "matches_import": true
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "matches_import": true
+    }
+  ],
+  "exact_edit_replay": true,
+  "original_anchors_retained": 81,
+  "v2_explicit_anchors": 82,
+  "duplicate_explicit_anchors": [],
+  "local_links_checked": 117,
+  "local_link_issues": [],
+  "companion_links_awaiting_parallel_author": [],
+  "figure_exists": true,
+  "scope": "Author structural checks, not independent review of the combined final candidate or rendered guide",
+  "result": "PASS",
+  "precision_followup": {
+    "change": "Public review count now describes untouched original line positions, avoiding an implication that expanded lines cannot retain their original text.",
+    "v2_unchanged": true,
+    "edit_manifest_unchanged": true
+  }
+}

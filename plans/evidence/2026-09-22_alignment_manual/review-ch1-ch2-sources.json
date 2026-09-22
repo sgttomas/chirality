@@ -1,0 +1,847 @@
+{
+  "schema": "bounded-manual-review-source-manifest/v1",
+  "date": "2026-09-22",
+  "repository_root": "/Users/ryan/.codex/worktrees/da43/chirality",
+  "repository_revision": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "assignment": {
+    "role": "TASK",
+    "type": 2,
+    "agent": "/root/manual_review_manager/manual_ch1_ch2",
+    "parent_role": "HELPS_HUMANS",
+    "parent": "/root/manual_review_manager",
+    "root_role": "HELP_HUMAN",
+    "root": "/root",
+    "delegation_mechanism": "delegated-harness-native Codex collaboration.spawn_agent descendant",
+    "chirality_managed_delegate_agent": false,
+    "child_delegation_performed": false,
+    "exact_runtime_model_identifier": "not independently exposed or inspected",
+    "history_fork_settings": "not independently inspected; no fresh-history isolation or model-diversity claim",
+    "brief_path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md"
+  },
+  "host_and_instruction_boundaries": {
+    "host_filesystem": "unrestricted; danger-full-access",
+    "network": "enabled; not used for this review",
+    "approval_policy": "never",
+    "instruction_write_allowlist": [
+      "plans/evidence/2026-09-22_alignment_manual/review-ch1-ch2.md",
+      "plans/evidence/2026-09-22_alignment_manual/review-ch1-ch2-sources.json"
+    ],
+    "instruction_prohibitions": [
+      "no delegation",
+      "no manual/v2/guide edits",
+      "no project record or live graph edits",
+      "no Git state mutation, commit, push, or merge"
+    ],
+    "sandbox_enforces_allowlist": false,
+    "other_role_bodies_loaded": [],
+    "method_bodies_selected_for_execution": [],
+    "method_and_skill_bodies_consulted_as_review_sources": true
+  },
+  "coverage": {
+    "target": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+    "required_range": [
+      1,
+      1212
+    ],
+    "read_line_count": 1212,
+    "all_assigned_lines_read": true,
+    "untruncated_continuous_ranges": [
+      [
+        1,
+        120
+      ],
+      [
+        121,
+        240
+      ],
+      [
+        241,
+        360
+      ],
+      [
+        361,
+        480
+      ],
+      [
+        481,
+        600
+      ],
+      [
+        601,
+        720
+      ],
+      [
+        721,
+        840
+      ],
+      [
+        841,
+        960
+      ],
+      [
+        961,
+        1080
+      ],
+      [
+        1081,
+        1212
+      ]
+    ],
+    "skipped_lines": [],
+    "initial_truncated_read": {
+      "range": [
+        1,
+        310
+      ],
+      "used_as_completeness_evidence": false,
+      "repair": "Reread all lines in continuous untruncated chunks of 120 lines, with final 1081-1212 chunk."
+    },
+    "coverage_limit": "No claim to have reviewed manuscript lines 1213-3731."
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "repository_path": "AGENTS.md",
+      "source_kind": "active instruction",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "line_count": 242,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 242,
+          "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": true,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S02",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "repository_path": "agents/AGENT_TASK.md",
+      "source_kind": "active role instruction",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "line_count": 39,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 39,
+          "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": true,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S03",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "repository_path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "source_kind": "active undertaking brief",
+      "sha256": "968abf747afd6f5ac059f8b6e780844fadb8a6d27cba73f57cab26209527f379",
+      "line_count": 32,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 32,
+          "sha256": "968abf747afd6f5ac059f8b6e780844fadb8a6d27cba73f57cab26209527f379"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": true,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S04",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "repository_path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "source_kind": "review target",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "line_count": 3731,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 120,
+          "sha256": "d8182f2061b9679a583fee55cfafca2bca089b6d78a2a92bb397707707138cc7"
+        },
+        {
+          "start": 121,
+          "end": 240,
+          "sha256": "739978849507140639adde5d3cb881a7b07a42e38c38457999fc033823f5a6d0"
+        },
+        {
+          "start": 241,
+          "end": 360,
+          "sha256": "9c144a985e8049e8e3fb75070c843d9370f395fadf69a035e7a59b737050540e"
+        },
+        {
+          "start": 361,
+          "end": 480,
+          "sha256": "ca51d9c43ca22538164f64de7f69ef776cf599fb7b9922b76b021c10b6e4e725"
+        },
+        {
+          "start": 481,
+          "end": 600,
+          "sha256": "c6c31f6de2153fc893ee03946daebdaca5eaa9adc5a69177c2f4ac956d6b5f0f"
+        },
+        {
+          "start": 601,
+          "end": 720,
+          "sha256": "13cb6c6784f2e66a4dac4ccbb7f5b6dd49cbd50ca3b15157f77bb8e3ee4e9b3f"
+        },
+        {
+          "start": 721,
+          "end": 840,
+          "sha256": "d9c5c7dfb0754346450e03a86cc7d9fc5308ec6c473ab67f104048eee82692ab"
+        },
+        {
+          "start": 841,
+          "end": 960,
+          "sha256": "d04147d4a19f0cd8231760ed9422edf7ee91d88a74e718709d46211c7266a4d8"
+        },
+        {
+          "start": 961,
+          "end": 1080,
+          "sha256": "5b0113b7e085fbebf1df9dcca3faa3cfb96759990ef6b87166619c8743858d85"
+        },
+        {
+          "start": 1081,
+          "end": 1212,
+          "sha256": "9a19635949ce04d4b29d466baf5d635787662fcf9f626a94403fae6d0ba05fc4"
+        }
+      ],
+      "full_file_read": false,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S05",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "repository_path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "source_kind": "current project comparison source",
+      "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "line_count": 111,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 111,
+          "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S06",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/loop/LOOP_INIT.md",
+      "repository_path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "source_kind": "current project comparison source",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "line_count": 107,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 107,
+          "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S07",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/init/dev-loop-init-prompt.md",
+      "repository_path": "projects/chirality-piping/init/dev-loop-init-prompt.md",
+      "source_kind": "current launcher comparison source",
+      "sha256": "b4ad6c6d4bdbd52d76f12361457c454ddd55785f425b4756680e18aeda8d304a",
+      "line_count": 16,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 16,
+          "sha256": "b4ad6c6d4bdbd52d76f12361457c454ddd55785f425b4756680e18aeda8d304a"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S08",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-19_APP_LOOP_WORKGRAPH.md",
+      "repository_path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-19_APP_LOOP_WORKGRAPH.md",
+      "source_kind": "historical transition notice",
+      "sha256": "1b774824da84f323a2cc45aa072fc3103debc764f38c425bca4c86ee61adb80b",
+      "line_count": 31,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 31,
+          "sha256": "1b774824da84f323a2cc45aa072fc3103debc764f38c425bca4c86ee61adb80b"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S09",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_PIPING_LOOP_WORKGRAPH.md",
+      "repository_path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-19_PIPING_LOOP_WORKGRAPH.md",
+      "source_kind": "historical transition notice",
+      "sha256": "65594de02def126530c2fa87f7d732ff5d015bce1925df7106e1830616e3c401",
+      "line_count": 28,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 28,
+          "sha256": "65594de02def126530c2fa87f7d732ff5d015bce1925df7106e1830616e3c401"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S10",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/WORKFLOW.md",
+      "repository_path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "source_kind": "current method comparison source; not selected for execution",
+      "sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+      "line_count": 124,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 124,
+          "sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S11",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/bounded-reconciliation/WORKFLOW.md",
+      "repository_path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "source_kind": "current method comparison source; not selected for execution",
+      "sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+      "line_count": 139,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 139,
+          "sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S12",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/index.json",
+      "repository_path": "workflows/index.json",
+      "source_kind": "current catalog comparison source",
+      "sha256": "7e3f3f5de13c6627b0b907e786e54a2433ce9c735be8983b3baa4d8fe230bee6",
+      "line_count": 3603,
+      "continuous_full_text_ranges": [
+        {
+          "start": 615,
+          "end": 715,
+          "sha256": "68164a59a9f6c5cd58b9207c41d26dbb990256a8d0df03341539a77bf19ad56e"
+        }
+      ],
+      "full_file_read": false,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": "Full JSON parsed for presence/absence of workflow names software-prd, construct-local-work-graph, and bounded-reconciliation."
+    },
+    {
+      "id": "S13",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/tranche_manifests/ROOT-LOCAL-WORK-GRAPH-METHODS-20260922.yaml",
+      "repository_path": "docs/governance_harness/tranche_manifests/ROOT-LOCAL-WORK-GRAPH-METHODS-20260922.yaml",
+      "source_kind": "instruction amendment scope and authorization record",
+      "sha256": "f0894335d6101f59698564e9600e700d240eb385b8306dfa075dffdfc4b79d30",
+      "line_count": 44,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 44,
+          "sha256": "f0894335d6101f59698564e9600e700d240eb385b8306dfa075dffdfc4b79d30"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S14",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/loop/LOOP_INIT.md",
+      "repository_path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "source_kind": "current project comparison source",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "line_count": 34,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 34,
+          "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S15",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/loop/LOOP_INIT.md",
+      "repository_path": "projects/pec/loop/LOOP_INIT.md",
+      "source_kind": "current project comparison source",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "line_count": 346,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 130,
+          "sha256": "ca9f4babae642d8caf28d33ed1d50bc6c6636904aea794691f3e5a5c50deda85"
+        }
+      ],
+      "full_file_read": false,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S16",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md",
+      "repository_path": "execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md",
+      "source_kind": "current integration and review evidence",
+      "sha256": "f21ec486c68ba7688f9e5f2b4237dd4a418eff095f94024a2822fec3933260b4",
+      "line_count": 95,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 95,
+          "sha256": "f21ec486c68ba7688f9e5f2b4237dd4a418eff095f94024a2822fec3933260b4"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S17",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "repository_path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "source_kind": "receiving-loop adoption boundary notice",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "line_count": 29,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 29,
+          "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S18",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "repository_path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "source_kind": "project application and retained in-flight basis notice",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "line_count": 30,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 30,
+          "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S19",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/TYPES.md",
+      "repository_path": "docs/TYPES.md",
+      "source_kind": "current terminology comparison source",
+      "sha256": "2c5360aa06d4c3bc2a8f3bfa91a0dd68cc066f2579ecd0dcf74972d34cc1d37a",
+      "line_count": 549,
+      "continuous_full_text_ranges": [
+        {
+          "start": 411,
+          "end": 446,
+          "sha256": "03ca420780671ee2d8e1749dcddb0018740ae765932e5e6a455449640cfb54dd"
+        }
+      ],
+      "full_file_read": false,
+      "search_only_lines": [
+        166,
+        220,
+        241,
+        331,
+        450,
+        458,
+        459,
+        460,
+        461,
+        465,
+        471,
+        473,
+        508,
+        520,
+        521,
+        525
+      ],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S20",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-decomp/resources/contract.md",
+      "repository_path": "workflows/software-decomp/resources/contract.md",
+      "source_kind": "current decomposition comparison source",
+      "sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f",
+      "line_count": 254,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 254,
+          "sha256": "f6f159169c00ba5191b24d9b8f99625a392530b8bf9c06af388fcb612fdd618f"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S21",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-decomp/resources/contract.md",
+      "repository_path": "workflows/project-decomp/resources/contract.md",
+      "source_kind": "current decomposition comparison source",
+      "sha256": "9e54733e5d056dba47615fbb4407a13a214dabec82f1cd8f606af4ce23841058",
+      "line_count": 228,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 105,
+          "sha256": "197ceceeec27b18072817e7b11c89133be23a3e6816543d6601dcce3dd20e482"
+        }
+      ],
+      "full_file_read": false,
+      "search_only_lines": [
+        139,
+        150,
+        160,
+        200,
+        207
+      ],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S22",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-decomp/resources/method.md",
+      "repository_path": "workflows/software-decomp/resources/method.md",
+      "source_kind": "current decomposition comparison source",
+      "sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3",
+      "line_count": 95,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 95,
+          "sha256": "1442f0cee8b5c4fa294e369e1742468613fa945b998f106629c6bb9c783935e3"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S23",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/resources/method.md",
+      "repository_path": "workflows/project-setup/resources/method.md",
+      "source_kind": "current setup comparison source",
+      "sha256": "ce23e911e2f35e8c0644f344f096a39a46be95056736249c18b55c126fbb75ed",
+      "line_count": 443,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 175,
+          "sha256": "6c6174571ab28ca3af406dec8c15bacf828e1a0c0a76cd1d892ebc4fb86444fa"
+        }
+      ],
+      "full_file_read": false,
+      "search_only_lines": [
+        193,
+        249,
+        292,
+        297,
+        300,
+        307,
+        346,
+        357,
+        373,
+        380,
+        407
+      ],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S24",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/resources/contract.md",
+      "repository_path": "workflows/project-setup/resources/contract.md",
+      "source_kind": "current setup comparison source",
+      "sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "line_count": 233,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 120,
+          "sha256": "d1bf369341b25e635d3f2331c1283191e4be1092038bb75bc7eee5f91b717e2e"
+        }
+      ],
+      "full_file_read": false,
+      "search_only_lines": [
+        202,
+        203,
+        204,
+        226
+      ],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S25",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/preparation/resources/method.md",
+      "repository_path": "workflows/preparation/resources/method.md",
+      "source_kind": "retained preparation method comparison source",
+      "sha256": "905f01da64ebbb16b9b818f8e05870ee1c6ef6eed85806fa9fcf9b5e092ed016",
+      "line_count": 229,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 75,
+          "sha256": "5f2c0a186bcbc969d6498b75645b1edc99db684fbdc1af9f2e3a954a3d2cdc87"
+        }
+      ],
+      "full_file_read": false,
+      "search_only_lines": [
+        141,
+        192
+      ],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S26",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/brief.md",
+      "repository_path": "workflows/scope-of-work/resources/brief.md",
+      "source_kind": "current local-contract comparison source",
+      "sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145",
+      "line_count": 47,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 47,
+          "sha256": "a082f1afac4eac22c0225f79191006358c6cb4508bd94f7dc2111594e8045145"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S27",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/checks.md",
+      "repository_path": "workflows/scope-of-work/resources/checks.md",
+      "source_kind": "current local-contract comparison source",
+      "sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8",
+      "line_count": 55,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 55,
+          "sha256": "fbb2c8ebdee578ad9ce9b36f17fadd1013f10d470142921ce18855ee174576b8"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S28",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/resources/tools.md",
+      "repository_path": "workflows/scope-of-work/resources/tools.md",
+      "source_kind": "search-only local-contract source discovery",
+      "sha256": "2bbb55ccc68e2ab8bedfe9d2b766770b449a5119dc2cb1313cd5b5f5e3010f3f",
+      "line_count": 66,
+      "continuous_full_text_ranges": [],
+      "full_file_read": false,
+      "search_only_lines": [
+        7,
+        19,
+        24,
+        27,
+        59,
+        60
+      ],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S29",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "repository_path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "source_kind": "current claim-granularity comparison source",
+      "sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+      "line_count": 254,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 160,
+          "sha256": "1e54d0dff5e029cb3c2dbb748ddac724ae2257fb7d27222c176e7ddf23b36e09"
+        }
+      ],
+      "full_file_read": false,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S30",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/preparation/SKILL.md",
+      "repository_path": ".agents/skills/preparation/SKILL.md",
+      "source_kind": "current skill comparison source; not applied in this review",
+      "sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc",
+      "line_count": 35,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 35,
+          "sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc"
+        }
+      ],
+      "full_file_read": true,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    },
+    {
+      "id": "S31",
+      "path": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/WORKFLOW.md",
+      "repository_path": "workflows/scope-of-work/WORKFLOW.md",
+      "source_kind": "current local-contract comparison source",
+      "sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+      "line_count": 128,
+      "continuous_full_text_ranges": [
+        {
+          "start": 1,
+          "end": 120,
+          "sha256": "61435670f0a7819c3d037eb205cdb1483a0584f1bf512b135cb454116722098a"
+        }
+      ],
+      "full_file_read": false,
+      "search_only_lines": [],
+      "consulted_for_execution": false,
+      "additional_machine_inspection": null
+    }
+  ],
+  "discovery_and_checks": [
+    {
+      "kind": "file inventory",
+      "scope": "docs/alignment-manual",
+      "initial_result": [
+        "Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+        "Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+        "Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf"
+      ],
+      "meaning": "No accompanying editorial report or source bundle was present in this directory at initial inspection; this is not a claim about every external source location."
+    },
+    {
+      "kind": "catalog semantic query",
+      "scope": "workflows/index.json",
+      "result": {
+        "software-prd": false,
+        "construct-local-work-graph": true,
+        "bounded-reconciliation": true
+      },
+      "meaning": "Catalog membership only, not every personal/user library or product packaging state."
+    },
+    {
+      "kind": "read-only targeted path discovery",
+      "scopes": [
+        "/Users/ryan/dev/chirality/plans/proposals",
+        "/Users/ryan/dev/chirality/.chirality/workflow-drafts",
+        "/Users/ryan/.chirality/workflow-drafts"
+      ],
+      "patterns": [
+        "software-prd",
+        "development-loop",
+        "DELIVERABLE_CONCORDANCE"
+      ],
+      "result": "No matching path returned. Some discovery roots may be absent; errors were suppressed. No absence claim beyond this bounded discovery."
+    },
+    {
+      "kind": "figure target existence",
+      "manual_line": 333,
+      "target": "docs/alignment-manual/assets/Figure_1_1.png",
+      "initial_exists": false,
+      "final_exists": true,
+      "final_sha256": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1",
+      "visual_review_performed_by_this_reviewer": false,
+      "parent_message": "Parent reports exact figure restored from supplied DOCX with visual and XML placement checks; parent owns extraction/fidelity evidence."
+    },
+    {
+      "kind": "read-only source searches",
+      "meaning": "Filename discovery, wc counts, and rg snippets were used to locate sources. Continuous reading is claimed only for the explicit ranges above. Search-only lines are separately identified."
+    }
+  ],
+  "unverified_original_sources": [
+    "original author conversations/directions cited by the manuscript",
+    "original theory/thesis source set named in the source notes",
+    "development-loop.zip original supplied bytes",
+    "workflows-DBM.zip original supplied bytes",
+    "workflows-FEED.zip original supplied bytes",
+    "tools-FEED.zip original supplied bytes",
+    "draft software-prd package and its two supporting guides",
+    "APEGA and Alberta external publications"
+  ],
+  "external_fact_check": "Not performed; external/domain claims remain attributed manuscript statements and were not renewed as verified facts.",
+  "report": {
+    "path": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/review-ch1-ch2.md",
+    "sha256": "ffa26f8aab3ebb7188b3c89c4360a9634246cff948f4f874299ca24a200ec3cc"
+  },
+  "result": "Assigned full-line review complete. Recommendations are proposals for parent integration and establish no project acceptance or adoption."
+}

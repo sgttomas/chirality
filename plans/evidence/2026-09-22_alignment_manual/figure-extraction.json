@@ -1,0 +1,10 @@
+{
+  "source": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+  "source_sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+  "member": "word/media/image1.png",
+  "relationship": "rId19",
+  "target": "docs/alignment-manual/assets/Figure_1_1.png",
+  "asset_sha256": "0a1f2f1dbeeff97a6c0f9c6ae0aaa3263aa1360ae49c62751e673b6b2f6b71e1",
+  "method": "Exact ZIP member extraction, no image transformation",
+  "inspection": "Visually inspected: A Shared state interface; B Proposal review/application; C History/recovery integration; D Connected workflow verification. Arrow direction A\u2192B, A\u2192C, B\u2192D, C\u2192D matches Figure 1.1 caption; embedded placement verified against document.xml."
+}

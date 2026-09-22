@@ -1,0 +1,14 @@
+{
+  "guide": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+  "guide_sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+  "word_count_whitespace": 13228,
+  "reference_definitions": 74,
+  "reference_uses": 316,
+  "explicit_section_anchors": 21,
+  "missing_reference_definitions": [],
+  "missing_local_targets": [],
+  "missing_internal_fragments": [],
+  "result": "PASS",
+  "scope": "Local link existence, reference completeness and explicit navigation; HTML rendering/visual QA and independent semantic review are owned by parent workstreams.",
+  "review_repair": "Runtime package navigation clarified from independent content review; no link target changed."
+}

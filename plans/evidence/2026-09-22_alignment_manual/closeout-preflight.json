@@ -1,0 +1,109 @@
+{
+  "observed_at_utc": "2026-09-22T08:22:49.308777+00:00",
+  "phase": "preflight while authors are active; not final-candidate checks",
+  "branch": "codex/alignment-manual-and-agent-guide-20260922",
+  "head": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_agent_instructions.py",
+        "--json"
+      ],
+      "exit_code": 0,
+      "summary": {
+        "errors": 0,
+        "findings": []
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_workflow_metadata.py",
+        "--json"
+      ],
+      "exit_code": 0,
+      "summary": {
+        "checked_workflow_count": 74,
+        "invalid_workflow_count": 0
+      }
+    },
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "exit_code": 0,
+      "summary": "Self-check exited 0; no BLOCK exit. This is generated validation evidence, not authority."
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_materialization_fence.py"
+      ],
+      "exit_code": 0,
+      "summary": [
+        "G0 PASS: exact governance/historical census validated; stage=effective; no production authorization"
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_harness_adapter.py"
+      ],
+      "exit_code": 0,
+      "summary": [
+        "G1 PASS: governance adapter exact pointers, controls and historical census; stage=effective"
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_surface_ownership.py"
+      ],
+      "exit_code": 0,
+      "summary": [
+        "G2 PASS: accepted successor scopes; historical read custody only"
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_work_graph_dispatch.py"
+      ],
+      "exit_code": 0,
+      "summary": [
+        "G3 PASS (CI mode): work graph work_graph.yaml is schema-valid (root-work-graph/v1); 46 node(s), active: none; declared write targets, disjointness/serialization, and M2 markers check out."
+      ]
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_instruction_tranche_manifest.py"
+      ],
+      "exit_code": 0,
+      "summary": "G4 PASS (CI mode): 93 schema-valid manifests, including ROOT-ALIGNMENT-MANUAL-20260922; actual diff coverage not yet checked."
+    },
+    {
+      "command": [
+        "python3",
+        "tools/run_affected_tests.py",
+        "--base",
+        "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+        "--dry-run"
+      ],
+      "exit_code": 0,
+      "summary": {
+        "selected_checks": [
+          "practitioner_harness",
+          "validation"
+        ],
+        "suite_count": 2,
+        "skipped_suite_count": 17,
+        "execution": "dry-run only"
+      }
+    }
+  ],
+  "record_kind": "Summarized command results, not a raw stdout transcript"
+}

@@ -1,0 +1,241 @@
+{
+  "schema": "alignment-manual-primary-consultation/v1",
+  "recorded_at_utc": "2026-09-22T08:26:20.434266+00:00",
+  "actor": "/root",
+  "role": "HELP_HUMAN",
+  "recorded_by": "/root/closeout_manager",
+  "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "provenance": "Primary reported these consultation scopes through a native collaboration message on 2026-09-22. The recorder hashes current source files; it does not claim to have performed these reads.",
+  "limits": [
+    "Hashes identify whole source files, not proof that full file bytes were supplied or seen.",
+    "Root and role/skill inputs are recorded in INPUTS.json.",
+    "The primary inspected manuscript preface, sections 1.7–1.10, 4.1–4.3, 5.4, chapters 6–7 and vocabulary; some combined views were truncated. Full continuous chapter coverage belongs to named child returns.",
+    "Workflow packages are repository bundled-source consultations; this documentation undertaking does not register or revise workflows."
+  ],
+  "sources": [
+    {
+      "path": "docs/CONTRACT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/CONTRACT.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "64747d2a3c58ae93194bd5c7118d89a591b7b4ebe8cec7e88cb6a95dc55895bd",
+      "consultation_scope": "Full file, reported by primary"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/SPEC.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "2ed0680b458754e4493ad6dc69aa2d883e5fef1434b13bb947bb6aeb0f1485af",
+      "consultation_scope": "Sections 0.2–3.4 and heading inventory, reported by primary"
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DIRECTIVE.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "5346d950c4981096f92f2a34d942889e06982c582542e47f72449c1d2bbe5c61",
+      "consultation_scope": "Selected clauses; combined-output view was truncated, reported by primary"
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/AGENT_WORKFLOW_RUNTIME.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+      "consultation_scope": "Full file, reported by primary"
+    },
+    {
+      "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "9cc54bfb649168801c2ea060acb242145f48a0e08ac893e6ca38824439f7c5b3",
+      "consultation_scope": "Full file, reported by primary"
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168",
+      "consultation_scope": "Full sections 1–10, reported by primary"
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+      "consultation_scope": "Sections 1–4, reported by primary"
+    },
+    {
+      "path": "docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+      "consultation_scope": "Full file, reported by primary"
+    },
+    {
+      "path": "workflows/index.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/index.json",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "7e3f3f5de13c6627b0b907e786e54a2433ce9c735be8983b3baa4d8fe230bee6",
+      "consultation_scope": "Catalog descriptors, not all workflow bodies, reported by primary"
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/resources/contract.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "consultation_scope": "Entry, invariants and validity sections, reported by primary"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "f63c39bb6f69722e17121869959fecc083a64bcb00c3138a06f3d095964e406a",
+      "consultation_scope": "Consulted template, reported by primary"
+    },
+    {
+      "path": "workflows/README.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/README.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "d45d5f3bf4ab28b857796d7995c8eb9a80af3b8002adce0e88a4999c0d108630",
+      "consultation_scope": "Consulted overview, reported by primary"
+    },
+    {
+      "path": "agents/registry.json",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/registry.json",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+      "consultation_scope": "Consulted registry, reported by primary"
+    },
+    {
+      "path": "tools/workflow_runtime/README.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/workflow_runtime/README.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "92e98c67437f6f2443925a8078d5a890dcaf84946f18f787bd4a998f770f7523",
+      "consultation_scope": "Consulted overview, reported by primary"
+    },
+    {
+      "path": "tools/validation/README.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/validation/README.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "a13b2ef61b113c45d583b5f1a8f9b406bf8bbb71550da8c0366e58776f620098",
+      "consultation_scope": "Consulted overview, reported by primary"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "e7c1e532a9d46cdc27957c85003515c46b5193e21438c905cf1cfb4e56433efa",
+      "consultation_scope": "Consulted decision, reported by primary"
+    },
+    {
+      "path": "init/dev-loop-init-prompt.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/init/dev-loop-init-prompt.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "aaa2280ad423d82af75892b37df9ee907738bdf5a2f8143f12a296e254d294da",
+      "consultation_scope": "Consulted root launcher, reported by primary"
+    },
+    {
+      "path": "execution/_Coordination/LOOP_INIT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/execution/_Coordination/LOOP_INIT.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "e23b86c52a2797ba92a6a2b56e4dc9242a0147579dfdb498f7cff914bd608082",
+      "consultation_scope": "Consulted root loop entry, reported by primary"
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/WORKFLOW.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2",
+      "consultation_scope": "Full selected entrypoint, reported by primary; consultation does not activate the method"
+    },
+    {
+      "path": "workflows/project-decomp/WORKFLOW.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-decomp/WORKFLOW.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "74fb7e783c2185943564875a74dd838590cc442ac6ae432a4ade00b2559bd710",
+      "consultation_scope": "Full selected entrypoint, reported by primary; consultation does not activate the method"
+    },
+    {
+      "path": "workflows/software-decomp/WORKFLOW.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-decomp/WORKFLOW.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "fd79f8001404a99c3438500fae413d56193dc1db408b3416bdee20414977d452",
+      "consultation_scope": "Full selected entrypoint, reported by primary; consultation does not activate the method"
+    },
+    {
+      "path": "workflows/scope-of-work/WORKFLOW.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/WORKFLOW.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+      "consultation_scope": "Full selected entrypoint, reported by primary; consultation does not activate the method"
+    },
+    {
+      "path": "workflows/scope-change/WORKFLOW.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-change/WORKFLOW.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "58f5d1d53c655fdc5668d928f6087003590f40e321e25e3d9447805ee64a7a90",
+      "consultation_scope": "Full selected entrypoint, reported by primary; consultation does not activate the method"
+    },
+    {
+      "path": "workflows/review/WORKFLOW.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/review/WORKFLOW.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "f8a8f240a034395dd1d069799449215eca29ce14887a20653f1cec9a674906bc",
+      "consultation_scope": "Full selected entrypoint, reported by primary; consultation does not activate the method"
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/WORKFLOW.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20",
+      "consultation_scope": "Full selected entrypoint, reported by primary; consultation does not activate the method"
+    },
+    {
+      "path": "workflows/create-workflow/WORKFLOW.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/create-workflow/WORKFLOW.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "7d4443b63c474a8727a1391dca2e4c20b3a81a04d344d575d862be8f8536cf10",
+      "consultation_scope": "Full selected entrypoint, reported by primary; consultation does not activate the method"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/WORKFLOW.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+      "consultation_scope": "Full selected entrypoint, reported by primary; consultation does not activate the method"
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/bounded-reconciliation/WORKFLOW.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+      "consultation_scope": "Full selected entrypoint, reported by primary; consultation does not activate the method"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "consultation_scope": "Full loop entry, reported by primary"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/loop/LOOP_INIT.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "consultation_scope": "Full loop entry, reported by primary"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/loop/LOOP_INIT.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "consultation_scope": "Full loop entry, reported by primary"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/loop/LOOP_INIT.md",
+      "basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "consultation_scope": "First 150 lines only, reported by primary"
+    }
+  ]
+}

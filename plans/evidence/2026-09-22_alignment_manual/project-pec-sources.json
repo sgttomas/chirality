@@ -1,0 +1,1154 @@
+{
+  "schema": "chirality-alignment-manual-project-sources/v1",
+  "snapshot_date": "2026-09-22",
+  "repository_root": "/Users/ryan/.codex/worktrees/da43/chirality",
+  "declared_parent_basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "git_basis_verification": "Not independently verified. No Git commands or remote fetch were permitted in this bounded task; all current claims are limited to inspected local files.",
+  "provenance": {
+    "role": "TASK",
+    "type": 2,
+    "agent_name": "/root/project_coverage_manager/pec_review",
+    "actual_exposed_identifier": "/root/project_coverage_manager/pec_review",
+    "parent": "/root/project_coverage_manager",
+    "parent_role": "WORKING_ITEMS",
+    "root_parent": "/root",
+    "root_parent_role": "HELP_HUMAN",
+    "mechanism": "delegated-harness-native Codex collaboration agent",
+    "mechanism_evidence": "Parent NEW_TASK explicitly supplied hierarchy, role, bounded assignment and native mechanism. collaboration.list_agents exposed this canonical agent_name as running. No opaque child/session UUID was exposed.",
+    "actual_model_identity": "Not exposed; no serving model inferred from PEC conventions or historical model requests.",
+    "role_enforcement": "Instruction-asserted. Host filesystem permissions broad; write/delegation/Git bounds enforced by obeying brief, not a narrower OS sandbox.",
+    "selected_workflow": null,
+    "selected_skills": [],
+    "role_files_deliberately_loaded": [
+      "agents/AGENT_TASK.md"
+    ],
+    "brief": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+    "assignment": "Inspect PEC operational entry, current authority/state, D80 migration, instruction adoption, maintained command registry and historical traps; return source-backed notes and hashes.",
+    "write_allowlist": [
+      "plans/evidence/2026-09-22_alignment_manual/project-pec-notes.md",
+      "plans/evidence/2026-09-22_alignment_manual/project-pec-sources.json"
+    ],
+    "prohibited_actions": [
+      "Git operations",
+      "project/manual edits",
+      "external messages",
+      "delegation",
+      "instruction adoption",
+      "project acceptance",
+      "full test suites"
+    ],
+    "actions_taken": "Read files and directory inventories; scoped text searches; machine census of current deliverable statuses and selected TM rows; one read-only historical reliance preflight; wrote only the two allowed evidence outputs.",
+    "handoff": "Return to parent WORKING_ITEMS for manual integration and wider independent review."
+  },
+  "inspection_limits": [
+    "No historical tree-wide content scan; filename discovery was broader than the bounded content reads. Files located only by name are not represented as read sources.",
+    "Some early combined tool outputs were truncated; entries identify partial observations. Relevant loop/ruling/state sections were re-extracted in bounded reads.",
+    "The source inventory includes source files read by machine census or scoped rg, even when only matching/extracted facts were displayed; it excludes standard-library/tool-environment files.",
+    "Current decision/TM register and notice searches found no PEC D-GOV-41/42 adoption record. This is a limited search result, not proof of absence from every possible authority source.",
+    "Recorded D85 test PASS results are historical evidence, not tests rerun by this task.",
+    "No release readiness, runtime compatibility, product acceptance or current remote-main effectiveness is asserted."
+  ],
+  "failed_path_discoveries": [
+    {
+      "path": "projects/pec/v2/src/pec_v2/config/loop_registry.py",
+      "disposition": "Guessed search path absent; correct adapter/core paths subsequently found by filename inventory."
+    },
+    {
+      "path": "tools/software_workflow/README.md",
+      "disposition": "Absent; CLI contract verified from run_registered_checks.py instead."
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/CHANGE_PUBLICATION/HANDOFF.md",
+      "disposition": "Absent; directory contains PRECOMMIT_READINESS.json only. No later publication handoff inferred."
+    },
+    {
+      "path": "agents/AGENT_TASK_MANAGEMENT.md",
+      "disposition": "Live PEC taskmgmt launcher target absent in checkout; reported as launcher/adoption gap."
+    },
+    {
+      "path": "_DomainEngines/pec/LOOP_INIT.md",
+      "disposition": "Absent as expected after D80 migration."
+    }
+  ],
+  "observations": {
+    "status_census": {
+      "files": 64,
+      "lifecycle_counts": {
+        "CHECKING": 4,
+        "OPEN": 32,
+        "INITIALIZED": 26,
+        "IN_PROGRESS": 2
+      },
+      "remaining_sections": 57,
+      "without_remaining": [
+        "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md",
+        "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_STATUS.md",
+        "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+        "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+        "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_STATUS.md",
+        "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md",
+        "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_STATUS.md"
+      ],
+      "authority_limit": "Mechanical local-tree observation, not selectable-work count or acceptance."
+    },
+    "latest_local_receipt": {
+      "id": "Receipt-177",
+      "date": "2026-09-08"
+    },
+    "active_reliance_hold_rows": 0,
+    "profile_sha256": "6858d567ee27bae9b832115a40a41b106a9a2a58a62d661ca0e0c2acff9b314f",
+    "profile_matches_D_T0_27_exact_adopted_identity": false,
+    "live_TM_rows": {
+      "TM-PEC-011": "CLOSED / RESOLVED_WITH_CHANGE",
+      "TM-PEC-013": "OPEN",
+      "TM-PEC-014": "OPEN",
+      "TM-PEC-022": "DEFERRED",
+      "TM-PEC-023": "OPEN"
+    },
+    "profile_hash_lineage": {
+      "historical_adopted_sha256": "be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d",
+      "current_sha256": "6858d567ee27bae9b832115a40a41b106a9a2a58a62d661ca0e0c2acff9b314f",
+      "authority_explanation": "D-PEC-80 explicit profile locator amendment; old D-T0-27 hash retained as historical lineage, not current-byte identity.",
+      "source": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_loop_home_and_instruction_surface_2026-09-05.md",
+      "source_lines": "117-119",
+      "ruling": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_RULING_2026-09-05.md",
+      "fresh_remote_effectiveness_check": "Not performed; no Git operations in this task."
+    }
+  },
+  "executed_validation": [
+    {
+      "command": [
+        "python3",
+        "execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/ScopeOfWork.md",
+        "--operation",
+        "historical-read-only-inspection"
+      ],
+      "cwd": "projects/pec",
+      "exit_code": 0,
+      "result": {
+        "operation": "historical-read-only-inspection",
+        "status": "ALLOW"
+      },
+      "boundary": "Read-only preflight only; no production authority or other operation inferred."
+    }
+  ],
+  "evidence_generation_interpreter": "3.13.14 (main, Jul 18 2026, 16:56:45) [Clang 22.1.3 ]",
+  "source_hash_algorithm": "SHA-256 over exact file bytes at evidence seal",
+  "source_count": 130,
+  "sources": [
+    {
+      "path": ".github/workflows/desktop-release-template.yml",
+      "inspection": "machine-search",
+      "inspection_note": "Scoped rg search across workflow files for pec/Python/pytest/unittest commands; unrelated results not used to infer PEC authority.",
+      "sha256": "9894b3cb116aeb835925839af4fedcb060cf9acaada6e9c31f4ab8ce827f0501",
+      "bytes": 12757,
+      "line_count": 303
+    },
+    {
+      "path": ".github/workflows/governance-harness.yml",
+      "inspection": "machine-search",
+      "inspection_note": "Scoped rg search across workflow files for pec/Python/pytest/unittest commands; unrelated results not used to infer PEC authority.",
+      "sha256": "0e2c9f9ab517d90cecf9a10f36f623f0521ee2e73aa29cbef9a474e853d74247",
+      "bytes": 6814,
+      "line_count": 133
+    },
+    {
+      "path": ".github/workflows/harness-premerge.yml",
+      "inspection": "machine-search",
+      "inspection_note": "Scoped rg search across workflow files for pec/Python/pytest/unittest commands; unrelated results not used to infer PEC authority.",
+      "sha256": "0b4e4500375efa9ebd6a663f53dd7cffc6f5749a742f21b58842565d7121bdde",
+      "bytes": 11817,
+      "line_count": 270
+    },
+    {
+      "path": ".github/workflows/pec-tests.yml",
+      "inspection": "full-text",
+      "sha256": "4dbce18e42873432cbbf87b07a0c58b7e87357c1ed1472edb17f80d205a2bafb",
+      "bytes": 1644,
+      "line_count": 52
+    },
+    {
+      "path": ".github/workflows/piping-desktop-e2e.yml",
+      "inspection": "machine-search",
+      "inspection_note": "Scoped rg search across workflow files for pec/Python/pytest/unittest commands; unrelated results not used to infer PEC authority.",
+      "sha256": "dee6e956e0fc0b42a0bb243dab8629954960695017bf983acfca3439fd31f40d",
+      "bytes": 6371,
+      "line_count": 165
+    },
+    {
+      "path": ".github/workflows/piping-e2e-cache.yml",
+      "inspection": "machine-search",
+      "inspection_note": "Scoped rg search across workflow files for pec/Python/pytest/unittest commands; unrelated results not used to infer PEC authority.",
+      "sha256": "3013f93503e094e8abd1d2c6da1a851e63883dd76620f32a7ed5ca9025980ba2",
+      "bytes": 1208,
+      "line_count": 36
+    },
+    {
+      "path": "AGENTS.md",
+      "inspection": "full-text",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "line_count": 242
+    },
+    {
+      "path": "_DomainEngines/_DECISIONS/D-T0-27_pec_v2_profile_successor.md",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Targeted ruling/effectiveness search and lines 1-28, 44-103.",
+      "sha256": "04488af489a997fd3edbbe58f32572d15d2ff71fe5bb330469bcb4ed6903c4f4",
+      "bytes": 4185,
+      "line_count": 103
+    },
+    {
+      "path": "_DomainEngines/_DECISIONS/_REGISTER.md",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Tail (lines 23-45), including D-T0-27 disposition.",
+      "sha256": "ebccf23234c7755a20555397fe12ccb708d7bebf6826fd9806b695f5fcd10e48",
+      "bytes": 17418,
+      "line_count": 45
+    },
+    {
+      "path": "_DomainEngines/profiles/pec.yaml",
+      "inspection": "full-text",
+      "sha256": "6858d567ee27bae9b832115a40a41b106a9a2a58a62d661ca0e0c2acff9b314f",
+      "bytes": 5434,
+      "line_count": 106
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "inspection": "full-text",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "line_count": 39
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "inspection": "full-text",
+      "sha256": "968abf747afd6f5ac059f8b6e780844fadb8a6d27cba73f57cab26209527f379",
+      "bytes": 4392,
+      "line_count": 32
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "inspection": "full-text",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "bytes": 12871,
+      "line_count": 233
+    },
+    {
+      "path": "projects/pec/README.md",
+      "inspection": "full-text",
+      "sha256": "4c811d8ba2c3c4afad3aafb086ddaf7767596c7b6e7fa54a81461e367616140a",
+      "bytes": 4948,
+      "line_count": 81
+    },
+    {
+      "path": "projects/pec/chirality.project.json",
+      "inspection": "full-text",
+      "sha256": "7e31d03d80535c2a2f70d6e5657d7136bbd69cc7da2b331a4ed08b0fa133dce2",
+      "bytes": 531,
+      "line_count": 25
+    },
+    {
+      "path": "projects/pec/docs/PRD.md",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Header and information-model excerpt (lines 1-35 and 185-235); live version read, not a full PRD review.",
+      "sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba",
+      "bytes": 34603,
+      "line_count": 527
+    },
+    {
+      "path": "projects/pec/docs/STATUS.md",
+      "inspection": "full-text",
+      "sha256": "829bf77250907169806961f68b8ae2e656a52e08ff5f6a91b494771dddb80a8c",
+      "bytes": 11882,
+      "line_count": 184
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "41c871a5e4c07655a1f526aeb20f74603099f0b5997bbba4d7a8fcc2897ceeea",
+      "bytes": 350,
+      "line_count": 9
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "90412b8561835d76d697054cd30049760ff95a686dbc175c4e1fd216c6eb0d84",
+      "bytes": 2306,
+      "line_count": 17
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "629ca0dda894954943b694680ebbaf8688615e0ca3fefa1a18ef84c2cd606cfb",
+      "bytes": 416,
+      "line_count": 9
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "37d11e4937651bfb29108db79031b2b73902f40a06d0b928ccc5340941843eb3",
+      "bytes": 2304,
+      "line_count": 18
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "8f0e880702d0fd09595d2f41cd70031645254847c604dae85633d7387f5f66db",
+      "bytes": 1176,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/MEMORY.md",
+      "inspection": "full-text",
+      "sha256": "085a1412b40fdd0467f77e66ef7704d50a3a939d9f1d0911e2b6414ec1d99010",
+      "bytes": 2065,
+      "line_count": 37
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "73ae042e9204f1884642f74bced1a08a0c0166c6eeec321dbcf91ff08524e5a2",
+      "bytes": 4049,
+      "line_count": 24
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "9600471873fbef6cd0b82db765e68ab801f42ee5c52ab29e7a27e791e3531564",
+      "bytes": 1215,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "7d3eeb9888f10f6e938c7a0c08ff22ee1907df89812064ee76a95e0fdaeae60c",
+      "bytes": 1336,
+      "line_count": 17
+    },
+    {
+      "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "20e6db0216943cf93d734cf97a18c50ece47706e6a012e47580aea9745e5e90d",
+      "bytes": 206,
+      "line_count": 8
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "9a14fb751451f9c062846ce0f1dd74fa9f09bb36181e466f4c6db3484d301e66",
+      "bytes": 2298,
+      "line_count": 18
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "513a003912f8fa98955ae3043330256f643835284686fa9cc152dd337d8ee066",
+      "bytes": 1267,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "001b4d3951e041ba36a3a56e6748d0f422fad36e1f70d0b4c2e41c781bbfdbfd",
+      "bytes": 1230,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "8ccba8f2854d6f190dda068bef04042ec1ec7382a8bd44970051c7fb3d334919",
+      "bytes": 1199,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "1f05a08832b222e229eb51ad3833d3fc5affdf52d32c84c0cc0ac75807c66af6",
+      "bytes": 1182,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "627993d6fae59c0276ba7bbe01c750797f4c3be4aa2c2c56a2f778efbeff22c4",
+      "bytes": 1300,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "4cea9b1c000db8a9248356412960f33d13b271530eb80f38ebd28d98d7ec42bd",
+      "bytes": 2156,
+      "line_count": 26
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "46a49e2444c22c5c622943def0ed069345f6b0e8b639e54d6684b00abf1cf80d",
+      "bytes": 2268,
+      "line_count": 18
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "ff69a831e9dcd2ea38f8aae10e8cbeae76467c0213eb714bdb427ab9a4874b07",
+      "bytes": 14836,
+      "line_count": 70
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "3757edd7955f681a71713f64d30146522fb80bb363e8c68a468f1d4a0b669612",
+      "bytes": 2998,
+      "line_count": 22
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "e76d6d6f3c45dfb688955f8f63c43881e1df167f5f0fe085730c9a7e2ebcff1a",
+      "bytes": 1299,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "38f0190b841865e1841ef84e13bcda339c989fc1eb14aab46a218eedb49c85b5",
+      "bytes": 1201,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "4bb6e2fa272830c99f92c53942496b0be81465c9579d6936975a1cdc7d66dea1",
+      "bytes": 2054,
+      "line_count": 18
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "c08a317519a7dea41fdc852b9a43dce38f3fb8b669fd1cc276431e87c97e1ca6",
+      "bytes": 1338,
+      "line_count": 18
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "25a5ab54d49a1aaf7a26ffbbf51812d1c14bd935856d2c35674f571ad9e443f1",
+      "bytes": 2047,
+      "line_count": 18
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "6b8653f06c399b9eeef0b378b6ee899772150008f0eac4b1ad9b828ba57278bf",
+      "bytes": 2039,
+      "line_count": 18
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "2a4a026a6c9fb3baf40094cee6ce9d55ca787f75a2831623bd105ac72227612f",
+      "bytes": 135,
+      "line_count": 7
+    },
+    {
+      "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "b9b4160fe2870703aa84a61466da7259003cddc7b120d94a8dd04e810f91d826",
+      "bytes": 2159,
+      "line_count": 18
+    },
+    {
+      "path": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "c2ff52d3f946fbcb7fdd8ea7eebb814ba13775b0c0538d35657229aa0b80a95b",
+      "bytes": 1155,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "97204fa6ec6e67b58ba70322e6f250e2c6597a019f2c33fea9c46f4abe1b8c52",
+      "bytes": 1241,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "62e7050ea75b36e340ea14618d031d9fb00b40dfdb76532406f1c26a012a6e53",
+      "bytes": 1163,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "e352e6f4627487ed4e71370ec1005eac2c0bd29aeb513df587efee32ee79d906",
+      "bytes": 1167,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "d3862a7371289a677350fee7d5d910c431a4facada2b81780d07a6325a12505e",
+      "bytes": 1178,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "8cfb8b8800a591124cc0e24aeae9d643f278e8845bf99cd1bb90170a471d4726",
+      "bytes": 1137,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "cf41c05e567f13bf1d7fc772150d110507e1b3d9779f064216d4484991b7e31a",
+      "bytes": 1184,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "31239d73ac547cc8d954bb7208a18038e09c60b2e43d24707706a56239f92c42",
+      "bytes": 1151,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "4c29577a180f11091cd2d494082881ee94efc25f6e27d0aea72ba4a4c8894317",
+      "bytes": 1176,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "b05edcc916edf44db252bcd8ca055391ec9d48525e23aaead17f962af4f0f45f",
+      "bytes": 1156,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "d64fbe49770c82daa0d4524364bf12b7702ec3853187ec7465bbdc4753877332",
+      "bytes": 1152,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "10905472a88d4e3d6ca96cfe22769106fa408b79097e403b0fb65b499a34b726",
+      "bytes": 1206,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "4fb85e33b8c28cc220f8c0e40a66705929f96aa0abcbe793d07be731731d30df",
+      "bytes": 1182,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "db1e606dc164359b12649bc6d9e3fc91a22d952f989380ecfe4be1a0f04f2cf0",
+      "bytes": 1236,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "b2c623e4230435b83001612fd04bea30d390dde6ab1a8b5a3f8c5cc3a00f70de",
+      "bytes": 432,
+      "line_count": 9
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "871866000a44ad7d3fb261079163f31315bb7da2b339b091b97900f0cd24eb53",
+      "bytes": 1270,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "cd5577e642d4f1ea9b3c578ba4781880fdcd263c4e38ed67ceac2c07e47685a5",
+      "bytes": 1389,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "954f7f6406f11037236d963567610826cff7b912de4158b7213e81dd7ff74d7e",
+      "bytes": 1162,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "3daebf75f6316004b283c4a319146298d514ce266b578cde78b61edbcf9e0b90",
+      "bytes": 1173,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "3bfe3105ee545054ebc7fe5b55aee0752040be5487b08a2349d5cf78491f2533",
+      "bytes": 1151,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "8f4d0b179587cb89a9d68f55cea28edb1e8bdc7a1d0f6825ccef832728be4f6f",
+      "bytes": 1151,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "d4e10dc94d4b3bf21e839639ca2db1a2df68e5582921f569c493305aba8360a1",
+      "bytes": 1151,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "930c3aca6ad9cd8e5ec332a9b3c1867b939e47ed78331f87eac7b2592b146f24",
+      "bytes": 1190,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "ae2c4efd9e27bb01a7d2657ac17848aeb429612cbd6098f4547e232076993054",
+      "bytes": 1188,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "dd95c428edb7c9a56b5ab9946c20c136843a75972dc77c478c723ce274bc2629",
+      "bytes": 1195,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "3309a68a1180b7fdf40722e5e63cc468a4f76fcf484b98799f700743a63ab5f2",
+      "bytes": 435,
+      "line_count": 9
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "e04aef7be9a67c1616d56757bdb7387c643b795fae1980178c9176fb04479415",
+      "bytes": 2314,
+      "line_count": 18
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "cfdf2a3e9a8736dddcab4c1367c8da5be8cf722c19769bc5dca8091c54f74d0b",
+      "bytes": 1364,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "c7a2e6c374271160c4b78de56386a8c7a0b7e6968b48f1f97f3bb2acc012259b",
+      "bytes": 1210,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "c71ed9aa993819ba6de56f54833531900b169764f5984e7a1f0d86455f84c878",
+      "bytes": 1218,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "8fa911b4143585e0429298d6a384587306f0d5078b686f9f5f26182fee1b8757",
+      "bytes": 1177,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "766424853d9617e57e92f0083f9e4d957e1f9ce43f96afa537a3fa407b158b3d",
+      "bytes": 1195,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "da1baf19f80fcf36bdf897c9b82ee82a7562f02858d794c802a806519095e0b2",
+      "bytes": 1172,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "cd7e5e96f5f526f698a253b295f92cb63308081a041e8f3b421cf09a78c8a628",
+      "bytes": 1282,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "802d6a9c0fd2c96fbeb86dc2ec04101f2758953dfa887f070e82cae005419a63",
+      "bytes": 2617,
+      "line_count": 18
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "1d22b5814c80ad9b786e1e21b9f58eab32e0f6b98a2d09a43f8197a73fc98f9f",
+      "bytes": 1278,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/_STATUS.md",
+      "inspection": "machine-census",
+      "inspection_note": "Entire file loaded to extract Current State and exact ## Remaining heading presence. DEL-01-03, DEL-01-05, DEL-01-06 were also displayed and inspected in full.",
+      "sha256": "a09c05334d22eb788fa8aacfbb066e69c2b547af20c982e6efc6166d49c0c9de",
+      "bytes": 1269,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "inspection": "full-text",
+      "sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+      "bytes": 88,
+      "line_count": 1
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D83_D84_ACTIVATION_2026-09-07/AUTHORITY_CURRENCY.md",
+      "inspection": "full-text",
+      "sha256": "358e32695a16531aabe7fe382a3ee763f7536145a0218b187684a3bb705832a9",
+      "bytes": 1859,
+      "line_count": 7
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D85_PRODUCTION_CLOSEOUT_2026-09-08/HANDOFF_STATE.md",
+      "inspection": "full-text",
+      "sha256": "2a85d16f77f8fb4f560a9b6d821937a7c14a007871de46da518b634f48b68c9d",
+      "bytes": 1587,
+      "line_count": 29
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/LAUNCH_RUNBOOK.md",
+      "inspection": "full-text",
+      "sha256": "bb5077bb715122b448dddfcbba77a4216ee2576bb11861a9ae6608b0fa53a6de",
+      "bytes": 2867,
+      "line_count": 84
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-09_CHIRALITY_V3_ROLE_SKILL_WORKFLOW_ADOPTION.md",
+      "inspection": "full-text",
+      "sha256": "647539cfa8a77069577437585201c4468860353d01993d35724056e84c56b0e3",
+      "bytes": 602,
+      "line_count": 10
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-09_FOUR_ROLE_WORKFLOW_OVERHAUL.md",
+      "inspection": "full-text",
+      "sha256": "6ce80a94fa9b5c817b850cdf3ed9e10b7c70a3eec05cbab568faa39c4f293c2e",
+      "bytes": 2526,
+      "line_count": 45
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-12_ROOT_D-GOV-43_CODEX_HOST_REPLATFORM.md",
+      "inspection": "full-text",
+      "sha256": "3184697759b39db7569d70b5903a856c996ff6faade3cc1a1ba5d3de9213293d",
+      "bytes": 2366,
+      "line_count": 38
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-12_STANDING_GIT_AUTHORIZATION.md",
+      "inspection": "full-text",
+      "sha256": "16ba8f4df36ebaf72c5b13b6820a9ca60a17ce471981d38dc4dc0a2ba8fb0e91",
+      "bytes": 933,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-13_WORKFLOW_DRAFT_REVIEW.md",
+      "inspection": "full-text",
+      "sha256": "cdeba60b4e06df434d503bf01f9e0f7c8368a4ddcb71914a93f86bb94faa8f86",
+      "bytes": 411,
+      "line_count": 7
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "inspection": "full-text",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "line_count": 29
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md",
+      "inspection": "full-text",
+      "sha256": "8a9957b4150143c9958083107982dd8e5538a8d1cb69aa436a0bab953d00d24f",
+      "bytes": 10463,
+      "line_count": 158
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/PRD_V23_SECTION16_3_EXACT_POSTIMAGE_2026-08-09/OWNER_RULING_2026-08-09.md",
+      "inspection": "full-text",
+      "sha256": "d1995cef187116913e675f2cf55e3bb75a0e469ec21ea03c8762927faf037c97",
+      "bytes": 1824,
+      "line_count": 45
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_COORDINATION.md",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Full read requested; output partially truncated; displayed current coordination, storage and currency sections inspected.",
+      "sha256": "8da03a2f0157ba097e4db5b34dff4cd68c03e69c5d0ec72f8a8f49c23d38879c",
+      "bytes": 11453,
+      "line_count": 185
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_D_RULING_OWNER_INTENT_OF_RECORD_2026-09-05.md",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Full read requested, then bounded display lines 1-60 and 110-141; dated history not treated as current state.",
+      "sha256": "585d764b2a50e0be823e72955a556694127fd68710302aa151aec4f72d85124f",
+      "bytes": 9480,
+      "line_count": 141
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/D_RETIREMENT/RELOCATION_MAP.csv",
+      "inspection": "full-text",
+      "sha256": "6ee53e527c4f8d22d435b4ee9c0f6dd78dbb125e2f583b887aa36eedb8e9422a",
+      "bytes": 1687,
+      "line_count": 7
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/OWNER_DIRECTIONS.md",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Scoped final profile-hash discrepancy follow-up; D80 packet lines 117-119 explicitly records ruled path amendment and historical identity boundary. Combined search output partially truncated.",
+      "sha256": "4f12a9c0e14c85d504212798d488477c807b906f0f6f57ec3871f6c4fe3e433e",
+      "bytes": 12755,
+      "line_count": 61
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/RELOCATION_MAP.csv",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Full read requested but output truncated; targeted loop/receipt/register rows re-extracted at lines 4, 5 and 332.",
+      "sha256": "28613f2393cf612357c5a549347ecc78dc3bfc54a1ce966774da855f4dab0bb1",
+      "bytes": 109383,
+      "line_count": 338
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/VALIDATION.md",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Scoped final profile-hash discrepancy follow-up; D80 packet lines 117-119 explicitly records ruled path amendment and historical identity boundary. Combined search output partially truncated.",
+      "sha256": "9359340bd13153ab7b9d7dc42e198350404718f09dea66fc2b5c55c35fa497d1",
+      "bytes": 4516,
+      "line_count": 54
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_RULING_2026-09-05.md",
+      "inspection": "full-text",
+      "sha256": "b821157ea6abc69b71044037d75a74e6708d20460f3e4139cecbb2d6928afe33",
+      "bytes": 377,
+      "line_count": 1
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_loop_home_and_instruction_surface_2026-09-05.md",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Scoped final profile-hash discrepancy follow-up; D80 packet lines 117-119 explicitly records ruled path amendment and historical identity boundary. Combined search output partially truncated.",
+      "sha256": "d73b5f22697c6737ad748a89192251cb03934d10d74bb7d0d57c9696efb0ff61",
+      "bytes": 16003,
+      "line_count": 278
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-83_RULING_2026-09-07.md",
+      "inspection": "full-text",
+      "sha256": "b002945953945ac11d78e1fe0eba516909fb58ba4659e9179d49607c15be2492",
+      "bytes": 3531,
+      "line_count": 22
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-84_L_RULING_2026-09-07.md",
+      "inspection": "full-text",
+      "sha256": "2f52907fe4728fe70e21a095c27d077fa7b901a7f3ee080ae360cde9e48c9d10",
+      "bytes": 3523,
+      "line_count": 64
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "inspection": "full-text",
+      "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851",
+      "bytes": 5945,
+      "line_count": 105
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Tail and targeted current-authority/adoption searches; older records used as pointers only.",
+      "sha256": "fb3a3a6b483522fce3a36a0974cbf98ef2fbba43c495ce8b7b10d3a6dc3a22ba",
+      "bytes": 52787,
+      "line_count": 102
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Targeted authority/adoption searches plus complete CSV machine read for five current row states.",
+      "sha256": "6f7eb2a528a8a38ee01b94f5a028632d95297c82f4fa197f4c62f7102fef9264",
+      "bytes": 23966,
+      "line_count": 19
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Targeted authority/adoption searches only.",
+      "sha256": "bf0d5537686d3dba23ad2e3c1b91d989850cda04e98e92dc545516829c9242b6",
+      "bytes": 13149,
+      "line_count": 8
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/_LATEST.md",
+      "inspection": "full-text",
+      "sha256": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3",
+      "bytes": 2250,
+      "line_count": 41
+    },
+    {
+      "path": "projects/pec/execution/_Evaluation/Reviews/_LATEST.md",
+      "inspection": "full-text",
+      "sha256": "1b04c0bdf971eac46d077f27e0825f46c2100056e5461ddcf17d7c69abe03bdf",
+      "bytes": 605,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/execution/_ScopeChange/_LATEST.md",
+      "inspection": "full-text",
+      "sha256": "721a14dc27b4b595be79f591f49b7374a121c52a77eb0451d32d9aa32a9e6280",
+      "bytes": 1667,
+      "line_count": 35
+    },
+    {
+      "path": "projects/pec/execution/_Scripts/README.md",
+      "inspection": "full-text",
+      "sha256": "9f9a8eb23d1d521529ab0f33326296891d2d428072eec507dbe08e3db8b354ec",
+      "bytes": 702,
+      "line_count": 16
+    },
+    {
+      "path": "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "inspection": "full-text",
+      "sha256": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+      "bytes": 2760,
+      "line_count": 88
+    },
+    {
+      "path": "projects/pec/execution/_Scripts/tests/test_pec_reliance_hold.py",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Targeted test-method search; suite not executed.",
+      "sha256": "25add84da92267a8832fe74f495c9e5790bbfa799420f3d8d5414acf708fb7fe",
+      "bytes": 3755,
+      "line_count": 112
+    },
+    {
+      "path": "projects/pec/init/dev-loop-init-prompt.md",
+      "inspection": "full-text",
+      "sha256": "6bc8f2a5e7a905561ea92e7366ea769e3381681203c5571f64c0fd52bd623874",
+      "bytes": 341,
+      "line_count": 14
+    },
+    {
+      "path": "projects/pec/init/taskmgmt-init-prompt.md",
+      "inspection": "full-text",
+      "sha256": "3357852ca7dcd29159a27aa20e140f126bf642912fdf0885823ad7a85d315071",
+      "bytes": 2998,
+      "line_count": 57
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "inspection": "full-text",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "bytes": 19809,
+      "line_count": 346
+    },
+    {
+      "path": "projects/pec/loop/LOOP_RECEIPTS.md",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Header/rules and lines 1-60, 1818-1977; older middle receipts not reviewed.",
+      "sha256": "8068b143c3189db09201e9da54198257139798ceffbd5c35bf1f0fa10be3e124",
+      "bytes": 449618,
+      "line_count": 1977
+    },
+    {
+      "path": "projects/pec/package.json",
+      "inspection": "full-text",
+      "sha256": "a20d06cbbd95b5b20a7b1355b91fdefe7bed5280c858838300257e5115065b39",
+      "bytes": 1330,
+      "line_count": 30
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "inspection": "full-text",
+      "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a",
+      "bytes": 2054,
+      "line_count": 50
+    },
+    {
+      "path": "projects/pec/v2/docs/SERVICE_CORE_POSTURE.md",
+      "inspection": "full-text",
+      "sha256": "7448c86628c51179eb611536fbcb48914ef900678993cd63a1a820b464f9e489",
+      "bytes": 2824,
+      "line_count": 56
+    },
+    {
+      "path": "projects/pec/v2/docs/STORE_LIFECYCLE_AND_GUARD.md",
+      "inspection": "full-text",
+      "sha256": "d1d69dcbf29a694ea62ada6b6502ffc379221415eb9a260b54fe095648cd1e48",
+      "bytes": 7782,
+      "line_count": 103
+    },
+    {
+      "path": "projects/pec/v2/src/pec_v2/core/ports/loop_registry.py",
+      "inspection": "full-text",
+      "sha256": "3d5862bef122af27d61883fe5542b80daefb3418bccfba31486e4d60289b3662",
+      "bytes": 615,
+      "line_count": 22
+    },
+    {
+      "path": "projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json",
+      "inspection": "machine-search",
+      "inspection_note": "Targeted test/registry/Python/version search; not a full test review or execution.",
+      "sha256": "2e65c719af6c9eb7e170fb25d437b928847dc8d617c056093de213673b3e3396",
+      "bytes": 228,
+      "line_count": 13
+    },
+    {
+      "path": "projects/pec/v2/tests/config/fixtures/malformed.json",
+      "inspection": "machine-search",
+      "inspection_note": "Targeted test/registry/Python/version search; not a full test review or execution.",
+      "sha256": "f37303491c50fa74756f547929f09c99900abfad5a9310cc2b46beb5027425b0",
+      "bytes": 40,
+      "line_count": 4
+    },
+    {
+      "path": "projects/pec/v2/tests/config/fixtures/missing_loop_id.json",
+      "inspection": "machine-search",
+      "inspection_note": "Targeted test/registry/Python/version search; not a full test review or execution.",
+      "sha256": "2155849d9419f0239dca7a69d919ca9ee46a6434106d5326d85bc8c70afc5257",
+      "bytes": 113,
+      "line_count": 8
+    },
+    {
+      "path": "projects/pec/v2/tests/config/test_json_loop_registry.py",
+      "inspection": "machine-search",
+      "inspection_note": "Targeted test/registry/Python/version search; not a full test review or execution.",
+      "sha256": "d7efb486287d3703aa9ea007eb5376eba95689286bb322c887eeca8b193ac956",
+      "bytes": 3594,
+      "line_count": 78
+    },
+    {
+      "path": "projects/pec/v2/tests/config/test_loop_registry_contract.py",
+      "inspection": "machine-search",
+      "inspection_note": "Targeted test/registry/Python/version search; not a full test review or execution.",
+      "sha256": "49b2f6a3b5088bceb82dc393cce050b8800af3a5ac5d34b3b6a3d7b71c01111b",
+      "bytes": 3217,
+      "line_count": 73
+    },
+    {
+      "path": "projects/pec/v2/tools/check_service_core_posture.py",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Targeted text search for current Python/check/registry references; capability claims grounded in maintained documentation and ruling records, not a full code review.",
+      "sha256": "03be20a5d54551d7c01e1ce2ef1c36c4f2435c1a66809116dd4555cef0588f89",
+      "bytes": 31191,
+      "line_count": 782
+    },
+    {
+      "path": "tools/software_workflow/run_registered_checks.py",
+      "inspection": "partial-text-or-machine-search",
+      "inspection_note": "Targeted CLI search and lines 1-75, 245-307; command/output contract inspected, runner not executed.",
+      "sha256": "665a4ac138b92d0b0a7d4a2b03b47dc05118c8a4cb5c894155976e5eccc1c766",
+      "bytes": 12548,
+      "line_count": 307
+    }
+  ],
+  "output": {
+    "path": "plans/evidence/2026-09-22_alignment_manual/project-pec-notes.md",
+    "sha256": "c268353a488a52838cd4e733d4bdfcda6ccd7053d1dc676fec831657be22ac77"
+  },
+  "failure_and_recovery": {
+    "reported_by": "parent WORKING_ITEMS follow-up",
+    "reported_event": "Model-capacity error ended the child turn before the two outputs were written.",
+    "recovery": "Same canonical TASK resumed using the retained investigation; did not repeat broad investigation or spawn another child. Wrote both outputs, then source-hash sealing caught the profile identity mismatch. A bounded D80 authority follow-up explained the mismatch, and the note was corrected before return.",
+    "completion_limit": "No claim of independent review by another agent; this is TASK self-check. Parent owns integration and independent final review."
+  }
+}

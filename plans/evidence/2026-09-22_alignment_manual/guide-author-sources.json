@@ -1,0 +1,716 @@
+{
+  "schema": "chirality-documentation-source-manifest/v1",
+  "date": "2026-09-22",
+  "task": "/root/guide_author",
+  "parent": "/root",
+  "role": "WORKING_ITEMS (Type 1)",
+  "mechanism": "delegated-harness-native Codex collaboration assignment",
+  "model_attribution": "No model override requested; no separately observed model identity asserted.",
+  "host_enforcement": "Broad host filesystem capabilities; task write fence and no-delegation restriction instruction-asserted.",
+  "scope": "Author agent manual only and guide-author* evidence; no project writes, Git mutations, workflow registration, execution activation, acceptance, or release.",
+  "basis_commit": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "wider_role_consultation": "All four role files and registry deliberately consulted to explain role coordination in the requested documentation; active author role remains WORKING_ITEMS.",
+  "source_limit": "Selective direct source reading plus independent all-project reports. Hashes identify bytes consulted, not semantic acceptance or current remote state. Tool --help establishes interface spelling, not a passing product check.",
+  "guide": {
+    "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+    "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b"
+  },
+  "sources": [
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/chirality-change/SKILL.md",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+      "bytes": 4573,
+      "git_blob_at_basis": "46e29c6be253db9450871d3d106323b033f42161",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/preparation/SKILL.md",
+      "sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc",
+      "bytes": 2867,
+      "git_blob_at_basis": "5575f0f1ee21886b99d3ae7f0c7abde44af5d6ec",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/.agents/skills/software-code-review/SKILL.md",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "bytes": 1303,
+      "git_blob_at_basis": "4260b3928cd9b17399b921ee7d7b5e2cd2d03b86",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/AGENTS.md",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "git_blob_at_basis": "d6aeb34e3414d4f855135d4fd9ab4dc3ad7fa0dc",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "bytes": 2044,
+      "git_blob_at_basis": "03d0ac35a13d300c130f7ab77bf4114dfe527174",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183",
+      "bytes": 1583,
+      "git_blob_at_basis": "d5eb5df3769adc07f39e1101b05f94d6ef2f09a8",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "git_blob_at_basis": "8eec6fec3f455d5933c7f0a9d5cd3aaf6dc16aa0",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "bytes": 1804,
+      "git_blob_at_basis": "275f7fb0feae2147024ed4cc656e78f192b0bffd",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "agents/registry.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/agents/registry.json",
+      "sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+      "bytes": 2486,
+      "git_blob_at_basis": "3a3019351da4fd297eb6aaee17726a2a20bfa437",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/AGENT_WORKFLOW_RUNTIME.md",
+      "sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+      "bytes": 19808,
+      "git_blob_at_basis": "a16b162046bd47a576fe0f7788ad3ef3777d22f6",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/CONTRACT.md",
+      "sha256": "64747d2a3c58ae93194bd5c7118d89a591b7b4ebe8cec7e88cb6a95dc55895bd",
+      "bytes": 22362,
+      "git_blob_at_basis": "bbd3ff81acdd2ea4934150ba003aa1a8d4ae32ec",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+      "bytes": 6954,
+      "git_blob_at_basis": "cd2e64f88c5ba99d0bd08beead881b921058f5bd",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DECOMPOSITION_STANDARD.md",
+      "sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+      "bytes": 26222,
+      "git_blob_at_basis": "00b6062e239d1da88ec5f042c7644f6d96455d22",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+      "bytes": 15423,
+      "git_blob_at_basis": "c22bb1ac4af6224beb761134917cc488145b382c",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168",
+      "bytes": 11118,
+      "git_blob_at_basis": "dd72cfe384f9bd8bca1b82c5a00ffe9cde42ed96",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/DIRECTIVE.md",
+      "sha256": "5346d950c4981096f92f2a34d942889e06982c582542e47f72449c1d2bbe5c61",
+      "bytes": 29537,
+      "git_blob_at_basis": "78e3d5f110bc2ca6c123aa1cbf0f7957169e817a",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/PRD_ROOT.md",
+      "sha256": "83cea4babd9080eec1a92d6ca17575af355afacaa246ae689a60176de6a92eb8",
+      "bytes": 95590,
+      "git_blob_at_basis": "62e01dff9877b684d992e05fe69119f178140541",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/SOFTWARE_WORKFLOW_PROFILE.md",
+      "sha256": "9cc54bfb649168801c2ea060acb242145f48a0e08ac893e6ca38824439f7c5b3",
+      "bytes": 4300,
+      "git_blob_at_basis": "8264822bbbd0a56c962ef1623b5695bb8d46d4d2",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/SPEC.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/SPEC.md",
+      "sha256": "2ed0680b458754e4493ad6dc69aa2d883e5fef1434b13bb947bb6aeb0f1485af",
+      "bytes": 52087,
+      "git_blob_at_basis": "5a32f805c20075457881dc158a852ac98ea2feb7",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/TYPES.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/TYPES.md",
+      "sha256": "2c5360aa06d4c3bc2a8f3bfa91a0dd68cc066f2579ecd0dcf74972d34cc1d37a",
+      "bytes": 36001,
+      "git_blob_at_basis": "86a02c2fd88469de064f5a517f0425b54677123f",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "bytes": 516661,
+      "git_blob_at_basis": null,
+      "consultation": "selected preface, 1.10, 4.2–4.11, 5.4–5.9, and relevant source notes; not a whole-manuscript review"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+      "bytes": 532489,
+      "git_blob_at_basis": null,
+      "consultation": "bounded v1-to-v2 comparison; editorial application prepared by parent; companion link retained"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+      "bytes": 12463,
+      "git_blob_at_basis": "44a635c82d4750101d3a900e98e5a6455ddf9267",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+      "sha256": "e7c1e532a9d46cdc27957c85003515c46b5193e21438c905cf1cfb4e56433efa",
+      "bytes": 7476,
+      "git_blob_at_basis": "6fcb7e27281dde262fd24e1a881fab355fac2dc3",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "bytes": 7239,
+      "git_blob_at_basis": "bed2d90d899a036644c00db560439ab216dbead6",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "sha256": "f39f539db71f8bda320ca5970826652df073fd4d066285f420d73c7b377599ca",
+      "bytes": 4445,
+      "git_blob_at_basis": null,
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-app-runtime-notes.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-app-runtime-notes.md",
+      "sha256": "ce8113215207760857b3f986eebbb9236ad0cc87c821713ccba3cc8d187b3df4",
+      "bytes": 29817,
+      "git_blob_at_basis": null,
+      "consultation": "independent project-source report consulted; underlying detailed inventories/hashes remain in its companion evidence"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-coverage.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-coverage.md",
+      "sha256": "884f438e434f409fa1e23831dda6ffc4685e237d1991f90cf964cd1ef2ee5c43",
+      "bytes": 32821,
+      "git_blob_at_basis": null,
+      "consultation": "independent project-source report consulted; underlying detailed inventories/hashes remain in its companion evidence"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-pec-notes.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-pec-notes.md",
+      "sha256": "c268353a488a52838cd4e733d4bdfcda6ccd7053d1dc676fec831657be22ac77",
+      "bytes": 20795,
+      "git_blob_at_basis": null,
+      "consultation": "independent project-source report consulted; underlying detailed inventories/hashes remain in its companion evidence"
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-piping-notes.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/plans/evidence/2026-09-22_alignment_manual/project-piping-notes.md",
+      "sha256": "5166b88a67ae3c7ad811e45623054140b8e61189a9b3a54bb3f261799989cd83",
+      "bytes": 26723,
+      "git_blob_at_basis": null,
+      "consultation": "independent project-source report consulted; underlying detailed inventories/hashes remain in its companion evidence"
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/AGENTS.md",
+      "sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "bytes": 23399,
+      "git_blob_at_basis": "d7348f6e85a7c0f918d0092e3a0b49273091553f",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-app-dev/docs/BUILD_AND_RELEASE.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/docs/BUILD_AND_RELEASE.md",
+      "sha256": "5a164a9be3f2f0a6df56aed9897f4af4182e5e7b33e52a73502199ed9e10e62e",
+      "bytes": 16615,
+      "git_blob_at_basis": "358e8d14b45d41f74840bd56d207a56f9cf59ada",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "bytes": 1811,
+      "git_blob_at_basis": "f602ec7b13f1a416e125a1e64ba5c5d27c33d194",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-130_RULING_R4_GATE_RUN_D128_2026-09-22.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-130_RULING_R4_GATE_RUN_D128_2026-09-22.md",
+      "sha256": "8dcb4266df7aac13880151358ebc011a7c465efdf66ad85838e16696a0986811",
+      "bytes": 3489,
+      "git_blob_at_basis": "252f8e29772098d80db976bbd24f1bbb58d12130",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Scripts/app_hold.py",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/execution/_Scripts/app_hold.py",
+      "sha256": "92e6dd4c001e8715450e61f91073b49da6788de41f43606c812457c02e07c5bc",
+      "bytes": 37940,
+      "git_blob_at_basis": "db6039128cd56fa4375d210933069bcc80ccb949",
+      "consultation": "CLI --help observed; operational meaning also checked against the owning maintained instructions"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/frontend/package.json",
+      "sha256": "abb69035a149b9fa788639d70cc24e240731fb2fcc517253dba1022035ed6cec",
+      "bytes": 7138,
+      "git_blob_at_basis": "0b2cfeb660301e78001cc4b44ea123282128a465",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "bytes": 6293,
+      "git_blob_at_basis": "003c4fb13d9b9ce500c8b116aa8d0d9de8c54857",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-app-dev/software-workflow.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-app-dev/software-workflow.json",
+      "sha256": "97b6717a5991549367aa098629fbd7140bce7c7c226a15ef9419c0c3397f65e9",
+      "bytes": 1888,
+      "git_blob_at_basis": "1b0cc0df8a07e40aa2fd23a2894b8138593084f6",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/AGENTS.md",
+      "sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+      "bytes": 8678,
+      "git_blob_at_basis": "96fd8ab432d66c14876cdb85a4accf585cf69d36",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-73_RULING_2026-09-21.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/_DECISIONS/D-73_RULING_2026-09-21.md",
+      "sha256": "c526ac4032c4f9a4f7f2cae3820da775618c282c1af9133779b2b0368d49217d",
+      "bytes": 5965,
+      "git_blob_at_basis": "6206d56fe65ddf40e0a33ae83d706a33155df38d",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-73_RULING_ADDENDUM_2026-09-21.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Coordination/_DECISIONS/D-73_RULING_ADDENDUM_2026-09-21.md",
+      "sha256": "a5d7dffdc73804307cbe4c98f9d5bd58f7f3b62bc9a6157bd6f7ec2c70bb346d",
+      "bytes": 2590,
+      "git_blob_at_basis": "bcbf0773156f8edf7a06f37ded56aad065b23697",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RESUME.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RESUME.md",
+      "sha256": "05848c790613b43ae793e0948f321375d94916b929210e4c09fe882579c55b22",
+      "bytes": 2145,
+      "git_blob_at_basis": "4bca3ab571599839038bb0584398cc880e0f553e",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/loop/LOOP_INIT.md",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "bytes": 6070,
+      "git_blob_at_basis": "b165ef497faf84ec5e7b05f95d23f582d1e0371f",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-piping/package.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/package.json",
+      "sha256": "7e719791e3ffdc7b57eddb2bb32d682705bf945af5b7207ffc699a2a45648656",
+      "bytes": 737,
+      "git_blob_at_basis": "d24b2f7784cb822c8ae4a6756e405bbe167a5887",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-piping/software-workflow.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-piping/software-workflow.json",
+      "sha256": "3a6fd86bd362eed5e1fbcda05dcde961fca8ad46cb14375ce3dd79c3872e09b7",
+      "bytes": 1101,
+      "git_blob_at_basis": "71feb5d68fc5790b414965c9714456a38f06900b",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/AGENTS.md",
+      "sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+      "bytes": 1124,
+      "git_blob_at_basis": "ab7250b8bb487e9784ca29a77cba974cfd382135",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/Impact_Assessment.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/Impact_Assessment.md",
+      "sha256": "5a1c1094be30d05ae9bb70a1b407d302989c1692beb68fe1b62a16ff309b0e95",
+      "bytes": 3472,
+      "git_blob_at_basis": "ce1d9bdf25f69cd6ec330c73b38986f90df3b11e",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/PRD_REVISION.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/PRD_REVISION.md",
+      "sha256": "788f1b0715877513824579bf0b5bc9ce4d9382ee2def54d98a0b49194d2d79f7",
+      "bytes": 2781,
+      "git_blob_at_basis": "7fcb6d619af53746eabdd5b26f7bdaf271b56086",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "git_blob_at_basis": "b107b15f5adbffecca00d8f96e891eb48be157d7",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/loop/LOOP_INIT.md",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "bytes": 2976,
+      "git_blob_at_basis": "039493cd1fa7111ad2c0ec750022d98b3b7f06b0",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/package.json",
+      "sha256": "a8052992a83f9390d68f015776cd81e27ed8b13a77847fcd468177758d3b7ede",
+      "bytes": 489,
+      "git_blob_at_basis": "3bc70dbde03188260b22d64f9a459199469110f0",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/chirality-runtime/software-workflow.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/chirality-runtime/software-workflow.json",
+      "sha256": "cbd2c3e0ac8e1f90b4b0088a4919a709fa5300ab447dfaaf8dd061a1bcb1141f",
+      "bytes": 551,
+      "git_blob_at_basis": "8d6b57cf13b1aa53f7c35e4d53b2b87e8c4255b1",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/AGENTS.md",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "bytes": 12871,
+      "git_blob_at_basis": "b02c6c78720fcac6954846fd5dfc0d684703a491",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "git_blob_at_basis": "b107b15f5adbffecca00d8f96e891eb48be157d7",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "sha256": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+      "bytes": 2760,
+      "git_blob_at_basis": "91cfcef1f0232fb21162ca49e88872ecb2ec152e",
+      "consultation": "CLI --help observed; operational meaning also checked against the owning maintained instructions"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/loop/LOOP_INIT.md",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "bytes": 19809,
+      "git_blob_at_basis": "2f31362f7120a2c52c679af62d2912d814faca85",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/projects/pec/software-workflow.json",
+      "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a",
+      "bytes": 2054,
+      "git_blob_at_basis": "0fa869baf30b229799520ec6b5a45ce4cb68b7ae",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "tools/practitioner_harness/README.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/practitioner_harness/README.md",
+      "sha256": "b30448ef70ace0f7933c14cc27841d47cc1043c51761f81957e02a0617894088",
+      "bytes": 43636,
+      "git_blob_at_basis": "9cca9414b5debb6868370cb2fa08f472ee0a56b2",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "tools/practitioner_harness/harness.py",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/practitioner_harness/harness.py",
+      "sha256": "01a9b9541ded993364f7db8a8e8a59087bf26649094a522867a658e2eae561f3",
+      "bytes": 22269,
+      "git_blob_at_basis": "83b6d5780049606334645da8e31affb134af6a66",
+      "consultation": "CLI --help observed; operational meaning also checked against the owning maintained instructions"
+    },
+    {
+      "path": "tools/software_workflow/run_registered_checks.py",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/software_workflow/run_registered_checks.py",
+      "sha256": "665a4ac138b92d0b0a7d4a2b03b47dc05118c8a4cb5c894155976e5eccc1c766",
+      "bytes": 12548,
+      "git_blob_at_basis": "19862324eb41a4a0db343803a4fd7b81385daab1",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "tools/software_workflow/select_affected_checks.py",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/software_workflow/select_affected_checks.py",
+      "sha256": "ffcf15f4b9d55239dab7796378ca66cf109b65b143d5d6c79fdc2fcad593538f",
+      "bytes": 2000,
+      "git_blob_at_basis": "9455fca002d7ee24715df3f4a5da43f02d5ee5c9",
+      "consultation": "CLI --help observed; operational meaning also checked against the owning maintained instructions"
+    },
+    {
+      "path": "tools/validation/validate_app_dev_loop_receipts.py",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/validation/validate_app_dev_loop_receipts.py",
+      "sha256": "daf01933ecade2e62db95cbb48cdb763ae99f64da85b31e0e8b934ebbfd62f64",
+      "bytes": 1748,
+      "git_blob_at_basis": "166d3426c7db504eb39449729ab9e1c838516069",
+      "consultation": "CLI --help observed; operational meaning also checked against the owning maintained instructions"
+    },
+    {
+      "path": "tools/validation/validate_pec_loop_receipts.py",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/validation/validate_pec_loop_receipts.py",
+      "sha256": "8eb6299558a4038f5a62f5f979a86460f16fece6ed6e2fcb8dd00ce12952bad9",
+      "bytes": 2862,
+      "git_blob_at_basis": "3b30b8db8eef3aaede80f4353cf7135e60b8cfa4",
+      "consultation": "CLI --help observed; operational meaning also checked against the owning maintained instructions"
+    },
+    {
+      "path": "tools/validation/validate_piping_loop_receipts.py",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/validation/validate_piping_loop_receipts.py",
+      "sha256": "b6891b75614a183e4f0e33be8315a8ac49a2a4baa9a9d11ccfd8f704504a7965",
+      "bytes": 1795,
+      "git_blob_at_basis": "ee90996c336be28b4426348b3ed7f1ef95f2f7a8",
+      "consultation": "CLI --help observed; operational meaning also checked against the owning maintained instructions"
+    },
+    {
+      "path": "tools/workflow_runtime/resolve_workflow.py",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/tools/workflow_runtime/resolve_workflow.py",
+      "sha256": "46a8b917a19e3725331a7d7c1d4da6410f71a323ce7432383a729eee0d8e3d63",
+      "bytes": 20585,
+      "git_blob_at_basis": "a798ef8cc1df03c7a233af60e3d0f605452fe5f4",
+      "consultation": "CLI --help observed; operational meaning also checked against the owning maintained instructions"
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/bounded-reconciliation/WORKFLOW.md",
+      "sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+      "bytes": 9631,
+      "git_blob_at_basis": "0a5a0209609dd41b40b9a9a1f1781d67cd64e3b8",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/WORKFLOW.md",
+      "sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+      "bytes": 7374,
+      "git_blob_at_basis": "51b0c9274e8e861d427be67c26b075a0016db514",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "sha256": "f63c39bb6f69722e17121869959fecc083a64bcb00c3138a06f3d095964e406a",
+      "bytes": 2576,
+      "git_blob_at_basis": "1beb8fa0ed0d6c6ec656e28effe6f7003b008b22",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/create-workflow/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/create-workflow/WORKFLOW.md",
+      "sha256": "7d4443b63c474a8727a1391dca2e4c20b3a81a04d344d575d862be8f8536cf10",
+      "bytes": 8165,
+      "git_blob_at_basis": "e22548af27b8211f0ffb99079d56f5e392c65f70",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/dependency-extract/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/dependency-extract/WORKFLOW.md",
+      "sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f",
+      "bytes": 25794,
+      "git_blob_at_basis": "9e27c8886ddf93229ae1950cfc18b05c456ea2bd",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/domain-decomp/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/domain-decomp/WORKFLOW.md",
+      "sha256": "9b922cb62c2b641e4231a99b6f66cdd880a15ead913a64f2a2be4038ad3aa90b",
+      "bytes": 1123,
+      "git_blob_at_basis": "7319f43aabf81c283358412f1f5c5c286c2d07fc",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/index.json",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/index.json",
+      "sha256": "7e3f3f5de13c6627b0b907e786e54a2433ce9c735be8983b3baa4d8fe230bee6",
+      "bytes": 99459,
+      "git_blob_at_basis": "646375d44a6389baac49f1e839c834715cc057af",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/project-decomp/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-decomp/WORKFLOW.md",
+      "sha256": "74fb7e783c2185943564875a74dd838590cc442ac6ae432a4ade00b2559bd710",
+      "bytes": 1118,
+      "git_blob_at_basis": "78e9dfd50cd099b6f795c2a6b16e881e3687541a",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/WORKFLOW.md",
+      "sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2",
+      "bytes": 1793,
+      "git_blob_at_basis": "7c9fcef6fdf71911adddb442b5530647eed17885",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/resources/contract.md",
+      "sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "bytes": 15090,
+      "git_blob_at_basis": "8840d9a19b936f6e51d525ff2e4425d4b34e2c70",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/project-setup/resources/method.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/project-setup/resources/method.md",
+      "sha256": "ce23e911e2f35e8c0644f344f096a39a46be95056736249c18b55c126fbb75ed",
+      "bytes": 29474,
+      "git_blob_at_basis": "63f79047b63d6a0c6d3043dd912a492eaea52edd",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/reconciliation/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/reconciliation/WORKFLOW.md",
+      "sha256": "75948a77e7ee3ebd9cd9d8a2089c9aff75ca76b49d87260793e6fbdd152fa380",
+      "bytes": 1210,
+      "git_blob_at_basis": "b7aa037d8565956e0bde6612fd29ae4599fe95f3",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/research-orchestration/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/research-orchestration/WORKFLOW.md",
+      "sha256": "e05ad2b92c1bca11a1c79aa1bdeb3cfb1b7b714a183eb0d77488de95a813e382",
+      "bytes": 3076,
+      "git_blob_at_basis": "ded63476660d48603d1b3c891602825f5562a639",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/scope-change/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-change/WORKFLOW.md",
+      "sha256": "58f5d1d53c655fdc5668d928f6087003590f40e321e25e3d9447805ee64a7a90",
+      "bytes": 1163,
+      "git_blob_at_basis": "414957e45b2c59d09c21c7c1d7ea5414234830a8",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/scope-of-work/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/scope-of-work/WORKFLOW.md",
+      "sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+      "bytes": 7949,
+      "git_blob_at_basis": "f0e90531098b2b65abda6fbfccad15d92b2682c8",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-bounded-implementation/WORKFLOW.md",
+      "sha256": "2ea0ddf4f53241fa94274e709b8042ad9de4d8beb9c82cd1ed1dcd0c6f8f0f7b",
+      "bytes": 1235,
+      "git_blob_at_basis": "7c4d11898817fcbd7a263f5b6be4ec36fab1ac98",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/brief.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-bounded-implementation/resources/brief.md",
+      "sha256": "1118c65a739ddde1864ca0a6a638af2a56421fe5ab67d9da64fc9b5eca947028",
+      "bytes": 415,
+      "git_blob_at_basis": "c9e926f7d36d0ee00faa6367ec1e6ed4476597fa",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/checks.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-bounded-implementation/resources/checks.md",
+      "sha256": "5ab08afe57fe102478cb98aa72cd72879c7a82b84f2790622b9bf0323f3c7bdc",
+      "bytes": 442,
+      "git_blob_at_basis": "fe41eca8e98e1e21c91ed7a548940e36650c7856",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/tools.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-bounded-implementation/resources/tools.md",
+      "sha256": "42b62bdb502f65255d94080370906a6295c3960bc97befda1a8228d60b4c9f2c",
+      "bytes": 435,
+      "git_blob_at_basis": "e0ee545dbb0d8ac5772750299359ee23e7996c23",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/software-decomp/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/software-decomp/WORKFLOW.md",
+      "sha256": "fd79f8001404a99c3438500fae413d56193dc1db408b3416bdee20414977d452",
+      "bytes": 1077,
+      "git_blob_at_basis": "6da4c13b28235c1152f44eff2a82155d9b5a5401",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/WORKFLOW.md",
+      "sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20",
+      "bytes": 1007,
+      "git_blob_at_basis": "4be440a2ace2892091474941b3cf72a1ee0a40a3",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "absolute_origin": "/Users/ryan/.codex/worktrees/da43/chirality/workflows/task-management/resources/contract.md",
+      "sha256": "ae681cd4eb8ad2985a667bc93e1db33df93d8fe77d7d68c3c896c2b741dd3764",
+      "bytes": 15306,
+      "git_blob_at_basis": "6d259cd491b8b1446feeb69dc47669473d2999ce",
+      "consultation": "selective direct source reading; relevant sections, catalog metadata, or maintained manifest inspected"
+    }
+  ]
+}

@@ -1,0 +1,916 @@
+{
+  "schema": "chirality-independent-content-review/v1",
+  "created_at_utc": "2026-09-22T08:53:39.829848+00:00",
+  "repository_root": "/Users/ryan/.codex/worktrees/da43/chirality",
+  "repository_basis": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "inspected_head": "9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+  "reviewer": {
+    "task": "/root/content_reviewer",
+    "parent": "/root",
+    "role": "TASK",
+    "type": 2,
+    "mechanism": "delegated-harness-native Codex collaboration child; not Chirality-managed delegate_agent",
+    "independence": "parent-designated fresh review context; did not author publications; no children",
+    "model": "inherited unspecified model; exact serving ID not independently verified; no model-diversity claim",
+    "wider_role_consultation": "HELP_HUMAN, HELPS_HUMANS and WORKING_ITEMS role files deliberately consulted as review sources, not activated"
+  },
+  "authority_and_enforcement": {
+    "host": "unrestricted filesystem, network enabled, approval policy never",
+    "write_boundary": "instruction-asserted; only final-content-review.md and final-content-review-sources.json",
+    "no_git_mutations": true,
+    "no_publication_edits": true,
+    "children_spawned": 0
+  },
+  "verdict": "PASS_FOR_DOCUMENTATION_FAN_IN",
+  "unresolved_blocking_findings": [],
+  "unresolved_actionable_findings": [],
+  "subjects": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "bytes": 516661,
+      "read_scope": "full actual diff input and original identity; unchanged manuscript continuous reading attributed to prior readers"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v2.md",
+      "sha256": "8ca25ee2a11fa556ecdb214fa20d7b852f3775b0c83b274d1a75354d1cd5bfea",
+      "bytes": 532489,
+      "read_scope": "every actual changed passage; all 64 edit operations independently replayed"
+    },
+    {
+      "path": "docs/alignment-manual/MANUAL_REVIEW_v1.md",
+      "sha256": "04494eecd470f868796892415d547f3441a410e7fd68081d9eba4e0a3149239a",
+      "bytes": 20142,
+      "read_scope": "complete content plus final line-count wording repair backcheck"
+    },
+    {
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "sha256": "2b749f8f12dcd803c6017c93fa6e850257f4aaf88b3d07781842a8a4c0d2ab2b",
+      "bytes": 106525,
+      "read_scope": "complete sections 1-21 and references; final Runtime path repair backcheck"
+    }
+  ],
+  "original_preservation": [
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "origin": "/Users/ryan/dev/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.pdf",
+      "sha256": "46442c8d3aeeaf4fab7a841869808ab26134e2f1527a61f0c737040463086c39",
+      "matches_input_manifest": true,
+      "matches_original_source_bytes": true,
+      "scope": "byte-preservation check; binary formats not rendered by this reviewer"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "origin": "/Users/ryan/dev/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.docx",
+      "sha256": "b419150f499f6891c44b09d8a38e704545444d9914375253bd8a5894c72290bb",
+      "matches_input_manifest": true,
+      "matches_original_source_bytes": true,
+      "scope": "byte-preservation check; binary formats not rendered by this reviewer"
+    },
+    {
+      "path": "docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "origin": "/Users/ryan/dev/chirality/docs/alignment-manual/Project_Management_for_Human_Agent_Teams_Consolidated_v1.md",
+      "sha256": "2af9b747a60a0cdf13660c6c8a38dd4d927ff24f28312cd7096ad629e3db34d9",
+      "matches_input_manifest": true,
+      "matches_original_source_bytes": true,
+      "scope": "byte-preservation check; binary formats not rendered by this reviewer"
+    }
+  ],
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "1bb670ca339a990b153cf033dac2d8e29ca71bdea0accee4200e6dd1feed3d57",
+      "bytes": 14262,
+      "read_scope": "complete; active Root instruction",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7",
+      "bytes": 1499,
+      "read_scope": "complete; active TASK Type 2 role",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "0c2fe7a3097ad26c93c0267e4da6aaf90c9264489df8dc368fad657bcac69183",
+      "bytes": 1583,
+      "read_scope": "complete; deliberate role-comparison source, not active role",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "a0c9fb9443d8671d694c1f7b24ff3c402ffd626c781a2739342c938f2f3c3d1e",
+      "bytes": 2044,
+      "read_scope": "complete; deliberate role-comparison source, not active role",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "9ae4bea25bd95750a6878a9d53fbbbd7cd058d72c652a36baf4aa90601799665",
+      "bytes": 1804,
+      "read_scope": "complete; deliberate role-comparison source, not active role",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "agents/registry.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "767fdfe25f3722b8b0428cdd4146182d54c67e0f601e11e9c3321ffc5f868cf4",
+      "bytes": 2486,
+      "read_scope": "complete role/tool/write ceilings",
+      "matches_basis_commit": true
+    },
+    {
+      "path": ".agents/skills/chirality-change/SKILL.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "2b490e172436417896c1cd25dbcd543c676e3473aa58b7663985d75785ff7dba",
+      "bytes": 4573,
+      "read_scope": "complete; applied review and closeout distinctions",
+      "matches_basis_commit": true
+    },
+    {
+      "path": ".agents/skills/preparation/SKILL.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "4d18f47dec1ff43ffd2c559d486c1a958853b7b728cc13c7e80ef4375faa0fcc",
+      "bytes": 2867,
+      "read_scope": "complete; source comparison only",
+      "matches_basis_commit": true
+    },
+    {
+      "path": ".agents/skills/software-code-review/SKILL.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "06c27b1be5cfbd9e638570918a8f837d8439c8073c40d3ef708e53874f95570a",
+      "bytes": 1303,
+      "read_scope": "complete; source comparison only",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/BRIEF.md",
+      "origin": "current documentation-undertaking working tree",
+      "sha256": "f39f539db71f8bda320ca5970826652df073fd4d066285f420d73c7b377599ca",
+      "bytes": 4445,
+      "read_scope": "complete; assigned undertaking and role/write boundary",
+      "matches_basis_commit": null
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-coverage.md",
+      "origin": "current documentation-undertaking working tree",
+      "sha256": "884f438e434f409fa1e23831dda6ffc4685e237d1991f90cf964cd1ef2ee5c43",
+      "bytes": 32821,
+      "read_scope": "complete locator and cross-project integration evidence",
+      "matches_basis_commit": null
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/project-app-runtime-notes.md",
+      "origin": "current documentation-undertaking working tree",
+      "sha256": "ce8113215207760857b3f986eebbb9236ad0cc87c821713ccba3cc8d187b3df4",
+      "bytes": 29817,
+      "read_scope": "targeted command/source-map/overlay excerpts; not claimed complete",
+      "matches_basis_commit": null
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/INPUTS.json",
+      "origin": "current documentation-undertaking working tree",
+      "sha256": "84b54ed0634fde2afd05467ceec5fc7efa1535b1670ca6deaae61b09442f4944",
+      "bytes": 2147,
+      "read_scope": "complete identity data and original-preservation comparison",
+      "matches_basis_commit": null
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/v2-edit-manifest.json",
+      "origin": "current documentation-undertaking working tree",
+      "sha256": "63c8bed4c89da865eed5b89c42750b60f2e9eecf81953d3c32c822e6fb3b5468",
+      "bytes": 75033,
+      "read_scope": "all operations processed and replayed against actual input; diff read separately",
+      "matches_basis_commit": null
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/review-ch1-ch2-sources.json",
+      "origin": "current documentation-undertaking working tree",
+      "sha256": "cff548b8a3272eb24a69de1d3e5de94c8897ec465f880ee5c7d5c8eed1a4e650",
+      "bytes": 30743,
+      "read_scope": "coverage and identity fields checked; prior reader evidence, not this reviewer's full manuscript read",
+      "matches_basis_commit": null
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/review-ch3-ch4-sources.json",
+      "origin": "current documentation-undertaking working tree",
+      "sha256": "7eeb902339cfb79fe4d5a8b451312d22f9d3538fc0718df54461d50758ab266a",
+      "bytes": 43157,
+      "read_scope": "coverage and identity fields checked; prior reader evidence, not this reviewer's full manuscript read",
+      "matches_basis_commit": null
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/review-ch5-ch7-sources.json",
+      "origin": "current documentation-undertaking working tree",
+      "sha256": "cfc85112752a30e71c7af262fa55bc43a9d73622eebe6e25dac56fadb0e3c155",
+      "bytes": 22285,
+      "read_scope": "coverage, role and identity fields checked; prior reader evidence, not this reviewer's full manuscript read",
+      "matches_basis_commit": null
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/manual-review-sources.json",
+      "origin": "current documentation-undertaking working tree",
+      "sha256": "6781c0a374369390eee4d5ce59b2967cdb4c8873cdbee427c01ab53074a6d952",
+      "bytes": 50246,
+      "read_scope": "coverage and source-manifest metadata checked",
+      "matches_basis_commit": null
+    },
+    {
+      "path": "plans/evidence/2026-09-22_alignment_manual/guide-author-sources.json",
+      "origin": "current documentation-undertaking working tree",
+      "sha256": "27b3aec7b9e7fb14321b91821e31bf96ba3d8886faad731cc271f72f1ca92ca9",
+      "bytes": 44970,
+      "read_scope": "source-manifest metadata inspected; claims independently checked as described",
+      "matches_basis_commit": null
+    },
+    {
+      "path": "execution/_Coordination/LOCAL_WORK_GRAPH_METHODS_20260922.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "f21ec486c68ba7688f9e5f2b4237dd4a418eff095f94024a2822fec3933260b4",
+      "bytes": 5862,
+      "read_scope": "complete current adoption/integration record",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/index.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "7e3f3f5de13c6627b0b907e786e54a2433ce9c735be8983b3baa4d8fe230bee6",
+      "bytes": 99459,
+      "read_scope": "catalog search for software-prd absence and two registered local methods; not all workflow bodies loaded",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/construct-local-work-graph/WORKFLOW.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "65d85631ba2ce20b4559c0802264c7992cebae46cb8aa681ef5e804a7a99cc4f",
+      "bytes": 7374,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/construct-local-work-graph/resources/work-graph-template.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "f63c39bb6f69722e17121869959fecc083a64bcb00c3138a06f3d095964e406a",
+      "bytes": 2576,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/bounded-reconciliation/WORKFLOW.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "adc62b10d0695a2c88d0019ac09544cffde3652a3c68a54f1547a0770a8a77cd",
+      "bytes": 9631,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/create-workflow/WORKFLOW.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "7d4443b63c474a8727a1391dca2e4c20b3a81a04d344d575d862be8f8536cf10",
+      "bytes": 8165,
+      "read_scope": "complete; reviewed as cited source, no authoring run selected",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/project-setup/WORKFLOW.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "51c1cb9f7492aa28aaaa3f042ba3404e344f5870ff85f318112e05c4fdbea5a2",
+      "bytes": 1793,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/project-setup/resources/contract.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "a99966c5873748c5b327baee80ef3e805e26a89600ccf3b9b5f9aacec883145f",
+      "bytes": 15090,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/project-setup/resources/method.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "ce23e911e2f35e8c0644f344f096a39a46be95056736249c18b55c126fbb75ed",
+      "bytes": 29474,
+      "read_scope": "targeted preparation, new INIT and legacy-compatibility clauses",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/scope-of-work/WORKFLOW.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "d616865a5cbfa84b47fd509d2910826106db57473543a86d067ddc3edf6fbd8b",
+      "bytes": 7949,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/software-bounded-implementation/WORKFLOW.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "2ea0ddf4f53241fa94274e709b8042ad9de4d8beb9c82cd1ed1dcd0c6f8f0f7b",
+      "bytes": 1235,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/brief.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "1118c65a739ddde1864ca0a6a638af2a56421fe5ab67d9da64fc9b5eca947028",
+      "bytes": 415,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/software-bounded-implementation/resources/tools.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "42b62bdb502f65255d94080370906a6295c3960bc97befda1a8228d60b4c9f2c",
+      "bytes": 435,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/dependency-extract/WORKFLOW.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "b79b011c44f21a311e1ffa49295ef50ea6b3644ca6c52a2aacfbfc393d26b18f",
+      "bytes": 25794,
+      "read_scope": "targeted purpose, two-pass, local output, identity/lifecycle, provenance and no-invention clauses; combined display was partly truncated",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/task-management/WORKFLOW.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "e7e1a152c314b30adc437e47360e0d8e70fe561d46c445590130cc239061ee20",
+      "bytes": 1007,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/task-management/resources/contract.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "ae681cd4eb8ad2985a667bc93e1db33df93d8fe77d7d68c3c896c2b741dd3764",
+      "bytes": 15306,
+      "read_scope": "targeted register/federation/owner-disposition/harvest and no-standing-duty clauses",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/scope-change/WORKFLOW.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "58f5d1d53c655fdc5668d928f6087003590f40e321e25e3d9447805ee64a7a90",
+      "bytes": 1163,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "workflows/research-orchestration/WORKFLOW.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "e05ad2b92c1bca11a1c79aa1bdeb3cfb1b7b714a183eb0d77488de95a813e382",
+      "bytes": 3076,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "64747d2a3c58ae93194bd5c7118d89a591b7b4ebe8cec7e88cb6a95dc55895bd",
+      "bytes": 22362,
+      "read_scope": "targeted cited invariants K-AUTH, K-BIND, K-SEAL, K-DEP, K-STALE, K-VAL, K-CONFLICT, K-WRITE and K-TM",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/SPEC.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "2ed0680b458754e4493ad6dc69aa2d883e5fef1434b13bb947bb6aeb0f1485af",
+      "bytes": 52087,
+      "read_scope": "targeted path, format, lifecycle, dependency and control-file clauses via line searches",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/AGENT_WORKFLOW_RUNTIME.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "178ada8e6efb46dcfc9dc3045d188fbfef9bacb40faff98dd2d9de4c372efdac",
+      "bytes": 19808,
+      "read_scope": "sections Role configuration, Method libraries, Workflow packages, permission intersection, Structured brief compatibility, Coordination and evidence; targeted context/idle/replay clauses",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/DECOMPOSITION_STANDARD.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "be3a2313e167e9ac6f3740a8034ec427b40354ca8bc324fe196985b2e2189aef",
+      "bytes": 26222,
+      "read_scope": "lines 1-80: prospective status, earlier ratified edition, conformance and invariants",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "c103b44fff16b5c5cc7f924e8c0fc38b7a55223e9290ea444a94470306829168",
+      "bytes": 11118,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/CYCLE_DRIVEN_RESOLUTION.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "bbd41a8d091c7fa81fce6462c1d5e976832e5879b6ab8c3c74147e2df55e514f",
+      "bytes": 6954,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139",
+      "bytes": 15423,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "5346d950c4981096f92f2a34d942889e06982c582542e47f72449c1d2bbe5c61",
+      "bytes": 29537,
+      "read_scope": "targeted professional-responsibility section 3 and Root/governance/source-integrity clauses",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/PRD_ROOT.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "83cea4babd9080eec1a92d6ca17575af355afacaa246ae689a60176de6a92eb8",
+      "bytes": 95590,
+      "read_scope": "section 5.3.1 complete; related header/standing-authority search",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-16_deliverable_scope_of_work_stage2.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "67921b0424f2a303696743c21857caff1de6196070f050be4e22ca3de178ef38",
+      "bytes": 12463,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "e7c1e532a9d46cdc27957c85003515c46b5193e21438c905cf1cfb4e56433efa",
+      "bytes": 7476,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-44_concordance_claim_granularity.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "ad0ed9bdf6350d29c780feba5c07592bf7f8c7223b7ec02bac31ff7a7ce83716",
+      "bytes": 7239,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "abb4ff48987b427015ef412874aef8651e028fbc62c49fc3e53a3a9b755b015f",
+      "bytes": 23399,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/LOOP_INIT.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "1fddcbeb42eec6ec0975014ffb7ce3c47b567e309816064178570688b327f682",
+      "bytes": 6293,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-app-dev/software-workflow.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "97b6717a5991549367aa098629fbd7140bce7c7c226a15ef9419c0c3397f65e9",
+      "bytes": 1888,
+      "read_scope": "complete parsed profile: commands, cwd, service, always and path checks",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "abb69035a149b9fa788639d70cc24e240731fb2fcc517253dba1022035ed6cec",
+      "bytes": 7138,
+      "read_scope": "engines and complete scripts parsed",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Scripts/app_hold.py",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "92e6dd4c001e8715450e61f91073b49da6788de41f43606c812457c02e07c5bc",
+      "bytes": 37940,
+      "read_scope": "check CLI help and parser/interface verification; not complete implementation audit",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "bytes": 1811,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-130_RULING_R4_GATE_RUN_D128_2026-09-22.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "8dcb4266df7aac13880151358ebc011a7c465efdf66ad85838e16696a0986811",
+      "bytes": 3489,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/AGENTS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "d8a1f4380962efcd258571c6fb563722be9e2e89d4fa5898b7f6d24dc61ab879",
+      "bytes": 8678,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/loop/LOOP_INIT.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "295ee9e892ea9b572b1be52218ad3ee823c82c4739eefabcab31f4fac97c83c0",
+      "bytes": 6070,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/software-workflow.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "3a6fd86bd362eed5e1fbcda05dcde961fca8ad46cb14375ce3dd79c3872e09b7",
+      "bytes": 1101,
+      "read_scope": "complete parsed profile",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/package.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "7e719791e3ffdc7b57eddb2bb32d682705bf945af5b7207ffc699a2a45648656",
+      "bytes": 737,
+      "read_scope": "engines and complete scripts parsed",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/package.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "c0e3ddd045e0ea7576a4cd01af86c4921bab7314e7b3d927b5eab11822e959fa",
+      "bytes": 1196,
+      "read_scope": "complete scripts parsed; standalone test and separate WASM command",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/apps/desktop/vite.config.ts",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "9e59361cfb4e89b53d2ce1acfe7a9b000b6d87c38fd7cae283019efc13d04bf9",
+      "bytes": 3317,
+      "read_scope": "WASM requirement/guard excerpts",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_DAG/_LATEST.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "9da625a75f75819fe39a05532d67697fa6de0d7a84982c4e2e1b89c6d3ef80b3",
+      "bytes": 2808,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "9e275753f4b596665c9c5552b38c89378a06dac26a643911345f0ae464087056",
+      "bytes": 1811,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-73_RULING_2026-09-21.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "c526ac4032c4f9a4f7f2cae3820da775618c282c1af9133779b2b0368d49217d",
+      "bytes": 5965,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/_DECISIONS/D-73_RULING_ADDENDUM_2026-09-21.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "a5d7dffdc73804307cbe4c98f9d5bd58f7f3b62bc9a6157bd6f7ec2c70bb346d",
+      "bytes": 2590,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RESUME.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "05848c790613b43ae793e0948f321375d94916b929210e4c09fe882579c55b22",
+      "bytes": 2145,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Reconciliation/DeliverableConcordance/RECON_2026-09-21_WHOLE_CORPUS/RUN_STATE.jsonl",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "8aecfd7284f8b5d13fcdacafdc0d55cb305b936b6dc2576986a05cb80eb56eef",
+      "bytes": 178726,
+      "read_scope": "last 12 events: R3/R4 review, fixes, backchecks, validation",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-piping/execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260921-RECONCILIATION/HANDOFF_STATE.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "17937f706649c0b6a0b5895587ec37bca5e7908288500d150f5860dbf5f80e7a",
+      "bytes": 3257,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-runtime/AGENTS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "ca1b305c1fbc3ebc83e3718c6b2122170bbab3c1d1f616f744d0339f2a84691d",
+      "bytes": 1124,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-runtime/loop/LOOP_INIT.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "890ed040fd518c2448450583727f159d6059e9bdfed8d532b3209d3130600569",
+      "bytes": 2976,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-runtime/software-workflow.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "cbd2c3e0ac8e1f90b4b0088a4919a709fa5300ab447dfaaf8dd061a1bcb1141f",
+      "bytes": 551,
+      "read_scope": "complete parsed profile",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-runtime/package.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "a8052992a83f9390d68f015776cd81e27ed8b13a77847fcd468177758d3b7ede",
+      "bytes": 489,
+      "read_scope": "engines and complete scripts parsed",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/MIGRATION_ACCEPTANCE_2026-09-06.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "70684ba0b6e6d04037f252f10eef35a2ca78d6cf41477678807ec59826a9004a",
+      "bytes": 3754,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-runtime/docs/PRD_AUTHORITY.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "81459c2d08e7c1c2b0e3f2d1078c35188c828bd1eff0e1592c180dec1c201808",
+      "bytes": 5243,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/HANDOFF_STATE.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "bde49a8449b9a1941e4870b2e888103716f27ee1e10789d5d3e73e28c6bfbacb",
+      "bytes": 6249,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/PRD_REVISION.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "788f1b0715877513824579bf0b5bc9ce4d9382ee2def54d98a0b49194d2d79f7",
+      "bytes": 2781,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/chirality-runtime/execution/_Coordination/AgentRuns/RUNTIME_DGOV43_HOLD_CLOSURE_20260912/Impact_Assessment.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "5a1c1094be30d05ae9bb70a1b407d302989c1692beb68fe1b62a16ff309b0e95",
+      "bytes": 3472,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846",
+      "bytes": 12871,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "ec9cc14df99dc627122ec99c6b5b5e9dffd26631445ebec42679205b49835053",
+      "bytes": 19809,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "247eb82715356e1e3f532c577ff0c9babf39c18912b14362bdfb4fc8412f5d3a",
+      "bytes": 2054,
+      "read_scope": "complete parsed profile",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/pec/package.json",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "a20d06cbbd95b5b20a7b1355b91fdefe7bed5280c858838300257e5115065b39",
+      "bytes": 1330,
+      "read_scope": "engines and scripts parsed to distinguish frozen prototype surface",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e",
+      "bytes": 2760,
+      "read_scope": "operation/parser search and actual historical-inspection preflight interface",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc",
+      "bytes": 88,
+      "read_scope": "consumed by historical-inspection preflight; exact hash recorded",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/NOTICE_2026-09-22_ROOT_LOCAL_WORK_GRAPH_METHODS.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "83515ebd8745372eb63b12b02948d065cbe7a9428eaef2da5a698a46060ac37b",
+      "bytes": 1682,
+      "read_scope": "complete",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "67167dc5ec68a3081a43a0b74084a3c6c7d7498d6b6698362ea313e9c9874851",
+      "bytes": 5945,
+      "read_scope": "complete following ALLOW historical-read-only-inspection preflight",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "tools/software_workflow/select_affected_checks.py",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "ffcf15f4b9d55239dab7796378ca66cf109b65b143d5d6c79fdc2fcad593538f",
+      "bytes": 2000,
+      "read_scope": "complete implementation plus --help and guide-example execution",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "tools/software_workflow/run_registered_checks.py",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "665a4ac138b92d0b0a7d4a2b03b47dc05118c8a4cb5c894155976e5eccc1c766",
+      "bytes": 12548,
+      "read_scope": "main implementation lines 253-306 plus --help; selection and output semantics",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "tools/practitioner_harness/harness.py",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "01a9b9541ded993364f7db8a8e8a59087bf26649094a522867a658e2eae561f3",
+      "bytes": 22269,
+      "read_scope": "main status/drift dispatch and conditional JSON-output implementation; CLI help for both subcommands",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "tools/practitioner_harness/README.md",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "b30448ef70ace0f7933c14cc27841d47cc1043c51761f81957e02a0617894088",
+      "bytes": 43636,
+      "read_scope": "Write posture lines 65-85 and targeted report/generated-output clauses",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "tools/validation/validate_app_dev_loop_receipts.py",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "daf01933ecade2e62db95cbb48cdb763ae99f64da85b31e0e8b934ebbfd62f64",
+      "bytes": 1748,
+      "read_scope": "--help and documented CLI/structural-not-authentication scope",
+      "matches_basis_commit": true
+    },
+    {
+      "path": "tools/validation/validate_piping_loop_receipts.py",
+      "origin": "repository@9b7ac5fb3c7f06cec35f24de8ebba8331bb95ac8",
+      "sha256": "b6891b75614a183e4f0e33be8315a8ac49a2a4baa9a9d11ccfd8f704504a7965",
+      "bytes": 1795,
+      "read_scope": "--help and documented CLI/structural-not-authentication scope",
+      "matches_basis_commit": true
+    }
+  ],
+  "coverage": {
+    "v2_actual_diff": "332 unified-diff lines with one context line; complete in chunks 0:105, 105:205, 205:end; initial truncated displays excluded",
+    "guide": "complete 693-line guide in successive displayed ranges 1-200, 201-405, 406-625, 626-end, followed by exact final repair backcheck; reference definitions included",
+    "manual_review": "complete, including final repaired line59",
+    "original_manuscript": "no new complete read claimed; checked prior continuous-reading partitions 1-1212,1213-2625,2626-3731 and matching subject identity",
+    "manifest_replay": {
+      "operations": 64,
+      "all_old_strings_unique": true,
+      "result_exactly_matches_v2": true,
+      "untouched_original_line_positions": 3667,
+      "expanded_inputs_retained_verbatim": 20,
+      "all_original_explicit_anchors_retained": 81,
+      "original_words": 73108,
+      "v2_words": 74806
+    },
+    "primary_source_scope": "bounded material claim verification; no exhaustive project or product-code audit"
+  },
+  "repairs_backchecked": [
+    {
+      "id": "FCR-01",
+      "severity": "minor",
+      "path": "docs/alignment-manual/CHIRALITY_AGENT_USER_MANUAL_v1.md",
+      "line": 464,
+      "description": "All five Runtime source package names explicitly located under packages/.",
+      "status": "RESOLVED"
+    },
+    {
+      "id": "FCR-02",
+      "severity": "editorial precision",
+      "path": "docs/alignment-manual/MANUAL_REVIEW_v1.md",
+      "line": 59,
+      "description": "Counts explicitly describe untouched original line positions versus replaced/expanded positions.",
+      "status": "RESOLVED"
+    }
+  ],
+  "executed_interface_checks": [
+    {
+      "command": "python3 tools/software_workflow/select_affected_checks.py --help",
+      "result": "exit0"
+    },
+    {
+      "command": "python3 tools/software_workflow/run_registered_checks.py --help",
+      "result": "exit0"
+    },
+    {
+      "command": "python3 tools/software_workflow/select_affected_checks.py projects/chirality-app-dev/software-workflow.json frontend/src/example.ts",
+      "result": "exit0; app-hold-integrity, frontend-test, frontend-typecheck, harness-self-check"
+    },
+    {
+      "command": "python3 tools/practitioner_harness/harness.py status --help",
+      "result": "exit0; runtime project supported"
+    },
+    {
+      "command": "python3 tools/practitioner_harness/harness.py drift --help",
+      "result": "exit0; runtime project supported"
+    },
+    {
+      "command": "python3 projects/chirality-app-dev/execution/_Scripts/app_hold.py check --help",
+      "result": "exit0; four operation values and required entry/target match guide"
+    },
+    {
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --help",
+      "result": "exit0; --repo-root supported; structural only"
+    },
+    {
+      "command": "python3 tools/validation/validate_piping_loop_receipts.py --help",
+      "result": "exit0; --repo-root supported; structural only"
+    },
+    {
+      "cwd": "projects/pec",
+      "command": "python3 execution/_Scripts/pec_reliance_hold.py --register execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv --target execution/_Coordination/_DECISIONS/D-PEC-85_RULING_2026-09-08.md --operation historical-read-only-inspection",
+      "result": "exit0; {\"operation\":\"historical-read-only-inspection\",\"status\":\"ALLOW\"}; this inspection only"
+    }
+  ],
+  "execution_notes": [
+    "Python CLI checks used PYTHONDONTWRITEBYTECODE=1.",
+    "No npm checks, builds, native witnesses, package operations, remote refresh or Git mutations executed.",
+    "One guessed Piping HANDOFF.md locator was absent; the actual RESUME-linked HANDOFF_STATE.md was read instead.",
+    "Two guessed Piping test/lib directories were absent during a bounded search; desktop manifest and Vite WASM guard were inspected, with no claim of complete test inventory.",
+    "Oversized source displays are treated as partial unless reread; all complete target-publication reading was recovered in bounded displays."
+  ],
+  "limits": [
+    "HTML/render/browser behavior delegated to publication review and parent; no browser evidence claimed here.",
+    "No fresh remote state or current project activation determination beyond the dated source basis.",
+    "Original external archives, earlier editorial report, consultation history, jurisdictional interpretations and empirical productivity claims not independently recreated or renewed.",
+    "This verdict is independent agent content review, not human acceptance or project adoption."
+  ],
+  "report": {
+    "path": "plans/evidence/2026-09-22_alignment_manual/final-content-review.md",
+    "sha256": "2d7cec98a3e469b6d0b06424e60e137180d5f58baae66a0ec0ee0337a9f41091"
+  }
+}
