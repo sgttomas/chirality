@@ -421,9 +421,10 @@ match the code), and directed that it be captured and merged for other agents be
 Captured as D-GOV-44: kernel `docs/DELIVERABLE_CONCORDANCE_METHOD.md` Revision 2 (§3.1) and the
 `reconciliation` workflow's R3, R4, R5 and contract text (PR A, owner-reviewed and owner-merged).
 
-**This run's method does not change.** The pinned method in §1 (the six files and SHA-256 values in
+**This run's method does not change.** The pinned method in the header block (the six files and SHA-256 values in
 the D-APP-128 ruling §4, at `00115c719`) stands; kernel §6 keeps later edits from changing the method
 of an in-flight run absent a new ruling. The run adopts the posture as an owner rider at the head of
 its R5 ruling record (D-APP-131), in PR B, which the owner will call for. Until then: no packet is
-ruled, no repair manifest is built, no deliverable is edited. The owner's standing constraint against
-instruction changes is superseded by `r5_granularity_capture` for the D-GOV-44 scope only.
+ruled, no repair manifest is built, no deliverable is edited. This is the first instruction change in the run,
+authorized by `r5_granularity_capture` for the D-GOV-44 scope only; the earlier `concept` direction
+("Making such changes is not warranted") concerned agent-setting instructions and is unaffected.

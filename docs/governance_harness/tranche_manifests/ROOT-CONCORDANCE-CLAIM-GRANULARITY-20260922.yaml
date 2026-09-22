@@ -21,8 +21,9 @@ m2_gate:
     and 'The specific instructions'". The principle is kernel §3.1 (Revision
     2, the owner act §7 requires); the specific instructions are the
     reconciliation workflow's R3, R4 and R5 text and its contract invariant.
-    The owner's earlier standing constraint in that run against instruction
-    changes is superseded for this scope only. This manifest records the gate
+    This is the first instruction change in that run; the owner's earlier
+    "Making such changes is not warranted" concerned agent-setting
+    instructions and is unaffected. This manifest records the gate
     and grants no authority (K-AUTH-1).
   authorized_by: Ryan Tufts
   authorization_date: 2026-09-22

@@ -205,7 +205,7 @@ Context for `r5_granularity_posture`: the owner adopts the claim-granularity rea
 
 SHA-256: `3df6e687837def37123e7081e9cd1457b1a51911698f989cc55873f7c762b6de`
 
-Context for `r5_granularity_capture`: authorizes PR A (kernel Revision 2, workflow R4/R5 revision, decision record D-GOV-44, loop notices, run-record capture). This is the owner act that amends the kernel (§7: "amended only by owner act") and, for this scope only, supersedes the owner's earlier standing constraint against instruction changes in this run. The owner reviews and merges PR A personally, then pauses; PR B (D-APP-131: the rider and the packet rulings) waits for the owner's instruction. HELP_HUMAN does not merge PR A.
+Context for `r5_granularity_capture`: authorizes PR A (kernel Revision 2, workflow R4/R5 revision, decision record D-GOV-44, loop notices, run-record capture). This is the owner act that amends the kernel (§7: "amended only by owner act"). It is the first instruction change in this run; the earlier `concept` direction ("Making such changes is not warranted") declined agent-setting instructions for reasoning-level selection and did not address the kernel or the workflow. The owner reviews and merges PR A personally, then pauses; PR B (D-APP-131: the rider and the packet rulings) waits for the owner's instruction. HELP_HUMAN does not merge PR A.
 
 ## Plan approval
 

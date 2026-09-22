@@ -89,11 +89,15 @@ each quote are recorded in
 4. **Notices.** Routed to the piping and App loops, which pin the kernel
    through their adoption plans and profiles. A notice communicates the
    change; each loop decides its own adoption.
-5. **Scope of the instruction change.** The owner's earlier standing
-   constraint in the App run against instruction changes ("Making such
-   changes is not warranted") is superseded for this scope only: kernel
-   §3.1 and the reconciliation workflow's R3, R4, R5 and contract text named
-   above. No agent role file, `AGENTS.md`, skill, or other workflow changes.
+5. **Scope of the instruction change.** This is the first instruction
+   change made in the App run. The owner's earlier direction in that run,
+   "Making such changes is not warranted" (`OWNER_DIRECTION.md`, `concept`),
+   declined the addition of agent-setting instructions for reasoning-level
+   selection; it did not address the kernel or the workflow and is not
+   superseded here. The authority for this change is
+   `r5_granularity_capture` alone, and its scope is kernel §3.1 and the
+   reconciliation workflow's R3, R4, R5 and contract text named above. No
+   agent role file, `AGENTS.md`, skill, or other workflow changes.
 
 ## Origin of the rule
 

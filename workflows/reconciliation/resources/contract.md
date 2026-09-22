@@ -14,8 +14,8 @@
   change would need a recorded decision, or that another surface depends on,
   or that named evidence can check (shared method §3.1). Mechanism-level
   descriptions are evidence, not claims, and a claim written at that level is
-  a granularity defect in the deliverable, repaired by lifting it, not by
-  rewriting it to the code.
+  a granularity defect in the deliverable, repaired by default by lifting
+  it, and by rewriting it to the code only where the ruling gives a reason.
 - **Format-aware preservation.** During authorized conversion, legacy
   path/section claims remain the bound source and candidate stable IDs are
   derivative mappings. Every source claim receives exactly one disposition;
