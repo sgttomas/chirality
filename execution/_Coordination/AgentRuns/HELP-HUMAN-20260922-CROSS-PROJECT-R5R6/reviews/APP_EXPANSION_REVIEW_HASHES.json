@@ -1,0 +1,632 @@
+{
+  "schema": "chirality-independent-app-expansion-review/v1",
+  "reviewer": {
+    "agent": "/root/app_expansion_review",
+    "parent": "/root",
+    "role": "TASK",
+    "mechanism": "Codex delegated-harness-native collaboration",
+    "engine": "Codex",
+    "model": "GPT-6 family from supplied identity; exact serving model/provider identifier unavailable",
+    "independent_of_authors": true,
+    "source_write_authority": false,
+    "write_scope": [
+      "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/reviews/APP_EXPANSION_REVIEW.md",
+      "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/reviews/APP_EXPANSION_REVIEW_HASHES.json"
+    ],
+    "enforcement": "Instruction boundary; shared host filesystem permissions broader"
+  },
+  "date": "2026-09-22",
+  "baseline": "379df923927d157be3ebb51d8a1dcf783d970112",
+  "freeze": "Manager /root/app_manager confirmed all twelve PKG06/PKG07 SoWs frozen in native message before final verification; no production edits made by reviewer.",
+  "diff": {
+    "sha256": "3c6c0ed7a9d94f30792a461a14f449b068f17dcf65b1116cb75f2bb608c3deda",
+    "bytes": 75434
+  },
+  "instruction_basis": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "d151dad92a074abebf8e6225c92c4c6e88fd586f2283377b50b5051eff39be7b"
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sha256": "1a13a5b00b3ce01ff8519efe6b46bcbe0cd6a5b7985e24282fa7efa2c57c8fb7"
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "5d65cce235a8d6f656a858e7f3836e1cbd4229a9567f215c3448353d23ae405c"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/BRIEF.md",
+      "sha256": "7677b3127fe5b031140ce96d0e1887b4459b4e59ad19a3bc0eaadd0db2a6fea9"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/HELP-HUMAN-20260922-CROSS-PROJECT-R5R6/AGENT0_DISPOSITIONS.md",
+      "sha256": "17160eb03baf345d88a180d2ffe7af85e70fb152d5d508982b9fc476294861dd"
+    },
+    {
+      "path": "workflows/reconciliation/resources/method.md",
+      "sha256": "f1c8f54909c0ae4341d53391cb4a96fe377dfc1f167c00b1159d15eab079ea16"
+    }
+  ],
+  "authority_and_evidence_basis": [
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "sha256": "4c292998f171de581aa188c4bf3317b7235b31f491ec700b3f33f463ed422139"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-43_codex_host_replatform.md",
+      "sha256": "08bef1e22715b4962e365ec3dce8a0cd66a212ea79cdc21a33ffa818f05f5899"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-43_supplement_topology_A2.md",
+      "sha256": "fa3756ad3bdf02104da47fc5ba697b4f96d8a02029f008b32bd96a094ec46cb2"
+    },
+    {
+      "path": "docs/governance_harness/_PROPOSALS/D-GOV-43_2026-09-11_codex_host_replatform/D-GOV-43.proposed.md",
+      "sha256": "5afadb4ac0d33c26d188abbd86508de31dd08a027bd7858005273a11eab784cc"
+    },
+    {
+      "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+      "sha256": "57411f8df49e6316d8d3bc9674d698b1c8478e639aad331115d4f67bcca97363"
+    },
+    {
+      "path": "projects/chirality-app-dev/docs/SPEC.md",
+      "sha256": "8b0d805b6abc6d4a493463440394ea9bb39f23fba84483f05007fe724447fe13"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-127_RULING_APPLICATION_D-GOV-43_CODEX_HOST_REPLATFORM_A2_2026-09-12.md",
+      "sha256": "211ce2d25fde94c2c88c7b688a530e697b1b923efffaaaf18f39db414f494c19"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-131_APPLICATION_R5_R6_AGENT0_2026-09-22.md",
+      "sha256": "37a3dd3798af7c8d8ce5ea21b2b5d9dac22b452c8473c260fbafbb5a219de097"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-56_RULING_2026-07-12.md",
+      "sha256": "512ee819442366df20c78c1b58b50db25a563387a29a9b60b0dd04d6b52188a3"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D55_CONCORDANCE_2026-07-11_1904Z/PROPOSED_DECISION_FINDINGS.md",
+      "sha256": "8d403640db666be6cefdb5afba90971600815c006a669770c31b06af567db023"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/RUN_RIDER.md",
+      "sha256": "d9d5ecee96bee90384766a185a53bc7104c9eee20667b8dba07864c8713b123d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/RETURN.md",
+      "sha256": "8f8b46c3ef9168d37e5a5e26c5c04c915d24076a52536a3830f4f1dcdf7c0b3c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/SOURCE_IDENTITIES.csv",
+      "sha256": "7c72629d3353c75c322f66a43f2e5d6ff81375282f1ec7f9f653ee41770ef5c6"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/FILE_IDENTITIES.json",
+      "sha256": "a50ca394a4506a5dc7abfc6601a5daaa467852fc6e1b45cab516ef90b7387c7e"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/CHECKS.json",
+      "sha256": "2aa7a065d8947e41fd18211e454043587885058e972cc437f97b1ff1e3c00a29"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/REPAIR_MANIFEST.csv",
+      "sha256": "576e6f894ad88957a1d555ee913d283e29955b9c37eaf2116ec15cdadaf3742f"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/UNCHANGED_COMPLEMENT.csv",
+      "sha256": "c362d376abdb646eba5fe04417c49b738b669417790b828a9f2382b0c707e943"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/REPAIR_MANIFEST.csv",
+      "sha256": "d22200d7db5e6a9bc6850fe59a6b11433d377bb28ce507a03bbda851434d6b19"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/FILE_BINDINGS.csv",
+      "sha256": "126e79d1e2a391c7ee9e6322618e24fc7a2e160b0df9347dde44cbd5e51dedea"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/UNCHANGED_KEYS.csv",
+      "sha256": "f53d58b7902df99e7998ce9806e55eeed163bcad6e882d69c2c63a42b9072368"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/checks/verification_summary.json",
+      "sha256": "a88e1977cffa327972d0c2945e27f0561c6f5cd097b2fc6957148627dd4fcb08"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R3/CLAIM_CONCORDANCE.csv",
+      "sha256": "a6f6cdda685173cac3aa8ab75d8dd823143feadbde2c44a755571337936dd852"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/_scripts/claim_index.py",
+      "sha256": "c538fa4410744cf43c73626d4777985469c1148c00a8e2d3faf11a59af301309"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Scripts/app_hold.py",
+      "sha256": "92e6dd4c001e8715450e61f91073b49da6788de41f43606c812457c02e07c5bc"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/APP_HOLD_REGISTER.csv",
+      "sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c"
+    }
+  ],
+  "named_reference_inventory": {
+    "verification": "24 unique explicit .ts/.py references independently checked for existence and hashed; targeted Runtime test bodies inspected. This inventory is not product test execution or full semantic review of each named source.",
+    "files": [
+      {
+        "path": "projects/chirality-app-dev/execution/_Scripts/references_hash_tool.py",
+        "sha256": "26adeecb19a581d18a7ed4b7c5c96c94dee9788d888cd1982334f1bcbca3a1fd"
+      },
+      {
+        "path": "projects/chirality-app-dev/execution/_Scripts/tests/test_references_hash_tool.py",
+        "sha256": "d3b87668d0f0a992aa7f637f5ebcf338ed030e67398e56fce6de914ee08ccb35"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/api/project/deliverables-route.test.ts",
+        "sha256": "64523601a2a5b4cef3a178992f59c5ff81249454397f4a37e57a82e6689f4ce7"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/deliverable-contracts.test.ts",
+        "sha256": "410eeeba0659a064c91ae4de35dd8ffbd373481d405988a49fbd82fc9d57e36b"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/api/working-root/validate-route.test.ts",
+        "sha256": "1bfc432c5011c0fe617b0581ff9d1411cc8047cac0a56835185877b23929ca67"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/atomic-write.test.ts",
+        "sha256": "3737efd08042bb9bcb9c9dfb5436d8b7693d24a79a00b2eff1f0e998334a1bf7"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts",
+        "sha256": "96df9157069ac919ce208525b2a6b844a6c03918d58dfa508219d4bae0c606ae"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-mutating-mcp.test.ts",
+        "sha256": "d6a0fc0d53ecabf4e854f21ed41dc1e4b1ebe74faf03201ec914fa1326c939da"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-read-mcp.test.ts",
+        "sha256": "9b36ca4f96434ac815495573b2960da6111aa367fe1be8054438af121bdb870f"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/dependencies-register-contract.test.ts",
+        "sha256": "568fe16c1d88cd617f98e86830042e2c93e8b7218e711caf4fd6913104bfea53"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-instruction-root.test.ts",
+        "sha256": "52989a457cb5223dfd476ab4e1f30e46af433c195e159b01060d30b36a557fcc"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-scaffold.test.ts",
+        "sha256": "6b67693557299313157eb6501f91de52f531525d04dbc8317882d4a09aabeec1"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/lifecycle-status.test.ts",
+        "sha256": "5f18086e73b7531dd05eb3b178efb819602031ff00e237a6eaf98ea5ecdabde7"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/permission-overlay.test.ts",
+        "sha256": "08b293eea4dddbce59765747c1216f55090f8be296efd650dbeca77432ed03c1"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/sdk-message-mapper.test.ts",
+        "sha256": "417eeed1fce2fcf7ab31844b38151e5d608d126e3310a47abdf894974a0e82ff"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/tool-descriptor.test.ts",
+        "sha256": "5de9ec6cf7de6073e7aa8fedf484ce52ac67fdc6f55375aecfee13383163a342"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts",
+        "sha256": "295fbb0369b448534de6c1bb56fbecd35df6fc2f595b96677ed2e96ed1b0ebaf"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/app/api/working-root/validate/route.ts",
+        "sha256": "1db079c12cf035005b48b71804226c8f3f197eea0c58e70290a76af6d7c228b0"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts",
+        "sha256": "308ee6ff03c41b781c2cb6474625afdb1aa0e9f1a6a22392aaa7426124dbb643"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/lib/harness/instruction-root.ts",
+        "sha256": "3ab8b1e585e7c4797f8c5606715ab0d6778c9267799cc91b222a07779f5cbaef"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/lib/lifecycle/status-parser.ts",
+        "sha256": "a8eb1388a7bbfc4fb152622480a5371d3e7ac2c743b985df4729a471d7a0f18e"
+      },
+      {
+        "path": "projects/chirality-app-dev/frontend/src/lib/lifecycle/transition.ts",
+        "sha256": "7c898adcc5326b012dbbacc045596c0ffeadfa5b73624d6c68e59136f1cff672"
+      },
+      {
+        "path": "projects/chirality-runtime/tests/app-owned-composition.test.ts",
+        "sha256": "0d905fb5e1c0f35fc58e0eaad237c569774e0f5b72b784dc4aa3975d4d43938c"
+      },
+      {
+        "path": "projects/chirality-runtime/tests/codex-supervisor.test.ts",
+        "sha256": "4915153f4bc4f1f51ed400d266d0b058f2c6707b696ecf6bc9e340ae9f4a6dff"
+      }
+    ]
+  },
+  "reviewed_candidate": {
+    "files": [
+      {
+        "deliverable_id": "DEL-06-01",
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/ScopeOfWork.md",
+        "baseline_sha256": "97d2413fe9c46015b3c2a013018f72c0baa3c762a39886df04f29e5decaca0f1",
+        "candidate_sha256": "0c6545aa03042d63e1edaf799c2c4e0d65f0db055fab3ef5139e5d9329a89344",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/before/DEL-06-01_ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/after/DEL-06-01_ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-003",
+          "CLM-005"
+        ],
+        "r3_keys": [
+          "DEL-06-01#CLM-003",
+          "DEL-06-01#CLM-005"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-06-02",
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md",
+        "baseline_sha256": "b2a7921d0f197451a03825fa594dd64a84b4fe7b06b8f0072fe2d0bdbb95a3a2",
+        "candidate_sha256": "1df070d3b9fb1a56e9d34ab797aee63776893acf45a448013c4e09a1aa7bdda4",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/before/DEL-06-02_ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/after/DEL-06-02_ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-003",
+          "CLM-004"
+        ],
+        "r3_keys": [
+          "DEL-06-02#CLM-003",
+          "DEL-06-02#CLM-004.1",
+          "DEL-06-02#CLM-004.2"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-06-03",
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/ScopeOfWork.md",
+        "baseline_sha256": "041009ac09e0996185598aa14b92b1343d2c7f1e34eacc2db1499267f6db7c47",
+        "candidate_sha256": "bcbab969b35f767b97db4b73563e0bf4f3dd95dacf9097945ebcd85315040ce5",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/before/DEL-06-03_ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/after/DEL-06-03_ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-003",
+          "CLM-005"
+        ],
+        "r3_keys": [
+          "DEL-06-03#CLM-003",
+          "DEL-06-03#CLM-005"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-06-04",
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/ScopeOfWork.md",
+        "baseline_sha256": "bdafe1f32bf0abe8cdd82070921b3a2d90cb835716ce3f15c955d72ada410b6d",
+        "candidate_sha256": "cbc450648946a226276377076eb4c525d726a88f09ca695806c57e01d428f6a8",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/before/DEL-06-04_ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/after/DEL-06-04_ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-003",
+          "CLM-005"
+        ],
+        "r3_keys": [
+          "DEL-06-04#CLM-003",
+          "DEL-06-04#CLM-005"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-06-05",
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/ScopeOfWork.md",
+        "baseline_sha256": "5135dd9f2a25680149c616190e6647fab8ce44fcd221ada544954e33c8e1a595",
+        "candidate_sha256": "b168e6e604b8607c37f3ead94d3f5983f5aa3534ea66fb19008775d207917648",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/before/DEL-06-05_ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/after/DEL-06-05_ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-003",
+          "CLM-005"
+        ],
+        "r3_keys": [
+          "DEL-06-05#CLM-003",
+          "DEL-06-05#CLM-005"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-06-06",
+        "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/ScopeOfWork.md",
+        "baseline_sha256": "962e879e009966b418b7a7361ffcbddf9ebeb6c92bcb60c15c7384f7d3d3320e",
+        "candidate_sha256": "36c1e6fd6ba324bc4e99819334006b279e24a1dade628c1c1e68313980840642",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/before/DEL-06-06_ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG06/after/DEL-06-06_ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-003",
+          "CLM-005"
+        ],
+        "r3_keys": [
+          "DEL-06-06#CLM-003.1",
+          "DEL-06-06#CLM-003.2",
+          "DEL-06-06#CLM-003.3",
+          "DEL-06-06#CLM-003.4",
+          "DEL-06-06#CLM-003.5",
+          "DEL-06-06#CLM-005"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-07-01",
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/ScopeOfWork.md",
+        "baseline_sha256": "4d6b48a06a5166c2a5644922ea303f85f68ab89f5d1d1eb4ee8f223258c5bb6c",
+        "candidate_sha256": "e381c7b9c466279bab8130bde89d9c4e31c833e0052685d6c2740a46b4f2f2e4",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/before/DEL-07-01.ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/after/DEL-07-01.ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-003",
+          "CLM-005",
+          "CLM-013",
+          "CLM-014"
+        ],
+        "r3_keys": [
+          "DEL-07-01#CLM-003",
+          "DEL-07-01#CLM-005",
+          "DEL-07-01#CLM-013",
+          "DEL-07-01#CLM-014"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-07-02",
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-02_Execution_Root_Scaffolding_from_Decomposition/ScopeOfWork.md",
+        "baseline_sha256": "903fe2347b7899e2e59adc974ae1a72cc8a36280e4b2d3363a013763f6df6938",
+        "candidate_sha256": "943ec2a8a09a5125d724981b8dbf06ee53a84bfb8b65a987f517c6bbc6ed4795",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/before/DEL-07-02.ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/after/DEL-07-02.ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-005"
+        ],
+        "r3_keys": [
+          "DEL-07-02#CLM-005"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-07-03",
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/ScopeOfWork.md",
+        "baseline_sha256": "870d7146c9a18aec749718319856e886ddd3d290515cb2058f40f1bddd2ee46b",
+        "candidate_sha256": "c9cce3adebc0941bf9692b476d3440781388c67becf6ce6182033fc5c5d8b6a5",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/before/DEL-07-03.ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/after/DEL-07-03.ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-005"
+        ],
+        "r3_keys": [
+          "DEL-07-03#CLM-005"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-07-04",
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-04_Status_Transition_API_and_MCP_Tool/ScopeOfWork.md",
+        "baseline_sha256": "3295473174477551d1ff70c9f88dbe3d4f61d7d8d3a74e7d645db0c19bbc9046",
+        "candidate_sha256": "7b73dc12422c91d6708ffde0e4c16aebc72c9d7406ed43bee7bce65d4bdecf8d",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/before/DEL-07-04.ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/after/DEL-07-04.ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-003",
+          "CLM-005",
+          "CLM-014"
+        ],
+        "r3_keys": [
+          "DEL-07-04#CLM-003",
+          "DEL-07-04#CLM-005",
+          "DEL-07-04#CLM-014"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-07-05",
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-05_Dependencies_csv_v3_1_Reader_Writer_and_Linter/ScopeOfWork.md",
+        "baseline_sha256": "bbbb23a83e5c5c2567943d5ab8545fcc31fb103ca11d6cfd54e92d398c88fec5",
+        "candidate_sha256": "971530133f244b94a16461cbd17386940bbdd8d6fdad25ce914722eec371fc50",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/before/DEL-07-05.ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/after/DEL-07-05.ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-014"
+        ],
+        "r3_keys": [
+          "DEL-07-05#CLM-014"
+        ]
+      },
+      {
+        "deliverable_id": "DEL-07-06",
+        "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/ScopeOfWork.md",
+        "baseline_sha256": "2c390061eec5c17664733de16224b3a6a9f813d15022994e51e27a6129308f7b",
+        "candidate_sha256": "b15f535b889f3f00983717a08f889e241f4a86e71423c56f5ad56cfa446da180",
+        "before_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/before/DEL-07-06.ScopeOfWork.md",
+        "after_snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/R5/PKG07/after/DEL-07-06.ScopeOfWork.md",
+        "changed_physical_claims": [
+          "CLM-006",
+          "CLM-018",
+          "CLM-019"
+        ],
+        "r3_keys": [
+          "DEL-07-06#CLM-006",
+          "DEL-07-06#CLM-018",
+          "DEL-07-06#CLM-019"
+        ]
+      }
+    ],
+    "checks": [
+      {
+        "reserved_claim": "DEL-06-02#CLM-005",
+        "sha256": "be8fb50c8ef6c53ed4e14dd8f4e3ba15b0a2629fb9bbade98259f04d486da1d7",
+        "byte_identical": true
+      },
+      {
+        "reserved_claim": "DEL-06-02#CLM-032",
+        "sha256": "e01e93c1da1a184596f86df63f229c2f9f42fed443dedbc3b354c02617761d22",
+        "byte_identical": true
+      },
+      {
+        "package": "PKG06",
+        "changed_r3_keys": 17,
+        "unchanged_r3_keys": 341,
+        "all_r3_keys": 358,
+        "exact_partition": true
+      },
+      {
+        "package": "PKG07",
+        "changed_r3_keys": 13,
+        "unchanged_r3_keys": 322,
+        "all_r3_keys": 335,
+        "exact_partition": true
+      }
+    ],
+    "full_file_preimage_postimage_manifest_bindings": "PASS",
+    "whole_file_inverse_reconstruction": "PASS",
+    "all_heading_identity_sequence": "PASS"
+  },
+  "app_hold": {
+    "initial_attempt": "An initial mistyped target list included nonexistent DEL-06-07 and returned APP_HOLD_ERROR before deliverable reliance. Corrected list DEL-06-01..06 / DEL-07-01..06 passed before review. Final repeat below also passed.",
+    "final_check": {
+      "active_hold_deliverables": [],
+      "entry_path": "delegated-harness-native:/root/app_expansion_review",
+      "operation": "reliance",
+      "register_sha256": "d289b248a900122b012ae540b9b197feae3adbe264bf181f3d46556c500f320c",
+      "repo_head": "379df923927d157be3ebb51d8a1dcf783d970112",
+      "results": [
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-06-01",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-06-02",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-06-03",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-06-04",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-06-05",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-06-06",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-07-01",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-07-02",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-07-03",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-07-04",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-07-05",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        },
+        {
+          "contract_status": "CLEAR",
+          "deliverable_id": "DEL-07-06",
+          "entry_path": "delegated-harness-native:/root/app_expansion_review",
+          "hold_status": "NOT_HELD",
+          "operation": "reliance",
+          "verdict": "ALLOW"
+        }
+      ],
+      "scan_fingerprint_sha256": "7bd56dd823f28427dd4bfb8ca65017b4fe9c0b8165fb32a702f896e49f8ba6ec",
+      "scan_held_deliverables": [],
+      "schema": "chirality-app-hold-check/v1",
+      "structural_bootstrap_deliverables": [],
+      "targets": [
+        "DEL-06-01",
+        "DEL-06-02",
+        "DEL-06-03",
+        "DEL-06-04",
+        "DEL-06-05",
+        "DEL-06-06",
+        "DEL-07-01",
+        "DEL-07-02",
+        "DEL-07-03",
+        "DEL-07-04",
+        "DEL-07-05",
+        "DEL-07-06"
+      ],
+      "verdict": "ALLOW"
+    }
+  },
+  "checks": {
+    "complete_frozen_diff_semantic_review": "PASS_NO_BLOCKING_FINDINGS",
+    "full_file_baseline_and_snapshot_bindings": "PASS_12_FILES",
+    "inverse_reconstruction": "PASS_12_FILES",
+    "changed_physical_blocks": 25,
+    "changed_r3_keys": 30,
+    "unchanged_r3_keys": 663,
+    "all_r3_keys": 693,
+    "p01_reserved_blocks": "BYTE_IDENTICAL",
+    "explicit_D_APP_116_119_in_changed_R3_LatestDecision_or_RemainingGate": 0,
+    "git_diff_check": "PASS",
+    "product_tests": "NOT_RUN_DOCUMENT_ONLY_REVIEW"
+  },
+  "findings": [],
+  "limits": [
+    "Only the new twelve-SoW expansion is the review subject; source review does not substitute for parent R6 accounting or review of other current changes.",
+    "Named tests identify verification subjects; their presence does not qualify live Codex behavior or establish a new test result.",
+    "Manager reports PKG07 author sent freeze/artifact/check completion message then failed in final channel with model capacity; this review verifies saved files directly and does not assert a clean author termination."
+  ]
+}

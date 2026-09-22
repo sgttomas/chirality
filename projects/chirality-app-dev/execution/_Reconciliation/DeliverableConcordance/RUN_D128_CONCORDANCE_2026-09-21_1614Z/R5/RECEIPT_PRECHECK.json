@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python3",
+    "tools/validation/validate_app_dev_loop_receipts.py",
+    "--repo-root",
+    "."
+  ],
+  "exit_code": 0,
+  "stdout": "VALID /Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+  "stderr": ""
+}

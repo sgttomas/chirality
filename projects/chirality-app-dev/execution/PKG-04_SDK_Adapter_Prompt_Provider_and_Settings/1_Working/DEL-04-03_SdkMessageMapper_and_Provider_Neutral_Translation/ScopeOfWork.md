@@ -42,20 +42,16 @@ This Scope of Work defines `DEL-04-03` in service of project scope [SOW-040, SOW
 
 ### CLM-003 — Attributes
 
-> ##### Attributes
->
-> | Attribute | Value | Source |
-> |---|---|---|
-> | Primary implementation artifact | `sdk-message-mapper.ts` | `_CONTEXT.md`; decomposition DEL-04-03 |
-> | Test artifacts | Mapper tests; provider-neutral leakage tests | `_CONTEXT.md`; decomposition DEL-04-03 |
-> | Scope items covered | SOW-040, SOW-044, SOW-051 | `_CONTEXT.md`; decomposition DEL-04-03 |
-> | Supported objectives | OBJ-002, OBJ-004 | `_CONTEXT.md`; decomposition DEL-04-03 |
-> | Browser-facing output contract | Compact `UIEvent`s / SSE events: `session:init`, `chat:delta`, `chat:complete`, `tool:result`, `session:complete`, `turn:error`, `process:exit` | REF-003 Section 11; REF-004 Section 7.4 |
-> | Persisted runtime output contract | Versioned `HarnessEvent` records with `schemaVersion`, `eventId`, `sessionId`, optional `turnId`, optional `parentEventId`, `timestamp`, `type`, and `data` | REF-003 Section 10; REF-004 Section 7.3 |
-> | SDK-specific data posture | SDK message names, session IDs, transcript paths, permission modes, hook names, and tool names remain adapter metadata, not public Chirality contracts | REF-001 Sections 2.8-2.10; REF-003 Section 10.3; REF-004 Section 9 |
-> | Known SDK input categories | `SDKSystemMessage`, `SDKAssistantMessage`, `SDKPartialAssistantMessage`, `SDKResultMessage`, permission-denial, hook, compact-boundary, tool-progress, and subagent messages | REF-006 Section 8.12, source-state warning applies |
-> | Exact observed SDK message sequence | TBD pending DEL-04-01 first-adapter probe / OI-001; current named categories are planning targets until probe-backed fixtures are accepted. | Decomposition OI-001; SOW-044; REF-006 FR-116, HASH_MISMATCH warning applies |
->
+| Attribute | Required boundary | Verification / authority |
+|---|---|---|
+| Scope and objectives | App client event mapping and conformance for SOW-040, SOW-044, SOW-051 and OBJ-002, OBJ-004. Generic Runtime event semantics remain Root-owned. | SCA-APP-005; `_CONTEXT.md` Deliverable Scope. |
+| Browser-facing output | Preserve upstream method names, identifiers and payloads after required redaction; provide normalized views for known events and inspectable unfamiliar notifications. The earlier fixed event-name list is compatibility history. | `docs/CONTRACT.md` K-EVENT-1 and K-EVENT-6; D-GOV-43 item 2 and A2 supplement; `frontend/src/__tests__/lib/harness-event-views-codex.test.ts`. |
+| Persisted output | App mapping conforms to the Runtime-owned versioned event contract and does not create a second canonical writer or silently replace that contract. | `docs/CONTRACT.md` K-EVENT-4; App/Runtime conformance fixtures. |
+| Source-specific data | Preserve upstream data as required by D-GOV-43 while distinguishing operational event data from authoritative project evidence; preserve redaction at every sink. | `docs/CONTRACT.md` K-EVENT-6; re-platform S-1 and S-7. |
+| Historical SDK evidence | The Claude mapper, input categories and probe sequence belong to the retained adapter evidence. They do not define a notification whitelist or current engine requirement. | `sdk-message-mapper.ts` and its tests, and DEL-04-01 `Evidence_DAPP52_LIVE_PROBE_2026-07-18.md`; R5 PKG04 evidence preserves the earlier attribute text. |
+
+The listed checks are verification hooks. This text repair does not assert a
+new test result, native result, or closure of a partial claim.
 
 ### CLM-004 — Conditions
 
@@ -108,27 +104,21 @@ This Scope of Work defines `DEL-04-03` in service of project scope [SOW-040, SOW
 
 ### CLM-008 — Scope
 
-> ##### Scope
->
-> This deliverable specifies the backend mapping surface that translates SDK stream messages into stable browser `UIEvent`s and provider-neutral persisted `HarnessEvent`s without allowing SDK message shapes, provider identifiers, transcript paths, or tool names to define Chirality's public or canonical contracts.
->
-> In scope:
->
-> - `sdk-message-mapper.ts` or equivalent mapper module.
-> - Deterministic mapping from SDK message categories to browser-facing `UIEvent`s.
-> - Deterministic mapping from SDK message categories to versioned `HarnessEvent`s.
-> - Mapper tests and provider-neutral leakage tests.
-> - Handling of SDK session and transcript linkage only as adapter metadata when relevant to mapped events.
-> - Mapping hooks for SDK tool-use, tool-result, permission-denial, hook, result, compact-boundary, terminal, and subagent lifecycle messages where source-supported.
->
-> Out of scope:
->
-> - Defining the product-owned `AgentEnginePort` / `RuntimeEngineContract` itself; that is owned by DEL-03-01.
-> - Persisting the append-only JSONL event log; that is owned by PKG-05, with this deliverable supplying mapping outputs compatible with it.
-> - Building SDK options and settings isolation; that is owned by DEL-04-02.
-> - Confirming exact SDK package behavior and message sequence; that is owned by DEL-04-01 / OI-001.
-> - Expanding tool permissions, MCP wrappers, write/edit/bash behavior, or permission overlay depth beyond mapper-visible event inputs.
->
+Map Runtime outputs for the App interface and verify conformance to
+Root-owned event semantics under SCA-APP-005. D-GOV-43 (A2) requires the
+complete notification/request stream, redaction, normalized known views,
+inspectable unfamiliar notifications and explicit unsupported-request
+outcomes. A fixed SDK category list must not drop activity or leave requests
+unanswered. The Claude mapper is compatibility evidence.
+
+Verification hooks: App `frontend/src/__tests__/lib/harness-event-views-codex.test.ts`
+and `frontend/src/__tests__/components/live-session-requests.test.tsx`, Runtime
+`tests/codex-app-server-client.test.ts`, and re-platform S-1/S-7 native evidence.
+
+Generic interfaces and event production stay Runtime-owned, with App
+conformance in DEL-03-01 and storage under its owning Runtime/PKG-05 contract.
+Options, probe evidence and credentials stay in DEL-04-02, DEL-04-01 and
+DEL-04-05. Tool permissions and other package scope are unchanged.
 
 ### CLM-009 — Requirements
 

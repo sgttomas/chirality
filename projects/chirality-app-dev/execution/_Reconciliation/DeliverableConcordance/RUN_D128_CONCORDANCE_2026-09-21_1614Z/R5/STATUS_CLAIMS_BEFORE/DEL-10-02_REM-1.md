@@ -1,0 +1,1 @@
+- Define the concrete path-glob syntax and hook API and close DEP-10-02-005 — no live evidence exists yet (source: Evidence_D53A_Dependency_Reconciliation_2026-07-10.md; D-APP-53 executed 2026-07-10 closed DEP-10-02-003) (stage-gated: F-APP-3 / PKG-10 future-boundary lane; needs its own decision packet before code)

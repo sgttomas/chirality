@@ -118,14 +118,19 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-005 — Construction
 
-> ##### Construction
->
-> | Artifact | Expected Role | Notes |
-> |---|---|---|
-> | `persona-composer.ts` | Build system/appended prompt material from governance preface, selected persona instruction, working-root summary, mode policy, permitted tool surface, and professional-boundary reminders. | Anticipated by `_CONTEXT.md`; exact module path TBD. |
-> | Persona content hash tests | Prove persona instruction content and prompt inputs affect the generated fingerprint. | Anticipated by `_CONTEXT.md`; test file path TBD. |
-> | Boot fingerprint updates | Extend boot/session metadata to reflect prompt and SDK-policy inputs. | Anticipated by `_CONTEXT.md`; `docs/SPEC.md` Sections 12.4 and 13.2; downstream consuming deliverable/interface remains `UNKNOWN` / `TBD` in `Dependencies.csv` DEP-04-04-008. |
->
+The App consumes a source-grounded instruction basis through Runtime, retaining
+the selected role/method content, origins and hashes for replay. Chirality
+context is additive and preserves Codex's base instructions and tool behavior
+(D-GOV-43 item 8).
+
+Verification hooks: Runtime `tests/instruction-basis-and-method-transition.test.ts`
+(exact supplied bytes and false-hash rejection) and `tests/runtime-v3-api.test.ts`
+(exact v3 context supplied at adapter boot). Historical composer/fingerprint
+mechanics are retained in the R5 PKG04 evidence manifest.
+
+Instruction-root protection, professional-boundary reminders and SCA-APP-010's
+organisation-layer, roadmap and fingerprint obligations remain current.
+D-APP-119's residual and the unknown downstream interface remain open.
 
 ### CLM-006 — References
 
@@ -361,12 +366,14 @@ dependency-acceptance, product, or release act is implied.
 
 ### CLM-023 — Purpose
 
-> ##### Purpose
->
-> DEL-04-04 exists to replace stub persona prompt behavior with a governed PersonaComposer that reads Chirality instruction-root materials and produces prompt context suitable for the SDK-backed runtime path. The value of the slice is not more prompt text by itself; it is making prompt composition deterministic, traceable, source-grounded, and bounded by Chirality-owned runtime policy.
->
-> Sources: `_CONTEXT.md` Deliverable Scope; decomposition DEL-04-04 row; `docs/DIRECTIVE.md` Sections 2.8-2.10; `docs/SPEC.md` Section 13.2.
->
+Traceable instruction composition must let a reader reconstruct the active
+role and method context against its actual source basis. Runtime supplies
+supported additive Chirality context while preserving Codex's own instructions
+(D-GOV-43 item 8); the SDK composer remains compatibility evidence.
+
+Verify source-grounded composition through CLM-005's named checks. Prompt text
+does not enforce safety or confer acceptance. SCA-APP-010's organisation-layer
+and roadmap obligations, including D-APP-119's unresolved ruling, remain open.
 
 ### CLM-024 — Principles
 

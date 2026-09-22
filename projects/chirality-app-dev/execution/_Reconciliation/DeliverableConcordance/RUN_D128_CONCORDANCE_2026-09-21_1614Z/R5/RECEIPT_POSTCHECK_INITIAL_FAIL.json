@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python3",
+    "tools/validation/validate_app_dev_loop_receipts.py",
+    "--repo-root",
+    "."
+  ],
+  "exit_code": 1,
+  "stdout": "INVALID OWNER_DIRECTION_STATUS /Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md:7248: Owner-Direction must include 'CHAT_TRANSCRIPTION \u2014 EVIDENCE, NOT RULING'\nINVALID DUPLICATED_MEASUREMENT /Users/ryan/.codex/worktrees/e468/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md:7250: Exact count/measurement is not admissible in Checks; point to its owning artifact\n",
+  "stderr": ""
+}

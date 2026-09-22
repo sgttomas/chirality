@@ -9,3 +9,5 @@
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-127: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-06-01; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
 - 2026-07-19 - D-APP-68 chronology item 3 assigned DEL-06-01 the managed-orchestration `coordination` descriptor permission class and `harness-permission.v7.coordination-mode` hard-deny mapping. Coordination tools require `workspaceWrite` and remain subject to handler-level managed-delegation validation. No runtime or lifecycle change occurred.
+
+- 2026-09-22 — D-APP-131: bounded R5 repair and R6 backcheck recorded in `execution/_Reconciliation/DeliverableConcordance/RUN_D128_CONCORDANCE_2026-09-21_1614Z/BACKCHECK/R6_2026-09-22/`. Current work is only in `_STATUS.md ## Remaining`; prior evidence and lifecycle remain unchanged.

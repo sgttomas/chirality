@@ -1,0 +1,38 @@
+[
+  {
+    "DeliverableID": "DEL-06-01",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-01_ChiralityPermissionOverlay_and_Mode_Mapping/ScopeOfWork.md",
+    "BeforeSHA256": "97d2413fe9c46015b3c2a013018f72c0baa3c762a39886df04f29e5decaca0f1",
+    "AfterSHA256": "0c6545aa03042d63e1edaf799c2c4e0d65f0db055fab3ef5139e5d9329a89344"
+  },
+  {
+    "DeliverableID": "DEL-06-02",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/ScopeOfWork.md",
+    "BeforeSHA256": "b2a7921d0f197451a03825fa594dd64a84b4fe7b06b8f0072fe2d0bdbb95a3a2",
+    "AfterSHA256": "1df070d3b9fb1a56e9d34ab797aee63776893acf45a448013c4e09a1aa7bdda4"
+  },
+  {
+    "DeliverableID": "DEL-06-03",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/ScopeOfWork.md",
+    "BeforeSHA256": "041009ac09e0996185598aa14b92b1343d2c7f1e34eacc2db1499267f6db7c47",
+    "AfterSHA256": "bcbab969b35f767b97db4b73563e0bf4f3dd95dacf9097945ebcd85315040ce5"
+  },
+  {
+    "DeliverableID": "DEL-06-04",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-04_Write_Edit_Surface_and_Path_Hooks/ScopeOfWork.md",
+    "BeforeSHA256": "bdafe1f32bf0abe8cdd82070921b3a2d90cb835716ce3f15c955d72ada410b6d",
+    "AfterSHA256": "cbc450648946a226276377076eb4c525d726a88f09ca695806c57e01d428f6a8"
+  },
+  {
+    "DeliverableID": "DEL-06-05",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-05_Bash_Governance_and_Timeout_Policy/ScopeOfWork.md",
+    "BeforeSHA256": "5135dd9f2a25680149c616190e6647fab8ce44fcd221ada544954e33c8e1a595",
+    "AfterSHA256": "b168e6e604b8607c37f3ead94d3f5983f5aa3534ea66fb19008775d207917648"
+  },
+  {
+    "DeliverableID": "DEL-06-06",
+    "Path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-06_Hook_Lifecycle_and_Compaction_Mirror/ScopeOfWork.md",
+    "BeforeSHA256": "962e879e009966b418b7a7361ffcbddf9ebeb6c92bcb60c15c7384f7d3d3320e",
+    "AfterSHA256": "36c1e6fd6ba324bc4e99819334006b279e24a1dade628c1c1e68313980840642"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "SourceBasis": "379df923927d157be3ebb51d8a1dcf783d970112",
+  "SourceR3SHA256": "a6f6cdda685173cac3aa8ab75d8dd823143feadbde2c44a755571337936dd852",
+  "ChangedFiles": 5,
+  "ChangedBlocks": 11,
+  "AffectedR3Keys": 21,
+  "UnchangedComplement": 289,
+  "TotalPackageR3Keys": 310,
+  "ExactKeyPartition": true,
+  "Validators": [
+    {
+      "DeliverableID": "DEL-08-01",
+      "ExitCode": 0,
+      "Stderr": ""
+    },
+    {
+      "DeliverableID": "DEL-08-02",
+      "ExitCode": 0,
+      "Stderr": ""
+    },
+    {
+      "DeliverableID": "DEL-08-03",
+      "ExitCode": 0,
+      "Stderr": ""
+    },
+    {
+      "DeliverableID": "DEL-08-04",
+      "ExitCode": 0,
+      "Stderr": ""
+    },
+    {
+      "DeliverableID": "DEL-08-05",
+      "ExitCode": 0,
+      "Stderr": ""
+    }
+  ]
+}

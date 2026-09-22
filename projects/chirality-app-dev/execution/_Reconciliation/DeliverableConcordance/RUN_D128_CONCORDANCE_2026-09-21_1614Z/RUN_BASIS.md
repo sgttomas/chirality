@@ -428,3 +428,7 @@ its R5 ruling record (D-APP-131), in PR B, which the owner will call for. Until 
 ruled, no repair manifest is built, no deliverable is edited. This is the first instruction change in the run,
 authorized by `r5_granularity_capture` for the D-GOV-44 scope only; the earlier `concept` direction
 ("Making such changes is not warranted") concerned agent-setting instructions and is unaffected.
+
+## Addendum 14 — prospective R5/R6 application, 2026-09-22
+
+D-APP-131 records the current owner authorization and attributed Agent0 applications. `R5/RUN_RIDER.md` adopts kernel Rev2 and default posture (b) prospectively, records the execution basis and native delegation, and widens P-02.a's read boundary to the 16 keyed Root conversion records. Exact new origins/hashes are in `R5/INPUT_ORIGINS.csv`. Earlier discovery, its Rev1 pins, evidence roots, verdicts and disagreements remain historical and unchanged. This addendum creates no product, lifecycle or release acceptance.
